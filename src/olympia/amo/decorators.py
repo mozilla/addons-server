@@ -11,6 +11,7 @@ from rest_framework.authentication import get_authorization_header
 from rest_framework.settings import api_settings
 
 import olympia.core.logger
+from olympia.accounts.utils import check_for_session_anomaly, redirect_for_login
 
 from . import models as context
 
@@ -18,27 +19,25 @@ from . import models as context
 task_log = olympia.core.logger.getLogger('z.task')
 
 
-def login_required(f=None, redirect=True):
+def login_required(f):
     """
-    Like Django's login_required, but with to= instead of next=.
-
-    If redirect=False then we return 401 instead of redirecting to the
-    login page.  That's nice for ajax views.
+    Like Django's login_required, but with to= instead of next=, and added
+    session consistency checks.
     """
 
     def decorator(func):
         @functools.wraps(func)
         def wrapper(request, *args, **kw):
-            # Prevent circular ref in accounts.utils
-            from olympia.accounts.utils import redirect_for_login
-
             if request.user.is_authenticated:
+                if hasattr(request, 'session'):
+                    check_for_session_anomaly(
+                        session=request.session,
+                        headers=request.headers,
+                        user=request.user,
+                    )
                 return func(request, *args, **kw)
             else:
-                if redirect:
-                    return redirect_for_login(request)
-                else:
-                    return http.HttpResponse(status=401)
+                return redirect_for_login(request)
 
         return wrapper
 

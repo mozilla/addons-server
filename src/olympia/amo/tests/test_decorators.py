@@ -9,8 +9,10 @@ from django.utils.encoding import force_str
 
 import pytest
 from rest_framework import exceptions as drf_exceptions
+from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.amo import decorators
 from olympia.amo.tests import TestCase, fxa_login_link
 from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
@@ -83,39 +85,78 @@ def test_json_view_response_status():
 
 
 class TestLoginRequired(TestCase):
+    fixtures = ['base/users']
+
     def setUp(self):
         super().setUp()
-        self.f = mock.Mock()
-        self.f.__name__ = 'function'
+        self.function = mock.Mock()
+        self.function.__name__ = 'function'
+        self.function.return_value = mock.Mock()
         self.request = RequestFactory().get('/path')
         self.request.user = AnonymousUser()
-        self.request.session = {}
+        self.initialize_session({}, request=self.request)
+        self.create_switch('enable-session-anomaly-recording', active=True)
 
     def test_normal(self):
-        func = decorators.login_required(self.f)
-        response = func(self.request)
-        assert not self.f.called
+        decorated_function = decorators.login_required(self.function)
+        response = decorated_function(self.request)
+        assert not self.function.called
         assert response.status_code == 302
         assert response['Location'] == fxa_login_link(request=self.request, to='/path')
+        assert ActivityLog.objects.count() == 0
 
-    def test_no_redirect(self):
-        func = decorators.login_required(self.f, redirect=False)
-        response = func(self.request)
-        assert not self.f.called
-        assert response.status_code == 401
+    def test_success(self):
+        self.request.user = UserProfile.objects.latest('pk')
+        decorated_function = decorators.login_required(self.function)
+        response = decorated_function(self.request)
+        assert self.function.called
+        assert response == self.function.return_value
+        assert ActivityLog.objects.count() == 0
 
-    def test_decorator_syntax(self):
-        # @login_required(redirect=False)
-        func = decorators.login_required(redirect=False)(self.f)
-        response = func(self.request)
-        assert not self.f.called
-        assert response.status_code == 401
+    def test_success_storing_headers_in_session(self):
+        self.request.headers = {'Client-JA4': 'some-ja4'}
+        self.test_success()
+        assert self.request.session['request_headers'] == {'client-ja4': 'some-ja4'}
 
-    def test_no_redirect_success(self):
-        func = decorators.login_required(redirect=False)(self.f)
-        self.request.user = UserProfile()
-        func(self.request)
-        assert self.f.called
+    def test_success_with_no_session_anomaly(self):
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        self.test_success_storing_headers_in_session()
+
+    def test_success_with_session_anomaly(self):
+        self.request.headers = {'Client-JA4': 'different-ja4'}
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        self.request.user = UserProfile.objects.latest('pk')
+        decorated_function = decorators.login_required(self.function)
+        response = decorated_function(self.request)
+        assert self.function.called
+        assert response == self.function.return_value
+        assert ActivityLog.objects.count() == 1
+        expected_anomalies = [
+            {
+                'header': 'client-ja4',
+                'expected': 'some-ja4',
+                'received': 'different-ja4',
+            }
+        ]
+
+        assert 'session_anomalies' in self.request.session
+        assert self.request.session['session_anomalies'] == expected_anomalies
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.get()
+        assert activity.action == amo.LOG.SESSION_ANOMALY.id
+        assert activity.user == self.request.user
+        assert activity.details == {'anomalies': expected_anomalies}
+
+    @override_switch('enable-session-anomaly-recording', active=False)
+    def test_success_with_session_anomaly_but_waffle_is_off(self):
+        self.request.headers = {'Client-JA4': 'different-ja4'}
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        self.request.user = UserProfile.objects.latest('pk')
+        decorated_function = decorators.login_required(self.function)
+        response = decorated_function(self.request)
+        assert self.function.called
+        assert response == self.function.return_value
+        assert ActivityLog.objects.count() == 0
 
 
 class TestSetModifiedOn(TestCase):

@@ -2,13 +2,18 @@ from base64 import urlsafe_b64decode, urlsafe_b64encode
 from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
+from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
+from waffle.testutils import override_switch
+
+from olympia import amo
 from olympia.accounts import utils
-from olympia.amo.tests import TestCase
+from olympia.activity.models import ActivityLog
+from olympia.amo.tests import TestCase, user_factory
 
 
 @override_settings(FXA_OAUTH_HOST='https://accounts.firefox.com/oauth')
@@ -312,3 +317,157 @@ class TestGetFxaConfigAndName(TestCase):
         assert utils.get_fxa_config_name(request) == 'baz'
         config = utils.get_fxa_config(request)
         assert config == {'BAZ': 789}
+
+
+class TestCheckForSessionAnomaly(TestCase):
+    def setUp(self):
+        self.create_switch('enable-session-anomaly-recording', active=True)
+
+    def create_request_and_session(self, headers=None):
+        request = RequestFactory().get('/', headers=headers)
+        self.initialize_session({}, request=request)
+        return request
+
+    def test_no_user(self):
+        self.request = self.create_request_and_session()
+        utils.check_for_session_anomaly(
+            session=self.request.session, headers=self.request.headers, user=None
+        )
+        assert ActivityLog.objects.count() == 0
+
+    def test_not_authenticated(self):
+        self.request = self.create_request_and_session()
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=AnonymousUser(),
+        )
+        assert ActivityLog.objects.count() == 0
+
+    def test_no_initial_headers(self):
+        self.request = self.create_request_and_session({'Client-JA4': 'some-ja4'})
+        self.request.user = user_factory()
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        assert ActivityLog.objects.count() == 0
+        assert self.request.session['request_headers'] == {'client-ja4': 'some-ja4'}
+
+    def test_no_anomaly(self):
+        self.request = self.create_request_and_session({'Client-JA4': 'some-ja4'})
+        self.request.user = user_factory()
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        assert ActivityLog.objects.count() == 0
+
+    def test_ignore_missing_header_in_session(self):
+        self.request = self.create_request_and_session({'Client-JA4': 'some-ja4'})
+        self.request.user = user_factory()
+        self.request.session['request_headers'] = {}
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        assert ActivityLog.objects.count() == 0
+        assert self.request.session['request_headers'] == {'client-ja4': 'some-ja4'}
+
+    def test_anomaly(self):
+        self.request = self.create_request_and_session({'Client-JA4': 'different-ja4'})
+        self.request.user = user_factory()
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        expected_anomalies = [
+            {
+                'header': 'client-ja4',
+                'expected': 'some-ja4',
+                'received': 'different-ja4',
+            }
+        ]
+
+        assert 'session_anomalies' in self.request.session
+        assert self.request.session['session_anomalies'] == expected_anomalies
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.get()
+        assert activity.action == amo.LOG.SESSION_ANOMALY.id
+        assert activity.user == self.request.user
+        assert activity.details == {'anomalies': expected_anomalies}
+
+    def test_anomalies(self):
+        self.request = self.create_request_and_session(
+            {
+                'Client-JA4': 'different-ja4',
+                'OHFP': 'different-ohfp',
+                'Cloudfront-Viewer-country': 'different-country',
+            }
+        )
+        self.request.user = user_factory()
+        self.request.session['request_headers'] = {
+            'client-ja4': 'some-ja4',
+            'ohfp': 'some-ohfp',
+            'cloudfront-viewer-country': 'some-country',
+        }
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        # Order follows REQUEST_HEADERS_TO_CHECK in the function.
+        expected_anomalies = [
+            {
+                'header': 'client-ja4',
+                'expected': 'some-ja4',
+                'received': 'different-ja4',
+            },
+            {
+                'header': 'cloudfront-viewer-country',
+                'expected': 'some-country',
+                'received': 'different-country',
+            },
+            {
+                'header': 'ohfp',
+                'expected': 'some-ohfp',
+                'received': 'different-ohfp',
+            },
+        ]
+
+        assert 'session_anomalies' in self.request.session
+        assert self.request.session['session_anomalies'] == expected_anomalies
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.get()
+        assert activity.action == amo.LOG.SESSION_ANOMALY.id
+        assert activity.user == self.request.user
+        assert activity.details == {'anomalies': expected_anomalies}
+
+    def test_anomaly_only_recorded_once_per_session(self):
+        self.test_anomaly()
+        ActivityLog.objects.all().delete()
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        # New anomaly is not logged, one per session is enough.
+        assert ActivityLog.objects.count() == 0
+
+    @override_switch('enable-session-anomaly-recording', active=False)
+    def test_waffle_off(self):
+        self.request = self.create_request_and_session({'Client-JA4': 'different-ja4'})
+        self.request.user = user_factory()
+        self.request.session['request_headers'] = {'client-ja4': 'some-ja4'}
+        utils.check_for_session_anomaly(
+            session=self.request.session,
+            headers=self.request.headers,
+            user=self.request.user,
+        )
+        assert ActivityLog.objects.count() == 0

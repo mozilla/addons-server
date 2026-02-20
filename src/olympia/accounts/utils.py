@@ -8,8 +8,11 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_str
 
+import waffle
+
 import olympia.core.logger
-from olympia.amo.utils import is_safe_url, use_fake_fxa
+from olympia import amo
+from olympia.activity import log_create
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -24,6 +27,8 @@ def fxa_login_url(
     id_token_hint=None,
     login_hint=None,
 ):
+    from olympia.amo.utils import is_safe_url, use_fake_fxa
+
     if next_path and is_safe_url(next_path, request):
         state += ':' + force_str(urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(
             '='
@@ -128,3 +133,71 @@ def path_with_query(request):
         return f'{next_path}?{qs}'
     else:
         return next_path
+
+
+def check_for_session_anomaly(*, session, headers, user):
+    """
+    Check that session is consistent with the given headers for a user by
+    comparing specific headers we store in the session, and record a log if
+    they differ.
+
+    Note: we explicitly avoid passing a request object to that function
+    to ensure the caller knew what they were doing - depending on the caller
+    request.user or request.session might not be set yet.
+    """
+    REQUEST_HEADERS_KEY = 'request_headers'
+    SESSION_ANOMALIES_KEY = 'session_anomalies'
+    # Our CDN/WAF is configured to send all of these headers in production,
+    # even Cloudfront-viewer-country (backwards-compatility even if we're no
+    # longer on Cloudfront).
+    REQUEST_HEADERS_TO_CHECK = ('Client-JA4', 'Cloudfront-Viewer-Country', 'Ohfp')
+
+    if not user or not user.is_authenticated:
+        return
+
+    if not waffle.switch_is_active('enable-session-anomaly-recording'):
+        return
+
+    initial_request = False
+    session_request_headers = session.get(REQUEST_HEADERS_KEY)
+    if session_request_headers is None:
+        initial_request = True
+        session_request_headers = {}
+
+    anomalies = []
+    for header in REQUEST_HEADERS_TO_CHECK:
+        # HTTP headers are case-insensitive, we arbitrarily store them in
+        # lowercase in the session.
+        session_data_key = header.lower()
+        session_data_value = session_request_headers.get(session_data_key)
+        header_value = headers.get(header)
+        if header_value:
+            # Don't consider empty session data for a given header as an
+            # anomaly: we might change the list of headers later while not
+            # invalidating existing sessions.
+            if session_data_value and header_value != session_data_value:
+                anomalies.append(
+                    {
+                        'header': session_data_key,
+                        'expected': session_data_value,
+                        'received': header_value,
+                    }
+                )
+            session_request_headers[session_data_key] = header_value
+
+    if initial_request:
+        session[REQUEST_HEADERS_KEY] = session_request_headers
+
+    if anomalies:
+        details = {'anomalies': anomalies}
+        log.warning(
+            'Session anomaly detected for user %s', user.pk, extra=dict(details)
+        )
+        if SESSION_ANOMALIES_KEY not in session:
+            # Record an activity log about anomalies for this session, but only
+            # once per session.
+            log_create(amo.LOG.SESSION_ANOMALY, user=user, details=details)
+        session[SESSION_ANOMALIES_KEY] = anomalies
+
+    if initial_request or anomalies:
+        session.save()

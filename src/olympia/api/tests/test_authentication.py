@@ -236,13 +236,15 @@ class TestSessionIDAuthentication(TestCase):
         self.update_token_mock = self.patch(
             'olympia.api.authentication.check_and_update_fxa_access_token'
         )
+        self.create_switch('enable-session-anomaly-recording', active=True)
 
-    def _authenticate(self, token):
+    def _authenticate(self, token, *, headers=None):
         url = absolutify('/api/v4/whatever/')
         request = self.factory.post(
             url,
             HTTP_HOST='testserver',
             HTTP_AUTHORIZATION=f'Session {token}',
+            headers=headers,
         )
         self.initialize_session({}, request=request)
 
@@ -253,6 +255,48 @@ class TestSessionIDAuthentication(TestCase):
         user, _ = self._authenticate(token)
         assert user == self.user
         self.update_token_mock.assert_called()
+        session = self.get_session(token)
+        assert 'client_ja4' not in session
+
+        # Not a new log in, and no session anomaly, so no activity log.
+        assert ActivityLog.objects.count() == 0
+
+    def test_success_storing_headers_in_session(self):
+        token = self.client.create_session(self.user)
+        user, _ = self._authenticate(token, headers={'Client-JA4': 'some-ja4'})
+        assert user == self.user
+        session = self.get_session(token)
+        assert session['request_headers']['client-ja4'] == 'some-ja4'
+
+        # No anomalies yet (first time going through anomalies check)
+        assert ActivityLog.objects.count() == 0
+
+        return token
+
+    def test_with_session_anomaly(self):
+        # Authenticate with the session once with a JA4...
+        token = self.test_success_storing_headers_in_session()
+
+        # ... and authenticate again with a different JA4.
+        user, _ = self._authenticate(token, headers={'Client-JA4': 'different-ja4'})
+
+        # We are currently not preventing auth when an anomaly is detected,
+        # just logging.
+        assert user == self.user
+
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.get()
+        assert activity.action == amo.LOG.SESSION_ANOMALY.id
+        assert activity.user == self.user
+        assert activity.details == {
+            'anomalies': [
+                {
+                    'header': 'client-ja4',
+                    'expected': 'some-ja4',
+                    'received': 'different-ja4',
+                }
+            ]
+        }
 
     def test_authenticate_header(self):
         request = self.factory.post('/api/v4/whatever/')
