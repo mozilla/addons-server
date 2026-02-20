@@ -23,7 +23,7 @@
     "@claviska/jquery-minicolors": "2.3.6",
     "addons-linter": "9.8.0",
     "jqmodal": "1.4.2",
-    "jquery": "3.7.1",
+    "jquery": "4.0.0",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.14.2",
     "jquery.browser": "0.1.0",
