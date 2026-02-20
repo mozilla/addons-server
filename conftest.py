@@ -178,13 +178,12 @@ def test_pre_setup(request, tmpdir, settings):
 
     def _path(*args):
         path = str(os.path.join(*args))
-        if not os.path.exists(path):
-            os.makedirs(path)
+        # if not os.path.exists(path):
+        #     os.makedirs(path)
         return path
 
     settings.STORAGE_ROOT = storage_root = _path(str(tmpdir.mkdir('storage')))
     settings.SHARED_STORAGE = shared_storage = _path(storage_root, 'shared_storage')
-
     settings.ADDONS_PATH = _path(storage_root, 'files')
     settings.MLBF_STORAGE_PATH = _path(storage_root, 'mlbf')
     settings.MEDIA_ROOT = _path(shared_storage, 'uploads')
