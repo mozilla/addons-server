@@ -231,6 +231,9 @@ DJANGO_PERMISSIONS_MAPPING.update(
         'scanners.view_scannerqueryresult': ADMIN_SCANNERS_QUERY_VIEW,
         'scanners.view_scannerwebhook': ADMIN_SCANNERS_WEBHOOKS_VIEW,
         **_addchangedelete('scanners', 'scannerwebhook', ADMIN_SCANNERS_WEBHOOKS_EDIT),
+        **_addchangedelete(
+            'scanners', 'scannerwebhookevent', ADMIN_SCANNERS_WEBHOOKS_EDIT
+        ),
         **_addchangedelete('tags', 'tag', DISCOVERY_EDIT),
         'users.change_userprofile': USERS_EDIT,
         **_addchangedelete(
