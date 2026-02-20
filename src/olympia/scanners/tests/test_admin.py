@@ -2527,6 +2527,11 @@ class TestScannerWebhookAdmin(TestCase):
                 'name': 'scanner-name',
                 'url': 'https://example.com/scanner',
                 'api_key': 'scanner-api-key',
+                'scannerwebhookevent_set-0-event': str(WEBHOOK_DURING_VALIDATION),
+                'scannerwebhookevent_set-0-id': '',
+                'scannerwebhookevent_set-0-webhook': '',
+                'scannerwebhookevent_set-TOTAL_FORMS': '1',
+                'scannerwebhookevent_set-INITIAL_FORMS': '0',
             },
             follow=True,
         )
@@ -2544,6 +2549,13 @@ class TestScannerWebhookAdmin(TestCase):
                 'name': 'new-scanner-name',
                 'url': 'https://example.com/scanner',
                 'api_key': 'scanner-api-key',
+                'scannerwebhookevent_set-0-event': str(WEBHOOK_DURING_VALIDATION),
+                'scannerwebhookevent_set-0-id': str(
+                    webhook.scannerwebhookevent_set.all()[0].pk
+                ),
+                'scannerwebhookevent_set-0-webhook': str(webhook.pk),
+                'scannerwebhookevent_set-TOTAL_FORMS': '1',
+                'scannerwebhookevent_set-INITIAL_FORMS': '1',
             },
             follow=True,
         )
