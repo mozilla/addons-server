@@ -104,7 +104,7 @@ test_needs_locales_compilation:
 .PHONY: test_main
 test_main:
 	pytest $(PYTEST_SRC) \
-		-n auto \
+		-n 8 \
 		-m 'not es_tests and not needs_locales_compilation and not internal_routes_allowed' \
 		$(ARGS)
 
