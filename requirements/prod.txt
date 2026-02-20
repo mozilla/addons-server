@@ -512,9 +512,9 @@ asgiref==3.11.1 \
     --hash=sha256:5f184dc43b7e763efe848065441eac62229c9f7b0475f41f80e207a114eda4ce \
     --hash=sha256:e8667a091e69529631969fd45dc268fa79b99c92c5fcdda727757e52146ec133
 # billiard is required by celery
-billiard==4.2.3 \
-    --hash=sha256:96486f0885afc38219d02d5f0ccd5bec8226a414b834ab244008cbb0025b8dcb \
-    --hash=sha256:989e9b688e3abf153f307b68a1328dfacfb954e30a4f920005654e276c69236b
+billiard==4.2.4 \
+    --hash=sha256:525b42bdec68d2b983347ac312f892db930858495db601b5836ac24e6477cde5 \
+    --hash=sha256:55f542c371209e03cd5862299b74e52e4fbcba8250ba611ad94276b369b6a85f
 # bitarray is required by filtercascade
 bitarray == 3.8.0 \
     --hash=sha256:004d518fa410e6da43386d20e07b576a41eb417ac67abf9f30fa75e125697199 \
@@ -624,9 +624,9 @@ bitarray == 3.8.0 \
 bleach==6.0.0 \
     --hash=sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414 \
     --hash=sha256:33c16e3353dbd13028ab4799a0f89a83f113405c766e9c122df8a06f5b85b3f4
-celery==5.5.3 \
-    --hash=sha256:0b5761a07057acee94694464ca482416b959568904c9dfa41ce8413a7d65d525 \
-    --hash=sha256:6c972ae7968c2b5281227f01c3a3f984037d21c5129d07bf3550cc2afc6b10a5
+celery==5.6.2 \
+    --hash=sha256:3ffafacbe056951b629c7abcf9064c4a2366de0bdfc9fdba421b97ebb68619a5 \
+    --hash=sha256:4a8921c3fcf2ad76317d3b29020772103581ed2454c4c042cc55dcc43585009b
 # charset-normalizer is required by requests
 charset-normalizer==3.4.4 \
     --hash=sha256:027f6de494925c0ab2a55eab46ae5129951638a49a34d87f4c3eda90f696b4ad \
@@ -829,9 +829,9 @@ html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
 # kombu is required by celery
-kombu==5.6.1 \
-    --hash=sha256:90f1febb57ad4f53ca327a87598191b2520e0c793c75ea3b88d98e3b111282e4 \
-    --hash=sha256:b69e3f5527ec32fc5196028a36376501682973e9620d6175d1c3d4eaf7e95409
+kombu==5.6.2 \
+    --hash=sha256:8060497058066c6f5aed7c26d7cd0d3b574990b09de842a8c5aaed0b92cc5a55 \
+    --hash=sha256:efcfc559da324d41d61ca311b0c64965ea35b4c55cc04ee36e55386145dace93
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
