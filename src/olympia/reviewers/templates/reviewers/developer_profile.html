@@ -19,48 +19,36 @@
     {{ 'Addons' }}
   </h3>
   <div>
-    <table class="addons-list">
+    <table class="addons-list data-grid">
       <tbody>
         <thead>
           <tr class="listing-header">
-            <th>ID: Name</th>
-            <th>Add-on ID</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Role</th>
+            {% include 'reviewers/includes/table_headers.html' %}
             <th colspan="2">Review links</th>
           </tr>
         </thead>
-        {% for addonuser in addonusers_pager.object_list %}
-        {% with addon = addonuser.addon %}
+        {% for row in page.object_list %}
         <tr>
-          <th>
-            {% if addon.status != amo.STATUS_DELETED %}
-            <a href="{{ addon.get_url_path() }}">{{ addon.id }}: {{ addon.name }}</a>
-            {% else %}
-            {{ addon.id }}: {{ addon.name }}
-            {% endif %}
-          </th>
-          <td>{{ addon.addonguid_guid }}</td>
-          <td>{{ addon.get_type_display() }}</td>
-          <td>{{ addon.get_status_display() }}</td>
-          <td>{{ addonuser.get_role_display() }}</td>
+          {% for value in row %}
+            <td>{{ value }}</td>
+          {% endfor %}
+          {% with addon = row.record %}
           <td>
-            {% if addon.has_listed_versions(include_deleted=True) %}
+            {% if addon._listed_versions_exists %}
               <a href="{{ url('reviewers.review', 'listed', addon.id)}}">Listed Review</a>
             {% endif %}
           </td>
           <td>
-            {% if addon.has_unlisted_versions(include_deleted=True)%}
+            {% if addon._unlisted_versions_exists %}
               <a href="{{ url('reviewers.review', 'unlisted', addon.id)}}">Unlisted Review</a>
             {% endif %}
           </td>
+          {% endwith %}
         </tr>
-        {% endwith %}
         {% endfor %}
       </tbody>
     </table>
-    {{ addonusers_pager|paginator }}
+    {{ page|paginator }}
   </div>
 </div>
 <div class="secondary scroll_sidebar_parent">

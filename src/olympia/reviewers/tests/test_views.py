@@ -7107,6 +7107,8 @@ class TestDeveloperProfile(ReviewerTest):
         )
 
     def test_basic(self):
+        listed_review_url = reverse('reviewers.review', args=('listed', self.addon.id))
+
         response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -7124,6 +7126,46 @@ class TestDeveloperProfile(ReviewerTest):
         self.assertContains(response, 'Extension')
         self.assertContains(response, 'Approved')
         self.assertContains(response, 'Owner')
+        self.assertContains(response, listed_review_url)
+        self.assertContains(response, self.addon.average_daily_users)
+
+    def test_link_unlisted_review_page(self):
+        self.make_addon_unlisted(self.addon)
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.id)
+        )
+        listed_review_url = reverse('reviewers.review', args=('listed', self.addon.id))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(response, unlisted_review_url)
+        self.assertNotContains(response, listed_review_url)
+
+    def test_link_both_channels_review_page(self):
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.id)
+        )
+        listed_review_url = reverse('reviewers.review', args=('listed', self.addon.id))
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(response, unlisted_review_url)
+        self.assertContains(response, listed_review_url)
+
+    def test_queries(self):
+        addon_factory(users=(self.developer,))
+        unlisted_addon = addon_factory(users=(self.developer,))
+        self.make_addon_unlisted(unlisted_addon)
+        with self.assertNumQueries(10):
+            # 2 savepoints (tests)
+            # - site notice config
+            # - user
+            # - groups
+            # - developer
+            # - addons count
+            # - addons
+            # - translations
+            # - authors
+            self.test_basic()
 
     def test_is_admin(self):
         self.login_as_admin()
@@ -7148,7 +7190,6 @@ class TestDeveloperProfile(ReviewerTest):
             f'{self.developer.id} {self.developer.name}</a>',
         )
         self.assertContains(response, f'&lt;{self.developer.email}&gt;')
-
         self.assertContains(response, self.addon.get_url_path())
         self.assertContains(response, self.addon.guid)
         self.assertContains(response, '(Deleted)')
@@ -7167,8 +7208,9 @@ class TestDeveloperProfile(ReviewerTest):
         )
         self.assertContains(response, f'&lt;{self.developer.email}&gt;')
         self.assertContains(response, self.addon.guid)
-        self.assertNotContains(response, f'">{self.addon.id}: {self.addon.name}</a>')
-        self.assertContains(response, f'{self.addon.id}: {self.addon.name}')
+        self.assertNotContains(response, f'">{self.addon.name}</a>')
+        self.assertContains(response, str(self.addon.id))
+        self.assertContains(response, self.addon.name)
         self.assertContains(response, 'Owner')
 
     def test_deleted_user(self):

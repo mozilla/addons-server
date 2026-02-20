@@ -19,7 +19,12 @@ from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AttachmentLog, ReviewActionReasonLog
 from olympia.activity.utils import notify_about_activity_log
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFlags
+from olympia.addons.models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    AddonUser,
+)
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
@@ -293,6 +298,46 @@ class HeldDecisionQueueTable:
     @classmethod
     def get_queryset(cls, request, **kwargs):
         return ContentDecision.objects.awaiting_action().order_by('created')
+
+
+class DeveloperAddonsTable(tables.Table):
+    addon_name = tables.Column(
+        verbose_name='Name', accessor='name', orderable=False, empty_values=()
+    )
+    addon_guid = tables.Column(
+        verbose_name='Add-on ID',
+        accessor='addonguid_guid',
+    )
+    average_daily_users = tables.Column(verbose_name='Add-on ADU')
+    role = tables.Column(
+        # _author_role is an annotatation set by the queryset.
+        # See custom render method below.
+        verbose_name='User role',
+        accessor='_author_role',
+        orderable=False,
+    )
+
+    class Meta:
+        model = Addon
+        fields = (
+            'pk',
+            'addon_name',
+            'addon_guid',
+            'average_daily_users',
+            'type',
+            'status',
+            'role',
+        )
+
+    def render_addon_name(self, record):
+        url = record.get_url_path() if record.status != amo.STATUS_DELETED else ''
+        name = markupsafe.escape(str(record.name or '').strip() or f'[{record.id}]')
+        if url:
+            return markupsafe.Markup('<a href="%s">%s</a>' % (url, name))
+        return name
+
+    def render_role(self, record):
+        return AddonUser(role=record._author_role).get_role_display()
 
 
 class ReviewHelper:

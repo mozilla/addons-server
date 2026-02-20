@@ -46,6 +46,7 @@ $(document).ready(function () {
 
   if (
     $('#scroll_sidebar').length &&
+    $('#addon').length &&
     !$('body.mobile, body.tablet').length &&
     !capabilities.mobile
   ) {
