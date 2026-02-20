@@ -178,8 +178,8 @@ def test_pre_setup(request, tmpdir, settings):
 
     def _path(*args):
         path = str(os.path.join(*args))
-        # if not os.path.exists(path):
-        #     os.makedirs(path)
+        if not os.path.exists(path):
+            os.makedirs(path)
         return path
 
     settings.STORAGE_ROOT = storage_root = _path(str(tmpdir.mkdir('storage')))

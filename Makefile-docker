@@ -105,6 +105,7 @@ test_needs_locales_compilation:
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
+		--durations=10
 		-m 'not es_tests and not needs_locales_compilation and not internal_routes_allowed' \
 		$(ARGS)
 
