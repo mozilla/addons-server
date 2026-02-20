@@ -17,8 +17,6 @@ from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
 
-import pytest
-
 from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -46,9 +44,6 @@ from olympia.files.utils import (
 )
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, Version
-
-
-pytestmark = pytest.mark.django_db
 
 
 class UploadMixin(amo.tests.AMOPaths):

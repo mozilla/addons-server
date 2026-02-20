@@ -6,8 +6,6 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.urls import reverse
 
-import pytest
-
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo import models as amo_models
@@ -15,9 +13,6 @@ from olympia.amo.tests import TestCase
 from olympia.core.tests.m2m_testapp.models import Artist, Singer, Song
 from olympia.users.models import UserProfile
 from olympia.zadmin.models import Config
-
-
-pytestmark = pytest.mark.django_db
 
 
 class ManualOrderTest(TestCase):

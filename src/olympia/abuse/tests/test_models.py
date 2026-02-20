@@ -4026,7 +4026,6 @@ class TestContentDecision(TestCase):
         assert decision.has_policy_text_in_comments is False
 
 
-@pytest.mark.django_db
 @pytest.mark.parametrize(
     'illegal_category,expected',
     [
@@ -4085,16 +4084,14 @@ class TestContentDecision(TestCase):
     ],
 )
 def test_illegal_category_cinder_value(illegal_category, expected):
-    addon = addon_factory()
-    abuse_report = AbuseReport.objects.create(
-        guid=addon.guid,
+    abuse_report = AbuseReport(
+        guid='@someguid',
         reason=AbuseReport.REASONS.ILLEGAL,
         illegal_category=illegal_category,
     )
     assert abuse_report.illegal_category_cinder_value == expected
 
 
-@pytest.mark.django_db
 @pytest.mark.parametrize(
     'illegal_subcategory,expected',
     [
@@ -4268,9 +4265,8 @@ def test_illegal_category_cinder_value(illegal_category, expected):
     ],
 )
 def test_illegal_subcategory_cinder_value(illegal_subcategory, expected):
-    addon = addon_factory()
-    abuse_report = AbuseReport.objects.create(
-        guid=addon.guid,
+    abuse_report = AbuseReport(
+        guid='@someguid',
         reason=AbuseReport.REASONS.ILLEGAL,
         illegal_subcategory=illegal_subcategory,
     )

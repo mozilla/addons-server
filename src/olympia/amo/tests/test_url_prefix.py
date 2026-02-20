@@ -1,6 +1,8 @@
 from django import shortcuts
 from django.conf import settings
+from django.test import SimpleTestCase
 from django.test.client import Client, RequestFactory
+from django.test.utils import override_settings
 from django.urls import resolve, reverse, set_script_prefix
 from django.utils.http import MAX_URL_LENGTH
 
@@ -9,13 +11,10 @@ import pytest
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
 from olympia.amo.reverse import clean_url_prefixes, set_url_prefix
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase
 
 
-pytestmark = pytest.mark.django_db
-
-
-class MiddlewareTest(TestCase):
+class MiddlewareTest(SimpleTestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
@@ -147,7 +146,7 @@ class MiddlewareTest(TestCase):
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)
-            self.assertUrlEqual(response['Location'], expected)
+            self.assertURLEqual(response['Location'], expected)
 
         check('/services?lang=fr', '/services')
         check('/en-US/firefox?lang=fr', '/fr/firefox/')
@@ -237,7 +236,6 @@ class TestPrefixer(TestCase):
         assert reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):
-        addon_factory(slug='foo')
         # 'home' is now a frontend view
         func, args, kwargs = resolve('/')
         assert func.__name__ == 'frontend_view'
@@ -253,13 +251,13 @@ class TestPrefixer(TestCase):
 
     def test_script_name(self):
         rf = RequestFactory()
-        request = rf.get('/foo', SCRIPT_NAME='/oremj')
+        request = rf.get('/foo', SCRIPT_NAME='/bar')
         prefixer = urlresolvers.Prefixer(request)
-        assert prefixer.fix(prefixer.shortened_path) == ('/oremj/en-US/firefox/foo')
+        assert prefixer.fix(prefixer.shortened_path) == ('/bar/en-US/firefox/foo')
 
         # Now check reverse.
         set_url_prefix(prefixer)
-        assert reverse('home') == '/oremj/en-US/firefox/'
+        assert reverse('home') == '/bar/en-US/firefox/'
 
 
 class TestPrefixerActivate(TestCase):
@@ -388,8 +386,7 @@ def test_parse_accept_language(test_input, expected):
     assert urlresolvers.lang_from_accept_header(test_input) == expected
 
 
-class TestShorter(TestCase):
-    def test_no_shorter_language(self):
-        assert urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
-        with self.settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
-            assert urlresolvers.lang_from_accept_header('zh') == 'en-US'
+def test_no_shorter_language():
+    assert urlresolvers.lang_from_accept_header('zh') == 'zh-CN'
+    with override_settings(LANGUAGE_URL_MAP={'en-us': 'en-US'}):
+        assert urlresolvers.lang_from_accept_header('zh') == 'en-US'

@@ -7,7 +7,6 @@ from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
 from django.utils.encoding import force_str
 
-import pytest
 from rest_framework import exceptions as drf_exceptions
 
 from olympia import amo
@@ -15,9 +14,6 @@ from olympia.amo import decorators
 from olympia.amo.tests import TestCase, fxa_login_link
 from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
 from olympia.users.models import UserProfile
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_post_required():

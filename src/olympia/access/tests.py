@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AnonymousUser
 from django.http import HttpResponse
+from django.test import Client
 
 import pytest
 
@@ -22,9 +23,6 @@ from .acl import (
     reserved_guid_addon_submission_allowed,
 )
 from .middleware import UserAndAddrMiddleware
-
-
-pytestmark = pytest.mark.django_db
 
 
 def test_match_rules():
@@ -74,17 +72,15 @@ def test_anonymous_user():
     assert not action_allowed_for(None, amo.permissions.ANY_ADMIN)
 
 
-class ACLTestCase(TestCase):
-    """Test some basic ACLs by going to various locked pages on AMO."""
-
-    fixtures = ['access/login.json']
-
-    def test_admin_login_anon(self):
-        # Login form for anonymous user on the admin page.
-        url = '/en-US/admin/models/'
-        self.assert3xx(
-            self.client.get(url), '/en-US/admin/models/login/?next=/en-US/admin/models/'
-        )
+def test_admin_login_anon():
+    # Login form for anonymous user on the admin page.
+    url = '/en-US/admin/models/'
+    client = Client()
+    response = client.get(url)
+    assert response.status_code == 302
+    assert (
+        response['location'] == '/en-US/admin/models/login/?next=/en-US/admin/models/'
+    )
 
 
 class TestCheckAddonOwnership(TestCase):
@@ -325,6 +321,7 @@ def test_reserved_guid_addon_submission_allowed_not_mozilla_not_allowed(guid):
     assert not reserved_guid_addon_submission_allowed(user, data)
 
 
+@pytest.mark.django_db
 def test_user_and_addr_middleware():
     middleware = UserAndAddrMiddleware(lambda x: response)
     wanted_headers = {

@@ -35,9 +35,6 @@ from olympia.users.tasks import (
 )
 
 
-pytestmark = pytest.mark.django_db
-
-
 class TestDeletePhoto(TestCase):
     def setUp(self):
         self.user = user_factory(deleted=True)

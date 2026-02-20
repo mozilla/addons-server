@@ -37,7 +37,8 @@ from olympia.users.models import UserProfile
 from olympia.zadmin.models import set_config
 
 
-@pytest.mark.django_db
+# Avoid database calls for this test as it's trying every lang in LANGUAGES
+@patch('olympia.zadmin.templatetags.jinja_helpers.zadmin_get_config', lambda k: None)
 @pytest.mark.parametrize('locale_pair', settings.LANGUAGES)
 def test_locale_switcher(client, locale_pair):
     response = client.get(f'/{locale_pair[0]}/developers/')

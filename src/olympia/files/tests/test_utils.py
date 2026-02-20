@@ -25,9 +25,6 @@ from olympia.applications.models import AppVersion
 from olympia.files import utils
 
 
-pytestmark = pytest.mark.django_db
-
-
 def _touch(fname):
     open(fname, 'a').close()
     os.utime(fname, None)
@@ -1235,7 +1232,7 @@ def test_extract_extension_to_dest_invalid_archive():
     assert mock_rmtree.called
 
 
-@pytestmark
+@pytest.mark.django_db
 def test_extract_translations_simple():
     file_obj = amo.tests.addon_factory(
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
@@ -1252,7 +1249,7 @@ def test_extract_translations_simple():
     ]
 
 
-@pytestmark
+@pytest.mark.django_db
 def test_extract_translations_fail_silent_invalid_file():
     file_obj = amo.tests.addon_factory(
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}

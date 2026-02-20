@@ -10,7 +10,6 @@ from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.urls import reverse
 
-import pytest
 from pyquery import PyQuery as pq
 
 from olympia.accounts.utils import fxa_login_url, path_with_query
@@ -25,9 +24,6 @@ from olympia.amo.middleware import (
 )
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
 from olympia.zadmin.models import Config
-
-
-pytestmark = pytest.mark.django_db
 
 
 class TestMiddleware(TestCase):
@@ -107,6 +103,7 @@ def test_source_with_wrong_unicode_get():
     assert response['Location'].endswith('?source=firefoxsocialmedia%14%C3%82%C2%85')
 
 
+@patch('olympia.zadmin.templatetags.jinja_helpers.zadmin_get_config', lambda k: None)
 def test_trailing_slash_middleware():
     response = test.Client().get('/en-US/about/?xxx=\xc3')
     assert response.status_code == 301
@@ -140,7 +137,7 @@ class TestNoDjangoDebugToolbar(TestCase):
 
 def test_request_id_middleware(client):
     """Test that we add a request id to every response"""
-    response = client.get(reverse('devhub.index'))
+    response = client.get(reverse('version.json'))
     assert response.status_code == 200
     assert isinstance(response['X-AMO-Request-ID'], str)
 

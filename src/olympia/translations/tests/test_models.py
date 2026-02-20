@@ -37,9 +37,6 @@ from olympia.translations.tests.testapp.models import (
 )
 
 
-pytestmark = pytest.mark.django_db
-
-
 def ids(qs):
     return [o.id for o in qs]
 
@@ -876,6 +873,7 @@ def test_comparison_with_lazy():
     assert lazy_u('xxx') == Translation(localized_string='xxx')
 
 
+@pytest.mark.django_db
 def test_translated_field_default_null():
     assert Translation.objects.count() == 0
     obj = TranslatedModelWithDefaultNull.objects.create(name='english name')
@@ -939,6 +937,7 @@ def test_translated_field_default_null():
     assert obj.name.locale == 'de'
 
 
+@pytest.mark.django_db
 def test_translated_field_fk_lookups():
     """
     Test that translations are properly resolved even through models
@@ -993,6 +992,7 @@ def test_translated_field_fk_lookups():
     assert fresh_parent.translated_through_fk.name is not None
 
 
+@pytest.mark.django_db
 def test_translated_field_emoji_support():
     # Make sure utf8mb4 settings are correct and emojis are correctly handled
     assert Translation.objects.count() == 0

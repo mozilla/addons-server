@@ -26,9 +26,6 @@ ADDONS_TEST_FILES = os.path.join(
 )
 
 
-pytestmark = pytest.mark.django_db
-
-
 def render(s, context=None):
     if context is None:
         context = {}

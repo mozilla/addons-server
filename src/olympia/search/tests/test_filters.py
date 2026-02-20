@@ -2,6 +2,7 @@ import copy
 from datetime import date, datetime, timedelta
 from unittest.mock import Mock, patch
 
+from django.test import SimpleTestCase
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import translation
@@ -12,7 +13,6 @@ from elasticsearch.dsl import Search
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUP_CHOICES
 from olympia.search.filters import (
@@ -27,7 +27,7 @@ from olympia.search.filters import (
 )
 
 
-class FilterTestsBase(TestCase):
+class FilterTestsBase(SimpleTestCase):
     # Base TestCase class - Does not need to inherit from ESTestCase as the
     # queries will never actually be executed.
 
@@ -694,9 +694,8 @@ class TestSearchParameterFilter(FilterTestsBase):
             'terms': {'guid': ['@foobar', '{28568f6a-0604-4654-a001-e7bf57a35af7}']}
         } in filter_
 
+    @patch('olympia.search.filters.switch_is_active', lambda s: s == 'return-to-amo')
     def test_return_to_amo(self):
-        self.create_switch('return-to-amo', active=True)
-        self.create_switch('return-to-amo-for-all-listed', active=False)
         param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
         qs = self._filter(data={'guid': param})
         assert 'must' not in qs['query']['bool']
@@ -711,9 +710,11 @@ class TestSearchParameterFilter(FilterTestsBase):
             }
         } in filter_
 
+    @patch(
+        'olympia.search.filters.switch_is_active',
+        lambda s: s.startswith('return-to-amo'),
+    )
     def test_return_to_amo_for_all_listed(self):
-        self.create_switch('return-to-amo', active=True)
-        self.create_switch('return-to-amo-for-all-listed', active=True)
         param = 'rta:{}'.format(urlsafe_base64_encode(b'@foobar'))
         qs = self._filter(data={'guid': param})
         assert 'must' not in qs['query']['bool']

@@ -1,4 +1,4 @@
-{% if waffle.switch("suppressed-email") and request.user.is_authenticated and request.user.suppressed_email and request.path != url('devhub.email_verification') %}
+{% if request.user.is_authenticated and waffle.switch("suppressed-email") and request.user.suppressed_email and request.path != url('devhub.email_verification') %}
 <div class="notification-box warning" id="suppressed-email">
     <p>
         {% trans email=request.user.email %}
