@@ -1,0 +1,49 @@
+# This docker compose file is a minimal override file that goes with
+# docker-compose.yml and is intended to be used in CI to run tests without
+# a full environment (without running `make up`).
+#
+# Aside from overring healthchecks and dependencies, it does not bind mount the
+# whole repos to /data/olympia, relying only on the contents of the image with
+# named volumes for deps/node_modules as we need to install more on top of the
+# production image for tests. It uses a bind mount just for docs/ to build
+# them inside the image and grab the artifacts afterwards from the host.
+# Because it doesn't use a bound volume for the code, the entrypoint is also
+# overridden as all the usermod shenanigans we'd normally need don't apply.
+#
+# Gotchas when running locally to test CI behavior:
+# - Remove any stale stale data_deps_ci or data_node_modules_ci volumes
+# - Use a production container with development deps. CI executes this first:
+#   make up_pre DOCKER_VERSION=local \
+#               DOCKER_DIGEST= \
+#               DOCKER_TARGET=production \
+#               OLYMPIA_DEPS=development
+
+services:
+  web:
+    # We don't want any healthchecks, this is to run a one-off pytest command.
+    healthcheck: !override
+      test: ['CMD','true']
+    # Minimal dependencies. Jobs may start other services on their own.
+    depends_on: !override
+      mysqld:
+        condition: service_healthy
+      memcached:
+        condition: service_started
+    # We don't need to bind the local filesystem like we do for development,
+    # but we do need a persistent deps volume to install dependencies used for
+    # testing not present in the production image.
+    # When mounting an empty volume into a directory on the container in which
+    # files exist, those files are copied into the volume by default, which
+    # means we'll only need to install development dependencies, the production
+    # ones are already there.
+    volumes: !override
+      - data_deps_ci:/data/olympia/deps
+      - data_node_modules_ci:/data/olympia/node_modules
+      - ./docs:/data/olympia/docs
+    # Since we're not using a bind mount, we shouldn't use our development
+    # entrypoint that runs commands as the host user uid.
+    entrypoint: !override ''
+
+volumes:
+  data_deps_ci:
+  data_node_modules_ci:

@@ -24,12 +24,12 @@ x-env-mapping: &env
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
     - FXA_CLIENT_SECRET
-    - STATIC_URL_PREFIX
-    - MEDIA_URL_PREFIX
+    - STATIC_URL_PREFIX=/static-server/
+    - MEDIA_URL_PREFIX=/user-media/
 
 x-olympia: &olympia
   <<: *env
-  image: ${DOCKER_TAG:-}
+  image: ${DOCKER_TAG:-mozilla/addons-server}
   # We don't want docker compose to manage the image for us.
   # We sometimes build the image locally and sometimes pull from a registry
   # but docker compose should always assume the image is available.

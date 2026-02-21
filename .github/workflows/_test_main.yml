@@ -1,4 +1,4 @@
-name: Test Docker Image (test_main only)
+name: Test Docker Image
 
 run-name: |
   ref: ${{ github.ref_name }} |
@@ -81,6 +81,23 @@ jobs:
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
           cat "$GITHUB_OUTPUT"
 
+  test_codestyle:
+    runs-on: ubuntu-latest
+    needs: [test_config]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Test
+        uses: ./.github/actions/run-docker-minimal
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make lint-codestyle
+
   test_main:
     runs-on: ubuntu-latest
     needs: [test_config]
@@ -94,12 +111,23 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Create empty environment
+        run: |
+          touch .env
+
+      - name: Spin up autograph
+        run: |
+          docker compose up --wait autograph
+
+      - name: Spin up redis
+        run: |
+          docker compose up --wait redis
+
       - name: Test (test_matrix)
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"
@@ -113,6 +141,66 @@ jobs:
           name: ${{ env.log_artifact }}-${{ matrix.group }}
           retention-days: 1
           overwrite: true
+
+  test_internal_routes:
+    runs-on: ubuntu-latest
+    needs: [test_config]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Test
+        uses: ./.github/actions/run-docker-minimal
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_internal_routes_allowed
+
+  test_needs_locales:
+    runs-on: ubuntu-latest
+    needs: [test_config]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Test
+        uses: ./.github/actions/run-docker-minimal
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make compile_locales
+            make test_needs_locales_compilation
+
+  test_search:
+    runs-on: ubuntu-latest
+    needs: [test_config]
+
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - name: Create empty environment
+        run: |
+          touch .env
+
+      - name: Spin up Elasticsearch
+        run: |
+          docker compose up --wait elasticsearch
+
+      - name: Test
+        uses: ./.github/actions/run-docker-minimal
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_es_tests
 
   test_log:
     runs-on: ubuntu-latest

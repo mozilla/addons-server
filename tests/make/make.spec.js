@@ -175,6 +175,7 @@ describe('docker-bake.hcl', () => {
   }
   it('renders empty values for undefined variables', () => {
     const output = getBakeConfig();
+    console.log(output);
     expect(output).toContain('"DOCKER_BUILD": ""');
     expect(output).toContain('"DOCKER_COMMIT": ""');
     expect(output).toContain('"DOCKER_VERSION": ""');

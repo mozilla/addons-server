@@ -143,13 +143,10 @@ CUSTOMS_API_KEY = 'customssecret'
 
 REMOTE_SETTINGS_IS_TEST_SERVER = True
 
-local_settings_path = path('local_settings.py')
-
-if not os.path.exists(local_settings_path):
-    with open(local_settings_path, 'w') as file:
-        file.write('# Put settings you want to overload in this file.\n')
-
-from local_settings import *  # noqa
+try:
+    from local_settings import *  # noqa
+except ImportError:
+    pass
 
 SITEMAP_DEBUG_AVAILABLE = True
 

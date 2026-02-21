@@ -5,6 +5,7 @@ from unittest.mock import MagicMock, Mock, patch
 from django.conf import settings
 from django.test.utils import override_settings
 
+import pytest
 import responses
 
 from olympia.amo import monitors
@@ -45,6 +46,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert libraries_result == [('PIL+JPEG', True, 'Got it!')]
 
+    @pytest.mark.es_tests
     def test_elastic(self):
         status, elastic_result = monitors.elastic()
         assert status == ''
