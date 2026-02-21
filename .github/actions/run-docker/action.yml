@@ -44,15 +44,15 @@ runs:
       run: |
         if [[ "$minimal" == "true" ]]; then
           echo "Running command in a minimal environment"
-          # We need a .env file
-          make setup \
+          # Run up_pre to have the image set up, .env file, volumes
+          # FIXME: split in different steps we would skip when not using
+          # minimal: true
+          make up_pre \
             DOCKER_VERSION="${version}" \
             DOCKER_DIGEST="${digest}" \
             DOCKER_TARGET="${target}" \
             OLYMPIA_UID="$(id -u)" \
             OLYMPIA_DEPS="${deps}"
-          # We need the mysqld volume and possibly extra deps installed
-          make docker_sync_host
           # Now we can run the command
           docker compose -f docker-compose.yml -f docker-compose.minimal.yml run --rm web "${run}"
         else
