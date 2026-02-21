@@ -12,9 +12,3 @@ services:
         condition: service_healthy
       memcached:
         condition: service_started
-      redis:
-        condition: service_started
-      # FIXME: consider tagging autograph tests and avoid depending on it in
-      # test_main(x), running them separately like we do for elasticsearch.
-      autograph:
-        condition: service_started

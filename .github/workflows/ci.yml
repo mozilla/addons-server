@@ -239,13 +239,6 @@ jobs:
       slack_channel: ${{ vars.SLACK_ADDONS_PRODUCTION_CHANNEL }}
 
   test:
-    needs: build
-    uses: ./.github/workflows/_test.yml
-    with:
-      version: ${{ needs.build.outputs.version }}
-      digest: ${{ needs.build.outputs.digest }}
-
-  test_main:
     needs: [context, build]
     uses: ./.github/workflows/_test_main.yml
     with:
@@ -265,7 +258,7 @@ jobs:
     if: |
       needs.context.outputs.is_release_master == 'true' ||
       needs.context.outputs.is_release_tag == 'true'
-    needs: [context, build, docs_build, locales, test, test_main]
+    needs: [context, build, docs_build, locales, test]
 
     steps:
       - uses: actions/checkout@v5
@@ -294,7 +287,7 @@ jobs:
     if: |
       needs.context.outputs.is_release_master == 'true' ||
       needs.context.outputs.is_release_tag == 'true'
-    needs: [context, build, docs_build, locales, test, test_main]
+    needs: [context, build, docs_build, locales, test]
 
     permissions:
       contents: 'read'
