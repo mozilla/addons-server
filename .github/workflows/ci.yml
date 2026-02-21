@@ -148,6 +148,7 @@ jobs:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           deps: development
+          minimal: true
           run: |
             make docs
 
@@ -202,6 +203,7 @@ jobs:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           deps: development
+          minimal: true
           run: make extract_locales
 
       - name: Push Locales

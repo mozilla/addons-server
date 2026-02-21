@@ -50,7 +50,9 @@ jobs:
             run: make test_internal_routes_allowed
           -
             name: Elastic Search
-            run: make test_es_tests
+            run: |
+              docker compose up elasticsearch
+              make test_es_tests
           -
             name: Codestyle
             run: make lint-codestyle
@@ -65,4 +67,5 @@ jobs:
           version: ${{ inputs.version }}
           digest: ${{ inputs.digest }}
           deps: development
+          minimal: true
           run: ${{ matrix.run }}
