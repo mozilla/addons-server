@@ -19,8 +19,8 @@ override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 export FXA_CLIENT_ID ?=
 export FXA_CLIENT_SECRET ?=
-export STATIC_URL_PREFIX ?= /static-server/
-export MEDIA_URL_PREFIX ?= /user-media/
+export STATIC_URL_PREFIX ?=
+export MEDIA_URL_PREFIX ?=
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=

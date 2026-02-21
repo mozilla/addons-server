@@ -1,0 +1,14 @@
+# This docker compose file is a minimal override file that goes with
+# docker-compose.yml and is intended to be used when you want to run a one-off
+# temporary command on the web service without spawning the entire environment.
+
+services:
+  web:
+    healthcheck: !override
+      test: ['CMD','true']
+    depends_on: !override
+      - mysqld
+      - memcached
+      # FIXME: consider tagging autograph tests and avoid depending on it in
+      # test_main(x), running them separately like we do for elasticsearch.
+      - autograph

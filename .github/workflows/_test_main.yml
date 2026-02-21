@@ -100,6 +100,7 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           deps: development
+          minimal: true
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"
