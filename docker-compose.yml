@@ -29,7 +29,7 @@ x-env-mapping: &env
 
 x-olympia: &olympia
   <<: *env
-  image: ${DOCKER_TAG:-}
+  image: ${DOCKER_TAG:-mozilla/addons-server}
   # We don't want docker compose to manage the image for us.
   # We sometimes build the image locally and sometimes pull from a registry
   # but docker compose should always assume the image is available.
