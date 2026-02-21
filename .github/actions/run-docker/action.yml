@@ -45,8 +45,6 @@ runs:
         if [[ "$minimal" == "true" ]]; then
           echo "Running command in a minimal environment"
           # Run up_pre to have the image set up, .env file, volumes
-          # FIXME: split in different steps we would skip when not using
-          # minimal: true
           make up_pre \
             DOCKER_VERSION="${version}" \
             DOCKER_DIGEST="${digest}" \
