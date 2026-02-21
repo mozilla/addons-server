@@ -1,6 +1,7 @@
 # This docker compose file is a minimal override file that goes with
 # docker-compose.yml and is intended to be used when you want to run a one-off
 # temporary command on the web service without spawning the entire environment.
+# This is used by CI to run tests without having to run "make up".
 
 services:
   web:
