@@ -9,6 +9,7 @@ services:
     depends_on: !override
       - mysqld
       - memcached
+      - redis
       # FIXME: consider tagging autograph tests and avoid depending on it in
       # test_main(x), running them separately like we do for elasticsearch.
       - autograph
