@@ -45,9 +45,11 @@ runs:
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${deps}"
     - name: Start services
+      shell: bash
       if: inputs.minimal == 'false'
       run: make up_start DOCKER_WAIT="true"
     - name: Initialize environment
+      shell: bash
       if: inputs.minimal == 'false'
       run: make up_post SKIP_DATA_SEED="true"
     - name: Run Docker Container
