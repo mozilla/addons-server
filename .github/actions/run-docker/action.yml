@@ -30,41 +30,41 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Prepare Environment
+    - name: Run Docker Container
+      id: run
+      continue-on-error: true
       shell: bash
       env:
         version: ${{ inputs.version }}
         digest: ${{ inputs.digest }}
         target: ${{ inputs.target }}
         deps: ${{ inputs.deps }}
-      run: |
-        make up_pre \
-          DOCKER_VERSION="${version}" \
-          DOCKER_DIGEST="${digest}" \
-          DOCKER_TARGET="${target}" \
-          OLYMPIA_UID="$(id -u)" \
-          OLYMPIA_DEPS="${deps}"
-    - name: Start services
-      shell: bash
-      if: inputs.minimal == 'false'
-      run: make up_start DOCKER_WAIT="true"
-    - name: Initialize environment
-      shell: bash
-      if: inputs.minimal == 'false'
-      run: make up_post SKIP_DATA_SEED="true"
-    - name: Run Docker Container
-      id: run
-      continue-on-error: true
-      shell: bash
-      env:
         run: ${{ inputs.run }}
         minimal: ${{ inputs.minimal }}
       run: |
         if [[ "$minimal" == "true" ]]; then
-          # Run only the specified command in a throwaway container
+          echo "Running command in a minimal environment"
+          # Run up_pre to have the image set up, .env file, volumes
+          # FIXME: split in different steps we would skip when not using
+          # minimal: true
+          make up_pre \
+            DOCKER_VERSION="${version}" \
+            DOCKER_DIGEST="${digest}" \
+            DOCKER_TARGET="${target}" \
+            OLYMPIA_UID="$(id -u)" \
+            OLYMPIA_DEPS="${deps}"
+          # Now we can run the command
           docker compose -f docker-compose.yml -f docker-compose.minimal.yml run --rm web "${run}"
         else
-          # Run the specified command in a full environment
+          # Start the specified services
+          make up \
+            DOCKER_VERSION="${version}" \
+            DOCKER_DIGEST="${digest}" \
+            DOCKER_TARGET="${target}" \
+            OLYMPIA_UID="$(id -u)" \
+            OLYMPIA_DEPS="${deps}" \
+            SKIP_DATA_SEED="true" \
+            DOCKER_WAIT="true"
           docker compose exec --user olympia web bash -c "${run}"
         fi
 
