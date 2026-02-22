@@ -71,20 +71,13 @@ concurrency:
 
 The unique and static key prevents the worfklow (which will match the calling workflow) concurrency group from over matching.
 
-(_test_yml)=
-#### _test.yml
-
-[link](../../../.github/workflows/_test.yml)
-
-Our main testing workflow runs a suite of tests verifying the docker image and django code within are running as expected.
-
-(_test_main_yml_)=
+(_test_main_yml)=
 #### _test_main.yml
+
 
 [link](../../../.github/workflows/_test_main.yml)
 
-This workflow is a branch of our _test.yml workflow, running specifically the main pytest suite.
-It is split to its own workflow because it runs via a matrix strategy and spins up a lot of jobs.
+Our main testing workflow runs a suite of tests verifying the docker image and django code within are running as expected as well as the main pytest suite.
 
 (reusable_actions)=
 ### Reusable Actions
@@ -106,9 +99,19 @@ based on context.
 
 [link](../../../.github/actions/run-docker/action.yml)
 
-The main action to run our docker compose project. This action is configurable to run a specified command, with specified services,
-and even configurable compose file. Importantly this action will pull an image via the digest or version, and if it cannot find the image
-will build it locally to run the current state of the codebase.
+Action to run a command a full docker compose environment.
+
+It pulls an image via the digest or version, and if it cannot find the image will build it locally to run the current state of the codebase.
+
+(actions_run_docker_minimal)=
+#### run-docker
+
+[link](../../../.github/actions/run-docker-minimal/action.yml)
+
+Action to run a command a minimal docker compose environment. Meant to run
+pytest commands, it runs the command in a temporary container that only depends on mysqld and memcached services by default.
+
+It pulls an image via the digest or version, and if it cannot find the image will build it locally to run the current state of the codebase.
 
 ### Actions vs Workflows
 
@@ -127,7 +130,7 @@ that really executes a single step in a job.
 can clash with the current workflow or even (if not careful) with other workfllows. Be careful and set strong concurrency groups.
 
 4. Workflow jobs are collapsed in the github action UI. This is a nice feature if you need to trigger many jobs in parallel,
-like {ref}`test_main <_test_main_yml_>` does. Each of the jobs are collapsible in the UI making it easier to clean up the view.
+like {ref}`test <_test_main_yml>` does. Each of the jobs are collapsible in the UI making it easier to clean up the view.
 
 For the most part actions are simpler and should be the go to method for extacting reusable logic. Workflows are nice
 when you need to organize the logic into multiple jobs or require extreme isolation from the rest of the workflow.

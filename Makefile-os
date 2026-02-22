@@ -19,8 +19,8 @@ override DOCKER_MYSQLD_VOLUME = addons-server_data_mysqld
 
 export FXA_CLIENT_ID ?=
 export FXA_CLIENT_SECRET ?=
-export STATIC_URL_PREFIX ?= /static-server/
-export MEDIA_URL_PREFIX ?= /user-media/
+export STATIC_URL_PREFIX ?=
+export MEDIA_URL_PREFIX ?=
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=
@@ -183,7 +183,7 @@ docker_clean_build_cache: ## Remove buildx build cache
 clean_docker: docker_compose_down docker_mysqld_volume_remove docker_clean_images docker_clean_volumes docker_clean_build_cache ## Remove all docker resources taking space on the host machine
 
 .PHONY: docker_sync_host
-docker_sync_host: docker_mysqld_volume_create ## Update the dependencies in the container based on the docker tag and target
+docker_sync_host: ## Update the dependencies in the container based on the docker tag and target
 	docker compose run \
 		--rm \
 		--no-deps \
@@ -192,10 +192,10 @@ docker_sync_host: docker_mysqld_volume_create ## Update the dependencies in the 
 		./scripts/sync_host_files.py
 
 .PHONY: up_pre
-up_pre: setup docker_pull_or_build docker_sync_host ## Pre-up the environment, setup files, volumes and host state
+up_pre: setup docker_pull_or_build docker_mysqld_volume_create ## Pre-up the environment, setup image, volumes
 
 .PHONY: up_start
-up_start: docker_mysqld_volume_create ## Start the docker containers
+up_start: docker_sync_host ## Sync host state and start the docker containers
 	docker compose $(DOCKER_COMPOSE_ARGS) up $(DOCKER_COMPOSE_UP_ARGS) $(ARGS)
 
 .PHONY: up_post

@@ -155,7 +155,7 @@ def main(build=False):
     debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
     # These variables are not set by the user, but are derived from the environment only
-    olympia_uid = os.getuid()
+    olympia_uid = os.environ.get('OLYMPIA_UID', os.getuid())
 
     set_env_file(
         {
@@ -174,6 +174,12 @@ def main(build=False):
     # Create the directories that are expected to exist in the container.
     for dir in ['deps', 'site-static', 'static-build', 'storage']:
         os.makedirs(os.path.join(root, dir), exist_ok=True)
+
+    # Create local_settings.py if missing
+    local_settings_path = os.path.join(root, 'local_settings.py')
+    if not os.path.exists(local_settings_path):
+        with open(local_settings_path, 'w') as file:
+            file.write('# Put settings you want to overload in this file.\n')
 
 
 if __name__ == '__main__':
