@@ -5932,7 +5932,7 @@ msgstr "分頁管理員"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1108
 msgid "Anti-tracking extensions"
-msgstr ""
+msgstr "反追蹤擴充套件"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1110 src/olympia/discovery/strings.jinja2:1112 src/olympia/discovery/strings.jinja2:1114
