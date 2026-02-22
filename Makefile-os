@@ -192,10 +192,10 @@ docker_sync_host: docker_mysqld_volume_create ## Update the dependencies in the 
 		./scripts/sync_host_files.py
 
 .PHONY: up_pre
-up_pre: setup docker_pull_or_build docker_sync_host ## Pre-up the environment, setup files, volumes and host state
+up_pre: setup docker_pull_or_build  ## Pre-up the environment, setup image, volumes
 
 .PHONY: up_start
-up_start: docker_mysqld_volume_create ## Start the docker containers
+up_start: docker_sync_host ## Sync host state and start the docker containers
 	docker compose $(DOCKER_COMPOSE_ARGS) up $(DOCKER_COMPOSE_UP_ARGS) $(ARGS)
 
 .PHONY: up_post
