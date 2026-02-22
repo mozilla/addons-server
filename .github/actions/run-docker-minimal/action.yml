@@ -65,6 +65,7 @@ runs:
 
         # Clean up
         docker volume rm -f olympia_data_deps_ci
+        docker volume rm -f olympia_data_node_modules_ci
 
         # If the run command failed, exit with a non-zero exit code
         if [ "$outcome" != 'success' ]; then

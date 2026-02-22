@@ -4,12 +4,13 @@
 #
 # Aside from overring healthchecks and dependencies, it does not bind mount
 # the repos to /data/olympia, relying only on the contents of the image as well
-# as a named volume for deps as we need to install more on top for tests.
-# Because it doesn't use the bind volume, the entrypoint is also overridden as
-# all the usermod shenanigans don't apply.
+# as named volumes for deps/node_modules as we need to install more on top of
+# the production image for tests.
+# Because it doesn't use a bound volume, the entrypoint is also overridden as
+# all the usermod shenanigans we'd normally need don't apply.
 #
-# When running locally to test CI, be careful not to use a stale data_deps_ci
-# volume.
+# When running locally to test CI, be careful not to use stale data_deps_ci
+# or data_node_modules_ci volumes
 
 services:
   web:
@@ -31,9 +32,11 @@ services:
     # ones are already there.
     volumes: !override
       - data_deps_ci:/data/olympia/deps
+      - data_node_modules_ci:/data/olympia/node_modules
     # Since we're not using a bind mount, we shouldn't use our development
     # entrypoint that runs commands as the host user uid.
-    entrypoint: !reset ['CMD', 'bash']
+    entrypoint: !override ''
 
 volumes:
   data_deps_ci:
+  data_node_modules_ci:
