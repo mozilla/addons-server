@@ -50,7 +50,7 @@ runs:
         run: ${{ inputs.run }}
       run: |
         # Run command in our minimal environment.
-        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web ${run}
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web bash -c "${run}"
 
     - name: Post Run (logs and exit code)
       if: always()
