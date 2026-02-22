@@ -34,8 +34,7 @@ runs:
           DOCKER_VERSION="${version}" \
           DOCKER_DIGEST="${digest}" \
           DOCKER_TARGET="production" \
-          OLYMPIA_DEPS="development" \
-          OLYMPIA_UID=9500
+          OLYMPIA_DEPS="development"
 
     - name: Install development dependencies
       id: deps
@@ -54,7 +53,7 @@ runs:
         run: ${{ inputs.run }}
       run: |
         # Run command in our minimal environment.
-        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web bash -c "${run}"
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user "$(id -u):$(id -g)" web bash -c "${run}"
 
     - name: Post Run (logs and exit code)
       if: always()
