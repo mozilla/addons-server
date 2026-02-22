@@ -2,4 +2,4 @@ rules:
   template-injection:
   artipacked:
     ignore:
-      - ci.yml:195:9
+      - ci.yml:193:9
