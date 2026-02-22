@@ -142,14 +142,17 @@ jobs:
 
       - uses: actions/configure-pages@v5
 
+      - name: Prepare docs output directories
+        run: |
+          mkdir docs/_build docs/topics/models
+          sudo chown 9500:9500 docs/_build docs/topics/models
+
       - name: Build Docs
         uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           run: |
-            mkdir docs/_build docs/topics/models
-            sudo chown 9500:9500 docs/_build docs/topics/models
             make docs
 
       - name: Upload artifact
