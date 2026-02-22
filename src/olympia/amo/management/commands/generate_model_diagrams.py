@@ -39,8 +39,16 @@ class Command(BaseCommand):
     def clean_model_docs_dir(self):
         self.stdout.write(f'Emptying {self.model_doc_path}')
         if self.model_doc_path.exists():
-            shutil.rmtree(self.model_doc_path)
-        self.model_doc_path.mkdir(parents=True)
+            # We avoid using shutil.rmtree() to keep the parent directory,
+            # which allows CI to pre-create it with the right owner.
+            for root, dirs, files in self.model_doc_path.walk(top_down=False):
+                root_path = Path(root)
+                for name in files:
+                    (root_path / name).unlink()
+                for name in dirs:
+                    (root_path / name).rmdir()
+        else:
+            self.model_doc_path.mkdir(parents=True)
 
     def modelgraph(self, app_name, dir_name):
         dot_file = self.model_doc_path / dir_name / ('graph' + '.dot')
