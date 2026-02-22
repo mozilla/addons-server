@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-02-20 09:32+0000\n"
+"POT-Creation-Date: 2026-02-22 10:10+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4640,20 +4640,15 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
-#, fuzzy
-msgid "Creativity extensions"
-msgstr "Opkomende temas"
+msgid "Tab managers"
+msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "New Recommended extensions"
+msgid "Anti-tracking extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 msgid "See staff picks"
-msgstr ""
-
-#. editorial content for the secondary hero shelves.
-msgid "Explore now"
 msgstr ""
 
 #. editorial content for the homepage shelves.
@@ -4729,10 +4724,6 @@ msgid "See more social streaming staff picks"
 msgstr "Blaai deur alle byvoegings"
 
 #. editorial content for the homepage shelves.
-msgid "Tab managers"
-msgstr ""
-
-#. editorial content for the homepage shelves.
 #, fuzzy
 msgid "See more tab management staff picks"
 msgstr "Blaai deur alle byvoegings"
@@ -4803,6 +4794,11 @@ msgstr ""
 #, fuzzy
 msgid "See more Steam staff picks"
 msgstr "Blaai deur alle byvoegings"
+
+#. editorial content for the homepage shelves.
+#, fuzzy
+msgid "Creativity extensions"
+msgstr "Opkomende temas"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
