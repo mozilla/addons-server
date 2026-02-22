@@ -155,7 +155,7 @@ def main(build=False):
     debug = os.environ.get('DEBUG', str(docker_target != 'production'))
     olympia_deps = os.environ.get('OLYMPIA_DEPS', docker_target)
     # These variables are not set by the user, but are derived from the environment only
-    olympia_uid = os.getuid()
+    olympia_uid = os.environ.get('OLYMPIA_UID', os.getuid())
 
     set_env_file(
         {

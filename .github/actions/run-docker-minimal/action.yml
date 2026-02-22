@@ -27,11 +27,15 @@ runs:
         digest: ${{ inputs.digest }}
       run: |
         # Run up_pre to have the image set up, .env file, volumes
+        # OLYMPIA_UID is 9500 because we don't have bound volumes, no
+        # entrypoint magic changing the user etc, we are using a production
+        # image with no tricks.
         make up_pre \
           DOCKER_VERSION="${version}" \
           DOCKER_DIGEST="${digest}" \
           DOCKER_TARGET="production" \
-          OLYMPIA_DEPS="development"
+          OLYMPIA_DEPS="development" \
+          OLYMPIA_UID=9500
 
     - name: Install development dependencies
       id: deps
