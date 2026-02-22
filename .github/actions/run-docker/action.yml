@@ -51,6 +51,16 @@ runs:
             DOCKER_TARGET="${target}" \
             OLYMPIA_UID="$(id -u)" \
             OLYMPIA_DEPS="${deps}"
+          # Install dev deps
+          # FIXME: do that in a cleaner way. Ideally as an extra step on the
+          # workflow, so that it shows up as another step in the job. Same for
+          # make up_pre really.
+          # If we had a run-docker-minimal, and a prepare-docker-minimal
+          # action maybe ?
+          # FIXME: also, for most tests we don't need to install node devDependencies,
+          # only test_needs_locales_compilation, run_js_tests if we are running
+          # that, and make.spec.js tests.
+          docker compose run --rm --no-deps web ./scripts/install_deps.py dev
           # Now we can run the command
           docker compose -f docker-compose.yml -f docker-compose.minimal.yml run --rm web "${run}"
         else
