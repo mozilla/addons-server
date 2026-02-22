@@ -2,15 +2,21 @@
 # docker-compose.yml and is intended to be used in CI to run tests without
 # a full environment (without running `make up`).
 #
-# Aside from overring healthchecks and dependencies, it does not bind mount
-# the repos to /data/olympia, relying only on the contents of the image as well
-# as named volumes for deps/node_modules as we need to install more on top of
-# the production image for tests.
-# Because it doesn't use a bound volume, the entrypoint is also overridden as
-# all the usermod shenanigans we'd normally need don't apply.
+# Aside from overring healthchecks and dependencies, it does not bind mount the
+# whole repos to /data/olympia, relying only on the contents of the image with
+# named volumes for deps/node_modules as we need to install more on top of the
+# production image for tests. It uses a bind mount just for docs/ to build
+# them inside the image and grab the artifacts afterwards from the host.
+# Because it doesn't use a bound volume for the code, the entrypoint is also
+# overridden as all the usermod shenanigans we'd normally need don't apply.
 #
-# When running locally to test CI, be careful not to use stale data_deps_ci
-# or data_node_modules_ci volumes
+# Gotchas when running locally to test CI behavior:
+# - Remove any stale stale data_deps_ci or data_node_modules_ci volumes
+# - Use a production container with development deps. CI executes this first:
+#   make up_pre DOCKER_VERSION=local \
+#               DOCKER_DIGEST= \
+#               DOCKER_TARGET=production \
+#               OLYMPIA_DEPS=development
 
 services:
   web:
@@ -33,6 +39,7 @@ services:
     volumes: !override
       - data_deps_ci:/data/olympia/deps
       - data_node_modules_ci:/data/olympia/node_modules
+      - ./docs:/data/olympia/docs
     # Since we're not using a bind mount, we shouldn't use our development
     # entrypoint that runs commands as the host user uid.
     entrypoint: !override ''
