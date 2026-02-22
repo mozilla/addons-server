@@ -148,6 +148,8 @@ jobs:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
           run: |
+            mkdir docs/_build
+            sudo chown -R 9500:9500 docs/_build
             make docs
 
       - name: Upload artifact
