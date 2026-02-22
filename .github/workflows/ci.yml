@@ -143,12 +143,10 @@ jobs:
       - uses: actions/configure-pages@v5
 
       - name: Build Docs
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          deps: development
-          minimal: true
           run: |
             make docs
 
@@ -202,8 +200,6 @@ jobs:
         with:
           digest: ${{ needs.build.outputs.digest }}
           version: ${{ needs.build.outputs.version }}
-          deps: development
-          minimal: true
           run: make extract_locales
 
       - name: Push Locales

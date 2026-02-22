@@ -1,5 +1,5 @@
 name: 'Docker Run Action'
-description: 'Run a command in a new container'
+description: 'Run a command in the web container inside a full environment'
 inputs:
   version:
     description: 'The version of the image to run. '
@@ -23,9 +23,6 @@ inputs:
     description: 'Which dependencies to install at runtime? (development|production)'
     required: false
     default: 'production'
-  minimal:
-    description: 'Run the command in a container with minimal services or the full environment.'
-    default: false
 
 runs:
   using: 'composite'
@@ -40,30 +37,7 @@ runs:
         target: ${{ inputs.target }}
         deps: ${{ inputs.deps }}
         run: ${{ inputs.run }}
-        minimal: ${{ inputs.minimal }}
       run: |
-        if [[ "$minimal" == "true" ]]; then
-          echo "Running command in a minimal environment"
-          # Run up_pre to have the image set up, .env file, volumes
-          make up_pre \
-            DOCKER_VERSION="${version}" \
-            DOCKER_DIGEST="${digest}" \
-            DOCKER_TARGET="${target}" \
-            OLYMPIA_UID="$(id -u)" \
-            OLYMPIA_DEPS="${deps}"
-          # Install dev deps
-          # FIXME: do that in a cleaner way. Ideally as an extra step on the
-          # workflow, so that it shows up as another step in the job. Same for
-          # make up_pre really.
-          # If we had a run-docker-minimal, and a prepare-docker-minimal
-          # action maybe ?
-          # FIXME: also, for most tests we don't need to install node devDependencies,
-          # only test_needs_locales_compilation, run_js_tests if we are running
-          # that, and make.spec.js tests.
-          docker compose run --rm --no-deps web ./scripts/install_deps.py dev
-          # Now we can run the command
-          docker compose -f docker-compose.yml -f docker-compose.minimal.yml run --rm web "${run}"
-        else
           # Start the specified services
           make up \
             DOCKER_VERSION="${version}" \
@@ -74,7 +48,6 @@ runs:
             SKIP_DATA_SEED="true" \
             DOCKER_WAIT="true"
           docker compose exec --user olympia web bash -c "${run}"
-        fi
 
     - name: Post Run (logs and exit code)
       if: always()

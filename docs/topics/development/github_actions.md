@@ -99,9 +99,19 @@ based on context.
 
 [link](../../../.github/actions/run-docker/action.yml)
 
-The main action to run our docker compose project. This action is configurable to run a specified command, with specified services,
-and even configurable compose file. Importantly this action will pull an image via the digest or version, and if it cannot find the image
-will build it locally to run the current state of the codebase.
+Action to run a command a full docker compose environment.
+
+It pulls an image via the digest or version, and if it cannot find the image will build it locally to run the current state of the codebase.
+
+(actions_run_docker_minimal)=
+#### run-docker
+
+[link](../../../.github/actions/run-docker-minimal/action.yml)
+
+Action to run a command a minimal docker compose environment. Meant to run
+pytest commands, it runs the command in a temporary container that only depends on mysqld and memcached services by default.
+
+It pulls an image via the digest or version, and if it cannot find the image will build it locally to run the current state of the codebase.
 
 ### Actions vs Workflows
 

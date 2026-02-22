@@ -1,0 +1,72 @@
+name: 'Docker Run Action (minimal)'
+description: 'Run a command in a temporary web container inside a minimal environment'
+inputs:
+  version:
+    description: 'The version of the image to run. '
+    required: true
+    default: 'local'
+  digest:
+    description: 'The build digest of the image to run. Overrides version.'
+    required: true
+    default: ''
+  run:
+    description: 'Run command in container'
+    required: true
+  logs:
+    description: 'Show logs'
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Prepare Docker Environment
+      id: prepare
+      shell: bash
+      env:
+        version: ${{ inputs.version }}
+        digest: ${{ inputs.digest }}
+      run: |
+        # Run up_pre to have the image set up, .env file, volumes
+        make up_pre \
+          DOCKER_VERSION="${version}" \
+          DOCKER_DIGEST="${digest}" \
+          DOCKER_TARGET="production" \
+          OLYMPIA_DEPS="development"
+
+    - name: Install development dependencies
+      id: deps
+      shell: bash
+      run: |
+        # Install development dependencies (we're using the production image)
+        # and those aren't in there. docker-compose.ci.yml has a special volume
+        # for deps to allow those to persist.
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm --no-deps --user olympia web ./scripts/install_deps.py dev
+
+    - name: Run Docker Container
+      id: run
+      continue-on-error: true
+      shell: bash
+      env:
+        run: ${{ inputs.run }}
+      run: |
+        # Run command in our minimal environment.
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web "${run}"
+
+    - name: Post Run (logs and exit code)
+      if: always()
+      shell: bash
+      env:
+        logs: ${{ inputs.logs }}
+        outcome: ${{ steps.run.outcome }}
+      run: |
+        if [[ "$logs" == "true" ]]; then
+          docker compose logs
+        fi
+
+        # Clean up
+        docker volume rm -f olympia_data_deps_ci
+
+        # If the run command failed, exit with a non-zero exit code
+        if [ "$outcome" != 'success' ]; then
+          exit 1
+        fi

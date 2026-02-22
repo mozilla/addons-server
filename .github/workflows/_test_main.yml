@@ -91,12 +91,10 @@ jobs:
           persist-credentials: false
 
       - name: Test
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
-          minimal: true
           run: |
             make lint-codestyle
 
@@ -126,12 +124,10 @@ jobs:
           docker compose up --wait redis
 
       - name: Test (test_matrix)
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
-          minimal: true
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"
@@ -156,12 +152,10 @@ jobs:
           persist-credentials: false
 
       - name: Test
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
-          minimal: true
           run: |
             make test_internal_routes_allowed
 
@@ -175,12 +169,10 @@ jobs:
           persist-credentials: false
 
       - name: Test
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
-          minimal: true
           run: |
             make compile_locales
             make test_needs_locales_compilation
@@ -203,12 +195,10 @@ jobs:
           docker compose up --wait elasticsearch
 
       - name: Test
-        uses: ./.github/actions/run-docker
+        uses: ./.github/actions/run-docker-minimal
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          deps: development
-          minimal: true
           run: |
             make test_es_tests
 
