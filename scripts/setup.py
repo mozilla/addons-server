@@ -175,6 +175,12 @@ def main(build=False):
     for dir in ['deps', 'site-static', 'static-build', 'storage']:
         os.makedirs(os.path.join(root, dir), exist_ok=True)
 
+    # Create local_settings.py if missing
+    local_settings_path = os.path.join(root, 'local_settings.py')
+    if not os.path.exists(local_settings_path):
+        with open(local_settings_path, 'w') as file:
+            file.write('# Put settings you want to overload in this file.\n')
+
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
