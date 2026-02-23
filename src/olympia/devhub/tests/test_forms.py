@@ -692,7 +692,7 @@ class TestDescribeForm(TestCase):
     def test_name_trademark_mozilla(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': 'Delicious Mozilla', 'summary': 'foô', 'slug': 'bar'},
+            {'name': 'Delicious Mozilla Cake', 'summary': 'foô', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )
@@ -709,7 +709,7 @@ class TestDescribeForm(TestCase):
     def test_name_trademark_firefox(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
-            {'name': 'Delicious Firefox', 'summary': 'foö', 'slug': 'bar'},
+            {'name': 'Delicious Firefox Cake', 'summary': 'foö', 'slug': 'bar'},
             request=self.request,
             instance=delicious,
         )

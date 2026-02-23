@@ -611,7 +611,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_mozilla_trademark_disallowed(self, resolve_message):
-        resolve_message.return_value = 'Notify Mozilla'
+        resolve_message.return_value = 'Mozilla Notifier'
 
         addon = amo.tests.addon_factory(
             file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
@@ -625,7 +625,7 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_bypass_name_checks(self, resolve_message):
-        resolve_message.return_value = 'Notify Mozilla'
+        resolve_message.return_value = 'Mozilla Notifier'
 
         addon = amo.tests.addon_factory(
             file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
