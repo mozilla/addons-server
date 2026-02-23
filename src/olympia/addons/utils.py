@@ -39,14 +39,18 @@ def validate_addon_name(name, user, *, form=None):
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
             symbol_count = variant.count(symbol)
-            violates_trademark = symbol_count > 1 or (
-                symbol_count >= 1
-                # 'XXX for Mozilla' or 'XXX for Firefox' is allowed...
-                and not normalized_name.endswith(f' {symbol}')
-            ) or (
-                symbol_count >= 1
-                # ...'XX for Firefox' is too short though
-                and len(variant) < len(symbol) + 6
+            violates_trademark = (
+                symbol_count > 1
+                or (
+                    symbol_count >= 1
+                    # 'XXX for Mozilla' or 'XXX for Firefox' is allowed...
+                    and not normalized_name.endswith(f' {symbol}')
+                )
+                or (
+                    symbol_count >= 1
+                    # ...'XX for Firefox' is too short though
+                    and len(variant) < len(symbol) + 6
+                )
             )
 
             if violates_trademark:
