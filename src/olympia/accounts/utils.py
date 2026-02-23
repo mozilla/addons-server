@@ -160,7 +160,7 @@ def check_for_session_anomaly(*, session, headers, user):
 
     initial_request = False
     session_request_headers = session.get(REQUEST_HEADERS_KEY)
-    if session_request_headers is None:
+    if not session_request_headers:
         initial_request = True
         session_request_headers = {}
 
