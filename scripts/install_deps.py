@@ -36,11 +36,13 @@ def main(targets):
         f'NPM_DEPS_DIR: {NPM_DEPS_DIR} \n',
     )
 
-    # If we are installing production dependencies or on a non local image
-    # we always remove existing deps as we don't know what was previously
-    # installed or in the host ./deps or ./node_modules directory
-    # before running this script
-    if 'local' not in DOCKER_TAG or OLYMPIA_DEPS == 'production':
+    # If we are installing production dependencies or on a non local image and
+    # we're asked to install more than just dev dependencies, we always remove
+    # existing deps as we don't know what was previously installed or in the
+    # host ./deps or ./node_modules directory before running this script.
+    if targets != ['dev'] and (
+        'local' not in DOCKER_TAG or OLYMPIA_DEPS == 'production'
+    ):
         print('Removing existing deps')
         clean_dir(DEPS_DIR, ['cache'])
         clean_dir(NPM_DEPS_DIR, [])
