@@ -1245,6 +1245,7 @@ class EDIT_ADDON_PROPERTY(_LOG):
     id = 208
     action_class = 'edit'
     format = _('{addon} {0} property edited.')
+    short = 'Property edited'
     show_user_to_developer = True
 
 

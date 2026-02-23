@@ -1,4 +1,5 @@
 import datetime
+import json
 
 import jinja2
 from django_jinja import library
@@ -65,3 +66,20 @@ def check_review_delete(context, rating):
 @library.filter
 def to_dom_id(string):
     return string.replace('.', '_')
+
+
+@library.global_function
+@library.render_with('reviewers/includes/changes_view.html')
+def activity_changes(activity):
+    """
+    Return changes from a EDIT_ADDON_PROPERTY activity
+    """
+    # first argument is the add-on, second argument the field that changed,
+    # the third one contains the json blob with the info we're after.
+    data = json.loads(activity.arguments[2])
+    return new_context(
+        {
+            'removed': data['removed'],
+            'added': data['added'],
+        }
+    )

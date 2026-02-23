@@ -36,7 +36,14 @@
             <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
           {% endif %}
         {% elif show_long_format_fallback %}
-          <pre class="light history-comment">{{ record.to_string('reviewer') }}</pre>
+          {% spaceless %}
+            <pre class="light history-comment">
+              {{ record.to_string('reviewer') }}
+              {% if record.action == amo.LOG.EDIT_ADDON_PROPERTY.id %}
+                <div class="property-changes">{{ activity_changes(record) }}</div>
+              {% endif -%}
+            </pre>
+          {% endspaceless %}
         {% endif %}
       </div>
       {% if switch_is_active('enable-activity-log-attachments') %}

@@ -694,8 +694,11 @@ def review(request, addon, channel=None):
 
     # Actions that are not tied to a specific version that we want to highlight
     # in the "Add-on important changes history" section.
+    imporant_changes_actions = list(amo.LOG_REVIEW_QUEUE_IMPORTANT_CHANGE)
+    if content_review:
+        imporant_changes_actions.append(amo.LOG.EDIT_ADDON_PROPERTY.id)
     important_changes_log = ActivityLog.objects.filter(
-        action__in=amo.LOG_REVIEW_QUEUE_IMPORTANT_CHANGE,
+        action__in=imporant_changes_actions,
         addonlog__addon=addon,
     ).order_by('id')
 
