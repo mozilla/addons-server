@@ -41,8 +41,12 @@ def validate_addon_name(name, user, *, form=None):
             symbol_count = variant.count(symbol)
             violates_trademark = symbol_count > 1 or (
                 symbol_count >= 1
-                # 'XXX for Mozilla' or 'XXX for Firefox' is allowed.
-                and not normalized_name.endswith(f' for {symbol}')
+                # 'XXX for Mozilla' or 'XXX for Firefox' is allowed...
+                and not normalized_name.endswith(f' {symbol}')
+            ) or (
+                symbol_count >= 1
+                # ...'XX for Firefox' is too short though
+                and len(variant) < len(symbol) + 6
             )
 
             if violates_trademark:
