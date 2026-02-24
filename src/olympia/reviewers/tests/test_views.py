@@ -61,7 +61,7 @@ from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.constants.scanners import CUSTOMS, YARA
+from olympia.constants.scanners import _CUSTOMS, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -6091,7 +6091,7 @@ class TestReview(ReviewBase):
     def test_versions_that_are_flagged_by_scanners_are_highlighted(self):
         self.login_as_reviewer()
         self.addon.current_version.update(created=self.days_ago(366))
-        customs_rule = ScannerRule.objects.create(name='ringo', scanner=CUSTOMS)
+        customs_rule = ScannerRule.objects.create(name='ringo', scanner=_CUSTOMS)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
         now = datetime.now()
         for i in range(0, 10):

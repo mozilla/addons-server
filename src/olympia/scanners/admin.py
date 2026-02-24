@@ -27,9 +27,9 @@ from olympia.amo.utils import is_safe_url
 from olympia.api.models import APIKey
 from olympia.constants import scanners
 from olympia.constants.scanners import (
+    _CUSTOMS,
     ABORTING,
     COMPLETED,
-    CUSTOMS,
     FALSE_POSITIVE,
     INCONCLUSIVE,
     NARC,
@@ -576,7 +576,7 @@ class AbstractScannerRuleAdminMixin:
         if db_field.name == 'scanner':
             kwargs['choices'] = (('', '---------'),)
             for key, value in db_field.get_choices():
-                if key in [CUSTOMS, YARA, NARC, WEBHOOK]:
+                if key in [_CUSTOMS, YARA, NARC, WEBHOOK]:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
@@ -734,7 +734,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
             f'Scanner result {pk} has been marked as false positive.',
         )
 
-        if result.scanner == scanners.CUSTOMS:
+        if result.scanner == scanners._CUSTOMS:
             title = f'False positive report for ScannerResult {pk}'
             body = render_to_string(
                 'admin/false_positive_report.md', {'result': result, 'YARA': YARA}

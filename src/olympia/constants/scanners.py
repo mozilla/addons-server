@@ -1,6 +1,6 @@
-CUSTOMS = 1
-# We do not use the WAT or MAD scanners anymore but we keep these constants for the
-# model definition. We shouldn't use these constants, though.
+# We prefix the scanners we no longer use with '_' but we need to keep the
+# constants for the model definition. We shouldn't use them, though.
+_CUSTOMS = 1
 _WAT = 2
 YARA = 3
 _MAD = 4
@@ -8,7 +8,7 @@ NARC = 5
 WEBHOOK = 6
 
 SCANNERS = {
-    CUSTOMS: 'customs',
+    _CUSTOMS: 'customs (legacy)',
     _WAT: 'wat',
     YARA: 'yara',
     _MAD: 'mad',

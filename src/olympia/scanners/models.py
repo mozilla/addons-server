@@ -18,11 +18,11 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
+    _CUSTOMS,
     ABORTED,
     ABORTING,
     ACTIONS,
     COMPLETED,
-    CUSTOMS,
     DEFAULT_RULE_CONFIGURATION_SCHEMA,
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
@@ -145,7 +145,7 @@ class AbstractScannerResult(ModelBase):
 
     def get_git_repository(self):
         return {
-            CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
+            _CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
         }.get(self.scanner)
 
 

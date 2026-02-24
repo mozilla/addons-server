@@ -1,7 +1,7 @@
 from django.conf import settings
 
 from olympia.amo.tests import TestCase
-from olympia.constants.scanners import CUSTOMS
+from olympia.constants.scanners import _CUSTOMS
 from olympia.scanners.models import ScannerResult
 from olympia.scanners.serializers import ScannerResultSerializer
 
@@ -9,7 +9,7 @@ from olympia.scanners.serializers import ScannerResultSerializer
 class TestScannerResultSerializer(TestCase):
     def test_serialize(self):
         result = ScannerResult.objects.create(
-            scanner=CUSTOMS, model_version='some.version'
+            scanner=_CUSTOMS, model_version='some.version'
         )
         data = ScannerResultSerializer(instance=result).data
         assert data == {

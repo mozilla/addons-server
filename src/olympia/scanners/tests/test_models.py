@@ -12,10 +12,10 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.scanners import (
+    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
-    CUSTOMS,
     FALSE_POSITIVE,
     NARC,
     NEW,
@@ -117,39 +117,39 @@ class TestScannerResultMixin:
         assert result.extract_rule_names() == [rule1, rule2]
 
     def test_extract_rule_names_with_no_customs_matched_rules_attribute(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         result.results = {}
         assert result.extract_rule_names() == []
 
     def test_extract_rule_names_with_no_customs_results(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         result.results = {'matchedRules': []}
         assert result.extract_rule_names() == []
 
     def test_extract_rule_names_with_customs_results(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         rules = ['rule-1', 'rule-2']
         result.results = {'matchedRules': rules}
         assert result.extract_rule_names() == rules
 
     def test_get_scanner_name(self):
-        result = self.create_result(scanner=CUSTOMS)
-        assert result.get_scanner_name() == 'customs'
+        result = self.create_result(scanner=_CUSTOMS)
+        assert result.get_scanner_name() == 'customs (legacy)'
 
     def test_get_pretty_results(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         result.results = {'foo': 'bar'}
         assert result.get_pretty_results() == '{\n  "foo": "bar"\n}'
 
     def test_get_customs_git_repository(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         git_repo = 'some git repo'
 
         with override_settings(CUSTOMS_GIT_REPOSITORY=git_repo):
             assert result.get_git_repository() == git_repo
 
     def test_get_git_repository_returns_none_if_not_supported(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         assert result.get_git_repository() is None
 
     def test_get_files_and_data_by_matched_rules_with_no_yara_results(self):
@@ -184,12 +184,12 @@ class TestScannerResultMixin:
         }
 
     def test_get_files_and_data_by_matched_rules_with_no_customs_results(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         result.results = {'matchedRules': []}
         assert result.get_files_and_data_by_matched_rules() == {}
 
     def test_get_files_and_data_by_matched_rules_for_customs(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         file1 = 'file/1.js'
         rule1 = 'rule1'
         file2 = 'file/2.js'
@@ -322,11 +322,11 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_create(self):
         upload = self.create_file_upload()
 
-        result = self.model.objects.create(upload=upload, scanner=CUSTOMS)
+        result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
 
         assert result.id is not None
         assert result.upload == upload
-        assert result.scanner == CUSTOMS
+        assert result.scanner == _CUSTOMS
         assert result.results == []
         assert result.version is None
         assert result.has_matches is False
@@ -334,15 +334,15 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_create_different_entries_for_a_single_upload(self):
         upload = self.create_file_upload()
 
-        customs_result = self.model.objects.create(upload=upload, scanner=CUSTOMS)
+        customs_result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
         yara_result = self.model.objects.create(upload=upload, scanner=YARA)
 
-        assert customs_result.scanner == CUSTOMS
+        assert customs_result.scanner == _CUSTOMS
         assert yara_result.scanner == YARA
 
     def test_upload_constraint(self):
         upload = self.create_file_upload()
-        result = self.model.objects.create(upload=upload, scanner=CUSTOMS)
+        result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
 
         upload.delete()
         result.refresh_from_db()
@@ -350,11 +350,11 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         assert result.upload is None
 
     def test_can_report_feedback(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         assert result.can_report_feedback()
 
     def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
-        result = self.create_result(scanner=CUSTOMS)
+        result = self.create_result(scanner=_CUSTOMS)
         result.state = FALSE_POSITIVE
         assert not result.can_report_feedback()
 

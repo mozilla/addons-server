@@ -31,10 +31,10 @@ from olympia.amo.utils import (
     normalize_string_for_name_checks,
 )
 from olympia.constants.scanners import (
+    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
-    CUSTOMS,
     NARC,
     RUNNING,
     SCANNERS,
@@ -265,7 +265,7 @@ def run_customs(results, upload_pk):
     return run_scanner(
         results,
         upload_pk,
-        scanner=CUSTOMS,
+        scanner=_CUSTOMS,
         api_url=settings.CUSTOMS_API_URL,
         api_key=settings.CUSTOMS_API_KEY,
     )

@@ -2,14 +2,14 @@
 
 from django.db import migrations
 
-from olympia.constants.scanners import CUSTOMS, WEBHOOK
+from olympia.constants.scanners import _CUSTOMS, WEBHOOK
 
 
 def create_customs_scanner_rules_for_webhook(apps, schema_editor):
     ScannerRule = apps.get_model('scanners', 'ScannerRule')
     # Create the same scanner rules that `customs` has but for `webhook`.
     # Disable them for now.
-    for obj in ScannerRule.objects.filter(scanner=CUSTOMS):
+    for obj in ScannerRule.objects.filter(scanner=_CUSTOMS):
         if ScannerRule.objects.filter(name=obj.name, scanner=WEBHOOK).exists():
             # Skip already existing entries.
             continue

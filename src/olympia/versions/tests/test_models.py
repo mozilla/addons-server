@@ -27,7 +27,7 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.constants.scanners import CUSTOMS, YARA
+from olympia.constants.scanners import _CUSTOMS, YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -2427,7 +2427,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_set_version_to_customs_scanners_result(self):
         self.create_switch('enable-customs', active=True)
         scanners_result = ScannerResult.objects.create(
-            upload=self.upload, scanner=CUSTOMS
+            upload=self.upload, scanner=_CUSTOMS
         )
         assert scanners_result.version is None
 

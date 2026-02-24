@@ -19,10 +19,10 @@ from olympia.amo.tests import (
 )
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
+    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
-    CUSTOMS,
     NARC,
     NEW,
     RUNNING,
@@ -241,7 +241,7 @@ class TestRunCustoms(TestCase):
         run_scanner_mock.assert_called_once_with(
             self.results,
             self.upload_pk,
-            scanner=CUSTOMS,
+            scanner=_CUSTOMS,
             api_url=self.API_URL,
             api_key=self.API_KEY,
         )
