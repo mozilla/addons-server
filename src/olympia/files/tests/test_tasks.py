@@ -44,6 +44,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
     ):
         """Opposite of test_not_repacking_non_xpi_files() (using same mocks)"""
         upload = self.get_upload('webextension.xpi')
+        upload.update(original_hash='sha256:original')
         get_sha256_mock.return_value = 'fakehashfrommock'
         fake_results = {'errors': 0}
         repack_fileupload(fake_results, upload.pk)
@@ -56,6 +57,7 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         assert move_stored_file_mock.called
         upload.reload()
         assert upload.hash == 'sha256:fakehashfrommock'
+        assert upload.original_hash == 'sha256:original'
 
     def test_repacking_xpi_files(self):
         """Test that repack_fileupload() does repack xpi files (no mocks)"""

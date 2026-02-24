@@ -107,9 +107,10 @@ class File(OnChangeMixin, ModelBase):
         upload_to=files_upload_to_callback,
     )
     size = models.PositiveIntegerField(default=0)  # In bytes.
+    # The hash of the file (after repack and/or signing).
     hash = models.CharField(max_length=255, default='')
-    # The original hash of the file, before we sign it, or repackage it in
-    # any other way.
+    # The original hash of the file uploaded by the developer, without any
+    # modifications.
     original_hash = models.CharField(max_length=255, default='')
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW
@@ -189,8 +190,12 @@ class File(OnChangeMixin, ModelBase):
             'is_mozilla_signed_extension', False
         )
         file_.is_signed = file_.is_mozilla_signed_extension
+        # This is the hash of the file uploaded by the developer, possibly
+        # repacked and/or signed.
         file_.hash = upload.hash
-        file_.original_hash = file_.hash
+        # This is the hash of the file uploaded by the developer without any
+        # modifications (before repacking, signing, etc.).
+        file_.original_hash = upload.original_hash
         file_.manifest_version = parsed_data.get('manifest_version')
         log.info(f'New file: {file_!r} from {upload!r}')
 
@@ -428,6 +433,7 @@ class FileUpload(ModelBase):
         max_length=255, default='', help_text="The user's original filename"
     )
     hash = models.CharField(max_length=255, default='')
+    original_hash = models.CharField(max_length=255, default='')
     user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
@@ -512,6 +518,7 @@ class FileUpload(ModelBase):
         if hash_obj is None:
             hash_obj = self.write_data_to_path(chunks)
         self.hash = 'sha256:%s' % hash_obj.hexdigest()
+        self.original_hash = self.hash
 
         # The following log statement is used by foxsec-pipeline.
         log.info(
@@ -597,7 +604,7 @@ class FileUpload(ModelBase):
 
             validation = self.load_validation()
 
-            return process_validation(validation, file_hash=self.hash)
+            return process_validation(validation)
 
     @property
     def passed_all_validations(self):
@@ -656,7 +663,6 @@ class FileValidation(ModelBase):
 
         return process_validation(
             json.loads(self.validation),
-            file_hash=self.file.original_hash,
             channel=self.file.version.channel,
         )
 

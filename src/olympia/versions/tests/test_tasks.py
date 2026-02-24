@@ -879,6 +879,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
                 ),
                 'license_slug': version.license.slug,
                 'activity_log_id': activity_log_id,
+                'file_original_hash': version.file.original_hash,
             },
             version=version,
         )
@@ -886,7 +887,10 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
     @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
         addon = addon_factory()
-        version = version_factory(addon=addon)
+        version = version_factory(
+            addon=addon,
+            file_kw={'original_hash': 'sha256:somehash'},
+        )
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
         activity_log_id = 123
@@ -905,6 +909,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
                 ),
                 'license_slug': version.license.slug,
                 'activity_log_id': activity_log_id,
+                'file_original_hash': version.file.original_hash,
             },
             version=version,
         )

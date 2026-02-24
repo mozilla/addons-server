@@ -452,6 +452,7 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
             ),
             'license_slug': version.license.slug,
             'activity_log_id': activity_log_id,
+            'file_original_hash': version.file.original_hash,
         }
         call_webhooks(
             event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,

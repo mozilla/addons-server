@@ -868,7 +868,9 @@ class TestFileUpload(UploadMixin, TestCase):
 
     def test_from_post_hash(self):
         hashdigest = hashlib.sha256(self.data).hexdigest()
-        assert self.upload().hash == 'sha256:%s' % hashdigest
+        upload = self.upload()
+        assert upload.hash == 'sha256:%s' % hashdigest
+        assert upload.original_hash == upload.hash
 
     def test_from_post_is_one_query(self):
         addon = Addon.objects.get(pk=3615)
@@ -1403,8 +1405,10 @@ class TestFileFromUpload(UploadMixin, TestCase):
 
     def test_file_hash_copied_over(self):
         upload = self.upload('webextension.xpi')
+        upload.original_hash = 'sha256:original'
         file_ = File.from_upload(upload, self.version, parsed_data=self.parsed_data)
         assert file_.hash == 'sha256:fake_hash'
+        assert file_.original_hash == 'sha256:original'
 
     def test_extension_extension(self):
         upload = self.upload('webextension.xpi')
