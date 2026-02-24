@@ -31,7 +31,6 @@ from olympia.amo.utils import (
     normalize_string_for_name_checks,
 )
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
@@ -246,29 +245,6 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
         raise ValueError(data)
 
     scanner_result.results = data
-
-
-@validation_task
-def run_customs(results, upload_pk):
-    """
-    Run the customs scanner on a FileUpload and store the results.
-
-    This task is intended to be run as part of the submission process only.
-    When a version is created from a FileUpload, the files are removed. In
-    addition, we usually delete old FileUpload entries after 180 days.
-
-    - `results` are the validation results passed in the validation chain. This
-       task is a validation task, which is why it must receive the validation
-       results as first argument.
-    - `upload_pk` is the FileUpload ID.
-    """
-    return run_scanner(
-        results,
-        upload_pk,
-        scanner=_CUSTOMS,
-        api_url=settings.CUSTOMS_API_URL,
-        api_key=settings.CUSTOMS_API_KEY,
-    )
 
 
 @task

@@ -833,7 +833,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_webhooks_during_validation': {'queue': 'devhub'},
-    'olympia.scanners.tasks.run_customs': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_source_code_uploaded': {'queue': 'devhub'},
@@ -1443,8 +1442,6 @@ EXTENSION_WORKSHOP_URL = env(
 
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds
-CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
-CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

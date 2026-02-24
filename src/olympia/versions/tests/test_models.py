@@ -27,7 +27,7 @@ from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.constants.scanners import _CUSTOMS, YARA
+from olympia.constants.scanners import YARA
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -2421,23 +2421,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # version, suddenly we will inherit its due date.
         old_version.needshumanreview_set.create(reason=NeedsHumanReview.REASONS.UNKNOWN)
         assert new_version.generate_due_date() == old_version.due_date
-
-    def test_set_version_to_customs_scanners_result(self):
-        self.create_switch('enable-customs', active=True)
-        scanners_result = ScannerResult.objects.create(
-            upload=self.upload, scanner=_CUSTOMS
-        )
-        assert scanners_result.version is None
-
-        version = Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        scanners_result.refresh_from_db()
-        assert scanners_result.version == version
 
     def test_set_version_to_yara_scanners_result(self):
         self.create_switch('enable-yara', active=True)

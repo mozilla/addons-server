@@ -19,7 +19,6 @@ from olympia.amo.tests import (
 )
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
@@ -48,7 +47,6 @@ from olympia.scanners.tasks import (
     call_webhooks,
     call_webhooks_during_validation,
     mark_scanner_query_rule_as_completed_or_aborted,
-    run_customs,
     run_narc_on_version,
     run_scanner,
     run_scanner_query_rule,
@@ -217,44 +215,6 @@ class TestRunScanner(UploadMixin, TestCase):
 
         assert requests_mock.called
         assert len(ScannerResult.objects.all()) == 0
-        assert returned_results == self.results
-
-
-class TestRunCustoms(TestCase):
-    API_URL = 'http://customs.example.org'
-    API_KEY = 'some-api-key'
-
-    def setUp(self):
-        super().setUp()
-
-        self.upload_pk = 1234
-        self.results = {**amo.VALIDATOR_SKELETON_RESULTS}
-
-    @override_settings(CUSTOMS_API_URL=API_URL, CUSTOMS_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_calls_run_scanner_with_mock(self, run_scanner_mock):
-        run_scanner_mock.return_value = self.results
-
-        returned_results = run_customs(self.results, self.upload_pk)
-
-        assert run_scanner_mock.called
-        run_scanner_mock.assert_called_once_with(
-            self.results,
-            self.upload_pk,
-            scanner=_CUSTOMS,
-            api_url=self.API_URL,
-            api_key=self.API_KEY,
-        )
-        assert returned_results == self.results
-
-    @override_settings(CUSTOMS_API_URL=API_URL, CUSTOMS_API_KEY=API_KEY)
-    @mock.patch('olympia.scanners.tasks.run_scanner')
-    def test_does_not_run_when_results_contain_errors(self, run_scanner_mock):
-        self.results.update({'errors': 1})
-
-        returned_results = run_customs(self.results, self.upload_pk)
-
-        assert not run_scanner_mock.called
         assert returned_results == self.results
 
 

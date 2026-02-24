@@ -19,7 +19,6 @@ from olympia.files.tasks import repack_fileupload
 from olympia.files.utils import parse_addon, parse_xpi
 from olympia.scanners.tasks import (
     call_webhooks_during_validation,
-    run_customs,
     run_yara,
 )
 from olympia.versions.models import Version
@@ -273,9 +272,6 @@ class Validator:
 
         if waffle.switch_is_active('enable-yara'):
             tasks_in_parallel.append(run_yara.s(upload_pk))
-
-        if waffle.switch_is_active('enable-customs'):
-            tasks_in_parallel.append(run_customs.s(upload_pk))
 
         if waffle.switch_is_active('enable-scanner-webhooks'):
             tasks_in_parallel.append(call_webhooks_during_validation.s(upload_pk))
