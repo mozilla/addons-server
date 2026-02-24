@@ -79,7 +79,7 @@ def activity_changes(activity):
     data = json.loads(activity.arguments[2])
     return new_context(
         {
-            'removed': data['removed'],
-            'added': data['added'],
+            'removed': data.get('removed', []),
+            'added': data.get('added', []),
         }
     )
