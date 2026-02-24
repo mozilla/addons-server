@@ -7072,7 +7072,7 @@ class TestDeveloperProfile(ReviewerTest):
     def setUp(self):
         super().setUp()
         self.developer = user_factory()
-        self.addon = addon_factory(users=(self.developer,))
+        self.addon = addon_factory(users=(self.developer,), guid='@zzz')
         self.login_as_reviewer()
         self.url = reverse(
             'reviewers.developer_profile',
@@ -7139,6 +7139,27 @@ class TestDeveloperProfile(ReviewerTest):
             # - translations
             # - authors
             self.test_basic()
+
+    def test_ordering_by_guid(self):
+        # Remove AddonGUID from initial add-on, we should still display it
+        # correctly, falling back on guid on the Addon instance.
+        self.addon.addonguid.delete()
+        second = addon_factory(users=(self.developer,), guid='@asecond')
+        first = addon_factory(users=(self.developer,), guid='@wouldnotbefirst')
+        first.addonguid.update(guid='@actually-first')
+        response = self.client.get(self.url + '?sort=addon_guid')
+        assert response.status_code == 200
+        doc = pq(response.content)
+        rows = doc('.addons-list tbody tr')
+        assert len(rows) == 3
+        # self.addon has no AddonGUID so it's first.
+        assert rows[0].attrib['data-addon'] == str(self.addon.pk)
+        assert rows[0].findall('td')[2].text_content() == self.addon.guid
+        # Then we sort by AddonGUID.guid
+        assert rows[1].attrib['data-addon'] == str(first.pk)
+        assert rows[1].findall('td')[2].text_content() == first.addonguid_guid
+        assert rows[2].attrib['data-addon'] == str(second.pk)
+        assert rows[2].findall('td')[2].text_content() == second.addonguid_guid
 
     def test_is_admin(self):
         self.login_as_admin()

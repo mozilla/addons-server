@@ -20,15 +20,15 @@
   </h3>
   <div>
     <table class="addons-list data-grid">
+      <thead>
+        <tr class="listing-header">
+          {% include 'reviewers/includes/table_headers.html' %}
+          <th colspan="2">Review links</th>
+        </tr>
+      </thead>
       <tbody>
-        <thead>
-          <tr class="listing-header">
-            {% include 'reviewers/includes/table_headers.html' %}
-            <th colspan="2">Review links</th>
-          </tr>
-        </thead>
         {% for row in page.object_list %}
-        <tr>
+        <tr data-addon="{{ row.record.id }}">
           {% for value in row %}
             <td>{{ value }}</td>
           {% endfor %}

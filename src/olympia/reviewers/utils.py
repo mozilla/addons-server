@@ -306,7 +306,8 @@ class DeveloperAddonsTable(tables.Table):
     )
     addon_guid = tables.Column(
         verbose_name='Add-on ID',
-        accessor='addonguid_guid',
+        order_by='addonguid__guid',
+        accessor='addonguid_guid',  # This has the fallback if AddonGUID doesn't exist.
     )
     average_daily_users = tables.Column(verbose_name='Add-on ADU')
     role = tables.Column(
