@@ -8,11 +8,9 @@ from django.contrib import admin
 from django.contrib.admin.sites import AdminSite
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
-from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.formats import localize
 from django.utils.html import format_html
-from django.utils.http import urlencode
 
 from pyquery import PyQuery as pq
 
@@ -917,42 +915,6 @@ class TestScannerResultAdmin(TestCase):
         last_url, status_code = response.redirect_chain[-1]
         assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
-    @override_settings(CUSTOMS_GIT_REPOSITORY='git/repo')
-    def test_handle_customs_false_positive(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=_CUSTOMS)
-        result = ScannerResult(scanner=_CUSTOMS, results={'matchedRules': [rule.name]})
-        result.save()
-        assert result.state == UNKNOWN
-
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[result.pk],
-            )
-        )
-
-        result.refresh_from_db()
-        assert result.state == FALSE_POSITIVE
-        # We create a GitHub issue draft by passing some query parameters to
-        # GitHub.
-        assert response['Location'].startswith(
-            'https://github.com/git/repo/issues/new?'
-        )
-        assert (
-            urlencode(
-                {
-                    'title': 'False positive report for ScannerResult {}'.format(
-                        result.pk
-                    )
-                }
-            )
-            in response['Location']
-        )
-        assert urlencode({'body': '### Report'}) in response['Location']
-        assert urlencode({'labels': 'false positive report'}) in response['Location']
-        assert 'Raw+scanner+results' not in response['Location']
-
     def test_handle_revert_report(self):
         # Create one entry with matches
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
@@ -1244,7 +1206,6 @@ class TestScannerRuleAdmin(TestCase):
         select = pq(response.content)('#id_scanner')
         assert [pq(opt).text() for opt in select.children()] == [
             '---------',
-            'customs (legacy)',
             'yara',
             'narc',
             'webhook',

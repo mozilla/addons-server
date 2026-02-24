@@ -1445,8 +1445,6 @@ EXTENSION_WORKSHOP_URL = env(
 SCANNER_TIMEOUT = 60  # seconds
 CUSTOMS_API_URL = env('CUSTOMS_API_URL', default=None)
 CUSTOMS_API_KEY = env('CUSTOMS_API_KEY', default=None)
-# Git(Hub) repository names, e.g., `owner/repo-name`
-CUSTOMS_GIT_REPOSITORY = env('CUSTOMS_GIT_REPOSITORY', default=None)
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

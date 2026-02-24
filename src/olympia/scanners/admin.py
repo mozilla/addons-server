@@ -25,9 +25,7 @@ from olympia.amo.admin import (
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import is_safe_url
 from olympia.api.models import APIKey
-from olympia.constants import scanners
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTING,
     COMPLETED,
     FALSE_POSITIVE,
@@ -576,7 +574,7 @@ class AbstractScannerRuleAdminMixin:
         if db_field.name == 'scanner':
             kwargs['choices'] = (('', '---------'),)
             for key, value in db_field.get_choices():
-                if key in [_CUSTOMS, YARA, NARC, WEBHOOK]:
+                if key in [YARA, NARC, WEBHOOK]:
                     kwargs['choices'] += ((key, value),)
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
@@ -734,29 +732,9 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
             f'Scanner result {pk} has been marked as false positive.',
         )
 
-        if result.scanner == scanners._CUSTOMS:
-            title = f'False positive report for ScannerResult {pk}'
-            body = render_to_string(
-                'admin/false_positive_report.md', {'result': result, 'YARA': YARA}
-            )
-            labels = ','.join(
-                [
-                    # Default label added to all issues
-                    'false positive report'
-                ]
-                + [f'rule: {rule.name}' for rule in result.matched_rules.all()]
-            )
-
-            return redirect(
-                'https://github.com/{}/issues/new?{}'.format(
-                    result.get_git_repository(),
-                    urlencode({'title': title, 'body': body, 'labels': labels}),
-                )
-            )
-        else:
-            return self.safe_referer_redirect(
-                request, default_url='admin:scanners_scannerresult_changelist'
-            )
+        return self.safe_referer_redirect(
+            request, default_url='admin:scanners_scannerresult_changelist'
+        )
 
     def handle_revert(self, request, pk, *args, **kwargs):
         is_admin = acl.action_allowed_for(

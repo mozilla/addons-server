@@ -3,7 +3,6 @@ from datetime import datetime
 from unittest import mock
 
 from django.core.exceptions import ValidationError
-from django.test.utils import override_settings
 
 import pytest
 import time_machine
@@ -140,17 +139,6 @@ class TestScannerResultMixin:
         result = self.create_result(scanner=_CUSTOMS)
         result.results = {'foo': 'bar'}
         assert result.get_pretty_results() == '{\n  "foo": "bar"\n}'
-
-    def test_get_customs_git_repository(self):
-        result = self.create_result(scanner=_CUSTOMS)
-        git_repo = 'some git repo'
-
-        with override_settings(CUSTOMS_GIT_REPOSITORY=git_repo):
-            assert result.get_git_repository() == git_repo
-
-    def test_get_git_repository_returns_none_if_not_supported(self):
-        result = self.create_result(scanner=_CUSTOMS)
-        assert result.get_git_repository() is None
 
     def test_get_files_and_data_by_matched_rules_with_no_yara_results(self):
         result = self.create_result(scanner=YARA)

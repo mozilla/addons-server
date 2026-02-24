@@ -3,7 +3,6 @@ import re
 from collections import defaultdict
 from datetime import datetime
 
-from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils.functional import classproperty
@@ -18,7 +17,6 @@ from olympia.access.models import Group, GroupUser
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTED,
     ABORTING,
     ACTIONS,
@@ -142,11 +140,6 @@ class AbstractScannerResult(ModelBase):
                                 filename = ''
                             res[ruleId].append({'filename': filename, 'data': data})
         return res
-
-    def get_git_repository(self):
-        return {
-            _CUSTOMS: settings.CUSTOMS_GIT_REPOSITORY,
-        }.get(self.scanner)
 
 
 def rule_schema(instance=None):
