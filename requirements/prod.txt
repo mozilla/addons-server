@@ -1014,9 +1014,9 @@ webencodings==0.5.1 \
 sqlparse==0.5.5 \
     --hash=sha256:12a08b3bf3eec877c519589833aed092e2444e68240a3577e8e26148acc7b1ba \
     --hash=sha256:e20d4a9b0b8585fdf63b10d30066c7c94c5d7a7ec47c889a2d83a3caa93ff28e
-homoglyphs-fork==2.1.1 \
-    --hash=sha256:42b8e77e82fff9eaa63422e3ff3149daa0c8ecc03fb2381e6aae5a961c3104c2 \
-    --hash=sha256:d0994a1f5fa74b6bd0a25e714eb527a43335c80d0e86abf6f099d0e108dc94bd
+homoglyphs-fork==2.1.2 \
+    --hash=sha256:9d09efafd93cff21c4c957ce79ac2cff97debd2978596b74ddf1da5ef5ffb093 \
+    --hash=sha256:9d690fba4283b90c602f37ebae6d9639303edfcecd7f7cb77b67e7def683e3bc
 yara-python==4.5.4 \
     --hash=sha256:0b9de86fbe8a646c0644df9e1396d6941dc6ed0f89be2807e6c52ab39161fd9f \
     --hash=sha256:0e762e6c5b47ddf30b0128ba723da46fcc2aa7959a252748497492cb452d1c84 \
