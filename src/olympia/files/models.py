@@ -597,7 +597,7 @@ class FileUpload(ModelBase):
 
             validation = self.load_validation()
 
-            return process_validation(validation, file_hash=self.hash)
+            return process_validation(validation)
 
     @property
     def passed_all_validations(self):
@@ -656,7 +656,6 @@ class FileValidation(ModelBase):
 
         return process_validation(
             json.loads(self.validation),
-            file_hash=self.file.original_hash,
             channel=self.file.version.channel,
         )
 

@@ -31,7 +31,7 @@ from . import tasks
 log = olympia.core.logger.getLogger('z.devhub')
 
 
-def process_validation(validation, file_hash=None, channel=amo.CHANNEL_LISTED):
+def process_validation(validation, channel=amo.CHANNEL_LISTED):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
