@@ -2448,6 +2448,47 @@ class TestCallWebhooks(UploadMixin, TestCase):
         with self.assertRaises(RuntimeError):
             call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
 
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch('olympia.scanners.tasks.statsd.timer')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_statsd_success(self, _call_webhook_mock, timer_mock, incr_mock):
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(
+                name='some (fancy) scanner',
+                url='https://example.org/webhook',
+                api_key='some-api-key',
+                is_active=True,
+            ),
+        )
+        _call_webhook_mock.return_value = {}
+
+        call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        expected_name = f'devhub.webhook.some-fancy-scanner.{WEBHOOK_DURING_VALIDATION}'
+        timer_mock.assert_called_once_with(expected_name)
+        incr_mock.assert_called_once_with(f'{expected_name}.success')
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_statsd_failure(self, _call_webhook_mock, incr_mock):
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(
+                name='some (fancy) scanner',
+                url='https://example.org/webhook',
+                api_key='some-api-key',
+                is_active=True,
+            ),
+        )
+        _call_webhook_mock.side_effect = RuntimeError()
+
+        with self.assertRaises(RuntimeError):
+            call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        expected_name = f'devhub.webhook.some-fancy-scanner.{WEBHOOK_DURING_VALIDATION}'
+        incr_mock.assert_called_once_with(f'{expected_name}.failure')
+
 
 class TestCallWebhook(TestCase):
     def create_response(self, status_code=200, data=None):

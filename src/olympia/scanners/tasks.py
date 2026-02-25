@@ -8,6 +8,7 @@ from collections import defaultdict, namedtuple
 
 from django.conf import settings
 from django.db.models import F
+from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 import regex
@@ -100,6 +101,7 @@ def call_webhooks(event_name, payload, upload=None, version=None):
         event=event_name, webhook__is_active=True
     ).all():
         log.info('Calling webhook "%s".', event.webhook.name)
+        statsd_name = f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
 
         try:
             scanner_result = ScannerResult.objects.create(
@@ -109,24 +111,28 @@ def call_webhooks(event_name, payload, upload=None, version=None):
                 version=version,
             )
 
-            data = _call_webhook(
-                webhook=event.webhook,
-                payload={
-                    **payload,
-                    'scanner_result_url': absolutify(
-                        reverse(
-                            'v5:scanner-result-patch',
-                            args=[scanner_result.pk],
-                        )
-                    ),
-                },
-            )
+            with statsd.timer(statsd_name):
+                data = _call_webhook(
+                    webhook=event.webhook,
+                    payload={
+                        **payload,
+                        'scanner_result_url': absolutify(
+                            reverse(
+                                'v5:scanner-result-patch',
+                                args=[scanner_result.pk],
+                            )
+                        ),
+                    },
+                )
 
             scanner_result.results = data
             # We don't pass `update_fields` because the `save()` method
             # also updates other fields (e.g. has_matches, matched_rules).
             scanner_result.save()
+
+            statsd.incr(f'{statsd_name}.success')
         except Exception as exc:
+            statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
             raise exc
 
