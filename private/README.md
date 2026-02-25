@@ -24,15 +24,6 @@ $ make up_private
 
 ## customs
 
-A waffle switch is used to enable/disable the `customs` scanner:
-
-```
-$ make shell
-$ [root@<docker>:/code#] ./manage.py waffle_switch enable-customs on
-```
-
-### Running customs as a webhook
-
 Enable the scanner pipeline:
 
 ```
@@ -59,14 +50,11 @@ $ [root@<docker>:/code#] ./manage.py waffle_switch enable-yara on
 
 ## source-builder
 
-Both the `enable-scanner-webhooks` and `enable-source-builder` waffle switches
-are used to call the source-builder service and display information about it in
-the UI, respectively:
+Enable the scanner pipeline:
 
 ```
 $ make shell
 $ [root@<docker>:/code#] ./manage.py waffle_switch enable-scanner-webhooks on
-$ [root@<docker>:/code#] ./manage.py waffle_switch enable-source-builder on
 ```
 
 Navigate to the [Django admin][scannerwebhook_add] and create a new webhook with
