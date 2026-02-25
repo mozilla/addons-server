@@ -394,7 +394,6 @@ class TestCheckForSessionAnomaly(TestCase):
                 'received': 'different-ja4',
             }
         ]
-
         assert 'session_anomalies' in self.request.session
         assert self.request.session['session_anomalies'] == expected_anomalies
         assert ActivityLog.objects.count() == 1
@@ -440,7 +439,6 @@ class TestCheckForSessionAnomaly(TestCase):
                 'received': 'different-ohfp',
             },
         ]
-
         assert 'session_anomalies' in self.request.session
         assert self.request.session['session_anomalies'] == expected_anomalies
         assert ActivityLog.objects.count() == 1
