@@ -12,7 +12,6 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTED,
     ABORTING,
     COMPLETED,
@@ -116,28 +115,28 @@ class TestScannerResultMixin:
 
         assert result.extract_rule_names() == [rule1, rule2]
 
-    def test_extract_rule_names_with_no_customs_matched_rules_attribute(self):
-        result = self.create_result(scanner=_CUSTOMS)
+    def test_extract_rule_names_with_no_matched_rules_attribute(self):
+        result = self.create_result(scanner=WEBHOOK)
         result.results = {}
         assert result.extract_rule_names() == []
 
-    def test_extract_rule_names_with_no_customs_results(self):
-        result = self.create_result(scanner=_CUSTOMS)
+    def test_extract_rule_names_with_no_matched_rules(self):
+        result = self.create_result(scanner=WEBHOOK)
         result.results = {'matchedRules': []}
         assert result.extract_rule_names() == []
 
-    def test_extract_rule_names_with_customs_results(self):
-        result = self.create_result(scanner=_CUSTOMS)
+    def test_extract_rule_names_with_matched_rules(self):
+        result = self.create_result(scanner=WEBHOOK)
         rules = ['rule-1', 'rule-2']
         result.results = {'matchedRules': rules}
         assert result.extract_rule_names() == rules
 
     def test_get_scanner_name(self):
-        result = self.create_result(scanner=_CUSTOMS)
-        assert result.get_scanner_name() == 'customs (legacy)'
+        result = self.create_result(scanner=YARA)
+        assert result.get_scanner_name() == 'yara'
 
     def test_get_pretty_results(self):
-        result = self.create_result(scanner=_CUSTOMS)
+        result = self.create_result(scanner=YARA)
         result.results = {'foo': 'bar'}
         assert result.get_pretty_results() == '{\n  "foo": "bar"\n}'
 
@@ -172,13 +171,13 @@ class TestScannerResultMixin:
             'foobar': [{'filename': '???'}],
         }
 
-    def test_get_files_and_data_by_matched_rules_with_no_customs_results(self):
-        result = self.create_result(scanner=_CUSTOMS)
+    def test_get_files_and_data_by_matched_rules_with_no_results(self):
+        result = self.create_result(scanner=WEBHOOK)
         result.results = {'matchedRules': []}
         assert result.get_files_and_data_by_matched_rules() == {}
 
-    def test_get_files_and_data_by_matched_rules_for_customs(self):
-        result = self.create_result(scanner=_CUSTOMS)
+    def test_get_files_and_data_by_matched_rules_with_scan_map(self):
+        result = self.create_result(scanner=WEBHOOK)
         file1 = 'file/1.js'
         rule1 = 'rule1'
         file2 = 'file/2.js'
@@ -311,11 +310,11 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_create(self):
         upload = self.create_file_upload()
 
-        result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
+        result = self.model.objects.create(upload=upload, scanner=YARA)
 
         assert result.id is not None
         assert result.upload == upload
-        assert result.scanner == _CUSTOMS
+        assert result.scanner == YARA
         assert result.results == []
         assert result.version is None
         assert result.has_matches is False
@@ -323,15 +322,15 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
     def test_create_different_entries_for_a_single_upload(self):
         upload = self.create_file_upload()
 
-        customs_result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
+        narc_result = self.model.objects.create(upload=upload, scanner=NARC)
         yara_result = self.model.objects.create(upload=upload, scanner=YARA)
 
-        assert customs_result.scanner == _CUSTOMS
+        assert narc_result.scanner == NARC
         assert yara_result.scanner == YARA
 
     def test_upload_constraint(self):
         upload = self.create_file_upload()
-        result = self.model.objects.create(upload=upload, scanner=_CUSTOMS)
+        result = self.model.objects.create(upload=upload, scanner=YARA)
 
         upload.delete()
         result.refresh_from_db()
@@ -339,11 +338,11 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         assert result.upload is None
 
     def test_can_report_feedback(self):
-        result = self.create_result(scanner=_CUSTOMS)
+        result = self.create_result(scanner=YARA)
         assert result.can_report_feedback()
 
     def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
-        result = self.create_result(scanner=_CUSTOMS)
+        result = self.create_result(scanner=YARA)
         result.state = FALSE_POSITIVE
         assert not result.can_report_feedback()
 

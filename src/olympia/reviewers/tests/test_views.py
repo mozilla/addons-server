@@ -61,7 +61,7 @@ from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
-from olympia.constants.scanners import _CUSTOMS, YARA
+from olympia.constants.scanners import WEBHOOK, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -6091,15 +6091,15 @@ class TestReview(ReviewBase):
     def test_versions_that_are_flagged_by_scanners_are_highlighted(self):
         self.login_as_reviewer()
         self.addon.current_version.update(created=self.days_ago(366))
-        customs_rule = ScannerRule.objects.create(name='ringo', scanner=_CUSTOMS)
+        webhook_rule = ScannerRule.objects.create(name='ringo', scanner=WEBHOOK)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
         now = datetime.now()
         for i in range(0, 10):
             # Add versions 1.0 to 1.9. Some of them will have yara matching
-            # rules, some of them customs matching rules, and some also have
+            # rules, some of them webhook matching rules, and some also have
             # the needing human review flag.
             matched_yara_rule = not bool(i % 3)
-            matched_customs_rule = not bool(i % 3) and not bool(i % 2)
+            matched_webhook_rule = not bool(i % 3) and not bool(i % 2)
             needs_human_review = not bool(i % 5)
             due_date = now + timedelta(days=i) if needs_human_review else None
             version = version_factory(
@@ -6117,11 +6117,11 @@ class TestReview(ReviewBase):
                     version=version,
                     results=[{'rule': yara_rule.name}],
                 )
-            if matched_customs_rule:
+            if matched_webhook_rule:
                 ScannerResult.objects.create(
-                    scanner=customs_rule.scanner,
+                    scanner=webhook_rule.scanner,
                     version=version,
-                    results={'matchedRules': [customs_rule.name]},
+                    results={'matchedRules': [webhook_rule.name]},
                 )
 
         with self.assertNumQueries(61):

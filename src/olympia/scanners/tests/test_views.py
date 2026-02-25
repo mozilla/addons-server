@@ -19,8 +19,8 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.blocklist.models import BlocklistSubmission
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.scanners import (
-    _CUSTOMS,
     LABEL_BAD,
+    NARC,
     TRUE_POSITIVE,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
@@ -79,7 +79,7 @@ class TestScannerResultViewInternal(TestCase):
         # result labelled as "good" because it has been approved
         good_version_1 = version_factory(addon=addon_factory())
         good_result_1 = ScannerResult.objects.create(
-            scanner=_CUSTOMS, version=good_version_1
+            scanner=YARA, version=good_version_1
         )
         ActivityLog.objects.create(
             amo.LOG.APPROVE_VERSION, good_version_1, user=self.user
@@ -87,7 +87,7 @@ class TestScannerResultViewInternal(TestCase):
         # result labelled as "good" because auto-approve has been confirmed
         good_version_2 = version_factory(addon=addon_factory())
         good_result_2 = ScannerResult.objects.create(
-            scanner=_CUSTOMS, version=good_version_2
+            scanner=YARA, version=good_version_2
         )
         ActivityLog.objects.create(
             amo.LOG.APPROVE_VERSION, good_version_2, user=task_user
@@ -137,7 +137,7 @@ class TestScannerResultViewInternal(TestCase):
             scanner=YARA, version=bad_version, state=TRUE_POSITIVE
         )
         ScannerResult.objects.create(
-            scanner=_CUSTOMS, version=bad_version, state=TRUE_POSITIVE
+            scanner=NARC, version=bad_version, state=TRUE_POSITIVE
         )
 
         response = self.client.get(self.url)
@@ -147,9 +147,9 @@ class TestScannerResultViewInternal(TestCase):
         results = self.assert_json_results(response, expected_results=1)
         assert results[0].get('scanner') == 'yara'
 
-        response = self.client.get(self.url, {'scanner': 'customs (legacy)'})
+        response = self.client.get(self.url, {'scanner': 'narc'})
         results = self.assert_json_results(response, expected_results=1)
-        assert results[0].get('scanner') == 'customs (legacy)'
+        assert results[0].get('scanner') == 'narc'
 
     def test_get_by_scanner_with_empty_value(self):
         invalid_scanner = ''
@@ -169,7 +169,7 @@ class TestScannerResultViewInternal(TestCase):
         )
         # result labelled as "good" because it has been approved
         good_version = version_factory(addon=addon_factory())
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=good_version)
+        ScannerResult.objects.create(scanner=YARA, version=good_version)
         VersionLog.objects.create(
             activity_log=ActivityLog.objects.create(
                 action=amo.LOG.APPROVE_VERSION,
@@ -208,7 +208,7 @@ class TestScannerResultViewInternal(TestCase):
         )
         # result labelled as "good" because it has been approved
         good_version = version_factory(addon=addon_factory())
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=good_version)
+        ScannerResult.objects.create(scanner=NARC, version=good_version)
         VersionLog.objects.create(
             activity_log=ActivityLog.objects.create(
                 action=amo.LOG.APPROVE_VERSION,
@@ -226,13 +226,9 @@ class TestScannerResultViewInternal(TestCase):
         response = self.client.get('{}'.format(f'{self.url}?scanner=yara&label=bad'))
         self.assert_json_results(response, expected_results=1)
 
-        response = self.client.get(
-            '{}'.format(f'{self.url}?scanner=customs (legacy)&label=bad')
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=narc&label=bad'))
         self.assert_json_results(response, expected_results=0)
-        response = self.client.get(
-            '{}'.format(f'{self.url}?scanner=customs (legacy)&label=good')
-        )
+        response = self.client.get('{}'.format(f'{self.url}?scanner=narc&label=good'))
         self.assert_json_results(response, expected_results=1)
 
     def test_get_results_with_blocked_versions(self):
@@ -308,7 +304,7 @@ class TestScannerResultViewInternal(TestCase):
     def test_get_results_with_good_blocked_versions(self):
         # Result labelled as "good" because auto-approve has been confirmed.
         version_1 = version_factory(addon=addon_factory())
-        result_1 = ScannerResult.objects.create(scanner=_CUSTOMS, version=version_1)
+        result_1 = ScannerResult.objects.create(scanner=YARA, version=version_1)
         ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         # Oh noes! The version has been blocked.
         block_1 = block_factory(guid=version_1.addon.guid, updated_by=self.user)
@@ -325,7 +321,7 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_unique_bad_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=version_1)
+        ScannerResult.objects.create(scanner=YARA, version=version_1)
         ActivityLog.objects.create(
             amo.LOG.BLOCKLIST_BLOCK_ADDED, version_1, user=self.user
         )
@@ -333,7 +329,7 @@ class TestScannerResultViewInternal(TestCase):
             amo.LOG.BLOCKLIST_BLOCK_EDITED, version_1, user=self.user
         )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=version_2)
+        ScannerResult.objects.create(scanner=YARA, version=version_2)
         ActivityLog.objects.create(
             amo.LOG.BLOCKLIST_BLOCK_ADDED, version_2, user=self.user
         )
@@ -347,7 +343,7 @@ class TestScannerResultViewInternal(TestCase):
 
     def test_get_unique_good_results(self):
         version_1 = version_factory(addon=addon_factory(), version='1.0')
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=version_1)
+        ScannerResult.objects.create(scanner=YARA, version=version_1)
         ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_1, user=self.user)
         ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
@@ -356,7 +352,7 @@ class TestScannerResultViewInternal(TestCase):
             amo.LOG.CONFIRM_AUTO_APPROVED, version_1, user=self.user
         )
         version_2 = version_factory(addon=addon_factory(), version='2.0')
-        ScannerResult.objects.create(scanner=_CUSTOMS, version=version_2)
+        ScannerResult.objects.create(scanner=YARA, version=version_2)
         ActivityLog.objects.create(amo.LOG.APPROVE_VERSION, version_2, user=self.user)
         ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED, version_2, user=self.user

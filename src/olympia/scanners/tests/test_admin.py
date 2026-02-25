@@ -23,7 +23,6 @@ from olympia.amo.tests import (
 )
 from olympia.api.models import APIKey
 from olympia.constants.scanners import (
-    _CUSTOMS,
     ABORTING,
     COMPLETED,
     FALSE_POSITIVE,
@@ -77,9 +76,9 @@ class TestScannerResultAdmin(TestCase):
         self.admin = ScannerResultAdmin(model=ScannerResult, admin_site=AdminSite())
 
     def test_list_view(self):
-        rule = ScannerRule.objects.create(name='rule', scanner=_CUSTOMS)
+        rule = ScannerRule.objects.create(name='rule', scanner=WEBHOOK)
         ScannerResult.objects.create(
-            scanner=_CUSTOMS,
+            scanner=WEBHOOK,
             version=addon_factory().current_version,
             results={'matchedRules': [rule.name]},
         )
@@ -110,13 +109,13 @@ class TestScannerResultAdmin(TestCase):
 
     def test_block_addons_action(self):
         self.grant_permission(self.user, 'Blocklist:Create')
-        rule = ScannerRule.objects.create(name='my_rule', scanner=_CUSTOMS)
+        rule = ScannerRule.objects.create(name='my_rule', scanner=WEBHOOK)
         addon1 = addon_factory()
         version_factory(addon=addon1)
         addon2 = addon_factory()
         for version in Version.objects.all():
             ScannerResult.objects.create(
-                scanner=_CUSTOMS,
+                scanner=WEBHOOK,
                 version=version,
                 results={'matchedRules': [rule.name]},
             )
@@ -132,7 +131,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_search_for_authors_action(self):
         self.grant_permission(self.user, 'Users:Edit')
-        rule = ScannerRule.objects.create(name='my_rule', scanner=_CUSTOMS)
+        rule = ScannerRule.objects.create(name='my_rule', scanner=WEBHOOK)
         user1_1 = user_factory()
         user1_2 = user_factory()
         addon1 = addon_factory(users=[user1_1, user1_2])
@@ -143,7 +142,7 @@ class TestScannerResultAdmin(TestCase):
         addon_factory(users=[user1_1])  # user1_1 again.
         for version in Version.objects.all():
             ScannerResult.objects.create(
-                scanner=_CUSTOMS,
+                scanner=WEBHOOK,
                 version=version,
                 results={'matchedRules': [rule.name]},
             )
@@ -158,9 +157,9 @@ class TestScannerResultAdmin(TestCase):
         assert response['location'] == users_url + query_string
 
     def test_list_view_for_non_admins(self):
-        rule = ScannerRule.objects.create(name='rule', scanner=_CUSTOMS)
+        rule = ScannerRule.objects.create(name='rule', scanner=WEBHOOK)
         ScannerResult.objects.create(
-            scanner=_CUSTOMS,
+            scanner=WEBHOOK,
             version=addon_factory().current_version,
             results={'matchedRules': [rule.name]},
         )
@@ -312,11 +311,11 @@ class TestScannerResultAdmin(TestCase):
 
     def test_list_queries(self):
         ScannerResult.objects.create(
-            scanner=_CUSTOMS, version=addon_factory().current_version
+            scanner=YARA, version=addon_factory().current_version
         )
         deleted_addon = addon_factory(name='a deleted add-on')
         ScannerResult.objects.create(
-            scanner=_CUSTOMS, version=deleted_addon.current_version
+            scanner=YARA, version=deleted_addon.current_version
         )
         deleted_addon.delete()
 
@@ -345,9 +344,9 @@ class TestScannerResultAdmin(TestCase):
         assert str(deleted_addon.name) in html.text()
 
     def test_guid_column_is_sortable_in_list(self):
-        rule_foo = ScannerRule.objects.create(name='foo', scanner=_CUSTOMS)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
         ScannerResult.objects.create(
-            scanner=_CUSTOMS,
+            scanner=WEBHOOK,
             results={'matchedRules': [rule_foo.name]},
             version=version_factory(addon=addon_factory()),
         )
@@ -361,7 +360,7 @@ class TestScannerResultAdmin(TestCase):
         rule_hello = ScannerRule.objects.create(
             name='hello', scanner=YARA, pretty_name='Pretty Hello'
         )
-        rule_foo = ScannerRule.objects.create(name='foo', scanner=_CUSTOMS)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=NARC)
         webhook = ScannerWebhook.objects.create(name='some-webhook')
 
         response = self.client.get(self.list_url)
@@ -383,9 +382,9 @@ class TestScannerResultAdmin(TestCase):
             ('False positive', '?state=2'),
             ('Inconclusive', '?state=3'),
             ('All', '?'),
-            ('foo (customs (legacy))', f'?matched_rules__id__exact={rule_foo.pk}'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
             ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+            ('foo (narc)', f'?matched_rules__id__exact={rule_foo.pk}'),
             ('All', '?has_version=all'),
             (' With version only', '?'),
         ]
@@ -394,9 +393,9 @@ class TestScannerResultAdmin(TestCase):
 
         # Exclude rules is a form, needs a separate check.
         expected = [
-            ('foo (customs (legacy))', str(rule_foo.pk)),
             ('bar (yara)', str(rule_bar.pk)),
             ('Pretty Hello (yara)', str(rule_hello.pk)),
+            ('foo (narc)', str(rule_foo.pk)),
         ]
         filters = [
             (option.text, option.attrib['value'])
@@ -406,7 +405,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_list_filter_scanners(self):
         ScannerResult.objects.create(scanner=YARA)
-        ScannerResult.objects.create(scanner=_CUSTOMS)
+        ScannerResult.objects.create(scanner=NARC)
         webhook = ScannerWebhook.objects.create(name='some service')
         ScannerResult.objects.create(
             scanner=WEBHOOK,
@@ -427,11 +426,11 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 3
 
-        # Customs
+        # NARC
         response = self.client.get(
             self.list_url,
             {
-                ScannerFilter.parameter_name: _CUSTOMS,
+                ScannerFilter.parameter_name: NARC,
                 MatchesFilter.parameter_name: 'all',
                 WithVersionFilter.parameter_name: 'all',
             },
@@ -482,13 +481,13 @@ class TestScannerResultAdmin(TestCase):
     def test_list_filter_matched_rules(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
-        rule_foo = ScannerRule.objects.create(name='foo', scanner=_CUSTOMS)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
         with_bar_matches = ScannerResult(scanner=YARA)
         with_bar_matches.add_yara_result(rule=rule_bar.name)
         with_bar_matches.add_yara_result(rule=rule_hello.name)
         with_bar_matches.save()
         ScannerResult.objects.create(
-            scanner=_CUSTOMS, results={'matchedRules': [rule_foo.name]}
+            scanner=WEBHOOK, results={'matchedRules': [rule_foo.name]}
         )
         with_hello_match = ScannerResult(scanner=YARA)
         with_hello_match.add_yara_result(rule=rule_hello.name)
@@ -510,7 +509,7 @@ class TestScannerResultAdmin(TestCase):
     def test_exclude_matched_rules_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
-        rule_foo = ScannerRule.objects.create(name='foo', scanner=_CUSTOMS)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
 
         with_bar_and_hello_matches = ScannerResult(scanner=YARA)
         with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
@@ -519,7 +518,7 @@ class TestScannerResultAdmin(TestCase):
         with_bar_and_hello_matches.update(created=self.days_ago(3))
 
         with_foo_match = ScannerResult(
-            scanner=_CUSTOMS, results={'matchedRules': [rule_foo.name]}
+            scanner=WEBHOOK, results={'matchedRules': [rule_foo.name]}
         )
         with_foo_match.save()
         with_foo_match.update(created=self.days_ago(2))
@@ -592,7 +591,7 @@ class TestScannerResultAdmin(TestCase):
     def test_multiple_exclude_matched_rules_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
-        rule_foo = ScannerRule.objects.create(name='foo', scanner=_CUSTOMS)
+        rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
 
         with_bar_and_hello_matches = ScannerResult(scanner=YARA)
         with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
@@ -600,7 +599,7 @@ class TestScannerResultAdmin(TestCase):
         with_bar_and_hello_matches.save()
         with_bar_and_hello_matches.update(created=self.days_ago(3))
         with_foo_match = ScannerResult(
-            scanner=_CUSTOMS,
+            scanner=WEBHOOK,
             results={'matchedRules': [rule_foo.name]},
         )
         with_foo_match.save()
@@ -682,11 +681,11 @@ class TestScannerResultAdmin(TestCase):
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            f'&state=3&matched_rules__id__exact={rule_foo.pk}',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&state=3&matched_rules__id__exact={rule_bar.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&state=3&matched_rules__id__exact={rule_hello.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&state=3&matched_rules__id__exact={rule_foo.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             '&state=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&state=3',
@@ -986,7 +985,7 @@ class TestScannerResultAdmin(TestCase):
         assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
     def test_handle_true_positive_and_non_admin_user(self):
-        result = ScannerResult(scanner=_CUSTOMS)
+        result = ScannerResult(scanner=YARA)
         user = user_factory(email='somebodyelse@mozilla.com')
         self.grant_permission(user, 'Admin:ScannersResultsView')
         self.client.force_login(user)
@@ -999,7 +998,7 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 404
 
     def test_handle_false_positive_and_non_admin_user(self):
-        result = ScannerResult(scanner=_CUSTOMS)
+        result = ScannerResult(scanner=YARA)
         user = user_factory(email='somebodyelse@mozilla.com')
         self.grant_permission(user, 'Admin:ScannersResultsView')
         self.client.force_login(user)
@@ -1012,7 +1011,7 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 404
 
     def test_handle_revert_report_and_non_admin_user(self):
-        result = ScannerResult(scanner=_CUSTOMS)
+        result = ScannerResult(scanner=YARA)
         user = user_factory(email='somebodyelse@mozilla.com')
         self.grant_permission(user, 'Admin:ScannersResultsView')
         self.client.force_login(user)
@@ -2376,7 +2375,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
 class FormattedMatchedRulesWithFilesAndData(TestCase):
     def test_display_data(self):
-        rule = ScannerRule.objects.create(name='bar', scanner=_CUSTOMS)
+        rule = ScannerRule.objects.create(name='bar', scanner=WEBHOOK)
         data = {
             'scanMap': {
                 '__GLOBAL__': {
@@ -2391,7 +2390,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
             },
             'matchedRules': [rule.name],
         }
-        result = ScannerResult.objects.create(pk=42, scanner=_CUSTOMS, results=data)
+        result = ScannerResult.objects.create(pk=42, scanner=WEBHOOK, results=data)
         content = formatted_matched_rules_with_files_and_data(result)
         doc = pq(content)
         assert len(doc('td > ul > li')) == 1
