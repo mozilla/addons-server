@@ -424,7 +424,7 @@ class TestIsSafeUrl(SimpleTestCase):
         ('\u2800', ''),
         ('Something\x7f\u20dfFishy', 'SomethingFishy'),
         ('Something\ufffcVery\U0001d140Fishy', 'SomethingVeryFishy'),
-        ('қѺʍѕ', 'koms'),
+        ('қѺʍ⳽', 'koms'),
         ('tЄctoniк', 'tectonik'),
         ('ωïnnϵr', 'winner'),
     ],
