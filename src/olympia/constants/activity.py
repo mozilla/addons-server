@@ -1325,6 +1325,7 @@ class SESSION_ANOMALY(_LOG):
     format = '{user_responsible} session anomaly'
     short = 'Session anomaly'
     admin_event = True
+    store_ip = True
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
