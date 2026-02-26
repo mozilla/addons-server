@@ -95,7 +95,7 @@ def call_webhooks_during_validation(results, upload_pk):
     return results
 
 
-def call_webhooks(event_name, payload, upload=None, version=None):
+def call_webhooks(event_name, payload, upload=None, version=None, activity_log=None):
     for event in ScannerWebhookEvent.objects.filter(
         event=event_name, webhook__is_active=True
     ).all():
@@ -108,6 +108,7 @@ def call_webhooks(event_name, payload, upload=None, version=None):
                 webhook_event=event,
                 upload=upload,
                 version=version,
+                activity_log=activity_log,
             )
 
             with statsd.timer(statsd_name):

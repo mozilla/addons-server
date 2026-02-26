@@ -2388,6 +2388,29 @@ class TestCallWebhooks(UploadMixin, TestCase):
         assert list(result.matched_rules.all()) == [rule]
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_with_activity_log(self, _call_webhook_mock):
+        from olympia.activity.models import ActivityLog
+
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        _call_webhook_mock.return_value = {}
+        activity_log = ActivityLog.objects.create(
+            amo.LOG.SOURCE_CODE_UPLOADED, addon_factory(), user=user_factory()
+        )
+
+        call_webhooks(WEBHOOK_DURING_VALIDATION, payload={}, activity_log=activity_log)
+
+        result = ScannerResult.objects.get(scanner=WEBHOOK)
+        assert result.activity_log == activity_log
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
     def test_call_webhooks_raises(self, _call_webhook_mock):
         assert len(ScannerResult.objects.all()) == 0
 

@@ -643,6 +643,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         formatted_matched_rules_with_files_and_data,
         'result_actions',
         'formatted_results',
+        'activity_log',
     )
     list_display = (
         'id',

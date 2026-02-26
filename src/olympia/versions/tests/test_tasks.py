@@ -863,9 +863,12 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
     def test_call_with_mock(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
-        activity_log_id = 123
 
-        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
+        activity_log = ActivityLog.objects.create(
+            amo.LOG.SOURCE_CODE_UPLOADED, addon, user=user_factory()
+        )
+
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log.pk)
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
@@ -878,9 +881,10 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
                     reverse('downloads.source', kwargs={'version_id': version.id}),
                 ),
                 'license_slug': version.license.slug,
-                'activity_log_id': activity_log_id,
+                'activity_log_id': activity_log.pk,
             },
             version=version,
+            activity_log=activity_log,
         )
 
     @mock.patch('olympia.versions.tasks.call_webhooks')
@@ -889,9 +893,11 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         version = version_factory(addon=addon)
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
-        activity_log_id = 123
+        activity_log = ActivityLog.objects.create(
+            amo.LOG.SOURCE_CODE_UPLOADED, addon, user=user_factory()
+        )
 
-        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
+        call_webhooks_on_source_code_uploaded(version.pk, activity_log.pk)
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
@@ -904,9 +910,10 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
                     reverse('downloads.source', kwargs={'version_id': version.id}),
                 ),
                 'license_slug': version.license.slug,
-                'activity_log_id': activity_log_id,
+                'activity_log_id': activity_log.pk,
             },
             version=version,
+            activity_log=activity_log,
         )
 
     @mock.patch('olympia.versions.tasks.call_webhooks')

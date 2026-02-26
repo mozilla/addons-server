@@ -1038,6 +1038,23 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
 
+    def test_change_page_shows_activity_log(self):
+        from olympia.activity.models import ActivityLog
+
+        version = addon_factory().current_version
+        activity_log = ActivityLog.objects.create(
+            amo.LOG.SOURCE_CODE_UPLOADED, version.addon, user=user_factory()
+        )
+        result = ScannerResult.objects.create(
+            scanner=WEBHOOK, version=version, activity_log=activity_log
+        )
+        url = reverse('admin:scanners_scannerresult_change', args=(result.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        assert html('.field-activity_log').length == 1
+        assert 'Source code uploaded' in html('.field-activity_log').html()
+
     def test_handle_inconclusive(self):
         # Create one entry with matches
         rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)

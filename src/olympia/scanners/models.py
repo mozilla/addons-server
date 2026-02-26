@@ -352,6 +352,12 @@ class ScannerResult(AbstractScannerResult):
         on_delete=models.SET_NULL,
         null=True,
     )
+    activity_log = models.OneToOneField(
+        'activity.ActivityLog',
+        related_name='scanner_result',
+        on_delete=models.SET_NULL,
+        null=True,
+    )
     matched_rules = models.ManyToManyField(
         'ScannerRule', through='ScannerMatch', related_name='results'
     )

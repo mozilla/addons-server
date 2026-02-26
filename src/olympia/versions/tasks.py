@@ -443,6 +443,8 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
             )
             return
 
+        activity_log = ActivityLog.objects.get(pk=activity_log_id)
+
         payload = {
             'addon_id': version.addon_id,
             'version_id': version.id,
@@ -451,12 +453,13 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
                 reverse('downloads.source', kwargs={'version_id': version.id}),
             ),
             'license_slug': version.license.slug,
-            'activity_log_id': activity_log_id,
+            'activity_log_id': activity_log.id,
         }
         call_webhooks(
             event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload=payload,
             version=version,
+            activity_log=activity_log,
         )
     except Exception:
         log.exception(
