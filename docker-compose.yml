@@ -26,6 +26,7 @@ x-env-mapping: &env
     - FXA_CLIENT_SECRET
     - STATIC_URL_PREFIX=/static-server/
     - MEDIA_URL_PREFIX=/user-media/
+    - DJANGO_VERSION
 
 x-olympia: &olympia
   <<: *env

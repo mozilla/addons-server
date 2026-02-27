@@ -21,6 +21,7 @@ export FXA_CLIENT_ID ?=
 export FXA_CLIENT_SECRET ?=
 export STATIC_URL_PREFIX ?=
 export MEDIA_URL_PREFIX ?=
+export DJANGO_VERSION ?=
 INITIALIZE_ARGS ?=
 INIT_CLEAN ?=
 INIT_LOAD ?=
@@ -216,7 +217,7 @@ up_private: up ## Up the environment with the private services
 down: docker_compose_down docker_clean_images docker_clean_volumes ## Stop the docker containers and clean up non-peristent dangling resources
 
 %: ## This directs any other recipe (command) to the web container's make.
-	docker compose exec --user olympia web make $(MAKECMDGOALS) ARGS="$(shell echo $(ARGS))"
+	docker compose exec --user olympia web make $(MAKECMDGOALS) $(MAKEOVERRIDES)
 
 # You probably want to put new commands in Makefile-docker, unless they operate
 # on multiple containers or are host-os specific.
