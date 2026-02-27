@@ -77,3 +77,5 @@ class HELD_DECISION_CHOICES(StrEnumChoices):
 
 HELD_DECISION_CHOICES.add_subset('ADDON', ('YES', 'CANCEL'))
 HELD_DECISION_CHOICES.add_subset('OTHER', ('YES', 'NO'))
+
+WAIT_ON_SCANNERS_TIMEOUT = 7200  # seconds (2 hours)

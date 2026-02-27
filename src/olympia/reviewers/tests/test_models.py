@@ -27,6 +27,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.scanners import WEBHOOK, WEBHOOK_DURING_VALIDATION
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import (
     PromotedAddon,
@@ -43,6 +44,7 @@ from olympia.reviewers.models import (
     send_notifications,
     set_reviewing_cache,
 )
+from olympia.scanners.models import ScannerResult, ScannerWebhook, ScannerWebhookEvent
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags, version_uploaded
 from olympia.zadmin.models import set_config
@@ -1355,6 +1357,139 @@ class TestAutoApprovalSummary(TestCase):
         flags.update(pending_content_rejection=True)
         assert AutoApprovalSummary.check_is_pending_rejection(self.version) is True
 
+    def test_check_is_waiting_on_scanners_switch_off(self):
+        self.create_switch('enable-scanner-webhooks', active=False)
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_no_events(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_inactive_webhook(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=ScannerWebhook.objects.create(name='some-scanner', is_active=False),
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_webhook_modified_after_version(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(-1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_no_scanner_result(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
+    def test_check_is_waiting_on_scanners_disable_switch_active(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        self.create_switch('disable-check-is-waiting-on-scanners', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_result_with_matched_rules(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results={'matchedRules': []},
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_result_with_none_results(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results=None,
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_result_without_matched_rules(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results={'ok': True},
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
+    def test_check_is_waiting_on_scanners_multiple_events_all_complete(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=ScannerWebhookEvent.objects.create(
+                event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+            ),
+            results={'matchedRules': []},
+        )
+        webhook_2 = ScannerWebhook.objects.create(name='other-scanner')
+        webhook_2.update(modified=self.days_ago(1))
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=ScannerWebhookEvent.objects.create(
+                event=WEBHOOK_DURING_VALIDATION, webhook=webhook_2
+            ),
+            results={'matchedRules': []},
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+    def test_check_is_waiting_on_scanners_multiple_events_partially_complete(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=ScannerWebhookEvent.objects.create(
+                event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+            ),
+            results={'matchedRules': []},
+        )
+        webhook_2 = ScannerWebhook.objects.create(name='other-scanner')
+        webhook_2.update(modified=self.days_ago(1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_2
+        )
+        # No ScannerResult for webhook_2
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
@@ -1453,6 +1588,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
 
     def test_calculate_verdict_failure_dry_run(self):
@@ -1467,6 +1603,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.WOULD_NOT_HAVE_BEEN_AUTO_APPROVED
 
@@ -1482,6 +1619,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1495,6 +1633,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.AUTO_APPROVED
 
@@ -1508,6 +1647,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.WOULD_HAVE_BEEN_AUTO_APPROVED
 
@@ -1523,6 +1663,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1538,6 +1679,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1553,6 +1695,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': False,
             'is_blocked': True,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 
@@ -1568,6 +1711,7 @@ class TestAutoApprovalSummary(TestCase):
             'should_be_delayed': True,
             'is_blocked': False,
             'is_pending_rejection': False,
+            'is_waiting_on_scanners': False,
         }
         assert summary.verdict == amo.NOT_AUTO_APPROVED
 

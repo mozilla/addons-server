@@ -475,6 +475,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
                 'should_be_delayed': 0,
                 'is_blocked': 0,
                 'is_pending_rejection': 0,
+                'is_waiting_on_scanners': 0,
             }
         )
 
@@ -559,6 +560,24 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         nhr = self.version.needshumanreview_set.get()
         assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         assert nhr.is_active
+
+    def test_disapproves_is_waiting_on_scanners_after_grace_period(self):
+        summary = AutoApprovalSummary(is_waiting_on_scanners=True)
+        summary.created = datetime.now() - timedelta(hours=3)
+        self.version.autoapprovalsummary = summary
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.WAITING_ON_SCANNERS
+        assert nhr.is_active
+
+    def test_disapproves_is_waiting_on_scanners_within_grace_period(self):
+        summary = AutoApprovalSummary(is_waiting_on_scanners=True)
+        summary.created = datetime.now() - timedelta(hours=1)
+        self.version.autoapprovalsummary = summary
+        command = auto_approve.Command()
+        command.disapprove(self.version)
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
 
     def test_disapproves_is_promoted_but_decision_waiting_for_2nd_level_exists(self):
         self.version.autoapprovalsummary = AutoApprovalSummary(
@@ -861,6 +880,7 @@ class TestAutoApproveCommandTransactions(AutoApproveTestsMixin, TransactionTestC
                 'should_be_delayed': 0,
                 'is_blocked': 0,
                 'is_pending_rejection': 0,
+                'is_waiting_on_scanners': 0,
             }
         )
 

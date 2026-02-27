@@ -12,6 +12,8 @@ from django.template import loader
 from django.urls import reverse
 from django.utils.functional import cached_property
 
+import waffle
+
 import olympia.core.logger
 from olympia import activity, amo, core
 from olympia.abuse.models import AbuseReport, CinderPolicy
@@ -21,8 +23,13 @@ from olympia.amo.enum import EnumChoices
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
+from olympia.constants.scanners import (
+    WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_VERSION_CREATED,
+)
 from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating
+from olympia.scanners.models import ScannerResult, ScannerWebhookEvent
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version, version_uploaded
@@ -69,6 +76,11 @@ VIEW_QUEUE_FLAGS = (
         'Unlisted Auto-approval delayed indefinitely',
     ),
 )
+
+WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
+    WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_VERSION_CREATED,
+]
 
 
 def get_reviewing_cache_key(addon_id):
@@ -239,6 +251,9 @@ class AutoApprovalSummary(ModelBase):
     is_pending_rejection = models.BooleanField(
         default=False, help_text='Is pending rejection'
     )
+    is_waiting_on_scanners = models.BooleanField(
+        default=False, help_text='Is waiting on scanners'
+    )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
     )
@@ -264,6 +279,7 @@ class AutoApprovalSummary(ModelBase):
         'should_be_delayed',
         'is_blocked',
         'is_pending_rejection',
+        'is_waiting_on_scanners',
     )
 
     def __str__(self):
@@ -651,6 +667,63 @@ class AutoApprovalSummary(ModelBase):
         return bool(version.pending_rejection)
 
     @classmethod
+    def check_is_waiting_on_scanners(cls, version):
+        """Check whether the version is still waiting on scanner results.
+
+        For each active scanner webhook configured to fire on a blocking event
+        (WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL), we are simultaneously waiting
+        for two things:
+
+        1. The async task triggered by the event to run and create a
+           ScannerResult for the version.
+        2. The scanner to populate `results` on that result, which means the
+           scanner finished. A result is considered complete when either
+           `results` is None (scanner skipped the event) or `results` has a
+           `matchedRules` property set.
+
+        Returns True as long as at least one expected ScannerResult is missing
+        or has not yet been completed by the scanner.
+        """
+        # This switch would only be used in case of an emergency.
+        if waffle.switch_is_active('disable-check-is-waiting-on-scanners'):
+            return False
+
+        # This check is only relevant when scanner webhooks are enabled.
+        if not waffle.switch_is_active('enable-scanner-webhooks'):
+            return False
+
+        webhook_event_ids = ScannerWebhookEvent.objects.filter(
+            # We want to find the events to wait for...
+            event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            # ...but only for scanners that are active...
+            webhook__is_active=True,
+            # ...and only if the scanner hasn't been modified after the version
+            # was created, in order to avoid waiting indefinitely on scanners
+            # that were enabled *after*.
+            webhook__modified__lte=version.created,
+        ).values_list('pk', flat=True)
+
+        # If there is no event, that means no active scanner is listening to
+        # the blocking events, so the version isn't waiting on scanners.
+        if len(webhook_event_ids) == 0:
+            return False
+
+        # Count how many scanner results are complete: either `results` is None
+        # (scanner returned no data) or `results` has `matchedRules` set.
+        results_count = (
+            ScannerResult.objects.filter(
+                version=version,
+                webhook_event__in=webhook_event_ids,
+            )
+            .filter(Q(results__isnull=True) | Q(results__matchedRules__isnull=False))
+            .count()
+        )
+
+        # We're still waiting if at least one event doesn't have a completed
+        # result yet.
+        return results_count < len(webhook_event_ids)
+
+    @classmethod
     def create_summary_for_version(cls, version, dry_run=False):
         """Create a AutoApprovalSummary instance in db from the specified
         version.
@@ -980,6 +1053,7 @@ class NeedsHumanReview(ModelBase):
             'Auto-approved but still had an approval delay set in the past',
         )
         VERSION_ROLLBACK = 18, 'Rollback to a previous version that was unreviewed'
+        WAITING_ON_SCANNERS = 19, 'Some scanners are preventing auto-approval'
         UNKNOWN = 0, 'Unknown'
 
     REASONS.add_subset(

@@ -67,6 +67,10 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         self.scanner_result.refresh_from_db()
         assert self.scanner_result.results == results
 
+    def test_success_when_scanner_webhooks_switch_is_enabled(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        self.test_success()
+
     def test_cannot_patch_twice(self):
         # First patch should succeed.
         results = {'version': '1.2.3', 'matchedRules': []}
