@@ -33,7 +33,7 @@
     "netmask": "2.0.2",
     "source-map": "0.7.6",
     "timeago.js": "^4.0.2",
-    "underscore": "1.13.7"
+    "underscore": "1.13.8"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.29.0",
