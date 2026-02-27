@@ -15,14 +15,12 @@ from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
     COMPLETED,
-    FALSE_POSITIVE,
     NARC,
     NEW,
     RUNNING,
     SCANNER_SERVICE_ACCOUNTS_GROUP,
     SCANNERS,
     SCHEDULED,
-    UNKNOWN,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     YARA,
@@ -336,25 +334,6 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         result.refresh_from_db()
 
         assert result.upload is None
-
-    def test_can_report_feedback(self):
-        result = self.create_result(scanner=YARA)
-        assert result.can_report_feedback()
-
-    def test_can_report_feedback_is_false_when_state_is_not_unknown(self):
-        result = self.create_result(scanner=YARA)
-        result.state = FALSE_POSITIVE
-        assert not result.can_report_feedback()
-
-    def test_can_revert_feedback_for_triaged_result(self):
-        result = self.create_result(scanner=YARA)
-        result.state = FALSE_POSITIVE
-        assert result.can_revert_feedback()
-
-    def test_cannot_revert_feedback_for_untriaged_result(self):
-        result = self.create_result(scanner=YARA)
-        assert result.state == UNKNOWN
-        assert not result.can_revert_feedback()
 
     def test_save_set_has_matches(self):
         result = self.create_result(scanner=YARA)

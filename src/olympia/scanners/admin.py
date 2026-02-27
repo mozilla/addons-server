@@ -1,4 +1,4 @@
-from urllib.parse import urljoin, urlparse
+from urllib.parse import urljoin
 
 from django.conf import settings
 from django.contrib import admin, messages
@@ -23,21 +23,15 @@ from olympia.amo.admin import (
     NumericRangeFilter,
 )
 from olympia.amo.templatetags.jinja_helpers import vite_asset
-from olympia.amo.utils import is_safe_url
 from olympia.api.models import APIKey
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
-    FALSE_POSITIVE,
-    INCONCLUSIVE,
     NARC,
     NEW,
-    RESULT_STATES,
     RUNNING,
     SCANNERS,
     SCHEDULED,
-    TRUE_POSITIVE,
-    UNKNOWN,
     WEBHOOK,
     WEBHOOK_EVENTS,
     YARA,
@@ -151,34 +145,6 @@ class ScannerFilter(SimpleListFilter):
             return queryset.filter(scanner=scanner, webhook_event__webhook=webhook_id)
 
         return queryset.filter(scanner=self.value())
-
-
-class StateFilter(SimpleListFilter):
-    title = 'result state'
-    parameter_name = 'state'
-
-    def lookups(self, request, model_admin):
-        return (('all', 'All'), *RESULT_STATES.items())
-
-    def choices(self, cl):
-        for lookup, title in self.lookup_choices:
-            selected = (
-                lookup == UNKNOWN
-                if self.value() is None
-                else self.value() == str(lookup)
-            )
-            yield {
-                'selected': selected,
-                'query_string': cl.get_query_string({self.parameter_name: lookup}, []),
-                'display': title,
-            }
-
-    def queryset(self, request, queryset):
-        if self.value() == 'all':
-            return queryset
-        if self.value() is None:
-            return queryset.filter(state=UNKNOWN)
-        return queryset.filter(state=self.value())
 
 
 class ScannerRuleListFilter(admin.RelatedOnlyFieldListFilter):
@@ -351,7 +317,6 @@ class AbstractScannerResultAdminMixin:
         might filter out some results by default."""
         return {
             WithVersionFilter.parameter_name: 'all',
-            StateFilter.parameter_name: 'all',
         }
 
     def has_block_addons_permission(self, request):
@@ -404,27 +369,6 @@ class AbstractScannerResultAdminMixin:
     # Read-only mode
     def has_change_permission(self, request, obj=None):
         return False
-
-    # Custom actions
-    def has_actions_permission(self, request):
-        return acl.action_allowed_for(
-            request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
-        )
-
-    def get_list_display(self, request):
-        fields = super().get_list_display(request)
-        return self._excludes_fields(request=request, fields=fields)
-
-    def get_fields(self, request, obj=None):
-        fields = super().get_fields(request, obj)
-        return self._excludes_fields(request=request, fields=fields)
-
-    def _excludes_fields(self, request, fields):
-        to_exclude = []
-        if not self.has_actions_permission(request):
-            to_exclude = ['result_actions']
-        fields = list(filter(lambda x: x not in to_exclude, fields))
-        return fields
 
     def formatted_addon(self, obj):
         if obj.version:
@@ -645,9 +589,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'guid',
         'formatted_scanner',
         'created',
-        'state',
         formatted_matched_rules_with_files_and_data,
-        'result_actions',
         'formatted_results',
         'activity_log',
     )
@@ -659,12 +601,10 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'formatted_scanner',
         'formatted_matched_rules',
         'formatted_created',
-        'result_actions',
     )
     list_filter = (
         ScannerFilter,
         MatchesFilter,
-        StateFilter,
         ('matched_rules', ScannerRuleListFilter),
         WithVersionFilter,
         ExcludeMatchedRulesFilter,
@@ -678,135 +618,6 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         return str(obj)
 
     formatted_scanner.short_description = 'Scanner'
-
-    def safe_referer_redirect(self, request, default_url):
-        referer = request.META.get('HTTP_REFERER')
-        allowed_hosts = (
-            settings.DOMAIN,
-            urlparse(settings.EXTERNAL_SITE_URL).netloc,
-        )
-        if referer and is_safe_url(referer, request, allowed_hosts):
-            return redirect(referer)
-        return redirect(default_url)
-
-    def handle_true_positive(self, request, pk, *args, **kwargs):
-        can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != 'POST':
-            raise Http404
-
-        result = self.get_object(request, pk)
-        result.update(state=TRUE_POSITIVE)
-
-        messages.add_message(
-            request,
-            messages.INFO,
-            f'Scanner result {pk} has been marked as true positive.',
-        )
-
-        return self.safe_referer_redirect(
-            request, default_url='admin:scanners_scannerresult_changelist'
-        )
-
-    def handle_inconclusive(self, request, pk, *args, **kwargs):
-        can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != 'POST':
-            raise Http404
-
-        result = self.get_object(request, pk)
-        result.update(state=INCONCLUSIVE)
-
-        messages.add_message(
-            request,
-            messages.INFO,
-            f'Scanner result {pk} has been marked as inconclusive.',
-        )
-
-        return self.safe_referer_redirect(
-            request, default_url='admin:scanners_scannerresult_changelist'
-        )
-
-    def handle_false_positive(self, request, pk, *args, **kwargs):
-        can_use_actions = self.has_actions_permission(request)
-        if not can_use_actions or request.method != 'POST':
-            raise Http404
-
-        result = self.get_object(request, pk)
-        result.update(state=FALSE_POSITIVE)
-
-        messages.add_message(
-            request,
-            messages.INFO,
-            f'Scanner result {pk} has been marked as false positive.',
-        )
-
-        return self.safe_referer_redirect(
-            request, default_url='admin:scanners_scannerresult_changelist'
-        )
-
-    def handle_revert(self, request, pk, *args, **kwargs):
-        is_admin = acl.action_allowed_for(
-            request.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT
-        )
-        if not is_admin or request.method != 'POST':
-            raise Http404
-
-        result = self.get_object(request, pk)
-        result.update(state=UNKNOWN)
-
-        messages.add_message(
-            request,
-            messages.INFO,
-            f'Scanner result {pk} report has been reverted.',
-        )
-
-        return self.safe_referer_redirect(
-            request, default_url='admin:scanners_scannerresult_changelist'
-        )
-
-    def get_urls(self):
-        urls = super().get_urls()
-        info = self.model._meta.app_label, self.model._meta.model_name
-        custom_urls = [
-            re_path(
-                r'^(?P<pk>.+)/report-false-positive/$',
-                self.admin_site.admin_view(self.handle_false_positive),
-                name='%s_%s_handlefalsepositive' % info,
-            ),
-            re_path(
-                r'^(?P<pk>.+)/report-true-positive/$',
-                self.admin_site.admin_view(self.handle_true_positive),
-                name='%s_%s_handletruepositive' % info,
-            ),
-            re_path(
-                r'^(?P<pk>.+)/report-inconclusive/$',
-                self.admin_site.admin_view(self.handle_inconclusive),
-                name='%s_%s_handleinconclusive' % info,
-            ),
-            re_path(
-                r'^(?P<pk>.+)/revert-report/$',
-                self.admin_site.admin_view(self.handle_revert),
-                name='%s_%s_handlerevert' % info,
-            ),
-        ]
-        return custom_urls + urls
-
-    def result_actions(self, obj):
-        info = self.model._meta.app_label, self.model._meta.model_name
-        return render_to_string(
-            'admin/scannerresult_actions.html',
-            {
-                'handlefalsepositive_urlname': (
-                    'admin:%s_%s_handlefalsepositive' % info
-                ),
-                'handletruepositive_urlname': ('admin:%s_%s_handletruepositive' % info),
-                'handleinconclusive_urlname': ('admin:%s_%s_handleinconclusive' % info),
-                'handlerevert_urlname': 'admin:%s_%s_handlerevert' % info,
-                'obj': obj,
-            },
-        )
-
-    result_actions.short_description = 'Actions'
-    result_actions.allow_tags = True
 
     # Remove the "delete" button
     def has_delete_permission(self, request, obj=None):
@@ -939,11 +750,6 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
                 obj.version.file.pk,
             )
         return '-'
-
-    def has_actions_permission(self, request):
-        return acl.action_allowed_for(
-            request.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT
-        )
 
 
 @admin.register(ScannerRule)

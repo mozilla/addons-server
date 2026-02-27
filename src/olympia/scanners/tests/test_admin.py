@@ -25,14 +25,10 @@ from olympia.api.models import APIKey
 from olympia.constants.scanners import (
     ABORTING,
     COMPLETED,
-    FALSE_POSITIVE,
-    INCONCLUSIVE,
     NARC,
     NEW,
     RUNNING,
     SCHEDULED,
-    TRUE_POSITIVE,
-    UNKNOWN,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     YARA,
@@ -47,7 +43,6 @@ from olympia.scanners.admin import (
     ScannerResultAdmin,
     ScannerRuleAdmin,
     ScannerWebhookAdmin,
-    StateFilter,
     WithVersionFilter,
     formatted_matched_rules_with_files_and_data,
 )
@@ -85,7 +80,7 @@ class TestScannerResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         html = pq(response.content)
-        assert html('.column-result_actions').length == 1
+        assert html('.column-formatted_addon').length == 1
 
     def test_get_actions(self):
         scanner_result_admin = ScannerResultAdmin(ScannerResult, admin.site)
@@ -155,21 +150,6 @@ class TestScannerResultAdmin(TestCase):
         users_url = reverse('admin:users_userprofile_changelist')
         query_string = f'?q={user1_1.pk}%2C{user1_2.pk}%2C{user2_1.pk}'
         assert response['location'] == users_url + query_string
-
-    def test_list_view_for_non_admins(self):
-        rule = ScannerRule.objects.create(name='rule', scanner=WEBHOOK)
-        ScannerResult.objects.create(
-            scanner=WEBHOOK,
-            version=addon_factory().current_version,
-            results={'matchedRules': [rule.name]},
-        )
-        user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersResultsView')
-        self.client.force_login(user)
-        response = self.client.get(self.list_url)
-        assert response.status_code == 200
-        html = pq(response.content)
-        assert html('.column-result_actions').length == 0
 
     def test_list_view_is_restricted(self):
         user = user_factory(email='curator@mozilla.com')
@@ -376,11 +356,6 @@ class TestScannerResultAdmin(TestCase):
             ('some-webhook', f'?scanner=6_{webhook.id}'),
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
-            ('All', '?state=all'),
-            ('Unknown', '?'),
-            ('True positive', '?state=1'),
-            ('False positive', '?state=2'),
-            ('Inconclusive', '?state=3'),
             ('All', '?'),
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
             ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
@@ -628,67 +603,34 @@ class TestScannerResultAdmin(TestCase):
         ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
         assert ids == expected_ids
 
-        # Repeat with another filter into the mix to test links.
-        # Set the state of all results to inconclusive first...
-        ScannerResult.objects.update(state=INCONCLUSIVE)
-        response = self.client.get(
-            self.list_url,
-            {
-                ExcludeMatchedRulesFilter.parameter_name: [rule_bar.pk, rule_hello.pk],
-                WithVersionFilter.parameter_name: 'all',
-                StateFilter.parameter_name: INCONCLUSIVE,
-            },
-        )
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#result_list tbody > tr').length == 1
-        expected_ids = [
-            with_foo_match.pk,
-        ]
-        ids = list(map(int, doc('#result_list .field-id').text().split(' ')))
-        assert ids == expected_ids
-
         # Check the links to other filters/form for the exclude rules filter
         # are pre-populated with the current active filters correctly.
         links = [x.attrib['href'] for x in doc('#changelist-filter a')]
         expected = [
             '?',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner=1',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner=2',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner=3',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner=4',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&scanner=5',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3&has_matched_rules=all',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=1',
+            '&scanner=1',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=2',
+            '&scanner=2',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3',
+            '&scanner=3',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3',
+            '&scanner=4',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            f'&state=3&matched_rules__id__exact={rule_bar.pk}',
+            '&scanner=5',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            f'&state=3&matched_rules__id__exact={rule_hello.pk}',
+            '&has_matched_rules=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            f'&state=3&matched_rules__id__exact={rule_foo.pk}',
+            f'&matched_rules__id__exact={rule_bar.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
-            '&state=3',
-            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&state=3',
+            f'&matched_rules__id__exact={rule_hello.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&matched_rules__id__exact={rule_foo.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}',
         ]
         assert links == expected
 
@@ -697,7 +639,7 @@ class TestScannerResultAdmin(TestCase):
             (x.attrib['name'], x.attrib['value'])
             for x in doc('#changelist-filter form input[type=hidden]')
         ]
-        expected = [('has_version', 'all'), ('state', '3')]
+        expected = [('has_version', 'all')]
         assert hidden == expected
 
         # And finally check that the correct options are selected.
@@ -724,14 +666,6 @@ class TestScannerResultAdmin(TestCase):
         )
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
-        # Create a false positive, it will not be shown by default
-        false_positive = ScannerResult(
-            scanner=YARA,
-            state=FALSE_POSITIVE,
-            version=version_factory(addon=addon_factory()),
-        )
-        false_positive.add_yara_result(rule=rule.name)
-        false_positive.save()
         # Create an entry without a version, it will not be shown by default
         without_version = ScannerResult(scanner=YARA)
         without_version.add_yara_result(rule=rule.name)
@@ -750,10 +684,6 @@ class TestScannerResultAdmin(TestCase):
         with_matches = ScannerResult(scanner=YARA)
         with_matches.add_yara_result(rule=rule.name)
         with_matches.save()
-        # Create a false positive
-        false_positive = ScannerResult(scanner=YARA, state=FALSE_POSITIVE)
-        false_positive.add_yara_result(rule=rule.name)
-        false_positive.save()
         # Create an entry without a version
         without_version = ScannerResult(scanner=YARA)
         without_version.add_yara_result(rule=rule.name)
@@ -763,7 +693,6 @@ class TestScannerResultAdmin(TestCase):
             self.list_url,
             {
                 MatchesFilter.parameter_name: 'all',
-                StateFilter.parameter_name: 'all',
                 WithVersionFilter.parameter_name: 'all',
             },
         )
@@ -771,257 +700,6 @@ class TestScannerResultAdmin(TestCase):
         html = pq(response.content)
         expected_length = ScannerResult.objects.count()
         assert html('#result_list tbody > tr').length == expected_length
-
-    def test_handle_true_positive(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handletruepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-        )
-
-        result.refresh_from_db()
-        assert result.state == TRUE_POSITIVE
-        # The action should send a redirect.
-        last_url, status_code = response.redirect_chain[-1]
-        assert status_code == 302
-        # The action should redirect to the list view and the default list
-        # filters should hide the result (because its state is not UNKNOWN
-        # anymore).
-        html = pq(response.content)
-        assert html('#result_list tbody > tr').length == 0
-        # A confirmation message should also appear.
-        assert html('.messagelist .info').length == 1
-
-    def test_handle_true_positive_uses_referer_if_available(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        referer = f'{settings.SITE_URL}/en-US/firefox/previous/page'
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handletruepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == referer
-
-    def test_handle_true_positive_with_invalid_referer(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handletruepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == reverse('admin:scanners_scannerresult_changelist')
-
-    def test_handle_yara_false_positive(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-        )
-
-        result.refresh_from_db()
-        assert result.state == FALSE_POSITIVE
-        # The action should send a redirect.
-        last_url, status_code = response.redirect_chain[-1]
-        assert status_code == 302
-        # The action should redirect to the list view and the default list
-        # filters should hide the result (because its state is not UNKNOWN
-        # anymore).
-        html = pq(response.content)
-        assert html('#result_list tbody > tr').length == 0
-        # A confirmation message should also appear.
-        assert html('.messagelist .info').length == 1
-
-    def test_handle_yara_false_positive_uses_referer_if_available(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        referer = f'{settings.SITE_URL}/en-US/firefox/previous/page'
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == referer
-
-    def test_handle_yara_false_positive_with_invalid_referer(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == reverse('admin:scanners_scannerresult_changelist')
-
-    def test_handle_revert_report(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(
-            scanner=YARA, version=version_factory(addon=addon_factory())
-        )
-        result.add_yara_result(rule=rule.name)
-        result.state = TRUE_POSITIVE
-        result.save()
-        assert result.state == TRUE_POSITIVE
-
-        response = self.client.post(
-            reverse('admin:scanners_scannerresult_handlerevert', args=[result.pk]),
-            follow=True,
-        )
-
-        result.refresh_from_db()
-        assert result.state == UNKNOWN
-        # The action should send a redirect.
-        last_url, status_code = response.redirect_chain[-1]
-        assert status_code == 302
-        # The action should redirect to the list view and the default list
-        # filters should show the result (because its state is UNKNOWN again).
-        html = pq(response.content)
-        assert html('#result_list tbody > tr').length == 1
-        # A confirmation message should also appear.
-        assert html('.messagelist .info').length == 1
-
-    def test_handle_revert_report_uses_referer_if_available(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(
-            scanner=YARA, version=version_factory(addon=addon_factory())
-        )
-        result.add_yara_result(rule=rule.name)
-        result.state = TRUE_POSITIVE
-        result.save()
-        assert result.state == TRUE_POSITIVE
-
-        referer = f'{settings.SITE_URL}/en-US/firefox/previous/page'
-        response = self.client.post(
-            reverse('admin:scanners_scannerresult_handlerevert', args=[result.pk]),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == referer
-
-    def test_handle_revert_with_invalid_referer(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(
-            scanner=YARA, version=version_factory(addon=addon_factory())
-        )
-        result.add_yara_result(rule=rule.name)
-        result.state = TRUE_POSITIVE
-        result.save()
-        assert result.state == TRUE_POSITIVE
-
-        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
-        response = self.client.post(
-            reverse('admin:scanners_scannerresult_handlerevert', args=[result.pk]),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == reverse('admin:scanners_scannerresult_changelist')
-
-    def test_handle_true_positive_and_non_admin_user(self):
-        result = ScannerResult(scanner=YARA)
-        user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersResultsView')
-        self.client.force_login(user)
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handletruepositive',
-                args=[result.pk],
-            )
-        )
-        assert response.status_code == 404
-
-    def test_handle_false_positive_and_non_admin_user(self):
-        result = ScannerResult(scanner=YARA)
-        user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersResultsView')
-        self.client.force_login(user)
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlefalsepositive',
-                args=[result.pk],
-            )
-        )
-        assert response.status_code == 404
-
-    def test_handle_revert_report_and_non_admin_user(self):
-        result = ScannerResult(scanner=YARA)
-        user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersResultsView')
-        self.client.force_login(user)
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handlerevert',
-                args=[result.pk],
-            )
-        )
-        assert response.status_code == 404
 
     def test_change_page(self):
         upload = FileUpload.objects.create(
@@ -1054,69 +732,6 @@ class TestScannerResultAdmin(TestCase):
         html = pq(response.content)
         assert html('.field-activity_log').length == 1
         assert 'Source code uploaded' in html('.field-activity_log').html()
-
-    def test_handle_inconclusive(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-        assert result.state == UNKNOWN
-
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handleinconclusive',
-                args=[result.pk],
-            ),
-            follow=True,
-        )
-
-        result.refresh_from_db()
-        assert result.state == INCONCLUSIVE
-        html = pq(response.content)
-        assert html('#result_list tbody > tr').length == 0
-        # A confirmation message should also appear.
-        assert html('.messagelist .info').length == 1
-
-    def test_handle_inconclusive_uses_referer_if_available(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-
-        referer = f'{settings.SITE_URL}/en-US/firefox/previous/page'
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handleinconclusive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == referer
-
-    def test_handle_inconclusive_with_invalid_referer(self):
-        # Create one entry with matches
-        rule = ScannerRule.objects.create(name='some-rule', scanner=YARA)
-        result = ScannerResult(scanner=YARA)
-        result.add_yara_result(rule=rule.name)
-        result.save()
-
-        referer = '{}/en-US/firefox/previous/page'.format('http://example.org')
-        response = self.client.post(
-            reverse(
-                'admin:scanners_scannerresult_handleinconclusive',
-                args=[result.pk],
-            ),
-            follow=True,
-            HTTP_REFERER=referer,
-        )
-
-        last_url, status_code = response.redirect_chain[-1]
-        assert last_url == reverse('admin:scanners_scannerresult_changelist')
 
     def test_formatted_scanner(self):
         result = ScannerResult(scanner=YARA)
@@ -1182,8 +797,7 @@ class TestScannerRuleAdmin(TestCase):
         assert link
         results_list_url = reverse('admin:scanners_scannerresult_changelist')
         expected_href = (
-            f'{results_list_url}?matched_rules__id__exact={rule.pk}'
-            f'&has_version=all&state=all'
+            f'{results_list_url}?matched_rules__id__exact={rule.pk}&has_version=all'
         )
         assert link.attr('href') == expected_href
         assert link.text() == '3 (2 add-ons)'

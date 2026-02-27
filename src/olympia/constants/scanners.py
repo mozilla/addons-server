@@ -41,18 +41,6 @@ ACTIONS = {
     DISABLE_AND_BLOCK: ('Force-disable and block'),
 }
 
-UNKNOWN = None
-TRUE_POSITIVE = 1
-FALSE_POSITIVE = 2
-INCONCLUSIVE = 3
-
-RESULT_STATES = {
-    UNKNOWN: 'Unknown',
-    TRUE_POSITIVE: 'True positive',
-    FALSE_POSITIVE: 'False positive',
-    INCONCLUSIVE: 'Inconclusive',
-}
-
 NEW = 1
 RUNNING = 2
 ABORTED = 3
@@ -68,9 +56,6 @@ QUERY_RULE_STATES = {
     COMPLETED: 'Completed',
     SCHEDULED: 'Scheduled',
 }
-
-LABEL_BAD = 'bad'
-LABEL_GOOD = 'good'
 
 # Scanner service accounts group
 SCANNER_SERVICE_ACCOUNTS_GROUP = 'Service accounts for scanners'

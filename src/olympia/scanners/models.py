@@ -36,12 +36,10 @@ from olympia.constants.scanners import (
     NEW,
     NO_ACTION,
     QUERY_RULE_STATES,
-    RESULT_STATES,
     RUNNING,
     SCANNER_SERVICE_ACCOUNTS_GROUP,
     SCANNERS,
     SCHEDULED,
-    UNKNOWN,
     WEBHOOK,
     WEBHOOK_EVENTS,
     YARA,
@@ -363,9 +361,6 @@ class ScannerResult(AbstractScannerResult):
     )
     model_version = models.CharField(max_length=30, null=True)
     has_matches = models.BooleanField(null=True)
-    state = models.PositiveSmallIntegerField(
-        choices=RESULT_STATES.items(), null=True, blank=True, default=UNKNOWN
-    )
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'
@@ -376,7 +371,6 @@ class ScannerResult(AbstractScannerResult):
             )
         ]
         indexes = [
-            models.Index(fields=('state',)),
             models.Index(fields=('has_matches',)),
         ]
 
@@ -400,12 +394,6 @@ class ScannerResult(AbstractScannerResult):
         # ...then add the associated rules.
         for scanner_rule in matched_rules:
             self.matched_rules.add(scanner_rule)
-
-    def can_report_feedback(self):
-        return self.state == UNKNOWN
-
-    def can_revert_feedback(self):
-        return self.state != UNKNOWN
 
     @classmethod
     def run_action(cls, version):
