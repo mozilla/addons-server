@@ -78,10 +78,12 @@ SCANNER_SERVICE_ACCOUNTS_GROUP = 'Service accounts for scanners'
 # Webhook events
 WEBHOOK_DURING_VALIDATION = 1
 WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
+WEBHOOK_ON_VERSION_CREATED = 3
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
     WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
+    WEBHOOK_ON_VERSION_CREATED: 'on_version_created',
 }
 
 # Special empty configuration schema to use when the rule is being created

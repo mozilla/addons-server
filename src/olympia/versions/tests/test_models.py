@@ -2706,6 +2706,34 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert provenance.client_info == 'Something/42.0'
         assert provenance.source == self.upload.source
 
+    @override_switch('enable-scanner-webhooks', active=True)
+    @mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay')
+    def test_call_webhooks_on_version_created_when_switch_is_enabled(
+        self, call_webhooks_on_version_created_mock
+    ):
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        call_webhooks_on_version_created_mock.assert_called_with(version_pk=version.pk)
+
+    @override_switch('enable-scanner-webhooks', active=False)
+    @mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay')
+    def test_call_webhooks_on_version_created_when_switch_is_disabled(
+        self, call_webhooks_on_version_created_mock
+    ):
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        call_webhooks_on_version_created_mock.assert_not_called()
+
 
 class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
     filename = 'webextension.xpi'

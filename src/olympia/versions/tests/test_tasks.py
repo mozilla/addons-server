@@ -4,13 +4,11 @@ import zipfile
 from base64 import b64encode
 from datetime import datetime
 from unittest import mock
-from urllib.parse import urljoin
 
 from django.conf import settings
 from django.core import mail
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.urls import reverse
 from django.utils.encoding import force_str
 
 import pytest
@@ -27,13 +25,18 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.blocklist import REASON_VERSION_DELETED
-from olympia.constants.scanners import WEBHOOK_ON_SOURCE_CODE_UPLOADED
+from olympia.constants.scanners import (
+    WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+    WEBHOOK_ON_VERSION_CREATED,
+)
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.scanners.serializers import WebhookVersionSerializer
 
 from ..models import Version, VersionPreview
 from ..tasks import (
     UI_FIELDS,
     call_webhooks_on_source_code_uploaded,
+    call_webhooks_on_version_created,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -874,13 +877,8 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         call_webhooks_mock.assert_called_with(
             event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
-                'addon_id': addon.id,
-                'version_id': version.id,
-                'download_source_url': urljoin(
-                    settings.EXTERNAL_SITE_URL,
-                    reverse('downloads.source', kwargs={'version_id': version.id}),
-                ),
-                'license_slug': version.license.slug,
+                'addon': {'id': addon.id},
+                'version': WebhookVersionSerializer(version).data,
                 'activity_log_id': activity_log.pk,
             },
             version=version,
@@ -903,13 +901,8 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         call_webhooks_mock.assert_called_with(
             event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
-                'addon_id': addon.id,
-                'version_id': version.id,
-                'download_source_url': urljoin(
-                    settings.EXTERNAL_SITE_URL,
-                    reverse('downloads.source', kwargs={'version_id': version.id}),
-                ),
-                'license_slug': version.license.slug,
+                'addon': {'id': addon.id},
+                'version': WebhookVersionSerializer(version).data,
                 'activity_log_id': activity_log.pk,
             },
             version=version,
@@ -928,3 +921,39 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
 
         call_webhooks_mock.assert_not_called()
+
+
+class TestCallWebhooksOnVersionCreated(TestCase):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock(self, call_webhooks_mock):
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_VERSION_CREATED,
+            payload={
+                'addon': {'id': version.addon_id},
+                'version': WebhookVersionSerializer(version).data,
+            },
+            version=version,
+        )
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
+        version = version_factory(addon=addon_factory())
+        # Delete the version. The task uses `Version.unfiltered` to account for that.
+        version.delete()
+
+        call_webhooks_on_version_created(version.pk)
+
+        assert call_webhooks_mock.called
+        call_webhooks_mock.assert_called_with(
+            event_name=WEBHOOK_ON_VERSION_CREATED,
+            payload={
+                'addon': {'id': version.addon_id},
+                'version': WebhookVersionSerializer(version).data,
+            },
+            version=version,
+        )

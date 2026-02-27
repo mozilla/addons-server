@@ -101,10 +101,27 @@ from .validators import (
 )
 
 
-class FileSerializer(AMOModelSerializer):
+class MinimalFileSerializer(AMOModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = serializers.SerializerMethodField()
     status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
+
+    class Meta:
+        model = File
+        fields = (
+            'id',
+            'created',
+            'hash',
+            'size',
+            'status',
+            'url',
+        )
+
+    def get_url(self, obj):
+        return obj.get_absolute_url()
+
+
+class FileSerializer(MinimalFileSerializer):
+    platform = serializers.SerializerMethodField()
     permissions = serializers.ListField(child=serializers.CharField())
     optional_permissions = serializers.ListField(child=serializers.CharField())
     host_permissions = serializers.ListField(child=serializers.CharField())
@@ -134,9 +151,6 @@ class FileSerializer(AMOModelSerializer):
             'data_collection_permissions',
             'optional_data_collection_permissions',
         )
-
-    def get_url(self, obj):
-        return obj.get_absolute_url()
 
     def to_representation(self, obj):
         data = super().to_representation(obj)

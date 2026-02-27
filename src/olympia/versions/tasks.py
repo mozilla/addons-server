@@ -3,12 +3,10 @@ import operator
 import os
 import tempfile
 from io import BytesIO
-from urllib.parse import urljoin
 
 from django.conf import settings
 from django.db import transaction
 from django.template import loader
-from django.urls import reverse
 
 from django_statsd.clients import statsd
 from PIL import Image
@@ -21,7 +19,10 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.constants.blocklist import REASON_VERSION_DELETED
-from olympia.constants.scanners import WEBHOOK_ON_SOURCE_CODE_UPLOADED
+from olympia.constants.scanners import (
+    WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+    WEBHOOK_ON_VERSION_CREATED,
+)
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
@@ -424,6 +425,31 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
 
 @task
 @use_primary_db
+def call_webhooks_on_version_created(version_pk):
+    log.info('Calling webhooks for new Version %s', version_pk)
+
+    try:
+        from olympia.scanners.serializers import WebhookVersionSerializer
+
+        version = Version.unfiltered.get(pk=version_pk)
+
+        payload = {
+            'addon': {
+                'id': version.addon_id,
+            },
+            'version': WebhookVersionSerializer(version).data,
+        }
+        call_webhooks(
+            event_name=WEBHOOK_ON_VERSION_CREATED,
+            payload=payload,
+            version=version,
+        )
+    except Exception:
+        log.exception('Error while calling webhooks for Version %s', version_pk)
+
+
+@task
+@use_primary_db
 def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
     log.info(
         'Calling webhooks for Version %s (activity_log_id = %s)',
@@ -432,6 +458,8 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
     )
 
     try:
+        from olympia.scanners.serializers import WebhookVersionSerializer
+
         version = Version.unfiltered.get(pk=version_pk)
 
         if not version.license:
@@ -446,13 +474,10 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
         activity_log = ActivityLog.objects.get(pk=activity_log_id)
 
         payload = {
-            'addon_id': version.addon_id,
-            'version_id': version.id,
-            'download_source_url': urljoin(
-                settings.EXTERNAL_SITE_URL,
-                reverse('downloads.source', kwargs={'version_id': version.id}),
-            ),
-            'license_slug': version.license.slug,
+            'addon': {
+                'id': version.addon_id,
+            },
+            'version': WebhookVersionSerializer(version).data,
             'activity_log_id': activity_log.id,
         }
         call_webhooks(

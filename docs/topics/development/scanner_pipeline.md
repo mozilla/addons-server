@@ -70,14 +70,76 @@ The payload sent looks like this:
 
 ```json
 {
-  "addon_id": 85,
-  "version_id": 42,
-  "download_source_url": "http://olympia.test/downloads/source/42",
-  "license_slug": "MPL-2.0",
+  "addon": {
+    "id": 85
+  },
+  "version": {
+    "id": 42,
+    "version": "1.0",
+    "file": {
+      "id": 99,
+      "created": "2024-01-01T00:00:00Z",
+      "hash": "sha256:abc123",
+      "size": 12345,
+      "status": "public",
+      "url": "http://olympia.test/firefox/downloads/file/99/"
+    },
+    "license": {
+      "id": 3,
+      "is_custom": false,
+      "name": {"en-US": "Mozilla Public License 2.0"},
+      "slug": "MPL2",
+      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+    },
+    "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
+    "download_source_url": "http://olympia.test/downloads/source/42"
+  },
   "activity_log_id": 2170,
   "event": "on_source_code_uploaded",
   "scanner_result_url": "http://olympia.test/api/v5/scanner/results/124/"
 }
+```
+
+#### `on_version_created`
+
+This event occurs when a new version is created.
+
+The payload sent looks like this:
+
+```json
+{
+  "addon": {
+    "id": 85
+  },
+  "version": {
+    "id": 42,
+    "version": "1.0",
+    "file": {
+      "id": 99,
+      "created": "2024-01-01T00:00:00Z",
+      "hash": "sha256:abc123",
+      "size": 12345,
+      "status": "public",
+      "url": "http://olympia.test/firefox/downloads/file/99/"
+    },
+    "license": {
+      "id": 3,
+      "is_custom": false,
+      "name": {"en-US": "Mozilla Public License 2.0"},
+      "slug": "MPL2",
+      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+    },
+    "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
+    "download_source_url": null
+  },
+  "event": "on_version_created",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/125/"
+}
+```
+
+```{note}
+`version.download_source_url` is `null` when no source code was provided for
+the version.
 ```
 
 ### Adding a new event

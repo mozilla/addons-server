@@ -643,6 +643,11 @@ class Version(OnChangeMixin, ModelBase):
             version=version, source=upload.source, client_info=client_info
         )
 
+        if waffle.switch_is_active('enable-scanner-webhooks'):
+            from .tasks import call_webhooks_on_version_created
+
+            call_webhooks_on_version_created.delay(version_pk=version.pk)
+
         return version
 
     def get_url_path(self):

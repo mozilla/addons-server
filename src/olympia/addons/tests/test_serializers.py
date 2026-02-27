@@ -33,6 +33,7 @@ from olympia.addons.serializers import (
     LanguageToolsSerializer,
     LicenseSerializer,
     ListVersionSerializer,
+    MinimalFileSerializer,
     ReplacementAddonSerializer,
     SimpleVersionSerializer,
     UserSerializerWithPictureUrl,
@@ -1264,6 +1265,26 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         result = self.serialize()
         # ES result should always be None.
         assert result['is_noindexed'] is None
+
+
+class TestMinimalFileSerializer(TestCase):
+    def test_serialize(self):
+        addon = addon_factory(
+            file_kw={
+                'hash': 'fakehash',
+                'size': 42,
+            }
+        )
+        file = addon.current_version.file
+        data = MinimalFileSerializer(file).data
+        assert data == {
+            'id': file.id,
+            'created': file.created.replace(microsecond=0).isoformat() + 'Z',
+            'hash': file.hash,
+            'size': file.size,
+            'status': amo.STATUS_CHOICES_API[file.status],
+            'url': file.get_absolute_url(),
+        }
 
 
 class TestVersionSerializerOutput(TestCase):
