@@ -53,6 +53,7 @@ from ..actions import (
 )
 from ..cinder import (
     CinderAddon,
+    CinderAddonContentReview,
     CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
@@ -824,6 +825,14 @@ class TestCinderJob(TestCase):
     def test_get_entity_helper(self):
         addon = addon_factory()
         user = user_factory()
+
+        helper = CinderJob.get_entity_helper(
+            addon, resolved_in_reviewer_tools=False, is_content_review=True
+        )
+        assert isinstance(helper, CinderAddon)
+        assert isinstance(helper, CinderAddonContentReview)
+        assert helper.addon == addon
+
         helper = CinderJob.get_entity_helper(addon, resolved_in_reviewer_tools=False)
         # e.g. location is in REVIEWER_HANDLED (BOTH) but reason is not (ILLEGAL)
         assert isinstance(helper, CinderAddon)

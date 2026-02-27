@@ -9,7 +9,7 @@ from requests import HTTPError
 
 import olympia
 from olympia import activity, amo, core
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.utils import (
     backup_storage_enabled,
     chunked,
@@ -637,6 +637,16 @@ class CinderAddonHandledByReviewers(CinderAddon):
             forwarded=True,
             second_level=from_2nd_level,
         )
+
+
+class CinderAddonContentReview(CinderAddon):
+    queue_suffix = 'listing-content'
+
+    def appeal(self, *, decision_cinder_id, **kwargs):
+        # We don't flag for NHR for content review follow-ups
+        AddonApprovalsCounter.request_new_content_review_for_addon(self.addon)
+        activity.log_create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, self.addon)
+        return super().appeal(decision_cinder_id=decision_cinder_id, **kwargs)
 
 
 class CinderAddonHandledByLegal(CinderAddon):

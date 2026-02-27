@@ -143,9 +143,11 @@ def appeal_to_cinder(
 @use_primary_db
 def report_decision_to_cinder_and_notify(*, decision_id, notify_owners=True):
     decision = ContentDecision.objects.get(id=decision_id)
+    is_content_review = decision.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
     entity_helper = CinderJob.get_entity_helper(
         decision.target,
         resolved_in_reviewer_tools=True,
+        is_content_review=is_content_review,
     )
     decision.report_to_cinder(entity_helper)
     # We've already executed the action in the reviewer tools

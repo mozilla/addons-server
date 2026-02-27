@@ -40,6 +40,7 @@ from .actions import (
 )
 from .cinder import (
     CinderAddon,
+    CinderAddonContentReview,
     CinderAddonHandledByReviewers,
     CinderCollection,
     CinderRating,
@@ -152,10 +153,17 @@ class CinderJob(ModelBase):
 
     @classmethod
     def get_entity_helper(
-        cls, target, *, resolved_in_reviewer_tools, addon_version_string=None
+        cls,
+        target,
+        *,
+        resolved_in_reviewer_tools,
+        is_content_review=None,
+        addon_version_string=None,
     ):
         if isinstance(target, Addon):
-            if resolved_in_reviewer_tools:
+            if is_content_review:
+                return CinderAddonContentReview(target)
+            elif resolved_in_reviewer_tools:
                 return CinderAddonHandledByReviewers(
                     target,
                     versions_strings=[addon_version_string]
@@ -1277,10 +1285,12 @@ class ContentDecision(ModelBase):
         )
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
+        is_content_review = self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
         entity_helper = CinderJob.get_entity_helper(
             self.target,
             resolved_in_reviewer_tools=resolvable_in_reviewer_tools,
+            is_content_review=is_content_review,
             addon_version_string=getattr(abuse_report, 'addon_version', None),
         )
         appeal_id = entity_helper.appeal(
@@ -1394,16 +1404,20 @@ class ContentDecision(ModelBase):
             private_notes=notes,
             cinder_job=self.cinder_job,
         )
+        is_content_review = self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
         entity_helper = CinderJob.get_entity_helper(
-            self.target, resolved_in_reviewer_tools=True
+            self.target,
+            resolved_in_reviewer_tools=True,
+            is_content_review=is_content_review,
         )
-        entity_helper.flag_for_human_review(
-            versions=self.target_versions.all(),
-            appeal=self.cinder_job.is_appeal if self.cinder_job else False,
-            second_level=True,
-            notes=notes,
-        )
+        if not is_content_review:
+            entity_helper.flag_for_human_review(
+                versions=self.target_versions.all(),
+                appeal=self.cinder_job.is_appeal if self.cinder_job else False,
+                second_level=True,
+                notes=notes,
+            )
 
     def send_notifications(self, *, notify_owners=True):
         from olympia.activity.models import AttachmentLog

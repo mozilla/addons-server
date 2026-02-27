@@ -14,7 +14,7 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport, CinderJob, ContentDecision
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, Preview
+from olympia.addons.models import Addon, AddonApprovalsCounter, Preview
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -38,6 +38,7 @@ from olympia.versions.models import VersionPreview
 
 from ..cinder import (
     CinderAddon,
+    CinderAddonContentReview,
     CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
@@ -1715,6 +1716,35 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert not unlisted_version.reload().needshumanreview_set.exists()
         assert not unlisted_version.due_date
         assert ActivityLog.objects.count() == 0
+
+
+class TestCinderAddonContentReview(TestCinderAddon):
+    CinderClass = CinderAddonContentReview
+    expected_queue_suffix = 'listing-content'
+
+    def _test_appeal(
+        self,
+        appealer,
+        *,
+        cinder_entity_instance=None,
+        appealed_decision_id='decision-id-to-appeal-666',
+    ):
+        cinder_entity_instance = cinder_entity_instance or self.CinderClass(
+            self._create_dummy_target()
+        )
+        super()._test_appeal(
+            appealer,
+            cinder_entity_instance=cinder_entity_instance,
+            appealed_decision_id=appealed_decision_id,
+        )
+        assert (
+            cinder_entity_instance.addon.addonapprovalscounter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+
+    def test_queue_with_theme(self):
+        # themes don't have content review
+        pass
 
 
 class TestCinderAddonHandledByLegal(TestCinderAddon):
