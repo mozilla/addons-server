@@ -1,1 +1,1 @@
-{% for value in removed %}<span class="removed">{{ value }}</span>&#32;{% endfor %}➡️{% for value in added %}&#32;<span class="added">{{ value }}</span>{% endfor %}
+{% for value in removed %}<span class="removed">{{ value }}</span>&#32;{% else %}<span class="empty">∅</span>&#32;{% endfor %}➡️{% for value in added %}&#32;<span class="added">{{ value }}</span>{% else %}&#32;<span class="empty">∅</span>{% endfor %}
