@@ -129,22 +129,22 @@ jobs:
             group="--group ${{ matrix.group }}"
             make test_main ARGS="${split} ${group}"
 
-  test_internal_routes:
-    runs-on: ubuntu-latest
-    needs: [test_config]
-
-    steps:
-      - uses: actions/checkout@v5
-        with:
-          persist-credentials: false
-
-      - name: Test
-        uses: ./.github/actions/run-docker-minimal
-        with:
-          digest: ${{ inputs.digest }}
-          version: ${{ inputs.version }}
-          run: |
-            make test_internal_routes_allowed
+#  test_internal_routes:
+#    runs-on: ubuntu-latest
+#    needs: [test_config]
+#
+#    steps:
+#      - uses: actions/checkout@v5
+#        with:
+#          persist-credentials: false
+#
+#      - name: Test
+#        uses: ./.github/actions/run-docker-minimal
+#        with:
+#          digest: ${{ inputs.digest }}
+#          version: ${{ inputs.version }}
+#          run: |
+#            make test_internal_routes_allowed
 
   test_needs_locales:
     runs-on: ubuntu-latest

@@ -8,10 +8,7 @@ from olympia.addons.serializers import (
     MinimalVersionSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.serializers import AMOModelSerializer
 from olympia.versions.models import Version
-
-from .models import ScannerResult
 
 
 class WebhookVersionSerializer(MinimalVersionSerializer):
@@ -44,26 +41,6 @@ class WebhookVersionSerializer(MinimalVersionSerializer):
         if not obj.sources_provided:
             return None
         return absolutify(reverse('downloads.source', kwargs={'version_id': obj.id}))
-
-
-class ScannerResultSerializer(AMOModelSerializer):
-    scanner = serializers.SerializerMethodField()
-    label = serializers.CharField(default=None)
-    results = serializers.JSONField()
-
-    class Meta:
-        model = ScannerResult
-        fields = (
-            'id',
-            'scanner',
-            'label',
-            'results',
-            'created',
-            'model_version',
-        )
-
-    def get_scanner(self, obj):
-        return obj.get_scanner_name()
 
 
 class PatchScannerResultSerializer(serializers.Serializer):

@@ -482,6 +482,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2025-09-18: added /rollback endpoint to version detail api. https://github.com/mozilla/addons/issues/15696
 * 2026-02-19: added ``listingcontentreview`` endpoint for addons. https://github.com/mozilla/addons/issues/16050
 * 2026-02-19: added the ability to patch a scanner result. https://github.com/mozilla/addons/issues/16004
+* 2026-03-05: removed /scanner/results/ (internal API endpoint). https://github.com/mozilla/addons/issues/16088
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

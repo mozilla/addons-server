@@ -1,15 +1,9 @@
-from django.conf import settings
 from django.urls import reverse
 
 from olympia.addons.serializers import CompactLicenseSerializer, MinimalFileSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, version_factory
-from olympia.constants.scanners import YARA
-from olympia.scanners.models import ScannerResult
-from olympia.scanners.serializers import (
-    ScannerResultSerializer,
-    WebhookVersionSerializer,
-)
+from olympia.scanners.serializers import WebhookVersionSerializer
 
 
 class TestWebhookVersionSerializer(TestCase):
@@ -49,21 +43,3 @@ class TestWebhookVersionSerializer(TestCase):
         assert data['download_source_url'] == absolutify(
             reverse('downloads.source', kwargs={'version_id': self.version.id})
         )
-
-
-class TestScannerResultSerializer(TestCase):
-    def test_serialize(self):
-        result = ScannerResult.objects.create(
-            scanner=YARA, model_version='some.version'
-        )
-        data = ScannerResultSerializer(instance=result).data
-        assert data == {
-            'id': result.id,
-            'scanner': result.get_scanner_name(),
-            'label': None,
-            'results': result.results,
-            'created': result.created.strftime(
-                settings.REST_FRAMEWORK['DATETIME_FORMAT']
-            ),
-            'model_version': result.model_version,
-        }
