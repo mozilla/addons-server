@@ -590,6 +590,12 @@ class AbstractScannerRuleAdminMixin:
             fields.append('formatted_definition')
         return fields
 
+    def get_readonly_fields(self, request, obj=None):
+        fields = super().get_readonly_fields(request, obj)
+        if obj:
+            fields += ('scanner',)
+        return fields
+
     def matched_results_link(self, obj):
         if not obj.pk or not obj.scanner:
             return '-'

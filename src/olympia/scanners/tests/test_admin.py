@@ -1199,6 +1199,19 @@ class TestScannerRuleAdmin(TestCase):
         assert 'definition' not in self.admin.get_fields(request=request)
         assert 'formatted_definition' in self.admin.get_fields(request=request)
 
+    def test_get_readonly_fields_no_obj(self):
+        request = RequestFactory().get('/')
+        request.user = self.user
+        fields = self.admin.get_readonly_fields(request=request)
+        assert 'scanner' not in fields
+
+    def test_get_readonly_fields_with_obj(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=YARA)
+        request = RequestFactory().get('/')
+        request.user = self.user
+        fields = self.admin.get_readonly_fields(request=request, obj=rule)
+        assert 'scanner' in fields
+
     def test_create_form_filters_list_of_scanners(self):
         url = reverse('admin:scanners_scannerrule_add')
         response = self.client.get(url)
