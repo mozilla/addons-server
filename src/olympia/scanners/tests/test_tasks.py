@@ -2350,6 +2350,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                     webhook=webhook_1,
                     payload={
                         **payload,
+                        'event': WEBHOOK_DURING_VALIDATION,
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[0].pk}/',
                     },
                 ),
@@ -2357,6 +2358,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                     webhook=webhook_3,
                     payload={
                         **payload,
+                        'event': WEBHOOK_DURING_VALIDATION,
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[1].pk}/',
                     },
                 ),

@@ -115,6 +115,7 @@ def call_webhooks(event_name, payload, upload=None, version=None):
                     webhook=event.webhook,
                     payload={
                         **payload,
+                        'event': event_name,
                         'scanner_result_url': absolutify(
                             reverse(
                                 'v5:scanner-result-patch',

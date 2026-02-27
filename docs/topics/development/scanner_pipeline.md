@@ -9,10 +9,11 @@ occur on AMO. These webhooks are registed in the AMO (django) admin.
 
 When a [scanner webhook event](#scanner-webhook-events) occurs, AMO will send an
 HTTP request to each webhook subscribed to this event. The payload sent to the
-webook depends on the event. AMO creates a [scanner result](#scanner-results)
-before calling the webhook, and includes a `scanner_result_url` in the payload
-that allows the scanner to [asynchronously send its results](#asynchronous-scanning)
-back to AMO.
+webook depends on the event, but always includes:
+
+- `event`: the name of the event
+- `scanner_result_url`: the URL of the [scanner result](#scanner-results) that
+   a scanner can use to [asynchronously send its results](#asynchronous-scanning)
 
 Each service registered as a scanner webhook must be protected with a shared
 secret (api) key. Read [the scanners authentication
@@ -56,6 +57,7 @@ asynchronously.
 ```json
 {
   "download_url": "http://olympia.test/uploads/file/42",
+  "event": "during_validation",
   "scanner_result_url": "http://olympia.test/api/v5/scanner/results/123/"
 }
 ```
@@ -73,6 +75,7 @@ The payload sent looks like this:
   "download_source_url": "http://olympia.test/downloads/source/42",
   "license_slug": "MPL-2.0",
   "activity_log_id": 2170,
+  "event": "on_source_code_uploaded",
   "scanner_result_url": "http://olympia.test/api/v5/scanner/results/124/"
 }
 ```
@@ -243,6 +246,7 @@ When uploading a new file, you should see the following in the console:
 {
   data: {
     download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N",
+    event: "during_validation",
     scanner_result_url: "http://olympia.test/api/v5/scanner/results/123/"
   }
 }
