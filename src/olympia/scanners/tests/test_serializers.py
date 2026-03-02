@@ -1,9 +1,31 @@
 from django.urls import reverse
 
+from olympia import amo
 from olympia.addons.serializers import CompactLicenseSerializer, MinimalFileSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, version_factory
-from olympia.scanners.serializers import WebhookVersionSerializer
+from olympia.scanners.serializers import (
+    WebhookAddonSerializer,
+    WebhookVersionSerializer,
+)
+
+
+class TestWebhookAddonSerializer(TestCase):
+    def test_serialize(self):
+        addon = addon_factory()
+        data = WebhookAddonSerializer(addon).data
+        assert data == {
+            'id': addon.id,
+            'type': 'extension',
+        }
+
+    def test_serialize_theme(self):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        data = WebhookAddonSerializer(addon).data
+        assert data == {
+            'id': addon.id,
+            'type': 'statictheme',
+        }
 
 
 class TestWebhookVersionSerializer(TestCase):

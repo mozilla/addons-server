@@ -71,7 +71,8 @@ The payload sent looks like this:
 ```json
 {
   "addon": {
-    "id": 85
+    "id": 85,
+    "type": "extension"
   },
   "version": {
     "id": 42,
@@ -111,7 +112,8 @@ The payload sent looks like this:
 ```json
 {
   "addon": {
-    "id": 85
+    "id": 85,
+    "type": "extension"
   },
   "version": {
     "id": 42,

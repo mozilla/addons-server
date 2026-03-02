@@ -2,13 +2,31 @@ from django.urls import reverse
 
 from rest_framework import serializers
 
+from olympia import amo
+from olympia.addons.models import Addon
 from olympia.addons.serializers import (
     CompactLicenseSerializer,
     MinimalFileSerializer,
     MinimalVersionSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
+from olympia.api.fields import ReverseChoiceField
+from olympia.api.serializers import AMOModelSerializer
 from olympia.versions.models import Version
+
+
+class WebhookAddonSerializer(AMOModelSerializer):
+    type = ReverseChoiceField(
+        choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True
+    )
+
+    class Meta:
+        model = Addon
+        fields = (
+            'id',
+            'type',
+        )
+        read_only_fields = fields
 
 
 class WebhookVersionSerializer(MinimalVersionSerializer):

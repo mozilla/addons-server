@@ -30,7 +30,10 @@ from olympia.constants.scanners import (
     WEBHOOK_ON_VERSION_CREATED,
 )
 from olympia.reviewers.models import NeedsHumanReview
-from olympia.scanners.serializers import WebhookVersionSerializer
+from olympia.scanners.serializers import (
+    WebhookAddonSerializer,
+    WebhookVersionSerializer,
+)
 
 from ..models import Version, VersionPreview
 from ..tasks import (
@@ -877,7 +880,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         call_webhooks_mock.assert_called_with(
             event_id=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
-                'addon': {'id': addon.id},
+                'addon': WebhookAddonSerializer(addon).data,
                 'version': WebhookVersionSerializer(version).data,
                 'activity_log_id': activity_log.pk,
             },
@@ -901,7 +904,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         call_webhooks_mock.assert_called_with(
             event_id=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
-                'addon': {'id': addon.id},
+                'addon': WebhookAddonSerializer(addon).data,
                 'version': WebhookVersionSerializer(version).data,
                 'activity_log_id': activity_log.pk,
             },
@@ -926,7 +929,8 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
 class TestCallWebhooksOnVersionCreated(TestCase):
     @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock(self, call_webhooks_mock):
-        version = version_factory(addon=addon_factory())
+        addon = addon_factory()
+        version = version_factory(addon=addon)
 
         call_webhooks_on_version_created(version.pk)
 
@@ -934,7 +938,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         call_webhooks_mock.assert_called_with(
             event_id=WEBHOOK_ON_VERSION_CREATED,
             payload={
-                'addon': {'id': version.addon_id},
+                'addon': WebhookAddonSerializer(addon).data,
                 'version': WebhookVersionSerializer(version).data,
             },
             version=version,
@@ -942,7 +946,8 @@ class TestCallWebhooksOnVersionCreated(TestCase):
 
     @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
-        version = version_factory(addon=addon_factory())
+        addon = addon_factory()
+        version = version_factory(addon=addon)
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
 
@@ -952,7 +957,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         call_webhooks_mock.assert_called_with(
             event_id=WEBHOOK_ON_VERSION_CREATED,
             payload={
-                'addon': {'id': version.addon_id},
+                'addon': WebhookAddonSerializer(version.addon).data,
                 'version': WebhookVersionSerializer(version).data,
             },
             version=version,

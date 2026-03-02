@@ -429,14 +429,15 @@ def call_webhooks_on_version_created(version_pk):
     log.info('Calling webhooks for new Version %s', version_pk)
 
     try:
-        from olympia.scanners.serializers import WebhookVersionSerializer
+        from olympia.scanners.serializers import (
+            WebhookAddonSerializer,
+            WebhookVersionSerializer,
+        )
 
         version = Version.unfiltered.get(pk=version_pk)
 
         payload = {
-            'addon': {
-                'id': version.addon_id,
-            },
+            'addon': WebhookAddonSerializer(version.addon).data,
             'version': WebhookVersionSerializer(version).data,
         }
         call_webhooks(
@@ -458,7 +459,10 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
     )
 
     try:
-        from olympia.scanners.serializers import WebhookVersionSerializer
+        from olympia.scanners.serializers import (
+            WebhookAddonSerializer,
+            WebhookVersionSerializer,
+        )
 
         version = Version.unfiltered.get(pk=version_pk)
 
@@ -474,9 +478,7 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
         activity_log = ActivityLog.objects.get(pk=activity_log_id)
 
         payload = {
-            'addon': {
-                'id': version.addon_id,
-            },
+            'addon': WebhookAddonSerializer(version.addon).data,
             'version': WebhookVersionSerializer(version).data,
             'activity_log_id': activity_log.id,
         }
