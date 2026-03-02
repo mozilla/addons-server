@@ -87,8 +87,10 @@ The payload sent looks like this:
     "license": {
       "id": 3,
       "is_custom": false,
-      "name": {"en-US": "Mozilla Public License 2.0"},
-      "slug": "MPL2",
+      "name": {
+        "en-US": "Mozilla Public License 2.0"
+      },
+      "slug": "MPL-2.0",
       "url": "https://www.mozilla.org/en-US/MPL/2.0/"
     },
     "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
@@ -125,8 +127,10 @@ The payload sent looks like this:
     "license": {
       "id": 3,
       "is_custom": false,
-      "name": {"en-US": "Mozilla Public License 2.0"},
-      "slug": "MPL2",
+      "name": {
+        "en-US": "Mozilla Public License 2.0"
+      },
+      "slug": "MPL-2.0",
       "url": "https://www.mozilla.org/en-US/MPL/2.0/"
     },
     "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
@@ -147,9 +151,9 @@ the version.
 1. Add a constant for the new event in `src/olympia/constants/scanners.py`. The
    name must start with `WEBHOOK_`. Make sure the new constant is registered in
    `WEBHOOK_EVENTS` (in the same file).
-2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_name,
-payload, upload=none, version=None)`. Make sure this task is assigned to a
-   queue in `src/olympia/lib/settings_base.py`.
+2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_id,
+   payload, upload=none, version=None, activity_log=None)`. Make sure this task
+   is assigned to a queue in `src/olympia/lib/settings_base.py`.
 3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
 4. Update this documentation page.
 

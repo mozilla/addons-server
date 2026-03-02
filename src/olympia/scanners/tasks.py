@@ -40,6 +40,7 @@ from olympia.constants.scanners import (
     SCANNERS,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_EVENTS,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -81,7 +82,7 @@ def call_webhooks_during_validation(results, upload_pk):
             raise ValueError(f'FileUpload "{upload.file_path}" does not exist.')
 
         call_webhooks(
-            event_name=WEBHOOK_DURING_VALIDATION,
+            event_id=WEBHOOK_DURING_VALIDATION,
             payload={'download_url': upload.get_authenticated_download_url()},
             upload=upload,
         )
@@ -95,11 +96,12 @@ def call_webhooks_during_validation(results, upload_pk):
     return results
 
 
-def call_webhooks(event_name, payload, upload=None, version=None, activity_log=None):
+def call_webhooks(event_id, payload, upload=None, version=None, activity_log=None):
     for event in ScannerWebhookEvent.objects.filter(
-        event=event_name, webhook__is_active=True
+        event=event_id, webhook__is_active=True
     ).all():
         log.info('Calling webhook "%s".', event.webhook.name)
+        event_name = WEBHOOK_EVENTS.get(event_id, event_id)
         statsd_name = f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
 
         try:

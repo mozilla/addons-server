@@ -2350,7 +2350,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                     webhook=webhook_1,
                     payload={
                         **payload,
-                        'event': WEBHOOK_DURING_VALIDATION,
+                        'event': 'during_validation',
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[0].pk}/',
                     },
                 ),
@@ -2358,7 +2358,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                     webhook=webhook_3,
                     payload={
                         **payload,
-                        'event': WEBHOOK_DURING_VALIDATION,
+                        'event': 'during_validation',
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[1].pk}/',
                     },
                 ),
@@ -2450,7 +2450,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
 
         call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
 
-        expected_name = f'devhub.webhook.some-fancy-scanner.{WEBHOOK_DURING_VALIDATION}'
+        expected_name = 'devhub.webhook.some-fancy-scanner.during_validation'
         timer_mock.assert_called_once_with(expected_name)
         incr_mock.assert_called_once_with(f'{expected_name}.success')
 
@@ -2471,7 +2471,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
         with self.assertRaises(RuntimeError):
             call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
 
-        expected_name = f'devhub.webhook.some-fancy-scanner.{WEBHOOK_DURING_VALIDATION}'
+        expected_name = 'devhub.webhook.some-fancy-scanner.during_validation'
         incr_mock.assert_called_once_with(f'{expected_name}.failure')
 
 
@@ -2608,7 +2608,7 @@ class TestCallWebhooksDuringValidation(UploadMixin, TestCase):
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
-            event_name=WEBHOOK_DURING_VALIDATION,
+            event_id=WEBHOOK_DURING_VALIDATION,
             payload={'download_url': self.upload.get_authenticated_download_url()},
             upload=self.upload,
         )

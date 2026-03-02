@@ -440,7 +440,7 @@ def call_webhooks_on_version_created(version_pk):
             'version': WebhookVersionSerializer(version).data,
         }
         call_webhooks(
-            event_name=WEBHOOK_ON_VERSION_CREATED,
+            event_id=WEBHOOK_ON_VERSION_CREATED,
             payload=payload,
             version=version,
         )
@@ -481,7 +481,7 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
             'activity_log_id': activity_log.id,
         }
         call_webhooks(
-            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            event_id=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload=payload,
             version=version,
             activity_log=activity_log,

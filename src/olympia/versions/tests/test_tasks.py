@@ -875,7 +875,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
-            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            event_id=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
                 'addon': {'id': addon.id},
                 'version': WebhookVersionSerializer(version).data,
@@ -899,7 +899,7 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
-            event_name=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+            event_id=WEBHOOK_ON_SOURCE_CODE_UPLOADED,
             payload={
                 'addon': {'id': addon.id},
                 'version': WebhookVersionSerializer(version).data,
@@ -932,7 +932,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
-            event_name=WEBHOOK_ON_VERSION_CREATED,
+            event_id=WEBHOOK_ON_VERSION_CREATED,
             payload={
                 'addon': {'id': version.addon_id},
                 'version': WebhookVersionSerializer(version).data,
@@ -950,7 +950,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
 
         assert call_webhooks_mock.called
         call_webhooks_mock.assert_called_with(
-            event_name=WEBHOOK_ON_VERSION_CREATED,
+            event_id=WEBHOOK_ON_VERSION_CREATED,
             payload={
                 'addon': {'id': version.addon_id},
                 'version': WebhookVersionSerializer(version).data,
