@@ -2,46 +2,50 @@ from django.urls import reverse
 
 from rest_framework import serializers
 
-from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import (
-    CompactLicenseSerializer,
-    MinimalFileSerializer,
-    MinimalVersionSerializer,
+    AddonSerializer,
+    VersionSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.api.fields import ReverseChoiceField
-from olympia.api.serializers import AMOModelSerializer
 from olympia.versions.models import Version
 
 
-class WebhookAddonSerializer(AMOModelSerializer):
-    type = ReverseChoiceField(
-        choices=list(amo.ADDON_TYPE_CHOICES_API.items()), read_only=True
-    )
-
+class WebhookAddonSerializer(AddonSerializer):
     class Meta:
         model = Addon
-        fields = (
-            'id',
-            'type',
+        excluded_fields = (
+            'contributions_url',
+            'current_version',
+            'edit_url',
+            'icon_url',
+            'ratings_url',
+            'review_url',
+            'versions_url',
         )
+        fields = tuple(set(AddonSerializer.Meta.fields) - set(excluded_fields))
         read_only_fields = fields
 
+    def get_fields(self):
+        fields = super().get_fields()
+        # Make sure all fields are read-only, especially since we inherit from
+        # AddonSerializer.
+        for name in fields:
+            fields[name].read_only = True
+        return fields
 
-class WebhookVersionSerializer(MinimalVersionSerializer):
-    license = CompactLicenseSerializer(read_only=True)
-    file = MinimalFileSerializer(read_only=True)
+    def get_url(self, obj):
+        return absolutify(reverse('v5:addon-detail', kwargs={'pk': obj.id}))
+
+
+class WebhookVersionSerializer(VersionSerializer):
     url = serializers.SerializerMethodField()
     download_source_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
-        fields = (
-            'id',
-            'version',
-            'file',
-            'license',
+        excluded_fields = ('edit_url',)
+        fields = tuple(set(VersionSerializer.Meta.fields) - set(excluded_fields)) + (
             'url',
             'download_source_url',
         )

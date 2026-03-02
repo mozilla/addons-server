@@ -71,31 +71,105 @@ The payload sent looks like this:
 ```json
 {
   "addon": {
-    "id": 85,
-    "type": "extension"
+    "status": "public",
+    "is_experimental": false,
+    "description": null,
+    "homepage": null,
+    "icons": {
+      "32": "http://olympia.test/static-server/img/addon-icons/default-32.png",
+      "64": "http://olympia.test/static-server/img/addon-icons/default-64.png",
+      "128": "http://olympia.test/static-server/img/addon-icons/default-128.png"
+    },
+    "authors": [
+      {
+        "id": 11181,
+        "name": "Firefox user 11181",
+        "url": "http://olympia.test/user/11181/",
+        "username": "some-username",
+        "picture_url": null
+      }
+    ],
+    "id": 88,
+    "requires_payment": false,
+    "tags": [],
+    "url": "http://olympia.test/api/v5/addons/addon/88/",
+    "weekly_downloads": 1122,
+    "ratings": {
+      "average": 0.0,
+      "bayesian_average": 0.0,
+      "count": 0,
+      "text_count": 0
+    },
+    "default_locale": "en-US",
+    "summary": {
+      "en-US": "Summary for My Extension"
+    },
+    "guid": "{887ea080-e5f1-4363-99d3-f90fb8594967}",
+    "type": "extension",
+    "categories": [
+      "photos-music-videos"
+    ],
+    "is_featured": false,
+    "is_source_public": false,
+    "is_disabled": false,
+    "promoted": [],
+    "slug": "my-extension-slug",
+    "support_url": null,
+    "support_email": null,
+    "has_privacy_policy": false,
+    "last_updated": "2026-03-03T13:03:13Z",
+    "created": "2011-07-13T15:38:13Z",
+    "previews": [],
+    "developer_comments": null,
+    "has_eula": false,
+    "name": {
+      "en-US": "My Extension"
+    },
+    "is_noindexed": false,
+    "average_daily_users": 1372
   },
   "version": {
-    "id": 42,
-    "version": "1.0",
-    "file": {
-      "id": 99,
-      "created": "2024-01-01T00:00:00Z",
-      "hash": "sha256:abc123",
-      "size": 12345,
-      "status": "public",
-      "url": "http://olympia.test/firefox/downloads/file/99/"
-    },
+    "release_notes": null,
+    "version": "12305.51787.17236.47177",
+    "id": 90,
+    "is_strict_compatibility_enabled": false,
     "license": {
-      "id": 3,
+      "id": 8,
       "is_custom": false,
       "name": {
         "en-US": "Mozilla Public License 2.0"
       },
       "slug": "MPL-2.0",
-      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+      "text": null,
+      "url": "https://www.mozilla.org/MPL/2.0/"
     },
-    "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
-    "download_source_url": "http://olympia.test/downloads/source/42"
+    "channel": "listed",
+    "reviewed": null,
+    "compatibility": {
+      "firefox": {
+        "min": "4.0.99",
+        "max": "5.0.99"
+      }
+    },
+    "file": {
+      "id": 90,
+      "created": "2026-03-03T13:03:13Z",
+      "hash": "",
+      "is_restart_required": false,
+      "is_webextension": true,
+      "is_mozilla_signed_extension": false,
+      "platform": "all",
+      "size": 0,
+      "status": "public",
+      "url": "http://olympia.test/downloads/file/90/",
+      "permissions": [],
+      "optional_permissions": [],
+      "host_permissions": [],
+      "data_collection_permissions": [],
+      "optional_data_collection_permissions": []
+    },
+    "url": "http://olympia.test/api/v5/addons/addon/88/versions/90/",
+    "download_source_url": "http://olympia.test/downloads/source/90"
   },
   "activity_log_id": 2170,
   "event": "on_source_code_uploaded",
@@ -112,30 +186,104 @@ The payload sent looks like this:
 ```json
 {
   "addon": {
-    "id": 85,
-    "type": "extension"
+    "status": "public",
+    "is_experimental": false,
+    "description": null,
+    "homepage": null,
+    "icons": {
+      "32": "http://olympia.test/static-server/img/addon-icons/default-32.png",
+      "64": "http://olympia.test/static-server/img/addon-icons/default-64.png",
+      "128": "http://olympia.test/static-server/img/addon-icons/default-128.png"
+    },
+    "authors": [
+      {
+        "id": 11181,
+        "name": "Firefox user 11181",
+        "url": "http://olympia.test/user/11181/",
+        "username": "some-username",
+        "picture_url": null
+      }
+    ],
+    "id": 88,
+    "requires_payment": false,
+    "tags": [],
+    "url": "http://olympia.test/api/v5/addons/addon/88/",
+    "weekly_downloads": 1122,
+    "ratings": {
+      "average": 0.0,
+      "bayesian_average": 0.0,
+      "count": 0,
+      "text_count": 0
+    },
+    "default_locale": "en-US",
+    "summary": {
+      "en-US": "Summary for My Extension"
+    },
+    "guid": "{887ea080-e5f1-4363-99d3-f90fb8594967}",
+    "type": "extension",
+    "categories": [
+      "photos-music-videos"
+    ],
+    "is_featured": false,
+    "is_source_public": false,
+    "is_disabled": false,
+    "promoted": [],
+    "slug": "my-extension-slug",
+    "support_url": null,
+    "support_email": null,
+    "has_privacy_policy": false,
+    "last_updated": "2026-03-03T13:03:13Z",
+    "created": "2011-07-13T15:38:13Z",
+    "previews": [],
+    "developer_comments": null,
+    "has_eula": false,
+    "name": {
+      "en-US": "My Extension"
+    },
+    "is_noindexed": false,
+    "average_daily_users": 1372
   },
   "version": {
-    "id": 42,
-    "version": "1.0",
-    "file": {
-      "id": 99,
-      "created": "2024-01-01T00:00:00Z",
-      "hash": "sha256:abc123",
-      "size": 12345,
-      "status": "public",
-      "url": "http://olympia.test/firefox/downloads/file/99/"
-    },
+    "release_notes": null,
+    "version": "12305.51787.17236.47177",
+    "id": 90,
+    "is_strict_compatibility_enabled": false,
     "license": {
-      "id": 3,
+      "id": 8,
       "is_custom": false,
       "name": {
         "en-US": "Mozilla Public License 2.0"
       },
       "slug": "MPL-2.0",
-      "url": "https://www.mozilla.org/en-US/MPL/2.0/"
+      "text": null,
+      "url": "https://www.mozilla.org/MPL/2.0/"
     },
-    "url": "http://olympia.test/api/v5/addons/addon/85/versions/42/",
+    "channel": "listed",
+    "reviewed": null,
+    "compatibility": {
+      "firefox": {
+        "min": "4.0.99",
+        "max": "5.0.99"
+      }
+    },
+    "file": {
+      "id": 90,
+      "created": "2026-03-03T13:03:13Z",
+      "hash": "",
+      "is_restart_required": false,
+      "is_webextension": true,
+      "is_mozilla_signed_extension": false,
+      "platform": "all",
+      "size": 0,
+      "status": "public",
+      "url": "http://olympia.test/downloads/file/90/",
+      "permissions": [],
+      "optional_permissions": [],
+      "host_permissions": [],
+      "data_collection_permissions": [],
+      "optional_data_collection_permissions": []
+    },
+    "url": "http://olympia.test/api/v5/addons/addon/88/versions/90/",
     "download_source_url": null
   },
   "event": "on_version_created",

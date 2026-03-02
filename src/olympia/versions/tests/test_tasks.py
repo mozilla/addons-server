@@ -957,7 +957,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         call_webhooks_mock.assert_called_with(
             event_id=WEBHOOK_ON_VERSION_CREATED,
             payload={
-                'addon': WebhookAddonSerializer(version.addon).data,
+                'addon': WebhookAddonSerializer(addon).data,
                 'version': WebhookVersionSerializer(version).data,
             },
             version=version,
