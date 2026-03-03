@@ -869,6 +869,8 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
     def test_call_with_mock(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
+        # Reload to pick up last_updated changes triggered by version_factory.
+        addon.reload()
 
         activity_log = ActivityLog.objects.create(
             amo.LOG.SOURCE_CODE_UPLOADED, addon, user=user_factory()
@@ -894,6 +896,8 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
         version = version_factory(addon=addon)
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
+        # Reload to pick up last_updated changes triggered by version_factory.
+        addon.reload()
         activity_log = ActivityLog.objects.create(
             amo.LOG.SOURCE_CODE_UPLOADED, addon, user=user_factory()
         )
@@ -931,6 +935,8 @@ class TestCallWebhooksOnVersionCreated(TestCase):
     def test_call_with_mock(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)
+        # Reload to pick up last_updated changes triggered by version_factory.
+        addon.reload()
 
         call_webhooks_on_version_created(version.pk)
 
@@ -950,6 +956,8 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         version = version_factory(addon=addon)
         # Delete the version. The task uses `Version.unfiltered` to account for that.
         version.delete()
+        # Reload to pick up last_updated changes triggered by version_factory.
+        addon.reload()
 
         call_webhooks_on_version_created(version.pk)
 
