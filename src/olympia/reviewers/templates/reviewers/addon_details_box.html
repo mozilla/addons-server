@@ -57,6 +57,14 @@
                 <strong>{{ addon.get_status_display() }}</strong>
             </td>
           </tr>
+          {% if content_review_status %}
+          <tr class="listing-content-status">
+            <th>Content Review Status</th>
+            <td>
+                <strong>{{ content_review_status }}</strong>
+            </td>
+          </tr>
+          {% endif %}
           <tr class="addon-updated">
             <th>Updated</th>
             <td>

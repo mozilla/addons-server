@@ -624,11 +624,7 @@ def review(request, addon, channel=None):
         else []
     )
     approvals_info = None
-    if (
-        channel == amo.CHANNEL_LISTED
-        and addon.current_version
-        and addon.current_version.was_auto_approved
-    ):
+    if channel == amo.CHANNEL_LISTED:
         try:
             approvals_info = addon.addonapprovalscounter
         except AddonApprovalsCounter.DoesNotExist:
@@ -736,6 +732,12 @@ def review(request, addon, channel=None):
         can_view_source=can_view_source,
         channel=channel,
         content_review=content_review,
+        content_review_status=(
+            approvals_info.get_content_review_status_display()
+            if approvals_info
+            # if we don't have the counter, it's unreviewed, which is the field default
+            else AddonApprovalsCounter().get_content_review_status_display()
+        ),
         count=count,
         flags=flags,
         form=form,

@@ -5429,7 +5429,10 @@ class TestReview(ReviewBase):
 
     def test_approvals_info(self):
         approval_info = AddonApprovalsCounter.objects.create(
-            addon=self.addon, last_human_review=datetime.now(), counter=42
+            addon=self.addon,
+            last_human_review=datetime.now(),
+            counter=42,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED,
         )
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED
@@ -5439,6 +5442,11 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.last-approval-date')
+        assert doc('.listing-content-status')
+        assert (
+            doc('.listing-content-status td').text()
+            == 'Pending, accepted content changed'
+        )
 
         approval_info.delete()
         response = self.client.get(self.url)
@@ -5446,6 +5454,9 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         # no AddonApprovalsCounter: nothing displayed.
         assert not doc('.last-approval-date')
+        # but the content review status will still show, but as unreviewd
+        assert doc('.listing-content-status')
+        assert doc('.listing-content-status td').text() == 'Unreviewed'
 
     def test_no_auto_approval_summaries_since_everything_is_public(self):
         self.grant_permission(self.reviewer, 'Addons:Review')
