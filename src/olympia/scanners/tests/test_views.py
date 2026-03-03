@@ -57,6 +57,16 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         self.scanner_result.refresh_from_db()
         assert self.scanner_result.results == results
 
+    def test_success_with_null_results(self):
+        self.scanner_result.update(results=None)
+
+        results = {'version': '1.2.3', 'matchedRules': []}
+        response = self.patch(self.url, data={'results': results})
+
+        assert response.status_code == 204
+        self.scanner_result.refresh_from_db()
+        assert self.scanner_result.results == results
+
     def test_cannot_patch_twice(self):
         # First patch should succeed.
         results = {'version': '1.2.3', 'matchedRules': []}

@@ -63,7 +63,7 @@ log = olympia.core.logger.getLogger('z.scanners.models')
 
 class AbstractScannerResult(ModelBase):
     # Store the "raw" results of a scanner.
-    results = models.JSONField(default=list)
+    results = models.JSONField(default=list, null=True)
     scanner = models.PositiveSmallIntegerField(choices=SCANNERS.items())
     version = models.ForeignKey(
         'versions.Version',
@@ -82,6 +82,8 @@ class AbstractScannerResult(ModelBase):
     def extract_rule_names(self):
         """This method parses the raw results and returns the (matched) rule
         names. Not all scanners have rules that necessarily match."""
+        if self.results is None:
+            return []
         if self.scanner in (NARC, YARA):
             return sorted({result['rule'] for result in self.results})
         if 'matchedRules' in self.results:
@@ -117,6 +119,8 @@ class AbstractScannerResult(ModelBase):
         rule itself, such as the pattern for NARC).
         """
         res = defaultdict(list)
+        if self.results is None:
+            return res
         if self.scanner == YARA:
             for item in self.results:
                 res[item['rule']].append(

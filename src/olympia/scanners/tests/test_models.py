@@ -113,6 +113,14 @@ class TestScannerResultMixin:
 
         assert result.extract_rule_names() == [rule1, rule2]
 
+    def test_extract_rule_names_with_null_results(self):
+        result = self.create_result(scanner=YARA, results=None)
+        assert result.extract_rule_names() == []
+
+    def test_get_files_and_data_by_matched_rules_with_null_results(self):
+        result = self.create_result(scanner=YARA, results=None)
+        assert result.get_files_and_data_by_matched_rules() == {}
+
     def test_extract_rule_names_with_no_matched_rules_attribute(self):
         result = self.create_result(scanner=WEBHOOK)
         result.results = {}

@@ -38,7 +38,7 @@ def patch_scanner_result(request, pk=None):
         )
 
     # Check if the scanner result has already been patched.
-    if 'matchedRules' in scanner_result.results:
+    if scanner_result.results is not None and 'matchedRules' in scanner_result.results:
         return Response(
             {'detail': 'Scanner result has already been updated'},
             status=status.HTTP_409_CONFLICT,

@@ -311,7 +311,10 @@ def _run_narc(*, scanner_result, version, rules=None):
         # Convert existing results to a list of strings to allow results to be
         # hashed to avoid adding duplicates when re-scanning. See result.add()
         # call below and the conversion back at the end before saving as well.
-        {json.dumps(result, sort_keys=True) for result in scanner_result.results}
+        {
+            json.dumps(result, sort_keys=True)
+            for result in (scanner_result.results or [])
+        }
     )
     values_from_db = {}
     values_from_xpi = {}
