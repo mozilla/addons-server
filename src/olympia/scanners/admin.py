@@ -457,6 +457,8 @@ class AbstractScannerResultAdminMixin:
     formatted_created.short_description = 'Created'
 
     def formatted_results(self, obj):
+        if obj.results is None:
+            return None
         return format_html('<pre>{}</pre>', obj.get_pretty_results())
 
     formatted_results.short_description = 'Results'

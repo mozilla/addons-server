@@ -2474,6 +2474,24 @@ class TestCallWebhooks(UploadMixin, TestCase):
         expected_name = 'devhub.webhook.some-fancy-scanner.during_validation'
         incr_mock.assert_called_once_with(f'{expected_name}.failure')
 
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_with_none_result(self, _call_webhook_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        _call_webhook_mock.return_value = None
+
+        call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        result = ScannerResult.objects.get(scanner=WEBHOOK)
+        assert result.results is None
+
 
 class TestCallWebhook(TestCase):
     def create_response(self, status_code=200, data=None):
@@ -2549,6 +2567,22 @@ class TestCallWebhook(TestCase):
 
         assert requests_mock.called
         assert returned_value == response_data
+
+    @override_settings(SCANNER_TIMEOUT=123)
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_http_204(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        requests_mock.return_value = self.create_response(status_code=204)
+
+        returned_value = _call_webhook(webhook, payload={})
+
+        assert requests_mock.called
+        assert returned_value is None
 
     @override_settings(SCANNER_TIMEOUT=123)
     @mock.patch.object(requests.Session, 'post')

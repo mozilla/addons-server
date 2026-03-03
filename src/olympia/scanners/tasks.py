@@ -162,6 +162,12 @@ def _call_webhook(webhook, payload):
                 'Authorization': f'HMAC-SHA256 {digest}',
             },
         )
+
+    # A 204 HTTP status code means the scanner skipped the event, so we can
+    # early return, and we'll set the `results` to `None`.
+    if response.status_code == 204:
+        return None
+
     try:
         data = response.json()
     except ValueError as exc:

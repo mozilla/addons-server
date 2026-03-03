@@ -13,7 +13,7 @@ webook depends on the event, but always includes:
 
 - `event`: the name of the event
 - `scanner_result_url`: the URL of the [scanner result](#scanner-results) that
-   a scanner can use to [asynchronously send its results](#asynchronous-scanning)
+  a scanner can use to [asynchronously send its results](#asynchronous-scanning)
 
 Each service registered as a scanner webhook must be protected with a shared
 secret (api) key. Read [the scanners authentication
@@ -363,7 +363,18 @@ asynchronously.
 
 ### API response
 
-Scanners can choose to return results synchronously or asynchronously:
+Scanners can choose to return results synchronously, asynchronously, or skip
+processing the event entirely. The HTTP status code returned by the scanner
+determines how AMO handles the response:
+
+| Status code      | Meaning                                                             |
+| ---------------- | ------------------------------------------------------------------- |
+| `200 OK`         | Results returned synchronously in the response body                 |
+| `202 Accepted`   | Scanner acknowledged the event and will send results asynchronously |
+| `204 No Content` | Scanner skipped the event; no results will be stored                |
+
+Any other status code or a response body containing an `error` field is
+unsupported and/or likely to be treated as a failure.
 
 #### Synchronous response
 
@@ -401,6 +412,13 @@ field:
 
 The `results` field should contain the same data structure as a synchronous
 response would return.
+
+#### Skipping an event
+
+Scanners can use the `204 No Content` HTTP status code to indicate that they
+intentionally skipped the event (e.g., the event is not relevant for this
+scanner). No results will be stored for the scanner result associated with this
+event.
 
 ### Creating a new scanner
 

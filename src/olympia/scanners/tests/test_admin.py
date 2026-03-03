@@ -251,6 +251,11 @@ class TestScannerResultAdmin(TestCase):
 
         assert self.admin.formatted_results(result) == '<pre>[]</pre>'
 
+    def test_formatted_results_with_none_results(self):
+        result = ScannerResult(results=None)
+
+        assert self.admin.formatted_results(result) is None
+
     def test_formatted_created(self):
         created = datetime.now()
         result = ScannerResult(created=created)
