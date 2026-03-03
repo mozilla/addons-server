@@ -206,8 +206,8 @@ class TestUserProfile(TestCase):
     def test_ban_and_disable_related_content_bulk(
         self, copy_file_to_backup_storage_mock, hard_block_addons=False
     ):
-        copy_file_to_backup_storage_mock.side_effect = (
-            lambda local_path, content_type: os.path.basename(local_path)
+        copy_file_to_backup_storage_mock.side_effect = lambda local_path, _: (
+            os.path.basename(local_path)
         )
         user_sole = user_factory(
             auth_id=123456789,

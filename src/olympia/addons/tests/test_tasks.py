@@ -681,16 +681,16 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         patcher1 = mock.patch('olympia.addons.tasks.copy_file_to_backup_storage')
         self.addCleanup(patcher1.stop)
         self.copy_file_to_backup_storage_mock = patcher1.start()
-        self.copy_file_to_backup_storage_mock.side_effect = (
-            lambda fpath, type_: f'mock-backup-{os.path.basename(fpath)}'
+        self.copy_file_to_backup_storage_mock.side_effect = lambda fpath, type_: (
+            f'mock-backup-{os.path.basename(fpath)}'
         )
         patcher2 = mock.patch(
             'olympia.addons.tasks.download_file_contents_from_backup_storage'
         )
         self.addCleanup(patcher2.stop)
         self.download_file_contents_from_backup_storage_mock = patcher2.start()
-        self.download_file_contents_from_backup_storage_mock.side_effect = (
-            lambda name: f'Content for {name}'.encode('utf-8')
+        self.download_file_contents_from_backup_storage_mock.side_effect = lambda nme: (
+            f'Content for {nme}'.encode('utf-8')
         )
         patcher3 = mock.patch('olympia.addons.tasks.backup_storage_enabled')
         self.addCleanup(patcher3.stop)
@@ -952,8 +952,8 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
     def test_restore_icon_and_preview_does_not_exist_in_backup(
         self, resize_icon_mock, resize_preview_mock
     ):
-        self.download_file_contents_from_backup_storage_mock.side_effect = (
-            lambda path: None
+        self.download_file_contents_from_backup_storage_mock.side_effect = lambda _: (
+            None
         )
         dac = DisabledAddonContent.objects.create(
             addon=self.addon, icon_backup_name='does-not-exist.jpg'

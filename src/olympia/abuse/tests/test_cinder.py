@@ -709,11 +709,11 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         copy_file_to_backup_storage_mock,
         create_signed_url_for_file_backup_mock,
     ):
-        copy_file_to_backup_storage_mock.side_effect = (
-            lambda fpath, type_: os.path.basename(fpath)
+        copy_file_to_backup_storage_mock.side_effect = lambda fpath, type_: (
+            os.path.basename(fpath)
         )
-        create_signed_url_for_file_backup_mock.side_effect = (
-            lambda rpath: f'https://cloud.example.com/{rpath}?some=thing'
+        create_signed_url_for_file_backup_mock.side_effect = lambda rpath: (
+            f'https://cloud.example.com/{rpath}?some=thing'
         )
         addon = self._create_dummy_target()
         addon.update(icon_type='image/jpeg')
@@ -809,11 +809,11 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
         copy_file_to_backup_storage_mock,
         create_signed_url_for_file_backup_mock,
     ):
-        copy_file_to_backup_storage_mock.side_effect = (
-            lambda fpath, type_: os.path.basename(fpath)
+        copy_file_to_backup_storage_mock.side_effect = lambda fpath, type_: (
+            os.path.basename(fpath)
         )
-        create_signed_url_for_file_backup_mock.side_effect = (
-            lambda rpath: f'https://cloud.example.com/{rpath}?what=ever'
+        create_signed_url_for_file_backup_mock.side_effect = lambda rpath: (
+            f'https://cloud.example.com/{rpath}?what=ever'
         )
         addon = self._create_dummy_target()
         addon.update(type=amo.ADDON_STATICTHEME)
