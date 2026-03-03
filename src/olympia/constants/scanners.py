@@ -71,6 +71,10 @@ WEBHOOK_EVENTS = {
     WEBHOOK_ON_VERSION_CREATED: 'on_version_created',
 }
 
+# Special rule name used as fallback when a scanner has no better rule to
+# associate with an annotation.
+ANNOTATIONS_RULE_NAME = 'ANNOTATIONS'
+
 # Special empty configuration schema to use when the rule is being created
 EMPTY_RULE_CONFIGURATION_SCHEMA = {
     'type': 'object',

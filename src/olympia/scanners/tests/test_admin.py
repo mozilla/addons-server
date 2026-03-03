@@ -24,6 +24,7 @@ from olympia.amo.tests import (
 from olympia.api.models import APIKey
 from olympia.constants.scanners import (
     ABORTING,
+    ANNOTATIONS_RULE_NAME,
     COMPLETED,
     NARC,
     NEW,
@@ -346,6 +347,9 @@ class TestScannerResultAdmin(TestCase):
             name='hello', scanner=YARA, pretty_name='Pretty Hello'
         )
         rule_foo = ScannerRule.objects.create(name='foo', scanner=NARC)
+        rule_annotations = ScannerRule.objects.get(
+            name=ANNOTATIONS_RULE_NAME, scanner=WEBHOOK
+        )
         webhook = ScannerWebhook.objects.create(name='some-webhook')
 
         response = self.client.get(self.list_url)
@@ -365,6 +369,10 @@ class TestScannerResultAdmin(TestCase):
             ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
             ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
             ('foo (narc)', f'?matched_rules__id__exact={rule_foo.pk}'),
+            (
+                f'{ANNOTATIONS_RULE_NAME} (webhook)',
+                f'?matched_rules__id__exact={rule_annotations.pk}',
+            ),
             ('All', '?has_version=all'),
             (' With version only', '?'),
         ]
@@ -376,6 +384,7 @@ class TestScannerResultAdmin(TestCase):
             ('bar (yara)', str(rule_bar.pk)),
             ('Pretty Hello (yara)', str(rule_hello.pk)),
             ('foo (narc)', str(rule_foo.pk)),
+            (f'{ANNOTATIONS_RULE_NAME} (webhook)', str(rule_annotations.pk)),
         ]
         filters = [
             (option.text, option.attrib['value'])
@@ -572,6 +581,9 @@ class TestScannerResultAdmin(TestCase):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
         rule_hello = ScannerRule.objects.create(name='hello', scanner=YARA)
         rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
+        rule_annotations = ScannerRule.objects.get(
+            name=ANNOTATIONS_RULE_NAME, scanner=WEBHOOK
+        )
 
         with_bar_and_hello_matches = ScannerResult(scanner=YARA)
         with_bar_and_hello_matches.add_yara_result(rule=rule_bar.name)
@@ -632,6 +644,8 @@ class TestScannerResultAdmin(TestCase):
             f'&matched_rules__id__exact={rule_bar.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&matched_rules__id__exact={rule_hello.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            f'&matched_rules__id__exact={rule_annotations.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
             f'&matched_rules__id__exact={rule_foo.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',

@@ -133,8 +133,16 @@ class AbstractScannerResult(ModelBase):
                     meta.pop(field, None)
                 res[item['rule']].append(meta)
         else:
-            # TODO: we might need to rework this part once we have more scanners.
-            if 'scanMap' in self.results:
+            if 'annotations' in self.results:
+                for rule_name, annotation_list in self.results['annotations'].items():
+                    for annotation in annotation_list:
+                        filename = annotation.get('file', '')
+                        data = {k: v for k, v in annotation.items() if k != 'file'}
+                        res[rule_name].append({'filename': filename, 'data': data})
+            # NOTE: We keep support for `scanMap` for backward compatibility
+            # but that shouldn't be used anymore. Instead, `annotations` should
+            # be used. `scanMap` is ignored when `annotations` is present.
+            elif 'scanMap' in self.results:
                 scanMap = self.results.get('scanMap', {}).copy()
                 for filename, rules in scanMap.items():
                     for ruleId, data in rules.items():

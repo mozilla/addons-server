@@ -68,6 +68,8 @@ Scanners can return a JSON response immediately that contains the following fiel
 
 - `version`: the scanner version
 - `matchedRules`: an array of matched rule identifiers (string)
+- `annotations` _(optional)_: a map of rule name to a list of annotation
+  objects. See [Annotations](#scanner-annotations) for details.
 
 (asynchronous-scanning)=
 #### Asynchronous response
@@ -79,7 +81,8 @@ payload. This is useful for long-running scans.
 To send results asynchronously:
 
 1. The scanner receives a webhook call with a `scanner_result_url` in the payload
-2. The scanner returns a quick response (e.g., HTTP 202 Accepted)
+2. The scanner returns a quick acknowledgment (e.g., HTTP 202 Accepted with body
+   `{}` or `{"ok": true}`)
 3. The scanner performs its analysis
 4. The scanner sends a PATCH request to the `scanner_result_url` with the results
 
@@ -370,6 +373,46 @@ The payload sent looks like this:
    is assigned to a queue in `src/olympia/lib/settings_base.py`.
 3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
 4. Update this documentation page.
+
+(scanner-annotations)=
+### Annotations
+
+Scanners can attach human-readable annotations to matched rules by providing an
+`annotations` object in the response. The `annotations` object is a map keyed
+by rule name, where each value is a list of annotation objects. Each annotation
+object may include a `message` (string), an optional `file` path (string),
+and any other arbitrary fields.
+
+```json
+{
+  "version": "1.0.0",
+  "matchedRules": ["RULE_1", "ANNOTATIONS"],
+  "annotations": {
+    "RULE_1": [
+      {
+        "file": "background.js",
+        "message": "Obfuscated code detected.",
+        "line": 42
+      },
+      {
+        "message": "This version contains potentially malicious code."
+      }
+    ],
+    "ANNOTATIONS": [
+      {
+        "message": "This extension collects browsing history without disclosure."
+      }
+    ]
+  }
+}
+```
+
+Rules used as annotation keys must be listed in `matchedRules`. When there is
+no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
+name.
+
+Each annotated rule must exist as a [scanner rule](#scanner-rules) on AMO for
+the annotation to be displayed.
 
 (scanner-results)=
 ## Scanner Results

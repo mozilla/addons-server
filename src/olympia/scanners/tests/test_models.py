@@ -14,6 +14,7 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
+    ANNOTATIONS_RULE_NAME,
     COMPLETED,
     NARC,
     NEW,
@@ -263,6 +264,61 @@ class TestScannerResultMixin:
             'rule1': [
                 {'filename': 'file/1.js', 'data': {}},
                 {'filename': '', 'data': {'EXTRA': 'data'}},
+            ],
+        }
+
+    def test_get_files_and_data_by_matched_rules_with_annotations(self):
+        result = self.create_result(
+            scanner=WEBHOOK,
+            results={
+                'annotations': {
+                    'RULE_1': [
+                        {'file': 'bg.js', 'message': 'File-level concern.'},
+                        {'message': 'Entity-level concern.'},
+                    ],
+                    ANNOTATIONS_RULE_NAME: [
+                        {'message': 'Generic fallback annotation.'},
+                    ],
+                },
+            },
+        )
+        assert result.get_files_and_data_by_matched_rules() == {
+            'RULE_1': [
+                {'filename': 'bg.js', 'data': {'message': 'File-level concern.'}},
+                {'filename': '', 'data': {'message': 'Entity-level concern.'}},
+            ],
+            ANNOTATIONS_RULE_NAME: [
+                {'filename': '', 'data': {'message': 'Generic fallback annotation.'}},
+            ],
+        }
+
+    def test_get_files_and_data_by_matched_rules_annotations_over_scan_map(self):
+        result = self.create_result(
+            scanner=WEBHOOK,
+            results={
+                'scanMap': {
+                    'file/1.js': {
+                        'RULE_1': {'RULE_HAS_MATCHED': True},
+                    },
+                },
+                'annotations': {
+                    'RULE_2': [
+                        {
+                            'file': 'file/2.js',
+                            'message': 'Some annotation message.',
+                        },
+                    ],
+                },
+            },
+        )
+        assert result.get_files_and_data_by_matched_rules() == {
+            'RULE_2': [
+                {
+                    'filename': 'file/2.js',
+                    'data': {
+                        'message': 'Some annotation message.',
+                    },
+                }
             ],
         }
 
