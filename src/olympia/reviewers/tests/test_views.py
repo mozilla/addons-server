@@ -3041,7 +3041,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(60):
+        with self.assertNumQueries(61):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3099,17 +3099,18 @@ class TestReview(ReviewBase):
             # 47. config for site notice
             # 48. fetch promoted groups of current version (repeated)?
             # 49. other add-ons with same guid
-            # 50. translations for... (?! id=1)
-            # 51. important activity log about the add-on
-            # 52. user for the activity (from the ActivityLog foreignkey)
-            # 53. user for the activity (from the ActivityLog arguments)
-            # 54. add-on for the activity
-            # 55. translation for the add-on for the activity
-            # 56. waffle switch enable-activity-log-attachments
-            # 57. select all versions in channel for versions dropdown widget
-            # 58. reviewer reasons for the reason dropdown
-            # 59. cinder policies for the policy dropdown
-            # 60. unresolved DSA related abuse reports
+            # 50. AddonApprovalsCounter (approval_info)
+            # 51. translations for... (?! id=1)
+            # 52. important activity log about the add-on
+            # 53. user for the activity (from the ActivityLog foreignkey)
+            # 54. user for the activity (from the ActivityLog arguments)
+            # 55. add-on for the activity
+            # 56. translation for the add-on for the activity
+            # 57. waffle switch enable-activity-log-attachments
+            # 58. select all versions in channel for versions dropdown widget
+            # 59. reviewer reasons for the reason dropdown
+            # 60. cinder policies for the policy dropdown
+            # 61. unresolved DSA related abuse reports
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -6135,7 +6136,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [webhook_rule.name]},
                 )
 
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(62):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.
