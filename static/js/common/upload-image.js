@@ -129,7 +129,7 @@ $.fn.imageUploader = function () {
         formData.xhr.responseText &&
         (formData.xhr.status == 200 || formData.xhr.status == 304)
       ) {
-        let json = {};
+        let json;
         try {
           json = JSON.parse(formData.xhr.responseText);
         } catch (err) {

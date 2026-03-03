@@ -41,7 +41,7 @@ function getConfig(env = {}) {
     };
   } catch (error) {
     throw new Error(
-      JSON.stringify({ error, rawConfig, rawError, rawEnv }, null, 2),
+      JSON.stringify({ error, rawConfig, rawError, rawEnv }, null, 2), { cause: error }
     );
   }
 }

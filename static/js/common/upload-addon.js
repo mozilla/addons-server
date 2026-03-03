@@ -318,7 +318,7 @@ $.fn.addonUploader = function (options) {
       function (e, file, xhr, aborted) {
         let errors = [],
           $form = $upload_field.closest('form'),
-          json = {},
+          json,
           errOb;
         if (
           xhr.readyState == 4 &&
@@ -561,7 +561,7 @@ $.fn.addonUploader = function (options) {
           format(gettext('Finished validating {0}'), [escape_(file.name)]),
         );
 
-        let message = '';
+        let message;
         let messageCount = v.warnings + v.notices;
 
         if (timeout) {
