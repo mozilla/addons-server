@@ -49,6 +49,5 @@ using the API.
    discovery
    ratings
    reviewers
-   scanners
    shelves
    signing
