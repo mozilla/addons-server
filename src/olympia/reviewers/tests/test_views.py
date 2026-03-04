@@ -4556,9 +4556,7 @@ class TestReview(ReviewBase):
         )
         self.assert3xx(response, content_url)
 
-    @override_switch('enable-content-rejection', active=True)
-    @override_switch('cinder_policy_review_reasons_enabled', active=True)
-    def test_reject_listing_content_review(self):
+    def _do_reject_listing_content_review(self, extra_data):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}create_decision',
@@ -4570,19 +4568,14 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        policy = CinderPolicy.objects.create(
-            uuid='x',
-            expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
-        )
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
 
         response = self.client.post(
             content_url,
             {
                 'action': 'reject_listing_content',
-                'cinder_policies': [policy.id],
                 'comments': 'Reject does support comments',
+                **extra_data,
             },
         )
 
@@ -4610,6 +4603,30 @@ class TestReview(ReviewBase):
             responses.calls[0].request.url
             == f'{settings.CINDER_SERVER_URL}create_decision'
         )
+
+    @override_switch('enable-content-rejection', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=False)
+    def test_reject_listing_content_review_with_reasons(self):
+        reason = ReviewActionReason.objects.create(
+            name='reason 1', is_active=True, canned_response='reason'
+        )
+        extra_data = {
+            'reasons': [reason.id],
+        }
+        self._do_reject_listing_content_review(extra_data)
+
+    @override_switch('enable-content-rejection', active=True)
+    @override_switch('cinder_policy_review_reasons_enabled', active=True)
+    def test_reject_listing_content_review_with_policies(self):
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+        extra_data = {
+            'cinder_policies': [policy.id],
+        }
+        self._do_reject_listing_content_review(extra_data)
 
     def test_content_review_redirect_if_only_permission(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()

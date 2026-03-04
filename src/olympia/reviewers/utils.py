@@ -671,6 +671,7 @@ class ReviewHelper:
                 and addon_is_valid_and_version_is_listed
                 and is_appropriate_reviewer
             ),
+            'allows_reasons': not is_static_theme and not use_policies,
             'enforcement_actions': (
                 use_policies
                 and (
