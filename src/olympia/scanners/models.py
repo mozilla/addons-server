@@ -363,7 +363,6 @@ class ScannerResult(AbstractScannerResult):
     matched_rules = models.ManyToManyField(
         'ScannerRule', through='ScannerMatch', related_name='results'
     )
-    model_version = models.CharField(max_length=30, null=True)
     has_matches = models.BooleanField(null=True)
 
     class Meta(AbstractScannerResult.Meta):
