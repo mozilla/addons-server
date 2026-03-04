@@ -135,12 +135,21 @@ class ContentAction:
             else absolutify(reverse('devhub.addons.versions', args=[self.target.id]))
         )
 
+        is_public = (
+            not self.target.deleted
+            if hasattr(self.target, 'deleted')
+            else not self.target.banned
+            if hasattr(self.target, 'banned')
+            else getattr(self.target, 'status', None) == amo.STATUS_APPROVED
+        )
+
         context_dict = {
-            'is_listing_disabled': getattr(self.target, 'status', None)
+            'is_listing_rejected': getattr(self.target, 'status', None)
             == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
             # It's a plain-text email so we're safe to include comments without escaping
             # them - we don't want ', etc, rendered as html entities.
+            'is_public': is_public,
             'manual_reasoning_text': mark_safe(self.decision.reasoning or ''),
             # It's a plain-text email so we're safe to include the name without escaping
             'name': mark_safe(target_name),

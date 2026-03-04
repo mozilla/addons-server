@@ -2,7 +2,11 @@ Hello,
 
 Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
 
+{% if is_public %}
 We have now determined that your content is within policy, and based on that determination, we have restored your {{ type }}. It is now available at {{ target_url }}.
+{% else %}
+We have now determined that your content is within policy, and based on that determination, we have re-enabled your {{ type }}.  See {{ target_url }} for more information on its availability.
+{% endif %}
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
 
 {% if has_attachment %}

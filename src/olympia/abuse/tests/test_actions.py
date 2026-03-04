@@ -255,16 +255,16 @@ class BaseTestContentAction:
         else:
             assert 'If you submit a new version' not in mail_item.body
 
-    def _test_owner_restore_email(self, subject):
+    def _test_owner_restore_email(self, subject, *, fragment='we have restored'):
         mail_item = mail.outbox[0]
         assert len(mail.outbox) == 1
-        self._check_owner_email(mail_item, subject, 'we have restored')
+        self._check_owner_email(mail_item, subject, fragment)
         assert 'right to appeal' not in mail_item.body
         assert '&#x27;' not in mail_item.body
         assert self.decision.reasoning in mail_item.body
         assert self.decision.private_notes not in mail_item.body
 
-    def _test_approve_appeal_or_override(ContentActionClass):
+    def _test_approve_appeal_or_override(self, ContentActionClass):
         # Common things that we expect to happen after a successful appeal or
         # override of a negative action.
         raise NotImplementedError
@@ -288,33 +288,6 @@ class BaseTestContentAction:
             ActionClass=ContentActionApproveListingContent,
             action=DECISION_ACTIONS.AMO_APPROVE,
         )
-
-    def test_reporter_content_approve_report(self):
-        subject = self._test_reporter_content_approved_action_taken()
-        assert len(mail.outbox) == 2
-        self._test_reporter_content_approve_email(subject)
-
-    def test_reporter_appeal_approve(self):
-        original_job = CinderJob.objects.create(
-            job_id='original',
-            decision=ContentDecision.objects.create(
-                addon=self.decision.addon,
-                user=self.decision.user,
-                rating=self.decision.rating,
-                collection=self.decision.collection,
-                action=DECISION_ACTIONS.AMO_APPROVE,
-            ),
-        )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
-        self.abuse_report_no_auth.update(cinder_job=original_job)
-        self.abuse_report_auth.update(cinder_job=original_job)
-        CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
-        )
-        self.cinder_job.reload()
-        subject = self._test_reporter_content_approved_action_taken()
-        assert len(mail.outbox) == 1  # only abuse_report_auth reporter
-        self._test_reporter_appeal_approve_email(subject)
 
     def test_owner_content_approve_report_email(self):
         # This isn't called by cinder actions, but is triggered by reviewer actions
@@ -753,102 +726,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         action.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
-    def _test_reporter_no_action_taken(self, *, ActionClass, action):
-        self.decision.update(action=action)
-        action = ActionClass(self.decision)
-        assert action.process_action() is None
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert ActivityLog.objects.count() == 0
-        assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
-        return f'Mozilla Add-ons: {self.addon.name}'
-
-    def _test_reporter_content_approved_action_taken(self):
-        # override because Addon's get content reviewed if marked as Approve
-        action = DECISION_ACTIONS.AMO_APPROVE
-        self.decision.update(action=action)
-        assert self.decision.target_versions.exists()
-        action = ContentActionApproveListingContent(self.decision)
-        activity = action.process_action()
-        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
-        # no versions in the args though
-        assert activity.arguments == [self.addon, self.decision, self.policy]
-        assert activity.user == self.task_user
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert ActivityLog.objects.count() == 2
-        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
-        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
-        assert second_activity.arguments == [self.addon, self.decision]
-        assert second_activity.user == self.task_user
-        assert second_activity.details == {'comments': self.decision.private_notes}
-
-        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert (
-            counter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
-        )
-        self.assertCloseToNow(counter.last_content_review)
-
-        # get this again, to replicate how send_notifications works
-        action = ContentActionApproveListingContent(self.decision)
-        assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
-        return f'Mozilla Add-ons: {self.addon.name}'
-
-    def test_content_approve_rejected_listing_content(self):
-        AddonApprovalsCounter.objects.create(
-            addon=self.addon,
-            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
-        )
-        self.addon.update(status=amo.STATUS_REJECTED)
-        action = DECISION_ACTIONS.AMO_APPROVE
-        self.decision.update(action=action)
-        assert self.decision.target_versions.exists()
-        action = ContentActionApproveListingContent(self.decision)
-        activity = action.process_action()
-        # no versions in the args though
-        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
-        assert activity.arguments == [self.addon, self.decision, self.policy]
-        assert activity.user == self.task_user
-
-        assert (
-            self.decision.reload().metadata.get('previous_status')
-            == amo.STATUS_REJECTED
-        )
-
-        assert self.addon.reload().status == amo.STATUS_APPROVED
-        assert ActivityLog.objects.count() == 3
-        second_activity, third_activity = ActivityLog.objects.exclude(
-            pk=activity.pk
-        ).filter()
-        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
-        assert second_activity.arguments == [self.addon, self.decision]
-        assert second_activity.user == self.task_user
-        assert second_activity.details == {'comments': self.decision.private_notes}
-        assert third_activity.log == amo.LOG.CHANGE_STATUS
-
-        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
-        assert (
-            counter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
-        )
-        self.assertCloseToNow(counter.last_content_review)
-
-        # get this again, to replicate how send_notifications works
-        action = ContentActionApproveListingContent(self.decision)
-        assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
-        subject = f'Mozilla Add-ons: {self.addon.name}'
-
-        assert len(mail.outbox) == 3
-        self._test_reporter_content_approve_email(subject)
-        assert 'within policy, and based on that determination' in mail.outbox[-1].body
-
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
@@ -1168,7 +1045,9 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+        self._test_owner_restore_email(
+            f'Mozilla Add-ons: {self.addon.name}', fragment='remains unavailable'
+        )
 
     def test_approve_appeal_success_but_listing_rejected(self):
         AddonApprovalsCounter.objects.create(
@@ -1193,6 +1072,56 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         )
         assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
         assert self.addon.reload().status == amo.STATUS_REJECTED
+
+    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_DISABLED)
+
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        assert self.addon.reload().status == amo.STATUS_NOMINATED
+        assert activity.log == amo.LOG.UNREJECT_VERSION
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 3
+        second_activity = (
+            ActivityLog.objects.exclude(pk=activity.pk)
+            .exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .get()
+        )
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(
+            f'Mozilla Add-ons: {self.addon.name}',
+            fragment='information on its availability',
+        )
+
+    def test_approve_appeal_success_but_not_approved(self):
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
+        self._test_approve_appeal_or_override_but_not_approved(
+            ContentActionTargetAppealApprove
+        )
+
+    def test_approve_override_success_but_not_approved(self):
+        self.decision.update(override_of=self.past_negative_decision)
+        self._test_approve_appeal_or_override_but_not_approved(
+            ContentActionOverrideApprove
+        )
+
+    def test_owner_content_approve_report_email(self):
+        pass  # Covered by TestContentApproveContentListing
+
+    def test_reporter_ignore_invalid_report(self):
+        pass  # Covered by TestContentApproveContentListing
 
 
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
@@ -1276,7 +1205,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert 'Affected versions: 2.3, 3.45' in mail_item.body
         return subject
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(
+        self, ContentActionClass, *, fragment='we have restored'
+    ):
         self.old_version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
         )
@@ -1309,7 +1240,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         self.cinder_job.notify_reporters(action)
         action.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+        self._test_owner_restore_email(
+            f'Mozilla Add-ons: {self.addon.name}', fragment=fragment
+        )
 
     def test_approve_appeal_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -1318,7 +1251,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
-        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
+        self._test_approve_appeal_or_override(
+            ContentActionTargetAppealApprove, fragment='we have re-enabled'
+        )
         assert self.addon.reload().status == amo.STATUS_REJECTED
         assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
 
@@ -1329,7 +1264,9 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.decision.update(override_of=self.past_negative_decision)
-        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
+        self._test_approve_appeal_or_override(
+            ContentActionOverrideApprove, fragment='we have re-enabled'
+        )
         assert self.addon.reload().status == amo.STATUS_REJECTED
         assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
 
@@ -1930,6 +1867,46 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             in mail.outbox[0].body
         )
 
+    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_AWAITING_REVIEW
+        )
+        self.another_version.update(channel=amo.CHANNEL_UNLISTED)
+        self.addon.update(status=amo.STATUS_NULL)
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        assert self.addon.reload().status == amo.STATUS_NOMINATED
+        assert activity.log == amo.LOG.UNREJECT_VERSION
+        assert activity.arguments == [
+            self.addon,
+            self.decision,
+            self.policy,
+            self.version,
+            self.old_version,
+        ]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 3
+        second_activity = (
+            ActivityLog.objects.exclude(pk=activity.pk)
+            .exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .get()
+        )
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(
+            f'Mozilla Add-ons: {self.addon.name}',
+            fragment='information on its availability',
+        )
+
 
 class TestContentActionBlockAddon(TestContentActionDisableAddon):
     ActionClass = ContentActionBlockAddon
@@ -2034,6 +2011,232 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         ).details['policy_texts'] == [
             'Parent Policy, specifically Bad policy: This is a Térrible thing'
         ]
+
+
+class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionApproveListingContent
+    takedown_decision_action = DECISION_ACTIONS.AMO_APPROVE
+    activity_log_action = amo.LOG.APPROVE_LISTING_CONTENT
+
+    def setUp(self):
+        super().setUp()
+        self.author = user_factory()
+        self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
+        self.old_version = self.addon.current_version
+        self.version = version_factory(addon=self.addon)
+        self.another_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        self.addon.reload()
+        ActivityLog.objects.all().delete()
+        self.cinder_job.abusereport_set.update(guid=self.addon.guid)
+        self.decision.update(addon=self.addon)
+        self.decision.target_versions.set((self.version, self.old_version))
+        self.past_negative_decision.update(
+            addon=self.addon, action=self.takedown_decision_action
+        )
+        self.past_negative_decision.target_versions.set(
+            (self.version, self.old_version)
+        )
+
+    def _test_reporter_no_action_taken(self, *, ActionClass, action):
+        self.decision.update(action=action)
+        action = ActionClass(self.decision)
+        assert action.process_action() is None
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        return f'Mozilla Add-ons: {self.addon.name}'
+
+    def _test_reporter_content_approved_action_taken(self):
+        # override because Addon's get content reviewed if marked as Approve
+        action = DECISION_ACTIONS.AMO_APPROVE
+        self.decision.update(action=action)
+        assert self.decision.target_versions.exists()
+        action = self.ActionClass(self.decision)
+        activity = action.process_action()
+        assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
+        # no versions in the args though
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 2
+        second_activity = ActivityLog.objects.exclude(pk=activity.pk).get()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+        self.assertCloseToNow(counter.last_content_review)
+
+        # get this again, to replicate how send_notifications works
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        return f'Mozilla Add-ons: {self.addon.name}'
+
+    def test_reporter_content_approve_report(self):
+        subject = self._test_reporter_content_approved_action_taken()
+        assert len(mail.outbox) == 2
+        self._test_reporter_content_approve_email(subject)
+
+    def test_reporter_appeal_approve(self):
+        original_job = CinderJob.objects.create(
+            job_id='original',
+            decision=ContentDecision.objects.create(
+                addon=self.decision.addon,
+                user=self.decision.user,
+                rating=self.decision.rating,
+                collection=self.decision.collection,
+                action=DECISION_ACTIONS.AMO_APPROVE,
+            ),
+        )
+        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.abuse_report_no_auth.update(cinder_job=original_job)
+        self.abuse_report_auth.update(cinder_job=original_job)
+        CinderAppeal.objects.create(
+            decision=original_job.decision, reporter_report=self.abuse_report_auth
+        )
+        self.cinder_job.reload()
+        subject = self._test_reporter_content_approved_action_taken()
+        assert len(mail.outbox) == 1  # only abuse_report_auth reporter
+        self._test_reporter_appeal_approve_email(subject)
+
+    def test_content_approve_rejected_listing_content(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        action = DECISION_ACTIONS.AMO_APPROVE
+        self.decision.update(action=action)
+        assert self.decision.target_versions.exists()
+        action = self.ActionClass(self.decision)
+        activity = action.process_action()
+        # no versions in the args though
+        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+
+        assert (
+            self.decision.reload().metadata.get('previous_status')
+            == amo.STATUS_REJECTED
+        )
+
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 3
+        second_activity, third_activity = ActivityLog.objects.exclude(
+            pk=activity.pk
+        ).filter()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert third_activity.log == amo.LOG.CHANGE_STATUS
+
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+        self.assertCloseToNow(counter.last_content_review)
+
+        # get this again, to replicate how send_notifications works
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+
+        assert len(mail.outbox) == 3
+        self._test_reporter_content_approve_email(subject)
+        assert 'within policy, and based on that determination' in mail.outbox[-1].body
+        assert 'It is now available' in mail.outbox[-1].body
+        assert 'information on its availability.' not in mail.outbox[-1].body
+
+    def test_content_approve_rejected_listing_content_but_awaiting_approval(self):
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+        )
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_REJECTED)
+        action = DECISION_ACTIONS.AMO_APPROVE
+        self.decision.update(action=action)
+        assert self.decision.target_versions.exists()
+        action = self.ActionClass(self.decision)
+        activity = action.process_action()
+        # no versions in the args though
+        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+
+        assert (
+            self.decision.reload().metadata.get('previous_status')
+            == amo.STATUS_REJECTED
+        )
+
+        assert self.addon.reload().status == amo.STATUS_NOMINATED
+        assert ActivityLog.objects.count() == 4
+        second_activity, third_activity, fourth_activity = ActivityLog.objects.exclude(
+            pk=activity.pk
+        ).filter()
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        # The status ends up being set twice
+        assert third_activity.log == fourth_activity.log == amo.LOG.CHANGE_STATUS
+
+        counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert (
+            counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )
+        self.assertCloseToNow(counter.last_content_review)
+
+        # get this again, to replicate how send_notifications works
+        action = self.ActionClass(self.decision)
+        assert len(mail.outbox) == 0
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+
+        assert len(mail.outbox) == 3
+        self._test_reporter_content_approve_email(subject)
+        assert 'within policy, and based on that determination' in mail.outbox[-1].body
+        assert 'It is now available' not in mail.outbox[-1].body
+        assert 'information on its availability.' in mail.outbox[-1].body
+
+    def test_approve_appeal_success(self):
+        # This test doesn't apply for this ActionClass as it's for appeals following
+        # that action that result in Approve.
+        pass
+
+    def test_approve_override_success(self):
+        # This test doesn't apply for this ActionClass as it's for overrides following
+        # that action that result in Approve.
+        pass
+
+    def test_notify_reporters_reporters_provided(self):
+        # This test doesn't apply for this ActionClass because it's emailing about
+        # content removal.
+        pass
+
+    def test_email_content_not_escaped(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        super().test_email_content_not_escaped()
 
 
 class TestContentActionRejectListingContent(TestContentActionDisableAddon):
@@ -2155,6 +2358,38 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     def test_approve_override_success_but_listing_rejected(self):
         pass
         # This test doesn't apply for this ActionClass.
+
+    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.addon.update(status=amo.STATUS_REJECTED)
+
+        ActivityLog.objects.all().delete()
+        action = ContentActionClass(self.decision)
+        activity = action.process_action()
+
+        assert self.addon.reload().status == amo.STATUS_NOMINATED
+        assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
+        assert activity.arguments == [self.addon, self.decision, self.policy]
+        assert activity.user == self.task_user
+        assert ActivityLog.objects.count() == 3
+        second_activity = (
+            ActivityLog.objects.exclude(pk=activity.pk)
+            .exclude(action=amo.LOG.CHANGE_STATUS.id)
+            .get()
+        )
+        assert second_activity.log == amo.LOG.REVIEWER_PRIVATE_COMMENT
+        assert second_activity.arguments == [self.addon, self.decision]
+        assert second_activity.user == self.task_user
+        assert second_activity.details == {'comments': self.decision.private_notes}
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_restore_email(
+            f'Mozilla Add-ons: {self.addon.name}',
+            fragment='information on its availability',
+        )
 
     def test_already_taken_down(self):
         self.addon.update(status=amo.STATUS_REJECTED)
