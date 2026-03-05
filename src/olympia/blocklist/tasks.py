@@ -1,3 +1,4 @@
+import itertools
 import json
 import os
 import re
@@ -13,11 +14,15 @@ from django.utils.encoding import force_str
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia import amo
+from olympia import amo, core
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
-from olympia.constants.blocklist import REMOTE_SETTINGS_COLLECTION_MLBF, BlockListAction
+from olympia.constants.blocklist import (
+    REASON_USER_BANNED,
+    REMOTE_SETTINGS_COLLECTION_MLBF,
+    BlockListAction,
+)
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
 
@@ -241,3 +246,137 @@ def cleanup_old_files(*, base_filter_id):
         else:
             log.info('Deleting %s because > 6 months old (%s)', dir, dir_as_date)
             storage.rm_stored_dir(os.path.join(settings.MLBF_STORAGE_PATH, dir))
+
+
+@task
+@use_primary_db
+def block_addons_on_user_ban(addonusers_ids):
+    """Automatically create BlocklistSubmission for add-ons corresponding to
+    AddonUser ids passed, and record them as BlockedAddonsSubmissionsModel on
+    the corresponding user.
+
+    Blocks created from this task should not disable the relevant add-ons,
+    that should be done separately. This ensures those blocks are silent,
+    as this is meant to be used on ban which will already notify the affected
+    user(s)."""
+    from olympia.addons.models import AddonUser
+    from olympia.users.models import BannedUserContent
+
+    sole_addonusers_qs = (
+        AddonUser.objects.filter(pk__in=addonusers_ids)
+        .values('user', 'addon__guid')
+        .order_by('user')
+    )
+    BlockedAddonsSubmissionsModel = BannedUserContent.blocked_addons_submissions.through
+    banned_blocklist_submissions = []
+    for user_id, values in itertools.groupby(
+        sole_addonusers_qs,
+        key=lambda values: values['user'],
+    ):
+        # For each user, create up to 2 submissions: one for versions
+        # that weren't already soft-blocked, one for versions that were
+        # and need to be upgraded to a hard-block. We can ignore
+        # add-ons that were entirely blocked before.
+        new_blocks_versions = []
+        new_blocks_guids = set()
+        existing_blocks_versions = []
+        existing_blocks_guids = set()
+        processed = BlocklistSubmission.process_input_guids(
+            '\r\n'.join([value['addon__guid'] for value in values]),
+            filter_existing=False,
+            load_full_objects=False,
+        )
+        for block in processed['blocks']:
+            for version in block.addon_versions:
+                if version.is_blocked:
+                    if version.is_soft_blocked:
+                        existing_blocks_versions.append(version.id)
+                        existing_blocks_guids.add(block.guid)
+                    # Nothing to do if the version was hard-blocked.
+                else:
+                    new_blocks_versions.append(version.id)
+                    new_blocks_guids.add(block.guid)
+        if new_blocks_versions and new_blocks_guids:
+            banned_blocklist_submissions.append(
+                BlockedAddonsSubmissionsModel(
+                    bannedusercontent_id=user_id,
+                    blocklistsubmission=BlocklistSubmission(
+                        action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+                        reason=REASON_USER_BANNED,
+                        updated_by=core.get_user(),
+                        input_guids='\r\n'.join(new_blocks_guids),
+                        changed_version_ids=new_blocks_versions,
+                        # Add-ons will already be disabled above.
+                        disable_addon=False,
+                    ),
+                )
+            )
+        if existing_blocks_versions and existing_blocks_guids:
+            banned_blocklist_submissions.append(
+                BlockedAddonsSubmissionsModel(
+                    bannedusercontent_id=user_id,
+                    blocklistsubmission=BlocklistSubmission(
+                        action=BlocklistSubmission.ACTIONS.HARDEN,
+                        reason=REASON_USER_BANNED,
+                        updated_by=core.get_user(),
+                        input_guids='\r\n'.join(existing_blocks_guids),
+                        changed_version_ids=existing_blocks_versions,
+                        # Add-ons will already be disabled above.
+                        disable_addon=False,
+                    ),
+                )
+            )
+    for banned_blocklist_submission in banned_blocklist_submissions:
+        submission = banned_blocklist_submission.blocklistsubmission
+        submission.save()
+        submission.update_signoff_for_auto_approval(
+            # We ignore conflicts caused by other submissions in this ban, we
+            # want them to be recorded separately for each user so that it can
+            # be undone individually if only one of them gets unbanned.
+            ignoring=[bb.blocklistsubmission for bb in banned_blocklist_submissions]
+        )
+        if submission.is_submission_ready:
+            process_blocklistsubmission.delay(submission.id)
+
+    # Keep track of the blocklist submissions we created to undo them
+    # on unban if they have been published.
+    BlockedAddonsSubmissionsModel.objects.bulk_create(banned_blocklist_submissions)
+
+
+@task
+@use_primary_db
+def revert_published_blocklist_submissions(submission_ids):
+    """Automatically create "opposite" BlocklistSubmissions to the ones passed
+    in argument that have been published, effectively reverting them.
+
+    For safety this doesn't allow reverting a DELETE action."""
+    submissions = BlocklistSubmission.objects.filter(
+        pk__in=submission_ids,
+        signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+    )
+    new_submissions = []
+    for submission in submissions:
+        if submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE:
+            submission.action = BlocklistSubmission.ACTIONS.DELETE
+        elif submission.action == BlocklistSubmission.ACTIONS.HARDEN:
+            submission.action = BlocklistSubmission.ACTIONS.SOFTEN
+        elif submission.action == BlocklistSubmission.ACTIONS.SOFTEN:
+            submission.action = BlocklistSubmission.ACTIONS.HARDEN
+        else:
+            log.error(
+                'Unexpected BlocklistSubmission passed to '
+                'revert_published_blocklist_submissions %s',
+                submission.pk,
+            )
+            continue
+        submission.pk = None
+        submission.updated_by = core.get_user()
+        submission.reason = f'Revert "{submission.reason}"'
+        submission.signoff_state = BlocklistSubmission.SIGNOFF_STATES.PENDING
+        submission.save()
+        new_submissions.append(submission)
+
+    for submission in new_submissions:
+        submission.update_signoff_for_auto_approval(ignoring=new_submissions)
+        if submission.is_submission_ready:
+            process_blocklistsubmission.delay(submission.id)

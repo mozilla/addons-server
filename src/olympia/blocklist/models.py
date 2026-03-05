@@ -346,11 +346,34 @@ class BlocklistSubmission(ModelBase):
     def has_version_changes(self):
         return bool(self.changed_version_ids)
 
-    def update_signoff_for_auto_approval(self):
+    def has_potential_conflicts(self, *, ignoring=None):
+        """Check whether or not this blocklistsubmission contains versions that
+        are part of another non-published blocklistsubmission.
+
+        An optional list of blocklistsubmissions to ignore when performing
+        the check can be passed."""
+        if ignoring is None:
+            ignoring = [self]
+        if self.pk not in ignoring:
+            ignoring = ignoring + [self]
+        submissions = self.get_all_submission_versions(ignoring=ignoring)
+        return set(self.changed_version_ids) & set(submissions)
+
+    def update_signoff_for_auto_approval(self, *, ignoring=None):
+        """Update signoff state to auto-approved if possible.
+
+        An optional list of blocklistsubmissions to ignore when performing
+        the check for conflicts can be passed.
+        """
         is_pending = self.signoff_state == self.SIGNOFF_STATES.PENDING
         add_action = self.action == self.ACTIONS.ADDCHANGE
         if is_pending and (
-            self.all_adu_safe() or add_action and not self.has_version_changes()
+            (
+                self.all_adu_safe()
+                and not self.has_potential_conflicts(ignoring=ignoring)
+            )
+            or add_action
+            and not self.has_version_changes()
         ):
             self.update(signoff_state=self.SIGNOFF_STATES.AUTOAPPROVED)
 
@@ -548,10 +571,16 @@ class BlocklistSubmission(ModelBase):
         ).filter(changed_version_ids__contains=version_id)
 
     @classmethod
-    def get_all_submission_versions(cls):
-        submission_qs = cls.objects.exclude(
-            signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
-        ).values_list('id', 'changed_version_ids')
+    def get_all_submission_versions(cls, *, ignoring=None):
+        if ignoring is None:
+            ignoring = []
+        submission_qs = (
+            cls.objects.exclude(
+                signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
+            )
+            .exclude(id__in=[ignored.id for ignored in ignoring])
+            .values_list('id', 'changed_version_ids')
+        )
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list
         }

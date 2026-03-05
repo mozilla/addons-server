@@ -50,7 +50,6 @@ from olympia.amo.utils import (
     id_to_path,
 )
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
-from olympia.constants.blocklist import REASON_USER_BANNED
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
@@ -154,8 +153,7 @@ class UserQuerySet(BaseQuerySet):
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
         from olympia.bandwagon.models import Collection
-        from olympia.blocklist.models import BlocklistSubmission
-        from olympia.blocklist.tasks import process_blocklistsubmission
+        from olympia.blocklist.tasks import block_addons_on_user_ban
         from olympia.ratings.models import Rating
         from olympia.users.tasks import delete_photo
 
@@ -241,25 +239,9 @@ class UserQuerySet(BaseQuerySet):
         # Hard-block all versions of addons we force disabled, if the relevant
         # boolean is True.
         if hard_block_addons:
-            submission = BlocklistSubmission(
-                action=BlocklistSubmission.ACTIONS.ADDCHANGE,
-                input_guids='\r\n'.join([addon.guid for addon in addons_sole]),
-                reason=REASON_USER_BANNED,
-                updated_by=core.get_user(),
-                disable_addon=False,  # Add-ons will already be disabled above.
+            block_addons_on_user_ban.delay(
+                list(sole_addonusers_qs.values_list('pk', flat=True))
             )
-            submission.changed_version_ids = [
-                version.id
-                for block in submission.process_input_guids(
-                    submission.input_guids, load_full_objects=False
-                )['blocks']
-                for version in block.addon_versions
-                if not version.is_blocked
-            ]
-            submission.save()
-            submission.update_signoff_for_auto_approval()
-            if submission.is_submission_ready:
-                process_blocklistsubmission.delay(submission.id)
 
         # Soft-delete the other content associated with the user: Ratings and
         # Collections.
@@ -313,7 +295,18 @@ class UserQuerySet(BaseQuerySet):
     def unban_and_reenable_related_content(self, *, skip_activity_log=False):
         """Admin method to unban users and restore their content that was
         disabled when they were banned."""
-        for user in self:
+        from olympia.blocklist.models import BlocklistSubmission
+        from olympia.blocklist.tasks import revert_published_blocklist_submissions
+
+        users = self.all()
+        # Grab blocklist submissions we need to revert before deleting the
+        # BannedUserContent instances and the relationships...
+        blocklist_submissions_pks = list(
+            BlocklistSubmission.objects.filter(
+                bannedusercontent__user__in=users
+            ).values_list('pk', flat=True)
+        )
+        for user in users:
             banned_user_content = BannedUserContent.objects.filter(user=user).first()
             if banned_user_content:
                 banned_user_content.restore()
@@ -325,6 +318,7 @@ class UserQuerySet(BaseQuerySet):
             EmailUserRestriction.objects.filter(
                 email_pattern=EmailUserRestriction.normalize_email(user.email)
             ).delete()
+        revert_published_blocklist_submissions.delay(blocklist_submissions_pks)
 
 
 class UserManager(BaseUserManager, ManagerBase):
@@ -1488,11 +1482,10 @@ user_logged_in.connect(UserProfile.user_logged_in)
 
 
 class BannedUserContent(ModelBase):
-    """Link between a user and the content that was disabled when they were
-    banned.
+    """Link between a user and the content we altered when they were banned.
 
     That link should be removed if the user is unbanned, and the content
-    re-enabled.
+    restored as it was before.
     """
 
     user = models.OneToOneField(
@@ -1503,6 +1496,7 @@ class BannedUserContent(ModelBase):
     )
     collections = models.ManyToManyField('bandwagon.Collection')
     addons = models.ManyToManyField('addons.Addon')
+    blocked_addons_submissions = models.ManyToManyField('blocklist.BlocklistSubmission')
     addons_users = models.ManyToManyField('addons.AddonUser')
     ratings = models.ManyToManyField('ratings.Rating')
     picture_backup_name = models.CharField(
@@ -1535,6 +1529,7 @@ class BannedUserContent(ModelBase):
             # If something wrong happens here, we won't restore the picture
             # but we want to be able to continue.
             log.exception(e)
+
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships
 
