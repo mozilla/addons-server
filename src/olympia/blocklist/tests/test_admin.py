@@ -1382,7 +1382,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         block_factory(
             addon=partial_addon,
             updated_by=user_factory(),
-            version_ids=[],
+            version_ids=[version_factory(addon=partial_addon).pk],
         )
         block_factory(
             addon=addon_factory(guid='regex@legacy'),
