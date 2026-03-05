@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.contrib import admin as admin_site
 from django.core.exceptions import ValidationError
 from django.test import RequestFactory
@@ -111,6 +113,10 @@ class TestBlocklistSubmissionForm(TestCase):
                 'not one of the available choices.'
             ]
         }
+
+    @mock.patch('olympia.blocklist.forms.GUID_FULL_LOAD_LIMIT', 1)
+    def test_changed_version_ids_choices_add_action_fake_blocks(self):
+        self.test_changed_version_ids_choices_add_action()
 
     def test_changed_version_ids_choices_delete_action(self):
         Form = self.get_form()

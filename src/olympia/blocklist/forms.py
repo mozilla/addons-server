@@ -200,14 +200,8 @@ class BlocklistSubmissionForm(AMOModelForm):
         conditions = {
             BlocklistSubmission.ACTIONS.ADDCHANGE: not version.is_blocked,
             BlocklistSubmission.ACTIONS.DELETE: version.is_blocked,
-            BlocklistSubmission.ACTIONS.HARDEN: (
-                version.is_blocked
-                and version.blockversion.block_type == BlockType.SOFT_BLOCKED
-            ),
-            BlocklistSubmission.ACTIONS.SOFTEN: (
-                version.is_blocked
-                and version.blockversion.block_type == BlockType.BLOCKED
-            ),
+            BlocklistSubmission.ACTIONS.HARDEN: version.is_soft_blocked,
+            BlocklistSubmission.ACTIONS.SOFTEN: version.is_hard_blocked,
         }
         return conditions.get(self.action)
 

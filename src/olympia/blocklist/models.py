@@ -18,6 +18,7 @@ from olympia.amo.fields import PositiveTinyIntegerField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
+from olympia.constants.blocklist import BlockType
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -177,11 +178,6 @@ class Block(ModelBase):
         return blocks
 
 
-class BlockType(EnumChoices):
-    BLOCKED = 0, '🛑 Hard-Blocked'
-    SOFT_BLOCKED = 1, '⚠️ Soft-Blocked'
-
-
 class BlockVersion(ModelBase):
     version = models.OneToOneField(Version, on_delete=models.CASCADE)
     block = models.ForeignKey(Block, on_delete=models.CASCADE)
@@ -251,6 +247,8 @@ class BlocklistSubmission(ModelBase):
             'id',
             'version',
             'is_blocked',
+            'is_hard_blocked',
+            'is_soft_blocked',
             'blocklist_submission_id',
         ),
     )
@@ -411,6 +409,7 @@ class BlocklistSubmission(ModelBase):
                 'id',
                 'version',
                 'blockversion__block_id',
+                'blockversion__block_type',
                 'addon__addonguid__guid',
                 named=True,
             )
@@ -424,6 +423,8 @@ class BlocklistSubmission(ModelBase):
                     version.id,
                     version.version,
                     version.blockversion__block_id is not None,
+                    version.blockversion__block_type == BlockType.BLOCKED,
+                    version.blockversion__block_type == BlockType.SOFT_BLOCKED,
                     all_submission_versions.get(version.id, 0),
                 )
             )

@@ -1,5 +1,6 @@
-# How many guids should there be in the stashes before we make a new base.
 from enum import Enum
+
+from olympia.amo.enum import EnumChoices
 
 
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
@@ -20,3 +21,8 @@ class BlockListAction(Enum):
     UPLOAD_STASH = 'upload_stash'
     # Clear the Stash (clear all stashes)
     CLEAR_STASH = 'clear_stash'
+
+
+class BlockType(EnumChoices):
+    BLOCKED = 0, '🛑 Hard-Blocked'
+    SOFT_BLOCKED = 1, '⚠️ Soft-Blocked'
