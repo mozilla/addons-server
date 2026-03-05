@@ -1378,12 +1378,19 @@ class TestBlocklistSubmissionAdmin(TestCase):
             addon=addon_factory(guid='full@existing', name='Full Danger'),
             updated_by=user_factory(),
         )
+        empty_block_addon = addon_factory(guid='empty@existing', name='Empty Danger')
+        block_factory(
+            addon=empty_block_addon,
+            updated_by=user_factory(),
+            version_ids=[],
+        )
         partial_addon = addon_factory(guid='partial@existing', name='Partial Danger')
         block_factory(
             addon=partial_addon,
             updated_by=user_factory(),
-            version_ids=[],
+            version_ids=[partial_addon.current_version.id],
         )
+        partial_addon_new_version = version_factory(addon=partial_addon)
         block_factory(
             addon=addon_factory(guid='regex@legacy'),
             updated_by=user_factory(),
@@ -1391,11 +1398,12 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.post(
             self.submission_url,
             {
-                'guids': 'any@new\npartial@existing\nfull@existing\ninvalid@\n'
-                'regex@legacy',
+                'guids': 'any@new\npartial@existing\nempty@existing\n'
+                'full@existing\ninvalid@\nregex@legacy',
                 'changed_version_ids': [
                     new_addon.current_version.id,
-                    partial_addon.current_version.id,
+                    empty_block_addon.current_version.id,
+                    partial_addon_new_version.id,
                 ],
             },
             follow=True,
@@ -1404,6 +1412,8 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # This metadata should exist
         assert new_addon.guid in content
         assert f'{new_addon.average_daily_users} users' in content
+        assert empty_block_addon.guid in content
+        assert f'{empty_block_addon.average_daily_users} users' in content
         assert partial_addon.guid in content
         assert f'{partial_addon.average_daily_users} users' in content
         assert 'full@existing' in content
@@ -1413,6 +1423,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # But Addon names or review links shouldn't have been loaded
         assert 'New Danger' not in content
         assert 'Partial Danger' not in content
+        assert 'Empty Danger' not in content
         assert 'Full Danger' not in content
         assert 'Review Listed' not in content
         assert 'Review Unlisted' not in content

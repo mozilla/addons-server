@@ -43,6 +43,7 @@ from olympia.amo.utils import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
+from olympia.constants.blocklist import BlockType
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -1087,6 +1088,16 @@ class Version(OnChangeMixin, ModelBase):
     @property
     def is_blocked(self):
         return hasattr(self, 'blockversion')
+
+    @property
+    def is_hard_blocked(self):
+        return self.is_blocked and self.blockversion.block_type == BlockType.BLOCKED
+
+    @property
+    def is_soft_blocked(self):
+        return (
+            self.is_blocked and self.blockversion.block_type == BlockType.SOFT_BLOCKED
+        )
 
     @cached_property
     def blocklist_submission_id(self):

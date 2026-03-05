@@ -1538,6 +1538,42 @@ class TestVersion(AMOPaths, TestCase):
         version.refresh_from_db()
         assert version.is_blocked is False
 
+    def test_is_hard_blocked(self):
+        version = Addon.objects.get(id=3615).current_version
+        assert version.is_hard_blocked is False
+
+        block = Block.objects.create(addon=version.addon, updated_by=user_factory())
+        assert version.reload().is_hard_blocked is False
+
+        blockversion = BlockVersion.objects.create(
+            block=block, version=version, block_type=BlockType.SOFT_BLOCKED
+        )
+        assert version.reload().is_hard_blocked is False
+
+        blockversion.update(block_type=BlockType.BLOCKED)
+        assert version.reload().is_hard_blocked is True
+
+        blockversion.update(version=version_factory(addon=version.addon))
+        version.refresh_from_db()
+        assert version.is_hard_blocked is False
+
+    def test_is_soft_blocked(self):
+        version = Addon.objects.get(id=3615).current_version
+        assert version.is_soft_blocked is False
+
+        block = Block.objects.create(addon=version.addon, updated_by=user_factory())
+        assert version.reload().is_soft_blocked is False
+
+        blockversion = BlockVersion.objects.create(block=block, version=version)
+        assert version.reload().is_soft_blocked is False
+
+        blockversion.update(block_type=BlockType.SOFT_BLOCKED)
+        assert version.reload().is_soft_blocked is True
+
+        blockversion.update(version=version_factory(addon=version.addon))
+        version.refresh_from_db()
+        assert version.is_soft_blocked is False
+
     def test_pending_rejection_property(self):
         addon = Addon.objects.get(id=3615)
         version = addon.current_version
