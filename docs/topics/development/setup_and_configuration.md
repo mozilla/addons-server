@@ -7,7 +7,11 @@ Follow these steps to get started:
 
 ## Prerequisites
 
-- Ensure Docker and Docker Compose are installed on your system.
+- Dependencies:
+  - Docker (and Docker Compose)
+  - git
+  - make
+  - jq
 - Clone the **addons-server** repository from GitHub:
 
   ```sh
