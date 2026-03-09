@@ -13,7 +13,7 @@ from tempfile import NamedTemporaryFile
 from unittest import mock
 from urllib.parse import parse_qs, urlparse
 
-from django import forms, test
+from django import VERSION as django_version, forms, test
 from django.conf import settings
 from django.contrib import auth
 from django.contrib.auth.models import AnonymousUser
@@ -449,6 +449,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     client_class = TestClient
 
     root_storage = root_storage
+
+    # we can drop this once we don't support django42 any longer
+    is_django42 = django_version[:2] == (4, 2)
 
     def _pre_setup(self):
         super()._pre_setup()

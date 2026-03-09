@@ -758,8 +758,8 @@ class TestVersion(AMOPaths, TestCase):
         addon = Addon.objects.get(pk=3615)
         assert not Version.objects.filter(addon=addon).exists()
         assert not Version.unfiltered.filter(addon=addon).exists()
-        assert not File.objects.filter(version=version).exists()
-        assert not VersionPreview.objects.filter(version=version).exists()
+        assert not File.objects.filter(version_id=version.id).exists()
+        assert not VersionPreview.objects.filter(version_id=version.id).exists()
 
     def test_version_delete_logs(self):
         user = UserProfile.objects.get(pk=55021)

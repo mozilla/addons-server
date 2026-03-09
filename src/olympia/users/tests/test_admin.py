@@ -507,7 +507,7 @@ class TestUserAdmin(TestCase):
         # We want to see absolutely everything, so make our user a superadmin.
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(24):
+        with self.assertNumQueries(24 if self.is_django42 else 22):
             # - 4 savepoint/release
             # - 2 current logged in user & groups
             # - 2 target user & groups
