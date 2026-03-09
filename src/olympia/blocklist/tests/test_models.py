@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from unittest import mock
 
+from django.conf import settings
 from django.test.utils import override_settings
 
 from olympia.amo.tests import (
@@ -225,3 +226,125 @@ class TestBlocklistSubmission(TestCase):
             save_versions_to_blocks_mock.reset_mock()
             submission.save_to_block_objects()
             assert save_versions_to_blocks_mock.call_count == 1
+
+    def test_get_all_submission_versions(self):
+        addon1 = addon_factory(guid='guid1@example')
+        addon2 = addon_factory(guid='guid2@example')
+        addon_factory(guid='guid3@example')
+        duplicate_submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        BlocklistSubmission.objects.create(
+            input_guids='guid1@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.REJECTED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk],
+        )
+        assert BlocklistSubmission.get_all_submission_versions() == {
+            addon1.current_version.pk: submission.pk,
+            addon2.current_version.pk: submission.pk,
+        }
+        assert BlocklistSubmission.get_all_submission_versions(
+            ignoring=[submission]
+        ) == {
+            addon1.current_version.pk: duplicate_submission.pk,
+            addon2.current_version.pk: duplicate_submission.pk,
+        }
+
+    def test_update_signoff_for_auto_approval(self):
+        addon1 = addon_factory(guid='guid1@example', average_daily_users=42)
+        addon2 = addon_factory(guid='guid2@example', average_daily_users=43)
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        submission.update_signoff_for_auto_approval()
+        assert (
+            submission.reload().signoff_state
+            == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+        )
+
+    def test_update_signoff_for_auto_approval_not_pending(self):
+        addon1 = addon_factory(guid='guid1@example', average_daily_users=42)
+        addon2 = addon_factory(guid='guid2@example', average_daily_users=43)
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.REJECTED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        submission.update_signoff_for_auto_approval()
+        assert (
+            submission.reload().signoff_state
+            == BlocklistSubmission.SIGNOFF_STATES.REJECTED
+        )
+
+    def test_update_signoff_for_auto_approval_not_adu_safe(self):
+        addon1 = addon_factory(
+            guid='guid1@example',
+            average_daily_users=settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD + 1,
+        )
+        addon2 = addon_factory(guid='guid2@example', average_daily_users=43)
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        submission.update_signoff_for_auto_approval()
+        assert (
+            submission.reload().signoff_state
+            == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        )
+
+    def test_update_signoff_for_auto_approval_has_conflicts(self):
+        addon1 = addon_factory(guid='guid1@example', average_daily_users=42)
+        addon2 = addon_factory(guid='guid2@example', average_daily_users=43)
+        duplicate_submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        # This duplicate is already finished and shouldn't matter.
+        BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.REJECTED,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+        submission = BlocklistSubmission.objects.create(
+            input_guids='guid1@example\nguid2@example',
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
+        )
+
+        submission.update_signoff_for_auto_approval()
+        assert (
+            submission.reload().signoff_state
+            == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        )
+
+        submission.update_signoff_for_auto_approval(ignoring=[duplicate_submission])
+        assert (
+            submission.reload().signoff_state
+            == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+        )

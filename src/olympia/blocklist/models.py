@@ -580,6 +580,7 @@ class BlocklistSubmission(ModelBase):
             )
             .exclude(id__in=[ignored.id for ignored in ignoring])
             .values_list('id', 'changed_version_ids')
+            .order_by('id')
         )
         return {
             ver_id: sub_id for sub_id, id_list in submission_qs for ver_id in id_list
