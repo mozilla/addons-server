@@ -1053,7 +1053,7 @@ class NeedsHumanReview(ModelBase):
             'Auto-approved but still had an approval delay set in the past',
         )
         VERSION_ROLLBACK = 18, 'Rollback to a previous version that was unreviewed'
-        WAITING_ON_SCANNERS = 19, 'Some scanners are preventing auto-approval'
+        WAITING_ON_SCANNERS = 19, 'Some scanners have not returned results yet'
         UNKNOWN = 0, 'Unknown'
 
     REASONS.add_subset(
