@@ -6436,8 +6436,7 @@ class TestReview(ReviewBase):
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'form',
+            response.context['form'],
             'version_pk',
             'Version mismatch - the latest version has changed!',
         )
@@ -8402,8 +8401,7 @@ class TestHeldDecisionReview(ReviewerTest):
         assert response.status_code == 200
         assert addon.reload().status == amo.STATUS_APPROVED
         self.assertFormError(
-            response,
-            form='form',
+            response.context['form'],
             field=None,
             errors=['Not currently held for 2nd level approval'],
         )

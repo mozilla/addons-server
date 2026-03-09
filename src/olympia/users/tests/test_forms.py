@@ -26,8 +26,8 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         data = {
             'names': '\n\n',
         }
-        r = self.client.post(url, data)
-        self.assertFormError(r, 'form', 'names', 'This field is required.')
+        response = self.client.post(url, data)
+        self.assertFormError(response.context['form'], 'names', 'This field is required.')
 
     def test_add(self):
         self.client.force_login(self.user)
@@ -35,11 +35,11 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         data = {
             'names': 'IE6Fan\nfubar\n\n',
         }
-        r = self.client.post(url, data)
+        response = self.client.post(url, data)
         msg = '1 new values added to the deny list. '
         msg += '1 duplicates were ignored.'
-        self.assertContains(r, msg)
-        self.assertNotContains(r, 'fubar')
+        self.assertContains(response, msg)
+        self.assertNotContains(response, 'fubar')
 
 
 class TestEmailUserRestrictionAdminForm(UserFormBase):

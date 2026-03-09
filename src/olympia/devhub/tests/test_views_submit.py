@@ -1263,20 +1263,20 @@ class DetailsPageMixin:
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this value has at most 50 characters (it has 51).'
-        self.assertFormError(response, 'describe_form', 'name', error)
+        self.assertFormError(response.context['describe_form'], 'name', error)
 
     def test_submit_name_symbols_only(self):
         data = self.get_dict(name='()+([#')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'describe_form', 'name', error)
+        self.assertFormError(response.context['describe_form'], 'name', error)
 
         data = self.get_dict(name='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'describe_form', 'name', error)
+        self.assertFormError(response.context['describe_form'], 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(name='ø')
@@ -1290,8 +1290,7 @@ class DetailsPageMixin:
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'describe_form',
+            response.context['describe_form'],
             'slug',
             f'Enter a valid {STRING_QUOTE_OPEN}slug{STRING_QUOTE_CLOSE} consisting of '
             'letters, numbers, underscores or hyphens.',
@@ -1302,7 +1301,7 @@ class DetailsPageMixin:
         response = self.client.post(self.url, self.get_dict(slug=''))
         assert response.status_code == 200
         self.assertFormError(
-            response, 'describe_form', 'slug', 'This field is required.'
+            response.context['describe_form'], 'slug', 'This field is required.'
         )
 
     def test_submit_summary_required(self):
@@ -1310,7 +1309,7 @@ class DetailsPageMixin:
         response = self.client.post(self.url, self.get_dict(summary=''))
         assert response.status_code == 200
         self.assertFormError(
-            response, 'describe_form', 'summary', 'This field is required.'
+            response.context['describe_form'], 'summary', 'This field is required.'
         )
 
     def test_submit_summary_symbols_only(self):
@@ -1318,13 +1317,13 @@ class DetailsPageMixin:
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'describe_form', 'summary', error)
+        self.assertFormError(response.context['describe_form'], 'summary', error)
 
         data = self.get_dict(summary='±↡∋⌚')
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'describe_form', 'summary', error)
+        self.assertFormError(response.context['describe_form'], 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(summary='ø')
@@ -1337,7 +1336,7 @@ class DetailsPageMixin:
         response = self.client.post(self.url, self.get_dict(summary='a' * 251))
         assert response.status_code == 200
         error = 'Ensure this value has at most 250 characters (it has 251).'
-        self.assertFormError(response, 'describe_form', 'summary', error)
+        self.assertFormError(response.context['describe_form'], 'summary', error)
 
     def test_due_date_set_only_once(self):
         version = self.get_version()
@@ -1390,14 +1389,12 @@ class DetailsPageMixin:
         assert self.get_addon().summary != 'b'
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'describe_form',
+            response.context['describe_form'],
             'name',
             'Ensure this value has at least 2 characters (it has 1).',
         )
         self.assertFormError(
-            response,
-            'describe_form',
+            response.context['describe_form'],
             'summary',
             'Ensure this value has at least 2 characters (it has 1).',
         )
@@ -1411,8 +1408,7 @@ class DetailsPageMixin:
         assert self.get_addon().summary != 'b' * 50
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'describe_form',
+            response.context['describe_form'],
             'name',
             'Ensure name and summary combined are at most 70 characters '
             '(they have 100).',
@@ -1737,8 +1733,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         response = self.client.post(self.url, self.get_dict(**{'license-builtin': 4}))
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'license_form',
+            response.context['license_form'],
             'builtin',
             'Select a valid choice. 4 is not one of the available choices.',
         )
@@ -1917,8 +1912,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         response = self.client.post(self.url, self.get_dict(**{'license-builtin': 4}))
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'license_form',
+            response.context['license_form'],
             'builtin',
             'Select a valid choice. 4 is not one of the available choices.',
         )

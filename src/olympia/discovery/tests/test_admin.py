@@ -945,19 +945,19 @@ class TestShelfAdmin(TestCase):
         }
         response = self.client.post(detail_url, data, follow=False)
         self.assertFormError(
-            response, 'adminform', 'addon_count', 'This field is required.'
+            response.context['adminform'], 'addon_count', 'This field is required.'
         )
         # as an empty string
         data['addon_count'] = ''
         response = self.client.post(detail_url, data, follow=False)
         self.assertFormError(
-            response, 'adminform', 'addon_count', 'This field is required.'
+            response.context['adminform'], 'addon_count', 'This field is required.'
         )
         # without a valid number
         data['addon_count'] = 'aa'
         response = self.client.post(detail_url, data, follow=False)
         self.assertFormError(
-            response, 'adminform', 'addon_count', 'Enter a whole number.'
+            response.context['adminform'], 'addon_count', 'Enter a whole number.'
         )
         # and finally with a valid number
         data['addon_count'] = '1'

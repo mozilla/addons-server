@@ -1158,8 +1158,7 @@ class TestVersion(TestCase):
         }
         response = self.client.post(self.url, data)
         self.assertFormError(
-            response,
-            'rollback_form',
+            response.context['rollback_form'],
             'new_version_string',
             [f'Version {data["new_version_string"]} already exists.'],
         )

@@ -267,8 +267,7 @@ class TestEditLicense(TestOwnership):
         response = self.client.post(self.url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'license_form',
+            response.context['license_form'],
             None,
             'License text is required when choosing Other.',
         )

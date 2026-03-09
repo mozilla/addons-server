@@ -174,27 +174,27 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict(name='', slug='test_addon')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        self.assertFormError(response, 'main_form', 'name', 'This field is required.')
+        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
         assert self.get_addon().name != ''
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        self.assertFormError(response, 'main_form', 'name', 'This field is required.')
+        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
 
     def test_edit_name_symbols_only(self):
         data = self.get_dict(name='()+([#')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'main_form', 'name', error)
+        self.assertFormError(response.context['main_form'], 'name', error)
 
         data = self.get_dict(name='±↡∋⌚')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'main_form', 'name', error)
+        self.assertFormError(response.context['main_form'], 'name', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(name='ø')
@@ -208,8 +208,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'slug',
             'This slug is already in use. Please choose another.',
         )
@@ -217,7 +216,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_edit_name_not_empty(self):
         data = self.get_dict(name='', slug=self.addon.slug, summary=self.addon.summary)
         response = self.client.post(self.describe_edit_url, data)
-        self.assertFormError(response, 'main_form', 'name', 'This field is required.')
+        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
 
     def test_edit_name_max_length(self):
         data = self.get_dict(
@@ -225,8 +224,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         )
         response = self.client.post(self.describe_edit_url, data)
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'name',
             'Ensure this value has at most 50 characters (it has 140).',
         )
@@ -236,13 +234,13 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'main_form', 'summary', error)
+        self.assertFormError(response.context['main_form'], 'summary', error)
 
         data = self.get_dict(summary='±↡∋⌚')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         error = 'Ensure this field contains at least one letter or number character.'
-        self.assertFormError(response, 'main_form', 'summary', error)
+        self.assertFormError(response.context['main_form'], 'summary', error)
 
         # 'ø' is not a symbol, it's actually a letter, so it should be valid.
         data = self.get_dict(summary='ø')
@@ -256,8 +254,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         )
         response = self.client.post(self.describe_edit_url, data)
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'summary',
             'Ensure this value has at most 250 characters (it has 251).',
         )
@@ -529,14 +526,12 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert self.get_addon().summary != 'b'
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'name',
             'Ensure this value has at least 2 characters (it has 1).',
         )
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'summary',
             'Ensure this value has at least 2 characters (it has 1).',
         )
@@ -549,8 +544,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert self.get_addon().summary != 'b' * 50
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'name',
             'Ensure name and summary combined are at most 70 characters '
             '(they have 100).',
@@ -802,7 +796,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response, 'main_form', 'description', 'This field is required.'
+            response.context['main_form'], 'description', 'This field is required.'
         )
         assert self.get_addon().description != ''
 
@@ -810,8 +804,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'description',
             'Ensure this value has at least 10 characters (it has 9).',
         )
@@ -1369,7 +1362,7 @@ class TagTestsMixin:
         assert response.status_code == 200
 
         error = 'Select a valid choice. create_tag is not one of the available choices.'
-        self.assertFormError(response, 'main_form', 'tags', error)
+        self.assertFormError(response.context['main_form'], 'tags', error)
 
         # Check that the tag did not get created.
         assert start == Tag.objects.all().count()
@@ -1408,8 +1401,7 @@ class TagTestsMixin:
         data = self.get_dict()
         response = self.client.post(self.details_edit_url, data)
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'tags',
             'You have %d too many tags.' % (len(tags) - amo.MAX_TAGS),
         )
@@ -1421,7 +1413,7 @@ class ContributionsTestsMixin:
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response, 'main_form', 'contributions', 'Enter a valid URL.'
+            response.context['main_form'], 'contributions', 'Enter a valid URL.'
         )
 
     def test_contributions_url_not_valid_domain(self):
@@ -1429,8 +1421,7 @@ class ContributionsTestsMixin:
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'contributions',
             'URL domain must be one of [%s].'
             % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS),
@@ -1444,8 +1435,7 @@ class ContributionsTestsMixin:
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'contributions',
             'URL path for GitHub Sponsors must contain /sponsors/.',
         )
@@ -1458,8 +1448,7 @@ class ContributionsTestsMixin:
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'contributions',
             'URL domain must be one of [%s].'
             % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS),
@@ -1471,8 +1460,7 @@ class ContributionsTestsMixin:
         response = self.client.post(self.details_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response,
-            'main_form',
+            response.context['main_form'],
             'contributions',
             'URLs must start with https://.',
         )
@@ -1732,7 +1720,7 @@ class TestEditDescribeStaticThemeListed(
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
         self.assertFormError(
-            response, 'cat_form', 'categories', 'This field is required.'
+            response.context['cat_form'], 'categories', 'This field is required.'
         )
 
     def test_theme_preview_shown(self):
