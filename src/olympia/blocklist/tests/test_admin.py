@@ -2256,6 +2256,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert doc('.field-blocks_count').text() == '2 add-ons'
 
         expected_filters = [
+            ('Show counts', '?_facets=True'),
             ('All', '?signoff_state=all'),
             ('Delayed', '?signoff_state=delayed'),
             ('Pending Sign-off', '?signoff_state=0'),
@@ -2264,6 +2265,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
             ('Auto Sign-off', '?signoff_state=3'),
             ('Published', '?signoff_state=4'),
         ]
+        if self.is_django42:
+            # django42 doesn't have Show counts
+            expected_filters = expected_filters[1:]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
         assert filters == expected_filters
         # Should be shown as selected too

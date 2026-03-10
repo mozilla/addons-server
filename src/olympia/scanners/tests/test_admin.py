@@ -356,6 +356,7 @@ class TestScannerResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
+            ('Show counts', '?_facets=True'),
             ('All', '?'),
             ('customs (legacy)', '?scanner=1'),
             ('wat', '?scanner=2'),
@@ -376,6 +377,9 @@ class TestScannerResultAdmin(TestCase):
             ('All', '?has_version=all'),
             (' With version only', '?'),
         ]
+        if self.is_django42:
+            # django42 doesn't have Show counts
+            expected = expected[1:]
         filters = [(x.text, x.attrib['href']) for x in doc('#changelist-filter a')]
         assert filters == expected
 
@@ -624,6 +628,7 @@ class TestScannerResultAdmin(TestCase):
         # are pre-populated with the current active filters correctly.
         links = [x.attrib['href'] for x in doc('#changelist-filter a')]
         expected = [
+            f'?_facets=True&exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all&state=3',
             '?',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
@@ -651,6 +656,9 @@ class TestScannerResultAdmin(TestCase):
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}',
         ]
+        if self.is_django42:
+            # django42 doesn't have Show counts
+            expected = expected[1:]
         assert links == expected
 
         # Check the existing filters are passed as hidden fields in the form...
@@ -1483,6 +1491,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
+            ('Show counts', '?_facets=True'),
             ('By matched rule', 'All', '?'),
             (
                 'By matched rule',
@@ -1552,6 +1561,9 @@ class TestScannerQueryResultAdmin(TestCase):
             ('By was promoted', 'No', '?was_promoted__exact=0'),
             ('By was promoted', 'Unknown', '?was_promoted__isnull=True'),
         ]
+        if self.is_django42:
+            # django42 doesn't have Show counts
+            expected = expected[1:]
         links = [
             (
                 next(link.iterancestors(tag='details')).find('summary').text.strip(),
