@@ -174,14 +174,18 @@ class BaseTestEditDescribe(BaseTestEdit):
         data = self.get_dict(name='', slug='test_addon')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
+        self.assertFormError(
+            response.context['main_form'], 'name', 'This field is required.'
+        )
         assert self.get_addon().name != ''
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
         response = self.client.post(self.describe_edit_url, data)
         assert response.status_code == 200
-        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
+        self.assertFormError(
+            response.context['main_form'], 'name', 'This field is required.'
+        )
 
     def test_edit_name_symbols_only(self):
         data = self.get_dict(name='()+([#')
@@ -216,7 +220,9 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_edit_name_not_empty(self):
         data = self.get_dict(name='', slug=self.addon.slug, summary=self.addon.summary)
         response = self.client.post(self.describe_edit_url, data)
-        self.assertFormError(response.context['main_form'], 'name', 'This field is required.')
+        self.assertFormError(
+            response.context['main_form'], 'name', 'This field is required.'
+        )
 
     def test_edit_name_max_length(self):
         data = self.get_dict(
