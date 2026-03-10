@@ -109,6 +109,46 @@ intentionally skipped the event (e.g., the event is not relevant for this
 scanner). No results will be stored for the scanner result associated with this
 event.
 
+(scanner-annotations)=
+### Annotations
+
+Scanners can attach human-readable annotations to matched rules by providing an
+`annotations` object in the response. The `annotations` object is a map keyed
+by rule name, where each value is a list of annotation objects. Each annotation
+object may include a `message` (string), an optional `file` path (string),
+and any other arbitrary fields.
+
+```json
+{
+  "version": "1.0.0",
+  "matchedRules": ["RULE_1", "ANNOTATIONS"],
+  "annotations": {
+    "RULE_1": [
+      {
+        "file": "background.js",
+        "message": "Obfuscated code detected.",
+        "line": 42
+      },
+      {
+        "message": "This version contains potentially malicious code."
+      }
+    ],
+    "ANNOTATIONS": [
+      {
+        "message": "This extension collects browsing history without disclosure."
+      }
+    ]
+  }
+}
+```
+
+Rules used as annotation keys must be listed in `matchedRules`. When there is
+no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
+name.
+
+Each annotated rule must exist as a [scanner rule](#scanner-rules) on AMO for
+the annotation to be displayed.
+
 ### Adding a scanner webhook
 
 Scanner webhooks must be registered in the AMO (django) admin. The following
@@ -378,46 +418,6 @@ The payload sent looks like this:
    is assigned to a queue in `src/olympia/lib/settings_base.py`.
 3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
 4. Update this documentation page.
-
-(scanner-annotations)=
-### Annotations
-
-Scanners can attach human-readable annotations to matched rules by providing an
-`annotations` object in the response. The `annotations` object is a map keyed
-by rule name, where each value is a list of annotation objects. Each annotation
-object may include a `message` (string), an optional `file` path (string),
-and any other arbitrary fields.
-
-```json
-{
-  "version": "1.0.0",
-  "matchedRules": ["RULE_1", "ANNOTATIONS"],
-  "annotations": {
-    "RULE_1": [
-      {
-        "file": "background.js",
-        "message": "Obfuscated code detected.",
-        "line": 42
-      },
-      {
-        "message": "This version contains potentially malicious code."
-      }
-    ],
-    "ANNOTATIONS": [
-      {
-        "message": "This extension collects browsing history without disclosure."
-      }
-    ]
-  }
-}
-```
-
-Rules used as annotation keys must be listed in `matchedRules`. When there is
-no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
-name.
-
-Each annotated rule must exist as a [scanner rule](#scanner-rules) on AMO for
-the annotation to be displayed.
 
 (scanner-results)=
 ## Scanner Results
