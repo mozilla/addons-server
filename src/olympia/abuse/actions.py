@@ -825,7 +825,7 @@ class ContentActionTargetAppealApprove(
         if isinstance(target, Addon):
             target_versions = (
                 self.target_versions.no_transforms()
-                .only('pk', 'version', 'file')
+                .defer('approval_notes')
                 .order_by('-pk')
             )
             previous_decision_actions = self.previous_decisions.values_list(
@@ -849,7 +849,7 @@ class ContentActionTargetAppealApprove(
                         # we only need to unreject disabled versions we rejected
                         file__status=amo.STATUS_DISABLED,
                         file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
-                    ).only('pk', 'version', 'file')
+                    )
                 )
                 for version in target_versions:
                     version.file.update(

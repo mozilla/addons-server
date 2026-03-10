@@ -1886,7 +1886,7 @@ class ReviewBase:
             self.addon.versions(manager='unfiltered_for_relations')
             .filter(pk__in=files_qs.values_list('version'))
             .no_transforms()
-            .only('id', 'version')
+            .defer('approval_notes')
             .order_by('-pk')
         )
         log.info('Sending email for %s' % (self.addon))
