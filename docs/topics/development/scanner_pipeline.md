@@ -196,6 +196,11 @@ When uploading a new file, you should see the following in the console:
 
 ### `during_validation`
 
+```{warning}
+This event is only available for legacy purposes and shouldn't be used anymore.
+In most cases, `on_version_created` is a better alternative.
+```
+
 This event occurs when a file upload is being validated, which typically happens
 when a new version is being submitted to AMO. This is called near the end of the
 validation chain.
