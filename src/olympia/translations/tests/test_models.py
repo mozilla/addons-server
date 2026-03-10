@@ -572,6 +572,42 @@ class TranslationTestCase(TestCase):
 class TranslationMultiDbTests(TransactionTestCase):
     fixtures = ['testapp/test_models.json']
     patch_property = 'settings'
+    databases = {'default', 'slave-1', 'slave-2'}
+
+    @classmethod
+    def _build_mocked_dbs(cls):
+        # Use the live default connection settings so aliases point to the
+        # active test DB (not the original DB name captured at import time).
+        default_db = {**connections['default'].settings_dict}
+        slave_1 = {**default_db, 'TEST': {'MIRROR': 'default'}}
+        slave_2 = {**default_db, 'TEST': {'MIRROR': 'default'}}
+        return {
+            'default': default_db,
+            'slave-1': slave_1,
+            'slave-2': slave_2,
+        }
+
+    @classmethod
+    def setUpClass(cls):
+        # Django validates cls.databases against django.db.connections in
+        # SimpleTestCase.setUpClass(), so patch before calling super().
+        cls.mocked_dbs = cls._build_mocked_dbs()
+        cls._connections_settings_patcher = patch.object(
+            django.db.connections, cls.patch_property, cls.mocked_dbs
+        )
+        cls._connections_settings_patcher.start()
+        try:
+            super().setUpClass()
+        except Exception:
+            cls._connections_settings_patcher.stop()
+            raise
+
+    @classmethod
+    def tearDownClass(cls):
+        try:
+            super().tearDownClass()
+        finally:
+            cls._connections_settings_patcher.stop()
 
     def setUp(self):
         super().setUp()
@@ -588,18 +624,11 @@ class TranslationMultiDbTests(TransactionTestCase):
         # before resetting queries to avoid this. It also does a query once for
         # the MySQL version and then stores it into a cached_property, so do
         # that early as well.
-        for con in django.db.connections:
-            connections[con].cursor()
-            connections[con].mysql_version  # noqa: B018
+        with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
+            for con in django.db.connections:
+                connections[con].cursor()
+                connections[con].mysql_version  # noqa: B018
         reset_queries()
-
-    @property
-    def mocked_dbs(self):
-        return {
-            'default': settings.DATABASES['default'],
-            'slave-1': settings.DATABASES['default'].copy(),
-            'slave-2': settings.DATABASES['default'].copy(),
-        }
 
     def cleanup_fake_connections(self):
         with patch.object(django.db.connections, self.patch_property, self.mocked_dbs):
