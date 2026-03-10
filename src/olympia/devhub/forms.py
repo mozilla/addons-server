@@ -1705,15 +1705,17 @@ class RollbackVersionForm(forms.Form):
         unlisted = self.fields['unlisted_version']
         channel = self.fields['channel']
 
+        listed_empty_label = listed.empty_label
+        listed.empty_label = None
         listed.queryset = self.addon.rollbackable_versions_qs(
             amo.CHANNEL_LISTED
         ).no_transforms()
-        self.has_listed = bool(len(listed.choices) - 1)  # Skip empty_label
+        self.has_listed = bool(len(listed.choices))  # No empty_label atm
 
-        if self.has_listed:
-            # drop empty label
-            listed.choices.pop(0)
-            self.empty_label = None
+        if not self.has_listed:
+            # add empty label back
+            listed.empty_label = listed_empty_label
+            listed.choices = [('', listed_empty_label)]
 
         unlisted.queryset = self.addon.rollbackable_versions_qs(
             amo.CHANNEL_UNLISTED
