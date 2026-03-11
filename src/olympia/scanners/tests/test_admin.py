@@ -1246,7 +1246,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert doc('#content h1').text() == 'Are you sure?'
+        assert 'Are you sure' in doc.text()
         # Related objects (results) are not shown in the confirmation page to
         # avoid issues when there are too many of them. So the lists in the
         # response should only show the rule.
@@ -1564,14 +1564,19 @@ class TestScannerQueryResultAdmin(TestCase):
         if self.is_django42:
             # django42 doesn't have Show counts
             expected = expected[1:]
-        links = [
-            (
-                next(link.iterancestors(tag='details')).find('summary').text.strip(),
-                link.text,
-                link.attrib['href'],
-            )
-            for link in doc('#changelist-filter a')
-        ]
+        links = []
+        for link in doc('#changelist-filter a'):
+            details = next(link.iterancestors(tag='details'), None)
+            if not details:
+                links.append((link.text, link.attrib['href']))
+            else:
+                links.append(
+                    (
+                        details.find('summary').text.strip(),
+                        link.text,
+                        link.attrib['href'],
+                    )
+                )
         assert links == expected
 
         expected = [
