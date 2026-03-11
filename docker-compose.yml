@@ -114,7 +114,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.0@sha256:a3dff78d876222746a0bacc36dd7e4bf9e673c85fb7ee0d12ed25bd32c43c19b
+    image: mysql:8.4@sha256:a2d126916bc2ba79a890a4bf62d305eb8b68fcbdd35c6e582d529df18faf5ebb
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -127,11 +127,13 @@ services:
       - --innodb-flush-log-at-trx-commit=0
       - --innodb-buffer-pool-size=64M
       - --innodb-log-buffer-size=8M
-      - --innodb-log-file-size=32M
+      - --innodb-redo-log-capacity=64M
       # Skip DNS lookups
       - --skip-name-resolve
       # Disable performance schema for faster startup
       - --performance-schema=OFF
+      # Allow nonstandard FKs (needed for translations)
+      - --skip-restrict-fk-on-non-standard-key
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
       start_interval: 1s
