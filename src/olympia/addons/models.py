@@ -1682,6 +1682,10 @@ class Addon(OnChangeMixin, ModelBase):
         """
         from olympia.promoted.models import PromotedAddon, PromotedApproval
 
+        if not self.id:
+            # if the addon isn't saved it can't be promoted yet
+            return PromotedAddon.objects.none()
+
         # An addon is approved for a promoted group if:
         # 1. For each PromotedAddon A, there exists a
         #    PromotedApproval B such that
