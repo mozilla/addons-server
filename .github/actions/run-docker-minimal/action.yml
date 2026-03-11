@@ -15,6 +15,9 @@ inputs:
   logs:
     description: 'Show logs'
     required: false
+  django_version:
+    description: The Django version to test against
+    required: true
 
 runs:
   using: 'composite'
@@ -25,6 +28,7 @@ runs:
       env:
         version: ${{ inputs.version }}
         digest: ${{ inputs.digest }}
+        django_version: ${{ inputs.django_version }}
       run: |
         # Run up_pre to have the image set up, .env file, volumes
         # OLYMPIA_UID is 9500 because we don't have bound volumes, no
@@ -36,15 +40,18 @@ runs:
           DOCKER_TARGET="production" \
           OLYMPIA_DEPS="development" \
           OLYMPIA_UID=9500
+          DJANGO_VERSION="${django_version}"
 
     - name: Install development dependencies
       id: deps
       shell: bash
+      env:
+        django_version: ${{ inputs.django_version }}
       run: |
         # Install development dependencies (we're using the production image)
         # and those aren't in there. docker-compose.ci.yml has a special volume
         # for deps to allow those to persist.
-        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm --no-deps --user olympia web ./scripts/install_deps.py dev
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm --no-deps --user olympia web ./scripts/install_deps.py dev "${django_version}"
 
     - name: Run Docker Container
       id: run
