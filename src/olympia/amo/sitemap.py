@@ -2,11 +2,11 @@ import datetime
 import math
 import os
 from collections import namedtuple
-from dataclasses import dataclass
 from urllib.parse import urlparse
 
 from django.conf import settings
 from django.contrib.sitemaps import Sitemap as DjangoSitemap
+from django.contrib.sitemaps.views import SitemapIndexItem
 from django.core.paginator import PageNotAnInteger
 from django.db.models import Count, Max, Q
 from django.template import loader
@@ -419,19 +419,6 @@ def get_sitemaps():
         ('tags', amo.FIREFOX): TagPagesSitemap(),
         ('tags', amo.ANDROID): TagPagesSitemap(),
     }
-
-
-@dataclass
-class SitemapIndexItem:
-    """This is copied over from Django4.1, with a few adjustments.
-    Once we drop Django3.2 we can import class directly from django.contrib.sitemaps.
-    """
-
-    location: str
-    last_mod: bool = None
-
-    def __str__(self):
-        return self.location
 
 
 OTHER_SITEMAPS = [
