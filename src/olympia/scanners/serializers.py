@@ -1,5 +1,6 @@
 from django.urls import reverse
 
+import jsonschema
 from rest_framework import serializers
 
 from olympia.addons.models import Addon
@@ -63,6 +64,64 @@ class WebhookVersionSerializer(VersionSerializer):
         if not obj.sources_provided:
             return None
         return absolutify(reverse('downloads.source', kwargs={'version_id': obj.id}))
+
+
+class PushScannerResultSerializer(serializers.Serializer):
+    RESULTS_SCHEMA = {
+        'type': 'object',
+        'required': ['version', 'matchedRules'],
+        'properties': {
+            'version': {'type': 'string'},
+            'matchedRules': {
+                'type': 'array',
+                'items': {'type': 'string'},
+            },
+            'annotations': {
+                'type': 'object',
+                'additionalProperties': {
+                    'type': 'array',
+                    'items': {'type': 'object'},
+                },
+            },
+        },
+    }
+
+    version_id = serializers.IntegerField()
+    results = serializers.JSONField()
+
+    def validate_version_id(self, value):
+        try:
+            Version.unfiltered.get(pk=value)
+        except Version.DoesNotExist as err:
+            raise serializers.ValidationError('Version not found.') from err
+
+        return value
+
+    def validate_results(self, value):
+        try:
+            jsonschema.validate(value, self.RESULTS_SCHEMA)
+        except jsonschema.ValidationError as e:
+            raise serializers.ValidationError(e.message) from e
+
+        if 'annotations' in value:
+            matched_rules = set(value['matchedRules'])
+            unknown_keys = set(value['annotations'].keys()) - matched_rules
+            if unknown_keys:
+                raise serializers.ValidationError(
+                    f'Annotation keys not in matchedRules: {sorted(unknown_keys)}'
+                )
+
+        return value
+
+    def validate(self, data):
+        if hasattr(self, 'initial_data'):
+            extra_fields = set(self.initial_data.keys()) - set(self.fields.keys())
+            if extra_fields:
+                raise serializers.ValidationError(
+                    {field: 'Unexpected field.' for field in extra_fields}
+                )
+
+        return data
 
 
 class PatchScannerResultSerializer(serializers.Serializer):

@@ -62,6 +62,7 @@ determines how AMO handles the response:
 Any other status code or a response body containing an `error` field is
 unsupported and/or likely to be treated as a failure.
 
+(synchronous-response)=
 #### Synchronous response
 
 Scanners can return a JSON response immediately that contains the following fields:
@@ -162,12 +163,15 @@ Add one or more [Scanner Webhook Events](#scanner-webhook-events).
 
 ```{note}
 Upon creation, a _service account_ will be automatically generated for this
-scanner webhook.
+scanner webhook. The service account is automatically granted the
+`Scanners:PatchResults` permission to [submit its results
+asynchronously](#asynchronous-scanning).
 
 A service account is needed to authenticate the scanner against the AMO API.
 Make sure to add the relevant permissions to it, depending on what the scanner
 needs to access.
 ```
+
 ### Creating a new scanner
 
 We provide a library to quickly develop new scanners written with Node.js:
@@ -310,9 +314,7 @@ The payload sent looks like this:
     },
     "guid": "{887ea080-e5f1-4363-99d3-f90fb8594967}",
     "type": "extension",
-    "categories": [
-      "photos-music-videos"
-    ],
+    "categories": ["photos-music-videos"],
     "is_featured": false,
     "is_source_public": false,
     "is_disabled": false,
@@ -413,13 +415,51 @@ The payload sent looks like this:
 }
 ```
 
+### `push`
+
+In addition to responding to AMO-initiated webhook events, a scanner can
+proactively **push** results for an existing version using the {ref}`push
+endpoint <scanner-result-push>`. This is useful for scanners that operate on
+their own schedule or that re-scan versions independently of AMO events.
+
+#### Request
+
+Scanners can push results by sending a POST request to `/api/v5/scanner/results/`
+using their JWT service account credentials. The service account must have the
+`Scanners:PushResults` permission. The request body must include the version to
+attach results to and the scan results:
+
+```json
+{
+  "version_id": 123,
+  "results": {
+    "version": "1.0.0",
+    "matchedRules": ["RULE_1"],
+    "annotations": {}
+  }
+}
+```
+
+| Field        | Type    | Description                                                       |
+| ------------ | ------- | ----------------------------------------------------------------- |
+| `version_id` | integer | The primary key of the add-on version to attach results to        |
+| `results`    | object  | Same structure as a [synchronous response](#synchronous-response) |
+
+#### Responses
+
+| Status code       | Meaning                                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------------------- |
+| `201 Created`     | Result created successfully                                                                    |
+| `400 Bad Request` | Validation error (unknown version, missing fields, extra fields)                               |
+| `403 Forbidden`   | Not authenticated as a scanner service account, or no active webhook with a `push` event found |
+
 ### Adding a new event
 
 1. Add a constant for the new event in `src/olympia/constants/scanners.py`. The
    name must start with `WEBHOOK_`. Make sure the new constant is registered in
    `WEBHOOK_EVENTS` (in the same file).
 2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_id,
-   payload, upload=none, version=None, activity_log=None)`. Make sure this task
+payload, upload=none, version=None, activity_log=None)`. Make sure this task
    is assigned to a queue in `src/olympia/lib/settings_base.py`.
 3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
 4. Update this documentation page.

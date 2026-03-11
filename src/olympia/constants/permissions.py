@@ -109,6 +109,9 @@ LANGPACK_SUBMIT = AclPermission('LanguagePack', 'Submit')
 # Scanners can use a special endpoint to update their results.
 SCANNERS_PATCH_RESULTS = AclPermission('Scanners', 'PatchResults')
 
+# Scanners can use a special endpoint to push their results.
+SCANNERS_PUSH_RESULTS = AclPermission('Scanners', 'PushResults')
+
 # Can submit add-ons signed with Mozilla internal certificate, or add-ons with
 # a guid ending with reserved suffixes like @mozilla.com
 SYSTEM_ADDON_SUBMIT = AclPermission('SystemAddon', 'Submit')

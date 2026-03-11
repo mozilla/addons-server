@@ -4,15 +4,44 @@ from rest_framework.decorators import (
     authentication_classes,
     permission_classes,
 )
+from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
 from olympia import amo
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
-from olympia.constants.scanners import WEBHOOK
+from olympia.constants.scanners import WEBHOOK, WEBHOOK_PUSH
 
-from .models import ScannerResult
-from .serializers import PatchScannerResultSerializer
+from .models import ScannerResult, ScannerWebhook, ScannerWebhookEvent
+from .serializers import PatchScannerResultSerializer, PushScannerResultSerializer
+
+
+@api_view(['POST'])
+@authentication_classes([JWTKeyAuthentication])
+@permission_classes([GroupPermission(amo.permissions.SCANNERS_PUSH_RESULTS)])
+def push_scanner_result(request):
+    webhook = ScannerWebhook.objects.filter(
+        is_active=True,
+        service_account=request.user,
+        scannerwebhookevent__event=WEBHOOK_PUSH,
+    ).first()
+    if not webhook:
+        raise PermissionDenied(
+            'Authenticated user does not match any active scanner service account'
+        )
+
+    serializer = PushScannerResultSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+
+    push_event = ScannerWebhookEvent.objects.get(webhook=webhook, event=WEBHOOK_PUSH)
+    scanner_result = ScannerResult.objects.create(
+        scanner=WEBHOOK,
+        version_id=serializer.validated_data['version_id'],
+        webhook_event=push_event,
+        results=serializer.validated_data['results'],
+    )
+
+    return Response({'id': scanner_result.pk}, status=status.HTTP_201_CREATED)
 
 
 @api_view(['PATCH'])

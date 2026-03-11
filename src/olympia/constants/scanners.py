@@ -64,11 +64,13 @@ SCANNER_SERVICE_ACCOUNTS_GROUP = 'Service accounts for scanners'
 WEBHOOK_DURING_VALIDATION = 1
 WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
 WEBHOOK_ON_VERSION_CREATED = 3
+WEBHOOK_PUSH = 4
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
     WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
     WEBHOOK_ON_VERSION_CREATED: 'on_version_created',
+    WEBHOOK_PUSH: 'push',
 }
 
 # Special rule name used as fallback when a scanner has no better rule to

@@ -9,6 +9,7 @@ from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_PUSH,
     YARA,
 )
 from olympia.scanners.models import (
@@ -177,3 +178,89 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         response = self.patch(self.url, data={'results': results})
 
         assert response.status_code == 403
+
+
+class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.webhook = ScannerWebhook.objects.create(
+            name='test-webhook',
+            url='https://example.com/webhook',
+            api_key='secret',
+        )
+        ScannerWebhookEvent.objects.create(webhook=self.webhook, event=WEBHOOK_PUSH)
+        self.api_key = APIKey.get_jwt_key(user=self.webhook.service_account)
+        self.grant_permission(
+            self.webhook.service_account,
+            'Scanners:PushResults',
+            'some access group',
+        )
+
+        self.version = version_factory(addon=addon_factory())
+        self.url = reverse_ns('scanner-result-push', api_version='v5')
+        self.results = {'version': '1.0.0', 'matchedRules': []}
+
+    def _push_scanner_result(self, data=None):
+        if data is None:
+            data = {'version_id': self.version.pk, 'results': self.results}
+        return self.post(self.url, data=data, format='json')
+
+    def test_success(self):
+        response = self._push_scanner_result()
+
+        assert response.status_code == 201
+        scanner_result = ScannerResult.objects.get()
+        assert response.json() == {'id': scanner_result.pk}
+        assert scanner_result.scanner == WEBHOOK
+        assert scanner_result.version == self.version
+        assert scanner_result.results == self.results
+        assert scanner_result.webhook_event.event == WEBHOOK_PUSH
+        assert scanner_result.webhook_event.webhook == self.webhook
+
+    def test_multiple_results_allowed(self):
+        self._push_scanner_result()
+        response = self._push_scanner_result()
+
+        assert response.status_code == 201
+        assert (
+            ScannerResult.objects.filter(
+                version=self.version,
+                scanner=WEBHOOK,
+            ).count()
+            == 2
+        )
+
+    def test_no_push_event(self):
+        ScannerWebhookEvent.objects.filter(
+            webhook=self.webhook, event=WEBHOOK_PUSH
+        ).delete()
+        response = self._push_scanner_result()
+
+        assert response.status_code == 403
+
+    def test_inactive_webhook(self):
+        self.webhook.update(is_active=False)
+        response = self._push_scanner_result()
+
+        assert response.status_code == 403
+
+    def test_no_permission(self):
+        self.webhook.service_account.groupuser_set.all().delete()
+        response = self._push_scanner_result()
+
+        assert response.status_code == 403
+
+    def test_version_not_found(self):
+        response = self._push_scanner_result(
+            data={'version_id': 999999, 'results': self.results}
+        )
+
+        assert response.status_code == 400
+        assert response.json() == {'version_id': ['Version not found.']}
+
+    def test_invalid_payload(self):
+        response = self._push_scanner_result(data={'version_id': self.version.pk})
+
+        assert response.status_code == 400
+        assert response.json() == {'results': ['This field is required.']}
