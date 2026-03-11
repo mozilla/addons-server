@@ -329,6 +329,16 @@ class AMOModelAdmin(admin.ModelAdmin):
             else ''
         )
 
+    def annotate_queryset_with_activity_ips(self, queryset):
+        return queryset.annotate(
+            activity_ips=GroupConcat(
+                Inet6Ntoa(
+                    self.get_activity_accessor_prefix() + 'iplog__ip_address_binary'
+                ),
+                distinct=True,
+            )
+        )
+
     def get_queryset_with_related_ips(self, request, queryset, ips_and_networks):
         condition = models.Q()
         if ips_and_networks is not None:
@@ -350,14 +360,7 @@ class AMOModelAdmin(admin.ModelAdmin):
             'known_ip_adresses' in self.list_display
             and 'for_count' not in queryset.query.annotations
         ):
-            queryset = queryset.annotate(
-                activity_ips=GroupConcat(
-                    Inet6Ntoa(
-                        self.get_activity_accessor_prefix() + 'iplog__ip_address_binary'
-                    ),
-                    distinct=True,
-                )
-            )
+            queryset = self.annotate_queryset_with_activity_ips(queryset)
         if condition:
             arg = self.get_activity_accessor_prefix() + 'action__in'
             condition &= models.Q(**{arg: self.search_by_ip_actions})

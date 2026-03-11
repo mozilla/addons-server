@@ -187,10 +187,11 @@ class RatingAdmin(AMOModelAdmin):
 
     def get_queryset(self, request):
         base_qs = Rating.unfiltered.all()
-        return base_qs.prefetch_related(
+        queryset = base_qs.prefetch_related(
             Prefetch('addon', queryset=Addon.unfiltered.all().only_translations()),
             Prefetch('reply_to', queryset=base_qs),
         )
+        return self.annotate_queryset_with_activity_ips(queryset)
 
     def has_add_permission(self, request):
         return False

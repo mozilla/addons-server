@@ -246,7 +246,7 @@ class TestRatingAdmin(TestCase):
             'name': 'addon',
             'value': str(second_addon.pk),
         }
-        link = doc('#changelist-filter a').eq(1)
+        link = doc('#changelist-filter a:not(.viewlink)').eq(1)
         assert (
             link.attr('href')
             == f'?q=4.8.15.16&addon={addon.pk}&addon={second_addon.pk}'
