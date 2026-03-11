@@ -509,6 +509,12 @@ class NonPublicFileDownloadsMixin:
             self.client.get(url), attachment=True, cache=False
         )
 
+    def test_file_download_permission_allowed_with_perm(self):
+        user = UserProfile.objects.get(email='regular@mozilla.com')
+        self.grant_permission(user, ':'.join(amo.permissions.ADDONS_FILE_DOWNLOAD))
+        self.login(user)
+        self.assert_served_successfully(self.client.get(self.file_url), cache=False)
+
 
 class DownloadsNonDisabledMixin:
     def test_ok_for_author(self):

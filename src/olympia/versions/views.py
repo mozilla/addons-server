@@ -70,12 +70,17 @@ def download_file(request, file_id, download_type=None, **kwargs):
     Download the file identified by `file_id` parameter.
 
     If the file is disabled or belongs to an unlisted version, requires an
-    add-on developer or appropriate reviewer for the channel. If the file is
-    deleted or belongs to a deleted version or add-on, reviewers can still
-    access but developers can't.
+    add-on developer, an appropriate reviewer for the channel or a user with a
+    special permission. If the file is deleted or belongs to a deleted version
+    or add-on, reviewers can still access but developers can't.
     """
 
     def is_appropriate_reviewer(addon, channel):
+        # This allows a user with a special permission to access the file, even
+        # if the version/add-on is deleted.
+        if acl.action_allowed_for(request.user, amo.permissions.ADDONS_FILE_DOWNLOAD):
+            return True
+
         if channel == amo.CHANNEL_LISTED:
             return (
                 acl.is_static_theme_reviewer(request.user)
