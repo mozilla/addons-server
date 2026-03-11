@@ -650,7 +650,7 @@ class TestScannerRule(TestScannerRuleMixin, TestCase):
 
     def test_scanner_choices(self):
         field = self.model._meta.get_field('scanner')
-        assert field.choices == SCANNERS.items()
+        assert list(field.choices) == list(SCANNERS.items())
 
 
 class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
@@ -660,7 +660,7 @@ class TestScannerQueryRule(TestScannerRuleMixin, TestCase):
     def test_scanner_choices(self):
         # Code search only supports yara for now.
         field = self.model._meta.get_field('scanner')
-        assert field.choices == ((YARA, 'yara'), (NARC, 'narc'))
+        assert list(field.choices) == [(YARA, 'yara'), (NARC, 'narc')]
 
     @mock.patch('olympia.amo.celery.app.GroupResult.restore')
     def test_completed_task_count(self, restore_mock):
