@@ -628,7 +628,7 @@ class TestScannerResultAdmin(TestCase):
         # are pre-populated with the current active filters correctly.
         links = [x.attrib['href'] for x in doc('#changelist-filter a')]
         expected = [
-            f'?_facets=True&exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all&state=3',
+            f'?_facets=True&exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             '?',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
