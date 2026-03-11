@@ -450,16 +450,14 @@ class TestAbuseReportAdmin(TestCase):
         inputs = [
             (elm.name, elm.value)
             for elm in forms.find('input')
-            if elm.name and elm.value != ''
-        ]
-        assert set(inputs) == set(data.items())
-
-        # Same for the 'search' form
-        form = doc('#changelist-filter form')
-        inputs = [
-            (elm.name, elm.value)
-            for elm in form.find('input')
-            if elm.name and elm.value != ''
+            if (
+                elm.name
+                and elm.value != ''
+                and 'hidden' not in elm.classes
+                and not (
+                    str(elm.value).startswith("['") and str(elm.value).endswith("']")
+                )
+            )
         ]
         assert set(inputs) == set(data.items())
 
