@@ -77,6 +77,8 @@ LOCALIZER = AclPermission('Localizer', '%')
 
 # Can edit user accounts.
 USERS_EDIT = AclPermission('Users', 'Edit')
+# Can look up user accounts (read-only).
+USERS_LOOKUP = AclPermission('Users', 'Lookup')
 # Can ban them.
 USERS_BAN = AclPermission('Users', 'Ban')
 

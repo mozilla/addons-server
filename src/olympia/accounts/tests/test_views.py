@@ -1397,7 +1397,7 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
     def setUp(self):
         self.user = user_factory(email='developer@example.com')
         self.admin = user_factory()
-        self.grant_permission(self.admin, 'Users:Edit')
+        self.grant_permission(self.admin, 'Users:Lookup')
         self.url = reverse_ns('account-lookup')
         super().setUp()
 
@@ -1412,7 +1412,7 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
     def test_lookup_by_email_with_jwt(self):
         target = user_factory(email='target@example.com')
         self.create_api_user()
-        self.grant_permission(self.user, 'Users:Edit')
+        self.grant_permission(self.user, 'Users:Lookup')
         response = self.get(self.url, data={'email': target.email})
         assert response.status_code == 200
         assert len(response.data) == 1
@@ -1448,7 +1448,14 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
         response = self.client.get(self.url, {'email': self.user.email})
         assert response.status_code == 401
 
-    def test_lookup_requires_users_edit_permission(self):
+    def test_lookup_also_allowed_with_users_edit_permission(self):
+        admin_edit = user_factory()
+        self.grant_permission(admin_edit, 'Users:Edit')
+        self.client.login_api(admin_edit)
+        response = self.client.get(self.url, {'email': self.user.email})
+        assert response.status_code == 200
+
+    def test_lookup_requires_users_lookup_permission(self):
         unprivileged = user_factory()
         self.client.login_api(unprivileged)
         response = self.client.get(self.url, {'email': self.user.email})

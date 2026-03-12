@@ -108,7 +108,7 @@ Account Lookup
 .. _`account-lookup`:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and `Users:Edit` permission.
+    This API requires :doc:`authentication <auth>` and ``Users:Lookup`` (or ``Users:Edit``) permission.
 
 This endpoint looks up one or more accounts by email address and returns their full details.
 Since multiple accounts can share the same email address, the response is always a list.
@@ -123,7 +123,7 @@ Deleted accounts are excluded from results.
     :statuscode 200: account(s) found.
     :statuscode 400: ``email`` query parameter is missing.
     :statuscode 401: authentication required.
-    :statuscode 403: insufficient permissions (requires ``Users:Edit``).
+    :statuscode 403: insufficient permissions (requires ``Users:Lookup`` or ``Users:Edit``).
     :statuscode 404: no account with that email address.
 
 
