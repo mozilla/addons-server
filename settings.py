@@ -29,8 +29,6 @@ SERVE_STATIC_FILES = True
 # These apps are great during development.
 INSTALLED_APPS += ('olympia.landfill',)
 
-DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
-
 DBBACKUP_CONNECTOR_MAPPING = {
     'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
 }
