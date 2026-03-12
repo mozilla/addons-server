@@ -53,7 +53,7 @@ from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.files.models import File
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
-from olympia.users.utils import upload_picture
+from olympia.users.utils import get_task_user, upload_picture
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -239,7 +239,7 @@ class UserQuerySet(BaseQuerySet):
         # Hard-block all versions of addons we force disabled, if the relevant
         # boolean is True.
         if hard_block_addons:
-            user_responsible = core.get_user()
+            user_responsible = core.get_user() or get_task_user()
             block_addons_on_user_ban.delay(
                 list(sole_addonusers_qs.values_list('pk', flat=True)),
                 user_responsible_id=user_responsible.pk,
@@ -320,10 +320,11 @@ class UserQuerySet(BaseQuerySet):
             EmailUserRestriction.objects.filter(
                 email_pattern=EmailUserRestriction.normalize_email(user.email)
             ).delete()
-        user_responsible = core.get_user()
-        revert_published_blocklist_submissions.delay(
-            blocklist_submissions_pks, user_responsible_id=user_responsible.pk
-        )
+        if blocklist_submissions_pks:
+            user_responsible = core.get_user() or get_task_user()
+            revert_published_blocklist_submissions.delay(
+                blocklist_submissions_pks, user_responsible_id=user_responsible.pk
+            )
 
 
 class UserManager(BaseUserManager, ManagerBase):
