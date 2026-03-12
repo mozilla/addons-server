@@ -234,11 +234,12 @@ class UserQuerySet(BaseQuerySet):
         for addon in addons_sole:
             addons_sole_ids.append(addon.pk)
             addon.force_disable()
-        index_addons.delay(addons_sole_ids)
+        if addons_sole_ids:
+            index_addons.delay(addons_sole_ids)
 
         # Hard-block all versions of addons we force disabled, if the relevant
         # boolean is True.
-        if hard_block_addons:
+        if hard_block_addons and addons_sole:
             user_responsible = core.get_user() or get_task_user()
             block_addons_on_user_ban.delay(
                 list(sole_addonusers_qs.values_list('pk', flat=True)),
