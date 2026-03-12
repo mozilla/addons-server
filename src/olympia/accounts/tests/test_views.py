@@ -1441,7 +1441,9 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
     def test_lookup_also_allowed_with_users_edit_permission(self):
         admin_edit = user_factory()
         self.grant_permission(admin_edit, 'Users:Edit')
-        response = self._jwt_get(admin_edit, self.url, {'email': self.target_user.email})
+        response = self._jwt_get(
+            admin_edit, self.url, {'email': self.target_user.email}
+        )
         assert response.status_code == 200
 
     def test_lookup_requires_users_lookup_permission(self):

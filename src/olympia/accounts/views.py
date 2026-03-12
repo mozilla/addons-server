@@ -541,7 +541,6 @@ class AccountViewSet(
         methods=['get'],
         authentication_classes=[JWTKeyAuthentication],
         permission_classes=[
-            IsAuthenticated,
             AnyOf(
                 GroupPermission(amo.permissions.USERS_LOOKUP),
                 GroupPermission(amo.permissions.USERS_EDIT),
@@ -560,7 +559,9 @@ class AccountViewSet(
             raise exceptions.ValidationError(
                 {'email': 'This query parameter is required.'}
             )
-        users = UserProfile.objects.exclude(deleted=True).filter(email=email, fxa_id__isnull=False)
+        users = UserProfile.objects.exclude(deleted=True).filter(
+            email=email, fxa_id__isnull=False
+        )
         if not users.exists():
             raise exceptions.NotFound()
         serializer = SelfUserProfileSerializer(
