@@ -505,6 +505,8 @@ class TestUserProfile(TestCase):
     def test_ban_and_disable_related_content_bulk_with_hard_block_not_auto_approved(
         self,
     ):
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)
         user_factory(pk=settings.TASK_USER_ID)
         user = user_factory(display_name='Ban Me Please')
         addon = addon_factory(
@@ -528,6 +530,7 @@ class TestUserProfile(TestCase):
         assert submission.input_guids == addon.guid
         assert submission.changed_version_ids == [version.pk]
         assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        assert submission.updated_by == fake_admin
         assert not Block.objects.exists()
         # BlocklistSubmission is still linked to the ban
         assert (
@@ -569,6 +572,7 @@ class TestUserProfile(TestCase):
             assert (
                 submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
             )
+            assert submission.updated_by == fake_admin
 
             # In the end both add-ons should have had their versions hard-blocked
             assert version.is_blocked
@@ -633,6 +637,7 @@ class TestUserProfile(TestCase):
             )
             assert submission.reason == REASON_USER_BANNED
             assert submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE
+            assert submission.updated_by == fake_admin
 
         assert user1.content_disabled_on_ban.blocked_addons_submissions.count() == 1
         assert user2.content_disabled_on_ban.blocked_addons_submissions.count() == 1
@@ -670,6 +675,7 @@ class TestUserProfile(TestCase):
         )
         assert submission.changed_version_ids == [version.pk]
         assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        assert submission.updated_by == fake_admin
         assert not Block.objects.exists()
         # BlocklistSubmission is still linked to the ban
         assert (

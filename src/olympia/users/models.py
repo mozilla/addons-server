@@ -239,8 +239,10 @@ class UserQuerySet(BaseQuerySet):
         # Hard-block all versions of addons we force disabled, if the relevant
         # boolean is True.
         if hard_block_addons:
+            user_responsible = core.get_user()
             block_addons_on_user_ban.delay(
-                list(sole_addonusers_qs.values_list('pk', flat=True))
+                list(sole_addonusers_qs.values_list('pk', flat=True)),
+                user_responsible_id=user_responsible.pk,
             )
 
         # Soft-delete the other content associated with the user: Ratings and
@@ -318,7 +320,10 @@ class UserQuerySet(BaseQuerySet):
             EmailUserRestriction.objects.filter(
                 email_pattern=EmailUserRestriction.normalize_email(user.email)
             ).delete()
-        revert_published_blocklist_submissions.delay(blocklist_submissions_pks)
+        user_responsible = core.get_user()
+        revert_published_blocklist_submissions.delay(
+            blocklist_submissions_pks, user_responsible_id=user_responsible.pk
+        )
 
 
 class UserManager(BaseUserManager, ManagerBase):

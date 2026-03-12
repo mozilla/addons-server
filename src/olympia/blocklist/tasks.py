@@ -14,7 +14,7 @@ from django.utils.encoding import force_str
 from django_statsd.clients import statsd
 
 import olympia.core.logger
-from olympia import amo, core
+from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
@@ -250,7 +250,7 @@ def cleanup_old_files(*, base_filter_id):
 
 @task
 @use_primary_db
-def block_addons_on_user_ban(addonusers_ids):
+def block_addons_on_user_ban(addonusers_ids, *, user_responsible_id):
     """Automatically create BlocklistSubmission for add-ons corresponding to
     AddonUser ids passed, and record them as BlockedAddonsSubmissionsModel on
     the corresponding user.
@@ -302,7 +302,7 @@ def block_addons_on_user_ban(addonusers_ids):
                     blocklistsubmission=BlocklistSubmission(
                         action=BlocklistSubmission.ACTIONS.ADDCHANGE,
                         reason=REASON_USER_BANNED,
-                        updated_by=core.get_user(),
+                        updated_by_id=user_responsible_id,
                         input_guids='\r\n'.join(new_blocks_guids),
                         changed_version_ids=new_blocks_versions,
                         # Add-ons will already be disabled above.
@@ -317,7 +317,7 @@ def block_addons_on_user_ban(addonusers_ids):
                     blocklistsubmission=BlocklistSubmission(
                         action=BlocklistSubmission.ACTIONS.HARDEN,
                         reason=REASON_USER_BANNED,
-                        updated_by=core.get_user(),
+                        updated_by_id=user_responsible_id,
                         input_guids='\r\n'.join(existing_blocks_guids),
                         changed_version_ids=existing_blocks_versions,
                         # Add-ons will already be disabled above.
@@ -344,7 +344,7 @@ def block_addons_on_user_ban(addonusers_ids):
 
 @task
 @use_primary_db
-def revert_published_blocklist_submissions(submission_ids):
+def revert_published_blocklist_submissions(submission_ids, *, user_responsible_id):
     """Automatically create "opposite" BlocklistSubmissions to the ones passed
     in argument that have been published, effectively reverting them.
 
@@ -369,7 +369,7 @@ def revert_published_blocklist_submissions(submission_ids):
             )
             continue
         submission.pk = None
-        submission.updated_by = core.get_user()
+        submission.updated_by_id = user_responsible_id
         submission.reason = f'Revert "{submission.reason}"'
         submission.signoff_state = BlocklistSubmission.SIGNOFF_STATES.PENDING
         submission.save()
