@@ -1616,7 +1616,7 @@ def _submit_upload(
                 client_info=request.META.get('HTTP_USER_AGENT'),
             )
             version = addon.find_latest_version(channel=channel)
-            url_args = [addon.slug, channel_text]
+            url_args = [addon.slug]
             statsd.incr(f'devhub.submission.addon.{channel_text}')
 
         check_validation_override(request, form, addon, version)
@@ -1709,7 +1709,7 @@ def submit_addon_upload(request, channel):
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
-        request, None, channel_id, 'devhub.submit.source', include_recaptcha=True
+        request, None, channel_id, 'devhub.submit.details', include_recaptcha=True
     )
 
 
@@ -1719,7 +1719,7 @@ def submit_theme_upload(request, channel):
         return redirect('devhub.submit.theme.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
-        request, None, channel_id, 'devhub.submit.source', theme_specific=True
+        request, None, channel_id, 'devhub.submit.details', theme_specific=True
     )
 
 
@@ -1730,7 +1730,7 @@ def submit_version_upload(request, addon_id, addon, channel):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
-    return _submit_upload(request, addon, channel_id, 'devhub.submit.version.source')
+    return _submit_upload(request, addon, channel_id, 'devhub.submit.version.details')
 
 
 @dev_required(submitting=True)
@@ -1747,7 +1747,7 @@ def submit_version_auto(request, addon_id, addon):
     ):
         return redirect('devhub.submit.version.distribution', addon.slug)
     channel = last_version.channel
-    return _submit_upload(request, addon, channel, 'devhub.submit.version.source')
+    return _submit_upload(request, addon, channel, 'devhub.submit.version.details')
 
 
 @login_required
@@ -1756,7 +1756,7 @@ def submit_addon_theme_wizard(request, channel):
         return redirect('devhub.submit.agreement')
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
-        request, None, channel_id, 'devhub.submit.source', wizard=True
+        request, None, channel_id, 'devhub.submit.details', wizard=True
     )
 
 
@@ -1767,7 +1767,7 @@ def submit_version_theme_wizard(request, addon_id, addon, channel):
         return redirect('devhub.submit.version.agreement', addon.slug)
     channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
     return _submit_upload(
-        request, addon, channel_id, 'devhub.submit.version.source', wizard=True
+        request, addon, channel_id, 'devhub.submit.version.details', wizard=True
     )
 
 
@@ -1849,19 +1849,19 @@ def _submit_source(request, addon, version, submit_page, next_view):
 def submit_addon_source(request, addon_id, addon, channel):
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
     version = addon.find_latest_version(channel=channel)
-    return _submit_source(request, addon, version, 'addon', 'devhub.submit.details')
+    return _submit_source(request, addon, version, 'addon', 'devhub.submit.finish')
 
 
 @dev_required(submitting=True)
 def submit_version_source(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), id=version_id)
     return _submit_source(
-        request, addon, version, 'version', 'devhub.submit.version.details'
+        request, addon, version, 'version', 'devhub.submit.version.finish'
     )
 
 
 @require_submissions_enabled
-def _submit_details(request, addon, version):
+def _submit_details(request, addon, version, next_view):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
         skip_details_step = version.channel == amo.CHANNEL_UNLISTED or (
@@ -1869,7 +1869,7 @@ def _submit_details(request, addon, version):
         )
         if skip_details_step:
             # Nothing to do here.
-            return redirect('devhub.submit.version.finish', addon.slug, version.pk)
+            return redirect(next_view, addon.slug, version.pk)
         latest_version = version
     else:
         # Figure out the latest version early in order to pass the same
@@ -1877,9 +1877,8 @@ def _submit_details(request, addon, version):
         # each other).
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         if not latest_version:
-            # No listed version ? Then nothing to do in the listed submission
-            # flow.
-            return redirect('devhub.submit.finish', addon.slug)
+            # No listed version? It must be an unlisted version then.
+            return redirect(next_view, addon.slug, 'unlisted')
 
     forms_list = []
     context = {
@@ -1938,9 +1937,9 @@ def _submit_details(request, addon, version):
             reviewer_form.save()
 
         if not version:
-            return redirect('devhub.submit.finish', addon.slug)
+            return redirect(next_view, addon.slug, 'listed')
         else:
-            return redirect('devhub.submit.version.finish', addon.slug, version.id)
+            return redirect(next_view, addon.slug, version.id)
     template = 'devhub/addons/submit/%s' % (
         'describe.html' if show_all_fields else 'describe_minimal.html'
     )
@@ -1949,13 +1948,13 @@ def _submit_details(request, addon, version):
 
 @dev_required(submitting=True)
 def submit_addon_details(request, addon_id, addon):
-    return _submit_details(request, addon, None)
+    return _submit_details(request, addon, None, 'devhub.submit.source')
 
 
 @dev_required(submitting=True)
 def submit_version_details(request, addon_id, addon, version_id):
     version = get_object_or_404(addon.versions.all(), id=version_id)
-    return _submit_details(request, addon, version)
+    return _submit_details(request, addon, version, 'devhub.submit.version.source')
 
 
 @require_submissions_enabled

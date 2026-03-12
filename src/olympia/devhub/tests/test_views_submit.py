@@ -621,9 +621,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         assert version
         assert version.channel == amo.CHANNEL_LISTED
-        self.assert3xx(
-            response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
-        )
+        self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.'
@@ -641,9 +639,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         assert version
         assert version.channel == amo.CHANNEL_LISTED
-        self.assert3xx(
-            response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
-        )
+        self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.'
@@ -944,7 +940,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         )
         addon = Addon.unfiltered.get()
         self.assert3xx(
-            post_response, reverse('devhub.submit.source', args=[addon.slug, 'listed'])
+            post_response, reverse('devhub.submit.details', args=[addon.slug])
         )
 
     @override_switch('developer-submit-addon-captcha', active=True)
@@ -970,7 +966,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         super().setUp()
         assert not self.get_version().source
         self.url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
-        self.next_url = reverse('devhub.submit.details', args=[self.addon.slug])
+        self.next_url = reverse('devhub.submit.finish', args=[self.addon.slug])
 
     def post(self, has_source, source, expect_errors=False, status_code=200):
         data = {
@@ -1482,7 +1478,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
         cat_form = self.client.get(self.url).context['cat_form']
         self.cat_initial = initial(cat_form)
-        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
+        self.next_step = reverse('devhub.submit.source', args=['a3615', 'unlisted'])
         License.objects.create(builtin=3)
 
         addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -1747,31 +1743,14 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         self.get_addon().update(eula=None, privacy_policy=None)
         self.is_success(self.get_dict(has_priv=True))
 
-    def test_source_submission_notes_not_shown_by_default(self):
-        url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
-        response = self.client.post(url, {'has_source': 'no'}, follow=True)
+    def test_source_submission_notes_always_shown(self):
+        url = reverse('devhub.submit.details', args=[self.addon.slug])
+        response = self.client.post(url)
 
         assert response.status_code == 200
 
         doc = pq(response.content)
-        assert 'Remember: ' not in doc('.source-submission-note').text()
-
-    def test_source_submission_notes_shown(self):
-        url = reverse('devhub.submit.source', args=[self.addon.slug, 'listed'])
-
-        response = self.client.post(
-            url,
-            {
-                'has_source': 'yes',
-                'source': self.generate_source_zip(),
-            },
-            follow=True,
-        )
-
-        assert response.status_code == 200
-
-        doc = pq(response.content)
-        assert 'Remember: ' in doc('.source-submission-note').text()
+        assert 'Important: ' in doc('.source-submission-note').text()
 
 
 class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
@@ -1795,7 +1774,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
             category_id=CATEGORIES[amo.ADDON_EXTENSION]['social-communication'].id,
         ).delete()
 
-        self.next_step = reverse('devhub.submit.finish', args=['a3615'])
+        self.next_step = reverse('devhub.submit.source', args=['a3615', 'unlisted'])
         License.objects.create(builtin=LICENSE_CC_COPYRIGHT.builtin)
 
         addon.current_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -2218,7 +2197,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         assert args[1:] == (
             self.addon,
             amo.CHANNEL_LISTED,
-            'devhub.submit.version.source',
+            'devhub.submit.version.details',
         )
 
     @mock.patch('olympia.devhub.views._submit_upload', side_effect=views._submit_upload)
@@ -2230,7 +2209,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         assert args[1:] == (
             self.addon,
             amo.CHANNEL_UNLISTED,
-            'devhub.submit.version.source',
+            'devhub.submit.version.details',
         )
 
     def test_no_versions_redirects_to_distribution(self):
@@ -2298,7 +2277,7 @@ class VersionSubmitUploadMixin:
 
     def get_next_url(self, version):
         return reverse(
-            'devhub.submit.version.source', args=[self.addon.slug, version.pk]
+            'devhub.submit.version.details', args=[self.addon.slug, version.pk]
         )
 
     def test_missing_compatibility_apps(self):
@@ -2713,7 +2692,10 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
 
         self.assert3xx(
             response,
-            reverse('devhub.submit.version.source', args=[self.addon.slug, version.pk]),
+            reverse(
+                'devhub.submit.version.details',
+                args=[self.addon.slug, version.pk],
+            ),
         )
 
     def test_redirect_if_addon_is_invisible(self):
@@ -2850,7 +2832,7 @@ class TestVersionSubmitSource(TestAddonSubmitSource):
             'devhub.submit.version.source', args=[addon.slug, self.version.pk]
         )
         self.next_url = reverse(
-            'devhub.submit.version.details', args=[addon.slug, self.version.pk]
+            'devhub.submit.version.finish', args=[addon.slug, self.version.pk]
         )
         assert not self.get_version().source
 
@@ -2877,7 +2859,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response,
             reverse(
-                'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+                'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
             ),
         )
 
@@ -2900,7 +2882,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response,
             reverse(
-                'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+                'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
             ),
         )
 
@@ -2918,7 +2900,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response,
             reverse(
-                'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+                'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
             ),
         )
 
@@ -2950,7 +2932,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response,
             reverse(
-                'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+                'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
             ),
         )
         self.addon.reload()
@@ -2965,7 +2947,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         self.assert3xx(
             response,
             reverse(
-                'devhub.submit.version.finish', args=[self.addon.slug, self.version.pk]
+                'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
             ),
         )
 
@@ -2988,7 +2970,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
             'devhub.submit.version.details', args=['a3615', self.version.pk]
         )
         self.next_step = reverse(
-            'devhub.submit.version.finish', args=['a3615', self.version.pk]
+            'devhub.submit.version.source', args=['a3615', self.version.pk]
         )
 
 
