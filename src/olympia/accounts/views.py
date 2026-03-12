@@ -539,7 +539,7 @@ class AccountViewSet(
     @action(
         detail=False,
         methods=['get'],
-        authentication_classes=[JWTKeyAuthentication, SessionIDAuthentication],
+        authentication_classes=[JWTKeyAuthentication],
         permission_classes=[
             IsAuthenticated,
             AnyOf(

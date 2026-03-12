@@ -1392,73 +1392,63 @@ class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
 
 
 class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
-    client_class = APITestClientSessionID
-
     def setUp(self):
-        self.user = user_factory(email='developer@example.com')
-        self.admin = user_factory()
-        self.grant_permission(self.admin, 'Users:Lookup')
+        self.target_user = user_factory(email='developer@example.com')
+        self.create_api_user()
+        self.grant_permission(self.user, 'Users:Lookup')
         self.url = reverse_ns('account-lookup')
         super().setUp()
 
-    def test_lookup_by_email_as_admin(self):
-        self.client.login_api(self.admin)
-        response = self.client.get(self.url, {'email': self.user.email})
-        assert response.status_code == 200
-        assert len(response.data) == 1
-        assert response.data[0]['email'] == self.user.email
-        assert response.data[0]['id'] == self.user.pk
+    def _jwt_get(self, user, *args, **kwargs):
+        user.update(read_dev_agreement=datetime.today())
+        api_key = self.create_api_key(user, f'{user.pk}:test')
+        token = self.create_auth_token(api_key.user, api_key.key, api_key.secret)
+        return self.client.get(*args, HTTP_AUTHORIZATION=f'JWT {token}', **kwargs)
 
-    def test_lookup_by_email_with_jwt(self):
-        target = user_factory(email='target@example.com')
-        self.create_api_user()
-        self.grant_permission(self.user, 'Users:Lookup')
-        response = self.get(self.url, data={'email': target.email})
+    def test_lookup_by_email(self):
+        response = self.get(self.url, data={'email': self.target_user.email})
         assert response.status_code == 200
         assert len(response.data) == 1
-        assert response.data[0]['email'] == target.email
+        assert response.data[0]['email'] == self.target_user.email
+        assert response.data[0]['id'] == self.target_user.pk
 
     def test_lookup_multiple_users_same_email(self):
         # Multiple accounts can share the same email (no unique constraint).
-        duplicate = user_factory(email=self.user.email)
-        self.client.login_api(self.admin)
-        response = self.client.get(self.url, {'email': self.user.email})
+        duplicate = user_factory(email=self.target_user.email)
+        response = self.get(self.url, data={'email': self.target_user.email})
         assert response.status_code == 200
         assert len(response.data) == 2
         returned_ids = {item['id'] for item in response.data}
-        assert returned_ids == {self.user.pk, duplicate.pk}
+        assert returned_ids == {self.target_user.pk, duplicate.pk}
 
     def test_lookup_missing_email_param(self):
-        self.client.login_api(self.admin)
-        response = self.client.get(self.url)
+        response = self.get(self.url)
         assert response.status_code == 400
 
     def test_lookup_unknown_email(self):
-        self.client.login_api(self.admin)
-        response = self.client.get(self.url, {'email': 'nobody@example.com'})
+        response = self.get(self.url, data={'email': 'nobody@example.com'})
         assert response.status_code == 404
 
     def test_lookup_deleted_user(self):
-        self.user.update(deleted=True)
-        self.client.login_api(self.admin)
-        response = self.client.get(self.url, {'email': self.user.email})
+        self.target_user.update(deleted=True)
+        response = self.get(self.url, data={'email': self.target_user.email})
         assert response.status_code == 404
 
     def test_lookup_requires_authentication(self):
-        response = self.client.get(self.url, {'email': self.user.email})
+        response = self.client.get(self.url, {'email': self.target_user.email})
         assert response.status_code == 401
 
     def test_lookup_also_allowed_with_users_edit_permission(self):
         admin_edit = user_factory()
         self.grant_permission(admin_edit, 'Users:Edit')
-        self.client.login_api(admin_edit)
-        response = self.client.get(self.url, {'email': self.user.email})
+        response = self._jwt_get(admin_edit, self.url, {'email': self.target_user.email})
         assert response.status_code == 200
 
     def test_lookup_requires_users_lookup_permission(self):
         unprivileged = user_factory()
-        self.client.login_api(unprivileged)
-        response = self.client.get(self.url, {'email': self.user.email})
+        response = self._jwt_get(
+            unprivileged, self.url, {'email': self.target_user.email}
+        )
         assert response.status_code == 403
 
 
