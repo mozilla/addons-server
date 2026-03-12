@@ -288,14 +288,13 @@ def block_addons_on_user_ban(addonusers_ids):
         )
         for block in processed['blocks']:
             for version in block.addon_versions:
-                if version.is_blocked:
-                    if version.is_soft_blocked:
-                        existing_blocks_versions.append(version.id)
-                        existing_blocks_guids.add(block.guid)
-                    # Nothing to do if the version was hard-blocked.
-                else:
+                if not version.is_blocked:
                     new_blocks_versions.append(version.id)
                     new_blocks_guids.add(block.guid)
+                elif version.is_soft_blocked:
+                    existing_blocks_versions.append(version.id)
+                    existing_blocks_guids.add(block.guid)
+                # Nothing to do if the version was hard-blocked.                    
         if new_blocks_versions and new_blocks_guids:
             banned_blocklist_submissions.append(
                 BlockedAddonsSubmissionsModel(
