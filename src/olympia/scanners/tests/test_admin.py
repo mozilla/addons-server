@@ -15,6 +15,7 @@ from django.utils.html import format_html
 from pyquery import PyQuery as pq
 
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -2156,9 +2157,12 @@ class TestScannerWebhookAdmin(TestCase):
     def test_service_account_with_service_account(self):
         webhook = ScannerWebhook.objects.create(name='some service')
         user = webhook.service_account
+        group = Group.objects.create(name='Editors', rules='Addons:Edit')
+        GroupUser.objects.create(user=user, group=group)
 
         service_account_html = self.admin.service_account(webhook)
         assert user.username in service_account_html
+        assert 'Addons:Edit' in service_account_html
 
     def test_create(self):
         response = self.client.post(

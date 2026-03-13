@@ -14,6 +14,7 @@ from pyquery import PyQuery as pq
 
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
+from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.amo.tests import (
@@ -507,7 +508,7 @@ class TestUserAdmin(TestCase):
         # We want to see absolutely everything, so make our user a superadmin.
         self.grant_permission(user, '*:*')
         self.client.force_login(user)
-        with self.assertNumQueries(24 if self.is_django42 else 22):
+        with self.assertNumQueries(25 if self.is_django42 else 23):
             # - 4 savepoint/release
             # - 2 current logged in user & groups
             # - 2 target user & groups
@@ -523,6 +524,7 @@ class TestUserAdmin(TestCase):
             # - 1 known ja4s
             # - 1 api key
             # - 1 all group names (for dropdown where we can add groups)
+            # - 1 all the user group rules (for group_access_rules)
             response = self.client.get(self.detail_url)
         assert response.status_code == 200
 
@@ -1240,6 +1242,14 @@ class TestUserAdmin(TestCase):
         )
         assert url == expected_url
         assert text == '2'
+
+    def test_group_access_rules(self):
+        model_admin = UserAdmin(UserProfile, admin.site)
+        group = Group.objects.create(name='Editors', rules='Addons:Edit,Admin:Advanced')
+        GroupUser.objects.create(user=self.user, group=group)
+        assert (
+            model_admin.group_access_rules(self.user) == 'Addons:Edit, Admin:Advanced'
+        )
 
 
 class TestEmailUserRestrictionAdmin(TestCase):

@@ -153,6 +153,7 @@ class UserAdmin(AMOModelAdmin):
         'currently_matching_exact_ip_restrictions',
         'user_last_login_ip',
         'username',
+        'group_access_rules',
     )
     fieldsets = (
         (
@@ -208,6 +209,7 @@ class UserAdmin(AMOModelAdmin):
                     'banned',
                     'notes',
                     'has_active_api_key',
+                    'group_access_rules',
                 )
             },
         ),
@@ -592,6 +594,9 @@ class UserAdmin(AMOModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def group_access_rules(self, obj):
+        return ', '.join(obj.all_group_rules)
 
 
 @admin.register(DeniedName)

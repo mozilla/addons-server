@@ -585,6 +585,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         """List of all groups the user is a member of, as a cached property."""
         return list(self.groups.all())
 
+    @property
+    def all_group_rules(self):
+        return sorted(
+            set(
+                rule.strip()
+                for group in self.groups_list
+                for rule in group.rules.split(',')
+            )
+        )
+
     def get_addons_listed(self):
         """Return queryset of public add-ons thi user is listed as author of."""
         return self.addons.public().filter(addonuser__user=self, addonuser__listed=True)

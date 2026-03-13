@@ -958,6 +958,50 @@ class TestUserProfile(TestCase):
         assert len(user.groups_list) == 1
         assert user.groups_list == [group2]
 
+    def test_all_group_rules_no_groups(self):
+        user = UserProfile.objects.create(username='no-groups')
+        assert user.all_group_rules == []
+
+    def test_all_group_rules_single_group_single_rule(self):
+        user = UserProfile.objects.create(username='one-group')
+        group = Group.objects.create(name='Editors', rules='Addons:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        assert user.all_group_rules == ['Addons:Edit']
+
+    def test_all_group_rules_single_group_multiple_rules(self):
+        user = UserProfile.objects.create(username='multi-rules')
+        group = Group.objects.create(name='Power', rules='Addons:Edit,Users:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        assert user.all_group_rules == ['Addons:Edit', 'Users:Edit']
+
+    def test_all_group_rules_multiple_groups(self):
+        user = UserProfile.objects.create(username='multi-groups')
+        group1 = Group.objects.create(name='G1', rules='Addons:Edit')
+        group2 = Group.objects.create(name='G2', rules='Users:Edit')
+        GroupUser.objects.create(user=user, group=group1)
+        GroupUser.objects.create(user=user, group=group2)
+        assert user.all_group_rules == ['Addons:Edit', 'Users:Edit']
+
+    def test_all_group_rules_deduplicates(self):
+        user = UserProfile.objects.create(username='dup-rules')
+        group1 = Group.objects.create(name='G1', rules='Addons:Edit')
+        group2 = Group.objects.create(name='G2', rules='Addons:Edit,Users:Edit')
+        GroupUser.objects.create(user=user, group=group1)
+        GroupUser.objects.create(user=user, group=group2)
+        assert user.all_group_rules == ['Addons:Edit', 'Users:Edit']
+
+    def test_all_group_rules_sorted(self):
+        user = UserProfile.objects.create(username='sorted-rules')
+        group = Group.objects.create(name='G', rules='Users:Edit,Addons:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        assert user.all_group_rules == ['Addons:Edit', 'Users:Edit']
+
+    def test_all_group_rules_strips_whitespace(self):
+        user = UserProfile.objects.create(username='ws-rules')
+        group = Group.objects.create(name='G', rules='Addons:Edit, Users:Edit')
+        GroupUser.objects.create(user=user, group=group)
+        assert user.all_group_rules == ['Addons:Edit', 'Users:Edit']
+
     def test_welcome_name(self):
         u1 = UserProfile.objects.create(username='sc')
         u2 = UserProfile.objects.create(username='sc2', display_name='Sarah Connor')

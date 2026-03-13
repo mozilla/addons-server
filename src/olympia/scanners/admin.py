@@ -986,12 +986,13 @@ class ScannerWebhookAdmin(AMOModelAdmin):
             return '(will be automatically created)'
 
         return format_html(
-            '<a href="{}">{}</a>',
+            '<a href="{}">{}</a><br><br><strong>Permissions:</strong> {}',
             urljoin(
                 settings.EXTERNAL_SITE_URL,
                 reverse('admin:users_userprofile_change', args=(user.pk,)),
             ),
             user.username,
+            ', '.join(user.all_group_rules),
         )
 
     def save_model(self, request, obj, form, change):
