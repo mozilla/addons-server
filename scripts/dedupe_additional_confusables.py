@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import datetime
 import os
 import string
 import sys
@@ -16,6 +17,7 @@ if __name__ == '__main__':
     from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 
     new = {}
+    start = datetime.datetime.now()
 
     # Like build_characters_normalization_replacement_table(), but without the
     # additional_character_replacements dict.
@@ -51,4 +53,5 @@ if __name__ == '__main__':
         )
         seen.update(for_this_letter)
 
-print(f'Checked {len(seen)} additional confusables.')
+    elapsed = int((datetime.datetime.now() - start).total_seconds())
+    print(f'Checked {len(seen)} additional confusables in {elapsed} seconds.')
