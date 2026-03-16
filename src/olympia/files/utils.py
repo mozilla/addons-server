@@ -29,7 +29,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.utils import validate_addon_name
-from olympia.amo.jslex import JsLexer
+from olympia.amo.json_comments import remove_comments
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib import unicodehelper
@@ -184,11 +184,8 @@ class ManifestJSONExtractor:
         #
         # But block level comments are not allowed. We just flag them elsewhere
         # (in the linter).
-        json_string = ''
-        lexer = JsLexer()
-        for name, token in lexer.lex(data):
-            if name not in ('blockcomment', 'linecomment'):
-                json_string += token
+
+        json_string = remove_comments(data)
 
         try:
             self.data = json.loads(json_string)
