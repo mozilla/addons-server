@@ -1083,7 +1083,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         activity = action.process_action()
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
-        assert activity.log == amo.LOG.UNREJECT_VERSION
+        assert activity.log == amo.LOG.FORCE_ENABLE
         assert activity.arguments == [self.addon, self.decision, self.policy]
         assert activity.user == self.task_user
         assert ActivityLog.objects.count() == 3
