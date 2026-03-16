@@ -1426,11 +1426,9 @@ class TestScannerQueryResultAdmin(TestCase):
             results=[
                 {
                     'meta': {
-                        'span': [8, 14],
                         'locale': 'en-us',
                         'source': 'whatever',
                         'string': 'fakestring',
-                        'pattern': 'ahaha',
                         'original_string': 'something',
                     },
                     'rule': self.narc_rule.name,

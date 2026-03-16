@@ -116,7 +116,7 @@ class AbstractScannerResult(ModelBase):
 
         This includes the filename that matched if applicable and the name of
         the rule, but excluding info that would reveal the definition of the
-        rule itself, such as the pattern for NARC).
+        rule itself).
         """
         res = defaultdict(list)
         if self.results is None:
@@ -128,10 +128,7 @@ class AbstractScannerResult(ModelBase):
                 )
         elif self.scanner == NARC:
             for item in self.results:
-                meta = item.get('meta', {}).copy()
-                for field in ('pattern', 'span'):
-                    meta.pop(field, None)
-                res[item['rule']].append(meta)
+                res[item['rule']].append(item.get('meta', {}))
         else:
             if 'annotations' in self.results:
                 for rule_name, annotation_list in self.results['annotations'].items():

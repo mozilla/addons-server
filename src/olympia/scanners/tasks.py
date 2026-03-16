@@ -428,16 +428,13 @@ def _run_narc(*, scanner_result, version, rules=None):
 
             for variant_string, variant_type in variants:
                 if match := definition.search(variant_string):
-                    span = tuple(match.span())
                     for source_info in sources_to_examine:
                         result = {
                             'rule': rule.name,
                             'meta': {
                                 'locale': source_info['locale'],
                                 'source': source_info['source'],
-                                'pattern': rule.definition,
                                 'string': variant_string,
-                                'span': span,
                             },
                         }
                         if (match_group := match.group()) != variant_string:

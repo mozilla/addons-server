@@ -331,9 +331,7 @@ class TestScannerResultMixin:
                 'meta': {
                     'locale': None,
                     'source': 'something',
-                    'pattern': 'secret.*pattern',
                     'string': 'Some string',
-                    'span': (0, 42),
                 },
             }
         ]
@@ -341,7 +339,6 @@ class TestScannerResultMixin:
         assert result.get_files_and_data_by_matched_rules() == {
             'foobar': [
                 {
-                    # Pattern and span should not appear.
                     'locale': None,
                     'source': 'something',
                     'string': 'Some string',

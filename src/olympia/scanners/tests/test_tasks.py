@@ -265,12 +265,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'variant': 'normalized',
                     'locale': 'en-us',
-                    'pattern': '.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        24,
-                    ],
                     'string': 'MyFancyWebExtensionAddon',
                     'original_string': 'My Fancy WebExtension Addon',
                 },
@@ -279,12 +274,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': '.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        27,
-                    ],
                     'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'always_match_rule',
@@ -293,12 +283,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'variant': 'normalized',
                     'locale': None,
-                    'pattern': '.*',
                     'source': 'author',
-                    'span': [
-                        0,
-                        3,
-                    ],
                     'string': 'Foo',
                     'original_string': 'Fôo',
                 },
@@ -308,12 +293,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'variant': 'normalized',
                     'locale': None,
-                    'pattern': '.*',
                     'source': 'xpi',
-                    'span': [
-                        0,
-                        19,
-                    ],
                     'string': 'MyWebExtensionAddon',
                     'original_string': 'My WebExtension Addon',
                 },
@@ -321,21 +301,17 @@ class TestRunNarc(UploadMixin, TestCase):
             },
             {
                 'meta': {
-                    'span': [0, 3],
                     'locale': None,
                     'source': 'author',
                     'string': 'Fôo',
-                    'pattern': '.*',
                 },
                 'rule': 'always_match_rule',
             },
             {
                 'meta': {
-                    'span': [0, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '.*',
                 },
                 'rule': 'always_match_rule',
             },
@@ -377,12 +353,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'en-us',
                     'original_string': 'My⠀ Fäncy WebExtension 𝕒ddon',
-                    'pattern': 'MyFancyWebExtensionAddon',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        24,
-                    ],
                     'string': 'MyFancyWebExtensionaddon',
                     'variant': 'normalized',
                 },
@@ -426,12 +397,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'en-us',
                     'original_string': 'My⠀ Fäncy WеbExтѐnsion addon',
-                    'pattern': 'MyFancyWebExtensionAddon',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        24,
-                    ],
                     'string': 'myfancywebextensionaddon',
                     'variant': 'homoglyph',
                 },
@@ -484,22 +450,18 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [7, 11],
                     'locale': 'de',
                     'match': 'päin',
                     'source': 'db_addon',
                     'string': 'German päin',
-                    'pattern': 'Päin.*',
                 },
                 'rule': 'match_the_pain',
             },
             {
                 'meta': {
-                    'span': [0, 16],
                     'locale': 'fr',
                     'source': 'db_addon',
                     'string': 'Päin au chocolat',
-                    'pattern': 'Päin.*',
                 },
                 'rule': 'match_the_pain',
             },
@@ -536,11 +498,9 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [0, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '^My WebExtension.*$',
                 },
                 'rule': 'always_match_rule',
             },
@@ -580,12 +540,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'ja',
                     'match': 'を通知',
-                    'pattern': 'を通知',
                     'source': 'xpi',
-                    'span': [
-                        3,
-                        6,
-                    ],
                     'string': 'リンクを通知する',
                 },
                 'rule': 'match_in_japanese',
@@ -658,10 +613,8 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results[5] == {
             'meta': {
                 'variant': 'normalized',
-                'span': [0, 3],
                 'locale': None,
                 'source': 'author',
-                'pattern': '^foo$',
                 'string': 'Foo',
                 'original_string': 'Fôo',
             },
@@ -672,12 +625,7 @@ class TestRunNarc(UploadMixin, TestCase):
             assert result == {
                 'meta': {
                     'locale': locale.lower(),
-                    'pattern': '^foo$',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        3,
-                    ],
                     'string': 'foo',
                 },
                 'rule': 'match_the_fool',
@@ -716,12 +664,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': None,
                     'match': 'Foo',
-                    'pattern': '^foo',
                     'source': 'author',
-                    'span': [
-                        0,
-                        3,
-                    ],
                     'string': 'FooBar',
                 },
                 'rule': 'match_the_fool',
@@ -729,10 +672,8 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'variant': 'normalized',
-                    'span': [0, 3],
                     'locale': None,
                     'source': 'author',
-                    'pattern': '^foo',
                     'string': 'Foo',
                     'original_string': 'Fôo',
                 },
@@ -740,11 +681,9 @@ class TestRunNarc(UploadMixin, TestCase):
             },
             {
                 'meta': {
-                    'span': [0, 3],
                     'locale': None,
                     'source': 'author',
                     'string': 'Foo',
-                    'pattern': '^foo',
                 },
                 'rule': 'match_the_fool',
             },
@@ -790,12 +729,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'en-us',
                     'match': 'WebExtension Addon',
-                    'pattern': 'WebExtension Addon$',
                     'source': 'db_addon',
-                    'span': [
-                        9,
-                        27,
-                    ],
                     'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'match_the_end',
@@ -803,34 +737,25 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        27,
-                    ],
                     'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'match_the_beginning',
             },
             {
                 'meta': {
-                    'span': [3, 21],
                     'locale': None,
                     'match': 'WebExtension Addon',
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': 'WebExtension Addon$',
                 },
                 'rule': 'match_the_end',
             },
             {
                 'meta': {
-                    'span': [0, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': r'^My\s.*',
                 },
                 'rule': 'match_the_beginning',
             },
@@ -894,12 +819,10 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [2, 21],
                     'locale': None,
                     'match': ' WebExtension Addon',
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '(?<!fancy) WebExtension Addon$',
                 },
                 'rule': 'match_the_end',
             },
@@ -975,12 +898,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'en-us',
                     'match': 'WebExtension Addon',
-                    'pattern': 'WebExtension Addon$',
                     'source': 'db_addon',
-                    'span': [
-                        8,
-                        26,
-                    ],
                     'string': 'Another WebExtension Addon',
                 },
                 'rule': 'match_the_end',
@@ -991,12 +909,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': 'en-us',
                     'match': 'WebExtension Addon',
-                    'pattern': 'WebExtension Addon$',
                     'source': 'db_addon',
-                    'span': [
-                        9,
-                        27,
-                    ],
                     'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'match_the_end',
@@ -1005,12 +918,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        27,
-                    ],
                     'string': 'My Fancy WebExtension Addon',
                 },
                 'rule': 'match_the_beginning',
@@ -1018,12 +926,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': 'fr',
-                    'pattern': r'^My\s.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        16,
-                    ],
                     'string': 'My Foolish Addon',
                 },
                 'rule': 'match_the_beginning',
@@ -1032,12 +935,7 @@ class TestRunNarc(UploadMixin, TestCase):
                 'meta': {
                     'locale': None,
                     'match': 'WebExtension Addon',
-                    'pattern': 'WebExtension Addon$',
                     'source': 'xpi',
-                    'span': [
-                        3,
-                        21,
-                    ],
                     'string': 'My WebExtension Addon',
                 },
                 'rule': 'match_the_end',
@@ -1045,12 +943,7 @@ class TestRunNarc(UploadMixin, TestCase):
             {
                 'meta': {
                     'locale': None,
-                    'pattern': r'^My\s.*',
                     'source': 'xpi',
-                    'span': [
-                        0,
-                        21,
-                    ],
                     'string': 'My WebExtension Addon',
                 },
                 'rule': 'match_the_beginning',
@@ -1135,11 +1028,9 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [0, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '^My WebExtension.*$',
                 },
                 'rule': 'always_match_rule',
             },
@@ -1199,11 +1090,9 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.results == [
             {
                 'meta': {
-                    'span': [0, 21],
                     'locale': None,
                     'source': 'xpi',
                     'string': 'My WebExtension Addon',
-                    'pattern': '^My WebExtension.*$',
                 },
                 'rule': 'always_match_rule',
             },
@@ -1243,20 +1132,16 @@ class TestRunNarc(UploadMixin, TestCase):
         assert len(narc_result.results) == 8  # Would be 6 without slug
         assert narc_result.results
         assert narc_result.results[4]['meta'] == {
-            'span': [0, 14],
             'locale': None,
             'source': 'slug',
             'string': 'mywebextension',
-            'pattern': '.*',
             'variant': 'normalized',
             'original_string': 'my-webextension',
         }
         assert narc_result.results[6]['meta'] == {
-            'span': [0, 15],
             'locale': None,
             'source': 'slug',
             'string': 'my-webextension',
-            'pattern': '.*',
         }
 
     def test_run_dont_examine_xpi_names(self):
@@ -2243,12 +2128,7 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
             {
                 'meta': {
                     'locale': 'en-us',
-                    'pattern': '.*',
                     'source': 'db_addon',
-                    'span': [
-                        0,
-                        12,
-                    ],
                     'string': 'WebExtension',
                 },
                 'rule': 'match_everything',
@@ -2257,12 +2137,7 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
                 'meta': {
                     'locale': None,
                     'original_string': 'My WebExtension Addon',
-                    'pattern': '.*',
                     'source': 'xpi',
-                    'span': [
-                        0,
-                        19,
-                    ],
                     'string': 'MyWebExtensionAddon',
                     'variant': 'normalized',
                 },
@@ -2271,12 +2146,7 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
             {
                 'meta': {
                     'locale': None,
-                    'pattern': '.*',
                     'source': 'xpi',
-                    'span': [
-                        0,
-                        21,
-                    ],
                     'string': 'My WebExtension Addon',
                 },
                 'rule': 'match_everything',
