@@ -24,10 +24,6 @@ on:
         type: number
         required: false
         default: 14
-      django_version:
-        description: The Django version to test against
-        type: string
-        required: true
   workflow_dispatch:
     inputs:
       version:
@@ -43,10 +39,6 @@ on:
         type: number
         required: false
         default: 14
-      django_version:
-        description: The Django version to test against
-        type: string
-        required: true
 
 concurrency:
   group: test_main-${{ github.workflow }}-${{ github.event_name}}-${{ github.ref}}-${{ toJson(inputs) }}
@@ -99,7 +91,6 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          django_version: ${{ inputs.django_version }}
           run: |
             make lint-codestyle
 
@@ -133,7 +124,6 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          django_version: ${{ inputs.django_version }}
           run: |
             split="--splits ${{ needs.test_config.outputs.splits }}"
             group="--group ${{ matrix.group }}"
@@ -153,7 +143,6 @@ jobs:
 #        with:
 #          digest: ${{ inputs.digest }}
 #          version: ${{ inputs.version }}
-#          django_version: ${{ inputs.django_version }}
 #          run: |
 #            make test_internal_routes_allowed
 
@@ -171,7 +160,6 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          django_version: ${{ inputs.django_version }}
           run: |
             make compile_locales
             make test_needs_locales_compilation
@@ -198,6 +186,5 @@ jobs:
         with:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
-          django_version: ${{ inputs.django_version }}
           run: |
             make test_es_tests

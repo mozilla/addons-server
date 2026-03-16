@@ -6,8 +6,6 @@ FROM python:3.13-slim-bookworm@sha256:50b530b93da5a3ce61c6b7eabdb1a90f15d509ca1f
 
 ENV BUILD_INFO=/build-info.json
 ENV ENV=build
-ARG DJANGO_VERSION=django42
-ENV DJANGO_VERSION=$DJANGO_VERSION
 
 # Set shell to bash with logs and errors for build
 SHELL ["/bin/bash", "-xue", "-c"]
@@ -137,7 +135,6 @@ RUN \
     --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
-    --mount=type=bind,source=./requirements/${DJANGO_VERSION}.txt,target=${HOME}/requirements/${DJANGO_VERSION}.txt \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
@@ -145,7 +142,7 @@ RUN \
     --mount=type=cache,target=${PIP_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
     --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
-${HOME}/scripts/install_deps.py prod ${DJANGO_VERSION}
+${HOME}/scripts/install_deps.py prod
 EOF
 
 FROM base AS development

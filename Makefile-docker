@@ -8,9 +8,8 @@ export PYTHON_COMMAND=python3
 export PIP_COMMAND=$(PYTHON_COMMAND) -m pip
 APP=src/olympia/
 
-export DJANGO_VERSION?=django42
 # Build list of dependencies to install
-DEPS = pip prod $(DJANGO_VERSION)
+DEPS = pip prod
 # If we're running a development image, then we should install the development dependencies
 ifeq ($(OLYMPIA_DEPS), development)
 DEPS += dev
@@ -55,7 +54,6 @@ run_vite:
 
 .PHONY: update_deps
 update_deps: ## Update the dependencies
-	echo "deps: $(DEPS)"
 	$(HOME)/scripts/install_deps.py $(DEPS)
 
 # TOOD: remove this after we migrate addons-frontned to not depend on it.

@@ -23,10 +23,6 @@ inputs:
     description: 'Which dependencies to install at runtime? (development|production)'
     required: false
     default: 'production'
-  django_version:
-    description: The Django version to test against
-    required: false
-    default: "django42"
 
 runs:
   using: 'composite'
@@ -41,7 +37,6 @@ runs:
         target: ${{ inputs.target }}
         deps: ${{ inputs.deps }}
         run: ${{ inputs.run }}
-        django_version: ${{ inputs.django_version }}
       run: |
         # Start the specified services
         make up \
@@ -51,8 +46,7 @@ runs:
           OLYMPIA_UID="$(id -u)" \
           OLYMPIA_DEPS="${deps}" \
           SKIP_DATA_SEED="true" \
-          DOCKER_WAIT="true" \
-          DJANGO_VERSION="${django_version}"
+          DOCKER_WAIT="true"
         docker compose exec --user olympia web bash -c "${run}"
 
     - name: Post Run (logs and exit code)
