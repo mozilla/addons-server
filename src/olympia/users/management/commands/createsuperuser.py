@@ -87,7 +87,7 @@ and email address and that's it.
         user = get_user_model()._default_manager.create_superuser(**user_data)
 
         if options.get('add_to_supercreate_group', False):
-            user.read_dev_agreement = datetime.utcnow()
+            user.read_dev_agreement = datetime.now()
             user.save(update_fields=('read_dev_agreement',))
 
             group, _ = Group.objects.get_or_create(

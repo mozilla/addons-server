@@ -18,7 +18,7 @@ class BasicSerializer(BaseESSerializer):
 
 def test_handle_date_strips_microseconds():
     serializer = BasicSerializer()
-    date = datetime.utcnow()
+    date = datetime.now()
     assert date.microsecond
     assert serializer.handle_date(date.isoformat()) == date.replace(microsecond=0)
 

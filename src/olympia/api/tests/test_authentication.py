@@ -1,7 +1,7 @@
 import json
 import time
 from calendar import timegm
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -91,7 +91,7 @@ class TestJWTKeyAuthentication(JWTAuthKeyTester, TestCase):
         api_key = self.create_api_key(self.user)
         # Manually create a broken payload where 'iat' is a string containing
         # a timestamp..
-        issued_at = int(time.mktime(datetime.utcnow().timetuple()))
+        issued_at = int(time.mktime(datetime.now(UTC).timetuple()))
         payload = {
             'iss': api_key.key,
             'iat': str(issued_at),

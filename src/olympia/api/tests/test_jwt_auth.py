@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from django.conf import settings
 
@@ -64,7 +64,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
     def test_expired_token(self):
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
-        payload['exp'] = datetime.utcnow() - timedelta(seconds=10)
+        payload['exp'] = datetime.now(UTC) - timedelta(seconds=10)
         token = self.encode_token_payload(payload, api_key.secret)
 
         with self.assertRaises(jwt.ExpiredSignatureError):
@@ -86,7 +86,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
         payload = self.auth_token_payload(self.user, api_key.key)
 
         # Simulate clock skew...
-        payload['iat'] = datetime.utcnow() + timedelta(
+        payload['iat'] = datetime.now(UTC) + timedelta(
             seconds=settings.JWT_AUTH['JWT_LEEWAY'] + 10
         )
         token = self.encode_token_payload(payload, api_key.secret)
@@ -124,7 +124,7 @@ class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
         api_key = self.create_api_key(self.user)
         payload = self.auth_token_payload(self.user, api_key.key)
         payload['exp'] = (
-            datetime.utcnow()
+            datetime.now(UTC)
             + timedelta(seconds=settings.MAX_APIKEY_JWT_AUTH_TOKEN_LIFETIME)
             + timedelta(seconds=1)
         )

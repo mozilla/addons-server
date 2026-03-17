@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import UTC, datetime, timedelta
 
 from django.conf import settings
 
@@ -27,7 +27,7 @@ class JWTAuthKeyTester:
 
     def auth_token_payload(self, user, issuer, issued_at=None):
         """Creates a JWT payload as a client would."""
-        issued_at = datetime.utcnow()
+        issued_at = datetime.now(UTC)
         return {
             # The JWT issuer must match the 'key' field of APIKey
             'iss': issuer,

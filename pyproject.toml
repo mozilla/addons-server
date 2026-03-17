@@ -46,6 +46,7 @@ select = [
     "Q",  # flake8-quotes
     "W",  # pycodestyle warnings
     "TID251",  # banned imports
+    "DTZ003",  # don't use deprecated datetime.utcnow
 ]
 
 [tool.ruff.lint.flake8-quotes]

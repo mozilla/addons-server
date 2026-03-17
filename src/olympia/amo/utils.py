@@ -1,6 +1,5 @@
 import collections
 import contextlib
-import datetime
 import errno
 import functools
 import hashlib
@@ -15,6 +14,7 @@ import sys
 import tempfile
 import time
 import unicodedata
+from datetime import UTC, datetime, timedelta
 from mimetypes import guess_extension
 from urllib.parse import (
     ParseResult,
@@ -79,7 +79,7 @@ def from_string(string):
 
 
 def days_ago(n):
-    return datetime.datetime.now() - datetime.timedelta(days=n)
+    return datetime.now() - timedelta(days=n)
 
 
 def urlparams(url_, hash=None, **query):
@@ -1226,7 +1226,7 @@ def utc_millesecs_from_epoch(for_datetime=None):
     If `for_datetime` is None, the current datetime will be used.
     """
     if not for_datetime:
-        for_datetime = datetime.datetime.now()
+        for_datetime = datetime.now()
     # Number of seconds.
     seconds = time.mktime(for_datetime.utctimetuple())
     # timetuple() doesn't care about more precision than seconds, but we do.
@@ -1273,12 +1273,12 @@ class StopWatch:
         self.prefix = label_prefix
 
     def start(self):
-        self._timestamp = datetime.datetime.utcnow()
+        self._timestamp = datetime.now(UTC)
 
     def log_interval(self, label):
         if not self._timestamp:
             return
-        now = datetime.datetime.utcnow()
+        now = datetime.now(UTC)
         statsd.timing(self.prefix + label, now - self._timestamp)
         log.info('%s: %s', self.prefix + label, now - self._timestamp)
         self._timestamp = now
@@ -1444,7 +1444,7 @@ def copy_file_to_backup_storage(local_file_path, content_type):
 def create_signed_url_for_file_backup(backup_file_name_remote):
     blob = backup_storage_blob(backup_file_name_remote)
     return blob.generate_signed_url(
-        expiration=datetime.timedelta(days=REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS)
+        expiration=timedelta(days=REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS)
     )
 
 
