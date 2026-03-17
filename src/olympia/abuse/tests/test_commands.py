@@ -32,7 +32,7 @@ def test_retry_unreported_abuse_reports():
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=201,
     )
@@ -82,13 +82,13 @@ class TestAutoResolveReports(TestCase):
         assert CinderJob.objects.unresolved().count() == 3
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job1.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job1.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job2.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job2.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -179,7 +179,7 @@ class TestAutoResolveReports(TestCase):
         assert CinderJob.objects.unresolved().count() == 4
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job_forwarded.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_forwarded.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )

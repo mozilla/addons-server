@@ -218,7 +218,7 @@ def sync_cinder_policies():
             )
             qs.update(present_in_cinder=False)
 
-    url = f'{settings.CINDER_SERVER_URL}policies'
+    url = f'{settings.CINDER_SERVER_URL}v1/policies'
     headers = {
         'accept': 'application/json',
         'content-type': 'application/json',

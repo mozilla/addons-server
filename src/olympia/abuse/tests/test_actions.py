@@ -891,7 +891,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         action = ContentActionForwardToLegal(self.decision)
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
@@ -908,12 +908,12 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         action = ContentActionForwardToLegal(self.decision)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{self.cinder_job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{self.cinder_job.job_id}/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )

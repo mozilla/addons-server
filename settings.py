@@ -171,4 +171,4 @@ GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
     default=path('private/google-application-credentials.json'),
 )
 
-CINDER_SERVER_URL = 'https://mozilla-staging.cinderapp.com/api/v1/'
+CINDER_SERVER_URL = 'https://mozilla-staging.cinderapp.com/api/'

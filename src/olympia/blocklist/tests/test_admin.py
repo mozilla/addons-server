@@ -368,7 +368,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         self.task_user = user_factory(id=settings.TASK_USER_ID, display_name='Mozilla')
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         # Preload content type for BlocklistSubmission so that it's done before

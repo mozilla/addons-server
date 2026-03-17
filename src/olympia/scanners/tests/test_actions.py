@@ -934,7 +934,7 @@ class TestActions(TestCase):
         existing_decision_count = ContentDecision.objects.count()
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -996,7 +996,7 @@ class TestActions(TestCase):
     def test_disable_and_block_second_level_approval(self):
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 

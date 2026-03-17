@@ -307,7 +307,7 @@ def test_block_high_rating_addons_according_to_review_tier():
     )
     responses.add_callback(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}v1/create_decision',
         callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
     )
 

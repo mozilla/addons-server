@@ -1317,7 +1317,7 @@ def decision_review(request, decision_id):
         'reviewers/decision_review.html',
         context=context(
             cinder_url=urljoin(
-                settings.CINDER_SERVER_URL, f'/decision/{decision.cinder_id}'
+                settings.CINDER_SERVER_URL, f'/v1/decision/{decision.cinder_id}'
             ),
             decision=decision,
             form=form,

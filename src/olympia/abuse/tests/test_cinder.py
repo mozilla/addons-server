@@ -84,25 +84,25 @@ class BaseTestCinderCase:
     def _test_report(self, target):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=400,
         )
@@ -152,7 +152,7 @@ class BaseTestCinderCase:
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '67890-abc'},
             status=201,
         )
@@ -166,7 +166,7 @@ class BaseTestCinderCase:
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '67890-abc'},
             status=400,
         )
@@ -984,7 +984,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}graph/',
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
             status=202,
         )
 
@@ -1088,7 +1088,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}graph/',
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
             status=400,
         )
 
@@ -1178,7 +1178,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
@@ -1323,13 +1323,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         cinder_id = uuid.uuid4().hex
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': cinder_id},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'error': 'reason'},
             status=400,
         )
@@ -1365,13 +1365,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job.job_id}/decision',
             json={'uuid': cinder_id},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job.job_id}/decision',
             json={'error': 'reason'},
             status=400,
         )
@@ -1409,13 +1409,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/{overridden_decision_id}/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/{overridden_decision_id}/override/',
             json={'uuid': cinder_id},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/{overridden_decision_id}/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/{overridden_decision_id}/override/',
             json={'error': 'reason'},
             status=400,
         )
@@ -1451,13 +1451,13 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         job_id = uuid.uuid4().hex
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_id}/cancel',
             json={'external_id': job_id},
             status=200,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_id}/cancel',
             json={'error': 'reason'},
             status=400,
         )
@@ -1569,7 +1569,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '2'},
             status=201,
         )
@@ -1587,7 +1587,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '3'},
             status=201,
         )
@@ -1657,7 +1657,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         ActivityLog.objects.all().delete()
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '2'},
             status=201,
         )
@@ -1704,7 +1704,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '2'},
             status=201,
         )
@@ -1784,7 +1784,7 @@ class TestCinderAddonHandledByLegal(TestCinderAddon):
         cinder_job = CinderJob.objects.create(target_addon=addon, job_id='1')
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '2'},
             status=201,
         )
@@ -2356,7 +2356,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}graph/',
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
             status=202,
         )
 
@@ -2476,7 +2476,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}graph/',
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
             status=400,
         )
 

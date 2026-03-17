@@ -1042,7 +1042,7 @@ class TestCinderJob(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '1234-xyz'},
             status=201,
         )
@@ -1071,13 +1071,13 @@ class TestCinderJob(TestCase):
         job_id = '1234-xyz'
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': job_id},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -1438,7 +1438,7 @@ class TestCinderJob(TestCase):
         addon.current_version.update(human_review_date=datetime.now())
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -2552,7 +2552,7 @@ class TestContentDecision(TestCase):
         )
         appeal_response = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2631,7 +2631,7 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2673,7 +2673,7 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2714,7 +2714,7 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2756,7 +2756,7 @@ class TestContentDecision(TestCase):
         )
         appeal_response = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2822,7 +2822,7 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2866,7 +2866,7 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}appeal',
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
             json={'external_id': '2432615184-tsol'},
             status=201,
         )
@@ -2950,19 +2950,19 @@ class TestContentDecision(TestCase):
             ) and dn.cinder_id
         create_decision_response = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         create_job_decision_response = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{cinder_job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         create_override_decision_response = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/{overridden_id}/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/{overridden_id}/override/',
             json={'uuid': uuid.uuid4().hex},
             status=200,
         )
@@ -3693,13 +3693,13 @@ class TestContentDecision(TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{cinder_job.job_id}/decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': uuid.uuid4().hex},
             status=201,
         )

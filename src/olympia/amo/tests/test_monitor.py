@@ -147,7 +147,7 @@ class TestMonitor(TestCase):
         assert '503 Server Error: Service Unavailable' in obtained
 
     def test_cinder_success(self):
-        url = settings.CINDER_SERVER_URL.replace('/api/v1/', '/health')
+        url = settings.CINDER_SERVER_URL.replace('/api/', '/health')
         responses.add(responses.GET, url, status=200, body=json.dumps({'http': True}))
 
         status, signer_result = monitors.cinder()
@@ -155,7 +155,7 @@ class TestMonitor(TestCase):
         assert status == ''
 
     def test_cinder_fail(self):
-        url = settings.CINDER_SERVER_URL.replace('/api/v1/', '/health')
+        url = settings.CINDER_SERVER_URL.replace('/api/', '/health')
         responses.add(responses.GET, url, status=500, body=json.dumps({'http': False}))
 
         status, signer_result = monitors.cinder()

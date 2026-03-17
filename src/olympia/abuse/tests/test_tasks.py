@@ -262,7 +262,7 @@ def test_block_high_abuse_reports_addons_according_to_review_tier():
     )
     responses.add_callback(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}v1/create_decision',
         callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
     )
 
@@ -307,7 +307,7 @@ def test_addon_report_to_cinder(statsd_incr_mock):
     assert not CinderJob.objects.exists()
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=201,
     )
@@ -394,7 +394,7 @@ def test_addon_report_to_cinder_exception(log_exception_mock, statsd_incr_mock):
     assert not CinderJob.objects.exists()
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=500,
     )
@@ -433,7 +433,7 @@ def test_multiple_retries_with_exceptions_on_first_and_seventh_retry(
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=500,
     )
@@ -474,7 +474,7 @@ def test_addon_report_to_cinder_different_locale():
     assert not CinderJob.objects.exists()
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=201,
     )
@@ -559,13 +559,13 @@ def test_addon_report_with_additional_context_no_retry(statsd_incr_mock):
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_report',
+        f'{settings.CINDER_SERVER_URL}v1/create_report',
         json={'job_id': '1234-xyz'},
         status=201,
     )
     additional = responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}graph/',
+        f'{settings.CINDER_SERVER_URL}v1/graph/',
         status=400,
     )
     statsd_incr_mock.reset_mock()
@@ -603,7 +603,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}appeal',
+        f'{settings.CINDER_SERVER_URL}v1/appeal',
         json={'external_id': '2432615184-xyz'},
         status=201,
     )
@@ -668,7 +668,7 @@ def test_addon_appeal_to_cinder_reporter_exception(
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}appeal',
+        f'{settings.CINDER_SERVER_URL}v1/appeal',
         json={'external_id': '2432615184-xyz'},
         status=500,
     )
@@ -718,7 +718,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}appeal',
+        f'{settings.CINDER_SERVER_URL}v1/appeal',
         json={'external_id': '2432615184-xyz'},
         status=201,
     )
@@ -768,7 +768,7 @@ def test_addon_appeal_to_cinder_authenticated_author():
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}appeal',
+        f'{settings.CINDER_SERVER_URL}v1/appeal',
         json={'external_id': '2432615184-xyz'},
         status=201,
     )
@@ -814,7 +814,7 @@ def test_report_decision_to_cinder_and_notify_with_job():
     )
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}jobs/{cinder_job.job_id}/decision',
+        f'{settings.CINDER_SERVER_URL}v1/jobs/{cinder_job.job_id}/decision',
         json={'uuid': uuid.uuid4().hex},
         status=201,
     )
@@ -865,7 +865,7 @@ def test_report_decision_to_cinder_and_notify_with_job():
 def test_report_decision_to_cinder_and_notify():
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}v1/create_decision',
         json={'uuid': uuid.uuid4().hex},
         status=201,
     )
@@ -914,7 +914,7 @@ def test_report_decision_to_cinder_and_notify():
 def test_report_decision_to_cinder_and_notify_dont_notify_owners():
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}v1/create_decision',
         json={'uuid': uuid.uuid4().hex},
         status=201,
     )
@@ -969,7 +969,7 @@ def test_report_decision_to_cinder_and_notify_exception(
 ):
     responses.add(
         responses.POST,
-        f'{settings.CINDER_SERVER_URL}create_decision',
+        f'{settings.CINDER_SERVER_URL}v1/create_decision',
         json={'uuid': uuid.uuid4().hex},
         status=500,
     )
@@ -1001,7 +1001,7 @@ def test_report_decision_to_cinder_and_notify_exception(
 
 class TestSyncCinderPolicies(TestCase):
     def setUp(self):
-        self.url = f'{settings.CINDER_SERVER_URL}policies'
+        self.url = f'{settings.CINDER_SERVER_URL}v1/policies'
         self.policy = {
             'uuid': 'test-uuid',
             'name': 'test-name',

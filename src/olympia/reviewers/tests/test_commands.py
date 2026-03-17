@@ -1388,7 +1388,7 @@ class AutoRejectTestsMixin:
 
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -1599,7 +1599,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -1646,7 +1646,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -1693,7 +1693,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/13579/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/13579/override/',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )

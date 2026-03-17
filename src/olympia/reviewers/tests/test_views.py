@@ -2801,7 +2801,7 @@ class TestReview(ReviewBase):
         )
         create_request = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': uuid.uuid4().hex},
             status=201,
         )
@@ -4516,7 +4516,7 @@ class TestReview(ReviewBase):
     def test_approve_rejected_listing_content_review(self):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -4559,7 +4559,7 @@ class TestReview(ReviewBase):
     def _do_reject_listing_content_review(self, extra_data):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -4601,7 +4601,7 @@ class TestReview(ReviewBase):
         )
         assert (
             responses.calls[0].request.url
-            == f'{settings.CINDER_SERVER_URL}create_decision'
+            == f'{settings.CINDER_SERVER_URL}v1/create_decision'
         )
 
     @override_switch('enable-content-rejection', active=True)
@@ -4813,7 +4813,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions(self):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -4851,7 +4851,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions_with_no_delay(self):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -4892,7 +4892,7 @@ class TestReview(ReviewBase):
     def test_reject_multiple_versions_with_delay(self):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -4940,7 +4940,7 @@ class TestReview(ReviewBase):
     def test_reject_with_policy_selection(self):
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
@@ -8352,7 +8352,7 @@ class TestHeldDecisionReview(ReviewerTest):
         assert not user.banned
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}decisions/{self.decision.cinder_id}/override/',
+            f'{settings.CINDER_SERVER_URL}v1/decisions/{self.decision.cinder_id}/override/',
             json={'uuid': '5678'},
             status=201,
         )

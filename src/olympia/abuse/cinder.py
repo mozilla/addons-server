@@ -120,7 +120,7 @@ class CinderEntity:
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
-        url = f'{settings.CINDER_SERVER_URL}create_report'
+        url = f'{settings.CINDER_SERVER_URL}v1/create_report'
         data = self.build_report_payload(
             report=report, reporter=reporter, message=message
         )
@@ -141,7 +141,7 @@ class CinderEntity:
         for data in context_generator:
             # Note: Cinder URLS are inconsistent. Per their documentation, that
             # one needs a trailing slash.
-            url = f'{settings.CINDER_SERVER_URL}graph/'
+            url = f'{settings.CINDER_SERVER_URL}v1/graph/'
             response = requests.post(
                 url, json=data, headers=self.get_cinder_http_headers()
             )
@@ -155,7 +155,7 @@ class CinderEntity:
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
-        url = f'{settings.CINDER_SERVER_URL}appeal'
+        url = f'{settings.CINDER_SERVER_URL}v1/appeal'
         data = {
             'queue_slug': self.queue_appeal,
             'appealer_entity_type': appealer.type,
@@ -185,7 +185,7 @@ class CinderEntity:
         if self.type is None:
             # type needs to be defined by subclasses
             raise NotImplementedError
-        url = f'{settings.CINDER_SERVER_URL}create_decision'
+        url = f'{settings.CINDER_SERVER_URL}v1/create_decision'
         data = {
             'entity_type': self.type,
             'entity': self.get_attributes(),
@@ -193,15 +193,15 @@ class CinderEntity:
         return self._send_create_decision(url, data, action, reasoning, policy_uuids)
 
     def create_job_decision(self, *, action, reasoning, policy_uuids, job_id):
-        url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/decision'
+        url = f'{settings.CINDER_SERVER_URL}v1/jobs/{job_id}/decision'
         return self._send_create_decision(url, {}, action, reasoning, policy_uuids)
 
     def create_override_decision(self, *, action, reasoning, policy_uuids, decision_id):
-        url = f'{settings.CINDER_SERVER_URL}decisions/{decision_id}/override/'
+        url = f'{settings.CINDER_SERVER_URL}v1/decisions/{decision_id}/override/'
         return self._send_create_decision(url, {}, action, reasoning, policy_uuids)
 
     def close_job(self, *, job_id):
-        url = f'{settings.CINDER_SERVER_URL}jobs/{job_id}/cancel'
+        url = f'{settings.CINDER_SERVER_URL}v1/jobs/{job_id}/cancel'
         response = requests.post(url, headers=self.get_cinder_http_headers())
         if response.status_code == 200:
             return response.json().get('external_id')

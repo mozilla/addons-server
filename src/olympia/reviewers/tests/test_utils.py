@@ -87,7 +87,7 @@ class TestReviewHelperBase(TestCase):
         self.create_paths()
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_decision',
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -2853,7 +2853,7 @@ class TestReviewHelper(TestReviewHelperBase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/1/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         self._test_reject_multiple_versions({'cinder_jobs_to_resolve': [cinder_job]})
@@ -2953,7 +2953,7 @@ class TestReviewHelper(TestReviewHelperBase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=cinder_job)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/1/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/1/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         self._test_reject_multiple_versions_with_delay(
@@ -4392,7 +4392,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
         responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': uuid.uuid4().hex},
             status=201,
         )
@@ -4643,7 +4643,7 @@ class TestReviewHelper(TestReviewHelperBase):
         ).policies.add(policy_a, policy_c)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job1.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{appeal_job1.job_id}/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -4657,7 +4657,7 @@ class TestReviewHelper(TestReviewHelperBase):
         ).policies.add(policy_d)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job2.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{appeal_job2.job_id}/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -4724,7 +4724,7 @@ class TestReviewHelper(TestReviewHelperBase):
         ).target_versions.add(old_version2)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/{appeal_job1.job_id}/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{appeal_job1.job_id}/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
 
@@ -4799,7 +4799,7 @@ class TestReviewHelper(TestReviewHelperBase):
             self.helper.set_data(data)
         report_request = responses.add(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}create_report',
+            f'{settings.CINDER_SERVER_URL}v1/create_report',
             json={'job_id': '5678'},
             status=201,
         )
@@ -4843,7 +4843,7 @@ class TestReviewHelper(TestReviewHelperBase):
         AbuseReport.objects.create(guid=self.addon.guid, cinder_job=job)
         responses.add_callback(
             responses.POST,
-            f'{settings.CINDER_SERVER_URL}jobs/1234/decision',
+            f'{settings.CINDER_SERVER_URL}v1/jobs/1234/decision',
             callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
         )
         NeedsHumanReview.objects.create(
