@@ -42,6 +42,7 @@ from ..cinder import (
     CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
+    CinderContentChange,
     CinderRating,
     CinderReport,
     CinderUnauthenticatedReporter,
@@ -1721,6 +1722,456 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
 class TestCinderAddonContentReview(TestCinderAddon):
     CinderClass = CinderAddonContentReview
     expected_queue_suffix = 'listing-content'
+
+    def test_build_report_payload(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
+        )
+        cinder_addon = self.CinderClass(addon)
+        content_change = CinderContentChange(
+            addon,
+            changes_dict={
+                'name': {'added': ['new name'], 'removed': ['old name']},
+                'summary': {'added': ['new summary'], 'removed': ['old summary']},
+            },
+        )
+
+        data = cinder_addon.build_report_payload(report=content_change, reporter=None)
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': content_change.type,
+                'attributes': content_change.get_attributes(),
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': cinder_addon.type,
+                        'attributes': {
+                            'id': str(addon.pk),
+                            'average_daily_users': addon.average_daily_users,
+                            'created': str(addon.created),
+                            'description': str(addon.description),
+                            'guid': addon.guid,
+                            'homepage': str(addon.homepage),
+                            'last_updated': str(addon.last_updated),
+                            'name': str(addon.name),
+                            'privacy_policy': 'Söme privacy policy',
+                            'promoted': '',
+                            'release_notes': 'Søme release notes',
+                            'requires_payment': True,
+                            'slug': addon.slug,
+                            'summary': str(addon.summary),
+                            'support_email': str(addon.support_email),
+                            'support_url': str(addon.support_url),
+                            'version': addon.current_version.version,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': content_change.id,
+                        'source_entity_schema': content_change.type,
+                        'target_id': str(addon.pk),
+                        'target_entity_schema': cinder_addon.type,
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+    def test_report(self):
+        addon = self._create_dummy_target()
+        cinder_addon = self.CinderClass(addon)
+        content_change = CinderContentChange(addon)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'ok', 'event_id': 'event-123'},
+            status=200,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'nope'},
+            status=200,
+        )
+
+        assert cinder_addon.report(report=content_change, reporter=None) == 'event-123'
+        assert json.loads(
+            responses.calls[0].request.body
+        ) == cinder_addon.build_report_payload(report=content_change, reporter=None)
+
+        with self.assertRaises(requests.HTTPError):
+            cinder_addon.report(report=content_change, reporter=None)
+
+    def test_build_report_payload_promoted_recommended(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
+        )
+        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        cinder_addon = self.CinderClass(addon)
+        content_change = CinderContentChange(
+            addon,
+            changes_dict={
+                'name': {'added': ['new name'], 'removed': ['old name']},
+                'summary': {'added': ['new summary'], 'removed': ['old summary']},
+            },
+        )
+
+        data = cinder_addon.build_report_payload(report=content_change, reporter=None)
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': content_change.type,
+                'attributes': content_change.get_attributes(),
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': cinder_addon.type,
+                        'attributes': {
+                            'id': str(addon.pk),
+                            'average_daily_users': addon.average_daily_users,
+                            'created': str(addon.created),
+                            'description': str(addon.description),
+                            'guid': addon.guid,
+                            'homepage': str(addon.homepage),
+                            'last_updated': str(addon.last_updated),
+                            'name': str(addon.name),
+                            'privacy_policy': 'Söme privacy policy',
+                            'promoted': 'Recommended',
+                            'release_notes': 'Søme release notes',
+                            'requires_payment': True,
+                            'slug': addon.slug,
+                            'summary': str(addon.summary),
+                            'support_email': str(addon.support_email),
+                            'support_url': str(addon.support_url),
+                            'version': addon.current_version.version,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': content_change.id,
+                        'source_entity_schema': content_change.type,
+                        'target_id': str(addon.pk),
+                        'target_entity_schema': cinder_addon.type,
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+    def test_build_report_payload_promoted_notable(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
+        )
+        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        cinder_addon = self.CinderClass(addon)
+        content_change = CinderContentChange(
+            addon,
+            changes_dict={
+                'name': {'added': ['new name'], 'removed': ['old name']},
+                'summary': {'added': ['new summary'], 'removed': ['old summary']},
+            },
+        )
+
+        data = cinder_addon.build_report_payload(report=content_change, reporter=None)
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': content_change.type,
+                'attributes': content_change.get_attributes(),
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': cinder_addon.type,
+                        'attributes': {
+                            'id': str(addon.pk),
+                            'average_daily_users': addon.average_daily_users,
+                            'created': str(addon.created),
+                            'description': str(addon.description),
+                            'guid': addon.guid,
+                            'homepage': str(addon.homepage),
+                            'last_updated': str(addon.last_updated),
+                            'name': str(addon.name),
+                            'privacy_policy': 'Söme privacy policy',
+                            'promoted': 'Notable',
+                            'release_notes': 'Søme release notes',
+                            'requires_payment': True,
+                            'slug': addon.slug,
+                            'summary': str(addon.summary),
+                            'support_email': str(addon.support_email),
+                            'support_url': str(addon.support_url),
+                            'version': addon.current_version.version,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': content_change.id,
+                        'source_entity_schema': content_change.type,
+                        'target_id': str(addon.pk),
+                        'target_entity_schema': cinder_addon.type,
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+        PromotedAddon.objects.filter(addon=addon).delete()
+        data = cinder_addon.build_report_payload(
+            report=CinderContentChange(addon), reporter=None
+        )
+        assert data['subgraph']['entities'][0]['attributes']['promoted'] == ''
+
+    def test_build_report_payload_with_author(self):
+        # We don't send relationships in the first payload with this entity class
+        pass
+
+    def test_build_report_payload_with_author_and_reporter_being_the_same(self):
+        # There are no reporters for this type of report.
+        pass
+
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_report_payload_with_previews_and_icon(
+        self,
+        copy_file_to_backup_storage_mock,
+        create_signed_url_for_file_backup_mock,
+    ):
+        copy_file_to_backup_storage_mock.side_effect = lambda fpath, type_: (
+            os.path.basename(fpath)
+        )
+        create_signed_url_for_file_backup_mock.side_effect = lambda rpath: (
+            f'https://cloud.example.com/{rpath}?some=thing'
+        )
+        addon = self._create_dummy_target()
+        addon.update(icon_type='image/jpeg')
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), addon.get_icon_path(128)
+        )
+        for position in range(1, 3):
+            preview = Preview.objects.create(addon=addon, position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+        (p0, p1) = list(addon.previews.all())
+        Preview.objects.create(addon=addon, position=5)  # No file, ignored
+        cinder_addon = self.CinderClass(addon)
+        content_change = CinderContentChange(
+            addon,
+            changes_dict={
+                'name': {'added': ['new name'], 'removed': ['old name']},
+                'summary': {'added': ['new summary'], 'removed': ['old summary']},
+            },
+        )
+        data = cinder_addon.build_report_payload(report=content_change, reporter=None)
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': content_change.type,
+                'attributes': content_change.get_attributes(),
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': cinder_addon.type,
+                        'attributes': {
+                            'id': str(addon.pk),
+                            'average_daily_users': addon.average_daily_users,
+                            'created': str(addon.created),
+                            'description': '',
+                            'guid': addon.guid,
+                            'homepage': None,
+                            'icon': {
+                                'mime_type': 'image/png',
+                                'value': f'https://cloud.example.com/{addon.pk}-128.png?some=thing',
+                            },
+                            'last_updated': str(addon.last_updated),
+                            'name': str(addon.name),
+                            'previews': [
+                                {
+                                    'mime_type': 'image/jpeg',
+                                    'value': f'https://cloud.example.com/{p0.pk}.jpg?some=thing',
+                                },
+                                {
+                                    'mime_type': 'image/jpeg',
+                                    'value': f'https://cloud.example.com/{p1.pk}.jpg?some=thing',
+                                },
+                            ],
+                            'privacy_policy': '',
+                            'promoted': '',
+                            'release_notes': '',
+                            'requires_payment': False,
+                            'slug': addon.slug,
+                            'summary': str(addon.summary),
+                            'support_email': None,
+                            'support_url': None,
+                            'version': addon.current_version.version,
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': content_change.id,
+                        'source_entity_schema': content_change.type,
+                        'target_id': str(addon.pk),
+                        'target_entity_schema': cinder_addon.type,
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+    def test_build_report_payload_with_theme_previews(self):
+        # There are no content reviews for themes currently.
+        pass
+
+    def test_build_report_payload_only_includes_first_batch_of_relationships(self):
+        # We don't send any additional relationships with the first payload
+        pass
+
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.CinderClass(addon)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
+            status=202,
+        )
+
+        cinder_addon.report_additional_context()
+        assert len(responses.calls) == 2
+        data = json.loads(responses.calls[0].request.body)
+        # The first 2 authors should be skipped, they would have been sent with
+        # the main report request.
+        third_author = addon.authors.all()[2]
+        fourth_author = addon.authors.all()[3]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(third_author.created),
+                        'email': str(third_author.email),
+                        'fxa_id': str(third_author.fxa_id),
+                        'id': str(third_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(fourth_author.created),
+                        'email': str(fourth_author.email),
+                        'fxa_id': str(fourth_author.fxa_id),
+                        'id': str(fourth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(third_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(fourth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+        data = json.loads(responses.calls[1].request.body)
+        fifth_author = addon.authors.all()[4]
+        sixth_author = addon.authors.all()[5]
+        assert data == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(fifth_author.created),
+                        'email': str(fifth_author.email),
+                        'fxa_id': str(fifth_author.fxa_id),
+                        'id': str(fifth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(sixth_author.created),
+                        'email': str(sixth_author.email),
+                        'fxa_id': str(sixth_author.fxa_id),
+                        'id': str(sixth_author.pk),
+                        'name': '',
+                    },
+                    'entity_type': 'amo_user',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(fifth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+                {
+                    'relationship_type': 'amo_author_of',
+                    'source_id': str(sixth_author.pk),
+                    'source_type': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_type': 'amo_addon',
+                },
+            ],
+        }
+
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_report_additional_context_error(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.CinderClass(addon)
+
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
+            status=400,
+        )
+
+        with self.assertRaises(requests.HTTPError):
+            cinder_addon.report_additional_context()
 
     def _test_appeal(
         self,

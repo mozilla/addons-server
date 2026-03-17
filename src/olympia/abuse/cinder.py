@@ -1,4 +1,5 @@
 import mimetypes
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -641,6 +642,55 @@ class CinderAddonHandledByReviewers(CinderAddon):
 
 class CinderAddonContentReview(CinderAddon):
     queue_suffix = 'listing-content'
+    workflow_name = 'amo_addon.contentreview'
+
+    def build_report_payload(self, *, report, reporter, message=''):
+        assert reporter is None  # Content review can't be reported by 3rd parties
+        return {
+            'event_name': self.workflow_name,
+            'entity': {
+                'entity_schema': report.type,
+                'attributes': report.get_attributes(),
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': self.type,
+                        'attributes': {
+                            **self.get_attributes(),
+                            **self.get_extended_attributes(),
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': report.id,
+                        'source_entity_schema': report.type,
+                        'target_id': self.id,
+                        'target_entity_schema': self.type,
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+    def report(self, *, report, reporter, message=''):
+        """Build the payload and send a content review to Cinder API.
+
+        We're overriding the report method here but content reviews are different: they
+        don't immediately create a job (or return an existing job), but instead trigger
+        an async workflow that doesn't return a job_id.
+        """
+        assert reporter is None  # Content review can't be reported by 3rd parties
+        url = f'{settings.CINDER_SERVER_URL}v2/workflows/event'
+        data = self.build_report_payload(
+            report=report, reporter=reporter, message=message
+        )
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
+        if response.status_code == 200 and response.json().get('status') == 'ok':
+            return response.json().get('event_id')
+        else:
+            raise HTTPError(response.content)
 
     def appeal(self, *, decision_cinder_id, **kwargs):
         # We don't flag for NHR for content review follow-ups
@@ -699,6 +749,37 @@ class CinderReport(CinderEntity):
         raise NotImplementedError
 
     def appeal(self, *args, **kwargs):
-        # It doesn't make sense to report this, it's just meant to be included
+        # It doesn't make sense to appeal this, it's just meant to be included
         # as a relationship.
+        raise NotImplementedError
+
+
+class CinderContentChange(CinderEntity):
+    type = 'amo_content_change'
+    id = None  # override the id propery - we'll set in __init__
+
+    def __init__(self, entity, changes_dict=None):
+        self.entity = entity
+        self.changes = changes_dict or {}
+        timestamp = int(datetime.now().timestamp())
+        self.id = f'{self.entity.id}-{timestamp}'
+
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'reason': 'Submission' if not self.changes else 'Content Change',
+            'name_added': self.changes.get('name', {}).get('added', []),
+            'name_removed': self.changes.get('name', {}).get('removed', []),
+            'summary_added': self.changes.get('summary', {}).get('added', []),
+            'summary_removed': self.changes.get('summary', {}).get('removed', []),
+        }
+
+    def report(self, *args, **kwargs):
+        # It doesn't make sense to report this, it's a holder for metadata, not a real
+        # entity.
+        raise NotImplementedError
+
+    def appeal(self, *args, **kwargs):
+        # It doesn't make sense to appeal this, it's a holder for metadata, not a real
+        # entity.
         raise NotImplementedError
