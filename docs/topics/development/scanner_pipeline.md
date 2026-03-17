@@ -176,7 +176,7 @@ We provide a library to quickly develop new scanners written with Node.js:
 Start by installing the dependencies using `npm`:
 
 ```text
-npm add express body-parser safe-compare addons-scanner-utils
+npm add express safe-compare addons-scanner-utils
 ```
 
 Next, create an `index.js` containing the code of the scanner:
@@ -184,23 +184,28 @@ Next, create an `index.js` containing the code of the scanner:
 ```js
 import { createExpressApp } from "addons-scanner-utils";
 
+import pkg from "./package.json" with { type: "json" };
+
 const handler = (req, res) => {
   console.log({ data: req.body });
 
   // Option 1: Synchronous response
-  res.json({ version: "1.0.0" });
+  res.json({ version: pkg.version });
 
   // Option 2: Asynchronous response (for long-running scans)
-  // res.status(202).json({ message: "Scan started" });
-  // // Perform scanning asynchronously and later send results to:
-  // // req.body.scanner_result_url
+  // res.status(202).json({ ok: true });
+  // // Perform scanning asynchronously and later send results with:
+  // //
+  // // await patchScannerResult(req.body.scanner_result_url, {
+  // //   results: { version: pkg.version, matchedRules: [] },
+  // // });
 };
 
 const app = createExpressApp({
   apiKeyEnvVarName: "NEW_SCANNER_API_KEY",
 })(handler);
-const port = process.env.PORT || 20000;
 
+const port = process.env.PORT || 20000;
 app.listen(port, () => {
   console.log(`new-scanner is running on port ${port}`);
 });
