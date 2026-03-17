@@ -24,13 +24,14 @@ from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Usage
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..cinder import CinderAddon
+from ..cinder import CinderAddon, CinderAddonContentReview
 from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
     flag_high_abuse_reports_addons_according_to_review_tier,
     report_decision_to_cinder_and_notify,
     report_to_cinder,
+    submit_addon_for_content_review,
     sync_cinder_policies,
 )
 
@@ -1304,3 +1305,32 @@ class TestSyncCinderPolicies(TestCase):
             'amo-approve',
             'amo-ban-user',
         ]
+
+
+@pytest.mark.django_db
+@mock.patch.object(CinderAddonContentReview, 'RELATIONSHIPS_BATCH_SIZE', 1)
+def test_submit_addon_for_content_review():
+    addon = addon_factory()
+    addon.authors.add(author1 := user_factory())
+    addon.authors.add(author2 := user_factory())
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+        json={'status': 'ok', 'event_id': '1234-xyz'},
+        status=200,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v1/graph/',
+        status=202,
+    )
+
+    submit_addon_for_content_review.delay(addon_pk=addon.id)
+
+    assert len(responses.calls) == 2
+    event_call = json.loads(responses.calls[0].request.body)
+    assert event_call['event_name'] == CinderAddonContentReview.workflow_name
+    assert event_call['subgraph']['entities'][0]['attributes']['id'] == str(author1.id)
+
+    additional_call = json.loads(responses.calls[1].request.body)
+    assert additional_call['entities'][0]['attributes']['id'] == str(author2.id)

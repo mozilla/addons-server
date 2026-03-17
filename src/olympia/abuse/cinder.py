@@ -1,4 +1,5 @@
 import mimetypes
+from datetime import datetime
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -639,8 +640,63 @@ class CinderAddonHandledByReviewers(CinderAddon):
         )
 
 
-class CinderAddonContentReview(CinderAddon):
+class WorkflowEventSendMixin:
+    """Mixin for entities that trigger an async workflow.
+    Instead of returning a job_id, those return an event_id that can be used to track
+    the workflow execution, but that doesn't correspond to a CinderJob."""
+
+    workflow_name = None  # Needs to be defined by subclasses
+
+    def change_to_v2_syntax(self, subgraph):
+        """api/v2 syntax is a bit different, we need to change the format of the
+        subgraph a bit before sending it."""
+        if 'entities' in subgraph:
+            subgraph['entities'] = [
+                {
+                    'entity_schema': entity['entity_type'],
+                    'attributes': entity['attributes'],
+                }
+                for entity in subgraph['entities']
+            ]
+        if 'relationships' in subgraph:
+            subgraph['relationships'] = [
+                {
+                    'source_entity_schema': entity.pop('source_type'),
+                    'target_entity_schema': entity.pop('target_type'),
+                    'relationship_schema': entity.pop('relationship_type'),
+                    **entity,
+                }
+                for entity in subgraph['relationships']
+            ]
+        return subgraph
+
+    def build_event_payload(self):
+        assert self.workflow_name is not None  # needs to be defined by subclasses
+        generator = self.get_context_generator()
+        context = next(generator, self.get_empty_context())
+        entity_attributes = {**self.get_attributes(), **self.get_extended_attributes()}
+        return {
+            'event_name': self.workflow_name,
+            'entity': {
+                'entity_schema': self.type,
+                'attributes': entity_attributes,
+            },
+            'subgraph': self.change_to_v2_syntax(context),
+        }
+
+    def send_event(self):
+        url = f'{settings.CINDER_SERVER_URL}v2/workflows/event'
+        data = self.build_event_payload()
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
+        if response.status_code == 200 and response.json().get('status') == 'ok':
+            return response.json().get('event_id')
+        else:
+            raise HTTPError(response.content)
+
+
+class CinderAddonContentReview(WorkflowEventSendMixin, CinderAddon):
     queue_suffix = 'listing-content'
+    workflow_name = 'amo_addon.contentreview'
 
     def appeal(self, *, decision_cinder_id, **kwargs):
         # We don't flag for NHR for content review follow-ups
@@ -699,6 +755,6 @@ class CinderReport(CinderEntity):
         raise NotImplementedError
 
     def appeal(self, *args, **kwargs):
-        # It doesn't make sense to report this, it's just meant to be included
+        # It doesn't make sense to appeal this, it's just meant to be included
         # as a relationship.
         raise NotImplementedError

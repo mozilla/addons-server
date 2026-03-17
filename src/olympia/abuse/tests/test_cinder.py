@@ -1722,6 +1722,277 @@ class TestCinderAddonContentReview(TestCinderAddon):
     CinderClass = CinderAddonContentReview
     expected_queue_suffix = 'listing-content'
 
+    def test_build_event_payload(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
+        )
+        cinder_addon = self.CinderClass(addon)
+
+        data = cinder_addon.build_event_payload()
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': 'amo_addon',
+                'attributes': {
+                    'id': str(addon.pk),
+                    'average_daily_users': addon.average_daily_users,
+                    'created': str(addon.created),
+                    'description': str(addon.description),
+                    'guid': addon.guid,
+                    'homepage': str(addon.homepage),
+                    'last_updated': str(addon.last_updated),
+                    'name': str(addon.name),
+                    'privacy_policy': 'Söme privacy policy',
+                    'promoted': '',
+                    'release_notes': 'Søme release notes',
+                    'requires_payment': True,
+                    'slug': addon.slug,
+                    'summary': str(addon.summary),
+                    'support_email': str(addon.support_email),
+                    'support_url': str(addon.support_url),
+                    'version': addon.current_version.version,
+                },
+            },
+            'subgraph': {
+                'entities': [],
+                'relationships': [],
+            },
+        }
+
+    def test_send_event(self):
+        addon = self._create_dummy_target()
+        cinder_addon = self.CinderClass(addon)
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'ok', 'event_id': 'event-123'},
+            status=200,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'nope'},
+            status=200,
+        )
+
+        assert cinder_addon.send_event() == 'event-123'
+        assert (
+            json.loads(responses.calls[0].request.body)
+            == cinder_addon.build_event_payload()
+        )
+
+        with self.assertRaises(requests.HTTPError):
+            cinder_addon.send_event()
+
+    def test_build_event_payload_promoted_notable(self):
+        addon = self._create_dummy_target(
+            homepage='https://home.example.com',
+            support_email='support@example.com',
+            support_url='https://support.example.com/',
+            description='Sôme description',
+            privacy_policy='Söme privacy policy',
+            version_kw={'release_notes': 'Søme release notes'},
+            requires_payment=True,
+        )
+        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        cinder_addon = self.CinderClass(addon)
+
+        data = cinder_addon.build_event_payload()
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': 'amo_addon',
+                'attributes': {
+                    'id': str(addon.pk),
+                    'average_daily_users': addon.average_daily_users,
+                    'created': str(addon.created),
+                    'description': str(addon.description),
+                    'guid': addon.guid,
+                    'homepage': str(addon.homepage),
+                    'last_updated': str(addon.last_updated),
+                    'name': str(addon.name),
+                    'privacy_policy': 'Söme privacy policy',
+                    'promoted': 'Notable',
+                    'release_notes': 'Søme release notes',
+                    'requires_payment': True,
+                    'slug': addon.slug,
+                    'summary': str(addon.summary),
+                    'support_email': str(addon.support_email),
+                    'support_url': str(addon.support_url),
+                    'version': addon.current_version.version,
+                },
+            },
+            'subgraph': {
+                'entities': [],
+                'relationships': [],
+            },
+        }
+
+        PromotedAddon.objects.filter(addon=addon).delete()
+        data = cinder_addon.build_event_payload()
+        assert data['entity']['attributes']['promoted'] == ''
+
+    def test_build_event_payload_with_author(self):
+        author = user_factory()
+        addon = self._create_dummy_target(users=[author])
+        cinder_addon = self.CinderClass(addon)
+
+        data = cinder_addon.build_event_payload()
+        assert data['subgraph'] == {
+            'entities': [
+                {
+                    'entity_schema': 'amo_user',
+                    'attributes': {
+                        'id': str(author.id),
+                        'created': str(author.created),
+                        'name': author.display_name,
+                        'email': author.email,
+                        'fxa_id': author.fxa_id,
+                    },
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': str(author.id),
+                    'source_entity_schema': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_entity_schema': 'amo_addon',
+                    'relationship_schema': 'amo_author_of',
+                },
+            ],
+        }
+
+    @mock.patch('olympia.abuse.cinder.create_signed_url_for_file_backup')
+    @mock.patch('olympia.abuse.cinder.copy_file_to_backup_storage')
+    @mock.patch('olympia.abuse.cinder.backup_storage_enabled', lambda: True)
+    def test_build_event_payload_with_previews_and_icon(
+        self,
+        copy_file_to_backup_storage_mock,
+        create_signed_url_for_file_backup_mock,
+    ):
+        copy_file_to_backup_storage_mock.side_effect = lambda fpath, type_: (
+            os.path.basename(fpath)
+        )
+        create_signed_url_for_file_backup_mock.side_effect = lambda rpath: (
+            f'https://cloud.example.com/{rpath}?some=thing'
+        )
+        addon = self._create_dummy_target()
+        addon.update(icon_type='image/jpeg')
+        self.root_storage.copy_stored_file(
+            get_image_path('sunbird-small.png'), addon.get_icon_path(128)
+        )
+        for position in range(1, 3):
+            preview = Preview.objects.create(addon=addon, position=position)
+            self.root_storage.copy_stored_file(
+                get_image_path('preview_landscape.jpg'), preview.thumbnail_path
+            )
+        (p0, p1) = list(addon.previews.all())
+        Preview.objects.create(addon=addon, position=5)  # No file, ignored
+        cinder_addon = self.CinderClass(addon)
+        data = cinder_addon.build_event_payload()
+        assert data == {
+            'event_name': cinder_addon.workflow_name,
+            'entity': {
+                'entity_schema': 'amo_addon',
+                'attributes': {
+                    'id': str(addon.pk),
+                    'average_daily_users': addon.average_daily_users,
+                    'created': str(addon.created),
+                    'description': '',
+                    'guid': addon.guid,
+                    'homepage': None,
+                    'icon': {
+                        'mime_type': 'image/png',
+                        'value': f'https://cloud.example.com/{addon.pk}-128.png?some=thing',
+                    },
+                    'last_updated': str(addon.last_updated),
+                    'name': str(addon.name),
+                    'previews': [
+                        {
+                            'mime_type': 'image/jpeg',
+                            'value': f'https://cloud.example.com/{p0.pk}.jpg?some=thing',
+                        },
+                        {
+                            'mime_type': 'image/jpeg',
+                            'value': f'https://cloud.example.com/{p1.pk}.jpg?some=thing',
+                        },
+                    ],
+                    'privacy_policy': '',
+                    'promoted': '',
+                    'release_notes': '',
+                    'requires_payment': False,
+                    'slug': addon.slug,
+                    'summary': str(addon.summary),
+                    'support_email': None,
+                    'support_url': None,
+                    'version': addon.current_version.version,
+                },
+            },
+            'subgraph': {
+                'entities': [],
+                'relationships': [],
+            },
+        }
+
+    @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
+    def test_build_event_payload_only_includes_first_batch_of_relationships(self):
+        addon = self._create_dummy_target()
+        for _ in range(0, 6):
+            addon.authors.add(user_factory())
+        cinder_addon = self.CinderClass(addon)
+        data = cinder_addon.build_event_payload()
+        # 2 addon<->user (out of 6) + 1 anonymous report
+        assert len(data['subgraph']['relationships']) == 2
+        assert len(data['subgraph']['entities']) == 2
+        first_author = addon.authors.all()[0]
+        second_author = addon.authors.all()[1]
+        assert data['subgraph'] == {
+            'entities': [
+                {
+                    'attributes': {
+                        'created': str(first_author.created),
+                        'email': str(first_author.email),
+                        'fxa_id': str(first_author.fxa_id),
+                        'id': str(first_author.pk),
+                        'name': '',
+                    },
+                    'entity_schema': 'amo_user',
+                },
+                {
+                    'attributes': {
+                        'created': str(second_author.created),
+                        'email': str(second_author.email),
+                        'fxa_id': str(second_author.fxa_id),
+                        'id': str(second_author.pk),
+                        'name': '',
+                    },
+                    'entity_schema': 'amo_user',
+                },
+            ],
+            'relationships': [
+                {
+                    'relationship_schema': 'amo_author_of',
+                    'source_id': str(first_author.pk),
+                    'source_entity_schema': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_entity_schema': 'amo_addon',
+                },
+                {
+                    'relationship_schema': 'amo_author_of',
+                    'source_id': str(second_author.pk),
+                    'source_entity_schema': 'amo_user',
+                    'target_id': str(addon.pk),
+                    'target_entity_schema': 'amo_addon',
+                },
+            ],
+        }
+
     def _test_appeal(
         self,
         appealer,
