@@ -136,11 +136,15 @@ class ContentAction:
         )
 
         is_public = (
+            # ratings and collections
             not self.target.deleted
             if hasattr(self.target, 'deleted')
+            # userprofiles
             else not self.target.banned
             if hasattr(self.target, 'banned')
-            else getattr(self.target, 'status', None) == amo.STATUS_APPROVED
+            # addons
+            else callable(getattr(self.target, 'is_public', None))
+            and self.target.is_public()
         )
 
         context_dict = {
