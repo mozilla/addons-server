@@ -108,7 +108,7 @@ Account Lookup
 .. _`account-lookup`:
 
 .. note::
-    This API requires :doc:`authentication <auth>` and ``Users:Lookup`` (or ``Users:Edit``) permission.
+    This API requires :doc:`authentication <auth>` and ``Users:Lookup`` permission.
 
 This endpoint looks up one or more accounts by email address and returns their full details.
 Since multiple accounts can share the same email address, the response is always a list.
