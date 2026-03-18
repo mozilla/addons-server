@@ -540,18 +540,13 @@ class AccountViewSet(
         detail=False,
         methods=['get'],
         authentication_classes=[JWTKeyAuthentication],
-        permission_classes=[
-            AnyOf(
-                GroupPermission(amo.permissions.USERS_LOOKUP),
-                GroupPermission(amo.permissions.USERS_EDIT),
-            ),
-        ],
+        permission_classes=[GroupPermission(amo.permissions.USERS_LOOKUP)],
         url_path='lookup',
     )
     def lookup(self, request):
         """Look up accounts by email address.
 
-        Requires authentication and Users:Lookup (or Users:Edit) permission.
+        Requires authentication and Users:Lookup permission.
         Returns a list since multiple accounts can share the same email.
         """
         email = request.query_params.get('email')
