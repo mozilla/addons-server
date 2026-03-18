@@ -358,8 +358,10 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
         if submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE:
             submission.action = BlocklistSubmission.ACTIONS.DELETE
         elif submission.action == BlocklistSubmission.ACTIONS.HARDEN:
+            submission.block_type = BlockType.SOFT_BLOCKED
             submission.action = BlocklistSubmission.ACTIONS.SOFTEN
         elif submission.action == BlocklistSubmission.ACTIONS.SOFTEN:
+            submission.block_type = BlockType.BLOCKED
             submission.action = BlocklistSubmission.ACTIONS.HARDEN
         else:
             log.error(
