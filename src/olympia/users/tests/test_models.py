@@ -750,6 +750,41 @@ class TestUserProfile(TestCase):
         # We shouldn't have any email restrictions left.
         assert not EmailUserRestriction.objects.exists()
 
+    def test_unban_soften_blocks_for_addons_that_banning_hardened(self):
+        user_factory(pk=settings.TASK_USER_ID)
+        fake_admin = user_factory(display_name='Fake Admin')
+        core.set_user(fake_admin)
+        user = user_factory(display_name='Ban Me Please')
+        soft_blocked_addon = addon_factory(
+            name='Was soft blocked',
+            users=[user],
+            average_daily_users=1,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        block_factory(
+            guid=soft_blocked_addon.guid,
+            block_type=BlockType.SOFT_BLOCKED,
+            updated_by=fake_admin,
+        )
+
+        UserProfile.objects.filter(pk__in=[user.pk]).ban_and_disable_related_content(
+            hard_block_addons=True
+        )
+        version = soft_blocked_addon.versions.get()
+        assert version.is_hard_blocked
+        UserProfile.objects.filter(pk=user.pk).unban_and_reenable_related_content()
+
+        version.blockversion.reload()
+        assert version.is_soft_blocked
+        submission = BlocklistSubmission.objects.latest('pk')
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        assert submission.input_guids == soft_blocked_addon.guid
+        assert submission.changed_version_ids == [soft_blocked_addon.versions.get().pk]
+        assert not submission.disable_addon
+        assert submission.block_type == BlockType.SOFT_BLOCKED
+        assert submission.updated_by == core.get_user()
+        assert submission.reason == f'Revert "{REASON_USER_BANNED}"'
+
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)
     def test_unban_and_restore_banned_content_single(
