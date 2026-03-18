@@ -995,9 +995,22 @@ class ContentActionApproveInitialDecision(
 
 
 class ContentActionTargetAppealRemovalAffirmation(
-    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, ContentAction
+    AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is still offending, after appeal.'
+
+    def process_action(self, release_hold=False):
+        previous_decision_actions = (
+            self.decision.cinder_job.appealed_decisions.values_list('action', flat=True)
+        )
+        if (
+            isinstance(self.target, Addon)
+            and DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
+            and self.target.status == amo.STATUS_REJECTED
+        ):
+            AddonApprovalsCounter.reject_content_for_addon(self.target)
+
+        return None
 
 
 class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):

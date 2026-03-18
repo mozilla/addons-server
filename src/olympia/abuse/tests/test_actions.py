@@ -2397,6 +2397,29 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         # a new review, and we reject it again
         self._process_action_and_notify()
 
+    def test_target_appeal_decline(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+        )
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
+        ActivityLog.objects.all().delete()
+        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action.process_action() is None
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_REJECTED
+        assert self.addon.addonapprovalscounter.reload().content_review_status == (
+            AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+        assert ActivityLog.objects.count() == 0
+        assert len(mail.outbox) == 0
+
+        self.cinder_job.notify_reporters(action)
+        action.notify_owners()
+        self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
+
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection
