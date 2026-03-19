@@ -716,20 +716,26 @@ div.reviewer-stats-table > div.reviewer-stats-dark {
     margin: 0;
     width: 100%;
 }
+
 .review-files h5 {
     display: inline;
     font-weight: bold;
 }
-.review-files caption {
+
+.review-files caption,
+.scanners-results .scanner-result {
     border: 1px solid grey;
     opacity: inherit;
     margin: 2px 0;
     padding: 4px;
     position: inherit;
+    text-align: center;
+
+    a {
+        display: block;
+    }
 }
-.review-files caption a {
-    display: block;
-}
+
 .review-files .files {
     background-color: #FAFAFA;
     border-right: 1px dotted #DDDDDD;
@@ -811,19 +817,6 @@ table.activity tr:first-child {
     }
 }
 
-.review-files tr.listing-header.flagged-by-mad {
-    background-color: lighten(@risk-medium-color, 10%);
-    border-top: 1px solid lighten(@risk-medium-color, 5%);
-
-    &:hover {
-        background-color: @risk-medium-color;
-    }
-
-    &:active {
-        background-color: #FFF;
-    }
-}
-
 .review-files tr.listing-header:hover {
     cursor: pointer;
     background-color: #CCE6FF;
@@ -861,68 +854,62 @@ table.activity tr:first-child {
     vertical-align: top;
 }
 
-.review-files .files .scanners-results table {
-  margin-bottom: 0;
-  table-layout: fixed;
-  width: 100%;
-}
+.review-files .files .scanners-results .matched-rules {
+    padding: 4px 4px 8px 4px;
+    word-break: break-word;
 
-.review-files .files .scanners-results .rule_name {
-  width: 20ch;
-}
+    .matched-rules-rule {
+        margin-bottom: 4px;
+    }
 
-.review-files .files .scanners-results th {
-    padding: 0;
-}
+    .matched-rules-files {
+        & > details {
+            overflow-x: auto;
 
-.review-files .files .scanners-results td {
-    padding: 0 5px 5px 0;
-    vertical-align: top;
-}
+            & > ul {
+                border-left: 2px solid #999;
+                padding-left: 4px;
+                margin-left: 2px;
+            }
 
-.review-files .files .scanners-results td > details > ul > li > div,
-.review-files .files .scanners-results td dd:not(:has(dd)) {
-    /* only safe to apply nowrap when there is no nesting going on */
-    white-space: nowrap;
-}
+            & > ul > li > div {
+                white-space: nowrap;
+            }
+        }
 
-.review-files .files .scanners-results td dl {
-    border-left: 2px solid #999;
-    padding-left: 0.3em;
-}
+        & > ul > li li:not(:has(*)) {
+            /* li with only text and no nested elements can be displayed inline */
+            display: inline-block;
+        }
 
-.review-files .files .scanners-results td dl,
-.review-files .files .scanners-results td dd,
-.review-files .files .scanners-results td div,
-.review-files .files .scanners-results td li {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-}
+        dl {
+            display: grid;
+            gap: 4px;
+            grid-template-columns: max-content;
+            margin-bottom: 0;
 
-.review-files .files .scanners-results td > ul > li.extra_data {
-    overflow: visible;
-    white-space: normal;
-}
+            dl {
+                margin-bottom: 1em;
+                margin-left: 4px;
+                padding-left: 4px;
+            }
 
-.review-files .files .scanners-results td > ul > li li:not(:has(*)) {
-    /* li with only text and no nested elements can be displayed inline */
-    display: inline-block;
-}
+            li:last-child > dl {
+                margin-bottom: 0;
+            }
 
+        }
 
-.review-files .files .scanners-results td dt,
-.review-files .files .scanners-results td dd {
-    display: inline-block;
-    min-width: 34%;
-    padding: 0;
-    margin: 0;
-    vertical-align: top;
-}
+        dt {
+            margin: 0;
+            font-weight: bold;
+        }
 
-.review-files .files .scanners-results td dl {
-    margin-bottom: 5px;
+        dd {
+            grid-column-start: 2;
+            margin: 0;
+        }
+    }
 }
 
 form.review-form .data-toggle {

@@ -27,7 +27,7 @@ def format_scanners_data(data, parent=None):
             '<dl>\n{}\n</dl>',
             format_html_join(
                 '\n',
-                '<div><dt>{}:</dt><dd>{}</dd></div>',
+                '<dt>{}:</dt><dd>{}</dd>',
                 (
                     (format_scanners_data(k), format_scanners_data(v, parent=k))
                     for k, v in data.items()

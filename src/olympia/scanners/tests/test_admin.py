@@ -2007,8 +2007,8 @@ class TestScannerQueryResultAdmin(TestCase):
             'admin:scanners_scannerqueryrule_change', args=(self.rule.pk,)
         )
         doc = pq(response.content)
-        link = doc('.field-formatted_matched_rules_with_files_and_data td a')
-        assert link.text() == 'myrule ???'
+        link = doc('.field-formatted_matched_rules_with_files_and_data .rule-link')
+        assert link.text() == 'myrule'
         assert link.attr('href') == rule_url
 
         link_response = self.client.get(rule_url)
@@ -2072,14 +2072,14 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         result = ScannerResult.objects.create(pk=42, scanner=WEBHOOK, results=data)
         content = formatted_matched_rules_with_files_and_data(result)
         doc = pq(content)
-        assert len(doc('td > ul > li')) == 1
-        assert doc('td > ul > li').eq(0).text() == ''
+        assert len(doc('.matched-rules-files > ul > li')) == 1
+        assert doc('.matched-rules-files > ul > li').eq(0).text() == ''
 
         content = formatted_matched_rules_with_files_and_data(result, display_data=True)
         doc = pq(content)
-        assert len(doc('td > details > ul > li')) == 2
-        assert doc('td > details > ul > li').eq(0).text() == ''
-        li = doc('td > details > ul > li').eq(1)
+        assert len(doc('.matched-rules-files > details > ul > li')) == 2
+        assert doc('.matched-rules-files > details > ul > li').eq(0).text() == ''
+        li = doc('.matched-rules-files > details > ul > li').eq(1)
         assert li.attr('class') == 'extra_data'
         assert li.html().strip() == format_scanners_data(
             result.get_files_and_data_by_matched_rules()[rule.name][0]['data']
@@ -2089,14 +2089,14 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         result = ScannerResult(pk=42, scanner=YARA)
         content = formatted_matched_rules_with_files_and_data(result)
         doc = pq(content)
-        assert not doc('caption')
+        assert not doc('.scanner-result')
 
         content = formatted_matched_rules_with_files_and_data(
             result, display_scanner=True
         )
         doc = pq(content)
-        assert doc('caption').text() == 'yara'
-        assert doc('caption a')[0].attrib['href'] == (
+        assert doc('.scanner-result').text() == 'yara'
+        assert doc('.scanner-result a')[0].attrib['href'] == (
             '/en-US/admin/models/scanners/scannerresult/42/change/'
         )
 
@@ -2110,8 +2110,8 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
             result, display_scanner=True
         )
         doc = pq(content)
-        assert doc('caption').text() == 'some service (during_validation)'
-        assert doc('caption a')[0].attrib['href'] == (
+        assert doc('.scanner-result').text() == 'some service (during_validation)'
+        assert doc('.scanner-result a')[0].attrib['href'] == (
             '/en-US/admin/models/scanners/scannerresult/42/change/'
         )
 

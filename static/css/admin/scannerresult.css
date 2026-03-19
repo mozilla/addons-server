@@ -83,3 +83,31 @@
 .field-formatted_results pre {
   text-wrap: wrap;
 }
+
+.field-formatted_matched_rules_with_files_and_data {
+  .matched-rules {
+    margin-bottom: 4px;
+
+    .matched-rules-files {
+      border-left: 2px solid #999;
+      margin-left: 1px;
+      padding-left: 6px;
+
+      dl {
+        border-left: 2px solid #999;
+        display: grid;
+        gap: 4px 16px;
+        grid-template-columns: max-content;
+      }
+
+      dt {
+        margin: 0;
+      }
+
+      dd {
+        margin: 0;
+        grid-column-start: 2;
+      }
+    }
+  }
+}

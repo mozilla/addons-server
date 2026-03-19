@@ -6,24 +6,18 @@
 {# in the admin or in reviewer tools. Keep it generic.                      #}
 {# Note that this is a django template and not jinja2!                      #}
 
-<table>
+<div>
   {% if display_scanner %}
-  <caption>
+  <div class="scanner-result">
     <a class="result-link" href="{% url 'admin:scanners_scannerresult_change' obj.pk %}">{{ obj }}</a>
-  </caption>
+  </div>
   {% endif %}
-  <thead>
-    <tr>
-      <th class="rule_name">Rule name</th>
-      <th class="files_and_data">Files{% if display_data %} &amp; data{% endif %}</th>
-    </tr>
-  </thead>
   {% for rule in matched_rules %}
-  <tr>
-    <td>
-      <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }} ">{{ rule.name }}</a>
-    </td>
-    <td>
+  <div class="matched-rules">
+    <div class="matched-rules-rule">
+      <strong>Rule:</strong> <a class="rule-link" href="{% url rule_change_urlname rule.pk %}" title="{{ rule.description }}">{{ rule.name }}</a>
+    </div>
+    <div class="matched-rules-files">
       {% if display_data %}<details>{% endif %}
       <ul>
       {% for item in rule.files_and_data %}
@@ -51,7 +45,7 @@
       {% endif %}
       </ul>
       {% if display_data %}</details>{% endif %}
-    </td>
-  </tr>
+    </div>
+  </div>
   {% endfor %}
-</table>
+</div>
