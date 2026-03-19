@@ -964,7 +964,10 @@ class ScannerWebhookAdmin(AMOModelAdmin):
         'formatted_events_list',
         'is_active',
     )
-    readonly_fields = ('service_account',)
+    # Hide the service account field and use the formatted one instead, since
+    # we auto-create a service account when we register a new webhook.
+    exclude = ('service_account',)
+    readonly_fields = ('formatted_service_account',)
 
     def get_queryset(self, request):
         return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
@@ -979,21 +982,24 @@ class ScannerWebhookAdmin(AMOModelAdmin):
 
     formatted_events_list.short_description = 'Events'
 
-    def service_account(self, obj):
-        try:
-            user = obj.service_account
-        except UserProfile.DoesNotExist:
+    def formatted_service_account(self, obj):
+        if not obj.service_account:
             return '(will be automatically created)'
 
         return format_html(
             '<a href="{}">{}</a><br><br><strong>Permissions:</strong> {}',
             urljoin(
                 settings.EXTERNAL_SITE_URL,
-                reverse('admin:users_userprofile_change', args=(user.pk,)),
+                reverse(
+                    'admin:users_userprofile_change',
+                    args=(obj.service_account.pk,),
+                ),
             ),
-            user.username,
-            ', '.join(user.all_group_rules),
+            obj.service_account.username,
+            ', '.join(obj.service_account.all_group_rules),
         )
+
+    formatted_service_account.short_description = 'Service account'
 
     def save_model(self, request, obj, form, change):
         # First save the model.

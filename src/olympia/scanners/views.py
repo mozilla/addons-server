@@ -4,7 +4,6 @@ from rest_framework.decorators import (
     authentication_classes,
     permission_classes,
 )
-from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
 from olympia import amo
@@ -22,20 +21,15 @@ from .serializers import PatchScannerResultSerializer
 def patch_scanner_result(request, pk=None):
     try:
         # In addition to fetching the scanner result by PK, we also ensure that
-        # it is bound to a valid webhook.
+        # it is bound to a valid webhook whose service account matches the
+        # authenticated user.
         scanner_result = ScannerResult.objects.get(
             pk=pk,
             scanner=WEBHOOK,
-            webhook_event__webhook__isnull=False,
+            webhook_event__webhook__service_account=request.user,
         )
     except ScannerResult.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
-    # Verify the authenticated user is the service account for this webhook.
-    if request.user != scanner_result.webhook.service_account:
-        raise PermissionDenied(
-            'Authenticated user does not match the webhook service account'
-        )
 
     # Check if the scanner result has already been patched.
     if scanner_result.results is not None and 'matchedRules' in scanner_result.results:

@@ -2148,17 +2148,20 @@ class TestScannerWebhookAdmin(TestCase):
 
         self.admin = ScannerWebhookAdmin(model=ScannerWebhook, admin_site=AdminSite())
 
-    def test_service_account_without_service_account(self):
+    def test_formatted_service_account_without_service_account(self):
         webhook = ScannerWebhook(name='some service')
-        assert self.admin.service_account(webhook) == '(will be automatically created)'
+        assert (
+            self.admin.formatted_service_account(webhook)
+            == '(will be automatically created)'
+        )
 
-    def test_service_account_with_service_account(self):
+    def test_formatted_service_account_with_service_account(self):
         webhook = ScannerWebhook.objects.create(name='some service')
         user = webhook.service_account
         group = Group.objects.create(name='Editors', rules='Addons:Edit')
         GroupUser.objects.create(user=user, group=group)
 
-        service_account_html = self.admin.service_account(webhook)
+        service_account_html = self.admin.formatted_service_account(webhook)
         assert user.username in service_account_html
         assert 'Addons:Edit' in service_account_html
 

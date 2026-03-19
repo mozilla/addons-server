@@ -358,19 +358,9 @@ class UserManager(BaseUserManager, ManagerBase):
     def unban_and_reenable_related_content(self):
         return self.all().unban_and_reenable_related_content()
 
-    def get_service_account(self, name):
-        if not name:
-            raise self.model.DoesNotExist('"name" cannot be blank.')
-
-        return self.get(
-            username=self._make_username_for_service_account(name),
-            fxa_id=None,
-            email=None,
-        )
-
     def get_or_create_service_account(self, name, notes=None):
         user, created = self.get_or_create(
-            username=self._make_username_for_service_account(name),
+            username=slugify(f'service-account-{name}'),
             fxa_id=None,
             email=None,
             defaults={
@@ -385,9 +375,6 @@ class UserManager(BaseUserManager, ManagerBase):
             APIKey.new_jwt_credentials(user=user)
 
         return user, created
-
-    def _make_username_for_service_account(self, name):
-        return slugify(f'service-account-{name}')
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):

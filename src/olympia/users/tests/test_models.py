@@ -2132,20 +2132,6 @@ class TestUserManager(TestCase):
         assert len(UserProfile.objects.all()) == number_of_users + 1
         assert len(APIKey.objects.all()) == number_of_keys + 1
 
-    def test_get_service_account_with_empty_name(self):
-        with self.assertRaises(UserProfile.DoesNotExist):
-            UserProfile.objects.get_service_account(name='')
-
-    def test_get_unknown_service_account(self):
-        with self.assertRaises(UserProfile.DoesNotExist):
-            UserProfile.objects.get_service_account(name='unknown')
-
-    def test_get_service_account(self):
-        name = 'some service'
-        user, created = UserProfile.objects.get_or_create_service_account(name=name)
-        assert created
-        assert UserProfile.objects.get_service_account(name=name) == user
-
 
 @pytest.mark.django_db
 def test_get_session_auth_hash_is_used_for_session_auth():

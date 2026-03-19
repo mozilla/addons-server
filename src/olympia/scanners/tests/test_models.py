@@ -36,7 +36,6 @@ from olympia.scanners.models import (
     ScannerWebhook,
     ScannerWebhookEvent,
 )
-from olympia.users.models import UserProfile
 
 
 class FakeYaraMatch:
@@ -775,8 +774,7 @@ class TestScannerWebhook(TestCase):
     def test_save_creates_a_service_account(self):
         name = 'some name'
         webhook = ScannerWebhook(name=name, url='https://example.com', api_key='secret')
-        with self.assertRaises(UserProfile.DoesNotExist):
-            user = webhook.service_account
+        assert webhook.service_account is None
 
         webhook.save()
         # Double-save to check the presence of a single `GroupUser` instance.

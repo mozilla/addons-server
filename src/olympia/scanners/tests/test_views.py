@@ -95,10 +95,7 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         results = {'version': '1.2.3', 'matchedRules': []}
         response = self.patch(self.url, data={'results': results})
 
-        assert response.status_code == 403
-        assert response.json() == {
-            'detail': 'Authenticated user does not match the webhook service account',
-        }
+        assert response.status_code == 404
 
     def test_scanner_result_not_found(self):
         invalid_url = reverse_ns(

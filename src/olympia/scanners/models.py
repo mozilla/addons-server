@@ -303,13 +303,19 @@ class ScannerWebhook(ModelBase):
     url = models.URLField(max_length=255)
     api_key = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
+    service_account = models.ForeignKey(
+        UserProfile,
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='scanner_webhooks',
+    )
 
     class Meta:
         db_table = 'scanners_webhooks'
 
     def save(self, *args, **kwargs):
         service_account, created = UserProfile.objects.get_or_create_service_account(
-            name=self._service_account_name,
+            name=f'webhook-{self.name}',
             notes=(
                 'Service account automatically created for '
                 f'the "{self.name}" scanner webhook.'
@@ -320,15 +326,8 @@ class ScannerWebhook(ModelBase):
             group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
             GroupUser.objects.get_or_create(group=group, user=service_account)
 
+        self.service_account = service_account
         return super().save(*args, **kwargs)
-
-    @property
-    def _service_account_name(self):
-        return f'webhook-{self.name}'
-
-    @property
-    def service_account(self):
-        return UserProfile.objects.get_service_account(self._service_account_name)
 
     def __str__(self):
         return self.name
