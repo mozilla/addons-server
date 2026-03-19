@@ -406,14 +406,12 @@ class TestCheckForSessionAnomaly(TestCase):
         self.request = self.create_request_and_session(
             {
                 'Client-JA4': 'different-ja4',
-                'OHFP': 'different-ohfp',
                 'Cloudfront-Viewer-country': 'different-country',
             }
         )
         self.request.user = user_factory()
         self.request.session['request_headers'] = {
             'client-ja4': 'some-ja4',
-            'ohfp': 'some-ohfp',
             'cloudfront-viewer-country': 'some-country',
         }
         utils.check_for_session_anomaly(
@@ -432,11 +430,6 @@ class TestCheckForSessionAnomaly(TestCase):
                 'header': 'cloudfront-viewer-country',
                 'expected': 'some-country',
                 'received': 'different-country',
-            },
-            {
-                'header': 'ohfp',
-                'expected': 'some-ohfp',
-                'received': 'different-ohfp',
             },
         ]
         assert 'session_anomalies' in self.request.session

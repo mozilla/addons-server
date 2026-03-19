@@ -150,7 +150,7 @@ def check_for_session_anomaly(*, session, headers, user):
     # Our CDN/WAF is configured to send all of these headers in production,
     # even Cloudfront-viewer-country (backwards-compatility even if we're no
     # longer on Cloudfront).
-    REQUEST_HEADERS_TO_CHECK = ('Client-JA4', 'Cloudfront-Viewer-Country', 'Ohfp')
+    REQUEST_HEADERS_TO_CHECK = ('Client-JA4', 'Cloudfront-Viewer-Country')
 
     if not user or not user.is_authenticated:
         return
