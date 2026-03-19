@@ -79,3 +79,7 @@
 .model-scannerqueryresult #result_list .same-addon td.field-formatted_addon {
   border-top: 1px solid transparent;
 }
+
+.field-formatted_results pre {
+  text-wrap: wrap;
+}
