@@ -57,7 +57,6 @@ header hgroup h2 {
 header hgroup h3 {
     margin-top: 0;
     color: #666;
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
     font-size: 16px;
     margin-bottom: 14px;
 }
@@ -1072,7 +1071,8 @@ form fieldset:last-child {
 }
 
 fieldset legend { /* based on h3 */
-    font: normal 1.385em/1.1 georgia, serif;
+    font-weight: normal;
+    font-size: 1.385em;
     color: #011234;
     margin: 0.75em 0 0;
 }
@@ -1479,7 +1479,6 @@ form .error .note.error {
 .category-landing .addons-column h3 {
     background: transparent none;
     color: inherit;
-    font-family: georgia, serif;
     margin: 0 2px .5em;
 }
 
@@ -1748,62 +1747,6 @@ form .error .note.error {
     max-width: 100%;
 }
 
-.results-head {
-    position: relative;
-    width: auto;
-}
-
-.html-rtl .results-head {
-    padding-right: 0;
-}
-
-.results-head .suggest {
-    padding-left: 10px;
-    font-size: .923em;
-    line-height: 1.4;
-    position: absolute;
-    width: 280px;
-    padding: 6px 8px 6px 28px;
-    background: #ffc url("../../img/zamboni/icons/suggest-help.png") 6px .5em no-repeat;
-    border: 1px solid #fc6;
-    -moz-box-shadow: 2px 2px 0 #E0EFFD;
-    -webkit-box-shadow: 2px 2px 0 #E0EFFD;
-    box-shadow: 2px 2px 0 #E0EFFD;
-    top: 0;
-    right: 0;
-}
-
-
-.results-head .suggest a {
-    font-weight: bold;
-}
-
-.results-head .suggest strong {
-    display: block;
-}
-
-.results-head .suggest .point {
-    position: relative;
-    left: -28px;
-    margin-bottom: -19px;
-    display: block;
-    padding: 0 0 20px 28px;
-    background: transparent url("../../img/zamboni/suggest-point.png") 8px bottom no-repeat;
-}
-
-.html-rtl .results-head .suggest {
-    padding: 6px 28px 6px 8px;
-    background-position: 292px .5em;
-}
-
-.html-rtl .results-head .suggest .point {
-    left: auto;
-    right: -28px;
-    padding: 0 28px 20px 0;
-    background-image: url("../../img/zamboni/suggest-point-rtl.png");
-    background-position: 255px bottom;
-}
-
 .other-categories,
 #refine-results,
 .versions .primary > .warning {
@@ -1870,7 +1813,6 @@ form .error .note.error {
 }
 
 .article.version h3 {
-    font-family: "helvetica neue",arial,helvetica,sans-serif;
     font-size:1em;
     float: left;
     margin-top:0;
@@ -1970,20 +1912,6 @@ form .error .note.error {
     margin-bottom: 15px;
 }
 
-#search-tools-sidebar h3 {
-    margin-bottom: 0.55em;
-}
-
-#search-tools-sidebar h4 {
-    margin-top: 0;
-    margin-bottom: 0.55em;
-    font-style: italic;
-    font-family: georgia, serif;
-    font-size: 1.0em;
-    font-weight: normal;
-    color: #565656;
-}
-
 /** Notifications **/
 .notification-box {
     margin: 10px 0 28px;
@@ -1996,7 +1924,6 @@ form .error .note.error {
     -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
     color: #444;
     font-size: 13px;
     position: relative;
@@ -2088,7 +2015,6 @@ form .error .note.error {
     background: none;
     font-weight: bold;
     padding: 0;
-    font-family: "helvetica neue", arial, helvetica, sans-serif;
     font-size: 13px;
     line-height: 1;
     min-height: 0;
@@ -2946,44 +2872,6 @@ td.input {
 .make-owner {
     margin-left: 1em;
 }
-
-
-/* collections landing module */
-.collections-landing {
-    padding: 1em;
-    min-height: 190px;
-    background-image: url(../../img/illustrations/logo-collections-220x270.png),
-                      linear-gradient(#e4f5fb, #ffffff);
-    background-repeat: no-repeat;
-    background-position: 95% 30px, left top;
-}
-
-.collections-landing p {
-    font-size: 1.4em;
-    padding-right: 250px;
-    max-width: 450px;
-    line-height: 1.25em;
-}
-
-.collections-landing .breadcrumbs {
-   margin-bottom: 4px;
-}
-
-.collections-landing h2 {
-   font-family: inherit;  /* this should be Meta eventually */
-   font-size: 2.8em;
-   font-weight: bold;
-   margin-top: 0;
-}
-
-.html-rtl .collections-landing {
-    background-position: 5% 20px, left top;
-}
-.html-rtl .collections-landing p {
-    padding-right: 0;
-    padding-left: 250px;
-}
-
 
 a.outlink {
     margin-left: 4px;

@@ -40,7 +40,6 @@ form .char-count:after,
     background: #41B300;
     border-radius: 1em;
     color: #fff;
-    font-family: helvetica, arial, sans-serif;
     font-size: 10px;
     font-style: normal;
     font-weight: bold;
@@ -119,11 +118,6 @@ ul.refinements:last-child {
 #trans-homepage input,
 #trans-support_url input {
     width: 60%;
-}
-
-#slug_edit span, #id_slug {
-  font-family: Verdana !important;
-  /** This is so they match up size-wise **/
 }
 
 #slug_edit a {
@@ -1311,7 +1305,6 @@ form.select-review .errorlist {
 #addon-validator-suite .results h4 {
     font-size: 1.4em;
     font-weight: normal;
-    font-family: georgia,serif;
     margin: 0 0 0.4em 4px;
 }
 #addon-validator-suite .results .tier-results {
@@ -1405,7 +1398,7 @@ form.select-review .errorlist {
     color: #868686;
     border: 1px solid #f3f3f3;
     background-color: #f9f9f9;
-    font-family: "Courier New", Courier, monospace;
+    font-family: monospace;
 }
 #addon-validator-suite .context .file {
     font-size: 105%;

@@ -823,44 +823,6 @@ table caption {
 
 /** END header tweaks **/
 
-/** User Profile */
-#userprofile-reviews p.noreviews {
-    font-family: Georgia, serif;
-    font-size: 125%;
-    font-style: italic;
-    margin: .5em 0;
-    text-align: center;
-
-}
-
-/** User Edit page **/
-#profile-user .line .edit-picture {
-    float:left;
-}
-.html-rtl #profile-user .line .edit-picture {
-    float:right;
-}
-table#editor-subscriptions {
-    width: 100%;
-    border-collapse: separate;
-}
-table#editor-subscriptions tbody {
-    height: 20em;
-    overflow: auto;
-    overflow-x: hidden;
-}
-
-/** END User Edit page **/
-
-/* pages/submissionhelp */
-ul.submissionHelp li span.required {
-    font-weight: bold;
-}
-ul.submissionHelp li span.optional {
-    font-style: italic;
-}
-/* END pages/submissionhelp */
-
 /* pages/collector_firstrun */
 form.collector-firstrun-favorite, div.collector-firstrun-favorite {
     margin-bottom: 1.5em;
@@ -1339,10 +1301,6 @@ html[xmlns] .clearfix {
 	padding-left: 0;
 	background-position: 100% -200px;
 }
-
-.results-head {width: 100%;}
-.results-head h2 { margin-bottom: 0; margin-top: 0;}
-.results-head h3 {margin-top: 0; font-family: "helvetica neue", arial, helvetica, sans-serif; font-weight: normal; color: #444;}
 
 .results .item .item-info .downloads {display: block; margin-left: 0px;}
 .results .item .install {float: none; margin-left: 0px;}
