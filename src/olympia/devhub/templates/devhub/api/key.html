@@ -4,52 +4,69 @@
 
 {% block content %}
 <header>
-  <h1>{{ title }}</h1>
+  <h2>{{ title }}</h2>
 </header>
 
 <section class="primary full">
-  <div class="island prettyform row">
-    <form method="post" class="item api-credentials" name="api-credentials-form">
-      {% csrf_token %}
-      {% if '__all__' in form.errors %}
-        <div class="text-danger">
-          {{ form.errors.__all__ }}
-        </div>
-      {% endif %}
-      <fieldset>
-        <legend>
-          {{ _('API Credentials') }}
-        </legend>
-        {% for field in form %}
-          <div class="row api-input key-input">
-              {% if field.help_text %}
-              <div>{{ field.help_text|format_html }}</div>
-              {% endif %}
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field }}
-              {% if field.errors %}
-                  <div class="text-danger">
-                      {{ field.errors }}
-                  </div>
-              {% endif %}
-          </div>
-        {% endfor %}
-      </fieldset>
-      <div class="listing-footer">
-        <p class="footer-submit">
-          {% for action in form.available_actions %}
-            <button
-              class="button prominent"
-              type="submit"
-              name="action"
-              value="{{ action }}"
-            >
-              {{ form.ACTION_CHOICES(action).label }}
-            </button>
-          {% endfor %}
-        </p>
+  <form method="post" class="api-credentials" name="api-credentials-form">
+    {% csrf_token %}
+    {% if '__all__' in form.errors %}
+      <div class="text-danger">
+        {{ form.errors.__all__ }}
       </div>
-    </form>
-  </div>
+    {% endif %}
+    <p>
+      {% trans jwt_url="https://datatracker.ietf.org/doc/html/rfc7519", docs_url="https://mozilla.github.io/addons-server/topics/api/index.html" %}
+        To execute authenticated calls against the <a href="{{ docs_url }}">API</a> as an external consumer, you need to include a <a href="{{ jwt_url }}">JSON Web Token (JWT)</a> in the <code>Authorization</code> header for every request.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans %}
+        Keep your API keys secret and never share them with anyone, including Mozilla contributors.
+      {% endtrans %}
+    </p>
+    {% if form.credentials %}
+      <dl>
+        <dt>{{ _('Created') }}</dt>
+        <dd>{{ form.credentials.created|date }}</dd>
+        <dt>{{ _('JWT issuer') }}</dt>
+        <dd><code>{{ form.credentials.key }}</code></dd>
+        <dt>{{ _('JWT secret') }}</dt>
+        <dd>
+          {% if generated %}
+            <code>{{ form.credentials.secret }}</code>&nbsp;<a href="#" class="widget copy tooltip"></a>
+          {% else %}
+            <code>{{ form.credentials.secret[:8] }}{{ "." * 48 }}{{ form.credentials.secret[-8:] }}</code>
+          {% endif %}
+        </dd>
+      </dl>
+    {% endif %}
+    {% for field in form %}
+      <div class="row api-input key-input">
+        {% if field.help_text %}
+        <div>{{ field.help_text|format_html }}</div>
+        {% endif %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <div class="text-danger">
+              {{ field.errors }}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <div>
+      {% for action in form.available_actions %}
+        <button
+          class="button prominent"
+          type="submit"
+          name="action"
+          value="{{ action }}"
+        >
+          {{ form.ACTION_CHOICES(action).label }}
+        </button>
+      {% endfor %}
+    </div>
+  </form>
 </section>
 {% endblock content %}

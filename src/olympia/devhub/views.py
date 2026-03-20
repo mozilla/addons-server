@@ -2120,8 +2120,13 @@ def api_key(request):
         request=request,
     )
 
+    generated = False
     if request.method == 'POST' and form.is_valid():
         result = form.save()
+
+        if result.get('confirmation_created'):
+            form.confirmation.send_confirmation_email()
+            return redirect(reverse('devhub.api_key'))
 
         if result.get('credentials_revoked'):
             log.info(
@@ -2140,26 +2145,25 @@ def api_key(request):
 
         if result.get('credentials_generated'):
             new_credentials = form.credentials
+            generated = True
+            messages.error(
+                request,
+                gettext(
+                    'New API credentials have been generated and are displayed below. '
+                    'Make sure to copy the JWT secret, it will never be displayed '
+                    'again.'
+                ),
+            )
             log.info(f'new JWT key created: {new_credentials}')
             send_key_change_email(request.user.email, new_credentials.key)
 
-        if result.get('confirmation_created'):
-            form.confirmation.send_confirmation_email()
-
-        return redirect(reverse('devhub.api_key'))
-
-    if form.credentials is not None:
-        messages.error(
-            request,
-            _(
-                'Keep your API keys secret and never share them with anyone, '
-                'including Mozilla contributors.'
-            ),
-        )
+            # Don't redirect in this case: the credentials are only displayed
+            # this one time.
 
     context_data = {
         'title': gettext('Manage API Keys'),
         'form': form,
+        'generated': generated,
     }
 
     return TemplateResponse(request, 'devhub/api/key.html', context=context_data)

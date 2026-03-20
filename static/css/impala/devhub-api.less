@@ -1,17 +1,15 @@
-.api-credentials {
-    margin-bottom: 2em;
+.api-credentials dl {
+    display: grid;
+    grid-template-columns: fit-content(50%) 1fr;
 }
 
-.api-input {
-    input[type=text] {
-        box-shadow: none;
-        text-align: left;
-        font-size: 1.5em;
-        width: 78%;
-    }
-    label {
-      font-weight: bold;
-      display: block;
-      padding: 0.4em;
-    }
+.api-credentials dd, .api-credentials dt {
+    font-size: 1.1em;
+    margin: 0 1em 0 0;
+    padding: 0.2em 0;
+}
+
+.api-credentials code {
+    outline: 1px solid gray;
+    padding: 0.2em
 }

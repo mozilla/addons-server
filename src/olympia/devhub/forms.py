@@ -1522,31 +1522,6 @@ class APIKeyForm(forms.Form):
 
         # User has credentials, show them and offer to revoke/regenerate
         if has_credentials:
-            self.fields['credentials_key'] = forms.CharField(
-                label=_('JWT issuer'),
-                max_length=255,
-                disabled=True,
-                widget=forms.TextInput(attrs={'readonly': True}),
-                required=True,
-                initial=self.credentials.key,
-                help_text=_(
-                    'To make API requests, send a <a href="{jwt_url}">'
-                    'JSON Web Token (JWT)</a> as the authorization header. '
-                    "You'll need to generate a JWT for every request as explained in "
-                    'the <a href="{docs_url}">API documentation</a>.'
-                ).format(
-                    jwt_url='https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html',
-                    docs_url='https://addons-server.readthedocs.io/en/latest/topics/api/auth.html',
-                ),
-            )
-            self.fields['credentials_secret'] = forms.CharField(
-                label=_('JWT secret'),
-                max_length=255,
-                disabled=True,
-                widget=forms.TextInput(attrs={'readonly': True}),
-                required=True,
-                initial=self.credentials.secret,
-            )
             self.available_actions.append(self.ACTION_CHOICES.REVOKE)
 
             if has_confirmation and self.confirmation.confirmed_once:

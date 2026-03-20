@@ -2944,6 +2944,10 @@ a.outlink:hover {
 .widget.collection, .widget.condensed.collection:hover { background-position: 0 -100px;}
 .widget.condensed.share { background-position: 0 -600px; }
 .widget.share, .widget.condensed.share:hover { background-position: 0 -550px; }
+.widget.check, .widget.check:hover {
+    background-position: 0 -80px;
+    background-image: url(../../img/zamboni/icons/checks.png);
+}
 
 .widgets .widget.ajax-loading,
 .widgets .widget:hover.ajax-loading,

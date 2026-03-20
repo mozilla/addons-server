@@ -180,6 +180,31 @@ $(document).ready(function () {
     // emulate that.
     $(this).find('button').addClass('disabled');
   });
+
+  $('.api-credentials .widget.copy').on('click', function() {
+    let $elm = $(this);
+    let text = $elm.prev('code').text();
+    let promise = navigator.clipboard.writeText;
+    /*
+    // Replace the line above with the following to test locally with a fake
+    // promise instead of actually interacting with the clipboard.
+    let promise = navigator.clipboard ? navigator.clipboard.writeText : function() {
+      return new Promise((resolve, reject) => { resolve(); });
+    };
+    */
+    promise(text).then(function() {
+      $elm.addClass('check');
+      // Our tooltip function is a bit simplistic, trigger mouse events to
+      // force it to be shown for a short while if copying was successful.
+      $elm.attr({'title': gettext('Copied'), 'data-delay': 0});
+      $elm.trigger('mouseover');
+      setTimeout(function() {
+        $elm.trigger('mouseout');
+      }, 1000);
+    });
+
+    return false;
+  });
 });
 
 $(document).ready(function () {
