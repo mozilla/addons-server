@@ -131,13 +131,14 @@ class CinderEntity:
         else:
             raise HTTPError(response.content)
 
-    def report_additional_context(self):
+    def report_additional_context(self, *, advance=True):
         """Report to Cinder API additional context for an entity. Uses
         get_context_generator() to send that additional context in chunks."""
         context_generator = self.get_context_generator()
-        # This is a new generator, so advance it once to avoid re-sending the
-        # context already sent as part of the report.
-        next(context_generator, {})
+        if advance:
+            # This is a new generator, so advance it once to avoid re-sending the
+            # context already sent as part of the report.
+            next(context_generator, {})
 
         for data in context_generator:
             # Note: Cinder URLS are inconsistent. Per their documentation, that

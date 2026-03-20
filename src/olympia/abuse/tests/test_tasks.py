@@ -24,13 +24,14 @@ from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, Usage
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
-from ..cinder import CinderAddon
+from ..cinder import CinderAddon, CinderAddonContentReview
 from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from ..tasks import (
     appeal_to_cinder,
     flag_high_abuse_reports_addons_according_to_review_tier,
     report_decision_to_cinder_and_notify,
     report_to_cinder,
+    submit_addon_for_content_review,
     sync_cinder_policies,
 )
 
@@ -1304,3 +1305,40 @@ class TestSyncCinderPolicies(TestCase):
             'amo-approve',
             'amo-ban-user',
         ]
+
+
+@pytest.mark.django_db
+@mock.patch.object(CinderAddonContentReview, 'RELATIONSHIPS_BATCH_SIZE', 2)
+def test_submit_addon_for_content_review():
+    addon = addon_factory()
+    authors = [user_factory() for _ in range(0, 6)]
+    for author in authors:
+        addon.authors.add(author)
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+        json={'status': 'ok', 'event_id': '1234-xyz'},
+        status=200,
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v1/graph/',
+        status=202,
+    )
+
+    submit_addon_for_content_review.delay(addon_pk=addon.id)
+
+    assert len(responses.calls) == 4
+    assert json.loads(responses.calls[0].request.body)['event_name'] == (
+        CinderAddonContentReview.workflow_name
+    )
+
+    call_1 = json.loads(responses.calls[1].request.body)
+    assert call_1['entities'][0]['attributes']['id'] == str(authors[0].id)
+    assert call_1['entities'][1]['attributes']['id'] == str(authors[1].id)
+    call_2 = json.loads(responses.calls[2].request.body)
+    assert call_2['entities'][0]['attributes']['id'] == str(authors[2].id)
+    assert call_2['entities'][1]['attributes']['id'] == str(authors[3].id)
+    call_3 = json.loads(responses.calls[3].request.body)
+    assert call_3['entities'][0]['attributes']['id'] == str(authors[4].id)
+    assert call_3['entities'][1]['attributes']['id'] == str(authors[5].id)

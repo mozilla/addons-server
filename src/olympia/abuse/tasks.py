@@ -9,6 +9,7 @@ import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import to_language
@@ -16,7 +17,11 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddonHandledByLegal
+from .cinder import (
+    CinderAddonContentReview,
+    CinderAddonHandledByLegal,
+    CinderContentChange,
+)
 from .models import (
     AbuseReport,
     CinderJob,
@@ -271,3 +276,19 @@ def auto_resolve_job(*, job_pk):
         )
         job.handle_already_moderated(job.abusereport_set.first(), entity_helper)
         job.clear_needs_human_review_flags()
+
+
+@task
+@use_primary_db
+def submit_addon_for_content_review(*, addon_pk):
+    addon = Addon.unfiltered.get(pk=addon_pk)
+    entity_helper = CinderAddonContentReview(addon)
+    content_change_entity = CinderContentChange(addon)
+    entity_helper.report(report=content_change_entity, reporter=None)
+
+    # Additional context is submitted as separate api calls.
+    try:
+        entity_helper.report_additional_context(advance=False)
+    except requests.RequestException as exc:
+        # we don't these additional requests to be retried, so reraise
+        raise ConnectionError from exc
