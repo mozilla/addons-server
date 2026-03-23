@@ -22,6 +22,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import requests
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -34,6 +35,7 @@ from olympia.accounts.utils import (
     redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
+from olympia.accounts.verify import IdentificationError, get_fxa_access_token
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
@@ -2291,6 +2293,67 @@ def email_verification(request):
         data['button_text'] = get_button_text(data['state'])
 
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
+
+
+@login_required
+def support(request):
+    form = forms.SupportForm(
+        request.POST or None,
+        user=request.user,
+    )
+    if request.method == 'POST' and form.is_valid():
+        addon = form.cleaned_data['addon']
+        payload = {
+            'topic': form.cleaned_data['category'],
+            'subject': form.cleaned_data['summary'],
+            'message': form.cleaned_data['body'],
+        }
+        if addon:
+            payload['product'] = addon.name.localized_string
+
+        try:
+            access_token = get_fxa_access_token(request)
+        except IdentificationError:
+            log.warning(
+                'support: could not get FxA access token for user %s',
+                request.user.pk,
+            )
+            messages.error(
+                request,
+                gettext(
+                    'We could not verify your session. Please log out and log in again.'
+                ),
+            )
+            return TemplateResponse(request, 'devhub/support.html', {'form': form})
+
+        response = requests.post(
+            settings.FXA_SUPPORT_HOST + '/support/ticket',
+            headers={'Authorization': f'Bearer {access_token}'},
+            json=payload,
+            timeout=10,
+        )
+        if response.status_code in (200, 201):
+            messages.success(
+                request,
+                gettext(
+                    'Your support request has been submitted. We will be in touch soon.'
+                ),
+            )
+            return redirect('devhub.support')
+        else:
+            log.warning(
+                'support: FxA support endpoint returned %s for user %s',
+                response.status_code,
+                request.user.pk,
+            )
+            messages.error(
+                request,
+                gettext(
+                    'There was an error submitting your request. Please try again.'
+                ),
+            )
+
+    return TemplateResponse(request, 'devhub/support.html', {'form': form})
 
 
 @post_required

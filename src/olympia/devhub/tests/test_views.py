@@ -2737,3 +2737,112 @@ class TestRequestContentReview(TestCase):
             self.addon.addonapprovalscounter.content_review_status
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
+
+
+class TestSupportView(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.url = reverse('devhub.support')
+        self.addon = addon_factory(users=[self.user])
+
+    def _set_session_token(self, token='mytoken', expiry=None):
+        session = self.client.session
+        session['fxa_access_token'] = token
+        session['fxa_access_token_expiry'] = expiry or (
+            __import__('time').time() + 3600
+        )
+        session.save()
+
+    # --- GET ---
+
+    def test_get_anonymous_redirects(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert 'authorization' in response['Location']
+
+    def test_get_renders_form(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert 'form' in response.context
+        form = response.context['form']
+        addon_qs = form.fields['addon'].queryset
+        assert self.addon in addon_qs
+
+    def test_get_does_not_show_other_users_addons(self):
+        other_addon = addon_factory(users=[user_factory()])
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert other_addon not in response.context['form'].fields['addon'].queryset
+
+    # --- POST ---
+
+    def _post(self, data=None, follow=False):
+        payload = {
+            'summary': 'Something is broken',
+            'category': 'technical',
+            'addon': '',
+            'body': 'Please help me fix this issue.',
+        }
+        if data:
+            payload.update(data)
+        return self.client.post(self.url, payload, follow=follow)
+
+    def test_post_anonymous_redirects(self):
+        response = self._post()
+        assert response.status_code == 302
+
+    def test_post_invalid_missing_fields(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            self.url, {'summary': '', 'category': '', 'body': ''}
+        )
+        assert response.status_code == 200
+        form = response.context['form']
+        assert form.errors
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    @mock.patch('olympia.devhub.views.requests.post')
+    def test_post_success(self, mock_post, mock_token):
+        mock_token.return_value = 'mytoken'
+        mock_post.return_value.status_code = 200
+        self.client.force_login(self.user)
+        response = self._post(follow=True)
+        assert response.status_code == 200
+        mock_post.assert_called_once()
+        call_kwargs = mock_post.call_args
+        assert call_kwargs[1]['headers'] == {'Authorization': 'Bearer mytoken'}
+        assert call_kwargs[1]['json']['topic'] == 'technical'
+        assert call_kwargs[1]['json']['subject'] == 'Something is broken'
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    @mock.patch('olympia.devhub.views.requests.post')
+    def test_post_success_with_addon(self, mock_post, mock_token):
+        mock_token.return_value = 'mytoken'
+        mock_post.return_value.status_code = 201
+        self.client.force_login(self.user)
+        response = self._post(data={'addon': self.addon.pk}, follow=True)
+        assert response.status_code == 200
+        payload = mock_post.call_args[1]['json']
+        assert 'product' in payload
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    @mock.patch('olympia.devhub.views.requests.post')
+    def test_post_fxa_api_error(self, mock_post, mock_token):
+        mock_token.return_value = 'mytoken'
+        mock_post.return_value.status_code = 500
+        self.client.force_login(self.user)
+        response = self._post()
+        assert response.status_code == 200
+        assert b'error' in response.content.lower()
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    def test_post_token_error(self, mock_token):
+        from olympia.accounts.verify import IdentificationError
+
+        mock_token.side_effect = IdentificationError('no token')
+        self.client.force_login(self.user)
+        response = self._post()
+        assert response.status_code == 200
+        assert b'log' in response.content.lower()

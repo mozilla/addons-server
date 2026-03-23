@@ -264,6 +264,7 @@ urlpatterns = [
         r'docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$', views.docs, name='devhub.docs'
     ),
     # logout page
+    re_path(r'^support$', views.support, name='devhub.support'),
     re_path(r'^logout', views.logout, name='devhub.logout'),
     re_path(
         r'^verify-email', views.email_verification, name='devhub.email_verification'

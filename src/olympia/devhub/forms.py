@@ -9,7 +9,11 @@ from django import forms
 from django.conf import settings
 from django.core.validators import MinLengthValidator, RegexValidator
 from django.db.models import Q
-from django.forms.models import BaseModelFormSet, modelformset_factory
+from django.forms.models import (
+    BaseModelFormSet,
+    ModelChoiceIterator,
+    modelformset_factory,
+)
 from django.forms.widgets import RadioSelect
 from django.urls import reverse
 from django.utils.functional import keep_lazy_text
@@ -1751,3 +1755,59 @@ class RollbackVersionForm(forms.Form):
 
     def can_rollback(self):
         return self.has_listed or self.has_unlisted
+
+
+class AddonModelChoiceField(forms.ModelChoiceField):
+    """ModelChoiceField for Addon that forces full queryset evaluation.
+
+    Django's ModelChoiceIterator uses queryset.iterator() which bypasses
+    queryset transforms, including the translation transform that populates
+    translated fields like Addon.name. This subclass avoids iterator() so
+    translated fields are properly populated.
+    """
+
+    class iterator(ModelChoiceIterator):
+        def __iter__(self):
+            if self.field.empty_label is not None:
+                yield ('', self.field.empty_label)
+            for obj in self.queryset:
+                yield self.choice(obj)
+
+    def label_from_instance(self, obj):
+        return str(obj.name)
+
+
+class SupportForm(forms.Form):
+    CATEGORY_CHOICES = [
+        ('', _('Select a category')),
+        ('account', _('Account')),
+        ('technical', _('Technical Issue')),
+        ('policy', _('Policies')),
+        ('other', _('Other')),
+    ]
+
+    summary = forms.CharField(
+        max_length=255,
+        label=_('Summary'),
+    )
+    category = forms.ChoiceField(
+        choices=CATEGORY_CHOICES,
+        label=_('Category'),
+    )
+    addon = AddonModelChoiceField(
+        queryset=Addon.objects.none(),
+        required=False,
+        label=_('Related Add-on'),
+        empty_label=_('None'),
+    )
+    body = forms.CharField(
+        widget=forms.Textarea(attrs={'rows': 8}),
+        label=_('Description'),
+    )
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user')
+        super().__init__(*args, **kwargs)
+        self.fields['addon'].queryset = Addon.objects.filter(authors=user).order_by(
+            'name'
+        )
