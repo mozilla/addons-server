@@ -1520,7 +1520,7 @@ class APIKeyForm(forms.Form):
         has_credentials = self.credentials is not None
         has_confirmation = self.confirmation is not None
 
-        # User has credentials, show them and offer to revoke/regenerate
+        # User has credentials, offer to revoke/regenerate
         if has_credentials:
             self.available_actions.append(self.ACTION_CHOICES.REVOKE)
 
