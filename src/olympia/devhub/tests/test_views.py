@@ -8,6 +8,7 @@ from urllib.parse import quote, urlencode
 from django.conf import settings
 from django.core import mail
 from django.http import HttpResponseNotAllowed
+from django.template import defaultfilters
 from django.test import RequestFactory
 from django.urls import reverse
 from django.utils import timezone
@@ -964,18 +965,22 @@ class TestAPIKeyPage(TestCase):
         assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.CONFIRM
 
     def test_view_with_credentials_not_confirmed_yet(self):
-        APIKey.objects.create(
+        apikey = APIKey.objects.create(
             user=self.user,
             type=SYMMETRIC_JWT_TYPE,
             key='some-jwt-key',
-            secret='some-jwt-secret',
+            secret='some-generated-jwt-secret',
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        form = response.context['form']
-        assert 'credentials_key' in form.fields
-        assert 'credentials_secret' in form.fields
+        info = doc('.api-credentials dd')
+        assert info[0].text_content() == defaultfilters.date(apikey.created)
+        assert info[1].text_content() == apikey.key
+        assert apikey.secret not in info[2].text_content().strip()
+        assert info[2].text_content().strip() == (
+            'some-gen................................................t-secret'
+        )
         (revoke_button,) = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
@@ -985,19 +990,23 @@ class TestAPIKeyPage(TestCase):
         APIKeyConfirmation.objects.create(
             user=self.user, token='doesnt matter', confirmed_once=True
         )
-        APIKey.objects.create(
+        apikey = APIKey.objects.create(
             user=self.user,
             type=SYMMETRIC_JWT_TYPE,
             key='some-jwt-key',
-            secret='some-jwt-secret',
+            secret='some-jwt-secret-which-has-the-right-length-that-is-64-chars-long',
+            created=self.days_ago(45),
         )
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        form = response.context['form']
-        assert 'credentials_key' in form.fields
-        assert 'credentials_secret' in form.fields
-
+        info = doc('.api-credentials dd')
+        assert info[0].text_content() == defaultfilters.date(apikey.created)
+        assert info[1].text_content() == apikey.key
+        assert apikey.secret not in info[2].text_content().strip()
+        assert info[2].text_content().strip() == (
+            'some-jwt................................................ars-long'
+        )
         revoke_button, regenerate_button = self._submit_actions(doc)
 
         assert 'Revoke' in revoke_button.text
@@ -1050,13 +1059,17 @@ class TestAPIKeyPage(TestCase):
         assert 'Generate new credentials' in confirm_button.text
         assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
 
+    @time_machine.travel('2026-03-22 14:13', tick=False)
     def test_create_new_credentials_has_been_confirmed_once(self):
         APIKeyConfirmation.objects.create(
             user=self.user, token='doesnt matter', confirmed_once=True
         )
+        created_date = datetime.now()
         patch = mock.patch('olympia.devhub.forms.APIKey.new_jwt_credentials')
         with patch as mock_creator:
+            mock_creator.return_value.created = created_date
             mock_creator.return_value.key = 'fake-new-jwt-key'
+            mock_creator.return_value.secret = 'fake-new-jwt-secret'
             response = self.client.post(
                 self.url, data={'action': APIKeyForm.ACTION_CHOICES.GENERATE}
             )
@@ -1068,8 +1081,14 @@ class TestAPIKeyPage(TestCase):
         assert message.subject == 'New API key created'
         assert reverse('devhub.api_key') in message.body
         assert 'fake-new-jwt-key' in message.body
+        assert 'fake-new-jwt-secret' not in message.body
 
-        self.assert3xx(response, self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        info = doc('.api-credentials dd')
+        assert info[0].text_content() == 'March 22, 2026'
+        assert info[1].text_content() == 'fake-new-jwt-key'
+        assert info[2].text_content().strip() == 'fake-new-jwt-secret'
 
     def test_create_new_credentials_confirming_with_token(self):
         confirmation = APIKeyConfirmation.objects.create(
@@ -1093,11 +1112,16 @@ class TestAPIKeyPage(TestCase):
         assert apikey.key in message.body
         assert str(apikey) not in message.body
         assert markupsafe.escape(apikey) not in message.body
+        assert apikey.secret not in message.body
 
         confirmation.reload()
         assert confirmation.confirmed_once
 
-        self.assert3xx(response, self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        info = doc('.api-credentials dd')
+        assert info[1].text_content() == apikey.key
+        assert info[2].text_content().strip() == apikey.secret
 
     def test_create_new_credentials_not_confirmed_yet(self):
         assert not APIKey.objects.filter(user=self.user).exists()
@@ -1177,7 +1201,6 @@ class TestAPIKeyPage(TestCase):
         response = self.client.post(
             self.url, data={'action': APIKeyForm.ACTION_CHOICES.REGENERATE}
         )
-        self.assert3xx(response, self.url)
 
         old_key = APIKey.objects.get(pk=old_key.pk)
         assert old_key.is_active is None
@@ -1185,6 +1208,12 @@ class TestAPIKeyPage(TestCase):
         new_key = APIKey.get_jwt_key(user=self.user)
         assert new_key.key != old_key.key
         assert new_key.secret != old_key.secret
+
+        assert response.status_code == 200
+        doc = pq(response.content)
+        info = doc('.api-credentials dd')
+        assert info[1].text_content() == new_key.key
+        assert info[2].text_content().strip() == new_key.secret
 
     def test_delete_and_recreate_credentials_has_not_been_confirmed_yet(self):
         old_key = APIKey.objects.create(

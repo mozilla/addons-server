@@ -1333,8 +1333,6 @@ class TestAPIKeyForm(TestCase):
             forms.APIKeyForm.ACTION_CHOICES.CONFIRM,
         ]
         assert form.is_valid(), form.errors
-        assert 'credentials_key' not in form.fields
-        assert 'credentials_secret' not in form.fields
         assert 'confirmation_token' not in form.fields
         assert 'recaptcha' not in form.fields
 
@@ -1356,26 +1354,10 @@ class TestAPIKeyForm(TestCase):
 
     def test_fields_with_credentials(self):
         APIKey.new_jwt_credentials(self.user)
-        credentials = APIKey.get_jwt_key(user=self.user)
         request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.REVOKE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'confirmation_token' not in form.fields
         assert 'recaptcha' not in form.fields
-
-        key = form.fields['credentials_key']
-        self.assertEqual(key.label, 'JWT issuer')
-        self.assertEqual(key.disabled, True)
-        self.assertEqual(key.widget.attrs['readonly'], True)
-        self.assertEqual(key.required, True)
-        self.assertEqual(key.initial, credentials.key)
-        assert 'To make API requests' in key.help_text
-
-        secret = form.fields['credentials_secret']
-        self.assertEqual(secret.label, 'JWT secret')
-        self.assertEqual(secret.disabled, True)
-        self.assertEqual(secret.widget.attrs['readonly'], True)
-        self.assertEqual(secret.required, True)
-        self.assertEqual(secret.initial, credentials.secret)
 
         assert form.is_valid()
         assert form.available_actions == [
@@ -1386,8 +1368,6 @@ class TestAPIKeyForm(TestCase):
         confirmation = APIKeyConfirmation.objects.create(user=self.user, token='test')
         request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.GENERATE)
         form = forms.APIKeyForm(request.POST, request=request)
-        assert 'credentials_key' not in form.fields
-        assert 'credentials_secret' not in form.fields
         assert 'recaptcha' not in form.fields
 
         confirmation_token = form.fields['confirmation_token']
@@ -1429,8 +1409,6 @@ class TestAPIKeyForm(TestCase):
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'recaptcha' not in form.fields
         assert 'confirmation_token' not in form.fields
-        assert 'credentials_key' in form.fields
-        assert 'credentials_secret' in form.fields
         assert form.is_valid()
         assert form.available_actions == [
             forms.APIKeyForm.ACTION_CHOICES.REVOKE,
