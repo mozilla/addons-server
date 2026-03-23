@@ -1,4 +1,5 @@
 import functools
+import json
 from datetime import datetime
 
 from django.conf import settings
@@ -9,6 +10,8 @@ import requests
 from django_statsd.clients import statsd
 
 import olympia.core.logger
+from olympia import amo
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
@@ -17,7 +20,11 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
-from .cinder import CinderAddonContentReview, CinderAddonHandledByLegal
+from .cinder import (
+    CinderAddonContentReview,
+    CinderAddonHandledByLegal,
+    CinderContentChange,
+)
 from .models import (
     AbuseReport,
     CinderJob,
@@ -287,3 +294,20 @@ def submit_addon_for_content_review(*, addon_pk):
     except requests.RequestException as exc:
         # we don't these additional requests to be retried, so reraise
         raise ConnectionError from exc
+
+
+@task
+@use_primary_db
+def submit_addon_change_for_content_review(*, activity_log_pk):
+    activity = ActivityLog.objects.get(pk=activity_log_pk)
+    if activity.action != amo.LOG.EDIT_ADDON_PROPERTY.id:
+        log.error(
+            'Activity with id %s is not an EDIT_ADDON_PROPERTY, cannot submit for '
+            'content review.',
+            activity_log_pk,
+        )
+        return
+    addon, field, changes_blob = activity.arguments
+    changes = json.loads(changes_blob or '{}')
+    entity_helper = CinderContentChange(addon, field, changes)
+    entity_helper.send_event()

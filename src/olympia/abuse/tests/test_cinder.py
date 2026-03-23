@@ -2,6 +2,7 @@ import json
 import os.path
 import random
 import uuid
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
@@ -42,6 +43,7 @@ from ..cinder import (
     CinderAddonHandledByLegal,
     CinderAddonHandledByReviewers,
     CinderCollection,
+    CinderContentChange,
     CinderRating,
     CinderReport,
     CinderUnauthenticatedReporter,
@@ -2016,6 +2018,117 @@ class TestCinderAddonContentReview(TestCinderAddon):
     def test_queue_with_theme(self):
         # themes don't have content review
         pass
+
+
+class TestCinderContentChange(BaseTestCinderCase, TestCase):
+    expected_queue_suffix = 'listing-content'
+
+    class CinderClass(CinderContentChange):
+        def __init__(self, target):
+            return super().__init__(target, 'tags', {'added': [], 'removed': []})
+
+    def _create_dummy_target(self, **kwargs):
+        return addon_factory(**kwargs)
+
+    def test_build_event_payload(self):
+        addon = self._create_dummy_target()
+        fixed_datetime = datetime(2026, 3, 24, 12, 0, 0)
+        change_id = f'{addon.pk}-tags-{int(fixed_datetime.timestamp())}'
+        cinder_change = CinderContentChange(
+            addon,
+            'tags',
+            {'added': ['privacy'], 'removed': ['tracking']},
+        )
+        cinder_change.datetime = fixed_datetime
+
+        data = cinder_change.build_event_payload()
+        assert data == {
+            'event_name': cinder_change.workflow_name,
+            'entity': {
+                'entity_schema': 'amo_content_change',
+                'attributes': {
+                    'id': change_id,
+                    'datetime': str(fixed_datetime),
+                    'reason': 'Addon tags change',
+                    'values_added': ['privacy'],
+                    'values_removed': ['tracking'],
+                },
+            },
+            'subgraph': {
+                'entities': [
+                    {
+                        'entity_schema': 'amo_addon',
+                        'attributes': {
+                            'id': str(addon.pk),
+                            'average_daily_users': addon.average_daily_users,
+                            'created': str(addon.created),
+                            'guid': addon.guid,
+                            'last_updated': str(addon.last_updated),
+                            'name': str(addon.name),
+                            'slug': addon.slug,
+                            'summary': str(addon.summary),
+                            'promoted': '',
+                        },
+                    }
+                ],
+                'relationships': [
+                    {
+                        'source_id': change_id,
+                        'source_entity_schema': 'amo_content_change',
+                        'target_id': str(addon.pk),
+                        'target_entity_schema': 'amo_addon',
+                        'relationship_schema': 'amo_content_metadata_change_of',
+                    }
+                ],
+            },
+        }
+
+    def test_send_event(self):
+        addon = self._create_dummy_target()
+        fixed_datetime = datetime(2026, 3, 24, 12, 0, 0)
+        cinder_change = CinderContentChange(
+            addon,
+            'tags',
+            {'added': ['privacy'], 'removed': ['tracking']},
+        )
+        cinder_change.datetime = fixed_datetime
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'ok', 'event_id': 'event-123'},
+            status=200,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+            json={'status': 'nope'},
+            status=200,
+        )
+
+        assert cinder_change.send_event() == 'event-123'
+        assert (
+            json.loads(responses.calls[0].request.body)
+            == cinder_change.build_event_payload()
+        )
+
+        with self.assertRaises(requests.HTTPError):
+            cinder_change.send_event()
+
+    def test_build_report_payload(self):
+        # report isn't implemented, so this won't be called
+        pass
+
+    def test_report(self):
+        with self.assertRaises(NotImplementedError):
+            self.CinderClass(self._create_dummy_target()).report()
+
+    def test_appeal_anonymous(self):
+        with self.assertRaises(NotImplementedError):
+            self.CinderClass(self._create_dummy_target()).appeal()
+
+    def test_appeal_logged_in(self):
+        with self.assertRaises(NotImplementedError):
+            self.CinderClass(self._create_dummy_target()).appeal()
 
 
 class TestCinderAddonHandledByLegal(TestCinderAddon):

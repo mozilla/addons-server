@@ -31,6 +31,7 @@ from ..tasks import (
     flag_high_abuse_reports_addons_according_to_review_tier,
     report_decision_to_cinder_and_notify,
     report_to_cinder,
+    submit_addon_change_for_content_review,
     submit_addon_for_content_review,
     sync_cinder_policies,
 )
@@ -1334,3 +1335,32 @@ def test_submit_addon_for_content_review():
 
     additional_call = json.loads(responses.calls[1].request.body)
     assert additional_call['entities'][0]['attributes']['id'] == str(author2.id)
+
+
+@pytest.mark.django_db
+def test_submit_addon_change_for_content_review():
+    addon = addon_factory()
+    activity = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY,
+        addon,
+        'name',
+        '{"added": ["a new name"], "removed": ["an old name"]}',
+        user=user_factory(),
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+        json={'status': 'ok', 'event_id': '1234-xyz'},
+        status=200,
+    )
+
+    submit_addon_change_for_content_review.delay(activity_log_pk=activity.id)
+
+    assert len(responses.calls) == 1
+    event_call = json.loads(responses.calls[0].request.body)
+    assert event_call['event_name'] == CinderAddonContentReview.workflow_name
+    assert event_call['entity']['entity_schema'] == 'amo_content_change'
+    assert event_call['entity']['attributes']['reason'] == 'Addon name change'
+    assert event_call['entity']['attributes']['values_added'] == ['a new name']
+    assert event_call['entity']['attributes']['values_removed'] == ['an old name']
+    assert event_call['subgraph']['entities'][0]['attributes']['id'] == str(addon.id)

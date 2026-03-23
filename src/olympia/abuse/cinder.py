@@ -758,3 +758,51 @@ class CinderReport(CinderEntity):
         # It doesn't make sense to appeal this, it's just meant to be included
         # as a relationship.
         raise NotImplementedError
+
+
+class CinderContentChange(WorkflowEventSendMixin, CinderEntity):
+    type = 'amo_content_change'
+    queue_suffix = CinderAddonContentReview.queue_suffix
+    workflow_name = CinderAddonContentReview.workflow_name
+
+    def __init__(self, addon, field, changes):
+        self.entity = addon
+        self.field = field
+        self.changes = changes
+        self.datetime = datetime.now()
+
+    @property
+    def id(self):
+        return self.get_str(
+            f'{self.entity.id}-{self.field}-{int(self.datetime.timestamp())}'
+        )
+
+    def get_attributes(self):
+        return {
+            'id': self.id,
+            'datetime': self.get_str(self.datetime),
+            'reason': f'Addon {self.field} change',
+            'values_added': self.changes.get('added', []),
+            'values_removed': self.changes.get('removed', []),
+        }
+
+    def get_context_generator(self):
+        cinder_addon = CinderAddon(self.entity)
+        yield {
+            'entities': [cinder_addon.get_entity_data()],
+            'relationships': [
+                self.get_relationship_data(
+                    cinder_addon, 'amo_content_metadata_change_of'
+                ),
+            ],
+        }
+
+    def report(self, *args, **kwargs):
+        # It doesn't make sense to report this, it's a holder for metadata, not a real
+        # entity.
+        raise NotImplementedError
+
+    def appeal(self, *args, **kwargs):
+        # It doesn't make sense to appeal this, it's a holder for metadata, not a real
+        # entity.
+        raise NotImplementedError
