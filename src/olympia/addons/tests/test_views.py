@@ -8,8 +8,7 @@ import tempfile
 import zipfile
 from collections import Counter, OrderedDict
 from datetime import datetime, timedelta
-from unittest import mock
-from unittest.mock import patch
+from unittest.mock import PropertyMock, call, patch
 from urllib.parse import unquote
 
 from django.conf import settings
@@ -584,7 +583,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             # One additional query for region exclusions test
             self._test_url(lang='en-US', extra={'HTTP_X_COUNTRY_CODE': 'fr'})
 
-    @mock.patch('django_statsd.middleware.statsd.timing')
+    @patch('django_statsd.middleware.statsd.timing')
     def test_statsd_timings(self, statsd_timing_mock):
         self._test_url()
         assert statsd_timing_mock.call_count == 3
@@ -1072,7 +1071,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         # If the license is set we'll get further validation errors from addon
         # Mocking parse_addon so we can test the fallback to POST data when there are
         # missing manifest fields.
-        with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
+        with patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
             parse_addon_mock.side_effect = lambda *arg, **kw: {
                 key: value
                 for key, value in parse_addon(*arg, **kw).items()
@@ -2454,7 +2453,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             content_type=mimetypes.guess_type(filename)[0],
         )
 
-    @mock.patch('olympia.addons.serializers.resize_icon.delay')
+    @patch('olympia.addons.serializers.resize_icon.delay')
     @override_settings(API_THROTTLING=False)
     # We're mocking resize_icon because the async update of icon_hash messes up urls
     def test_upload_icon(self, resize_icon_mock):
@@ -2504,7 +2503,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
-    @mock.patch('olympia.addons.serializers.remove_icons')
+    @patch('olympia.addons.serializers.remove_icons')
     def _test_delete_icon(self, request_data, request_format, remove_icons_mock):
         self.addon.update(icon_type='image/png')
         response = self.request(data=request_data, format=request_format)
@@ -2540,7 +2539,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
         assert response.status_code == 200
 
-    @mock.patch('olympia.addons.serializers.fetch_translations_from_instance')
+    @patch('olympia.addons.serializers.fetch_translations_from_instance')
     def test_metadata_content_review_unlisted(self, fetch_mock):
         self.make_addon_unlisted(self.addon)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
@@ -2561,7 +2560,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             == AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
         )
 
-    def test_metadata_change_triggers_content_review(self):
+    def _test_metadata_change_triggers_content_review(self):
         old_name = str(self.addon.name)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         assert AddonApprovalsCounter.objects.get(addon=self.addon).last_content_review
@@ -2597,7 +2596,24 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
             json.dumps({'removed': [], 'added': ['summary nouveau']}),
         ]
 
-    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    @patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=False)
+    def test_metadata_change_triggers_content_review_cinder_switch_off(self, task_mock):
+        self._test_metadata_change_triggers_content_review()
+        task_mock.assert_not_called()
+
+    @patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_metadata_change_triggers_content_review_cinder_switch_on(self, task_mock):
+        self._test_metadata_change_triggers_content_review()
+        alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_ADDON_PROPERTY.id)
+        assert task_mock.call_count == alogs.count() == 2
+        task_mock.assert_has_calls(
+            [call(activity_log_pk=alog.id) for alog in alogs],
+            any_order=True,
+        )
+
+    @patch('olympia.addons.serializers.run_narc_on_version')
     def test_trigger_narc_on_name_change_if_waffle_is_active(
         self, run_narc_on_version_mock
     ):
@@ -2607,7 +2623,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_count == 1
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
-    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    @patch('olympia.addons.serializers.run_narc_on_version')
     def test_trigger_narc_on_name_change_on_user_disabled_version(
         self, run_narc_on_version_mock
     ):
@@ -2618,7 +2634,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_count == 1
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
-    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    @patch('olympia.addons.serializers.run_narc_on_version')
     def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
         self.create_switch('enable-narc', active=True)
         response = self.request(
@@ -2627,7 +2643,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert response.status_code == 200
         assert run_narc_on_version_mock.delay.call_count == 0
 
-    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    @patch('olympia.addons.serializers.run_narc_on_version')
     def test_dont_trigger_narc_on_name_change_if_no_listed_versions(
         self, run_narc_on_version_mock
     ):
@@ -2636,7 +2652,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self._test_metadata_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
-    @mock.patch('olympia.addons.serializers.run_narc_on_version')
+    @patch('olympia.addons.serializers.run_narc_on_version')
     def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
         self, run_narc_on_version_mock
     ):
@@ -3188,7 +3204,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         source.seek(0)
         return source
 
-    @mock.patch('olympia.addons.views.log')
+    @patch('olympia.addons.views.log')
     def test_source_zip(self, log_mock):
         is_update = hasattr(self, 'version')
         _, version = self._submit_source(
@@ -3698,7 +3714,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
         assert provenance.client_info == 'web-ext/12.34'
 
-    @mock.patch('olympia.addons.views.log')
+    @patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
         response = self.client.post(
             self.url,
@@ -4199,7 +4215,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ],
         }
 
-    @mock.patch('olympia.addons.views.log')
+    @patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
         response = self.client.patch(
             self.url,
@@ -4272,7 +4288,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         upload = self.get_upload(
             'webextension.xpi', user=self.user, source=amo.UPLOAD_SOURCE_ADDON_API
         )
-        with mock.patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
+        with patch('olympia.addons.serializers.parse_addon') as parse_addon_mock:
             response = self.client.patch(
                 self.url,
                 data={'upload': upload.uuid},
@@ -4511,7 +4527,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             ]
         }
 
-    @mock.patch('olympia.addons.views.log')
+    @patch('olympia.addons.views.log')
     def _test_delete_source(self, request_kw, log_mock):
         self.version.update(source='src.zip')
         response = self.client.patch(self.url, **request_kw)
@@ -4552,8 +4568,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         }
         self.version.update(source='src.zip', human_review_date=datetime.now())
 
-        with mock.patch(
-            f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
+        with patch(
+            f'{mock_point}pending_rejection', new_callable=PropertyMock
         ) as pending_mock:
             pending_mock.return_value = False
 
@@ -4589,8 +4605,8 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         new_source = self.file_path('webextension_with_image.zip')
 
         assert not self.version.source
-        with mock.patch(
-            f'{mock_point}pending_rejection', new_callable=mock.PropertyMock
+        with patch(
+            f'{mock_point}pending_rejection', new_callable=PropertyMock
         ) as pending_mock:
             self.version.update(human_review_date=datetime.now())
             pending_mock.return_value = False
@@ -4963,7 +4979,7 @@ class TestVersionViewSetRollback(TestCase):
 
         # There are no restrictions on greater/less than for unlisted though.
         self.make_addon_unlisted(self.addon)
-        with mock.patch(
+        with patch(
             'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
         ) as mock_rollback_task:
             response = self.client.post(
@@ -4981,7 +4997,7 @@ class TestVersionViewSetRollback(TestCase):
         user_factory(id=settings.TASK_USER_ID)
         assert self.addon.versions.count() == 3
         new_version_string = self.second_version.version + '.1'
-        with mock.patch(
+        with patch(
             'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
         ) as mock_rollback_task:
             response = self.client.post(
@@ -5890,7 +5906,7 @@ class TestAddonSearchView(ESTestCase):
         # latest_unlisted_version should never be exposed in public search.
         assert 'latest_unlisted_version' not in result
 
-    @mock.patch('django_statsd.middleware.statsd.timing')
+    @patch('django_statsd.middleware.statsd.timing')
     def test_statsd_timings(self, statsd_timing_mock):
         self.perform_search(self.url)
         assert statsd_timing_mock.call_count == 3
@@ -7698,7 +7714,7 @@ class TestAddonRecommendationView(ESTestCase):
     def setUp(self):
         super().setUp()
         self.url = reverse_ns('addon-recommendations')
-        patcher = mock.patch('olympia.addons.views.get_addon_recommendations')
+        patcher = patch('olympia.addons.views.get_addon_recommendations')
         self.get_addon_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
@@ -7814,7 +7830,7 @@ class TestAddonPreviewViewSet(TestCase):
         self.addon = addon_factory(users=(self.user,))
 
     @override_settings(API_THROTTLING=False)
-    @mock.patch('olympia.addons.serializers.resize_preview.delay')
+    @patch('olympia.addons.serializers.resize_preview.delay')
     def test_create(self, resize_preview_mock):
         def post_with_error(filename):
             response = self.client.post(
@@ -7910,7 +7926,7 @@ class TestAddonPreviewViewSet(TestCase):
             version=self.addon.current_version
         ).exists()
 
-    @mock.patch('olympia.addons.serializers.resize_preview.delay')
+    @patch('olympia.addons.serializers.resize_preview.delay')
     def test_cannot_update_image(self, resize_preview_mock):
         self.client.login_api(self.user)
         preview = Preview.objects.create(addon=self.addon)

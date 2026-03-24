@@ -363,7 +363,7 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert selected_link is True
 
-    def test_metadata_change_triggers_content_review(self):
+    def _test_metadata_change_triggers_content_review(self):
         data = self.get_dict()
         addon = self.addon = self.get_addon()
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
@@ -371,6 +371,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         old_content_review = counter.last_content_review
         assert old_content_review
         assert counter.content_review_status == counter.CONTENT_REVIEW_STATUSES.PASS
+        edit_addon_property_activity_log_ids = []
 
         # make the edit
         response = self.client.post(self.describe_edit_url, data)
@@ -417,6 +418,8 @@ class BaseTestEditDescribe(BaseTestEdit):
                     }
                 ),
             ]
+            edit_addon_property_activity_log_ids.append(name_log.id)
+            edit_addon_property_activity_log_ids.append(summ_log.id)
         else:
             alogs = ActivityLog.objects.filter(action=amo.LOG.EDIT_PROPERTIES.id)
             assert alogs.count() == 1
@@ -456,6 +459,46 @@ class BaseTestEditDescribe(BaseTestEdit):
                 AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
             )
             assert str(addon.summary) == data['summary']
+            edit_addon_property_activity_log_ids.append(
+                ActivityLog.objects.get(action=amo.LOG.EDIT_ADDON_PROPERTY.id).id
+            )
+        return edit_addon_property_activity_log_ids
+
+    @override_switch('content-review-in-cinder', active=False)
+    def test_metadata_change_triggers_content_review_cinder_switch_off(self):
+        with (
+            mock.patch(
+                'olympia.devhub.views.submit_addon_change_for_content_review'
+            ) as view_task_mock,
+            mock.patch(
+                'olympia.abuse.tasks.submit_addon_for_content_review'
+            ) as abuse_task_mock,
+        ):
+            self._test_metadata_change_triggers_content_review()
+            view_task_mock.delay.assert_not_called()
+            abuse_task_mock.delay.assert_not_called()
+
+    @override_switch('content-review-in-cinder', active=True)
+    def test_metadata_change_triggers_content_review_cinder_switch_on(self):
+        with (
+            mock.patch(
+                'olympia.devhub.views.submit_addon_change_for_content_review'
+            ) as view_task_mock,
+            mock.patch(
+                'olympia.abuse.tasks.submit_addon_for_content_review'
+            ) as abuse_task_mock,
+        ):
+            log_ids = self._test_metadata_change_triggers_content_review()
+            if self.listed:
+                assert view_task_mock.delay.call_count == len(log_ids) == 3
+                view_task_mock.delay.assert_has_calls(
+                    [mock.call(activity_log_pk=alog_id) for alog_id in log_ids],
+                    any_order=True,
+                )
+                abuse_task_mock.delay.assert_called_once_with(addon_pk=self.addon.pk)
+            else:
+                view_task_mock.delay.assert_not_called()
+                abuse_task_mock.delay.assert_not_called()
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')
     def test_trigger_narc_on_name_change_if_waffle_is_active_if_listed_versions(
@@ -503,7 +546,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
         self, run_narc_on_version_mock
     ):
-        self.test_metadata_change_triggers_content_review()
+        self._test_metadata_change_triggers_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
     def test_noindex_on_content_change(self):

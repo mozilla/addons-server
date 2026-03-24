@@ -13,6 +13,7 @@ from celery.exceptions import Retry
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import TestCase, addon_factory, days_ago, user_factory
 from olympia.constants.abuse import (
     DECISION_ACTIONS,
@@ -1335,6 +1336,11 @@ def test_submit_addon_for_content_review():
 
     additional_call = json.loads(responses.calls[1].request.body)
     assert additional_call['entities'][0]['attributes']['id'] == str(author2.id)
+
+    assert (
+        AddonApprovalsCounter.objects.get(addon=addon).content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
+    )
 
 
 @pytest.mark.django_db

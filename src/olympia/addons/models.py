@@ -262,8 +262,8 @@ class AddonManager(ManagerBase):
 
     def get_base_queryset_for_queue(
         self,
+        *,
         admin_reviewer=False,
-        content_review=False,
         theme_review=False,
         select_related_fields_for_listed=True,
     ):
@@ -392,9 +392,7 @@ class AddonManager(ManagerBase):
     def get_content_review_queue(self, admin_reviewer=False):
         """Return a queryset of Addon objects that need content review."""
         qs = (
-            self.get_base_queryset_for_queue(
-                admin_reviewer=admin_reviewer, content_review=True
-            )
+            self.get_base_queryset_for_queue(admin_reviewer=admin_reviewer)
             .valid()
             .filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True,
@@ -2108,6 +2106,8 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
     If a version is rejected after nomination, the developer has to upload a
     new version.
     """
+    from olympia.abuse.tasks import submit_addon_for_content_review
+
     new_status = new_attr.get('status') if new_attr else None
     old_status = old_attr.get('status') if old_attr else None
     disabled_by_user = new_attr.get('disabled_by_user') if new_attr else None
@@ -2131,7 +2131,20 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
             status_disabled_reason=File.STATUS_DISABLED_REASONS.DEVELOPER,
         )
         instance.update_status()
-    elif old_status == amo.STATUS_NOMINATED:
+        return
+
+    if (
+        new_status in amo.VALID_ADDON_STATUSES
+        and waffle.switch_is_active('content-review-in-cinder')
+        and not AddonApprovalsCounter.objects.filter(addon_id=instance.id)
+        .exclude(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
+        .exists()
+    ):
+        submit_addon_for_content_review.delay(addon_pk=instance.pk)
+
+    if old_status == amo.STATUS_NOMINATED:
         # Update latest version due date if necessary for nominated add-ons.
         inherit_due_date_if_nominated(None, latest_version)
     else:
@@ -2427,11 +2440,10 @@ class AddonApprovalsCounter(ModelBase):
         PASS = 2, 'Pass'
         FAIL = 3, 'Fail'
         REQUESTED = 4, 'Pending, New review requested'
+        # This status is set when the review is sent to Cinder
+        PENDING = 5, 'Pending first review after submission'
 
     CONTENT_REVIEW_STATUSES.add_subset('REJECTED', ('FAIL', 'REQUESTED'))
-    CONTENT_REVIEW_STATUSES.add_subset(
-        'PENDING', ('UNREVIEWED', 'CHANGED', 'REQUESTED')
-    )
     CONTENT_REVIEW_STATUSES.add_subset('COMPLETE', ('PASS', 'FAIL'))
 
     addon = models.OneToOneField(Addon, primary_key=True, on_delete=models.CASCADE)
@@ -2516,13 +2528,18 @@ class AddonApprovalsCounter(ModelBase):
         return obj
 
     @classmethod
-    def reset_content_for_addon(cls, addon):
+    def reset_content_for_addon(
+        cls, addon, initial_status=CONTENT_REVIEW_STATUSES.UNREVIEWED
+    ):
         """
         Reset the last_content_review date for this addon so it triggers
         another review.
         """
+        defaults = {'last_content_review': None}
         obj, created = cls.objects.update_or_create(
-            addon=addon, defaults={'last_content_review': None}
+            addon=addon,
+            defaults=defaults,
+            create_defaults={**defaults, 'content_review_status': initial_status},
         )
         if (
             not created

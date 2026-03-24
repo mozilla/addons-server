@@ -28,6 +28,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.tasks import submit_addon_change_for_content_review
 from olympia.access import acl
 from olympia.accounts.decorators import two_factor_auth_required
 from olympia.accounts.utils import (
@@ -936,12 +937,16 @@ def addons_section(request, addon_id, addon, section, editable=False):
                 else:
                     metadata_changes = getattr(main_form, 'metadata_changes', {})
                     for field, addedremoved in metadata_changes.items():
-                        ActivityLog.objects.create(
+                        alog = ActivityLog.objects.create(
                             amo.LOG.EDIT_ADDON_PROPERTY,
                             addon,
                             field,
                             json.dumps(addedremoved),
                         )
+                        if waffle.switch_is_active('content-review-in-cinder'):
+                            submit_addon_change_for_content_review.delay(
+                                activity_log_pk=alog.pk
+                            )
 
                     ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
 

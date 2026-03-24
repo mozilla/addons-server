@@ -1319,6 +1319,8 @@ class AddonSerializer(AMOModelSerializer):
             self.instance.update(icon_type='')
 
     def log(self, instance, validated_data, changes):
+        from olympia.abuse.tasks import submit_addon_change_for_content_review
+
         validated_data = {**validated_data}  # we want to modify it, so take a copy
         user = self.context['request'].user
 
@@ -1340,13 +1342,15 @@ class AddonSerializer(AMOModelSerializer):
             validated_data.pop('version')
 
         for field, addedremoved in changes.items():
-            ActivityLog.objects.create(
+            alog = ActivityLog.objects.create(
                 amo.LOG.EDIT_ADDON_PROPERTY,
                 instance,
                 field,
                 json.dumps(addedremoved),
                 user=user,
             )
+            if waffle.switch_is_active('content-review-in-cinder'):
+                submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
             validated_data.pop(field)
         if validated_data:
             ActivityLog.objects.create(

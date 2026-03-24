@@ -12,7 +12,7 @@ from django_statsd.clients import statsd
 import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon
+from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import to_language
@@ -287,6 +287,9 @@ def submit_addon_for_content_review(*, addon_pk):
     addon = Addon.unfiltered.get(pk=addon_pk)
     entity_helper = CinderAddonContentReview(addon)
     entity_helper.send_event()
+    AddonApprovalsCounter.reset_content_for_addon(
+        addon, initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
+    )
 
     # Additional context is submitted as separate api calls.
     try:

@@ -2964,6 +2964,56 @@ class TestUpdateStatus(TestCase):
         addon.update_status()
         assert addon.status == amo.STATUS_APPROVED
 
+    @patch('olympia.abuse.tasks.submit_addon_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_content_review_triggered_for_addon_submission(self, submit_mock):
+        addon = addon_factory()
+        submit_mock.reset_mock()
+        addon.update(status=amo.STATUS_NOMINATED)
+        submit_mock.assert_called_once_with(addon_pk=addon.pk)
+
+    @patch('olympia.abuse.tasks.submit_addon_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=False)
+    def test_content_review_not_triggered_when_waffle_not_enabled(self, submit_mock):
+        addon = addon_factory()
+        submit_mock.reset_mock()
+        addon.update(status=amo.STATUS_NOMINATED)
+        submit_mock.assert_not_called()
+
+    @patch('olympia.abuse.tasks.submit_addon_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_content_review_not_triggered_for_non_valid_status(self, submit_mock):
+        addon = addon_factory()
+        submit_mock.reset_mock()
+        addon.update(status=amo.STATUS_DISABLED)
+        submit_mock.assert_not_called()
+
+    @patch('olympia.abuse.tasks.submit_addon_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_content_review_not_triggered_when_already_pending(self, submit_mock):
+        addon = addon_factory()
+        AddonApprovalsCounter.objects.create(
+            addon=addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING,
+        )
+        submit_mock.reset_mock()
+        addon.update(status=amo.STATUS_NOMINATED)
+        submit_mock.assert_not_called()
+
+    @patch('olympia.abuse.tasks.submit_addon_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_content_review_not_triggered_when_content_already_reviewed(
+        self, submit_mock
+    ):
+        addon = addon_factory()
+        AddonApprovalsCounter.objects.create(
+            addon=addon,
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
+        )
+        submit_mock.reset_mock()
+        addon.update(status=amo.STATUS_NOMINATED)
+        submit_mock.assert_not_called()
+
 
 class TestGetVersion(TestCase):
     fixtures = [
@@ -3750,6 +3800,27 @@ class TestAddonApprovalsCounter(TestCase):
             AddonApprovalsCounter.reset_content_for_addon(self.addon)
             assert approval_counter.reload().content_review_status == previous_status
 
+    def test_reset_content_existing_initial_status_ignored(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            counter=42,
+            last_content_review=self.days_ago(367),
+            last_human_review=self.days_ago(10),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS,
+        )
+        # should be ignored
+        AddonApprovalsCounter.reset_content_for_addon(
+            self.addon,
+            initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+        )
+        assert approval_counter.reload().counter == 42  # unchanged
+        self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
+        assert approval_counter.last_content_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED
+        )
+
     def test_reset_content_non_existing(self):
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
         AddonApprovalsCounter.reset_content_for_addon(self.addon)
@@ -3759,6 +3830,20 @@ class TestAddonApprovalsCounter(TestCase):
         assert (
             approval_counter.content_review_status
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
+
+    def test_reset_content_non_existing_with_initial_status(self):
+        assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
+        AddonApprovalsCounter.reset_content_for_addon(
+            self.addon,
+            initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING,
+        )
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.counter == 0
+        assert approval_counter.last_human_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
         )
 
     def test_request_review(self):
