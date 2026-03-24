@@ -16,13 +16,14 @@
       </div>
     {% endif %}
     <p>
-      {% trans jwt_url="https://datatracker.ietf.org/doc/html/rfc7519", docs_url="https://mozilla.github.io/addons-server/topics/api/index.html" %}
-        To execute authenticated calls against the <a href="{{ docs_url }}">API</a> as an external consumer, you need to include a <a href="{{ jwt_url }}">JSON Web Token (JWT)</a> in the <code>Authorization</code> header for every request.
+      {% trans jwt_url='https://datatracker.ietf.org/doc/html/rfc7519', docs_url='https://mozilla.github.io/addons-server/topics/api/index.html',
+      a_attrs='target="_blank" rel="noopener noreferrer"' %}
+        To execute authenticated calls against the <a {{ a_attrs }} href="{{ docs_url }}">API</a> as an external consumer, you need to include a <a {{ a_attrs }} href="{{ jwt_url }}">JSON Web Token (JWT)</a> in the <code>Authorization</code> header for every request.
       {% endtrans %}
     </p>
     <p>
       {% trans %}
-        Keep your API keys secret and never share them with anyone, including Mozilla contributors.
+        Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors.
       {% endtrans %}
     </p>
     {% if form.credentials %}
