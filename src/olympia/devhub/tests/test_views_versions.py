@@ -48,9 +48,6 @@ class TestVersion(TestCase):
         self.url = self.addon.get_dev_url('versions')
         self.disable_url = self.addon.get_dev_url('disable')
         self.enable_url = self.addon.get_dev_url('enable')
-        self.request_content_review_url = self.addon.get_dev_url(
-            'rejected_review_request'
-        )
         self.delete_url = reverse('devhub.versions.delete', args=['a3615'])
         self.delete_data = {'addon_id': self.addon.pk, 'version_id': self.version.pk}
 
@@ -475,85 +472,6 @@ class TestVersion(TestCase):
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         response = self.client.get(self.url)
         assert response.status_code == 403
-
-    def test_owner_can_request_listing_content_review(self):
-        self.addon.update(status=amo.STATUS_REJECTED)
-        AddonApprovalsCounter.objects.update_or_create(
-            addon=self.addon,
-            defaults={
-                'content_review_status': (
-                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
-                )
-            },
-        )
-
-        response = self.client.post(self.request_content_review_url)
-        self.assert3xx(response, self.url, 302)
-        addon = self.get_addon()
-        assert (
-            addon.addonapprovalscounter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
-        )
-        assert addon.status == amo.STATUS_REJECTED  # no change
-
-        entry = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
-        assert entry.action == amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
-        assert str(self.addon.name) in entry.to_string()
-
-    def test_non_owner_cannot_request_listing_content_review(self):
-        self.addon.update(status=amo.STATUS_REJECTED)
-        AddonApprovalsCounter.objects.update_or_create(
-            addon=self.addon,
-            defaults={
-                'content_review_status': (
-                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
-                )
-            },
-        )
-        self.client.logout()
-        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
-        response = self.client.post(self.request_content_review_url)
-        assert response.status_code == 403
-        assert (
-            self.addon.addonapprovalscounter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
-        )
-
-    def test_unpriviledged_user_cannot_request_listing_content_review(self):
-        self.addon.update(status=amo.STATUS_REJECTED)
-        AddonApprovalsCounter.objects.update_or_create(
-            addon=self.addon,
-            defaults={
-                'content_review_status': (
-                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
-                )
-            },
-        )
-        self.client.logout()
-        response = self.client.post(self.request_content_review_url)
-        assert response.status_code == 302
-        assert (
-            self.addon.addonapprovalscounter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
-        )
-
-    def test_user_cannot_request_review_of_non_rejected_listing(self):
-        self.addon.update(status=amo.STATUS_APPROVED)
-        AddonApprovalsCounter.objects.update_or_create(
-            addon=self.addon,
-            defaults={
-                'content_review_status': (
-                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
-                )
-            },
-        )
-
-        response = self.client.post(self.request_content_review_url)
-        assert response.status_code == 404
-        assert (
-            self.addon.addonapprovalscounter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
-        )
 
     def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
