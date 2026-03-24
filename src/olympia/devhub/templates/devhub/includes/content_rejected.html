@@ -1,0 +1,30 @@
+<div id="content-review-rejection">
+    <strong>{{ _('Our review found that your listing content violates the following Mozilla policy or policies:') }}</strong>
+    <div class="rejection-policies">
+        <ul>
+        {% for text in rejection_policy_texts %}
+            <li>{{ text }}</li>
+        {% endfor %}
+        </ul>
+        {% if rejection_manual_reasoning_text %}<span class="manual-reasoning">
+            {{ rejection_manual_reasoning_text }}.
+        </span>{% endif %}
+    </div>
+    <div>
+        <p>{{ _('To address these issues, please update your listing and request another review of the content.') }}</p>
+        {% if page == 'edit' %}
+          {% if rejection_review_requested %}
+            <button class="disabled" disabled>
+                {{ _('Review requested already, awaiting review') }}
+            </button>
+          {% else %}
+            <button class="rejected-review-request"
+                data-url="{{ addon.get_dev_url('rejected_review_request') }}">
+                {{ _('I confirm I have addressed the issues, and request a review') }}
+            </button>
+          {% endif %}
+        {% else %}
+            <a class="button" href="{{ url('devhub.addons.edit', addon.slug) }} ">{{ _('Edit Product Page') }}</a>
+        {% endif %}
+    </div>
+</div>

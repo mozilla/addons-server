@@ -33,6 +33,10 @@
     </div>
   {% endif %}
 
+  {% if addon.status == amo.STATUS_REJECTED %}
+    {{ content_rejected_info(addon) }}
+  {% endif %}
+
   <div class="edit-addon-section" id="edit-addon-describe">
     {% include 'devhub/addons/edit/describe.html' %}
   </div>

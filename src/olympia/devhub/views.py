@@ -1321,19 +1321,6 @@ def version_list(request, addon_id, addon):
     rollback_form = forms.RollbackVersionForm(
         request.POST if was_rollback_submit else None, addon=addon
     )
-    rejected_log = (
-        addon.status == amo.STATUS_REJECTED
-        and ActivityLog.objects.filter(
-            addonlog__addon=addon, action=amo.LOG.REJECT_LISTING_CONTENT.id
-        )
-        .order_by('-created')
-        .first()
-    )
-    rejection_review_requested = (
-        rejected_log
-        and addon.addonapprovalscounter.content_review_status
-        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
-    )
 
     if was_rollback_submit and rollback_form.is_valid():
         duplicate_addon_version_for_rollback.delay(
@@ -1363,13 +1350,6 @@ def version_list(request, addon_id, addon):
         .values_list('version', flat=True)
         .first(),
         'is_admin': is_admin,
-        'rejection_manual_reasoning_text': rejected_log.details.get('comments', '')
-        if rejected_log
-        else '',
-        'rejection_policy_texts': rejected_log.details.get('policy_texts', [])
-        if rejected_log
-        else [],
-        'rejection_review_requested': rejection_review_requested,
         'rollback_form': rollback_form,
         'session_id': request.session.session_key,
         'versions': versions,

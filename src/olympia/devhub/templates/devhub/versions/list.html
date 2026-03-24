@@ -152,7 +152,11 @@
   {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
      to allow developers to toggle it back so that they can upload listed versions #}
   {% if has_listed_versions or addon.disabled_by_user %}
-    {% include "devhub/includes/listing_visibility.html" %}
+    {% if addon.status == amo.STATUS_REJECTED %}
+      {{ content_rejected_info(addon) }}
+    {% else %}
+      {% include "devhub/includes/listing_visibility.html" %}
+    {% endif %}
     {% if latest_listed_version or current_version %}
         <h3>{{ distro_tag(amo.CHANNEL_LISTED)}} {{ _('Listed versions') }}</h3>
     {% endif %}

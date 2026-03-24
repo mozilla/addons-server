@@ -6,6 +6,7 @@ from django_jinja import library
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import format_date, new_context, page_title
 from olympia.files.models import File
 
@@ -131,3 +132,33 @@ def addon_listing_header(
 @library.filter
 def python_any(values):
     return any(values)
+
+
+@library.global_function
+@library.render_with('devhub/includes/content_rejected.html')
+@jinja2.pass_context
+def content_rejected_info(context, addon):
+    rejected_log = (
+        addon.status == amo.STATUS_REJECTED
+        and ActivityLog.objects.filter(
+            addonlog__addon=addon, action=amo.LOG.REJECT_LISTING_CONTENT.id
+        )
+        .order_by('-created')
+        .first()
+    )
+    rejection_review_requested = (
+        rejected_log
+        and addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+    return {
+        'addon': context.get('addon'),
+        'page': context.get('page'),
+        'rejection_manual_reasoning_text': rejected_log.details.get('comments', '')
+        if rejected_log
+        else '',
+        'rejection_policy_texts': rejected_log.details.get('policy_texts', [])
+        if rejected_log
+        else [],
+        'rejection_review_requested': rejection_review_requested,
+    }
