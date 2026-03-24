@@ -297,21 +297,23 @@ class TestScannerResultAdmin(TestCase):
         assert '/browse/' not in formatted_matched_rules_with_files_and_data(result)
 
     def test_list_queries(self):
-        ScannerResult.objects.create(
-            scanner=YARA, version=addon_factory().current_version
-        )
+        addon = addon_factory()
+        ScannerResult.objects.create(scanner=YARA, version=addon.current_version)
+        ScannerResult.objects.create(scanner=NARC, version=version_factory(addon=addon))
         deleted_addon = addon_factory(name='a deleted add-on')
         ScannerResult.objects.create(
             scanner=YARA, version=deleted_addon.current_version
         )
         deleted_addon.delete()
 
-        with self.assertNumQueries(14):
-            # 13 queries:
+        with self.assertNumQueries(15):
+            # 15 queries:
             # - 2 transaction savepoints because of tests
             # - 2 request user and groups
             # - 1 COUNT(*) on scanners results for pagination
             #     (show_full_result_count=False so we avoid the duplicate)
+            # - 1 COUNT(*) on scanner results to show number of add-ons from
+            #     the results
             # - 2 get all available rules for filtering
             # - 1 all webhooks for ScannerFilter
             # - 1 scanners results and versions in one query
@@ -329,6 +331,8 @@ class TestScannerResultAdmin(TestCase):
         assert html('#result_list tbody > tr').length == expected_length
         # The name of the deleted add-on should be displayed.
         assert str(deleted_addon.name) in html.text()
+        # Number of results and number of add-ons should be displayed.
+        assert html('.paginator').text() == '3 scanner results · 2 add-on(s)'
 
     def test_guid_column_is_sortable_in_list(self):
         rule_foo = ScannerRule.objects.create(name='foo', scanner=WEBHOOK)
@@ -1351,6 +1355,29 @@ class TestScannerQueryResultAdmin(TestCase):
         response = self.client.get(self.list_url)
         html = pq(response.content)
         assert '/icon-yes.svg' in html('.field-is_file_signed img')[0].attrib['src']
+
+    def test_list_queries(self):
+        addon = addon_factory()
+        addon2 = addon_factory()
+        self.scanner_query_result_factory(version=addon.current_version)
+        self.scanner_query_result_factory(version=version_factory(addon=addon))
+        self.scanner_query_result_factory(version=addon2.current_version)
+        with self.assertNumQueries(12):
+            # - 2 savepoint
+            # - 2 user & groups
+            # - 1 available rules for filtering
+            # - 1 count()
+            # - 1 count() for number of add-ons in the results
+            # - 1 query results
+            # - 1 all addons from results
+            # - 1 translations for those add-ons
+            # - 1 files for those add-ons
+            # - 1 authors for those add-ons
+            response = self.client.get(self.list_url)
+        assert response.status_code == 200
+        html = pq(response.content)
+        # Number of results and number of add-ons should be displayed.
+        assert html('.paginator').text() == '3 scanner query results · 2 add-on(s)'
 
     def test_get_actions(self):
         scanner_query_result_admin = ScannerQueryResultAdmin(

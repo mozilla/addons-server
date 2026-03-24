@@ -3,12 +3,14 @@ from urllib.parse import urljoin
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
+from django.core.paginator import Paginator
 from django.db.models import Count, Prefetch
 from django.forms import ModelForm
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.urls import re_path, reverse
+from django.utils.functional import cached_property
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
 from django.utils.text import capfirst
@@ -96,6 +98,18 @@ def formatted_matched_rules_with_files_and_data(
             'addon_version': obj.version if obj.version else None,
         },
     )
+
+
+class ScannerResultsPaginator(Paginator):
+    """Paginator that can be used with ScannerResults and ScannerQueryResults
+    to return an additional addons_count property that exposes the total number
+    of add-ons across the results."""
+
+    @cached_property
+    def addons_count(self):
+        return self.object_list.aggregate(
+            addons=Count('version__addon', distinct=True)
+        )['addons']
 
 
 class PresenceFilter(SimpleListFilter):
@@ -286,8 +300,8 @@ class AbstractScannerResultAdminMixin:
     view_on_site = False
     list_select_related = ('version',)
     raw_id_fields = ('version',)
-
     ordering = ('-pk',)
+    paginator = ScannerResultsPaginator
 
     class Media(AMOModelAdmin.Media):
         css = {'all': (vite_asset('css/admin-scanner-results.less'),)}
