@@ -10,21 +10,19 @@
             {{ rejection_manual_reasoning_text }}.
         </span>{% endif %}
     </div>
-    <div>
+    <div class="request-review">
         <p>{{ _('To address these issues, please update your listing and request another review of the content.') }}</p>
-        {% if page == 'edit' %}
-          {% if rejection_review_requested %}
+        {% if rejection_review_requested %}
             <button class="disabled" disabled>
                 {{ _('Review requested already, awaiting review') }}
             </button>
-          {% else %}
+        {% elif page == 'edit' %}
             <button class="rejected-review-request"
                 data-url="{{ addon.get_dev_url('rejected_review_request') }}">
                 {{ _('I confirm I have addressed the issues, and request a review') }}
             </button>
-          {% endif %}
         {% else %}
-            <a class="button" href="{{ url('devhub.addons.edit', addon.slug) }} ">{{ _('Edit Product Page') }}</a>
+            <a class="button" href="{{ url('devhub.addons.edit', addon.slug) }}">{{ _('Edit Product Page') }}</a>
         {% endif %}
     </div>
 </div>

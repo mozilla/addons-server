@@ -24,7 +24,7 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import GENERIC_USER_NAME, ActivityLog
-from olympia.addons.models import Addon, AddonCategory, AddonUser
+from olympia.addons.models import Addon, AddonApprovalsCounter, AddonCategory, AddonUser
 from olympia.amo.templatetags.jinja_helpers import (
     format_date,
     url as url_reverse,
@@ -2615,3 +2615,96 @@ class TestSurvey(TestCase):
         self.addon = addon_factory(users=[self.user])
         response = self.client.post(self.url, follow=True)
         assert b'Take our quick survey' not in response.content
+
+
+class TestRequestContentReview(TestCase):
+    fixtures = ['base/users', 'base/addon_3615']
+
+    def setUp(self):
+        self.client.force_login(UserProfile.objects.get(email='del@icio.us'))
+        self.addon = self.get_addon()
+        self.request_content_review_url = self.addon.get_dev_url(
+            'rejected_review_request'
+        )
+
+    def get_addon(self):
+        return Addon.objects.get(id=3615)
+
+    def test_owner_can_request_listing_content_review(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+                )
+            },
+        )
+
+        response = self.client.post(self.request_content_review_url)
+        self.assert3xx(response, self.addon.get_dev_url(), 302)
+        addon = self.get_addon()
+        assert (
+            addon.addonapprovalscounter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+        assert addon.status == amo.STATUS_REJECTED  # no change
+
+        entry = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
+        assert entry.action == amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
+        assert str(self.addon.name) in entry.to_string()
+
+    def test_non_owner_cannot_request_listing_content_review(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+                )
+            },
+        )
+        self.client.logout()
+        self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
+        response = self.client.post(self.request_content_review_url)
+        assert response.status_code == 403
+        assert (
+            self.addon.addonapprovalscounter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_unpriviledged_user_cannot_request_listing_content_review(self):
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+                )
+            },
+        )
+        self.client.logout()
+        response = self.client.post(self.request_content_review_url)
+        assert response.status_code == 302
+        assert (
+            self.addon.addonapprovalscounter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+        )
+
+    def test_user_cannot_request_review_of_non_rejected_listing(self):
+        self.addon.update(status=amo.STATUS_APPROVED)
+        AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+                )
+            },
+        )
+
+        response = self.client.post(self.request_content_review_url)
+        assert response.status_code == 404
+        assert (
+            self.addon.addonapprovalscounter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+        )

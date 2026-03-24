@@ -99,6 +99,68 @@ class BaseTestEditDescribe(BaseTestEdit):
         result.update(**kw)
         return result
 
+    def test_edit_page_does_not_show_listing_rejected_if_not_needed(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#content-review-rejection')
+
+    def test_edit_page_does_show_listing_rejected_if_needed(self):
+        aac, _ = AddonApprovalsCounter.objects.update_or_create(
+            addon=self.addon,
+            defaults={
+                'content_review_status': (
+                    AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+                )
+            },
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        details = {
+            'comments': 'Manual words',
+            'policy_texts': [
+                'Acceptable Use, specifically Controlled substances: This is a policy'
+            ],
+        }
+        ActivityLog.objects.create(
+            amo.LOG.REJECT_LISTING_CONTENT.id,
+            self.addon,
+            details=details,
+            user=self.user,
+        )
+        request_content_review_url = self.addon.get_dev_url('rejected_review_request')
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        div = doc('#content-review-rejection')
+        assert div
+        assert 'Our review found that your listing content violates' in div.text()
+        assert (
+            'Acceptable Use, specifically ' in div('div.rejection-policies li').text()
+        )
+        assert 'Manual words' in div('span.manual-reasoning').text()
+        assert 'I confirm I have addressed' in div('.request-review button').text()
+        assert 'already, awaiting review' not in div('.request-review button').text()
+        assert (
+            div('button.rejected-review-request').attr('data-url')
+            == request_content_review_url
+        )
+        assert not div('a.button').text() == 'Edit Product Page'
+
+        aac.update(
+            content_review_status=(
+                AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+            )
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        div = doc('#content-review-rejection')
+        assert 'I confirm I have addressed' not in div('.request-review button').text()
+        assert 'Edit Product Page' not in div('.request-review a.button').text()
+        assert 'already, awaiting review' in div('.request-review button').text()
+        assert not div('button.rejected-review-request')
+
     def test_edit_page_not_editable(self):
         # The /edit page is the entry point for the individual edit sections,
         # and should never display the actual forms, so it should always pass

@@ -555,7 +555,7 @@ class TestVersion(TestCase):
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
         )
 
-    def _check_visible_addon_radio(self, label_text):
+    def test_published_addon_radio(self):
         """Published (listed) addon is selected: can hide or publish."""
         self.addon.update(disabled_by_user=False)
         response = self.client.get(self.url)
@@ -563,18 +563,17 @@ class TestVersion(TestCase):
         assert doc('.enable-addon').attr('checked') == 'checked'
         enable_url = self.addon.get_dev_url('enable')
         assert doc('.enable-addon').attr('data-url') == enable_url
-        assert doc('.enable-addon + *').text() == label_text
         assert not doc('.enable-addon').attr('disabled')
         assert doc('#modal-disable')
         assert not doc('.disable-addon').attr('checked')
         assert not doc('.disable-addon').attr('disabled')
 
-    def test_published_addon_radio(self):
-        self._check_visible_addon_radio('Visible:')
-
     def test_published_addon_radio_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
-        self._check_visible_addon_radio('Listing Content Rejected:')
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('.enable-addon')
+        assert not doc('.disable-addon')
 
     def test_hidden_addon_radio(self):
         """Hidden (disabled) addon is selected: can hide or publish."""
@@ -651,12 +650,13 @@ class TestVersion(TestCase):
             'Acceptable Use, specifically ' in div('div.rejection-policies li').text()
         )
         assert 'Manual words' in div('span.manual-reasoning').text()
-        assert 'I confirm I ' in div('.request-review button').text()
-        assert 'awaiting review' not in div('.request-review button').text()
-        assert div('button.rejected-review-request').attr('disabled') != 'disabled'
-        assert (
-            div('button.rejected-review-request').attr('data-url')
-            == self.request_content_review_url
+        # Confirming you've addressed the issues is not done on this page
+        assert 'I confirm I have addressed' not in div('.request-review button').text()
+        assert 'already, awaiting review' not in div('.request-review button').text()
+        assert not div('button.rejected-review-request')
+        assert div('a.button').text() == 'Edit Product Page'
+        assert div('a.button')[0].attrib['href'] == (
+            reverse('devhub.addons.edit', args=['a3615'])
         )
 
         aac.update(
@@ -665,9 +665,11 @@ class TestVersion(TestCase):
             )
         )
         response = self.client.get(self.url)
-        div = pq(response.content)('#content-review-rejection')
-        assert 'I confirm I ' not in div('.request-review button').text()
-        assert 'awaiting review' in div('.request-review button').text()
+        doc = pq(response.content)
+        div = doc('#content-review-rejection')
+        assert 'I confirm I have addressed' not in div('.request-review button').text()
+        assert 'Edit Product Page' not in div('.request-review a.button').text()
+        assert 'already, awaiting review' in div('.request-review button').text()
         assert not div('button.rejected-review-request')
 
     def test_cancel_get(self):

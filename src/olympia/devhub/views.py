@@ -435,7 +435,7 @@ def rejected_review_request(request, addon_id, addon):
         request,
         gettext('Request for a new review of listing content acknowledged.'),
     )
-    return redirect(addon.get_dev_url('versions'))
+    return redirect(addon.get_dev_url())
 
 
 # Can't use @dev_required, as the user is not a developer yet. Can't use
