@@ -184,15 +184,12 @@ $(document).ready(function () {
   $('.api-credentials .widget.copy').on('click', function() {
     let $elm = $(this);
     let text = $elm.prev('code').text();
-    let promise = navigator.clipboard.writeText;
-    /*
-    // Replace the line above with the following to test locally with a fake
-    // promise instead of actually interacting with the clipboard.
-    let promise = navigator.clipboard ? navigator.clipboard.writeText : function() {
-      return new Promise((resolve, reject) => { resolve(); });
-    };
-    */
-    promise(text).then(function() {
+    // To test locally without a secure (HTTPS) context, replace the
+    // navigator.clipboard.writeText(text) bit below with an immediately
+    // executed function that resolves a dummy promise instead of actually
+    // copying the text to the clipboard:
+    // (function() { return new Promise((resolve) => { resolve(); })})(text)
+    navigator.clipboard.writeText(text).then(function() {
       $elm.addClass('check');
       // Our tooltip function is a bit simplistic, trigger mouse events to
       // force it to be shown for a short while if copying was successful.
