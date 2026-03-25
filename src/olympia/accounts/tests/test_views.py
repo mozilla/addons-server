@@ -1376,6 +1376,22 @@ class TestAccountViewSet(TestCase):
         assert response.data['email'] == self.random_user.email
         assert response.data['url'] == absolutify(self.random_user.get_url_path())
 
+    def test_lookup_view(self):
+        self.grant_permission(self.user, 'Users:Lookup')
+        self.client.login_api(self.user)
+        random_user = user_factory(biography='something!')
+        random_user_profile_url = reverse_ns(
+            'account-detail', kwargs={'pk': random_user.pk}
+        )
+        response = self.client.get(random_user_profile_url)
+        assert response.status_code == 200
+        assert response.data['name'] == random_user.name
+        assert response.data['biography'] == random_user.biography
+        assert response.data['email'] == random_user.email
+        assert 'last_login_ip' not in response.data
+        assert 'permissions' not in response.data
+        assert response.data['url'] == absolutify(random_user.get_url_path())
+
 
 class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
     """This just tests JWT Auth (external) on the profile endpoint.
@@ -1409,8 +1425,9 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
         response = self.get(self.url, data={'email': self.target_user.email})
         assert response.status_code == 200
         assert len(response.data) == 1
-        assert response.data[0]['email'] == self.target_user.email
         assert response.data[0]['id'] == self.target_user.pk
+        assert response.data[0]['email'] == self.target_user.email
+        assert 'last_login_ip' not in response.data[0]
 
     def test_lookup_multiple_users_same_email(self):
         # Multiple accounts can share the same email (no unique constraint).

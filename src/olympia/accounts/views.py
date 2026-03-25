@@ -68,6 +68,7 @@ from . import verify
 from .serializers import (
     AccountSuperCreateSerializer,
     FullUserProfileSerializer,
+    LookupUserProfileSerializer,
     MinimalUserProfileSerializer,
     SelfUserProfileSerializer,
     UserNotificationSerializer,
@@ -506,9 +507,15 @@ class AccountViewSet(
     def admin_viewing(self):
         return acl.action_allowed_for(self.request.user, amo.permissions.USERS_EDIT)
 
+    @property
+    def lookup_viewing(self):
+        return acl.action_allowed_for(self.request.user, amo.permissions.USERS_LOOKUP)
+
     def get_serializer_class(self):
         if self.self_view or self.admin_viewing:
             return SelfUserProfileSerializer
+        elif self.lookup_viewing:
+            return LookupUserProfileSerializer
         elif self.get_object().has_full_profile:
             return FullUserProfileSerializer
         else:
@@ -559,7 +566,7 @@ class AccountViewSet(
         )
         if not users.exists():
             raise exceptions.NotFound()
-        serializer = SelfUserProfileSerializer(
+        serializer = LookupUserProfileSerializer(
             users, many=True, context={'request': request}
         )
         return Response(serializer.data)

@@ -81,6 +81,12 @@ class FullUserProfileSerializer(BaseUserSerializer):
         read_only_fields = fields
 
 
+class LookupUserProfileSerializer(FullUserProfileSerializer):
+    class Meta(FullUserProfileSerializer.Meta):
+        fields = FullUserProfileSerializer.Meta.fields + ('email',)
+        read_only_fields = fields
+
+
 class MinimalUserProfileSerializer(FullUserProfileSerializer):
     nullable_fields = (
         'biography',
