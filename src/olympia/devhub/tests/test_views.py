@@ -20,7 +20,7 @@ import pytest
 import responses
 import time_machine
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
+from waffle.testutils import override_flag, override_switch
 
 from olympia import amo, core
 from olympia.accounts.utils import fxa_login_url
@@ -2739,6 +2739,7 @@ class TestRequestContentReview(TestCase):
         )
 
 
+@override_flag('enable-devhub-support-form', active=True)
 class TestSupportView(TestCase):
     def setUp(self):
         super().setUp()
@@ -2753,6 +2754,14 @@ class TestSupportView(TestCase):
             __import__('time').time() + 3600
         )
         session.save()
+
+    # --- Waffle flag ---
+
+    @override_flag('enable-devhub-support-form', active=False)
+    def test_flag_inactive_returns_404(self):
+        self.client.force_login(self.user)
+        assert self.client.get(self.url).status_code == 404
+        assert self.client.post(self.url, {}).status_code == 404
 
     # --- GET ---
 

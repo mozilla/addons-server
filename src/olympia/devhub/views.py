@@ -2297,6 +2297,9 @@ def email_verification(request):
 
 @login_required
 def support(request):
+    if not waffle.flag_is_active(request, 'enable-devhub-support-form'):
+        raise http.Http404
+
     form = forms.SupportForm(
         request.POST or None,
         user=request.user,
