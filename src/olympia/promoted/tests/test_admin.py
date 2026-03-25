@@ -155,6 +155,56 @@ class TestDiscoveryAddonAdmin(TestCase):
         with self.assertNumQueries(12):
             self.client.get(self.list_url, follow=True)
 
+    def test_list_filtering_by_promoted_group(self):
+        addon_factory(name='Absent')
+        another_absent = addon_factory(name='Another Absent')
+        PromotedAddon.objects.create(
+            addon=another_absent,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+            ),
+            application_id=amo.FIREFOX.id,
+        )
+        addon = addon_factory(name='Present')
+        PromotedAddon.objects.create(
+            addon=addon,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
+            application_id=amo.FIREFOX.id,
+        )
+        also_present = addon_factory(name='Also Present')
+        PromotedAddon.objects.create(
+            addon=also_present,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            ),
+            application_id=amo.FIREFOX.id,
+        )
+        PromotedAddon.objects.create(
+            addon=also_present,
+            promoted_group=PromotedGroup.objects.get(
+                group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+            ),
+            application_id=amo.FIREFOX.id,
+        )
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+
+        filters = {
+            # See DiscoveryAddonAdmin.list_filter
+            'promotedaddon__promoted_group__id__exact': (
+                PROMOTED_GROUP_CHOICES.RECOMMENDED.value
+            )
+        }
+        response = self.client.get(self.list_url, filters, follow=True)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert 'Present' in content
+        assert 'Also Present' in content
+        assert 'Absent' not in content
+
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(

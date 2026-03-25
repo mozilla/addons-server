@@ -9,7 +9,7 @@ from django.utils.translation import gettext
 
 from olympia import amo, promoted
 from olympia.addons.models import Addon
-from olympia.amo.admin import AMOModelAdmin, ExclusiveMultiSelectFieldListFilter
+from olympia.amo.admin import AMOModelAdmin
 from olympia.amo.reverse import reverse
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.discovery.models import DiscoveryItem
@@ -205,16 +205,16 @@ class AddonPromotionFilter(admin.SimpleListFilter):
             return queryset.filter(promotedaddon__isnull=is_null).distinct()
 
 
-class AddonPromotedGroupFilter(ExclusiveMultiSelectFieldListFilter):
+class AddonPromotedGroupFilter(admin.RelatedFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.title = 'promoted group'
 
 
-class AddonApprovalFilter(ExclusiveMultiSelectFieldListFilter):
+class AddonApprovalFilter(admin.RelatedFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.title = 'approval'
+        self.title = 'approved promoted group'
 
 
 class AddonPromotionApplicationFilter(admin.SimpleListFilter):
@@ -251,9 +251,9 @@ class DiscoveryAddonAdmin(AMOModelAdmin):
     )
     list_filter = (
         AddonPromotionFilter,
-        ('promotedaddon__promoted_group__name', AddonPromotedGroupFilter),
+        ('promotedaddon__promoted_group', AddonPromotedGroupFilter),
         (
-            '_current_version__promoted_versions__promoted_group__name',
+            '_current_version__promoted_versions__promoted_group',
             AddonApprovalFilter,
         ),
         'type',
