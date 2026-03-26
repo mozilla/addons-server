@@ -2659,8 +2659,7 @@ class TestRequestContentReview(TestCase):
     def get_addon(self):
         return Addon.objects.get(id=3615)
 
-    def test_owner_can_request_listing_content_review(self):
-        self.addon.update(status=amo.STATUS_REJECTED)
+    def _test_owner_can_request_listing_content_review(self):
         AddonApprovalsCounter.objects.update_or_create(
             addon=self.addon,
             defaults={
@@ -2669,6 +2668,7 @@ class TestRequestContentReview(TestCase):
                 )
             },
         )
+        self.addon.update(status=amo.STATUS_REJECTED)
 
         response = self.client.post(self.request_content_review_url)
         self.assert3xx(response, self.addon.get_dev_url(), 302)
@@ -2682,6 +2682,24 @@ class TestRequestContentReview(TestCase):
         entry = ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).get()
         assert entry.action == amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
         assert str(self.addon.name) in entry.to_string()
+
+    @mock.patch('olympia.devhub.views.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=False)
+    def test_owner_can_request_listing_content_review_cinder_switch_off(
+        self, task_mock
+    ):
+        self._test_owner_can_request_listing_content_review()
+        task_mock.assert_not_called()
+
+    @mock.patch('olympia.devhub.views.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_owner_can_request_listing_content_review_cinder_switch_on(self, task_mock):
+        self._test_owner_can_request_listing_content_review()
+        alog = ActivityLog.objects.get(
+            action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
+        )
+        assert task_mock.call_count == 1
+        task_mock.assert_called_with(activity_log_pk=alog.pk)
 
     def test_non_owner_cannot_request_listing_content_review(self):
         self.addon.update(status=amo.STATUS_REJECTED)

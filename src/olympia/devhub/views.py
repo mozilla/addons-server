@@ -431,7 +431,9 @@ def rejected_review_request(request, addon_id, addon):
     if addon.status != amo.STATUS_REJECTED:
         raise http.Http404()
     AddonApprovalsCounter.request_new_content_review_for_addon(addon)
-    ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
+    alog = ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
+    if waffle.switch_is_active('content-review-in-cinder'):
+        submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
     messages.success(
         request,
         gettext('Request for a new review of listing content acknowledged.'),

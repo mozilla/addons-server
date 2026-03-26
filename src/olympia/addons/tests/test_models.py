@@ -3800,7 +3800,7 @@ class TestAddonApprovalsCounter(TestCase):
             AddonApprovalsCounter.reset_content_for_addon(self.addon)
             assert approval_counter.reload().content_review_status == previous_status
 
-    def test_reset_content_existing_initial_status_ignored(self):
+    def test_reset_content_existing_status_ignored(self):
         approval_counter = AddonApprovalsCounter.objects.create(
             addon=self.addon,
             counter=42,
@@ -3811,7 +3811,7 @@ class TestAddonApprovalsCounter(TestCase):
         # should be ignored
         AddonApprovalsCounter.reset_content_for_addon(
             self.addon,
-            initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
+            not_reviewed_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED,
         )
         assert approval_counter.reload().counter == 42  # unchanged
         self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
@@ -3832,15 +3832,35 @@ class TestAddonApprovalsCounter(TestCase):
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
         )
 
-    def test_reset_content_non_existing_with_initial_status(self):
+    def test_reset_content_non_existing_with_not_reviewed_status(self):
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
         AddonApprovalsCounter.reset_content_for_addon(
             self.addon,
-            initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING,
+            not_reviewed_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING,
         )
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
         assert approval_counter.counter == 0
         assert approval_counter.last_human_review is None
+        assert (
+            approval_counter.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
+        )
+
+    def test_reset_content_existing_but_unreviewed_with_not_reviewed_status(self):
+        approval_counter = AddonApprovalsCounter.objects.create(
+            addon=self.addon,
+            counter=42,
+            last_content_review=self.days_ago(367),
+            last_human_review=self.days_ago(10),
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED,
+        )
+        AddonApprovalsCounter.reset_content_for_addon(
+            self.addon,
+            not_reviewed_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING,
+        )
+        approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
+        assert approval_counter.reload().counter == 42  # unchanged
+        self.assertCloseToNow(approval_counter.last_human_review, now=self.days_ago(10))
         assert (
             approval_counter.content_review_status
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING

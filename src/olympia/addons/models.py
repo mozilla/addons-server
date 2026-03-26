@@ -2529,7 +2529,7 @@ class AddonApprovalsCounter(ModelBase):
 
     @classmethod
     def reset_content_for_addon(
-        cls, addon, initial_status=CONTENT_REVIEW_STATUSES.UNREVIEWED
+        cls, addon, *, not_reviewed_status=CONTENT_REVIEW_STATUSES.UNREVIEWED
     ):
         """
         Reset the last_content_review date for this addon so it triggers
@@ -2539,13 +2539,19 @@ class AddonApprovalsCounter(ModelBase):
         obj, created = cls.objects.update_or_create(
             addon=addon,
             defaults=defaults,
-            create_defaults={**defaults, 'content_review_status': initial_status},
+            create_defaults={**defaults, 'content_review_status': not_reviewed_status},
         )
-        if (
-            not created
-            and obj.content_review_status == cls.CONTENT_REVIEW_STATUSES.PASS
-        ):
-            obj.update(content_review_status=cls.CONTENT_REVIEW_STATUSES.CHANGED)
+        if not created:
+            new_status = (
+                cls.CONTENT_REVIEW_STATUSES.CHANGED
+                if obj.content_review_status == cls.CONTENT_REVIEW_STATUSES.PASS
+                else not_reviewed_status
+                if obj.content_review_status == cls.CONTENT_REVIEW_STATUSES.UNREVIEWED
+                else None
+            )
+            # i.e. not None or cls.CONTENT_REVIEW_STATUSES.UNREVIEWED, which is 0
+            if new_status:
+                obj.update(content_review_status=new_status)
         assert obj.last_content_review is None
         return obj
 

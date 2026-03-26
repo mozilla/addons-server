@@ -435,6 +435,8 @@ class AddonViewSet(
 
     @listingcontentreview.mapping.patch
     def update_listingcontentreview(self, request, pk=None):
+        from olympia.abuse.tasks import submit_addon_change_for_content_review
+
         addon = self.get_object()
         ouput = self.get_serializer(addon).data
         if (
@@ -445,7 +447,11 @@ class AddonViewSet(
             AddonApprovalsCounter.request_new_content_review_for_addon(addon)
             addon.addonapprovalscounter.reload()
             ouput = self.get_serializer(addon).data
-            ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
+            alog = ActivityLog.objects.create(
+                amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon
+            )
+            if waffle.switch_is_active('content-review-in-cinder'):
+                submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
         return Response(ouput, status=status.HTTP_202_ACCEPTED)
 
 

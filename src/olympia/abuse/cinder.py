@@ -797,6 +797,21 @@ class CinderContentChange(WorkflowEventSendMixin, CinderEntity):
             ],
         }
 
+    def send_entity(self):
+        """Send this entity to the Cinder graph API."""
+        generator = self.get_context_generator()
+        context = next(generator, self.get_empty_context())
+        data = {
+            'entities': [self.get_entity_data(), *context.get('entities', [])],
+            'relationships': context.get('relationships', []),
+        }
+        # Note: Cinder URLS are inconsistent. Per their documentation, that
+        # one needs a trailing slash.
+        url = f'{settings.CINDER_SERVER_URL}v1/graph/'
+        response = requests.post(url, json=data, headers=self.get_cinder_http_headers())
+        if response.status_code != 202:
+            raise HTTPError(response.content)
+
     def report(self, *args, **kwargs):
         # It doesn't make sense to report this, it's a holder for metadata, not a real
         # entity.

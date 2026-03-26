@@ -288,7 +288,7 @@ def submit_addon_for_content_review(*, addon_pk):
     entity_helper = CinderAddonContentReview(addon)
     entity_helper.send_event()
     AddonApprovalsCounter.reset_content_for_addon(
-        addon, initial_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
+        addon, not_reviewed_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PENDING
     )
 
     # Additional context is submitted as separate api calls.
@@ -303,14 +303,29 @@ def submit_addon_for_content_review(*, addon_pk):
 @use_primary_db
 def submit_addon_change_for_content_review(*, activity_log_pk):
     activity = ActivityLog.objects.get(pk=activity_log_pk)
-    if activity.action != amo.LOG.EDIT_ADDON_PROPERTY.id:
+    if activity.action == amo.LOG.EDIT_ADDON_PROPERTY.id:
+        addon, field, changes_blob = activity.arguments
+        changes = json.loads(changes_blob or '{}')
+    elif activity.action == amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id:
+        (addon,) = activity.arguments
+        field = 'Listing Review Requested'
+        changes = {}
+    else:
         log.error(
             'Activity with id %s is not an EDIT_ADDON_PROPERTY, cannot submit for '
             'content review.',
             activity_log_pk,
         )
         return
-    addon, field, changes_blob = activity.arguments
-    changes = json.loads(changes_blob or '{}')
+
     entity_helper = CinderContentChange(addon, field, changes)
-    entity_helper.send_event()
+    if (
+        activity.action == amo.LOG.EDIT_ADDON_PROPERTY.id
+        and addon.status == amo.STATUS_REJECTED
+    ):
+        # if the add-on is rejected, the developer needs to request a new review first
+        # before we review it again, so we don't sent an event, which would create a
+        # job.  We just send the content change entity.
+        entity_helper.send_entity()
+    else:
+        entity_helper.send_event()

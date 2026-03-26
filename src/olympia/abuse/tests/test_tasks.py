@@ -1370,3 +1370,83 @@ def test_submit_addon_change_for_content_review():
     assert event_call['entity']['attributes']['values_added'] == ['a new name']
     assert event_call['entity']['attributes']['values_removed'] == ['an old name']
     assert event_call['subgraph']['entities'][0]['attributes']['id'] == str(addon.id)
+
+
+@pytest.mark.django_db
+def test_submit_addon_change_for_content_review_while_rejected():
+    addon = addon_factory(status=amo.STATUS_REJECTED)
+    activity = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY,
+        addon,
+        'name',
+        '{"added": ["a new name"], "removed": ["an old name"]}',
+        user=user_factory(),
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v1/graph/',
+        status=202,
+    )
+
+    with time_machine.travel(datetime.now(), tick=False):
+        now = datetime.now()
+        timestamp = int(now.timestamp())
+        submit_addon_change_for_content_review.delay(activity_log_pk=activity.id)
+
+    assert len(responses.calls) == 1
+    graph_call = json.loads(responses.calls[0].request.body)
+    assert graph_call == {
+        'entities': [
+            {
+                'entity_type': 'amo_content_change',
+                'attributes': {
+                    'datetime': str(now),
+                    'id': f'{addon.id}-name-{timestamp}',
+                    'reason': 'Addon name change',
+                    'values_added': ['a new name'],
+                    'values_removed': ['an old name'],
+                },
+            },
+            {
+                'entity_type': 'amo_addon',
+                'attributes': CinderAddon(addon).get_attributes(),
+            },
+        ],
+        'relationships': [
+            {
+                'relationship_type': 'amo_content_metadata_change_of',
+                'source_id': f'{addon.id}-name-{timestamp}',
+                'source_type': 'amo_content_change',
+                'target_id': str(addon.id),
+                'target_type': 'amo_addon',
+            }
+        ],
+    }
+
+
+@pytest.mark.django_db
+def test_submit_addon_change_for_content_review_with_request_review():
+    addon = addon_factory()
+    activity = ActivityLog.objects.create(
+        amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon, user=user_factory()
+    )
+    responses.add(
+        responses.POST,
+        f'{settings.CINDER_SERVER_URL}v2/workflows/event',
+        json={'status': 'ok', 'event_id': '1234-xyz'},
+        status=200,
+    )
+
+    submit_addon_change_for_content_review.delay(activity_log_pk=activity.id)
+
+    assert len(responses.calls) == 1
+    event_call = json.loads(responses.calls[0].request.body)
+    assert event_call['event_name'] == CinderAddonContentReview.workflow_name
+    assert event_call['entity']['entity_schema'] == 'amo_content_change'
+    assert (
+        event_call['entity']['attributes']['reason']
+        == 'Addon Listing Review Requested change'
+    )
+    assert event_call['entity']['attributes']['values_added'] == []
+    assert event_call['entity']['attributes']['values_removed'] == []
+    assert event_call['subgraph']['entities'][0]['attributes']['id'] == str(addon.id)

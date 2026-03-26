@@ -5776,7 +5776,7 @@ class TestAddonListingContentReview(TestCase):
             == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
         )
 
-    def test_update(self):
+    def _test_update(self):
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id, user=self.user
         ).exists()
@@ -5803,6 +5803,22 @@ class TestAddonListingContentReview(TestCase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id, user=self.user
         ).exists()
+
+    @patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=False)
+    def test_update_cinder_switch_off(self, task_mock):
+        self._test_update()
+        task_mock.assert_not_called()
+
+    @patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
+    @override_switch('content-review-in-cinder', active=True)
+    def test_update_cinder_switch_on(self, task_mock):
+        self._test_update()
+        alog = ActivityLog.objects.get(
+            action=amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
+        )
+        assert task_mock.call_count == 1
+        task_mock.assert_called_with(activity_log_pk=alog.pk)
 
 
 class TestAddonSearchView(ESTestCase):

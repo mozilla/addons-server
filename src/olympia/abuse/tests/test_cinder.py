@@ -2114,6 +2114,40 @@ class TestCinderContentChange(BaseTestCinderCase, TestCase):
         with self.assertRaises(requests.HTTPError):
             cinder_change.send_event()
 
+    def test_send_entity(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/graph/',
+            status=202,
+        )
+
+        instance = self.CinderClass(self._create_dummy_target())
+        instance.send_entity()
+
+        assert len(responses.calls) == 1
+        data = json.loads(responses.calls[0].request.body)
+        assert data == {
+            'entities': [
+                {
+                    'entity_type': 'amo_content_change',
+                    'attributes': instance.get_attributes(),
+                },
+                {
+                    'entity_type': 'amo_addon',
+                    'attributes': CinderAddon(instance.entity).get_attributes(),
+                },
+            ],
+            'relationships': [
+                {
+                    'source_id': instance.id,
+                    'source_type': 'amo_content_change',
+                    'target_id': str(instance.entity.pk),
+                    'target_type': 'amo_addon',
+                    'relationship_type': 'amo_content_metadata_change_of',
+                }
+            ],
+        }
+
     def test_build_report_payload(self):
         # report isn't implemented, so this won't be called
         pass
