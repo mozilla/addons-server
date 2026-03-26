@@ -11,7 +11,6 @@ from django.core.validators import MinLengthValidator, RegexValidator
 from django.db.models import Q
 from django.forms.models import (
     BaseModelFormSet,
-    ModelChoiceIterator,
     modelformset_factory,
 )
 from django.forms.widgets import RadioSelect
@@ -51,7 +50,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
-from olympia.translations.query import order_by_translation
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
 from olympia.scanners.tasks import run_narc_on_version
 from olympia.tags.models import Tag
@@ -1758,26 +1756,6 @@ class RollbackVersionForm(forms.Form):
         return self.has_listed or self.has_unlisted
 
 
-class AddonModelChoiceField(forms.ModelChoiceField):
-    """ModelChoiceField for Addon that forces full queryset evaluation.
-
-    Django's ModelChoiceIterator uses queryset.iterator() which bypasses
-    queryset transforms, including the translation transform that populates
-    translated fields like Addon.name. This subclass avoids iterator() so
-    translated fields are properly populated.
-    """
-
-    class iterator(ModelChoiceIterator):
-        def __iter__(self):
-            if self.field.empty_label is not None:
-                yield ('', self.field.empty_label)
-            for obj in self.queryset:
-                yield self.choice(obj)
-
-    def label_from_instance(self, obj):
-        return str(obj.name)
-
-
 class SupportForm(forms.Form):
     CATEGORY_CHOICES = [
         ('', _('Select a category')),
@@ -1795,19 +1773,11 @@ class SupportForm(forms.Form):
         choices=CATEGORY_CHOICES,
         label=_('Category'),
     )
-    addon = AddonModelChoiceField(
-        queryset=Addon.objects.none(),
-        required=False,
-        label=_('Related Add-on'),
-        empty_label=_('None'),
-    )
     body = forms.CharField(
         widget=forms.Textarea(attrs={'rows': 8}),
         label=_('Description'),
     )
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')
+        kwargs.pop('user')
         super().__init__(*args, **kwargs)
-        qs = Addon.objects.filter(authors=user).only_translations()
-        self.fields['addon'].queryset = order_by_translation(qs, 'name')[:25]

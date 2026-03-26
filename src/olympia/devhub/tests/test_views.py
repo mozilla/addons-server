@@ -2745,7 +2745,6 @@ class TestSupportView(TestCase):
         super().setUp()
         self.user = user_factory()
         self.url = reverse('devhub.support')
-        self.addon = addon_factory(users=[self.user])
 
     # --- Waffle flag ---
 
@@ -2767,15 +2766,6 @@ class TestSupportView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'form' in response.context
-        form = response.context['form']
-        addon_qs = form.fields['addon'].queryset
-        assert self.addon in addon_qs
-
-    def test_get_does_not_show_other_users_addons(self):
-        other_addon = addon_factory(users=[user_factory()])
-        self.client.force_login(self.user)
-        response = self.client.get(self.url)
-        assert other_addon not in response.context['form'].fields['addon'].queryset
 
     # --- POST ---
 
@@ -2783,7 +2773,6 @@ class TestSupportView(TestCase):
         payload = {
             'summary': 'Something is broken',
             'category': 'technical',
-            'addon': '',
             'body': 'Please help me fix this issue.',
         }
         if data:
@@ -2819,17 +2808,6 @@ class TestSupportView(TestCase):
 
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
     @mock.patch('olympia.devhub.views.requests.post')
-    def test_post_success_with_addon(self, mock_post, mock_token):
-        mock_token.return_value = 'mytoken'
-        mock_post.return_value.status_code = 201
-        self.client.force_login(self.user)
-        response = self._post(data={'addon': self.addon.pk}, follow=True)
-        assert response.status_code == 200
-        payload = mock_post.call_args[1]['json']
-        assert 'product' in payload
-
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    @mock.patch('olympia.devhub.views.requests.post')
     def test_post_fxa_api_error(self, mock_post, mock_token):
         mock_token.return_value = 'mytoken'
         mock_post.return_value.status_code = 500
@@ -2837,4 +2815,3 @@ class TestSupportView(TestCase):
         response = self._post()
         assert response.status_code == 200
         assert b'error' in response.content.lower()
-

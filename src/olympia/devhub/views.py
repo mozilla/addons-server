@@ -2305,14 +2305,11 @@ def support(request):
         user=request.user,
     )
     if request.method == 'POST' and form.is_valid():
-        addon = form.cleaned_data['addon']
         payload = {
             'topic': form.cleaned_data['category'],
             'subject': form.cleaned_data['summary'],
             'message': form.cleaned_data['body'],
         }
-        if addon:
-            payload['product'] = addon.name.localized_string
 
         access_token = get_fxa_access_token(request)
         response = requests.post(

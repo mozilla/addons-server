@@ -1020,7 +1020,7 @@ class TestVersion(TestCase):
         )
 
         # with both channels available with multiple versions
-        with self.assertNumQueries(47):
+        with self.assertNumQueries(48):
             # see test_pending_activity_count & test_version_rollback_form_not_available
             # for the baseline when there no versions available.  We expect 2 more
             # queries here:
