@@ -869,6 +869,10 @@ table.activity tr:first-child {
                 padding-left: 4px;
                 margin-left: 2px;
             }
+
+            li:last-child > dl {
+                margin-bottom: 0;
+            }
         }
 
         & > ul > li li:not(:has(*)) {
@@ -880,18 +884,12 @@ table.activity tr:first-child {
             display: grid;
             gap: 4px;
             grid-template-columns: max-content;
-            margin-bottom: 0;
 
             dl {
                 margin-bottom: 1em;
                 margin-left: 4px;
                 padding-left: 4px;
             }
-
-            li:last-child > dl {
-                margin-bottom: 0;
-            }
-
         }
 
         dt {
