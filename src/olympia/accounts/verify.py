@@ -143,12 +143,11 @@ def check_and_update_fxa_access_token(request):
 
 
 def get_fxa_access_token(request):
-    """Return a valid FxA access token for the current user, refreshing via
-    check_and_update_fxa_access_token if expired.
+    """Return the FxA access token for the current user from the session.
+    TokenValidMiddleware already ensures the token is fresh for every request.
 
     In fake FxA environments (local dev) returns a placeholder token."""
     if use_fake_fxa(get_fxa_config(request)):
         return 'fake-access-token'
 
-    check_and_update_fxa_access_token(request)
     return request.session.get('fxa_access_token')

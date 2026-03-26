@@ -20,7 +20,7 @@ import pytest
 import responses
 import time_machine
 from pyquery import PyQuery as pq
-from waffle.testutils import override_flag, override_switch
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.accounts.utils import fxa_login_url
@@ -2739,7 +2739,7 @@ class TestRequestContentReview(TestCase):
         )
 
 
-@override_flag('enable-devhub-support-form', active=True)
+@override_switch('enable-devhub-support-form', active=True)
 class TestSupportView(TestCase):
     def setUp(self):
         super().setUp()
@@ -2747,18 +2747,10 @@ class TestSupportView(TestCase):
         self.url = reverse('devhub.support')
         self.addon = addon_factory(users=[self.user])
 
-    def _set_session_token(self, token='mytoken', expiry=None):
-        session = self.client.session
-        session['fxa_access_token'] = token
-        session['fxa_access_token_expiry'] = expiry or (
-            __import__('time').time() + 3600
-        )
-        session.save()
-
     # --- Waffle flag ---
 
-    @override_flag('enable-devhub-support-form', active=False)
-    def test_flag_inactive_returns_404(self):
+    @override_switch('enable-devhub-support-form', active=False)
+    def test_switch_inactive_returns_404(self):
         self.client.force_login(self.user)
         assert self.client.get(self.url).status_code == 404
         assert self.client.post(self.url, {}).status_code == 404
@@ -2846,12 +2838,3 @@ class TestSupportView(TestCase):
         assert response.status_code == 200
         assert b'error' in response.content.lower()
 
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_token_error(self, mock_token):
-        from olympia.accounts.verify import IdentificationError
-
-        mock_token.side_effect = IdentificationError('no token')
-        self.client.force_login(self.user)
-        response = self._post()
-        assert response.status_code == 200
-        assert b'log' in response.content.lower()

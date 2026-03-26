@@ -12,48 +12,7 @@
 <section class="primary" role="main">
   <form method="post">
     {% csrf_token %}
-    <div class="item">
-      <div class="field">
-        <label for="{{ form.summary.id_for_label }}">{{ form.summary.label }}</label>
-        {{ form.summary }}
-        {% if form.summary.errors %}
-          <ul class="errorlist">
-            {% for error in form.summary.errors %}<li>{{ error }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-
-      <div class="field">
-        <label for="{{ form.category.id_for_label }}">{{ form.category.label }}</label>
-        {{ form.category }}
-        {% if form.category.errors %}
-          <ul class="errorlist">
-            {% for error in form.category.errors %}<li>{{ error }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-
-      <div class="field">
-        <label for="{{ form.addon.id_for_label }}">{{ form.addon.label }}</label>
-        {{ form.addon }}
-        {% if form.addon.errors %}
-          <ul class="errorlist">
-            {% for error in form.addon.errors %}<li>{{ error }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-
-      <div class="field">
-        <label for="{{ form.body.id_for_label }}">{{ form.body.label }}</label>
-        {{ form.body }}
-        {% if form.body.errors %}
-          <ul class="errorlist">
-            {% for error in form.body.errors %}<li>{{ error }}</li>{% endfor %}
-          </ul>
-        {% endif %}
-      </div>
-    </div>
-
+    {{ form.as_div() }}
     <div class="action-group">
       <button type="submit" class="button prominent">{{ _('Submit') }}</button>
     </div>

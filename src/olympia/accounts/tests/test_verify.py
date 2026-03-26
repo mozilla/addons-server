@@ -342,28 +342,5 @@ class TestGetFxaAccessToken(TestCase):
     def test_returns_token_from_session(self):
         future = time.time() + 3600
         request = self.get_request(access_token='cached-token', expiry=future)
-        with mock.patch('olympia.accounts.verify.check_and_update_fxa_access_token'):
-            token = verify.get_fxa_access_token(request)
+        token = verify.get_fxa_access_token(request)
         assert token == 'cached-token'
-
-    def test_delegates_refresh_to_check_and_update(self):
-        past = time.time() - 1
-        request = self.get_request(access_token='old-token', expiry=past)
-
-        def fake_check(req):
-            req.session['fxa_access_token'] = 'new-token'
-
-        with mock.patch(
-            'olympia.accounts.verify.check_and_update_fxa_access_token',
-            side_effect=fake_check,
-        ):
-            token = verify.get_fxa_access_token(request)
-        assert token == 'new-token'
-
-    @override_settings(VERIFY_FXA_ACCESS_TOKEN=True)
-    def test_raises_without_refresh_token(self):
-        past = time.time() - 1
-        request = self.get_request(expiry=past, refresh_token=None)
-        request.session['fxa_refresh_token'] = None
-        with pytest.raises(verify.IdentificationError):
-            verify.get_fxa_access_token(request)

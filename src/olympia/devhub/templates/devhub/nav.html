@@ -63,7 +63,7 @@
           {{ _('Add-ons Forum') }}</a></li>
         <li><a href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link#connect">
           {{ _('More Resources') }}</a></li>
-        {% if request.user.is_authenticated and waffle.flag('enable-devhub-support-form') %}
+        {% if request.user.is_authenticated and waffle.switch('enable-devhub-support-form') %}
         <li><a href="{{ url('devhub.support') }}">{{ _('Contact Support') }}</a></li>
         {% endif %}
       </ul>

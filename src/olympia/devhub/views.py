@@ -35,7 +35,7 @@ from olympia.accounts.utils import (
     redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
-from olympia.accounts.verify import IdentificationError, get_fxa_access_token
+from olympia.accounts.verify import get_fxa_access_token
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
@@ -2297,7 +2297,7 @@ def email_verification(request):
 
 @login_required
 def support(request):
-    if not waffle.flag_is_active(request, 'enable-devhub-support-form'):
+    if not waffle.switch_is_active('enable-devhub-support-form'):
         raise http.Http404
 
     form = forms.SupportForm(
@@ -2314,21 +2314,7 @@ def support(request):
         if addon:
             payload['product'] = addon.name.localized_string
 
-        try:
-            access_token = get_fxa_access_token(request)
-        except IdentificationError:
-            log.warning(
-                'support: could not get FxA access token for user %s',
-                request.user.pk,
-            )
-            messages.error(
-                request,
-                gettext(
-                    'We could not verify your session. Please log out and log in again.'
-                ),
-            )
-            return TemplateResponse(request, 'devhub/support.html', {'form': form})
-
+        access_token = get_fxa_access_token(request)
         response = requests.post(
             settings.FXA_SUPPORT_HOST + '/support/ticket',
             headers={'Authorization': f'Bearer {access_token}'},

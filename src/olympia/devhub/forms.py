@@ -51,6 +51,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
+from olympia.translations.query import order_by_translation
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
 from olympia.scanners.tasks import run_narc_on_version
 from olympia.tags.models import Tag
@@ -1808,6 +1809,5 @@ class SupportForm(forms.Form):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')
         super().__init__(*args, **kwargs)
-        self.fields['addon'].queryset = Addon.objects.filter(authors=user).order_by(
-            'name'
-        )
+        qs = Addon.objects.filter(authors=user).only_translations()
+        self.fields['addon'].queryset = order_by_translation(qs, 'name')[:25]
