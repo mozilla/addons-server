@@ -1892,7 +1892,6 @@ additional_character_replacements = {
         '𞅅',
     ),
     'w': (
-        'ᬨ',
         'Ɯ',
         'ω',
         'ϖ',
