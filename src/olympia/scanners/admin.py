@@ -960,10 +960,26 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         return (deleted_objects, model_count, perms_needed, protected)
 
 
+class ScannerWebhookEventForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.pk:
+            self.fields['event'].disabled = True
+
+    class Meta:
+        model = ScannerWebhookEvent
+        fields = '__all__'
+
+
 class ScannerWebhookEventInline(admin.StackedInline):
     model = ScannerWebhookEvent
+    form = ScannerWebhookEventForm
     view_on_site = False
     extra = 0
+
+    # Remove the "delete" button
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 @admin.register(ScannerWebhook)
@@ -984,13 +1000,23 @@ class ScannerWebhookAdmin(AMOModelAdmin):
     readonly_fields = ('formatted_service_account',)
 
     def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('scannerwebhookevent_set')
+        return (
+            super()
+            .get_queryset(request)
+            .prefetch_related(
+                Prefetch(
+                    'scannerwebhookevent_set',
+                    queryset=ScannerWebhookEvent.objects.filter(is_active=True),
+                    to_attr='active_webhook_events',
+                )
+            )
+        )
 
     def formatted_events_list(self, obj):
         return ', '.join(
             [
                 WEBHOOK_EVENTS.get(item.event, '(unknown)')
-                for item in obj.scannerwebhookevent_set.all()
+                for item in obj.active_webhook_events
             ]
         )
 

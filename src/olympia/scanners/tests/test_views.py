@@ -189,7 +189,10 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
             url='https://example.com/webhook',
             api_key='secret',
         )
-        ScannerWebhookEvent.objects.create(webhook=self.webhook, event=WEBHOOK_PUSH)
+        self.event = ScannerWebhookEvent.objects.create(
+            webhook=self.webhook,
+            event=WEBHOOK_PUSH,
+        )
         self.api_key = APIKey.get_jwt_key(user=self.webhook.service_account)
         self.grant_permission(
             self.webhook.service_account,
@@ -232,9 +235,13 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         )
 
     def test_no_push_event(self):
-        ScannerWebhookEvent.objects.filter(
-            webhook=self.webhook, event=WEBHOOK_PUSH
-        ).delete()
+        self.event.delete()
+        response = self._push_scanner_result()
+
+        assert response.status_code == 403
+
+    def test_inactive_push_event(self):
+        self.event.update(is_active=False)
         response = self._push_scanner_result()
 
         assert response.status_code == 403

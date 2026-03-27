@@ -693,8 +693,9 @@ class AutoApprovalSummary(ModelBase):
             return False
 
         webhook_event_ids = ScannerWebhookEvent.objects.filter(
-            # We want to find the events to wait for...
+            # We want to find the active events to wait for...
             event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            is_active=True,
             # ...but only for scanners that are active...
             webhook__is_active=True,
             # ...and only if the scanner hasn't been modified after the version

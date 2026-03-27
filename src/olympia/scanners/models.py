@@ -336,6 +336,14 @@ class ScannerWebhook(ModelBase):
 class ScannerWebhookEvent(ModelBase):
     webhook = models.ForeignKey(ScannerWebhook, on_delete=models.CASCADE)
     event = models.PositiveSmallIntegerField(choices=WEBHOOK_EVENTS.items())
+    is_active = models.BooleanField(
+        default=True,
+        help_text=(
+            'Whether the scanner should be called for this event. Once this '
+            'event is added to the scanner, it cannot be removed because '
+            'some scanner results might have already been linked to it.'
+        ),
+    )
 
     class Meta:
         db_table = 'scanners_webhook_events'

@@ -24,6 +24,7 @@ def push_scanner_result(request):
         is_active=True,
         service_account=request.user,
         scannerwebhookevent__event=WEBHOOK_PUSH,
+        scannerwebhookevent__is_active=True,
     ).first()
     if not webhook:
         raise PermissionDenied(

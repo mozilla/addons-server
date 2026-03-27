@@ -98,7 +98,9 @@ def call_webhooks_during_validation(results, upload_pk):
 
 def call_webhooks(event_id, payload, upload=None, version=None, activity_log=None):
     for event in ScannerWebhookEvent.objects.filter(
-        event=event_id, webhook__is_active=True
+        event=event_id,
+        is_active=True,
+        webhook__is_active=True,
     ).all():
         log.info('Calling webhook "%s".', event.webhook.name)
         event_name = WEBHOOK_EVENTS.get(event_id, event_id)

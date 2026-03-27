@@ -33,6 +33,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_PUSH,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -45,6 +46,8 @@ from olympia.scanners.admin import (
     ScannerResultAdmin,
     ScannerRuleAdmin,
     ScannerWebhookAdmin,
+    ScannerWebhookEventForm,
+    ScannerWebhookEventInline,
     WithVersionFilter,
     formatted_matched_rules_with_files_and_data,
 )
@@ -2236,3 +2239,30 @@ class TestScannerWebhookAdmin(TestCase):
         assert webhook.name == 'new-scanner-name'
         # We shouldn't see the JWT keys on update.
         assert b'Please note the JWT keys' not in response.content
+
+    def test_inline_event_admin_has_no_delete_permission(self):
+        inline = ScannerWebhookEventInline(ScannerWebhook, AdminSite())
+        assert inline.has_delete_permission(request=None) is False
+
+    def test_event_field_editable_for_new_webhook_events(self):
+        form = ScannerWebhookEventForm()
+        assert not form.fields['event'].disabled
+
+    def test_event_field_readonly_for_existing_webhook_events(self):
+        webhook = ScannerWebhook.objects.create(name='some service')
+        event = ScannerWebhookEvent.objects.create(
+            webhook=webhook, event=WEBHOOK_DURING_VALIDATION
+        )
+        form = ScannerWebhookEventForm(instance=event)
+        assert form.fields['event'].disabled
+
+    def test_formatted_events_list_only_shows_active_events(self):
+        webhook = ScannerWebhook.objects.create(name='some service')
+        ScannerWebhookEvent.objects.create(
+            webhook=webhook, event=WEBHOOK_DURING_VALIDATION, is_active=True
+        )
+        ScannerWebhookEvent.objects.create(
+            webhook=webhook, event=WEBHOOK_PUSH, is_active=False
+        )
+        webhook = self.admin.get_queryset(request=None).get(pk=webhook.pk)
+        assert self.admin.formatted_events_list(webhook) == 'during_validation'

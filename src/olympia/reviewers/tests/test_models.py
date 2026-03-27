@@ -1373,6 +1373,17 @@ class TestAutoApprovalSummary(TestCase):
         )
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
+    def test_check_is_waiting_on_scanners_inactive_event(self):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION,
+            webhook=webhook,
+            is_active=False,
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
     def test_check_is_waiting_on_scanners_webhook_modified_after_version(self):
         self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')

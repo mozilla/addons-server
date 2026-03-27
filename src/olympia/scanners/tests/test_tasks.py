@@ -2362,6 +2362,23 @@ class TestCallWebhooks(UploadMixin, TestCase):
         result = ScannerResult.objects.get(scanner=WEBHOOK)
         assert result.results is None
 
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_skips_inactive_event(self, _call_webhook_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook, is_active=False
+        )
+
+        call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        assert not _call_webhook_mock.called
+        assert ScannerResult.objects.count() == 0
+
 
 class TestCallWebhook(TestCase):
     def create_response(self, status_code=200, data=None):
