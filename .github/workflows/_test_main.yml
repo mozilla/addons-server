@@ -53,7 +53,7 @@ jobs:
       splits: ${{ steps.result.outputs.splits }}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -82,7 +82,7 @@ jobs:
     needs: [test_config]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -103,7 +103,7 @@ jobs:
         group: ${{fromJson(needs.test_config.outputs.matrix)}}
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -134,7 +134,7 @@ jobs:
 #    needs: [test_config]
 #
 #    steps:
-#      - uses: actions/checkout@v5
+#      - uses: actions/checkout@v6
 #        with:
 #          persist-credentials: false
 #
@@ -151,7 +151,7 @@ jobs:
     needs: [test_config]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
@@ -169,7 +169,7 @@ jobs:
     needs: [test_config]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           persist-credentials: false
 
