@@ -6,8 +6,9 @@
         ],
         "entity": {
             "attributes": {
+                "created": "2024-04-24T17:56:32.431772",
                 "guid": "@food-truck-stew",
-                "id": "1",
+                "id": "10000",
                 "name": "Food Truck Stew",
                 "slug": "food-truck-stew"
             },

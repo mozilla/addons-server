@@ -41,6 +41,7 @@ from .serializers import (
     RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
+from .utils import get_instance_from_entity, is_same_time
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -191,8 +192,7 @@ class CinderWebhookMissingIdError(CinderWebhookError):
         return settings.CINDER_UNIQUE_IDS
 
 
-def filter_enforcement_actions(enforcement_actions, cinder_job):
-    target = cinder_job.target
+def filter_enforcement_actions(enforcement_actions, target):
     if not target:
         return []
     return [
@@ -205,39 +205,57 @@ def filter_enforcement_actions(enforcement_actions, cinder_job):
     ]
 
 
+def get_job_from_payload(payload):
+    if job_id := payload.get('source', {}).get('job', {}).get('id'):
+        try:
+            return CinderJob.objects.get(job_id=job_id)
+        except CinderJob.DoesNotExist:
+            log.debug('CinderJob instance not found for job id %s', job_id)
+            return None
+
+    if prev_decision_id := payload.get('previous_decision', {}).get('id'):
+        try:
+            prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
+        except ContentDecision.DoesNotExist as exc:
+            log.debug('ContentDecision instance not found for id %s', prev_decision_id)
+            raise CinderWebhookMissingIdError('No matching decision id found') from exc
+        return prev_decision.cinder_job
+
+    else:
+        # We may support this one day, but we currently don't support manual decisions
+        # that originated in Cinder
+        log.debug('Cinder webhook decision for cinder proactive decision skipped.')
+        raise CinderWebhookError('Unsupported Manual decision')
+
+
 def process_webhook_payload_decision(payload):
     source = payload.get('source', {})
     log.info('Valid Payload from AMO queue: %s', payload)
     if source.get('decision', {}).get('type') == 'api_decision':
         log.debug('Cinder webhook decision for api decision skipped.')
         raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
-    elif job_id := source.get('job', {}).get('id'):
-        try:
-            cinder_job = CinderJob.objects.get(job_id=job_id)
-        except CinderJob.DoesNotExist as exc:
-            log.debug('CinderJob instance not found for job id %s', job_id)
-            raise CinderWebhookMissingIdError('No matching job id found') from exc
-        queue_slug = source.get('job', {}).get('queue', {}).get('slug')
-    elif prev_decision_id := payload.get('previous_decision', {}).get('id'):
-        try:
-            prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
-        except ContentDecision.DoesNotExist as exc:
-            log.debug('ContentDecision instance not found for id %s', prev_decision_id)
-            raise CinderWebhookMissingIdError('No matching decision id found') from exc
 
-        cinder_job = prev_decision.cinder_job
-        if not cinder_job:
-            log.debug('No job for ContentDecision with id %s', prev_decision_id)
-            raise CinderWebhookMissingIdError('No matching job found for decision id')
-        queue_slug = prev_decision.from_job_queue
+    cinder_job = get_job_from_payload(payload)
+    if cinder_job:
+        target = cinder_job.target
     else:
-        # We may support this one day, but we currently don't support this
-        log.debug('Cinder webhook decision for cinder proactive decision skipped.')
-        raise CinderWebhookError('Unsupported Manual decision')
+        entity = payload.get('entity', {})
+        created = entity.get('attributes', {}).get('created')
+        target = get_instance_from_entity(
+            entity_schema=entity.get('entity_schema'),
+            entity_id=entity.get('attributes', {}).get('id'),
+        )
+        if not target or not is_same_time(target, created):
+            log.debug(
+                'Could not identify entity id %s with schema %s',
+                entity.get('attributes', {}).get('id'),
+                entity.get('entity_schema'),
+            )
+            raise CinderWebhookMissingIdError('Unknown entity id received')
 
     enforcement_actions = filter_enforcement_actions(
         payload.get('enforcement_actions') or [],
-        cinder_job,
+        target,
     )
     policy_ids = [policy['id'] for policy in payload.get('policies', [])]
 
@@ -253,7 +271,10 @@ def process_webhook_payload_decision(payload):
         )
         raise CinderWebhookError(f'Payload invalid: {reason}')
 
-    created = cinder_job.process_decision(
+    queue_slug = source.get('job', {}).get('queue', {}).get('slug')
+    created = CinderJob.create_and_execute_decision(
+        cinder_job,
+        target=target,
         decision_cinder_id=source.get('decision', {}).get('id'),
         decision_action=enforcement_actions[0],
         decision_notes=payload.get('notes') or '',

@@ -1236,40 +1236,39 @@ class TestCinderWebhook(TestCase):
         )
 
     def test_filter_enforcement_actions(self):
-        abuse_report = self._setup_reports()
-        cinder_job = abuse_report.cinder_job
-        addon_factory(guid=abuse_report.guid)
-        assert filter_enforcement_actions([], cinder_job) == []
+        addon = addon_factory()
+        assert filter_enforcement_actions([], addon) == []
         actions_from_json = [
             'amo-disable-addon',
             'amo-ban-user',
             'amo-approve',
             'not-amo-action',  # not a valid action at all
         ]
-        assert filter_enforcement_actions(actions_from_json, cinder_job) == [
+        assert filter_enforcement_actions(actions_from_json, addon) == [
             DECISION_ACTIONS.AMO_DISABLE_ADDON,
             # no AMO_BAN_USER action because not a user target
             DECISION_ACTIONS.AMO_APPROVE,
         ]
 
         # check with another content type too
-        abuse_report.update(guid=None, user=user_factory())
-        assert filter_enforcement_actions(actions_from_json, cinder_job) == [
+        assert filter_enforcement_actions(actions_from_json, user_factory()) == [
             # no AMO_DISABLE_ADDON action because not an add-on target
             DECISION_ACTIONS.AMO_BAN_USER,
             DECISION_ACTIONS.AMO_APPROVE,
         ]
 
-    def test_process_decision_called(
+    def test_create_and_execute_decision_called(
         self, data=None, *, slug='amo-content-infringement'
     ):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
         req = self.get_request(data=data or self.get_data())
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_called()
-            process_mock.assert_called_with(
+            create_mock.assert_called()
+            create_mock.assert_called_with(
+                abuse_report.cinder_job,
+                target=abuse_report.target,
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
@@ -1279,15 +1278,17 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_decision_already_exists(self):
+    def test_create_and_execute_decision_decision_already_exists(self):
         abuse_report = self._setup_reports()
         addon_factory(guid=abuse_report.guid)
         req = self.get_request(data=self.get_data())
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
-            process_mock.return_value = False
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
+            create_mock.return_value = False
             response = cinder_webhook(req)
-            process_mock.assert_called()
-            process_mock.assert_called_with(
+            create_mock.assert_called()
+            create_mock.assert_called_with(
+                abuse_report.cinder_job,
+                target=abuse_report.target,
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='some notes',
@@ -1303,27 +1304,30 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_process_decision_called_for_appeal_confirm_approve(
+    def test_create_and_execute_decision_called_for_appeal_confirm_approve(
         self, filename='reporter_appeal_confirm_approve.json'
     ):
         data = self.get_data(filename=filename)
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
+        appeal_job = CinderJob.objects.create(
+            job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
+        )
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             action=DECISION_ACTIONS.AMO_APPROVE,
-            appeal_job=CinderJob.objects.create(
-                job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
-            ),
+            appeal_job=appeal_job,
             addon=addon,
             cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-        assert process_mock.call_count == 1
-        process_mock.assert_called_with(
+        assert create_mock.call_count == 1
+        create_mock.assert_called_with(
+            appeal_job,
+            target=addon,
             decision_cinder_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='still no!',
@@ -1333,34 +1337,39 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_called_for_appeal_confirm_approve_with_override(self):
+    def test_create_and_execute_decision_called_for_appeal_confirm_with_override(
+        self,
+    ):
         """This is to cover the unusual case in cinder where a moderator processes an
         appeal by selecting to override the decision, but chooses to approve it again.
         """
-        self.test_process_decision_called_for_appeal_confirm_approve(
+        self.test_create_and_execute_decision_called_for_appeal_confirm_approve(
             filename='reporter_appeal_change_but_still_approve.json'
         )
 
-    def test_process_decision_called_for_appeal_change_to_disable(self):
+    def test_create_and_execute_decision_called_for_appeal_change_to_disable(self):
         data = self.get_data(filename='reporter_appeal_change_to_disable.json')
         abuse_report = self._setup_reports()
         addon = addon_factory(guid=abuse_report.guid)
         original_cinder_job = CinderJob.objects.get()
+        appeal_job = CinderJob.objects.create(
+            job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
+        )
         ContentDecision.objects.create(
             action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
             action=DECISION_ACTIONS.AMO_APPROVE,
-            appeal_job=CinderJob.objects.create(
-                job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
-            ),
+            appeal_job=appeal_job,
             addon=addon,
             cinder_job=original_cinder_job,
         )
         req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-        assert process_mock.call_count == 1
-        process_mock.assert_called_with(
+        assert create_mock.call_count == 1
+        create_mock.assert_called_with(
+            appeal_job,
+            target=addon,
             decision_cinder_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
             decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
             decision_notes="fine I'll disable it",
@@ -1373,7 +1382,7 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_called_for_override_to_approve(self):
+    def test_create_and_execute_decision_called_for_override_to_approve(self):
         abuse_report = self._setup_reports()
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
@@ -1385,20 +1394,22 @@ class TestCinderWebhook(TestCase):
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
         )
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-        assert process_mock.call_count == 1, response.data
-        process_mock.assert_called_with(
+        assert create_mock.call_count == 1, response.data
+        create_mock.assert_called_with(
+            abuse_report.cinder_job,
+            target=abuse_report.target,
             decision_cinder_id='3eacdc09-c292-4fcb-a56f-a3d45d5eefeb',
             decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
             decision_notes='changed our mind',
             policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
-            job_queue='queue-for-original-decision',
+            job_queue=None,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def test_process_decision_triggers_emails_when_disable_confirmed(self):
+    def test_create_and_execute_decision_triggers_emails_when_disable_confirmed(self):
         data = self.get_data(filename='target_appeal_confirm_disable.json')
         abuse_report = self._setup_reports()
         author = user_factory()
@@ -1424,7 +1435,7 @@ class TestCinderWebhook(TestCase):
         assert mail.outbox[0].to == [author.email]
         assert 'will not reinstate your Extension' in mail.outbox[0].body
 
-    def test_process_decision_triggers_emails_when_disable_reverted(self):
+    def test_create_and_execute_decision_triggers_emails_when_disable_reverted(self):
         data = self.get_data(filename='target_appeal_change_to_approve.json')
         abuse_report = self._setup_reports()
         author = user_factory()
@@ -1450,7 +1461,9 @@ class TestCinderWebhook(TestCase):
         assert mail.outbox[0].to == [author.email]
         assert 'we have restored your Extension' in mail.outbox[0].body
 
-    def test_process_decision_triggers_emails_for_reporter_appeal_disable(self):
+    def test_create_and_execute_decision_triggers_emails_for_reporter_appeal_disable(
+        self,
+    ):
         data = self.get_data(filename='reporter_appeal_change_to_disable.json')
         abuse_report = self._setup_reports()
         author = user_factory()
@@ -1484,7 +1497,9 @@ class TestCinderWebhook(TestCase):
         assert mail.outbox[1].to == [author.email]
         assert 'has been permanently disabled' in mail.outbox[1].body
 
-    def test_process_decision_triggers_no_target_email_for_reporter_approve(self):
+    def test_create_and_execute_decision_triggers_no_target_email_for_reporter_approve(
+        self,
+    ):
         data = self.get_data(filename='reporter_appeal_confirm_approve.json')
         abuse_report = self._setup_reports()
         author = user_factory()
@@ -1520,16 +1535,16 @@ class TestCinderWebhook(TestCase):
         data = self.get_data()
         slug = 'amo-another-queue'
         data['payload']['source']['job']['queue']['slug'] = slug
-        return self.test_process_decision_called(data, slug=slug)
+        return self.test_create_and_execute_decision_called(data, slug=slug)
 
     def test_unknown_event(self):
         self._setup_reports()
         data = self.get_data()
         data['event'] = 'report.created'
         req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == 400
         assert response.data == {
             'amo': {
@@ -1549,13 +1564,13 @@ class TestCinderWebhook(TestCase):
         }
 
         def check(response):
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
             assert response.status_code == 400
             assert response.data == expected
 
         self._setup_reports()
         data = self.get_data()
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             del data['payload']
             check(cinder_webhook(self.get_request(data=data)))
             data['payload'] = 'string'
@@ -1563,35 +1578,82 @@ class TestCinderWebhook(TestCase):
             data['payload'] = {}
             check(cinder_webhook(self.get_request(data=data)))
 
-    def _test_no_cinder_job(self, status_code):
+    def _test_unkownn_cinder_job_and_entity(self, status_code):
         req = self.get_request(data=self.get_data())
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'No matching job id found',
+                'not_handled_reason': 'Unknown entity id received',
             }
         }
 
-    def test_no_cinder_job_nonprod(self):
+    def test_unknown_cinder_job_and_entity_nonprod(self):
         with override_settings(CINDER_UNIQUE_IDS=False):
-            self._test_no_cinder_job(200)
+            self._test_unkownn_cinder_job_and_entity(200)
 
-    def test_no_cinder_job_prod(self):
+    def test_unknown_cinder_job_and_entity_prod(self):
         with override_settings(CINDER_UNIQUE_IDS=True):
-            self._test_no_cinder_job(400)
+            self._test_unkownn_cinder_job_and_entity(400)
+
+    def test_unkownn_cinder_job_but_known_entity(self):
+        assert not CinderJob.objects.exists()
+        data = self.get_data()
+        addon = addon_factory(
+            id=10000,
+            created=datetime.fromisoformat(
+                data['payload']['entity']['attributes']['created']
+            ),
+        )
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
+            response = cinder_webhook(req)
+            create_mock.assert_called()
+            create_mock.assert_called_with(
+                None,
+                target=addon,
+                decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_notes='some notes',
+                policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
+                job_queue='amo-content-infringement',
+            )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_unknown_entity_and_matching_entity_id_but_different_created(self):
+        data = self.get_data()
+        addon = addon_factory(
+            id=10000,
+            created=datetime.fromisoformat(
+                data['payload']['entity']['attributes']['created']
+            ),
+        )
+        addon.update(created=addon.created + timedelta(seconds=1))
+
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
+            response = cinder_webhook(req)
+            create_mock.assert_not_called()
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': 'Unknown entity id received',
+            }
+        }
 
     def _test_unknown_decision_for_override(self, status_code):
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
         )
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == status_code
         assert response.data == {
             'amo': {
@@ -1609,7 +1671,7 @@ class TestCinderWebhook(TestCase):
         with override_settings(CINDER_UNIQUE_IDS=True):
             self._test_unknown_decision_for_override(400)
 
-    def _test_valid_decision_but_no_cinder_job(self, status_code):
+    def _test_valid_prev_decision_but_unknown_entity(self, status_code):
         abuse_report = self._setup_reports()
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
@@ -1619,33 +1681,33 @@ class TestCinderWebhook(TestCase):
         req = self.get_request(
             data=self.get_data(filename='override_change_to_approve.json')
         )
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == status_code
         assert response.data == {
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'No matching job found for decision id',
+                'not_handled_reason': 'Unknown entity id received',
             }
         }
 
     def test_valid_decision_but_no_cinder_job_nonprod(self):
         with override_settings(CINDER_UNIQUE_IDS=False):
-            self._test_valid_decision_but_no_cinder_job(200)
+            self._test_valid_prev_decision_but_unknown_entity(200)
 
     def test_valid_decision_but_no_cinder_job_prod(self):
         with override_settings(CINDER_UNIQUE_IDS=True):
-            self._test_valid_decision_but_no_cinder_job(400)
+            self._test_valid_prev_decision_but_unknown_entity(400)
 
     def test_reviewer_tools_resolved_decision(self):
         data = self.get_data(filename='proactive_decision_from_amo.json')
         self._setup_reports()
         req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == 200
         assert response.data == {
             'amo': {
@@ -1660,9 +1722,9 @@ class TestCinderWebhook(TestCase):
         data['payload']['source']['decision']['type'] = 'queue_review'
         self._setup_reports()
         req = self.get_request(data=data)
-        with mock.patch.object(CinderJob, 'process_decision') as process_mock:
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
             response = cinder_webhook(req)
-            process_mock.assert_not_called()
+            create_mock.assert_not_called()
         assert response.status_code == 400
         assert response.data == {
             'amo': {

@@ -10,12 +10,14 @@ import responses
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import addon_factory, user_factory, version_factory
+from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedGroup
+from olympia.ratings.models import Rating
 
 from ..models import ContentDecision
-from ..utils import reject_and_block_addons
+from ..utils import get_instance_from_entity, is_same_time, reject_and_block_addons
 
 
 @pytest.mark.django_db
@@ -98,3 +100,32 @@ def test_reject_and_block_addons():
         ).count()
         == 2
     )
+
+
+@pytest.mark.django_db
+def test_get_instance_from_entity():
+    assert get_instance_from_entity('amo_addon', 'not a number') is None
+
+    addon = addon_factory()
+    assert get_instance_from_entity('amo_addon', addon.id) == addon
+    assert get_instance_from_entity('amo_addon', 999999) is None
+    assert get_instance_from_entity('no_entty', addon.id) is None
+
+    collection = Collection.objects.create(name='Test', author=user_factory())
+    assert get_instance_from_entity('amo_collection', collection.id) == collection
+
+    rating = Rating.objects.create(addon=addon, user=user_factory(), rating=5)
+    assert get_instance_from_entity('amo_rating', rating.id) == rating
+    assert get_instance_from_entity('amo_rating', 999999) is None
+
+    user = user_factory()
+    assert get_instance_from_entity('amo_user', user.id) == user
+    assert get_instance_from_entity('amo_user', 999999) is None
+
+
+@pytest.mark.django_db
+def test_is_same_time():
+    addon = addon_factory()
+    assert is_same_time(addon, addon.created.isoformat())
+    assert is_same_time(addon, str(addon.created))
+    assert not is_same_time(addon, str(addon.created.replace(year=2000)))

@@ -1157,7 +1157,7 @@ class TestCinderJob(TestCase):
         addon.current_version.update(human_review_date=datetime.now())
         self.check_report_with_already_moderated_content(abuse_report)
 
-    def test_process_decision(self):
+    def test_create_and_execute_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = user_factory()
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
@@ -1169,7 +1169,9 @@ class TestCinderJob(TestCase):
             mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
@@ -1186,7 +1188,7 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
 
-    def test_process_decision_with_duplicate_parent(self):
+    def test_create_and_execute_decision_with_duplicate_parent(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = user_factory()
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
@@ -1202,7 +1204,9 @@ class TestCinderJob(TestCase):
             mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
         ):
             action_mock.return_value = None
-            assert cinder_job.process_decision(
+            assert CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
@@ -1218,7 +1222,7 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy]
 
-    def test_process_decision_decision_already_exists(self):
+    def test_create_and_execute_decision_decision_already_exists(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = user_factory()
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
@@ -1241,7 +1245,9 @@ class TestCinderJob(TestCase):
         ):
             action_mock.return_value = None
             # Shouldn't fail.
-            assert not cinder_job.process_decision(
+            assert not CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
                 decision_notes='teh notes',
@@ -1253,7 +1259,7 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 0
         assert notify_mock.call_count == 0
 
-    def test_process_decision_for_legal_reviewed_job(self):
+    def test_create_and_execute_decision_for_legal_reviewed_job(self):
         """An add-on forwarded to the legal queue for review will be a job that may not
         contain any attached abuse reports (i.e. if an add-on was forwared without a
         job)."""
@@ -1273,7 +1279,9 @@ class TestCinderJob(TestCase):
             ) as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='teh notes',
@@ -1290,7 +1298,9 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
 
-    def test_process_decision_sets_target_versions_for_reject_version_appeals(self):
+    def test_create_and_execute_decision_sets_target_versions_for_reject_version_appeal(
+        self,
+    ):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = addon_factory()
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
@@ -1309,7 +1319,9 @@ class TestCinderJob(TestCase):
             ) as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
                 decision_notes='',
@@ -1324,7 +1336,9 @@ class TestCinderJob(TestCase):
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a]
 
-    def test_process_decision_overrides_action_for_reject_version_appeals(self):
+    def test_create_and_execute_decision_overrides_action_for_reject_version_appeals(
+        self,
+    ):
         cinder_job = CinderJob.objects.create(job_id='1234')
         target = addon_factory()
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
@@ -1343,7 +1357,9 @@ class TestCinderJob(TestCase):
             ) as notify_mock,
         ):
             action_mock.return_value = None
-            cinder_job.process_decision(
+            CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
                 decision_cinder_id='12345',
                 decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
                 decision_notes='',
@@ -1356,6 +1372,36 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.decision.policies.all()) == [policy_a]
+
+    def test_create_and_execute_decision_no_job(self):
+        target = user_factory()
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+
+        with (
+            mock.patch.object(ContentActionBanUser, 'process_action') as action_mock,
+            mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
+        ):
+            action_mock.return_value = None
+            CinderJob.create_and_execute_decision(
+                None,
+                target=target,
+                decision_cinder_id='12345',
+                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
+            )
+        decision = ContentDecision.objects.get()
+        assert decision.cinder_id == '12345'
+        assert decision.action == DECISION_ACTIONS.AMO_BAN_USER
+        assert decision.private_notes == 'teh notes'
+        assert decision.reasoning == ''
+        assert decision.from_job_queue == 'some-cinder-queue'
+        assert decision.user == target
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(decision.policies.all()) == [policy_a, policy_b]
 
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
