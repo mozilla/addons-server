@@ -53,8 +53,8 @@ A developer is defined as a user who is listed as a developer or owner of one or
 If you authenticate and access your own account by specifing your own ``user_id`` the following additional fields are returned.
 You can always access your account, regardless of whether you are a developer or not.
 If you have ``Users:Edit`` permission you will see these extra fields for all user accounts.
-If you have ``Users:Lookup`` permission (but not ``Users:Edit``) you will see all fields from
-the :ref:`account object <account-object>` plus ``email``, but not the other privileged fields below.
+If you have ``Users:Lookup`` permission (but not ``Users:Edit``) you will see the
+:ref:`lookup account object <account-object-lookup>` instead.
 
 .. http:get:: /api/v5/accounts/account/(int:user_id|string:username)/
 
@@ -116,14 +116,17 @@ This endpoint looks up one or more accounts by email address.
 Since multiple accounts can share the same email address, the response is always a list.
 Deleted accounts are excluded from results.
 
-The response includes all :ref:`account object <account-object>` fields plus ``email``,
-but excludes sensitive fields such as ``last_login_ip`` and ``permissions``.
-
 .. http:get:: /api/v5/accounts/account/lookup/
 
-    :query string email: The email address to look up.
+    .. _account-object-lookup:
 
-    Returns a list of :ref:`account objects <account-object>` augmented with ``email``.
+    Returns a list of :ref:`account objects <account-object>` with the following additional field.
+    Sensitive fields from the :ref:`self object <account-object-self>` such as ``last_login_ip``
+    and ``permissions`` are not included.
+
+    :>json string email: Email address used by the user to login and create this account.
+
+    :query string email: The email address to look up.
 
     :statuscode 200: account(s) found.
     :statuscode 400: ``email`` query parameter is missing.
