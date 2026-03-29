@@ -35,7 +35,7 @@ from olympia.accounts.utils import (
     redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
-from olympia.accounts.verify import get_fxa_access_token
+from olympia.accounts.verify import IdentificationError, get_fxa_access_token
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
@@ -2311,7 +2311,22 @@ def support(request):
             'message': form.cleaned_data['body'],
         }
 
-        access_token = get_fxa_access_token(request)
+        try:
+            access_token = get_fxa_access_token(request)
+            if not access_token:
+                raise IdentificationError('No access token in session')
+        except IdentificationError:
+            log.warning(
+                'support: could not get FxA access token for user %s',
+                request.user.pk,
+            )
+            messages.error(
+                request,
+                gettext(
+                    'We could not verify your session. Please log out and log in again.'
+                ),
+            )
+            return TemplateResponse(request, 'devhub/support.html', {'form': form})
         response = requests.post(
             settings.FXA_SUPPORT_HOST + '/support/ticket',
             headers={'Authorization': f'Bearer {access_token}'},

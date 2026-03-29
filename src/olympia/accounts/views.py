@@ -193,6 +193,7 @@ def login_user(sender, request, user, identity, token_data=None):
         'twoFactorAuthentication'
     )
     if token_data:
+        request.session['fxa_access_token'] = token_data['access_token']
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
         request.session['fxa_refresh_token'] = token_data['refresh_token']
         request.session['fxa_config_name'] = token_data['config_name']

@@ -268,6 +268,7 @@ class TestLoginUserAndRegisterUser(TestCase):
 
     def test_login_with_token_data(self):
         token_data = {
+            'access_token': 'someaccess_token',
             'refresh_token': 'somerefresh_token',
             'access_token_expiry': time.time() + 12345,
             'config_name': 'someconfigname',
@@ -276,6 +277,7 @@ class TestLoginUserAndRegisterUser(TestCase):
             self.__class__, self.request, self.user, self.identity, token_data
         )
         self.login_mock.assert_called_with(self.request, self.user)
+        assert self.request.session['fxa_access_token'] == token_data['access_token']
         assert (
             self.request.session['fxa_access_token_expiry']
             == token_data['access_token_expiry']

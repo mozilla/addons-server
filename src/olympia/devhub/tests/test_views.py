@@ -2746,15 +2746,11 @@ class TestSupportView(TestCase):
         self.user = user_factory()
         self.url = reverse('devhub.support')
 
-    # --- Waffle flag ---
-
     @override_switch('enable-devhub-support-form', active=False)
     def test_switch_inactive_returns_404(self):
         self.client.force_login(self.user)
         assert self.client.get(self.url).status_code == 404
         assert self.client.post(self.url, {}).status_code == 404
-
-    # --- GET ---
 
     def test_get_anonymous_redirects(self):
         response = self.client.get(self.url)
@@ -2766,8 +2762,6 @@ class TestSupportView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'form' in response.context
-
-    # --- POST ---
 
     def _post(self, data=None, follow=False):
         payload = {
@@ -2815,3 +2809,21 @@ class TestSupportView(TestCase):
         response = self._post()
         assert response.status_code == 200
         assert b'error' in response.content.lower()
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    def test_post_no_access_token(self, mock_token):
+        mock_token.return_value = None
+        self.client.force_login(self.user)
+        response = self._post()
+        assert response.status_code == 200
+        assert b'log' in response.content.lower()
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    def test_post_token_identification_error(self, mock_token):
+        from olympia.accounts.verify import IdentificationError
+
+        mock_token.side_effect = IdentificationError('no token')
+        self.client.force_login(self.user)
+        response = self._post()
+        assert response.status_code == 200
+        assert b'log' in response.content.lower()

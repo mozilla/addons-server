@@ -811,7 +811,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(41):
+        with self.assertNumQueries(42):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -849,9 +849,10 @@ class TestVersion(TestCase):
             # 34. translations for those versions
             # 35. latest non-disabled version in unlisted channel
             # 36. check on user being an author (dupe)
+            # 37. enable-devhub-support-form waffle switch check
             # 38. waffle switch
             # 39-40. promotion group queries
-            # 41. (not in order) version-rollback waffle check
+            # 41-42. (not in order) version-rollback waffle check
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -918,7 +919,7 @@ class TestVersion(TestCase):
         )
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        with self.assertNumQueries(45):
+        with self.assertNumQueries(46):
             # see test_pending_activity_count for the query breakdown
             # + 2 more for the 2 extra versions (not good, but the current state)
             # + 2 more for the listed and unlisted rollback queries
