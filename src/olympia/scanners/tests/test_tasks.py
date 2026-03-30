@@ -1746,7 +1746,33 @@ class TestRunYara(UploadMixin, TestCase):
 
 @override_switch(name='use-yara-x', active=True)
 class TestRunYaraX(TestRunYara):
-    pass
+    def test_amo_module(self):
+        self.upload = self.get_upload('webextension.xpi')
+        rule = ScannerRule.objects.create(
+            name='match_id',
+            scanner=YARA,
+            definition="""
+import "amo"
+
+rule match_id {
+    condition:
+        amo.manifest.get_value("$.applications.gecko.id") == "@webextension-guid"
+        and not is_manifest_file
+}
+            """,
+        )
+
+        run_yara(self.results, self.upload.pk)
+
+        yara_results = ScannerResult.objects.all()
+        yara_result = yara_results[0]
+        assert yara_result.upload == self.upload
+        assert len(yara_result.results) == 1
+        assert yara_result.results[0] == {
+            'rule': rule.name,
+            'tags': [],
+            'meta': {'filename': 'index.js'},
+        }
 
 
 class TestRunQueryRuleMixin:

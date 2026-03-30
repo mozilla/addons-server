@@ -45,7 +45,7 @@ from olympia.constants.scanners import (
 )
 from olympia.devhub.tasks import validation_task
 from olympia.files.models import FileManifest, FileUpload
-from olympia.files.utils import SafeZip
+from olympia.files.utils import ManifestJSONExtractor, SafeZip
 from olympia.versions.models import Version
 
 from .models import (
@@ -523,6 +523,8 @@ def _run_yara_for_path(scanner_result, path, definition=None):
         # override them later when matching.
         externals = ScannerRule.get_yara_externals()
 
+        zip_file = SafeZip(source=path, ignore_filename_errors=True)
+
         if waffle.switch_is_active('use-yara-x'):
             compiler = yara_x.Compiler()
             # Initialize the global variables (externals).
@@ -533,6 +535,19 @@ def _run_yara_for_path(scanner_result, path, definition=None):
             # Create a scanner instance so that we can override the externals
             # per file (in the `_scan()` function).
             scanner = yara_x.Scanner(compiler.build())
+            options = yara_x.ScanOptions()
+            options.set_module_metadata(
+                'amo',
+                json.dumps(
+                    {
+                        'manifest': (
+                            ManifestJSONExtractor(zip_file.read('manifest.json')).data
+                            if zip_file.exists('manifest.json')
+                            else {}
+                        )
+                    }
+                ).encode('utf-8'),
+            )
 
             def _scan(data, externals):
                 for k, v in externals.items():
@@ -549,7 +564,7 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                         meta=dict(match.metadata),
                         tags=match.tags,
                     )
-                    for match in scanner.scan(data).matching_rules
+                    for match in scanner.scan_with_options(data, options).matching_rules
                 ]
 
         else:
@@ -558,7 +573,6 @@ def _run_yara_for_path(scanner_result, path, definition=None):
             def _scan(data, externals):
                 return rules.match(data=data, externals=externals)
 
-        zip_file = SafeZip(source=path, ignore_filename_errors=True)
         for zip_info in zip_file.info_list:
             if not zip_info.is_dir():
                 file_content = zip_file.read(zip_info)
