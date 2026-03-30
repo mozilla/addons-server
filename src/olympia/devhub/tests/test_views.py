@@ -2800,6 +2800,9 @@ class TestSupportView(TestCase):
         assert payload['topic'] == 'technical'
         assert payload['subject'] == 'Something is broken'
         assert 'brand_id' not in payload
+        assert len(response.context['messages']) == 1
+        msg = list(response.context['messages'])[0]
+        assert msg.level_tag == 'success'
 
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
@@ -2820,6 +2823,9 @@ class TestSupportView(TestCase):
         response = self._post(follow=True)
         assert response.status_code == 200
         mock_task.assert_not_called()
+        assert len(response.context['messages']) == 1
+        msg = list(response.context['messages'])[0]
+        assert msg.level_tag == 'error'
 
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
@@ -2831,3 +2837,6 @@ class TestSupportView(TestCase):
         response = self._post(follow=True)
         assert response.status_code == 200
         mock_task.assert_not_called()
+        assert len(response.context['messages']) == 1
+        msg = list(response.context['messages'])[0]
+        assert msg.level_tag == 'error'

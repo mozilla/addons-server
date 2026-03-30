@@ -2321,14 +2321,18 @@ def support(request):
                 'support: could not get FxA access token for user %s',
                 request.user.pk,
             )
+            messages.error(
+                request,
+                gettext('Could not submit your support request. Please try again.'),
+            )
         else:
             tasks.create_support_ticket.delay(access_token, payload)
-        messages.success(
-            request,
-            gettext(
-                'Your support request has been submitted. We will be in touch soon.'
-            ),
-        )
+            messages.success(
+                request,
+                gettext(
+                    'Your support request has been submitted. We will be in touch soon.'
+                ),
+            )
         return redirect('devhub.support')
 
     return TemplateResponse(request, 'devhub/support.html', {'form': form})
