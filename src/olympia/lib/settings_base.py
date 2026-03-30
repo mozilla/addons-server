@@ -1411,6 +1411,7 @@ FXA_CONTENT_HOST = 'https://accounts.firefox.com'
 FXA_OAUTH_HOST = 'https://oauth.accounts.firefox.com/v1'
 FXA_PROFILE_HOST = 'https://profile.accounts.firefox.com/v1'
 FXA_SUPPORT_HOST = 'https://accounts.firefox.com/v1'
+FXA_SUPPORT_BRAND_ID = 47184764139412  # Zendesk brand: "Firefox Add-on Support"
 
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True

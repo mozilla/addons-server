@@ -2799,6 +2799,19 @@ class TestSupportView(TestCase):
         assert call_kwargs[1]['headers'] == {'Authorization': 'Bearer mytoken'}
         assert call_kwargs[1]['json']['topic'] == 'technical'
         assert call_kwargs[1]['json']['subject'] == 'Something is broken'
+        assert 'brand_id' not in call_kwargs[1]['json']
+
+    @mock.patch('olympia.devhub.views.get_fxa_access_token')
+    @mock.patch('olympia.devhub.views.requests.post')
+    def test_post_success_with_brand_id(self, mock_post, mock_token):
+        mock_token.return_value = 'mytoken'
+        mock_post.return_value.status_code = 200
+        self.client.force_login(self.user)
+        with self.settings(FXA_SUPPORT_BRAND_ID=12345):
+            response = self._post(follow=True)
+        assert response.status_code == 200
+        call_kwargs = mock_post.call_args
+        assert call_kwargs[1]['json']['brand_id'] == 12345
 
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
     @mock.patch('olympia.devhub.views.requests.post')

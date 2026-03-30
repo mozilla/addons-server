@@ -2310,6 +2310,8 @@ def support(request):
             'subject': form.cleaned_data['summary'],
             'message': form.cleaned_data['body'],
         }
+        if settings.FXA_SUPPORT_BRAND_ID is not None:
+            payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
 
         try:
             access_token = get_fxa_access_token(request)
