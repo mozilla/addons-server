@@ -1,7 +1,6 @@
 import datetime
 import json
 import os
-import requests
 import subprocess
 import tempfile
 from copy import deepcopy
@@ -18,6 +17,7 @@ from django.urls import reverse
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
+import requests
 import waffle
 from django_statsd.clients import statsd
 

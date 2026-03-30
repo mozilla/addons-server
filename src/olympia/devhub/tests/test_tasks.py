@@ -1083,6 +1083,7 @@ class TestCreateSupportTicket(TestCase):
     @mock.patch('olympia.devhub.tasks.requests.post')
     def test_network_error_triggers_retry(self, mock_post):
         import requests as req
+
         mock_post.side_effect = req.RequestException('timeout')
         with self.assertRaises(req.RequestException):
             tasks.create_support_ticket('mytoken', self.payload)

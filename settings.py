@@ -115,6 +115,7 @@ DATABASES = {
 FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'
 FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
+FXA_SUPPORT_HOST = 'https://accounts.stage.mozaws.net/v1'
 
 # Set CSP like we do for dev/stage/prod, but also allow GA over http + www subdomain
 # for local development.

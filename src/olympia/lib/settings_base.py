@@ -822,6 +822,7 @@ CELERY_TASK_ROUTES = {
     # Devhub & related.
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_data_collection_permissions': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_support_ticket': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
