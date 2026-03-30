@@ -1228,7 +1228,7 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
                 if 'content' in content:
                     # Replace the placeholder with its content
                     resolved_message = re.sub(
-                        f'\\${placeholder}\\$',
+                        re.escape(f'${placeholder}$'),
                         content['content'],
                         resolved_message,
                         flags=re.IGNORECASE,

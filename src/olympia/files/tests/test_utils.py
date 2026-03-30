@@ -1449,6 +1449,27 @@ class TestResolvei18nMessage:
         result = utils.resolve_i18n_message('__MSG_app_desc__', messages, 'en')
         assert result == 'Test Placeholder is replaced!'
 
+    def test_dont_resolve_placeholders_as_regexp(self):
+        """Test that placeholders in the message string as not evaluated as
+        regexp syntax."""
+        app_desc_message = {
+            'message': '$foo$ is not replaced!',
+            'placeholders': {'.*': {'content': 'Test Placeholder'}},
+        }
+        messages = {'en-US': {'app_desc': app_desc_message}}
+
+        result = utils.resolve_i18n_message('__MSG_app_desc__', messages, 'en')
+        assert result == '$foo$ is not replaced!'
+
+        app_desc_message = {
+            'message': '$place.holder$ is replaced!',
+            'placeholders': {'place.holder': {'content': 'Test Placeholder'}},
+        }
+        messages = {'en-US': {'app_desc': app_desc_message}}
+
+        result = utils.resolve_i18n_message('__MSG_app_desc__', messages, 'en')
+        assert result == 'Test Placeholder is replaced!'
+
     def test_app_without_content(self):
         """Test message with a placeholder but no content."""
         app_without_content_message = {
