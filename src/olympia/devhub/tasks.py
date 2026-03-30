@@ -1,6 +1,7 @@
 import datetime
 import json
 import os
+import requests
 import subprocess
 import tempfile
 from copy import deepcopy
@@ -696,3 +697,24 @@ def send_api_key_revocation_email(emails):
         use_deny_list=False,
         perm_setting='individual_contact',
     )
+
+
+@task(
+    autoretry_for=(requests.RequestException,),
+    max_retries=3,
+    retry_backoff=30,
+    retry_backoff_max=300,
+    retry_jitter=False,
+)
+def create_support_ticket(access_token, payload, **kw):
+    response = requests.post(
+        settings.FXA_SUPPORT_HOST + '/support/ticket',
+        headers={'Authorization': f'Bearer {access_token}'},
+        json=payload,
+        timeout=10,
+    )
+    if response.status_code not in (200, 201):
+        log.warning(
+            'create_support_ticket: FxA support endpoint returned %s',
+            response.status_code,
+        )

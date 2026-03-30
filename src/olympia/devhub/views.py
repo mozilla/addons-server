@@ -22,7 +22,6 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
-import requests
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -2322,39 +2321,15 @@ def support(request):
                 'support: could not get FxA access token for user %s',
                 request.user.pk,
             )
-            messages.error(
-                request,
-                gettext(
-                    'We could not verify your session. Please log out and log in again.'
-                ),
-            )
-            return TemplateResponse(request, 'devhub/support.html', {'form': form})
-        response = requests.post(
-            settings.FXA_SUPPORT_HOST + '/support/ticket',
-            headers={'Authorization': f'Bearer {access_token}'},
-            json=payload,
-            timeout=10,
-        )
-        if response.status_code in (200, 201):
-            messages.success(
-                request,
-                gettext(
-                    'Your support request has been submitted. We will be in touch soon.'
-                ),
-            )
-            return redirect('devhub.support')
         else:
-            log.warning(
-                'support: FxA support endpoint returned %s for user %s',
-                response.status_code,
-                request.user.pk,
-            )
-            messages.error(
-                request,
-                gettext(
-                    'There was an error submitting your request. Please try again.'
-                ),
-            )
+            tasks.create_support_ticket.delay(access_token, payload)
+        messages.success(
+            request,
+            gettext(
+                'Your support request has been submitted. We will be in touch soon.'
+            ),
+        )
+        return redirect('devhub.support')
 
     return TemplateResponse(request, 'devhub/support.html', {'form': form})
 

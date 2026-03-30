@@ -1052,3 +1052,37 @@ class TestCheckDataCollectionPermissions(UploadMixin, ValidatorTestCase):
         assert validation['errors'] == 0
         assert validation['notices'] == 0
         assert validation['warnings'] == 0
+
+
+class TestCreateSupportTicket(TestCase):
+    def setUp(self):
+        self.payload = {
+            'topic': 'technical',
+            'subject': 'Something is broken',
+            'message': 'Please help.',
+        }
+
+    @mock.patch('olympia.devhub.tasks.requests.post')
+    def test_success(self, mock_post):
+        mock_post.return_value = mock.MagicMock(status_code=201)
+        tasks.create_support_ticket('mytoken', self.payload)
+        mock_post.assert_called_once_with(
+            mock_post.call_args[0][0],
+            headers={'Authorization': 'Bearer mytoken'},
+            json=self.payload,
+            timeout=10,
+        )
+
+    @mock.patch('olympia.devhub.tasks.requests.post')
+    def test_fxa_error_logs_warning(self, mock_post):
+        mock_post.return_value = mock.MagicMock(status_code=500)
+        # Should not raise, just log
+        tasks.create_support_ticket('mytoken', self.payload)
+        mock_post.assert_called_once()
+
+    @mock.patch('olympia.devhub.tasks.requests.post')
+    def test_network_error_triggers_retry(self, mock_post):
+        import requests as req
+        mock_post.side_effect = req.RequestException('timeout')
+        with self.assertRaises(req.RequestException):
+            tasks.create_support_ticket('mytoken', self.payload)

@@ -2786,57 +2786,48 @@ class TestSupportView(TestCase):
         form = response.context['form']
         assert form.errors
 
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    @mock.patch('olympia.devhub.views.requests.post')
-    def test_post_success(self, mock_post, mock_token):
+    def test_post_success(self, mock_token, mock_task):
         mock_token.return_value = 'mytoken'
-        mock_post.return_value.status_code = 200
         self.client.force_login(self.user)
-        response = self._post(follow=True)
+        with self.settings(FXA_SUPPORT_BRAND_ID=None):
+            response = self._post(follow=True)
         assert response.status_code == 200
-        mock_post.assert_called_once()
-        call_kwargs = mock_post.call_args
-        assert call_kwargs[1]['headers'] == {'Authorization': 'Bearer mytoken'}
-        assert call_kwargs[1]['json']['topic'] == 'technical'
-        assert call_kwargs[1]['json']['subject'] == 'Something is broken'
-        assert 'brand_id' not in call_kwargs[1]['json']
+        mock_task.assert_called_once()
+        access_token, payload = mock_task.call_args[0]
+        assert access_token == 'mytoken'
+        assert payload['topic'] == 'technical'
+        assert payload['subject'] == 'Something is broken'
+        assert 'brand_id' not in payload
 
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    @mock.patch('olympia.devhub.views.requests.post')
-    def test_post_success_with_brand_id(self, mock_post, mock_token):
+    def test_post_success_with_brand_id(self, mock_token, mock_task):
         mock_token.return_value = 'mytoken'
-        mock_post.return_value.status_code = 200
         self.client.force_login(self.user)
         with self.settings(FXA_SUPPORT_BRAND_ID=12345):
             response = self._post(follow=True)
         assert response.status_code == 200
-        call_kwargs = mock_post.call_args
-        assert call_kwargs[1]['json']['brand_id'] == 12345
+        _, payload = mock_task.call_args[0]
+        assert payload['brand_id'] == 12345
 
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    @mock.patch('olympia.devhub.views.requests.post')
-    def test_post_fxa_api_error(self, mock_post, mock_token):
-        mock_token.return_value = 'mytoken'
-        mock_post.return_value.status_code = 500
-        self.client.force_login(self.user)
-        response = self._post()
-        assert response.status_code == 200
-        assert b'error' in response.content.lower()
-
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_no_access_token(self, mock_token):
+    def test_post_no_access_token(self, mock_token, mock_task):
         mock_token.return_value = None
         self.client.force_login(self.user)
-        response = self._post()
+        response = self._post(follow=True)
         assert response.status_code == 200
-        assert b'log' in response.content.lower()
+        mock_task.assert_not_called()
 
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_token_identification_error(self, mock_token):
+    def test_post_token_identification_error(self, mock_token, mock_task):
         from olympia.accounts.verify import IdentificationError
 
         mock_token.side_effect = IdentificationError('no token')
         self.client.force_login(self.user)
-        response = self._post()
+        response = self._post(follow=True)
         assert response.status_code == 200
-        assert b'log' in response.content.lower()
+        mock_task.assert_not_called()
