@@ -69,6 +69,9 @@ from olympia.users.utils import UnsubscribeCode
 
 log = getLogger('z.amo')
 
+# Module cache for homoglyph instances, since initialization is costly.
+_homoglyphs_cache = {}
+
 
 # Basic regexp to detect links.
 URL_RE = re.compile(r'https?://\S+', re.IGNORECASE)
@@ -543,12 +546,35 @@ def generate_lowercase_homoglyphs_variants_for_string(value):
     normalization to remove characters we don't want first, see
     normalize_string_for_name_checks().
     """
-    homoglyphs = Homoglyphs(
-        languages={'en'},
-        strategy=homoglyphs_fork.STRATEGY_LOAD,
-        ascii_range=range(ord('A'), ord('z') + 1),
-    )
-    return homoglyphs.get_lower_ascii_variants(value)
+    cache_key = '_homoglyphs_long_string' if len(value) > 50 else '_homoglyphs'
+    if cache_key not in _homoglyphs_cache:
+        _homoglyphs_cache[cache_key] = Homoglyphs(
+            # Load everything at once, we're caching this instance and will be
+            # reusing it a lot, it's more efficient than loading the json files
+            # over and over, especially as STRATEGY_LOAD would cause the same
+            # json files to be loaded multiple times for strings containing
+            # multiple alphabets.
+            languages=homoglyphs_fork.Languages.get_all(),
+            categories=homoglyphs_fork.Categories.get_all(),
+            strategy=homoglyphs_fork.STRATEGY_REMOVE,
+            ascii_range=range(ord('A'), ord('z') + 1),
+        )
+        if len(value) > 50:
+            # Small trade-off: for large strings, remove 'I' as a variant of 'l':
+            # `l` appears often enough in large strings that it would cause
+            # combinatorial explosion issues, and the confusion between the 2 is
+            # usually not that big of a problem in this direction (it is in the
+            # other: we want to keep `l` as a variant of `I`).
+            #
+            # Examples:
+            # - A short string ending in "lol" would be unaffected and generate
+            #   "(...)lol", "(...)loi", "(...)ioi" and "(...)iol" variants.
+            # - A long string ending in "IoI" would be unaffected and generate
+            #   the same "(...)lol", "(...)loi", "(...)ioi" and "(...)iol" variants
+            # - A long string ending in "lol" no longer generate variants because
+            #   of that ending.
+            _homoglyphs_cache[cache_key].table['l'].remove('I')
+    return _homoglyphs_cache[cache_key].get_lower_ascii_variants(value)
 
 
 def slug_validator(slug, message=validate_slug.message):
