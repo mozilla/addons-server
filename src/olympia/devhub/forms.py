@@ -129,7 +129,7 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = validate_addon_name(self.cleaned_data['name'], user, form=self)
+        name = validate_addon_name(self.cleaned_data['name'], user=user, form=self)
 
         return name
 

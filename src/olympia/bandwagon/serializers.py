@@ -82,18 +82,20 @@ class CollectionSerializer(PropertyUpdatedMixin, AMOModelSerializer):
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
 
-    def _validate_name_or_slug(self, value, error_msg):
+    def _validate_name_or_slug(self, value, *, error_message):
         try:
             return validate_user_name(
                 value,
-                error_msg,
+                error_message=error_message,
                 can_use_denied_names=can_use_denied_names(self.context.get('request')),
             )
         except forms.ValidationError as exc:
             raise serializers.ValidationError(exc.messages) from exc
 
     def validate_name(self, value):
-        return self._validate_name_or_slug(value, gettext('This name cannot be used.'))
+        return self._validate_name_or_slug(
+            value, error_message=gettext('This name cannot be used.')
+        )
 
     def validate_description(self, value):
         if has_urls(clean_nl(str(value))):
@@ -110,7 +112,7 @@ class CollectionSerializer(PropertyUpdatedMixin, AMOModelSerializer):
             ),
         )
         return self._validate_name_or_slug(
-            value, gettext('This custom URL cannot be used.')
+            value, error_message=gettext('This custom URL cannot be used.')
         )
 
     def create(self, validated_data):

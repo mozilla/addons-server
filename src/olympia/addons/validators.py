@@ -18,7 +18,7 @@ class ValidateAddonName:
     def __call__(self, value, serializer_field):
         user = serializer_field.context['request'].user
         try:
-            validate_addon_name(value, user)
+            validate_addon_name(value, user=user)
         except forms.ValidationError as exc:
             raise exceptions.ValidationError(exc.message) from exc
 

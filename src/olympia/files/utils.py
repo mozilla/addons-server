@@ -960,7 +960,7 @@ def check_xpi_info(
         # Make sure we pass in a copy of `xpi_info` since
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(xpi_info.copy(), xpi_file)
-        validate_addon_name(translations['name'], user)
+        validate_addon_name(translations['name'], user=user)
 
     # Parse the file to get and validate package data with the addon.
     if not acl.experiments_submission_allowed(user, xpi_info):

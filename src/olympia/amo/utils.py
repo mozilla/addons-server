@@ -39,7 +39,7 @@ from django.utils import translation
 from django.utils.encoding import force_bytes, force_str
 from django.utils.functional import cached_property
 from django.utils.http import quote_etag, url_has_allowed_host_and_scheme
-from django.utils.translation import gettext
+from django.utils.translation import gettext_lazy as _
 
 import basket
 import colorgram
@@ -1171,9 +1171,9 @@ def has_urls(content):
     return URL_RE.search(content) if content else False
 
 
-def verify_condition_with_locales(*, value, check_func, form=None, field_name=None):
+def verify_condition_with_locales(*, value, check_function, form=None, field_name=None):
     """
-    Check that the given `check_func` function does not raise a ValidationError
+    Check that the given `check_function` function does not raise a ValidationError
     for the given `value`. If `value` is a `dict`, it assumes the keys are
     locales and the values are translations in those locales.
 
@@ -1183,11 +1183,11 @@ def verify_condition_with_locales(*, value, check_func, form=None, field_name=No
     """
 
     if not isinstance(value, dict):
-        check_func(value)
+        check_function(value)
     else:
         for locale, localized_name in value.items():
             try:
-                check_func(localized_name)
+                check_function(localized_name)
             except forms.ValidationError as exc:
                 if form is not None and field_name is not None:
                     for message in exc.messages:
@@ -1199,7 +1199,20 @@ def verify_condition_with_locales(*, value, check_func, form=None, field_name=No
                     raise
 
 
-def validate_name(name, check_function, error_message, *, form=None):
+def validate_name(
+    name,
+    *,
+    check_function,
+    error_message=_('This name cannot be used.'),
+    form=None,
+    field_name='name',
+):
+    """Validate a name like field value by applying the check_function over the
+    value (going over each locale if the value is a dict) and all lowercase
+    homoglyphs variants after normalization.
+
+    Raises an error if a value has too many homoglyph variants."""
+
     def variant_checker(name):
         normalized_name = normalize_string_for_name_checks(
             name, categories_to_strip=('P')
@@ -1216,10 +1229,11 @@ def validate_name(name, check_function, error_message, *, form=None):
                 # expensive to continue anyway. Reject it immediately.
                 raise forms.ValidationError(error_message)
 
-            check_function(normalized_name, variant)
+            if check_function:
+                check_function(normalized_name, variant)
 
     verify_condition_with_locales(
-        value=name, check_func=variant_checker, form=form, field_name='name'
+        value=name, check_function=variant_checker, form=form, field_name=field_name
     )
     return name
 
@@ -1227,10 +1241,10 @@ def validate_name(name, check_function, error_message, *, form=None):
 def verify_no_urls(value, *, form=None, field_name=None):
     def _check(value):
         if has_urls(value):
-            raise forms.ValidationError(gettext('URLs are not allowed.'))
+            raise forms.ValidationError(_('URLs are not allowed.'))
 
     verify_condition_with_locales(
-        value=value, check_func=_check, form=form, field_name=field_name
+        value=value, check_function=_check, form=form, field_name=field_name
     )
     return value
 

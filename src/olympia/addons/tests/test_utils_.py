@@ -32,7 +32,7 @@ from ..utils import (
 )
 def test_validate_addon_name_allowed(name):
     user = user_factory()
-    validate_addon_name(name, user)
+    validate_addon_name(name, user=user)
 
 
 @pytest.mark.django_db
@@ -73,11 +73,11 @@ def test_validate_addon_name_disallowed_without_permission(name):
     GroupUser.objects.create(group=group, user=special_user)
 
     # Validates with the permission.
-    validate_addon_name(name, special_user)
+    validate_addon_name(name, user=special_user)
 
     # Raises an error without.
     with pytest.raises(ValidationError) as exc:
-        validate_addon_name(name, normal_user)
+        validate_addon_name(name, user=normal_user)
     assert exc.value.message == (
         'Add-on names cannot contain the Mozilla or Firefox trademarks.'
     )
@@ -99,12 +99,12 @@ def test_validate_addon_name_disallowed_no_matter_what(name):
 
     # Raises an error without the permission...
     with pytest.raises(ValidationError) as exc:
-        validate_addon_name(name, normal_user)
+        validate_addon_name(name, user=normal_user)
     assert exc.value.message == 'This name cannot be used.'
 
     # ... and also with it.
     with pytest.raises(ValidationError) as exc2:
-        validate_addon_name(name, special_user)
+        validate_addon_name(name, user=special_user)
     assert exc2.value.message == 'This name cannot be used.'
 
 
