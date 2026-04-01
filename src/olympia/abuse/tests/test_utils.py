@@ -129,3 +129,4 @@ def test_is_same_time():
     assert is_same_time(addon, addon.created.isoformat())
     assert is_same_time(addon, str(addon.created))
     assert not is_same_time(addon, str(addon.created.replace(year=2000)))
+    assert is_same_time(addon, str(addon.created.replace(microsecond=1234)))

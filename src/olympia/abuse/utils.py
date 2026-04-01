@@ -64,4 +64,6 @@ def is_same_time(instance, created_string):
     We need to do this as we share the same staging Cinder instance for
     addons-dev, addons stage, and local development.
     """
-    return instance.created == datetime.fromisoformat(created_string)
+    instance_time = instance.created.replace(microsecond=0)
+    string_time = datetime.fromisoformat(created_string).replace(microsecond=0)
+    return instance_time == string_time
