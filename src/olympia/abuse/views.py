@@ -235,6 +235,13 @@ def process_webhook_payload_decision(payload):
         log.debug('Cinder webhook decision for api decision skipped.')
         raise CinderWebhookIgnoredError('Decision already handled via reviewer tools')
 
+    # In cases where there was an abuse report, or an appeal, there should be an
+    # existing CinderJob instance as we created the job when the Cinder API returned
+    # the job uuid back to us.
+    #
+    # But if the job was created via a workflow event - either by us (e.g. content
+    # review), or otherwise - then we don't have a CinderJob instance. So identify the
+    # target from the id (pk) and entity schema.
     cinder_job = get_job_from_payload(payload)
     if cinder_job:
         target = cinder_job.target
@@ -245,6 +252,10 @@ def process_webhook_payload_decision(payload):
             entity_schema=entity.get('entity_schema'),
             entity_id=entity.get('attributes', {}).get('id'),
         )
+        # We trust Cinder is reporting a decision on the correct instance by
+        # double-checking the created time of the instance is the same as the one in the
+        # payload. In production a wrong instance shouldn't happen, but in staging it
+        # could be the job was created from an instance from a different env.
         if not target or not is_same_time(target, created):
             log.debug(
                 'Could not identify entity id %s with schema %s',

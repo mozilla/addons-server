@@ -304,7 +304,12 @@ class CinderJob(ModelBase):
         job_queue,
     ):
         """Process a decision as sent by the webhook. If a decision with that
-        `decision_cinder_id` already exists, do nothing."""
+        `decision_cinder_id` already exists, do nothing.
+
+        Note: job can be None if the decision is made on a job that we don't know about,
+        e.g. a job created by a workflow event for content review, rather than an abuse
+        report.
+        """
         # appeals on REJECT_VERSION_ADDON need target_versions redefining.
         if job and (
             appealed_ids := job.appealed_decisions.filter(
