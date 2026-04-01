@@ -7,7 +7,7 @@ updates:
   cooldown:
     default-days: 7
   open-pull-requests-limit: 99
-- package-ecosystem: "docker-compose"
+- package-ecosystem: "docker-compose"  # zizmor: ignore[dependabot-cooldown]
   directory: "/"
   schedule:
     interval: weekly
