@@ -18,7 +18,6 @@ from olympia.amo.admin import AMOModelAdmin, DateRangeFilter
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import vite_asset
 from olympia.amo.utils import send_mail
-from olympia.discovery.admin import DiscoveryAddon
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -193,7 +192,28 @@ class FileInline(admin.TabularInline):
         )
 
 
-class AddonAdmin(AMOModelAdmin):
+class AddonAdminByGuidOrSlugMixin:
+    def change_view(self, request, object_id, form_url='', extra_context=None):
+        lookup_field = self.model.get_lookup_field(object_id)
+        if lookup_field != 'pk':
+            addon = None
+            try:
+                if lookup_field in ('slug', 'guid'):
+                    addon = self.get_queryset(request).get(**{lookup_field: object_id})
+            except self.model.DoesNotExist as exc:
+                raise http.Http404 from exc
+            # Don't get in an infinite loop if addon.slug.isdigit().
+            if addon and addon.id and addon.id != object_id:
+                url = request.path.replace(object_id, str(addon.id), 1)
+                if request.GET:
+                    url += '?' + request.GET.urlencode()
+                return http.HttpResponsePermanentRedirect(url)
+
+        return super().change_view(
+            request, object_id, form_url, extra_context=extra_context
+        )
+
+class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     class Media:
         css = {'all': (vite_asset('css/admin-addon.less'),)}
         js = (
@@ -448,26 +468,6 @@ class AddonAdmin(AMOModelAdmin):
 
     reviewer_links.short_description = 'Reviewer links'
 
-    def change_view(self, request, object_id, form_url='', extra_context=None):
-        lookup_field = Addon.get_lookup_field(object_id)
-        if lookup_field != 'pk':
-            addon = None
-            try:
-                if lookup_field in ('slug', 'guid'):
-                    addon = self.get_queryset(request).get(**{lookup_field: object_id})
-            except Addon.DoesNotExist as exc:
-                raise http.Http404 from exc
-            # Don't get in an infinite loop if addon.slug.isdigit().
-            if addon and addon.id and addon.id != object_id:
-                url = request.path.replace(object_id, str(addon.id), 1)
-                if request.GET:
-                    url += '?' + request.GET.urlencode()
-                return http.HttpResponsePermanentRedirect(url)
-
-        return super().change_view(
-            request, object_id, form_url, extra_context=extra_context
-        )
-
     def render_change_form(
         self, request, context, add=False, change=False, form_url='', obj=None
     ):
@@ -539,6 +539,8 @@ class AddonAdmin(AMOModelAdmin):
 
     @admin.display(description='Discovery Addon')
     def discovery_addon(self, obj):
+        from olympia.discovery.admin import DiscoveryAddon
+
         url = reverse(
             'admin:{}_{}_change'.format(
                 DiscoveryAddon._meta.app_label, DiscoveryAddon._meta.model_name

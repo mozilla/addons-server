@@ -205,6 +205,26 @@ class TestDiscoveryAddonAdmin(TestCase):
         assert 'Also Present' in content
         assert 'Absent' not in content
 
+    def test_access_using_slug(self):
+        addon = addon_factory()
+        detail_url = reverse(self.detail_url_name, args=(addon.pk,))
+        detail_url_by_slug = reverse(self.detail_url_name, args=(addon.slug,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        response = self.client.get(detail_url_by_slug, follow=False)
+        self.assert3xx(response, detail_url, 301)
+
+    def test_access_using_guid(self):
+        addon = addon_factory()
+        detail_url = reverse(self.detail_url_name, args=(addon.pk,))
+        detail_url_by_guid = reverse(self.detail_url_name, args=(addon.guid,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Discovery:Edit')
+        self.client.force_login(user)
+        response = self.client.get(detail_url_by_guid, follow=False)
+        self.assert3xx(response, detail_url, 301)
+
     def test_can_edit_with_discovery_edit_permission(self):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
