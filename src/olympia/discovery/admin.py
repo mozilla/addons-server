@@ -2,7 +2,6 @@ from django import forms
 from django.contrib import admin
 from django.contrib.admin.widgets import ForeignKeyRawIdWidget
 from django.db.models import Prefetch
-from django.http import HttpResponsePermanentRedirect
 from django.utils import translation
 from django.utils.html import conditional_escape, format_html
 from django.utils.safestring import mark_safe
@@ -263,7 +262,11 @@ class DiscoveryAddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     )
 
     def get_queryset(self, request):
-        return self.model.unfiltered.all().only_translations()
+        # DiscoveryAddon is a proxy model, that doesn't play nice with
+        # translations (._meta.translated_fields is not set) but ultimately we
+        # don't need to return the proxy model here, so use `Addon` instead,
+        # removing other transforms while we're at it.
+        return Addon.unfiltered.all().only_translations()
 
     def addon(self, obj):
         if obj.pk:

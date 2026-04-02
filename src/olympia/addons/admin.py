@@ -213,6 +213,7 @@ class AddonAdminByGuidOrSlugMixin:
             request, object_id, form_url, extra_context=extra_context
         )
 
+
 class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     class Media:
         css = {'all': (vite_asset('css/admin-addon.less'),)}
