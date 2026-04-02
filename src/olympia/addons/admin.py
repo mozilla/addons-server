@@ -199,7 +199,11 @@ class AddonAdminByGuidOrSlugMixin:
             addon = None
             try:
                 if lookup_field in ('slug', 'guid'):
-                    addon = self.get_queryset(request).get(**{lookup_field: object_id})
+                    addon = (
+                        self.get_queryset(request)
+                        .no_transforms()
+                        .get(**{lookup_field: object_id})
+                    )
             except self.model.DoesNotExist as exc:
                 raise http.Http404 from exc
             # Don't get in an infinite loop if addon.slug.isdigit().
