@@ -1,0 +1,48 @@
+{
+  "event": "job.actioned",
+  "payload": {
+    "action": "created",
+    "action_made_by": {
+      "workflow": {
+        "event_id": "019d4912-4851-7242-bd0b-f16c3ab57da5",
+        "name": "Amo Addon Contentreview"
+      }
+    },
+    "job": {
+      "created_at": "2026-04-01T12:43:50.782776Z",
+      "entity": {
+        "attributes": {
+          "average_daily_users": 0,
+          "created": "2026-04-01T12:19:58.646580",
+          "description": "en-US",
+          "guid": "{95a42dcb-a337-46a8-8292-d3bc8a48b647}",
+          "homepage": "https://addons-server.readthedocs.io/en/latest/topics/api/addons.html#create",
+          "id": "10000",
+          "last_updated": "2026-04-01T12:19:58.646580",
+          "name": "A string to be detected recommended",
+          "privacy_policy": "",
+          "promoted": "",
+          "release_notes": "EN-US Version notes added in API at addon creation time",
+          "requires_payment": false,
+          "slug": "a-string-to-be-detected-rec4",
+          "summary": "change summary from API from API333",
+          "support_email": "rusiczki.ioana@test.com",
+          "version": "3.0"
+        },
+        "entity_schema": "amo_addon"
+      },
+      "id": "0aa2e6b6-9899-4bd0-9f59-94e8762861ba",
+      "job_category": "standard",
+      "num_reports": 0,
+      "priority": 0,
+      "queue": {
+        "is_multi_review": false,
+        "slug": "amo-dev-listing-content"
+      },
+      "status": "open"
+    },
+    "notes": "",
+    "source": "workflow",
+    "timestamp": "2026-04-01T12:43:50.791551+00:00"
+  }
+}

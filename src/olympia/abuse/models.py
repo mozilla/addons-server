@@ -97,6 +97,7 @@ class CinderJob(ModelBase):
         to=Addon, blank=True, null=True, on_delete=models.deletion.SET_NULL
     )
     resolvable_in_reviewer_tools = models.BooleanField(default=None, null=True)
+    content_review = models.BooleanField(default=False, null=True)
 
     objects = CinderJobManager()
 
@@ -1280,7 +1281,11 @@ class ContentDecision(ModelBase):
         )
         if not self.can_be_appealed(is_reporter=is_reporter, abuse_report=abuse_report):
             raise CantBeAppealed
-        is_content_review = self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+        is_content_review = (
+            self.cinder_job.content_review
+            if self.cinder_job
+            else self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+        )
 
         entity_helper = CinderJob.get_entity_helper(
             self.target,
@@ -1299,6 +1304,7 @@ class ContentDecision(ModelBase):
                 defaults={
                     'target_addon': self.addon,
                     'resolvable_in_reviewer_tools': resolvable_in_reviewer_tools,
+                    'content_review': is_content_review,
                 },
             )
             self.update(appeal_job=appeal_job)

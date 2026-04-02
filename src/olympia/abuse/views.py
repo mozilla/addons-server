@@ -32,7 +32,7 @@ from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
 from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
-from .cinder import CinderAddon
+from .cinder import CinderAddon, CinderAddonContentReview
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
 from .models import AbuseReport, CinderJob, ContentDecision
 from .serializers import (
@@ -228,6 +228,26 @@ def get_job_from_payload(payload):
         raise CinderWebhookError('Unsupported Manual decision')
 
 
+def get_target_from_payload_entity(entity):
+    created = entity.get('attributes', {}).get('created')
+    target = get_instance_from_entity(
+        entity_schema=entity.get('entity_schema'),
+        entity_id=entity.get('attributes', {}).get('id'),
+    )
+    # We trust Cinder is reporting on the correct instance by double-checking the
+    # created time of the instance is the same as the one in the payload. In production
+    # a wrong instance shouldn't happen, but in staging it could be the job was created
+    # from an instance from a different env.
+    if not target or not is_same_time(target, created):
+        log.debug(
+            'Could not identify entity id %s with schema %s',
+            entity.get('attributes', {}).get('id'),
+            entity.get('entity_schema'),
+        )
+        raise CinderWebhookMissingIdError('Unknown entity id received')
+    return target
+
+
 def process_webhook_payload_decision(payload):
     source = payload.get('source', {})
     log.info('Valid Payload from AMO queue: %s', payload)
@@ -243,26 +263,11 @@ def process_webhook_payload_decision(payload):
     # review), or otherwise - then we don't have a CinderJob instance. So identify the
     # target from the id (pk) and entity schema.
     cinder_job = get_job_from_payload(payload)
-    if cinder_job:
-        target = cinder_job.target
-    else:
-        entity = payload.get('entity', {})
-        created = entity.get('attributes', {}).get('created')
-        target = get_instance_from_entity(
-            entity_schema=entity.get('entity_schema'),
-            entity_id=entity.get('attributes', {}).get('id'),
-        )
-        # We trust Cinder is reporting a decision on the correct instance by
-        # double-checking the created time of the instance is the same as the one in the
-        # payload. In production a wrong instance shouldn't happen, but in staging it
-        # could be the job was created from an instance from a different env.
-        if not target or not is_same_time(target, created):
-            log.debug(
-                'Could not identify entity id %s with schema %s',
-                entity.get('attributes', {}).get('id'),
-                entity.get('entity_schema'),
-            )
-            raise CinderWebhookMissingIdError('Unknown entity id received')
+    target = (
+        cinder_job.target
+        if cinder_job
+        else get_target_from_payload_entity(payload.get('entity', {}))
+    )
 
     enforcement_actions = filter_enforcement_actions(
         payload.get('enforcement_actions') or [],
@@ -297,27 +302,64 @@ def process_webhook_payload_decision(payload):
 
 
 def process_webhook_payload_job_actioned(payload):
-    if (action := payload.get('action')) != 'escalated':
-        log.debug('Cinder webhook action was invalid (not "escalated")')
-        raise CinderWebhookError(f'Unsupported action ({action}) for job.actioned')
     job = payload.get('job', {})
-    entity = job.get('entity', {}).get('entity_schema')
-    if entity != CinderAddon.type:
+    entity_schema = job.get('entity', {}).get('entity_schema')
+    if entity_schema != CinderAddon.type:
         log.debug('Cinder webhook entity_schema was not %s', CinderAddon.type)
         raise CinderWebhookIgnoredError(
-            f'Unsupported entity_schema ({entity}) for job.actioned'
+            f'Unsupported entity_schema ({entity_schema}) for job.actioned'
         )
+
     job_id = job.get('id', '')
+    match action := payload.get('action'):
+        case 'escalated':
+            log.info('Valid Payload from AMO queue: %s', payload)
+            try:
+                cinder_job = CinderJob.objects.get(job_id=job_id)
+            except CinderJob.DoesNotExist as exc:
+                log.debug('CinderJob instance not found for job id %s', job_id)
+                raise CinderWebhookMissingIdError('No matching job id found') from exc
 
-    try:
-        cinder_job = CinderJob.objects.get(job_id=job_id)
-    except CinderJob.DoesNotExist as exc:
-        log.debug('CinderJob instance not found for job id %s', job_id)
-        raise CinderWebhookMissingIdError('No matching job id found') from exc
+            new_queue = payload.get('job', {}).get('queue', {}).get('slug')
+            notes = payload.get('notes', '')
+            cinder_job.process_queue_move(new_queue=new_queue, notes=notes)
 
-    new_queue = payload.get('job', {}).get('queue', {}).get('slug')
-    notes = payload.get('notes', '')
-    cinder_job.process_queue_move(new_queue=new_queue, notes=notes)
+        case 'created':
+            log.info('Valid Payload from AMO queue: %s', payload)
+            if (source := payload.get('source')) != 'workflow':
+                log.debug(
+                    'Cinder webhook job.actioned was created, but source is "%s", '
+                    'not "workflow", so skipped.',
+                    source,
+                )
+                raise CinderWebhookIgnoredError(
+                    f'Unsupported source ({source}) for job.actioned:created'
+                )
+            elif (
+                workflow_name := payload.get('action_made_by', {})
+                .get('workflow', {})
+                .get('name')
+            ) != CinderAddonContentReview.workflow_pretty_name:
+                log.debug(
+                    'Cinder webhook job.actioned was created, but workflow is "%s", '
+                    'so skipped.',
+                    workflow_name,
+                )
+                raise CinderWebhookIgnoredError(
+                    f'Unsupported workflow ({workflow_name}) for job.actioned:created'
+                )
+            else:
+                payload.get('action_made_by', {}).get('workflow', {}).get('name')
+                target = get_target_from_payload_entity(job.get('entity', {}))
+                cinder_job, _ = CinderJob.objects.get_or_create(
+                    job_id=job_id,
+                    defaults={'target_addon': target, 'content_review': True},
+                )
+        case _:
+            log.debug('Cinder webhook action was invalid (was "%s")', action)
+            raise CinderWebhookIgnoredError(
+                f'Unsupported action ({action}) for job.actioned'
+            )
 
 
 @api_view(['POST'])

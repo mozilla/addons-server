@@ -2658,6 +2658,46 @@ class TestContentDecision(TestCase):
         addon = Addon.unfiltered.get()
         assert addon in Addon.unfiltered.get_queryset_for_pending_queues()
 
+    def test_appeal_as_target_on_content_review_job(self):
+        addon = addon_factory(status=amo.STATUS_REJECTED)
+        cinder_job = CinderJob.objects.create(
+            target_addon=addon,
+            decision=ContentDecision.objects.create(
+                cinder_id='4815162342-lost',
+                action_date=self.days_ago(179),
+                action=DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
+                addon=addon,
+            ),
+            content_review=True,
+        )
+        appeal_response = responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/appeal',
+            json={'external_id': '2432615184-tsol'},
+            status=201,
+        )
+
+        cinder_job.decision.appeal(
+            abuse_report=None,
+            appeal_text='appeal text',
+            user=user_factory(),
+            is_reporter=False,
+        )
+
+        cinder_job.reload()
+        assert cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
+        assert cinder_job.decision.appeal_job.target_addon == addon
+        assert cinder_job.decision.appeal_job.content_review is True
+
+        assert appeal_response.call_count == 1
+        request = responses.calls[0].request
+        request_body = json.loads(request.body)
+        assert request_body['reasoning'] == 'appeal text'
+        assert request_body['decision_to_appeal_id'] == str(
+            cinder_job.decision.cinder_id
+        )
+        assert request_body['queue_slug'] == 'amo-env-listing-content'
+
     def test_appeal_as_target_improperly_configured(self):
         addon = addon_factory()
         abuse_report = AbuseReport.objects.create(

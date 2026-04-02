@@ -1600,7 +1600,7 @@ class TestCinderWebhook(TestCase):
         with override_settings(CINDER_UNIQUE_IDS=True):
             self._test_unkownn_cinder_job_and_entity(400)
 
-    def test_unkownn_cinder_job_but_known_entity(self):
+    def test_unknown_cinder_job_but_known_entity(self):
         assert not CinderJob.objects.exists()
         data = self.get_data()
         addon = addon_factory(
@@ -1796,7 +1796,7 @@ class TestCinderWebhook(TestCase):
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
 
-    def _test_process_queue_move_no_cinder_report(self, status_code):
+    def _test_process_queue_move_no_cinder_job(self, status_code):
         req = self.get_request(
             data=self.get_data('job_actioned_move_to_dev_infringement.json')
         )
@@ -1812,20 +1812,69 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_process_queue_move_no_cinder_report_nonprod(self):
+    def test_process_queue_move_no_cinder_job_nonprod(self):
         with override_settings(CINDER_UNIQUE_IDS=False):
-            self._test_process_queue_move_no_cinder_report(200)
+            self._test_process_queue_move_no_cinder_job(200)
 
-    def test_process_queue_move_no_cinder_report_prod(self):
+    def test_process_queue_move_no_cinder_job_prod(self):
         with override_settings(CINDER_UNIQUE_IDS=True):
-            self._test_process_queue_move_no_cinder_report(400)
+            self._test_process_queue_move_no_cinder_job(400)
 
-    def test_process_queue_move_invalid_action(self):
+    def test_create_content_review_cinder_job_from_workflow(self):
+        data = self.get_data('job_actioned_workflow_created_job.json')
+        addon = addon_factory(
+            id=10000,
+            created=datetime.fromisoformat(
+                data['payload']['job']['entity']['attributes']['created']
+            ),
+        )
+        req = self.get_request(data=data)
+        assert not CinderJob.objects.exists()
+
+        response = cinder_webhook(req)
+        assert (job := CinderJob.objects.get())
+        assert job.job_id == '0aa2e6b6-9899-4bd0-9f59-94e8762861ba'
+        assert job.target_addon == addon
+        assert job.content_review is True
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_proccess_webhook_payload_job_actioned_wrong_workflow(self):
+        data = self.get_data('job_actioned_workflow_created_job.json')
+        data['payload']['action_made_by']['workflow']['name'] = 'someother workflow'
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Unsupported workflow (someother workflow) for job.actioned:created'
+                ),
+            }
+        }
+
+    def test_process_webhook_payload_job_actioned_wrong_source(self):
+        data = self.get_data('job_actioned_workflow_created_job.json')
+        data['payload']['source'] = 'not-workflow'
+        response = cinder_webhook(self.get_request(data=data))
+        assert response.status_code == 200
+        assert response.data == {
+            'amo': {
+                'received': True,
+                'handled': False,
+                'not_handled_reason': (
+                    'Unsupported source (not-workflow) for job.actioned:created'
+                ),
+            }
+        }
+
+    def test_process_webhook_payload_job_actioned_invalid_action(self):
         data = self.get_data('job_actioned_move_to_dev_infringement.json')
 
         data['payload']['action'] = 'something_else'
         response = cinder_webhook(self.get_request(data=data))
-        assert response.status_code == 400
+        assert response.status_code == 200
         assert response.data == {
             'amo': {
                 'received': True,
@@ -1836,7 +1885,7 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-    def test_process_queue_move_not_addon(self):
+    def test_process_webhook_payload_job_actioned_not_addon(self):
         data = self.get_data('job_actioned_move_to_dev_infringement.json')
 
         data['payload']['job']['entity']['entity_schema'] = 'amo_user'

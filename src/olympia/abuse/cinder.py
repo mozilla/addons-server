@@ -647,6 +647,10 @@ class WorkflowEventSendMixin:
 
     workflow_name = None  # Needs to be defined by subclasses
 
+    @property
+    def workflow_pretty_name(self):
+        return self.workflow_name
+
     def change_to_v2_syntax(self, subgraph):
         """api/v2 syntax is a bit different, we need to change the format of the
         subgraph a bit before sending it."""
@@ -697,6 +701,7 @@ class WorkflowEventSendMixin:
 class CinderAddonContentReview(WorkflowEventSendMixin, CinderAddon):
     queue_suffix = 'listing-content'
     workflow_name = 'amo_addon.contentreview'
+    workflow_pretty_name = 'Amo Addon Contentreview'
 
     def appeal(self, *, decision_cinder_id, **kwargs):
         # We don't flag for NHR for content review follow-ups
