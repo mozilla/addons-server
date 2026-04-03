@@ -466,6 +466,16 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
         ('bеta', {'beta'}),
         ('Zoom', {'zoom'}),
         ('ТЕСТ0n1𝓀', {'tectonik', 'tectonlk'}),
+        ('shortlol', {'shortlol', 'shortloi', 'shortiol', 'shortioi'}),
+        (
+            'notsoshortnotsoshortnotsoshortnotsoshortnotsoshortlol',
+            {'notsoshortnotsoshortnotsoshortnotsoshortnotsoshortlol'},
+        ),
+        ('lدloبرمجيoطور', {'iloo', 'lioo', 'lloo', 'iioo'}),
+        (
+            'lدloبرمجيoطورaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+            {'llooaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'},
+        ),
     ],
 )
 def test_generate_lowercase_homoglyphs_variants_for_string(value, expected):
