@@ -474,7 +474,8 @@ def test_normalize_string_for_name_checks_with_specific_category(value, expected
         ('lدloبرمجيoطور', {'iloo', 'lioo', 'lloo', 'iioo'}),
         (
             'lدloبرمجيoطورaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
-            {'llooaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'}),
+            {'llooaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'},
+        ),
     ],
 )
 def test_generate_lowercase_homoglyphs_variants_for_string(value, expected):
