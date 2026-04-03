@@ -37,7 +37,11 @@ from olympia.addons.models import (
     DeniedSlug,
     Preview,
 )
-from olympia.addons.utils import remove_icons, validate_addon_name
+from olympia.addons.utils import (
+    remove_icons,
+    validate_addon_name,
+    validate_addon_summary,
+)
 from olympia.amo.enum import StrEnumChoices
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
@@ -121,16 +125,20 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
         return clean_addon_slug(self.cleaned_data['slug'], self.instance)
 
     def clean_summary(self):
+        user = getattr(self.request, 'user', None)
         summary = verify_no_urls(
             self.cleaned_data['summary'], form=self, field_name='summary'
+        )
+        summary = validate_addon_summary(
+            summary,
+            user=user,
+            form=self,
         )
         return summary
 
     def clean_name(self):
         user = getattr(self.request, 'user', None)
-
         name = validate_addon_name(self.cleaned_data['name'], user=user, form=self)
-
         return name
 
     def save(self, *args, **kwargs):

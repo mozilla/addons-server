@@ -722,6 +722,28 @@ class TestDescribeForm(TestCase):
             )
         )
 
+    def test_name_not_allowed(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'I' * 20, 'summary': 'foö', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious,
+        )
+        assert not form.is_valid()
+        assert form.errors['name'].data[0].message == 'This name cannot be used.'
+
+    def test_summary_not_allowed(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Ok', 'summary': 'I' * 20, 'slug': 'bar'},
+            request=self.request,
+            instance=delicious,
+        )
+        assert not form.is_valid()
+        assert form.errors['summary'].data[0].message == (
+            'This add-on summary or description cannot be used.'
+        )
+
     def test_name_trademark_allowed_for_prefix(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(

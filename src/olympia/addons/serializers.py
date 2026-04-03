@@ -96,6 +96,7 @@ from .validators import (
     NoThemesValidator,
     ReviewedSourceFileValidator,
     ValidateAddonName,
+    ValidateAddonSummary,
     VersionAddonMetadataValidator,
     VersionLicenseValidator,
 )
@@ -1072,7 +1073,11 @@ class AddonSerializer(AMOModelSerializer):
     )
     summary = TranslationSerializerField(
         required=False,
-        validators=[OneOrMoreLetterOrNumberCharacterValidator(), NoURLsValidator()],
+        validators=[
+            ValidateAddonSummary(),
+            OneOrMoreLetterOrNumberCharacterValidator(),
+            NoURLsValidator(),
+        ],
     )
     support_email = EmailTranslationField(required=False)
     support_url = OutgoingURLTranslationField(required=False)

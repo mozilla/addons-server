@@ -9,7 +9,7 @@ from olympia.amo.utils import find_language
 from olympia.versions.models import License
 
 from .models import Addon
-from .utils import validate_addon_name
+from .utils import validate_addon_name, validate_addon_summary
 
 
 class ValidateAddonName:
@@ -19,6 +19,17 @@ class ValidateAddonName:
         user = serializer_field.context['request'].user
         try:
             validate_addon_name(value, user=user)
+        except forms.ValidationError as exc:
+            raise exceptions.ValidationError(exc.message) from exc
+
+
+class ValidateAddonSummary:
+    requires_context = True
+
+    def __call__(self, value, serializer_field):
+        user = serializer_field.context['request'].user
+        try:
+            validate_addon_summary(value, user=user)
         except forms.ValidationError as exc:
             raise exceptions.ValidationError(exc.message) from exc
 
