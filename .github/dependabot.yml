@@ -2,7 +2,7 @@ version: 2
 registries:
   dockerhub:
     type: docker-registry
-    url: https://registry-1.docker.io
+    url: https://registry.hub.docker.com
     username: "mozilla"
     password: ${{ secrets.DOCKER_HUB_MOZILLA_OAT }}
 updates:
