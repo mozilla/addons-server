@@ -1016,7 +1016,7 @@ class Addon(OnChangeMixin, ModelBase):
             # Truncate like we would if the default locale was valid, because
             # the result will be used as-is.
             for field in fields:
-                if 'field' in data:
+                if field in data:
                     max_length = cls._meta.get_field(field).max_length
                     data[field] = (
                         data[field][:max_length] if data[field] is not None else None
