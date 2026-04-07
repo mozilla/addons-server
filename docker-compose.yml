@@ -142,7 +142,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.13@sha256:b9f90aa70522c9a26ded74095755ba574294474e4a1cde902c0bc221e2a15daf
+    image: elasticsearch:8.19.13@sha256:8b4e9c93353905721e37663f845756d6d7e57632357e865e66f0b70d6c9b3211
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
