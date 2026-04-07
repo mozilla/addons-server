@@ -7,6 +7,8 @@ registries:
     password: ${{ secrets.DOCKER_HUB_MOZILLA_OAT }}
 updates:
 - package-ecosystem: "docker"
+  registries:
+    - dockerhub
   directory: "/"
   schedule:
     interval: weekly
@@ -14,6 +16,8 @@ updates:
     default-days: 7
   open-pull-requests-limit: 99
 - package-ecosystem: "docker-compose"
+  registries:
+    - dockerhub
   directory: "/"
   schedule:
     interval: weekly
