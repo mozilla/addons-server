@@ -623,6 +623,8 @@ class TestScannerRuleMixin:
             'examine_normalized_variants': True,
             'examine_slug': False,
             'examine_xpi_names': True,
+            'examine_xpi_descriptions': False,
+            'examine_listing_summaries': False,
         }
         return rule
 
@@ -637,6 +639,8 @@ class TestScannerRuleMixin:
             'examine_normalized_variants': True,
             'examine_slug': True,
             'examine_xpi_names': True,
+            'examine_xpi_descriptions': False,
+            'examine_listing_summaries': False,
         }
 
 

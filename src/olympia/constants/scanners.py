@@ -104,10 +104,23 @@ NARC_RULE_CONFIGURATION_SCHEMA = {
                 'Run the rule against the add-on name(s) used for the listing on AMO'
             ),
         },
+        'examine_listing_summaries': {
+            'type': 'boolean',
+            'default': False,
+            'helpText': (
+                'Run the rule against the add-on summary/summaries used for the '
+                'listing on AMO'
+            ),
+        },
         'examine_xpi_names': {
             'type': 'boolean',
             'default': True,
             'helpText': 'Run the rule against the add-on name(s) in the XPI',
+        },
+        'examine_xpi_descriptions': {
+            'type': 'boolean',
+            'default': False,
+            'helpText': 'Run the rule against the add-on description(s) in the XPI',
         },
         'examine_authors_names': {
             'type': 'boolean',
