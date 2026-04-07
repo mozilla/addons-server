@@ -1013,7 +1013,14 @@ class Addon(OnChangeMixin, ModelBase):
         default_locale = find_language(data.get('default_locale'))
 
         if not default_locale:
-            # Don't change anything if we don't meet the requirements
+            # Truncate like we would if the default locale was valid, because
+            # the result will be used as-is.
+            for field in fields:
+                max_length = cls._meta.get_field(field).max_length
+                data[field] = (
+                    data[field][:max_length] if data[field] is not None else None
+                )
+
             return data
 
         # find_language might have expanded short to full locale, so update it.
@@ -1022,12 +1029,13 @@ class Addon(OnChangeMixin, ModelBase):
         messages = extract_translations(upload)
 
         for field in fields:
+            max_length = cls._meta.get_field(field).max_length
             if isinstance(data[field], dict):
                 # if the field value is already a localized set of values don't override
                 continue
             if messages:
                 data[field] = {
-                    locale: value
+                    locale: value[:max_length]
                     for locale in messages
                     if (
                         value := resolve_i18n_message(
@@ -1044,7 +1052,11 @@ class Addon(OnChangeMixin, ModelBase):
                 # If we got a default_locale but no messages then the default_locale has
                 # been set via the serializer for a non-localized xpi, so format data
                 # correctly so the manifest values are assigned the correct locale.
-                data[field] = {default_locale: data[field]}
+                data[field] = {
+                    default_locale: data[field][:max_length]
+                    if data[field] is not None
+                    else None
+                }
 
         return data
 

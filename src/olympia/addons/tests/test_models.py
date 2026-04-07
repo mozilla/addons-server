@@ -3420,7 +3420,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
             )
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
-    def test_webextension_resolve_translations(self):
+    def test_webext_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
         parsed_data = parse_addon(self.upload, user=self.user)
         addon = Addon.from_upload(
@@ -3430,7 +3430,7 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         # Normalized from `en` to `en-US`
         assert addon.default_locale == 'en-US'
         assert addon.name == 'Notify link clicks i18n'
-        assert addon.summary == ('Shows a notification when the user clicks on links.')
+        assert addon.summary == 'Shows a notification when the user clicks on links.'
 
         # Make sure we set the correct slug
         assert addon.slug == 'notify-link-clicks-i18n'
@@ -3439,6 +3439,78 @@ class TestAddonFromUpload(UploadMixin, TestCase):
         addon.reload()
         assert addon.name == 'Meine Beispielerweiterung'
         assert addon.summary == 'Benachrichtigt den Benutzer über Linkklicks'
+
+    @patch('olympia.addons.models.resolve_i18n_message', lambda *args, **kw: 'A' * 500)
+    def test_webext_resolve_translations_truncate_to_max_length(self):
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        addon = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+        )
+        assert len(str(addon.name)) == 50
+        assert len(str(addon.summary)) == 250
+        assert (
+            len(Translation.objects.get(locale='de', id=addon.name.id).localized_string)
+            == 50
+        )
+        assert (
+            len(
+                Translation.objects.get(
+                    locale='de', id=addon.summary.id
+                ).localized_string
+            )
+            == 250
+        )
+
+    def test_webext_resolve_translations_truncate_to_max_length_invalid_locale(self):
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        parsed_data['default_locale'] = 'xx'
+        parsed_data['name'] = 'A' * 500
+        parsed_data['summary'] = 'B' * 500
+        addon = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+        )
+        assert len(str(addon.name)) == 50
+        assert len(str(addon.summary)) == 250
+        # Translations were not imported because of the invalid default locale.
+        assert Translation.objects.filter(id=addon.name.id).count() == 1
+        assert Translation.objects.filter(id=addon.summary.id).count() == 1
+
+    def test_webext_resolve_translations_truncate_to_max_length_unknown_locale(self):
+        self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        parsed_data['default_locale'] = 'sv'
+        parsed_data['name'] = 'A' * 500
+        parsed_data['summary'] = 'B' * 500
+        addon = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+        )
+        assert len(str(addon.name)) == 50
+        assert len(str(addon.summary)) == 250
+        assert (
+            len(Translation.objects.get(locale='de', id=addon.name.id).localized_string)
+            == 50
+        )
+        assert (
+            len(
+                Translation.objects.get(
+                    locale='de', id=addon.summary.id
+                ).localized_string
+            )
+            == 250
+        )
+
+    def test_webext_resolve_translations_truncate_to_max_length_untranslated(self):
+        self.upload = self.get_upload('webextension.xpi')
+        parsed_data = parse_addon(self.upload, user=self.user)
+        parsed_data['name'] = 'A' * 500
+        parsed_data['summary'] = 'B' * 500
+        addon = Addon.from_upload(
+            self.upload, selected_apps=[self.selected_app], parsed_data=parsed_data
+        )
+        assert len(str(addon.name)) == 50
+        assert len(str(addon.summary)) == 250
 
     def test_webext_resolve_translations_corrects_locale(self):
         """Make sure we correct invalid `default_locale` values"""
