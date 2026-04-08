@@ -6,6 +6,7 @@ from django.urls import reverse
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
+from olympia.constants.blocklist import BlockType
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version
 
@@ -14,8 +15,6 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 
 def block_activity_log_save(obj, *, change, submission_obj):
-    from .models import BlockType
-
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
     action_version = amo.LOG.BLOCKLIST_VERSION_BLOCKED
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
@@ -203,18 +202,27 @@ def save_versions_to_blocks(guids, submission, *, overwrite_block_metadata=True)
         block_versions_to_update = []
         for version in block.addon_versions:
             if version.id in submission.changed_version_ids:
-                if version.is_blocked:
-                    block_version = version.blockversion
-                    block_versions_to_update.append(block_version)
-                else:
-                    block_version = BlockVersion(block=block, version=version)
+                if not version.is_blocked:
+                    # Version is not currently blocked, we can just create a
+                    # BlockVersion with the block_type of the submission.
+                    block_version = BlockVersion(
+                        block=block, version=version, block_type=submission.block_type
+                    )
                     block_versions_to_create.append(block_version)
                     version.blockversion = block_version
-                block_version.block_type = submission.block_type
+                # Version is already blocked: we need to check, soft-blocking a
+                # version already blocked should only be possible through a
+                # soften action, otherwise we need to skip.
+                elif (
+                    submission.block_type == BlockType.SOFT_BLOCKED
+                    and submission.action == submission.ACTIONS.SOFTEN
+                ) or (submission.block_type == BlockType.BLOCKED):
+                    block_version = version.blockversion
+                    block_version.block_type = submission.block_type
+                    block_versions_to_update.append(block_version)
+
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
-            # Note: we shouldn't have gotten this far with such a guid - it would have
-            # been raised as a validation error in the form.
             continue
         block.save()
         # Update existing BlockVersion in bulk - the only field to update is
@@ -297,8 +305,6 @@ def get_mlbf_base_id_config_key(block_type, compat: bool = False):
     This allows us to migrate writes to the new plural key right now without
     losing access to the old existing key when deploying this patch.
     """
-    from olympia.blocklist.models import BlockType
-
     if compat and block_type == BlockType.BLOCKED:
         return amo.config_keys.BLOCKLIST_MLBF_BASE_ID
     return getattr(amo.config_keys, f'BLOCKLIST_MLBF_BASE_ID_{block_type.name.upper()}')

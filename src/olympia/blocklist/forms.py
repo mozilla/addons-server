@@ -214,7 +214,6 @@ class BlocklistSubmissionForm(AMOModelForm):
                         (version.id, version.version)
                         for version in block.addon_versions
                         if self.should_version_be_available_for_action(version)
-                        and not version.blocklist_submission_id
                     ],
                 )
                 for block in self.blocks

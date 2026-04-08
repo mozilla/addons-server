@@ -34,9 +34,6 @@
           {% else %}
             <span>
               {{ version.version }} ({% if version.is_blocked %}{{ version.blockversion.get_block_type_display }}{% else %}&#x1F7E2; Not Blocked{% endif %})
-              {% if version.blocklist_submission_id %}
-                [<a href="{% url 'admin:blocklist_blocklistsubmission_change' version.blocklist_submission_id %}">Edit Submission</a>]
-              {% endif %}
             </span>
           {% endif %}
           </li>
