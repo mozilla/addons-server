@@ -13,7 +13,6 @@ import waffle
 from waffle.testutils import override_switch
 
 from olympia import amo, core
-from olympia.abuse.models import AbuseReport, CinderJob, ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonApprovalsCounter, Preview
 from olympia.amo.tests import (
@@ -48,6 +47,12 @@ from ..cinder import (
     CinderReport,
     CinderUnauthenticatedReporter,
     CinderUser,
+)
+from ..models import (
+    AbuseReport,
+    CinderJob,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
 )
 
 
@@ -1264,7 +1269,11 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, cinder_id='some_id', addon=addon
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            ),
+            cinder_id='some_id',
+            addon=addon,
         )
         # An activity log links the flagged_version to the decision, even though the
         # versions_strings on the CinderClass below is set to None
@@ -1307,7 +1316,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
             ContentDecision.objects.create(
                 addon=addon,
                 cinder_id='1234-decision',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+                ),
             )
         )
         # Trigger switch_is_active to ensure it's cached to make db query
@@ -1517,7 +1528,9 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         )
         appeal = CinderJob.objects.create(job_id='an appeal job')
         ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            ),
             addon=cinder_instance.addon,
             appeal_job=appeal,
             cinder_job=cinder_job,

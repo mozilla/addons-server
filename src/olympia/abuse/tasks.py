@@ -151,7 +151,9 @@ def appeal_to_cinder(
 @use_primary_db
 def report_decision_to_cinder_and_notify(*, decision_id, notify_owners=True):
     decision = ContentDecision.objects.get(id=decision_id)
-    is_content_review = decision.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+    is_content_review = (
+        decision.first_action.enforcement == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+    )
     entity_helper = CinderJob.get_entity_helper(
         decision.target,
         resolved_in_reviewer_tools=True,

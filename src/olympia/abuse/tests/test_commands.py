@@ -12,7 +12,13 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory, version_fac
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.reviewers.models import NeedsHumanReview
 
-from ..models import AbuseReport, CinderJob, CinderQueueMove, ContentDecision
+from ..models import (
+    AbuseReport,
+    CinderJob,
+    CinderQueueMove,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 
 
 @pytest.mark.django_db
@@ -105,9 +111,15 @@ class TestAutoResolveReports(TestCase):
         assert CinderJob.objects.unresolved().count() == 1
         assert CinderJob.objects.unresolved().get() == job_not_reviewed
         assert job1.reload().decision
-        assert job1.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job1.decision.first_action.enforcement
+            == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
         assert job2.reload().decision
-        assert job2.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job2.decision.first_action.enforcement
+            == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
         # NHRs should be cleared.
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon1, is_active=True
@@ -147,7 +159,9 @@ class TestAutoResolveReports(TestCase):
             job_id='appealled',
             decision=ContentDecision.objects.create(
                 addon=addon3,
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+                ),
                 appeal_job=job_appeal,
             ),
         )
@@ -164,11 +178,15 @@ class TestAutoResolveReports(TestCase):
         ContentDecision.objects.create(
             cinder_job=job_second_level,
             addon=addon4,
-            action=DECISION_ACTIONS.AMO_REQUEUE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_REQUEUE
+            ),
             override_of=ContentDecision.objects.create(
                 cinder_job=job_second_level,
                 addon=addon4,
-                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+                ),
             ),
         )
         AbuseReport.objects.create(
@@ -197,7 +215,10 @@ class TestAutoResolveReports(TestCase):
             job_second_level,
         ]
         assert job_forwarded.reload().decision
-        assert job_forwarded.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job_forwarded.decision.first_action.enforcement
+            == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
         # NHR should be cleared.
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon1, is_active=True

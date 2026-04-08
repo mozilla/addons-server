@@ -38,7 +38,13 @@ from ..actions import (
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
-from ..models import AbuseReport, CinderAppeal, CinderJob, ContentDecision
+from ..models import (
+    AbuseReport,
+    CinderAppeal,
+    CinderJob,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 from ..views import CinderInboundPermission, cinder_webhook, filter_enforcement_actions
 
 
@@ -1316,7 +1322,9 @@ class TestCinderWebhook(TestCase):
         )
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+            ),
             appeal_job=appeal_job,
             addon=addon,
             cinder_job=original_cinder_job,
@@ -1356,9 +1364,11 @@ class TestCinderWebhook(TestCase):
             job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
         )
         ContentDecision.objects.create(
-            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime(2023, 10, 11, 9, 8, 37, 4789),
+            ),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_APPROVE,
             appeal_job=appeal_job,
             addon=addon,
             cinder_job=original_cinder_job,
@@ -1386,7 +1396,9 @@ class TestCinderWebhook(TestCase):
         abuse_report = self._setup_reports()
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            ),
             addon=addon_factory(guid=abuse_report.guid),
             cinder_job=CinderJob.objects.get(),
             from_job_queue='queue-for-original-decision',
@@ -1416,9 +1428,11 @@ class TestCinderWebhook(TestCase):
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
         ContentDecision.objects.create(
-            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                enforcement_date=datetime(2023, 10, 11, 9, 8, 37, 4789),
+            ),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             appeal_job=CinderJob.objects.create(
                 job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
             ),
@@ -1442,9 +1456,11 @@ class TestCinderWebhook(TestCase):
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
         ContentDecision.objects.create(
-            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                enforcement_date=datetime(2023, 10, 11, 9, 8, 37, 4789),
+            ),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             appeal_job=CinderJob.objects.create(
                 job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
             ),
@@ -1470,9 +1486,11 @@ class TestCinderWebhook(TestCase):
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
         ContentDecision.objects.create(
-            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime(2023, 10, 11, 9, 8, 37, 4789),
+            ),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_APPROVE,
             appeal_job=CinderJob.objects.create(
                 job_id='5ab7cb33-a5ab-4dfa-9d72-4c2061ffeb08'
             ),
@@ -1506,9 +1524,11 @@ class TestCinderWebhook(TestCase):
         addon = addon_factory(guid=abuse_report.guid, users=[author])
         original_cinder_job = CinderJob.objects.get()
         ContentDecision.objects.create(
-            action_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime(2023, 10, 12, 9, 8, 37, 4789),
+            ),
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_APPROVE,
             appeal_job=CinderJob.objects.create(
                 job_id='5c7c3e21-8ccd-4d2f-b3b4-429620bd7a63'
             ),
@@ -1675,7 +1695,9 @@ class TestCinderWebhook(TestCase):
         abuse_report = self._setup_reports()
         ContentDecision.objects.create(
             cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            ),
             addon=addon_factory(guid=abuse_report.guid),
         )
         req = self.get_request(
@@ -2782,8 +2804,10 @@ class TestAppeal(TestCase):
         self.cinder_job = CinderJob.objects.create(
             decision=ContentDecision.objects.create(
                 cinder_id='my-decision-id',
-                action=DECISION_ACTIONS.AMO_APPROVE,
-                action_date=self.days_ago(1),
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                    enforcement_date=self.days_ago(1),
+                ),
                 addon=self.addon,
             ),
             created=self.days_ago(2),
@@ -2910,7 +2934,9 @@ class TestAppeal(TestCase):
         }
 
     def test_appeal_approval_anonymous_report_with_email_post_cant_be_appealed(self):
-        self.cinder_job.decision.update(action_date=self.days_ago(200))
+        self.cinder_job.decision.first_action.update(
+            enforcement_date=self.days_ago(200)
+        )
         self.abuse_report.update(reporter_email='me@example.com')
         response = self.client.get(self.reporter_appeal_url)
         assert response.status_code == 200
@@ -2965,7 +2991,9 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
     def test_appeal_approval_logged_in_report_cant_be_appealed(self):
-        self.cinder_job.decision.update(action_date=self.days_ago(200))
+        self.cinder_job.decision.first_action.update(
+            enforcement_date=self.days_ago(200)
+        )
         self.user = user_factory()
         self.abuse_report.update(reporter=self.user)
         self.client.force_login(self.user)
@@ -2980,19 +3008,25 @@ class TestAppeal(TestCase):
         assert self.appeal_mock.call_count == 0
 
     def test_appeal_rejection_not_logged_in(self):
-        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         response = self.client.get(self.author_appeal_url)
         self.assertLoginRedirects(response, self.author_appeal_url)
 
     def test_appeal_rejection_not_author(self):
-        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         user = user_factory()
         self.client.force_login(user)
         response = self.client.get(self.author_appeal_url)
         assert response.status_code == 403
 
     def test_appeal_rejection_author(self):
-        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)
@@ -3029,9 +3063,11 @@ class TestAppeal(TestCase):
         self.client.force_login(user)
         decision = ContentDecision.objects.create(
             addon=self.addon,
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                enforcement_date=datetime.now(),
+            ),
             cinder_id='some-decision-id',
-            action_date=datetime.now(),
         )
         author_appeal_url = reverse(
             'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
@@ -3065,8 +3101,9 @@ class TestAppeal(TestCase):
 
     def test_appeal_banned_user(self):
         target = user_factory()
-        self.cinder_job.decision.update(
-            action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
+        self.cinder_job.decision.update(addon=None, user=target)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_BAN_USER
         )
         self.abuse_report.update(guid=None, user=target)
         response = self.client.post(self.author_appeal_url, {'email': target.email})
@@ -3100,8 +3137,9 @@ class TestAppeal(TestCase):
 
     def test_appeal_banned_user_wrong_email(self):
         target = user_factory()
-        self.cinder_job.decision.update(
-            action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
+        self.cinder_job.decision.update(addon=None, user=target)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_BAN_USER
         )
         self.abuse_report.update(guid=None, user=target)
         response = self.client.post(self.author_appeal_url, {'email': 'me@example.com'})
@@ -3161,7 +3199,9 @@ class TestAppeal(TestCase):
         # decision).
         ContentDecision.objects.create(
             cinder_id='appeal decision id',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE
+            ),
             addon=self.addon,
             cinder_job=appeal_job,
         )
@@ -3211,7 +3251,9 @@ class TestAppeal(TestCase):
         # not have noticed).
         ContentDecision.objects.create(
             cinder_id='appeal decision id',
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+            ),
             addon=self.addon,
             cinder_job=appeal_job,
         )
@@ -3242,7 +3284,9 @@ class TestAppeal(TestCase):
 
         ContentDecision.objects.create(
             cinder_id='appeal decision id',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE
+            ),
             addon=self.addon,
             override_of=self.cinder_job.decision,
         )
@@ -3259,7 +3303,9 @@ class TestAppeal(TestCase):
         )
 
     def test_author_cant_appeal_overridden_decision(self):
-        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)
@@ -3273,7 +3319,9 @@ class TestAppeal(TestCase):
 
         ContentDecision.objects.create(
             cinder_id='appeal decision id',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE
+            ),
             addon=self.addon,
             override_of=self.cinder_job.decision,
         )
@@ -3295,8 +3343,9 @@ class TestAppeal(TestCase):
             'Please try again after some time.'
         )
         target = user_factory()
-        self.cinder_job.decision.update(
-            action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
+        self.cinder_job.decision.update(addon=None, user=target)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_BAN_USER
         )
         self.abuse_report.update(guid=None, user=target)
         with time_machine.travel(datetime.now(), tick=False) as frozen_time:
@@ -3350,8 +3399,9 @@ class TestAppeal(TestCase):
             'Please try again after some time.'
         )
         target = user_factory()
-        self.cinder_job.decision.update(
-            action=DECISION_ACTIONS.AMO_BAN_USER, addon=None, user=target
+        self.cinder_job.decision.update(addon=None, user=target)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_BAN_USER
         )
         self.abuse_report.update(guid=None, user=target)
         with time_machine.travel(datetime.now(), tick=False):
@@ -3381,7 +3431,9 @@ class TestAppeal(TestCase):
             'You have submitted this form too many times recently. '
             'Please try again after some time.'
         )
-        self.cinder_job.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.cinder_job.decision.first_action.update(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
         user = user_factory()
         self.addon.authors.add(user)
         self.client.force_login(user)

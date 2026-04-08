@@ -413,7 +413,9 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         DECISION_ACTIONS.APPEALABLE_BY_REPORTER.values
     )
     cinder_decision = get_object_or_404(
-        ContentDecision.objects.filter(action__in=appealable_decisions),
+        ContentDecision.objects.filter(
+            first_action__enforcement__in=appealable_decisions
+        ),
         cinder_id=decision_cinder_id,
     )
 
@@ -428,7 +430,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     # Reporter appeal: we need an abuse report.
     if (
         abuse_report is None
-        and cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        and cinder_decision.first_action.enforcement
+        in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
     ):
         raise Http404
 
@@ -439,12 +442,15 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
     post_data = request.POST if request.method == 'POST' else None
     valid_user_or_email_provided = False
     appeal_email_form = None
-    if cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER or (
-        cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER
+    if (
+        cinder_decision.first_action.enforcement
+        in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        or (cinder_decision.first_action.enforcement == DECISION_ACTIONS.AMO_BAN_USER)
     ):
         # Only person would should be appealing an approval is the reporter.
         if (
-            cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+            cinder_decision.first_action.enforcement
+            in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             and abuse_report
             and abuse_report.reporter
         ):
@@ -453,8 +459,9 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             if not request.user.is_authenticated:
                 return redirect_for_login(request)
             valid_user_or_email_provided = request.user == abuse_report.reporter
-        elif cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER or (
-            abuse_report and abuse_report.reporter_email
+        elif (
+            cinder_decision.first_action.enforcement == DECISION_ACTIONS.AMO_BAN_USER
+            or (abuse_report and abuse_report.reporter_email)
         ):
             # Anonymous reporter appealing or banned user appealing is tricky,
             # we need the email to be submitted via POST to match. If there was
@@ -463,7 +470,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
             # longer be able to log in.
             expected_email = (
                 target.email
-                if cinder_decision.action == DECISION_ACTIONS.AMO_BAN_USER
+                if cinder_decision.first_action.enforcement
+                == DECISION_ACTIONS.AMO_BAN_USER
                 else abuse_report.reporter_email
             )
             appeal_email_form = AbuseAppealEmailForm(
@@ -501,7 +509,10 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         # After this point, the user is either authenticated or has entered the
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
-        is_reporter = cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        is_reporter = (
+            cinder_decision.first_action.enforcement
+            in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+        )
         if cinder_decision.can_be_appealed(
             is_reporter=is_reporter, abuse_report=abuse_report
         ):
@@ -536,8 +547,8 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                 # error message in this case.
                 context_data['appealed_decision_already_made'] = True
                 context_data['appealed_decision_affirmed'] = (
-                    cinder_decision.appeal_job.final_decision.action
-                    == cinder_decision.action
+                    cinder_decision.appeal_job.final_decision.first_action.enforcement
+                    == cinder_decision.first_action.enforcement
                 )
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)

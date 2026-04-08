@@ -453,8 +453,8 @@ class ContentDecisionAdmin(AMOModelAdmin):
         'user',
         'rating',
         'collection',
-        'action',
-        'action_date',
+        'first_action__enforcement',
+        'first_action__enforcement_date',
         'cinder_id',
         'reasoning',
         'private_notes',
@@ -463,14 +463,21 @@ class ContentDecisionAdmin(AMOModelAdmin):
     )
     list_display = (
         'created',
-        'action',
+        'first_action__enforcement',
         'addon',
         'user',
         'rating',
         'collection',
     )
+    list_select_related = ('first_action',)
     readonly_fields = fields
     view_on_site = False
+
+    def first_action__enforcement(self, obj):
+        return obj.first_action.enforcement if obj.first_action else None
+
+    def first_action__enforcement_date(self, obj):
+        return obj.first_action.enforcement_date if obj.first_action else None
 
     def has_add_permission(self, request):
         # Adding new decisions through the admin is useless, so we prevent it.

@@ -5,7 +5,11 @@ from django.core.management.base import BaseCommand
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.actions import ContentActionRejectVersionDelayed
-from olympia.abuse.models import CinderJob, ContentDecision
+from olympia.abuse.models import (
+    CinderJob,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -97,7 +101,9 @@ class Command(BaseCommand):
             # Fake a decision if there isn't a job
             else ContentDecision(
                 addon=addon,
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                first_action=ContentDecisionEnforcementAction(
+                    enforcement=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+                ),
             )
         )
         decision.reasoning = relevant_activity_log.details.get('comments', '')

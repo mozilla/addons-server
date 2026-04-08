@@ -74,8 +74,17 @@ def test_reject_and_block_addons():
 
     # 3 decisions; 2 are immediately executed; one is recommended so held for 2nd level
     assert ContentDecision.objects.count() == 3
-    assert ContentDecision.objects.filter(action_date__isnull=False).count() == 2
-    assert not ContentDecision.objects.filter(addon=recommended_addon).get().action_date
+    assert (
+        ContentDecision.objects.filter(
+            first_action__enforcement_date__isnull=False
+        ).count()
+        == 2
+    )
+    assert (
+        not ContentDecision.objects.filter(addon=recommended_addon)
+        .get()
+        .first_action.enforcement_date
+    )
 
     assert len(mail.outbox) == 2  # One for normal, one for partially blocked
     assert mail.outbox[0].to == [normal_addon.authors.get().email]

@@ -14,7 +14,12 @@ import waffle
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AttachmentLog, ReviewActionReasonLog
@@ -1150,25 +1155,23 @@ class ReviewBase:
 
         versions = versions or ([self.version] if self.version else [])
 
-        decision_kw = {
-            'addon': self.addon,
-            'action': cinder_action,
-            'action_date': datetime.now() if action_completed else None,
-            # Note: there is only a single field for comments in reviewer tools
-            # regardless of whether the comments are intended to be shared with
-            # the developer or kept private. We use `reasoning` field on the
-            # decision to store that comment in both cases, the decision action
-            # will then determine whether that `reasoning` is exposed or not.
-            'reasoning': self.data.get('comments', ''),
-            'reviewer_user': self.user,
-            'metadata': decision_metadata,
-        }
-
         def create_decision(job):
             decision = ContentDecision.objects.create(
                 cinder_job=job,
                 override_of=job.final_decision if job else None,
-                **decision_kw,
+                addon=self.addon,
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=cinder_action,
+                    enforcement_date=datetime.now() if action_completed else None,
+                ),
+                # Note: there is only a single field for comments in reviewer tools
+                # regardless of whether the comments are intended to be shared with
+                # the developer or kept private. We use `reasoning` field on the
+                # decision to store that comment in both cases, the decision action
+                # will then determine whether that `reasoning` is exposed or not.
+                reasoning=self.data.get('comments', ''),
+                reviewer_user=self.user,
+                metadata=decision_metadata,
             )
             decision.policies.set(policies)
             if versions:
@@ -1208,7 +1211,7 @@ class ReviewBase:
             # no-op that we just need for record-keeping purposes. We will only
             # notify the owners for that "complete" one.
             notify_owners = action_completed
-            log_entry_for_decision = decision.execute_action()
+            log_entry_for_decision = decision.first_action.execute()
             if log_entry_for_decision:
                 notify_owners = True
                 log_entry = log_entry_for_decision
@@ -1221,7 +1224,7 @@ class ReviewBase:
                     if update_queue_history:
                         self.update_queue_history(log_entry)
             elif log_entry:
-                # decision.execute_action() explicitly returned None but we
+                # decision.first_action.execute() explicitly returned None but we
                 # already have a log_entry: that means this decision was
                 # already carried out, we are just resolving multiple jobs with
                 # the same action. We need to attach the extra "no-op"
@@ -1246,7 +1249,7 @@ class ReviewBase:
         don't need to care about older ones anymore.
         """
         # Do a mass UPDATE. The NeedsHumanReview coming from abuse/appeal/escalations
-        # are only cleared in ContentDecision.execute_action() if the
+        # are only cleared in ContentDecision.first_action.execute() if the
         # reviewer has selected to resolve all jobs of that type though.
         NeedsHumanReview.objects.filter(
             version__addon=self.addon,
@@ -1397,8 +1400,10 @@ class ReviewBase:
             # notify cinder
             decision = ContentDecision.objects.create(
                 addon=self.addon,
-                action=previous_action_id,
-                action_date=datetime.now(),
+                first_action=ContentDecisionEnforcementAction.objects.create(
+                    enforcement=previous_action_id,
+                    enforcement_date=datetime.now(),
+                ),
                 reasoning=self.data.get('comments', ''),
                 reviewer_user=self.user,
                 cinder_job=job,
@@ -1414,7 +1419,7 @@ class ReviewBase:
                 policies=policies,
                 **({'version': version} if not previous_versions else {}),
             )
-            log_entry = decision.execute_action()
+            log_entry = decision.first_action.execute()
             self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
 

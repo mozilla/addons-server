@@ -89,7 +89,7 @@
   <form method="POST" class="review-held-action-form">
     {% csrf_token %}
     <div>{{ form }}</div>
-    <div><input type="submit" value="Process" {{ 'disabled' if decision.action_date else '' }}></div>
+    <div><input type="submit" value="Process" {{ 'disabled' if decision.first_action.enforcement_date else '' }}></div>
   </form>
 </div> {# /#primary #}
 {% endblock %}

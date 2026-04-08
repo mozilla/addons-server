@@ -842,7 +842,7 @@ class ContentActionTargetAppealApprove(
                 .order_by('-pk')
             )
             previous_decision_actions = self.previous_decisions.values_list(
-                'action', flat=True
+                'first_action__enforcement', flat=True
             )
             activity_log_action = None
 
@@ -1001,7 +1001,9 @@ class ContentActionTargetAppealRemovalAffirmation(
 
     def process_action(self, release_hold=False):
         previous_decision_actions = (
-            self.decision.cinder_job.appealed_decisions.values_list('action', flat=True)
+            self.decision.cinder_job.appealed_decisions.values_list(
+                'first_action__enforcement', flat=True
+            )
         )
         if (
             isinstance(self.target, Addon)

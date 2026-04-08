@@ -26,7 +26,13 @@ from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
 from ..cinder import CinderAddon, CinderAddonContentReview
-from ..models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from ..models import (
+    AbuseReport,
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 from ..tasks import (
     appeal_to_cinder,
     flag_high_abuse_reports_addons_according_to_review_tier,
@@ -590,9 +596,11 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     cinder_job = CinderJob.objects.create(
         decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime.now(),
+            ),
             addon=addon,
-            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -655,9 +663,11 @@ def test_addon_appeal_to_cinder_reporter_exception(
     cinder_job = CinderJob.objects.create(
         decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime.now(),
+            ),
             addon=addon,
-            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -706,9 +716,11 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     cinder_job = CinderJob.objects.create(
         decision=ContentDecision.objects.create(
             cinder_id='4815162342-abc',
-            action=DECISION_ACTIONS.AMO_APPROVE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE,
+                enforcement_date=datetime.now(),
+            ),
             addon=addon,
-            action_date=datetime.now(),
         )
     )
     abuse_report = AbuseReport.objects.create(
@@ -765,9 +777,11 @@ def test_addon_appeal_to_cinder_authenticated_author():
     addon = addon_factory(users=[user])
     decision = ContentDecision.objects.create(
         cinder_id='4815162342-abc',
-        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        first_action=ContentDecisionEnforcementAction.objects.create(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            enforcement_date=datetime.now(),
+        ),
         addon=addon,
-        action_date=datetime.now(),
     )
     responses.add(
         responses.POST,
@@ -825,8 +839,10 @@ def test_report_decision_to_cinder_and_notify_with_job():
     cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     decision = ContentDecision.objects.create(
         addon=abuse_report.addon,
-        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        action_date=datetime.now(),
+        first_action=ContentDecisionEnforcementAction.objects.create(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            enforcement_date=datetime.now(),
+        ),
         reasoning='some review text',
         cinder_job=cinder_job,
     )
@@ -875,8 +891,10 @@ def test_report_decision_to_cinder_and_notify():
     cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     decision = ContentDecision.objects.create(
         addon=addon_factory(),
-        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        action_date=datetime.now(),
+        first_action=ContentDecisionEnforcementAction.objects.create(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            enforcement_date=datetime.now(),
+        ),
         reasoning='some review text',
     )
     decision.policies.add(cinder_policy)
@@ -924,8 +942,10 @@ def test_report_decision_to_cinder_and_notify_dont_notify_owners():
     cinder_policy = CinderPolicy.objects.create(name='policy', uuid='12345678')
     decision = ContentDecision.objects.create(
         addon=addon_factory(),
-        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
-        action_date=datetime.now(),
+        first_action=ContentDecisionEnforcementAction.objects.create(
+            enforcement=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            enforcement_date=datetime.now(),
+        ),
         reasoning='some review text',
     )
     decision.policies.add(cinder_policy)
@@ -978,8 +998,10 @@ def test_report_decision_to_cinder_and_notify_exception(
     )
     decision = ContentDecision.objects.create(
         addon=addon_factory(),
-        action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-        action_date=datetime.now(),
+        first_action=ContentDecisionEnforcementAction.objects.create(
+            enforcement=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            enforcement_date=datetime.now(),
+        ),
         reasoning='some review text',
     )
     statsd_incr_mock.reset_mock()
@@ -1128,7 +1150,10 @@ class TestSyncCinderPolicies(TestCase):
         )
         old_policy_with_decision.update(modified=days_ago(1))
         decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_APPROVE, addon=addon_factory()
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_APPROVE
+            ),
+            addon=addon_factory(),
         )
         decision.policies.add(old_policy_with_decision)
         old_policy_with_reason = CinderPolicy.objects.create(

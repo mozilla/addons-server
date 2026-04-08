@@ -248,9 +248,9 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         is_appeal = obj.is_appeal
         queue_moves = list(obj.queue_moves.order_by('-created'))
         requeued_decisions = list(
-            obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
-                '-created'
-            )
+            obj.decisions.filter(
+                first_action__enforcement=DECISION_ACTIONS.AMO_REQUEUE
+            ).order_by('-created')
         )
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None

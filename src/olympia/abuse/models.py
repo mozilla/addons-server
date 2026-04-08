@@ -62,7 +62,7 @@ class CinderJobQuerySet(BaseQuerySet):
             Q(decisions__isnull=True)
             | Q(
                 # i.e. the latest decision is a requeue
-                decisions__action=DECISION_ACTIONS.AMO_REQUEUE,
+                decisions__first_action__enforcement=DECISION_ACTIONS.AMO_REQUEUE,
                 decisions__overridden_by__isnull=True,
             )
         )
@@ -230,15 +230,17 @@ class CinderJob(ModelBase):
             rating=getattr(abuse_report, 'rating', None),
             collection=getattr(abuse_report, 'collection', None),
             user=getattr(abuse_report, 'user', None),
-            action=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
-            action_date=datetime.now(),
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
+                enforcement_date=datetime.now(),
+            ),
             reviewer_user_id=settings.TASK_USER_ID,
             cinder_job=self,
             override_of=self.final_decision,
         )
         decision.policies.set(
             CinderPolicy.objects.filter(
-                enforcement_actions__contains=decision.action.api_value
+                enforcement_actions__contains=decision.first_action.enforcement.api_value
             )
         )
         decision.report_to_cinder(entity_helper)
@@ -311,10 +313,13 @@ class CinderJob(ModelBase):
         e.g. a job created by a workflow event for content review, rather than an abuse
         report.
         """
+        if ContentDecision.objects.filter(cinder_id=decision_cinder_id).exists():
+            return False
+
         # appeals on REJECT_VERSION_ADDON need target_versions redefining.
         if job and (
             appealed_ids := job.appealed_decisions.filter(
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+                first_action__enforcement=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
             ).values_list('id', flat=True)
         ):
             target_versions = Version.objects.filter(
@@ -327,33 +332,32 @@ class CinderJob(ModelBase):
         else:
             target_versions = None
 
-        decision, created = ContentDecision.objects.get_or_create(
+        decision = ContentDecision.objects.create(
             cinder_id=decision_cinder_id,
-            defaults={
-                'addon': target if isinstance(target, Addon) else None,
-                'rating': target if isinstance(target, Rating) else None,
-                'collection': target if isinstance(target, Collection) else None,
-                'user': target if isinstance(target, UserProfile) else None,
-                'action': decision_action,
-                'private_notes': decision_notes[
-                    : ContentDecision._meta.get_field('reasoning').max_length
-                ],
-                'override_of': None,
-                'cinder_job': job,
-                'from_job_queue': job_queue,
-            },
+            addon=target if isinstance(target, Addon) else None,
+            rating=target if isinstance(target, Rating) else None,
+            collection=target if isinstance(target, Collection) else None,
+            user=target if isinstance(target, UserProfile) else None,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=decision_action
+            ),
+            private_notes=decision_notes[
+                : ContentDecision._meta.get_field('reasoning').max_length
+            ],
+            override_of=job.final_decision if job else None,
+            cinder_job=job,
+            from_job_queue=job_queue,
         )
-        if created:
-            policies = CinderPolicy.objects.filter(
-                uuid__in=policy_ids
-            ).without_parents_if_their_children_are_present()
-            decision.policies.add(*policies)
-            if target_versions:
-                decision.target_versions.set(target_versions)
-            # no need to report - it came from Cinder
-            decision.execute_action()
-            decision.send_notifications()
-        return created
+        policies = CinderPolicy.objects.filter(
+            uuid__in=policy_ids
+        ).without_parents_if_their_children_are_present()
+        decision.policies.add(*policies)
+        if target_versions:
+            decision.target_versions.set(target_versions)
+        # no need to report - it came from Cinder
+        decision.first_action.execute()
+        decision.send_notifications()
+        return True
 
     def process_queue_move(self, *, new_queue, notes):
         CinderQueueMove.objects.create(cinder_job=self, notes=notes, to_queue=new_queue)
@@ -393,13 +397,17 @@ class CinderJob(ModelBase):
             .resolvable_in_reviewer_tools()
         )
         if (
-            (decision_actions := tuple(self.decisions.values_list('action', flat=True)))
+            (
+                decision_actions := tuple(
+                    self.decisions.values_list('first_action__enforcement', flat=True)
+                )
+            )
             # i.e. was the previous decision before the current a requeue
             and len(decision_actions) >= 2
             and decision_actions[-2] == DECISION_ACTIONS.AMO_REQUEUE
         ):
             has_unresolved_jobs_with_similar_reason = base_unresolved_jobs_qs.filter(
-                decisions__action=DECISION_ACTIONS.AMO_REQUEUE,
+                decisions__first_action__enforcement=DECISION_ACTIONS.AMO_REQUEUE,
                 decisions__overridden_by__isnull=True,
             ).exists()
             reasons = {NeedsHumanReview.REASONS.SECOND_LEVEL_REQUEUE}
@@ -972,21 +980,26 @@ class CinderPolicy(ModelBase):
 
 class ContentDecisionManager(ManagerBase):
     def awaiting_action(self):
-        """Returns decisions that have not been actioned, i.e. do not have an
-        action_date - and have not been overridden by a later decision. These decisions
-        are held for a 2nd level approval.
+        """Returns decisions that have not been actioned, i.e. do not have an action
+        with an enforcement_date - and have not been overridden by a later decision.
+        These decisions are held for a 2nd level approval.
 
         Note: the logic for whether a decison should be held, and not have an
-        action_date, or be immediately actioned and have an action_date is determined
-        per ContentAction - see `ContentAction.should_hold_action`.
+        action with an enforcement_date, or be immediately actioned and have an
+        enforcement_date is determined per ContentAction
+        - see `ContentAction.should_hold_action`.
         """
-        return self.filter(action_date=None, overridden_by=None)
+        return self.filter(first_action__enforcement_date=None, overridden_by=None)
 
 
 class ContentDecision(ModelBase):
-    action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
+    first_action = models.OneToOneField(
+        to='abuse.ContentDecisionEnforcementAction',
+        null=False,
+        on_delete=models.RESTRICT,
+        related_name='decision',
+    )
     cinder_id = models.CharField(max_length=36, default=None, null=True, unique=True)
-    action_date = models.DateTimeField(null=True, db_column='date')
     reasoning = models.TextField(max_length=1000, blank=True)
     private_notes = models.TextField(max_length=1000, blank=True)
     policies = models.ManyToManyField(to='abuse.CinderPolicy')
@@ -1135,21 +1148,29 @@ class ContentDecision(ModelBase):
 
     def get_action_helper(self):
         # Base case when it's a new decision, that wasn't an appeal
-        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
+            self.first_action.enforcement
+        ]
         skip_reporter_notify = False
 
-        def find_overridden_action(override_of):
+        def find_overridden_decision(override_of):
             if not override_of:
                 return None
             return (
-                override_of.action
-                if override_of.action_date
-                else find_overridden_action(override_of.override_of)
+                override_of.first_action.enforcement
+                if override_of.first_action.enforcement_date
+                else find_overridden_decision(override_of.override_of)
             )
 
-        overridden_action = find_overridden_action(self.override_of)
+        overridden_action = find_overridden_decision(self.override_of)
         appealed_action = (
-            getattr(self.cinder_job.appealed_decisions.first(), 'action', None)
+            getattr(
+                getattr(
+                    self.cinder_job.appealed_decisions.first(), 'first_action', None
+                ),
+                'enforcement',
+                None,
+            )
             if self.cinder_job
             else None
         )
@@ -1157,19 +1178,19 @@ class ContentDecision(ModelBase):
         if appealed_action:
             # target appeal
             if appealed_action in DECISION_ACTIONS.REMOVING:
-                if self.action in DECISION_ACTIONS.NON_OFFENDING:
+                if self.first_action.enforcement in DECISION_ACTIONS.NON_OFFENDING:
                     # i.e. we've reversed our target takedown
                     ContentActionClass = ContentActionTargetAppealApprove
-                elif self.action == appealed_action:
+                elif self.first_action.enforcement == appealed_action:
                     # i.e. we've not reversed our target takedown
                     ContentActionClass = ContentActionTargetAppealRemovalAffirmation
             # (a reporter appeal doesn't need any alternate ContentAction class)
 
         elif overridden_action in DECISION_ACTIONS.REMOVING:
             # override on a decision that was a takedown before, and wasn't an appeal
-            if self.action in DECISION_ACTIONS.NON_OFFENDING:
+            if self.first_action.enforcement in DECISION_ACTIONS.NON_OFFENDING:
                 ContentActionClass = ContentActionOverrideApprove
-            if self.action == overridden_action:
+            if self.first_action.enforcement == overridden_action:
                 # For an override that is still a takedown we can send the same emails
                 # to the target; but we don't want to notify the reporter again.
                 skip_reporter_notify = True
@@ -1186,8 +1207,8 @@ class ContentDecision(ModelBase):
         """
         now = datetime.now()
         base_criteria = (
-            self.action_date
-            and self.action_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
+            (enf_date := self.first_action.enforcement_date)
+            and enf_date >= now - timedelta(days=APPEAL_EXPIRATION_DAYS)
             # Can never appeal an original decision that has been appealed and
             # for which we already have a new decision. In some cases the
             # appealed decision (new decision id) can be appealed by the author
@@ -1208,7 +1229,8 @@ class ContentDecision(ModelBase):
                 and self.is_third_party_initiated
                 and abuse_report.cinder_job == self.cinder_job
                 and not hasattr(abuse_report, 'cinderappeal')
-                and self.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
+                and self.first_action.enforcement
+                in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
             )
             or
             # Authors can appeal decisions not already appealed. Note that the
@@ -1220,14 +1242,15 @@ class ContentDecision(ModelBase):
             (
                 not is_reporter
                 and not self.appeal_job
-                and self.action in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
+                and self.first_action.enforcement
+                in DECISION_ACTIONS.APPEALABLE_BY_AUTHOR
                 and (
                     # either not a decision on a job
                     not self.cinder_job
                     # or the job has no appealled decisions
                     # or the appealled decisions are not takedowns
                     or not self.cinder_job.appealed_decisions.filter(
-                        action__in=DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values
+                        first_action__enforcement__in=DECISION_ACTIONS.APPEALABLE_BY_AUTHOR.values
                     )
                 )
             )
@@ -1243,10 +1266,6 @@ class ContentDecision(ModelBase):
             and (decision := self.appeal_job.final_decision)
             and decision.cinder_id
         )
-
-    @property
-    def is_delayed(self):
-        return self.action == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
 
     def appeal(self, *, abuse_report, appeal_text, user, is_reporter):
         appealer_entity = None
@@ -1264,7 +1283,10 @@ class ContentDecision(ModelBase):
             # User bans are a special case, since the user can't log in any
             # more at the time of the appeal, so we let that through using the
             # target of the job that banned them.
-            if not user and self.action == DECISION_ACTIONS.AMO_BAN_USER:
+            if (
+                not user
+                and self.first_action.enforcement == DECISION_ACTIONS.AMO_BAN_USER
+            ):
                 user = self.target
             if not isinstance(user, UserProfile):
                 # If we still don't have a user at this point there is nothing
@@ -1284,7 +1306,8 @@ class ContentDecision(ModelBase):
         is_content_review = (
             self.cinder_job.content_review
             if self.cinder_job
-            else self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+            else self.first_action.enforcement
+            == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
         )
 
         entity_helper = CinderJob.get_entity_helper(
@@ -1325,11 +1348,11 @@ class ContentDecision(ModelBase):
 
         if (
             self.override_of
-            or self.action not in DECISION_ACTIONS.SKIP_DECISION
+            or self.first_action.enforcement not in DECISION_ACTIONS.SKIP_DECISION
             or self.cinder_job
         ):
             create_decision_kw = {
-                'action': DECISION_ACTIONS(self.action).api_value,
+                'action': DECISION_ACTIONS(self.first_action.enforcement).api_value,
                 'reasoning': self.reasoning,
                 'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
             }
@@ -1358,38 +1381,6 @@ class ContentDecision(ModelBase):
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             self.update(cinder_id=decision_cinder_id)
 
-    def execute_action(self, *, release_hold=False):
-        """Execute the action for the decision, if not already carried out.
-        The action may be held for 2nd level approval.
-        If the action has been carried out, notify interested parties"""
-        action_helper = self.get_action_helper()
-        log_entry = None
-        if not self.action_date:
-            if release_hold or not action_helper.should_hold_action():
-                # We set the action_date because .can_be_appealed depends on it
-                self.action_date = datetime.now()
-                log_entry = action_helper.process_action(release_hold=release_hold)
-                # But only save it afterwards in case process_action failed
-                self.save(update_fields=('action_date',))
-            else:
-                log_entry = action_helper.hold_action()
-                action_helper.notify_2nd_level_approvers()
-
-        log_entry = log_entry or self.activities.first()
-
-        if self.cinder_job and self.addon_id:
-            if self.action_date:
-                if self.is_delayed:
-                    self.cinder_job.pending_rejections.add(
-                        *VersionReviewerFlags.objects.filter(
-                            version__in=self.target_versions.all()
-                        )
-                    )
-                else:
-                    self.cinder_job.pending_rejections.clear()
-            self.cinder_job.clear_needs_human_review_flags()
-        return log_entry
-
     def requeue_held_action(self, *, user, notes):
         # requeuing only works for addons
         assert self.addon is not None
@@ -1398,14 +1389,18 @@ class ContentDecision(ModelBase):
             self.cinder_job.update(resolvable_in_reviewer_tools=True)
         ContentDecision.objects.create(
             addon=self.addon,
-            action=DECISION_ACTIONS.AMO_REQUEUE,
+            first_action=ContentDecisionEnforcementAction.objects.create(
+                enforcement=DECISION_ACTIONS.AMO_REQUEUE,
+                enforcement_date=datetime.now(),
+            ),
             reviewer_user=user,
             override_of=self,
-            action_date=datetime.now(),
             private_notes=notes,
             cinder_job=self.cinder_job,
         )
-        is_content_review = self.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+        is_content_review = (
+            self.first_action.enforcement == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+        )
 
         entity_helper = CinderJob.get_entity_helper(
             self.target,
@@ -1423,7 +1418,7 @@ class ContentDecision(ModelBase):
     def send_notifications(self, *, notify_owners=True):
         from olympia.activity.models import AttachmentLog
 
-        if not self.action_date:
+        if not self.first_action.enforcement_date:
             return
 
         action_helper = self.get_action_helper()
@@ -1440,7 +1435,7 @@ class ContentDecision(ModelBase):
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
             is_auto_approval = (
-                self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+                self.first_action.enforcement == DECISION_ACTIONS.AMO_APPROVE_VERSION
                 and not details.get('human_review', True)
             )
             version_numbers = (
@@ -1501,6 +1496,48 @@ class ContentDecision(ModelBase):
             self.policies.all(),
             values=self.metadata.get(self.POLICY_DYNAMIC_VALUES, {}),
         )
+
+
+class ContentDecisionEnforcementAction(ModelBase):
+    next = models.OneToOneField(
+        to='self', on_delete=models.CASCADE, null=True, related_name='previous'
+    )
+    enforcement = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
+    enforcement_date = models.DateTimeField(null=True, db_column='date')
+
+    def execute(self, *, release_hold=False):
+        """Execute this action for the decision, if not already carried out.
+        The action may be held for 2nd level approval.
+        If the action has been carried out, notify interested parties"""
+        action_helper = self.decision.get_action_helper()
+        log_entry = None
+        if not self.enforcement_date:
+            if release_hold or not action_helper.should_hold_action():
+                # We set the enforcement_date because .can_be_appealed depends on it
+                self.enforcement_date = datetime.now()
+                log_entry = action_helper.process_action(release_hold=release_hold)
+                # But only save it afterwards in case process_action failed
+                self.save(update_fields=('enforcement_date',))
+            else:
+                log_entry = action_helper.hold_action()
+                action_helper.notify_2nd_level_approvers()
+
+        log_entry = log_entry or self.decision.activities.first()
+
+        if self.decision.cinder_job and self.decision.addon_id:
+            if self.enforcement_date:
+                if self.enforcement == (
+                    DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+                ):
+                    self.decision.cinder_job.pending_rejections.add(
+                        *VersionReviewerFlags.objects.filter(
+                            version__in=self.decision.target_versions.all()
+                        )
+                    )
+                else:
+                    self.decision.cinder_job.pending_rejections.clear()
+            self.decision.cinder_job.clear_needs_human_review_flags()
+        return log_entry
 
 
 class CinderAppeal(ModelBase):

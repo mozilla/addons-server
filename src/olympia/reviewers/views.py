@@ -23,7 +23,12 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    AbuseReport,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionEnforcementAction,
+)
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, CommentLog
@@ -1285,7 +1290,7 @@ def decision_review(request, decision_id):
         data = form.cleaned_data
         match data.get('choice'):
             case HELD_DECISION_CHOICES.YES:
-                decision.execute_action(release_hold=True)
+                decision.first_action.execute(release_hold=True)
                 decision.send_notifications()
             case HELD_DECISION_CHOICES.NO:
                 new_decision = ContentDecision.objects.create(
@@ -1293,7 +1298,9 @@ def decision_review(request, decision_id):
                     rating=decision.rating,
                     collection=decision.collection,
                     user=decision.user,
-                    action=DECISION_ACTIONS.AMO_APPROVE,
+                    first_action=ContentDecisionEnforcementAction.objects.create(
+                        enforcement=DECISION_ACTIONS.AMO_APPROVE
+                    ),
                     reviewer_user=request.user,
                     override_of=decision,
                     cinder_job=decision.cinder_job,
@@ -1303,7 +1310,7 @@ def decision_review(request, decision_id):
                         enforcement_actions__in=DECISION_ACTIONS.AMO_APPROVE.api_value
                     )
                 )
-                new_decision.execute_action(release_hold=True)
+                new_decision.first_action.execute(release_hold=True)
                 new_decision.target_versions.set(decision.target_versions.all())
                 report_decision_to_cinder_and_notify.delay(decision_id=new_decision.id)
             case HELD_DECISION_CHOICES.CANCEL:
