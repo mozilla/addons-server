@@ -338,7 +338,7 @@ class CinderJob(ModelBase):
                 'private_notes': decision_notes[
                     : ContentDecision._meta.get_field('reasoning').max_length
                 ],
-                'override_of': None,
+                'override_of': job.final_decision if job else None,
                 'cinder_job': job,
                 'from_job_queue': job_queue,
             },
