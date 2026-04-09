@@ -5,16 +5,10 @@ registries:
     url: https://registry.hub.docker.com
     username: "mozilla"
     password: ${{ secrets.DOCKER_HUB_MOZILLA_OAT }}
-  githubcr:
-    type: docker-registry
-    url: https://ghcr.io
-    username: x-access-token
-    password: ${{ secrets.ADDONS_ROBOT_PUBLIC_REPOS_PAT }}
 updates:
 - package-ecosystem: "docker"
   registries:
     - dockerhub
-    - githubcr
   directory: "/"
   schedule:
     interval: weekly
@@ -24,7 +18,6 @@ updates:
 - package-ecosystem: "docker-compose"
   registries:
     - dockerhub
-    - githubcr
   directory: "/"
   schedule:
     interval: weekly
