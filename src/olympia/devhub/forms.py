@@ -1758,7 +1758,7 @@ class RollbackVersionForm(forms.Form):
 
 class SupportForm(forms.Form):
     CATEGORY_CHOICES = [
-        ('', _('Select a category')),
+        ('', _('Choose a category')),
         ('account', _('Account')),
         ('technical', _('Technical Issue')),
         ('policy', _('Policies')),
@@ -1767,17 +1767,23 @@ class SupportForm(forms.Form):
 
     summary = forms.CharField(
         max_length=255,
-        label=_('Summary'),
+        label=_('Subject'),
+        widget=forms.TextInput(
+            attrs={'placeholder': _('Summarize the issue in a few words')}
+        ),
     )
     category = forms.ChoiceField(
         choices=CATEGORY_CHOICES,
-        label=_('Category'),
+        label=_('Select category'),
     )
     body = forms.CharField(
-        widget=forms.Textarea(attrs={'rows': 8}),
-        label=_('Description'),
+        widget=forms.Textarea(
+            attrs={'rows': 8, 'placeholder': _('Give us more details about the issue')}
+        ),
+        label=_('Describe the issue'),
     )
 
     def __init__(self, *args, **kwargs):
         kwargs.pop('user')
         super().__init__(*args, **kwargs)
+        self.label_suffix = ''
