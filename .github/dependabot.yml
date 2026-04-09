@@ -33,6 +33,10 @@ updates:
     exclude:
       - addons-frontend
   open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: elasticsearch
+    versions:
+    - ">= 9"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
