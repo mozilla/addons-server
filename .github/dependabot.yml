@@ -11,7 +11,7 @@ updates:
     - dockerhub
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
   cooldown:
     default-days: 7
   open-pull-requests-limit: 99
@@ -20,14 +20,16 @@ updates:
     - dockerhub
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
   cooldown:
     default-days: 7
+    exclude:
+      - addons-frontend
   open-pull-requests-limit: 99
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
-    interval: weekly
+    interval: daily
   cooldown:
     default-days: 7
   open-pull-requests-limit: 99
