@@ -177,7 +177,7 @@ def disable_versions_for_block(block, submission):
             review.clear_specific_needs_human_review_flags(version)
 
 
-def save_versions_to_blocks(guids, submission, *, overwrite_block_metadata=True):
+def save_versions_to_blocks(guids, submission):
     from olympia.addons.models import GuidAlreadyDeniedError
 
     from .models import Block, BlockVersion
@@ -189,7 +189,7 @@ def save_versions_to_blocks(guids, submission, *, overwrite_block_metadata=True)
         change = bool(block.id)
         if change:
             block.modified = modified_datetime
-            should_override_block_metadata = overwrite_block_metadata
+            should_override_block_metadata = not submission.preserve_block_metadata
         else:
             should_override_block_metadata = True
         block.updated_by = submission.updated_by
@@ -232,7 +232,8 @@ def save_versions_to_blocks(guids, submission, *, overwrite_block_metadata=True)
             change=change,
             submission_obj=submission,
         )
-        disable_versions_for_block(block, submission)
+        if submission.disable_versions is True:
+            disable_versions_for_block(block, submission)
         if submission.disable_addon:
             if block.addon.status == amo.STATUS_DELETED:
                 try:

@@ -1237,25 +1237,33 @@ class TestCinderWebhook(TestCase):
 
     def test_filter_enforcement_actions(self):
         addon = addon_factory()
-        assert filter_enforcement_actions([], addon) == []
+        assert filter_enforcement_actions([], addon) == ([], [])
+
         actions_from_json = [
             'amo-disable-addon',
             'amo-ban-user',
             'amo-approve',
             'not-amo-action',  # not a valid action at all
+            'amo-fu-delay-mid-soft-block-addon',  # valid, but not a supported action
         ]
-        assert filter_enforcement_actions(actions_from_json, addon) == [
-            DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            # no AMO_BAN_USER action because not a user target
-            DECISION_ACTIONS.AMO_APPROVE,
-        ]
+        assert filter_enforcement_actions(actions_from_json, addon) == (
+            [
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                # no AMO_BAN_USER action because not a user target
+                DECISION_ACTIONS.AMO_APPROVE,
+            ],
+            [DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON],
+        )
 
         # check with another content type too
-        assert filter_enforcement_actions(actions_from_json, user_factory()) == [
-            # no AMO_DISABLE_ADDON action because not an add-on target
-            DECISION_ACTIONS.AMO_BAN_USER,
-            DECISION_ACTIONS.AMO_APPROVE,
-        ]
+        assert filter_enforcement_actions(actions_from_json, user_factory()) == (
+            [
+                # no AMO_DISABLE_ADDON action because not an add-on target
+                DECISION_ACTIONS.AMO_BAN_USER,
+                DECISION_ACTIONS.AMO_APPROVE,
+            ],
+            [],
+        )
 
     def test_create_and_execute_decision_called(
         self, data=None, *, slug='amo-content-infringement'
@@ -1270,7 +1278,7 @@ class TestCinderWebhook(TestCase):
                 abuse_report.cinder_job,
                 target=abuse_report.target,
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue=slug,
@@ -1290,7 +1298,7 @@ class TestCinderWebhook(TestCase):
                 abuse_report.cinder_job,
                 target=abuse_report.target,
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue='amo-content-infringement',
@@ -1329,7 +1337,7 @@ class TestCinderWebhook(TestCase):
             appeal_job,
             target=addon,
             decision_cinder_id='76e0006d-1a42-4ec7-9475-148bab1970f1',
-            decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+            decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
             job_queue='amo-dev-ratings',
@@ -1371,7 +1379,7 @@ class TestCinderWebhook(TestCase):
             appeal_job,
             target=addon,
             decision_cinder_id='4f18b22c-6078-4934-b395-6a2e01cadf63',
-            decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+            decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
             decision_notes="fine I'll disable it",
             policy_ids=[
                 '7ea512a2-39a6-4cb6-91a0-2ed162192f7f',
@@ -1401,7 +1409,7 @@ class TestCinderWebhook(TestCase):
             abuse_report.cinder_job,
             target=abuse_report.target,
             decision_cinder_id='3eacdc09-c292-4fcb-a56f-a3d45d5eefeb',
-            decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+            decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
             decision_notes='changed our mind',
             policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
             job_queue=None,
@@ -1617,7 +1625,7 @@ class TestCinderWebhook(TestCase):
                 None,
                 target=addon,
                 decision_cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue='amo-content-infringement',
@@ -1752,7 +1760,11 @@ class TestCinderWebhook(TestCase):
             }
         }
 
-        data['payload']['enforcement_actions'] = ['unknown_action']
+        data['payload']['enforcement_actions'] = [
+            'unknown_action',
+            'amo-delete-rating',  # valid, but not for addon
+            'amo-fu-delay-short-soft-block-addon',
+        ]
         response = cinder_webhook(self.get_request(data=data))
         assert response.status_code == 400
         assert response.data == {
@@ -1767,7 +1779,7 @@ class TestCinderWebhook(TestCase):
 
         data['payload']['enforcement_actions'] = [
             'amo-disable-addon',
-            'amo-escalate-addon',
+            'amo-approve',
         ]
         response = cinder_webhook(self.get_request(data=data))
         assert response.status_code == 400

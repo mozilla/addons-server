@@ -299,7 +299,7 @@ class CinderJob(ModelBase):
         *,
         target,
         decision_cinder_id,
-        decision_action,
+        decision_actions,
         decision_notes,
         policy_ids,
         job_queue,
@@ -311,6 +311,10 @@ class CinderJob(ModelBase):
         e.g. a job created by a workflow event for content review, rather than an abuse
         report.
         """
+        # We expect decision_actions to be correctly ordered already.
+        # process_webhook_payload_decision validates the actions and orders them.
+        primary_action, followup_actions = decision_actions[0], decision_actions[1:]
+
         # appeals on REJECT_VERSION_ADDON need target_versions redefining.
         if job and (
             appealed_ids := job.appealed_decisions.filter(
@@ -321,9 +325,9 @@ class CinderJob(ModelBase):
                 contentdecision__id__in=appealed_ids
             ).no_transforms()
             # Also, if the decision was made in Cinder it'll be sent as DISABLE_ADDON
-            if decision_action == DECISION_ACTIONS.AMO_DISABLE_ADDON:
+            if primary_action == DECISION_ACTIONS.AMO_DISABLE_ADDON:
                 # but it's really the same action as before
-                decision_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+                primary_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
         else:
             target_versions = None
 
@@ -334,7 +338,7 @@ class CinderJob(ModelBase):
                 'rating': target if isinstance(target, Rating) else None,
                 'collection': target if isinstance(target, Collection) else None,
                 'user': target if isinstance(target, UserProfile) else None,
-                'action': decision_action,
+                'action': primary_action,
                 'private_notes': decision_notes[
                     : ContentDecision._meta.get_field('reasoning').max_length
                 ],
@@ -344,6 +348,10 @@ class CinderJob(ModelBase):
             },
         )
         if created:
+            for action in followup_actions:
+                ContentDecisionFollowupAction.objects.create(
+                    decision=decision, action=action
+                )
             policies = CinderPolicy.objects.filter(
                 uuid__in=policy_ids
             ).without_parents_if_their_children_are_present()
@@ -1375,6 +1383,10 @@ class ContentDecision(ModelBase):
                 log_entry = action_helper.hold_action()
                 action_helper.notify_2nd_level_approvers()
 
+        if self.action_date:
+            for followup in self.followup_actions.filter(action_date__isnull=True):
+                followup.execute_action()
+
         log_entry = log_entry or self.activities.first()
 
         if self.cinder_job and self.addon_id:
@@ -1501,6 +1513,26 @@ class ContentDecision(ModelBase):
             self.policies.all(),
             values=self.metadata.get(self.POLICY_DYNAMIC_VALUES, {}),
         )
+
+
+class ContentDecisionFollowupAction(ModelBase):
+    decision = models.ForeignKey(
+        to=ContentDecision, on_delete=models.CASCADE, related_name='followup_actions'
+    )
+    action = models.PositiveSmallIntegerField(choices=DECISION_ACTIONS.choices)
+    action_date = models.DateTimeField(null=True, db_column='date')
+
+    def execute_action(self):
+        log_entry = None
+        if not self.action_date:
+            self.action_date = datetime.now()
+            ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+            action_helper = ContentActionClass(decision=self.decision)
+            log_entry = action_helper.process_action()
+            # But only save it afterwards in case process_action failed
+            self.save(update_fields=('action_date',))
+
+        return log_entry
 
 
 class CinderAppeal(ModelBase):

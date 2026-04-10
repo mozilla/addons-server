@@ -26,7 +26,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
@@ -43,6 +43,8 @@ from ..actions import (
     ContentActionApproveListingContent,
     ContentActionBanUser,
     ContentActionBlockAddon,
+    ContentActionDelayedMidHardBlockAddon,
+    ContentActionDelayedShortSoftBlockAddon,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
@@ -2011,6 +2013,110 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         ).details['policy_texts'] == [
             'Parent Policy, specifically Bad policy: This is a Térrible thing'
         ]
+
+
+class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCase):
+    ActionClass = ContentActionDelayedShortSoftBlockAddon
+    takedown_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
+    block_type = BlockType.SOFT_BLOCKED
+
+    def setUp(self):
+        super().setUp()
+        self.author = user_factory()
+        self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
+        self.old_version = self.addon.current_version
+        self.existing_block = Block.objects.create(
+            addon=self.addon, updated_by=self.task_user
+        )
+        BlockVersion.objects.create(
+            block=self.existing_block,
+            version=self.old_version,
+            block_type=self.block_type,
+        )
+        self.version = version_factory(addon=self.addon)
+        self.another_version = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+        self.addon.reload()
+        ActivityLog.objects.all().delete()
+        self.cinder_job.abusereport_set.update(guid=self.addon.guid)
+        self.decision.update(addon=self.addon)
+        self.past_negative_decision.update(
+            addon=self.addon, action=self.takedown_decision_action
+        )
+        self.past_negative_decision.target_versions.set(
+            (self.version, self.old_version)
+        )
+
+    def test_process_action(self):
+        assert not BlocklistSubmission.objects.exists()
+        action = self.ActionClass(self.decision)
+
+        action.process_action()
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.get()
+        assert submission.input_guids == self.addon.guid
+        assert submission.to_block == [
+            {
+                'id': self.existing_block.id,
+                'guid': self.addon.guid,
+                'average_daily_users': self.addon.average_daily_users,
+            }
+        ]
+        assert submission.changed_version_ids == [
+            self.another_version.id,
+            self.version.id,
+        ]
+        assert submission.block_type == self.block_type
+        assert (
+            submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+        )
+        assert submission.updated_by == self.decision.reviewer_user
+        assert submission.disable_addon is False
+        assert submission.preserve_block_metadata is True
+        assert submission.disable_versions is False
+        assert "This add-on violates Mozilla's add-on policies" in submission.reason
+        self.assertCloseToNow(
+            submission.delayed_until,
+            now=datetime.now() + timedelta(days=self.ActionClass.delay_days),
+        )
+        assert self.addon.status != amo.STATUS_DISABLED
+        assert self.version.file.status != amo.STATUS_DISABLED
+        assert self.old_version.file.status != amo.STATUS_DISABLED
+
+    def test_owner_content_approve_report_email(self):
+        pass  # Covered by TestContentApproveContentListing
+
+    def test_reporter_ignore_invalid_report(self):
+        pass  # Covered by TestContentApproveContentListing
+
+    def test_approve_appeal_success(self):
+        self.past_negative_decision.update(appeal_job=self.cinder_job)
+        # TODO: we don't support appeals or overrides for follow-up actions yet
+
+    def test_approve_override_success(self):
+        self.decision.update(override_of=self.past_negative_decision)
+        # TODO: we don't support appeals or overrides for follow-up actions yet
+
+    def test_email_content_not_escaped(self):
+        # TODO: If/when we support emails we should implement this
+        pass
+
+
+class TestContentActionDelayedMidHardBlockAddon(
+    TestContentActionDelayedShortSoftBlockAddon
+):
+    ActionClass = ContentActionDelayedMidHardBlockAddon
+    takedown_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
+    block_type = BlockType.BLOCKED
+
+    def setUp(self):
+        super().setUp()
+        BlockVersion.objects.create(
+            block=self.existing_block,
+            version=self.another_version,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
 
 
 class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
