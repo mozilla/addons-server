@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     re_path(
-        r'^attachment/(?P<log_id>\d+)',
+        r'^attachment/(?P<activity_log_id>\d+)',
         views.download_attachment,
         name='activity.attachment',
     )
