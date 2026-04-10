@@ -1263,23 +1263,23 @@ msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
-msgstr ""
+msgstr "Firefox"
 
 #: src/olympia/constants/applications.py:49
 msgid "Thunderbird"
-msgstr ""
+msgstr "Thunderbird"
 
 #: src/olympia/constants/applications.py:61
 msgid "SeaMonkey"
-msgstr ""
+msgstr "SeaMonkey"
 
 #: src/olympia/constants/applications.py:78
 msgid "Sunbird"
-msgstr ""
+msgstr "Sunbird"
 
 #: src/olympia/constants/applications.py:95 src/olympia/templates/photon-footer.html:28
 msgid "Mobile"
-msgstr ""
+msgstr "Мобилӣ"
 
 #: src/olympia/constants/applications.py:108
 msgid "Firefox for Android"
