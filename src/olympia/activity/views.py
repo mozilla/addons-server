@@ -177,13 +177,13 @@ def inbound_email(request):
 
 
 @non_atomic_requests
-def download_attachment(request, log_id):
+def download_attachment(request, activity_log_id):
     """
     Download attachment for a given activity log.
     """
-    log = get_object_or_404(ActivityLog, pk=log_id)
-    addon = get_object_or_404(AddonLog, activity_log=log).addon
-    attachmentlog = log.attachmentlog
+    activity = get_object_or_404(ActivityLog, pk=activity_log_id)
+    addon = get_object_or_404(AddonLog, activity_log=activity).addon
+    attachmentlog = activity.attachmentlog
 
     is_reviewer = acl.is_user_any_kind_of_reviewer(request.user, allow_viewers=True)
     is_developer = acl.check_addon_ownership(
@@ -191,8 +191,12 @@ def download_attachment(request, log_id):
         addon,
         allow_developer=True,
     )
-
-    if not (is_reviewer or is_developer):
+    permission_required = (
+        is_reviewer
+        if getattr(activity.log, 'hide_developer', False)
+        else is_reviewer or is_developer
+    )
+    if not permission_required:
         raise http.Http404()
 
     response = HttpResponseXSendFile(request, attachmentlog.file.path)

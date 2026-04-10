@@ -700,24 +700,40 @@ class TestDownloadAttachment(TestCase):
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
         AddonLog.objects.create(addon=self.addon, activity_log=self.log)
+        self.url = reverse('activity.attachment', args=[self.log.pk])
 
     def test_download_attachment_developer(self):
         self.client.force_login(self.user)
-        url = reverse('activity.attachment', args=[self.log.pk])
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 404)
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
         self.addon.authors.add(self.user)
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('.txt', response['Content-Disposition'])
 
     def test_download_attachment_reviewer(self):
         self.client.force_login(self.user)
-        url = reverse('activity.attachment', args=[self.log.pk])
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 404)
         self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
-        response = self.client.get(url, follow=True)
+        response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('.txt', response['Content-Disposition'])
+
+    def test_download_attachment_reviewer_private_comment(self):
+        self.log.update(action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id)
+        self.client.force_login(self.user)
+        response = self.client.get(self.url, follow=True)
+        self.assertEqual(response.status_code, 404)
+        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
+        response = self.client.get(self.url, follow=True)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('.txt', response['Content-Disposition'])
+
+    def test_download_attachment_developer_private_comment(self):
+        self.log.update(action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id)
+        self.client.force_login(self.user)
+        self.addon.authors.add(self.user)
+        response = self.client.get(self.url, follow=True)
+        self.assertEqual(response.status_code, 404)
