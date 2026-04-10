@@ -402,7 +402,7 @@ msgstr ""
 
 #: static/js/stats/overview.js:18
 msgid "No data available."
-msgstr ""
+msgstr "Ягон маълумоти дастрас нест."
 
 #: static/js/stats/table.js:84
 msgid "Date"

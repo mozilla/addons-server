@@ -585,7 +585,7 @@ msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
-msgstr ""
+msgstr "Оҳ"
 
 #: src/olympia/amo/templates/amo/500.html:11
 #, python-format
@@ -642,7 +642,7 @@ msgstr ""
 #: src/olympia/amo/templatetags/jinja_helpers.py:180
 #, python-brace-format
 msgid "{0} ago"
-msgstr ""
+msgstr "{0} пеш"
 
 #: src/olympia/amo/tests/test_messages.py:49 src/olympia/amo/tests/test_messages.py:50
 msgid "Title"
@@ -654,11 +654,11 @@ msgstr "Матни асосӣ"
 
 #: src/olympia/amo/tests/test_messages.py:51
 msgid "Another Title"
-msgstr ""
+msgstr "Сарлавҳаи дигар"
 
 #: src/olympia/amo/tests/test_messages.py:51
 msgid "Another Body"
-msgstr ""
+msgstr "Матни асосии дигар"
 
 #: src/olympia/api/authentication.py:65 src/olympia/api/authentication.py:252
 msgid "Invalid Authorization header. No credentials provided."
@@ -846,7 +846,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Approved"
-msgstr ""
+msgstr "Тасдиқ карда шуд"
 
 #: src/olympia/constants/activity.py:161
 #, python-brace-format
@@ -864,7 +864,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:174 src/olympia/files/models.py:324
 msgid "Rejected"
-msgstr ""
+msgstr "Рад карда шуд"
 
 #: src/olympia/constants/activity.py:185
 #, python-brace-format
@@ -975,7 +975,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:405
 msgid "Password changed."
-msgstr ""
+msgstr "Ниҳонвожа иваз карда шуд."
 
 #: src/olympia/constants/activity.py:411
 #, python-brace-format
@@ -1287,7 +1287,7 @@ msgstr ""
 
 #: src/olympia/constants/applications.py:144
 msgid "Mozilla"
-msgstr ""
+msgstr "Mozilla"
 
 #: src/olympia/constants/base.py:24
 msgid "Incomplete"
@@ -1307,7 +1307,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1158
 msgid "Deleted"
-msgstr ""
+msgstr "Нест карда шуд"
 
 #: src/olympia/constants/base.py:69
 msgid "Unlisted"
@@ -1327,15 +1327,15 @@ msgstr ""
 
 #: src/olympia/constants/base.py:100
 msgid "Owner"
-msgstr ""
+msgstr "Соҳиб"
 
 #: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
 msgid "Developer"
-msgstr ""
+msgstr "Барномасоз"
 
 #: src/olympia/constants/base.py:109
 msgid "(Deleted)"
-msgstr ""
+msgstr "(Нест карда шуд)"
 
 #: src/olympia/constants/base.py:133
 msgid "Extension"
@@ -1371,7 +1371,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:141
 msgid "Theme"
-msgstr ""
+msgstr "Мавзуъ"
 
 #: src/olympia/constants/base.py:142
 msgid "Deprecated Site Permission"
@@ -1411,7 +1411,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
-msgstr ""
+msgstr "Мавзуъҳо"
 
 #: src/olympia/constants/base.py:156
 msgid "Deprecated Site Permissions"
@@ -1427,7 +1427,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:78
 msgid "Appearance"
-msgstr ""
+msgstr "Намуди зоҳирӣ"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
@@ -1435,7 +1435,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:88
 msgid "Bookmarks"
-msgstr ""
+msgstr "Хатбаракҳо"
 
 #: src/olympia/constants/categories.py:90
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
@@ -1532,7 +1532,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:635 src/olympia/devhub/forms.py:1765
 msgid "Other"
-msgstr ""
+msgstr "Дигар"
 
 #: src/olympia/constants/categories.py:201
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
@@ -1951,7 +1951,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1456 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
-msgstr ""
+msgstr "Номи намоишӣ"
 
 #: src/olympia/devhub/forms.py:1487
 msgid "Confirm email address"
@@ -2012,15 +2012,15 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
-msgstr ""
+msgstr "Ҳисоб"
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Technical Issue"
-msgstr ""
+msgstr "Масъалаи техникӣ"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Policies"
-msgstr ""
+msgstr "Сиёсатҳо"
 
 #: src/olympia/devhub/forms.py:1770 src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
@@ -2029,7 +2029,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1774
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: src/olympia/devhub/forms.py:1778 src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
@@ -2063,24 +2063,24 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:118
 msgid "Updated"
-msgstr ""
+msgstr "Санаи навсозӣ"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
 #: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:129
 msgid "Name"
-msgstr ""
+msgstr "Ном"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:31 src/olympia/devhub/views.py:120 src/olympia/devhub/views.py:128
 msgid "Created"
-msgstr ""
+msgstr "Санаи эҷод"
 
 #: src/olympia/devhub/views.py:121 src/olympia/devhub/views.py:130 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
-msgstr ""
+msgstr "Боргириҳо"
 
 #: src/olympia/devhub/views.py:122 src/olympia/devhub/views.py:131
 msgid "Rating"
-msgstr ""
+msgstr "Баҳодиҳӣ"
 
 #: src/olympia/devhub/views.py:197
 msgid "All My Add-ons"
@@ -2088,19 +2088,19 @@ msgstr "Ҳамаи ҷузъҳои иловагии ман"
 
 #: src/olympia/devhub/views.py:225
 msgid "All Activity"
-msgstr ""
+msgstr "Тамоми фаъолият"
 
 #: src/olympia/devhub/views.py:226
 msgid "Add-on Updates"
-msgstr ""
+msgstr "Навсозиҳои ҷузъи иловагӣ"
 
 #: src/olympia/devhub/views.py:227
 msgid "Add-on Status"
-msgstr ""
+msgstr "Вазъияти ҷузъи иловагӣ"
 
 #: src/olympia/devhub/views.py:228
 msgid "User Collections"
-msgstr ""
+msgstr "Маҷмуаҳои корбар"
 
 #: src/olympia/devhub/views.py:229
 msgid "User Reviews"
