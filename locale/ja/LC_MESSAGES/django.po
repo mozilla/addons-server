@@ -1261,26 +1261,26 @@ msgstr "バージョンのロールバックに失敗"
 #: src/olympia/constants/activity.py:1247
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "{addon} {0} のプロパティが編集されました。"
 
 #: src/olympia/constants/activity.py:1256
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "コレクション {0} のプロパティ {1} が更新されました。"
 
 #: src/olympia/constants/activity.py:1263
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "アカウント {user} のプロパティ {0} が更新されました。"
 
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "{addon} の掲載コンテンツが承認されました。"
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "却下された掲載が承認されました"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
@@ -1289,16 +1289,16 @@ msgstr "{addon} の掲載コンテンツが却下されました。"
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
-msgstr ""
+msgstr "掲載が却下されました"
 
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "{addon} の掲載コンテンツの審査が申請されました。"
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
-msgstr ""
+msgstr "掲載の審査が申請されました"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1338,7 +1338,7 @@ msgstr "審査待ち"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "掲載コンテンツが却下されました"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -1834,7 +1834,7 @@ msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせ
 
 #: src/olympia/devhub/forms.py:249 src/olympia/devhub/forms.py:1363
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "画像のアップロード中にエラーが発生しました。"
 
 #: src/olympia/devhub/forms.py:303
 #, python-format
@@ -2045,19 +2045,19 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1761
 msgid "Select a category"
-msgstr ""
+msgstr "カテゴリーを選択してください"
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
-msgstr ""
+msgstr "アカウント"
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Technical Issue"
-msgstr ""
+msgstr "技術的な問題"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Policies"
-msgstr ""
+msgstr "ポリシー"
 
 #: src/olympia/devhub/forms.py:1770 src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
@@ -2066,7 +2066,7 @@ msgstr "概要"
 
 #: src/olympia/devhub/forms.py:1774
 msgid "Category"
-msgstr ""
+msgstr "カテゴリー"
 
 #: src/olympia/devhub/forms.py:1778 src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
