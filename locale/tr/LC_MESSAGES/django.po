@@ -2379,7 +2379,7 @@ msgstr "E-postanız doğrulandı"
 
 #: src/olympia/devhub/views.py:2333
 msgid "Could not submit your support request. Please try again."
-msgstr ""
+msgstr "Destek isteğiniz gönderilemedi. Lütfen yeniden deneyin."
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
@@ -2463,7 +2463,7 @@ msgstr "Daha fazla kaynak"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67 src/olympia/devhub/templates/devhub/support.html:3
 msgid "Contact Support"
-msgstr ""
+msgstr "Destek birimiyle iletişime geçin"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
