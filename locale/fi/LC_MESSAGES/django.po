@@ -2023,11 +2023,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
-msgstr ""
+msgstr "Tili"
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Technical Issue"
-msgstr ""
+msgstr "Tekninen ongelma"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Policies"
@@ -4345,7 +4345,7 @@ msgstr "Kaikki versiot"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:207
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Palaa edelliseen versioon"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:213
 msgid "Upload a New Version"
@@ -4713,7 +4713,7 @@ msgstr "Muuta tapaa, jolla surffaat Redditissä, käyttämällä tunnisteita ja 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Ota kuvakaappauksia verkkosivuista, tee muokkauksia ja jaa niitä."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -4738,7 +4738,7 @@ msgstr "Nauti visuaalisista kirjanmerkeistä. Käytä suosikkisivustojasi, äske
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Määritä uusille välilehdille mukautettu aloitussivu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5907,12 +5907,12 @@ msgstr "Selaa kaikkia laajennuksia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Laajennusten aloituspaketti"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1109
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Tuottavuuslaajennukset"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1113 src/olympia/discovery/strings.jinja2:1115 src/olympia/discovery/strings.jinja2:1117
@@ -5942,12 +5942,12 @@ msgstr "Katso lisää suosittuja teemoja"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1130
 msgid "Privacy & security"
-msgstr ""
+msgstr "Yksityisyys ja tietoturva"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1132
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Katso lisää henkilöstön yksityisyysvalintoja"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1135
@@ -6396,11 +6396,11 @@ msgstr "Arvioitu %(rating)s/5 tähteä"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Näytä kaikki"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Tallenna"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467

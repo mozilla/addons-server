@@ -418,7 +418,7 @@ msgstr "Muu"
 
 #: static/js/zamboni/devhub.js:196
 msgid "Copied"
-msgstr ""
+msgstr "Kopioitu"
 
 #: static/js/zamboni/devhub.js:322
 msgid "Changes Saved"
