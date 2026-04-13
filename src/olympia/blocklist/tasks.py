@@ -328,12 +328,7 @@ def block_addons_on_user_ban(addonusers_ids, *, user_responsible_id):
     for banned_blocklist_submission in banned_blocklist_submissions:
         submission = banned_blocklist_submission.blocklistsubmission
         submission.save()
-        submission.update_signoff_for_auto_approval(
-            # We ignore conflicts caused by other submissions in this ban, we
-            # want them to be recorded separately for each user so that it can
-            # be undone individually if only one of them gets unbanned.
-            ignoring=[bb.blocklistsubmission for bb in banned_blocklist_submissions]
-        )
+        submission.update_signoff_for_auto_approval()
         if submission.is_submission_ready:
             process_blocklistsubmission.delay(submission.id)
 

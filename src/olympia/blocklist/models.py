@@ -342,17 +342,23 @@ class BlocklistSubmission(ModelBase):
     def has_version_changes(self):
         return bool(self.changed_version_ids)
 
-    def update_signoff_for_auto_approval(self, *, ignoring=None):
+    def update_signoff_for_auto_approval(self):
         """Update signoff state to auto-approved if possible.
 
         An optional list of blocklistsubmissions to ignore when performing
         the check for conflicts can be passed.
         """
+        # To be auto-approved, the submission needs to be pending and:
+        # - Either an addchange action with no version changes (just metadata
+        #   tweaks to a pending submission)
+        # - Or "adu safe", with all add-ons having fewer users than the
+        #   dual-signoff threshold.
         is_pending = self.signoff_state == self.SIGNOFF_STATES.PENDING
-        add_action = self.action == self.ACTIONS.ADDCHANGE
-        if is_pending and (
-            (self.all_adu_safe()) or add_action and not self.has_version_changes()
-        ):
+        safe_change = (
+            self.action == self.ACTIONS.ADDCHANGE and not self.has_version_changes()
+        )
+        safe_adu = self.all_adu_safe()
+        if is_pending and (safe_adu or safe_change):
             self.update(signoff_state=self.SIGNOFF_STATES.AUTOAPPROVED)
 
     @property
