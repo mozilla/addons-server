@@ -1501,6 +1501,14 @@ SITEMAP_DEBUG_AVAILABLE = False
 CINDER_SERVER_URL = env('CINDER_SERVER_URL', default='').removesuffix('v1/')
 CINDER_API_TOKEN = env('CINDER_API_TOKEN', default=None)
 CINDER_WEBHOOK_TOKEN = env('CINDER_WEBHOOK_TOKEN', default=None)
+
+ZENDESK_API_EMAIL = env('ZENDESK_API_EMAIL', default=None)
+ZENDESK_API_TOKEN = env('ZENDESK_API_TOKEN', default=None)
+ZENDESK_SUBDOMAIN = env('ZENDESK_SUBDOMAIN', default=None)
+ZENDESK_AMO_BRAND_ID = env('ZENDESK_AMO_BRAND_ID', default=None)
+ZENDESK_FIELD_ID_ADDON_TYPE = env('ZENDESK_FIELD_ID_ADDON_TYPE', default=None)
+ZENDESK_FIELD_ID_CHANNEL = env('ZENDESK_FIELD_ID_CHANNEL', default=None)
+ZENDESK_FIELD_ID_PROMOTED_GROUP = env('ZENDESK_FIELD_ID_PROMOTED_GROUP', default=None)
 CINDER_QUEUE_PREFIX = 'amo-dev-'
 # Because our stage Cinder instance is shared between addons-dev, addons stage, and also
 # any local testing integration, entity ids are not unique, and a payload from the

@@ -1158,6 +1158,33 @@ def update_due_date_for_needs_human_review_change(
         instance.version.reset_due_date()
 
 
+@receiver(
+    models.signals.post_save,
+    sender=NeedsHumanReview,
+    dispatch_uid='zendesk_needs_human_review',
+)
+def trigger_zendesk_ticket_creation(sender, instance, created, **kwargs):
+    """Create a Zendesk review ticket when a version is flagged for human review."""
+    if created and instance.is_active:
+        from olympia.reviewers.tasks import create_zendesk_ticket
+
+        create_zendesk_ticket.delay(instance.version_id)
+
+
+class ZendeskTicket(ModelBase):
+    """Tracks the Zendesk ticket opened for a Version that needs manual review."""
+
+    version = models.OneToOneField(
+        Version,
+        on_delete=models.CASCADE,
+        related_name='zendesk_ticket',
+    )
+    ticket_id = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'ZendeskTicket #{self.ticket_id} for version {self.version_id}'
+
+
 class QueueCount(models.Model):
     date = models.DateField(auto_now_add=True)
     name = models.CharField(max_length=255)

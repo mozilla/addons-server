@@ -348,6 +348,22 @@ def notify_about_activity_log(
             perm_setting,
         )
 
+    # Mirror developer/reviewer replies as private Zendesk comments.
+    if note.action in (
+        amo.LOG.DEVELOPER_REPLY_VERSION.id,
+        amo.LOG.REVIEWER_REPLY_VERSION.id,
+    ):
+        try:
+            from olympia.reviewers.models import ZendeskTicket
+
+            ZendeskTicket.objects.get(version=version)
+        except Exception:
+            pass
+        else:
+            from olympia.reviewers.tasks import add_zendesk_comment_for_activity_log
+
+            add_zendesk_comment_for_activity_log.delay(note.pk)
+
 
 def send_activity_mail(
     subject, message, version, recipients, from_email, unique_id, perm_setting=None

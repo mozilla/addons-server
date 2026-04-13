@@ -1086,12 +1086,21 @@ class ReviewBase:
             # Version.reset_due_date(), and the combination of those two pieces
             # of information means the version left the queue because of a
             # reviewer action.
+            version_pks = list(
+                log_entry.versionlog_set.all().values_list('version', flat=True)
+            )
             ReviewQueueHistory.objects.filter(
-                version__in=log_entry.versionlog_set.all().values_list(
-                    'version', flat=True
-                ),
+                version__in=version_pks,
                 review_decision_log__isnull=True,
             ).update(review_decision_log=log_entry)
+            from olympia.reviewers.tasks import (
+                add_zendesk_comment_for_activity_log,
+                close_zendesk_ticket,
+            )
+
+            for version_pk in version_pks:
+                close_zendesk_ticket.delay(version_pk)
+            add_zendesk_comment_for_activity_log.delay(log_entry.pk)
 
     def record_decision(
         self,
