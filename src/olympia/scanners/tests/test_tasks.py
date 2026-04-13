@@ -1173,7 +1173,7 @@ class TestRunNarc(UploadMixin, TestCase):
         assert narc_result.version == self.version
         assert narc_result.has_matches
         assert list(narc_result.matched_rules.all()) == [rule]
-        assert len(narc_result.results) == 1
+        assert len(narc_result.results) == 2
         assert narc_result.results == [
             {
                 'meta': {

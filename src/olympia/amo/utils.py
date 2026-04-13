@@ -1203,7 +1203,7 @@ def validate_name(
     name,
     *,
     check_function,
-    error_message=_('This name cannot be used.'),
+    error_message=None,
     form=None,
     field_name='name',
 ):
@@ -1212,6 +1212,8 @@ def validate_name(
     homoglyphs variants after normalization.
 
     Raises an error if a value has too many homoglyph variants."""
+    if error_message is None:
+        error_message = _('This name cannot be used.')
 
     def variant_checker(name):
         normalized_name = normalize_string_for_name_checks(
