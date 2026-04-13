@@ -135,6 +135,7 @@ RUN \
     --mount=type=bind,source=scripts/install_deps.py,target=${HOME}/scripts/install_deps.py \
     # Files required to install pip dependencies
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
+    --mount=type=bind,source=./requirements/yara-x.txt,target=${HOME}/requirements/yara-x.txt \
     # Files required to install npm dependencies
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
