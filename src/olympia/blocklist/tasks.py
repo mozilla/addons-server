@@ -348,7 +348,6 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
         pk__in=submission_ids,
         signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
     )
-    new_submissions = []
     for submission in submissions:
         if submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE:
             submission.action = BlocklistSubmission.ACTIONS.DELETE
