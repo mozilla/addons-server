@@ -370,9 +370,6 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
         submission.reason = f'Revert "{submission.reason}"'
         submission.signoff_state = BlocklistSubmission.SIGNOFF_STATES.PENDING
         submission.save()
-        new_submissions.append(submission)
-
-    for submission in new_submissions:
-        submission.update_signoff_for_auto_approval(ignoring=new_submissions)
+        submission.update_signoff_for_auto_approval()
         if submission.is_submission_ready:
             process_blocklistsubmission.delay(submission.id)
