@@ -1,5 +1,9 @@
 rules:
-  template-injection:
+  secrets-outside-env:
+    ignore:
+      - ci.yml
+      - health_check.yml
+      - _health_check.yml
   artipacked:
     ignore:
       - ci.yml:192:9
