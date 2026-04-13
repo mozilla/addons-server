@@ -1,0 +1,3 @@
+# our own fork of yara-x
+https://github.com/mozilla/yara-x/releases/download/2026.03.30/yara_x-1.14.0-cp38-abi3-manylinux_2_34_x86_64.whl \
+    --hash=sha256:7373882d4865b20ee301ec968b9425e6ee2619fc5753af3520fccfd790586b9c
