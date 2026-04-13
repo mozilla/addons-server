@@ -4644,7 +4644,7 @@ msgstr "Rozwiń swoją gamę emoji. Dziesiątki niesamowitych emoji na każdą o
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:41
 msgid "Password management simplified. Sync all your logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Uproszczone zarządzanie hasłami. Synchronizuj wszystkie swoje loginy pomiędzy urządzeniami za pomocą jednego hasła, aby rządzić nimi wszystkimi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5002,9 +5002,8 @@ msgstr "Uzyskaj szczegółowe informacje o aktywności i ruchu dla dowolnej witr
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:245
-#, fuzzy
 msgid "Applies a fresh, modern appearance to Wikipedia."
-msgstr "Zastosuj świeży, nowoczesny wygląd do Wikipedii."
+msgstr "Nadaje Wikipedii świeży, nowoczesny wygląd."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:248
