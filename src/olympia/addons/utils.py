@@ -17,7 +17,25 @@ def generate_addon_guid():
     return '{%s}' % str(uuid.uuid4())
 
 
-def validate_addon_name(name, user, *, form=None):
+def validate_addon_summary(summary, user, form=None):
+    """
+    Validate that an add-on summary is allowed.
+    """
+    # For the moment we don't do anything other than checking the summary isn't
+    # too complex, so we apply this regardless of the user.
+    return validate_name(
+        summary,
+        check_function=None,
+        # Make the string generic so that it can be used in devhub but also
+        # when importing the summary from the 'description' field in the
+        # manifest.
+        error_message=gettext('This add-on summary or description cannot be used.'),
+        form=form,
+        field_name='summary',
+    )
+
+
+def validate_addon_name(name, *, user, form=None):
     """
     Validate that an add-on name is allowed.
 
@@ -51,7 +69,7 @@ def validate_addon_name(name, user, *, form=None):
                 )
                 raise forms.ValidationError(msg)
 
-    validate_name(name, check_function, gettext('This name cannot be used.'), form=form)
+    validate_name(name, check_function=check_function, form=form)
 
     return name
 

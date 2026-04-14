@@ -14,6 +14,7 @@ from ..utils import (
     get_addon_recommendations,
     get_filtered_fallbacks,
     validate_addon_name,
+    validate_addon_summary,
 )
 
 
@@ -32,7 +33,7 @@ from ..utils import (
 )
 def test_validate_addon_name_allowed(name):
     user = user_factory()
-    validate_addon_name(name, user)
+    validate_addon_name(name, user=user)
 
 
 @pytest.mark.django_db
@@ -73,11 +74,11 @@ def test_validate_addon_name_disallowed_without_permission(name):
     GroupUser.objects.create(group=group, user=special_user)
 
     # Validates with the permission.
-    validate_addon_name(name, special_user)
+    validate_addon_name(name, user=special_user)
 
     # Raises an error without.
     with pytest.raises(ValidationError) as exc:
-        validate_addon_name(name, normal_user)
+        validate_addon_name(name, user=normal_user)
     assert exc.value.message == (
         'Add-on names cannot contain the Mozilla or Firefox trademarks.'
     )
@@ -94,18 +95,43 @@ def test_validate_addon_name_disallowed_without_permission(name):
 def test_validate_addon_name_disallowed_no_matter_what(name):
     normal_user = user_factory()
     special_user = user_factory()
-    group = Group.objects.create(name=name, rules='Trademark:Bypass')
+    group = Group.objects.create(rules='Trademark:Bypass')
     GroupUser.objects.create(group=group, user=special_user)
 
     # Raises an error without the permission...
     with pytest.raises(ValidationError) as exc:
-        validate_addon_name(name, normal_user)
+        validate_addon_name(name, user=normal_user)
     assert exc.value.message == 'This name cannot be used.'
 
     # ... and also with it.
     with pytest.raises(ValidationError) as exc2:
-        validate_addon_name(name, special_user)
+        validate_addon_name(name, user=special_user)
     assert exc2.value.message == 'This name cannot be used.'
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'summary',
+    (
+        'I' * 17,  # Too many homoglyphs
+        'I' * 50,  # Way too many homoglyphs!
+    ),
+)
+def test_validate_addon_summary_disallowed_no_matter_what(summary):
+    normal_user = user_factory()
+    special_user = user_factory()
+    group = Group.objects.create(rules='Trademark:Bypass')
+    GroupUser.objects.create(group=group, user=special_user)
+
+    # Raises an error without the permission...
+    with pytest.raises(ValidationError) as exc:
+        validate_addon_summary(summary, user=normal_user)
+    assert exc.value.message == 'This add-on summary or description cannot be used.'
+
+    # ... and also with it.
+    with pytest.raises(ValidationError) as exc2:
+        validate_addon_summary(summary, user=special_user)
+    assert exc2.value.message == 'This add-on summary or description cannot be used.'
 
 
 class TestGetAddonRecommendations(TestCase):

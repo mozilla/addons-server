@@ -872,6 +872,20 @@ class AddonViewSetCreateUpdateMixin(RequestMixin):
         assert addon.name == 'ø'
         assert addon.summary == 'ɵ'
 
+    def test_name_not_allowed(self):
+        name = {'en-US': 'IIIIIIIIIIIIIIIIIIIIII'}
+        response = self.request(name=name)
+        assert response.status_code == 400, response.content
+        assert response.data == {'name': ['This name cannot be used.']}
+
+    def test_summary_not_allowed(self):
+        summary = {'en-US': 'IIIIIIIIIIIIIIIIIIIIII'}
+        response = self.request(summary=summary)
+        assert response.status_code == 400, response.content
+        assert response.data == {
+            'summary': ['This add-on summary or description cannot be used.']
+        }
+
 
 class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID

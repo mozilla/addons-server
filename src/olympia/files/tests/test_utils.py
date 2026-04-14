@@ -616,9 +616,42 @@ class TestManifestJSONExtractor(AppVersionsMixin, TestCase):
         file_obj = addon.current_version.file
         with pytest.raises(forms.ValidationError) as exc:
             utils.parse_xpi(file_obj.file.path)
-            assert dict(exc.value.messages)['en-us'].startswith(
-                'Add-on names cannot contain the Mozilla or'
-            )
+        assert (
+            'Add-on names cannot contain the Mozilla or Firefox trademarks.'
+            in exc.value.messages
+        )
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_summary_not_allowed(self, resolve_message):
+        def side_effect(message, *args, **kwargs):
+            return 'I' * 20 if message == '__MSG_extensionDescription__' else 'OKOKOK'
+
+        resolve_message.side_effect = side_effect
+
+        addon = amo.tests.addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+        )
+        file_obj = addon.current_version.file
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.parse_xpi(file_obj.file.path)
+        assert (
+            'This add-on summary or description cannot be used.' in exc.value.messages
+        )
+
+    @mock.patch('olympia.addons.models.resolve_i18n_message')
+    def test_name_not_allowed(self, resolve_message):
+        def side_effect(message, *args, **kwargs):
+            return 'I' * 20 if message == '__MSG_extensionName__' else 'OKOKOK'
+
+        resolve_message.side_effect = side_effect
+
+        addon = amo.tests.addon_factory(
+            file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
+        )
+        file_obj = addon.current_version.file
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.parse_xpi(file_obj.file.path)
+        assert 'This name cannot be used.' in exc.value.messages
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
     def test_bypass_name_checks(self, resolve_message):

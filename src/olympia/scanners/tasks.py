@@ -324,12 +324,10 @@ def _run_narc(*, scanner_result, version, rules=None):
             for result in (scanner_result.results or [])
         }
     )
-    values_from_db = {}
-    values_from_xpi = {}
-    values_from_authors = []
     addon = version.addon
-    attach_trans_dict(Addon, [addon], field_names=['name'])
-    values_from_db = dict(addon.translations[addon.name_id])
+    attach_trans_dict(Addon, [addon], field_names=['name', 'summary'])
+    name_values_from_db = dict(addon.translations[addon.name_id])
+    summary_values_from_db = dict(addon.translations[addon.summary_id])
     values_from_authors = list(
         addon.authors.all()
         .exclude(display_name=None)
@@ -338,11 +336,13 @@ def _run_narc(*, scanner_result, version, rules=None):
 
     # Because we're running on a Version, not a FileUpload, we should already
     # have a FileManifest, so we don't even need to parse the XPI to grab the
-    # name.
+    # fields we want to look at - we can just build a dict with the data needed
+    # for resolve_webext_translations() to work.
     try:
         manifest_data = version.file.file_manifest.manifest_data
         data = {
             'name': manifest_data.get('name'),
+            'description': manifest_data.get('description'),
             'default_locale': manifest_data.get('default_locale'),
         }
     except FileManifest.DoesNotExist:
@@ -350,22 +350,31 @@ def _run_narc(*, scanner_result, version, rules=None):
         # shouldn't fail for that. This means validation was forced by an admin
         # or something similar.
         data = {}
-    # Find all translations from the XPI if necessary.
-    values_from_xpi = Addon.resolve_webext_translations(
-        data, version.file.file, fields=('name',)
-    ).get('name', {})
-    # If we didn't get a dict, we returned early without bothering to open the
-    # XPI because the name wasn't translated in the manifest. We still build
-    # a dict for ease of use later.
-    if values_from_xpi is None or isinstance(values_from_xpi, str):
-        values_from_xpi = {None: values_from_xpi or ''}
+    # Find all translations from the XPI if necessary for fields we care about.
+    resolved_translations = Addon.resolve_webext_translations(
+        data, version.file.file, fields=('name', 'description')
+    )
+    # If we find None or a string, we returned early without bothering to open
+    # the XPI because the `name` wasn't present or translated in the manifest.
+    # We still build a dict for ease of use later.
+    name_values_from_xpi = resolved_translations.get('name', {})
+    if name_values_from_xpi is None or isinstance(name_values_from_xpi, str):
+        name_values_from_xpi = {None: name_values_from_xpi or ''}
+    # Same for `description`.
+    description_values_from_xpi = resolved_translations.get('description', {})
+    if description_values_from_xpi is None or isinstance(
+        description_values_from_xpi, str
+    ):
+        description_values_from_xpi = {None: description_values_from_xpi or ''}
 
     # Gather all values into a dict to avoid repeating the same costly search
     # on duplicate values.
     values = defaultdict(list)
     for source, (locale, value) in itertools.chain(
-        zip(itertools.repeat('xpi'), values_from_xpi.items()),
-        zip(itertools.repeat('db_addon'), values_from_db.items()),
+        zip(itertools.repeat('xpi'), name_values_from_xpi.items()),
+        zip(itertools.repeat('xpi_description'), description_values_from_xpi.items()),
+        zip(itertools.repeat('db_addon'), name_values_from_db.items()),
+        zip(itertools.repeat('db_addon_summary'), summary_values_from_db.items()),
         zip(
             itertools.repeat('author'),
             zip(itertools.repeat(None), sorted(values_from_authors)),
@@ -386,10 +395,14 @@ def _run_narc(*, scanner_result, version, rules=None):
             rule_sources.add('slug')
         if rule.configuration.get('examine_xpi_names'):
             rule_sources.add('xpi')
+        if rule.configuration.get('examine_xpi_descriptions'):
+            rule_sources.add('xpi_description')
         if rule.configuration.get('examine_authors_names'):
             rule_sources.add('author')
         if rule.configuration.get('examine_listing_names'):
             rule_sources.add('db_addon')
+        if rule.configuration.get('examine_listing_summaries'):
+            rule_sources.add('db_addon_summary')
 
         for value, sources in values.items():
             # ... Then for each value we have, look at what sources it came

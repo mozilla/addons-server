@@ -28,7 +28,7 @@ from django.utils.translation import gettext
 import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.utils import validate_addon_name
+from olympia.addons.utils import validate_addon_name, validate_addon_summary
 from olympia.amo.json_comments import remove_comments
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
@@ -960,7 +960,8 @@ def check_xpi_info(
         # Make sure we pass in a copy of `xpi_info` since
         # `resolve_webext_translations` modifies data in-place
         translations = Addon.resolve_webext_translations(xpi_info.copy(), xpi_file)
-        validate_addon_name(translations['name'], user)
+        validate_addon_name(translations['name'], user=user)
+        validate_addon_summary(translations['summary'], user=user)
 
     # Parse the file to get and validate package data with the addon.
     if not acl.experiments_submission_allowed(user, xpi_info):

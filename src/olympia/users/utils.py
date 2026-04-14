@@ -403,7 +403,7 @@ def check_suppressed_email_confirmation(verification, page_size=5):
     return found_emails
 
 
-def validate_user_name(value, error_msg, *, can_use_denied_names=False):
+def validate_user_name(value, *, error_message, can_use_denied_names=False):
     from olympia.amo.utils import validate_name
 
     from .models import DeniedName
@@ -415,6 +415,8 @@ def validate_user_name(value, error_msg, *, can_use_denied_names=False):
         if not can_use_denied_names and any(
             denied in variant for denied in denied_names
         ):
-            raise forms.ValidationError(error_msg)
+            raise forms.ValidationError(error_message)
 
-    return validate_name(value, check_function, error_msg)
+    return validate_name(
+        value, check_function=check_function, error_message=error_message
+    )

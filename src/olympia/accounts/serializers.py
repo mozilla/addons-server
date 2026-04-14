@@ -167,10 +167,10 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
         return value
 
     def validate_display_name(self, value):
-        error_msg = gettext('This display name cannot be used.')
+        error_message = gettext('This display name cannot be used.')
 
         try:
-            return validate_user_name(value, error_msg)
+            return validate_user_name(value, error_message=error_message)
         except forms.ValidationError as exc:
             raise serializers.ValidationError(exc.messages) from exc
 

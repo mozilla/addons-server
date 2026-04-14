@@ -226,6 +226,7 @@ class TestRunNarc(UploadMixin, TestCase):
             guid='@webextension-guid',
             slug='my-webextension',
             name='My Fancy WebExtension Addon',
+            summary='My Fancy WebExtension Summary',
             users=[self.user],
         )
         upload = self.get_upload('webextension.xpi', user=self.user)
@@ -1143,6 +1144,156 @@ class TestRunNarc(UploadMixin, TestCase):
             'source': 'slug',
             'string': 'my-webextension',
         }
+
+    def test_run_do_examine_listing_summaries(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        # examine_listing_summaries defaults to False, enable it.
+        # Disable everything else that is enabled by default.
+        rule.configuration.update(
+            {
+                'examine_listing_names': False,
+                'examine_listing_summaries': True,
+                'examine_xpi_names': False,
+                'examine_authors_names': False,
+            }
+        )
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'original_string': 'My Fancy WebExtension Summary',
+                    'source': 'db_addon_summary',
+                    'string': 'MyFancyWebExtensionSummary',
+                    'variant': 'normalized',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'locale': 'en-us',
+                    'source': 'db_addon_summary',
+                    'string': 'My Fancy WebExtension Summary',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
+
+    def test_run_do_examine_listing_summaries_localized(self):
+        rule = ScannerRule.objects.create(
+            name='match_fromage_rule',
+            scanner=NARC,
+            definition='fromage',
+        )
+        self.addon.summary = {
+            'fr': 'Mon Petit Frômage',
+            'en-US': str(self.addon.summary),
+            'de': None,
+        }
+        self.addon.save()
+        # examine_listing_summaries defaults to False, enable it.
+        # Disable everything else that is enabled by default.
+        rule.configuration.update(
+            {
+                'examine_listing_names': False,
+                'examine_listing_summaries': True,
+                'examine_xpi_names': False,
+                'examine_authors_names': False,
+            }
+        )
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 1
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'match': 'Fromage',
+                    'locale': 'fr',
+                    'source': 'db_addon_summary',
+                    'string': 'MonPetitFromage',
+                    'variant': 'normalized',
+                    'original_string': 'Mon Petit Frômage',
+                },
+                'rule': 'match_fromage_rule',
+            }
+        ]
+
+    def test_run_do_examine_xpi_descriptions(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+        )
+        # examine_xpi_descriptions defaults to False, enable it.
+        # Disable everything else that is enabled by default.
+        rule.configuration.update(
+            {
+                'examine_listing_names': False,
+                'examine_xpi_descriptions': True,
+                'examine_xpi_names': False,
+                'examine_authors_names': False,
+            }
+        )
+        rule.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 2
+        assert narc_result.results == [
+            {
+                'meta': {
+                    'locale': None,
+                    'original_string': (
+                        'just a test addon with the manifest.json format'
+                    ),
+                    'source': 'xpi_description',
+                    'string': 'justatestaddonwiththemanifestjsonformat',
+                    'variant': 'normalized',
+                },
+                'rule': 'always_match_rule',
+            },
+            {
+                'meta': {
+                    'locale': None,
+                    'source': 'xpi_description',
+                    'string': 'just a test addon with the manifest.json format',
+                },
+                'rule': 'always_match_rule',
+            },
+        ]
 
     def test_run_dont_examine_xpi_names(self):
         rule = ScannerRule.objects.create(
