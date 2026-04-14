@@ -2113,15 +2113,15 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Kategorie auswählen"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Geben Sie uns weitere Details zu dem Problem"
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Beschreiben Sie das Problem"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2499,7 +2499,7 @@ msgstr "Suchen"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Hilfe zu Erweiterungen und Themes erhalten"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
