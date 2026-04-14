@@ -432,7 +432,7 @@ msgstr "Vrátenie verzie je možné iba pre schválené verzie, s výnimkou najn
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Tento súhrn alebo popis doplnku nie je možné použiť."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2075,7 +2075,7 @@ msgstr "Musíte vybrať kanál a verziu, na ktorú sa chcete vrátiť."
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Vyberte kategóriu"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2095,19 +2095,19 @@ msgstr "Predmet"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Zhrňte problém v niekoľkých slovách"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Vyberte kategóriu"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Poskytnite nám viac podrobností o probléme"
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Opíšte problém"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2484,15 +2484,17 @@ msgstr "Hľadať"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Získajte podporu pre rozšírenia a témy"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Tento formulár použite na podporu týkajúcu sa vášho účtu, technických problémov a ďalších záležitostí. Čím viac podrobností nám poskytnete, tým ľahšie vám budeme môcť pomôcť. Ozveme sa vám čo "
+"najskôr."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Odoslať žiadosť"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
