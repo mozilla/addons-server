@@ -433,7 +433,7 @@ msgstr "Nur freigeschaltete Versionen können zurückgesetzt werden, außer die 
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Diese Add-on-Zusammenfassung oder -Beschreibung kann nicht verwendet werden."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2089,7 +2089,7 @@ msgstr "Sie müssen einen Kanal und eine Version auswählen, auf die zurückgese
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Wählen Sie eine Kategorie"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2109,7 +2109,7 @@ msgstr "Betreff"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Fassen Sie das Problem in wenigen Worten zusammen"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
