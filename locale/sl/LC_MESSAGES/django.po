@@ -433,7 +433,7 @@ msgstr "Povrni se lahko samo odobrene različice, razen najnovejše."
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Tega povzetka ali opisa dodatka ni mogoče uporabljati."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."

@@ -433,7 +433,7 @@ msgstr "Pouze schválené verze mohou být vráceny zpět, s výjimkou nejnověj
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Tento souhrn nebo popis doplňku nelze použít."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."

@@ -435,7 +435,7 @@ msgstr "Alleen goedgekeurde versies kunnen worden teruggedraaid, behalve de mees
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Deze add-on-samenvatting of -beschrijving kan niet worden gebruikt."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."

@@ -433,7 +433,7 @@ msgstr "Somente versões aprovadas podem ser revertidas, exceto a versão mais r
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "O resumo ou descrição desta extensão não pode ser usado."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
