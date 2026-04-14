@@ -2047,7 +2047,7 @@ msgstr "您必須選擇要退回到哪個頻道與版本。"
 
 #: src/olympia/devhub/forms.py:1761
 msgid "Choose a category"
-msgstr ""
+msgstr "選擇分類"
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
@@ -2067,11 +2067,11 @@ msgstr "主旨"
 
 #: src/olympia/devhub/forms.py:1772
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "用幾個字摘要問題內容"
 
 #: src/olympia/devhub/forms.py:1777
 msgid "Select category"
-msgstr ""
+msgstr "選擇分類"
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Give us more details about the issue"

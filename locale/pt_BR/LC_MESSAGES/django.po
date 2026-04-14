@@ -2069,7 +2069,7 @@ msgstr "Você deve selecionar um canal e uma versão para a reversão."
 
 #: src/olympia/devhub/forms.py:1761
 msgid "Choose a category"
-msgstr ""
+msgstr "Escolha uma categoria"
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
@@ -2089,19 +2089,19 @@ msgstr "Assunto"
 
 #: src/olympia/devhub/forms.py:1772
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resuma o problema em poucas palavras"
 
 #: src/olympia/devhub/forms.py:1777
 msgid "Select category"
-msgstr ""
+msgstr "Selecione a categoria"
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Forneça mais detalhes sobre o problema"
 
 #: src/olympia/devhub/forms.py:1783
 msgid "Describe the issue"
-msgstr ""
+msgstr "Descreva o problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2479,15 +2479,17 @@ msgstr "Pesquisar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obtenha suporte para extensões e temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Use este formulário para suporte relacionado à sua conta, problemas técnicos e mais. Quanto mais detalhes você compartilhar, mais fácil será para nós ajudar. Entraremos em contato assim que "
+"possível."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Enviar pedido"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format

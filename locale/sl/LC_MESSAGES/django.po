@@ -2069,7 +2069,7 @@ msgstr "Izbrati morate kanal in različico, na katero se želite povrniti."
 
 #: src/olympia/devhub/forms.py:1761
 msgid "Choose a category"
-msgstr ""
+msgstr "Izberite kategorijo"
 
 #: src/olympia/devhub/forms.py:1762
 msgid "Account"
@@ -2089,19 +2089,19 @@ msgstr "Zadeva"
 
 #: src/olympia/devhub/forms.py:1772
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Povzemite zadevo z nekaj besedami"
 
 #: src/olympia/devhub/forms.py:1777
 msgid "Select category"
-msgstr ""
+msgstr "Izberite kategorijo"
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Povejte nam več podrobnosti o težavi"
 
 #: src/olympia/devhub/forms.py:1783
 msgid "Describe the issue"
-msgstr ""
+msgstr "Opišite težavo"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2478,15 +2478,15 @@ msgstr "Iskanje"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Pridobite podporo za razširitve in teme"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "Uporabite ta obrazec za podporo v zvezi z vašim računom, tehničnimi težavami in drugim. Več podrobnosti kot delite, laže vam lahko pomagamo. Odgovorili vam bomo v najkrajšem možnem času."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Pošlji zahtevek"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
