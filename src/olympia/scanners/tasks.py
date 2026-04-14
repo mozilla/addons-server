@@ -452,8 +452,6 @@ def _run_narc(*, scanner_result, version, rules=None):
                                 'string': variant_string,
                             },
                         }
-                        if (match_group := match.group()) != variant_string:
-                            result['meta']['match'] = match_group
                         if any(fuzzy_counts := match.fuzzy_counts):
                             result['meta']['fuzzy_counts'] = fuzzy_counts
                         if variant_type is not None:
