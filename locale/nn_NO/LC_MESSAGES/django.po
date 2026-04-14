@@ -2071,7 +2071,7 @@ msgstr "Du må velje ein kanal og versjon å gå tilbake til."
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Vel ein kategori"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2095,7 +2095,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Vel kategori"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
@@ -2489,7 +2489,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Send førespurnad"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
