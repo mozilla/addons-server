@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-14 07:48+0000\n"
+"POT-Creation-Date: 2026-04-14 09:11+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -319,11 +319,11 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgid "This add-on summary or description cannot be used."
 msgstr ""
 
-msgid "This name cannot be used."
-msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
 msgstr ""
@@ -419,6 +419,9 @@ msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
+
+msgid "This name cannot be used."
+msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
 msgid "URLs are not allowed."
 msgstr ""

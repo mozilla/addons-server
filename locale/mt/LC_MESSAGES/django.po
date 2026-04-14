@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-14 07:48+0000\n"
+"POT-Creation-Date: 2026-04-14 09:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -316,10 +316,10 @@ msgstr ""
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
-msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
+msgid "This add-on summary or description cannot be used."
 msgstr ""
 
-msgid "This name cannot be used."
+msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -414,6 +414,9 @@ msgid "CIDR"
 msgstr ""
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr ""
+
+msgid "This name cannot be used."
 msgstr ""
 
 msgid "URLs are not allowed."
