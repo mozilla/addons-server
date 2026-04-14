@@ -94,11 +94,8 @@ class Block(ModelBase):
             .annotate(**{GUID: models.F(GUID)})
             .select_related('blockversion')
         )
-        all_submission_versions = BlocklistSubmission.get_all_submission_versions()
-
         all_addon_versions = defaultdict(list)
         for version in qs:
-            version.blocklist_submission_id = all_submission_versions.get(version.id, 0)
             all_addon_versions[getattr(version, GUID)].append(version)
         for block in blocks:
             block.addon_versions = all_addon_versions[block.guid]
@@ -249,7 +246,6 @@ class BlocklistSubmission(ModelBase):
             'is_blocked',
             'is_hard_blocked',
             'is_soft_blocked',
-            'blocklist_submission_id',
         ),
     )
     FakeBlock = namedtuple(
@@ -346,35 +342,23 @@ class BlocklistSubmission(ModelBase):
     def has_version_changes(self):
         return bool(self.changed_version_ids)
 
-    def has_potential_conflicts(self, *, ignoring=None):
-        """Check whether or not this blocklistsubmission contains versions that
-        are part of another non-published blocklistsubmission.
-
-        An optional list of blocklistsubmissions to ignore when performing
-        the check can be passed."""
-        if ignoring is None:
-            ignoring = [self]
-        if self.pk not in ignoring:
-            ignoring = ignoring + [self]
-        submissions = self.get_all_submission_versions(ignoring=ignoring)
-        return set(self.changed_version_ids) & set(submissions)
-
-    def update_signoff_for_auto_approval(self, *, ignoring=None):
+    def update_signoff_for_auto_approval(self):
         """Update signoff state to auto-approved if possible.
 
         An optional list of blocklistsubmissions to ignore when performing
         the check for conflicts can be passed.
         """
+        # To be auto-approved, the submission needs to be pending and:
+        # - Either an addchange action with no version changes (just metadata
+        #   tweaks to a pending submission)
+        # - Or "adu safe", with all add-ons having fewer users than the
+        #   dual-signoff threshold.
         is_pending = self.signoff_state == self.SIGNOFF_STATES.PENDING
-        add_action = self.action == self.ACTIONS.ADDCHANGE
-        if is_pending and (
-            (
-                self.all_adu_safe()
-                and not self.has_potential_conflicts(ignoring=ignoring)
-            )
-            or add_action
-            and not self.has_version_changes()
-        ):
+        safe_change = (
+            self.action == self.ACTIONS.ADDCHANGE and not self.has_version_changes()
+        )
+        safe_adu = self.all_adu_safe()
+        if is_pending and (safe_adu or safe_change):
             self.update(signoff_state=self.SIGNOFF_STATES.AUTOAPPROVED)
 
     @property
@@ -437,8 +421,6 @@ class BlocklistSubmission(ModelBase):
                 named=True,
             )
         )
-        all_submission_versions = cls.get_all_submission_versions()
-
         all_addon_versions = defaultdict(list)
         for version in version_qs:
             all_addon_versions[version.addon__addonguid__guid].append(
@@ -448,7 +430,6 @@ class BlocklistSubmission(ModelBase):
                     version.blockversion__block_id is not None,
                     version.blockversion__block_type == BlockType.BLOCKED,
                     version.blockversion__block_type == BlockType.SOFT_BLOCKED,
-                    all_submission_versions.get(version.id, 0),
                 )
             )
 
@@ -571,14 +552,11 @@ class BlocklistSubmission(ModelBase):
         ).filter(changed_version_ids__contains=version_id)
 
     @classmethod
-    def get_all_submission_versions(cls, *, ignoring=None):
-        if ignoring is None:
-            ignoring = []
+    def get_all_submission_versions(cls):
         submission_qs = (
             cls.objects.exclude(
                 signoff_state__in=cls.SIGNOFF_STATES.STATES_FINISHED.values
             )
-            .exclude(id__in=[ignored.id for ignored in ignoring])
             .values_list('id', 'changed_version_ids')
             .order_by('id')
         )

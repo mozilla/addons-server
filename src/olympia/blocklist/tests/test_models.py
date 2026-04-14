@@ -231,7 +231,7 @@ class TestBlocklistSubmission(TestCase):
         addon1 = addon_factory(guid='guid1@example')
         addon2 = addon_factory(guid='guid2@example')
         addon_factory(guid='guid3@example')
-        duplicate_submission = BlocklistSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             input_guids='guid1@example\nguid2@example',
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.APPROVED,
             action=BlocklistSubmission.ACTIONS.ADDCHANGE,
@@ -258,12 +258,6 @@ class TestBlocklistSubmission(TestCase):
         assert BlocklistSubmission.get_all_submission_versions() == {
             addon1.current_version.pk: submission.pk,
             addon2.current_version.pk: submission.pk,
-        }
-        assert BlocklistSubmission.get_all_submission_versions(
-            ignoring=[submission]
-        ) == {
-            addon1.current_version.pk: duplicate_submission.pk,
-            addon2.current_version.pk: duplicate_submission.pk,
         }
 
     def test_update_signoff_for_auto_approval(self):
@@ -317,13 +311,12 @@ class TestBlocklistSubmission(TestCase):
     def test_update_signoff_for_auto_approval_has_conflicts(self):
         addon1 = addon_factory(guid='guid1@example', average_daily_users=42)
         addon2 = addon_factory(guid='guid2@example', average_daily_users=43)
-        duplicate_submission = BlocklistSubmission.objects.create(
+        BlocklistSubmission.objects.create(
             input_guids='guid1@example\nguid2@example',
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PENDING,
             action=BlocklistSubmission.ACTIONS.ADDCHANGE,
             changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
         )
-        # This duplicate is already finished and shouldn't matter.
         BlocklistSubmission.objects.create(
             input_guids='guid1@example\nguid2@example',
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.REJECTED,
@@ -337,13 +330,8 @@ class TestBlocklistSubmission(TestCase):
             changed_version_ids=[addon1.current_version.pk, addon2.current_version.pk],
         )
 
+        # Conflict doesn't matter.
         submission.update_signoff_for_auto_approval()
-        assert (
-            submission.reload().signoff_state
-            == BlocklistSubmission.SIGNOFF_STATES.PENDING
-        )
-
-        submission.update_signoff_for_auto_approval(ignoring=[duplicate_submission])
         assert (
             submission.reload().signoff_state
             == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED

@@ -277,6 +277,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             int(self.get_value('action', request, obj=obj, default=0))
             == BlocklistSubmission.ACTIONS.DELETE
         )
+        is_softening_submission = (
+            int(self.get_value('action', request, obj=obj, default=0))
+            == BlocklistSubmission.ACTIONS.SOFTEN
+        )
 
         input_guids_section = (
             'Input Guids',
@@ -331,11 +335,15 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             },
         )
 
-        delay_section = not is_delete_submission and (
-            'Delay',
-            {
-                'fields': (*(('delay_days',) if is_new else ()), 'delayed_until'),
-            },
+        delay_section = (
+            not is_softening_submission
+            and not is_delete_submission
+            and (
+                'Delay',
+                {
+                    'fields': (*(('delay_days',) if is_new else ()), 'delayed_until'),
+                },
+            )
         )
 
         sections = (
@@ -350,6 +358,10 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         is_delete_submission = (
             int(self.get_value('action', request, obj=obj, default=0))
             == BlocklistSubmission.ACTIONS.DELETE
+        )
+        is_softening_submission = (
+            int(self.get_value('action', request, obj=obj, default=0))
+            == BlocklistSubmission.ACTIONS.SOFTEN
         )
         ro_fields = [
             'ro_changed_version_ids',
@@ -369,6 +381,8 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                 )
         if obj or is_delete_submission:
             ro_fields += ['block_type', 'delay_days']
+        elif is_softening_submission:
+            ro_fields += ['delay_days']
 
         return ro_fields
 

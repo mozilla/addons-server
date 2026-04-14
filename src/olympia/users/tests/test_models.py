@@ -646,7 +646,7 @@ class TestUserProfile(TestCase):
             != user2.content_disabled_on_ban.blocked_addons_submissions.all()
         )
 
-    def test_ban_and_disable_related_content_bulk_with_hard_block_conflict_hold(self):
+    def test_ban_and_disable_related_content_bulk_with_hard_block_existing_sub(self):
         user_factory(pk=settings.TASK_USER_ID)
         fake_admin = user_factory(display_name='Fake Admin')
         core.set_user(fake_admin)
@@ -668,19 +668,34 @@ class TestUserProfile(TestCase):
         version = addon.current_version
         addon.reload()
         assert addon.status == amo.STATUS_DISABLED
+        assert version.reload().is_blocked
         submission = (
             BlocklistSubmission.objects.exclude(id=existing_submission.id)
             .filter(input_guids=addon.guid)
             .get()
         )
         assert submission.changed_version_ids == [version.pk]
-        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING
+        assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
         assert submission.updated_by == fake_admin
-        assert not Block.objects.exists()
-        # BlocklistSubmission is still linked to the ban
         assert (
             user.content_disabled_on_ban.blocked_addons_submissions.get() == submission
         )
+
+        assert (
+            ActivityLog.objects.filter(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id).count()
+            == 1
+        )
+        activity = (
+            ActivityLog.objects.for_addons(addon)
+            .filter(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
+            .get()
+        )
+        assert activity.user == fake_admin
+        assert activity.arguments == [
+            addon,
+            addon.guid,
+            Block.objects.get(guid=addon.guid),
+        ]
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)

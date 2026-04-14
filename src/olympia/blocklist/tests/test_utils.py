@@ -233,6 +233,55 @@ class TestSaveVersionsToBlocks(TestCase):
             == BlockType.SOFT_BLOCKED
         )
 
+    def test_save_blocks_adding_soft_block_on_existing_does_nothing(self):
+        # A BlocklistSubmission that uses the ADDCHANGE action to add a
+        # soft-block on top of an existing hard one should not do anything:
+        # only an explicit soften action should do that.
+        user_new = user_factory()
+        addon = addon_factory()
+        block_factory(guid=addon.guid, updated_by=self.task_user)
+        assert addon.current_version.blockversion.block_type == BlockType.BLOCKED
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user_new,
+            block_type=BlockType.SOFT_BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+        )
+        save_versions_to_blocks([addon.guid], submission)
+        assert (
+            addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
+
+    def test_save_blocks_adding_hard_block_on_existing_soft(self):
+        # A BlocklistSubmission that uses the ADDCHANGE action to add a
+        # hard-block on top of an existing soft one should work.
+        user_new = user_factory()
+        addon = addon_factory()
+        block_factory(
+            guid=addon.guid,
+            updated_by=self.task_user,
+            block_type=BlockType.SOFT_BLOCKED,
+        )
+        assert addon.current_version.blockversion.block_type == BlockType.SOFT_BLOCKED
+        submission = BlocklistSubmission.objects.create(
+            action=BlocklistSubmission.ACTIONS.ADDCHANGE,
+            input_guids=addon.guid,
+            reason='some reason',
+            url=None,
+            updated_by=user_new,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+        )
+        save_versions_to_blocks([addon.guid], submission)
+        assert (
+            addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
+
     @mock.patch('olympia.reviewers.utils.ReviewBase')
     def test_reviewbase_human_review_is_true_if_block_was_updated_by_human(
         self, review_base_mock

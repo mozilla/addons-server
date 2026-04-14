@@ -328,12 +328,7 @@ def block_addons_on_user_ban(addonusers_ids, *, user_responsible_id):
     for banned_blocklist_submission in banned_blocklist_submissions:
         submission = banned_blocklist_submission.blocklistsubmission
         submission.save()
-        submission.update_signoff_for_auto_approval(
-            # We ignore conflicts caused by other submissions in this ban, we
-            # want them to be recorded separately for each user so that it can
-            # be undone individually if only one of them gets unbanned.
-            ignoring=[bb.blocklistsubmission for bb in banned_blocklist_submissions]
-        )
+        submission.update_signoff_for_auto_approval()
         if submission.is_submission_ready:
             process_blocklistsubmission.delay(submission.id)
 
@@ -353,7 +348,6 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
         pk__in=submission_ids,
         signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
     )
-    new_submissions = []
     for submission in submissions:
         if submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE:
             submission.action = BlocklistSubmission.ACTIONS.DELETE
@@ -375,9 +369,6 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
         submission.reason = f'Revert "{submission.reason}"'
         submission.signoff_state = BlocklistSubmission.SIGNOFF_STATES.PENDING
         submission.save()
-        new_submissions.append(submission)
-
-    for submission in new_submissions:
-        submission.update_signoff_for_auto_approval(ignoring=new_submissions)
+        submission.update_signoff_for_auto_approval()
         if submission.is_submission_ready:
             process_blocklistsubmission.delay(submission.id)
