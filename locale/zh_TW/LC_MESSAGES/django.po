@@ -2075,11 +2075,11 @@ msgstr "選擇分類"
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "提供有關此問題的詳細資訊"
 
 #: src/olympia/devhub/forms.py:1783
 msgid "Describe the issue"
-msgstr ""
+msgstr "描述問題"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2455,15 +2455,15 @@ msgstr "搜尋"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "獲得擴充套件與佈景主題的支援"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "請使用此表單來針對您的帳號、技術問題提出支援請求。您能提供的細節越多，我們就更簡單能協助您。填寫完成之後，我們將盡快回覆。"
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "傳送請求"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
