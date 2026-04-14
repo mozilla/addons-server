@@ -30,7 +30,7 @@
     "jquery.cookie": "1.4.1",
     "jszip": "3.10.1",
     "less": "4.6.4",
-    "netmask": "2.0.2",
+    "netmask": "2.1.0",
     "source-map": "0.7.6",
     "timeago.js": "^4.0.2",
     "underscore": "1.13.8"
