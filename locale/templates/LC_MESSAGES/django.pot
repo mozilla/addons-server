@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 09:02+0000\n"
+"POT-Creation-Date: 2026-04-14 07:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2246,7 +2246,7 @@ msgid "You must select a channel and version to rollback to."
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1761
-msgid "Select a category"
+msgid "Choose a category"
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1762
@@ -2262,19 +2262,24 @@ msgid "Policies"
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1770
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:105
-#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
-msgid "Summary"
+#: src/olympia/devhub/templates/devhub/verify_email.html:60
+msgid "Subject"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1774
-msgid "Category"
+#: src/olympia/devhub/forms.py:1772
+msgid "Summarize the issue in a few words"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1778
-#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
-msgid "Description"
+#: src/olympia/devhub/forms.py:1777
+msgid "Select category"
+msgstr ""
+
+#: src/olympia/devhub/forms.py:1781
+msgid "Give us more details about the issue"
+msgstr ""
+
+#: src/olympia/devhub/forms.py:1783
+msgid "Describe the issue"
 msgstr ""
 
 #: src/olympia/devhub/tasks.py:179
@@ -2681,7 +2686,6 @@ msgid "More Resources"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
-#: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Contact Support"
 msgstr ""
 
@@ -2693,8 +2697,19 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/support.html:3
+msgid "Get support for extensions and themes"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/support.html:11
+msgid ""
+"Use this form for support related to your account, tech issues, and more. The"
+" more details you share, the easier it is for us to help. We'll get back to "
+"you as soon as possible."
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/support.html:17
-msgid "Submit"
+msgid "Send request"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
@@ -2808,10 +2823,6 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/verify_email.html:59
 #: src/olympia/stats/templates/stats/popup.html:18
 msgid "To"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/verify_email.html:60
-msgid "Subject"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:61
@@ -3132,6 +3143,12 @@ msgid ""
 "2 characters for each."
 msgstr ""
 
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:105
+#: src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
+msgid "Summary"
+msgstr ""
+
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:58
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:87
 msgid "Add-on URL"
@@ -3158,6 +3175,10 @@ msgid ""
 "This summary should clearly explain what your add-on does. It will be shown "
 "in listings and searches, and it will be used by reviewers to test your add-"
 "on."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
+msgid "Description"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:131

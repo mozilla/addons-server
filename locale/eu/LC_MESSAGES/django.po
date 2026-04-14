@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 09:02+0000\n"
+"POT-Creation-Date: 2026-04-14 07:48+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1591,7 +1591,7 @@ msgstr ""
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
-msgid "Select a category"
+msgid "Choose a category"
 msgstr ""
 
 msgid "Account"
@@ -1603,14 +1603,20 @@ msgstr ""
 msgid "Policies"
 msgstr ""
 
-msgid "Summary"
-msgstr "Laburpena"
-
-msgid "Category"
+msgid "Subject"
 msgstr ""
 
-msgid "Description"
-msgstr "Deskribapena"
+msgid "Summarize the issue in a few words"
+msgstr ""
+
+msgid "Select category"
+msgstr ""
+
+msgid "Give us more details about the issue"
+msgstr ""
+
+msgid "Describe the issue"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1899,7 +1905,13 @@ msgstr ""
 msgid "Search"
 msgstr "Bilatu"
 
-msgid "Submit"
+msgid "Get support for extensions and themes"
+msgstr ""
+
+msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
+msgstr ""
+
+msgid "Send request"
 msgstr ""
 
 #, python-format
@@ -1975,9 +1987,6 @@ msgid "From"
 msgstr ""
 
 msgid "To"
-msgstr ""
-
-msgid "Subject"
 msgstr ""
 
 msgid "Status"
@@ -2180,6 +2189,9 @@ msgid ""
 "characters and a minimum length of 2 characters for each."
 msgstr ""
 
+msgid "Summary"
+msgstr "Laburpena"
+
 msgid "Add-on URL"
 msgstr ""
 
@@ -2194,6 +2206,9 @@ msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Deskribapena"
 
 #, python-format
 msgid ""

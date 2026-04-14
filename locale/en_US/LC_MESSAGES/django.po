@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 09:02+0000\n"
+"POT-Creation-Date: 2026-04-14 07:48+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1662,8 +1662,8 @@ msgstr "Automatic rollback based on version [m.m]."
 msgid "You must select a channel and version to rollback to."
 msgstr "You must select a channel and version to rollback to."
 
-msgid "Select a category"
-msgstr "Select a category"
+msgid "Choose a category"
+msgstr "Choose a category"
 
 msgid "Account"
 msgstr "Account"
@@ -1674,14 +1674,20 @@ msgstr "Technical Issue"
 msgid "Policies"
 msgstr "Policies"
 
-msgid "Summary"
-msgstr "Summary"
+msgid "Subject"
+msgstr "Subject"
 
-msgid "Category"
-msgstr "Category"
+msgid "Summarize the issue in a few words"
+msgstr "Summarize the issue in a few words"
 
-msgid "Description"
-msgstr "Description"
+msgid "Select category"
+msgstr "Select category"
+
+msgid "Give us more details about the issue"
+msgstr "Give us more details about the issue"
+
+msgid "Describe the issue"
+msgstr "Describe the issue"
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1986,8 +1992,14 @@ msgstr "Search Developer Docs"
 msgid "Search"
 msgstr "Search"
 
-msgid "Submit"
-msgstr "Submit"
+msgid "Get support for extensions and themes"
+msgstr "Get support for extensions and themes"
+
+msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
+msgstr "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
+
+msgid "Send request"
+msgstr "Send request"
 
 #, python-format
 msgid "We have discovered that your email \"%(email)s\" is unable to receive emails from us. Please update your email address to one that can receive emails from us."
@@ -2067,9 +2079,6 @@ msgstr "From"
 
 msgid "To"
 msgstr "To"
-
-msgid "Subject"
-msgstr "Subject"
 
 msgid "Status"
 msgstr "Status"
@@ -2276,6 +2285,9 @@ msgstr ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 
+msgid "Summary"
+msgstr "Summary"
+
 msgid "Add-on URL"
 msgstr "Add-on URL"
 
@@ -2291,6 +2303,9 @@ msgstr "Edit Product Page"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
+
+msgid "Description"
+msgstr "Description"
 
 #, python-format
 msgid ""

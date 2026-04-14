@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 09:02+0000\n"
+"POT-Creation-Date: 2026-04-14 07:48+0000\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1573,7 +1573,7 @@ msgstr ""
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
-msgid "Select a category"
+msgid "Choose a category"
 msgstr ""
 
 msgid "Account"
@@ -1585,14 +1585,20 @@ msgstr ""
 msgid "Policies"
 msgstr ""
 
-msgid "Summary"
+msgid "Subject"
 msgstr ""
 
-msgid "Category"
+msgid "Summarize the issue in a few words"
 msgstr ""
 
-msgid "Description"
-msgstr "Disgrifiad"
+msgid "Select category"
+msgstr ""
+
+msgid "Give us more details about the issue"
+msgstr ""
+
+msgid "Describe the issue"
+msgstr ""
 
 msgid "Invalid or corrupt add-on file."
 msgstr ""
@@ -1876,7 +1882,13 @@ msgstr ""
 msgid "Search"
 msgstr "Chwilio"
 
-msgid "Submit"
+msgid "Get support for extensions and themes"
+msgstr ""
+
+msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
+msgstr ""
+
+msgid "Send request"
 msgstr ""
 
 #, python-format
@@ -1952,9 +1964,6 @@ msgid "From"
 msgstr ""
 
 msgid "To"
-msgstr ""
-
-msgid "Subject"
 msgstr ""
 
 msgid "Status"
@@ -2155,6 +2164,9 @@ msgid ""
 "characters and a minimum length of 2 characters for each."
 msgstr ""
 
+msgid "Summary"
+msgstr ""
+
 msgid "Add-on URL"
 msgstr ""
 
@@ -2169,6 +2181,9 @@ msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Disgrifiad"
 
 #, python-format
 msgid ""

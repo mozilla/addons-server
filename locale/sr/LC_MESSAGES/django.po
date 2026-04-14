@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-09 09:02+0000\n"
+"POT-Creation-Date: 2026-04-14 07:48+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1612,7 +1612,7 @@ msgstr ""
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
-msgid "Select a category"
+msgid "Choose a category"
 msgstr ""
 
 msgid "Account"
@@ -1624,14 +1624,20 @@ msgstr ""
 msgid "Policies"
 msgstr ""
 
-msgid "Summary"
-msgstr "Резиме"
-
-msgid "Category"
+msgid "Subject"
 msgstr ""
 
-msgid "Description"
-msgstr "Опис"
+msgid "Summarize the issue in a few words"
+msgstr ""
+
+msgid "Select category"
+msgstr ""
+
+msgid "Give us more details about the issue"
+msgstr ""
+
+msgid "Describe the issue"
+msgstr ""
 
 #, fuzzy
 msgid "Invalid or corrupt add-on file."
@@ -1923,7 +1929,13 @@ msgstr "Претражи Документе програмера"
 msgid "Search"
 msgstr "Претражи"
 
-msgid "Submit"
+msgid "Get support for extensions and themes"
+msgstr ""
+
+msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
+msgstr ""
+
+msgid "Send request"
 msgstr ""
 
 #, python-format
@@ -2000,9 +2012,6 @@ msgstr "Од"
 
 msgid "To"
 msgstr "За"
-
-msgid "Subject"
-msgstr ""
 
 msgid "Status"
 msgstr "Статус"
@@ -2205,6 +2214,9 @@ msgid ""
 "characters and a minimum length of 2 characters for each."
 msgstr ""
 
+msgid "Summary"
+msgstr "Резиме"
+
 msgid "Add-on URL"
 msgstr "URL адреса додатка"
 
@@ -2220,6 +2232,9 @@ msgstr "Погледај профил"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Опис"
 
 #, python-format
 msgid ""
