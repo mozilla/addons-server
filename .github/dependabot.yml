@@ -49,6 +49,12 @@ updates:
   - dependency-name: memcached
     versions:
     - ">= 1.6"
+  - dependency-name: addons-frontend
+    versions:
+    - "< 2026.01.08"
+  - dependency-name: autograph
+    versions:
+    - "< 7"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
