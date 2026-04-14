@@ -433,7 +433,7 @@ msgstr "Povrni se lahko samo odobrene različice, razen najnovejše."
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr "Tega povzetka ali opisa dodatka ni mogoče uporabljati."
+msgstr "Tega povzetka ali opisa dodatka ni mogoče uporabiti."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2093,7 +2093,7 @@ msgstr "Zadeva"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr "Povzemite zadevo z nekaj besedami"
+msgstr "Povzemite težavo v nekaj besedah"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
@@ -2386,11 +2386,11 @@ msgstr "Vaš e-poštni naslov je potrjen"
 
 #: src/olympia/devhub/views.py:2333
 msgid "Could not submit your support request. Please try again."
-msgstr "Vaše zahteve za podporo ni bilo mogoče poslati. Prosimo, poskusite znova."
+msgstr "Vašega zahtevka za podporo ni bilo mogoče poslati. Poskusite znova."
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr "Vaša zahteva za podporo je bila poslana. Kmalu se oglasimo."
+msgstr "Vaš zahtevek za podporo je bil poslan. Kmalu se vam oglasimo."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -3716,7 +3716,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
-msgstr "Vaši ključi API naj ostanejo skrivnost in jih nikoli ne delite z nikomer, niti z osebji ali sodelavci Mozille."
+msgstr "Vaši ključi API naj ostanejo skrivnost in jih ne zaupajte nikomur, niti Mozillinim zaposlenim ali sodelavcem."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT issuer"
@@ -5707,12 +5707,12 @@ msgstr "Naj se Firefox spletnim mestom, ki poskušajo blokirati Firefox, predsta
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr "Upravljajte Gmail (tudi več računov) kar z gumbom v Firefoxovi orodni vrstici."
+msgstr "Upravljajte Gmail (tudi več računov) kar prek gumba v Firefoxovi orodni vrstici."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr "Sledite času, ki ga preživite na spletu, analizirajte svoje navade, zavračajte moteča spletna mesta in drugo."
+msgstr "Sledite času, ki ga preživite na spletu, analizirajte svoje navade, blokirajte moteča spletna mesta in drugo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
