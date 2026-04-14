@@ -1,20 +1,20 @@
 {% extends "devhub/base.html" %}
 
-{% set title = _('Contact Support') %}
+{% set title = _('Get support for extensions and themes') %}
 
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
 {% block content %}
-<header>
-  <h2>{{ title }}</h2>
-</header>
-
 <section class="primary" role="main">
-  <form method="post">
+  <header class="support-header">
+    <h2>{{ title }}</h2>
+    <p>{{ _("Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible.") }}</p>
+  </header>
+  <form method="post" class="support-form">
     {% csrf_token %}
     {{ form.as_div() }}
     <div class="action-group">
-      <button type="submit" class="button prominent">{{ _('Submit') }}</button>
+      <button type="submit" class="button prominent">{{ _('Send request') }}</button>
     </div>
   </form>
 </section>

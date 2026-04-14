@@ -275,6 +275,37 @@ a.remove:hover {
     }
 }
 
+.primary > header.support-header h2 {
+    margin-bottom: 8px;
+}
+
+.support-form {
+    div {
+        margin-bottom: 20px;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+    }
+
+    input[type="text"],
+    select,
+    textarea {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    .action-group {
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+
 .full-width {
     box-sizing: border-box;
     display: block;
