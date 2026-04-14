@@ -433,7 +433,7 @@ msgstr "Endast godkända versioner kan återställas, förutom den senaste versi
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Denna sammanfattning eller beskrivning av tillägget kan inte användas."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2070,7 +2070,7 @@ msgstr "Du måste välja en kanal och version att återställa till."
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Välj en kategori"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2090,19 +2090,19 @@ msgstr "Ämne"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Sammanfatta problemet med några få ord"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Välj kategori"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Ge oss mer information om problemet"
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Beskriv problemet"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2480,15 +2480,17 @@ msgstr "Sök"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Få support för tillägg och teman"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Använd det här formuläret för support gällande ditt konto, tekniska problem med mera. Ju mer information du delar, desto lättare är det för oss att hjälpa dig. Vi återkommer till dig så snart som "
+"möjligt."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Skicka begäran"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
