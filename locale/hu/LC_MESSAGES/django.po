@@ -432,7 +432,7 @@ msgstr "Csak a jóváhagyott verziók görgethetők vissza, a legfrissebb verzi�
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Ez a kiegészítő-összefoglaló vagy leírás nem használható."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2080,7 +2080,7 @@ msgstr "Ki kell választania a csatornát és a verziót, amelyre vissza szeretn
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Válasszon egy kategóriát"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2100,19 +2100,19 @@ msgstr "Tárgy"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Foglalja össze a problémát néhány szóban"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Válasszon kategóriát"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Adjon meg további részleteket a problémáról"
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Írja le a problémát"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2490,15 +2490,17 @@ msgstr "Keresés"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Támogatás kérése a kiegészítőkhöz és a témákhoz"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Használja ezt az űrlapot a fiókjával, a műszaki és egyéb problémákkal kapcsolatos támogatáshoz. Minél több részletet oszt meg, annál könnyebben tudunk segíteni. A lehető leghamarabb kapcsolatba "
+"lépünk Önnel."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Kérés küldése"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format

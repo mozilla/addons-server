@@ -428,7 +428,7 @@ msgstr "除了最新的版本外，僅可退回至審核通過的版本。"
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "無法使用此附加元件摘要或描述。"
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
