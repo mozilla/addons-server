@@ -2099,7 +2099,7 @@ msgstr "Vat het probleem in een paar woorden samen"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr "Categorie selecteren"
+msgstr "Selecteer categorie"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
