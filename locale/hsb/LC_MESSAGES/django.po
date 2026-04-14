@@ -434,7 +434,7 @@ msgstr "Jenož schwalene wersije dadźa so wróćo kulić, nimo najnowšeje wers
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Zjeće abo wopisanje přidatka njeda so wužiwać."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2078,7 +2078,7 @@ msgstr "Dyrbiće kanal a wersiju wubrać, do kotrejež so ma wróćo kulić."
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Wubjerće kategoriju"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2098,19 +2098,19 @@ msgstr "Tema"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Zjimajće problem w mało słowach"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Kategoriju wubrać"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Dajće nam dalše podrobnosće wo tutym problemje"
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Wopisajće problem"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2488,7 +2488,7 @@ msgstr "Pytać"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Pomoc za rozšěrjenja a drasty dóstać"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
