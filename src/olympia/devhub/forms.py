@@ -166,7 +166,6 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
 
                 if (
                     waffle.switch_is_active('enable-narc')
-                    and 'name' in self.metadata_changes
                     and (
                         version
                         := self.instance.find_latest_non_rejected_listed_version()

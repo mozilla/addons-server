@@ -1430,7 +1430,6 @@ class AddonSerializer(AMOModelSerializer):
 
             if (
                 waffle.switch_is_active('enable-narc')
-                and 'name' in changes
                 and (version := instance.find_latest_non_rejected_listed_version())
             ):
                 run_narc_on_version.delay(version.pk)
