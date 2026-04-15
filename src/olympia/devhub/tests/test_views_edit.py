@@ -501,7 +501,7 @@ class BaseTestEditDescribe(BaseTestEdit):
                 abuse_task_mock.delay.assert_not_called()
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')
-    def test_trigger_narc_on_name_change_if_waffle_is_active_if_listed_versions(
+    def test_trigger_narc_on_metadata_change_if_waffle_is_active_if_listed_versions(
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
@@ -517,7 +517,7 @@ class BaseTestEditDescribe(BaseTestEdit):
             assert run_narc_on_version_mock.delay.call_count == 0
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')
-    def test_trigger_narc_on_name_change_if_listed_versions_not_rejected(
+    def test_trigger_narc_on_metadata_change_if_listed_versions_not_rejected(
         self, run_narc_on_version_mock
     ):
         if not self.listed:
@@ -533,17 +533,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
     @mock.patch('olympia.devhub.forms.run_narc_on_version')
-    def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
-        self.create_switch('enable-narc', active=True)
-        data = self.get_dict()
-        addon = self.get_addon()
-        data['name'] = str(addon.name)
-        response = self.client.post(self.describe_edit_url, data)
-        assert response.status_code == 200
-        assert run_narc_on_version_mock.delay.call_count == 0
-
-    @mock.patch('olympia.devhub.forms.run_narc_on_version')
-    def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
+    def test_dont_trigger_narc_on_metadata_change_if_waffle_is_inactive(
         self, run_narc_on_version_mock
     ):
         self._test_metadata_change_triggers_content_review()

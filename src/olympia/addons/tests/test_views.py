@@ -2628,7 +2628,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         )
 
     @patch('olympia.addons.serializers.run_narc_on_version')
-    def test_trigger_narc_on_name_change_if_waffle_is_active(
+    def test_trigger_narc_on_metadata_change_if_waffle_is_active(
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
@@ -2638,7 +2638,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
     @patch('olympia.addons.serializers.run_narc_on_version')
-    def test_trigger_narc_on_name_change_on_user_disabled_version(
+    def test_trigger_narc_on_metadata_change_on_user_disabled_version(
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
@@ -2649,16 +2649,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_args[0] == (version.pk,)
 
     @patch('olympia.addons.serializers.run_narc_on_version')
-    def test_dont_trigger_narc_if_name_does_not_change(self, run_narc_on_version_mock):
-        self.create_switch('enable-narc', active=True)
-        response = self.request(
-            data={'name': {'en-US': str(self.addon.name)}},
-        )
-        assert response.status_code == 200
-        assert run_narc_on_version_mock.delay.call_count == 0
-
-    @patch('olympia.addons.serializers.run_narc_on_version')
-    def test_dont_trigger_narc_on_name_change_if_no_listed_versions(
+    def test_dont_trigger_narc_on_metadata_change_if_no_listed_versions(
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
@@ -2667,7 +2658,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert run_narc_on_version_mock.delay.call_count == 0
 
     @patch('olympia.addons.serializers.run_narc_on_version')
-    def test_dont_trigger_narc_on_name_change_if_waffle_is_inactive(
+    def test_dont_trigger_narc_on_metadata_change_if_waffle_is_inactive(
         self, run_narc_on_version_mock
     ):
         self._test_metadata_content_review()

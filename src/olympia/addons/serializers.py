@@ -1428,10 +1428,8 @@ class AddonSerializer(AMOModelSerializer):
             AddonApprovalsCounter.reset_content_for_addon(addon=instance)
             AddonListingInfo.maybe_mark_as_noindexed(addon=instance)
 
-            if (
-                waffle.switch_is_active('enable-narc')
-                and 'name' in changes
-                and (version := instance.find_latest_non_rejected_listed_version())
+            if waffle.switch_is_active('enable-narc') and (
+                version := instance.find_latest_non_rejected_listed_version()
             ):
                 run_narc_on_version.delay(version.pk)
 
