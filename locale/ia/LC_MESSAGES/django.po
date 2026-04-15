@@ -434,7 +434,7 @@ msgstr "Solo le versiones approbate pote esser retro-rolate, salvo los plus rece
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Iste additivo o description de summario non pote esser usate."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2097,7 +2097,7 @@ msgstr "Subjecto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resumer le problema in alcun parolas"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
@@ -2105,7 +2105,7 @@ msgstr "Seliger un categoria"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Da nos altere detalios re le problema"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
@@ -2489,11 +2489,13 @@ msgstr "Recercar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obtener supporto pro extensiones e themas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Usa iste formulario pro assistentia de problemas technic e altero, correlate a tu conto. Quanto plus detalios tu condivide, tam plus facile il es pro nos adjutar. Nos te respondera al plus tosto "
+"possibile."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
