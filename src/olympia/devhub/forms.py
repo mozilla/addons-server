@@ -164,12 +164,8 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                 AddonApprovalsCounter.reset_content_for_addon(addon=obj)
                 AddonListingInfo.maybe_mark_as_noindexed(addon=obj)
 
-                if (
-                    waffle.switch_is_active('enable-narc')
-                    and (
-                        version
-                        := self.instance.find_latest_non_rejected_listed_version()
-                    )
+                if waffle.switch_is_active('enable-narc') and (
+                    version := self.instance.find_latest_non_rejected_listed_version()
                 ):
                     run_narc_on_version.delay(version.pk)
 
