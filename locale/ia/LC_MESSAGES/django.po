@@ -2077,7 +2077,7 @@ msgstr "Tu debe seliger un canal e version a que regreder."
 
 #: src/olympia/devhub/forms.py:1769
 msgid "Choose a category"
-msgstr ""
+msgstr "Eliger un categoria"
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Account"
@@ -2101,7 +2101,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Select category"
-msgstr ""
+msgstr "Seliger un categoria"
 
 #: src/olympia/devhub/forms.py:1789
 msgid "Give us more details about the issue"
@@ -2109,7 +2109,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1791
 msgid "Describe the issue"
-msgstr ""
+msgstr "Describe le problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2497,7 +2497,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Inviar requesta"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
