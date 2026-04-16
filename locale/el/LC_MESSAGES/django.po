@@ -2138,7 +2138,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Επιλογή κατηγορίας"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
