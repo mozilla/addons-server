@@ -2051,7 +2051,7 @@ msgstr "请选择回滚的目标通道和版本。"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "选择分类"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2075,7 +2075,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "选择类别"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
@@ -2083,7 +2083,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "描述问题"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
