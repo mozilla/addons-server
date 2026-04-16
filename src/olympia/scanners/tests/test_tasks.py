@@ -860,8 +860,8 @@ class TestRunNarc(UploadMixin, TestCase):
         )
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_re_run_on_version(self, run_action_mock, incr_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_re_run_on_version(self, run_actions_mock, incr_mock):
         # Scan a version first, make it match multiple rules.
         narc_result = self.test_run_multiple_matching_rules()
         assert len(narc_result.results) == 4
@@ -875,7 +875,7 @@ class TestRunNarc(UploadMixin, TestCase):
         self.addon.save()
 
         incr_mock.reset_mock()
-        run_action_mock.reset_mock()
+        run_actions_mock.reset_mock()
 
         run_narc_on_version(self.version.pk)
 
@@ -956,19 +956,19 @@ class TestRunNarc(UploadMixin, TestCase):
         )
 
         # We re-triggered the run action.
-        assert run_action_mock.call_count == 1
-        assert run_action_mock.call_args[0] == (self.version,)
+        assert run_actions_mock.call_count == 1
+        assert run_actions_mock.call_args[0] == (self.version,)
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_run_on_version_no_new_result(self, run_action_mock, incr_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_on_version_no_new_result(self, run_actions_mock, incr_mock):
         # Scan a version first, make it one rule.
         narc_result = self.test_run_xpi_match_only()
         assert len(narc_result.results) == 1
         rules = list(narc_result.matched_rules.all())
 
         incr_mock.reset_mock()
-        run_action_mock.reset_mock()
+        run_actions_mock.reset_mock()
 
         # Re-run on the version.
         run_narc_on_version(self.version.pk)
@@ -995,11 +995,11 @@ class TestRunNarc(UploadMixin, TestCase):
         )
 
         # We didn't retrigger the action since the first run (no new matches).
-        assert run_action_mock.call_count == 0
+        assert run_actions_mock.call_count == 0
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_run_action_initial_run(self, run_action_mock, incr_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions_initial_run(self, run_actions_mock, incr_mock):
         rule = ScannerRule.objects.create(
             name='always_match_rule',
             scanner=NARC,
@@ -1037,12 +1037,12 @@ class TestRunNarc(UploadMixin, TestCase):
             ]
         )
 
-        assert run_action_mock.call_count == 1
-        assert run_action_mock.call_args[0] == (self.version,)
+        assert run_actions_mock.call_count == 1
+        assert run_actions_mock.call_args[0] == (self.version,)
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_no_run_action_if_no_results(self, run_action_mock, incr_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_no_run_actions_if_no_results(self, run_actions_mock, incr_mock):
         run_narc_on_version(self.version.pk)
 
         scanner_results = ScannerResult.objects.all()
@@ -1057,18 +1057,18 @@ class TestRunNarc(UploadMixin, TestCase):
         assert incr_mock.call_count == 1
         assert incr_mock.call_args[0] == ('devhub.narc.success',)
 
-        assert run_action_mock.call_count == 0
+        assert run_actions_mock.call_count == 0
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_no_run_action_if_parameter_is_passed(self, run_action_mock, incr_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_no_run_actions_if_parameter_is_passed(self, run_actions_mock, incr_mock):
         rule = ScannerRule.objects.create(
             name='always_match_rule',
             scanner=NARC,
             definition='^My WebExtension.*$',
         )
 
-        run_narc_on_version(self.version.pk, run_action_on_match=False)
+        run_narc_on_version(self.version.pk, run_actions_on_match=False)
 
         scanner_results = ScannerResult.objects.all()
         assert len(scanner_results) == 1
@@ -1099,7 +1099,7 @@ class TestRunNarc(UploadMixin, TestCase):
             ]
         )
 
-        assert run_action_mock.call_count == 0
+        assert run_actions_mock.call_count == 0
 
     def test_run_do_examine_slug(self):
         rule = ScannerRule.objects.create(

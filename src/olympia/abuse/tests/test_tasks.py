@@ -22,6 +22,7 @@ from olympia.constants.abuse import (
 )
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
+from olympia.scanners.models import YARA, ScannerRule
 from olympia.versions.models import Version
 from olympia.zadmin.models import set_config
 
@@ -1142,6 +1143,13 @@ class TestSyncCinderPolicies(TestCase):
             cinder_policy=old_policy_with_reason,
             canned_response='.',
         )
+        old_policy_with_scannerrule = CinderPolicy.objects.create(
+            uuid='old-uuid-rule',
+            name='old-rule',
+            text='Old policy, but with linked scanner rule',
+        )
+        ScannerRule.objects.create(scanner=YARA, policy=old_policy_with_scannerrule)
+        old_policy_with_scannerrule.update(modified=days_ago(1))
         existing_policy_exposed = CinderPolicy.objects.create(
             uuid='existing-uuid-exposed',
             name='Existing policy',
@@ -1167,6 +1175,9 @@ class TestSyncCinderPolicies(TestCase):
 
         assert CinderPolicy.objects.filter(uuid='existing-uuid-exposed').exists()
         assert existing_policy_exposed.reload().present_in_cinder is False
+
+        assert CinderPolicy.objects.filter(uuid='old-uuid-rule').exists()
+        assert old_policy_with_scannerrule.reload().present_in_cinder is False
 
         assert not CinderPolicy.objects.filter(uuid='old-uuid').exists()
 

@@ -1184,7 +1184,7 @@ class TestRunAction(TestCase):
     def test_runs_no_action(self, no_action_mock):
         self.scanner_rule.update(action=NO_ACTION)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         no_action_mock.assert_called_with(version=self.version, rule=self.scanner_rule)
@@ -1193,7 +1193,7 @@ class TestRunAction(TestCase):
     def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
         self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert flag_for_human_review_mock.called
         flag_for_human_review_mock.assert_called_with(
@@ -1204,7 +1204,7 @@ class TestRunAction(TestCase):
     def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _delay_auto_approval_mock.called
         _delay_auto_approval_mock.assert_called_with(
@@ -1217,7 +1217,7 @@ class TestRunAction(TestCase):
     ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _delay_auto_approval_indefinitely_mock.called
         _delay_auto_approval_indefinitely_mock.assert_called_with(
@@ -1228,7 +1228,7 @@ class TestRunAction(TestCase):
     def test_runs_disable_and_block(self, _disable_and_block_mock):
         self.scanner_rule.update(action=DISABLE_AND_BLOCK)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _disable_and_block_mock.call_count == 1
         assert _disable_and_block_mock.call_args[1] == {
@@ -1243,19 +1243,19 @@ class TestRunAction(TestCase):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
         self.version.addon.update(type=amo.ADDON_DICT)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not _delay_auto_approval_indefinitely_mock.called
 
         self.version.addon.update(type=amo.ADDON_LPAPP)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not _delay_auto_approval_indefinitely_mock.called
 
         self.version.addon.update(type=amo.ADDON_STATICTHEME)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not _delay_auto_approval_indefinitely_mock.called
 
@@ -1263,10 +1263,24 @@ class TestRunAction(TestCase):
     def test_returns_when_no_action_found(self, log_mock):
         self.scanner_rule.delete()
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
-        log_mock.assert_called_with(
-            'No action to execute for version %s.', self.version.id
+        assert len(log_mock.call_args_list) == 4
+        assert log_mock.call_args_list[0][0] == (
+            'Checking workflow rules and actions for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[1][0] == (
+            'No workflow action to execute for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[2][0] == (
+            'Checking policy rules and actions for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[3][0] == (
+            'No violated policy found when scanning version %s.',
+            self.version.pk,
         )
 
     def test_raise_when_action_is_invalid(self):
@@ -1274,7 +1288,7 @@ class TestRunAction(TestCase):
         self.scanner_rule.update(action=12345)
 
         with pytest.raises(Exception, match='invalid action 12345'):
-            ScannerResult.run_action(self.version)
+            ScannerResult.run_actions(self.version)
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
@@ -1288,7 +1302,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not no_action_mock.called
         assert flag_for_human_review_mock.called
@@ -1311,7 +1325,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
@@ -1331,7 +1345,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not no_action_mock.called
         assert flag_for_human_review_mock.called
@@ -1352,7 +1366,7 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called

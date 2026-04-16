@@ -9,12 +9,12 @@ from olympia.users.models import (
 )
 
 
-def _no_action(*, version, rule):
+def _no_action(*, version, rule=None):
     """Do nothing."""
     pass
 
 
-def _flag_for_human_review(*, version, rule):
+def _flag_for_human_review(*, version, rule=None):
     """Flag the version for human review if it hasn't been flagged by a scanner
     already."""
     from olympia.reviewers.models import NeedsHumanReview
@@ -36,7 +36,7 @@ def _flag_for_human_review(*, version, rule):
     ).exists()
 
 
-def _delay_auto_approval(*, version, rule):
+def _delay_auto_approval(*, version, rule=None):
     """Delay auto-approval for both channels on the whole add-on for 24 hours.
 
     If delay was already set for either channel, only override it if the new
@@ -57,7 +57,7 @@ def _delay_auto_approval(*, version, rule):
     return True
 
 
-def _delay_auto_approval_indefinitely(*, version, rule):
+def _delay_auto_approval_indefinitely(*, version, rule=None):
     """Delay auto-approval for the whole add-on indefinitely."""
     from olympia.addons.models import AddonReviewerFlags
 
@@ -76,7 +76,7 @@ def _delay_auto_approval_indefinitely(*, version, rule):
     return True
 
 
-def _restrict_future_approvals(*, version, rule, restriction_type):
+def _restrict_future_approvals(*, version, rule=None, restriction_type):
     # Collect users and their IPs
     upload = (
         version.addon.fileupload_set.all()
@@ -115,7 +115,7 @@ def _restrict_future_approvals(*, version, rule, restriction_type):
 
 
 def _delay_auto_approval_indefinitely_and_restrict(
-    *, version, rule, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+    *, version, rule=None, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
 ):
     """Delay auto-approval for the whole add-on indefinitely, and restricts the
     user(s) and their IP(s)."""
@@ -130,7 +130,9 @@ def _delay_auto_approval_indefinitely_and_restrict(
     return True
 
 
-def _delay_auto_approval_indefinitely_and_restrict_future_approvals(*, version, rule):
+def _delay_auto_approval_indefinitely_and_restrict_future_approvals(
+    *, version, rule=None
+):
     """Delay auto-approval for the whole add-on indefinitely, and restricts future
     approvals posted by the same user(s) and their IP(s)."""
     return _delay_auto_approval_indefinitely_and_restrict(
@@ -138,7 +140,7 @@ def _delay_auto_approval_indefinitely_and_restrict_future_approvals(*, version, 
     )
 
 
-def _disable_and_block(*, version, rule):
+def _disable_and_block(*, version, rule=None):
     """Force disable the whole add-on and block all its versions."""
     # This is final, and meant as an aggressive last-resort, so there are no
     # checks on whether or not the version has been flagged by a scanner
@@ -166,7 +168,7 @@ def _disable_and_block(*, version, rule):
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         reject_and_block_addons(
-            [addon], reject_reason=f'scanner rule "{rule.pretty_name or rule.name}"'
+            [addon], reject_reason=f'scanner rule "{str(rule)[:150]}"'
         )
     else:
         _delay_auto_approval_indefinitely(version=version, rule=rule)

@@ -1128,7 +1128,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert not field.find('button')
 
     @mock.patch('olympia.scanners.admin.run_scanner_query_rule.delay')
-    def test_run_action(self, run_scanner_query_rule_mock):
+    def test_run_actions(self, run_scanner_query_rule_mock):
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=NEW)
         response = self.client.post(
             reverse(
@@ -1147,7 +1147,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         rule.reload()
         assert rule.state == SCHEDULED
 
-    def test_run_action_functional(self):
+    def test_run_actions_functional(self):
         version = addon_factory(
             file_kw={'filename': 'webextension.xpi'}
         ).current_version
@@ -1180,7 +1180,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert ScannerQueryResult.objects.get().version == version
 
     @mock.patch('olympia.scanners.admin.run_scanner_query_rule.delay')
-    def test_run_action_wrong_state(self, run_scanner_query_rule_mock):
+    def test_run_actions_wrong_state(self, run_scanner_query_rule_mock):
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=ABORTING)
         response = self.client.post(
             reverse(
@@ -1198,7 +1198,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         rule.reload()
         assert rule.state == ABORTING
 
-    def test_run_action_no_permission(self):
+    def test_run_actions_no_permission(self):
         user = user_factory(email='somebodyelse@mozilla.com')
         self.grant_permission(user, 'Admin:ScannersQueryView')
         self.client.force_login(user)

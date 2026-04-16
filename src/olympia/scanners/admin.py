@@ -517,31 +517,7 @@ class AbstractScannerResultAdminMixin:
 
 class AbstractScannerRuleAdminMixin:
     view_on_site = False
-
-    list_display = (
-        '__str__',
-        'scanner',
-        'action',
-        'is_active',
-        'exclude_promoted_addons',
-    )
     form = ScannerRuleModelForm
-    list_filter = ('scanner', 'action', 'is_active')
-    fields = (
-        'scanner',
-        'name',
-        'pretty_name',
-        'description',
-        'action',
-        'created',
-        'modified',
-        'matched_results_link',
-        'is_active',
-        'definition',
-        'configuration',
-        'exclude_promoted_addons',
-    )
-    readonly_fields = ('created', 'modified', 'matched_results_link')
 
     def formfield_for_choice_field(self, db_field, request, **kwargs):
         if db_field.name == 'scanner':
@@ -784,7 +760,31 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
 
 @admin.register(ScannerRule)
 class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
-    pass
+    list_display = (
+        '__str__',
+        'scanner',
+        'action',
+        'policy',
+        'is_active',
+        'exclude_promoted_addons',
+    )
+    list_filter = ('scanner', 'action', 'is_active')
+    fields = (
+        'scanner',
+        'name',
+        'pretty_name',
+        'description',
+        'action',
+        'policy',
+        'created',
+        'modified',
+        'matched_results_link',
+        'is_active',
+        'definition',
+        'configuration',
+        'exclude_promoted_addons',
+    )
+    readonly_fields = ('created', 'modified', 'matched_results_link')
 
 
 @admin.register(ScannerQueryRule)
