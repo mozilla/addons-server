@@ -2115,11 +2115,11 @@ msgstr "აირჩიეთ კატეგორია"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "მოგვახსენეთ საკითხის შესახებ დაწვრილებით"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "აღწერეთ საკითხი"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2495,7 +2495,7 @@ msgstr "ძიება"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "მიიღეთ მხარდაჭერა გაფართოებებსა და გაფორმებებზე"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
