@@ -436,7 +436,7 @@ msgstr "È possibile eseguire il ripristino solo delle versioni approvate, ad ec
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Non è possibile utilizzare il sommario o la descrizione del componente aggiuntivo."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2106,7 +2106,7 @@ msgstr "È necessario selezionare un canale e una versione verso cui eseguire il
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Scegli una categoria"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2126,19 +2126,19 @@ msgstr "Oggetto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Riassumi il problema in poche parole"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Seleziona categoria"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Fornisci ulteriori dettagli sul problema"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Descrivi il problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2520,15 +2520,16 @@ msgstr "Cerca"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Ottieni supporto per estensioni e temi"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Utilizza questo modulo per ricevere supporto relativo al tuo account, problemi tecnici e altro ancora. Più dettagli condividi, più facile sarà per noi aiutarti. Ti risponderemo il prima possibile."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Invia richiesta"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
