@@ -433,7 +433,7 @@ msgstr "Chỉ những phiên bản đã được chấp thuận mới có thể 
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Phần tóm tắt hoặc mô tả tiện ích này không thể sử dụng được."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2072,7 +2072,7 @@ msgstr "Bạn phải chọn kênh và phiên bản để quay lại."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Chọn một danh mục"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2092,19 +2092,19 @@ msgstr "Chủ đề"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Tóm tắt vấn đề bằng vài từ"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Chọn danh mục"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Cung cấp thêm thông tin chi tiết về vấn đề này"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Mô tả vấn đề"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2199,7 +2199,7 @@ msgstr "Tên URL không chính xác. Tiện ích chưa bị xóa."
 
 #: src/olympia/devhub/views.py:440
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Yêu cầu xem xét lại nội dung đăng tải đã được ghi nhận."
 
 #: src/olympia/devhub/views.py:484
 msgid "Invitation accepted."
@@ -2482,15 +2482,17 @@ msgstr "Tìm kiếm"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Nhận hỗ trợ cho tiện ích mở rộng và chủ đề"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Sử dụng biểu mẫu này để được hỗ trợ liên quan đến tài khoản, sự cố kỹ thuật và nhiều vấn đề khác. Càng cung cấp nhiều thông tin chi tiết, chúng tôi càng dễ dàng hỗ trợ bạn. Chúng tôi sẽ liên hệ lại "
+"với bạn trong thời gian sớm nhất."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Gửi yêu cầu"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
