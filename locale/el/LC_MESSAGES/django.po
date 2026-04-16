@@ -2533,7 +2533,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Αποστολή αιτήματος"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
