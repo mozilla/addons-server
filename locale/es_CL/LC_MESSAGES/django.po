@@ -435,7 +435,7 @@ msgstr "Sólo se pueden revertir las versiones aprobadas, excepto la versión m�
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Este resumen o descripción del complemento no se puede utilizar."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2084,7 +2084,7 @@ msgstr "Debes seleccionar un canal y una versión a la que deseas volver."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Elige una categoría"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2104,19 +2104,19 @@ msgstr "Asunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resume el problema en pocas palabras"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Selecciona la categoría"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Danos más detalles sobre el problema"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Describe el problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2496,15 +2496,17 @@ msgstr "Buscar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obtén soporte para extensiones y temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Usa este formulario para obtener asistencia relacionada con tu cuenta, problemas técnicos y más. Cuantos más detalles nos proporciones, más fácil nos resultará ayudarte. Te responderemos lo antes "
+"posible."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Enviar solicitud"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
