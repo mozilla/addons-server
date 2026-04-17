@@ -436,7 +436,7 @@ msgstr "Seules les versions approuvées peuvent être restaurées, sauf la versi
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Impossible d’utiliser le résumé ou la description de ce module complémentaire."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
