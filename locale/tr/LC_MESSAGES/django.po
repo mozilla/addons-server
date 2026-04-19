@@ -431,7 +431,7 @@ msgstr "En son sürüm hariç, yalnızca onaylanmış sürümler geri döndürü
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Bu eklenti özeti veya açıklaması kullanılamaz."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2076,7 +2076,7 @@ msgstr "Geri dönülecek kanalı ve sürümü seçmelisiniz."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Kategori seçin"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2096,7 +2096,7 @@ msgstr "Konu"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Sorunu birkaç kelimeyle özetleyin"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
