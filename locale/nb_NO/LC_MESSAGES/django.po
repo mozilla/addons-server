@@ -434,7 +434,7 @@ msgstr "Bare godkjente versjoner kan rulles tilbake, bortsett fra den nyeste ver
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Dette tilleggets sammendrag eller beskrivelse kan ikke brukes."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2073,7 +2073,7 @@ msgstr "Du må velge en kanal og versjon du vil rulle tilbake til."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Velg en kategori"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2093,19 +2093,19 @@ msgstr "Emne"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Oppsummer problemet med noen få ord"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Velg kategori"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Gi oss mer informasjon om problemet"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Beskriv problemet"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
