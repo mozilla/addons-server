@@ -1,6 +1,7 @@
 import random
 from collections import defaultdict
 from datetime import datetime, timedelta
+from inspect import isclass
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -44,6 +45,7 @@ class ContentAction:
     second_level_notification_template_path = (
         'abuse/emails/second_level_notification.txt'
     )
+    action = None
 
     def __init__(self, decision):
         self.decision = decision
@@ -304,6 +306,7 @@ class ContentActionBanUser(ContentAction):
     valid_targets = (UserProfile,)
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_BAN_USER
 
     def should_hold_action(self):
         return bool(
@@ -339,6 +342,15 @@ class ContentActionDisableAddon(ContentAction):
     valid_targets = (Addon,)
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.target_versions = (
+            self.decision.target_versions.all()
+            if self.decision.id
+            else Version.objects.none()
+        )
 
     def should_hold_action(self):
         return bool(
@@ -379,10 +391,6 @@ class ContentActionDisableAddon(ContentAction):
         return activity_log
 
     @property
-    def target_versions(self):
-        return self.decision.target_versions.all()
-
-    @property
     def versions_force_disable_will_affect(self):
         return (
             Version.objects.all()
@@ -416,6 +424,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
     description = 'Add-on version(s) have been rejected'
     stakeholder_template_path = 'abuse/emails/stakeholder_notification.txt'
     stakeholder_acl_group_name = 'Stakeholder-Rejection-Notifications'
+    action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
     def __init__(self, decision):
         super().__init__(decision)
@@ -544,6 +553,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
     description = 'Add-on version(s) will be rejected'
     reporter_template_path = 'abuse/emails/reporter_takedown_addon_delayed.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
+    action = DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
 
     def __init__(self, decision):
         super().__init__(decision)
@@ -629,6 +639,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
     description = 'Add-on has been (disabled and) blocked'
     block_type = BlockType.SOFT_BLOCKED
     disable_too = True
+    action = DECISION_ACTIONS.AMO_BLOCK_ADDON
 
     def should_hold_action(self):
         return bool(
@@ -741,39 +752,46 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
 class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.SOFT_BLOCKED
     delay_days = 7
+    action = DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
 
 
 class ContentActionDelayedMidSoftBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.SOFT_BLOCKED
     delay_days = 14
+    action =  DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON
 
 
 class ContentActionDelayedLongSoftBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.SOFT_BLOCKED
     delay_days = 28
+    action = DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON
 
 
 class ContentActionDelayedShortHardBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.BLOCKED
     delay_days = 7
+    action = DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON
 
 
 class ContentActionDelayedMidHardBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.BLOCKED
     delay_days = 14
+    action = DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
 
 
 class ContentActionDelayedLongHardBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.BLOCKED
     delay_days = 28
+    action = DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON
 
 
 class ContentActionRejectListingContent(ContentActionDisableAddon):
     description = 'Add-on listing content has been rejected'
+    action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
-    @property
-    def target_versions(self):
-        return self.decision.target_versions.none()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.target_versions = self.decision.target_versions.none()
 
     def should_hold_action(self):
         return bool(
@@ -796,6 +814,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
 
 class ContentActionForwardToLegal(ContentAction):
     valid_targets = (Addon,)
+    action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
 
     def process_action(self, release_hold=False):
         from olympia.abuse.tasks import handle_forward_to_legal_action
@@ -807,6 +826,7 @@ class ContentActionForwardToLegal(ContentAction):
 class ContentActionChangePendingRejectionDate(ContentAction):
     description = 'Add-on pending rejection date has changed'
     valid_targets = (Addon,)
+    action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
 
     def get_owners(self):
         return self.target.authors.all()
@@ -817,6 +837,7 @@ class ContentActionDeleteCollection(ContentAction):
     description = 'Collection has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_DELETE_COLLECTION
 
     def should_hold_action(self):
         return (
@@ -844,6 +865,7 @@ class ContentActionDeleteRating(ContentAction):
     description = 'Rating has been deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_DELETE_RATING
 
     def should_hold_action(self):
         # Developer reply in recommended or partner extensions
@@ -885,6 +907,7 @@ class ContentActionTargetAppealApprove(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is within policy, after appeal'
+    action = DECISION_ACTIONS.AMO_APPROVE
 
     @property
     def target_versions(self):
@@ -1027,6 +1050,7 @@ class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
     description = 'Reported content is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
+    action = DECISION_ACTIONS.AMO_APPROVE
 
     def __init__(self, decision):
         super().__init__(decision)
@@ -1065,12 +1089,14 @@ class ContentActionApproveInitialDecision(
     )
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
+    action = DECISION_ACTIONS.AMO_APPROVE_VERSION
 
 
 class ContentActionTargetAppealRemovalAffirmation(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is still offending, after appeal.'
+    action = None  # FIXME: or DECISION_ACTIONS.AMO_IGNORE? Does it matter?
 
     def process_action(self, release_hold=False):
         previous_decision_actions = (
@@ -1090,12 +1116,14 @@ class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Report is invalid, so no action'
     reporter_template_path = 'abuse/emails/reporter_invalid_ignore.txt'
     # no appeal template because no appeals possible
+    action = DECISION_ACTIONS.AMO_IGNORE
 
 
 class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction):
     description = 'Content is already moderated, disabled or deleted, so no action'
     reporter_template_path = 'abuse/emails/reporter_moderated_ignore.txt'
     # no appeal template because no appeals possible
+    action = DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
 
 
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
@@ -1105,41 +1133,8 @@ class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
 CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
     lambda: ContentActionNotImplemented,
     {
-        DECISION_ACTIONS.AMO_BAN_USER: ContentActionBanUser,
-        DECISION_ACTIONS.AMO_DISABLE_ADDON: ContentActionDisableAddon,
-        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON: ContentActionRejectVersion,
-        DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON: (
-            ContentActionRejectVersionDelayed
-        ),
-        DECISION_ACTIONS.AMO_BLOCK_ADDON: ContentActionBlockAddon,
-        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON: (
-            ContentActionDelayedShortSoftBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON: (
-            ContentActionDelayedMidSoftBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON: (
-            ContentActionDelayedLongSoftBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON: (
-            ContentActionDelayedShortHardBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON: (
-            ContentActionDelayedMidHardBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON: (
-            ContentActionDelayedLongHardBlockAddon
-        ),
-        DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
-        DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
-        DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveListingContent,
-        DECISION_ACTIONS.AMO_APPROVE_VERSION: ContentActionApproveInitialDecision,
-        DECISION_ACTIONS.AMO_IGNORE: ContentActionIgnore,
-        DECISION_ACTIONS.AMO_CLOSED_NO_ACTION: ContentActionAlreadyModerated,
-        DECISION_ACTIONS.AMO_LEGAL_FORWARD: ContentActionForwardToLegal,
-        DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE: (
-            ContentActionChangePendingRejectionDate
-        ),
-        DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT: ContentActionRejectListingContent,
+        local_.action: local_
+        for local_ in vars().values()
+        if isclass(local_) and issubclass(local_, ContentAction) and local_.action
     },
 )

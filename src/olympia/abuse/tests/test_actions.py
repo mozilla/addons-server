@@ -266,7 +266,7 @@ class BaseTestContentAction:
         assert self.decision.reasoning in mail_item.body
         assert self.decision.private_notes not in mail_item.body
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         # Common things that we expect to happen after a successful appeal or
         # override of a negative action.
         raise NotImplementedError
@@ -302,8 +302,10 @@ class BaseTestContentAction:
         assert 'has been approved' in mail.outbox[-1].body
 
     def test_notify_reporters_reporters_provided(self):
-        action = self.ActionClass(self.decision)
-        action.notify_reporters(reporter_abuse_reports=[self.abuse_report_no_auth])
+        action_helper = self.ActionClass(self.decision)
+        action_helper.notify_reporters(
+            reporter_abuse_reports=[self.abuse_report_no_auth]
+        )
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['email@domain.com']
         assert mail.outbox[0].subject.endswith(
@@ -339,13 +341,13 @@ class BaseTestContentAction:
     def test_email_content_not_escaped(self):
         unsafe_str = '<script>jar=window.triggerExploit();"</script>'
         self.decision.update(reasoning=unsafe_str)
-        action = self.ActionClass(self.decision)
-        action.notify_owners()
+        action_helper = self.ActionClass(self.decision)
+        action_helper.notify_owners()
         assert unsafe_str in mail.outbox[0].body
 
-        action = ContentActionApproveListingContent(self.decision)
+        action_helper = ContentActionApproveListingContent(self.decision)
         mail.outbox.clear()
-        action.notify_reporters(
+        action_helper.notify_reporters(
             reporter_abuse_reports=[self.abuse_report_auth], is_appeal=True
         )
         assert unsafe_str in mail.outbox[0].body
@@ -411,6 +413,7 @@ class BaseTestContentAction:
 
 class TestContentActionUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
+    takedown_decision_action = DECISION_ACTIONS.AMO_BAN_USER
 
     def setUp(self):
         super().setUp()
@@ -418,13 +421,14 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         self.cinder_job.abusereport_set.update(user=self.user, guid=None)
         self.decision.update(addon=None, user=self.user)
         self.past_negative_decision.update(
-            addon=None, user=self.user, action=DECISION_ACTIONS.AMO_BAN_USER
+            addon=None, user=self.user, action=self.takedown_decision_action
         )
 
     def _test_ban_user(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        self.decision.update(action=self.takedown_decision_action)
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
+        activity = action_helper.process_action()
         assert activity.log == amo.LOG.ADMIN_USER_BANNED
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
@@ -443,16 +447,16 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         self.assertCloseToNow(self.user.banned)
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.user.name}'
         self._test_owner_takedown_email(subject, 'has been suspended')
         return subject
 
     def test_log_action_no_notes(self):
-        self.decision.update(private_notes='', action=DECISION_ACTIONS.AMO_BAN_USER)
-        action = self.ActionClass(self.decision)
-        action.process_action()
+        self.decision.update(private_notes='', action=self.takedown_decision_action)
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
         assert ActivityLog.objects.count() == 1
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
@@ -465,8 +469,8 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
 
     def test_already_banned(self):
         self.user.update(banned=self.days_ago(42))
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_ban_user_after_reporter_appeal(self):
@@ -488,22 +492,22 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
 
     def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
-        action = ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = ActionClass(self.decision)
+        assert action_helper.process_action() is None
 
         self.user.reload()
         assert not self.user.banned
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         return f'Mozilla Add-ons: {self.user.name}'
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         self.user.reload()
         assert not self.user.banned
@@ -522,52 +526,52 @@ class TestContentActionUser(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.user.name}')
 
     def test_target_appeal_decline(self):
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.user.reload()
         assert self.user.banned
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.user.name}')
 
     def test_should_hold_action(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        self.decision.update(action=self.takedown_decision_action)
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         self.user.update(email='superstarops@mozilla.com')
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.user.update(email='foo@baa')
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
         del self.user.groups_list
         self.grant_permission(self.user, 'this:thing')
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.user.groups_list = []
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
         addon = addon_factory(users=[self.user])
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
         self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.user.banned = datetime.now()
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_hold_action(self):
-        self.decision.update(action=DECISION_ACTIONS.AMO_BAN_USER)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        self.decision.update(action=self.takedown_decision_action)
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_ADMIN_USER_BANNED
         assert activity.arguments == [self.user, self.decision, self.policy]
         assert activity.user == self.task_user
@@ -641,8 +645,9 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def _process_action_and_notify(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
+        activity = action_helper.process_action()
         assert activity
         assert activity.log == self.activity_log_action
         assert self.addon.reload().status == amo.STATUS_DISABLED
@@ -662,8 +667,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
         assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
@@ -671,8 +676,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_log_action_no_notes(self):
         self.decision.update(private_notes='', action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).exists()
@@ -680,8 +685,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     def test_already_taken_down(self):
         self.decision.update(action=self.takedown_decision_action)
         self.addon.update(status=amo.STATUS_DISABLED)
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_execute_action(self):
@@ -706,11 +711,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -724,39 +729,39 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_target_appeal_decline_no_manual_reasoning_text(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
         self.decision.update(reasoning='')
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self.decision.update(reasoning='')
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
@@ -829,19 +834,19 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_should_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.addon.status = amo.STATUS_DISABLED
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_FORCE_DISABLE
         assert activity.arguments == [
             self.addon,
@@ -866,7 +871,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
         user = user_factory()
         self.decision.update(reviewer_user=user)
-        activity = action.hold_action()
+        activity = action_helper.hold_action()
         assert activity.arguments == [
             self.addon,
             self.decision,
@@ -890,7 +895,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD, cinder_job=None)
-        action = ContentActionForwardToLegal(self.decision)
+        action_helper = ContentActionForwardToLegal(self.decision)
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}v1/create_report',
@@ -898,7 +903,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             status=201,
         )
 
-        action.process_action()
+        action_helper.process_action()
 
         assert CinderJob.objects.get(job_id='1234-xyz')
         request_body = json.loads(responses.calls[0].request.body)
@@ -907,7 +912,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
     def test_forward_from_reviewers_with_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD)
-        action = ContentActionForwardToLegal(self.decision)
+        action_helper = ContentActionForwardToLegal(self.decision)
         responses.add_callback(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}v1/jobs/{self.cinder_job.job_id}/decision',
@@ -920,7 +925,7 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             status=201,
         )
 
-        action.process_action()
+        action_helper.process_action()
 
         new_cinder_job = CinderJob.objects.get(job_id='1234-xyz')
         assert new_cinder_job != self.cinder_job
@@ -1023,11 +1028,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         )
         assert new_activity.attachmentlog == attachmentlog
 
-    def _test_approve_appeal_or_override_but_listing_rejected(self, ContentActionClass):
+    def _test_approve_appeal_or_override_but_listing_rejected(self, ActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_REJECTED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -1045,8 +1050,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: {self.addon.name}', fragment='remains unavailable'
         )
@@ -1075,14 +1080,14 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
         assert self.addon.reload().status == amo.STATUS_REJECTED
 
-    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+    def _test_approve_appeal_or_override_but_not_approved(self, ActionClass):
         self.old_version.file.update(status=amo.STATUS_DISABLED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_DISABLED)
 
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -1100,8 +1105,8 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: {self.addon.name}',
             fragment='information on its availability',
@@ -1145,15 +1150,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action=self.takedown_decision_action,
             metadata={'content_review': content_review},
         )
-        action = ContentActionRejectVersion(self.decision)
+        action_helper = ContentActionRejectVersion(self.decision)
         # process_action is only available for reviewer tools decisions.
         with self.assertRaises(NotImplementedError):
-            action.process_action()
+            action_helper.process_action()
 
         # but with a reviewer attached to the decision we can proceed
         reviewer = user_factory()
         self.decision.update(reviewer_user=reviewer)
-        activity = action.process_action()
+        activity = action_helper.process_action()
         assert activity
         assert (
             activity.log == amo.LOG.REJECT_CONTENT
@@ -1188,8 +1193,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == expected_emails_from_action
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners(extra_context={'version_list': '2.3, 3.45'})
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners(extra_context={'version_list': '2.3, 3.45'})
         mail_item = mail.outbox[-1]
         self._check_owner_email(mail_item, subject, 'have been disabled')
 
@@ -1208,7 +1213,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         return subject
 
     def _test_approve_appeal_or_override(
-        self, ContentActionClass, *, fragment='we have restored'
+        self, ActionClass, *, fragment='we have restored'
     ):
         self.old_version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
@@ -1216,8 +1221,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         # set-up where version.file doesn't have an original_status for some reason
         self.version.file.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         # safe fallback to AWAITING_REVIEW when original_status not defined
         assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
@@ -1240,8 +1245,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: {self.addon.name}', fragment=fragment
         )
@@ -1287,8 +1292,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.old_version.file.update(status=amo.STATUS_APPROVED)
         ActivityLog.objects.all().delete()
-        action = ContentActionOverrideApprove(self.decision)
-        activity = action.process_action()
+        action_helper = ContentActionOverrideApprove(self.decision)
+        activity = action_helper.process_action()
 
         assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
         assert self.old_version.file.reload().status == amo.STATUS_APPROVED
@@ -1317,8 +1322,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action=self.takedown_decision_action,
             reviewer_user=user_factory(),
         )
-        action = self.ActionClass(self.decision)
-        action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
         assert ActivityLog.objects.count() == 1
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
@@ -1330,8 +1335,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.version.file.update(status=amo.STATUS_DISABLED)
         self.old_version.file.update(status=amo.STATUS_DISABLED)
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_already_taken_down_delayed_rejection(self):
@@ -1346,8 +1351,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.version.file.update(status=amo.STATUS_DISABLED)
         self.old_version.file.update(status=amo.STATUS_DISABLED)
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_already_delayed_rejected_delayed_rejection(self):
@@ -1367,8 +1372,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
                 pending_rejection_by=self.decision.reviewer_user,
                 pending_content_rejection=True,
             )
-        action = ContentActionRejectVersionDelayed(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionRejectVersionDelayed(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_already_delayed_different_review_type_rejected_delayed_rejection(self):
@@ -1473,15 +1478,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
                 'content_review': content_review,
             },
         )
-        action = ContentActionRejectVersionDelayed(self.decision)
+        action_helper = ContentActionRejectVersionDelayed(self.decision)
         # process_action is only available for reviewer tools decisions.
         with self.assertRaises(NotImplementedError):
-            action.process_action()
+            action_helper.process_action()
 
         # but with a reviewer attached to the decision we can proceed
         reviewer = user_factory()
         self.decision.update(reviewer_user=reviewer)
-        activity = action.process_action()
+        activity = action_helper.process_action()
         assert activity
         assert (
             activity.log == amo.LOG.REJECT_CONTENT_DELAYED
@@ -1512,8 +1517,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == expected_emails_from_action
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners(
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners(
             extra_context={
                 'version_list': '2.3, 3.45',
                 'delayed_rejection_days': 66,
@@ -1611,8 +1616,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_REJECT_VERSIONS
         assert activity.arguments == [
             self.addon,
@@ -1637,7 +1642,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         user = user_factory()
         self.decision.update(reviewer_user=user)
-        activity = action.hold_action()
+        activity = action_helper.hold_action()
         assert activity.arguments == [
             self.addon,
             self.decision,
@@ -1655,18 +1660,18 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
         self.version.file.update(is_signed=True)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.decision.target_versions.add(self.another_version)
         assert self.decision.target_versions.filter(file__is_signed=True).exists()
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.version.file.update(is_signed=False)
         self.decision = ContentDecision.objects.get(id=self.decision.id)
         assert not self.decision.target_versions.filter(file__is_signed=True).exists()
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_should_hold_action_some_versions_remain(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
@@ -1675,24 +1680,24 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # While there are more public listed versions that wouldn't be affected
         # the rejection can go through without being held.
-        action = self.ActionClass(self.decision)
-        assert action.remaining_public_listed_versions().exists()
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.remaining_public_listed_versions().exists()
+        assert action_helper.should_hold_action() is False
 
         # If that last remaining version is unlisted, suddenly we do hold the
         # rejection - no public listed versions would remain if that went
         # through.
         self.another_version.update(channel=amo.CHANNEL_UNLISTED)
-        assert not action.remaining_public_listed_versions().exists()
-        assert action.should_hold_action() is True
+        assert not action_helper.remaining_public_listed_versions().exists()
+        assert action_helper.should_hold_action() is True
 
         # If that last remaining version is listed but not public, then we have
         # to hold the rejection once more, since no public listed versions
         # would remain once again.
         self.another_version.update(channel=amo.CHANNEL_LISTED)
         self.another_version.file.update(status=amo.STATUS_DISABLED)
-        assert not action.remaining_public_listed_versions().exists()
-        assert action.should_hold_action() is True
+        assert not action_helper.remaining_public_listed_versions().exists()
+        assert action_helper.should_hold_action() is True
 
         # If that version is public but pending rejection we still have to hold
         # the rejection.
@@ -1703,22 +1708,22 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
         )
-        assert action.remaining_public_listed_versions().exists()
-        assert action.should_hold_action() is True
+        assert action_helper.remaining_public_listed_versions().exists()
+        assert action_helper.should_hold_action() is True
 
     def test_target_appeal_decline(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.version.file.reload()
         assert self.version.file.status == amo.STATUS_DISABLED
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners(extra_context={'is_addon_enabled': True})
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners(extra_context={'is_addon_enabled': True})
         self._test_owner_affirmation_email(
             f'Mozilla Add-ons: {self.addon.name}', should_allow_uploads=True
         )
@@ -1726,7 +1731,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def test_notify_stakeholders(self):
         stakeholder = user_factory()
         self.decision.target_versions.set([self.version])
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
         listed_version = self.version
         listed_version.file.update(is_signed=True)
@@ -1741,12 +1746,12 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # the addon is not promoted
         assert self.addon.publicly_promoted_groups == []
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 0
 
         # make the addon promoted
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         body = mail.outbox[0].body
         assert mail.outbox[0].recipients() == [stakeholder.email]
@@ -1769,7 +1774,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # an unlisted version should result in second link to the unlisted review page
         self.decision.target_versions.add(unlisted_version)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 2  # another email
         body = mail.outbox[1].body
         assert (
@@ -1787,7 +1792,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         # if the listed version(s) affected are the last approved versions indicate that
         self.another_version.file.update(status=amo.STATUS_DISABLED)
         self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 3  # another email
         body = mail.outbox[2].body
         assert (
@@ -1799,7 +1804,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # if no listed versions are affected we don't mention about the current version
         self.decision.target_versions.set([unlisted_version])
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 4  # another email
         body = mail.outbox[3].body
         assert 'will be the current' not in body
@@ -1808,13 +1813,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         # And check that if no versions were signed we don't send an email
         listed_version.file.update(is_signed=False)
         unlisted_version.file.update(is_signed=False)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 4
 
     def test_notify_stakeholders_with_private_notes(self):
         stakeholder = user_factory()
         self.decision.target_versions.set([self.version])
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
         listed_version = self.version
         listed_version.file.update(is_signed=True)
@@ -1828,7 +1833,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # make the addon promoted
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         assert mail.outbox[0].recipients() == [stakeholder.email]
         assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
@@ -1838,7 +1843,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
     def test_notify_stakeholders_with_policy_texts(self):
         stakeholder = user_factory()
         self.decision.target_versions.set([self.version])
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
         listed_version = self.version
         listed_version.file.update(is_signed=True)
@@ -1859,7 +1864,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # make the addon promoted
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        action.notify_stakeholders('teh reason')
+        action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         assert mail.outbox[0].recipients() == [stakeholder.email]
         assert mail.outbox[0].subject == f'teh reason issued for {self.addon.name}'
@@ -1869,7 +1874,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             in mail.outbox[0].body
         )
 
-    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+    def _test_approve_appeal_or_override_but_not_approved(self, ActionClass):
         self.old_version.file.update(status=amo.STATUS_DISABLED)
         self.version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_AWAITING_REVIEW
@@ -1877,8 +1882,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.another_version.update(channel=amo.CHANNEL_UNLISTED)
         self.addon.update(status=amo.STATUS_NULL)
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.UNREJECT_VERSION
@@ -1902,8 +1907,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: {self.addon.name}',
             fragment='information on its availability',
@@ -1963,8 +1968,10 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         File.objects.filter(version__addon=self.addon).update(
             status=amo.STATUS_DISABLED
         )
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None  # we don't have a disable activity
+        action_helper = self.ActionClass(self.decision)
+        assert (
+            action_helper.process_action() is None
+        )  # we don't have a disable activity
         assert ActivityLog.objects.count() == 2
         block_activity = ActivityLog.objects.all()[1]
         block_version_activity = ActivityLog.objects.all()[0]
@@ -1976,8 +1983,8 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         self.decision.update(action=self.takedown_decision_action)
         BlockVersion.objects.create(block=self.addon.block, version=self.version)
         BlockVersion.objects.create(block=self.addon.block, version=self.old_version)
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_should_hold_action(self):
@@ -1985,18 +1992,18 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
             group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
         )
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         # if one version is not blocked we still hold the action
         BlockVersion.objects.create(block=self.addon.block, version=self.version)
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         BlockVersion.objects.create(block=self.addon.block, version=self.old_version)
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_log_action_saves_policy_texts(self):
         # update the policy with a placeholder.
@@ -2147,14 +2154,14 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
 
     def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
-        action = ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = ActionClass(self.decision)
+        assert action_helper.process_action() is None
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
 
     def _test_reporter_content_approved_action_taken(self):
@@ -2162,8 +2169,8 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         action = DECISION_ACTIONS.AMO_APPROVE
         self.decision.update(action=action)
         assert self.decision.target_versions.exists()
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.process_action()
         assert activity.log == amo.LOG.APPROVE_LISTING_CONTENT
         # no versions in the args though
         assert activity.arguments == [self.addon, self.decision, self.policy]
@@ -2185,10 +2192,10 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         self.assertCloseToNow(counter.last_content_review)
 
         # get this again, to replicate how send_notifications works
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         return f'Mozilla Add-ons: {self.addon.name}'
 
     def test_reporter_content_approve_report(self):
@@ -2227,8 +2234,8 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         action = DECISION_ACTIONS.AMO_APPROVE
         self.decision.update(action=action)
         assert self.decision.target_versions.exists()
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.process_action()
         # no versions in the args though
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
         assert activity.arguments == [self.addon, self.decision, self.policy]
@@ -2258,10 +2265,10 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         self.assertCloseToNow(counter.last_content_review)
 
         # get this again, to replicate how send_notifications works
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
         assert len(mail.outbox) == 3
@@ -2281,8 +2288,8 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         action = DECISION_ACTIONS.AMO_APPROVE
         self.decision.update(action=action)
         assert self.decision.target_versions.exists()
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.process_action()
         # no versions in the args though
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
         assert activity.arguments == [self.addon, self.decision, self.policy]
@@ -2313,10 +2320,10 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
         self.assertCloseToNow(counter.last_content_review)
 
         # get this again, to replicate how send_notifications works
-        action = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision)
         assert len(mail.outbox) == 0
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
 
         assert len(mail.outbox) == 3
@@ -2353,8 +2360,9 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
 
     def _process_action_and_notify(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
+        activity = action_helper.process_action()
         assert activity
         assert activity.log == self.activity_log_action
         assert self.addon.reload().status == amo.STATUS_REJECTED
@@ -2373,19 +2381,20 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert len(mail.outbox) == 0
 
         # get this again, to replicate how send_notifications works
-        action = self.ActionClass(self.decision)
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
         assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
         return subject
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         self.addon.update(status=amo.STATUS_REJECTED)
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
@@ -2404,14 +2413,14 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT
         assert activity.arguments == [
             self.addon,
@@ -2465,14 +2474,14 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         pass
         # This test doesn't apply for this ActionClass.
 
-    def _test_approve_appeal_or_override_but_not_approved(self, ContentActionClass):
+    def _test_approve_appeal_or_override_but_not_approved(self, ActionClass):
         self.old_version.file.update(status=amo.STATUS_DISABLED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_REJECTED)
 
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
@@ -2490,8 +2499,8 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: {self.addon.name}',
             fragment='information on its availability',
@@ -2511,8 +2520,8 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         ActivityLog.objects.all().delete()
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.addon.reload()
         assert self.addon.status == amo.STATUS_REJECTED
@@ -2522,8 +2531,8 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
 
 
@@ -2548,8 +2557,8 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
 
     def _test_delete_collection(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
-        action = self.ActionClass(self.decision)
-        log_entry = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        log_entry = action_helper.process_action()
 
         assert self.collection.reload()
         assert self.collection.deleted
@@ -2566,8 +2575,8 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: {self.collection.name}'
         self._test_owner_takedown_email(subject, 'permanently removed')
         return subject
@@ -2576,8 +2585,8 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         self.decision.update(
             private_notes='', action=DECISION_ACTIONS.AMO_DELETE_COLLECTION
         )
-        action = self.ActionClass(self.decision)
-        action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
         assert ActivityLog.objects.count() == 1
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
@@ -2586,8 +2595,8 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
     def test_already_deleted(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
         self.collection.delete()
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_delete_collection(self):
@@ -2614,22 +2623,22 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
 
     def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
-        action = ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = ActionClass(self.decision)
+        assert action_helper.process_action() is None
 
         assert self.collection.reload()
         assert not self.collection.deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         return f'Mozilla Add-ons: {self.collection.name}'
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         self.collection.update(deleted=True)
-        action = ContentActionClass(self.decision)
-        log_entry = action.process_action()
+        action_helper = ActionClass(self.decision)
+        log_entry = action_helper.process_action()
 
         assert self.collection.reload()
         assert not self.collection.deleted
@@ -2645,39 +2654,39 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
         assert second_activity.details == {'comments': self.decision.private_notes}
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.collection.name}')
 
     def test_target_appeal_decline(self):
         self.collection.update(deleted=True)
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.collection.reload()
         assert self.collection.deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.collection.name}')
 
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         self.collection.update(author=self.task_user)
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.collection.deleted = True
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_COLLECTION_DELETED
         assert activity.arguments == [self.collection, self.decision, self.policy]
         assert activity.user == self.task_user
@@ -2711,8 +2720,8 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
 
     def _test_delete_rating(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
-        action = self.ActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.process_action()
         assert activity.log == amo.LOG.DELETE_RATING
         assert activity.arguments == [
             self.rating,
@@ -2739,8 +2748,8 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert self.rating.reload().deleted
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         subject = f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         self._test_owner_takedown_email(subject, 'permanently removed')
         return subject
@@ -2749,8 +2758,8 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         self.decision.update(
             private_notes='', action=DECISION_ACTIONS.AMO_DELETE_RATING
         )
-        action = self.ActionClass(self.decision)
-        action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
         assert ActivityLog.objects.count() == 1
         assert not ActivityLog.objects.filter(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
@@ -2760,8 +2769,8 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = self.ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.process_action() is None
         assert ActivityLog.objects.count() == 0
 
     def test_delete_rating(self):
@@ -2788,22 +2797,22 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
 
     def _test_reporter_no_action_taken(self, *, ActionClass, action):
         self.decision.update(action=action)
-        action = ActionClass(self.decision)
-        assert action.process_action() is None
+        action_helper = ActionClass(self.decision)
+        assert action_helper.process_action() is None
 
         assert not self.rating.reload().deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         return f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
 
-    def _test_approve_appeal_or_override(self, ContentActionClass):
+    def _test_approve_appeal_or_override(self, ActionClass):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = ContentActionClass(self.decision)
-        activity = action.process_action()
+        action_helper = ActionClass(self.decision)
+        activity = action_helper.process_action()
 
         assert activity.log == amo.LOG.UNDELETE_RATING
         assert activity.arguments == [
@@ -2831,8 +2840,8 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert not self.rating.reload().deleted
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_restore_email(
             f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         )
@@ -2840,43 +2849,43 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
     def test_target_appeal_decline(self):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action = ContentActionTargetAppealRemovalAffirmation(self.decision)
-        assert action.process_action() is None
+        action_helper = ContentActionTargetAppealRemovalAffirmation(self.decision)
+        assert action_helper.process_action() is None
 
         self.rating.reload()
         assert self.rating.deleted
         assert ActivityLog.objects.count() == 0
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action)
-        action.notify_owners()
+        self.cinder_job.notify_reporters(action_helper)
+        action_helper.notify_owners()
         self._test_owner_affirmation_email(
             f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
         )
 
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
-        action = self.ActionClass(self.decision)
-        assert action.should_hold_action() is False
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.should_hold_action() is False
 
         AddonUser.objects.create(addon=self.rating.addon, user=self.rating.user)
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
         self.make_addon_promoted(self.rating.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
         self.rating.update(
             reply_to=Rating.objects.create(
                 addon=self.rating.addon, user=user_factory(), body='original'
             )
         )
-        assert action.should_hold_action() is True
+        assert action_helper.should_hold_action() is True
 
         self.rating.update(deleted=self.rating.id)
-        assert action.should_hold_action() is False
+        assert action_helper.should_hold_action() is False
 
     def test_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
-        action = self.ActionClass(self.decision)
-        activity = action.hold_action()
+        action_helper = self.ActionClass(self.decision)
+        activity = action_helper.hold_action()
         assert activity.log == amo.LOG.HELD_ACTION_DELETE_RATING
         assert activity.arguments == [
             self.rating,
