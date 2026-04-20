@@ -96,7 +96,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.29-bookworm@sha256:8adbdcb969e2676478ee2c7ad333956f0c8e0e4c5a7463f4611d7a2e7a7ff5dc
+    image: nginx:1.29.8@sha256:7f0adca1fc6c29c8dc49a2e90037a10ba20dc266baaed0988e9fb4d0d8b85ba0
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -114,7 +114,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.4@sha256:a2d126916bc2ba79a890a4bf62d305eb8b68fcbdd35c6e582d529df18faf5ebb
+    image: mysql:8.4.8@sha256:da906917ca4ace3ba55538b7c2ee97a9bc865ef14a4b6920b021f0249d603f3d
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -156,12 +156,12 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2-bookworm@sha256:c628c49a6ce4a68bfbd548d7957d3d52b2267a4cd4b4a16779a1ca0cd1126527
+    image: redis:6.2.21@sha256:66ac7cce6371ef8306b1da7947a6713db23fcbe27da21de16044d478ad28631e
     volumes:
       - data_redis:/data
 
   rabbitmq:
-    image: rabbitmq:3.13@sha256:4cf3d0116716920b9a9e72b47d8c5a562296a79e0b0d48df56eee51967d123a7
+    image: rabbitmq:3.13.7@sha256:87178a0ee3e2f52980ba356d38646ed1056705ff2d5ff281f8965456eaa0c1e3
     hostname: olympia
     expose:
       - "5672"

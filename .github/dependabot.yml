@@ -37,6 +37,24 @@ updates:
   - dependency-name: elasticsearch
     versions:
     - ">= 9"
+  - dependency-name: rabbitmq
+    versions:
+    - ">= 4"
+  - dependency-name: redis
+    versions:
+    - ">= 7"
+  - dependency-name: mysql
+    versions:
+    - ">= 9"
+  - dependency-name: memcached
+    versions:
+    - ">= 1.6"
+  - dependency-name: addons-frontend
+    versions:
+    - "< 2026.01.08"
+  - dependency-name: autograph
+    versions:
+    - "< 7"
 - package-ecosystem: "github-actions"
   directory: "/"
   schedule:
