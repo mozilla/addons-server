@@ -435,7 +435,7 @@ msgstr "Solo se pueden revertir las versiones aprobadas, excepto la versión má
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Este resumen o descripción del complemento no puede usarse."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2081,19 +2081,19 @@ msgstr "Se debe seleccionar un canal y una versión para revertir."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Elegí una categoría"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
-msgstr ""
+msgstr "Cuenta"
 
 #: src/olympia/devhub/forms.py:1766
 msgid "Technical Issue"
-msgstr ""
+msgstr "Problema técnico"
 
 #: src/olympia/devhub/forms.py:1767
 msgid "Policies"
-msgstr ""
+msgstr "Políticas"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2101,19 +2101,19 @@ msgstr "Asunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resumir el problema en pocas palabras"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Seleccionar categoría"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Danos más detalles sobre el problema"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Describí el problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
