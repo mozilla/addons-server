@@ -43,7 +43,7 @@ runs:
 
     - name: Docker meta
       id: meta
-      uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804
+      uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804  # v5.7.0
       with:
         bake-target: web
         images: ${{ inputs.registry }}/${{ inputs.image }}
