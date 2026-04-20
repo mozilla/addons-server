@@ -2401,7 +2401,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "Tu pedido de soporte ha sido enviado. Nos pondremos en contacto pronto."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2481,7 +2481,7 @@ msgstr "Más recursos"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Contactar soporte"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2493,15 +2493,17 @@ msgstr "Buscar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Conseguir soporte para extensiones y temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Usá este formulario para obtener soporte relacionado con tu cuenta, problemas técnicos y más. Cuantos más detalles compartás, más fácil será para nosotros ayudarte. Nos pondremos en contacto con vos"
+" lo antes posible."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Enviar pedido"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -5708,7 +5710,7 @@ msgstr "Cambia el color de Firefox para que coincida con la apariencia de cualqu
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:650
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Protegé tu privacidad contra una forma única de “detección de huellas digitales” de JavaScript."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
@@ -6098,7 +6100,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1109
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Extensiones de productividad"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1113 src/olympia/discovery/strings.jinja2:1115 src/olympia/discovery/strings.jinja2:1117
