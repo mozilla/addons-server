@@ -418,8 +418,8 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
             # Either addon is already deleted, so this is redundant,
             # or we're deleting single versions.
             disable_addon=False,
+            preserve_block_metadata=True,
         ),
-        overwrite_block_metadata=False,
     )
 
 

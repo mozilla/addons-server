@@ -32,6 +32,13 @@ class DECISION_ACTIONS(EnumChoicesApiDash):
     AMO_REQUEUE = 15, 'No action - internal requeue'
     AMO_BLOCK_ADDON = 16, 'Add-on disable and block'
     AMO_REJECT_LISTING_CONTENT = 17, 'Add-on listing content rejection'
+    # The following actions are follow-up actions, rather than primary actions.
+    AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON = 18, '[Follow-up] Short-delayed soft block'
+    AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON = 19, '[Follow-up] Mid-delayed soft block'
+    AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON = 20, '[Follow-up] Long-delayed soft block'
+    AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON = 21, '[Follow-up] Short-delayed hard block'
+    AMO_FU_DELAY_MID_HARD_BLOCK_ADDON = 22, '[Follow-up] Mid-delayed hard block'
+    AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON = 23, '[Follow-up] Long-delayed hard block'
 
 
 DECISION_ACTIONS.add_subset(
@@ -74,6 +81,17 @@ DECISION_ACTIONS.add_subset(
         'AMO_APPROVE_VERSION',
         'AMO_LEGAL_FORWARD',
         'AMO_CHANGE_PENDING_REJECTION_DATE',
+    ),
+)
+DECISION_ACTIONS.add_subset(
+    'FOLLOWUP_CINDER_ACTIONS',
+    (
+        'AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON',
+        'AMO_FU_DELAY_MID_HARD_BLOCK_ADDON',
+        'AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON',
     ),
 )
 

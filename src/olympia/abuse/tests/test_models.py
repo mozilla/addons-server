@@ -25,6 +25,7 @@ from olympia.amo.tests import (
     version_factory,
     version_review_flags_factory,
 )
+from olympia.blocklist.models import BlocklistSubmission
 from olympia.constants.abuse import (
     APPEAL_EXPIRATION_DAYS,
     DECISION_ACTIONS,
@@ -44,6 +45,8 @@ from olympia.versions.models import Version, VersionReviewerFlags
 from ..actions import (
     CONTENT_ACTION_FROM_DECISION_ACTION,
     ContentActionBanUser,
+    ContentActionDelayedMidHardBlockAddon,
+    ContentActionDelayedShortSoftBlockAddon,
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
@@ -69,6 +72,7 @@ from ..models import (
     CinderPolicy,
     CinderQueueMove,
     ContentDecision,
+    ContentDecisionFollowupAction,
 )
 
 
@@ -1173,7 +1177,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_actions=[DECISION_ACTIONS.AMO_BAN_USER.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1208,7 +1212,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_actions=[DECISION_ACTIONS.AMO_BAN_USER.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1249,7 +1253,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_actions=[DECISION_ACTIONS.AMO_BAN_USER.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1283,7 +1287,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1323,7 +1327,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_APPROVE.value,
+                decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
                 decision_notes='',
                 policy_ids=['123-45'],
                 job_queue='some-cinder-queue',
@@ -1361,7 +1365,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                decision_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.value],
                 decision_notes='',
                 policy_ids=['123-45'],
                 job_queue='some-cinder-queue',
@@ -1387,7 +1391,7 @@ class TestCinderJob(TestCase):
                 None,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_actions=[DECISION_ACTIONS.AMO_BAN_USER.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1415,7 +1419,6 @@ class TestCinderJob(TestCase):
         AbuseReport.objects.create(user=target, cinder_job=cinder_job)
         policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
         policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
-
         with (
             mock.patch.object(ContentActionBanUser, 'process_action') as action_mock,
             mock.patch.object(ContentActionBanUser, 'notify_owners') as notify_mock,
@@ -1425,7 +1428,7 @@ class TestCinderJob(TestCase):
                 cinder_job,
                 target=target,
                 decision_cinder_id='12345',
-                decision_action=DECISION_ACTIONS.AMO_BAN_USER.value,
+                decision_actions=[DECISION_ACTIONS.AMO_BAN_USER.value],
                 decision_notes='teh notes',
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
@@ -1441,6 +1444,58 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
+
+    def test_create_and_execute_decision_with_followup_actions(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = addon_factory()
+        AbuseReport.objects.create(guid=target.guid, cinder_job=cinder_job)
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+
+        with (
+            mock.patch.object(
+                ContentActionDisableAddon, 'process_action'
+            ) as action_mock,
+            mock.patch.object(
+                ContentActionDisableAddon, 'notify_owners'
+            ) as notify_mock,
+            mock.patch.object(
+                ContentActionDelayedShortSoftBlockAddon, 'process_action'
+            ) as short_action_mock,
+            mock.patch.object(
+                ContentActionDelayedMidHardBlockAddon, 'process_action'
+            ) as mid_action_mock,
+        ):
+            action_mock.return_value = None
+            CinderJob.create_and_execute_decision(
+                cinder_job,
+                target=target,
+                decision_cinder_id='12345',
+                decision_actions=[
+                    DECISION_ACTIONS.AMO_DISABLE_ADDON.value,
+                    DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON.value,
+                    DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON.value,
+                ],
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
+            )
+        assert cinder_job.decision.cinder_id == '12345'
+        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert cinder_job.decision.private_notes == 'teh notes'
+        assert cinder_job.decision.reasoning == ''
+        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
+        assert cinder_job.decision.addon == target
+        assert cinder_job.decision.followup_actions.count() == 2
+        self.assertCloseToNow(cinder_job.decision.followup_actions.first().action_date)
+        self.assertCloseToNow(cinder_job.decision.followup_actions.last().action_date)
+        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert action_mock.call_count == 1
+        assert short_action_mock.call_count == 1
+        assert mid_action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
 
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
@@ -3426,6 +3481,29 @@ class TestContentDecision(TestCase):
         self._test_execute_action_disable_addon_outcome(decision)
         assert 'Parent, specifically Bad policy: This is bad' in mail.outbox[0].body
         assert 'some private notes' not in mail.outbox[0].body
+
+    def test_execute_action_disable_addon_with_additional_delayed_block_action(self):
+        addon = addon_factory(users=[user_factory()])
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+        )
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=decision,
+            action=DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
+        )
+        assert decision.action_date is None
+        assert not BlocklistSubmission.objects.exists()
+
+        decision.execute_action()
+        self._test_execute_action_disable_addon_outcome(decision)
+        assert followup.reload().action_date is not None
+        assert BlocklistSubmission.objects.exists()
+        self.assertCloseToNow(
+            BlocklistSubmission.objects.get().delayed_until,
+            now=datetime.now() + timedelta(days=7),
+        )
 
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()

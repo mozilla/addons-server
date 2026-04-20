@@ -1,6 +1,6 @@
 import random
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
@@ -627,6 +627,8 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
 class ContentActionBlockAddon(ContentActionDisableAddon):
     description = 'Add-on has been (disabled and) blocked'
+    block_type = BlockType.SOFT_BLOCKED
+    disable_too = True
 
     def should_hold_action(self):
         return bool(
@@ -638,12 +640,14 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
     @property
     def versions_block_will_affect(self):
         """Return all versions that will be blocked by this action."""
-        return (
-            Version.unfiltered.filter(addon=self.target, blockversion__id__isnull=True)
-            .no_transforms()
-            .only('pk', 'version', 'file')
-            .order_by('-pk')
-        )
+        qs = Version.unfiltered.filter(addon=self.target)
+        if self.block_type == BlockType.SOFT_BLOCKED:
+            # for soft block, we don't want to overwrite a hard block.
+            qs = qs.filter(blockversion__id__isnull=True)
+        else:
+            # otherwise for hard block, we don't need to block already hard blocked.
+            qs = qs.exclude(blockversion__block_type=self.block_type)
+        return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
 
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
@@ -665,15 +669,15 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             save_versions_to_blocks(
                 [self.target.guid],
                 BlocklistSubmission(
-                    block_type=BlockType.SOFT_BLOCKED,
+                    block_type=self.block_type,
                     updated_by=self.decision.reviewer_user,
                     reason=reason,
                     signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
                     changed_version_ids=[ver.pk for ver in versions],
                     # We're disabling the add-on above, so skip this.
                     disable_addon=False,
+                    preserve_block_metadata=True,
                 ),
-                overwrite_block_metadata=False,
             )
             return (
                 self.log_action(
@@ -693,6 +697,75 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             self.decision.target_versions.set(versions)
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
+
+
+class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
+    description = 'Add-on will be blocked, after a delay'
+
+    def __init__(self, decision):
+        super().__init__(decision)
+        if not self.delay_days:
+            raise ImproperlyConfigured(
+                f'{self.__class__.__name__} requires delay_days to be set'
+            )
+
+    def process_action(self, release_hold=False):
+        versions = list(self.versions_block_will_affect)
+        if versions:
+            reason = (
+                "This add-on violates Mozilla's add-on policies by including or using "
+                'deceptive, misleading, or fraudulent activity or functionality'
+            )
+            delayed_until = datetime.now() + timedelta(days=self.delay_days)
+            submission = BlocklistSubmission(
+                input_guids=self.target.guid,
+                block_type=self.block_type,
+                updated_by=self.decision.reviewer_user,
+                reason=reason,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                changed_version_ids=[ver.pk for ver in versions],
+                disable_addon=False,
+                disable_versions=False,
+                delayed_until=delayed_until,
+                preserve_block_metadata=True,
+            )
+            submission.save()
+
+        return None
+
+    def get_owners(self):
+        # TODO: Define our own email strategy and template copy
+        return ()
+
+
+class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.SOFT_BLOCKED
+    delay_days = 7
+
+
+class ContentActionDelayedMidSoftBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.SOFT_BLOCKED
+    delay_days = 14
+
+
+class ContentActionDelayedLongSoftBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.SOFT_BLOCKED
+    delay_days = 28
+
+
+class ContentActionDelayedShortHardBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.BLOCKED
+    delay_days = 7
+
+
+class ContentActionDelayedMidHardBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.BLOCKED
+    delay_days = 14
+
+
+class ContentActionDelayedLongHardBlockAddon(_ContentActionDelayedBlockAddon):
+    block_type = BlockType.BLOCKED
+    delay_days = 28
 
 
 class ContentActionRejectListingContent(ContentActionDisableAddon):
@@ -1039,6 +1112,24 @@ CONTENT_ACTION_FROM_DECISION_ACTION = defaultdict(
             ContentActionRejectVersionDelayed
         ),
         DECISION_ACTIONS.AMO_BLOCK_ADDON: ContentActionBlockAddon,
+        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON: (
+            ContentActionDelayedShortSoftBlockAddon
+        ),
+        DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON: (
+            ContentActionDelayedMidSoftBlockAddon
+        ),
+        DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON: (
+            ContentActionDelayedLongSoftBlockAddon
+        ),
+        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON: (
+            ContentActionDelayedShortHardBlockAddon
+        ),
+        DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON: (
+            ContentActionDelayedMidHardBlockAddon
+        ),
+        DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON: (
+            ContentActionDelayedLongHardBlockAddon
+        ),
         DECISION_ACTIONS.AMO_DELETE_COLLECTION: ContentActionDeleteCollection,
         DECISION_ACTIONS.AMO_DELETE_RATING: ContentActionDeleteRating,
         DECISION_ACTIONS.AMO_APPROVE: ContentActionApproveListingContent,

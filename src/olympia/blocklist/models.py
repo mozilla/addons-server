@@ -289,9 +289,11 @@ class BlocklistSubmission(ModelBase):
         help_text='The submission will not be published into blocks before this time.',
     )
     disable_addon = models.BooleanField(default=True)
+    disable_versions = models.BooleanField(default=True, null=True)
     block_type = PositiveTinyIntegerField(
         default=BlockType.BLOCKED, choices=BlockType.choices
     )
+    preserve_block_metadata = models.BooleanField(default=False, null=True)
 
     objects = BlocklistSubmissionManager()
 

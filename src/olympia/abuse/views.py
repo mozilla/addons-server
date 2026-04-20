@@ -194,15 +194,22 @@ class CinderWebhookMissingIdError(CinderWebhookError):
 
 def filter_enforcement_actions(enforcement_actions, target):
     if not target:
-        return []
-    return [
-        action
-        for action_slug in enforcement_actions
-        if action_slug in DECISION_ACTIONS.api_values
-        and (action := DECISION_ACTIONS.from_api_value(action_slug))
-        and target.__class__
-        in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
-    ]
+        return [], []
+    primary_cinder_actions = []
+    followup_actions = []
+    for action_slug in enforcement_actions:
+        if (
+            action_slug not in DECISION_ACTIONS.api_values
+            or not (action := DECISION_ACTIONS.from_api_value(action_slug))
+            or target.__class__
+            not in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
+        ):
+            continue
+        if action.value in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS.values:
+            followup_actions.append(action)
+        else:
+            primary_cinder_actions.append(action)
+    return primary_cinder_actions, followup_actions
 
 
 def get_job_from_payload(payload):
@@ -269,16 +276,16 @@ def process_webhook_payload_decision(payload):
         else get_target_from_payload_entity(payload.get('entity', {}))
     )
 
-    enforcement_actions = filter_enforcement_actions(
+    cinder_actions, followup_actions = filter_enforcement_actions(
         payload.get('enforcement_actions') or [],
         target,
     )
     policy_ids = [policy['id'] for policy in payload.get('policies', [])]
 
-    if len(enforcement_actions) != 1:
+    if len(cinder_actions) != 1:
         reason = (
             'more than one supported enforcement_actions'
-            if enforcement_actions
+            if cinder_actions
             else 'no supported enforcement_actions'
         )
         log.exception(
@@ -292,7 +299,7 @@ def process_webhook_payload_decision(payload):
         cinder_job,
         target=target,
         decision_cinder_id=source.get('decision', {}).get('id'),
-        decision_action=enforcement_actions[0],
+        decision_actions=[cinder_actions[0], *followup_actions],
         decision_notes=payload.get('notes') or '',
         policy_ids=policy_ids,
         job_queue=queue_slug,
