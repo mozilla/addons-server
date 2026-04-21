@@ -1,6 +1,7 @@
 import json
 import uuid
 from datetime import datetime, timedelta
+from inspect import isclass
 
 from django.conf import settings
 from django.core import mail
@@ -10,6 +11,7 @@ from django.urls import reverse
 import responses
 from waffle.testutils import override_switch
 
+import olympia.abuse.actions
 from olympia import amo
 from olympia.access.models import Group
 from olympia.activity.models import (
@@ -411,7 +413,7 @@ class BaseTestContentAction:
         )
 
 
-class TestContentActionUser(BaseTestContentAction, TestCase):
+class TestContentActionBanUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
     takedown_decision_action = DECISION_ACTIONS.AMO_BAN_USER
 
@@ -2057,9 +2059,9 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
 
     def test_process_action(self):
         assert not BlocklistSubmission.objects.exists()
-        action = self.ActionClass(self.decision)
-
-        action.process_action()
+        action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
+        action_helper.process_action()
         assert BlocklistSubmission.objects.count() == 1
         submission = BlocklistSubmission.objects.get()
         assert submission.input_guids == self.addon.guid
@@ -2538,6 +2540,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteCollection
+    takedown_decision_action = DECISION_ACTIONS.AMO_DELETE_COLLECTION
 
     def setUp(self):
         super().setUp()
@@ -2558,6 +2561,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
     def _test_delete_collection(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_COLLECTION)
         action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
         log_entry = action_helper.process_action()
 
         assert self.collection.reload()
@@ -2704,6 +2708,7 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
 
 class TestContentActionRating(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDeleteRating
+    takedown_decision_action = DECISION_ACTIONS.AMO_DELETE_RATING
 
     def setUp(self):
         super().setUp()
@@ -2721,6 +2726,7 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
     def _test_delete_rating(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DELETE_RATING)
         action_helper = self.ActionClass(self.decision)
+        assert action_helper.action == self.takedown_decision_action
         activity = action_helper.process_action()
         assert activity.log == amo.LOG.DELETE_RATING
         assert activity.arguments == [
@@ -2904,3 +2910,32 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert second_activity.arguments == [self.rating, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+
+
+def test_no_action_duplicates():
+    """ContentAction classes action attribute must be unique, no two classes
+    can define the same, because it's used to build the
+    CONTENT_ACTION_FROM_DECISION_ACTION dict."""
+    actions_from_content_action_classes = sorted(
+        [
+            v.action
+            for v in vars(olympia.abuse.actions).values()
+            if isclass(v) and issubclass(v, ContentAction) and v.action
+        ]
+    )
+    assert len(actions_from_content_action_classes) == len(
+        set(actions_from_content_action_classes)
+    )
+
+    # There should be at least as many DECISION_ACTIONS as there are classes,
+    # except for AMO_ESCALATE_ADDON (which is obsolete) and AMO_REQUEUE (which
+    # is not a real action, it's an internal re-queuing)
+    available_decision_actions = sorted(
+        [
+            action
+            for action in DECISION_ACTIONS
+            if action
+            not in (DECISION_ACTIONS.AMO_REQUEUE, DECISION_ACTIONS.AMO_ESCALATE_ADDON)
+        ]
+    )
+    assert actions_from_content_action_classes == available_decision_actions

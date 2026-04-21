@@ -712,6 +712,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 
 class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
     description = 'Add-on will be blocked, after a delay'
+    action = None  # Has to be redefined in child classes.
 
     def __init__(self, decision):
         super().__init__(decision)
@@ -758,7 +759,7 @@ class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):
 class ContentActionDelayedMidSoftBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.SOFT_BLOCKED
     delay_days = 14
-    action =  DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON
+    action = DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON
 
 
 class ContentActionDelayedLongSoftBlockAddon(_ContentActionDelayedBlockAddon):
@@ -907,7 +908,6 @@ class ContentActionTargetAppealApprove(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is within policy, after appeal'
-    action = DECISION_ACTIONS.AMO_APPROVE
 
     @property
     def target_versions(self):
@@ -1096,7 +1096,6 @@ class ContentActionTargetAppealRemovalAffirmation(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
     description = 'Reported content is still offending, after appeal.'
-    action = None  # FIXME: or DECISION_ACTIONS.AMO_IGNORE? Does it matter?
 
     def process_action(self, release_hold=False):
         previous_decision_actions = (
