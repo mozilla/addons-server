@@ -57,6 +57,11 @@ class ContentAction:
                 or self.target.current_version
                 or self.target.find_latest_version(channel=None, exclude=())
             )
+            self.target_versions = (
+                self.decision.target_versions.all()
+                if self.decision.id
+                else Version.objects.none()
+            )
 
         if not isinstance(self.target, self.valid_targets):
             raise ImproperlyConfigured(
@@ -278,6 +283,15 @@ class ContentAction:
         message = template.render(context_dict)
         send_mail(subject, message, recipient_list=recipients)
 
+    def set_target_versions(self, versions):
+        """Set target versions to a new value on the instance and on the
+        decision. Use whenever whenever the ContentAction instance has to
+        define target_versions, to keep the target versions on the decision in
+        sync."""
+        self.target_versions = versions
+        if self.decision.id:
+            self.decision.target_versions.set(versions)
+
 
 class AnyTargetMixin:
     valid_targets = (Addon, UserProfile, Collection, Rating)
@@ -383,10 +397,6 @@ class ContentActionDisableAddon(ContentAction):
         return activity_log
 
     @property
-    def target_versions(self):
-        return self.decision.target_versions.all()
-
-    @property
     def versions_force_disable_will_affect(self):
         return (
             Version.objects.all()
@@ -401,14 +411,14 @@ class ContentActionDisableAddon(ContentAction):
         if self.target.status != amo.STATUS_DISABLED:
             # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
-            self.decision.target_versions.set(self.versions_force_disable_will_affect)
+            self.set_target_versions(self.versions_force_disable_will_affect)
             self.target.force_disable(skip_activity_log=True)
             return self.log_action(amo.LOG.FORCE_DISABLE)
         return None
 
     def hold_action(self):
         if self.target.status != amo.STATUS_DISABLED:
-            self.decision.target_versions.set(self.versions_force_disable_will_affect)
+            self.set_target_versions(self.versions_force_disable_will_affect)
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
@@ -665,7 +675,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
         if versions:
             # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
-            self.decision.target_versions.set(versions)
+            self.set_target_versions(versions)
             disable_too = self.target.status != amo.STATUS_DISABLED
             if disable_too:
                 self.target.force_disable(skip_activity_log=True)
@@ -701,7 +711,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 
     def hold_action(self):
         if versions := list(self.versions_block_will_affect):
-            self.decision.target_versions.set(versions)
+            self.set_target_versions(versions)
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
@@ -786,9 +796,9 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     description = 'Add-on listing content has been rejected'
     action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
-    @property
-    def target_versions(self):
-        return self.decision.target_versions.none()
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.target_versions = Version.objects.none()
 
     def should_hold_action(self):
         return bool(
@@ -905,19 +915,18 @@ class ContentActionTargetAppealApprove(
 ):
     description = 'Reported content is within policy, after appeal'
 
-    @property
-    def target_versions(self):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         target = self.target
         if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
             files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
                 version__addon=target
             )
-            qs = target.versions(manager='unfiltered_for_relations').filter(
+            self.target_versions = target.versions(manager='unfiltered_for_relations').filter(
                 pk__in=files_qs.values_list('version')
             )
         else:
-            qs = self.decision.target_versions.all()
-        return qs
+            self.target_versions = self.decision.target_versions.all()
 
     @property
     def previous_decisions(self):
