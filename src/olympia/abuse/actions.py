@@ -344,14 +344,6 @@ class ContentActionDisableAddon(ContentAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
     action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.target_versions = (
-            self.decision.target_versions.all()
-            if self.decision.id
-            else Version.objects.none()
-        )
-
     def should_hold_action(self):
         return bool(
             self.target.status != amo.STATUS_DISABLED
@@ -389,6 +381,10 @@ class ContentActionDisableAddon(ContentAction):
             attachment.update(activity_log=activity_log)
             activity_log.attachmentlog = attachment  # update fk
         return activity_log
+
+    @property
+    def target_versions(self):
+        return self.decision.target_versions.all()
 
     @property
     def versions_force_disable_will_affect(self):
@@ -790,9 +786,9 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     description = 'Add-on listing content has been rejected'
     action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.target_versions = self.decision.target_versions.none()
+    @property
+    def target_versions(self):
+        return self.decision.target_versions.none()
 
     def should_hold_action(self):
         return bool(
