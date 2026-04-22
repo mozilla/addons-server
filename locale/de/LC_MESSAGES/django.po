@@ -5776,7 +5776,7 @@ msgstr "Verbessern Sie Ihr Reddit-Erlebnis mit farbkodierten Kommentaren, einfac
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Beseitigen Sie YouTube-Ablenkungen wie Empfehlungen, Vorschläge im Endbildschirm, Kommentare und mehr."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
