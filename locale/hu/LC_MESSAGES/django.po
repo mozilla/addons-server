@@ -5764,12 +5764,12 @@ msgstr "Fokozza az élményét a Redditen színkódolt megjegyzésekkel, egyszer
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Távolítsa el a YouTube zavaró tényezőit, mint a javaslatokat, a záróképernyőn lévő javaslatokat, a megjegyzéseket és egyebeket."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "„Jobb Twitch TV” – fejlessze a Twitchet és a YouTube-ot egy csomó új funkcióval."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
