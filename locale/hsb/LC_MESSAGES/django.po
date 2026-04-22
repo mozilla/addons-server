@@ -5769,12 +5769,12 @@ msgstr "Polěpšće swoje dožiwjenje Reddit z přez barby kodowanymi komentaram
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Eliminujće wotwjedźenja YouTube kaž doporučenja, namjety na kónčnej wobrazowce, komentary a wjace."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "„Lěpši Twitch TV“ – polěpšće Twitch a Youtube z retomas nowych funkcijow."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
