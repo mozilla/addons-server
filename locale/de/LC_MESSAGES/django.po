@@ -5781,7 +5781,7 @@ msgstr "Beseitigen Sie YouTube-Ablenkungen wie Empfehlungen, Vorschläge im Endb
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\" — verbessern Sie Twitch und YouTube mit einer Reihe neuer Funktionen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
