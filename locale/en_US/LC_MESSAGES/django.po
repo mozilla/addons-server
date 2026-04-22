@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-21 20:00+0000\n"
+"POT-Creation-Date: 2026-04-22 08:48+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -4775,6 +4775,14 @@ msgstr "Save and organize anything you find on the web — articles, media, PDFs
 #. editorial content for the discovery pane.
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
 msgstr "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+
+#. editorial content for the discovery pane.
+msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
+msgstr "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
+
+#. editorial content for the discovery pane.
+msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
+msgstr "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
 
 #. editorial content for the primary hero shelves.
 #, fuzzy

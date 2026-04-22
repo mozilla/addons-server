@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-04-21 20:00+0000\n"
+"POT-Creation-Date: 2026-04-22 08:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4328,6 +4328,14 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
