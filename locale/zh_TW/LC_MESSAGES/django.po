@@ -5660,12 +5660,12 @@ msgstr "透過用色彩標示評論、更簡單的導航、用手勢點讚與更
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "消除 YouTube 當中的干擾內容，例如推薦影片、片尾影片推薦區塊、評論等。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "「更好的 Twitch TV」— 透過一系列新功能來加強 Twitch 與 YouTube。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
