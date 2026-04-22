@@ -5774,7 +5774,7 @@ msgstr "Eliminujće wotwjedźenja YouTube kaž doporučenja, namjety na kónčne
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr "„Lěpši Twitch TV“ – polěpšće Twitch a Youtube z retomas nowych funkcijow."
+msgstr "„Lěpši Twitch TV“ – polěpšće Twitch a Youtube z hromadu nowych funkcijow."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729

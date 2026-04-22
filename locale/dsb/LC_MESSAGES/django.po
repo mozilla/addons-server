@@ -5770,7 +5770,7 @@ msgstr "Pólěpšćo swójo dožywjenje Reddit z pśez barwy koděrowanymi komen
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Eliminěrujśo wótchylenja YouTube ako dopórucenja, naraźenja na kóńcnej wobrazowce, komentary a wěcej."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
