@@ -5775,7 +5775,7 @@ msgstr "Eliminěrujśo wótchylenja YouTube ako dopórucenja, naraźenja na kó�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "„Lěpšy Twitch TV“ – pólěpšćo Twitch a Youtube z kopicu nowych funkcijow."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
