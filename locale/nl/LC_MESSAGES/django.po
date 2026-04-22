@@ -5758,7 +5758,7 @@ msgstr "Verbeter uw Reddit-ervaring met kleurgecodeerde opmerkingen, eenvoudiger
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr "Elimineer afleidingen op YouTube, zoals aanbevelingen, suggesties voor eindschermen, opmerkingen en meer."
+msgstr "Elimineer afleidingen op YouTube, zoals aanbevelingen, suggesties op het einde van de video, opmerkingen en meer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
