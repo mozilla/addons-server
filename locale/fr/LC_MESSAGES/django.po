@@ -5816,12 +5816,12 @@ msgstr "Améliorez votre utilisation de Reddit avec un code de couleur pour les 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Enlève tout ce qui distrait dans YouTube comme les recommandations, les suggestions des écrans de fin, les commentaires, et bien plus."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "« Better Twitch TV » — apporte à Twitch et YouTube une foule de nouvelles fonctionnalités."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
