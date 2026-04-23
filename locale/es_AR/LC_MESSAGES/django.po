@@ -1290,12 +1290,12 @@ msgstr ""
 #: src/olympia/constants/activity.py:1256
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Se actualizó la propiedad {1} de la colección {0}."
 
 #: src/olympia/constants/activity.py:1263
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Se actualizó la propiedad {0} de la cuenta {user}."
 
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
@@ -2373,7 +2373,7 @@ msgstr "Se han revocado tus antiguas credenciales y ya no son válidas."
 
 #: src/olympia/devhub/views.py:2139
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Se generaron nuevas credenciales de API y se muestran a continuación. Asegurate de copiar el secreto JWT, nunca se volverá a mostrar."
 
 #: src/olympia/devhub/views.py:2163
 msgid "New API key created"
@@ -2397,7 +2397,7 @@ msgstr "Tu correo electrónico ha sido verificado"
 
 #: src/olympia/devhub/views.py:2333
 msgid "Could not submit your support request. Please try again."
-msgstr ""
+msgstr "No se pudo enviar el pedido de soporte. Probá de nuevo."
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
@@ -5780,12 +5780,12 @@ msgstr "Mejorá tu experiencia en Reddit con comentarios codificados por colores
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Eliminá las distracciones de YouTube como recomendaciones, sugerencias de pantalla final, comentarios y más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\" — mejorá Twitch y YouTube con una gran cantidad de nuevas funciones."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
@@ -6598,11 +6598,11 @@ msgstr "Puntuado con %(rating)s de 5 estrellas"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todo"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
