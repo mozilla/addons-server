@@ -20,7 +20,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import BlocklistSubmission, BlockType
-from olympia.blocklist.utils import save_versions_to_blocks
+from olympia.blocklist.utils import delete_versions_from_blocks, save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.files.models import File
@@ -634,8 +634,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 class ContentActionBlockAddon(ContentActionDisableAddon):
     description = 'Add-on has been (disabled and) blocked'
     block_type = BlockType.SOFT_BLOCKED
-    disable_too = True
     action = DECISION_ACTIONS.AMO_BLOCK_ADDON
+
+    @property
+    def updated_by_user_id(self):
+        # When the decision comes from Cinder it doesn't have a reviewer_user, so we use
+        # task user to avoid issues with null updated_by in Block save
+        return self.decision.reviewer_user_id or settings.TASK_USER_ID
 
     def should_hold_action(self):
         return bool(
@@ -677,7 +682,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
                 [self.target.guid],
                 BlocklistSubmission(
                     block_type=self.block_type,
-                    updated_by=self.decision.reviewer_user,
+                    updated_by_id=self.updated_by_user_id,
                     reason=reason,
                     signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
                     changed_version_ids=[ver.pk for ver in versions],
@@ -718,7 +723,17 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
 
     def process_action(self, release_hold=False):
-        versions = list(self.versions_block_will_affect)
+        versions_qs = self.versions_block_will_affect
+        # if this is a followup action, and the primary action is rejecting specific
+        # versions, we want to limit the blocking to those versions.
+        if self.decision.action in (
+            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+        ):
+            versions_qs = versions_qs.filter(
+                id__in=self.decision.target_versions.values_list('id', flat=True)
+            )
+        versions = list(versions_qs)
         if versions:
             reason = (
                 "This add-on violates Mozilla's add-on policies by including or using "
@@ -728,7 +743,7 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             submission = BlocklistSubmission(
                 input_guids=self.target.guid,
                 block_type=self.block_type,
-                updated_by=self.decision.reviewer_user,
+                updated_by_id=self.updated_by_user_id,
                 reason=reason,
                 signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 changed_version_ids=[ver.pk for ver in versions],
@@ -740,6 +755,52 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             submission.save()
 
         return None
+
+    @classmethod
+    def reverse_action(cls, original_decision):
+        # Note: when the original primary action was ContentDisableAddon, the versions
+        # blocked may have been more than target_versions, but we're leaving the other
+        # versions blocked.
+        guid = original_decision.target.guid
+        versions = original_decision.target_versions.all()
+        # First unblock any versions that have already been blocked
+        already_blocked_version_ids = list(
+            versions.filter(blockversion__block_type=cls.block_type).values_list(
+                'id', flat=True
+            )
+        )
+        not_blocked_version_ids = set(
+            versions.exclude(id__in=already_blocked_version_ids).values_list(
+                'id', flat=True
+            )
+        )
+        delete_versions_from_blocks(
+            [guid],
+            BlocklistSubmission(
+                input_guids=guid,
+                action=BlocklistSubmission.ACTIONS.DELETE,
+                updated_by_id=cls(original_decision).updated_by_user_id,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                changed_version_ids=already_blocked_version_ids,
+                preserve_block_metadata=True,
+            ),
+        )
+        # Then cancel any upcoming BlocklistSubmissions that have yet to execute
+        upcoming_submissions = BlocklistSubmission.objects.filter(
+            input_guids=guid, block_type=cls.block_type
+        ).exclude(signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED)
+        for submission in upcoming_submissions:
+            submission_version_ids = set(submission.changed_version_ids)
+            if not_blocked_version_ids == submission_version_ids:
+                # all versions are in the submission, so we can just delete it.
+                submission.delete()
+            elif not_blocked_version_ids & submission_version_ids:
+                # otherwise, there's some crossover so remove offending versions.
+                submission.update(
+                    changed_version_ids=list(
+                        submission_version_ids - not_blocked_version_ids
+                    )
+                )
 
     def get_owners(self):
         # TODO: Define our own email strategy and template copy
@@ -922,9 +983,11 @@ class ContentActionTargetAppealApprove(
     @property
     def previous_decisions(self):
         """Queryset with previous decisions made that this action would revert."""
-        return self.decision.cinder_job.appealed_decisions
+        return self.decision.cinder_job.appealed_decisions.all()
 
     def process_action(self, release_hold=False):
+        from olympia.abuse.models import ContentDecisionFollowupAction
+
         target = self.target
         log_entry = None
         if isinstance(target, Addon):
@@ -943,11 +1006,20 @@ class ContentActionTargetAppealApprove(
                 or DECISION_ACTIONS.AMO_BLOCK_ADDON in previous_decision_actions
             ):
                 # FIXME: we should also automatically revert the block if the
-                # previous decision was AMO_BLOCK_ADDON.
+                # previous decision was AMO_BLOCK_ADDON. (i.e. reverse_action)
                 target_versions = list(target_versions)
                 if target.status == amo.STATUS_DISABLED:
                     target.force_enable(skip_activity_log=True)
                 activity_log_action = amo.LOG.FORCE_ENABLE
+
+            # TODO: rewrite the rest of this function to use per-class reverse_action.
+            for prev_decision in self.previous_decisions:
+                FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
+                    prev_decision.action
+                ]
+                if hasattr(FollowUpActionClass, 'reverse_action'):
+                    FollowUpActionClass.reverse_action(prev_decision)
+
             if DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON in previous_decision_actions:
                 target_versions = list(
                     target_versions.filter(
@@ -1026,6 +1098,16 @@ class ContentActionTargetAppealApprove(
                     'is_flagged': target.ratingflag_set.exists(),
                 },
             )
+
+        # follow-up actions
+        followup_actions = ContentDecisionFollowupAction.objects.filter(
+            decision__in=self.previous_decisions, action_date__isnull=False
+        )
+        for followup_action in followup_actions:
+            FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
+                followup_action.action
+            ]
+            FollowUpActionClass.reverse_action(followup_action.decision)
 
         return log_entry
 

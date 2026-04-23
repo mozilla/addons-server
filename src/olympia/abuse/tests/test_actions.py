@@ -59,7 +59,14 @@ from ..actions import (
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
-from ..models import AbuseReport, CinderAppeal, CinderJob, CinderPolicy, ContentDecision
+from ..models import (
+    AbuseReport,
+    CinderAppeal,
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionFollowupAction,
+)
 
 
 class BaseTestContentAction:
@@ -2057,7 +2064,7 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
             (self.version, self.old_version)
         )
 
-    def test_process_action(self):
+    def _test_process_action(self, version_ids):
         assert not BlocklistSubmission.objects.exists()
         action_helper = self.ActionClass(self.decision)
         assert action_helper.action == self.takedown_decision_action
@@ -2072,15 +2079,12 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
                 'average_daily_users': self.addon.average_daily_users,
             }
         ]
-        assert submission.changed_version_ids == [
-            self.another_version.id,
-            self.version.id,
-        ]
+        assert submission.changed_version_ids == version_ids
         assert submission.block_type == self.block_type
         assert (
             submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
         )
-        assert submission.updated_by == self.decision.reviewer_user
+        assert submission.updated_by == self.task_user
         assert submission.disable_addon is False
         assert submission.preserve_block_metadata is True
         assert submission.disable_versions is False
@@ -2089,9 +2093,36 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
             submission.delayed_until,
             now=datetime.now() + timedelta(days=self.ActionClass.delay_days),
         )
+
+    def test_process_action_standalone(self):
+        # Note: this isn't currently a codepath that's possible - the class is only used
+        # as a follow-up action.
+        self.decision.update(action=self.takedown_decision_action)
+        assert not self.decision.target_versions.exists()
+        self._test_process_action([self.another_version.id, self.version.id])
+        # shouldn't change the addon or version.file statues.
         assert self.addon.status != amo.STATUS_DISABLED
         assert self.version.file.status != amo.STATUS_DISABLED
         assert self.old_version.file.status != amo.STATUS_DISABLED
+
+    def test_process_action_followup_from_disable_addon(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        self.addon.update(status=amo.STATUS_DISABLED)
+        # typically this _would_ be set, but it shouldn't be used anyway
+        assert not self.decision.target_versions.exists()
+        # we're expecting all the non-blocked versions to be blocked
+        self._test_process_action([self.another_version.id, self.version.id])
+
+    def test_process_action_followup_from_reject_version(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        self.old_version.file.update(status=amo.STATUS_DISABLED)
+        # we're setting it up as if ContentActionRejectVersion was rejecting version and
+        # old_version, but not another_version.
+        self.decision.target_versions.set((self.version, self.old_version))
+        # but we expect the follow-up action to ignore old_version since it's already
+        # blocked, (and another_version because it's not being rejected)
+        self._test_process_action([self.version.id])
 
     def test_owner_content_approve_report_email(self):
         pass  # Covered by TestContentApproveContentListing
@@ -2099,13 +2130,95 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
     def test_reporter_ignore_invalid_report(self):
         pass  # Covered by TestContentApproveContentListing
 
+    def _test_approve_appeal_or_override(self, ActionClass):
+        yet_another_version = version_factory(addon=self.addon)
+        self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
+        self.past_negative_decision.target_versions.set(
+            (self.version, self.another_version)
+        )
+        BlockVersion.objects.create(
+            block=self.existing_block,
+            version=self.version,
+            block_type=self.block_type,
+        )
+        BlocklistSubmission.objects.create(
+            input_guids=self.addon.guid,
+            block_type=self.block_type,
+            updated_by_id=self.task_user.id,
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+            changed_version_ids=[self.another_version.id, yet_another_version.id],
+            disable_addon=False,
+            disable_versions=False,
+            delayed_until=datetime.now() + timedelta(days=1),
+            preserve_block_metadata=True,
+        )
+        assert (
+            BlockVersion.objects.filter(
+                block__guid=self.addon.guid, block_type=self.block_type
+            )
+            .exclude(version=self.old_version)
+            .count()
+            == 1
+        )
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+
+        action_helper = ActionClass(self.decision)
+        action_helper.process_action()
+
+        # Block was deleted
+        assert (
+            not BlockVersion.objects.filter(
+                block__guid=self.addon.guid, block_type=self.block_type
+            )
+            .exclude(version=self.old_version)
+            .exists()
+        )
+        # we didn't delete the blocklistsubmission
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+        # but modified it to remove the version
+        assert BlocklistSubmission.objects.get().changed_version_ids == [
+            yet_another_version.id
+        ]
+
     def test_approve_appeal_success(self):
-        self.past_negative_decision.update(appeal_job=self.cinder_job)
-        # TODO: we don't support appeals or overrides for follow-up actions yet
+        self.past_negative_decision.update(
+            appeal_job=self.cinder_job, action=self.takedown_decision_action
+        )
+        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
+        # TODO: once we add support for emails, re-enable this?
+        # assert 'After reviewing your appeal' in mail.outbox[0].body
 
     def test_approve_override_success(self):
         self.decision.update(override_of=self.past_negative_decision)
-        # TODO: we don't support appeals or overrides for follow-up actions yet
+        self.past_negative_decision.update(action=self.takedown_decision_action)
+        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
+        # TODO: once we add support for emails, re-enable this?
+        # assert 'After reviewing your appeal' not in mail.outbox[0].body
+
+    def test_approve_appeal_success_followup(self):
+        self.past_negative_decision.update(
+            appeal_job=self.cinder_job, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        ContentDecisionFollowupAction.objects.create(
+            decision=self.past_negative_decision,
+            action=self.takedown_decision_action,
+            action_date=datetime.now(),
+        )
+        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
+
+    def test_approve_override_success_followup(self):
+        self.decision.update(override_of=self.past_negative_decision)
+        self.past_negative_decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        ContentDecisionFollowupAction.objects.create(
+            decision=self.past_negative_decision,
+            action=self.takedown_decision_action,
+            action_date=datetime.now(),
+        )
+        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
 
     def test_email_content_not_escaped(self):
         # TODO: If/when we support emails we should implement this
