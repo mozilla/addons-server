@@ -5757,7 +5757,7 @@ msgstr "Elimina le distractiones de YouTube como le recommendationes, le suggest
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\" — meliora Twitch e YouTube con plure nove functiones."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
