@@ -432,7 +432,7 @@ msgstr "Only approved versions can be rolled back, except the most recent versio
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "This add-on summary or description cannot be used."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2067,19 +2067,19 @@ msgstr "You must select a channel and version to rollback to."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Choose a category"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
-msgstr ""
+msgstr "Account"
 
 #: src/olympia/devhub/forms.py:1766
 msgid "Technical Issue"
-msgstr ""
+msgstr "Technical Issue"
 
 #: src/olympia/devhub/forms.py:1767
 msgid "Policies"
-msgstr ""
+msgstr "Policies"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2087,19 +2087,19 @@ msgstr "Subject"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Summarize the issue in a few words"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Select category"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Give us more details about the issue"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Describe the issue"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2380,11 +2380,11 @@ msgstr "Your email has been verified"
 
 #: src/olympia/devhub/views.py:2333
 msgid "Could not submit your support request. Please try again."
-msgstr ""
+msgstr "Could not submit your support request. Please try again."
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "Your support request has been submitted. We will be in touch soon."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2464,7 +2464,7 @@ msgstr "More Resources"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Contact Support"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2476,15 +2476,15 @@ msgstr "Search"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Get support for extensions and themes"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Send request"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -5728,12 +5728,12 @@ msgstr "Enhance your Reddit experience with colour-coded comments, simpler navig
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
@@ -6053,12 +6053,12 @@ msgstr "See all extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Extension Starter Pack"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Productivity extensions"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122 src/olympia/discovery/strings.jinja2:1124 src/olympia/discovery/strings.jinja2:1126
