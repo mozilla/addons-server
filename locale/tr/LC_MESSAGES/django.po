@@ -4015,7 +4015,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Bu sorunları gidermek için lütfen profilinizi güncelleyin ve içeriğin yeniden incelenmesini talep edin."
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Review requested already, awaiting review"
@@ -5740,7 +5740,7 @@ msgstr "YouTube'daki öneriler, bitiş ekranı önerileri ve yorumlar gibi dikka
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\": Birçok yeni özellikle Twitch ve YouTube deneyiminizi zenginleştirin."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
