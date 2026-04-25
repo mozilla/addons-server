@@ -5735,7 +5735,7 @@ msgstr "Renk kodlu yorumlar, daha basit gezinme, beğenme hareketleri ve çok da
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "YouTube'daki öneriler, bitiş ekranı önerileri ve yorumlar gibi dikkat dağıtan unsurları gizleyin."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
