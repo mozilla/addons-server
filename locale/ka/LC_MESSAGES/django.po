@@ -5761,7 +5761,7 @@ msgstr "გაასუფთავეთ YouTube ყურადღების
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "„Better Twitch TV“ – შეავსეთ Twitch და YouTube მთელი რიგი ახალი შესაძლებლობებით."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
