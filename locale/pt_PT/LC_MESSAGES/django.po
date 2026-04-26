@@ -433,7 +433,7 @@ msgstr "Apenas as versões aprovadas podem ser revertidas, exceto a versão mais
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Este resumo ou descrição do extra não pode ser utilizado."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1282,7 +1282,7 @@ msgstr "Falha ao reverter versão"
 #: src/olympia/constants/activity.py:1247
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr ""
+msgstr "A propriedade de {addon} {0} foi editada."
 
 #: src/olympia/constants/activity.py:1256
 #, python-brace-format
@@ -1867,12 +1867,12 @@ msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
 
 #: src/olympia/devhub/forms.py:252 src/olympia/devhub/forms.py:1366
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Ocorreu um erro ao enviar a sua imagem."
 
 #: src/olympia/devhub/forms.py:306
-#, fuzzy, python-format
+#, python-format
 msgid "URL domain must be one of [%s]."
-msgstr "O domínio URL tem de ser um de [%s], ou um subdomínio."
+msgstr "O domínio do URL deve ser um de [%s]."
 
 #: src/olympia/devhub/forms.py:322
 #, python-brace-format
@@ -2078,23 +2078,23 @@ msgstr "Reversão automática baseada na versão [m.m]."
 
 #: src/olympia/devhub/forms.py:1754
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "Deve selecionar um canal e versão a reverter para."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Escolha uma categoria"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
-msgstr ""
+msgstr "Conta"
 
 #: src/olympia/devhub/forms.py:1766
 msgid "Technical Issue"
-msgstr ""
+msgstr "Problema técnico"
 
 #: src/olympia/devhub/forms.py:1767
 msgid "Policies"
-msgstr ""
+msgstr "Políticas"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2102,19 +2102,19 @@ msgstr "Assunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resuma o problema em algumas palavras"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Selecione a categoria"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Dê-nos mais detalhes sobre o problema"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Descreva o problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2209,7 +2209,7 @@ msgstr "O nome de URL estava incorreto. O extra não foi eliminado."
 
 #: src/olympia/devhub/views.py:440
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Pedido para uma nova revisão de listagem de conteúdo reconhecido."
 
 #: src/olympia/devhub/views.py:484
 msgid "Invitation accepted."
@@ -2374,7 +2374,7 @@ msgstr "As suas credenciais antigas foram revogadas e já não são válidas."
 
 #: src/olympia/devhub/views.py:2139
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Foram geradas novas credenciais de API, apresentadas abaixo. Certifique-se que copia o segredo JWT; este não será apresentado novamente."
 
 #: src/olympia/devhub/views.py:2163
 msgid "New API key created"
@@ -2398,11 +2398,11 @@ msgstr "O seu e-mail foi verificado"
 
 #: src/olympia/devhub/views.py:2333
 msgid "Could not submit your support request. Please try again."
-msgstr ""
+msgstr "Não foi possível submeter o seu pedido de apoio. Por favor, tente novamente."
 
 #: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "O seu pedido de apoio foi submetido. Entraremos em contacto em breve."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2482,7 +2482,7 @@ msgstr "Mais recursos"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Contactar o apoio"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2494,15 +2494,17 @@ msgstr "Pesquisa"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obter apoio para extensões e temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Utilize este formulário para apoio relacionado com a sua conta, problemas técnicos, entre outros. Quanto mais detalhes partilhar, mais fácil será para nós ajudar. Entraremos em contacto consigo "
+"assim que possível."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Enviar pedido"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -2561,11 +2563,11 @@ msgstr "Não foi possível verificar o endereço de e-mail. A ligação de verif
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:24
 msgid "We are sending an email to you, please be patient... <div class=\"loader\"></div> The page will automatically refresh."
-msgstr ""
+msgstr "Estamos a enviar-lhe um e-mail, por favor, seja paciente... <div class=\"loader\"></div> A página irá ser automaticamente atualizada."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:30
 msgid "It is taking longer than expected to confirm delivery of your verification email. Please try again later."
-msgstr ""
+msgstr "Está a demorar um pouco mais do que era esperado para confirmar a entrega do seu e-mail de verificação. Por favor, tente novamente mais tarde."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
 msgid "Success!"
