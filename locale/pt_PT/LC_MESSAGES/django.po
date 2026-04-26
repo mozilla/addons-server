@@ -3367,7 +3367,7 @@ msgstr "Nome:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:68
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Nome na listagem deste site. Pode ser diferente do nome dentro do extra, que é mostrado dentro do Firefox"
+msgstr "Nome na listagem deste site. Pode ser diferente do nome dentro do complemento, que é apresentado dentro do Firefox"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
 msgid "Summary:"
@@ -3379,12 +3379,13 @@ msgstr "Descrição:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:124
 msgid "This add-on is experimental"
-msgstr "Este extra é experimental"
+msgstr "Este complemento é experimental"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:127
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Selecione esta opção se o seu extra for experimental ou não estiver pronto para a utilização geral.  O extra será listado mas terá visibilidade reduzida.  Pode alterar esta definição mais tarde."
+"Selecione esta opção se o seu complemento for experimental ou não estiver pronto para a utilização geral.  O complemento será listado mas terá visibilidade reduzida.  Pode alterar esta definição "
+"mais tarde."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:152
 msgid "Support email:"
@@ -3404,7 +3405,7 @@ msgstr "Por favor escolha uma licença apropriada para os direitos que concede."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:195
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
-msgstr "Se o seu extra transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados."
+msgstr "Se o seu complemento transmite quaisquer dados a partir do computador do utilizador, é necessária uma política de privacidade que explique que dados são enviados e como são utilizados."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:208 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:21
 msgid "Notes to Reviewer:"
@@ -3412,7 +3413,7 @@ msgstr "Notas para o revisor:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:211 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:24
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr "Existe algo em que os nossos revisores deverão ter em conta ao rever este extra?"
+msgstr "Existe algo que os nossos avaliadores devam considerar ao analisar este complemento?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
@@ -3460,12 +3461,12 @@ msgstr "Para começar, selecione como gostaria de distribuir esta versão."
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Pode saber mais sobre estas opções consultando a <a %(a_attrs)s>distribuição e assinatura de extras</a> no Firefox Extension Workshop."
+msgstr "Pode saber mais sobre estas opções consultando a <a %(a_attrs)s>distribuição e assinatura de complementos</a> no Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format
 msgid "All add-ons must comply with <a %(a_attrs)s>Mozilla’s Add-on Policies</a> and are subject to manual review at any time after submission."
-msgstr "Todos os extras devem obedecer às <a %(a_attrs)s>políticas de extras da Mozilla</a> e estão sujeitos a uma análise manual a qualquer momento, após a submissão."
+msgstr "Todos os complementos devem obedecer às <a %(a_attrs)s>políticas de complementos da Mozilla</a> e estão sujeitos a uma análise manual a qualquer momento, após a submissão."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:4
 msgid "Submission Complete"
@@ -3489,8 +3490,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Está feito! ✨ Irá receber um e-mail de confirmação quando esta versão for publicada em %(site_domain)s. Note que esta publicação pode demorar até 24 horas, ou até mais na eventualidade do seu extra "
-"ser selecionado para um análise manual. Se não encontrar um e-mail após 24 horas, consulte a sua pasta de correio não-solicitado."
+"Está feito! ✨ Irá receber um e-mail de confirmação quando esta versão for publicada em %(site_domain)s. Note que esta publicação pode demorar até 24 horas, ou até mais na eventualidade do seu "
+"complemento ser selecionado para um análise manual. Se não encontrar um e-mail após 24 horas, consulte a sua pasta de correio não-solicitado."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -3519,7 +3520,7 @@ msgstr "Editar versão {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:59
 msgid "As a reminder, your add-on is subject to manual review at any time."
-msgstr "Para relembrar, o seu extra poderá ser sujeito a uma análise manual a qualquer momento."
+msgstr "Para relembrar, o seu complemento poderá ser sujeito a uma análise manual a qualquer momento."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:64
 msgid "Go to My Submissions"
@@ -3535,7 +3536,7 @@ msgstr "Precisa de submeter código fonte?"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:15
 msgid "Mozilla’s add-on reviewers need to be able to read and reproduce the code in your extension. If they can’t, your extension may be rejected."
-msgstr "Os revisores de extras da Mozilla devem poder ler e executar o código da sua extensão. Se isto não for possível, a sua extensão pode ser rejeitada."
+msgstr "Os revisores de complementos da Mozilla devem poder ler e executar o código da sua extensão. Se isto não for possível, a sua extensão pode ser rejeitada."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:21
 msgid "Do you use any of the following in your extension?"
@@ -4272,7 +4273,7 @@ msgstr "Submeter o seu primeiro tema"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:8
 msgid "Add-on Developer Hub"
-msgstr "Portal do programador de extras"
+msgstr "Portal do programador de complementos"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:27
 msgid "Support"
@@ -4343,7 +4344,7 @@ msgstr "Compatibilidade"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:37
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
-msgstr "Ajustar aqui a informação da aplicação permite aos utilizadores instalar o seu extra mesmo que o manifesto de instalação do pacote indique que o extra é incompatível."
+msgstr "Ao alterar aqui as informações da aplicação, os utilizadores poderão instalar o seu complemento mesmo que o manifesto de instalação do pacote indique que o complemento é incompatível."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:55
 msgid "Add Another Application&hellip;"
@@ -4358,8 +4359,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informação acerca das alterações neste lançamento, novas funcionalidades, erros conhecidos e outra informação útil especifica para esta versão/lançamento. Esta informação também é apresentada no "
-"Gestor de extras, ao atualizar."
+"Informações sobre as alterações neste lançamento, novas funcionalidades, erros conhecidos e outros dados úteis específicos desta versão ou lançamento. Estes dados também são apresentados no Gestor "
+"de complementos durante a atualização."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:93
 msgid "Approval Status"
@@ -4371,7 +4372,7 @@ msgstr "Notas para revisores"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:107
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
-msgstr "Opcionalmente, introduza qualquer informação que possa ser útil para o Revisor deste extra, tal como informação da conta de teste."
+msgstr "Se quiser, pode fornecer informações que possam ser úteis ao Revisor deste complemento, como, por exemplo, dados de uma conta de teste."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:120
 msgid "Source code"
@@ -4379,7 +4380,7 @@ msgstr "Código fonte"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
-msgstr "Se o seu extra contem minificado, concatenado ou de outro modo código gerado por máquina, disponibilize a fonte aqui para os revisores."
+msgstr "Se o seu complemento incluir código minificado, concatenado ou gerado automaticamente, disponibilize aqui o código-fonte para os revisores."
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:1
 #, python-brace-format
@@ -4462,7 +4463,7 @@ msgstr "Eliminar/Desativar"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:186
 msgid "Next version of this add-on"
-msgstr "Próxima versão deste extra"
+msgstr "Próxima versão deste complemento"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:197
 msgid "Other versions"
@@ -4489,8 +4490,8 @@ msgstr "Eliminar versão {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Está prestes a apagar a versão atual deste extra. Isto pode fazer com que o estado do seu extra mude ou que a sua listagem perca visibilidade pública, se esta for a única versão pública do seu "
-"extra."
+"Está prestes a eliminar a versão atual deste complemento. Isto pode fazer com que o estado do seu complemento seja alterado ou que a sua listagem perca visibilidade pública, se esta for a única "
+"versão pública do seu complemento."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:266
 msgid "Deleting this version will permanently delete:"
@@ -4527,11 +4528,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:309 src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Hide Add-on"
-msgstr "Ocultar extra"
+msgstr "Ocultar complemento"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:312
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Ocultar o seu extra irá impedir que o mesmo seja apresentado em qualquer lugar na nossa galeria e irá impedir que os utilizadores possam receber atualizações automáticas."
+msgstr "Ocultar o seu complemento irá impedir que o mesmo seja apresentado em qualquer sítio na nossa galeria e irá impedir que os utilizadores possam receber atualizações automáticas."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:319
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
@@ -4539,7 +4540,7 @@ msgstr "Os ficheiros estão à espera de revisão e serão desativados e precisa
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:326
 msgid "Are you sure you wish to hide your add-on?"
-msgstr "Tem a certeza que pretende ocultar o seu extra?"
+msgstr "Tem a certeza que pretende ocultar o seu complemento?"
 
 #. L10n: first parameter is the number of errors
 #: src/olympia/devhub/templatetags/jinja_helpers.py:80
@@ -6385,11 +6386,11 @@ msgstr "Ficheiro inválido ou corrompido."
 #: src/olympia/files/utils.py:925
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr "O ID do extra no seu manifest.json (%s) não corresponde ao ID do seu extra no AMO (%s)"
+msgstr "O ID do complemento no seu manifest.json (%s) não corresponde ao ID do seu complemento no AMO (%s)"
 
 #: src/olympia/files/utils.py:933
 msgid "Duplicate add-on ID found."
-msgstr "Foi encontrado um ID de extra duplicado."
+msgstr "Foi encontrado um ID de complemento duplicado."
 
 #: src/olympia/files/utils.py:939
 #, python-brace-format
@@ -6407,11 +6408,11 @@ msgstr "Tamanho máximo para temas WebExtension é de {0}."
 
 #: src/olympia/files/utils.py:968
 msgid "You cannot submit this type of add-on"
-msgstr "Não pode submeter este tipo de extras"
+msgstr "Não pode submeter este tipo de complementos"
 
 #: src/olympia/files/utils.py:972
 msgid "You cannot submit an add-on using an ID ending with this suffix"
-msgstr "Não pode submeter um extra utilizando um ID que termine com este sufixo"
+msgstr "Não pode submeter um complemento utilizando um ID que termine com este sufixo"
 
 #: src/olympia/files/utils.py:977
 msgid "You cannot submit a Mozilla Signed Extension"
@@ -6437,7 +6438,7 @@ msgstr "Erro inesperado."
 #: src/olympia/files/utils.py:1047
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "O tipo (%s) não corresponde ao tipo do seu extra no AMO (%s)"
+msgstr "O tipo (%s) não corresponde ao tipo do seu complemento no AMO (%s)"
 
 #: src/olympia/files/utils.py:1052
 msgid "Unknown"
@@ -6493,7 +6494,7 @@ msgstr "Este campo é requerido."
 
 #: src/olympia/ratings/serializers.py:131
 msgid "You can't change the add-on of a review once it has been created."
-msgstr "Não pode alterar o extra de uma análise assim que for criada."
+msgstr "Não pode alterar o complemento de uma análise assim que for criada."
 
 #: src/olympia/ratings/serializers.py:204
 msgid "You can't reply to a review that is already a reply."
@@ -6501,19 +6502,19 @@ msgstr "Não pode responder a uma análise que já é uma resposta."
 
 #: src/olympia/ratings/serializers.py:248
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr "Não pode alterar a versão do extra analisado assim que a análise for criada."
+msgstr "Não pode alterar a versão do complemento analisado assim que a análise for criada."
 
 #: src/olympia/ratings/serializers.py:261
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr "Esta versão do extra não existe ou não é pública."
+msgstr "Esta versão do complemento não existe ou não é pública."
 
 #: src/olympia/ratings/serializers.py:270
 msgid "You can't leave a review on your own add-on."
-msgstr "Não pode deixar uma análise no seu próprio extra."
+msgstr "Não pode escrever uma avaliação sobre o seu próprio complemento."
 
 #: src/olympia/ratings/serializers.py:285
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr "Não pode deixar mais do que uma análise para a mesma versão de um extra."
+msgstr "Não pode submeter mais do que uma avaliação para a mesma versão de um complemento."
 
 #: src/olympia/ratings/serializers.py:317
 #, python-brace-format
@@ -6583,7 +6584,7 @@ msgstr "Comprimento máximo de consulta excedido."
 #: src/olympia/signing/views.py:54
 #, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Não foi possível encontrar o Extra com a Identificação. \"{}\"."
+msgstr "Não foi possível encontrar o complemento com o ID \"{}\"."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
@@ -6600,11 +6601,11 @@ msgstr "A versão não corresponde ao ficheiro manifest."
 
 #: src/olympia/signing/views.py:173
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
-msgstr "Por favor, especifique a Identificação do seu Extra no manifesto se for maior do que 64 carateres."
+msgstr "Especifique o ID do seu complemento no manifesto se for maior do que 64 carateres."
 
 #: src/olympia/signing/views.py:187
 msgid "Invalid Add-on ID in URL or package"
-msgstr "Identificação do Extra inválida no URL ou pacote"
+msgstr "ID do complemento inválida no URL ou pacote"
 
 #: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
@@ -6644,7 +6645,7 @@ msgstr "Utilizadores diários"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:29
 msgid "by Add-on Version"
-msgstr "por versão do extra"
+msgstr "por versão do complemento"
 
 #: src/olympia/stats/templates/stats/addon_report_menu.html:32
 msgid "by Application"
@@ -6682,7 +6683,7 @@ msgstr "Exportar"
 #: src/olympia/stats/templates/stats/stats.html:17
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Painel de estatísticas :: Extras para o {1}"
+msgstr "{0} :: Painel de estatísticas :: Complementos para o {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:19
 #, python-brace-format
@@ -6692,7 +6693,7 @@ msgstr "{0} :: Painel de estatísticas"
 #: src/olympia/stats/templates/stats/stats.html:21
 #, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Painel de estatísticas :: Extras para o {0}"
+msgstr "Painel de estatísticas :: Complementos para o {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html:32 src/olympia/stats/templates/stats/stats.html:35
@@ -6854,7 +6855,7 @@ msgstr "Fontes de transferência por data"
 
 #: src/olympia/stats/templates/stats/reports/statuses.html:3
 msgid "Add-on Status by Date"
-msgstr "Estado do extra por data"
+msgstr "Estado do complemento por data"
 
 #: src/olympia/stats/templates/stats/reports/usage.html:3
 msgid "Daily Users by Date"
@@ -6866,20 +6867,20 @@ msgstr "Versões da aplicação por data"
 
 #: src/olympia/templates/base.html:9
 msgid "Mozilla Add-ons"
-msgstr "Extras da Mozilla"
+msgstr "Complementos da Mozilla"
 
 #: src/olympia/templates/base.html:83
 msgid "Back to Add-ons"
-msgstr "Voltar aos extras"
+msgstr "Voltar aos complementos"
 
 #: src/olympia/templates/header_title.html:3
 #, python-brace-format
 msgid "Return to the {0} Add-ons homepage"
-msgstr "Voltar à página inicial dos extras do {0}"
+msgstr "Voltar à página inicial dos complementos do {0}"
 
 #: src/olympia/templates/header_title.html:5 src/olympia/templates/photon-footer.html:8
 msgid "Add-ons"
-msgstr "Extras"
+msgstr "Complementos"
 
 #: src/olympia/templates/photon-footer.html:4
 msgid "Go to Mozilla's homepage"
@@ -7029,45 +7030,45 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Antes de começar, por favor leia e aceite o nosso Acordo de distribuição de extras do Firefox e também as nossas Políticas e Regras de revisão. O nosso Acordo de distribuição de extras do Firefox "
-"também tem uma ligação para o nosso Aviso de privacidade que explica como gerimos a sua informação."
+"Antes de começar, por favor leia e aceite o nosso Acordo de distribuição de complementos do Firefox e também as nossas Políticas e Regras de revisão. O nosso Acordo de distribuição de complementos "
+"do Firefox também tem uma ligação para a nossa Informação de privacidade que explica como gerimos a sua informação."
 
 #: src/olympia/users/models.py:1337
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr "Por favor, leia e aceite o nosso acordo de distribuição de extras do Firefox, bem como as nossas políticas e regras de revisão, visitando {url}."
+msgstr "Por favor, leia e aceite o nosso acordo de distribuição de complementos do Firefox, bem como as nossas políticas e regras de revisão, visitando {url}"
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
-msgstr "um programador de um extra responde à minha análise"
+msgstr "um programador de um complemento responde à minha análise"
 
 #: src/olympia/users/notifications.py:36
 msgid "new add-ons or Firefox features are available"
-msgstr "estão disponíveis novos extras ou funcionalidades do Firefox"
+msgstr "estão disponíveis novos complementos ou funcionalidades do Firefox"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "a compatibilidade do meu extra foi atualizada com sucesso"
+msgstr "a compatibilidade do meu complemento foi atualizada com sucesso"
 
 #: src/olympia/users/notifications.py:54
 msgid "someone writes a review of my add-on"
-msgstr "alguém escreve uma análise sobre o meu extra"
+msgstr "alguém escreve uma análise sobre o meu complemento"
 
 #: src/olympia/users/notifications.py:69
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr "fique atualizado(a) com notícias e eventos relevantes a programadores de extras (incluindo a newsletter about:addons)"
+msgstr "mantenha-se a par das novidades e eventos importantes para programadores de complementos (incluindo a newsletter about:addons)"
 
 #: src/olympia/users/notifications.py:81
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "a compatibilidade do meu extra não pode ser atualizada"
+msgstr "a compatibilidade do meu complemento não pôde ser atualizada"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on is reviewed by a reviewer"
-msgstr "o meu extra é revisto por um revisor"
+msgstr "o meu complemento é revisto por um revisor"
 
 #: src/olympia/users/notifications.py:99
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr "A Mozilla precisa de contactar-me acerca do meu extra individual"
+msgstr "A Mozilla precisa de me contactar sobre o meu complemento em particular"
 
 #: src/olympia/users/notifications.py:105
 msgid "User Notifications"
@@ -7075,7 +7076,7 @@ msgstr "Notificações do utilizador"
 
 #: src/olympia/users/utils.py:92
 msgid "An author has been added to your add-on"
-msgstr "Foi adicionado um autor ao seu extra"
+msgstr "Foi adicionado um autor ao seu complemento"
 
 #: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
