@@ -2979,8 +2979,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Se o seu extra tem um site ou fórum de apoio, introduza o respetivo endereço aqui. Se o seu site está traduzido noutros idiomas, múltiplas traduções deste campo podem ser adicionadas. Isto é "
-"relevante apenas para extras listados."
+"Se o seu complemento tiver um site ou fórum de suporte, indique aqui o respetivo endereço. Caso o seu site esteja disponível noutras línguas, pode adicionar várias traduções para este campo. Esta "
+"informação só é relevante para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -3005,8 +3005,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Qualquer informação que os utilizadores finais possam querer saber que não é necessariamente aplicável no resumo ou descrição do extra. Utilizações frequentes incluem a indicação dos maiores bugs "
-"conhecidos, informação sobre como reportar bugs, antecipação das datas de lançamento de uma nova versão, etc. Isto apenas é relevante para extras listados."
+"Qualquer informação que possa interessar aos utilizadores finais e que não se enquadre necessariamente no resumo ou descrição do complemento. Exemplos comuns incluem a listagem dos principais erros "
+"conhecidos, instruções para reportar erros, data prevista para o lançamento de uma nova versão, entre outros. Só é relevante para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -3018,7 +3018,7 @@ msgstr "UUID"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:49
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr "O uuid do seu extra é especificada no install manifest e identifica-o de uma forma única. Não pode alterar o UUID depois de o submeter."
+msgstr "O UUID do seu complemento está definido no manifesto de instalação e serve para identificar o mesmo de forma única. Depois de submetido, não poderá alterar o seu UUID."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
@@ -3029,29 +3029,29 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
-"O quadro branco é o sítio para fornecer informação relevante ao editor para o seu extra, qualquer que seja a versão. Utilize-o para fornecer formas de testar o extra, bem como qualquer informação "
-"adicional que possa ajudar. O quadro branco é também editável pelos editores."
+"O quadro branco é o sítio para fornecer informação relevante ao editor para o seu complemento, qualquer que seja a versão. Utilize-o para fornecer formas de testar o complemento, bem como qualquer "
+"informação adicional que possa ajudar. O quadro branco é também editável pelos editores."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
 msgid "Add-on Media for {0}"
-msgstr "Extra de média para {0}"
+msgstr "Complemento de media para {0}"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:15
 msgid "Add-on icon"
-msgstr "Ícone do extra"
+msgstr "Ícone do complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:16
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Envie um ícone para o seu extra ou escolha um dos nossos. O ícone é mostrado em quase todo o lado onde o seu extra é apresentado. As imagens enviadas devem ser de um dos seguintes tipos: .png, .jpg."
-" Isto apenas é relevante para extras listados."
+"Envie um ícone para o seu complemento ou escolha um dos nossos. O ícone é apresentado em quase todo o lado onde o seu complemento é apresentado. As imagens enviadas devem ser de um dos seguintes "
+"tipos: .png, .jpg. Isto apenas é relevante para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
-msgstr "Selecione um ícone para o seu extra:"
+msgstr "Selecione um ícone para o seu complemento:"
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:38
@@ -3060,7 +3060,7 @@ msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:40
 msgid "Used in listings of add-ons, like search results."
-msgstr "Utilizado nas listagens de extras, tal como os resultados de pesquisas."
+msgstr "Utilizado em listas de complementos, como nos resultados de pesquisas."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -3069,7 +3069,7 @@ msgstr "64x64px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:49
 msgid "Used in add-on detail pages."
-msgstr "Usado na página de detalhes do extra."
+msgstr "Utilizado na página de detalhes do complemento."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:57
@@ -3078,7 +3078,7 @@ msgstr "128x128px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:58
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Irá ser o padrão nas futuras páginas de detalhes de extras."
+msgstr "Será o padrão nas próximas páginas de detalhes de complementos."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "Upload a Custom Icon..."
@@ -3102,7 +3102,7 @@ msgstr "Capturas de ecrã"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:98
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Por favor, forneça pelo menos uma captura de ecrã do seu extra:"
+msgstr "Forneça pelo menos uma captura de ecrã do seu complemento:"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:124
 msgid "Please provide a caption for this screenshot:"
@@ -3131,7 +3131,7 @@ msgstr "Continuar"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:3
 msgid "Your add-on is currently set to \"Invisible\"."
-msgstr "O seu extra está atualmente definido como \"Invisível\"."
+msgstr "O seu complemento está atualmente definido como \"Invisível\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
@@ -3143,15 +3143,15 @@ msgstr "Enquanto estiver neste estado, \"Por sua conta\" é o único método de 
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:2
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr "Outras pessoas podem partilhar o seu extra, desde que lhe dêem crédito?"
+msgstr "O seu complemento pode ser partilhado por outras pessoas, desde que lhe atribuam o devido crédito?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:17
 msgid "Can others make commercial use of your Add-on?"
-msgstr "Outras pessoas podem utilizar do seu extra comercialmente?"
+msgstr "O seu complemento pode ser utilizado por outras pessoas para fins comerciais?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:32
 msgid "Can others create derivative works from your Add-on?"
-msgstr "Outras pessoas podem criar outros trabalhos derivados do seu extra?"
+msgstr "Outras pessoas podem criar outros trabalhos derivados do seu complemento?"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:43
 msgid "Yes, as long as they share alike"
@@ -3163,7 +3163,7 @@ msgstr "O licenciador permite que outros distribuam os trabalhos derivados apena
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:57
 msgid "Your Add-on will be released under the following license:"
-msgstr "O seu extra será lançado sob a seguinte licença:"
+msgstr "O seu complemento será lançado sob a seguinte licença:"
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:60
 msgid "Select a different license."
@@ -3213,7 +3213,7 @@ msgstr "Topo"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:1
 msgid "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not."
-msgstr "Eliminar o seu extra irá eliminar permanentemente todas as versões e ficheiros que tenha submetido para este extra, listados ou não."
+msgstr "Eliminar o seu complemento irá eliminar permanentemente todas as versões e ficheiros que tenha submetido para este complemento, listados ou não."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
@@ -3225,7 +3225,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:244 src/olympia/devhub/templates/devhub/versions/list.html:248
 msgid "Delete Add-on"
-msgstr "Apagar extra"
+msgstr "Eliminar complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:17
 #, python-brace-format
@@ -3234,7 +3234,7 @@ msgstr "Digite o seguinte texto para confirmar a sua decisão: {slug}"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:25
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Por favor, diga-nos porque está a eliminar o seu extra:"
+msgstr "Por favor, indique-nos o motivo pelo qual está a remover o seu complemento:"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:1
 msgid "Actions"
@@ -3242,7 +3242,7 @@ msgstr "Ações"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:11
 msgid "Resume the submission process for this add-on"
-msgstr "Retomar o processo de submissão para este extra"
+msgstr "Retomar o processo de submissão para este complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:12
 msgid "Resume"
@@ -3250,7 +3250,7 @@ msgstr "Retomar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete this add-on."
-msgstr "Eliminar este extra."
+msgstr "Eliminar este complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:20
 msgid "Delete"
@@ -3258,11 +3258,11 @@ msgstr "Apagar"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:30
 msgid "Edit details on this add-on's product page"
-msgstr "Editar detalhes na página de produto deste extra"
+msgstr "Editar detalhes na página de produto deste complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:37
 msgid "Upload a new version of this add-on"
-msgstr "Carregar uma nova versão deste extra"
+msgstr "Carregar uma nova versão deste complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:38
 msgid "New Version"
@@ -3290,11 +3290,11 @@ msgstr "Ver alterados recentemente"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:9
 msgid "This add-on is missing some required information before it can be submitted for publication."
-msgstr "Este extra não tem alguma da informação necessária antes de poder ser submetido para publicação."
+msgstr "Faltam algumas informações obrigatórias neste complemento antes de poder ser submetido para publicação."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/items.html:13
 msgid "This add-on doesn't have any versions."
-msgstr "Este extra não tem quaisquer versões."
+msgstr "Este complemento não tem quaisquer versões."
 
 #. {0} is the number of downloads.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:20
@@ -3355,7 +3355,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:52 src/olympia/devhub/templates/devhub/addons/submit/describe.html:73
 msgid "Add-on URL:"
-msgstr "URL do extra:"
+msgstr "URL do complemento:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:56 src/olympia/devhub/templates/devhub/addons/submit/describe.html:77
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
