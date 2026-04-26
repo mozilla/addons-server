@@ -7080,11 +7080,11 @@ msgstr "Foi adicionado um autor ao seu complemento"
 
 #: src/olympia/users/utils.py:116
 msgid "An author role has been changed on your add-on"
-msgstr "Uma função de autor foi alterada no seu extra"
+msgstr "Uma função de autor foi alterada no seu complemento"
 
 #: src/olympia/users/utils.py:126
 msgid "An author has been removed from your add-on"
-msgstr "Foi removido um autor do seu extra"
+msgstr "Foi removido um autor do seu complemento"
 
 #: src/olympia/users/templates/users/emails/author_added.ltxt:3
 #, python-format
