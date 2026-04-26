@@ -2579,6 +2579,8 @@ msgid ""
 "An email with a confirmation link has been sent to your email address: %(email)s. Please click the link to confirm your email address. If you did not receive the email, please check your spam "
 "folder."
 msgstr ""
+"Foi enviado um e-mail com uma ligação de confirmação para o seu endereço de e-mail: %(email)s. Por favor, clique na ligação para confirmar o seu endereço de e-mail. Se não recebeu o e-mail, por "
+"favor, verifique a sua pasta de correio não-solicitado."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:39
 #, python-format
@@ -2586,10 +2588,12 @@ msgid ""
 "The provided code is invalid, unauthorized, expired or incomplete. Please use the link in the email sent to your email address %(email)s. If the code is still not working, please request a new "
 "email."
 msgstr ""
+"O código fornecido é inválido, não autorizado, expirado ou incompleto. Por favor, utilize a ligação no e-mail enviado para o seu endereço de e-mail %(email)s. Se o código continuar a não funcionar, "
+"solicite um novo e-mail."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:49
 msgid "<strong>Email history:</strong> The table below shows all emails we have attempted to send to you in the last 2 days."
-msgstr ""
+msgstr "<strong>Histórico de mensagens:</strong> A tabela em baixo mostra todas as mensagens que tentámos enviar para si nos últimos 2 dias."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
@@ -2610,7 +2614,7 @@ msgstr "Estado"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr ""
+msgstr "Não encontrámos quaisquer registos de e-mail, para si, nos últimos 2 dias."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
@@ -2619,7 +2623,7 @@ msgstr "Atualizar resultados"
 #: src/olympia/devhub/templates/devhub/verify_email.html:101
 #, python-format
 msgid "If you encounter issues, please see our <a %(a_attrs)s>troubleshooting suggestions</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Se encontrar problemas, consulte as nossas <a %(a_attrs)s>sugestões de resolução de problemas</a> no Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/activity.html:4 src/olympia/devhub/templates/devhub/addons/activity.html:17
 msgid "Recent Activity for My Add-ons"
@@ -2808,7 +2812,7 @@ msgstr "Se gostaria de solicitar contribuições monetárias dos seus utilizador
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Domínios suportados: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2903,6 +2907,8 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Uma explicação mais longa de funcionalidades e outras informações relevantes. Este campo apenas é apresentado na página do produto do extra. Comprimento mínimo: %(min_length)s caracteres; "
+"Comprimento recomendado: 250 caracteres. Se precisar de uma descrição mais longa, certifique-se que os primeiros 250 caracteres contêm os pontos mais importantes da descrição."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
@@ -3021,6 +3027,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your add-on, whatever the version, to the reviewers. Use it to provide ways to test the add-on, and any additional information that may"
 " help. This whiteboard is also editable by reviewers."
 msgstr ""
+"O quadro branco é o sítio para fornecer informação relevante ao editor para o seu extra, qualquer que seja a versão. Utilize-o para fornecer formas de testar o extra, bem como qualquer informação "
+"adicional que possa ajudar. O quadro branco é também editável pelos editores."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:10
 #, python-brace-format
