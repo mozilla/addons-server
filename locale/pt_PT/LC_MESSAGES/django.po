@@ -262,7 +262,7 @@ msgstr "A notificação [%s] não existe"
 
 #: src/olympia/activity/models.py:42
 msgid "Add-ons Review Team"
-msgstr "Equipa de Revisão de Extras"
+msgstr "Equipa de Revisão de Complementos"
 
 #: src/olympia/activity/models.py:770
 msgid "Review"
@@ -289,7 +289,7 @@ msgstr "Extra"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr "Os carregamentos de extras estão temporariamente indisponíveis."
+msgstr "Os carregamentos de complementos estão temporariamente indisponíveis."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
@@ -373,15 +373,16 @@ msgstr "O ficheiro já está desativado."
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
-"A última versão aprovada deste extra %s não pode ser eliminada porque a versão anterior não foi aprovada para a promoção de %s . Contacte os administradores do AMO se precisar de ajuda com isto."
+"A última versão aprovada deste complemento %s não pode ser eliminada porque a versão anterior não foi aprovada para a promoção de %s . Contacte os administradores do AMO se precisar de ajuda com "
+"isto."
 
 #: src/olympia/addons/serializers.py:586
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr "Versões listadas não podem ser enviadas enquanto o extra estiver desabilitado."
+msgstr "Versões listadas não podem ser enviadas enquanto o complemento estiver desativado."
 
 #: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr "Não podem ser enviadas versões listadas enquanto a listagem do extra estiver rejeitada."
+msgstr "Não podem ser enviadas versões listadas enquanto a listagem do complemento estiver rejeitada."
 
 #: src/olympia/addons/serializers.py:634
 #, python-format
@@ -396,11 +397,11 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one owner."
-msgstr "Os extras precisam de pelo menos um dono."
+msgstr "Os complementos precisam de pelo menos um proprietário."
 
 #: src/olympia/addons/serializers.py:937
 msgid "Add-ons need at least one listed author."
-msgstr "Os extras precisam de pelo menos um autor listado."
+msgstr "Os complementos precisam de, pelo menos, um autor listado."
 
 #: src/olympia/addons/serializers.py:969
 msgid "Account not found."
@@ -433,11 +434,11 @@ msgstr "Apenas as versões aprovadas podem ser revertidas, exceto a versão mais
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr "Este resumo ou descrição do extra não pode ser utilizado."
+msgstr "Este resumo ou descrição do complemento não pode ser utilizado."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr "Nomes de extras não podem conter as marcas registadas Mozilla ou Firefox."
+msgstr "Nomes de complementos não podem conter as marcas registadas Mozilla ou Firefox."
 
 #: src/olympia/addons/validators.py:52
 msgid "Both `license` and `custom_license` cannot be provided together."
@@ -449,7 +450,7 @@ msgstr "Este campo, ou a custom_license, é obrigatório para as versões listad
 
 #: src/olympia/addons/validators.py:102
 msgid "Wrong add-on type for this license."
-msgstr "Tipo de extra incorreto para esta licença."
+msgstr "Tipo de complemento incorreto para esta licença."
 
 #: src/olympia/addons/validators.py:109
 msgid "Custom licenses are not supported for themes."
@@ -457,12 +458,12 @@ msgstr "Os temas não suportam licenças personalizadas."
 
 #: src/olympia/addons/validators.py:143
 msgid "This field is required for add-ons with listed versions."
-msgstr "Este campo é obrigatório para extras com versões listadas."
+msgstr "Este campo é obrigatório para complementos com versões listadas."
 
 #: src/olympia/addons/validators.py:169
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "É necessário definir os metadados do extra para criar uma versão listada: {missing_addon_metadata}."
+msgstr "É necessário definir os metadados do complemento para criar uma versão listada: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:283
 msgid "A GUID must be specified in the manifest."
@@ -478,7 +479,7 @@ msgstr "A fonte não pode ser alterada porque esta versão foi revista pela Mozi
 
 #: src/olympia/addons/validators.py:326
 msgid "This type of add-on does not allow custom compatibility."
-msgstr "Este tipo de extra não permite customização de compatibilidade."
+msgstr "Este tipo de complemento não permite personalização da compatibilidade."
 
 #: src/olympia/addons/validators.py:343
 msgid "This endpoint is not valid for Themes."
@@ -487,7 +488,7 @@ msgstr "Este endpoint não é válido para temas."
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
 msgid "My Add-ons"
-msgstr "Os meus Extras"
+msgstr "Os meus complementos"
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:6
 msgid "My Themes"
@@ -520,7 +521,7 @@ msgstr "Gerir as minhas submissões"
 #: src/olympia/amo/context_processors.py:65 src/olympia/devhub/templates/devhub/addons/dashboard.html:24 src/olympia/devhub/templates/devhub/addons/submit/base.html:8
 #: src/olympia/devhub/templates/devhub/nav.html:28 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:97
 msgid "Submit a New Add-on"
-msgstr "Submeter um novo extra"
+msgstr "Submeter um novo complemento"
 
 #: src/olympia/amo/context_processors.py:71 src/olympia/devhub/templates/devhub/addons/dashboard.html:28 src/olympia/devhub/templates/devhub/addons/submit/base.html:6
 #: src/olympia/devhub/templates/devhub/nav.html:30 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:98
@@ -636,8 +637,9 @@ msgstr ""
 "<h1>Lamentamos, mas não encontrámos o que procura.</h1> <p> A página ou ficheiro que solicitou não foi encontrado no nosso site. É possível que tenha clicado numa ligação desatualizada ou tenha "
 "digitado o endereço incorretamente. </p> <ul> <li>Se digitou o endereço, por favor verifique a ortografia.</li> <li> Se seguiu uma ligação de um outro local, por favor %(open_bug_link)ssubmeta um "
 "problema%(close_bug_link)s. Diga-nos de onde veio e o que estava à procura, e nós faremos os possíveis para o corrigir. </li> </ul> <p>Ou pode simplesmente saltar para algumas das páginas populares "
-"do nosso site.</p> <ul> <li>Está interessado(a) numa <a href=\"%(rec)s\">lista de extras em destaque</a>?</li> <li>Pretende <a href=\"%(search)s\">pesquisar por extras</a>? Pode ir para a <a "
-"href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa acima. </li> <li> Se preferir recomeçar, simplesmente vá para a <a href=\"%(home)s\">página inicial dos extras</a>. </li> </ul>"
+"do nosso site.</p> <ul> <li>Está interessado(a) numa <a href=\"%(rec)s\">lista de complementos em destaque</a>?</li> <li>Pretende <a href=\"%(search)s\">pesquisar por complementos</a>? Pode ir para "
+"a <a href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa acima. </li> <li> Se preferir recomeçar, simplesmente vá para a <a href=\"%(home)s\">página inicial dos complementos</a>. "
+"</li> </ul>"
 
 #: src/olympia/amo/templates/amo/500.html:3
 msgid "Oops"
@@ -649,8 +651,8 @@ msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
-"<h1>Ups! Encontrámos um erro.</h1> <p>Iremos corrigi-lo brevemente.</p> <p> Pode tentar recarregar a página ou voltar para a <a href=\"%(home)s\">página inicial dos Extras</a>. Também pode ajudar-"
-"nos a corrigir isto, <a href=\"https://github.com/mozilla/addons/issues/new\">preenchendo um erro</a> com os detalhes de como chegou a esta página. </p>"
+"<h1>Ups! Encontrámos um erro.</h1> <p>Iremos corrigi-lo brevemente.</p> <p> Pode tentar recarregar a página ou voltar para a <a href=\"%(home)s\">página inicial dos Complementos</a>. Também pode "
+"ajudar-nos a corrigir isto, <a href=\"https://github.com/mozilla/addons/issues/new\">preenchendo um erro</a> com os detalhes de como chegou a esta página. </p>"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -685,16 +687,16 @@ msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efet
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:3
 msgid "Add-on uploads temporarily disabled"
-msgstr "Envios de extras temporariamente desativados"
+msgstr "Envio de complementos temporariamente desativado"
 
 #: src/olympia/amo/templates/amo/submissions_disabled.html:13
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
-msgstr "Os envios de extras foram temporariamente desativados. Por favor, volte mais tarde."
+msgstr "O envio de complementos foi temporariamente desativado. Por favor, volte mais tarde."
 
 #: src/olympia/amo/templatetags/jinja_helpers.py:147
 #, python-brace-format
 msgid "Add-ons for {0}"
-msgstr "Extras para o {0}"
+msgstr "Complementos para o {0}"
 
 #. L10n: relative time in the past, like '4 days ago'
 #: src/olympia/amo/templatetags/jinja_helpers.py:180
@@ -808,7 +810,7 @@ msgstr "Este URL personalizado não pode ser utilizado."
 
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
-msgstr "Este extra já pertence à coleção"
+msgstr "Este complemento já pertence à coleção"
 
 #: src/olympia/blocklist/models.py:194
 msgid "Blocked"
@@ -954,8 +956,8 @@ msgstr "Solicitada mais informação"
 #: src/olympia/constants/activity.py:238
 msgid "The add-on has been flagged for Admin Review. It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
-"O extra foi sinalizado para uma Avaliação Administrativa. Ainda se encontra na nossa fila para avaliações, mas terá de ser verificada por um dos nossos avaliadores administrativos. Esta avaliação "
-"poderá demorar mais do que o normal."
+"O complemento foi sinalizado para uma Avaliação Administrativa. Ainda se encontra na nossa fila para avaliações, mas terá de ser verificada por um dos nossos avaliadores administrativos. Esta "
+"avaliação poderá demorar mais do que o normal."
 
 #: src/olympia/constants/activity.py:260
 #, python-brace-format
@@ -1031,7 +1033,7 @@ msgstr "Email enviado aos autores acerca da compatibilidade de {version}."
 
 #: src/olympia/constants/activity.py:400
 msgid "Email sent to Author about add-on compatibility."
-msgstr "Email enviado ao autor acerca da compatibilidade do extra."
+msgstr "E-mail enviado ao autor sobre a compatibilidade do complemento."
 
 #: src/olympia/constants/activity.py:405
 msgid "Password changed."
@@ -1074,7 +1076,7 @@ msgstr "{addon} não listado."
 #: src/olympia/constants/activity.py:563
 #, python-brace-format
 msgid "Add-on id {0} with GUID {1} has been deleted"
-msgstr "O extra com o ID {0} com o GUID {1} foi eliminado"
+msgstr "O complemento com o ID {0} com o GUID {1} foi eliminado"
 
 #: src/olympia/constants/activity.py:570 src/olympia/constants/activity.py:576
 #, python-brace-format
@@ -1217,7 +1219,7 @@ msgstr "{user_responsible} alterou o slug de {addon} de {0} para {1}."
 
 #: src/olympia/constants/activity.py:1004
 msgid "Add-on slug changed"
-msgstr "Identificador (slug) do extra alterado"
+msgstr "Identificador (slug) do complemento alterado"
 
 #: src/olympia/constants/activity.py:1011
 #, python-brace-format
@@ -1419,7 +1421,7 @@ msgstr "Pacote de idioma"
 
 #: src/olympia/constants/base.py:138
 msgid "Deprecated Language Pack (Add-on)"
-msgstr "Pacote de Idioma (Extra) Descontinuado"
+msgstr "Pacote de idioma (complemento) descontinuado"
 
 #: src/olympia/constants/base.py:139
 msgid "Deprecated Plugin"
@@ -2852,7 +2854,7 @@ msgstr "Cancelar"
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:7 src/olympia/devhub/templates/devhub/addons/submit/describe.html:5 src/olympia/devhub/templates/devhub/addons/submit/describe.html:9
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:3
 msgid "Describe Add-on"
-msgstr "Descreva o extra"
+msgstr "Descreva o complemento"
 
 #. {0} is the addon name
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:18
@@ -2869,8 +2871,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"O sumário deve explicar o que o seu extra faz, de forma clara e concisa. Tanto o nome quanto o sumário irão aparecer na página do seu produto e nos resultados da pesquisa. Estes têm um comprimento "
-"máximo combinado de 70 caracteres e um comprimento mínimo de 2 caracteres para cada."
+"O resumo deve explicar, de forma clara e concisa, o que o seu complemento faz. Tanto o nome quanto o resumo vão aparecer na página do seu produto e nos resultados da pesquisa. Estes têm um "
+"comprimento máximo combinado de 70 caracteres e um comprimento mínimo de 2 caracteres para cada."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:43 src/olympia/devhub/templates/devhub/addons/edit/describe.html:105 src/olympia/devhub/templates/devhub/addons/submit/describe.html:30
 msgid "Summary"
@@ -2878,11 +2880,11 @@ msgstr "Sumário"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:58 src/olympia/devhub/templates/devhub/addons/edit/describe.html:87
 msgid "Add-on URL"
-msgstr "URL do extra"
+msgstr "URL do complemento"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:59 src/olympia/devhub/templates/devhub/addons/edit/describe.html:88
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Escolha um URL curto e único para o seu extra."
+msgstr "Escolha um URL curto e único para o seu complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:69
 msgid "View Listing"
@@ -2895,7 +2897,7 @@ msgstr "Ver página do produto"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:107 src/olympia/devhub/templates/devhub/addons/submit/describe.html:91
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Este sumário deve explicar claramente o que o seu extra faz. Será mostrado nas listagens e pesquisar, e irá ser utilizado por revisores para testar o seu extra."
+msgstr "Este resumo deve explicar claramente o que o seu complemento faz. Será apresentado nas listagens e pesquisas, e irá ser utilizado pelos revisores para testar o seu complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:128
 msgid "Description"
@@ -2922,15 +2924,15 @@ msgstr "Experimental?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:170
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr "Se o seu extra é experimental ou caso não esteja pronto para uso geral.  O extra será listado mas terá visibilidade reduzida. "
+msgstr "Se o seu complemento for experimental ou ainda não estiver pronto para utilização geral, o complemento será listado, mas com visibilidade reduzida. "
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:175
 msgid "This add-on is experimental."
-msgstr "Este extra é experimental."
+msgstr "Este complemento é experimental."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:177
 msgid "This add-on is ready for general use."
-msgstr "Este extra está pronto para uso geral."
+msgstr "Este complemento está preparado para utilização geral."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:182
 msgid "Requires Payment?"
@@ -2938,15 +2940,15 @@ msgstr "Requer pagamento?"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:183 src/olympia/devhub/templates/devhub/addons/submit/describe.html:140
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr "Marque esta caixa se as funcionalidades principais deste extra requerem alguma forma de pagamento em avanço ou após um período de teste de maneira a funcionar."
+msgstr "Assinale esta caixa se as funcionalidades principais deste complemento exigirem algum tipo de pagamento, antecipado ou após um período experimental, para funcionar."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:188 src/olympia/devhub/templates/devhub/addons/submit/describe.html:136
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr "Este extra requer pagamento, serviços não-gratuitos ou software, ou hardware adicional."
+msgstr "Este complemento requer pagamento, serviços não-gratuitos ou software, ou hardware adicional."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:191
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr "Este extra não requer quaisquer pagamentos adicionais, serviços pagos ou software, ou hardware adicional."
+msgstr "Este complemento não requer quaisquer pagamentos adicionais, serviços pagos ou software, ou hardware adicional."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:199
 msgid "Categories"
@@ -2954,7 +2956,7 @@ msgstr "Categorias"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:200
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr "As categorias são a maneira primária dos utilizadores para navegar pelos extras. Escolha qualquer uma que se enquadre na funcionalidade do seu extra para maior exposição."
+msgstr "As categorias são a principal forma de os utilizadores explorarem os complementos. Selecione todas as que correspondam às funcionalidades do seu complemento para garantir maior visibilidade."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:223
 msgid "Email"
@@ -2966,7 +2968,7 @@ msgid ""
 " for listed add-ons."
 msgstr ""
 "Se quiser apresentar um endereço de e-mail para pedidos de apoio, introduza o respetivo endereço aqui. Se tiver diferentes endereços para cada idioma, podem ser adicionadas múltiplas traduções deste"
-" campo. Isto apenas é relevante para extras listados."
+" campo. Isto apenas é relevante para complementos listados."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
 msgid "Website"
