@@ -1065,6 +1065,7 @@ class TestCreateSupportTicket(TestCase):
     @mock.patch('olympia.devhub.tasks.requests.post')
     def test_success(self, mock_post):
         mock_post.return_value = mock.MagicMock(status_code=201)
+        mock_post.return_value.raise_for_status.return_value = None
         tasks.create_support_ticket('mytoken', self.payload)
         mock_post.assert_called_once_with(
             mock_post.call_args[0][0],
@@ -1074,11 +1075,13 @@ class TestCreateSupportTicket(TestCase):
         )
 
     @mock.patch('olympia.devhub.tasks.requests.post')
-    def test_fxa_error_logs_warning(self, mock_post):
+    def test_fxa_error_raises(self, mock_post):
+        import requests as req
+
         mock_post.return_value = mock.MagicMock(status_code=500)
-        # Should not raise, just log
-        tasks.create_support_ticket('mytoken', self.payload)
-        mock_post.assert_called_once()
+        mock_post.return_value.raise_for_status.side_effect = req.HTTPError('500')
+        with self.assertRaises(req.HTTPError):
+            tasks.create_support_ticket('mytoken', self.payload)
 
     @mock.patch('olympia.devhub.tasks.requests.post')
     def test_network_error_triggers_retry(self, mock_post):
