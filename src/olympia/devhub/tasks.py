@@ -713,8 +713,4 @@ def create_support_ticket(access_token, payload, **kw):
         json=payload,
         timeout=10,
     )
-    if response.status_code not in (200, 201):
-        log.warning(
-            'create_support_ticket: FxA support endpoint returned %s',
-            response.status_code,
-        )
+    response.raise_for_status()
