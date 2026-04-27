@@ -19,6 +19,16 @@ def test_format_scanners_data_simple_boolean():
     assert format_scanners_data(False) == 'False'
 
 
+def test_format_scanners_data_linkifies_urls():
+    assert format_scanners_data('https://example.com') == (
+        '<a href="https://example.com" rel="nofollow">https://example.com</a>'
+    )
+    assert format_scanners_data('see https://example.com for details') == (
+        'see <a href="https://example.com" rel="nofollow">https://example.com</a>'
+        ' for details'
+    )
+
+
 def test_format_scanners_data_simple_none():
     assert format_scanners_data(None) == 'None'
 
