@@ -2485,12 +2485,13 @@ msgstr "Hledat"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr "Podpora pro rozšíření a motivy vzhledu"
+msgstr "Získejte podporu pro rozšíření a motivy"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
-"Použijte tento formulář pro podporu týkající se vašeho účtu, technických problémů a dalších. Čím více detailů nám sdělíte, tím snadněji vám pomůžeme. Ozveme se vám zpět, jakmile to bude možné."
+"Tento formulář použijte pro žádosti o podporu týkající se vašeho účtu, technických problémů a dalších záležitostí. Čím více podrobností nám sdělíte, tím snáze vám budeme moci pomoci. Ozveme se vám "
+"co nejdříve."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
@@ -5744,12 +5745,12 @@ msgstr "Vylepšete si zážitek ze svého Redditu pomocí barevně odlišených 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr "Zbavte se na YouTube rušivých prvků, jako jsou doporučení, návrhy závěrečné obrazovky, komentáře a další."
+msgstr "Odstraňte rušivé prvky na YouTube, jako jsou doporučení, návrhy na závěrečné obrazovce, komentáře a další."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr "„Lepší Twitch TV“ – vylepšete Twitch a YouTube o spoustu nových funkcí."
+msgstr "\"Better Twitch TV\" — vylepšete Twitch a YouTube o spoustu nových funkcí."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
