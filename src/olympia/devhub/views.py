@@ -35,7 +35,6 @@ from olympia.accounts.utils import (
     redirect_for_login,
     redirect_for_login_with_2fa_enforced,
 )
-from olympia.accounts.verify import IdentificationError, get_fxa_access_token
 from olympia.accounts.views import logout_user
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
@@ -2303,7 +2302,10 @@ def email_verification(request):
 
 @login_required
 def support(request):
-    if not waffle.switch_is_active('enable-devhub-support-form'):
+    if (
+        not waffle.switch_is_active('enable-devhub-support-form')
+        or not settings.FXA_SUPPORT_SECRET
+    ):
         raise http.Http404
 
     form = forms.SupportForm(
@@ -2312,34 +2314,22 @@ def support(request):
     )
     if request.method == 'POST' and form.is_valid():
         payload = {
+            'productName': settings.FXA_SUPPORT_PRODUCT_NAME,
             'topic': form.cleaned_data['category'],
             'subject': form.cleaned_data['summary'],
             'message': form.cleaned_data['body'],
         }
         if settings.FXA_SUPPORT_BRAND_ID is not None:
             payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
+        payload['email'] = request.user.email
 
-        try:
-            access_token = get_fxa_access_token(request)
-            if not access_token:
-                raise IdentificationError('No access token in session')
-        except IdentificationError:
-            log.warning(
-                'support: could not get FxA access token for user %s',
-                request.user.pk,
-            )
-            messages.error(
-                request,
-                gettext('Could not submit your support request. Please try again.'),
-            )
-        else:
-            tasks.create_support_ticket.delay(access_token, payload)
-            messages.success(
-                request,
-                gettext(
-                    'Your support request has been submitted. We will be in touch soon.'
-                ),
-            )
+        tasks.create_support_ticket.delay(payload)
+        messages.success(
+            request,
+            gettext(
+                'Your support request has been submitted. We will be in touch soon.'
+            ),
+        )
         return redirect('devhub.support')
 
     return TemplateResponse(request, 'devhub/support.html', {'form': form})

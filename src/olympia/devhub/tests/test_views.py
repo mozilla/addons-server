@@ -9,7 +9,7 @@ from django.conf import settings
 from django.core import mail
 from django.http import HttpResponseNotAllowed
 from django.template import defaultfilters
-from django.test import RequestFactory
+from django.test import RequestFactory, override_settings
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import force_str
@@ -2758,6 +2758,7 @@ class TestRequestContentReview(TestCase):
 
 
 @override_switch('enable-devhub-support-form', active=True)
+@override_settings(FXA_SUPPORT_SECRET='mysecret')
 class TestSupportView(TestCase):
     def setUp(self):
         super().setUp()
@@ -2766,6 +2767,12 @@ class TestSupportView(TestCase):
 
     @override_switch('enable-devhub-support-form', active=False)
     def test_switch_inactive_returns_404(self):
+        self.client.force_login(self.user)
+        assert self.client.get(self.url).status_code == 404
+        assert self.client.post(self.url, {}).status_code == 404
+
+    @override_settings(FXA_SUPPORT_SECRET='')
+    def test_no_secret_returns_404(self):
         self.client.force_login(self.user)
         assert self.client.get(self.url).status_code == 404
         assert self.client.post(self.url, {}).status_code == 404
@@ -2805,56 +2812,26 @@ class TestSupportView(TestCase):
         assert form.errors
 
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_success(self, mock_token, mock_task):
-        mock_token.return_value = 'mytoken'
+    def test_post_success(self, mock_task):
         self.client.force_login(self.user)
         with self.settings(FXA_SUPPORT_BRAND_ID=None):
             response = self._post(follow=True)
         assert response.status_code == 200
         mock_task.assert_called_once()
-        access_token, payload = mock_task.call_args[0]
-        assert access_token == 'mytoken'
+        (payload,) = mock_task.call_args[0]
         assert payload['topic'] == 'technical'
         assert payload['subject'] == 'Something is broken'
+        assert payload['email'] == self.user.email
         assert 'brand_id' not in payload
         assert len(response.context['messages']) == 1
         msg = list(response.context['messages'])[0]
         assert msg.level_tag == 'success'
 
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_success_with_brand_id(self, mock_token, mock_task):
-        mock_token.return_value = 'mytoken'
+    def test_post_success_with_brand_id(self, mock_task):
         self.client.force_login(self.user)
         with self.settings(FXA_SUPPORT_BRAND_ID=12345):
             response = self._post(follow=True)
         assert response.status_code == 200
-        _, payload = mock_task.call_args[0]
+        (payload,) = mock_task.call_args[0]
         assert payload['brand_id'] == 12345
-
-    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_no_access_token(self, mock_token, mock_task):
-        mock_token.return_value = None
-        self.client.force_login(self.user)
-        response = self._post(follow=True)
-        assert response.status_code == 200
-        mock_task.assert_not_called()
-        assert len(response.context['messages']) == 1
-        msg = list(response.context['messages'])[0]
-        assert msg.level_tag == 'error'
-
-    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
-    @mock.patch('olympia.devhub.views.get_fxa_access_token')
-    def test_post_token_identification_error(self, mock_token, mock_task):
-        from olympia.accounts.verify import IdentificationError
-
-        mock_token.side_effect = IdentificationError('no token')
-        self.client.force_login(self.user)
-        response = self._post(follow=True)
-        assert response.status_code == 200
-        mock_task.assert_not_called()
-        assert len(response.context['messages']) == 1
-        msg = list(response.context['messages'])[0]
-        assert msg.level_tag == 'error'
