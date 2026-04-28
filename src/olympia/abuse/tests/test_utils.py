@@ -1,5 +1,6 @@
 import json
 import uuid
+from unittest import mock
 
 from django.conf import settings
 from django.core import mail
@@ -9,15 +10,22 @@ import responses
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
-from olympia.amo.tests import addon_factory, user_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
 
-from ..models import ContentDecision
-from ..utils import get_instance_from_entity, is_same_time, reject_and_block_addons
+from ..actions import ContentActionBlockAddon
+from ..models import CinderJob, CinderPolicy, ContentDecision
+from ..utils import (
+    find_automated_enforcement_actions_from_policies,
+    get_instance_from_entity,
+    is_same_time,
+    reject_and_block_addons,
+)
 
 
 @pytest.mark.django_db
@@ -130,3 +138,253 @@ def test_is_same_time():
     assert is_same_time(addon, str(addon.created))
     assert not is_same_time(addon, str(addon.created.replace(year=2000)))
     assert is_same_time(addon, str(addon.created.replace(microsecond=1234)))
+
+
+class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
+    def setUp(self):
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+
+    def test_find_nothing(self):
+        mild_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Mild Things',
+            enforcement_actions=[],
+        )
+        invalid_action_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Invalid Things',
+            enforcement_actions=['not-a-valid-action'],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[mild_things_policy, invalid_action_policy],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == []
+        assert followup_actions == []
+
+    def test_basic(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        slightly_less_bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Slightly Less Bad Things',
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[bad_things_policy, slightly_less_bad_things_policy],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == []
+
+    def test_block_wins(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        extremely_bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Extremely Bad Things',
+            enforcement_actions=['amo-block-addon'],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[bad_things_policy, extremely_bad_things_policy],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_BLOCK_ADDON]
+        assert followup_actions == []
+
+    def test_ordering_with_follow_up_action_against_not(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        bad_things_policy_with_more_aggressive_followup = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things, But Worse',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-short-soft-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[
+                bad_things_policy,
+                bad_things_policy_with_more_aggressive_followup,
+            ],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == [
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
+        ]
+
+    def test_ordering_with_two_follow_up_actions_compared(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-short-soft-block-addon',
+            ],
+        )
+        bad_things_policy_with_more_aggressive_followup = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things, But Worse',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-short-hard-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[
+                bad_things_policy,
+                bad_things_policy_with_more_aggressive_followup,
+            ],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == [
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON
+        ]
+
+    def test_ordering_with_two_follow_up_actions_compared_different_delay(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-short-soft-block-addon',
+            ],
+        )
+        bad_things_policy_with_less_delayed_followup = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things, But Slightly Worse',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-mid-hard-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[bad_things_policy, bad_things_policy_with_less_delayed_followup],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == [
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
+        ]
+
+    def test_ordering_with_multiple_followup_actions(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-short-soft-block-addon',
+                'amo-fu-delay-mid-hard-block-addon',
+            ],
+        )
+        bad_things_policy_with_delayed_followup = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things, But Slightly Worse',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-fu-delay-mid-hard-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[bad_things_policy, bad_things_policy_with_delayed_followup],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == [
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
+            DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON,
+        ]
+
+    @mock.patch.object(
+        ContentActionBlockAddon,
+        'should_be_skipped_by_automation',
+        lambda **kwargs: True,
+    )
+    def test_skip_action_that_should_be_skipped_by_automation(self):
+        bad_things_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Very Bad Things',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+            ],
+        )
+        worse_things_policy_that_should_be_skipped = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Worse Things',
+            enforcement_actions=[
+                # ContentActionBlockAddon.should_be_skipped_by_automation()
+                # is mocked to return True so that should be skipped.
+                'amo-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[bad_things_policy, worse_things_policy_that_should_be_skipped],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
+        assert followup_actions == []
+
+    def test_skip_policy_with_multiple_primary_actions(self):
+        broken_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Multiple Relevant Enforcement Actions Policy',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                'amo-block-addon',
+            ],
+        )
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[broken_policy],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == []
+        assert followup_actions == []
+
+    def test_skip_policy_if_successful_appeal_for_it_in_the_past(self):
+        appealed_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Policy that has been successfully appealed in the past',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+            ],
+        )
+        appeal_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            cinder_job=CinderJob.objects.create(target_addon=self.addon),
+        )
+        original_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        original_decision.policies.add(appealed_policy)
+        actions, followup_actions = find_automated_enforcement_actions_from_policies(
+            policies=[appealed_policy],
+            addon=self.addon,
+            version=self.version,
+        )
+        assert actions == []
+        assert followup_actions == []

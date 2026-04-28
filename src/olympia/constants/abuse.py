@@ -94,6 +94,31 @@ DECISION_ACTIONS.add_subset(
         'AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON',
     ),
 )
+DECISION_ACTIONS.add_subset(
+    # This subset holds all "negative" actions we can use against add-ons or
+    # their versions, ordered from least aggressive to most. Scanners will use
+    # this list and its ordering to determine which action and follow-up
+    # actions to automatically take when a policy violation is found.
+    'ADDON_NEGATIVE_SORTED',
+    (
+        # Follow-up actions also influence the order, because we might have
+        # the choice between an immediate reject and a short soft-block and
+        # an immediate reject and a short hard-block. We obviously consider a
+        # hard-block as more aggressive than a soft one, but also a short delay
+        # more aggressive than a mid or long one.
+        'AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON',
+        'AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_MID_HARD_BLOCK_ADDON',
+        'AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON',
+        'AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON',
+        'AMO_REJECT_VERSION_WARNING_ADDON',
+        'AMO_REJECT_VERSION_ADDON',
+        'AMO_REJECT_LISTING_CONTENT',
+        'AMO_DISABLE_ADDON',
+        'AMO_BLOCK_ADDON',
+    ),
+)
 
 
 # Illegal categories, only used when the reason is `illegal`. The constants

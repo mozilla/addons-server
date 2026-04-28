@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.admin import AMOModelAdmin, DateRangeFilter, FakeChoicesMixin
 from olympia.amo.templatetags.jinja_helpers import vite_asset
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.ratings.models import Rating
 from olympia.translations.utils import truncate_text
 
@@ -374,6 +375,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'name',
         'text',
         'expose_in_reviewer_tools',
+        'pretty_enforcement_actions',
         'present_in_cinder',
     )
     list_display = (
@@ -383,7 +385,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'linked_review_reasons',
         'expose_in_reviewer_tools',
         'present_in_cinder',
-        'enforcement_actions',
+        'pretty_enforcement_actions',
         'text',
     )
     readonly_fields = tuple(set(fields) - {'expose_in_reviewer_tools'})
@@ -396,6 +398,17 @@ class CinderPolicyAdmin(AMOModelAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    @admin.display(description='Enforcement actions')
+    def pretty_enforcement_actions(self, obj):
+        return ', '.join(
+            [
+                DECISION_ACTIONS.from_api_value(action).label
+                if action in DECISION_ACTIONS.api_values
+                else f'Unknown ({action})'
+                for action in obj.enforcement_actions
+            ]
+        )
 
     @admin.display(ordering='reviewactionreason__name')
     def linked_review_reasons(self, obj):
