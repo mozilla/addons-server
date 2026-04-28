@@ -263,6 +263,7 @@ def delete_versions_from_blocks(guids, submission):
     modified_datetime = datetime.now()
 
     blocks = Block.get_blocks_from_guids(guids)
+    should_override_block_metadata = not submission.preserve_block_metadata
     for block in blocks:
         if not block.id:
             continue
@@ -275,10 +276,11 @@ def delete_versions_from_blocks(guids, submission):
         if BlockVersion.objects.filter(block=block).exists():
             # if there are still other versions blocked update the metadata
             block.updated_by = submission.updated_by
-            if submission.reason is not None:
-                block.reason = submission.reason
-            if submission.url is not None:
-                block.url = submission.url
+            if should_override_block_metadata:
+                if submission.reason is not None:
+                    block.reason = submission.reason
+                if submission.url is not None:
+                    block.url = submission.url
             block.average_daily_users_snapshot = block.current_adu
             block.save()
             should_delete = False
