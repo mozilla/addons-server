@@ -81,6 +81,7 @@ const setInitialConfiguration = (select) => {
     jsonFormConfig.schema =
       scannersConfigurationSchemas[selectedScanner].schema;
     jsonFormConfig.data = scannersConfigurationSchemas[selectedScanner].default;
+    /* global reactJsonForm */
     const jsonForm = reactJsonForm.createForm(jsonFormConfig);
     jsonForm.render();
   }
