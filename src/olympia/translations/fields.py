@@ -127,12 +127,15 @@ class TranslatedField(models.ForeignKey):
     forward_related_accessor_class = TranslationDescriptor
 
     def __init__(self, **kwargs):
-        # to_field: The field on the related object that the relation is to.
-        # Django wants to default to translations.autoid, but we need id.
         kwargs.update(
             {
                 'null': True,
+                # Field on the related object that the relation is to. Django
+                # wants to default to translations.autoid, but we need id.
                 'to_field': 'id',
+                # No db constraint, it's not a "true" FK, there can be multiple
+                # rows for a given translated string, one for each locale.
+                'db_constraint': False,
                 'unique': True,
                 'blank': True,
                 'on_delete': models.SET_NULL,

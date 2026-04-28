@@ -85,7 +85,13 @@ models.signals.pre_save.connect(save_signal,
 
 ### How It Works Behind the Scenes
 
-A `TranslatedField` is actually a `ForeignKey` to the `translations` table. To support multiple languages, we use a special feature of MySQL allowing a `ForeignKey` to point to multiple rows.
+Rows in the translations table have an `autoid` primary key and an `id` key that is
+shared between different translations of the same string in multiple languages.
+
+That `id` is generated from a dedicated sequence table `translations_seq` every time
+a new string to be translated is saved.
+
+A `TranslatedField` is actually a `ForeignKey` to the `translations` table. To support multiple languages, these have `db_constraint` set to `False`, and the FK points to the `id` key.
 
 #### When Querying
 
@@ -94,7 +100,7 @@ Our base manager has a `_with_translations()` method that is automatically calle
 - Adds an extra `lang=lang` in the query to prevent query caching from returning objects in the wrong language.
 - Calls `olympia.translations.transformers.get_trans()` which builds a custom SQL query to fetch translations in the current language and fallback language.
 
-This custom query ensures that only the specified languages are considered and uses a double join with `IF`/`ELSE` for each field. The results are fetched using a slave database connection to improve performance.
+This custom query ensures that only the specified languages are considered and uses a double join with `IF`/`ELSE` for each field. The results are fetched using a replica database connection to improve performance.
 
 #### When Setting
 
