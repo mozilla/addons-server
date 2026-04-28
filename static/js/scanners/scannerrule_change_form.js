@@ -63,18 +63,35 @@ const showOrHideName = (select) => {
   }
 };
 
+const setInitialConfiguration = (select) => {
+  const selectedScanner = select.options[select.selectedIndex].value;
+  if (
+    selectedScanner &&
+    typeof scannersConfigurationSchemas[selectedScanner] !== 'undefined'
+  ) {
+    // We're changing scanner and we know the default configuration schema for
+    // this scanner, so re-initialize jsonForm, overriding the data and schema
+    // attributes.
+    // See https://github.com/bhch/django-jsonform/blob/master/django_jsonform/static/django_jsonform/index.js
+    const jsonFormConfig = JSON.parse(
+      configurationTextarea.dataset['djangoJsonform'],
+    );
+    jsonFormConfig.dataInputId = configurationTextarea.id;
+    jsonFormConfig.containerId = configurationTextarea.id + '_jsonform';
+    jsonFormConfig.schema =
+      scannersConfigurationSchemas[selectedScanner].schema;
+    jsonFormConfig.data = scannersConfigurationSchemas[selectedScanner].default;
+    const jsonForm = reactJsonForm.createForm(jsonFormConfig);
+    jsonForm.render();
+  }
+};
+
 const scannerSelect = document.querySelector('#id_scanner');
 const definitionTextarea = document.querySelector('#id_definition');
-
-// We listen to `scanner` changes to update the visibility of some fields in
-// the form. For instance, when the "yara" scanner is selected, we want to show
-// the `definition` field and hide the `name` field.
-scannerSelect.addEventListener('change', (event) => {
-  const select = event.target;
-
-  showOrHideDefinition(select);
-  showOrHideName(select);
-});
+const configurationTextarea = document.querySelector('#id_configuration');
+const scannersConfigurationSchemas = JSON.parse(
+  document.querySelector('#scanners-configuration-schemas').textContent,
+);
 
 // Update name field value on definition change. This is needed because the
 // field is hidden. We parse the name of the rule and, if successful, we update
@@ -93,7 +110,21 @@ definitionTextarea.addEventListener('input', (event) => {
   }
 });
 
-// It is likely that these two fields will be hidden by default because the
-// form does not have a pre-selected value for the `scanner` select.
-showOrHideName(scannerSelect);
-showOrHideDefinition(scannerSelect);
+// We listen to `scanner` changes to update the visibility of some fields in
+// the form. For instance, when the "yara" scanner is selected, we want to show
+// the `definition` field and hide the `name` field.
+if (scannerSelect) {
+  scannerSelect.addEventListener('change', (event) => {
+    const select = event.target;
+
+    showOrHideDefinition(select);
+    showOrHideName(select);
+    setInitialConfiguration(select);
+  });
+
+  // It is likely that these fields will be hidden by default because the
+  // form does not have a pre-selected value for the `scanner` select.
+  showOrHideName(scannerSelect);
+  showOrHideDefinition(scannerSelect);
+  setInitialConfiguration(scannerSelect);
+}

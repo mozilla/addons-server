@@ -1,11 +1,33 @@
 from django import template
 from django.conf import settings
 from django.urls import reverse
-from django.utils.html import conditional_escape, format_html, format_html_join, urlize
+from django.utils.html import (
+    conditional_escape,
+    format_html,
+    format_html_join,
+    json_script,
+    urlize,
+)
 from django.utils.safestring import mark_safe
+
+from olympia.constants.scanners import SCANNERS
+from olympia.scanners.models import ScannerRule, rule_schema
+from olympia.scanners.utils import default_from_schema
 
 
 register = template.Library()
+
+
+@register.simple_tag
+def scanners_configuration_schemas():
+    schemas = {
+        scanner: {
+            'schema': rule_schema(ScannerRule(scanner=scanner)),
+            'default': default_from_schema(rule_schema(ScannerRule(scanner=scanner))),
+        }
+        for scanner in SCANNERS
+    }
+    return json_script(schemas, element_id='scanners-configuration-schemas')
 
 
 @register.filter
