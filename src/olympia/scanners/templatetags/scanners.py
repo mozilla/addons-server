@@ -1,7 +1,8 @@
 from django import template
 from django.conf import settings
 from django.urls import reverse
-from django.utils.html import conditional_escape, format_html, format_html_join
+from django.utils.html import conditional_escape, format_html, format_html_join, urlize
+from django.utils.safestring import mark_safe
 
 
 register = template.Library()
@@ -48,5 +49,5 @@ def format_scanners_data(data, parent=None):
                 '<a href="{}{}">{}</a>', settings.EXTERNAL_SITE_URL, url, data
             )
         else:
-            rval = conditional_escape(data)
+            rval = mark_safe(urlize(data, nofollow=True, autoescape=True))
     return rval
