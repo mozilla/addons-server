@@ -1,0 +1,5 @@
+{%  load scanners %}
+{% scanners_configuration_schemas %}
+<div data-django-jsonform-container="true" {% include "django_jsonform/attrs.html" %}></div>
+
+<textarea cols="40" id="{{ widget.attrs.id }}" name="{{ widget.name }}" rows="10" {% if widget.attrs.disabled %}disabled{% endif %} style="display: none;" data-django-jsonform="{{ widget.config }}"></textarea>

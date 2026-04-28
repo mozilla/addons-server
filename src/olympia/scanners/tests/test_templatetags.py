@@ -1,4 +1,28 @@
-from olympia.scanners.templatetags.scanners import format_scanners_data
+import json
+
+from pyquery import PyQuery as pq
+
+from olympia.constants.scanners import SCANNERS
+from olympia.scanners.models import ScannerRule, rule_schema
+from olympia.scanners.templatetags.scanners import (
+    format_scanners_data,
+    scanners_configuration_schemas,
+)
+from olympia.scanners.utils import default_from_schema
+
+
+def test_scanners_configuration_schemas():
+    output = scanners_configuration_schemas()
+    assert output.startswith(
+        '<script id="scanners-configuration-schemas" type="application/json">{'
+    )
+    elm = pq(output)('#scanners-configuration-schemas')
+    data = json.loads(elm.text())
+    for scanner in SCANNERS:
+        assert data[str(scanner)] == {
+            'schema': rule_schema(ScannerRule(scanner=scanner)),
+            'default': default_from_schema(rule_schema(ScannerRule(scanner=scanner))),
+        }
 
 
 def test_format_scanners_data_simple_string():

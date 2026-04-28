@@ -140,7 +140,7 @@ NARC_RULE_CONFIGURATION_SCHEMA = {
             'type': 'boolean',
             'default': True,
             'helpText': (
-                'For each string being examined, also examine homoglyphs variants',
+                'For each string being examined, also examine homoglyphs variants'
             ),
         },
     },
