@@ -214,6 +214,19 @@ class WithVersionFilter(PresenceFilter):
         return queryset.exclude(version=None)
 
 
+class WithResultsFilter(PresenceFilter):
+    title = 'presence of results'
+    parameter_name = 'has_results'
+
+    def lookups(self, request, model_admin):
+        return (('all', 'All'), (None, ' With results only'))
+
+    def queryset(self, request, queryset):
+        if self.value() == 'all':
+            return queryset
+        return queryset.exclude(results=None)
+
+
 class VersionChannelFilter(admin.ChoicesFieldListFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -623,6 +636,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         MatchesFilter,
         ('matched_rules', ScannerRuleListFilter),
         WithVersionFilter,
+        WithResultsFilter,
         ExcludeMatchedRulesFilter,
     )
     raw_id_fields = AbstractScannerResultAdminMixin.raw_id_fields + ('upload',)

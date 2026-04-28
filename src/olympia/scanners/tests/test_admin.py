@@ -48,6 +48,7 @@ from olympia.scanners.admin import (
     ScannerWebhookAdmin,
     ScannerWebhookEventForm,
     ScannerWebhookEventInline,
+    WithResultsFilter,
     WithVersionFilter,
     formatted_matched_rules_with_files_and_data,
 )
@@ -384,6 +385,8 @@ class TestScannerResultAdmin(TestCase):
             ),
             ('All', '?has_version=all'),
             (' With version only', '?'),
+            ('All', '?has_results=all'),
+            (' With results only', '?'),
         ]
         if self.is_django42:
             # django42 doesn't have Show counts
@@ -506,6 +509,35 @@ class TestScannerResultAdmin(TestCase):
         assert doc('.field-formatted_matched_rules').text() == (
             'bar (yara), hello (yara)'
         )
+
+    def test_list_filter_results(self):
+        ScannerResult.objects.create(scanner=YARA, results=[])
+        ScannerResult.objects.create(scanner=YARA, results=None)
+
+        # By default, we don't show the scanner results with results=None.
+        response = self.client.get(
+            self.list_url,
+            {
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 1
+
+        # Verify that we can still list all the scanner results.
+        response = self.client.get(
+            self.list_url,
+            {
+                MatchesFilter.parameter_name: 'all',
+                WithVersionFilter.parameter_name: 'all',
+                WithResultsFilter.parameter_name: 'all',
+            },
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody > tr').length == 2
 
     def test_exclude_matched_rules_filter(self):
         rule_bar = ScannerRule.objects.create(name='bar', scanner=YARA)
@@ -663,6 +695,9 @@ class TestScannerResultAdmin(TestCase):
             f'&matched_rules__id__exact={rule_foo.pk}',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
             f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all'
+            '&has_results=all',
+            f'?exclude_rule={rule_bar.pk}&exclude_rule={rule_hello.pk}&has_version=all',
         ]
         if self.is_django42:
             # django42 doesn't have Show counts
@@ -729,6 +764,7 @@ class TestScannerResultAdmin(TestCase):
             {
                 MatchesFilter.parameter_name: 'all',
                 WithVersionFilter.parameter_name: 'all',
+                WithResultsFilter.parameter_name: 'all',
             },
         )
         assert response.status_code == 200
