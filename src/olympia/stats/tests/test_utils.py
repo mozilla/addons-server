@@ -4,6 +4,7 @@ from unittest import mock
 from django.test.utils import override_settings
 
 from google.cloud import bigquery
+from waffle.testutils import override_switch
 
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.constants.applications import ANDROID, FIREFOX
@@ -187,8 +188,7 @@ class TestRowsToSeriesForDownloadStats(BigQueryTestMixin, TestCase):
         ]
 
 
-@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetUpdatesSeries(BigQueryTestMixin, TestCase):
+class GetUpdatesSeriesMixin(BigQueryTestMixin):
     def setUp(self):
         super().setUp()
 
@@ -220,7 +220,7 @@ class TestGetUpdatesSeries(BigQueryTestMixin, TestCase):
         end_date = date(2020, 5, 28)
         expected_query = f"""
 SELECT submission_date, dau
-FROM `project.dataset.{AMO_STATS_DAU_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -262,7 +262,7 @@ LIMIT 365"""
         for source, column in AMO_TO_BQ_DAU_COLUMN_MAPPING.items():
             expected_query = f"""
 SELECT submission_date, dau, {column}
-FROM `project.dataset.{AMO_STATS_DAU_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE addon_id = @addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -279,8 +279,21 @@ LIMIT 365"""
             timer_mock.assert_called_with(f'stats.get_updates_series.bigquery.{source}')
 
 
+@override_switch('2026-amo-stats', active=False)
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAddonsAndAverageDailyUsersFromBigQuery(BigQueryTestMixin, TestCase):
+class TestGetUpdatesSeriesWithSwitchDisabled(GetUpdatesSeriesMixin, TestCase):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DAU_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetUpdatesSeriesWithSwitchEnabled(GetUpdatesSeriesMixin, TestCase):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DAU_VIEW}'
+
+
+class GetAddonsAndAverageDailyUsersFromBigQueryMixin(BigQueryTestMixin):
     @mock.patch('google.cloud.bigquery.Client')
     def test_create_client(self, bigquery_client_mock):
         client = self.create_mock_client()
@@ -300,7 +313,7 @@ class TestGetAddonsAndAverageDailyUsersFromBigQuery(BigQueryTestMixin, TestCase)
         bigquery_client_mock.from_service_account_json.return_value = client
         expected_query = f"""
 SELECT addon_id, AVG(dau) AS count
-FROM `project.dataset.{AMO_STATS_DAU_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE submission_date > DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
 GROUP BY addon_id"""
 
@@ -334,16 +347,36 @@ GROUP BY addon_id"""
         assert returned_results == [(1, 123)]
 
 
+@override_switch('2026-amo-stats', active=False)
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAveragesByAddonFromBigQuery(BigQueryTestMixin, TestCase):
-    expected_base_query = f"""
+class TestGetAddonsAndAverageDailyUsersFromBigQueryWithSwitchDisabled(
+    GetAddonsAndAverageDailyUsersFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DAU_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetAddonsAndAverageDailyUsersFromBigQueryWithSwitchEnabled(
+    GetAddonsAndAverageDailyUsersFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DAU_VIEW}'
+
+
+class GetAveragesByAddonFromBigQueryMixin(BigQueryTestMixin):
+    @property
+    def expected_base_query(self):
+        view = self._get_fully_qualified_view_name()
+        return f"""
 WITH
   this_week AS (
   SELECT
     addon_id,
     AVG(dau) AS avg_this_week
   FROM
-    `project.dataset.{AMO_STATS_DAU_VIEW}`
+    `{view}`
   WHERE
     submission_date >= @one_week_date
   AND
@@ -357,7 +390,7 @@ WITH
     addon_id,
     AVG(dau) AS avg_previous_week
   FROM
-    `project.dataset.{AMO_STATS_DAU_VIEW}`
+    `{view}`
   WHERE
     submission_date BETWEEN @two_weeks_date AND @one_week_date
   AND
@@ -482,8 +515,25 @@ USING
         }
 
 
+@override_switch('2026-amo-stats', active=False)
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
+class TestGetAveragesByAddonFromBigQueryWithSwitchDisabled(
+    GetAveragesByAddonFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DAU_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetAveragesByAddonFromBigQueryWithSwitchEnabled(
+    GetAveragesByAddonFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DAU_VIEW}'
+
+
+class GetDownloadSeriesMixin(BigQueryTestMixin):
     def setUp(self):
         super().setUp()
 
@@ -515,7 +565,7 @@ class TestGetDownloadSeries(BigQueryTestMixin, TestCase):
         end_date = date(2020, 5, 28)
         expected_query = f"""
 SELECT submission_date, total_downloads
-FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE hashed_addon_id = @hashed_addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -557,7 +607,7 @@ LIMIT 365"""
         for source, column in AMO_TO_BQ_DOWNLOAD_COLUMN_MAPPING.items():
             expected_query = f"""
 SELECT submission_date, total_downloads, {column}
-FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE hashed_addon_id = @hashed_addon_id
 AND submission_date BETWEEN @submission_date_start AND @submission_date_end
 ORDER BY submission_date DESC
@@ -576,8 +626,21 @@ LIMIT 365"""
             )
 
 
+@override_switch('2026-amo-stats', active=False)
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAddonsAndWeeklyDownloadsFromBigQuery(BigQueryTestMixin, TestCase):
+class TestGetDownloadSeriesWithSwitchDisabled(GetDownloadSeriesMixin, TestCase):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DOWNLOAD_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetDownloadSeriesWithSwitchEnabled(GetDownloadSeriesMixin, TestCase):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DOWNLOAD_VIEW}'
+
+
+class GetAddonsAndWeeklyDownloadsFromBigQueryMixin(BigQueryTestMixin):
     @mock.patch('google.cloud.bigquery.Client')
     def test_create_client(self, bigquery_client_mock):
         client = self.create_mock_client()
@@ -597,7 +660,7 @@ class TestGetAddonsAndWeeklyDownloadsFromBigQuery(BigQueryTestMixin, TestCase):
         bigquery_client_mock.from_service_account_json.return_value = client
         expected_query = f"""
 SELECT hashed_addon_id, SUM(total_downloads) AS count
-FROM `project.dataset.{AMO_STATS_DOWNLOAD_VIEW}`
+FROM `{self._get_fully_qualified_view_name()}`
 WHERE submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)
 GROUP BY hashed_addon_id"""
 
@@ -631,8 +694,25 @@ GROUP BY hashed_addon_id"""
         assert returned_results == [(1, 123)]
 
 
+@override_switch('2026-amo-stats', active=False)
 @override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
-class TestGetAverageDailyUsersPerVersionFromBigquery(BigQueryTestMixin, TestCase):
+class TestGetAddonsAndWeeklyDownloadsFromBigQueryWithSwitchDisabled(
+    GetAddonsAndWeeklyDownloadsFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DOWNLOAD_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetAddonsAndWeeklyDownloadsFromBigQueryWithSwitchEnabled(
+    GetAddonsAndWeeklyDownloadsFromBigQueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DOWNLOAD_VIEW}'
+
+
+class GetAverageDailyUsersPerVersionFromBigqueryMixin(BigQueryTestMixin):
     def setUp(self):
         super().setUp()
         self.addon = addon_factory()
@@ -644,7 +724,7 @@ class TestGetAverageDailyUsersPerVersionFromBigquery(BigQueryTestMixin, TestCase
         expected_query = f"""
 SELECT `dau_by_version_struct`.`key` AS `version`,
 cast(round(avg(`dau_by_version_struct`.`value`)) as BIGINT) AS `adu`
-FROM `project.dataset.{AMO_STATS_DAU_VIEW}`,
+FROM `{self._get_fully_qualified_view_name()}`,
 unnest(`dau_by_addon_version`) as `dau_by_version_struct`
 WHERE addon_id = @addon_id
 AND submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
@@ -673,7 +753,7 @@ LIMIT 100;"""
         expected_query = f"""
 SELECT `dau_by_version_struct`.`key` AS `version`,
 cast(round(avg(`dau_by_version_struct`.`value`)) as BIGINT) AS `adu`
-FROM `project.dataset.{AMO_STATS_DAU_VIEW}`,
+FROM `{self._get_fully_qualified_view_name()}`,
 unnest(`dau_by_addon_version`) as `dau_by_version_struct`
 WHERE addon_id = @addon_id
 AND submission_date >= DATE_SUB(CURRENT_DATE(), INTERVAL 13 DAY)
@@ -687,3 +767,21 @@ LIMIT {limit};"""
         )
 
         client.query.assert_called_with(expected_query, job_config=mock.ANY)
+
+
+@override_switch('2026-amo-stats', active=False)
+@override_settings(BIGQUERY_PROJECT='project', BIGQUERY_AMO_DATASET='dataset')
+class TestGetAverageDailyUsersPerVersionFromBigqueryWithSwitchDisabled(
+    GetAverageDailyUsersPerVersionFromBigqueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.dataset.{AMO_STATS_DAU_VIEW}'
+
+
+@override_switch('2026-amo-stats', active=True)
+@override_settings(BIGQUERY_AMO_STATS_PREFIX='project.new_dataset.prefix_')
+class TestGetAverageDailyUsersPerVersionFromBigqueryWithSwitchEnabled(
+    GetAverageDailyUsersPerVersionFromBigqueryMixin, TestCase
+):
+    def _get_fully_qualified_view_name(self):
+        return f'project.new_dataset.prefix_{AMO_STATS_DAU_VIEW}'

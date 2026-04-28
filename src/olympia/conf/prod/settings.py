@@ -65,6 +65,8 @@ REMOTE_SETTINGS_WRITER_URL = env(
 
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_AMO_DATASET = 'amo_prod'
+# See: https://github.com/mozilla/addons/issues/16150
+BIGQUERY_AMO_STATS_PREFIX = 'moz-fx-data-shared-prod.addons.'
 
 CINDER_QUEUE_PREFIX = 'amo-'
 # See comment in settings_base for background.

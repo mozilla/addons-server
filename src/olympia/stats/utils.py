@@ -2,6 +2,7 @@ from datetime import timedelta
 
 from django.conf import settings
 
+import waffle
 from django_statsd.clients import statsd
 from google.cloud import bigquery
 
@@ -32,6 +33,8 @@ AMO_STATS_DOWNLOAD_VIEW = 'amo_stats_installs'
 
 
 def make_fully_qualified_view_name(view):
+    if waffle.switch_is_active('2026-amo-stats'):
+        return settings.BIGQUERY_AMO_STATS_PREFIX + view
     return '.'.join([settings.BIGQUERY_PROJECT, settings.BIGQUERY_AMO_DATASET, view])
 
 

@@ -1481,6 +1481,8 @@ GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
 # See: https://bugzilla.mozilla.org/show_bug.cgi?id=1633746
 BIGQUERY_PROJECT = 'moz-fx-data-shared-prod'
 BIGQUERY_AMO_DATASET = 'amo_dev'
+# See: https://github.com/mozilla/addons/issues/16150
+BIGQUERY_AMO_STATS_PREFIX = 'moz-fx-data-shared-prod.addons.dev_'
 
 # The path to the current google service account configuration for Google Cloud
 # Storage (should be able to upload, download and sign objects with its private
