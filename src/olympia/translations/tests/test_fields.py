@@ -47,3 +47,4 @@ def test_user_foreign_key_field_deconstruct():
     assert kwargs['require_locale'] == new_field_instance.require_locale
     assert kwargs['to'] == new_field_instance.to
     assert kwargs['short'] == new_field_instance.short
+    assert kwargs['db_constraint'] is False

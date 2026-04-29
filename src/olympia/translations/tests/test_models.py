@@ -1070,7 +1070,9 @@ def test_no_db_constraints():
     connection = connections['default']
     with connection.cursor() as cursor:
         for model in models_related_to_translations:
-            constraints = connection.introspection.get_constraints(cursor, model._meta.db_table)
+            constraints = connection.introspection.get_constraints(
+                cursor, model._meta.db_table
+            )
             for name, info in constraints.items():
                 assert not name.endswith(f'{Translation._meta.db_table}_id'), name
                 assert info['foreign_key'] != (Translation._meta.db_table, 'id'), name
