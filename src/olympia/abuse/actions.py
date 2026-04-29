@@ -103,6 +103,11 @@ class ContentAction:
         without further checks, and true if it should be held for further review."""
         return False
 
+    @classmethod
+    def should_be_skipped_by_automation(cls, **kwargs):
+        """Return True if the action should be skipped by automation for any reason."""
+        return False
+
     def process_action(self, release_hold=False):
         """This method should return an activity log instance for the action,
         if available."""
@@ -649,6 +654,24 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             and any(self.target.promoted_groups(currently_approved=False).high_profile)
         )
 
+    @classmethod
+    def should_be_skipped_by_automation(cls, *, addon, version, **kwargs):
+        from olympia.abuse.models import ContentDecision
+
+        # Because this action is very aggressive, we skip it if either:
+        # - There been a successful appeal against *any* "negative" decision
+        #   on this add-on before
+        # - The addon belong to a UsageTier where this action is not available
+        usage_tier = addon.get_usage_tier()
+        successful_appeal = ContentDecision.objects.filter(
+            addon=addon,
+            action__in=DECISION_ACTIONS.NON_OFFENDING.values,
+            cinder_job__appealed_decisions__action__in=DECISION_ACTIONS.REMOVING.values,
+        )
+        return successful_appeal or (
+            usage_tier and not usage_tier.disable_and_block_action_available
+        )
+
     @property
     def versions_block_will_affect(self):
         """Return all versions that will be blocked by this action."""
@@ -806,6 +829,12 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         # TODO: Define our own email strategy and template copy
         return ()
 
+    @classmethod
+    def should_be_skipped_by_automation(cls, **kwargs):
+        # Follow-up blocks shouldn't be skipped by automation, they are not the
+        # main action.
+        return False
+
 
 class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):
     block_type = BlockType.SOFT_BLOCKED
@@ -850,6 +879,11 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     @property
     def target_versions(self):
         return self.decision.target_versions.none()
+
+    @classmethod
+    def should_be_skipped_by_automation(cls, *, addon, version, **kwargs):
+        # Only consider this action in automation if the version is listed.
+        return version.channel != amo.CHANNEL_LISTED
 
     def should_hold_action(self):
         return bool(

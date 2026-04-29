@@ -419,6 +419,11 @@ class BaseTestContentAction:
             mail.outbox[0].body
         )
 
+    def test_should_be_skipped_by_automation(self):
+        # should_be_skipped_by_automation is a classmethod, default is to
+        # return False.
+        assert not self.ActionClass.should_be_skipped_by_automation()
+
 
 class TestContentActionBanUser(BaseTestContentAction, TestCase):
     ActionClass = ContentActionBanUser
@@ -2030,6 +2035,80 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
             'Parent Policy, specifically Bad policy: This is a Térrible thing'
         ]
 
+    def test_should_be_skipped_by_automation(self):
+        # ContentActionBlockAddon.should_be_skipped_by_automation() needs the
+        # addon and version to be passed.
+        assert not self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+        # Any successful appeal against negative decision on the add-on in the
+        # past causes it to return True.
+        appeal_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            cinder_job=CinderJob.objects.create(target_addon=self.addon),
+        )
+        original_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        assert self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+        original_decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        assert self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+        original_decision.update(action=DECISION_ACTIONS.AMO_BLOCK_ADDON)
+        assert self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+    def test_should_be_skipped_by_automation_non_negative_appeal(self):
+        appeal_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_IGNORE,
+            cinder_job=CinderJob.objects.create(target_addon=self.addon),
+        )
+        ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        assert not self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+    def test_should_be_skipped_by_automation_unsuccessful_appeal(self):
+        appeal_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            cinder_job=CinderJob.objects.create(target_addon=self.addon),
+        )
+        ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=appeal_decision.cinder_job,
+        )
+        assert not self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+    def test_should_be_skipped_by_automation_unresolved_appeal(self):
+        appeal_job = CinderJob.objects.create(target_addon=self.addon)
+        ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            appeal_job=appeal_job,
+        )
+        assert not self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
 
 class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCase):
     ActionClass = ContentActionDelayedShortSoftBlockAddon
@@ -2649,6 +2728,16 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self.cinder_job.notify_reporters(action_helper)
         action_helper.notify_owners()
         self._test_owner_affirmation_email(f'Mozilla Add-ons: {self.addon.name}')
+
+    def test_should_be_skipped_by_automation(self):
+        assert not self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
+
+        self.version.update(channel=amo.CHANNEL_UNLISTED)
+        assert self.ActionClass.should_be_skipped_by_automation(
+            addon=self.addon, version=self.version
+        )
 
 
 class TestContentActionCollection(BaseTestContentAction, TestCase):

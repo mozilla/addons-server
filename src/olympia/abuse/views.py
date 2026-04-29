@@ -21,6 +21,7 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia.abuse.tasks import appeal_to_cinder
+from olympia.abuse.utils import filter_enforcement_actions, to_enforcement_actions
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
@@ -31,7 +32,6 @@ from olympia.core import set_user
 from olympia.ratings.views import RatingViewSet
 from olympia.users.models import UserProfile
 
-from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
 from .cinder import CinderAddon, CinderAddonContentReview
 from .forms import AbuseAppealEmailForm, AbuseAppealForm
 from .models import AbuseReport, CinderJob, ContentDecision
@@ -192,26 +192,6 @@ class CinderWebhookMissingIdError(CinderWebhookError):
         return settings.CINDER_UNIQUE_IDS
 
 
-def filter_enforcement_actions(enforcement_actions, target):
-    if not target:
-        return [], []
-    primary_cinder_actions = []
-    followup_actions = []
-    for action_slug in enforcement_actions:
-        if (
-            action_slug not in DECISION_ACTIONS.api_values
-            or not (action := DECISION_ACTIONS.from_api_value(action_slug))
-            or target.__class__
-            not in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
-        ):
-            continue
-        if action.value in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS.values:
-            followup_actions.append(action)
-        else:
-            primary_cinder_actions.append(action)
-    return primary_cinder_actions, followup_actions
-
-
 def get_job_from_payload(payload):
     if job_id := payload.get('source', {}).get('job', {}).get('id'):
         try:
@@ -277,7 +257,7 @@ def process_webhook_payload_decision(payload):
     )
 
     cinder_actions, followup_actions = filter_enforcement_actions(
-        payload.get('enforcement_actions') or [],
+        to_enforcement_actions(payload.get('enforcement_actions')) or [],
         target,
     )
     policy_ids = [policy['id'] for policy in payload.get('policies', [])]
