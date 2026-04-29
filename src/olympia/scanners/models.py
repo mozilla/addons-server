@@ -533,11 +533,7 @@ class ScannerResult(AbstractScannerResult):
         result_query_name = cls._meta.get_field('matched_rules').related_query_name()
 
         rule_qs = cls.rule_model.objects.filter(
-            **{
-                f'{result_query_name}__version': version,
-                'is_active': True,
-                'policy__isnull': True,
-            }
+            **{f'{result_query_name}__version': version, 'is_active': True}
         )
         if version.addon.is_promoted:
             rule_qs = rule_qs.exclude(exclude_promoted_addons=True)
