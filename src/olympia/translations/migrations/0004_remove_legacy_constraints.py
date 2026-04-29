@@ -3,45 +3,38 @@
 from django.db import migrations, router
 
 
-class RemoveLegacyTranslationsConstraints(migrations.RunSQL):
+def remove_legacy_translations_constraints(apps, schema_editor):
     """
     Remove Foreign Key constraints to Translations.id - TranslatedField should
     now be using db_constraint: False as there can be multiple translation rows
     sharing the same id, one per locale per translated string.
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__('-- Dynamic SQL', *args, **kwargs)
-
-    def database_forwards(self, app_label, schema_editor, from_state, to_state):
-        if router.allow_migrate(
-            schema_editor.connection.alias, app_label, **self.hints
-        ):
-            Translation = from_state.apps.get_model('translations', 'Translation')
-            models_related_to_translations = {
-                f.related_model
-                for f in Translation._meta.get_fields(include_hidden=True)
-                if f.auto_created and not f.concrete and (f.one_to_one or f.one_to_many)
-            }
-            connection = schema_editor.connection
-            with connection.cursor() as cursor:
-                for model in models_related_to_translations:
-                    constraints = connection.introspection.get_constraints(
-                        cursor, model._meta.db_table
+    Translation = apps.get_model('translations', 'Translation')
+    models_related_to_translations = {
+        f.related_model
+        for f in Translation._meta.get_fields(include_hidden=True)
+        if f.auto_created and not f.concrete and (f.one_to_one or f.one_to_many)
+    }
+    connection = schema_editor.connection
+    with connection.cursor() as cursor:
+        for model in models_related_to_translations:
+            constraints = connection.introspection.get_constraints(
+                cursor, model._meta.db_table
+            )
+            for name, info in constraints.items():
+                if info['foreign_key'] == (Translation._meta.db_table, 'id'):
+                    schema_editor.execute(
+                        schema_editor._delete_fk_sql(model, name), params=None
                     )
-                    for name, info in constraints.items():
-                        if info['foreign_key'] == (Translation._meta.db_table, 'id'):
-                            schema_editor.execute(
-                                schema_editor._delete_fk_sql(model, name), params=None
-                            )
-
-    def database_backwards(self, app_label, schema_editor, from_state, to_state):
-        pass
-
-    def describe(self):
-        return 'Remove legacy FK constraints to the translations table'
 
 
 class Migration(migrations.Migration):
+    # We're going to execute ALTER TABLE statements that are not supported
+    # inside a transaction, so disable transaction management to avoid
+    # "Executing DDL statements while in a transaction on databases that can't
+    # perform a rollback is prohibited" error.
+    atomic = False
+
     dependencies = [
         ('translations', '0003_puretranslation_purifiedmarkdowntranslation'),
         # Depend on these apps as they use TranslatedField
@@ -50,4 +43,6 @@ class Migration(migrations.Migration):
         ('bandwagon', '0010_fix_default_locale_spanish'),
     ]
 
-    operations = [RemoveLegacyTranslationsConstraints()]
+    operations = [
+        migrations.RunPython(remove_legacy_translations_constraints, lambda *args: None)
+    ]
