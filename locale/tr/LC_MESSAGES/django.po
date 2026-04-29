@@ -2366,7 +2366,7 @@ msgstr "Eski kimlik bilgileriniz iptal edildi ve artık geçerli değil."
 
 #: src/olympia/devhub/views.py:2139
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Yeni API kimlik bilgileri oluşturuldu ve aşağıda gösterilmektedir. JWT gizli anahtarını kopyalamayı unutmayın. Bu anahtar bir daha asla gösterilmeyecektir."
 
 #: src/olympia/devhub/views.py:2163
 msgid "New API key created"
