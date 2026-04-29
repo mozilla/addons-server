@@ -4,12 +4,13 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 
 import pytest
 import responses
 
 from olympia import amo
-from olympia.abuse.models import CinderJob, ContentDecision
+from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
@@ -54,6 +55,14 @@ from olympia.users.models import (
 class TestActions(TestCase):
     def setUp(self):
         user_factory(pk=settings.TASK_USER_ID)
+        self.cinder_create_decision_url = (
+            f'{settings.CINDER_SERVER_URL}v1/create_decision'
+        )
+        responses.add_callback(
+            responses.POST,
+            self.cinder_create_decision_url,
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
 
     def test_action_does_nothing(self):
         version = version_factory(addon=addon_factory())
@@ -932,12 +941,6 @@ class TestActions(TestCase):
 
     def do_disable_and_block(self, addon):
         existing_decision_count = ContentDecision.objects.count()
-        responses.add_callback(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}v1/create_decision',
-            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
-        )
-
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -994,12 +997,6 @@ class TestActions(TestCase):
         }
 
     def test_disable_and_block_second_level_approval(self):
-        responses.add_callback(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}v1/create_decision',
-            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
-        )
-
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -1169,9 +1166,9 @@ class TestActions(TestCase):
 class TestRunAction(TestCase):
     def setUp(self):
         super().setUp()
-
         self.scanner = YARA
-        self.version = version_factory(addon=addon_factory())
+        self.author = user_factory()
+        self.version = version_factory(addon=addon_factory(users=[self.author]))
         self.scanner_rule = ScannerRule.objects.create(
             name='rule-1', scanner=self.scanner, action=NO_ACTION
         )
@@ -1179,9 +1176,18 @@ class TestRunAction(TestCase):
             version=self.version, scanner=self.scanner
         )
         self.scanner_result.matched_rules.add(self.scanner_rule)
+        user_factory(pk=settings.TASK_USER_ID)
+        self.cinder_create_decision_url = (
+            f'{settings.CINDER_SERVER_URL}v1/create_decision'
+        )
+        responses.add_callback(
+            responses.POST,
+            self.cinder_create_decision_url,
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
 
     @mock.patch('olympia.scanners.models._no_action')
-    def test_runs_no_action(self, no_action_mock):
+    def test_execute_workflow_action_runs_no_action(self, no_action_mock):
         self.scanner_rule.update(action=NO_ACTION)
 
         ScannerResult.run_actions(self.version)
@@ -1190,7 +1196,9 @@ class TestRunAction(TestCase):
         no_action_mock.assert_called_with(version=self.version, rule=self.scanner_rule)
 
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
+    def test_execute_workflow_action_runs_flag_for_human_review(
+        self, flag_for_human_review_mock
+    ):
         self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
 
         ScannerResult.run_actions(self.version)
@@ -1201,7 +1209,9 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval')
-    def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
+    def test_execute_workflow_action_runs_delay_auto_approval(
+        self, _delay_auto_approval_mock
+    ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL)
 
         ScannerResult.run_actions(self.version)
@@ -1212,7 +1222,7 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
-    def test_runs_delay_auto_approval_indefinitely(
+    def test_execute_workflow_action_runs_delay_auto_approval_indefinitely(
         self, _delay_auto_approval_indefinitely_mock
     ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
@@ -1225,7 +1235,9 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._disable_and_block')
-    def test_runs_disable_and_block(self, _disable_and_block_mock):
+    def test_execute_workflow_action_runs_disable_and_block(
+        self, _disable_and_block_mock
+    ):
         self.scanner_rule.update(action=DISABLE_AND_BLOCK)
 
         ScannerResult.run_actions(self.version)
@@ -1237,7 +1249,7 @@ class TestRunAction(TestCase):
         }
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
-    def test_returns_for_non_extension_addons(
+    def test_execute_workflow_action_returns_for_non_extension_addons(
         self, _delay_auto_approval_indefinitely_mock
     ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
@@ -1260,7 +1272,7 @@ class TestRunAction(TestCase):
         assert not _delay_auto_approval_indefinitely_mock.called
 
     @mock.patch('olympia.scanners.models.log.info')
-    def test_returns_when_no_action_found(self, log_mock):
+    def test_execute_workflow_action_returns_when_no_action_found(self, log_mock):
         self.scanner_rule.delete()
 
         ScannerResult.run_actions(self.version)
@@ -1283,7 +1295,7 @@ class TestRunAction(TestCase):
             self.version.pk,
         )
 
-    def test_raise_when_action_is_invalid(self):
+    def test_execute_workflow_action_raise_when_action_is_invalid(self):
         # `12345` is an invalid action ID
         self.scanner_rule.update(action=12345)
 
@@ -1292,7 +1304,7 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_selects_the_action_with_the_highest_severity(
+    def test_execute_workflow_action_selects_the_action_with_the_highest_severity(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result. This
@@ -1309,7 +1321,7 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_skips_actions_with_exclude_promoted_if_the_addon_is_promoted(
+    def test_execute_workflow_action_skips_ex_promoted_if_addon_is_promoted(
         self, flag_for_human_review_mock, no_action_mock
     ):
         self.make_addon_promoted(
@@ -1332,7 +1344,7 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_does_not_skip_actions_with_exclude_promoted_if_the_addon_is_not_promoted(
+    def test_execute_workflow_action_does_not_skip_ex_promoted_if_addon_is_not_promoted(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result, set to
@@ -1352,7 +1364,7 @@ class TestRunAction(TestCase):
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_selects_active_actions_only(
+    def test_execute_workflow_action_selects_active_rules_only(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result. This
@@ -1370,3 +1382,64 @@ class TestRunAction(TestCase):
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
+
+    def test_execute_policy_enforcement_action(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            # expose_in_reviewer_tools shouldn't matter if the link already
+            # exists - it's only for availability in the admin/reviewer tools.
+            expose_in_reviewer_tools=False,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        addon = self.version.addon.reload()
+        assert addon.status == amo.STATUS_DISABLED
+
+        # FIXME: test decision is present
+        # FIXME: test activity log is present
+
+        assert len(responses.calls) == 1
+        assert responses.calls[0].request.url == self.cinder_create_decision_url
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        assert 'your content violates the following Mozilla policy or policies' in body
+        assert '- My Fancy Polîcy: Just saying.' in body
+
+    def test_execute_policy_enforcement_action_multiple_policies(self):
+        pass
+
+    def test_execute_policy_enforcement_action_returns_for_non_extension_addons(self):
+        pass
+
+    def test_execute_policy_enforcement_action_active_rules_only(self):
+        pass
+
+    def test_execute_policy_enforcement_action_skips_exclude_promoted(self):
+        pass
+
+    def test_execute_policy_enforcement_action_does_not_skip_exclude_promoted(self):
+        pass
+
+    def test_execute_policy_enforcement_action_redundant_policies(self):
+        pass
+
+    def test_execute_policy_enforcement_action_multiple_enforcement_actions(self):
+        pass
+
+    def test_execute_policy_enforcement_action_no_enforcement_actions_on_policies(self):
+        pass
+
+    def test_execute_policy_enforcement_action_reject_with_followup_actions(self):
+        pass
+
+    def test_execute_policy_enforcement_action_delayed_reject(self):
+        pass
+
+    def test_execute_policy_enforcement_action_2nd_level_approval(self):
+        pass
