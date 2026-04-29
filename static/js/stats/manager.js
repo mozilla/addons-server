@@ -458,7 +458,7 @@ function getStatsManager() {
       ret = {};
 
     _.each(data, function (val, source) {
-      pretty = $.trim(getPrettyName('sources', source));
+      pretty = getPrettyName('sources', source).trim();
       if (!lookup[pretty]) {
         lookup[pretty] = source;
       }
