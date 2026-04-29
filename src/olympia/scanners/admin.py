@@ -785,6 +785,14 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'exclude_promoted_addons',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
+    list_select_related = ('policy__parent',)
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj=obj, **kwargs)
+        form.base_fields['policy'].queryset = form.base_fields[
+            'policy'
+        ].queryset.select_related('parent')
+        return form
 
 
 @admin.register(ScannerQueryRule)
