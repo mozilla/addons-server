@@ -1313,7 +1313,7 @@ msgstr "Listeleme reddedildi"
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "{addon} listeleme içeriği incelemesi talep edildi."
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
@@ -2491,6 +2491,8 @@ msgstr "Uzantılar ve temalarla ilgili destek alın"
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Hesabınızla, teknik sorunlarla ve diğer konularla ilgili destek almak için bu formu kullanabilirsiniz. Ne kadar çok ayrıntı paylaşırsanız size yardımcı olmamız o kadar kolaylaşır. Size en kısa "
+"sürede geri dönüş yapacağız."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
@@ -3410,6 +3412,8 @@ msgid ""
 "Read our %(policy_requirements_open)spolicy requirements%(policy_requirements_close)s regarding build processes and source code submission. If your submission requires source code, you must provide "
 "step-by-step build instructions, either inside the source code package or here, that will create an exact copy of the code."
 msgstr ""
+"Build süreçleri ve kaynak kodu gönderimiyle ilgili %(policy_requirements_open)spolitika gereksinimlerimizi%(policy_requirements_close)s okuyun. Gönderiniz kaynak kodu gerektiriyorsa kodun birebir "
+"kopyasını oluşturacak adım adım build talimatlarını kaynak kodu paketinin içinde veya burada sunmalısınız."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:37
 msgid "These notes will only be visible to you and our reviewers."
@@ -3708,6 +3712,8 @@ msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
 msgstr ""
+"Dış kullanıcı olarak <a %(a_attrs)s href=\"%(docs_url)s\">API</a> üzerinde yetkilendirilmiş çağrıları çalıştırmak için her istekte <code>Authorization</code> üs bilgisine bir <a %(a_attrs)s "
+"href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> eklemeniz gerekir."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
@@ -4011,7 +4017,7 @@ msgstr "Blogu görüntüle &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:2
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "İncelememiz sonucunda listeleme içeriğinizin aşağıdaki Mozilla politikasını veya politikalarını ihlal ettiği tespit edilmiştir:"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
