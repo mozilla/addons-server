@@ -156,7 +156,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2.21@sha256:66ac7cce6371ef8306b1da7947a6713db23fcbe27da21de16044d478ad28631e
+    image: redis:6.2.21@sha256:55b39871bd2a6db024e7f8d9e28a828d8cbc2b445f8981ac3b60b2a9b7b10e2b
     volumes:
       - data_redis:/data
 
