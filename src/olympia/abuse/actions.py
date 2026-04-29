@@ -822,13 +822,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     @classmethod
     def should_be_skipped_by_automation(cls, *, addon, version, **kwargs):
         # Only consider this action in automation if the version is listed.
-        return (
-            super().should_be_skipped_by_automation(
-                addon=addon, version=version, **kwargs
-            )
-            if version.channel == amo.CHANNEL_LISTED
-            else True
-        )
+        return version.channel != amo.CHANNEL_LISTED
 
     def should_hold_action(self):
         return bool(
