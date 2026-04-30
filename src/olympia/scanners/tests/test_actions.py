@@ -1754,7 +1754,7 @@ class TestRunAction(TestCase):
         assert self.version.file.status == amo.STATUS_APPROVED
         self.assertCloseToNow(
             self.version.reviewerflags.pending_rejection,
-            now=datetime.now() + timedelta(days=30),
+            now=datetime.now() + timedelta(days=30, hours=1),
         )
 
         assert ContentDecision.objects.count() == 1
