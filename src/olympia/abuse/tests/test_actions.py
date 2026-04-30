@@ -32,6 +32,7 @@ from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, Bloc
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.core import set_user
 from olympia.files.models import File
 from olympia.promoted.models import PromotedGroup
@@ -1478,19 +1479,28 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self._test_reporter_appeal_takedown_email(subject)
 
     def _test_reject_version_delayed(
-        self, *, content_review, expected_emails_from_action=0
+        self,
+        *,
+        content_review,
+        expected_emails_from_action=0,
+        set_metadata=True,
+        expected_delay_days=14,
     ):
         original_statuses = {
             version.file.pk: version.file.status
             for version in (self.old_version, self.version)
         }
-        in_the_future = datetime.now() + timedelta(days=14, hours=1)
+        in_the_future = datetime.now() + timedelta(days=expected_delay_days, hours=1)
+        if set_metadata:
+            metadata = {
+                'content_review': content_review,
+                'delayed_rejection_date': in_the_future.isoformat(),
+            }
+        else:
+            metadata = {}
         self.decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-            metadata={
-                'delayed_rejection_date': in_the_future.isoformat(),
-                'content_review': content_review,
-            },
+            metadata=metadata,
         )
         action_helper = ContentActionRejectVersionDelayed(self.decision)
         # process_action is only available for reviewer tools decisions.
@@ -1579,6 +1589,13 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_execute_action_content_review_delayed(self):
         self.test_execute_action_delayed(content_review=True)
+
+    def test_execute_action_delayed_default_delay(self):
+        self._test_reject_version_delayed(
+            content_review=False,
+            set_metadata=False,
+            expected_delay_days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
+        )
 
     def test_execute_action_delayed_with_stakeholder_email(self):
         stakeholder = user_factory()

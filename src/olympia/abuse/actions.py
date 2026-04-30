@@ -570,7 +570,9 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         else:
             self.delayed_rejection_days = REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
             self.delayed_rejection_date = datetime.now() + timedelta(
-                days=self.delayed_rejection_days
+                # Add one hour buffer just like reviewer tools form does.
+                days=self.delayed_rejection_days,
+                hours=1,
             )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):

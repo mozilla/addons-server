@@ -1711,7 +1711,7 @@ class TestRunAction(TestCase):
 
         assert decision.followup_actions.count() == 1
         follow_up = decision.followup_actions.latest('pk')
-        follow_up.action == DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
+        assert follow_up.action == DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
         assert not self.version.is_blocked  # Not blocked yet
 
         assert BlocklistSubmission.objects.count() == 1
