@@ -200,22 +200,12 @@
               {{ form.policy_values }}
             </div>
             <div class="review-comments data-toggle" data-value="{{ actions_comments|join(' ') }}">
-              <details{% if not waffle.switch('cinder_policy_review_reasons_enabled') %} open{% endif %}>
+              <details>
                 <summary><label for="id_comments">{{ form.comments.label }}</label></summary>
                 {{ form.comments }}
               </details>
               {{ form.comments.errors }}
             </div>
-          </div>
-          <div class="data-toggle review-actions-reasons"
-            data-value="{{ actions_reasons|join(' ') }}">
-            <label for="id_reasons">{{ form.reasons.label }}</label>
-            <div class="review-actions-reasons-select">
-              {{ form.reasons }}
-            </div>
-            {% if form.reasons.errors %}
-              <div class="review-actions-reasons-error">{{ form.reasons.errors }}</div>
-            {% endif %}
           </div>
           <div class="data-toggle review-actions-policies"
                data-value="{{ actions_policies|join(' ') }}">

@@ -1502,8 +1502,8 @@ class ContentDecision(ModelBase):
     @property
     def has_policy_text_in_comments(self):
         # ContentDecision created from Cinder doesn't set reviewer_user;
-        # POLICY_DYNAMIC_VALUES is not saved in metadata when we expanded
-        # ReviewActionReason canned responses in the reviewer tools comments
+        # POLICY_DYNAMIC_VALUES was previously not saved in metadata in the reviewer
+        # tools.
         return (
             bool(self.reviewer_user) and self.POLICY_DYNAMIC_VALUES not in self.metadata
         )

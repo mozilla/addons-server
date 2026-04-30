@@ -16,7 +16,6 @@ from django.forms.models import (
 from django.utils.html import format_html, format_html_join
 
 import markupsafe
-import waffle
 
 import olympia.core.logger
 from olympia import amo, ratings
@@ -33,11 +32,7 @@ from olympia.constants.reviewers import (
 from olympia.files.utils import SafeZip
 from olympia.ratings.models import Rating
 from olympia.ratings.permissions import user_can_delete_rating
-from olympia.reviewers.models import (
-    NeedsHumanReview,
-    ReviewActionReason,
-    Whiteboard,
-)
+from olympia.reviewers.models import NeedsHumanReview, Whiteboard
 from olympia.versions.models import Version
 
 
@@ -498,7 +493,7 @@ class ReviewForm(forms.Form):
     use_required_attribute = False
 
     comments = forms.CharField(
-        required=True, widget=forms.Textarea(), label='Comments:'
+        required=True, widget=forms.Textarea(attrs={'rows': 2}), label='Comments:'
     )
     action = forms.ChoiceField(required=True, widget=ActionChoiceWidget)
     versions = WidgetRenderedModelMultipleChoiceField(
@@ -539,13 +534,6 @@ class ReviewForm(forms.Form):
         widget=DelayedRejectionDateWidget,
         required=False,
     )
-    reasons = WidgetRenderedModelMultipleChoiceField(
-        label='Choose one or more reasons:',
-        # queryset is set later in __init__.
-        queryset=ReviewActionReason.objects.none(),
-        required=True,
-        widget=ReasonsChoiceWidget,
-    )
     attachment_file = forms.FileField(
         required=False,
         validators=[validate_review_attachment],
@@ -585,7 +573,7 @@ class ReviewForm(forms.Form):
     )
 
     def is_valid(self):
-        # Some actions do not require comments and reasons.
+        # Some actions do not require comments and policies.
         selected_action = self.data.get('action')
         action = self.helper.actions.get(selected_action)
         if action:
@@ -593,17 +581,11 @@ class ReviewForm(forms.Form):
                 self.fields['comments'].required = False
             if action.get('multiple_versions', False):
                 self.fields['versions'].required = True
-            if not action.get('requires_reasons', False):
-                self.fields['reasons'].required = False
             if not action.get('enforcement_actions'):
                 self.fields['cinder_policies'].required = False
             else:
                 # we no longer strictly require comments with cinder policies
                 self.fields['comments'].required = False
-            if self.data.get('cinder_jobs_to_resolve'):
-                # if a cinder job is being resolved we need a review reason
-                if action.get('requires_reasons_for_cinder_jobs'):
-                    self.fields['reasons'].required = True
             if selected_action == 'resolve_appeal_job':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
@@ -727,9 +709,6 @@ class ReviewForm(forms.Form):
     def __init__(self, *args, **kw):
         self.helper = kw.pop('helper')
         super().__init__(*args, **kw)
-        if waffle.switch_is_active('cinder_policy_review_reasons_enabled'):
-            # When we're using policies reviewers shouldn't need to write as much
-            self.fields['comments'].widget = forms.Textarea(attrs={'rows': 2})
         if any(action.get('delayable') for action in self.helper.actions.values()):
             # Default delayed rejection date should be
             # REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT days in the
@@ -795,17 +774,6 @@ class ReviewForm(forms.Form):
         self.fields['action'].choices = [
             (k, v['label']) for k, v in self.helper.actions.items()
         ]
-
-        # Set the queryset for reasons based on the add-on type.
-        self.fields['reasons'].queryset = ReviewActionReason.objects.filter(
-            is_active=True,
-            addon_type__in=[
-                amo.ADDON_ANY,
-                amo.ADDON_STATICTHEME
-                if self.helper.addon.type == amo.ADDON_STATICTHEME
-                else amo.ADDON_EXTENSION,
-            ],
-        ).exclude(canned_response='')
 
         # Add actions from the helper into the action widget so we can access
         # them in create_option.

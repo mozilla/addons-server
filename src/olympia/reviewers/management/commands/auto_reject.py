@@ -6,13 +6,13 @@ from django.db import transaction
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob
+from olympia.abuse.models import CinderJob, CinderPolicy
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.files.utils import lock
 from olympia.reviewers.models import (
-    ReviewActionReason,
     clear_reviewing_cache,
     get_reviewing_cache,
     set_reviewing_cache,
@@ -84,13 +84,16 @@ class Command(BaseCommand):
         helper.handler.data = {
             'comments': log_details.get('comments', ''),
             'cinder_jobs_to_resolve': cinder_jobs,
-            'reasons': ReviewActionReason.objects.filter(
-                reviewactionreasonlog__activity_log__in=relevant_activity_logs
+            'cinder_policies': CinderPolicy.objects.filter(
+                cinderpolicylog__activity_log__in=relevant_activity_logs
             ).distinct(),
             'versions': versions,
         }
         helper.handler.review_action = {
-            'allows_reasons': True,
+            'enforcement_actions': [
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            ]
         }
         helper.handler.auto_reject_multiple_versions()
         VersionReviewerFlags.objects.filter(version__in=list(versions)).update(
