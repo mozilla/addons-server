@@ -468,7 +468,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_metadata_change_triggers_content_review_cinder_switch_off(self):
         with (
             mock.patch(
-                'olympia.devhub.views.submit_addon_change_for_content_review'
+                'olympia.abuse.tasks.submit_addon_change_for_content_review'
             ) as view_task_mock,
             mock.patch(
                 'olympia.abuse.tasks.submit_addon_for_content_review'
@@ -482,7 +482,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_metadata_change_triggers_content_review_cinder_switch_on(self):
         with (
             mock.patch(
-                'olympia.devhub.views.submit_addon_change_for_content_review'
+                'olympia.abuse.tasks.submit_addon_change_for_content_review'
             ) as view_task_mock,
             mock.patch(
                 'olympia.abuse.tasks.submit_addon_for_content_review'
@@ -1839,6 +1839,22 @@ class TestEditDescribeStaticThemeListed(
         doc = pq(response.content)
         assert 'Preview' not in doc('h3').text()
         assert len(doc('div.edit-addon-section img')) == 0
+
+    @override_switch('content-review-in-cinder', active=True)
+    def test_metadata_change_triggers_content_review_cinder_switch_on(self):
+        """Themes don't have content review, so regardless of the switch, we shouldn't
+        trigger content review."""
+        with (
+            mock.patch(
+                'olympia.abuse.tasks.submit_addon_change_for_content_review'
+            ) as view_task_mock,
+            mock.patch(
+                'olympia.abuse.tasks.submit_addon_for_content_review'
+            ) as abuse_task_mock,
+        ):
+            self._test_metadata_change_triggers_content_review()
+            view_task_mock.delay.assert_not_called()
+            abuse_task_mock.delay.assert_not_called()
 
 
 class TestEditDescribeStaticThemeUnlisted(StaticMixin, TestEditDescribeUnlisted):

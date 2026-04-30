@@ -396,10 +396,7 @@ class AddonManager(ManagerBase):
             .valid()
             .filter(
                 _current_version__reviewerflags__pending_rejection__isnull=True,
-                # Only content review extensions and dictionaries. See
-                # https://github.com/mozilla/addons-server/issues/11796 &
-                # https://github.com/mozilla/addons-server/issues/12065
-                type__in=(amo.ADDON_EXTENSION, amo.ADDON_DICT),
+                type__in=amo.ADDON_CONTENT_REVIEW_TYPES,
             )
             .exclude(
                 addonapprovalscounter__content_review_status__in=(
@@ -2145,7 +2142,8 @@ def watch_status(old_attr=None, new_attr=None, instance=None, sender=None, **kwa
         return
 
     if (
-        new_status in amo.VALID_ADDON_STATUSES
+        instance.type in amo.ADDON_CONTENT_REVIEW_TYPES
+        and new_status in amo.VALID_ADDON_STATUSES
         and waffle.switch_is_active('content-review-in-cinder')
         and not AddonApprovalsCounter.objects.filter(addon_id=instance.id)
         .exclude(

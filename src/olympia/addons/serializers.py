@@ -87,6 +87,7 @@ from .models import (
     ReplacementAddon,
 )
 from .tasks import resize_icon, resize_preview
+from .utils import trigger_content_review
 from .validators import (
     AddonDefaultLocaleValidator,
     AddonMetadataValidator,
@@ -1324,8 +1325,6 @@ class AddonSerializer(AMOModelSerializer):
             self.instance.update(icon_type='')
 
     def log(self, instance, validated_data, changes):
-        from olympia.abuse.tasks import submit_addon_change_for_content_review
-
         validated_data = {**validated_data}  # we want to modify it, so take a copy
         user = self.context['request'].user
 
@@ -1354,8 +1353,8 @@ class AddonSerializer(AMOModelSerializer):
                 json.dumps(addedremoved),
                 user=user,
             )
-            if waffle.switch_is_active('content-review-in-cinder'):
-                submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
+            statsd.incr('addons.submission.metadata_content_review_triggered')
+            trigger_content_review(instance, alog)
             validated_data.pop(field)
         if validated_data:
             ActivityLog.objects.create(
@@ -1423,9 +1422,7 @@ class AddonSerializer(AMOModelSerializer):
         if old_metadata is not None and old_metadata != (
             new_metadata := fetch_translations_from_instance(instance, fields_to_review)
         ):
-            statsd.incr('addons.submission.metadata_content_review_triggered')
             changes = get_translation_differences(old_metadata, new_metadata)
-            AddonApprovalsCounter.reset_content_for_addon(addon=instance)
             AddonListingInfo.maybe_mark_as_noindexed(addon=instance)
 
             if waffle.switch_is_active('enable-narc') and (
