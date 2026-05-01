@@ -438,7 +438,7 @@ msgstr "Numai versiunile aprobate pot fi anulate, cu excepția celei mai recente
 
 #: src/olympia/addons/utils.py:32
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Nu se poate folosi acest rezumat sau descriere a suplimentului."
 
 #: src/olympia/addons/utils.py:68
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2089,7 +2089,7 @@ msgstr "Trebuie să selectezi un canal și o versiune la care să revii."
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Choose a category"
-msgstr ""
+msgstr "Alege o categorie"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Account"
@@ -2109,19 +2109,19 @@ msgstr "Subiect"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Descrie problema în câteva cuvinte"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Selectează categoria"
 
 #: src/olympia/devhub/forms.py:1784
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Dă-ne mai multe detalii despre problemă"
 
 #: src/olympia/devhub/forms.py:1786
 msgid "Describe the issue"
-msgstr ""
+msgstr "Descrie problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2499,15 +2499,16 @@ msgstr "Caută"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obține asistență pentru extensii și teme"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid "Use this form for support related to your account, tech issues, and more. The more details you share, the easier it is for us to help. We'll get back to you as soon as possible."
 msgstr ""
+"Folosește formularul pentru asistență legată de cont, probleme tehnice și multe altele. Cu cât dai mai multe detalii, cu atât ne va fi mai ușor să te ajutăm. Vom reveni cât mai curând posibil."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Trimite cerere"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -5778,12 +5779,12 @@ msgstr "Îmbunătățește-ți experiența pe Reddit cu comentarii codificate pe
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Elimină distragerea atenției de pe YouTube (recomandări, sugestii de la sfârșit, comentarii și multe altele)."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "„Better Twitch TV” — îmbunătățește Twitch și YouTube cu o mulțime de funcționalități noi."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
