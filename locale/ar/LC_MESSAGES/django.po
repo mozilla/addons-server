@@ -92,11 +92,11 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "مرحبًا،"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "فريق إضافات Mozilla"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -535,7 +535,7 @@ msgstr "لا يمكن استخدام هذا الاسم."
 
 #: src/olympia/amo/utils.py:1246
 msgid "URLs are not allowed."
-msgstr ""
+msgstr "لا يُسمح باستخدام عناوين URL."
 
 #: src/olympia/amo/validators.py:17
 msgid "Must contain at least one printable character."
