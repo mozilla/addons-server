@@ -3712,7 +3712,7 @@ msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
 msgstr ""
-"Dış kullanıcı olarak <a %(a_attrs)s href=\"%(docs_url)s\">API</a> üzerinde yetkilendirilmiş çağrıları çalıştırmak için her istekte <code>Authorization</code> üs bilgisine bir <a %(a_attrs)s "
+"Dış kullanıcı olarak <a %(a_attrs)s href=\"%(docs_url)s\">API</a> üzerinde yetkilendirilmiş çağrıları çalıştırmak için her istekte <code>Authorization</code> üst bilgisine bir <a %(a_attrs)s "
 "href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> eklemeniz gerekir."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
