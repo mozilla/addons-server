@@ -106,7 +106,7 @@ class Command(BaseCommand):
                     str(version.version),
                 )
 
-                # We want to execute `run_action()`/`run_narc()` only once.
+                # We want to execute `run_actions()`/`run_narc()` only once.
                 summary_exists = AutoApprovalSummary.objects.filter(
                     version=version
                 ).exists()
@@ -116,21 +116,21 @@ class Command(BaseCommand):
                         # NARC scanner rules depend on the Add-on and can't be
                         # run reliably at validation as it might not be
                         # attached to the upload at that point.
-                        # This needs to be run before run_action() and before
+                        # This needs to be run before run_actions() and before
                         # auto-approval is attempted, and has to be triggered
                         # synchronously (no .delay()). In this case we pass
-                        # run_action_on_match=False since we're going to call
-                        # ScannerResult.run_action() below.
-                        run_narc_on_version(version.pk, run_action_on_match=False)
+                        # run_actions_on_match=False since we're going to call
+                        # ScannerResult.run_actions() below.
+                        run_narc_on_version(version.pk, run_actions_on_match=False)
 
                 if waffle.switch_is_active('run-action-in-auto-approve'):
                     if summary_exists:
                         log.info(
-                            'Not running run_action() because it has '
+                            'Not running run_actions() because it has '
                             'already been executed'
                         )
                     else:
-                        ScannerResult.run_action(version)
+                        ScannerResult.run_actions(version)
 
                 version.autoapprovalsummary, info = (
                     AutoApprovalSummary.create_summary_for_version(

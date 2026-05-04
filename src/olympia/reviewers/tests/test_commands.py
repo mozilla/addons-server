@@ -627,7 +627,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         assert run_narc_mock.call_count == 1
         assert run_narc_mock.call_args[0] == (self.version.pk,)
-        assert run_narc_mock.call_args[1] == {'run_action_on_match': False}
+        assert run_narc_mock.call_args[1] == {'run_actions_on_match': False}
 
     @mock.patch(
         'olympia.reviewers.management.commands.auto_approve.run_narc_on_version'
@@ -641,44 +641,46 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         assert run_narc_mock.call_count == 1
         assert run_narc_mock.call_args[0] == (self.version.pk,)
-        assert run_narc_mock.call_args[1] == {'run_action_on_match': False}
+        assert run_narc_mock.call_args[1] == {'run_actions_on_match': False}
 
         run_narc_mock.reset_mock()
         call_command('auto_approve')
 
         assert run_narc_mock.call_count == 0
 
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_does_not_execute_run_action_when_switch_is_inactive(self, run_action_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_does_not_execute_run_actions_when_switch_is_inactive(
+        self, run_actions_mock
+    ):
         call_command('auto_approve')
 
-        assert not run_action_mock.called
+        assert not run_actions_mock.called
 
-    @mock.patch.object(ScannerResult, 'run_action')
-    def test_executes_run_action_when_switch_is_active(self, run_action_mock):
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_executes_run_actions_when_switch_is_active(self, run_actions_mock):
         self.create_switch('run-action-in-auto-approve', active=True)
 
         call_command('auto_approve')
 
-        assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version)
+        assert run_actions_mock.called
+        run_actions_mock.assert_called_with(self.version)
 
-    @mock.patch.object(ScannerResult, 'run_action')
+    @mock.patch.object(ScannerResult, 'run_actions')
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_only_executes_run_action_once(self, sign_file_mock, run_action_mock):
+    def test_only_executes_run_actions_once(self, sign_file_mock, run_actions_mock):
         self.create_switch('run-action-in-auto-approve', active=True)
         call_command('auto_approve')
 
-        assert run_action_mock.called
-        run_action_mock.assert_called_with(self.version)
+        assert run_actions_mock.called
+        run_actions_mock.assert_called_with(self.version)
 
-        run_action_mock.reset_mock()
+        run_actions_mock.reset_mock()
         call_command('auto_approve')
 
-        assert not run_action_mock.called
+        assert not run_actions_mock.called
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_run_action_delay_approval(self, sign_file_mock):
+    def test_run_actions_delay_approval(self, sign_file_mock):
         # Functional test making sure that the scanners _delay_auto_approval()
         # action properly delays auto-approval on the version it's applied to
         def check_assertions():
@@ -709,7 +711,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         check_assertions()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_run_action_delay_approval_with_run_narc(self, sign_file_mock):
+    def test_run_actions_delay_approval_with_run_narc(self, sign_file_mock):
         # Functional test making sure that the scanners _delay_auto_approval()
         # action properly delays auto-approval on the version it's applied to,
         # including when the scanner is narc (which is run in auto-approve).
@@ -754,9 +756,9 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')  # Shouldn't matter if it's called twice.
         check_assertions()
 
-    def test_run_action_delay_approval_unlisted(self):
+    def test_run_actions_delay_approval_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self.test_run_action_delay_approval()
+        self.test_run_actions_delay_approval()
 
     def test_run_disapprove(self):
         def check_assertions():

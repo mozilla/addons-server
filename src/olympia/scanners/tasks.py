@@ -267,7 +267,7 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
 
 @task
 @use_primary_db
-def run_narc_on_version(version_pk, *, run_action_on_match=True):
+def run_narc_on_version(version_pk, *, run_actions_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
         version = (
@@ -296,8 +296,8 @@ def run_narc_on_version(version_pk, *, run_action_on_match=True):
         if not initial_run and has_new_matches:
             statsd.incr(f'devhub.narc{statsd_suffix}.results_differ')
 
-        if run_action_on_match and has_new_matches:
-            ScannerResult.run_action(version)
+        if run_actions_on_match and has_new_matches:
+            ScannerResult.run_actions(version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
         log.exception(
@@ -464,7 +464,7 @@ def _run_narc(*, scanner_result, version, rules=None):
     if new_results != scanner_result.results:
         # Either we're scanning this version for the first time, or it's a new
         # run following some change, but in any case we found new results. We
-        # might need to run ScannerResult.run_action() as a result, see below.
+        # might need to run ScannerResult.run_actions() as a result, see below.
         has_new_matches = True
     scanner_result.results = new_results
     return scanner_result, has_new_matches

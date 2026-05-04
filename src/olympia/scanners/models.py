@@ -3,8 +3,10 @@ import re
 from collections import defaultdict
 from datetime import datetime
 
+from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.transaction import atomic
 from django.utils.functional import classproperty
 
 import regex
@@ -15,6 +17,9 @@ from django_jsonform.models.fields import JSONField as JSONFormJSONField
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.utils import (
+    find_automated_enforcement_actions_from_policies,
+)
 from olympia.access.models import Group, GroupUser
 from olympia.amo.models import ModelBase
 from olympia.constants.base import ADDON_EXTENSION
@@ -284,7 +289,19 @@ class AbstractScannerRule(ModelBase):
 
 class ScannerRule(AbstractScannerRule):
     action = models.PositiveSmallIntegerField(
-        choices=ACTIONS.items(), default=NO_ACTION
+        choices=ACTIONS.items(),
+        default=NO_ACTION,
+        verbose_name='Workflow action',
+        help_text='Workflow action to execute',
+    )
+    policy = models.ForeignKey(
+        'abuse.CinderPolicy',
+        on_delete=models.SET_NULL,
+        null=True,
+        help_text=(
+            'Policy used to automatically derive an action from when the rule hit.'
+        ),
+        limit_choices_to={'expose_in_reviewer_tools': True},
     )
     is_active = models.BooleanField(
         default=True,
@@ -411,18 +428,105 @@ class ScannerResult(AbstractScannerResult):
             self.matched_rules.add(scanner_rule)
 
     @classmethod
-    def run_action(cls, version):
-        """Try to find and execute an action for a given version, based on the
-        scanner results and associated rules.
+    def run_actions(cls, version):
+        cls.execute_workflow_action(version)
+        cls.execute_policy_enforcement_action(version)
+
+    @classmethod
+    def execute_policy_enforcement_action(cls, version):
+        from olympia.abuse.models import (
+            CinderPolicy,
+            ContentDecision,
+            ContentDecisionFollowupAction,
+        )
+        from olympia.abuse.tasks import report_decision_to_cinder_and_notify
+
+        log.info('Checking policy rules and actions for version %s.', version.pk)
+        addon = version.addon
+
+        if addon.type != ADDON_EXTENSION:
+            log.info(
+                'Not running policy action(s) on version %s which belongs to a '
+                'non-extension.',
+                version.pk,
+            )
+            return
+
+        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
+
+        matching_rules = cls.rule_model.objects.filter(
+            **{
+                f'{result_query_name}__version': version,
+                'is_active': True,
+                'policy__isnull': False,
+            }
+        )
+        if addon.is_promoted:
+            matching_rules = matching_rules.exclude(exclude_promoted_addons=True)
+
+        policies = CinderPolicy.objects.filter(
+            pk__in=matching_rules.values_list('policy', flat=True).distinct(),
+        ).without_parents_if_their_children_are_present()
+
+        if not policies:
+            log.info(
+                'No violated policy found when scanning version %s.',
+                version.pk,
+            )
+            return
+
+        # Find the action + follow-up actions to execute based on all policies
+        # that were hit.
+        primary_enforcement_action, followup_actions = (
+            find_automated_enforcement_actions_from_policies(
+                policies=policies, addon=addon, version=version
+            )
+        )
+        if len(primary_enforcement_action) != 1:
+            # We didn't find an applicable enforcement action. Out of abundance
+            # of caution we add a NHR for this version and delay auto-approval
+            # if there wasn't a scanner NHR on this version already.
+            _delay_auto_approval_indefinitely(version=version, rule=None)
+            log.error(
+                'No applicable enforcement action found when scanning version %s.',
+                version.pk,
+            )
+            return
+
+        with atomic():
+            decision = ContentDecision.objects.create(
+                addon=version.addon,
+                action=primary_enforcement_action[0],
+                reviewer_user_id=settings.TASK_USER_ID,
+                metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+            )
+            for action in followup_actions:
+                ContentDecisionFollowupAction.objects.create(
+                    decision=decision, action=action
+                )
+            decision.target_versions.add(version)
+            # We might have executed a single action, but we record all
+            # policies we found - they should all be in the notification email.
+            decision.policies.set(policies)
+            log_entry = decision.execute_action()
+        report_decision_to_cinder_and_notify.delay(
+            decision_id=decision.id, notify_owners=bool(log_entry)
+        )
+
+    @classmethod
+    def execute_workflow_action(cls, version):
+        """Try to find and execute a "workflow action" for a given version,
+        based on the scanner results and associated rules.
 
         If an action is found, it is run synchronously from this method, not in
         a task.
         """
-        log.info('Checking rules and actions for version %s.', version.pk)
+        log.info('Checking workflow rules and actions for version %s.', version.pk)
 
         if version.addon.type != ADDON_EXTENSION:
             log.info(
-                'Not running action(s) on version %s which belongs to a non-extension.',
+                'Not running workflow action(s) on version %s which belongs to a '
+                'non-extension.',
                 version.pk,
             )
             return
@@ -440,7 +544,7 @@ class ScannerResult(AbstractScannerResult):
         ).first()
 
         if not rule:
-            log.info('No action to execute for version %s.', version.pk)
+            log.info('No workflow action to execute for version %s.', version.pk)
             return
 
         action_id = rule.action
@@ -466,12 +570,14 @@ class ScannerResult(AbstractScannerResult):
         action_function = ACTION_FUNCTIONS.get(action_id, None)
 
         if not action_function:
-            raise Exception('no implementation for action %s' % action_id)
+            raise Exception('no implementation for workflow action %s' % action_id)
 
         # We have a valid action to execute, so let's do it!
-        log.info('Starting action "%s" for version %s.', action_name, version.pk)
+        log.info(
+            'Starting workflow action "%s" for version %s.', action_name, version.pk
+        )
         action_function(version=version, rule=rule)
-        log.info('Ending action "%s" for version %s.', action_name, version.pk)
+        log.info('Ending workflow action "%s" for version %s.', action_name, version.pk)
 
     def __str__(self):
         if self.scanner == WEBHOOK:

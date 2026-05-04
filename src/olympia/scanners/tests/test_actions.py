@@ -4,12 +4,14 @@ from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
+from django.urls import reverse
 
 import pytest
 import responses
 
 from olympia import amo
-from olympia.abuse.models import CinderJob, ContentDecision
+from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
@@ -17,7 +19,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
@@ -54,6 +56,14 @@ from olympia.users.models import (
 class TestActions(TestCase):
     def setUp(self):
         user_factory(pk=settings.TASK_USER_ID)
+        self.cinder_create_decision_url = (
+            f'{settings.CINDER_SERVER_URL}v1/create_decision'
+        )
+        responses.add_callback(
+            responses.POST,
+            self.cinder_create_decision_url,
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
 
     def test_action_does_nothing(self):
         version = version_factory(addon=addon_factory())
@@ -932,12 +942,6 @@ class TestActions(TestCase):
 
     def do_disable_and_block(self, addon):
         existing_decision_count = ContentDecision.objects.count()
-        responses.add_callback(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}v1/create_decision',
-            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
-        )
-
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -994,12 +998,6 @@ class TestActions(TestCase):
         }
 
     def test_disable_and_block_second_level_approval(self):
-        responses.add_callback(
-            responses.POST,
-            f'{settings.CINDER_SERVER_URL}v1/create_decision',
-            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
-        )
-
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
@@ -1169,9 +1167,10 @@ class TestActions(TestCase):
 class TestRunAction(TestCase):
     def setUp(self):
         super().setUp()
-
         self.scanner = YARA
-        self.version = version_factory(addon=addon_factory())
+        self.author = user_factory()
+        self.addon = addon_factory(users=[self.author])
+        self.version = version_factory(addon=self.addon)
         self.scanner_rule = ScannerRule.objects.create(
             name='rule-1', scanner=self.scanner, action=NO_ACTION
         )
@@ -1179,21 +1178,32 @@ class TestRunAction(TestCase):
             version=self.version, scanner=self.scanner
         )
         self.scanner_result.matched_rules.add(self.scanner_rule)
+        self.task_user = user_factory(pk=settings.TASK_USER_ID)
+        self.cinder_create_decision_url = (
+            f'{settings.CINDER_SERVER_URL}v1/create_decision'
+        )
+        responses.add_callback(
+            responses.POST,
+            self.cinder_create_decision_url,
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
 
     @mock.patch('olympia.scanners.models._no_action')
-    def test_runs_no_action(self, no_action_mock):
+    def test_execute_workflow_action_runs_no_action(self, no_action_mock):
         self.scanner_rule.update(action=NO_ACTION)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         no_action_mock.assert_called_with(version=self.version, rule=self.scanner_rule)
 
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_runs_flag_for_human_review(self, flag_for_human_review_mock):
+    def test_execute_workflow_action_runs_flag_for_human_review(
+        self, flag_for_human_review_mock
+    ):
         self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert flag_for_human_review_mock.called
         flag_for_human_review_mock.assert_called_with(
@@ -1201,10 +1211,12 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval')
-    def test_runs_delay_auto_approval(self, _delay_auto_approval_mock):
+    def test_execute_workflow_action_runs_delay_auto_approval(
+        self, _delay_auto_approval_mock
+    ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _delay_auto_approval_mock.called
         _delay_auto_approval_mock.assert_called_with(
@@ -1212,12 +1224,12 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
-    def test_runs_delay_auto_approval_indefinitely(
+    def test_execute_workflow_action_runs_delay_auto_approval_indefinitely(
         self, _delay_auto_approval_indefinitely_mock
     ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _delay_auto_approval_indefinitely_mock.called
         _delay_auto_approval_indefinitely_mock.assert_called_with(
@@ -1225,10 +1237,12 @@ class TestRunAction(TestCase):
         )
 
     @mock.patch('olympia.scanners.models._disable_and_block')
-    def test_runs_disable_and_block(self, _disable_and_block_mock):
+    def test_execute_workflow_action_runs_disable_and_block(
+        self, _disable_and_block_mock
+    ):
         self.scanner_rule.update(action=DISABLE_AND_BLOCK)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert _disable_and_block_mock.call_count == 1
         assert _disable_and_block_mock.call_args[1] == {
@@ -1237,48 +1251,62 @@ class TestRunAction(TestCase):
         }
 
     @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
-    def test_returns_for_non_extension_addons(
+    def test_execute_workflow_action_returns_for_non_extension_addons(
         self, _delay_auto_approval_indefinitely_mock
     ):
         self.scanner_rule.update(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
-        self.version.addon.update(type=amo.ADDON_DICT)
+        self.addon.update(type=amo.ADDON_DICT)
 
-        ScannerResult.run_action(self.version)
-
-        assert not _delay_auto_approval_indefinitely_mock.called
-
-        self.version.addon.update(type=amo.ADDON_LPAPP)
-
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not _delay_auto_approval_indefinitely_mock.called
 
-        self.version.addon.update(type=amo.ADDON_STATICTHEME)
+        self.addon.update(type=amo.ADDON_LPAPP)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
+
+        assert not _delay_auto_approval_indefinitely_mock.called
+
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+
+        ScannerResult.run_actions(self.version)
 
         assert not _delay_auto_approval_indefinitely_mock.called
 
     @mock.patch('olympia.scanners.models.log.info')
-    def test_returns_when_no_action_found(self, log_mock):
+    def test_execute_workflow_action_returns_when_no_action_found(self, log_mock):
         self.scanner_rule.delete()
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
-        log_mock.assert_called_with(
-            'No action to execute for version %s.', self.version.id
+        assert len(log_mock.call_args_list) == 4
+        assert log_mock.call_args_list[0][0] == (
+            'Checking workflow rules and actions for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[1][0] == (
+            'No workflow action to execute for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[2][0] == (
+            'Checking policy rules and actions for version %s.',
+            self.version.pk,
+        )
+        assert log_mock.call_args_list[3][0] == (
+            'No violated policy found when scanning version %s.',
+            self.version.pk,
         )
 
-    def test_raise_when_action_is_invalid(self):
+    def test_execute_workflow_action_raise_when_action_is_invalid(self):
         # `12345` is an invalid action ID
         self.scanner_rule.update(action=12345)
 
         with pytest.raises(Exception, match='invalid action 12345'):
-            ScannerResult.run_action(self.version)
+            ScannerResult.run_actions(self.version)
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_selects_the_action_with_the_highest_severity(
+    def test_execute_workflow_action_selects_the_action_with_the_highest_severity(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result. This
@@ -1288,18 +1316,18 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not no_action_mock.called
         assert flag_for_human_review_mock.called
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_skips_actions_with_exclude_promoted_if_the_addon_is_promoted(
+    def test_execute_workflow_action_skips_ex_promoted_if_addon_is_promoted(
         self, flag_for_human_review_mock, no_action_mock
     ):
         self.make_addon_promoted(
-            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
         )
         # Create another rule and add it to the current scanner result, but set to
         # exclude_promoted_addons=True.
@@ -1311,14 +1339,14 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_does_not_skip_actions_with_exclude_promoted_if_the_addon_is_not_promoted(
+    def test_execute_workflow_action_does_not_skip_ex_promoted_if_addon_is_not_promoted(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result, set to
@@ -1331,14 +1359,14 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert not no_action_mock.called
         assert flag_for_human_review_mock.called
 
     @mock.patch('olympia.scanners.models._no_action')
     @mock.patch('olympia.scanners.models._flag_for_human_review')
-    def test_selects_active_actions_only(
+    def test_execute_workflow_action_selects_active_rules_only(
         self, flag_for_human_review_mock, no_action_mock
     ):
         # Create another rule and add it to the current scanner result. This
@@ -1352,7 +1380,450 @@ class TestRunAction(TestCase):
         )
         self.scanner_result.matched_rules.add(rule)
 
-        ScannerResult.run_action(self.version)
+        ScannerResult.run_actions(self.version)
 
         assert no_action_mock.called
         assert not flag_for_human_review_mock.called
+
+    def test_execute_policy_enforcement_action(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            # expose_in_reviewer_tools shouldn't matter if the link already
+            # exists - it's only for availability in the admin/reviewer tools.
+            expose_in_reviewer_tools=False,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        # Extra useless policy shouldn't get picked up.
+        CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Other policy',
+            text='Do not include me!',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert decision.action_date
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == set(self.addon.versions.all())
+        assert set(decision.policies.all()) == {policy}
+
+        activity = ActivityLog.objects.latest('pk')
+        assert activity
+        assert activity.user == self.task_user
+        assert activity.action == amo.LOG.FORCE_DISABLE.id
+        assert activity.arguments == [
+            self.addon,
+            decision,
+            policy,
+            *decision.target_versions.order_by('-pk'),
+        ]
+
+        assert len(responses.calls) == 1
+        assert responses.calls[0].request.url == self.cinder_create_decision_url
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        expected_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        assert 'your content violates the following Mozilla policy or policies' in body
+        assert '- My Fancy Polîcy: Just saying.' in body
+        assert 'Do not include me!' not in body
+        assert expected_appeal_url in body
+
+        # Nothing for human reviewers to do.
+        assert not self.version.needshumanreview_set.exists()
+
+    def test_execute_policy_enforcement_action_multiple_policies(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        policy2 = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Secônd Policy',
+            text='Bad content.',
+            # We won't use this policy enforcement actions because the other
+            # one is more aggressive.
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+        second_rule = ScannerRule.objects.create(
+            scanner=self.scanner, name='rule-2', policy=policy2
+        )
+        self.scanner_result.matched_rules.add(second_rule)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert decision.action_date
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == set(self.addon.versions.all())
+        assert set(decision.policies.all()) == {policy, policy2}
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        expected_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        assert '- My Fancy Polîcy: Just saying.' in body
+        assert '- My Secônd Policy: Bad content.' in body
+        assert expected_appeal_url in body
+
+    def test_execute_policy_enforcement_action_returns_for_non_extension_addons(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        assert not ContentDecision.objects.exists()
+        assert not ActivityLog.objects.exists()
+        assert not self.version.needshumanreview_set.exists()
+        assert len(mail.outbox) == 0
+
+    def test_execute_policy_enforcement_action_active_rules_only(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy, is_active=False)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        assert not ContentDecision.objects.exists()
+        assert not ActivityLog.objects.exists()
+        assert not self.version.needshumanreview_set.exists()
+        assert len(mail.outbox) == 0
+
+    def test_execute_policy_enforcement_action_skips_exclude_promoted(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy, exclude_promoted_addons=True)
+        self.make_addon_promoted(
+            # Strategic promoted group is not "high profile", so not subject to
+            # second level approval - if the rule didn't have
+            # exclude_promoted_addons=True the add-on would be taken down.
+            self.addon,
+            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC,
+        )
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        assert not ContentDecision.objects.exists()
+        assert not ActivityLog.objects.exists()
+        assert not self.version.needshumanreview_set.exists()
+        assert len(mail.outbox) == 0
+
+    def test_execute_policy_enforcement_action_does_not_skip_exclude_promoted(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        # Rule excludes promoted add-on but the add-on isn't promoted.
+        self.scanner_rule.update(policy=policy, exclude_promoted_addons=True)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+
+        assert ContentDecision.objects.exists()
+        assert ActivityLog.objects.exists()
+        assert len(mail.outbox) == 1
+
+    def test_execute_policy_enforcement_action_redundant_policies(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        policy2 = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Secônd Policy',
+            text='Bad content.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+        second_rule = ScannerRule.objects.create(
+            scanner=self.scanner, name='rule-2', policy=policy2
+        )
+        self.scanner_result.matched_rules.add(second_rule)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+
+        assert ContentDecision.objects.count() == 1
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert decision.action_date
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == set(self.addon.versions.all())
+        assert set(decision.policies.all()) == {policy, policy2}
+
+        assert ActivityLog.objects.count() == 1
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        expected_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        assert '- My Fancy Polîcy: Just saying.' in body
+        assert '- My Secônd Policy: Bad content.' in body
+        assert expected_appeal_url in body
+
+    def test_execute_policy_enforcement_action_multiple_enforcement_actions(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            # This policy is misconfigured with 2 primary actions that affect
+            # add-ons. It will be ignored on hit and we'll set a NHR & disable
+            # auto-approval instead.
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+            ],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        assert ContentDecision.objects.count() == 0
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+
+        assert len(responses.calls) == 0
+        assert len(mail.outbox) == 0
+
+        assert self.version.needshumanreview_set.exists()
+        assert self.addon.reviewerflags.auto_approval_delayed_until
+
+    def test_execute_policy_enforcement_action_no_enforcement_actions_on_policies(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            # This policy is misconfigured with no primary actions affecting
+            # add-ons. It will be ignored on hit and we'll set a NHR & disable
+            # auto-approval instead.
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DELETE_COLLECTION.api_value,
+            ],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+
+        assert ContentDecision.objects.count() == 0
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.action == amo.LOG.NEEDS_HUMAN_REVIEW_AUTOMATIC.id
+
+        assert len(responses.calls) == 0
+        assert len(mail.outbox) == 0
+
+        assert self.version.needshumanreview_set.exists()
+        assert self.addon.reviewerflags.auto_approval_delayed_until
+
+    def test_execute_policy_enforcement_action_reject_with_followup_actions(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+                DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON.api_value,
+            ],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        self.version.file.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.addon.current_version.file.status == amo.STATUS_APPROVED
+        assert self.version.file.status == amo.STATUS_DISABLED
+
+        assert ContentDecision.objects.count() == 1
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        assert decision.action_date
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == {self.version}
+        assert set(decision.policies.all()) == {policy}
+
+        assert decision.followup_actions.count() == 1
+        follow_up = decision.followup_actions.latest('pk')
+        assert follow_up.action == DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
+        assert not self.version.is_blocked  # Not blocked yet
+
+        assert BlocklistSubmission.objects.count() == 1
+        submission = BlocklistSubmission.objects.latest('pk')
+        assert submission.input_guids == self.addon.guid
+        assert submission.changed_version_ids == [self.version.pk]
+        assert submission.delayed_until
+
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.action == amo.LOG.REJECT_VERSION.id
+        assert activity.arguments == [self.addon, decision, policy, self.version]
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        expected_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        assert '- My Fancy Polîcy: Just saying.' in body
+        assert f'Affected versions: {self.version.version}' in body
+        assert expected_appeal_url in body
+
+    def test_execute_policy_enforcement_action_delayed_reject(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON.api_value,
+            ],
+        )
+        self.scanner_rule.update(policy=policy)
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        self.version.file.reload()
+        self.version.reviewerflags.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.version.file.status == amo.STATUS_APPROVED
+        self.assertCloseToNow(
+            self.version.reviewerflags.pending_rejection,
+            now=datetime.now() + timedelta(days=30, hours=1),
+        )
+
+        assert ContentDecision.objects.count() == 1
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        assert decision.action_date
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == {self.version}
+        assert set(decision.policies.all()) == {policy}
+
+        assert ActivityLog.objects.count() == 1
+        activity = ActivityLog.objects.latest('pk')
+        assert activity.action == amo.LOG.REJECT_VERSION_DELAYED.id
+        assert activity.arguments == [self.addon, decision, policy, self.version]
+
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        expected_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        assert '- My Fancy Polîcy: Just saying.' in body
+        assert f'Affected versions: {self.version.version}' in body
+        # Not an appealable decision.
+        assert expected_appeal_url not in body
+
+    def test_execute_policy_enforcement_action_2nd_level_approval(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='My Fancy Polîcy',
+            text='Just saying.',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        self.scanner_rule.update(policy=policy)
+        # Make the add-on recommended, that will force 2nd level approval.
+        self.make_addon_promoted(
+            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        )
+
+        ScannerResult.run_actions(self.version)
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED  # Nothing changed yet.
+
+        decision = ContentDecision.objects.latest('pk')
+        assert decision
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert not decision.action_date  # No action date, waiting for approval
+        assert decision.addon == self.addon
+        assert decision.reviewer_user == self.task_user
+        assert set(decision.target_versions.all()) == set(self.addon.versions.all())
+        assert set(decision.policies.all()) == {policy}
+
+        activity = ActivityLog.objects.latest('pk')
+        assert activity
+        assert activity.user == self.task_user
+        assert activity.action == amo.LOG.HELD_ACTION_FORCE_DISABLE.id
+        assert activity.arguments == [
+            self.addon,
+            decision,
+            policy,
+            *decision.target_versions.order_by('-pk'),
+        ]
+
+        assert len(responses.calls) == 1
+        assert responses.calls[0].request.url == self.cinder_create_decision_url
+
+        assert len(mail.outbox) == 0
+
+        # Nothing for human reviewers to do.
+        assert not self.version.needshumanreview_set.exists()

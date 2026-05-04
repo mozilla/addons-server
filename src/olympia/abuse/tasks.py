@@ -170,6 +170,7 @@ def sync_cinder_policies():
         Q(contentdecision__id__gte=0)
         | Q(reviewactionreason__id__gte=0)
         | Q(expose_in_reviewer_tools=True)
+        | Q(scannerrule__id__gte=0)
     )
 
     def sync_policies(data, parent_id=None):

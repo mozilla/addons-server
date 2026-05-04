@@ -23,6 +23,7 @@ from olympia.blocklist.models import BlocklistSubmission, BlockType
 from olympia.blocklist.utils import delete_versions_from_blocks, save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
+from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -567,10 +568,12 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                 self.delayed_rejection_date - self.decision.created
             ).days
         else:
-            # Will fail later if we try to use it to log/process the action,
-            # but allows us to at least instantiate the class and use other
-            # methods.
-            self.delayed_rejection_date = self.delayed_rejection_days = None
+            self.delayed_rejection_days = REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+            self.delayed_rejection_date = datetime.now() + timedelta(
+                # Add one hour buffer just like reviewer tools form does.
+                days=self.delayed_rejection_days,
+                hours=1,
+            )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         extra_details = {
