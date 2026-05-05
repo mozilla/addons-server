@@ -1781,6 +1781,7 @@ class SupportForm(CheckThrottlesFormMixin, forms.Form):
         label=_('Select category'),
     )
     body = forms.CharField(
+        max_length=10000,
         widget=forms.Textarea(
             attrs={'rows': 8, 'placeholder': _('Give us more details about the issue')}
         ),

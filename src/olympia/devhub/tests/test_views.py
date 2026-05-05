@@ -2812,6 +2812,21 @@ class TestSupportView(TestCase):
         form = response.context['form']
         assert form.errors
 
+    def test_post_invalid_fields_too_long(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            self.url,
+            {
+                'summary': 'x' * 256,
+                'category': 'technical',
+                'body': 'x' * 10001,
+            },
+        )
+        assert response.status_code == 200
+        form = response.context['form']
+        assert 'summary' in form.errors
+        assert 'body' in form.errors
+
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     def test_post_success(self, mock_task):
         self.client.force_login(self.user)
