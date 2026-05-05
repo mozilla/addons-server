@@ -2488,7 +2488,7 @@ msgid ""
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
 "Wužiwajće tutón formular za podpěru nastupajo na waše konto, problemy z konformnosću priwatnosće a wjace. Čim wjace podrobnosće dźěliće, ćim lóšo je za nas pomhać. Za prašenja wo přepruwowanjach "
-"swojich přidatkow, wobhladajće sej prošu wersijowu historiju swojich přidatkow. Informujemy was tak bórze kaž móžno."
+"swojich přidatkow, wobhladajće sej prošu wersijowu historiju swojich přidatkow. Budźemy was tak bórze kaž móžno informować."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
