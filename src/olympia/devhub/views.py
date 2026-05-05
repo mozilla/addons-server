@@ -28,7 +28,6 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.tasks import submit_addon_change_for_content_review
 from olympia.access import acl
 from olympia.accounts.decorators import two_factor_auth_required
 from olympia.accounts.utils import (
@@ -41,11 +40,11 @@ from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.decorators import require_submissions_enabled
 from olympia.addons.models import (
     Addon,
-    AddonApprovalsCounter,
     AddonReviewerFlags,
     AddonUser,
     AddonUserPendingConfirmation,
 )
+from olympia.addons.utils import request_content_review, trigger_content_review
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
@@ -431,10 +430,8 @@ def disable(request, addon_id, addon):
 def rejected_review_request(request, addon_id, addon):
     if addon.status != amo.STATUS_REJECTED:
         raise http.Http404()
-    AddonApprovalsCounter.request_new_content_review_for_addon(addon)
     alog = ActivityLog.objects.create(amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon)
-    if waffle.switch_is_active('content-review-in-cinder'):
-        submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
+    request_content_review(addon, alog)
     messages.success(
         request,
         gettext('Request for a new review of listing content acknowledged.'),
@@ -946,10 +943,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
                             field,
                             json.dumps(addedremoved),
                         )
-                        if waffle.switch_is_active('content-review-in-cinder'):
-                            submit_addon_change_for_content_review.delay(
-                                activity_log_pk=alog.pk
-                            )
+                        trigger_content_review(addon, alog)
 
                     ActivityLog.objects.create(amo.LOG.EDIT_PROPERTIES, addon)
 

@@ -1,10 +1,15 @@
 from datetime import datetime, timedelta
+from unittest import mock
 
 from django.forms import ValidationError
 
 import pytest
 import time_machine
+from waffle.testutils import override_switch
 
+from olympia import amo
+from olympia.activity.models import ActivityLog
+from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.users.models import Group, GroupUser
 
@@ -13,6 +18,8 @@ from ..utils import (
     DeleteTokenSigner,
     get_addon_recommendations,
     get_filtered_fallbacks,
+    request_content_review,
+    trigger_content_review,
     validate_addon_name,
     validate_addon_summary,
 )
@@ -181,3 +188,161 @@ def test_delete_token_signer():
         # but not after 60 seconds
         frozen_time.shift(timedelta(seconds=2))
         assert not signer.validate(token, addon_id)
+
+
+@pytest.mark.django_db
+def test_trigger_content_review():
+    addon = addon_factory()
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.approve_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        trigger_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED
+    )
+    # And we should have triggered the content review task
+    mock_apply_async.assert_called_once()
+    assert mock_apply_async.call_args.args == ((), {'activity_log_pk': activity_log.pk})
+
+
+@pytest.mark.django_db
+def test_trigger_content_review_not_triggered_for_non_content_review_types():
+    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.approve_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        trigger_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED
+    )
+    # We should not have triggered the content review task though
+    mock_apply_async.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_trigger_content_review_not_triggered_if_switch_inactive():
+    addon = addon_factory()
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.approve_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.PASS
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=False),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        trigger_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.CHANGED
+    )
+    # We should not have triggered the content review task though
+    mock_apply_async.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_request_content_review():
+    addon = addon_factory()
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.reject_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        request_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+    # And we should have triggered the content review task
+    mock_apply_async.assert_called_once()
+    assert mock_apply_async.call_args.args == ((), {'activity_log_pk': activity_log.pk})
+
+
+@pytest.mark.django_db
+def test_request_content_review_not_triggered_for_non_content_review_types():
+    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.reject_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        request_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+    # We should not have triggered the content review task though
+    mock_apply_async.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_request_content_review_not_triggered_if_switch_inactive():
+    addon = addon_factory()
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.reject_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=False),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        request_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+    # We should not have triggered the content review task though
+    mock_apply_async.assert_not_called()

@@ -82,7 +82,6 @@ from .decorators import addon_view_factory, require_submissions_enabled
 from .indexers import AddonIndexer
 from .models import (
     Addon,
-    AddonApprovalsCounter,
     AddonBrowserMapping,
     AddonUser,
     AddonUserPendingConfirmation,
@@ -112,6 +111,7 @@ from .utils import (
     RECOMMENDATION_OUTCOME_CURATED,
     DeleteTokenSigner,
     get_addon_recommendations,
+    request_content_review,
 )
 
 
@@ -435,24 +435,22 @@ class AddonViewSet(
 
     @listingcontentreview.mapping.patch
     def update_listingcontentreview(self, request, pk=None):
-        from olympia.abuse.tasks import submit_addon_change_for_content_review
-
         addon = self.get_object()
-        ouput = self.get_serializer(addon).data
+        output = self.get_serializer(addon).data
         if (
-            request.data.get('has_requested_review')
-            and not ouput.get('has_requested_review')
-            and ouput.get('can_request_review')
+            request.data.get('has_requested_review') is True
+            and not output.get('has_requested_review')
+            and output.get('can_request_review')
         ):
-            AddonApprovalsCounter.request_new_content_review_for_addon(addon)
-            addon.addonapprovalscounter.reload()
-            ouput = self.get_serializer(addon).data
             alog = ActivityLog.objects.create(
                 amo.LOG.REJECTED_LISTING_REVIEW_REQUEST, addon
             )
-            if waffle.switch_is_active('content-review-in-cinder'):
-                submit_addon_change_for_content_review.delay(activity_log_pk=alog.pk)
-        return Response(ouput, status=status.HTTP_202_ACCEPTED)
+
+            request_content_review(addon, alog)
+            addon.addonapprovalscounter.reload()
+            output = self.get_serializer(addon).data
+
+        return Response(output, status=status.HTTP_202_ACCEPTED)
 
 
 class AddonChildMixin:

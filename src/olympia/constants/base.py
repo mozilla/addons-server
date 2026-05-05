@@ -207,6 +207,11 @@ ADDON_TYPES_WITH_STATS = (
     ADDON_LPAPP,
 )
 
+# Only content review extensions and dictionaries. See
+# https://github.com/mozilla/addons-server/issues/11796 &
+# https://github.com/mozilla/addons-server/issues/12065
+ADDON_CONTENT_REVIEW_TYPES = (ADDON_EXTENSION, ADDON_DICT)
+
 # Edit addon information
 MAX_TAGS = 10
 MAX_CATEGORIES = 3

@@ -5,6 +5,8 @@ from django.core.files.storage import default_storage as storage
 from django.core.signing import BadSignature, SignatureExpired, TimestampSigner
 from django.utils.translation import gettext
 
+import waffle
+
 from olympia import amo, core
 from olympia.access.acl import action_allowed_for
 from olympia.amo.utils import validate_name
@@ -135,3 +137,27 @@ def remove_icons(addon):
         filepath = addon.get_icon_path(size)
         if storage.exists(filepath):
             storage.delete(filepath)
+
+
+def trigger_content_review(addon, activity_log):
+    from olympia.abuse.tasks import submit_addon_change_for_content_review
+    from olympia.addons.models import AddonApprovalsCounter
+
+    AddonApprovalsCounter.reset_content_for_addon(addon=addon)
+
+    if addon.type in amo.ADDON_CONTENT_REVIEW_TYPES and waffle.switch_is_active(
+        'content-review-in-cinder'
+    ):
+        submit_addon_change_for_content_review.delay(activity_log_pk=activity_log.pk)
+
+
+def request_content_review(addon, activity_log):
+    from olympia.abuse.tasks import submit_addon_change_for_content_review
+    from olympia.addons.models import AddonApprovalsCounter
+
+    AddonApprovalsCounter.request_new_content_review_for_addon(addon=addon)
+
+    if addon.type in amo.ADDON_CONTENT_REVIEW_TYPES and waffle.switch_is_active(
+        'content-review-in-cinder'
+    ):
+        submit_addon_change_for_content_review.delay(activity_log_pk=activity_log.pk)

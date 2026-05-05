@@ -21,7 +21,6 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import get_language, gettext, gettext_lazy as _, ngettext
 
 import waffle
-from django_statsd.clients import statsd
 
 from olympia import amo
 from olympia.access import acl
@@ -29,7 +28,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
     Addon,
-    AddonApprovalsCounter,
     AddonCategory,
     AddonListingInfo,
     AddonUser,
@@ -159,9 +157,6 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                 self.metadata_changes = get_translation_differences(
                     existing_data, new_data
                 )
-                # flag for content review
-                statsd.incr('devhub.metadata_content_review_triggered')
-                AddonApprovalsCounter.reset_content_for_addon(addon=obj)
                 AddonListingInfo.maybe_mark_as_noindexed(addon=obj)
 
                 if waffle.switch_is_active('enable-narc') and (

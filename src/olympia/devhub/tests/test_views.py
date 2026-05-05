@@ -2683,7 +2683,7 @@ class TestRequestContentReview(TestCase):
         assert entry.action == amo.LOG.REJECTED_LISTING_REVIEW_REQUEST.id
         assert str(self.addon.name) in entry.to_string()
 
-    @mock.patch('olympia.devhub.views.submit_addon_change_for_content_review.delay')
+    @mock.patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
     @override_switch('content-review-in-cinder', active=False)
     def test_owner_can_request_listing_content_review_cinder_switch_off(
         self, task_mock
@@ -2691,7 +2691,7 @@ class TestRequestContentReview(TestCase):
         self._test_owner_can_request_listing_content_review()
         task_mock.assert_not_called()
 
-    @mock.patch('olympia.devhub.views.submit_addon_change_for_content_review.delay')
+    @mock.patch('olympia.abuse.tasks.submit_addon_change_for_content_review.delay')
     @override_switch('content-review-in-cinder', active=True)
     def test_owner_can_request_listing_content_review_cinder_switch_on(self, task_mock):
         self._test_owner_can_request_listing_content_review()
