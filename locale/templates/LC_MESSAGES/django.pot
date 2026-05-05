@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-05 12:48+0000\n"
+"POT-Creation-Date: 2026-05-05 14:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1707,7 +1707,7 @@ msgid ""
 msgstr ""
 
 #: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290
-#: src/olympia/devhub/forms.py:633 src/olympia/devhub/forms.py:1763
+#: src/olympia/devhub/forms.py:633 src/olympia/devhub/forms.py:1762
 msgid "Other"
 msgstr ""
 
@@ -2254,35 +2254,31 @@ msgid "Choose a category"
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1760
-msgid "Account"
+msgid "Technical support for making your add-on compliant"
 msgstr ""
 
 #: src/olympia/devhub/forms.py:1761
-msgid "Technical Issue"
+msgid "Issue with addons.mozilla.org"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1762
-msgid "Policies"
-msgstr ""
-
-#: src/olympia/devhub/forms.py:1768
+#: src/olympia/devhub/forms.py:1767
 #: src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1770
+#: src/olympia/devhub/forms.py:1769
 msgid "Summarize the issue in a few words"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1775
+#: src/olympia/devhub/forms.py:1774
 msgid "Select category"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1779
+#: src/olympia/devhub/forms.py:1778
 msgid "Give us more details about the issue"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1781
+#: src/olympia/devhub/forms.py:1780
 msgid "Describe the issue"
 msgstr ""
 
@@ -2703,9 +2699,10 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
-"Use this form for support related to your account, tech issues, and more. The"
-" more details you share, the easier it is for us to help. We'll get back to "
-"you as soon as possible."
+"Use this form for support related to your account, policy compliance issues, "
+"and more. The more details you share, the easier it is for us to help. For "
+"questions about your add-on(s) reviews, please refer to your add-on(s) "
+"version history. We'll get back to you as soon as possible."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
