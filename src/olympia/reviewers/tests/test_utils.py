@@ -45,8 +45,8 @@ from olympia.lib.crypto.tests.test_signing import (
     _get_signature_details,
 )
 from olympia.promoted.models import (
-    PromotedAddon,
     PromotedApproval,
+    PromotedGroup,
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -3886,38 +3886,40 @@ class TestReviewHelper(TestReviewHelperBase):
         ).exists()
         assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
 
-    def test_autoapprove_fails_for_promoted(self):
+    def test_autoapprove_promoted(self):
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        group.listed_pre_review = False
+        group.save()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert not self.addon.promoted_groups()
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
-        with self.assertRaises(AssertionError):
-            self.test_nomination_to_public()
-        assert not PromotedApproval.objects.filter(
-            version=self.addon.current_version
-        ).exists()
-        assert not self.addon.promoted_groups()
-
-        # change to other type of promoted; same should happen
-        PromotedAddon.objects.filter(addon=self.addon).delete()
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
-        with self.assertRaises(AssertionError):
-            self.test_nomination_to_public()
-        assert not PromotedApproval.objects.filter(
-            version=self.addon.current_version
-        ).exists()
-        assert not self.addon.promoted_groups()
-
-        # except for a group that doesn't require prereview
-        PromotedAddon.objects.filter(addon=self.addon).delete()
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.STRATEGIC)
-        assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
         self.test_nomination_to_public()
-        # But no PromotedApproval though
-        assert not PromotedApproval.objects.filter(
+        assert PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
-        assert PROMOTED_GROUP_CHOICES.STRATEGIC in self.addon.promoted_groups().group_id
+        assert group in self.addon.promoted_groups()
+
+        group.listed_pre_review = True
+        group.save()
+        assert group in self.addon.promoted_groups()
+
+    def test_autoapprove_promoted_notable(self):
+        # as above with notable
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        group.listed_pre_review = False
+        group.save()
+        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
+
+        self.test_nomination_to_public()
+        assert PromotedApproval.objects.filter(
+            version=self.addon.current_version
+        ).exists()
+        assert group in self.addon.promoted_groups()
+
+        group.listed_pre_review = True
+        group.save()
+        assert group in self.addon.promoted_groups()
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
         old_version = self.review_version

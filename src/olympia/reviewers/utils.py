@@ -1069,6 +1069,7 @@ class ReviewBase:
             # These addons shouldn't be be attempted for auto approval anyway,
             # but double check that the cron job isn't trying to approve it.
             assert not self.user.id == settings.TASK_USER_ID
+        if self.addon.promoted_groups(currently_approved=False):
             for version in versions:
                 self.addon.approve_for_version(version)
 
