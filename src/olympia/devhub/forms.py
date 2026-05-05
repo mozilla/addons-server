@@ -1757,9 +1757,8 @@ class RollbackVersionForm(forms.Form):
 class SupportForm(forms.Form):
     CATEGORY_CHOICES = [
         ('', _('Choose a category')),
-        ('account', _('Account')),
-        ('technical', _('Technical Issue')),
-        ('policy', _('Policies')),
+        ('policy', _('Technical support for making your add-on compliant')),
+        ('technical', _('Issue with addons.mozilla.org')),
         ('other', _('Other')),
     ]
 
