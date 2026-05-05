@@ -1,6 +1,7 @@
 from collections import OrderedDict, defaultdict
 from datetime import datetime
 
+from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.files.base import ContentFile
 from django.urls import reverse
@@ -1055,10 +1056,19 @@ class ReviewBase:
         file.save()
 
     def set_promoted(self, versions=None):
+        group = self.addon.promoted_groups(currently_approved=False)
         if versions is None:
             versions = [self.version]
         elif not versions:
             return
+        channel = versions[0].channel
+        if group and (
+            (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review))
+            or (channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review))
+        ):
+            # These addons shouldn't be be attempted for auto approval anyway,
+            # but double check that the cron job isn't trying to approve it.
+            assert not self.user.id == settings.TASK_USER_ID
         if self.addon.promoted_groups(currently_approved=False):
             for version in versions:
                 self.addon.approve_for_version(version)

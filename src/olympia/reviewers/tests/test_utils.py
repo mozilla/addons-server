@@ -46,6 +46,7 @@ from olympia.lib.crypto.tests.test_signing import (
 )
 from olympia.promoted.models import (
     PromotedApproval,
+    PromotedGroup,
 )
 from olympia.reviewers.models import (
     AutoApprovalSummary,
@@ -3886,27 +3887,39 @@ class TestReviewHelper(TestReviewHelperBase):
         assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
 
     def test_autoapprove_promoted(self):
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        group.listed_pre_review = False
+        group.save()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert not self.addon.promoted_groups()
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
         self.test_nomination_to_public()
         assert PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
-        assert self.addon.promoted_groups()
+        assert group in self.addon.promoted_groups()
+
+        group.listed_pre_review = True
+        group.save()
+        assert group in self.addon.promoted_groups()
 
     def test_autoapprove_promoted_notable(self):
         # as above with notable
+        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        group.listed_pre_review = False
+        group.save()
         self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
-        assert not self.addon.promoted_groups()
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
         self.test_nomination_to_public()
         assert PromotedApproval.objects.filter(
             version=self.addon.current_version
         ).exists()
-        assert self.addon.promoted_groups()
+        assert group in self.addon.promoted_groups()
+
+        group.listed_pre_review = True
+        group.save()
+        assert group in self.addon.promoted_groups()
 
     def _test_block_multiple_unlisted_versions(self, redirect_url):
         old_version = self.review_version
