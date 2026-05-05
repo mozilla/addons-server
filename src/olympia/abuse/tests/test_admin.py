@@ -587,10 +587,21 @@ class TestCinderPolicyAdmin(TestCase):
         self.client.force_login(self.user)
 
     def _make_list_request(self):
-        foo = CinderPolicy.objects.create(name='Foo')
-        CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
-        zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
-        lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
+        foo = CinderPolicy.objects.create(name='Foo', enforcement_actions=None)
+        CinderPolicy.objects.create(
+            name='Bar', parent=foo, uuid=uuid.uuid4(), enforcement_actions=[]
+        )
+        zab = CinderPolicy.objects.create(
+            name='Zab',
+            parent=foo,
+            uuid=uuid.uuid4(),
+            enforcement_actions=['amo-disable-addon'],
+        )
+        lorem = CinderPolicy.objects.create(
+            name='Lorem',
+            uuid=uuid.uuid4(),
+            enforcement_actions=['amo-disable-addon', 'amo-ban-user'],
+        )
         CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
         ReviewActionReason.objects.create(
             name='Attached to Zab', cinder_policy=zab, canned_response='.'
@@ -613,6 +624,10 @@ class TestCinderPolicyAdmin(TestCase):
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == CinderPolicy.objects.count()
         assert doc('#result_list td.field-name').text() == 'Foo Ipsum Lorem Bar Zab'
+        assert (
+            doc('#result_list td.field-pretty_enforcement_actions').text()
+            == '- - Add-on disable, User ban - Add-on disable'
+        )
         assert (
             doc('#result_list td.field-linked_review_reasons')[2].text_content()
             == 'Also attached to Lorem\nAttached to Lorem'
