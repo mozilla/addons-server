@@ -706,11 +706,17 @@ def send_api_key_revocation_email(emails):
     retry_backoff_max=300,
     retry_jitter=False,
 )
-def create_support_ticket(access_token, payload, **kw):
+def create_support_ticket(payload, **kw):
     response = requests.post(
         settings.FXA_SUPPORT_HOST + '/support/ticket',
-        headers={'Authorization': f'Bearer {access_token}'},
+        headers={'Authorization': f'Bearer {settings.FXA_SUPPORT_SECRET}'},
         json=payload,
         timeout=10,
     )
+    if not response.ok:
+        log.error(
+            'create_support_ticket: FxA returned %s: %s',
+            response.status_code,
+            response.text,
+        )
     response.raise_for_status()

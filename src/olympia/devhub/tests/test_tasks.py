@@ -1066,10 +1066,11 @@ class TestCreateSupportTicket(TestCase):
     def test_success(self, mock_post):
         mock_post.return_value = mock.MagicMock(status_code=201)
         mock_post.return_value.raise_for_status.return_value = None
-        tasks.create_support_ticket('mytoken', self.payload)
+        with self.settings(FXA_SUPPORT_SECRET='mysecret'):
+            tasks.create_support_ticket(self.payload)
         mock_post.assert_called_once_with(
             mock_post.call_args[0][0],
-            headers={'Authorization': 'Bearer mytoken'},
+            headers={'Authorization': 'Bearer mysecret'},
             json=self.payload,
             timeout=10,
         )
@@ -1081,7 +1082,7 @@ class TestCreateSupportTicket(TestCase):
         mock_post.return_value = mock.MagicMock(status_code=500)
         mock_post.return_value.raise_for_status.side_effect = req.HTTPError('500')
         with self.assertRaises(req.HTTPError):
-            tasks.create_support_ticket('mytoken', self.payload)
+            tasks.create_support_ticket(self.payload)
 
     @mock.patch('olympia.devhub.tasks.requests.post')
     def test_network_error_triggers_retry(self, mock_post):
@@ -1089,4 +1090,4 @@ class TestCreateSupportTicket(TestCase):
 
         mock_post.side_effect = req.RequestException('timeout')
         with self.assertRaises(req.RequestException):
-            tasks.create_support_ticket('mytoken', self.payload)
+            tasks.create_support_ticket(self.payload)
