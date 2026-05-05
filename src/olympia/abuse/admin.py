@@ -406,7 +406,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
                 DECISION_ACTIONS.from_api_value(action).label
                 if action in DECISION_ACTIONS.api_values
                 else f'Unknown ({action})'
-                for action in obj.enforcement_actions
+                for action in obj.enforcement_actions or []
             ]
         )
 
