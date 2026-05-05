@@ -2055,11 +2055,11 @@ msgstr "選擇分類"
 
 #: src/olympia/devhub/forms.py:1760
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "讓您的附加元件符合規定的技術支援"
 
 #: src/olympia/devhub/forms.py:1761
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "與 addons.mozilla.org 相關的問題"
 
 #: src/olympia/devhub/forms.py:1767 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2457,7 +2457,7 @@ msgstr "獲得擴充套件與佈景主題的支援"
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "請使用此表單獲得有關您的帳號、政策合規等議題的技術支援。您若能提供提供越多細節，我們就越簡單能協助您。若需有關附加元件審核的相關問題，請參考您附加元件的版本紀錄，我們會盡快回覆您。"
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
