@@ -24,7 +24,7 @@ msgstr "عنوان البريد الإلكتروني"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "البريد إلكتروني المقدم غير صالح."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
@@ -36,7 +36,7 @@ msgstr ""
 
 #: src/olympia/abuse/models.py:1123
 msgid "User profile"
-msgstr ""
+msgstr "ملف المستخدم"
 
 #: src/olympia/abuse/models.py:1497
 #, python-brace-format
@@ -305,7 +305,7 @@ msgstr ""
 
 #: src/olympia/addons/fields.py:297
 msgid "Unknown min app version specified"
-msgstr ""
+msgstr "حُدّد إصدار أدنى غير معروف للتطبيق"
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325 src/olympia/addons/serializers.py:660
 #, python-format
@@ -323,15 +323,15 @@ msgstr "مُدرجة"
 
 #: src/olympia/addons/serializers.py:345
 msgid "Built in licenses can not be updated."
-msgstr ""
+msgstr "لا يمكن تحديث التراخيص المضمنة."
 
 #: src/olympia/addons/serializers.py:540
 msgid "Upload is not valid."
-msgstr ""
+msgstr "الرفع غير صالح."
 
 #: src/olympia/addons/serializers.py:556
 msgid "File is already disabled."
-msgstr ""
+msgstr "الملف معطّل مسبقًا."
 
 #: src/olympia/addons/serializers.py:560 src/olympia/addons/views.py:771
 #, python-format

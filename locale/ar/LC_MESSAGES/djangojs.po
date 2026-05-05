@@ -22,7 +22,6 @@ msgid "Select a file..."
 msgstr "اختر ملفًا…"
 
 #: static/js/common/upload-addon.js:82
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "يجب أن ينتهي اسم الإضافة بأحد الآتي: ‎.zip أو ‎.xpi أو ‎.crx أو ‎.xml"
 
@@ -106,7 +105,7 @@ msgstr "خطأ في الخادوم غير متوقّع أثناء التثبّت
 
 #: static/js/common/upload-addon.js:519
 msgid "Explicitly marked as compatible with Firefox for Android in the manifest"
-msgstr ""
+msgstr "مُحددة صراحةً على أنها متوافقة مع Firefox لنظام أندرويد في ملف الـ manifest"
 
 #: static/js/common/upload-addon.js:561
 #, python-brace-format
@@ -313,13 +312,13 @@ msgstr "التطبيقات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:48
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Countries, last {0} days"
 msgstr "المساهمات في آخر {0} من الأيام"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:50
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Countries from {0} to {1}"
 msgstr "المساهمات من {0} إلى {1}"
 
@@ -373,15 +372,15 @@ msgstr "مصادر التنزيل من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:78
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums, last {0} days"
-msgstr "التنزيلات في آخر {0} من الأيام"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 #: static/js/stats/csv_keys.js:80
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Download Mediums from {0} to {1}"
-msgstr "التنزيلات من {0} إلى {1}"
+msgstr ""
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:84
@@ -439,7 +438,7 @@ msgstr "أخرى"
 
 #: static/js/zamboni/devhub.js:196
 msgid "Copied"
-msgstr ""
+msgstr "نُسخ"
 
 #: static/js/zamboni/devhub.js:322
 msgid "Changes Saved"
