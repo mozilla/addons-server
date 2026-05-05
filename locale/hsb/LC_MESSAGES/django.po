@@ -2487,6 +2487,8 @@ msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Wužiwajće tutón formular za podpěru nastupajo na waše konto, problemy z konformnosću priwatnosće a wjace. Čim wjace podrobnosće dźěliće, ćim lóšo je za nas pomhać. Za prašenja wo přepruwowanjach "
+"swojich přidatkow, wobhladajće sej prošu wersijowu historiju swojich přidatkow. Informujemy was tak bórze kaž móžno."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
