@@ -208,3 +208,19 @@ file_upload_throttles = (
     BurstIPFileUploadThrottle,
     HourlyIPFileUploadThrottle,
 )
+
+
+class ContactSupportUserThrottle(GranularUserRateThrottle):
+    scope = 'user_contact_support'
+    rate = '10/day'
+
+
+class ContactSupportIPThrottle(GranularIPRateThrottle):
+    scope = 'ip_contact_support'
+    rate = '20/day'
+
+
+contact_support_throttles = (
+    ContactSupportUserThrottle,
+    ContactSupportIPThrottle,
+)
