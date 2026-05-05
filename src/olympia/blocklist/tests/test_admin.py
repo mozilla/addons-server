@@ -481,20 +481,16 @@ class TestBlocklistSubmissionAdmin(TestCase):
         doc = pq(response.content.decode('utf-8'))
         checkboxes = doc('input[name=changed_version_ids]')
 
-        assert len(checkboxes) == 4
+        assert len(checkboxes) == 5
         check_checkbox(checkboxes[0], ver)
         check_checkbox(checkboxes[1], ver_deleted)
         check_checkbox(checkboxes[2], ver_add_subm)
         check_checkbox(checkboxes[3], ver_other)
+        check_checkbox(checkboxes[4], ver_soft_block)
 
         # not a checkbox because blocked already and this is an add action
         assert doc(f'li[data-version-id="{ver_block.id}"]').text() == (
             f'{ver_block.version} (🛑 Hard-Blocked)'
-        )
-
-        # not a checkbox because (soft-)blocked already and this is an add action
-        assert doc(f'li[data-version-id="{ver_soft_block.id}"]').text() == (
-            f'{ver_soft_block.version} (⚠️ Soft-Blocked)'
         )
 
         # Now with an existing submission

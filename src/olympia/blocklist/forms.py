@@ -198,7 +198,7 @@ class BlocklistSubmissionForm(AMOModelForm):
         """Return whether or not the given version should be available as a
         choice for the action we're currently doing."""
         conditions = {
-            BlocklistSubmission.ACTIONS.ADDCHANGE: not version.is_blocked,
+            BlocklistSubmission.ACTIONS.ADDCHANGE: not version.is_hard_blocked,
             BlocklistSubmission.ACTIONS.DELETE: version.is_blocked,
             BlocklistSubmission.ACTIONS.HARDEN: version.is_soft_blocked,
             BlocklistSubmission.ACTIONS.SOFTEN: version.is_hard_blocked,
