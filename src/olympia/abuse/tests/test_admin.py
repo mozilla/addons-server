@@ -20,7 +20,7 @@ from olympia.amo.tests import (
     user_factory,
 )
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import AutoApprovalSummary, ReviewActionReason
+from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import VersionPreview
 
 
@@ -586,39 +586,29 @@ class TestCinderPolicyAdmin(TestCase):
             grant_permission(self.user, permission, 'Group')
         self.client.force_login(self.user)
 
-    def _make_list_request(self):
+    def _make_list_request(self, *, read_only=False):
         foo = CinderPolicy.objects.create(name='Foo', enforcement_actions=None)
         CinderPolicy.objects.create(
             name='Bar', parent=foo, uuid=uuid.uuid4(), enforcement_actions=[]
         )
-        zab = CinderPolicy.objects.create(
+        CinderPolicy.objects.create(
             name='Zab',
             parent=foo,
             uuid=uuid.uuid4(),
             enforcement_actions=['amo-disable-addon'],
         )
-        lorem = CinderPolicy.objects.create(
+        CinderPolicy.objects.create(
             name='Lorem',
             uuid=uuid.uuid4(),
             enforcement_actions=['amo-disable-addon', 'amo-ban-user'],
         )
         CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
-        ReviewActionReason.objects.create(
-            name='Attached to Zab', cinder_policy=zab, canned_response='.'
-        )
-        ReviewActionReason.objects.create(
-            name='Attached to Lorem', cinder_policy=lorem, canned_response='.'
-        )
-        ReviewActionReason.objects.create(
-            name='Also attached to Lorem', cinder_policy=lorem, canned_response='.'
-        )
 
-        with self.assertNumQueries(7):
+        with self.assertNumQueries(6):
             # - 2 savepoints (tests)
             # - 2 current user & groups
             # - 1 count cinder policies
             # - 1 cinder policies
-            # - 1 review action reasons
             response = self.client.get(self.list_url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -628,10 +618,6 @@ class TestCinderPolicyAdmin(TestCase):
             doc('#result_list td.field-pretty_enforcement_actions').text()
             == '- - Add-on disable, User ban - Add-on disable'
         )
-        assert (
-            doc('#result_list td.field-linked_review_reasons')[2].text_content()
-            == 'Also attached to Lorem\nAttached to Lorem'
-        )
         assert doc('#abuse_sync_cinder_policies')
         assert doc('#abuse_sync_cinder_policies')[0].attrib == {
             'formaction': self.sync_cinder_policies_url,
@@ -640,6 +626,11 @@ class TestCinderPolicyAdmin(TestCase):
             'id': 'abuse_sync_cinder_policies',
             'value': 'Sync from Cinder',
         }
+        assert len(
+            doc(
+                'input[id^="id_form-"][id$="-expose_in_reviewer_tools"][type="checkbox"]'
+            )
+        ) == (CinderPolicy.objects.count() if not read_only else 0)
 
     def test_list_no_permission(self):
         self.login(permission=None)
@@ -652,39 +643,7 @@ class TestCinderPolicyAdmin(TestCase):
 
     def test_list_with_view_permission(self):
         self.login(permission='CinderPolicies:View')
-        self._make_list_request()  # should be the same as with full permissions
-
-    def test_list_order_by_reviewreason(self):
-        foo = CinderPolicy.objects.create(name='Foo')
-        CinderPolicy.objects.create(name='Bar', parent=foo, uuid=uuid.uuid4())
-        zab = CinderPolicy.objects.create(name='Zab', parent=foo, uuid=uuid.uuid4())
-        lorem = CinderPolicy.objects.create(name='Lorem', uuid=uuid.uuid4())
-        CinderPolicy.objects.create(name='Ipsum', uuid=uuid.uuid4())
-        ReviewActionReason.objects.create(
-            name='Attached to Zab', cinder_policy=zab, canned_response='.'
-        )
-        ReviewActionReason.objects.create(
-            name='Attached to Lorem', cinder_policy=lorem, canned_response='.'
-        )
-
-        self.login()
-        with self.assertNumQueries(7):
-            # - 2 savepoints (tests)
-            # - 2 current user & groups
-            # - 1 count cinder policies
-            # - 1 cinder policies
-            # - 1 review action reasons
-            # Linked reason is the 3rd field, so we have to pass o=3 parameter
-            # to order on it.
-            response = self.client.get(self.list_url, {'o': '3'})
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('#result_list tbody tr')) == CinderPolicy.objects.count()
-        assert doc('#result_list td.field-name').text() == 'Foo Ipsum Bar Lorem Zab'
-        assert (
-            doc('#result_list td.field-linked_review_reasons')[4].text_content()
-            == 'Attached to Zab'
-        )
+        self._make_list_request(read_only=True)
 
     def _make_edit_request(self, expected_status_code):
         policy = CinderPolicy.objects.create(

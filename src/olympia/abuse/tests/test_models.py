@@ -2368,6 +2368,27 @@ class TestCinderPolicy(TestCase):
             ('?', None),
         ]
 
+    def test_manager_published(self):
+        published = CinderPolicy.objects.create(
+            name='Published Policy',
+            text='Published Policy Description',
+            uuid='published-uuid',
+            status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED,
+        )
+        CinderPolicy.objects.create(
+            name='Unpublished Policy',
+            text='Unpublished Policy Description',
+            uuid='unpublished-uuid',
+            status_in_cinder=CinderPolicy.POLICY_STATUSES.DRAFT,
+        )
+        no_status = CinderPolicy.objects.create(
+            name='No Status Policy',
+            text='No Status Policy Description',
+            uuid='no-status-uuid',
+            status_in_cinder=None,
+        )
+        assert list(CinderPolicy.objects.published()) == [published, no_status]
+
 
 class TestContentDecisionManager(TestCase):
     def test_held_for_2nd_level_approval(self):
@@ -3330,6 +3351,35 @@ class TestContentDecision(TestCase):
             expect_create_job_decision_call=False,
             expect_create_override_call=True,
         )
+
+    def test_report_to_cinder_missing_policies(self):
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+        )
+        # adding both of these policies to the decision but should not be sent to cinder
+        decision.policies.add(
+            CinderPolicy.objects.create(
+                name='deleted policy',
+                uuid='deleted-uuid',
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED,
+            )
+        )
+        decision.policies.add(
+            CinderPolicy.objects.create(
+                name='draft policy',
+                uuid='draft-uuid',
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.DRAFT,
+            )
+        )
+        self._test_report_to_cinder(
+            decision,
+            expect_create_decision_call=True,
+            expect_create_job_decision_call=False,
+            expect_create_override_call=False,
+        )
+        assert decision.policies.count() == 3  # the two above + one added in _test
 
     def _test_execute_action_ban_user_outcome(self, decision):
         self.assertCloseToNow(decision.action_date)

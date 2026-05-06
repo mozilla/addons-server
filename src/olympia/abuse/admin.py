@@ -376,20 +376,22 @@ class CinderPolicyAdmin(AMOModelAdmin):
         'text',
         'expose_in_reviewer_tools',
         'pretty_enforcement_actions',
-        'present_in_cinder',
+        'status_in_cinder',
     )
     list_display = (
         'uuid',
         'parent',
         'name',
-        'linked_review_reasons',
+        'status_in_cinder',
         'expose_in_reviewer_tools',
-        'present_in_cinder',
         'pretty_enforcement_actions',
         'text',
     )
     readonly_fields = tuple(set(fields) - {'expose_in_reviewer_tools'})
     ordering = ('parent__name', 'name')
+    list_filter = ['status_in_cinder', 'expose_in_reviewer_tools']
+    list_editable = ('expose_in_reviewer_tools',)
+
     list_select_related = ('parent',)
     view_on_site = False
 
@@ -424,9 +426,6 @@ class CinderPolicyAdmin(AMOModelAdmin):
             '<ul>{}</ul>',
             format_html_join('\n', '<li><a href="{}">{}</a></li>', review_reasons),
         )
-
-    def get_queryset(self, request):
-        return super().get_queryset(request).prefetch_related('reviewactionreason_set')
 
     def get_urls(self):
         def wrap(view):
