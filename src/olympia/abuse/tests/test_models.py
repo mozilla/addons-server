@@ -2244,20 +2244,12 @@ class TestCinderPolicy(TestCase):
         )
         assert parent_policy.full_text() == 'Parent Policy: Parent Description'
         assert (
-            parent_policy.full_text(text='Some Canned Response')
-            == 'Parent Policy: Some Canned Response'
-        )
-        assert (
             child_policy.full_text()
-            == 'Parent Policy, specifically Child Policy: Child {FOO} Description {BAR}'
+            == 'Parent Policy, specifically Child Policy: Child  Description '
         )
         assert (
             child_policy.full_text(values={'FOO': 'yes'})
-            == 'Parent Policy, specifically Child Policy: Child yes Description {BAR}'
-        )
-        assert (
-            child_policy.full_text(text='Canned Response')
-            == 'Parent Policy, specifically Child Policy: Canned Response'
+            == 'Parent Policy, specifically Child Policy: Child yes Description '
         )
 
     def test_get_full_texts(self):
@@ -2276,11 +2268,11 @@ class TestCinderPolicy(TestCase):
         values = {child_policy.uuid: {'FOO': 'egg'}}
         assert CinderPolicy.get_full_texts(policies) == [
             'Parent Policy: Parent Description',
-            'Parent Policy, specifically Child Policy: Child {FOO} Description {BAR}',
+            'Parent Policy, specifically Child Policy: Child  Description ',
         ]
         assert CinderPolicy.get_full_texts(policies, values=values) == [
             'Parent Policy: Parent Description',
-            'Parent Policy, specifically Child Policy: Child egg Description {BAR}',
+            'Parent Policy, specifically Child Policy: Child egg Description ',
         ]
 
     def test_without_parents_if_their_children_are_present(self):
@@ -4214,7 +4206,7 @@ class TestContentDecision(TestCase):
 
         assert decision.get_policy_texts() == [
             'policy a: Something 123.4 :rolleyes:',
-            'policy b: Other thing? with {MISSING}',
+            'policy b: Other thing? with ',
         ]
 
     def test_has_policy_text_in_comments(self):
