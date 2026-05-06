@@ -47,7 +47,11 @@ from olympia.amo.messages import DoubleSafe
 from olympia.amo.utils import slug_validator, verify_no_urls
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.models import APIKey, APIKeyConfirmation
-from olympia.api.throttling import CheckThrottlesFormMixin, addon_submission_throttles
+from olympia.api.throttling import (
+    CheckThrottlesFormMixin,
+    addon_submission_throttles,
+    contact_support_throttles,
+)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
@@ -1754,13 +1758,15 @@ class RollbackVersionForm(forms.Form):
         return self.has_listed or self.has_unlisted
 
 
-class SupportForm(forms.Form):
+class SupportForm(CheckThrottlesFormMixin, forms.Form):
     CATEGORY_CHOICES = [
         ('', _('Choose a category')),
         ('policy', _('Technical support for making your add-on compliant')),
         ('technical', _('Issue with addons.mozilla.org')),
         ('other', _('Other')),
     ]
+
+    throttle_classes = contact_support_throttles
 
     summary = forms.CharField(
         max_length=255,
@@ -1774,6 +1780,7 @@ class SupportForm(forms.Form):
         label=_('Select category'),
     )
     body = forms.CharField(
+        max_length=10000,
         widget=forms.Textarea(
             attrs={'rows': 8, 'placeholder': _('Give us more details about the issue')}
         ),
@@ -1781,6 +1788,6 @@ class SupportForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
-        kwargs.pop('user')
+        self.request = kwargs.pop('request')
         super().__init__(*args, **kwargs)
         self.label_suffix = ''

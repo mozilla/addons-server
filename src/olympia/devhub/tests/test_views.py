@@ -34,6 +34,7 @@ from olympia.amo.templatetags.jinja_helpers import (
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
+    get_random_ip,
     user_factory,
     version_factory,
 )
@@ -42,7 +43,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.decorators import dev_required
-from olympia.devhub.forms import APIKeyForm
+from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
 from olympia.devhub.tasks import validate
 from olympia.devhub.views import get_next_version_number
@@ -2811,6 +2812,21 @@ class TestSupportView(TestCase):
         form = response.context['form']
         assert form.errors
 
+    def test_post_invalid_fields_too_long(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            self.url,
+            {
+                'summary': 'x' * 256,
+                'category': 'technical',
+                'body': 'x' * 10001,
+            },
+        )
+        assert response.status_code == 200
+        form = response.context['form']
+        assert 'summary' in form.errors
+        assert 'body' in form.errors
+
     @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
     def test_post_success(self, mock_task):
         self.client.force_login(self.user)
@@ -2835,3 +2851,48 @@ class TestSupportView(TestCase):
         assert response.status_code == 200
         (payload,) = mock_task.call_args[0]
         assert payload['brand_id'] == 12345
+
+    def test_post_throttled_user(self):
+        self.client.force_login(self.user)
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(0, 10):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
+            response = self._post()
+        assert response.status_code == 200
+        form = response.context['form']
+        assert form.non_field_errors() == [
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        ]
+
+    def test_post_throttled_ip(self):
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(0, 20):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.url,
+                    user=user_factory(),
+                    remote_addr='5.6.7.8',
+                )
+            self.client.force_login(self.user)
+            response = self.client.post(
+                self.url,
+                {
+                    'summary': 'Something is broken',
+                    'category': 'technical',
+                    'body': 'Please help me fix this issue.',
+                },
+                REMOTE_ADDR='5.6.7.8',
+                HTTP_X_FORWARDED_FOR=f'5.6.7.8, {get_random_ip()}',
+            )
+        assert response.status_code == 200
+        form = response.context['form']
+        assert form.non_field_errors() == [
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        ]

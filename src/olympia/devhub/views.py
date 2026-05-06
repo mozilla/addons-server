@@ -2304,7 +2304,7 @@ def support(request):
 
     form = forms.SupportForm(
         request.POST or None,
-        user=request.user,
+        request=request,
     )
     if request.method == 'POST' and form.is_valid():
         payload = {
