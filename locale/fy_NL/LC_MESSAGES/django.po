@@ -2485,6 +2485,8 @@ msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Brûk dit formulier foar stipe oangeande jo account, problemen mei neilibjen fan belied en mear. Hoe mear details jo diele, hoe makliker it foar ús is om te helpen. Foar fragen oer jo resinsjes fan "
+"add-ons, sjoch de ferzjeskiednis fan jo add-on(s). Wy sille sa gau mooglik kontakt mei jo opnimme."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
