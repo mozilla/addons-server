@@ -5015,7 +5015,7 @@ class TestReview(ReviewBase):
         }
         alog = ActivityLog.objects.filter(contentdecisionlog__decision=decision).get()
         assert alog.details['policy_texts'] == [
-            'Bad thing: Policy with bad things and stuff! not {MISSING}'
+            'Bad thing: Policy with bad things and stuff! not '
         ]
 
     def test_form_error_persists_placeholder_values(self):

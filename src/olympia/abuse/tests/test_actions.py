@@ -370,13 +370,14 @@ class BaseTestContentAction:
         )
 
     def test_log_action_saves_policy_texts(self):
-        # update the policy with a placeholder - these are't supposed to be used with
-        # Cinder originated policy decisions, but testing the edge case.
+        # Update the policy with a placeholder - these aren't supposed to be
+        # used with Cinder originated policy decisions, but we should handle
+        # this gracefully.
         self.policy.update(text='This is {JUDGEMENT} thing')
         assert self.ActionClass(self.decision).log_action(
             amo.LOG.ADMIN_USER_UNBAN
         ).details['policy_texts'] == [
-            'Parent Policy, specifically Bad policy: This is {JUDGEMENT} thing'
+            'Parent Policy, specifically Bad policy: This is  thing'
         ]
         # change the decision to one that was made by an AMO reviewer
         self.decision.update(reviewer_user=user_factory())
