@@ -2473,7 +2473,7 @@ msgstr "Søk"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Få brukarstøtte for utvidingar og tema"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
