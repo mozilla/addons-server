@@ -298,6 +298,7 @@ class ScannerRule(AbstractScannerRule):
         'abuse.CinderPolicy',
         on_delete=models.SET_NULL,
         null=True,
+        blank=True,
         help_text=(
             'Policy used to automatically derive an action from when the rule hit.'
         ),
