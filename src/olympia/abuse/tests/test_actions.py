@@ -18,7 +18,6 @@ from olympia.activity.models import (
     ActivityLog,
     ActivityLogToken,
     AttachmentLog,
-    ReviewActionReasonLog,
 )
 from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
 from olympia.amo.tests import (
@@ -37,7 +36,6 @@ from olympia.core import set_user
 from olympia.files.models import File
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import ReviewActionReason
 from olympia.versions.models import VersionReviewerFlags
 
 from ..actions import (
@@ -970,26 +968,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
             'comments': self.decision.reasoning,
             'policy_texts': [self.policy.full_text()],
         }
-
-        # add a ReviewActionReason from a previous decision via the reviewer tools
-        reason = ReviewActionReason.objects.create(
-            name='reason 2',
-            is_active=True,
-            cinder_policy=self.policy,
-            canned_response='.',
-        )
-        ReviewActionReasonLog.objects.create(reason=reason, activity_log=activity)
-        new_activity = self.ActionClass(self.decision).log_action(
-            self.activity_log_action
-        )
-        assert new_activity.arguments == [
-            self.addon,
-            self.decision,
-            self.policy,
-            self.version,
-            self.old_version,
-            reason,
-        ]
 
     def test_log_action_human_review(self):
         assert (

@@ -589,8 +589,6 @@ def review(request, addon, channel=None):
     actions_comments = []
     # The actions for which we should display the delayed rejection fields.
     actions_delayable = []
-    # The actions for which we should display the reason select field.
-    actions_reasons = []
     # The actions for which we should display the resolve abuse reports checkbox
     actions_resolves_cinder_jobs = []
     # The actions for which we should display the cinder policy select field.
@@ -605,8 +603,6 @@ def review(request, addon, channel=None):
             actions_comments.append(key)
         if action.get('delayable', False):
             actions_delayable.append(key)
-        if action.get('allows_reasons', False):
-            actions_reasons.append(key)
         if action.get('enforcement_actions'):
             actions_policies.append(key)
         if action.get('resolves_cinder_jobs', False):
@@ -725,7 +721,6 @@ def review(request, addon, channel=None):
         actions_delayable=actions_delayable,
         actions_full=actions_full,
         actions_policies=actions_policies,
-        actions_reasons=actions_reasons,
         actions_resolves_cinder_jobs=actions_resolves_cinder_jobs,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,

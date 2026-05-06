@@ -359,7 +359,6 @@ class ContentActionDisableAddon(ContentAction):
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         from olympia.activity.models import AttachmentLog
-        from olympia.reviewers.models import ReviewActionReason
 
         human_review = bool(
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
@@ -372,13 +371,8 @@ class ContentActionDisableAddon(ContentAction):
         ):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
-        # While we still have ReviewActionReason in addition to ContentPolicy, re-add
-        # any instances from earlier activity logs (e.g. held action)
-        reasons = ReviewActionReason.objects.filter(
-            reviewactionreasonlog__activity_log__contentdecision__id=self.decision.id
-        )
         activity_log = super().log_action(
-            activity_log_action, *extra_args, *reasons, extra_details=extra_details
+            activity_log_action, *extra_args, extra_details=extra_details
         )
         # move any attachments to latest decision
         if attachment := AttachmentLog.objects.filter(

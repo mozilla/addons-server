@@ -9,11 +9,10 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
-import time_machine
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
-from olympia.activity.models import ActivityLog, CinderPolicyLog, ReviewActionReasonLog
+from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
     TestCase,
@@ -33,16 +32,11 @@ from olympia.ratings.models import Rating
 from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.versions.models import Version, VersionReviewerFlags
 
-from ..management.commands import (
-    auto_approve,
-    auto_reject,
-    backfill_reviewactionreasons_for_delayed_rejections,
-)
+from ..management.commands import auto_approve, auto_reject
 from ..models import (
     AutoApprovalNoValidationResultError,
     AutoApprovalSummary,
     NeedsHumanReview,
-    ReviewActionReason,
     get_reviewing_cache,
     set_reviewing_cache,
 )
@@ -1516,12 +1510,11 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         ).exists()
         self._ensure_auto_approval_until_next_approval_is_not_set()
 
-    def _test_reject_versions(self, *, activity_logs_to_keep=None, reasons=None):
+    def _test_reject_versions(self, *, activity_logs_to_keep=None, policies=None):
         if activity_logs_to_keep is None:
             activity_logs_to_keep = []
-        if reasons is None:
-            reasons = []
-        policies = [reason.cinder_policy for reason in reasons]
+        if policies is None:
+            policies = []
         another_pending_rejection = version_factory(addon=self.addon, version='2.0')
         version_review_flags_factory(
             version=another_pending_rejection,
@@ -1562,7 +1555,6 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             self.addon,
             self.version,
             another_pending_rejection,
-            *reasons,
             *policies,
             decision,
         ]
@@ -1606,22 +1598,17 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
-        review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0], canned_response='.'
-        )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,
             self.version,
-            review_action_reason,
+            *policies,
             details={'comments': 'Some cômments'},
             user=self.user,
         )
 
-        self._test_reject_versions(
-            activity_logs_to_keep=[log], reasons=[review_action_reason]
-        )
+        self._test_reject_versions(activity_logs_to_keep=[log], policies=policies)
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
@@ -1653,22 +1640,17 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             status=201,
         )
         policies = [CinderPolicy.objects.create(name='policy', uuid='12345678')]
-        review_action_reason = ReviewActionReason.objects.create(
-            cinder_policy=policies[0], canned_response='.'
-        )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         log = ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,
             self.version,
-            review_action_reason,
+            *policies,
             details={'comments': 'Some cômments'},
             user=self.user,
         )
 
-        self._test_reject_versions(
-            activity_logs_to_keep=[log], reasons=[review_action_reason]
-        )
+        self._test_reject_versions(activity_logs_to_keep=[log], policies=policies)
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
@@ -1703,12 +1685,6 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             CinderPolicy.objects.create(name='policy', uuid='12345678'),
             CinderPolicy.objects.create(name='policy 2', uuid='abcdef'),
         ]
-        review_action_reason = ReviewActionReason.objects.create(
-            name='A reason', cinder_policy=policies[0], canned_response='A'
-        )
-        review_action_reason2 = ReviewActionReason.objects.create(
-            name='Another reason', cinder_policy=policies[1], canned_response='B'
-        )
         cinder_job.pending_rejections.add(self.version.reviewerflags)
         # Create 2 ActivityLogs on different dates delay-rejecting that add-on,
         # with different comments.
@@ -1716,7 +1692,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,
             self.version,
-            review_action_reason,
+            policies[0],
             details={'comments': 'Some old cômments'},
             user=self.user,
             created=self.days_ago(1),
@@ -1725,15 +1701,15 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             amo.LOG.REJECT_VERSION_DELAYED,
             self.addon,
             self.version,
-            review_action_reason,
-            review_action_reason2,
+            policies[0],
+            policies[1],
             details={'comments': 'Some cômments'},
             user=self.user,
         )
         # Make sure to keep both logs when calling test_reject_versions
         self._test_reject_versions(
             activity_logs_to_keep=[old_log, log],
-            reasons=[review_action_reason, review_action_reason2],
+            policies=policies,
         )
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
@@ -2017,225 +1993,3 @@ class TestAutoRejectTransactions(AutoRejectTestsMixin, TransactionTestCase):
         assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
         assert 'right to appeal' in mail.outbox[1].body
-
-
-@time_machine.travel(
-    backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE, tick=False
-)
-class TestBackfillReviewactionreasonsForDelayedRejections(TestCase):
-    def check_log(self, alog, reasons, policies):
-        alog.reload()
-        assert sorted(
-            alog.reviewactionreasonlog_set.values_list('reason', flat=True)
-        ) == [reason.id for reason in reasons]
-        assert sorted(
-            alog.cinderpolicylog_set.values_list('cinder_policy', flat=True)
-        ) == [policy.id for policy in policies]
-        for reason in reasons:
-            assert ReviewActionReason(id=reason.id) in alog.arguments
-        for policy in policies:
-            assert CinderPolicy(id=policy.id) in alog.arguments
-
-    def check_decision(self, decision, policies):
-        assert list(decision.policies.all()) == policies
-
-    def _test_basic(self, delayed_activity_class, after_activity_class):
-        # basic case - a rejection that didn't have any reasons, that was preceeded by a
-        # delayed rejection
-        addon = addon_factory()
-        version_1 = addon.current_version
-        version_2 = version_factory(addon=addon)
-        user = user_factory()
-
-        policy_1 = CinderPolicy.objects.create(uuid='1', name='the policy')
-        policy_2 = CinderPolicy.objects.create(uuid='2', name='another policy')
-        warning_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON, addon=addon
-        )
-        warning_decision.policies.set((policy_1,))
-        reason_1 = ReviewActionReason.objects.create(
-            name='the reason', canned_response='why', cinder_policy=policy_1
-        )
-        reason_2 = ReviewActionReason.objects.create(
-            name='another reason',
-            canned_response='why!?',
-        )
-        ActivityLog.objects.create(
-            delayed_activity_class,
-            addon,
-            version_1,
-            reason_1,
-            policy_1,
-            warning_decision,
-            user=user,
-        )
-        ActivityLog.objects.create(
-            delayed_activity_class,
-            addon,
-            version_2,
-            reason_2,
-            policy_2,
-            warning_decision,
-            user=user,
-        )
-        override_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            addon=addon,
-            override_of=warning_decision,
-        )
-        rejected = ActivityLog.objects.create(
-            after_activity_class,
-            addon,
-            version_1,
-            version_2,
-            override_decision,
-            user=user,
-        )
-
-        call_command('backfill_reviewactionreasons_for_delayed_rejections')
-
-        self.check_log(rejected, [reason_1, reason_2], [policy_1, policy_2])
-        self.check_decision(override_decision, [policy_1, policy_2])
-
-    def test_basic_content_rejection(self):
-        self._test_basic(
-            amo.LOG.REJECT_CONTENT_DELAYED,
-            amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED,
-        )
-
-    def test_basic_code_rejection(self):
-        self._test_basic(
-            amo.LOG.REJECT_VERSION_DELAYED,
-            amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED,
-        )
-
-    def test_multiple_rejections(self):
-        # A more complex case - there are multiple rejections, but we only want the one
-        # that immediately preceeded the expiration
-        addon = addon_factory()
-        user = user_factory()
-        today = datetime.now()
-        yesterday = today - timedelta(days=1)
-        two_days_ago = today - timedelta(days=2)
-        three_days_ago = today - timedelta(days=3)
-
-        # this is a previous rejection -possibly cancelled- so should be ignored
-        ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION_DELAYED,
-            addon,
-            addon.current_version,
-            ReviewActionReason.objects.create(name='previous', canned_response='hmm'),
-            CinderPolicy.objects.create(uuid='3', name='previous policy'),
-            user=user,
-            created=three_days_ago,
-        )
-        policy = CinderPolicy.objects.create(uuid='1', name='the policy')
-        warning_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON, addon=addon
-        )
-        warning_decision.policies.set((policy,))
-        reason = ReviewActionReason.objects.create(
-            name='the reason', canned_response='why', cinder_policy=policy
-        )
-        ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION_DELAYED,
-            addon,
-            addon.current_version,
-            reason,
-            policy,
-            warning_decision,
-            user=user,
-            created=two_days_ago,
-        )
-        override_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-            addon=addon,
-            override_of=warning_decision,
-        )
-        rejected = ActivityLog.objects.create(
-            amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED,
-            addon,
-            addon.current_version,
-            override_decision,
-            user=user,
-            created=yesterday,
-        )
-        # this is *after* the expiration, so should be ignored
-        ActivityLog.objects.create(
-            amo.LOG.REJECT_VERSION_DELAYED,
-            addon,
-            addon.current_version,
-            ReviewActionReason.objects.create(name='another', canned_response='hmm'),
-            CinderPolicy.objects.create(uuid='2', name='another policy'),
-            user=user,
-            created=today,
-        )
-
-        call_command('backfill_reviewactionreasons_for_delayed_rejections')
-
-        self.check_log(rejected, [reason], [policy])
-        self.check_decision(override_decision, [policy])
-
-    def test_too_old_and_too_new(self):
-        addon = addon_factory()
-        version = addon.current_version
-        user = user_factory()
-        date_within = (
-            backfill_reviewactionreasons_for_delayed_rejections.Command.MAX_DATE
-        )
-        date_after = date_within + timedelta(minutes=1)
-        date_before = (
-            backfill_reviewactionreasons_for_delayed_rejections.Command.MIN_DATE
-            - timedelta(minutes=1)
-        )
-
-        policy = CinderPolicy.objects.create(uuid='1', name='the policy')
-        warning_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON, addon=addon
-        )
-        warning_decision.policies.set((policy,))
-        reason = ReviewActionReason.objects.create(
-            name='the reason', canned_response='why', cinder_policy=policy
-        )
-        with time_machine.travel(date_after, tick=False):
-            delayed = ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                reason,
-                policy,
-                warning_decision,
-                user=user,
-            )
-            override_decision = ContentDecision.objects.create(
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-                addon=addon,
-                override_of=warning_decision,
-            )
-            rejected = ActivityLog.objects.create(
-                amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED,
-                addon,
-                version,
-                override_decision,
-                user=user,
-            )
-
-        call_command('backfill_reviewactionreasons_for_delayed_rejections')
-        self.check_log(rejected, [], [])
-        self.check_decision(override_decision, [])
-
-        delayed.update(created=date_before)
-        rejected.update(created=date_before)
-        CinderPolicyLog.objects.update(created=date_before)
-        ReviewActionReasonLog.objects.update(created=date_before)
-        call_command('backfill_reviewactionreasons_for_delayed_rejections')
-        self.check_log(rejected, [], [])
-        self.check_decision(override_decision, [])
-
-        delayed.update(created=date_within)
-        rejected.update(created=date_within)
-        CinderPolicyLog.objects.update(created=date_within)
-        ReviewActionReasonLog.objects.update(created=date_within)
-        call_command('backfill_reviewactionreasons_for_delayed_rejections')
-        self.check_log(rejected, [reason], [policy])
-        self.check_decision(override_decision, [policy])

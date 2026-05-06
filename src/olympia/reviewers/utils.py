@@ -17,7 +17,7 @@ from olympia import amo
 from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
-from olympia.activity.models import ActivityLog, AttachmentLog, ReviewActionReasonLog
+from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.utils import notify_about_activity_log
 from olympia.addons.models import (
     Addon,
@@ -556,8 +556,6 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
-        use_policies = waffle.switch_is_active('cinder_policy_review_reasons_enabled')
-
         # Definitions for all actions.
         actions['public'] = {
             'method': self.handler.approve_latest_version,
@@ -575,13 +573,10 @@ class ReviewHelper:
                 and (is_appropriate_reviewer or not self.human_review)
                 and not version_is_blocked
             ),
-            'allows_reasons': not is_static_theme and not use_policies,
             'enforcement_actions': (
-                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+                not is_static_theme and (DECISION_ACTIONS.AMO_APPROVE,)
             ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': False,
-            'requires_reasons_for_cinder_jobs': False,
             'boilerplate_text': 'Thank you for your contribution.',
             'can_attach': True,
         }
@@ -603,17 +598,12 @@ class ReviewHelper:
                 and version_is_unreviewed
                 and is_appropriate_reviewer
             ),
-            'allows_reasons': not use_policies,
             'enforcement_actions': (
-                use_policies
-                and (
-                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                    DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-                )
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme and not use_policies,
-            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['approve_listing_content'] = {
             'method': self.handler.approve_listing_content,
@@ -631,7 +621,7 @@ class ReviewHelper:
                 and is_appropriate_reviewer
             ),
             'enforcement_actions': (
-                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+                not is_static_theme and (DECISION_ACTIONS.AMO_APPROVE,)
             ),
             'resolves_cinder_jobs': True,
         }
@@ -652,7 +642,7 @@ class ReviewHelper:
                 and is_appropriate_reviewer
             ),
             'enforcement_actions': (
-                not is_static_theme and use_policies and (DECISION_ACTIONS.AMO_APPROVE,)
+                not is_static_theme and (DECISION_ACTIONS.AMO_APPROVE,)
             ),
             'resolves_cinder_jobs': True,
         }
@@ -671,18 +661,13 @@ class ReviewHelper:
                 and addon_is_valid_and_version_is_listed
                 and is_appropriate_reviewer
             ),
-            'allows_reasons': not is_static_theme and not use_policies,
             'enforcement_actions': (
-                use_policies
-                and (
-                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                    DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-                    DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
-                )
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme and not use_policies,
-            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
@@ -712,11 +697,8 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': (can_approve_multiple),
-            'allows_reasons': not is_static_theme and not use_policies,
-            'enforcement_actions': (use_policies and (DECISION_ACTIONS.AMO_APPROVE,)),
+            'enforcement_actions': (DECISION_ACTIONS.AMO_APPROVE,),
             'resolves_cinder_jobs': True,
-            'requires_reasons': False,
-            'requires_reasons_for_cinder_jobs': False,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -729,17 +711,12 @@ class ReviewHelper:
                 'The comments will be sent to the developer.'
             ),
             'available': can_reject_multiple,
-            'allows_reasons': not use_policies,
             'enforcement_actions': (
-                use_policies
-                and (
-                    DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                    DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
-                )
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme and not use_policies,
-            'requires_reasons_for_cinder_jobs': not use_policies,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -874,8 +851,6 @@ class ReviewHelper:
                 and is_reviewer
                 and (not any(promoted_group.admin_review) or is_appropriate_reviewer)
             ),
-            'allows_reasons': not is_static_theme,
-            'requires_reasons': False,
         }
         actions['request_admin_review'] = {
             'method': self.handler.request_admin_review,
@@ -925,13 +900,8 @@ class ReviewHelper:
             'available': (
                 addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
             ),
-            'allows_reasons': not use_policies,
-            'enforcement_actions': (
-                use_policies and (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
-            ),
+            'enforcement_actions': (DECISION_ACTIONS.AMO_DISABLE_ADDON,),
             'resolves_cinder_jobs': True,
-            'requires_reasons': not is_static_theme and not use_policies,
-            'requires_reasons_for_cinder_jobs': not use_policies,
             'can_attach': False,
         }
         actions['resolve_reports_job'] = {
@@ -1113,18 +1083,8 @@ class ReviewBase:
         assert not log_action_kw or action_completed
         decision_metadata = decision_metadata or {}
         log_action_kw = log_action_kw or {}
-        reasons = (
-            self.data.get('reasons', [])
-            if self.review_action and self.review_action.get('allows_reasons')
-            else []
-        )
-        policies = [
-            reason.cinder_policy
-            for reason in reasons
-            if getattr(reason, 'cinder_policy', None)
-        ]
         if self.review_action and self.review_action.get('enforcement_actions'):
-            policies.extend(self.data.get('cinder_policies', []))
+            policies = self.data.get('cinder_policies', [])
             if 'policy_values' in self.data:
                 # We want to strip out empty values -
                 # both where the reviewer has provided no value, and unselected policies
@@ -1133,6 +1093,8 @@ class ReviewBase:
                     for uuid_, vals in self.data['policy_values'].items()
                     if (trimmed := {k: v for k, v in vals.items() if v})
                 }
+        else:
+            policies = []
 
         cinder_action = getattr(activity_action, 'cinder_action', None)
         if not cinder_action and policies:
@@ -1195,7 +1157,6 @@ class ReviewBase:
             log_entry = self.log_action(
                 activity_action,
                 decisions=decisions,
-                reasons=reasons,
                 policies=policies,
                 versions=versions,
                 **log_action_kw,
@@ -1214,10 +1175,6 @@ class ReviewBase:
                 notify_owners = True
                 log_entry = log_entry_for_decision
                 if not action_completed:
-                    ReviewActionReasonLog.objects.bulk_create(
-                        ReviewActionReasonLog(reason=reason, activity_log=log_entry)
-                        for reason in reasons
-                    )
                     self.log_attachment(log_entry)
                     if update_queue_history:
                         self.update_queue_history(log_entry)
@@ -1283,7 +1240,6 @@ class ReviewBase:
         user=None,
         extra_details=None,
         decisions=None,
-        reasons=None,
         policies=None,
     ):
         details = {
@@ -1310,7 +1266,7 @@ class ReviewBase:
         if timestamp is None:
             timestamp = datetime.now()
 
-        args = (*args, *(reasons or ()), *(policies or ()), *(decisions or ()))
+        args = (*args, *(policies or ()), *(decisions or ()))
         kwargs = {'user': user or self.user, 'created': timestamp, 'details': details}
         log_entry = ActivityLog.objects.create(action, *args, **kwargs)
         self.log_attachment(log_entry)

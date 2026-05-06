@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime, timedelta
 
 from django.core.files.base import ContentFile
@@ -6,7 +5,6 @@ from django.utils.encoding import force_str
 
 import time_machine
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import (
@@ -33,11 +31,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..forms import HeldDecisionReviewForm, ReviewForm, ReviewQueueFilter
-from ..models import (
-    AutoApprovalSummary,
-    NeedsHumanReview,
-    ReviewActionReason,
-)
+from ..models import AutoApprovalSummary, NeedsHumanReview
 from ..utils import ReviewHelper
 
 
@@ -229,195 +223,6 @@ class TestReviewForm(TestCase):
             'comment',
         ]
 
-    def test_reasons(self):
-        self.reason_a = ReviewActionReason.objects.create(
-            name='a reason',
-            is_active=True,
-            canned_response='Canned response for A',
-        )
-        self.inactive_reason = ReviewActionReason.objects.create(
-            name='b inactive reason',
-            is_active=False,
-            canned_response='Canned response for B',
-        )
-        self.reason_c = ReviewActionReason.objects.create(
-            name='c reason',
-            is_active=True,
-            canned_response='Canned response for C',
-        )
-        self.reason_d = ReviewActionReason.objects.create(
-            name='d reason',
-            is_active=True,
-            canned_response='Canned response for D',
-            cinder_policy=CinderPolicy.objects.create(
-                uuid=uuid.uuid4(), name='Lone Policy', text='Lone Policy Description'
-            ),
-        )
-        self.reason_e = ReviewActionReason.objects.create(
-            name='e reason',
-            is_active=True,
-            canned_response='Canned response for E',
-            cinder_policy=CinderPolicy.objects.create(
-                uuid=uuid.uuid4(),
-                name='Nested Policy',
-                text='Nested Policy Description',
-                parent=CinderPolicy.objects.create(
-                    uuid=uuid.uuid4(),
-                    name='Parent Policy',
-                    text='Parent Policy Description',
-                ),
-            ),
-        )
-        self.empty_reason = ReviewActionReason.objects.create(
-            name='d reason',
-            is_active=True,
-            canned_block_reason='block',
-        )
-        form = self.get_form()
-        choices = form.fields['reasons'].choices
-        assert len(choices) == 4  # Only active reasons
-        # Reasons are displayed in alphabetical order.
-        assert list(choices.queryset)[0] == self.reason_a
-        assert list(choices.queryset)[1] == self.reason_c
-        assert list(choices.queryset)[2] == self.reason_d
-        assert list(choices.queryset)[3] == self.reason_e
-
-        # Assert that the canned_response is written to data-value of the
-        # checkboxes.
-        doc = pq(str(form['reasons']))
-        assert doc('input')[0].attrib.get('data-value') == '- Canned response for A\n'
-        assert doc('input')[1].attrib.get('data-value') == '- Canned response for C\n'
-        assert (
-            doc('input')[2].attrib.get('data-value')
-            == '- Lone Policy: Canned response for D\n'
-        )
-        assert (
-            doc('input')[3].attrib.get('data-value')
-            == '- Parent Policy, specifically Nested Policy: Canned response for E\n'
-        )
-
-    def test_reasons_by_type(self):
-        self.reason_all = ReviewActionReason.objects.create(
-            name='A reason for all add-on types',
-            is_active=True,
-            addon_type=amo.ADDON_ANY,
-            canned_response='all',
-        )
-        self.reason_extension = ReviewActionReason.objects.create(
-            name='An extension only reason',
-            is_active=True,
-            addon_type=amo.ADDON_EXTENSION,
-            canned_response='extension',
-        )
-        self.reason_theme = ReviewActionReason.objects.create(
-            name='A theme only reason',
-            is_active=True,
-            addon_type=amo.ADDON_STATICTHEME,
-            canned_response='theme',
-        )
-        form = self.get_form()
-        choices = form.fields['reasons'].choices
-        # By default the addon is an extension.
-        assert self.addon.type == amo.ADDON_EXTENSION
-        assert len(choices) == 2
-        assert list(choices.queryset)[0] == self.reason_all
-        assert list(choices.queryset)[1] == self.reason_extension
-
-        # Change the addon to a theme.
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        form = self.get_form()
-        choices = form.fields['reasons'].choices
-        assert len(choices) == 2
-        assert list(choices.queryset)[0] == self.reason_all
-        assert list(choices.queryset)[1] == self.reason_theme
-
-    def test_reasons_not_required_for_reply_but_versions_is(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
-        form = self.get_form()
-        assert not form.is_bound
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'comments': 'lol',
-                'versions': [self.version.pk],
-            }
-        )
-        assert form.helper.actions['reply']['requires_reasons'] is False
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
-
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'comments': 'lol',
-            }
-        )
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {
-            'versions': ['This field is required.'],
-        }
-
-    def test_reasons_required_for_reject_multiple_versions(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
-        form = self.get_form()
-        assert not form.is_bound
-        form = self.get_form(
-            data={
-                'action': 'reject_multiple_versions',
-                'comments': 'lol',
-                'versions': self.addon.versions.all(),
-                'delayed_rejection': 'False',
-            }
-        )
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {'reasons': ['This field is required.']}
-
-    def test_reasons_optional_for_public(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        form = self.get_form()
-        assert not form.is_bound
-        form = self.get_form(
-            data={
-                'action': 'public',
-                'comments': 'lol',
-            }
-        )
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
-
-    def test_reasons_required_with_cinder_jobs(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        job = CinderJob.objects.create(
-            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
-        )
-        reason = ReviewActionReason.objects.create(name='A reason', canned_response='a')
-        form = self.get_form()
-        assert not form.is_bound
-        data = {'action': 'reject', 'comments': 'lol', 'cinder_jobs_to_resolve': [job]}
-        form = self.get_form(data=data)
-        assert form.is_bound
-        assert not form.is_valid()
-        assert form.errors == {'reasons': ['This field is required.']}
-
-        data['reasons'] = [reason]
-        form = self.get_form(data=data)
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
-
-    def test_reasons_required_with_cinder_jobs_theme_too(self):
-        self.grant_permission(self.request.user, 'Addons:ThemeReview')
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.test_reasons_required_with_cinder_jobs()
-
     def test_policies_required_with_cinder_jobs(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -448,7 +253,6 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
 
-    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_comments_optional_for_actions_with_enforcement_actions(self):
         policy = CinderPolicy.objects.create(
             uuid='xxx',
@@ -469,7 +273,6 @@ class TestReviewForm(TestCase):
             assert form.is_valid(), form.errors
             assert not form.errors
 
-    @override_switch('cinder_policy_review_reasons_enabled', active=True)
     def test_policy_values_parsed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -779,55 +582,23 @@ class TestReviewForm(TestCase):
         assert doc('input')[3].attrib.get('data-value') is None
         assert doc('input')[4].attrib.get('data-value') is None
 
-    def test_comments_and_action_required_by_default(self):
+    def test_action_required_by_default(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         form = self.get_form()
         assert not form.is_bound
         form = self.get_form(
             data={
-                'reasons': [
-                    ReviewActionReason.objects.create(
-                        name='reason 1',
-                        is_active=True,
-                        canned_response='reason 1',
-                    )
-                ],
                 'cinder_policies': [
                     CinderPolicy.objects.create(
-                        uuid='1',
-                        name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        uuid='1', name='policy 1', expose_in_reviewer_tools=True
                     )
                 ],
+                'comments': '.',
             }
         )
         assert form.is_bound
         assert not form.is_valid()
-        assert form.errors == {
-            'action': ['This field is required.'],
-            'comments': ['This field is required.'],
-        }
-
-        # Alter the action to make it not require comments to be sent
-        # regardless of what the action actually is, what we want to test is
-        # the form behaviour.
-        form = self.get_form(
-            data={
-                'action': 'reply',
-                'reasons': [
-                    ReviewActionReason.objects.create(
-                        name='reason 1',
-                        is_active=True,
-                        canned_response='reason 1',
-                    )
-                ],
-                'versions': [self.version.pk],
-            }
-        )
-        form.helper.actions['reply']['comments'] = False
-        assert form.is_bound
-        assert form.is_valid()
-        assert not form.errors
+        assert form.errors == {'action': ['This field is required.']}
 
     def test_versions_queryset(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -1191,11 +962,11 @@ class TestReviewForm(TestCase):
             data={
                 'action': 'reject_multiple_versions',
                 'comments': 'lol',
-                'reasons': [
-                    ReviewActionReason.objects.create(
-                        name='reason 1',
-                        is_active=True,
-                        canned_response='reason 1',
+                'cinder_policies': [
+                    CinderPolicy.objects.create(
+                        uuid='1',
+                        name='policy 1',
+                        expose_in_reviewer_tools=True,
                     )
                 ],
                 'delayed_rejection': 'False',
@@ -1279,17 +1050,18 @@ class TestReviewForm(TestCase):
     @time_machine.travel('2025-01-23 12:52', tick=False)
     def test_delayed_rejection_days_value_not_in_the_future(self):
         self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
-        self.reason_a = ReviewActionReason.objects.create(
-            name='a reason',
-            is_active=True,
-            canned_response='Canned response for A',
-        )
         data = {
             'action': 'reject_multiple_versions',
             'comments': 'foo!',
             'delayed_rejection': 'True',
             'delayed_rejection_date': '2025-01-23T12:52',
-            'reasons': [self.reason_a.pk],
+            'cinder_policies': [
+                CinderPolicy.objects.create(
+                    uuid='1',
+                    name='policy 1',
+                    expose_in_reviewer_tools=True,
+                )
+            ],
             'versions': [self.version.pk],
         }
         form = self.get_form(data=data)
@@ -1304,15 +1076,16 @@ class TestReviewForm(TestCase):
 
     def test_delayable_action_missing_fields(self):
         self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
-        self.reason_a = ReviewActionReason.objects.create(
-            name='a reason',
-            is_active=True,
-            canned_response='Canned response for A',
-        )
         data = {
             'action': 'reject_multiple_versions',
             'comments': 'foo!',
-            'reasons': [self.reason_a.pk],
+            'cinder_policies': [
+                CinderPolicy.objects.create(
+                    uuid='1',
+                    name='policy 1',
+                    expose_in_reviewer_tools=True,
+                )
+            ],
             'versions': [self.version.pk],
         }
         form = self.get_form(data=data)
@@ -1609,9 +1382,8 @@ class TestReviewForm(TestCase):
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        with override_switch('cinder_policy_review_reasons_enabled', active=True):
-            self.grant_permission(self.request.user, 'Addons:Review')
-            form = self.get_form()
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
 
         content = str(form['cinder_policies'])
         doc = pq(content)
@@ -1645,9 +1417,8 @@ class TestReviewForm(TestCase):
             text='No placeholders here',
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        with override_switch('cinder_policy_review_reasons_enabled', active=True):
-            self.grant_permission(self.request.user, 'Addons:Review')
-            form = self.get_form()
+        self.grant_permission(self.request.user, 'Addons:Review')
+        form = self.get_form()
 
         content = str(form['policy_values'])
         doc = pq(content)
