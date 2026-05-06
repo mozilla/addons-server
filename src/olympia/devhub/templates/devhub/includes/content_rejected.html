@@ -12,7 +12,11 @@
     </div>
     <div class="request-review">
         <p>{{ _('To address these issues, please update your listing and request another review of the content.') }}</p>
-        {% if rejection_review_requested %}
+        {% if has_appeal_already %}
+            <button class="disabled" disabled>
+                {{ _('Appeal already made') }}
+            </button>
+        {% elif rejection_review_requested %}
             <button class="disabled" disabled>
                 {{ _('Review requested already, awaiting review') }}
             </button>
