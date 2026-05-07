@@ -2285,6 +2285,28 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         )
         self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
 
+    def test_approve_appeal_success_followup_with_multiple_followups(self):
+        self.past_negative_decision.update(
+            appeal_job=self.cinder_job, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        ContentDecisionFollowupAction.objects.create(
+            decision=self.past_negative_decision,
+            action=self.takedown_decision_action,
+            action_date=datetime.now(),
+        )
+        # These follow-up actions are redundant, but shouldn't cause errors.
+        ContentDecisionFollowupAction.objects.create(
+            decision=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON,
+            action_date=datetime.now(),
+        )
+        ContentDecisionFollowupAction.objects.create(
+            decision=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON,
+            action_date=datetime.now(),
+        )
+        self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
+
     def test_approve_override_success_followup(self):
         self.decision.update(override_of=self.past_negative_decision)
         self.past_negative_decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)

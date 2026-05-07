@@ -19,7 +19,7 @@ from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFla
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import BlocklistSubmission, BlockType
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockType
 from olympia.blocklist.utils import delete_versions_from_blocks, save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
@@ -742,6 +742,18 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
                 f'{self.__class__.__name__} requires delay_days to be set'
             )
 
+    @classmethod
+    def get_existing_blocks_from_decision(cls, decision):
+        """Get existing blocks for the decision's target and cache them on the decision.
+        We're caching them on the decision to avoid hitting the database multiple times
+        when reversing a decision, and because get_blocks_from_guids uses replicas, so
+        the data can be stale when we're running in a transaction"""
+        if not hasattr(decision, '_existing_blocks'):
+            decision._existing_blocks = Block.get_blocks_from_guids(
+                [decision.target.guid]
+            )
+        return decision._existing_blocks
+
     def process_action(self, release_hold=False):
         versions_qs = self.versions_block_will_affect
         # if this is a followup action, and the primary action is rejecting specific
@@ -795,7 +807,7 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
         )
         delete_versions_from_blocks(
-            [guid],
+            cls.get_existing_blocks_from_decision(original_decision),
             BlocklistSubmission(
                 input_guids=guid,
                 action=BlocklistSubmission.ACTIONS.DELETE,
