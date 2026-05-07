@@ -596,7 +596,7 @@ msgstr "Meca"
 msgid ""
 "<h1>Oops! We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. You can also help us fix "
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
-msgstr "<h1>¡Meca!  Tuviemos un fallu.</h1> <p>Vamos igualu ceo.</p> <p> Pues tentar de refrescar la páxina o volver pa la <a href=\"%(home)s\">páxina d'aniciu de los complementos</a>. </p>"
+msgstr ""
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49

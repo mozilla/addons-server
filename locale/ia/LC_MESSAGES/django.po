@@ -652,7 +652,7 @@ msgid ""
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 "<h1>Ups!  Nos habeva un error.</h1> <p>Nos lo remediara tosto.</p> <p> Tu pote provar a refrescar le pagina, o receder al <a href=\"%(home)s\">Pagina principal del additivos</a>. </p> Tu pote alsi "
-"adjutar nos a remediar isto per <a href=\"https://github.com/mozilla/additivos/problemas/nove\">signalante un problema</a> con le detalios de como tu recipeva iste pagina."
+"adjutar nos a remediar isto per <a href=\"https://github.com/mozilla/addons/issues/new\">signalante un problema</a> con le detalios de como tu recipeva iste pagina."
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -2007,7 +2007,7 @@ msgstr "Cura que nomine e summario combinate non supera {limit_value} charactere
 #: src/olympia/devhub/forms.py:1411
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr "Sur iste sito. <span classe=\"helptext\">Tu invio es listate publicamente sur {site_domain}.</span>"
+msgstr "Sur iste sito. <span class=\"helptext\">Tu invio es listate publicamente sur {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1418
 #, python-brace-format
@@ -3450,7 +3450,7 @@ msgstr "Pro comenciar, elige como tu vole distribuer iste version."
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:19
 #, python-format
 msgid "You can learn more about these options by reading <a %(a_attrs)s>Add-on Distribution and Signing</a> on Firefox Extension Workshop."
-msgstr "Tu pote saper plus re iste optiones legente <a %(a_attrs)ss>Distribution e signatura de additivos</a> sur le Seminario de extensiones de Firefox."
+msgstr "Tu pote saper plus re iste optiones legente <a %(a_attrs)s>Distribution e signatura de additivos</a> sur le Seminario de extensiones de Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/distribute.html:24
 #, python-format

@@ -6944,7 +6944,7 @@ msgstr ""
 #: src/olympia/templates/user_login.html:24
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Rutz'ib'axik b'i'aj</a></a> o <a href=\"%(login)s\">Titikirisäx molojri'ïl</a>"
+msgstr "<a href=\"%(reg)s\">Rutz'ib'axik b'i'aj</a> o <a href=\"%(login)s\">Titikirisäx molojri'ïl</a>"
 
 #: src/olympia/templates/includes/forms.html:2
 msgid "Required fields"

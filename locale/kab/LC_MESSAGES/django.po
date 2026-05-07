@@ -592,7 +592,7 @@ msgid ""
 msgstr ""
 "<h1>Suref-aɣ, ur nezmir ara ad d-naf ayen tettnadiḍ.</h1> <p> Asebter neɣ afaylu i tebɣiḍ ulac-it deg usmel-nneɣ. Ahat tsiteḍ ɣef useɣwen yemmuten neɣ yegber tuccḍa. </p> <ul> <li>Ma yella turiḍ "
 "tansa, senqed-itt.</li> <li> La yella tḍefred aseɣwen, ma ulac aɣilif %(open_bug_link)sazen-d abug%(close_bug_link)s.. Ini-aɣ-d ansa d-tekkiḍ d wayen tettnadiḍ, ad neg ayen nezmer  akken ad nefru "
-"ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ izegrar</a> ?</li> <li> Tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ "
+"ugur. </li> </ul> <p>Tzemreḍ daɣen ad tedduḍ ar isebtar nneɣ izayazen.</p> <ul> <li>Ahat tebɣiḍ <a href=\"%(rec)s\">ad tnadiḍ izegrar</a> ?</li> <li> Tebɣiḍ <a href=\"%(search)s\">ad tnadiḍ "
 "izegrar</a>&nbsp;? Tzemreḍ ad tedduḍ ar <a href=\"%(search)s\">usebter n unadi</a> neɣ ad tesqedceḍ urti n unadi daw-a. </li> <li> Ma tebɣiḍ ad talseḍ, ddu ar <a href=\"%(home)s\">usebter agejdan n "
 "izegrar</a>. </li> </ul>"
 
@@ -607,7 +607,7 @@ msgid ""
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 "<h1>Ihuh! Teḍra-d tuccḍa.</h1> <p>Ad tt-nseɣti s zzerb.</p> <p> Tzemreḍ ad tɛerḍeḍ asali n usebter neɣ uɣal ɣer <a href=\"%(home)s\">usebter agejdan n yizegrar</a>. Tzemreḍ daɣen ad aɣ-talleḍ ad "
-"nefru ugur-a deg <a href=\"https://github.com/mozilla/addons/issues/new\">s tuzzna n wugur</p> s telqey amek d-tewwḍeḍ ɣer usebter-a. </p>"
+"nefru ugur-a deg <a href=\"https://github.com/mozilla/addons/issues/new\">s tuzzna n wugur</a> s telqey amek d-tewwḍeḍ ɣer usebter-a. </p>"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49
@@ -3471,7 +3471,7 @@ msgstr "Isarawen d yisemẓẓiyen n tengalt"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:29
 msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
-msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class = \"tech-emphasis\"> webpack </ span>"
+msgstr "Ifecka yessemlilin ifuyla yemgaraden deg yiwen ufaylu am <span class=\"tech-emphasis\">webpack </span>"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:31
 msgid "Web template engines, both for HTML and CSS"

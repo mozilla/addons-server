@@ -3708,8 +3708,6 @@ msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
 msgstr ""
-"Para executar chamadas autenticadas na <a %(a_attrs)s href=\"%(docs_url)s\">API</a> como um consumidor externo, você precisa incluir uma <a %(a_attrs)s href=\"%( jwt_url)s\">JSON Web Token (JWT)</a>"
-" no cabeçalho <code>Authorization</code> de todas as requisições."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
@@ -6950,7 +6948,7 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">indicado</a>, o conteúdo deste site está licenciado sob a <a href=\"https:/ /creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
+"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">indicado</a>, o conteúdo deste site está licenciado sob a <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
 "Attribution Share-Alike Licence v3.0</a> ou versão posterior."
 
 #: src/olympia/templates/user_login.html:24

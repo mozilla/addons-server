@@ -6963,8 +6963,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Hacsak másként nincs <a href=\"https://www.mozilla.org/about/legal/\">jelezve</a>, akkor az oldal tartalma a <a href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Nevezd meg! –"
-" Így add tovább! 3.0</a> (vagy újabb) verziójú licenc alatt érhető el."
+"Hacsak másként nincs <a href=\"https://www.mozilla.org/about/legal/\">jelezve</a>, akkor az oldal tartalma a <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Nevezd meg! "
+"– Így add tovább! 3.0</a> (vagy újabb) verziójú licenc alatt érhető el."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format

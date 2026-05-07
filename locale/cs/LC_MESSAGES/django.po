@@ -6946,7 +6946,7 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Není-li <a href=\"https://www.mozilla.org/about/legal/\">řečeno jinak</a>, obsah této stránky je dostupný pod licencí <a href=\"https://creativecommons.org /licenses/by-sa/3.0/\">Creative Commons "
+"Není-li <a href=\"https://www.mozilla.org/about/legal/\">řečeno jinak</a>, obsah této stránky je dostupný pod licencí <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons "
 "Attribution Share-Alike v3.0</a> nebo jakékoliv novější."
 
 #: src/olympia/templates/user_login.html:24

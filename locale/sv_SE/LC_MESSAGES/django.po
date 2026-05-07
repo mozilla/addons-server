@@ -635,7 +635,7 @@ msgid ""
 msgstr ""
 "<h1>Tyvärr, men vi kan inte hitta det du letar efter.</h1> <p> Sidan eller filen du ville nå hittades inte på vår webbplats. Det är möjligt att du klickade på en gammal länk eller skrev in adressen "
 "fel.</p> <ul> <li>Om du skrev in adressen, dubbelkolla stavningen.</li> <li>Om du följde en länk hit, vänligen %(open_bug_link)sanmäl det här%(close_bug_link)s. Berätta var du kom ifrån och vad du "
-"letade efter så ska vi göra vårt bästa för att fixa det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några av de mest populära sidorna på vår webbplats.</p>< ul> <li>Är du "
+"letade efter så ska vi göra vårt bästa för att fixa det (skriv på engelska).</li> </ul> <p>Eller så kan du hoppa över till några av de mest populära sidorna på vår webbplats.</p><ul> <li>Är du "
 "intresserad av <a href=\"%(rec)s\">en lista över utvalda tillägg</a>?</li> <li> Vill du <a href=\"%(search)s\">söka efter tillägg</a>? Då kan du gå till <a href=\"%(search)s\">söksidan</a> eller "
 "helt enkelt använda sökfältet ovan.</li> <li> Om du vill börja om behöver du bara gå till <a href=\"%(home)s\">startsidan för tillägg</a>. </li> </ul>"
 

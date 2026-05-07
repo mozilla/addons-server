@@ -2022,7 +2022,7 @@ msgid ""
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 "На ваш погляд. <span class=\"helptext\">Після підписання вашого повідомлення Mozilla, ви можете завантажити файл .xpi з Центру розробників і розповсюдити його серед своєї аудиторії. Переконайтеся, "
-"що надано {a_attrs} update_url</a> маніфест додатка, оскільки це URL-адреса, за якою Firefox знаходить оновлення для автоматичного розгортання у ваших користувачів.</span>"
+"що надано <a {a_attrs}>update_url</a> маніфест додатка, оскільки це URL-адреса, за якою Firefox знаходить оновлення для автоматичного розгортання у ваших користувачів.</span>"
 
 #: src/olympia/devhub/forms.py:1458 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
