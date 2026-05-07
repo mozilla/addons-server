@@ -1304,7 +1304,7 @@ msgstr "Reddedilen listeleme onaylandı"
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr "{addon} {version} sayfa içeriği reddedildi."
+msgstr "{addon} sayfa içeriği reddedildi."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"

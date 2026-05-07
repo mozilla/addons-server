@@ -1943,7 +1943,7 @@ msgstr "Вкажіть політику приватності вашого до
 #: src/olympia/devhub/forms.py:769
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Непідтримуваний тип файлу, вивантажте будь ласка файл архіву (розширення)."
+msgstr ""
 
 #: src/olympia/devhub/forms.py:813
 msgid "View current"

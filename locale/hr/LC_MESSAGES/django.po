@@ -607,7 +607,7 @@ msgid ""
 "this by <a href=\"https://github.com/mozilla/addons/issues/new\">filing an issue</a> with the details of how you got to this page. </p>"
 msgstr ""
 "<h1>Ups! Dogodila se greška.</h1> <p>To ćemo uskoro ispraviti.</p> <p>Možeš pokušati ponovo učitati stranicu ili se vrati na <a href=\"%(home)s\">početnu stranicu dodataka</a>. Pomogni nam to "
-"ispraviti – <a href=\"https://github.com/mozilla/addons/issue/new\">prijavi problem</a> s pojedinostima o tome kako si došao/la na ovu stranicu.</p>"
+"ispraviti – <a href=\"https://github.com/mozilla/addons/issues/new\">prijavi problem</a> s pojedinostima o tome kako si došao/la na ovu stranicu.</p>"
 
 #. abbreviation of 'previous'
 #: src/olympia/amo/templates/amo/paginator.html:5 src/olympia/devhub/templates/devhub/addons/includes/validation_test_results.html:49

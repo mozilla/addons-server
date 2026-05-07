@@ -1140,7 +1140,7 @@ msgstr "{addon} ḥettem asensi"
 #: src/olympia/constants/activity.py:868
 #, python-brace-format
 msgid "{addon} force-enabled"
-msgstr "ḥettem armad"
+msgstr "{addon} ḥettem armad"
 
 #: src/olympia/constants/activity.py:898
 #, python-brace-format

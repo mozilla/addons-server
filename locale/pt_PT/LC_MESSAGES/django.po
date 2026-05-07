@@ -1838,8 +1838,7 @@ msgstr "Alterações recentes aos meus extras"
 #: src/olympia/devhub/file_validation_annotations.py:55
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
-msgstr ""
-"Os extras de Pesquisa aberta {blog_link_open}{blog_link_open} já não são suportados no AMO {blog_link_close}. Como alternativa, pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
+msgstr "Os extras de Pesquisa aberta {blog_link_open}já não são suportados no AMO {blog_link_close}. Como alternativa, pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
