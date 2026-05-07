@@ -205,27 +205,6 @@ class WidgetRenderedModelMultipleChoiceField(ModelMultipleChoiceField):
         return obj
 
 
-class ReasonsChoiceWidget(forms.CheckboxSelectMultiple):
-    """
-    Widget to use together with a WidgetRenderedModelMultipleChoiceField to display
-    checkboxes with extra data for the canned responses.
-    """
-
-    def create_option(self, *args, **kwargs):
-        option = super().create_option(*args, **kwargs)
-        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
-        # full object, not a label, this is what makes this work.
-        obj = option['label']
-        canned_response = (
-            obj.cinder_policy.full_text(text=obj.canned_response)
-            if obj.cinder_policy
-            else obj.canned_response
-        )
-        option['attrs']['data-value'] = f'- {canned_response}\n'
-        option['label'] = str(obj)
-        return option
-
-
 class CinderJobsWidget(forms.CheckboxSelectMultiple):
     """
     Widget to use together with a WidgetRenderedModelMultipleChoiceField to display

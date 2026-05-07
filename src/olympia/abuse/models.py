@@ -1,4 +1,3 @@
-from collections.abc import Mapping
 from datetime import datetime, timedelta
 from itertools import chain
 from string import Formatter
@@ -941,15 +940,14 @@ class CinderPolicy(ModelBase):
             f'{self.parent.name + ", specifically " if self.parent else ""}{self.name}'
         )
 
-    def full_text(self, *, text=None, values=None):
-        if text is None:
-            if isinstance(values, Mapping):
-                text = ''.join(
-                    (txt or '') + (values.get(key, f'{{{key}}}') if key else '')
-                    for txt, key in self.get_text_formatter_pairs()
-                )
-            else:
-                text = self.text
+    def full_text(self, *, values=None):
+        """Return full text for the policy. Placeholders will be replaced using
+        the `values` dictionary, defaulting to empty string."""
+        values = values or {}
+        text = ''.join(
+            (txt or '') + (values.get(key, '') if key else '')
+            for txt, key in self.get_text_formatter_pairs()
+        )
         return f'{self.full_name()}: {text}'
 
     @classmethod
