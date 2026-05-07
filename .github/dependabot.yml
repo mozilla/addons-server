@@ -72,7 +72,7 @@ updates:
     exclude:
       - addons-linter
 - package-ecosystem: pip
-  directory: "/requirements"
+  directory: "/"
   schedule:
     interval: daily
   groups:
