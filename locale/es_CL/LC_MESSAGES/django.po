@@ -1195,7 +1195,7 @@ msgstr "{addon} habilitado de manera forzada"
 #: src/olympia/constants/activity.py:898
 #, python-brace-format
 msgid "{addon} {version} un-rejected."
-msgstr "Rechazo de {complemento} {version} revertido."
+msgstr "Rechazo de {addon} {version} revertido."
 
 #: src/olympia/constants/activity.py:899
 msgid "Un-rejected"
