@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='cinderjob',
-            constraint=models.CheckConstraint(check=models.Q(('job_id', ''), _negated=True), name='no_empty_job_id'),
+            constraint=models.CheckConstraint(condition=models.Q(('job_id', ''), _negated=True), name='no_empty_job_id'),
         ),
         migrations.RemoveField(
             model_name='cinderjob',

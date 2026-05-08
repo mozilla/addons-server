@@ -102,7 +102,7 @@ class CinderJob(ModelBase):
 
     class Meta:
         constraints = [
-            models.CheckConstraint(name='no_empty_job_id', check=~Q(job_id=''))
+            models.CheckConstraint(name='no_empty_job_id', condition=~Q(job_id=''))
         ]
 
     @property
@@ -798,7 +798,7 @@ class AbuseReport(ModelBase):
         constraints = [
             models.CheckConstraint(
                 name='just_one_of_guid_user_rating_collection_must_be_set',
-                check=(
+                condition=(
                     # Abuse is against...
                     # a guid
                     models.Q(
@@ -1056,7 +1056,7 @@ class ContentDecision(ModelBase):
                 name='just_one_of_addon_user_rating_collection_must_be_set',
                 # Decision is against...
                 # an addon
-                check=models.Q(
+                condition=models.Q(
                     addon__isnull=False,
                     user__isnull=True,
                     rating__isnull=True,
