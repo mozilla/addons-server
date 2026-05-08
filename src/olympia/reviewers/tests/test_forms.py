@@ -1197,16 +1197,16 @@ class TestReviewForm(TestCase):
             resolvable_in_reviewer_tools=True,
             target_addon=self.addon,
         )
-        cinder_job_appealed.decision.update(appeal_job=cinder_job_appeal)
+        cinder_job_appealed.final_decision.update(appeal_job=cinder_job_appeal)
         appeal_obj = CinderAppeal.objects.create(
             text='some justification',
-            decision=cinder_job_appealed.decision,
+            decision=cinder_job_appealed.final_decision,
         )
         # This wouldn't happen - a reporter can't appeal a disable decision
         # - but we want to test the rendering of reporter vs. developer appeal text
         CinderAppeal.objects.create(
             text='some other justification',
-            decision=cinder_job_appealed.decision,
+            decision=cinder_job_appealed.final_decision,
             reporter_report=appealed_abuse_report,
         )
 

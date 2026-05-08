@@ -106,11 +106,6 @@ class CinderJob(ModelBase):
         ]
 
     @property
-    def decision(self):
-        """This is the first decision made on the job"""
-        return self.decisions.first()
-
-    @property
     def final_decision(self):
         return self.decisions.last()
 
@@ -119,9 +114,9 @@ class CinderJob(ModelBase):
         if self.target_addon_id:
             # if this was a job from an abuse report for an addon we've set target_addon
             return self.target_addon
-        elif decision := self.decision:
+        elif final_decision := self.final_decision:
             # if there is already a decision target will be set there
-            return decision.target
+            return final_decision.target
         elif self.is_appeal:
             # if this is an appeal job the decision will have the target
             return self.appealed_decisions.first().target
@@ -393,7 +388,7 @@ class CinderJob(ModelBase):
         # isn't resolved yet, but there is no link between NHR and jobs.
         # So for each possible reason, we look if there are unresolved jobs
         # and only clear NHR for that reason if there aren't any jobs left.
-        addon = self.decision.addon
+        addon = self.final_decision.addon
         base_unresolved_jobs_qs = (
             self.__class__.objects.for_addon(addon)
             .unresolved()

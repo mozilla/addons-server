@@ -494,11 +494,11 @@ class TestContentActionBanUser(BaseTestContentAction, TestCase):
                 user=self.user, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_ban_user()
         assert len(mail.outbox) == 2
@@ -715,11 +715,11 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
                 addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._process_action_and_notify()
         assert len(mail.outbox) == 2
@@ -1447,11 +1447,11 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
                 addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version(content_review=False)
         assert len(mail.outbox) == 2
@@ -1605,11 +1605,11 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
                 action=DECISION_ACTIONS.AMO_APPROVE, addon=self.addon
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_reject_version_delayed(content_review=False)
         assert len(mail.outbox) == 2
@@ -2404,11 +2404,11 @@ class TestContentActionApproveListingContent(BaseTestContentAction, TestCase):
                 action=DECISION_ACTIONS.AMO_APPROVE,
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         self.cinder_job.reload()
         subject = self._test_reporter_content_approved_action_taken()
@@ -2813,11 +2813,11 @@ class TestContentActionCollection(BaseTestContentAction, TestCase):
                 collection=self.collection, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_collection()
         assert len(mail.outbox) == 2
@@ -2989,11 +2989,11 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
                 rating=self.rating, action=DECISION_ACTIONS.AMO_APPROVE
             ),
         )
-        self.cinder_job.appealed_decisions.add(original_job.decision)
+        self.cinder_job.appealed_decisions.add(original_job.final_decision)
         self.abuse_report_no_auth.update(cinder_job=original_job)
         self.abuse_report_auth.update(cinder_job=original_job)
         CinderAppeal.objects.create(
-            decision=original_job.decision, reporter_report=self.abuse_report_auth
+            decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
         subject = self._test_delete_rating()
         assert len(mail.outbox) == 2

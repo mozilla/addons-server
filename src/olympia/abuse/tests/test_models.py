@@ -757,7 +757,7 @@ class TestCinderJobManager(TestCase):
         appeal_job = CinderJob.objects.create(
             job_id=4, resolvable_in_reviewer_tools=True
         )
-        job.decision.update(appeal_job=appeal_job)
+        job.final_decision.update(appeal_job=appeal_job)
         qs = CinderJob.objects.resolvable_in_reviewer_tools()
         assert list(qs) == [job, appeal_job]
 
@@ -773,7 +773,7 @@ class TestCinderJob(TestCase):
     def setUp(self):
         user_factory(id=settings.TASK_USER_ID)
 
-    def test_decision_and_final_decision(self):
+    def final_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
         addon = addon_factory()
         first = ContentDecision.objects.create(
@@ -791,7 +791,7 @@ class TestCinderJob(TestCase):
             cinder_job=cinder_job,
             override_of=second,
         )
-        assert cinder_job.decision == first
+        assert cinder_job.decisions.first() == first
         assert cinder_job.final_decision == third
 
     def test_target(self):
@@ -809,12 +809,12 @@ class TestCinderJob(TestCase):
         ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE, addon=addon, cinder_job=cinder_job
         )
-        assert cinder_job.decision.target == cinder_job.target == addon
+        assert cinder_job.final_decision.target == cinder_job.target == addon
 
         # case when this is an appeal job (no decision), but the appeal had a decision
         appeal_job = CinderJob.objects.create(job_id='fake_appeal_job_id')
-        cinder_job.decision.update(appeal_job=appeal_job)
-        assert cinder_job.decision.target == appeal_job.target == addon
+        cinder_job.final_decision.update(appeal_job=appeal_job)
+        assert cinder_job.final_decision.target == appeal_job.target == addon
 
         # case when there is no appeal, no decision yet, no target_addon,
         # but an initial abuse report
@@ -1182,15 +1182,15 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
-        assert cinder_job.decision.private_notes == 'teh notes'
-        assert cinder_job.decision.reasoning == ''
-        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
-        assert cinder_job.decision.user == target
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_BAN_USER
+        assert cinder_job.final_decision.private_notes == 'teh notes'
+        assert cinder_job.final_decision.reasoning == ''
+        assert cinder_job.final_decision.from_job_queue == 'some-cinder-queue'
+        assert cinder_job.final_decision.user == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
+        assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
 
     def test_create_and_execute_decision_with_duplicate_parent(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1217,14 +1217,14 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_BAN_USER
-        assert cinder_job.decision.private_notes == 'teh notes'
-        assert cinder_job.decision.reasoning == ''
-        assert cinder_job.decision.user == target
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_BAN_USER
+        assert cinder_job.final_decision.private_notes == 'teh notes'
+        assert cinder_job.final_decision.reasoning == ''
+        assert cinder_job.final_decision.user == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy]
+        assert list(cinder_job.final_decision.policies.all()) == [policy]
 
     def test_create_and_execute_decision_decision_already_exists(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1292,15 +1292,15 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        assert cinder_job.decision.private_notes == 'teh notes'
-        assert cinder_job.decision.reasoning == ''
-        assert cinder_job.decision.addon == target
-        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert cinder_job.final_decision.private_notes == 'teh notes'
+        assert cinder_job.final_decision.reasoning == ''
+        assert cinder_job.final_decision.addon == target
+        assert cinder_job.final_decision.from_job_queue == 'some-cinder-queue'
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
+        assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
 
     def test_create_and_execute_decision_sets_target_versions_for_reject_version_appeal(
         self,
@@ -1332,13 +1332,13 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_APPROVE
-        assert cinder_job.decision.addon == target
-        assert cinder_job.decision.target_versions.get() == target.current_version
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_APPROVE
+        assert cinder_job.final_decision.addon == target
+        assert cinder_job.final_decision.target_versions.get() == target.current_version
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy_a]
+        assert list(cinder_job.final_decision.policies.all()) == [policy_a]
 
     def test_create_and_execute_decision_overrides_action_for_reject_version_appeals(
         self,
@@ -1370,12 +1370,15 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
-        assert cinder_job.decision.addon == target
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert (
+            cinder_job.final_decision.action
+            == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+        assert cinder_job.final_decision.addon == target
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy_a]
+        assert list(cinder_job.final_decision.policies.all()) == [policy_a]
 
     def test_create_and_execute_decision_no_job(self):
         target = user_factory()
@@ -1433,7 +1436,7 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision == earlier_decision
+        assert cinder_job.decisions.first() == earlier_decision
         assert cinder_job.final_decision.cinder_id == '12345'
         assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_BAN_USER
         assert cinder_job.final_decision.private_notes == 'teh notes'
@@ -1480,22 +1483,26 @@ class TestCinderJob(TestCase):
                 policy_ids=['123-45', '678-90'],
                 job_queue='some-cinder-queue',
             )
-        assert cinder_job.decision.cinder_id == '12345'
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        self.assertCloseToNow(cinder_job.decision.action_date)
-        assert cinder_job.decision.private_notes == 'teh notes'
-        assert cinder_job.decision.reasoning == ''
-        assert cinder_job.decision.from_job_queue == 'some-cinder-queue'
-        assert cinder_job.decision.addon == target
-        assert cinder_job.decision.followup_actions.count() == 2
-        self.assertCloseToNow(cinder_job.decision.followup_actions.first().action_date)
-        self.assertCloseToNow(cinder_job.decision.followup_actions.last().action_date)
-        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        self.assertCloseToNow(cinder_job.final_decision.action_date)
+        assert cinder_job.final_decision.private_notes == 'teh notes'
+        assert cinder_job.final_decision.reasoning == ''
+        assert cinder_job.final_decision.from_job_queue == 'some-cinder-queue'
+        assert cinder_job.final_decision.addon == target
+        assert cinder_job.final_decision.followup_actions.count() == 2
+        self.assertCloseToNow(
+            cinder_job.final_decision.followup_actions.first().action_date
+        )
+        self.assertCloseToNow(
+            cinder_job.final_decision.followup_actions.last().action_date
+        )
+        self.assertCloseToNow(cinder_job.final_decision.action_date)
         assert action_mock.call_count == 1
         assert short_action_mock.call_count == 1
         assert mid_action_mock.call_count == 1
         assert notify_mock.call_count == 1
-        assert list(cinder_job.decision.policies.all()) == [policy_a, policy_b]
+        assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
 
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):
@@ -1650,7 +1657,7 @@ class TestCinderJob(TestCase):
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
             addon=addon,
             appeal_job=appeal_job,
-            override_of=job.decision,
+            override_of=job.final_decision,
             cinder_job=job,
         )
         assert list(appeal_appeal_job.all_abuse_reports) == [
@@ -1781,7 +1788,7 @@ class TestCinderJob(TestCase):
             action=DECISION_ACTIONS.AMO_REQUEUE,
             addon=job.target_addon,
             cinder_job=job,
-            override_of=job.decision,
+            override_of=job.final_decision,
         )
         ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE,
@@ -1811,7 +1818,7 @@ class TestCinderJob(TestCase):
             action=DECISION_ACTIONS.AMO_APPROVE,
             addon=job.target_addon,
             cinder_job=other_forward,
-            override_of=other_forward.decision,
+            override_of=other_forward.final_decision,
         )
         job.clear_needs_human_review_flags()
         assert self._nhr_exists(NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION)
@@ -2059,7 +2066,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
             reporter=user_factory(),
             reason=AbuseReport.REASONS.ILLEGAL,
         )
-        assert appeal_job.decision.can_be_appealed(
+        assert appeal_job.final_decision.can_be_appealed(
             is_reporter=True, abuse_report=new_report
         )
 
@@ -2156,7 +2163,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
             ),
         )
         self.decision.update(appeal_job=appeal_job)
-        assert appeal_job.decision.can_be_appealed(is_reporter=False)
+        assert appeal_job.final_decision.can_be_appealed(is_reporter=False)
 
     def test_author_cant_appeal_own_appeal(self):
         appeal_job = CinderJob.objects.create(
@@ -2171,7 +2178,7 @@ class TestContentDecisionCanBeAppealed(TestCase):
         self.decision.update(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, appeal_job=appeal_job
         )
-        assert not appeal_job.decision.can_be_appealed(is_reporter=False)
+        assert not appeal_job.final_decision.can_be_appealed(is_reporter=False)
 
 
 class TestCinderPolicy(TestCase):
@@ -2689,7 +2696,7 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        abuse_report.cinder_job.decision.appeal(
+        abuse_report.cinder_job.final_decision.appeal(
             abuse_report=abuse_report,
             appeal_text='appeal text',
             user=user_factory(),
@@ -2697,15 +2704,18 @@ class TestContentDecision(TestCase):
         )
 
         abuse_report.cinder_job.reload()
-        assert abuse_report.cinder_job.decision.appeal_job_id
-        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
-        assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
+        assert abuse_report.cinder_job.final_decision.appeal_job_id
+        assert (
+            abuse_report.cinder_job.final_decision.appeal_job.job_id
+            == '2432615184-tsol'
+        )
+        assert abuse_report.cinder_job.final_decision.appeal_job.target_addon == addon
         abuse_report.reload()
         assert not hasattr(abuse_report, 'cinderappeal')
         assert CinderAppeal.objects.count() == 1
         appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
-        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.decision == abuse_report.cinder_job.final_decision
         assert appeal_text_obj.reporter_report is None
 
         assert appeal_response.call_count == 1
@@ -2713,11 +2723,11 @@ class TestContentDecision(TestCase):
         request_body = json.loads(request.body)
         assert request_body['reasoning'] == 'appeal text'
         assert request_body['decision_to_appeal_id'] == str(
-            abuse_report.cinder_job.decision.cinder_id
+            abuse_report.cinder_job.final_decision.cinder_id
         )
         assert request_body['queue_slug'] == expected_queue
 
-        return abuse_report.cinder_job.decision.appeal_job.reload()
+        return abuse_report.cinder_job.final_decision.appeal_job.reload()
 
     def test_appeal_as_target_from_resolved_in_cinder(self):
         appeal_job = self._test_appeal_as_target(
@@ -2763,7 +2773,7 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        cinder_job.decision.appeal(
+        cinder_job.final_decision.appeal(
             abuse_report=None,
             appeal_text='appeal text',
             user=user_factory(),
@@ -2771,16 +2781,16 @@ class TestContentDecision(TestCase):
         )
 
         cinder_job.reload()
-        assert cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
-        assert cinder_job.decision.appeal_job.target_addon == addon
-        assert cinder_job.decision.appeal_job.content_review is True
+        assert cinder_job.final_decision.appeal_job.job_id == '2432615184-tsol'
+        assert cinder_job.final_decision.appeal_job.target_addon == addon
+        assert cinder_job.final_decision.appeal_job.content_review is True
 
         assert appeal_response.call_count == 1
         request = responses.calls[0].request
         request_body = json.loads(request.body)
         assert request_body['reasoning'] == 'appeal text'
         assert request_body['decision_to_appeal_id'] == str(
-            cinder_job.decision.cinder_id
+            cinder_job.final_decision.cinder_id
         )
         assert request_body['queue_slug'] == 'amo-env-listing-content'
 
@@ -2809,7 +2819,7 @@ class TestContentDecision(TestCase):
         )
 
         with self.assertRaises(ImproperlyConfigured):
-            abuse_report.cinder_job.decision.appeal(
+            abuse_report.cinder_job.final_decision.appeal(
                 abuse_report=abuse_report,
                 appeal_text='appeal text',
                 # Can't pass user=None for a target appeal, unless it's
@@ -2819,7 +2829,7 @@ class TestContentDecision(TestCase):
             )
 
         abuse_report.cinder_job.reload()
-        assert not abuse_report.cinder_job.decision.appeal_job_id
+        assert not abuse_report.cinder_job.final_decision.appeal_job_id
         abuse_report.reload()
         assert not hasattr(abuse_report, 'cinderappeal')
 
@@ -2851,7 +2861,7 @@ class TestContentDecision(TestCase):
         )
 
         with self.assertRaises(ImproperlyConfigured):
-            abuse_report.cinder_job.decision.appeal(
+            abuse_report.cinder_job.final_decision.appeal(
                 abuse_report=abuse_report,
                 appeal_text='appeal text',
                 # user=None is allowed here since the original decision was a
@@ -2864,7 +2874,7 @@ class TestContentDecision(TestCase):
             )
 
         abuse_report.cinder_job.reload()
-        assert not abuse_report.cinder_job.decision.appeal_job_id
+        assert not abuse_report.cinder_job.final_decision.appeal_job_id
         abuse_report.reload()
         assert not hasattr(abuse_report, 'cinderappeal')
 
@@ -2891,7 +2901,7 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        abuse_report.cinder_job.decision.appeal(
+        abuse_report.cinder_job.final_decision.appeal(
             abuse_report=abuse_report,
             appeal_text='appeal text',
             # user=None is allowed here since the original decision was a ban,
@@ -2902,8 +2912,11 @@ class TestContentDecision(TestCase):
         )
 
         abuse_report.cinder_job.reload()
-        assert abuse_report.cinder_job.decision.appeal_job_id
-        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
+        assert abuse_report.cinder_job.final_decision.appeal_job_id
+        assert (
+            abuse_report.cinder_job.final_decision.appeal_job.job_id
+            == '2432615184-tsol'
+        )
         abuse_report.reload()
         assert not hasattr(abuse_report, 'cinderappeal')
 
@@ -2933,7 +2946,7 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        abuse_report.cinder_job.decision.appeal(
+        abuse_report.cinder_job.final_decision.appeal(
             abuse_report=abuse_report,
             appeal_text='appeal text',
             user=abuse_report.reporter,
@@ -2941,15 +2954,18 @@ class TestContentDecision(TestCase):
         )
 
         abuse_report.cinder_job.reload()
-        assert abuse_report.cinder_job.decision.appeal_job
-        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
-        assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
+        assert abuse_report.cinder_job.final_decision.appeal_job
+        assert (
+            abuse_report.cinder_job.final_decision.appeal_job.job_id
+            == '2432615184-tsol'
+        )
+        assert abuse_report.cinder_job.final_decision.appeal_job.target_addon == addon
         abuse_report.reload()
         assert abuse_report.cinderappeal
         assert CinderAppeal.objects.count() == 1
         appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
-        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.decision == abuse_report.cinder_job.final_decision
         assert appeal_text_obj.reporter_report == abuse_report
 
         assert appeal_response.call_count == 1
@@ -2957,7 +2973,7 @@ class TestContentDecision(TestCase):
         request_body = json.loads(request.body)
         assert request_body['reasoning'] == 'appeal text'
         assert request_body['decision_to_appeal_id'] == str(
-            abuse_report.cinder_job.decision.cinder_id
+            abuse_report.cinder_job.final_decision.cinder_id
         )
         assert request_body['queue_slug'] == 'amo-env-listings'
 
@@ -2985,7 +3001,7 @@ class TestContentDecision(TestCase):
         # to ensure the get_or_create() call that we make can't trigger an
         # IntegrityError because of the additional parameters (job_id must
         # be the only field we use to retrieve the job).
-        abuse_report.cinder_job.decision.update(
+        abuse_report.cinder_job.final_decision.update(
             appeal_job=CinderJob.objects.create(
                 job_id='2432615184-tsol',
                 target_addon=addon,
@@ -2999,7 +3015,7 @@ class TestContentDecision(TestCase):
             status=201,
         )
 
-        abuse_report.cinder_job.decision.appeal(
+        abuse_report.cinder_job.final_decision.appeal(
             abuse_report=abuse_report,
             appeal_text='appeal text',
             user=abuse_report.reporter,
@@ -3007,9 +3023,12 @@ class TestContentDecision(TestCase):
         )
 
         abuse_report.cinder_job.reload()
-        assert abuse_report.cinder_job.decision.appeal_job
-        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
-        assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
+        assert abuse_report.cinder_job.final_decision.appeal_job
+        assert (
+            abuse_report.cinder_job.final_decision.appeal_job.job_id
+            == '2432615184-tsol'
+        )
+        assert abuse_report.cinder_job.final_decision.appeal_job.target_addon == addon
         abuse_report.reload()
         assert abuse_report.cinderappeal
 
@@ -3044,7 +3063,7 @@ class TestContentDecision(TestCase):
         )
         assert not original_version.due_date
 
-        abuse_report.cinder_job.decision.appeal(
+        abuse_report.cinder_job.final_decision.appeal(
             abuse_report=abuse_report,
             appeal_text='appeal text',
             user=abuse_report.reporter,
@@ -3052,15 +3071,18 @@ class TestContentDecision(TestCase):
         )
 
         abuse_report.cinder_job.reload()
-        assert abuse_report.cinder_job.decision.appeal_job
-        assert abuse_report.cinder_job.decision.appeal_job.job_id == '2432615184-tsol'
-        assert abuse_report.cinder_job.decision.appeal_job.target_addon == addon
+        assert abuse_report.cinder_job.final_decision.appeal_job
+        assert (
+            abuse_report.cinder_job.final_decision.appeal_job.job_id
+            == '2432615184-tsol'
+        )
+        assert abuse_report.cinder_job.final_decision.appeal_job.target_addon == addon
         abuse_report.reload()
         assert abuse_report.cinderappeal
         assert CinderAppeal.objects.count() == 1
         appeal_text_obj = CinderAppeal.objects.get()
         assert appeal_text_obj.text == 'appeal text'
-        assert appeal_text_obj.decision == abuse_report.cinder_job.decision
+        assert appeal_text_obj.decision == abuse_report.cinder_job.final_decision
         assert appeal_text_obj.reporter_report == abuse_report
         assert original_version.reload().due_date
 
@@ -3075,7 +3097,7 @@ class TestContentDecision(TestCase):
             )
         )
         with self.assertRaises(ImproperlyConfigured):
-            cinder_job.decision.appeal(
+            cinder_job.final_decision.appeal(
                 abuse_report=None,
                 appeal_text='No abuse_report but is_reporter is True',
                 user=user_factory(),
@@ -3099,7 +3121,7 @@ class TestContentDecision(TestCase):
             )
         )
         with self.assertRaises(ImproperlyConfigured):
-            cinder_job.decision.appeal(
+            cinder_job.final_decision.appeal(
                 abuse_report=abuse_report,
                 appeal_text='No user but is_reporter is False',
                 user=None,
@@ -3902,8 +3924,8 @@ class TestContentDecision(TestCase):
         decision.execute_action()
 
         cinder_job.reload()
-        assert cinder_job.decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
-        self.assertCloseToNow(cinder_job.decision.action_date)
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        self.assertCloseToNow(cinder_job.final_decision.action_date)
         assert not NeedsHumanReview.objects.filter(
             is_active=True, reason=NeedsHumanReview.REASONS.CINDER_ESCALATION
         ).exists()
@@ -4103,7 +4125,7 @@ class TestContentDecision(TestCase):
         decision.requeue_held_action(user=user, notes='go!')
 
         assert job.reload().resolvable_in_reviewer_tools is True
-        assert job.decision == decision
+        assert job.decisions.first() == decision
         self._check_requeue_decision(job.final_decision, job, decision, user)
 
     def test_requeue_held_action_existing_job_unlisted(self):
@@ -4123,7 +4145,7 @@ class TestContentDecision(TestCase):
         decision.requeue_held_action(user=user, notes='go!')
 
         assert job.reload().resolvable_in_reviewer_tools is True
-        assert job.decision == decision
+        assert job.decisions.first() == decision
         self._check_requeue_decision(job.final_decision, job, decision, user)
 
     def test_get_target_review_url(self):

@@ -104,10 +104,10 @@ class TestAutoResolveReports(TestCase):
 
         assert CinderJob.objects.unresolved().count() == 1
         assert CinderJob.objects.unresolved().get() == job_not_reviewed
-        assert job1.reload().decision
-        assert job1.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
-        assert job2.reload().decision
-        assert job2.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert job1.reload().final_decision
+        assert job1.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert job2.reload().final_decision
+        assert job2.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
         # NHRs should be cleared.
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon1, is_active=True
@@ -196,8 +196,10 @@ class TestAutoResolveReports(TestCase):
             job_appeal,
             job_second_level,
         ]
-        assert job_forwarded.reload().decision
-        assert job_forwarded.decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert job_forwarded.reload().final_decision
+        assert (
+            job_forwarded.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
         # NHR should be cleared.
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon1, is_active=True
