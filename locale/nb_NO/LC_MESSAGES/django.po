@@ -2077,11 +2077,11 @@ msgstr "Velg en kategori"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Teknisk støtte for å gjøre tillegget ditt kompatibelt"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Problem med addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2482,6 +2482,8 @@ msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Bruk dette skjemaet for støtte relatert til kontoen din, problemer med overholdelse av retningslinjer og mer. Jo flere detaljer du deler, desto lettere er det for oss å hjelpe. Hvis du har spørsmål "
+"om gjennomganger av ditt/dine tillegg, se versjonshistorikken for ditt/dine tillegg. Vi tar kontakt så snart som mulig."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
