@@ -384,7 +384,7 @@ msgstr "Nol è pussibil mandâ lis version listadis intant che il component adiz
 
 #: src/olympia/addons/serializers.py:594 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Nol è pussibil inviâ lis versions listadis intant che il component adizionâl al è refudât."
 
 #: src/olympia/addons/serializers.py:635
 #, python-format
@@ -435,7 +435,7 @@ msgstr "Al è pussibil ripristinâ nome lis versions aprovadis, gjavade la versi
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Nol è pussibil doprâ il somari o la descrizion di chest component adizionâl."
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1301,16 +1301,16 @@ msgstr "Proprietât {0} dal account {user} inzornade."
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "Contignûts listâts par {addon} aprovâts."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Aprovâts contignûts listâts prime refudâts"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "Contignûts listâts par {addon} refudâts."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
