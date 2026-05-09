@@ -2405,7 +2405,7 @@ msgstr "La tô e-mail e je stade verificade"
 
 #: src/olympia/devhub/views.py:2324
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "La domande di assistence e je stade mandade indevant. Ti contatarìn ca di pôc."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2485,7 +2485,7 @@ msgstr "Plui risorsis"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Contate la assistence"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2497,17 +2497,19 @@ msgstr "Cîr"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Oten supuart par estensions e temis"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Dopre chest formulari par ricevi assistence pal to account, par problemis di conformitât aes politichis e par altris resons. Plui detais tu condividis, plui facil al sarà par nô judâti. Par domandis"
+" su lis revisions dai tiei components adizionâi, fâs riferiment ae cronologjie des versions dai components adizionâi. Ti rispuindarìn il prin pussibil."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Invie richieste"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -2815,7 +2817,7 @@ msgstr "Se tu desideris domandâ ufiertis monetariis dai utents, configure in ch
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Dominis supuartâts: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2914,12 +2916,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Une spiegazion plui detaiade di carateristichis, funzionalitâts e altris informazions impuartantis. Chest cjamp al ven visualizât nome te pagjine dal prodot dal component adizionâl. Lungjece minime:"
+" %(min_length)s caratars. Lungjece conseade: 250 caratars. Se ti covente une descrizion plui lungje, controle che i prins 250 caratars a tegnin i ponts descritîfs plui impuartants."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Une spiegazion plui detaiade di carateristichis, funzionalitâts e altris informazions rilevantis. Chest cjamp al ven visualizât nome te pagjine dal prodot dal component adizionâl. Lungjece conseade:"
+" 250 caratars. Se ti covente une descrizion plui lungje, controle che i prins 250 caratars a tegnin i ponts descritîfs plui impuartants."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3141,7 +3147,7 @@ msgstr "In chest moment il to component adizionâl al è metût come “Invisibi
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "La schede dal component adizionâl e je stade refudade."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3425,7 +3431,7 @@ msgstr "Isal alc in particolâr che i revisôrs a varessin di tignî in consider
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "Impuartant"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
