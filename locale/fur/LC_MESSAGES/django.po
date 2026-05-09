@@ -3439,6 +3439,8 @@ msgid ""
 "Read our %(policy_requirements_open)spolicy requirements%(policy_requirements_close)s regarding build processes and source code submission. If your submission requires source code, you must provide "
 "step-by-step build instructions, either inside the source code package or here, that will create an exact copy of the code."
 msgstr ""
+"Lei i %(policy_requirements_open)srecuisîts de politiche%(policy_requirements_close)s in merit ai procès di compilazion e ae presentazion dal codiç sorzint. Se il to inviament al à bisugne dal codiç"
+" sorzint, tu scugnis dâ istruzions detaiadis pe compilazion o dentri dal pachet dal codiç sorzint o achì, in mût che e vegni creade une copie esate dal codiç."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:37
 msgid "These notes will only be visible to you and our reviewers."
@@ -3663,7 +3665,7 @@ msgstr "Cree une version dal teme"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Tu puedis cjariâ in rêt un teme finît doprant la opzion di cjariament in rêt chi parsore, opûr tu puedis compilâtal di bessôl doprant chest strument."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
@@ -3739,10 +3741,12 @@ msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
 msgstr ""
+"Par fâ clamadis autenticadis ae <a %(a_attrs)s href=\"%(docs_url)s\">API</a> come utent esterni, al covente includi un <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> te intestazion "
+"<code>Authorization</code> par ogni domande."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
-msgstr ""
+msgstr "Ten segretis lis tôs clâfs API e no sta condividilis cun nissun, nancje cul organic di Mozilla o cun altris lôr colaboradôrs."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT issuer"
@@ -3905,7 +3909,7 @@ msgstr "Il to component adizionâl al è stât disativât di un aministradôr e 
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "La schede dal to component adizionâl e je stade refudade. No ven fûr te nestre galarie. Ti invidìn a risolvi i motîfs e a inviâ di gnûf la domande di revision."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4042,19 +4046,19 @@ msgstr "Visualize il blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:2
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "La nestre revision e à cjatât che i contignûts de tô schede a violin chestis normis o politichis di Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Par risolvi chescj problemis, inzorne la schede e domande une gnove revision dai contignûts."
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Revision za domandade, in spiete di revision"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:22
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "O confermi di vê risolt i problemis e o domandi une gnove revision"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:1
 msgid "Version Signature Pending"
