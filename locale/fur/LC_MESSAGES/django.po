@@ -1301,29 +1301,29 @@ msgstr "Proprietât {0} dal account {user} inzornade."
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr "Contignûts listâts par {addon} aprovâts."
+msgstr "Contignûts pe schede di {addon} aprovâts."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr "Aprovâts contignûts listâts prime refudâts"
+msgstr "Aprovâts contignûts pe schede che prime a jerin refudâts"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr "Contignûts listâts par {addon} refudâts."
+msgstr "Contignûts pe schede di {addon} refudâts."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
-msgstr ""
+msgstr "Contignûts pe schede refudâts"
 
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Domandade revision dai contignûts de schede di {addon}."
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
-msgstr ""
+msgstr "Domandade revision contignûts schede"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1363,7 +1363,7 @@ msgstr "In spiete di revision"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Contignûts schede refudâts"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -1880,7 +1880,7 @@ msgstr "Nol è pussibil cumbinâ la categorie Variis adun cun altris categoriis.
 
 #: src/olympia/devhub/forms.py:251 src/olympia/devhub/forms.py:1365
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Al è vignût fûr un erôr tal cjariâ in rêt la imagjin."
 
 #: src/olympia/devhub/forms.py:305
 #, python-format
@@ -2095,15 +2095,15 @@ msgstr "Tu scugnis sielzi un canâl e une version dulà tornâ indaûr cul ripri
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Choose a category"
-msgstr ""
+msgstr "Sielç une categorie"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Assistence tecniche par garantî la conformitât dal to component adizionâl"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Probleme cun addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2111,19 +2111,19 @@ msgstr "Ogjet"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Met in struc il probleme in pocjis peraulis"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Selezione categorie"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Dânus altris detais sul probleme"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
-msgstr ""
+msgstr "Descrîf il probleme"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2218,7 +2218,7 @@ msgstr "Il non dal URL al jere sbaliât. Il component adizionâl nol è stât el
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "La domande di une gnove revision dai contignûts de schede e je stade fate buine."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -2381,7 +2381,7 @@ msgstr "Lis tôs vecjis credenziâls a son stadis revocadis e no son plui validi
 
 #: src/olympia/devhub/views.py:2132
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Lis gnovis credenziâls API a son stadis gjeneradis e a vegnin visualizadis chi sot. Viôt di copiâ il segret JWT parcè che no tu podarâs plui viodilu."
 
 #: src/olympia/devhub/views.py:2156
 msgid "New API key created"
