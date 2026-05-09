@@ -4903,7 +4903,7 @@ msgstr "Cambie la maniere di navigâ Reddit doprant etichetis e altri."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Caturâ videadis di pagjins web, fâ modifichis e condividilis."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -5784,12 +5784,12 @@ msgstr "Miore la tô esperience su Reddit cun coments colorâts, navigazion semp
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Eliminâ distrazions di YouTube come conseis, sugjeriments te schermade finâl, coments e altri."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "“Better Twitch TV”: miore Twitch e YouTube cuntune schirie di gnovis funzionalitâts."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
@@ -6109,12 +6109,12 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pachet di estensions par scomençâ"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Estensions pe produtivitât"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122 src/olympia/discovery/strings.jinja2:1124 src/olympia/discovery/strings.jinja2:1126
@@ -6144,12 +6144,12 @@ msgstr "Viôt altris temis popolârs"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1139
 msgid "Privacy & security"
-msgstr ""
+msgstr "Riservatece e sigurece"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1141
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Viôt altris sieltis fatis dal nestri organic pe riservatece"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
@@ -6598,11 +6598,11 @@ msgstr "Valutazion di %(rating)s su 5 stelis"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Mostre dut"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Salve"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
