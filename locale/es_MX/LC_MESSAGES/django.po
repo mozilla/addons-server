@@ -2105,7 +2105,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Selecciona categoría"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
@@ -3423,7 +3423,7 @@ msgstr "¿Hay algo que tengan que tener en cuenta los revisores al verificar est
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "Importante"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -6577,7 +6577,7 @@ msgstr "Puntuado con %(rating)s de 5 estrellas"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todo"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
