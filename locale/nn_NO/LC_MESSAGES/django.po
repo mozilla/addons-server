@@ -2480,6 +2480,8 @@ msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Bruk dette skjemaet for støtte relatert til kontoen din, problem med overhalding av retningslinjer og meir. Dess fleire detaljar du deler, dess lettare er det for oss å hjelpe. Om du har spørsmål om"
+" gjennomgangar av ditt/dine tillegg, sjå versjonshistorikken for ditt/dine tillegg. Vi tek kontakt så snart som mogleg."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
@@ -5736,7 +5738,7 @@ msgstr "Forbetre Reddit-opplevinga di med fargekoda kommentarar, enklare navigas
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Fjern YouTube-forstyrringar som tilrådingar, forslag på sluttskjermen, kommentarar, og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
