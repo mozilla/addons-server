@@ -5743,7 +5743,7 @@ msgstr "Fjern YouTube-forstyrringar som tilrådingar, forslag på sluttskjermen,
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "«Betre Twitch TV» — forbetre Twitch og YouTube med ei rekkje nye funksjonar."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
