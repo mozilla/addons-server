@@ -431,7 +431,7 @@ msgstr "Berre godkjende versjonar kan rullast tilbake, bortsett frå den nyaste 
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Samandraget eller beskrivinga til dette tillegget kan ikkje brukast."
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2075,11 +2075,11 @@ msgstr "Vel ein kategori"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Teknisk støtte for å gjere tillegget ditt kompatibelt"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Problem med addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2087,7 +2087,7 @@ msgstr "Emne"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Oppsummer problemet med nokre få ord"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
@@ -2095,11 +2095,11 @@ msgstr "Vel kategori"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Gi oss meir informasjon om problemet"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
-msgstr ""
+msgstr "Beskriv problemet"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
