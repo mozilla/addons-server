@@ -906,8 +906,24 @@ class CinderPolicyQuerySet(models.QuerySet):
         )
         return list(self.exclude(pk__in=parents_ids))
 
+    def published(self):
+        return self.filter(
+            Q(status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED)
+            | Q(status_in_cinder__isnull=True)
+        )
+
 
 class CinderPolicy(ModelBase):
+    class POLICY_STATUSES(EnumChoices):
+        PUBLISHED = 1, 'Published'
+        ARCHIVED = 2, 'Archived'
+        DRAFT = 3, 'Draft'
+        DELETED = 4, 'Deleted'
+        DELETED_PREVIOUSLY_REVIEWER = (
+            5,
+            'Deleted, previously exposed in reviewer tools',
+        )
+
     uuid = models.CharField(max_length=36, unique=True)
     name = models.CharField(max_length=255)
     text = models.TextField()
@@ -920,7 +936,7 @@ class CinderPolicy(ModelBase):
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
     enforcement_actions = models.JSONField(default=list, null=True)
-    present_in_cinder = models.BooleanField(null=True)
+    status_in_cinder = models.SmallIntegerField(null=True, choices=POLICY_STATUSES)
 
     objects = CinderPolicyQuerySet.as_manager()
 
@@ -1332,7 +1348,9 @@ class ContentDecision(ModelBase):
             create_decision_kw = {
                 'action': DECISION_ACTIONS(self.action).api_value,
                 'reasoning': self.reasoning,
-                'policy_uuids': list(self.policies.values_list('uuid', flat=True)),
+                'policy_uuids': list(
+                    self.policies.published().values_list('uuid', flat=True)
+                ),
             }
 
             def find_overridden_cinder_id(override_of):
