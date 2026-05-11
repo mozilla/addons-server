@@ -882,7 +882,7 @@ msgstr "Дата је прелиминарна рецензија за {addon} {
 
 #: src/olympia/constants/activity.py:162
 msgid "Preliminarily approved"
-msgstr "Премилиминарно одобрено"
+msgstr "Прелиминарно одобрено"
 
 #: src/olympia/constants/activity.py:173
 #, python-brace-format
