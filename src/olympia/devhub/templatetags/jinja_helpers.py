@@ -7,6 +7,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import format_date, new_context, page_title
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.files.models import File
 
 
@@ -147,7 +148,11 @@ def content_rejected_info(context, addon):
     )
     decision = (
         rejected_log
-        and rejected_log.contentdecision_set.all().order_by('-created').first()
+        and rejected_log.contentdecision_set.filter(
+            action=DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+        )
+        .order_by('created')
+        .last()
     )
     has_appeal_already = decision and decision.appeal_job
     return {
