@@ -1665,8 +1665,8 @@ rpds-py==0.30.0 \
 jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
-drf-spectacular-sidecar==2026.4.14 \
-    --hash=sha256:a040d360ada2592722e90f40c2cf744376d9a30cccb3caaa5423bad791dec0aa \
-    --hash=sha256:d4c299a85f3be44e93eaff3d83e986f27b744bb9823ba034aff9fd267ebc9fea
+drf-spectacular-sidecar==2026.5.1 \
+    --hash=sha256:2af264e5b125fedc5d382be1349f7f736f128bc8fa05c3be3fc7f3e5b282d3c4 \
+    --hash=sha256:cdeca03e32859318a563b5733d5fc196c8b563a178a85fd380e227ed642c19ca
 
 -r yara-x.txt
