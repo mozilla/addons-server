@@ -503,6 +503,25 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
 
+    def prevent_auto_approval_in_relevant_channels(self):
+        channels = list(
+            self.target_versions.values_list('channel', flat=True).distinct()
+        )
+        channels_to_flags = {
+            amo.CHANNEL_LISTED: 'auto_approval_disabled_until_next_approval',
+            amo.CHANNEL_UNLISTED: 'auto_approval_disabled_until_next_approval_unlisted',
+        }
+        auto_approval_flags = {
+            channels_to_flags[channel]: True
+            for channel in channels
+            if channel in channels_to_flags
+        }
+        if auto_approval_flags:
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.target,
+                defaults=auto_approval_flags,
+            )
+
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
@@ -531,6 +550,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 },
             )
 
+        self.prevent_auto_approval_in_relevant_channels()
         self.target.update_status()
         self.notify_stakeholders('Rejection')
         return self.log_action(
@@ -538,6 +558,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         )
 
     def hold_action(self):
+        # Even if the action is held, we want to alwas prevent auto-approval in
+        # relevant channels.
+        self.prevent_auto_approval_in_relevant_channels()
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
@@ -613,6 +636,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                     'pending_content_rejection': self.content_review,
                 },
             )
+        self.prevent_auto_approval_in_relevant_channels()
         # Developers should be notified again once the deadline is close.
         AddonReviewerFlags.objects.update_or_create(
             addon=self.target,
@@ -626,6 +650,9 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         )
 
     def hold_action(self):
+        # Even if the action is held, we want to alwas prevent auto-approval in
+        # relevant channels.
+        self.prevent_auto_approval_in_relevant_channels()
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review
