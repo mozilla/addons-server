@@ -19,7 +19,12 @@ from olympia.activity.models import (
     ActivityLogToken,
     AttachmentLog,
 )
-from olympia.addons.models import Addon, AddonApprovalsCounter, AddonUser
+from olympia.addons.models import (
+    Addon,
+    AddonApprovalsCounter,
+    AddonReviewerFlags,
+    AddonUser,
+)
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -706,6 +711,9 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
     def test_execute_action(self):
         subject = self._process_action_and_notify()
         assert len(mail.outbox) == 3
+        flags = self.addon.reviewerflags.reload()
+        assert flags.auto_approval_disabled
+        assert flags.auto_approval_disabled_unlisted
         self._test_reporter_takedown_email(subject)
 
     def test_execute_action_after_reporter_appeal(self):
@@ -906,6 +914,9 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
                 else {}
             ),
         }
+        flags = self.addon.reviewerflags.reload()
+        assert flags.auto_approval_disabled
+        assert flags.auto_approval_disabled_unlisted
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD, cinder_job=None)
@@ -1418,6 +1429,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled_until_next_approval
         assert not flags.auto_approval_disabled_until_next_approval_unlisted
+        assert not flags.auto_approval_disabled
+        assert not flags.auto_approval_disabled_unlisted
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
@@ -1427,6 +1440,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled_until_next_approval_unlisted
         assert not flags.auto_approval_disabled_until_next_approval
+        assert not flags.auto_approval_disabled
+        assert not flags.auto_approval_disabled_unlisted
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
@@ -1677,6 +1692,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         flags = self.addon.reviewerflags.reload()
         assert not flags.auto_approval_disabled_until_next_approval_unlisted
         assert flags.auto_approval_disabled_until_next_approval
+        assert not flags.auto_approval_disabled
+        assert not flags.auto_approval_disabled_unlisted
 
     def test_hold_action_human(self):
         user = user_factory()
@@ -1699,6 +1716,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         flags = self.addon.reviewerflags.reload()
         assert not flags.auto_approval_disabled_until_next_approval_unlisted
         assert flags.auto_approval_disabled_until_next_approval
+        assert not flags.auto_approval_disabled
+        assert not flags.auto_approval_disabled_unlisted
 
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
@@ -2640,6 +2659,13 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         action_helper.notify_owners()
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
+    def test_execute_action(self):
+        subject = self._process_action_and_notify()
+        assert len(mail.outbox) == 3
+        self._test_reporter_takedown_email(subject)
+        # Content-rejection doesn't affect auto-approval disabled flags.
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
     def test_hold_action(self):
         self.decision.update(action=self.takedown_decision_action)
         action_helper = self.ActionClass(self.decision)
@@ -2662,6 +2688,8 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
             'human_review': False,
             'policy_texts': [self.policy.full_text()],
         }
+        # Content-rejection doesn't affect auto-approval disabled flags.
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
 
     def test_addon_version_has_target_versions(self):
         # This type of action doesn't have any target_versions, so addon_version will
