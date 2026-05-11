@@ -397,7 +397,17 @@ class ContentActionDisableAddon(ContentAction):
             .order_by('-pk')
         )
 
+    def prevent_auto_approval(self):
+        AddonReviewerFlags.objects.update_or_create(
+            addon=self.target,
+            defaults={
+                'auto_approval_disabled': True,
+                'auto_approval_disabled_unlisted': True,
+            },
+        )
+
     def process_action(self, release_hold=False):
+        self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
             # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
@@ -407,6 +417,7 @@ class ContentActionDisableAddon(ContentAction):
         return None
 
     def hold_action(self):
+        self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
@@ -503,7 +514,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
 
-    def prevent_auto_approval_in_relevant_channels(self):
+    def prevent_auto_approval(self):
+        # For version rejection we only prevent auto-approval in relevant
+        # channel(s) until the next manual approval.
         channels = list(
             self.target_versions.values_list('channel', flat=True).distinct()
         )
@@ -550,7 +563,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 },
             )
 
-        self.prevent_auto_approval_in_relevant_channels()
+        self.prevent_auto_approval()
         self.target.update_status()
         self.notify_stakeholders('Rejection')
         return self.log_action(
@@ -558,9 +571,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         )
 
     def hold_action(self):
-        # Even if the action is held, we want to alwas prevent auto-approval in
-        # relevant channels.
-        self.prevent_auto_approval_in_relevant_channels()
+        # Even if the action is held, we want to always prevent auto-approval
+        # in relevant channels.
+        self.prevent_auto_approval()
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
@@ -636,7 +649,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                     'pending_content_rejection': self.content_review,
                 },
             )
-        self.prevent_auto_approval_in_relevant_channels()
+        self.prevent_auto_approval()
         # Developers should be notified again once the deadline is close.
         AddonReviewerFlags.objects.update_or_create(
             addon=self.target,
@@ -650,9 +663,9 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         )
 
     def hold_action(self):
-        # Even if the action is held, we want to alwas prevent auto-approval in
-        # relevant channels.
-        self.prevent_auto_approval_in_relevant_channels()
+        # Even if the action is held, we want to always prevent auto-approval
+        # in relevant channels.
+        self.prevent_auto_approval()
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review
@@ -713,6 +726,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             # For now this action should only be used automatically by scanners and
             # monitoring tasks, not cinder webhook
             raise NotImplementedError
+        self.prevent_auto_approval()
         versions = list(self.versions_block_will_affect)
         if versions:
             # Set target_versions before executing the action, since the
@@ -752,6 +766,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
         return None
 
     def hold_action(self):
+        self.prevent_auto_approval()
         if versions := list(self.versions_block_will_affect):
             self.decision.target_versions.set(versions)
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
