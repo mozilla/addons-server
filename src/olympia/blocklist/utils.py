@@ -257,12 +257,11 @@ def save_versions_to_blocks(guids, submission):
     return blocks
 
 
-def delete_versions_from_blocks(guids, submission):
-    from .models import Block, BlockVersion
+def delete_versions_from_blocks(blocks, submission):
+    from .models import BlockVersion
 
     modified_datetime = datetime.now()
 
-    blocks = Block.get_blocks_from_guids(guids)
     should_override_block_metadata = not submission.preserve_block_metadata
     for block in blocks:
         if not block.id:

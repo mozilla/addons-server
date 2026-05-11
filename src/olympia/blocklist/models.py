@@ -536,7 +536,8 @@ class BlocklistSubmission(ModelBase):
 
         for guids_chunk in chunked(all_guids_to_block, 100):
             # This function will remove BlockVersions and delete the Block if empty
-            delete_versions_from_blocks(guids_chunk, self)
+            blocks = Block.get_blocks_from_guids(guids_chunk)
+            delete_versions_from_blocks(blocks, self)
             self.save()
 
         self.update(signoff_state=self.SIGNOFF_STATES.PUBLISHED)

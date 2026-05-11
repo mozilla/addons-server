@@ -430,7 +430,7 @@ class TestDeleteVersionsFromBlocks(TestCase):
         addon = addon_factory()
         version_factory(addon=addon)
         user = user_factory()
-        block_factory(guid=addon.guid, updated_by=self.task_user)
+        block = block_factory(guid=addon.guid, updated_by=self.task_user)
         changed_version_ids = list(
             addon.versions.values_list('pk', flat=True).order_by('pk')
         )
@@ -445,7 +445,7 @@ class TestDeleteVersionsFromBlocks(TestCase):
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
         ActivityLog.objects.all().delete()
-        delete_versions_from_blocks([addon.guid], submission)
+        delete_versions_from_blocks([block], submission)
         for version in addon.versions.all():
             assert not version.is_blocked
 
@@ -468,7 +468,7 @@ class TestDeleteVersionsFromBlocks(TestCase):
         version_factory(addon=addon)
         user = user_factory()
         signoffer = user_factory()
-        block_factory(guid=addon.guid, updated_by=self.task_user)
+        block = block_factory(guid=addon.guid, updated_by=self.task_user)
         changed_version_ids = list(
             addon.versions.values_list('pk', flat=True).order_by('pk')
         )
@@ -484,7 +484,7 @@ class TestDeleteVersionsFromBlocks(TestCase):
             signoff_by=signoffer,
         )
         ActivityLog.objects.all().delete()
-        delete_versions_from_blocks([addon.guid], submission)
+        delete_versions_from_blocks([block], submission)
         for version in addon.versions.all():
             assert not version.is_blocked
 
