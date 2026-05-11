@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Адреса е-поште"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
