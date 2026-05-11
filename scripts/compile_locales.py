@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 
@@ -16,11 +16,7 @@ def process_po_file(pofile, attempt=1):
 
     try:
         # Run dennis-cmd lint
-        subprocess.run(
-            ['dennis-cmd', 'lint', '--errorsonly', pofile],
-            capture_output=True,
-            check=False,
-        )
+        subprocess.run(['dennis-cmd', 'lint', '--errorsonly', pofile], check=True)
         # If lint passes, run msgfmt
         subprocess.run(['msgfmt', '-o', mo_path, pofile], check=True)
         return
@@ -41,20 +37,13 @@ def compile_locales():
 
     print(f'Compiling locales in {locale_dir}')
 
-    # Collect all files first
-    django_files = []
-    djangojs_files = []
-    for root, _, files in locale_dir.walk():
-        for file in files:
-            if file == 'django.po':
-                django_files.append(root / file)
-            elif file == 'djangojs.po':
-                djangojs_files.append(root / file)
-
-    # Process django.po files in parallel
+    futures = []
     with ThreadPoolExecutor() as executor:
-        executor.map(process_po_file, django_files + djangojs_files)
-
+        for root, _, files in locale_dir.walk():
+            for file in files:
+                if file.endswith('.po'):
+                    futures.append(executor.submit(process_po_file, root / file))
+    [future.result() for future in as_completed(futures)]
 
 if __name__ == '__main__':
     compile_locales()
