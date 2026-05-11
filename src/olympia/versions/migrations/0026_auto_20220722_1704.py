@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='versionreviewerflags',
-            constraint=models.CheckConstraint(check=models.Q(models.Q(('pending_content_rejection__isnull', True), ('pending_rejection__isnull', True), ('pending_rejection_by__isnull', True)), ('pending_rejection__isnull', False), _connector='OR'), name='pending_rejection_all_none'),
+            constraint=models.CheckConstraint(condition=models.Q(models.Q(('pending_content_rejection__isnull', True), ('pending_rejection__isnull', True), ('pending_rejection_by__isnull', True)), ('pending_rejection__isnull', False), _connector='OR'), name='pending_rejection_all_none'),
         ),
     ]

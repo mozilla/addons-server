@@ -798,7 +798,7 @@ class ReviewActionReason(ModelBase):
         constraints = [
             models.CheckConstraint(
                 name='either_canned_response_or_canned_block_reason_must_be_set',
-                check=(
+                condition=(
                     ~models.Q(canned_response='') | ~models.Q(canned_block_reason='')
                 ),
             )

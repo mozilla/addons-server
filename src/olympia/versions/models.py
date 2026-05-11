@@ -1176,7 +1176,7 @@ class VersionReviewerFlags(ModelBase):
         constraints = [
             models.CheckConstraint(
                 name='pending_rejection_all_none',
-                check=(
+                condition=(
                     models.Q(
                         pending_rejection__isnull=True,
                         pending_rejection_by__isnull=True,

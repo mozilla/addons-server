@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.AddConstraint(
             model_name='abusereport',
             constraint=models.CheckConstraint(
-                check=models.Q(
+                condition=models.Q(
                     models.Q(
                         models.Q(('guid', ''), _negated=True),
                         ('guid__isnull', False),

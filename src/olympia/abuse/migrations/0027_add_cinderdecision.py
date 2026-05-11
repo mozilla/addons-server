@@ -58,6 +58,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='cinderdecision',
-            constraint=models.CheckConstraint(check=models.Q(models.Q(('addon__isnull', False), ('collection__isnull', True), ('rating__isnull', True), ('user__isnull', True)), models.Q(('addon__isnull', True), ('collection__isnull', True), ('rating__isnull', True), ('user__isnull', False)), models.Q(('addon__isnull', True), ('collection__isnull', True), ('rating__isnull', False), ('user__isnull', True)), models.Q(('addon__isnull', True), ('collection__isnull', False), ('rating__isnull', True), ('user__isnull', True)), _connector='OR'), name='just_one_of_addon_user_rating_collection_must_be_set'),
+            constraint=models.CheckConstraint(condition=models.Q(models.Q(('addon__isnull', False), ('collection__isnull', True), ('rating__isnull', True), ('user__isnull', True)), models.Q(('addon__isnull', True), ('collection__isnull', True), ('rating__isnull', True), ('user__isnull', False)), models.Q(('addon__isnull', True), ('collection__isnull', True), ('rating__isnull', False), ('user__isnull', True)), models.Q(('addon__isnull', True), ('collection__isnull', False), ('rating__isnull', True), ('user__isnull', True)), _connector='OR'), name='just_one_of_addon_user_rating_collection_must_be_set'),
         ),
     ]

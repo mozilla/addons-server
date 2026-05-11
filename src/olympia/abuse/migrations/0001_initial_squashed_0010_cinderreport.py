@@ -81,7 +81,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='abusereport',
-            constraint=models.CheckConstraint(check=models.Q(models.Q(models.Q(('guid', ''), _negated=True), ('guid__isnull', False), ('user__isnull', True)), models.Q(('guid__isnull', True), ('user__isnull', False)), _connector='OR'), name='just_one_of_guid_and_user_must_be_set'),
+            constraint=models.CheckConstraint(condition=models.Q(models.Q(models.Q(('guid', ''), _negated=True), ('guid__isnull', False), ('user__isnull', True)), models.Q(('guid__isnull', True), ('user__isnull', False)), _connector='OR'), name='just_one_of_guid_and_user_must_be_set'),
         ),
         migrations.AlterField(
             model_name='abusereport',

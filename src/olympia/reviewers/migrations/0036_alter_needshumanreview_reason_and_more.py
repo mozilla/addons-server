@@ -23,6 +23,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='reviewactionreason',
-            constraint=models.CheckConstraint(check=models.Q(models.Q(('canned_response', ''), _negated=True), models.Q(('canned_block_reason', ''), _negated=True), _connector='OR'), name='either_canned_response_or_canned_block_reason_must_be_set'),
+            constraint=models.CheckConstraint(condition=models.Q(models.Q(('canned_response', ''), _negated=True), models.Q(('canned_block_reason', ''), _negated=True), _connector='OR'), name='either_canned_response_or_canned_block_reason_must_be_set'),
         ),
     ]
