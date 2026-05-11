@@ -1,6 +1,7 @@
 from django.db.models import Q
 
 from olympia.amo.management import ProcessObjectsCommand
+from olympia.constants.blocklist import BlockReason
 from olympia.versions.models import Version
 from olympia.versions.tasks import soft_block_versions
 
@@ -14,5 +15,6 @@ class Command(ProcessObjectsCommand):
             'block_old_deleted_versions': {
                 'task': soft_block_versions,
                 'queryset_filters': [Q(deleted=True, blockversion__id=None)],
+                'kwargs': {'auto_block_reason': BlockReason.VERSION_DELETED},
             },
         }

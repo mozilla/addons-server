@@ -5,8 +5,6 @@ from olympia.amo.enum import EnumChoices
 
 REMOTE_SETTINGS_COLLECTION_MLBF = 'addons-bloomfilters'
 
-REASON_USER_BANNED = 'This add-on has been blocked because its author has been banned.'
-
 # Must be kept in sync with addons-frontend
 REASON_ADDON_DELETED = 'Addon deleted'
 REASON_VERSION_DELETED = 'Version deleted'
@@ -26,3 +24,14 @@ class BlockListAction(Enum):
 class BlockType(EnumChoices):
     BLOCKED = 0, '🛑 Hard-Blocked'
     SOFT_BLOCKED = 1, '⚠️ Soft-Blocked'
+
+
+class BlockReason(EnumChoices):
+    FRAUD_DECEPTIVE = (
+        0,
+        "This add-on violates Mozilla's add-on policies by including or using "
+        'deceptive, misleading, or fraudulent activity or functionality',
+    )
+    USER_BANNED = 1, 'This add-on has been blocked because its author has been banned.'
+    ADDON_DELETED = 2, REASON_ADDON_DELETED
+    VERSION_DELETED = 3, REASON_VERSION_DELETED

@@ -25,7 +25,8 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.blocklist.models import Block, BlockVersion
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import YARA
 from olympia.files.models import File
@@ -1739,6 +1740,10 @@ class TestVersion(AMOPaths, TestCase):
             version.id
         ]
         assert (
+            block.blockversion_set.all().first().auto_block_reason
+            == BlockReason.VERSION_DELETED
+        )
+        assert (
             block.blockversion_set.filter(block_type=BlockType.SOFT_BLOCKED).count()
             == 1
         )
@@ -1760,6 +1765,7 @@ class TestVersion(AMOPaths, TestCase):
         assert list(block.blockversion_set.values_list('version', flat=True)) == [
             hard_blocked_version.id,
         ]
+        assert block.blockversion_set.all().first().auto_block_reason is None
         assert (
             hard_blocked_version.blockversion.reload().block_type == BlockType.BLOCKED
         )

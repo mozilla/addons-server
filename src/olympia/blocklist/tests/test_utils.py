@@ -16,8 +16,9 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.blocklist import BlockReason, BlockType
 
-from ..models import Block, BlocklistSubmission, BlockType
+from ..models import Block, BlocklistSubmission
 from ..utils import (
     datetime_to_ts,
     delete_versions_from_blocks,
@@ -66,6 +67,7 @@ class TestSaveVersionsToBlocks(TestCase):
         submission = BlocklistSubmission.objects.create(
             input_guids=addon.guid,
             reason='some reason',
+            auto_block_reason=BlockReason.ADDON_DELETED,
             url=None,
             updated_by=user_new,
             disable_addon=True,
@@ -105,7 +107,7 @@ class TestSaveVersionsToBlocks(TestCase):
             ],
             'comments': '1 versions added to block; 1 total versions now blocked.',
             'guid': f'{addon.guid}',
-            'reason': 'some reason',
+            'reason': 'some reason : Addon deleted',
             'signoff_state': 'Published',
             'block_type': BlockType.BLOCKED,
             'url': '',
@@ -114,6 +116,7 @@ class TestSaveVersionsToBlocks(TestCase):
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_VERSION_BLOCKED.id)
         assert activity.user == user_new
         assert activity.versionlog_set.all()[0].version == version
+        assert activity.details['reason'] == 'Addon deleted'
 
     def test_log_soft_block(self):
         user_new = user_factory()
@@ -173,6 +176,7 @@ class TestSaveVersionsToBlocks(TestCase):
         )
         assert activity.user == user_new
         assert activity.versionlog_set.all()[0].version == version
+        assert activity.details['reason'] is None
 
     def test_no_empty_new_blocks(self):
         user_new = user_factory()
@@ -201,6 +205,7 @@ class TestSaveVersionsToBlocks(TestCase):
             action=BlocklistSubmission.ACTIONS.HARDEN,
             input_guids=addon.guid,
             reason='some reason',
+            auto_block_reason=BlockReason.USER_BANNED,
             url=None,
             updated_by=user_new,
             block_type=BlockType.BLOCKED,  # Hard-block override.
@@ -210,6 +215,10 @@ class TestSaveVersionsToBlocks(TestCase):
         save_versions_to_blocks([addon.guid], submission)
         assert (
             addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
+        )
+        assert (
+            addon.current_version.blockversion.auto_block_reason
+            == BlockReason.USER_BANNED
         )
 
     def test_save_blocks_soften_existing_block(self):
@@ -221,6 +230,7 @@ class TestSaveVersionsToBlocks(TestCase):
             action=BlocklistSubmission.ACTIONS.SOFTEN,
             input_guids=addon.guid,
             reason='some reason',
+            auto_block_reason=BlockReason.USER_BANNED,
             url=None,
             updated_by=user_new,
             block_type=BlockType.SOFT_BLOCKED,
@@ -231,6 +241,10 @@ class TestSaveVersionsToBlocks(TestCase):
         assert (
             addon.current_version.blockversion.reload().block_type
             == BlockType.SOFT_BLOCKED
+        )
+        assert (
+            addon.current_version.blockversion.auto_block_reason
+            == BlockReason.USER_BANNED
         )
 
     def test_save_blocks_adding_soft_block_on_existing_does_nothing(self):
@@ -248,6 +262,7 @@ class TestSaveVersionsToBlocks(TestCase):
             url=None,
             updated_by=user_new,
             block_type=BlockType.SOFT_BLOCKED,
+            auto_block_reason=BlockReason.USER_BANNED,
             changed_version_ids=[addon.current_version.pk],
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
         )
@@ -255,6 +270,7 @@ class TestSaveVersionsToBlocks(TestCase):
         assert (
             addon.current_version.blockversion.reload().block_type == BlockType.BLOCKED
         )
+        assert addon.current_version.blockversion.auto_block_reason is None
 
     def test_save_blocks_adding_hard_block_on_existing_soft(self):
         # A BlocklistSubmission that uses the ADDCHANGE action to add a

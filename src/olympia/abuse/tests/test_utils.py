@@ -12,8 +12,9 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block, BlockType, BlockVersion
+from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
@@ -77,7 +78,17 @@ def test_reject_and_block_addons():
     # we didn't accidently downgrade the hard-blocked version
     assert hard_blocked_version.blockversion.block_type == BlockType.BLOCKED
 
-    assert normal_addon.block.reason.startswith("This add-on violates Mozilla's")
+    assert (
+        normal_addon_version.blockversion.auto_block_reason
+        == BlockReason.FRAUD_DECEPTIVE
+    )
+    assert (
+        partially_blocked_version.blockversion.auto_block_reason
+        == BlockReason.FRAUD_DECEPTIVE
+    )
+    assert hard_blocked_version.blockversion.auto_block_reason is None  # didn't set
+
+    assert normal_addon.block.reason == ''
     assert partially_blocked_addon.block.reason == 'Something!'
 
     # 3 decisions; 2 are immediately executed; one is recommended so held for 2nd level

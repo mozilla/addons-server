@@ -42,7 +42,8 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.models import RssKey
@@ -2852,8 +2853,16 @@ class TestAddonDelete(TestCase):
             == 2
         )
         assert (
+            block.blockversion_set.filter(
+                auto_block_reason=BlockReason.ADDON_DELETED
+            ).count()
+            == 2
+        )
+
+        assert (
             hard_blocked_version.blockversion.reload().block_type == BlockType.BLOCKED
         )
+        assert hard_blocked_version.blockversion.auto_block_reason is None
         assert len(mail.outbox) == 0
 
 

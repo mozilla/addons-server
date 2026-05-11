@@ -27,8 +27,9 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
+from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
@@ -1968,6 +1969,13 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         self._check_block_activity_logs(block_activity, block_version_activity)
         assert self.version.blockversion
         assert self.old_version.blockversion
+        assert (
+            self.version.blockversion.auto_block_reason == BlockReason.FRAUD_DECEPTIVE
+        )
+        assert (
+            self.old_version.blockversion.auto_block_reason
+            == BlockReason.FRAUD_DECEPTIVE
+        )
 
         return subject
 
@@ -1988,6 +1996,13 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         self._check_block_activity_logs(block_activity, block_version_activity)
         assert self.version.blockversion
         assert self.old_version.blockversion
+        assert (
+            self.version.blockversion.auto_block_reason == BlockReason.FRAUD_DECEPTIVE
+        )
+        assert (
+            self.old_version.blockversion.auto_block_reason
+            == BlockReason.FRAUD_DECEPTIVE
+        )
 
     def test_already_blocked(self):
         self.decision.update(action=self.takedown_decision_action)
@@ -2163,7 +2178,8 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         assert submission.disable_addon is False
         assert submission.preserve_block_metadata is True
         assert submission.disable_versions is False
-        assert "This add-on violates Mozilla's add-on policies" in submission.reason
+        assert submission.reason is None
+        assert submission.auto_block_reason == BlockReason.FRAUD_DECEPTIVE
         self.assertCloseToNow(
             submission.delayed_until,
             now=datetime.now() + timedelta(days=self.ActionClass.delay_days),

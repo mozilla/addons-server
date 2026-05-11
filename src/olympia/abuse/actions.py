@@ -22,6 +22,7 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import BlocklistSubmission, BlockType
 from olympia.blocklist.utils import delete_versions_from_blocks, save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.blocklist import BlockReason
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
@@ -694,16 +695,12 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             disable_too = self.target.status != amo.STATUS_DISABLED
             if disable_too:
                 self.target.force_disable(skip_activity_log=True)
-            reason = (
-                "This add-on violates Mozilla's add-on policies by including or using "
-                'deceptive, misleading, or fraudulent activity or functionality'
-            )
             save_versions_to_blocks(
                 [self.target.guid],
                 BlocklistSubmission(
                     block_type=self.block_type,
                     updated_by_id=self.updated_by_user_id,
-                    reason=reason,
+                    auto_block_reason=BlockReason.FRAUD_DECEPTIVE,
                     signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
                     changed_version_ids=[ver.pk for ver in versions],
                     # We're disabling the add-on above, so skip this.
@@ -755,16 +752,12 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
         versions = list(versions_qs)
         if versions:
-            reason = (
-                "This add-on violates Mozilla's add-on policies by including or using "
-                'deceptive, misleading, or fraudulent activity or functionality'
-            )
             delayed_until = datetime.now() + timedelta(days=self.delay_days)
             submission = BlocklistSubmission(
                 input_guids=self.target.guid,
                 block_type=self.block_type,
                 updated_by_id=self.updated_by_user_id,
-                reason=reason,
+                auto_block_reason=BlockReason.FRAUD_DECEPTIVE,
                 signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 changed_version_ids=[ver.pk for ver in versions],
                 disable_addon=False,

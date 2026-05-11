@@ -35,7 +35,7 @@ from olympia.amo.utils import SafeStorage
 from olympia.api.models import APIKey
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType
-from olympia.constants.blocklist import REASON_USER_BANNED
+from olympia.constants.blocklist import BlockReason
 from olympia.devhub.models import SurveyResponse
 from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
@@ -316,7 +316,8 @@ class TestUserProfile(TestCase):
             assert not submission.disable_addon
             assert submission.block_type == BlockType.BLOCKED
             assert submission.updated_by == core.get_user()
-            assert submission.reason == REASON_USER_BANNED
+            assert submission.reason is None
+            assert submission.auto_block_reason == BlockReason.USER_BANNED
 
             expected_blocked_versions = (
                 *addon_sole.versions.all(),
@@ -325,7 +326,8 @@ class TestUserProfile(TestCase):
             for version in expected_blocked_versions:
                 assert version.is_blocked
                 assert version.blockversion.block_type == BlockType.BLOCKED
-                assert version.blockversion.block.reason == REASON_USER_BANNED
+                assert version.blockversion.block.reason == ''
+                assert version.blockversion.auto_block_reason == BlockReason.USER_BANNED
             assert not addon_multi.current_version.reload().is_blocked
 
         assert not user_sole._ratings_all.exists()  # Even replies.
@@ -577,7 +579,7 @@ class TestUserProfile(TestCase):
             # In the end both add-ons should have had their versions hard-blocked
             assert version.is_blocked
             assert version.blockversion.block_type == BlockType.BLOCKED
-            assert version.blockversion.block.reason == REASON_USER_BANNED
+            assert version.blockversion.auto_block_reason == BlockReason.USER_BANNED
 
         assert BlocklistSubmission.objects.count() == 2
 
@@ -617,7 +619,7 @@ class TestUserProfile(TestCase):
             # In the end both add-ons should have had their versions hard-blocked
             assert version.is_blocked
             assert version.blockversion.block_type == BlockType.BLOCKED
-            assert version.blockversion.block.reason == REASON_USER_BANNED
+            assert version.blockversion.auto_block_reason == BlockReason.USER_BANNED
 
         # We should have 2 BlocklistSubmissions total because we have 2
         # users, both should be identical and contain both add-ons, but we
@@ -635,7 +637,7 @@ class TestUserProfile(TestCase):
             assert (
                 submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
             )
-            assert submission.reason == REASON_USER_BANNED
+            assert submission.auto_block_reason == BlockReason.USER_BANNED
             assert submission.action == BlocklistSubmission.ACTIONS.ADDCHANGE
             assert submission.updated_by == fake_admin
 
@@ -677,6 +679,7 @@ class TestUserProfile(TestCase):
         assert submission.changed_version_ids == [version.pk]
         assert submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
         assert submission.updated_by == fake_admin
+        assert submission.auto_block_reason == BlockReason.USER_BANNED
         assert (
             user.content_disabled_on_ban.blocked_addons_submissions.get() == submission
         )
@@ -798,7 +801,7 @@ class TestUserProfile(TestCase):
         assert not submission.disable_addon
         assert submission.block_type == BlockType.SOFT_BLOCKED
         assert submission.updated_by == core.get_user()
-        assert submission.reason == f'Revert "{REASON_USER_BANNED}"'
+        assert submission.reason is None
 
     @mock.patch('olympia.users.models.download_file_contents_from_backup_storage')
     @mock.patch('olympia.users.models.backup_storage_enabled', lambda: True)

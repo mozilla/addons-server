@@ -5,8 +5,9 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.constants.blocklist import BlockReason, BlockType
 
-from ..models import Block, BlockType, BlockVersion
+from ..models import Block, BlockVersion
 from ..serializers import BlockSerializer
 
 
@@ -191,3 +192,36 @@ class TestBlockSerializer(TestCase):
         old_addon.addonguid.update(guid=addon.guid)
         # ... the guid isn't completely blocked
         assert BlockSerializer(instance=self.block).data['is_all_versions'] is False
+
+    def test_reason(self):
+        addon = addon_factory(
+            guid=self.block.guid, name='Addón náme', version_kw={'version': '1.0'}
+        )
+        bv_1 = BlockVersion.objects.create(
+            block=self.block,
+            version=addon.current_version,
+            auto_block_reason=BlockReason.ADDON_DELETED,
+        )
+        BlockVersion.objects.create(
+            block=self.block,
+            version=version_factory(
+                addon=addon, channel=amo.CHANNEL_UNLISTED, version='2.0.2'
+            ),
+            auto_block_reason=BlockReason.VERSION_DELETED,
+        )
+
+        # with a manual block reason this is returned
+        serializer = BlockSerializer(context={'request': self.request})
+        assert (
+            serializer.to_representation(self.block)['reason'] == 'something happened'
+        )
+
+        # With no manual block reason, the most important auto block reason is returned
+        self.block.update(reason='')
+        del self.block._blockversion_set_qs_values_list
+        assert serializer.to_representation(self.block)['reason'] == 'Addon deleted'
+
+        # Addon delete is more important than version delete
+        bv_1.update(auto_block_reason=None)
+        del self.block._blockversion_set_qs_values_list
+        assert serializer.to_representation(self.block)['reason'] == 'Version deleted'

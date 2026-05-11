@@ -19,9 +19,9 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage
 from olympia.constants.blocklist import (
-    REASON_USER_BANNED,
     REMOTE_SETTINGS_COLLECTION_MLBF,
     BlockListAction,
+    BlockReason,
 )
 from olympia.lib.remote_settings import RemoteSettings
 from olympia.zadmin.models import get_config, set_config
@@ -301,7 +301,7 @@ def block_addons_on_user_ban(addonusers_ids, *, user_responsible_id):
                     bannedusercontent_id=user_id,
                     blocklistsubmission=BlocklistSubmission(
                         action=BlocklistSubmission.ACTIONS.ADDCHANGE,
-                        reason=REASON_USER_BANNED,
+                        auto_block_reason=BlockReason.USER_BANNED,
                         updated_by_id=user_responsible_id,
                         input_guids='\r\n'.join(new_blocks_guids),
                         changed_version_ids=new_blocks_versions,
@@ -316,7 +316,7 @@ def block_addons_on_user_ban(addonusers_ids, *, user_responsible_id):
                     bannedusercontent_id=user_id,
                     blocklistsubmission=BlocklistSubmission(
                         action=BlocklistSubmission.ACTIONS.HARDEN,
-                        reason=REASON_USER_BANNED,
+                        auto_block_reason=BlockReason.USER_BANNED,
                         updated_by_id=user_responsible_id,
                         input_guids='\r\n'.join(existing_blocks_guids),
                         changed_version_ids=existing_blocks_versions,
@@ -366,7 +366,6 @@ def revert_published_blocklist_submissions(submission_ids, *, user_responsible_i
             continue
         submission.pk = None
         submission.updated_by_id = user_responsible_id
-        submission.reason = f'Revert "{submission.reason}"'
         submission.signoff_state = BlocklistSubmission.SIGNOFF_STATES.PENDING
         submission.save()
         submission.update_signoff_for_auto_approval()
