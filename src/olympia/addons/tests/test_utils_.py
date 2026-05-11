@@ -323,6 +323,60 @@ def test_request_content_review_not_triggered_for_non_content_review_types():
 
 
 @pytest.mark.django_db
+def test_request_content_review_not_triggered_if_content_review_already_ongoing():
+    addon = addon_factory(status=amo.STATUS_REJECTED)
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.request_new_content_review_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        request_content_review(addon, activity_log)
+
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+    )
+    # We should not have triggered the content review task though
+    mock_apply_async.assert_not_called()
+
+
+@pytest.mark.django_db
+def test_request_content_review_not_triggered_if_not_rejected():
+    addon = addon_factory()
+    activity_log = ActivityLog.objects.create(
+        amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
+    )
+    AddonApprovalsCounter.reject_content_for_addon(addon)
+    assert (
+        addon.addonapprovalscounter.content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+    )
+
+    with (
+        override_switch('content-review-in-cinder', active=True),
+        mock.patch('olympia.amo.celery.AMOTask.apply_async') as mock_apply_async,
+    ):
+        request_content_review(addon, activity_log)
+
+    # State was inconsistent, addon was not in rejected status: we don't do
+    # anything.
+    assert (
+        addon.addonapprovalscounter.reload().content_review_status
+        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL
+    )
+    # We should not have triggered the content review task either.
+    mock_apply_async.assert_not_called()
+
+
+@pytest.mark.django_db
 def test_request_content_review_not_triggered_if_switch_inactive():
     addon = addon_factory(status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(

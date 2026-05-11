@@ -1687,6 +1687,44 @@ class TestAddonModels(TestCase):
         flags.update(needs_admin_theme_review=True)
         assert addon.needs_admin_theme_review is True
 
+    def test_content_review_status_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # No approvals counter: unreviewed
+        assert (
+            addon.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
+        # approvals counter present, default is also unreviewed.
+        approvalscounter = AddonApprovalsCounter.objects.create(addon=addon)
+        assert (
+            addon.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+        )
+        # follows the approvals counter value
+        approvalscounter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+        assert (
+            addon.content_review_status
+            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+
+    def test_has_ongoing_content_review_request_property(self):
+        addon = Addon.objects.get(pk=3615)
+        # Not even rejected: False
+        assert addon.has_ongoing_content_review_request is False
+        # No approvals counter: still False
+        addon.update(status=amo.STATUS_REJECTED)
+        assert addon.has_ongoing_content_review_request is False
+        # approvals counter present, default is unreviewed so still false
+        approvalscounter = AddonApprovalsCounter.objects.create(addon=addon)
+        assert addon.has_ongoing_content_review_request is False
+        # If requested, true.
+        approvalscounter.update(
+            content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+        assert addon.has_ongoing_content_review_request is True
+
     def test_attach_previews(self):
         addons = [
             addon_factory(),
