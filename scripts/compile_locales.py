@@ -45,5 +45,6 @@ def compile_locales():
                     futures.append(executor.submit(process_po_file, root / file))
     [future.result() for future in as_completed(futures)]
 
+
 if __name__ == '__main__':
     compile_locales()
