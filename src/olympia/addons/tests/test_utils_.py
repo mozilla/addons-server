@@ -192,7 +192,7 @@ def test_delete_token_signer():
 
 @pytest.mark.django_db
 def test_trigger_content_review():
-    addon = addon_factory()
+    addon = addon_factory(status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )
@@ -219,7 +219,7 @@ def test_trigger_content_review():
 
 @pytest.mark.django_db
 def test_trigger_content_review_not_triggered_for_non_content_review_types():
-    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    addon = addon_factory(type=amo.ADDON_STATICTHEME, status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )
@@ -245,7 +245,7 @@ def test_trigger_content_review_not_triggered_for_non_content_review_types():
 
 @pytest.mark.django_db
 def test_trigger_content_review_not_triggered_if_switch_inactive():
-    addon = addon_factory()
+    addon = addon_factory(status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )
@@ -271,7 +271,7 @@ def test_trigger_content_review_not_triggered_if_switch_inactive():
 
 @pytest.mark.django_db
 def test_request_content_review():
-    addon = addon_factory()
+    addon = addon_factory(status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )
@@ -298,7 +298,7 @@ def test_request_content_review():
 
 @pytest.mark.django_db
 def test_request_content_review_not_triggered_for_non_content_review_types():
-    addon = addon_factory(type=amo.ADDON_STATICTHEME)
+    addon = addon_factory(type=amo.ADDON_STATICTHEME, status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )
@@ -324,7 +324,7 @@ def test_request_content_review_not_triggered_for_non_content_review_types():
 
 @pytest.mark.django_db
 def test_request_content_review_not_triggered_if_switch_inactive():
-    addon = addon_factory()
+    addon = addon_factory(status=amo.STATUS_REJECTED)
     activity_log = ActivityLog.objects.create(
         amo.LOG.EDIT_ADDON_PROPERTY, user=user_factory()
     )

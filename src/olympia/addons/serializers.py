@@ -1945,6 +1945,9 @@ class AddonListingContentReviewSerializer(AMOModelSerializer):
         return obj.status == amo.STATUS_REJECTED
 
     def get_can_request_review(self, obj):
+        return self.get_is_rejected(obj) and not self.get_has_requested_review(obj)
+
+    def get_has_requested_review(self, obj):
         return obj.has_ongoing_content_review_request
 
     def _get_reject_listing_content_log(self, obj):

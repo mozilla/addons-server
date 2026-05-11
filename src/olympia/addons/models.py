@@ -2094,11 +2094,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def has_ongoing_content_review_request(self):
-        return (
-            self.status == amo.STATUS_REJECTED and
-            self.content_review_status == (
-                AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
-            )
+        return self.status == amo.STATUS_REJECTED and self.content_review_status == (
+            AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
         )
 
 

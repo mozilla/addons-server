@@ -155,7 +155,10 @@ def request_content_review(addon, activity_log):
     from olympia.abuse.tasks import submit_addon_change_for_content_review
     from olympia.addons.models import AddonApprovalsCounter
 
-    if addon.has_ongoing_content_review_request:
+    if (
+        addon.status == amo.STATUS_REJECTED
+        and not addon.has_ongoing_content_review_request
+    ):
         AddonApprovalsCounter.request_new_content_review_for_addon(addon=addon)
 
         if addon.type in amo.ADDON_CONTENT_REVIEW_TYPES and waffle.switch_is_active(

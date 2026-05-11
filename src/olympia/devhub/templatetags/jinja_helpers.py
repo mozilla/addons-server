@@ -6,7 +6,6 @@ from django_jinja import library
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import AddonApprovalsCounter
 from olympia.amo.templatetags.jinja_helpers import format_date, new_context, page_title
 from olympia.files.models import File
 
@@ -151,11 +150,6 @@ def content_rejected_info(context, addon):
         and rejected_log.contentdecision_set.all().order_by('-created').first()
     )
     has_appeal_already = decision and decision.appeal_job
-    rejection_review_requested = (
-        rejected_log
-        and addon.addonapprovalscounter.content_review_status
-        == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
-    )
     return {
         'addon': context.get('addon'),
         'page': context.get('page'),
@@ -165,6 +159,5 @@ def content_rejected_info(context, addon):
         'rejection_policy_texts': rejected_log.details.get('policy_texts', [])
         if rejected_log
         else [],
-        'rejection_review_requested': rejection_review_requested,
         'has_appeal_already': has_appeal_already,
     }

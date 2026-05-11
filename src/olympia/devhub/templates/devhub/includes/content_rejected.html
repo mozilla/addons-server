@@ -16,7 +16,7 @@
             <button class="disabled" disabled>
                 {{ _('Appeal already made') }}
             </button>
-        {% elif rejection_review_requested %}
+        {% elif addon.has_ongoing_content_review_request %}
             <button class="disabled" disabled>
                 {{ _('Review requested already, awaiting review') }}
             </button>
