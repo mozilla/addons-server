@@ -2085,7 +2085,7 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def content_review_status(self):
         try:
-            content_review_status = addon.addonapprovalscounter.content_review_status
+            content_review_status = self.addonapprovalscounter.content_review_status
         except AddonApprovalsCounter.DoesNotExist:
             content_review_status = (
                 AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
@@ -2095,9 +2095,10 @@ class Addon(OnChangeMixin, ModelBase):
     @property
     def has_ongoing_content_review_request(self):
         return (
-            self.status == amo.STATUS_REJECTED
-            and self.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+            self.status == amo.STATUS_REJECTED and
+            self.content_review_status == (
+                AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+            )
         )
 
 
