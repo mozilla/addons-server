@@ -4126,7 +4126,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     decision.action == actions[action_name]['cinder_action']
                     or policy.enforcement_actions
                 )
-                assert job.decision == decision
+                assert job.final_decision == decision
 
                 reviewer_log_mock.reset_mock()
                 content_action_log_spy.reset_mock()
@@ -4374,12 +4374,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert decision2.action == DECISION_ACTIONS.AMO_APPROVE
         assert decision1.activities.get() == log1
         assert decision2.activities.get() == log2
-        assert set(appeal_job1.reload().decision.policies.all()) == {
+        assert set(appeal_job1.reload().final_decision.policies.all()) == {
             policy_a,
             policy_b,
             policy_c,
         }
-        assert set(appeal_job2.reload().decision.policies.all()) == {policy_d}
+        assert set(appeal_job2.reload().final_decision.policies.all()) == {policy_d}
 
         assert decision1.metadata[ContentDecision.POLICY_DYNAMIC_VALUES] == {
             policy_a.uuid: {
@@ -4543,7 +4543,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_request_legal_review(data={'cinder_jobs_to_resolve': [job]})
 
         # And check that the job was resolved in the way we expected
-        assert job.reload().decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
+        assert job.reload().final_decision.action == DECISION_ACTIONS.AMO_LEGAL_FORWARD
 
         # is cleared
         assert not NeedsHumanReview.objects.filter(

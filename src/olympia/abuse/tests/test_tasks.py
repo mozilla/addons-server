@@ -614,7 +614,7 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     statsd_incr_mock.reset_mock()
 
     appeal_to_cinder.delay(
-        decision_cinder_id=cinder_job.decision.cinder_id,
+        decision_cinder_id=cinder_job.final_decision.cinder_id,
         abuse_report_id=abuse_report.id,
         appeal_text='I appeal',
         user_id=None,
@@ -636,11 +636,11 @@ def test_addon_appeal_to_cinder_reporter(statsd_incr_mock):
     }
 
     cinder_job.reload()
-    assert cinder_job.decision.appeal_job_id
-    appeal_job = cinder_job.decision.appeal_job
+    assert cinder_job.final_decision.appeal_job_id
+    appeal_job = cinder_job.final_decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.cinderappeal.decision == cinder_job.decision
+    assert abuse_report.cinderappeal.decision == cinder_job.final_decision
 
     assert statsd_incr_mock.call_count == 1
     assert statsd_incr_mock.call_args[0] == ('abuse.tasks.appeal_to_cinder.success',)
@@ -680,7 +680,7 @@ def test_addon_appeal_to_cinder_reporter_exception(
 
     with pytest.raises(Retry) as exc_info:
         appeal_to_cinder.delay(
-            decision_cinder_id=cinder_job.decision.cinder_id,
+            decision_cinder_id=cinder_job.final_decision.cinder_id,
             abuse_report_id=abuse_report.id,
             appeal_text='I appeal',
             user_id=None,
@@ -728,7 +728,7 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     )
 
     appeal_to_cinder.delay(
-        decision_cinder_id=cinder_job.decision.cinder_id,
+        decision_cinder_id=cinder_job.final_decision.cinder_id,
         abuse_report_id=abuse_report.pk,
         appeal_text='I appeal',
         user_id=user.pk,
@@ -752,11 +752,11 @@ def test_addon_appeal_to_cinder_authenticated_reporter():
     }
 
     cinder_job.reload()
-    assert cinder_job.decision.appeal_job_id
-    appeal_job = cinder_job.decision.appeal_job
+    assert cinder_job.final_decision.appeal_job_id
+    appeal_job = cinder_job.final_decision.appeal_job
     assert appeal_job.job_id == '2432615184-xyz'
     abuse_report.reload()
-    assert abuse_report.cinderappeal.decision == cinder_job.decision
+    assert abuse_report.cinderappeal.decision == cinder_job.final_decision
 
 
 @pytest.mark.django_db
