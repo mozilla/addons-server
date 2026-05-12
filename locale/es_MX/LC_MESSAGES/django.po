@@ -1320,11 +1320,11 @@ msgstr "Listado rechazado"
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr ""
+msgstr "Se solicitó una revisión del contenido de la página de {addon}."
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
-msgstr ""
+msgstr "Revisión del listado solicitada"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1364,7 +1364,7 @@ msgstr "Esperando revisión"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr ""
+msgstr "Contenido del listado rechazado"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -1870,7 +1870,7 @@ msgstr "La categoría miscelánea no puede combinarse con categorías adicionale
 
 #: src/olympia/devhub/forms.py:251 src/olympia/devhub/forms.py:1365
 msgid "There was an error uploading your image."
-msgstr ""
+msgstr "Hubo un error al subir la imagen."
 
 #: src/olympia/devhub/forms.py:305
 #, python-format
@@ -2085,15 +2085,15 @@ msgstr "Debes seleccionar un canal y una versión a la que deseas volver."
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Choose a category"
-msgstr ""
+msgstr "Elige una categoría"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Soporte técnico para el cumplimiento de tu complemento"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Problema con addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2101,7 +2101,7 @@ msgstr "Asunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resumen del problema en pocas palabras"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
@@ -2109,7 +2109,7 @@ msgstr "Selecciona categoría"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Danos más detalles sobre el problema"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"

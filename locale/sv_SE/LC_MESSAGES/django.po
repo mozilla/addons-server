@@ -4032,7 +4032,7 @@ msgstr "För att åtgärda dessa problem, vänligen uppdatera din listning och b
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Överklagande redan gjort"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
