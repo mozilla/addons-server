@@ -3951,7 +3951,7 @@ msgstr "為了解決這些問題，請更新上架資訊後再次請求內容審
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "已經提出過申訴"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
