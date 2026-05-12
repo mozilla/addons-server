@@ -422,7 +422,7 @@ msgstr "Este identificador no puede usarse. Por favor, elige otro."
 
 #: src/olympia/addons/serializers.py:1904
 msgid "There is no rollback available in this channel."
-msgstr ""
+msgstr "No hay opción de reversión disponible en este canal."
 
 #: src/olympia/addons/serializers.py:1914
 #, python-format
@@ -435,7 +435,7 @@ msgstr "Solo se pueden revertir las versiones aprobadas, excepto la versión mas
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "Este resumen o descripción del complemento no se puede utilizar."
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1269,16 +1269,16 @@ msgstr "Rechazo pendiente cambiada"
 #: src/olympia/constants/activity.py:1207
 #, python-brace-format
 msgid "{addon} {version} created, to rollback from {0}."
-msgstr ""
+msgstr "{addon} {version} creado, para revertir desde {0}."
 
 #: src/olympia/constants/activity.py:1208
 msgid "Version rollback"
-msgstr ""
+msgstr "Reversión de versión"
 
 #: src/olympia/constants/activity.py:1215
 #, python-brace-format
 msgid "{addon} rollback from {version} failed."
-msgstr ""
+msgstr "La reversión de {addon} desde {version} falló."
 
 #: src/olympia/constants/activity.py:1216
 msgid "Version rollback failure"
