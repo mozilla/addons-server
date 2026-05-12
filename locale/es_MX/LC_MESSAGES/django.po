@@ -3991,6 +3991,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement, Review Policies and Rules and our <a %(a_attrs)s href=\"%(faq_url)s\">Frequently Asked Questions</a>. The Firefox "
 "Add-on Distribution Agreement also links to our Privacy Notice which explains how we handle your information."
 msgstr ""
+"Antes de comenzar, consulta y acepta nuestro Acuerdo de distribución de complementos de Firefox, las Políticas y reglas de revisión y nuestras <a %(a_attrs)s href=\"%(faq_url)s\">Preguntas "
+"frecuentes</a>. El Acuerdo de distribución de complementos de Firefox también incluye un enlace a nuestro Aviso de privacidad, donde se explica cómo manejamos tu información."
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:10
 msgid "Review Policies and Rules"
@@ -4043,23 +4045,23 @@ msgstr "Ver el blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:2
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr ""
+msgstr "Tras la revisión, se determinó que el contenido de tu publicación infringe la siguiente política o políticas de Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr ""
+msgstr "Para solucionar estos problemas, actualiza tu publicación y solicita una nueva revisión del contenido."
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Apelación ya realizada"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
-msgstr ""
+msgstr "Revisión solicitada; en espera de revisión"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:26
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr ""
+msgstr "Confirmo que se han atendido los problemas y solicito una revisión"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:1
 msgid "Version Signature Pending"
@@ -4068,6 +4070,8 @@ msgstr "Firma de versión pendiente"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
+"¡Todo listo! ✨ Recibirás una notificación por correo electrónico cuando el archivo firmado esté disponible para su descarga en el Panel de Desarrollo (Developer Hub). Si no recibes el mensaje tras "
+"24 horas, favor de revisar la carpeta de correo no deseado (spam)."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4118,16 +4122,16 @@ msgstr[1] "Selecciona <b>hasta {0}</b> categorías para este complemento:"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:2
 msgid "Roll back to a previous version"
-msgstr ""
+msgstr "Volver a una versión anterior"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:7
 msgid "Users of this extension will roll back to the previous version you choose."
-msgstr ""
+msgstr "Quienes utilicen esta extensión volverán a la versión anterior que elijas."
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:13
 #, python-format
 msgid "Current Version [%(current_version_number)s] will roll back to Version [%(selected_version_number)s]"
-msgstr ""
+msgstr "La versión actual [%(current_version_number)s] volverá a la versión [%(selected_version_number)s]"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
@@ -4148,7 +4152,7 @@ msgstr "Notas de la versión"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "Revertir"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4528,7 +4532,7 @@ msgstr "Todas las versiones"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:207
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "Volver a una versión anterior"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:213
 msgid "Upload a New Version"
@@ -6046,27 +6050,27 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1077
 msgid "Pack a powerful thesaurus right inside Firefox."
-msgstr ""
+msgstr "Integra un potente diccionario de sinónimos directamente en Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1080
 msgid "Hover over web images to enlarge their appearance."
-msgstr ""
+msgstr "Coloca el cursor sobre las imágenes web para ampliarlas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1083
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Herramienta de traducción con funciones avanzadas. Funciona en toda la web, libros electrónicos, archivos PDF e incluso en subtítulos de video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Track the time you spend on every website you visit."
-msgstr ""
+msgstr "Registra el tiempo que pasas en cada sitio web que visitas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
-msgstr ""
+msgstr "Administra tu Gmail (incluso varias cuentas) desde una ventana emergente accesible en la barra de herramientas de Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1092
@@ -6186,33 +6190,28 @@ msgstr "Gestores de contraseña recomendados"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1156
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "Ver más extensiones recomendadas"
+msgstr "Ver más recomendaciones del equipo para gestores de contraseñas"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1159
-#, fuzzy
 msgid "Translation tools"
-msgstr "Organizadores de pestañas y herramientas"
+msgstr "Herramientas de traducción"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1161
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "por versión del complemento"
+msgstr "Ver más recomendaciones del equipo para herramientas de traducción"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1164
-#, fuzzy
 msgid "Social streaming"
-msgstr "Redes sociales"
+msgstr "Streaming social"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1166
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Ver más extensiones populares"
+msgstr "Ver más recomendaciones del equipo para streaming social"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1169
@@ -6221,9 +6220,8 @@ msgstr "Administrador de pestañas"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1171
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "Ver más extensiones recomendadas"
+msgstr "Ver más recomendaciones del equipo para la gestión de pestañas"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1174
