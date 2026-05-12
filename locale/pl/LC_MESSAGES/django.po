@@ -2083,7 +2083,7 @@ msgstr "Musisz wybrać kanał i wersję, do której chcesz cofnąć wersję."
 
 #: src/olympia/devhub/forms.py:1763
 msgid "Choose a category"
-msgstr ""
+msgstr "Wybierz kategorię"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
