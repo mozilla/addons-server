@@ -384,7 +384,7 @@ msgstr "No se pueden enviar versiones listadas mientras el complemento esté des
 
 #: src/olympia/addons/serializers.py:594 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "Las versiones listadas no se pueden enviar mientras la publicación del complemento esté rechazada."
 
 #: src/olympia/addons/serializers.py:635
 #, python-format
