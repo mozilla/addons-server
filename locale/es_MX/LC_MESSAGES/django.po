@@ -3616,7 +3616,7 @@ msgstr "El tamaño de archivo máximo aceptado es %(max_size)s."
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:72
 #, python-format
 msgid "For more information, please read <a %(a_attrs)s>Source Code Submission</a> on Firefox Extension Workshop."
-msgstr ""
+msgstr "Para obtener más información, consulta <a %(a_attrs)s>Envío de código fuente</a> en Firefox Extension Workshop."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:77
 msgid "Upload source code:"
@@ -3649,7 +3649,7 @@ msgstr "Usa los siguientes campos para subir el complemento. Una vez subido, se 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:35
 #, python-format
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
-msgstr ""
+msgstr "El tamaño máximo de archivo aceptado es %(max_size)s. Si tu complemento supera el tamaño de %(max_size)s, no se validará."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
 msgid "Which applications is this version compatible with?"
@@ -3741,10 +3741,12 @@ msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
 msgstr ""
+"Para ejecutar llamadas autenticadas contra la <a %(a_attrs)s href=\"%(docs_url)s\">API</a> como consumidor externo, debes incluir un <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> en "
+"el encabezado <code>Authorization</code> para cada solicitud."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
-msgstr ""
+msgstr "Mantén la confidencialidad de tus llaves de API y no las compartas con nadie, tampoco con el equipo de Mozilla ni con quienes colaboran en el proyecto."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT issuer"
@@ -3768,6 +3770,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Recibes este mensaje porque se solicitaron nuevas llaves de API de desarrollo para %(domain)s. Para completar este proceso, haz clic en el siguiente enlace:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:8
 #, python-format
@@ -3844,6 +3855,13 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Tu email se verificó correctamente.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3859,6 +3877,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Recibes este mensaje porque se solicitó la verificación de este correo electrónico. Para completar el proceso, haz clic en el siguiente enlace:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Saludos,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -3880,11 +3907,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:30
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery."
-msgstr ""
+msgstr "Tu complemento fue desactivado por la administración del sitio y ya no se muestra en nuestra galería."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr ""
+msgstr "Se rechazó la publicación de tu complemento. No aparecerá en nuestra galería. Te sugerimos atender los motivos indicados y solicitar una nueva revisión."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
