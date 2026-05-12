@@ -4020,7 +4020,7 @@ msgstr "Chcete-li tyto problémy vyřešit, aktualizujte svůj obsah a požádej
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Odvolání už bylo podáno"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"

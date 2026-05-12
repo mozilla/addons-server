@@ -4018,7 +4018,7 @@ msgstr "Para resolver esses problemas, atualize sua listagem e solicite outra re
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Recurso já feito"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"

@@ -4027,7 +4027,7 @@ msgstr "Werk uw vermelding bij en vraag een nieuwe beoordeling van de inhoud aan
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Beroep is al ingediend"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"

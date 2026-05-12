@@ -4021,7 +4021,7 @@ msgstr "Za odpravo teh težav uredite svojo objavo in zahtevajte ponovni pregled
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Pritožba je že vložena"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
