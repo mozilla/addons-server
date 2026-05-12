@@ -1568,7 +1568,6 @@ class ReviewBase:
         See auto_reject_multiple_versions also, that can handle delayed rejections from
         different reviewers"""
         assert self.human_review is True
-        channel = self.version.channel if self.version else None
         self.version = None
         self.file = None
         decision_metadata = {
@@ -1607,17 +1606,6 @@ class ReviewBase:
             self.clear_specific_needs_human_review_flags(version)
             self.set_human_review_date(version)
 
-        # A human rejection (delayed or not) implies the next version in the
-        # same channel should be manually reviewed.
-        auto_approval_disabled_until_next_approval_flag = (
-            'auto_approval_disabled_until_next_approval'
-            if channel == amo.CHANNEL_LISTED
-            else 'auto_approval_disabled_until_next_approval_unlisted'
-        )
-        AddonReviewerFlags.objects.update_or_create(
-            addon=self.addon,
-            defaults={auto_approval_disabled_until_next_approval_flag: True},
-        )
         log.info('Sending email for %s' % (self.addon))
         self.record_decision(
             action_id,

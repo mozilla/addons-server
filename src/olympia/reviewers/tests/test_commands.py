@@ -675,10 +675,11 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_delay_approval(self, sign_file_mock):
-        # Functional test making sure that the scanners _delay_auto_approval()
-        # action properly delays auto-approval on the version it's applied to
+        """Functional test making sure that the scanners _delay_auto_approval()
+        action properly delays auto-approval on the version it's applied to"""
+
         def check_assertions():
-            aps = self.version.autoapprovalsummary
+            aps = self.version.autoapprovalsummary.reload()
             assert aps.has_auto_approval_disabled
 
             self.addon.refresh_from_db()
@@ -705,10 +706,111 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         check_assertions()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_actions_policy_reject(self, sign_file_mock):
+        """Functional test making sure that the scanners rejecting a version
+        from a policy enforcement action doesn't allow that same version to
+        be auto-approved."""
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        def check_assertions():
+            self.version.reload()
+            self.version.file.reload()
+
+            aps = self.version.autoapprovalsummary.reload()
+            assert aps.has_auto_approval_disabled
+
+            assert self.version.file.status == amo.STATUS_DISABLED
+
+            flags = self.addon.reviewerflags.reload()
+            assert flags.auto_approval_disabled_until_next_approval
+
+            assert not sign_file_mock.called
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        reject_policy = CinderPolicy.objects.create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+            name='Reject Policy',
+            expose_in_reviewer_tools=True,
+            uuid=uuid.uuid4().hex,
+        )
+        ScannerRule.objects.create(
+            is_active=True, name='foo', policy=reject_policy, scanner=YARA
+        )
+        result = ScannerResult.objects.create(
+            scanner=YARA,
+            version=self.version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}],
+        )
+        assert result.has_matches
+
+        call_command('auto_approve')
+        check_assertions()
+
+        call_command('auto_approve')  # Shouldn't matter if it's called twice.
+        check_assertions()
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_actions_policy_force_disable(self, sign_file_mock):
+        """Functional test making sure that the scanners force-disabling the
+        add-on from a policy enforcement action doesn't allow that version
+        to be auto-approved."""
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        def check_assertions():
+            self.addon.reload()
+            self.version.reload()
+            self.version.file.reload()
+
+            assert self.addon.status == amo.STATUS_DISABLED
+
+            aps = self.version.autoapprovalsummary.reload()
+            assert aps.has_auto_approval_disabled
+
+            assert self.version.file.status == amo.STATUS_DISABLED
+
+            flags = self.addon.reviewerflags.reload()
+            assert flags.auto_approval_disabled
+            assert flags.auto_approval_disabled_unlisted
+
+            assert not sign_file_mock.called
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        reject_policy = CinderPolicy.objects.create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+            name='Disable Policy',
+            expose_in_reviewer_tools=True,
+            uuid=uuid.uuid4().hex,
+        )
+        ScannerRule.objects.create(
+            is_active=True, name='foo', policy=reject_policy, scanner=YARA
+        )
+        result = ScannerResult.objects.create(
+            scanner=YARA,
+            version=self.version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}],
+        )
+        assert result.has_matches
+
+        call_command('auto_approve')
+        check_assertions()
+
+        call_command('auto_approve')  # Shouldn't matter if it's called twice.
+        check_assertions()
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_delay_approval_with_run_narc(self, sign_file_mock):
-        # Functional test making sure that the scanners _delay_auto_approval()
-        # action properly delays auto-approval on the version it's applied to,
-        # including when the scanner is narc (which is run in auto-approve).
+        """Functional test making sure that the scanners _delay_auto_approval()
+        action properly delays auto-approval on the version it's applied to,
+        including when the scanner is narc (which is run in auto-approve)."""
+
         def check_assertions():
             assert self.version.scannerresults.count() == 1
             result = self.version.scannerresults.get()
