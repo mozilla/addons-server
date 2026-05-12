@@ -4080,7 +4080,7 @@ msgstr "Per risolvere questi problemi, aggiorna la scheda e richiedi un’ulteri
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Ricorso già presentato"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
