@@ -77,7 +77,6 @@ from .fields import (
 )
 from .models import (
     Addon,
-    AddonApprovalsCounter,
     AddonBrowserMapping,
     AddonListingInfo,
     AddonUser,
@@ -1949,14 +1948,7 @@ class AddonListingContentReviewSerializer(AMOModelSerializer):
         return self.get_is_rejected(obj) and not self.get_has_requested_review(obj)
 
     def get_has_requested_review(self, obj):
-        try:
-            counter = obj.addonapprovalscounter
-        except AddonApprovalsCounter.DoesNotExist:
-            return False
-        return (
-            counter.content_review_status
-            == AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
-        )
+        return obj.has_ongoing_content_review_request
 
     def _get_reject_listing_content_log(self, obj):
         if not hasattr(self, '_rejected_log_instance'):

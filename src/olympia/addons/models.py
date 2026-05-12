@@ -2082,6 +2082,22 @@ class Addon(OnChangeMixin, ModelBase):
             noindex_until = None
         return noindex_until > datetime.now() if noindex_until else False
 
+    @property
+    def content_review_status(self):
+        try:
+            content_review_status = self.addonapprovalscounter.content_review_status
+        except AddonApprovalsCounter.DoesNotExist:
+            content_review_status = (
+                AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.UNREVIEWED
+            )
+        return content_review_status
+
+    @property
+    def has_ongoing_content_review_request(self):
+        return self.status == amo.STATUS_REJECTED and self.content_review_status == (
+            AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.REQUESTED
+        )
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon, dispatch_uid='addon_translations')
 

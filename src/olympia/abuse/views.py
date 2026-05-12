@@ -489,8 +489,19 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
         # right email address, we can start testing whether or not they can
         # actually appeal, and show the form if they indeed can.
         is_reporter = cinder_decision.action in DECISION_ACTIONS.APPEALABLE_BY_REPORTER
-        if cinder_decision.can_be_appealed(
-            is_reporter=is_reporter, abuse_report=abuse_report
+        # Listing content rejection can technically be appealed even if there
+        # is an ongoing review request, but we don't want that, it would lead
+        # to duplicated efforts.
+        is_content_review_with_already_requested_review = (
+            cinder_decision.action == DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
+            and not is_reporter
+            and getattr(target, 'has_ongoing_content_review_request', False)
+        )
+        if (
+            cinder_decision.can_be_appealed(
+                is_reporter=is_reporter, abuse_report=abuse_report
+            )
+            and not is_content_review_with_already_requested_review
         ):
             appeal_form = AbuseAppealForm(post_data, request=request)
             if appeal_form.is_bound and appeal_form.is_valid():
@@ -526,5 +537,7 @@ def appeal(request, *, abuse_report_id, decision_cinder_id, **kwargs):
                     cinder_decision.appeal_job.final_decision.action
                     == cinder_decision.action
                 )
+            elif is_content_review_with_already_requested_review:
+                context_data['appeal_redundant_for_content_review'] = True
 
     return TemplateResponse(request, 'abuse/appeal.html', context=context_data)

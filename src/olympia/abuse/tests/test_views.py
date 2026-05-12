@@ -18,7 +18,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.forms import AbuseAppealEmailForm, AbuseAppealForm
-from olympia.addons.models import AddonRegionalRestrictions
+from olympia.addons.models import AddonApprovalsCounter, AddonRegionalRestrictions
 from olympia.amo.tests import (
     APITestClientSessionID,
     TestCase,
@@ -3090,6 +3090,32 @@ class TestAppeal(TestCase):
             'user_id': user.pk,
             'is_reporter': False,
         }
+
+    def test_appeal_content_review_already_ongoing(self):
+        user = user_factory()
+        self.addon.authors.add(user)
+        self.client.force_login(user)
+        decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
+            cinder_id='some-decision-id',
+            action_date=datetime.now(),
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        AddonApprovalsCounter.request_new_content_review_for_addon(addon=self.addon)
+        author_appeal_url = reverse(
+            'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
+        )
+        response = self.client.get(author_appeal_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#id_email')
+        assert not doc('#appeal-thank-you')
+        assert not doc('#id_reason')
+        assert not doc('#appeal-submit')
+        assert doc('form p').text() == (
+            'A review has already been requested for this add-on.'
+        )
 
     def test_appeal_banned_user(self):
         target = user_factory()

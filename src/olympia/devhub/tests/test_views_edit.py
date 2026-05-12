@@ -12,6 +12,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.abuse.models import CinderJob
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon,
@@ -29,6 +30,7 @@ from olympia.amo.tests import (
 )
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.categories import CATEGORIES
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
@@ -121,7 +123,7 @@ class BaseTestEditDescribe(BaseTestEdit):
                 'Acceptable Use, specifically Controlled substances: This is a policy'
             ],
         }
-        ActivityLog.objects.create(
+        rejection_log = ActivityLog.objects.create(
             amo.LOG.REJECT_LISTING_CONTENT.id,
             self.addon,
             details=details,
@@ -158,7 +160,22 @@ class BaseTestEditDescribe(BaseTestEdit):
         div = doc('#content-review-rejection')
         assert 'I confirm I have addressed' not in div('.request-review button').text()
         assert 'Edit Product Page' not in div('.request-review a.button').text()
-        assert 'already, awaiting review' in div('.request-review button').text()
+        assert (
+            'already, awaiting review' in div('.request-review button.disabled').text()
+        )
+        assert not div('button.rejected-review-request')
+
+        decision = rejection_log.contentdecision_set.create(
+            action=DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT, addon=self.addon
+        )
+        decision.update(appeal_job=CinderJob.objects.create())
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        div = doc('#content-review-rejection')
+        assert 'I confirm I have addressed' not in div('.request-review button').text()
+        assert 'already, awaiting review' not in div('.request-review button').text()
+        assert 'Appeal already made' in div('.request-review button.disabled').text()
         assert not div('button.rejected-review-request')
 
     def test_edit_page_not_editable(self):
