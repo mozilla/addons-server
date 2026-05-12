@@ -2113,7 +2113,7 @@ msgstr "Danos más detalles sobre el problema"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
-msgstr ""
+msgstr "Describe el problema"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -2208,7 +2208,7 @@ msgstr "El nombre de la URL es incorrecto. No se eliminó el complemento."
 
 #: src/olympia/devhub/views.py:436
 msgid "Request for a new review of listing content acknowledged."
-msgstr ""
+msgstr "Se recibió la solicitud de una nueva revisión del contenido."
 
 #: src/olympia/devhub/views.py:480
 msgid "Invitation accepted."
@@ -2295,7 +2295,7 @@ msgstr "Esta subida ha fallado la validación y puede carecer de resultados de v
 
 #: src/olympia/devhub/views.py:1335
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "Se envió la solicitud de reversión. Recibirás una notificación cuando se apruebe"
 
 #: src/olympia/devhub/views.py:1473
 msgid "Header area background"
@@ -2373,7 +2373,7 @@ msgstr "Se han revocado tus antiguas credenciales y ya no son válidas."
 
 #: src/olympia/devhub/views.py:2132
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Se han generado nuevas credenciales de API; puedes verlas a continuación. Asegúrate de copiar el secreto JWT, ya que no se volverá a mostrar."
 
 #: src/olympia/devhub/views.py:2156
 msgid "New API key created"
@@ -2397,7 +2397,7 @@ msgstr "Su correo electrónico ha sido verificado"
 
 #: src/olympia/devhub/views.py:2324
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "Se envió tu solicitud de soporte. Nos comunicaremos contigo pronto."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2409,7 +2409,7 @@ msgstr "Acuerdo de distribución de complementos de Firefox"
 
 #: src/olympia/devhub/templates/devhub/base.html:43
 msgid "Help us make things better!"
-msgstr ""
+msgstr "¡Ayúdanos a mejorar!"
 
 #: src/olympia/devhub/templates/devhub/base.html:44
 msgid "Take our quick survey"
@@ -2477,7 +2477,7 @@ msgstr "Más recursos"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Contactar a soporte"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2489,17 +2489,19 @@ msgstr "Buscar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Obtén soporte para extensiones y temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Utiliza este formulario para consultas relacionadas con tu cuenta, cumplimiento de políticas y más. Cuantos más detalles proporciones, más fácil será para nuestro equipo ayudarte. Para preguntas "
+"sobre las revisiones de tus complementos, consulta el historial de versiones de cada uno. Te responderemos lo antes posible."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Enviar solicitud"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -2807,7 +2809,7 @@ msgstr "Si quieres perdir contribuciones económicas a los usuarios, configura e
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:45
 #, python-format
 msgid "Supported domains: %(supported_domains)s"
-msgstr ""
+msgstr "Dominios compatibles: %(supported_domains)s"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:55 src/olympia/translations/templates/translations/trans-menu.html:13
 msgid "Default Locale"
@@ -2907,12 +2909,16 @@ msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Minimum length: %(min_length)s characters; Recommended "
 "length: 250 characters. If you need a longer description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación más detallada de las características, funciones y otra información relevante. Este campo solo se muestra en la página del complemento. Longitud mínima: %(min_length)s caracteres; "
+"longitud recomendada: 250 caracteres. Si necesitas una descripción más larga, asegúrate de que los primeros 250 caracteres contengan los puntos más importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:140
 msgid ""
 "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's product page. Recommended length: 250 characters. If you need a longer "
 "description, make sure the first 250 characters contain the most important description points."
 msgstr ""
+"Una explicación extensa de las características, funciones y otra información relevante. Este campo solo se muestra en la página del complemento. Longitud recomendada: 250 caracteres. Si necesitas "
+"una descripción más larga, asegúrate de que los primeros 250 caracteres contengan los puntos más importantes."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:169
 msgid "Experimental?"
@@ -3143,7 +3149,7 @@ msgstr "Tu complemento está actualmente configurado en \"Invisible\"."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr ""
+msgstr "Se rechazó la publicación de tu complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3225,7 +3231,7 @@ msgstr "Al eliminar tu complemento se eliminarán de forma permanente todas las 
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:6
 msgid "All versions will be Restricted, which will disable and prevent any further installation in Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "Todas las versiones quedarán restringidas, lo que las desactivará y evitará nuevas instalaciones en Firefox. Quienes ya las utilizan podrán elegir si desean reactivar el complemento."
 
 #: src/olympia/devhub/templates/devhub/addons/listing/_delete_warning.html:11
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
@@ -3431,6 +3437,8 @@ msgid ""
 "Read our %(policy_requirements_open)spolicy requirements%(policy_requirements_close)s regarding build processes and source code submission. If your submission requires source code, you must provide "
 "step-by-step build instructions, either inside the source code package or here, that will create an exact copy of the code."
 msgstr ""
+"Consulta nuestros %(policy_requirements_open)srequisitos de política%(policy_requirements_close)s sobre los procesos de compilación y el envío de código fuente. Si tu entrega requiere código fuente,"
+" debes proporcionar instrucciones de compilación paso a paso (ya sea dentro del paquete de código o aquí mismo) que permitan generar una copia exacta del código."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:37
 msgid "These notes will only be visible to you and our reviewers."
@@ -3577,9 +3585,10 @@ msgid "Your source code must include:"
 msgstr "Tu código fuente debe incluir:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:56
-#, fuzzy
 msgid "Step-by-step build instructions to create an exact copy of the add-on code, in a README file in your source code or in the reviewer notes on the next page."
-msgstr "Instrucciones paso a paso para crear una copia exacta del código del complemento."
+msgstr ""
+"Incluye instrucciones de compilación paso a paso para generar una copia exacta del código del complemento, ya sea en un archivo README dentro del código fuente o en las notas para revisión de la "
+"siguiente página."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:57
 msgid "A build script that executes all necessary technical steps."
@@ -3590,16 +3599,14 @@ msgid "Operating system and build environment requirements."
 msgstr "Los requisitos del sistema operativo y del entorno."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:59
-#, fuzzy
 msgid "The required version and installation instructions of any programs used in the build process (such as <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis\">npm</span>)."
 msgstr ""
-"Los detalles (incluidas las instrucciones de la versión y de la instalación) de cualquier programa que se usó en el proceso de creación (por ejemplo, las versiones de <span class=\"tech-"
-"emphasis\">node</span> y <span class=\"tech-emphasis\">npm</span>)."
+"La versión requerida y las instrucciones de instalación de cualquier programa utilizado en el proceso de compilación (como <span class=\"tech-emphasis\">node</span> y <span class=\"tech-"
+"emphasis\">npm</span>)."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:62
-#, fuzzy
 msgid "Source files (aside from open-source third party libraries) cannot be transpiled, concatenated, minified, or otherwise machine-generated."
-msgstr "<span class=\"instruction-emphasis\">Nota:</span> Los archivos fuente (aparte de las bibliotecas de código abierto de terceros) no se pueden transpilar, ofuscar, minimizar o generar por máquinas."
+msgstr "Los archivos fuente (a excepción de las bibliotecas de código abierto de terceros) no pueden ser transpilados, concatenados, minimizados ni generados por computadora de ninguna otra forma."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/source.html:67
 #, python-format
@@ -3658,7 +3665,7 @@ msgstr "Crear una versión del tema"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
-msgstr ""
+msgstr "Puedes subir un tema terminado mediante la opción de carga de arriba, o puedes crearlo mediante esta herramienta."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
 msgid "Create a Theme"
