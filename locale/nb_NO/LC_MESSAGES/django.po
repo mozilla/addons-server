@@ -4020,7 +4020,7 @@ msgstr "For å rette opp disse problemene må du oppdatere oppføringen din og b
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Anke allerede inngitt"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"

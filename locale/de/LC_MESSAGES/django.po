@@ -4045,7 +4045,7 @@ msgstr "Um diese Probleme zu beheben, aktualisieren Sie bitte Ihren Listeneintra
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Einspruch bereits eingelegt"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
