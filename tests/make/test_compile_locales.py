@@ -23,26 +23,36 @@ class TestCompileLocales(TestCase):
         self.assertRaises(ImportError, compile_locales)
 
     @patch.dict(sys.modules, {'dennis': Mock()})
-    @patch('scripts.compile_locales.ThreadPoolExecutor')
-    def test_process_po_file(self, mock_executor):
+    @patch('scripts.compile_locales.process_po_file')
+    def test_process_po_file(self, process_po_file_mock):
         """Test that the script processes po files"""
         # Create po files
         django_po = self.home_dir / 'locale' / 'django.po'
         django_po.touch()
         djangojs_po = self.home_dir / 'locale' / 'djangojs.po'
         djangojs_po.touch()
-
-        # Setup ThreadPoolExecutor mock
-        mock_executor_instance = Mock()
-        mock_executor.return_value.__enter__.return_value = mock_executor_instance
+        extra_file = self.home_dir / 'locale' / 'django.pot'
+        extra_file.touch()
 
         with override_env(HOME=self.home_dir.as_posix()):
             compile_locales()
 
-        # Get the actual arguments passed to map
-        actual_args = mock_executor_instance.map.call_args[0]
-        self.assertEqual(actual_args[0], process_po_file)
-        self.assertEqual(list(actual_args[1]), [django_po, djangojs_po])
+        assert len(process_po_file_mock.call_args_list) == 2
+        assert process_po_file_mock.call_args_list[0][0][0] == django_po
+        assert process_po_file_mock.call_args_list[1][0][0] == djangojs_po
+
+    @patch.dict(sys.modules, {'dennis': Mock()})
+    @patch('scripts.compile_locales.process_po_file')
+    def test_with_failure(self, process_po_file_mock):
+        process_po_file_mock.side_effect = subprocess.CalledProcessError(
+            returncode=1, cmd='foo'
+        )
+
+        django_po = self.home_dir / 'locale' / 'django.po'
+        django_po.touch()
+
+        with override_env(HOME=self.home_dir.as_posix()):
+            self.assertRaises(subprocess.CalledProcessError, compile_locales)
 
 
 class TestProcessPoFile(TestCase):
@@ -60,8 +70,7 @@ class TestProcessPoFile(TestCase):
         assert self.mock_subprocess.call_args_list == [
             mock.call(
                 ['dennis-cmd', 'lint', '--errorsonly', self.pofile.as_posix()],
-                capture_output=True,
-                check=False,
+                check=True,
             ),
             mock.call(
                 [
