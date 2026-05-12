@@ -16,7 +16,7 @@ msgstr ""
 #: src/olympia/abuse/actions.py:233
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Мozilla додаци: {} [{}]"
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
@@ -24,50 +24,51 @@ msgstr "Адреса е-поште"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Наведена е-пошта је неисправна."
 
 #: src/olympia/abuse/forms.py:61
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Разлог за жалбу"
 
 #: src/olympia/abuse/forms.py:63
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
-msgstr ""
+msgstr "Објасните зашто сматрате да је ова одлука донета погрешно и/или да није у складу са важећом политиком или законом."
 
 #: src/olympia/abuse/models.py:1132
 msgid "User profile"
-msgstr ""
+msgstr "Кориснички профил"
 
 #: src/olympia/abuse/models.py:1508
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" за {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Постарајте се да ово поље не садржи више од {max_length} знакова."
 
 #: src/olympia/abuse/serializers.py:241 src/olympia/abuse/serializers.py:257 src/olympia/addons/fields.py:51 src/olympia/addons/fields.py:257
 msgid "Invalid value"
-msgstr ""
+msgstr "Неисправна вредност"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:10 src/olympia/abuse/templates/abuse/appeal.html:15
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Уложите жалбу на одлуку проверавача"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Одлука {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Хвала вам. Ваша жалба је примљена."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31
+#, fuzzy
 msgid "OK"
-msgstr ""
+msgstr "У реду"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
@@ -92,7 +93,7 @@ msgstr ""
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
-msgstr ""
+msgstr "Здраво,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
@@ -212,7 +213,7 @@ msgstr "Молимо Вас користите слике мање од %dMB."
 
 #: src/olympia/accounts/views.py:206
 msgid "Need help?"
-msgstr ""
+msgstr "Помоћ?"
 
 #: src/olympia/accounts/views.py:773
 #, python-format
@@ -229,12 +230,12 @@ msgid "Review"
 msgstr "Преглед"
 
 #: src/olympia/activity/models.py:848 src/olympia/devhub/templates/devhub/versions/list.html:41
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] "Верзија {0}"
-msgstr[1] ""
-msgstr[2] "Верзија {0}"
+msgstr[0] "Издање {0}"
+msgstr[1] "Издања {0}"
+msgstr[2] "Издања {0}"
 
 #: src/olympia/activity/serializers.py:46
 #, fuzzy
@@ -498,9 +499,8 @@ msgid "Manage API Keys"
 msgstr ""
 
 #: src/olympia/amo/context_processors.py:85
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Рецензенти"
+msgstr "Алати рецензента"
 
 #: src/olympia/amo/context_processors.py:91
 msgid "Admin Tools"
@@ -558,14 +558,12 @@ msgid "Not allowed"
 msgstr "Није допуштено"
 
 #: src/olympia/amo/templates/amo/403.html:8
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Није допуштено"
+msgstr "Упс! Није дозвољено."
 
 #: src/olympia/amo/templates/amo/403.html:10
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Упс! Није допуштено.</h1> <p>Покушали сте да урадите нешто за шта нисте допуштени.</p>"
+msgstr "Покушали сте да урадите нешто што није дозвољено."
 
 #: src/olympia/amo/templates/amo/403.html:18
 msgid ""
@@ -781,11 +779,11 @@ msgstr "Овај url је у употреби од стране друге ко�
 
 #: src/olympia/blocklist/models.py:194
 msgid "Blocked"
-msgstr ""
+msgstr "Блокирано"
 
 #: src/olympia/blocklist/models.py:194
 msgid "Restricted"
-msgstr ""
+msgstr "Ограничено"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -882,7 +880,7 @@ msgstr "Дата је прелиминарна рецензија за {addon} {
 
 #: src/olympia/constants/activity.py:162
 msgid "Preliminarily approved"
-msgstr "Прелиминарно одобрено"
+msgstr "Премилиминарно одобрено"
 
 #: src/olympia/constants/activity.py:173
 #, python-brace-format
@@ -1346,7 +1344,7 @@ msgstr "Обрисано"
 
 #: src/olympia/constants/base.py:69
 msgid "Unlisted"
-msgstr ""
+msgstr "Није на листи"
 
 #: src/olympia/constants/base.py:89
 msgid "Signing API"
@@ -1433,7 +1431,7 @@ msgstr ""
 
 #: src/olympia/constants/base.py:151
 msgid "Language Packs"
-msgstr ""
+msgstr "Језички пакети"
 
 #: src/olympia/constants/base.py:152
 msgid "Deprecated Language Packs (Add-on)"
@@ -1466,16 +1464,15 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:78
 msgid "Appearance"
-msgstr ""
+msgstr "Изглед"
 
 #: src/olympia/constants/categories.py:80
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
 msgstr ""
 
 #: src/olympia/constants/categories.py:88
-#, fuzzy
 msgid "Bookmarks"
-msgstr "Књиге"
+msgstr "Забелешке"
 
 #: src/olympia/constants/categories.py:90
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
@@ -1527,9 +1524,8 @@ msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1120
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "Полиса приватности"
+msgstr "Приватност и безбедност"
 
 #: src/olympia/constants/categories.py:144
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
@@ -1544,9 +1540,8 @@ msgid "Download Firefox extensions for search and look-up. This category include
 msgstr ""
 
 #: src/olympia/constants/categories.py:161
-#, fuzzy
 msgid "Shopping"
-msgstr "Куповина учињена једноставном"
+msgstr "Банкарство"
 
 #: src/olympia/constants/categories.py:163
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
@@ -1562,16 +1557,15 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:179
 msgid "Tabs"
-msgstr ""
+msgstr "Језичци"
 
 #: src/olympia/constants/categories.py:181
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
 
 #: src/olympia/constants/categories.py:188
-#, fuzzy
 msgid "Web Development"
-msgstr "Развој екстензија"
+msgstr "Веб програмирање"
 
 #: src/olympia/constants/categories.py:190
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
@@ -1587,7 +1581,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:209
 msgid "Abstract"
-msgstr ""
+msgstr "Абстрактне"
 
 #: src/olympia/constants/categories.py:211
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
@@ -1631,7 +1625,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:262
 msgid "Holiday"
-msgstr ""
+msgstr "Празник"
 
 #: src/olympia/constants/categories.py:264
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
@@ -1639,7 +1633,7 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:271
 msgid "Music"
-msgstr ""
+msgstr "Музика"
 
 #: src/olympia/constants/categories.py:273
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
@@ -1677,38 +1671,35 @@ msgstr ""
 
 #: src/olympia/constants/categories.py:316
 msgid "Solid"
-msgstr ""
+msgstr "Чврсто"
 
 #: src/olympia/constants/categories.py:318
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
 
 #: src/olympia/constants/categories.py:325
-#, fuzzy
 msgid "Sports"
-msgstr "Подршка"
+msgstr "Спорт"
 
 #: src/olympia/constants/categories.py:327
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
 #: src/olympia/constants/categories.py:334
-#, fuzzy
 msgid "Websites"
-msgstr "Веб сајт"
+msgstr "Веб сајтови"
 
 #: src/olympia/constants/categories.py:336
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
 msgstr ""
 
 #: src/olympia/constants/categories.py:341 src/olympia/constants/categories.py:342
-#, fuzzy
 msgid "General"
-msgstr "Општи тестови"
+msgstr "Опште"
 
 #: src/olympia/constants/licenses.py:15
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Мозилина јавна лиценца 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
@@ -1716,19 +1707,19 @@ msgstr ""
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "GNU General Public License v2.0 само"
 
 #: src/olympia/constants/licenses.py:36
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "GNU General Public License v3.0 само"
 
 #: src/olympia/constants/licenses.py:43
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1 само"
 
 #: src/olympia/constants/licenses.py:50
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0 само"
 
 #: src/olympia/constants/licenses.py:57
 msgid "GNU Affero General Public License v3.0 only"
@@ -1839,9 +1830,9 @@ msgstr "Назив url адресе не може бити \"%s\". Молимо 
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "Можете имати само {0} категорију."
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "Можете имати само {0} категорије."
+msgstr[2] ""
 
 #: src/olympia/devhub/forms.py:231
 msgid "The miscellaneous category cannot be combined with additional categories."
@@ -1860,9 +1851,9 @@ msgstr ""
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Имате {0} превише ознака."
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "Имате {0} превише ознака."
+msgstr[2] ""
 
 #: src/olympia/devhub/forms.py:340
 #, python-format
@@ -2007,7 +1998,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1458 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
-msgstr ""
+msgstr "Име"
 
 #: src/olympia/devhub/forms.py:1489
 msgid "Confirm email address"
@@ -2023,7 +2014,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1492
 msgid "Revoke"
-msgstr ""
+msgstr "Опозови"
 
 #: src/olympia/devhub/forms.py:1544
 #, python-brace-format
@@ -2053,7 +2044,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1677
 msgid "Release notes"
-msgstr ""
+msgstr "Белешке о издању"
 
 #: src/olympia/devhub/forms.py:1678
 msgid "Automatic rollback based on version [m.m]."
@@ -2077,7 +2068,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
-msgstr ""
+msgstr "Тема"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
@@ -2367,7 +2358,7 @@ msgstr ""
 
 #: src/olympia/devhub/views.py:2227
 msgid "Verify email"
-msgstr ""
+msgstr "Верификујте адресу е-поште"
 
 #: src/olympia/devhub/views.py:2229
 msgid "Send another email"
@@ -2461,7 +2452,7 @@ msgstr "Више ресурса"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Контактирајте подршку"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2483,7 +2474,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Пошаљи захтев"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -2492,7 +2483,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:8 src/olympia/devhub/templates/devhub/suppressed_email.html:8
 msgid "Learn more"
-msgstr ""
+msgstr "Сазнајте више"
 
 #: src/olympia/devhub/templates/devhub/validate_addon.html:12
 msgid "Use the field below to upload your add-on package."
@@ -2549,8 +2540,9 @@ msgid "It is taking longer than expected to confirm delivery of your verificatio
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:34
+#, fuzzy
 msgid "Success!"
-msgstr ""
+msgstr "Успешно!"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:35
 #, python-format
@@ -2572,7 +2564,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:57
 msgid "Date"
-msgstr ""
+msgstr "Датум"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:58 src/olympia/stats/templates/stats/popup.html:12
 msgid "From"
@@ -2636,9 +2628,9 @@ msgstr "Претплатите се на ове новости"
 #, python-brace-format
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> додатак"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "<b>{0}</b> додатака"
+msgstr[2] ""
 
 #: src/olympia/devhub/templates/devhub/addons/dashboard.html:32
 msgid "Recent Activity"
@@ -2658,9 +2650,9 @@ msgstr "Старије активности за Моји додаци"
 #, python-brace-format
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> тема"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "<b>{0}</b> теме"
+msgstr[2] ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:31 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:2
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:25 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:38
@@ -2706,11 +2698,11 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24 src/olympia/devhub/templates/devhub/includes/agreement.html:36
 msgid "Accept"
-msgstr ""
+msgstr "Прихвати"
 
 #: src/olympia/devhub/templates/devhub/addons/invitation.html:24
 msgid "Decline"
-msgstr ""
+msgstr "Одбиј"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:53 src/olympia/devhub/templates/devhub/addons/owner.html:5 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:3
 msgid "Manage Authors & License"
@@ -3285,18 +3277,18 @@ msgstr "Овај додатак није компатибилан са Вашо�
 #, python-brace-format
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> преузимање недељно"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "<strong>{0}</strong> преузимања недељно"
+msgstr[2] ""
 
 #. {0} is the number of active users.
 #: src/olympia/devhub/templates/devhub/addons/listing/macros.html:28
 #, python-brace-format
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "<strong>{0}</strong> корисник"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "<strong>{0}</strong> корисника"
+msgstr[2] ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/base.html:4
 #, fuzzy
@@ -3360,14 +3352,12 @@ msgid "Name on listing on this site. May be different to the name inside the add
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
-#, fuzzy
 msgid "Summary:"
-msgstr "Резиме"
+msgstr "Резиме:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:100
-#, fuzzy
 msgid "Description:"
-msgstr "Опис"
+msgstr "Опис:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:124
 #, fuzzy
@@ -3389,9 +3379,8 @@ msgid "Support website:"
 msgstr "Сајт подршке"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:165
-#, fuzzy
 msgid "License:"
-msgstr "Лиценца"
+msgstr "Лиценца:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:171
 msgid "Please choose a license appropriate for the rights you grant."
@@ -3412,7 +3401,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "Важно"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -3437,9 +3426,8 @@ msgid "Describe Version"
 msgstr "Онемогући верзију"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:12
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Издање"
+msgstr "Напомене о издању:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:14
 msgid "Let your users know what's new and what's changed in this version."
@@ -3678,9 +3666,8 @@ msgid "Warning: the following manifest properties that your most recent version 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:25
-#, fuzzy
 msgid "Theme name"
-msgstr "назив теме"
+msgstr "Назив теме"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:37
 #, fuzzy
@@ -3734,7 +3721,7 @@ msgstr "%s теме"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/wizard.html:116
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:19
 #, python-format
@@ -3838,7 +3825,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
-msgstr ""
+msgstr "Невидљив(а)"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:24
 msgid "Please complete your add-on by adding a version or missing metadata."
@@ -4094,7 +4081,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Белешке о издању"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
@@ -4164,7 +4151,6 @@ msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:24 src/olympia/devhub/templates/devhub/new-landing/components/connect.html:25
-#, fuzzy
 msgid "Email Address"
 msgstr "Адреса е-поште"
 
@@ -4174,22 +4160,20 @@ msgid "I’m okay with Mozilla handling my info as explained in this %(link_open
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
-#, fuzzy
 msgid "Sign Up"
-msgstr "Пошаљи додатак"
+msgstr "Региструјте се"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:44
 msgid "Thanks!"
-msgstr ""
+msgstr "Хвала!"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:45
 msgid "If you haven’t previously confirmed a subscription to a Mozilla-related newsletter you may have to do so. Please check your inbox or your spam filter for an email from us."
-msgstr ""
+msgstr "Ако до сада нисте, мораћете да потврдите пријаву на један од Mozilla билтена. Проверите да ли сте примили поруку од нас у својој е-пошти или филтеру за непожељну пошту."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:3
-#, fuzzy
 msgid "Resources"
-msgstr "Више ресурса"
+msgstr "Ресурси"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:9
 #, fuzzy
@@ -4202,7 +4186,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:25
 msgid "Promote"
-msgstr ""
+msgstr "Промовишите"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:27
 msgid "\"Get The Add-on\" button"
@@ -4225,9 +4209,8 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:43
-#, fuzzy
 msgid "Get started"
-msgstr "Како почети"
+msgstr "Почните"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:47
 #, fuzzy
@@ -4244,7 +4227,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:9
 msgid "Get involved"
-msgstr ""
+msgstr "Прикључите се"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
@@ -4293,9 +4276,8 @@ msgid "Blog"
 msgstr "Блог"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:39
-#, fuzzy
 msgid "Sign Out"
-msgstr "Пошаљи додатак"
+msgstr "Одјави ме"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:41
 msgid "No Photo"
@@ -4307,9 +4289,8 @@ msgid "User Photo"
 msgstr "Обриши корисничку слику"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:42
-#, fuzzy
 msgid "Profile"
-msgstr "Мој профил"
+msgstr "Профил"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:46
 #, fuzzy
@@ -4317,9 +4298,8 @@ msgid "Submit or Manage Extensions"
 msgstr "Поднеси нови додатак"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:3
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Теме лаке за употребу за Firefox"
+msgstr "Прилагодите Firefox"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/overview.html:11
 #, fuzzy
@@ -4524,7 +4504,7 @@ msgstr "Брисање ове верзије ће трајно обрисати:
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:271
 msgid "Important:"
-msgstr ""
+msgstr "Важно:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:272
 msgid ""
@@ -4572,18 +4552,18 @@ msgstr ""
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} грешка"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "{0} грешке"
+msgstr[2] ""
 
 #. L10n: first parameter is the number of warnings
 #: src/olympia/devhub/templatetags/jinja_helpers.py:84
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} упозорење"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "{0} упозорења"
+msgstr[2] ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6092,9 +6072,8 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1129
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Коментариши"
+msgstr "Препоручена проширења"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1131
@@ -6345,7 +6324,7 @@ msgstr ""
 
 #: src/olympia/files/models.py:326
 msgid "Unreviewed"
-msgstr ""
+msgstr "Непрегледано"
 
 #: src/olympia/files/models.py:329
 #, fuzzy, python-format
@@ -6526,9 +6505,8 @@ msgstr[1] ""
 msgstr[2] ""
 
 #: src/olympia/ratings/serializers.py:119
-#, fuzzy
 msgid "This field is required."
-msgstr "Обавезно поље"
+msgstr "Ово поље је обавезно."
 
 #: src/olympia/ratings/serializers.py:131
 #, fuzzy
@@ -6574,9 +6552,9 @@ msgstr ""
 #, python-brace-format
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} критика"
+msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "{num} критике"
+msgstr[2] ""
 
 #: src/olympia/ratings/templates/ratings/impala/reviews_link.html:12 src/olympia/ratings/templates/ratings/reviews_link.html:17 src/olympia/ratings/templatetags/jinja_helpers.py:13
 msgid "Not yet rated"
@@ -6594,11 +6572,11 @@ msgstr "Оцењено са %(rating)s од 5 звездица"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Прикажи све"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Сачувај"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
@@ -6951,9 +6929,8 @@ msgid "Forum"
 msgstr "Форум"
 
 #: src/olympia/templates/photon-footer.html:18
-#, fuzzy
 msgid "Report a bug"
-msgstr "Пријави злоупотребу"
+msgstr "Пријавите грешку"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
@@ -6961,31 +6938,33 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
 msgid "Browsers"
-msgstr ""
+msgstr "Прегледачи"
 
 #: src/olympia/templates/photon-footer.html:27
+#, fuzzy
 msgid "Desktop"
-msgstr ""
+msgstr "Стони"
 
 #: src/olympia/templates/photon-footer.html:29
+#, fuzzy
 msgid "Enterprise"
-msgstr ""
+msgstr "Предузеће"
 
 #: src/olympia/templates/photon-footer.html:34
 msgid "Products"
-msgstr ""
+msgstr "Производи"
 
 #: src/olympia/templates/photon-footer.html:52
 msgid "Privacy"
-msgstr ""
+msgstr "Приватност"
 
 #: src/olympia/templates/photon-footer.html:53
 msgid "Cookies"
-msgstr ""
+msgstr "Колачићи"
 
 #: src/olympia/templates/photon-footer.html:54
 msgid "Legal"
-msgstr ""
+msgstr "Права"
 
 #: src/olympia/templates/photon-footer.html:57
 msgid ""
