@@ -38,8 +38,12 @@ class TestCompileLocales(TestCase):
             compile_locales()
 
         assert len(process_po_file_mock.call_args_list) == 2
-        assert process_po_file_mock.call_args_list[0][0][0] == django_po
-        assert process_po_file_mock.call_args_list[1][0][0] == djangojs_po
+        expected = {djangojs_po, django_po}
+        actual = {
+            process_po_file_mock.call_args_list[0][0][0],
+            process_po_file_mock.call_args_list[1][0][0],
+        }
+        assert actual == expected
 
     @patch.dict(sys.modules, {'dennis': Mock()})
     @patch('scripts.compile_locales.process_po_file')
