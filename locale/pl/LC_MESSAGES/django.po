@@ -2087,11 +2087,11 @@ msgstr "Wybierz kategorię"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Wsparcie techniczne w celu zapewnienia zgodności Twojego dodatku"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Problem z addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2099,19 +2099,19 @@ msgstr "Temat"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Streść problem w kilku słowach"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
-msgstr ""
+msgstr "Wybierz kategorię"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "Podaj więcej szczegółów na temat problemu"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
-msgstr ""
+msgstr "Opisz problem"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
@@ -3408,7 +3408,7 @@ msgstr "Czy jest coś, o czym powinni pamiętać nasi recenzenci podczas sprawdz
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "Ważne"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -6578,11 +6578,11 @@ msgstr "Oceniony jako %(rating)s/5"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Wyświetl wszystkie"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Zapisz"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
