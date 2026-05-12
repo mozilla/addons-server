@@ -1292,30 +1292,30 @@ msgstr "{addon} {0} propiedad editada."
 #: src/olympia/constants/activity.py:1256
 #, python-brace-format
 msgid "Collection {0} property {1} updated."
-msgstr ""
+msgstr "Colección {0} propiedad {1} actualizada."
 
 #: src/olympia/constants/activity.py:1263
 #, python-brace-format
 msgid "Account {user} property {0} updated."
-msgstr ""
+msgstr "Se actualizó la propiedad {0} de la cuenta {user}."
 
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr ""
+msgstr "El contenido del listado de {addon} ha sido aprobado."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "Listado rechazado aprobado"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr ""
+msgstr "El contenido del listado de {addon} ha sido rechazado."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
-msgstr ""
+msgstr "Listado rechazado"
 
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
