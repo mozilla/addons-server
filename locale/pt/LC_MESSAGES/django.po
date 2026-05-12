@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-11 15:36+0000\n"
+"POT-Creation-Date: 2026-05-12 15:57+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3117,6 +3117,9 @@ msgid "Our review found that your listing content violates the following Mozilla
 msgstr ""
 
 msgid "To address these issues, please update your listing and request another review of the content."
+msgstr ""
+
+msgid "Appeal already made"
 msgstr ""
 
 msgid "Review requested already, awaiting review"

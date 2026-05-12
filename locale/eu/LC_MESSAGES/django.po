@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-11 15:36+0000\n"
+"POT-Creation-Date: 2026-05-12 15:57+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3075,6 +3075,9 @@ msgid "Our review found that your listing content violates the following Mozilla
 msgstr ""
 
 msgid "To address these issues, please update your listing and request another review of the content."
+msgstr ""
+
+msgid "Appeal already made"
 msgstr ""
 
 msgid "Review requested already, awaiting review"

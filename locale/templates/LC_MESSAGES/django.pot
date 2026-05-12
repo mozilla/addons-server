@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-11 15:36+0000\n"
+"POT-Creation-Date: 2026-05-12 15:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -101,7 +101,7 @@ msgid ""
 " so this decision can't be appealed."
 msgstr ""
 
-#: src/olympia/abuse/templates/abuse/appeal.html:44
+#: src/olympia/abuse/templates/abuse/appeal.html:46
 msgid "This decision can't be appealed."
 msgstr ""
 
@@ -311,7 +311,7 @@ msgstr ""
 msgid "The \"other\" category cannot be combined with another category"
 msgstr ""
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1301
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1300
 msgid "Invalid category name."
 msgstr ""
 
@@ -356,7 +356,7 @@ msgid "Unknown min app version specified"
 msgstr ""
 
 #: src/olympia/addons/fields.py:307 src/olympia/addons/fields.py:325
-#: src/olympia/addons/serializers.py:660
+#: src/olympia/addons/serializers.py:659
 #, python-format
 msgid ""
 "Can not override compatibility information set in the manifest for this "
@@ -368,24 +368,24 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2337 src/olympia/addons/models.py:2416
+#: src/olympia/addons/models.py:2353 src/olympia/addons/models.py:2432
 #: src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:345
+#: src/olympia/addons/serializers.py:344
 msgid "Built in licenses can not be updated."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:540
+#: src/olympia/addons/serializers.py:539
 msgid "Upload is not valid."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:556
+#: src/olympia/addons/serializers.py:555
 msgid "File is already disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:560 src/olympia/addons/views.py:771
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:771
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted because the "
@@ -393,20 +393,20 @@ msgid ""
 " if you need help with this."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:587
+#: src/olympia/addons/serializers.py:586
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:594 src/olympia/signing/views.py:218
+#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:635
+#: src/olympia/addons/serializers.py:634
 #, python-format
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:674 src/olympia/devhub/forms.py:955
+#: src/olympia/addons/serializers.py:673 src/olympia/devhub/forms.py:955
 #, python-format
 msgid ""
 "Invalid version range. For Firefox for Android, you may only pick a range "
@@ -414,41 +414,41 @@ msgid ""
 "%(min)s."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:923
+#: src/olympia/addons/serializers.py:922
 msgid "Add-ons need at least one owner."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:938
+#: src/olympia/addons/serializers.py:937
 msgid "Add-ons need at least one listed author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:970
+#: src/olympia/addons/serializers.py:969
 msgid "Account not found."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:983 src/olympia/devhub/forms.py:455
+#: src/olympia/addons/serializers.py:982 src/olympia/devhub/forms.py:455
 #: src/olympia/devhub/forms.py:525
 msgid "An author can only be present once."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:994 src/olympia/devhub/forms.py:467
+#: src/olympia/addons/serializers.py:993 src/olympia/devhub/forms.py:467
 msgid "The account needs a display name before it can be added as an author."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1281
+#: src/olympia/addons/serializers.py:1280
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1904
+#: src/olympia/addons/serializers.py:1903
 msgid "There is no rollback available in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1914
+#: src/olympia/addons/serializers.py:1913
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1920
+#: src/olympia/addons/serializers.py:1919
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
@@ -2910,7 +2910,7 @@ msgstr[1] ""
 #: src/olympia/devhub/templates/devhub/addons/edit.html:3
 #: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:31
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:2
-#: src/olympia/devhub/templates/devhub/includes/content_rejected.html:25
+#: src/olympia/devhub/templates/devhub/includes/content_rejected.html:29
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:38
 msgid "Edit Product Page"
 msgstr ""
@@ -4403,10 +4403,14 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
+msgid "Appeal already made"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/content_rejected.html:22
+#: src/olympia/devhub/templates/devhub/includes/content_rejected.html:26
 msgid "I confirm I have addressed the issues, and request a review"
 msgstr ""
 

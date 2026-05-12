@@ -1,92 +1,103 @@
-# Copyright (C) 2009 THE addons.mozilla.org'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the addons.mozilla.org package.
-# Automatically generated, 2009.
+# Translations template for addons-server.
+# Copyright (C) 2026 Mozilla
+# This file is distributed under the same license as the addons-server project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version:  addons\n"
+"Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-11 15:36+0000\n"
-"PO-Revision-Date: 2015-02-07 12:40+0000\n"
-"Last-Translator: Vanja <tumbas93@gmail.com>\n"
-"Language-Team: sr\n"
-"Language: \n"
+"POT-Creation-Date: 2026-05-12 15:57+0000\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.2.0\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Generated-By: Pontoon\n"
 
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
-msgstr ""
+msgstr "Mozilla dodaci: {} [{}]"
 
 msgid "Email address"
-msgstr ""
+msgstr "Adresa e-pošte"
 
 msgid "Invalid email provided."
-msgstr ""
+msgstr "Navedena e-pošta je neispravna."
 
 msgid "Reason for appeal"
-msgstr ""
+msgstr "Razlog za žalbu"
 
 msgid ""
 "Please explain why you believe that this decision was made in error, and/or "
 "does not align with the applicable policy or law."
 msgstr ""
+"Objasnite zašto smatrate da je ova odluka doneta pogrešno i/ili da nije u "
+"skladu sa važećom politikom ili zakonom."
 
 msgid "User profile"
-msgstr ""
+msgstr "Korisnički profil"
 
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" za {}"
 
 #, python-brace-format
 msgid "Please ensure this field has no more than {max_length} characters."
-msgstr ""
+msgstr "Postarajte se da ovo polje ne sadrži više od {max_length} znakova."
 
 msgid "Invalid value"
-msgstr ""
+msgstr "Neispravna vrednost"
 
 msgid "Appeal reviewer decision"
-msgstr ""
+msgstr "Uložite žalbu na odluku proveravača"
 
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Odluka {0}"
 
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Hvala vam. Vaša žalba je primljena."
 
+#, fuzzy
 msgid "OK"
-msgstr ""
+msgstr "U redu"
 
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Hvala vam na izveštaju."
 
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have "
 "reversed our prior decision. We have taken action against the content and/or "
 "account holder in accordance with our policies."
 msgstr ""
+"Već smo razmotrili sličnu žalbu drugog prijavljivača i opozvali smo našu "
+"prethodnu odluku. Preduzeli smo radnju protiv sadržaja i/ili vlasnika naloga "
+"u skladu sa našim polisama."
 
 msgid ""
 "Because the decision you are appealing has already been overturned, your "
 "appeal will not be processed."
 msgstr ""
+"Pošto je odluka protiv koje se žalite već poništena, vaša žalba neće biti "
+"obrađena."
 
 msgid ""
 "The decision you are appealing has already been overridden by a new "
 "decision, so this decision can't be appealed."
 msgstr ""
+"Odluka protiv koje se žalite već je zamenjena novom odlukom, tako da se "
+"protiv ove odluke ne može žaliti."
 
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Protiv ove odluke se ne može žaliti."
 
 msgid "Hello,"
-msgstr ""
+msgstr "Zdravo,"
 
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Tim za Mozilla-ine dodatke"
 
 #, python-format
 msgid ""
@@ -102,6 +113,17 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Zahvaljujemo vam na prijavi za %(name)s na Mozilla-inim dodacima, kao i na "
+"pružanju dodatnih informacija o vašim zabrinutostima.\n"
+"\n"
+"Nakon razmatranja vaše žalbe, utvrdili smo da je prethodna odluka, da ovaj "
+"sadržaj ne krši Mozilla-ine politike (%(policy_document_url)s), bila "
+"ispravna. Na osnovu tog utvrđenja, odbili smo vašu žalbu i nećemo preduzeti "
+"ikakve radnje protiv naloga ili sadržaja.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Hvala vam na pažnji.\n"
 
 #, python-format
 msgid ""
@@ -114,6 +136,14 @@ msgid ""
 "(%(policy_document_url)s), was incorrect. Based on that determination, we "
 "have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Zahvaljujemo vam na prijavi za %(name)s na Mozilla-inim dodacima, kao i na "
+"pružanju dodatnih informacija o vašim zabrinutostima.\n"
+"\n"
+"Nakon razmatranja vaše žalbe, utvrdili smo da je naša prethodna odluka, da "
+"ovaj sadržaj ne krši Mozilla-ine politike (%(policy_document_url)s), bila "
+"pogrešna. Na osnovu tog utvrđenja, uklonili smo sadržaj i obavestili "
+"korisnika o našoj radnji.\n"
 
 #, python-format
 msgid ""
@@ -127,6 +157,15 @@ msgid ""
 "have requested the developer make changes. If they do not update their "
 "content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Zahvaljujemo vam na prijavi za %(name)s na Mozilla-inim dodacima, kao i na "
+"pružanju dodatnih informacija o vašim zabrinutostima.\n"
+"\n"
+"Nakon razmatranja vaše žalbe, utvrdili smo da je naša prethodna odluka, da "
+"ovaj sadržaj ne krši Mozilla-ine politike (%(policy_document_url)s), bila "
+"pogrešna. Na osnovu tog utvrđenja, zatražili smo od razvijača da izvrši "
+"izmene. Ako razvijač ne ažurira svoj sadržaj kako bi ispravio kršenje, "
+"uklonićemo ga.\n"
 
 #, python-format
 msgid ""
@@ -137,6 +176,12 @@ msgid ""
 "not violate Mozilla's policies (%(policy_document_url)s).  It will therefore "
 "not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Zahvaljujemo vam na prijavi za %(name)s na adresi %(target_url)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i pomenuti sadržaj i utvrdili smo da on ne krši "
+"Mozilla-ine politike (%(policy_document_url)s). Stoga, on neće biti predmet "
+"ikakvih radnji moderiranja.\n"
 
 #, python-format
 msgid ""
@@ -144,6 +189,9 @@ msgid ""
 "this email. See %(appeal_url)s for details on the appeal process, including "
 "how to file an appeal for this specific decision."
 msgstr ""
+"Imate pravo na žalbu protiv ove odluke u roku od 6 meseci od datuma ove e-"
+"pošte. Pogledajte %(appeal_url)s za detalje o procesu žalbe, uključujući i "
+"to kako da podnesete žalbu protiv ove konkretne odluke."
 
 #, python-format
 msgid ""
@@ -155,6 +203,12 @@ msgid ""
 "violates Mozilla's policies (%(policy_document_url)s), and have therefore "
 "removed the content.\n"
 msgstr ""
+"\n"
+"Hvala vam na prijavi sledećeg dodatka na Mozilla dodacima: %(name)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i sporni sadržaj i utvrdili smo da on krši "
+"Mozilla-ine politike (%(policy_document_url)s), te smo zbog toga uklonili "
+"sadržaj.\n"
 
 #, python-format
 msgid ""
@@ -167,6 +221,13 @@ msgid ""
 "requested the developer make changes. If they do not update their content to "
 "correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Hvala vam na prijavi sledećeg dodatka na Mozilla dodacima: %(name)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i sporni sadržaj i utvrdili smo da on krši "
+"Mozilla-ine politike (%(policy_document_url)s), te smo zbog toga zatražili "
+"od programera da unese izmene. Ako on ne ažurira svoj sadržaj kako bi "
+"ispravio prekršaj, uklonićemo ga.\n"
 
 #, python-format
 msgid ""
@@ -178,6 +239,12 @@ msgid ""
 "violates Mozilla's policies (%(policy_document_url)s), and have therefore "
 "removed the content.\n"
 msgstr ""
+"\n"
+"Hvala vam na prijavi sledeće zbirke na Mozilla dodacima: %(name)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i sporni sadržaj i utvrdili smo da on krši "
+"Mozilla-ine politike (%(policy_document_url)s), te smo zbog toga uklonili "
+"sadržaj.\n"
 
 #, python-format
 msgid ""
@@ -189,6 +256,12 @@ msgid ""
 "violates Mozilla's policies (%(policy_document_url)s), and have therefore "
 "removed the content.\n"
 msgstr ""
+"\n"
+"Hvala vam na prijavi sledeće ocene na Mozilla dodacima: %(name)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i sporni sadržaj i utvrdili smo da on krši "
+"Mozilla-ine politike (%(policy_document_url)s), te smo zbog toga uklonili "
+"sadržaj.\n"
 
 #, python-format
 msgid ""
@@ -200,6 +273,12 @@ msgid ""
 "violates Mozilla's policies (%(policy_document_url)s), and have therefore "
 "removed the content.\n"
 msgstr ""
+"\n"
+"Hvala vam na prijavi sledećeg korisničkog profila na Mozilla dodacima: "
+"%(name)s.\n"
+"\n"
+"Pregledali smo vašu prijavu i sporni sadržaj i utvrdili da on krši Mozilla-"
+"ine politike (%(policy_document_url)s), te smo zbog toga uklonili sadržaj.\n"
 
 msgid "No links are allowed."
 msgstr "Veze nisu dozvoljene."
@@ -218,11 +297,11 @@ msgid "Please use images smaller than %dMB."
 msgstr "Molimo Vas koristite slike manje od %dMB."
 
 msgid "Need help?"
-msgstr ""
+msgstr "Pomoć?"
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Obaveštenje [%s] ne postoji"
 
 #, fuzzy
 msgid "Add-ons Review Team"
@@ -231,42 +310,43 @@ msgstr "Puna recenzija dodatka"
 msgid "Review"
 msgstr "Pregled"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
-msgstr[0] "Verzija {0}"
-msgstr[1] "Verzija {0}"
+msgstr[0] "Izdanje {0}"
+msgstr[1] "Izdanja {0}"
+msgstr[2] "Izdanja {0}"
 
 #, fuzzy
 msgid "Review note"
 msgstr "Datum recenzije"
 
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Dužina sadržaja zahteva je prevelika."
 
 msgid "Add-on"
 msgstr "Dodatak"
 
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Otpremanja dodataka su privremeno nedostupna."
 
 #, python-brace-format
 msgid ""
 "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Prekoračen je najveći broj kategorija po programu ({MAX_CATEGORIES})"
 
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Kategorija „drugo” ne može biti kombinovana sa drugom kategorijom"
 
 msgid "Invalid category name."
-msgstr ""
+msgstr "Neispravan naziv kategorije."
 
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "URL domen mora biti jedan od [{domains}]."
 
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "URL putanja za GitHub Sponsors mora sadržati /sponsors/."
 
 msgid "URLs must start with https://."
 msgstr ""
@@ -302,7 +382,6 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-# Column name in a table.
 msgid "Listed"
 msgstr "Navedene"
 
@@ -448,9 +527,8 @@ msgstr "Centar za programera"
 msgid "Manage API Keys"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Recenzenti"
+msgstr "Alati recenzenta"
 
 msgid "Admin Tools"
 msgstr "Alati administratora"
@@ -500,15 +578,11 @@ msgstr ""
 msgid "Not allowed"
 msgstr "Nije dopušteno"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Nije dopušteno"
+msgstr "Ups! Nije dozvoljeno."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
-"<h1>Ups! Nije dopušteno.</h1> <p>Pokušali ste da uradite nešto za šta niste "
-"dopušteni.</p>"
+msgstr "Pokušali ste da uradite nešto što nije dozvoljeno."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer "
@@ -618,8 +692,6 @@ msgstr ""
 msgid "Add-on uploads have been temporarily disabled. Please check back later."
 msgstr ""
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
 #, python-brace-format
 msgid "Add-ons for {0}"
 msgstr "Dodaci za {0}"
@@ -726,10 +798,10 @@ msgid "This add-on already belongs to the collection"
 msgstr "Ovaj url je u upotrebi od strane druge kolekcije"
 
 msgid "Blocked"
-msgstr ""
+msgstr "Blokirano"
 
 msgid "Restricted"
-msgstr ""
+msgstr "Ograničeno"
 
 #, python-brace-format
 msgid "{addon} was created."
@@ -1175,7 +1247,7 @@ msgid "Deleted"
 msgstr "Obrisano"
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Nije na listi"
 
 msgid "Signing API"
 msgstr ""
@@ -1186,7 +1258,6 @@ msgstr ""
 msgid "Automatically generated by AMO"
 msgstr ""
 
-# <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
 msgstr "Vlasnik"
 
@@ -1228,7 +1299,6 @@ msgstr "Tema"
 msgid "Deprecated Site Permission"
 msgstr ""
 
-# Plural in this context means many of the add-on type
 msgid "Extensions"
 msgstr "Ekstenzije"
 
@@ -1236,7 +1306,6 @@ msgstr "Ekstenzije"
 msgid "Deprecated Complete Themes"
 msgstr "Kompletne teme"
 
-# Plural in this context means many of the add-on type
 msgid "Dictionaries"
 msgstr "Rečnici"
 
@@ -1244,7 +1313,7 @@ msgid "Deprecated Search Tools"
 msgstr ""
 
 msgid "Language Packs"
-msgstr ""
+msgstr "Jezički paketi"
 
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
@@ -1272,7 +1341,7 @@ msgid ""
 msgstr ""
 
 msgid "Appearance"
-msgstr ""
+msgstr "Izgled"
 
 msgid ""
 "Download extensions that modify the appearance of websites and the browser "
@@ -1280,9 +1349,8 @@ msgid ""
 "and more."
 msgstr ""
 
-#, fuzzy
 msgid "Bookmarks"
-msgstr "Knjige"
+msgstr "Zabeleške"
 
 msgid ""
 "Download extensions that enhance bookmarks by password-protecting them, "
@@ -1337,9 +1405,8 @@ msgid ""
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#, fuzzy
 msgid "Privacy & Security"
-msgstr "Polisa privatnosti"
+msgstr "Privatnost i bezbednost"
 
 msgid ""
 "Download Firefox extensions to browse privately and securely. This category "
@@ -1356,9 +1423,8 @@ msgid ""
 "more."
 msgstr ""
 
-#, fuzzy
 msgid "Shopping"
-msgstr "Kupovina učinjena jednostavnom"
+msgstr "Bankarstvo"
 
 msgid ""
 "Download Firefox extensions that can enhance your online shopping experience "
@@ -1375,7 +1441,7 @@ msgid ""
 msgstr ""
 
 msgid "Tabs"
-msgstr ""
+msgstr "Jezičci"
 
 msgid ""
 "Download Firefox extension to customize tabs and the new tab page. Discover "
@@ -1383,9 +1449,8 @@ msgid ""
 "more."
 msgstr ""
 
-#, fuzzy
 msgid "Web Development"
-msgstr "Razvoj ekstenzija"
+msgstr "Veb programiranje"
 
 msgid ""
 "Download Firefox extensions that feature web development tools. This "
@@ -1402,7 +1467,7 @@ msgid ""
 msgstr ""
 
 msgid "Abstract"
-msgstr ""
+msgstr "Abstraktne"
 
 msgid ""
 "Download Firefox artistic and conceptual themes. This category includes "
@@ -1452,7 +1517,7 @@ msgid ""
 msgstr ""
 
 msgid "Holiday"
-msgstr ""
+msgstr "Praznik"
 
 msgid ""
 "Download Firefox themes with holidays. This category includes Christmas, "
@@ -1460,7 +1525,7 @@ msgid ""
 msgstr ""
 
 msgid "Music"
-msgstr ""
+msgstr "Muzika"
 
 msgid ""
 "Download Firefox themes for musical interests and artists. This category "
@@ -1500,7 +1565,7 @@ msgid ""
 msgstr ""
 
 msgid "Solid"
-msgstr ""
+msgstr "Čvrsto"
 
 msgid ""
 "Download Firefox themes with solid and gradient colors to personalize your "
@@ -1508,45 +1573,42 @@ msgid ""
 "more."
 msgstr ""
 
-#, fuzzy
 msgid "Sports"
-msgstr "Podrška"
+msgstr "Sport"
 
 msgid ""
 "Download Firefox themes that feature a variety of sports. This category "
 "includes country flags, sports teams, soccer, hockey, and more."
 msgstr ""
 
-#, fuzzy
 msgid "Websites"
-msgstr "Veb sajt"
+msgstr "Veb sajtovi"
 
 msgid ""
 "Download Firefox themes that capture the essence of the web—captivating, "
 "unusual, and distinctive."
 msgstr ""
 
-#, fuzzy
 msgid "General"
-msgstr "Opšti testovi"
+msgstr "Opšte"
 
 msgid "Mozilla Public License 2.0"
-msgstr ""
+msgstr "Mozilina javna licenca 2.0"
 
 msgid "Apache License 2.0"
 msgstr ""
 
 msgid "GNU General Public License v2.0 only"
-msgstr ""
+msgstr "GNU General Public License v2.0 samo"
 
 msgid "GNU General Public License v3.0 only"
-msgstr ""
+msgstr "GNU General Public License v3.0 samo"
 
 msgid "GNU Lesser General Public License v2.1 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v2.1 samo"
 
 msgid "GNU Lesser General Public License v3.0 only"
-msgstr ""
+msgstr "GNU Lesser General Public License v3.0 samo"
 
 msgid "GNU Affero General Public License v3.0 only"
 msgstr ""
@@ -1636,8 +1698,9 @@ msgstr "Naziv url adrese ne može biti \"%s\". Molimo Vas izaberite drugi."
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
-msgstr[0] "Možete imati samo {0} kategoriju."
-msgstr[1] "Možete imati samo {0} kategorije."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid ""
 "The miscellaneous category cannot be combined with additional categories."
@@ -1653,8 +1716,9 @@ msgstr ""
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "Imate {0} previše oznaka."
-msgstr[1] "Imate {0} previše oznaka."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid ""
@@ -1781,7 +1845,7 @@ msgid ""
 msgstr ""
 
 msgid "Display Name"
-msgstr ""
+msgstr "Ime"
 
 msgid "Confirm email address"
 msgstr ""
@@ -1793,7 +1857,7 @@ msgid "Revoke and regenerate credentials"
 msgstr ""
 
 msgid "Revoke"
-msgstr ""
+msgstr "Opozovi"
 
 #, python-brace-format
 msgid ""
@@ -1820,7 +1884,7 @@ msgid "Choose version"
 msgstr ""
 
 msgid "Release notes"
-msgstr ""
+msgstr "Beleške o izdanju"
 
 msgid "Automatic rollback based on version [m.m]."
 msgstr ""
@@ -1838,7 +1902,7 @@ msgid "Issue with addons.mozilla.org"
 msgstr ""
 
 msgid "Subject"
-msgstr ""
+msgstr "Tema"
 
 msgid "Summarize the issue in a few words"
 msgstr ""
@@ -2094,7 +2158,7 @@ msgid "API key revoked"
 msgstr ""
 
 msgid "Verify email"
-msgstr ""
+msgstr "Verifikujte adresu e-pošte"
 
 msgid "Send another email"
 msgstr ""
@@ -2132,7 +2196,6 @@ msgstr "Centar za programere <small>dodataka</small>"
 msgid "more add-ons..."
 msgstr "još dodataka..."
 
-# Plural in this context means many of the add-on type
 #, fuzzy
 msgid "Extension Workshop"
 msgstr "Ekstenzije"
@@ -2166,7 +2229,7 @@ msgid "More Resources"
 msgstr "Više resursa"
 
 msgid "Contact Support"
-msgstr ""
+msgstr "Kontaktirajte podršku"
 
 msgid "Search Developer Docs"
 msgstr "Pretraži Dokumente programera"
@@ -2185,7 +2248,7 @@ msgid ""
 msgstr ""
 
 msgid "Send request"
-msgstr ""
+msgstr "Pošalji zahtev"
 
 #, python-format
 msgid ""
@@ -2195,7 +2258,7 @@ msgid ""
 msgstr ""
 
 msgid "Learn more"
-msgstr ""
+msgstr "Saznajte više"
 
 msgid "Use the field below to upload your add-on package."
 msgstr "Iskoristite polje ispod da biste otpremili paket dodatka."
@@ -2246,8 +2309,9 @@ msgid ""
 "email. Please try again later."
 msgstr ""
 
+#, fuzzy
 msgid "Success!"
-msgstr ""
+msgstr "Uspešno!"
 
 #, python-format
 msgid ""
@@ -2269,7 +2333,7 @@ msgid ""
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "Datum"
 
 msgid "From"
 msgstr "Od"
@@ -2323,8 +2387,9 @@ msgstr "Pretplatite se na ove novosti"
 #, python-brace-format
 msgid "<b>{0}</b> add-on"
 msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> dodatak"
-msgstr[1] "<b>{0}</b> dodataka"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Recent Activity"
 msgstr "Skorašnja aktivnost"
@@ -2340,8 +2405,9 @@ msgstr "Starije aktivnosti za Moji dodaci"
 #, python-brace-format
 msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
-msgstr[0] "<b>{0}</b> tema"
-msgstr[1] "<b>{0}</b> teme"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Edit Product Page"
 msgstr ""
@@ -2379,10 +2445,10 @@ msgid ""
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Prihvati"
 
 msgid "Decline"
-msgstr ""
+msgstr "Odbij"
 
 msgid "Manage Authors & License"
 msgstr "Upravljajte Autorima i licencama"
@@ -2475,8 +2541,6 @@ msgid ""
 "added. It is only relevant for listed add-ons."
 msgstr ""
 
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
 msgid "or"
 msgstr "ili"
 
@@ -2887,15 +2951,17 @@ msgstr "Ovaj dodatak nije kompatibilan sa Vašom verzijom %(app)s-a."
 #, python-brace-format
 msgid "<strong>{0}</strong> weekly download"
 msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> preuzimanje nedeljno"
-msgstr[1] "<strong>{0}</strong> preuzimanja nedeljno"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. {0} is the number of active users.
 #, python-brace-format
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] "<strong>{0}</strong> korisnik"
-msgstr[1] "<strong>{0}</strong> korisnika"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, fuzzy
 msgid "Submit a New Version"
@@ -2947,13 +3013,11 @@ msgid ""
 "on, which is shown inside Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Summary:"
-msgstr "Rezime"
+msgstr "Rezime:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Opis"
+msgstr "Opis:"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -2973,9 +3037,8 @@ msgstr "E-pošta podrške"
 msgid "Support website:"
 msgstr "Sajt podrške"
 
-#, fuzzy
 msgid "License:"
-msgstr "Licenca"
+msgstr "Licenca:"
 
 msgid "Please choose a license appropriate for the rights you grant."
 msgstr ""
@@ -2995,7 +3058,7 @@ msgid ""
 msgstr ""
 
 msgid "Important"
-msgstr ""
+msgstr "Važno"
 
 #, python-format
 msgid ""
@@ -3018,9 +3081,8 @@ msgstr "Podnesi novi dodatak"
 msgid "Describe Version"
 msgstr "Onemogući verziju"
 
-#, fuzzy
 msgid "Release Notes:"
-msgstr "Izdanje"
+msgstr "Napomene o izdanju:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -3248,9 +3310,8 @@ msgid ""
 "ignored:"
 msgstr ""
 
-#, fuzzy
 msgid "Theme name"
-msgstr "naziv teme"
+msgstr "Naziv teme"
 
 #, fuzzy
 msgid "Select a header image for your theme"
@@ -3292,7 +3353,7 @@ msgid "Finish Theme"
 msgstr "%s teme"
 
 msgid "Back"
-msgstr ""
+msgstr "Nazad"
 
 #, python-format
 msgid ""
@@ -3395,7 +3456,7 @@ msgid ""
 msgstr ""
 
 msgid "Invisible"
-msgstr ""
+msgstr "Nevidljiv(a)"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr ""
@@ -3558,6 +3619,9 @@ msgid ""
 "review of the content."
 msgstr ""
 
+msgid "Appeal already made"
+msgstr ""
+
 msgid "Review requested already, awaiting review"
 msgstr ""
 
@@ -3613,7 +3677,8 @@ msgstr "Ukloni ovu aplikaciju"
 msgid "Select a category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> categories for this add-on:"
 msgstr[0] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
-msgstr[1] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
+msgstr[1] ""
+msgstr[2] "Izaberite <b>do {0}</b> {1} kategoriju za ovaj dodatak:"
 
 msgid "Roll back to a previous version"
 msgstr ""
@@ -3638,7 +3703,7 @@ msgid "New version number"
 msgstr ""
 
 msgid "Release Notes"
-msgstr ""
+msgstr "Beleške o izdanju"
 
 msgid "Roll back"
 msgstr ""
@@ -3685,7 +3750,6 @@ msgid ""
 "got the resources to support you."
 msgstr ""
 
-# Plural in this context means many of the add-on type
 #, fuzzy
 msgid "Visit the Firefox Extension Workshop"
 msgstr "Ekstenzije"
@@ -3706,7 +3770,6 @@ msgstr "Razvoj ekstenzija"
 msgid "Stay up-to-date on news and events for Firefox extension developers."
 msgstr ""
 
-#, fuzzy
 msgid "Email Address"
 msgstr "Adresa e-pošte"
 
@@ -3716,24 +3779,24 @@ msgid ""
 "%(link_open)sPrivacy Notice%(link_close)s."
 msgstr ""
 
-#, fuzzy
 msgid "Sign Up"
-msgstr "Pošalji dodatak"
+msgstr "Registrujte se"
 
 msgid "Thanks!"
-msgstr ""
+msgstr "Hvala!"
 
 msgid ""
 "If you haven’t previously confirmed a subscription to a Mozilla-related "
 "newsletter you may have to do so. Please check your inbox or your spam "
 "filter for an email from us."
 msgstr ""
+"Ako do sada niste, moraćete da potvrdite prijavu na jedan od Mozilla "
+"biltena. Proverite da li ste primili poruku od nas u svojoj e-pošti ili "
+"filteru za nepoželjnu poštu."
 
-#, fuzzy
 msgid "Resources"
-msgstr "Više resursa"
+msgstr "Resursi"
 
-# Plural in this context means many of the add-on type
 #, fuzzy
 msgid "WebExtensions API"
 msgstr "Ekstenzije"
@@ -3742,7 +3805,7 @@ msgid "Web-Ext: build & test extensions"
 msgstr ""
 
 msgid "Promote"
-msgstr ""
+msgstr "Promovišite"
 
 msgid "\"Get The Add-on\" button"
 msgstr ""
@@ -3759,9 +3822,8 @@ msgstr ""
 msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
-#, fuzzy
 msgid "Get started"
-msgstr "Kako početi"
+msgstr "Počnite"
 
 #, fuzzy
 msgid "More Ways to Participate"
@@ -3776,7 +3838,7 @@ msgid "See how"
 msgstr ""
 
 msgid "Get involved"
-msgstr ""
+msgstr "Priključite se"
 
 msgid ""
 "Connect with thousands of developers and discover more ways you can "
@@ -3811,7 +3873,6 @@ msgstr "Podnesi dodatak"
 msgid "Submit Your First Theme"
 msgstr "Podnesi temu"
 
-# The title for a user if they are a developer
 #, fuzzy
 msgid "Add-on Developer Hub"
 msgstr "Programer dodataka"
@@ -3819,13 +3880,11 @@ msgstr "Programer dodataka"
 msgid "Support"
 msgstr "Podrška"
 
-# Link text to the AMO blog.
 msgid "Blog"
 msgstr "Blog"
 
-#, fuzzy
 msgid "Sign Out"
-msgstr "Pošalji dodatak"
+msgstr "Odjavi me"
 
 msgid "No Photo"
 msgstr "Nema slike"
@@ -3834,17 +3893,15 @@ msgstr "Nema slike"
 msgid "User Photo"
 msgstr "Obriši korisničku sliku"
 
-#, fuzzy
 msgid "Profile"
-msgstr "Moj profil"
+msgstr "Profil"
 
 #, fuzzy
 msgid "Submit or Manage Extensions"
 msgstr "Podnesi novi dodatak"
 
-#, fuzzy
 msgid "Customize Firefox"
-msgstr "Teme lake za upotrebu za Firefox"
+msgstr "Prilagodite Firefox"
 
 #, fuzzy
 msgid "Learn how to make an extension"
@@ -3863,7 +3920,6 @@ msgstr ""
 msgid "Manage Version {0}"
 msgstr "Upravljaj verzijom {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
 #, python-brace-format
 msgid "Manage {0}"
@@ -4027,7 +4083,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr "Brisanje ove verzije će trajno obrisati:"
 
 msgid "Important:"
-msgstr ""
+msgstr "Važno:"
 
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the "
@@ -4069,21 +4125,21 @@ msgstr ""
 msgid "Are you sure you wish to hide your add-on?"
 msgstr ""
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
 #, python-brace-format
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] "{0} greška"
-msgstr[1] "{0} greške"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
 #, python-brace-format
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] "{0} upozorenje"
-msgstr[1] "{0} upozorenja"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5531,9 +5587,8 @@ msgid "See staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#, fuzzy
 msgid "Recommended extensions"
-msgstr "Komentariši"
+msgstr "Preporučena proširenja"
 
 #. editorial content for the homepage shelves.
 #, fuzzy
@@ -5557,7 +5612,6 @@ msgstr ""
 msgid "See more privacy staff picks"
 msgstr ""
 
-# Plural in this context means many of the add-on type
 #. editorial content for the homepage shelves.
 #, fuzzy
 msgid "Popular extensions"
@@ -5739,7 +5793,7 @@ msgid "See more staff picks"
 msgstr ""
 
 msgid "Unreviewed"
-msgstr ""
+msgstr "Nepregledano"
 
 #, fuzzy, python-format
 msgid "[status:%s]"
@@ -5889,10 +5943,10 @@ msgid "The review text cannot contain the word: \"{0}\""
 msgid_plural "The review text cannot contain any of the words: \"{0}\""
 msgstr[0] ""
 msgstr[1] ""
+msgstr[2] ""
 
-#, fuzzy
 msgid "This field is required."
-msgstr "Obavezno polje"
+msgstr "Ovo polje je obavezno."
 
 #, fuzzy
 msgid "You can't change the add-on of a review once it has been created."
@@ -5932,8 +5986,9 @@ msgstr ""
 #, python-brace-format
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] "{num} kritika"
-msgstr[1] "{num} kritike"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Not yet rated"
 msgstr "Nije još ocenjeno"
@@ -5947,10 +6002,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr "Ocenjeno sa %(rating)s od 5 zvezdica"
 
 msgid "Show all"
-msgstr ""
+msgstr "Prikaži sve"
 
 msgid "Save"
-msgstr ""
+msgstr "Sačuvaj"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -6199,7 +6254,6 @@ msgstr "Mozilla dodaci"
 msgid "Back to Add-ons"
 msgstr "Nazad na dodatke"
 
-# {0} is the application name.  Example:  Firefox
 #, python-brace-format
 msgid "Return to the {0} Add-ons homepage"
 msgstr "Vratite se na početnu stranicu {0} dodataka"
@@ -6222,33 +6276,34 @@ msgstr ""
 msgid "Forum"
 msgstr "Forum"
 
-#, fuzzy
 msgid "Report a bug"
-msgstr "Prijavi zloupotrebu"
+msgstr "Prijavite grešku"
 
 msgid "Review Guide"
 msgstr ""
 
 msgid "Browsers"
-msgstr ""
+msgstr "Pregledači"
 
+#, fuzzy
 msgid "Desktop"
-msgstr ""
+msgstr "Stoni"
 
+#, fuzzy
 msgid "Enterprise"
-msgstr ""
+msgstr "Preduzeće"
 
 msgid "Products"
-msgstr ""
+msgstr "Proizvodi"
 
 msgid "Privacy"
-msgstr ""
+msgstr "Privatnost"
 
 msgid "Cookies"
-msgstr ""
+msgstr "Kolačići"
 
 msgid "Legal"
-msgstr ""
+msgstr "Prava"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/"

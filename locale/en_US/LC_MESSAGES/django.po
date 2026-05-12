@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-11 15:36+0000\n"
+"POT-Creation-Date: 2026-05-12 15:57+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3288,6 +3288,9 @@ msgstr "Our review found that your listing content violates the following Mozill
 
 msgid "To address these issues, please update your listing and request another review of the content."
 msgstr "To address these issues, please update your listing and request another review of the content."
+
+msgid "Appeal already made"
+msgstr "Appeal already made"
 
 msgid "Review requested already, awaiting review"
 msgstr "Review requested already, awaiting review"
