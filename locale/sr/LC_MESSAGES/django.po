@@ -72,24 +72,24 @@ msgstr "У реду"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:33 src/olympia/abuse/templates/abuse/appeal.html:41
 msgid "Thank you for your report."
-msgstr ""
+msgstr "Хвала вам на извештају."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:37
 msgid ""
 "We have already reviewed a similar appeal from another reporter, and have reversed our prior decision. We have taken action against the content and/or account holder in accordance with our policies."
-msgstr ""
+msgstr "Већ смо размотрили сличну жалбу другог пријављивача и опозвали смо нашу претходну одлуку. Предузели смо радњу против садржаја и/или власника налога у складу са нашим полисама."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:38
 msgid "Because the decision you are appealing has already been overturned, your appeal will not be processed."
-msgstr ""
+msgstr "Пошто је одлука против које се жалите већ поништена, ваша жалба неће бити обрађена."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:42
 msgid "The decision you are appealing has already been overridden by a new decision, so this decision can't be appealed."
-msgstr ""
+msgstr "Одлука против које се жалите већ је замењена новом одлуком, тако да се против ове одлуке не може жалити."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:44
 msgid "This decision can't be appealed."
-msgstr ""
+msgstr "Против ове одлуке се не може жалити."
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:1
 msgid "Hello,"
@@ -97,7 +97,7 @@ msgstr "Здраво,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr ""
+msgstr "Тим за Mozilla-ине додатке"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
@@ -110,6 +110,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Захваљујемо вам на пријави за %(name)s на Mozilla-иним додацима, као и на пружању додатних информација о вашим забринутостима.\n"
+"\n"
+"Након разматрања ваше жалбе, утврдили смо да је претходна одлука, да овај садржај не крши Mozilla-ине политике (%(policy_document_url)s), била исправна. На основу тог утврђења, одбили смо вашу жалбу и нећемо предузети икакве радње против налога или садржаја.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Хвала вам на пажњи.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -119,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Захваљујемо вам на пријави за %(name)s на Mozilla-иним додацима, као и на пружању додатних информација о вашим забринутостима.\n"
+"\n"
+"Након разматрања ваше жалбе, утврдили смо да је наша претходна одлука, да овај садржај не крши Mozilla-ине политике (%(policy_document_url)s), била погрешна. На основу тог утврђења, уклонили смо садржај и обавестили корисника о нашој радњи.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -128,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Захваљујемо вам на пријави за %(name)s на Mozilla-иним додацима, као и на пружању додатних информација о вашим забринутостима.\n"
+"\n"
+"Након разматрања ваше жалбе, утврдили смо да је наша претходна одлука, да овај садржај не крши Mozilla-ине политике (%(policy_document_url)s), била погрешна. На основу тог утврђења, затражили смо од развијача да изврши измене. Ако развијач не ажурира свој садржај како би исправио кршење, уклонићемо га.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -137,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Захваљујемо вам на пријави за %(name)s на адреси %(target_url)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и поменути садржај и утврдили смо да он не крши Mozilla-ине политике (%(policy_document_url)s). Стога, он неће бити предмет икаквих радњи модерирања.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -144,6 +163,8 @@ msgid ""
 "You have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal process, including how to file an appeal for this specific "
 "decision."
 msgstr ""
+"Имате право на жалбу против ове одлуке у року од 6 месеци од датума ове е-поште. Погледајте %(appeal_url)s за детаље о процесу жалбе, укључујући и то како да поднесете жалбу против ове конкретне "
+"одлуке."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -153,6 +174,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Хвала вам на пријави следећег додатка на Mozilla додацима: %(name)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и спорни садржај и утврдили смо да он крши Mozilla-ине политике (%(policy_document_url)s), те смо због тога уклонили садржај.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -162,6 +187,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore requested the developer make changes. If they do not update their content to correct the violation, we will remove it.\n"
 msgstr ""
+"\n"
+"Хвала вам на пријави следећег додатка на Mozilla додацима: %(name)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и спорни садржај и утврдили смо да он крши Mozilla-ине политике (%(policy_document_url)s), те смо због тога затражили од програмера да унесе измене. Ако он не ажурира свој садржај како би исправио прекршај, уклонићемо га.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -171,6 +200,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Хвала вам на пријави следеће збирке на Mozilla додацима: %(name)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и спорни садржај и утврдили смо да он крши Mozilla-ине политике (%(policy_document_url)s), те смо због тога уклонили садржај.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_rating.txt:5
 #, python-format
@@ -180,6 +213,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Хвала вам на пријави следеће оцене на Mozilla додацима: %(name)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и спорни садржај и утврдили смо да он крши Mozilla-ине политике (%(policy_document_url)s), те смо због тога уклонили садржај.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_user.txt:5
 #, python-format
@@ -189,6 +226,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Хвала вам на пријави следећег корисничког профила на Mozilla додацима: %(name)s.\n"
+"\n"
+"Прегледали смо вашу пријаву и спорни садржај и утврдили да он крши Mozilla-ине политике (%(policy_document_url)s), те смо због тога уклонили садржај.\n"
 
 #: src/olympia/accounts/serializers.py:166 src/olympia/bandwagon/serializers.py:103
 msgid "No links are allowed."
@@ -218,7 +259,7 @@ msgstr "Помоћ?"
 #: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Обавештење [%s] не постоји"
 
 #: src/olympia/activity/models.py:42
 #, fuzzy
@@ -244,7 +285,7 @@ msgstr "Датум рецензије"
 
 #: src/olympia/activity/views.py:134
 msgid "Request content length is too large."
-msgstr ""
+msgstr "Дужина садржаја захтева је превелика."
 
 #: src/olympia/activity/tests/test_constants.py:21 src/olympia/devhub/templates/devhub/addons/activity.html:60
 msgid "Add-on"
@@ -252,29 +293,29 @@ msgstr "Додатак"
 
 #: src/olympia/addons/decorators.py:78 src/olympia/amo/templates/amo/submissions_disabled.html:8
 msgid "Add-on uploads are temporarily unavailable."
-msgstr ""
+msgstr "Отпремања додатака су привремено недоступна."
 
 #: src/olympia/addons/fields.py:56
 #, python-brace-format
 msgid "Maximum number of categories per application ({MAX_CATEGORIES}) exceeded"
-msgstr ""
+msgstr "Прекорачен је највећи број категорија по програму ({MAX_CATEGORIES})"
 
 #: src/olympia/addons/fields.py:62
 msgid "The \"other\" category cannot be combined with another category"
-msgstr ""
+msgstr "Категорија „друго” не може бити комбинована са другом категоријом"
 
 #: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1301
 msgid "Invalid category name."
-msgstr ""
+msgstr "Неисправан назив категорије."
 
 #: src/olympia/addons/fields.py:116
 #, python-brace-format
 msgid "URL domain must be one of [{domains}]."
-msgstr ""
+msgstr "УРЛ домен мора бити један од [{domains}]."
 
 #: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:311
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
-msgstr ""
+msgstr "УРЛ путања за GitHub Sponsors мора садржати /sponsors/."
 
 #: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:314
 msgid "URLs must start with https://."
