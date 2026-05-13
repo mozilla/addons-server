@@ -132,8 +132,6 @@ services:
       - --skip-name-resolve
       # Disable performance schema for faster startup
       - --performance-schema=OFF
-      # Allow nonstandard FKs (needed for translations)
-      - --skip-restrict-fk-on-non-standard-key
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
       start_interval: 1s
