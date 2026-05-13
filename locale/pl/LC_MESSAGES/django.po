@@ -437,7 +437,7 @@ msgstr "Można wycofać tylko zatwierdzone wersje, z wyjątkiem wersji najnowsz
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "To podsumowanie lub opis dodatku nie może być użyte."
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2369,7 +2369,7 @@ msgstr "Twoje stare poświadczenia zostały odwołane i nie są już ważne."
 
 #: src/olympia/devhub/views.py:2132
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "Nowe dane uwierzytelniające API zostały wygenerowane i wyświetlone poniżej. Pamiętaj o skopiowaniu tajnego klucza JWT, ponieważ nigdy więcej nie zostanie on wyświetlony."
 
 #: src/olympia/devhub/views.py:2156
 msgid "New API key created"
@@ -2393,7 +2393,7 @@ msgstr "Twój adres e-mail został zweryfikowany"
 
 #: src/olympia/devhub/views.py:2324
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "Twoja prośba o pomoc została wysłana. Wkrótce się z Tobą skontaktujemy."
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -2473,7 +2473,7 @@ msgstr "Więcej zasobów"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "Skontaktuj się z pomocą"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2485,17 +2485,19 @@ msgstr "Szukaj"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "Uzyskaj pomoc dla rozszerzeń i motywów"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Skorzystaj z tego formularza, aby uzyskać pomoc dotyczącą Twojego konta, problemów ze zgodnością z zasadami i nie tylko. Im więcej szczegółów podasz, tym łatwiej będzie nam pomóc. W przypadku pytań "
+"dotyczących recenzji Twojego dodatku, zapoznaj się z historią wersji tego dodatku. Odpowiemy najszybciej, jak to możliwe."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Wyślij prośbę"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
