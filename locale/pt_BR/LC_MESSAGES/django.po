@@ -3876,7 +3876,7 @@ msgstr "Sua extensão foi desativada por um administrador do site e não será m
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr "A sua lista de extensões foi rejeitada. Ele não está listado em nossa galeria. Por favor, explique os motivos e solicite novamente a análise."
+msgstr "Sua lista de extensões foi rejeitada. Ela não está listada em nossa galeria. Resolva os motivos indicados e solicite nova análise."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
@@ -4010,7 +4010,7 @@ msgstr "Ver o blog &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:2
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr "Nossa análise revelou que o conteúdo da sua listagem viola a(s) seguinte(s) política(s) da Mozilla:"
+msgstr "Nossa análise revelou que o conteúdo da sua listagem viola as seguintes normas ou diretivas da Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
@@ -4018,7 +4018,7 @@ msgstr "Para resolver esses problemas, atualize sua listagem e solicite outra re
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr "Recurso já feito"
+msgstr "Recurso já apresentado"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
@@ -4026,7 +4026,7 @@ msgstr "Análise já solicitada, aguardando análise"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:26
 msgid "I confirm I have addressed the issues, and request a review"
-msgstr "Confirmo que corrigi os problemas e solicito uma análise"
+msgstr "Confirmo que resolvi os problemas e solicito uma análise"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:1
 msgid "Version Signature Pending"
@@ -4868,7 +4868,7 @@ msgstr "Altere a forma como navega no Reddit usando marcações e mais."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr "Faça capturas de tela de páginas da web, edições e compartilhe."
+msgstr "Capture tela de páginas web, edite e compartilhe."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -5747,7 +5747,7 @@ msgstr "Melhore sua experiência no Reddit com comentários codificados por core
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr "Elimine as distrações do YouTube, como recomendações, sugestões de tela final, comentários e muito mais."
+msgstr "Elimine distrações do YouTube, como recomendações, sugestões no final da tela, comentários e muito mais."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
