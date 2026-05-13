@@ -4038,7 +4038,7 @@ msgstr "Aby toś te problemy rozwězał, aktualizěrujśo pšosym waš lisćinow
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Pśeśiwjenje jo južo zapódane"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
