@@ -1298,7 +1298,7 @@ msgstr "Atualizada a propriedade {0} da conta {user}."
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr "conteúdo da lista de {addon} aprovado."
+msgstr "Conteúdo da lista de {addon} aprovado."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
@@ -1307,7 +1307,7 @@ msgstr "Lista rejeitada aprovada"
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr "{addon} lista de conteúdo rejeitado."
+msgstr "Conteúdo da lista de {addon} rejeitado."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
@@ -2089,7 +2089,7 @@ msgstr "Assunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr "Resuma o problema em poucas palavras"
+msgstr ""
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
