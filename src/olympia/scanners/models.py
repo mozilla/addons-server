@@ -332,19 +332,22 @@ class ScannerWebhook(ModelBase):
         db_table = 'scanners_webhooks'
 
     def save(self, *args, **kwargs):
-        service_account, created = UserProfile.objects.get_or_create_service_account(
-            name=f'webhook-{self.name}',
-            notes=(
-                'Service account automatically created for '
-                f'the "{self.name}" scanner webhook.'
-            ),
-        )
-        if created:
-            # Add service account to the scanner group.
-            group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
-            GroupUser.objects.get_or_create(group=group, user=service_account)
+        if not self.service_account:
+            service_account, created = (
+                UserProfile.objects.get_or_create_service_account(
+                    name=f'webhook-{self.name}',
+                    notes=(
+                        'Service account automatically created for '
+                        f'the "{self.name}" scanner webhook.'
+                    ),
+                )
+            )
+            if created:
+                # Add service account to the scanner group.
+                group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
+                GroupUser.objects.get_or_create(group=group, user=service_account)
 
-        self.service_account = service_account
+            self.service_account = service_account
         return super().save(*args, **kwargs)
 
     def __str__(self):
