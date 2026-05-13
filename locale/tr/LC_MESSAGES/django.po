@@ -4019,7 +4019,7 @@ msgstr "Bu sorunları gidermek için lütfen profilinizi güncelleyin ve içeri�
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Zaten itiraz etmişsiniz"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
