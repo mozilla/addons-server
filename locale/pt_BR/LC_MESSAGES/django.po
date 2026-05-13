@@ -2089,7 +2089,7 @@ msgstr "Assunto"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "Resuma o problema em poucas palavras"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
@@ -2359,7 +2359,7 @@ msgstr "Suas credenciais antigas foram revogadas e deixaram de ser válidas."
 
 #: src/olympia/devhub/views.py:2132
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr "Novas credenciais da API foram geradas e são exibidas abaixo. Certifique-se de copiar o segredo JWT, ele nunca será exibido novamente."
+msgstr "Novas credenciais da API foram geradas e estão exibidas abaixo. Certifique-se de copiar o 'secret' do JWT, ele nunca será exibido novamente."
 
 #: src/olympia/devhub/views.py:2156
 msgid "New API key created"
@@ -2475,7 +2475,7 @@ msgstr "Pesquisar"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr "Obtenha suporte para extensões e temas"
+msgstr "Obter suporte de extensões e temas"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
@@ -3711,7 +3711,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
-msgstr "Mantenha sua chave da API secreta e nunca as compartilhe com ninguém, incluindo funcionários ou colaboradores da Mozilla."
+msgstr "Mantenha suas chaves de API secretas, nunca compartilhe com ninguém, nem com funcionários ou colaboradores da Mozilla."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT issuer"
