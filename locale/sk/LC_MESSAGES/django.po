@@ -4021,7 +4021,7 @@ msgstr "Ak chcete tieto problémy vyriešiť, aktualizujte svoj produkt a požia
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Odvolanie už bolo podané"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
