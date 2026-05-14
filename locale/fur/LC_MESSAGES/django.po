@@ -4054,7 +4054,7 @@ msgstr "Par risolvi chescj problemis, inzorne la schede e domande une gnove revi
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Ricors za presentât"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
