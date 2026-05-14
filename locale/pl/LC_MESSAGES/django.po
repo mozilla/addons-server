@@ -4269,7 +4269,7 @@ msgstr "Dołącz do nas"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:11
 msgid "Connect with thousands of developers and discover more ways you can contribute to the extension ecosystem."
-msgstr ""
+msgstr "Nawiąż kontakt z tysiącami programistów i odkryj nowe sposoby, w jakie możesz przyczynić się do rozwoju ekosystemu rozszerzeń."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/get_involved.html:16
 msgid "Learn more about the developer community"
@@ -4689,7 +4689,7 @@ msgstr "Zaznacz dowolny tekst i kliknij prawym przyciskiem myszy, aby szybko wys
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:53
 msgid "Enjoy visual bookmarks. Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Korzystaj z wizualnych zakładek. Uzyskaj dostęp do ulubionych stron w układzie kafelkowym."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:56
@@ -5060,9 +5060,8 @@ msgstr "Pokonaj spam. Używaj sprytnych, tymczasowych adresów e-mail, aby zacho
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:266
-#, fuzzy
 msgid "A direct path to customizing the built-in privacy settings in Firefox."
-msgstr "Dostosuj w prosty sposób wbudowane ustawienia prywatności w Firefoksie."
+msgstr "Bezpośredni dostęp do personalizacji wbudowanych ustawień prywatności w Firefoksie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:269
@@ -6069,7 +6068,7 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
-msgstr ""
+msgstr "Spraw, by Firefox podszywał się pod przeglądarkę Chrome, aby oszukać witryny, które próbują zablokować Firefoksa."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1110
