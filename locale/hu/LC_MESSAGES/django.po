@@ -4031,7 +4031,7 @@ msgstr "A problémák megoldása érdekében frissítse a listázását, és ké
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "A fellebbezés már megtörtént"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
