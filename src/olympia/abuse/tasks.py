@@ -170,7 +170,7 @@ def sync_cinder_policies():
         Q(contentdecision__id__gte=0)
         | Q(reviewactionreason__id__gte=0)
         | Q(scannerrule__id__gte=0)
-        | Q(status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_PREVIOUSLY_REVIEWER)
+        | Q(status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER)
     )
 
     def sync_policies(data, parent_id=None):
@@ -206,10 +206,8 @@ def sync_cinder_policies():
                 policies_in_cinder.update(sync_policies(nested, cinder_policy.id))
         return policies_in_cinder
 
-    def remove_unused_deleted_policies(policies_in_cinder):
-        qs = CinderPolicy.objects.exclude(uuid__in=policies_in_cinder).exclude(
-            policies_used_q
-        )
+    def remove_unused_deleted_policies(orphaned_policies):
+        qs = orphaned_policies.exclude(policies_used_q)
         if qs.exists():
             log.info(
                 'Deleting orphaned Cinder Policy not in use: %s',
@@ -217,10 +215,8 @@ def sync_cinder_policies():
             )
             qs.delete()
 
-    def mark_inactive_and_orphaned_policies(policies_in_cinder):
-        reviewer_qs = CinderPolicy.objects.exclude(uuid__in=policies_in_cinder).filter(
-            expose_in_reviewer_tools=True
-        )
+    def mark_inactive_and_orphaned_policies(orphaned_policies):
+        reviewer_qs = orphaned_policies.filter(expose_in_reviewer_tools=True)
         if reviewer_qs.exists():
             log.info(
                 'Marking orphaned Cinder Policy still in use in reviewer tools as '
@@ -228,26 +224,30 @@ def sync_cinder_policies():
                 list(reviewer_qs.values_list('uuid', flat=True)),
             )
             reviewer_qs.update(
-                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_PREVIOUSLY_REVIEWER,
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER,
                 expose_in_reviewer_tools=False,
             )
 
         deleted_qs = (
-            CinderPolicy.objects
+            orphaned_policies
             # we can skip already deleted policies, they can't come back.
             .exclude(
                 status_in_cinder__in=(
-                    CinderPolicy.POLICY_STATUSES.DELETED,
-                    CinderPolicy.POLICY_STATUSES.DELETED_PREVIOUSLY_REVIEWER,
-                )
-            ).filter(policies_used_q)
+                    CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED,
+                    CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER,
+                ),
+            )
+            .filter(policies_used_q)
+            .distinct()
         )
         if deleted_qs.exists():
             log.info(
                 'Marking orphaned Cinder Policy still in use as deleted: %s',
                 list(deleted_qs.values_list('uuid', flat=True)),
             )
-            deleted_qs.update(status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED)
+            deleted_qs.update(
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED
+            )
 
         inactive_qs = CinderPolicy.objects.exclude(
             status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED
@@ -270,9 +270,10 @@ def sync_cinder_policies():
     response = requests.get(url, headers=headers)
     response.raise_for_status()
     data = response.json()
-    policies_in_cinder = sync_policies(data)
-    mark_inactive_and_orphaned_policies(policies_in_cinder)
-    remove_unused_deleted_policies(policies_in_cinder)
+    policies_in_cinder_uuids = sync_policies(data)
+    orphaned_policies = CinderPolicy.objects.exclude(uuid__in=policies_in_cinder_uuids)
+    mark_inactive_and_orphaned_policies(orphaned_policies)
+    remove_unused_deleted_policies(orphaned_policies)
 
 
 @task

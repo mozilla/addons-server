@@ -1130,23 +1130,25 @@ class TestSyncCinderPolicies(TestCase):
         assert another_policy.name == 'Another Pôlicy'
         assert another_policy.text == 'Another description'
 
-    def test_old_unused_policies_deleted_and_used_kept_and_marked_as_orphaned(self):
-        CinderPolicy.objects.create(
-            uuid='old-uuid',
+    def test_orphaned_policies_deleted_or_marked_as_deleted(self):
+        # This policy should be deleted
+        old_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
             name='old',
             text='Old policy with no decisions or reasons',
         )
+
+        # These policies should be kept, and set as deleted
         old_policy_with_decision = CinderPolicy.objects.create(
-            uuid='old-uuid-decision',
+            uuid=uuid.uuid4().hex,
             name='old-decision',
             text='Old policy, but with linked decision',
         )
-        decision = ContentDecision.objects.create(
+        ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_APPROVE, addon=addon_factory()
-        )
-        decision.policies.add(old_policy_with_decision)
+        ).policies.add(old_policy_with_decision)
         old_policy_with_reason = CinderPolicy.objects.create(
-            uuid='old-uuid-reason',
+            uuid=uuid.uuid4().hex,
             name='old-reason',
             text='Old policy, but with linked ReviewActionReason',
         )
@@ -1156,43 +1158,63 @@ class TestSyncCinderPolicies(TestCase):
             canned_response='.',
         )
         old_policy_with_scannerrule = CinderPolicy.objects.create(
-            uuid='old-uuid-rule',
+            uuid=uuid.uuid4().hex,
             name='old-rule',
             text='Old policy, but with linked scanner rule',
         )
         ScannerRule.objects.create(scanner=YARA, policy=old_policy_with_scannerrule)
+        # This policy should be kept, and set as deleted but exposed in reviewer tools
         existing_policy_exposed = CinderPolicy.objects.create(
-            uuid='existing-uuid-exposed',
+            uuid=uuid.uuid4().hex,
             name='Existing policy',
             text='Existing policy with no decision or ReviewActionReason but exposed',
             expose_in_reviewer_tools=True,
         )
+
+        # This policy should be kept because it's still present in Cinder
         updated_policy = CinderPolicy.objects.create(
-            uuid=self.json_data['uuid'],
-            name=self.json_data['name'],
+            uuid=uuid.uuid4().hex,
+            name='to be updated',
             text='Existing policy with no decision or ReviewActionReason but updated',
         )
+        # This policy should be kept, but set as archived +not exposed in reviewer tools
         updated_policy_but_now_archived = CinderPolicy.objects.create(
-            uuid='archived-uuid',
+            uuid=uuid.uuid4().hex,
             name='Now archived',
             text='Existing policy but now archived',
             status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED,
             expose_in_reviewer_tools=True,
         )
-        new_policy_data = {
-            **self.json_data,
-            'uuid': 'new-policy-uuid',
-        }
-        updated_archived_data = {
-            'uuid': updated_policy_but_now_archived.uuid,
-            'name': updated_policy_but_now_archived.name,
-            'description': updated_policy_but_now_archived.text,
-            'status': {'id': 4, 'name': 'ARCHIVED'},
-        }
+        existing_reviewer_policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='Reviewers',
+            text='Existing policy in reviewer tools',
+            expose_in_reviewer_tools=True,
+        )
+        # we're returning 4 policies
+        data = [
+            self.json_data,  # new policy, will be created
+            {  # existing policy, will be updated
+                **self.json_data,
+                'uuid': updated_policy.uuid,
+            },
+            {  # existing policy, but now archived.
+                'uuid': updated_policy_but_now_archived.uuid,
+                'name': updated_policy_but_now_archived.name,
+                'description': updated_policy_but_now_archived.text,
+                'status': {'id': 4, 'name': 'ARCHIVED'},
+            },
+            {  # existing policy enable in reviewer tools
+                **self.json_data,
+                'uuid': existing_reviewer_policy.uuid,
+                'name': existing_reviewer_policy.name,
+                'description': existing_reviewer_policy.text,
+            },
+        ]
         responses.add(
             responses.GET,
             self.url,
-            json=[self.json_data, new_policy_data, updated_archived_data],
+            json=data,
             status=200,
         )
 
@@ -1202,27 +1224,22 @@ class TestSyncCinderPolicies(TestCase):
             updated_policy.reload().status_in_cinder
             == CinderPolicy.POLICY_STATUSES.PUBLISHED
         )
-
-        # all the policies deleted from Cinder but still are marked deleted
+        # The only 3 published policies should be the 3 marked as published in the api
         assert (
-            old_policy_with_decision.reload().status_in_cinder
-            == CinderPolicy.POLICY_STATUSES.DELETED
+            CinderPolicy.objects.filter(
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED
+            ).count()
+            == 3
         )
         assert (
-            old_policy_with_reason.reload().status_in_cinder
-            == CinderPolicy.POLICY_STATUSES.DELETED
+            CinderPolicy.objects.exclude(
+                uuid__in=(updated_policy.uuid, existing_reviewer_policy.uuid)
+            )
+            .filter(status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED)
+            .get()
+            .uuid
+            == self.json_data['uuid']
         )
-        assert (
-            existing_policy_exposed.reload().status_in_cinder
-            == CinderPolicy.POLICY_STATUSES.DELETED_PREVIOUSLY_REVIEWER
-        )
-        assert (
-            old_policy_with_scannerrule.reload().status_in_cinder
-            == CinderPolicy.POLICY_STATUSES.DELETED
-        )
-        # And they're all not exposed in reviewer tools now
-        assert not CinderPolicy.objects.filter(expose_in_reviewer_tools=True).exists()
-
         # Exiting policy that is now archived has it's status updated, and not exposed
         assert (
             updated_policy_but_now_archived.reload().status_in_cinder
@@ -1230,23 +1247,32 @@ class TestSyncCinderPolicies(TestCase):
         )
         assert updated_policy_but_now_archived.expose_in_reviewer_tools is False
 
-        # The policy that was unused and deleted in cinder is deleted here too.
-        assert not CinderPolicy.objects.filter(uuid='old-uuid').exists()
+        # all the policies deleted from Cinder remain but are marked deleted
+        assert (
+            old_policy_with_decision.reload().status_in_cinder
+            == CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED
+        )
+        assert (
+            old_policy_with_reason.reload().status_in_cinder
+            == CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED
+        )
+        assert (
+            old_policy_with_scannerrule.reload().status_in_cinder
+            == CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED
+        )
+        assert (
+            existing_policy_exposed.reload().status_in_cinder
+            == CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER
+        )
+        # And they're all not exposed in reviewer tools now
+        assert CinderPolicy.objects.filter(expose_in_reviewer_tools=True).count() == 1
+        assert (
+            CinderPolicy.objects.filter(expose_in_reviewer_tools=True).get()
+            == existing_reviewer_policy
+        )
 
-        # The only 2 published policies should be the two marked as published in the api
-        assert (
-            CinderPolicy.objects.filter(
-                status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED
-            ).count()
-            == 2
-        )
-        assert (
-            CinderPolicy.objects.exclude(uuid='test-uuid')
-            .filter(status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED)
-            .get()
-            .uuid
-            == 'new-policy-uuid'
-        )
+        # The policy that was unused and deleted in cinder is deleted here too.
+        assert not CinderPolicy.objects.filter(uuid=old_policy.uuid).exists()
 
     def test_nested_policies_considered_for_deletion_and_marking_orphans(self):
         json_data = {
