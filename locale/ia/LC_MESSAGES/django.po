@@ -3809,9 +3809,6 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
-"Car disveloppator de additivos,\n"
-"\n"
-"Nos ha constatate que tu credentiales API secrete de AMO ha essite includite in un additivo inviate a addons.mozilla.org."
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:7
 msgid ""

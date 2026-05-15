@@ -3364,7 +3364,7 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Advertencia: hay una serie de nombres/descripciones en otros idiomas que se recortarán automáticamente para ajustarse al límite de % (max_length) caracteres. Para editarlos, ve a la Página de "
+"Advertencia: hay una serie de nombres/descripciones en otros idiomas que se recortarán automáticamente para ajustarse al límite de %(max_length)s caracteres. Para editarlos, ve a la Página de "
 "edición del producto tras finalizar el proceso de envío."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:52 src/olympia/devhub/templates/devhub/addons/submit/describe.html:73

@@ -400,7 +400,7 @@ msgstr "<b>{0}</b> în ultimele {1} zile"
 #: static/js/stats/csv_keys.js:100 static/js/stats/csv_keys.js:106
 #, python-brace-format
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> din {0} până în {1}"
+msgstr "<b>{0}</b> din {1} până în {2}"
 
 #. L10n: {0} and {1} are integers.
 #: static/js/stats/csv_keys.js:104

@@ -4318,7 +4318,7 @@ msgstr "Yakb'äl {file_id}"
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:5
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr "Xtz'uk pa %(created)s chuqa' xjal rik'in %(status)s pa "
+msgstr "Xtz'uk pa %(created)s chuqa' xjal rik'in %(status)s pa %(status_date)s"
 
 #: src/olympia/devhub/templates/devhub/versions/file_status_message.html:9
 #, python-format

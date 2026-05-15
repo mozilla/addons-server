@@ -1248,7 +1248,7 @@ msgstr "Грешка при връщане към предишна версия"
 #: src/olympia/constants/activity.py:1247
 #, python-brace-format
 msgid "{addon} {0} property edited."
-msgstr "Свойство на {addon} променено."
+msgstr "Свойство на {addon} {0} променено."
 
 #: src/olympia/constants/activity.py:1256
 #, python-brace-format
