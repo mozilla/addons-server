@@ -2113,11 +2113,11 @@ msgstr "Choisissez une catégorie"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Assistance technique pour rendre votre module conforme"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "Problème avec addons.mozilla.org"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2520,6 +2520,8 @@ msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
+"Utilisez ce formulaire pour obtenir de l’aide concernant votre compte, la conformité aux politiques, etc. Plus vous partagez d’informations, plus il nous est facile de vous aider. Pour toute "
+"question à propos des commentaires de vos modules, merci de vous référer à l’historique de versions des modules. Nous vous répondrons dès que possible."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
@@ -4075,7 +4077,7 @@ msgstr "Pour résoudre ces problèmes, veuillez mettre à jour votre page et dem
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Appel déjà effectué"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
