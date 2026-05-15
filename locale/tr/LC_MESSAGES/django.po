@@ -2486,7 +2486,7 @@ msgid ""
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
 msgstr ""
 "Hesabınızla ilgili destek, ilkelere uygunluk sorunları ve daha fazlası için bu formu kullanabilirsiniz. Ne kadar fazla ayrıntı paylaşırsanız yardımcı olmamız o kadar kolaylaşır. Eklentilerinizin "
-"incelenmesi hakkındaki sorular için lütfen eklentilerinizin sürüm geçmişinize bakın. En kısa sürede size dönüş yapacağız."
+"incelenmesi hakkındaki sorular için lütfen eklentilerinizin sürüm geçmişine bakın. En kısa sürede size dönüş yapacağız."
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
