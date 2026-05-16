@@ -4019,7 +4019,7 @@ msgstr "Để giải quyết những vấn đề này, vui lòng cập nhật th
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "Đã nộp đơn kháng cáo"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
