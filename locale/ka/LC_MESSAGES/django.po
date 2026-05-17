@@ -1848,7 +1848,7 @@ msgstr "Open-Search-დამატებები აღარაა {blog_link
 #: src/olympia/devhub/file_validation_annotations.py:105
 #, python-brace-format
 msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "V3 ვერსიის მანიფესტი, ამჟამად არაა მხარდაჭერილი, ასატვირთად. {start_href}იხილეთ ვრცლად მხარდაჭერის დროის გრაფიკის შესახებ{end_href}."
+msgstr "V3 ვერსიის მანიფესტი ამჟამად არაა მხარდაჭერილი ასატვირთად. {start_href}იხილეთ ვრცლად მხარდაჭერის დროის გრაფიკის შესახებ{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
