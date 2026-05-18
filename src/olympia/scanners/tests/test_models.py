@@ -36,6 +36,7 @@ from olympia.scanners.models import (
     ScannerWebhook,
     ScannerWebhookEvent,
 )
+from olympia.users.models import UserProfile
 
 
 class FakeYaraMatch:
@@ -793,3 +794,20 @@ class TestScannerWebhook(TestCase):
 
         scanner_group = Group.objects.get(name=SCANNER_SERVICE_ACCOUNTS_GROUP)
         assert GroupUser.objects.filter(group=scanner_group, user=user).count() == 1
+
+    def test_save_does_not_recreate_service_account_on_rename(self):
+        webhook = ScannerWebhook(
+            name='some-name',
+            url='https://example.com',
+            api_key='secret',
+        )
+        webhook.save()
+        original_account = webhook.service_account
+        assert original_account is not None
+        expected_count = UserProfile.objects.count()
+
+        webhook.name = 'some-new-name'
+        webhook.save()
+
+        assert webhook.service_account == original_account
+        assert UserProfile.objects.count() == expected_count
