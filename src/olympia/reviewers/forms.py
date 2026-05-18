@@ -20,6 +20,7 @@ import markupsafe
 import olympia.core.logger
 from olympia import amo, ratings
 from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
@@ -315,23 +316,30 @@ class CinderPolicyWidget(forms.CheckboxSelectMultiple):
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
     ):
-        obj = label
-        label = str(obj)
+        policy = label
+        label = str(policy)
         attrs = attrs or {}
-        actions_on_policy = {
-            DECISION_ACTIONS.from_api_value(action).value
-            for action in obj.enforcement_actions
-            if action in DECISION_ACTIONS.api_values
-        }
-        actions = (
+        enforcement_actions = filter_enforcement_actions(
+            policy.split_enforcement_actions, Addon
+        )
+        visible_for_reviewer_actions = (
             reviewer_action
             for reviewer_action, defn in self.helper_actions.items()
             # show this policy for this action if there any common enforcement actions
             if (ha_ea := defn.get('enforcement_actions', ()))
-            and actions_on_policy.intersection(ha_ea)
+            and set(enforcement_actions.primary).intersection(ha_ea)
         )
         attrs['class'] = 'data-toggle'
-        attrs['data-value'] = ' '.join(actions)
+        attrs['data-value'] = ' '.join(visible_for_reviewer_actions)
+        attrs['data-enforcement-primary-actions'] = ', '.join(
+            DECISION_ACTIONS(action).label for action in enforcement_actions.primary
+        )
+        attrs['data-enforcement-followup-actions'] = ', '.join(
+            DECISION_ACTIONS(action).label for action in enforcement_actions.followup
+        )
+        attrs['data-enforcement-actions-order'] = hash_addon_negative_actions(
+            enforcement_actions
+        ).hex()
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )
@@ -579,6 +587,7 @@ class ReviewForm(forms.Form):
         ):
             self.add_error('attachment_input', 'Cannot upload both a file and input.')
         selected_action = self.cleaned_data.get('action')
+        selected_definition = self.helper.actions.get(selected_action, {})
         # If the user select a different type of job before changing actions there could
         # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
         # action, or appeal jobs under resolve_reports_job/a reject action. So filter
@@ -601,25 +610,49 @@ class ReviewForm(forms.Form):
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_developer_appeal
             ]
-        if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
-            'cinder_policies'
-        ):
-            actions = CinderPolicy.get_decision_actions_from_policies(
-                self.cleaned_data.get('cinder_policies'),
-                for_entity=Addon,
+        if policies := self.cleaned_data.get('cinder_policies'):
+            if selected_actions := selected_definition.get('enforcement_actions'):
+                # clean policies to only applicable to current action.
+                policies = self.cleaned_data['cinder_policies'] = [
+                    policy
+                    for policy in policies
+                    if set(policy.split_enforcement_actions.primary).intersection(
+                        selected_actions
+                    )
+                ]
+            all_actions = set(
+                filtered.primary
+                for policy in policies
+                if (
+                    filtered := filter_enforcement_actions(
+                        policy.split_enforcement_actions, Addon
+                    )
+                )
             )
-            if len(actions) == 0:
+            if len(all_actions) == 0:
                 self.add_error(
                     'cinder_policies',
                     'No policies selected with an associated cinder action.',
                 )
-            elif len(actions) > 1:
+            elif (
+                not selected_definition.get('policy_enforcement')
+                and len(all_actions) > 1
+            ):
                 self.add_error(
                     'cinder_policies',
                     'Multiple policies selected with different cinder actions.',
                 )
+            elif any(len(actions) != 1 for actions in all_actions):
+                self.add_error(
+                    'cinder_policies',
+                    'Invalid policies selected with more than one primary enforcement '
+                    'action.',
+                )
+            # TODO: once we support non-negative policies, we'll need to check that the
+            # policy selection is consistent - e.g. you shouldn't be able to select a
+            # positive and negative policy together
 
-        if self.helper.actions.get(selected_action, {}).get('delayable'):
+        if selected_definition.get('delayable'):
             delayed_rejection = self.cleaned_data.get('delayed_rejection')
             delayed_rejection_date = self.cleaned_data.get('delayed_rejection_date')
             # Extra required checks are added here because the NullBooleanField

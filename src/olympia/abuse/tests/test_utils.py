@@ -10,6 +10,7 @@ import responses
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
+from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockType, BlockVersion
@@ -17,14 +18,18 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
+from olympia.users.models import UserProfile
 
 from ..actions import ContentActionBlockAddon
 from ..models import CinderJob, CinderPolicy, ContentDecision
 from ..utils import (
+    SplitEnforcementActions,
+    filter_enforcement_actions,
     find_automated_enforcement_actions_from_policies,
     get_instance_from_entity,
     is_same_time,
     reject_and_block_addons,
+    split_enforcement_actions,
 )
 
 
@@ -161,8 +166,8 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == []
-        assert followup_actions == []
+        assert actions == ()
+        assert followup_actions == ()
 
     def test_basic(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -180,8 +185,8 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == []
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == ()
 
     def test_block_wins(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -199,8 +204,8 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_BLOCK_ADDON]
-        assert followup_actions == []
+        assert actions == (DECISION_ACTIONS.AMO_BLOCK_ADDON,)
+        assert followup_actions == ()
 
     def test_ordering_with_follow_up_action_against_not(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -224,10 +229,10 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == [
-            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
-        ]
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == (
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
+        )
 
     def test_ordering_with_two_follow_up_actions_compared(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -254,10 +259,10 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == [
-            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON
-        ]
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == (
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON,
+        )
 
     def test_ordering_with_two_follow_up_actions_compared_different_delay(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -281,10 +286,10 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == [
-            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
-        ]
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == (
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
+        )
 
     def test_ordering_with_multiple_followup_actions(self):
         bad_things_policy = CinderPolicy.objects.create(
@@ -309,11 +314,11 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == [
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == (
             DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
             DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON,
-        ]
+        )
 
     @mock.patch.object(
         ContentActionBlockAddon,
@@ -342,8 +347,8 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == [DECISION_ACTIONS.AMO_DISABLE_ADDON]
-        assert followup_actions == []
+        assert actions == (DECISION_ACTIONS.AMO_DISABLE_ADDON,)
+        assert followup_actions == ()
 
     def test_skip_policy_with_multiple_primary_actions(self):
         broken_policy = CinderPolicy.objects.create(
@@ -359,8 +364,8 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == []
-        assert followup_actions == []
+        assert actions == ()
+        assert followup_actions == ()
 
     def test_skip_policy_if_successful_appeal_for_it_in_the_past(self):
         appealed_policy = CinderPolicy.objects.create(
@@ -386,5 +391,69 @@ class TestFindAutomatedEnforcementActionsFromPolicies(TestCase):
             addon=self.addon,
             version=self.version,
         )
-        assert actions == []
-        assert followup_actions == []
+        assert actions == ()
+        assert followup_actions == ()
+
+
+def test_split_enforcement_actions():
+    slugs = [
+        'amo-disable-addon',
+        'amo-ban-user',
+        'amo-approve',
+        'not-amo-action',  # not a valid action at all
+        # valid, but not a primary action
+        'amo-fu-delay-mid-soft-block-addon',
+    ]
+    split = split_enforcement_actions(slugs)
+    assert split.primary == (
+        DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        DECISION_ACTIONS.AMO_BAN_USER,
+        DECISION_ACTIONS.AMO_APPROVE,
+    )
+    assert split.followup == (
+        # AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON action is returned in the
+        # second list since it's a follow-up action
+        DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON,
+    )
+
+
+def test_filter_enforcement_actions():
+    assert filter_enforcement_actions([], Addon) == ()
+    assert filter_enforcement_actions(
+        SplitEnforcementActions([], []), Addon
+    ) == SplitEnforcementActions((), ())
+
+    primary_actions = (
+        DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        DECISION_ACTIONS.AMO_BAN_USER,
+        DECISION_ACTIONS.AMO_APPROVE,
+    )
+    followup_actions = (DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON,)
+    split_actions = SplitEnforcementActions(
+        primary_actions,
+        followup_actions,
+    )
+
+    # filter_enforcement_actions works on a flat list/tuple of actions
+    assert filter_enforcement_actions(primary_actions, Addon) == (
+        DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        # no AMO_BAN_USER action because not a user target
+        DECISION_ACTIONS.AMO_APPROVE,
+    )
+    assert filter_enforcement_actions(followup_actions, Addon) == followup_actions
+    # check with another content type too
+    assert filter_enforcement_actions(primary_actions, UserProfile) == (
+        # no AMO_DISABLE_ADDON action because not an add-on target
+        DECISION_ACTIONS.AMO_BAN_USER,
+        DECISION_ACTIONS.AMO_APPROVE,
+    )
+
+    # and also when it's a SplitEnforcementActions of lists/tuples of actions
+    assert filter_enforcement_actions(split_actions, Addon) == SplitEnforcementActions(
+        (
+            DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            # no AMO_BAN_USER action because not a user target
+            DECISION_ACTIONS.AMO_APPROVE,
+        ),
+        (DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON,),
+    )

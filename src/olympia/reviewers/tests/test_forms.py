@@ -5,6 +5,7 @@ from django.utils.encoding import force_str
 
 import time_machine
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import (
@@ -264,7 +265,13 @@ class TestReviewForm(TestCase):
         self.grant_permission(self.request.user, 'Reviews:Admin')
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        for action_name in ('public', 'reject', 'disable_addon'):
+        action_names_and_enforcement_actions = (
+            ('public', DECISION_ACTIONS.AMO_APPROVE.api_value),
+            ('reject', DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value),
+            ('disable_addon', DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value),
+        )
+        for action_name, enforcement_action in action_names_and_enforcement_actions:
+            policy.update(enforcement_actions=[enforcement_action])
             form = self.get_form(
                 data={'action': action_name, 'cinder_policies': [policy.id]}
             )
@@ -363,32 +370,26 @@ class TestReviewForm(TestCase):
         )
         action_policy_a = CinderPolicy.objects.create(
             uuid='a',
-            name='ignore',
+            name='disable',
             expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         action_policy_b = CinderPolicy.objects.create(
             uuid='b',
-            name='ignore again',
+            name='disable again',
             expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         action_policy_c = CinderPolicy.objects.create(
             uuid='c',
-            name='approve',
+            name='reject',
             expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
-        )
-        action_policy_d = CinderPolicy.objects.create(
-            uuid='d',
-            name='closed already',
-            expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_CLOSED_NO_ACTION.api_value],
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         form = self.get_form()
         assert not form.is_bound
         data = {
-            'action': 'resolve_reports_job',
+            'action': 'reject',
             'cinder_jobs_to_resolve': [job.id],
             'cinder_policies': [no_action_policy.id],
         }
@@ -409,15 +410,40 @@ class TestReviewForm(TestCase):
             ]
         }
 
-        data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
-        form = self.get_form(data=data)
-        assert form.is_valid()
+        # But not when the action has policy_enforcement=True
+        data['action'] = 'review_with_policy'
+        with override_switch('enable-policy-review-selection', active=True):
+            form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
         assert not form.errors
 
-        data['cinder_policies'] = [action_policy_d.id]
+        data['action'] = 'reject'
+        # And it's fine if the poicies have the same action too
+        data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
         assert not form.errors
+
+        data['cinder_policies'] = [action_policy_c.id]
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+        assert not form.errors
+
+        # multiple primary enforcement action per policy are prevented if that happens
+        action_policy_c.update(
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+            ]
+        )
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'Invalid policies selected with more than one primary enforcement '
+                'action.'
+            ]
+        }
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_resolve_appeal_job(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -590,7 +616,12 @@ class TestReviewForm(TestCase):
             data={
                 'cinder_policies': [
                     CinderPolicy.objects.create(
-                        uuid='1', name='policy 1', expose_in_reviewer_tools=True
+                        uuid='1',
+                        name='policy 1',
+                        expose_in_reviewer_tools=True,
+                        enforcement_actions=[
+                            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
+                        ],
                     )
                 ],
                 'comments': '.',
@@ -967,6 +998,9 @@ class TestReviewForm(TestCase):
                         uuid='1',
                         name='policy 1',
                         expose_in_reviewer_tools=True,
+                        enforcement_actions=[
+                            DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
+                        ],
                     )
                 ],
                 'delayed_rejection': 'False',
@@ -1060,6 +1094,9 @@ class TestReviewForm(TestCase):
                     uuid='1',
                     name='policy 1',
                     expose_in_reviewer_tools=True,
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
+                    ],
                 )
             ],
             'versions': [self.version.pk],
@@ -1084,6 +1121,9 @@ class TestReviewForm(TestCase):
                     uuid='1',
                     name='policy 1',
                     expose_in_reviewer_tools=True,
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
+                    ],
                 )
             ],
             'versions': [self.version.pk],
@@ -1372,7 +1412,9 @@ class TestReviewForm(TestCase):
             expose_in_reviewer_tools=True,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
-                'some-other-action',
+                'some-invalid-action',
+                DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON.api_value,
+                DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.api_value,
             ],
         )
         CinderPolicy.objects.create(
@@ -1393,10 +1435,25 @@ class TestReviewForm(TestCase):
 
         assert label_0.attr['class'] == 'data-toggle'
         assert label_0.attr['data-value'] == ''
+        assert label_0.attr['data-enforcement-primary-actions'] == ''
+        assert label_0.attr['data-enforcement-followup-actions'] == ''
+        assert label_0.attr['data-enforcement-actions-order'] == ''
+
         assert label_1.attr['class'] == 'data-toggle'
         assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
+        assert label_1.attr['data-enforcement-primary-actions'] == 'Add-on disable'
+        assert label_1.attr['data-enforcement-followup-actions'] == (
+            '[Follow-up] Long-delayed soft block, [Follow-up] Short-delayed hard block'
+        )
+        assert label_1.attr['data-enforcement-actions-order'] == '090500'
+
         assert label_2.attr['class'] == 'data-toggle'
         assert label_2.attr['data-value'] == 'public'
+        assert (
+            label_2.attr['data-enforcement-primary-actions'] == 'Approved (no action)'
+        )
+        assert label_2.attr['data-enforcement-followup-actions'] == ''
+        assert label_2.attr['data-enforcement-actions-order'] == ''
 
     def test_policy_values_fields(self):
         policy_0 = CinderPolicy.objects.create(

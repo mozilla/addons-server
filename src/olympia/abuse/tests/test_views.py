@@ -39,12 +39,7 @@ from ..actions import (
     ContentActionTargetAppealRemovalAffirmation,
 )
 from ..models import AbuseReport, CinderAppeal, CinderJob, ContentDecision
-from ..views import (
-    CinderInboundPermission,
-    cinder_webhook,
-    filter_enforcement_actions,
-    to_enforcement_actions,
-)
+from ..views import CinderInboundPermission, cinder_webhook
 
 
 TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -1238,47 +1233,6 @@ class TestCinderWebhook(TestCase):
                 headers={'X_CINDER_SIGNATURE': digest},
             ),
             None,
-        )
-
-    def test_to_enforcement_actions_and_filter_enforcement_actions(self):
-        addon = addon_factory()
-        assert filter_enforcement_actions([], addon) == ([], [])
-
-        actions_from_json = to_enforcement_actions(
-            [
-                'amo-disable-addon',
-                'amo-ban-user',
-                'amo-approve',
-                'not-amo-action',  # not a valid action at all
-                # valid, but not a primary action
-                'amo-fu-delay-mid-soft-block-addon',
-            ]
-        )
-        assert actions_from_json == [
-            DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            DECISION_ACTIONS.AMO_BAN_USER,
-            DECISION_ACTIONS.AMO_APPROVE,
-            DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON,
-        ]
-        assert filter_enforcement_actions(actions_from_json, addon) == (
-            [
-                DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                # no AMO_BAN_USER action because not a user target
-                DECISION_ACTIONS.AMO_APPROVE,
-            ],
-            # AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON action is returned in the
-            # second list since it's a follow-up action
-            [DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON],
-        )
-
-        # check with another content type too
-        assert filter_enforcement_actions(actions_from_json, user_factory()) == (
-            [
-                # no AMO_DISABLE_ADDON action because not an add-on target
-                DECISION_ACTIONS.AMO_BAN_USER,
-                DECISION_ACTIONS.AMO_APPROVE,
-            ],
-            [],
         )
 
     def test_create_and_execute_decision_called(

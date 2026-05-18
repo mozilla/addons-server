@@ -1066,7 +1066,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
-    def test_actions(self):
+    def test_actions_enforcement_actions(self):
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
         self.grant_permission(self.user, 'Addons:ReviewUnlisted')
@@ -1078,6 +1078,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert actions['public']['enforcement_actions'] == (
             DECISION_ACTIONS.AMO_APPROVE,
+            DECISION_ACTIONS.AMO_APPROVE_VERSION,
         )
         assert actions['reject']['enforcement_actions'] == (
             DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -1100,6 +1101,18 @@ class TestReviewHelper(TestReviewHelperBase):
             DECISION_ACTIONS.AMO_IGNORE,
             DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
         )
+
+        with override_switch('enable-policy-review-selection', active=True):
+            actions = self.get_review_actions(
+                addon_status=amo.STATUS_NOMINATED,
+                file_status=amo.STATUS_AWAITING_REVIEW,
+            )
+            assert actions['review_with_policy']['enforcement_actions'] == (
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                DECISION_ACTIONS.AMO_BLOCK_ADDON,
+            )
 
         self.review_version.update(channel=amo.CHANNEL_UNLISTED)
         actions = self.get_review_actions(
@@ -1196,6 +1209,32 @@ class TestReviewHelper(TestReviewHelperBase):
             ).keys()
         )
         assert expected == actions
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_actions_with_enable_policy_review_selection(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, 'Reviews:Admin')
+        expected = [
+            'review_with_policy',
+            'public',
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'disable_auto_approval',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
+        assert (
+            list(
+                self.get_review_actions(
+                    addon_status=amo.STATUS_NOMINATED,
+                    file_status=amo.STATUS_AWAITING_REVIEW,
+                ).keys()
+            )
+            == expected
+        )
 
     def test_set_file(self):
         self.file.update(datestatuschanged=yesterday)
@@ -1318,6 +1357,57 @@ class TestReviewHelper(TestReviewHelperBase):
             .decision.action
             == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
         )
+        report_mock.assert_called_once()
+
+    @override_switch('enable-policy-review-selection', active=True)
+    @patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
+    def test_record_decision_most_negative_enforcement_actions(self, report_mock):
+        self.grant_permission(self.user, 'Addons:Review')
+        cinder_job = CinderJob.objects.create(
+            target_addon=self.addon, resolvable_in_reviewer_tools=True
+        )
+        self.helper = self.get_helper()
+        data = {
+            'cinder_policies': [
+                CinderPolicy.objects.create(uuid='w'),
+                CinderPolicy.objects.create(
+                    uuid='x',
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
+                    ],
+                ),
+                CinderPolicy.objects.create(
+                    uuid='y',
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.api_value,
+                    ],
+                ),
+                CinderPolicy.objects.create(
+                    uuid='z',
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+                        DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON.api_value,
+                    ],
+                ),
+            ],
+            'cinder_jobs_to_resolve': [cinder_job],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions.get(
+            'review_with_policy'
+        )
+        self.helper.handler.record_decision(None, action_completed=False)
+        assert CinderPolicyLog.objects.count() == 4
+        decision = (
+            ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
+            .contentdecisionlog_set.get()
+            .decision
+        )
+        assert decision.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
+        assert list(decision.followup_actions.values_list('action', flat=True)) == [
+            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.value,
+        ]
         report_mock.assert_called_once()
 
     def test_log_action_override_user(self):
@@ -4002,6 +4092,36 @@ class TestReviewHelper(TestReviewHelperBase):
             other_version.version,
             self.review_version.version,
         ]
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'disabled' in message.body
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_policy_with_disable_addon(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        data = {
+            'action': 'review_with_policy',
+            'cinder_policies': [
+                CinderPolicy.objects.create(
+                    uuid='z',
+                    enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+                ),
+            ],
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions['review_with_policy']
+        version_factory(addon=self.addon)
+        version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
+        self.helper.handler.review_with_policy()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+        assert ActivityLog.objects.count() == 1
+        activity_log = ActivityLog.objects.latest('pk')
+        assert activity_log.action == amo.LOG.FORCE_DISABLE.id
+        assert activity_log.arguments[0] == self.addon
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)

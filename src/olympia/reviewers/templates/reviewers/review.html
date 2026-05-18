@@ -196,10 +196,10 @@
         <div class="review-actions-comments-reasons">
 
           <div class="review-actions-comments">
-            <div class="policy-texts data-toggle" data-value="{{ actions_policies|join(' ') }}">
+            <div class="policy-texts data-toggle" data-value="{{ toggle_when_action('enforcement_actions') }}">
               {{ form.policy_values }}
             </div>
-            <div class="review-comments data-toggle" data-value="{{ actions_comments|join(' ') }}">
+            <div class="review-comments data-toggle" data-value="{{ toggle_when_action('comments', default=True) }}">
               <details>
                 <summary><label for="id_comments">{{ form.comments.label }}</label></summary>
                 {{ form.comments }}
@@ -208,7 +208,7 @@
             </div>
           </div>
           <div class="data-toggle review-actions-policies"
-               data-value="{{ actions_policies|join(' ') }}">
+               data-value="{{ toggle_when_action('enforcement_actions') }}">
             <label for="id_cinder_policies">{{ form.cinder_policies.label }}</label>
             <div class="review-actions-policies-select">
               {{ form.cinder_policies }}
@@ -216,6 +216,11 @@
             <div>
               {{ form.cinder_policies.errors }}
             </div>
+            <div class="data-toggle" data-value="{{ toggle_when_action('policy_enforcement') }}">
+              <h4>Enforcement actions:</h4>
+              <span id="policy-enforcement-primary-actions"></span>;
+              <span id="policy-enforcement-followup-actions"></span>
+          </div>
           </div>
           <div class="data-toggle"
                data-value="resolve_appeal_job">
@@ -231,7 +236,7 @@
       </div>
 
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"
-           data-value="{{ actions_resolves_cinder_jobs|join(' ') }}">
+           data-value="{{ toggle_when_action('resolves_cinder_jobs') }}">
           <strong><label for="id_cinder_jobs_to_resolve">{{ form.cinder_jobs_to_resolve.label }}</label></strong>
           <div class="select-links">
             [<a href='#' class="select-all">select all</a>]
@@ -272,7 +277,7 @@
       </div>
       {% if form.delayed_rejection and form.delayed_rejection_date %}
         <div class="review-actions-section data-toggle review-delayed-rejection"
-             data-value="{{ actions_delayable|join(' ') }}">
+             data-value="{{ toggle_when_action('delayable') }}">
           <div class="review-delayed-rejection-inner">
             {{ form.delayed_rejection }}
             <div class="review-delayed-rejection-deadline">
@@ -285,7 +290,7 @@
       {% endif %}
       {% if switch_is_active('enable-activity-log-attachments') %}
         <div class="review-actions-section data-toggle review-actions-attachment-reply"
-        data-value="{{ actions_attachments|join(' ') }}"
+        data-value="{{ toggle_when_action('can_attach', default=True) }}"
         >
           <label>Attachment:</label>
           <div id="attachment-type-toggle">
