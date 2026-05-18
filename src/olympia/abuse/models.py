@@ -918,8 +918,8 @@ class CinderPolicy(ModelBase):
         PUBLISHED = 1, 'Published'
         ARCHIVED = 2, 'Archived'
         DRAFT = 3, 'Draft'
-        DELETED = 4, 'Deleted'
-        DELETED_PREVIOUSLY_REVIEWER = (
+        DELETED_WAS_USED = 4, 'Deleted, is in use'
+        DELETED_WAS_REVIEWER = (
             5,
             'Deleted, previously exposed in reviewer tools',
         )

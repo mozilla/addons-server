@@ -3377,7 +3377,7 @@ class TestContentDecision(TestCase):
             CinderPolicy.objects.create(
                 name='deleted policy',
                 uuid='deleted-uuid',
-                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED,
+                status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_WAS_USED,
             )
         )
         decision.policies.add(
