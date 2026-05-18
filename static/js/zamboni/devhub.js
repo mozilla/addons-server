@@ -202,6 +202,12 @@ $(document).ready(function () {
 
     return false;
   });
+
+  $('.api-credentials .show-resend-button').on('click', function() {
+    $('button[value="resend_confirm"]').show();
+    $('#id_recaptcha').removeClass('hidden');
+    $(this).remove();
+  });
 });
 
 $(document).ready(function () {

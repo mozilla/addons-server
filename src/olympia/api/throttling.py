@@ -224,3 +224,15 @@ contact_support_throttles = (
     ContactSupportUserThrottle,
     ContactSupportIPThrottle,
 )
+
+
+class APIKeyUserThrottle(GranularUserRateThrottle):
+    scope = 'user_api_key'
+    rate = '2/day'
+
+
+class APIKeyIPThrottle(GranularIPRateThrottle):
+    rate = '4/day'
+
+
+api_key_throttles = (APIKeyUserThrottle, APIKeyIPThrottle)
