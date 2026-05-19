@@ -162,7 +162,7 @@ jobs:
 
       - name: Spin up Elasticsearch
         run: |
-          docker compose up --wait elasticsearch
+          docker compose up -d elasticsearch
 
       - name: Test
         uses: ./.github/actions/run-docker-minimal
@@ -170,4 +170,4 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           run: |
-            make test_es_tests
+            make test_requires_elasticsearch_tests

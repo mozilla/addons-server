@@ -46,7 +46,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert libraries_result == [('PIL+JPEG', True, 'Got it!')]
 
-    @pytest.mark.es_tests
+    @pytest.mark.requires_elasticsearch
     def test_elastic(self):
         status, elastic_result = monitors.elastic()
         assert status == ''

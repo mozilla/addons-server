@@ -101,14 +101,14 @@ test_js: run_js_tests
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
-		-m 'not es_tests' \
+		-m 'not requires_elasticsearch' \
 		$(ARGS)
 
-.PHONY: test_es_tests
-test_es_tests:
+.PHONY: test_requires_elasticsearch_tests
+test_requires_elasticsearch_tests:
 	pytest \
 		$(PYTEST_SRC) \
-		-m 'es_tests' \
+		-m 'requires_elasticsearch' \
 		$(ARGS)
 
 .PHONY: test
@@ -128,7 +128,6 @@ test_es: ## run the ES tests
 test_no_es: ## run all but the ES tests
 	pytest \
 		$(PYTEST_SRC) \
-		-m "not es_tests" \
 		$(ARGS)
 
 .PHONY: test_force_db
