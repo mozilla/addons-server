@@ -316,6 +316,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                     'update_reason_value',
                     *(('canned_reasons',) if show_canned else ()),
                     'reason',
+                    'auto_block_reason',
                     'updated_by',
                     'signoff_by',
                     'submission_logs',
@@ -369,6 +370,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
             'signoff_by',
             'block_history',
             'submission_logs',
+            'auto_block_reason',
         ]
         if obj:
             ro_fields += [
@@ -635,8 +637,18 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         return obj.average_daily_users_snapshot
 
     def blocked_versions(self, obj):
+        def join(version):
+            return ', '.join(
+                d
+                for d in (
+                    version.get_block_type_display(),
+                    version.get_admin_facing_auto_block_reason_display(),
+                )
+                if d
+            )
+
         return ', '.join(
-            f'{version.version} ({version.get_block_type_display()})'
+            f'{version.version} ({join(version)})'
             for version in obj.blockversion_set.all()
         )
 

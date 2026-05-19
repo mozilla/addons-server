@@ -18,7 +18,6 @@ from olympia.activity.utils import notify_about_activity_log
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
-from olympia.constants.blocklist import REASON_VERSION_DELETED
 from olympia.constants.scanners import (
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
@@ -379,7 +378,7 @@ def duplicate_addon_version_for_rollback(
 
 @task
 @use_primary_db
-def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
+def soft_block_versions(version_ids, *, auto_block_reason, **kw):
     """Soft-blocks the specified add-on versions - used for after deletes"""
     # To avoid circular imports
     from olympia.blocklist.models import BlocklistSubmission, BlockType
@@ -412,7 +411,7 @@ def soft_block_versions(version_ids, reason=REASON_VERSION_DELETED, **kw):
         BlocklistSubmission(
             block_type=BlockType.SOFT_BLOCKED,
             updated_by=task_user,
-            reason=reason,
+            auto_block_reason=auto_block_reason,
             signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
             changed_version_ids=[ver.id for ver in versions],
             # Either addon is already deleted, so this is redundant,

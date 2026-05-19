@@ -24,7 +24,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlockType, BlockVersion
-from olympia.constants.blocklist import REASON_VERSION_DELETED
+from olympia.constants.blocklist import BlockReason
 from olympia.constants.scanners import (
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
@@ -842,17 +842,28 @@ def test_soft_block_versions():
         other_version_on_partialy_blocked_addon,
     ]
 
-    soft_block_versions.delay(version_ids=[ver.id for ver in versions])
+    soft_block_versions.delay(
+        version_ids=[ver.id for ver in versions],
+        auto_block_reason=BlockReason.VERSION_DELETED,
+    )
 
     new_blocks = list(Block.objects.exclude(id=existing_block.id))
     assert len(new_blocks) == 2
     assert new_blocks[0].guid == addon_with_two_versions.guid
     assert new_blocks[0].blockversion_set.all()[1].version == versions[1]
     assert new_blocks[0].blockversion_set.all()[0].version == versions[2]
-    assert new_blocks[0].reason == REASON_VERSION_DELETED
+    assert new_blocks[0].reason == ''
+    assert (
+        new_blocks[0].blockversion_set.all()[0].auto_block_reason
+        == BlockReason.VERSION_DELETED
+    )
     assert new_blocks[1].guid == addon_with_one_version.guid
     assert new_blocks[1].blockversion_set.get().version == versions[0]
-    assert new_blocks[0].reason == REASON_VERSION_DELETED
+    assert new_blocks[1].reason == ''
+    assert (
+        new_blocks[1].blockversion_set.all()[0].auto_block_reason
+        == BlockReason.VERSION_DELETED
+    )
 
     assert existing_block.blockversion_set.count() == 2
     assert other_version_on_partialy_blocked_addon.blockversion.block == existing_block

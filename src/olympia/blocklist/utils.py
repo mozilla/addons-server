@@ -6,7 +6,7 @@ from django.urls import reverse
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
-from olympia.constants.blocklist import BlockType
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version
 
@@ -16,7 +16,11 @@ log = olympia.core.logger.getLogger('z.amo.blocklist')
 
 def block_activity_log_save(obj, *, change, submission_obj):
     action = amo.LOG.BLOCKLIST_BLOCK_EDITED if change else amo.LOG.BLOCKLIST_BLOCK_ADDED
-    action_version = amo.LOG.BLOCKLIST_VERSION_BLOCKED
+    action_version = (
+        amo.LOG.BLOCKLIST_VERSION_BLOCKED
+        if submission_obj.block_type == BlockType.BLOCKED
+        else amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED
+    )
     addon_versions = {ver.id: ver.version for ver in obj.addon_versions}
     blocked_versions = sorted(
         ver.version for ver in obj.addon_versions if ver.is_blocked
@@ -25,32 +29,34 @@ def block_activity_log_save(obj, *, change, submission_obj):
         v_id for v_id in submission_obj.changed_version_ids if v_id in addon_versions
     ]
     changed_versions = sorted(addon_versions[ver_id] for ver_id in changed_version_ids)
-
+    auto_block_reason_string = (
+        submission_obj.auto_block_reason
+        and BlockReason(submission_obj.auto_block_reason).label
+    )
+    full_reason = ' : '.join(r for r in (obj.reason, auto_block_reason_string) if r)
     details = {
         'guid': obj.guid,
         'blocked_versions': blocked_versions,
         'added_versions': changed_versions,
         'url': obj.url,
-        'reason': obj.reason,
+        'reason': full_reason,
         'comments': f'{len(changed_versions)} versions added to block; '
         f'{len(blocked_versions)} total versions now blocked.',
+        'block_type': submission_obj.block_type,
+        'signoff_state': submission_obj.SIGNOFF_STATES(
+            submission_obj.signoff_state
+        ).label,
     }
 
-    details['signoff_state'] = submission_obj.SIGNOFF_STATES(
-        submission_obj.signoff_state
-    ).label
     if submission_obj.signoff_by:
         details['signoff_by'] = submission_obj.signoff_by.id
-    details['block_type'] = submission_obj.block_type
-    if submission_obj.block_type == BlockType.SOFT_BLOCKED:
-        action_version = amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED
 
     log_create(action, obj.addon, obj.guid, obj, details=details, user=obj.updated_by)
     log_create(
         action_version,
         *((Version, version_id) for version_id in changed_version_ids),
         obj,
-        details={},
+        details={'reason': auto_block_reason_string},
         user=obj.updated_by,
     )
 
@@ -206,7 +212,10 @@ def save_versions_to_blocks(guids, submission):
                     # Version is not currently blocked, we can just create a
                     # BlockVersion with the block_type of the submission.
                     block_version = BlockVersion(
-                        block=block, version=version, block_type=submission.block_type
+                        block=block,
+                        version=version,
+                        block_type=submission.block_type,
+                        auto_block_reason=submission.auto_block_reason,
                     )
                     block_versions_to_create.append(block_version)
                     version.blockversion = block_version
@@ -219,16 +228,16 @@ def save_versions_to_blocks(guids, submission):
                 ) or (submission.block_type == BlockType.BLOCKED):
                     block_version = version.blockversion
                     block_version.block_type = submission.block_type
+                    block_version.auto_block_reason = submission.auto_block_reason
                     block_versions_to_update.append(block_version)
 
         if not block_versions_to_create and not change:
             # If we have no versions to block and it's a new Block don't do anything.
             continue
         block.save()
-        # Update existing BlockVersion in bulk - the only field to update is
-        # 'block_type'.
+        # Update existing BlockVersion rows for harden/soften transitions.
         BlockVersion.objects.bulk_update(
-            block_versions_to_update, fields=['block_type']
+            block_versions_to_update, fields=['block_type', 'auto_block_reason']
         )
         # Add new BlockVersion in bulk.
         BlockVersion.objects.bulk_create(block_versions_to_create)

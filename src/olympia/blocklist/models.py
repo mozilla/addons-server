@@ -18,7 +18,7 @@ from olympia.amo.fields import PositiveTinyIntegerField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import chunked
-from olympia.constants.blocklist import BlockType
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
@@ -182,6 +182,7 @@ class BlockVersion(ModelBase):
         default=BlockType.BLOCKED,
         choices=BlockType.choices,
     )
+    auto_block_reason = models.SmallIntegerField(null=True, choices=BlockReason.choices)
 
     def __str__(self) -> str:
         return (
@@ -192,6 +193,12 @@ class BlockVersion(ModelBase):
     def get_user_facing_block_type_display(self):
         """Like get_block_type_display(), but using strings meant for end-users."""
         return _('Blocked') if self.block_type == BlockType.BLOCKED else _('Restricted')
+
+    def get_admin_facing_auto_block_reason_display(self):
+        """Get the auto block reason display for admin-facing - the label is too long"""
+        if self.auto_block_reason is None:
+            return ''
+        return BlockReason(self.auto_block_reason).name
 
 
 class BlocklistSubmissionQuerySet(BaseQuerySet):
@@ -276,6 +283,7 @@ class BlocklistSubmission(ModelBase):
         help_text='Note this reason will be displayed publicly on the block-addon '
         'pages.',
     )
+    auto_block_reason = models.SmallIntegerField(null=True, choices=BlockReason.choices)
     updated_by = models.ForeignKey(UserProfile, null=True, on_delete=models.SET_NULL)
     signoff_by = models.ForeignKey(
         UserProfile, null=True, on_delete=models.SET_NULL, related_name='+'

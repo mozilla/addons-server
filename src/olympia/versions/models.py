@@ -43,7 +43,7 @@ from olympia.amo.utils import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.applications import APP_IDS
-from olympia.constants.blocklist import BlockType
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.licenses import CC_LICENSES, FORM_LICENSES, LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
@@ -696,7 +696,9 @@ class Version(OnChangeMixin, ModelBase):
             for preview_pk in previews_pks:
                 delete_preview_files.delay(preview_pk)
 
-            soft_block_versions.delay(version_ids=[self.id])
+            soft_block_versions.delay(
+                version_ids=[self.id], auto_block_reason=BlockReason.VERSION_DELETED
+            )
 
     @property
     def is_user_disabled(self):
