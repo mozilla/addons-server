@@ -428,7 +428,7 @@ msgstr "除最新版本外，只有获批准的版本可回滚。"
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "无法使用此附加组件的摘要或描述。"
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -2055,7 +2055,7 @@ msgstr "选择分类"
 
 #: src/olympia/devhub/forms.py:1764
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "使附加组件合规的技术支持"
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
@@ -2075,7 +2075,7 @@ msgstr "选择类别"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr "请向我们提供问题的更多细节"
+msgstr "请向我们提供问题的更多详细信息"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
@@ -3643,7 +3643,7 @@ msgstr "返回"
 msgid ""
 "To execute authenticated calls against the <a %(a_attrs)s href=\"%(docs_url)s\">API</a> as an external consumer, you need to include a <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> in"
 " the <code>Authorization</code> header for every request."
-msgstr ""
+msgstr "若要以外部消费者身份对 <a %(a_attrs)s href=\"%(docs_url)s\">API</a> 执行经过身份验证的调用，您需要在每个请求的 <code>Authorization</code> 消息头中包含一个 <a %(a_attrs)s href=\"%(jwt_url)s\">JSON Web 令牌（JWT）</a>。"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:25
 msgid "Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors."
@@ -3947,7 +3947,7 @@ msgstr "为解决这些问题，请更新您的上架内容并请求对内容进
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
-msgstr ""
+msgstr "已经提交过申诉"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:21
 msgid "Review requested already, awaiting review"
