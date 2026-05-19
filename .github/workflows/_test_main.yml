@@ -113,6 +113,7 @@ jobs:
 
       - name: Spin up MySQLd
         run: |
+          make docker_mysqld_volume_create
           docker compose up mysqld
       # FIXME: Move tests depending on autograph and redis elsewhere.
       # Like MySQLd, spin them up early without --wait, but add the --wait
