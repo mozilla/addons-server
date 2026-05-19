@@ -101,7 +101,7 @@ test_js: run_js_tests
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
-		-m 'not requires_elasticsearch' \
+		-m 'not requires_elasticsearch and not requires_autograph' \
 		$(ARGS)
 
 .PHONY: test_requires_elasticsearch_tests
