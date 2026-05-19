@@ -11,7 +11,6 @@ from scripts.compile_locales import compile_locales, process_po_file
 from tests import override_env
 
 
-@pytest.mark.needs_locales_compilation
 class TestCompileLocales(TestCase):
     def setUp(self):
         self.home_dir = Path(tempfile.mkdtemp())
