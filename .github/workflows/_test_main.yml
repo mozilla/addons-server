@@ -113,7 +113,7 @@ jobs:
 
       - name: Spin up MySQLd
         run: |
-          docker compose up mysql
+          docker compose up mysqld
       # FIXME: Move tests depending on autograph and redis elsewhere.
       # Like MySQLd, spin them up early without --wait, but add the --wait
       # in the run-docker-minimal action if the relevant parameter is passed
