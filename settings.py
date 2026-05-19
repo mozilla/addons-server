@@ -21,8 +21,6 @@ HOST_UID = os.environ.get('HOST_UID')
 
 WSGI_APPLICATION = 'olympia.wsgi.application'
 
-INTERNAL_ROUTES_ALLOWED = True
-
 # Always
 SERVE_STATIC_FILES = True
 

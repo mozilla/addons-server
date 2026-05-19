@@ -17,8 +17,6 @@ MIDDLEWARE = tuple(
     if middleware != 'debug_toolbar.middleware.DebugToolbarMiddleware'
 )
 
-INTERNAL_ROUTES_ALLOWED = env('INTERNAL_ROUTES_ALLOWED', default=False)
-
 # See settings.py for documentation:
 IN_TEST_SUITE = True
 
