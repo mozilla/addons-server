@@ -120,6 +120,10 @@ jobs:
         run: |
           docker compose up -d redis
 
+      - name: Spin up memcached
+        run: |
+          docker compose up -d memcached
+
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker-minimal
         with:

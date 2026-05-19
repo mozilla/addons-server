@@ -28,6 +28,8 @@ services:
         condition: service_healthy
       memcached:
         condition: service_started
+      redis:
+        condition: service_healthy
     # We don't need to bind the local filesystem like we do for development,
     # but we do need a persistent deps volume to install dependencies used for
     # testing not present in the production image.
