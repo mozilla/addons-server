@@ -111,13 +111,21 @@ jobs:
         run: |
           touch .env
 
-      - name: Spin up autograph
+      - name: Spin up MySQLd
         run: |
-          docker compose up --wait autograph
+          docker compose up mysql
+      # FIXME: Move tests depending on autograph and redis elsewhere.
+      # Like MySQLd, spin them up early without --wait, but add the --wait
+      # in the run-docker-minimal action if the relevant parameter is passed
+      # (by the time we reach that, the service should have become healthy
+      # in the background)
+      # - name: Spin up autograph
+      #   run: |
+      #     docker compose up --wait autograph
 
-      - name: Spin up redis
-        run: |
-          docker compose up --wait redis
+      # - name: Spin up redis
+      #   run: |
+      #     docker compose up --wait redis
 
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker-minimal
