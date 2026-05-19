@@ -5823,12 +5823,12 @@ msgstr ""
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:906
 msgid "Save an entire web page — including images and styling — as a single HTML file."
-msgstr ""
+msgstr "Zapisz całą stronę internetową — łącznie z obrazami i stylem — jako pojedynczy plik HTML."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:921
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Edytuj stronę internetową przed wydrukowaniem. Usuń reklamy i wszelkie niechciane treści."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:930
