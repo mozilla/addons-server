@@ -2067,7 +2067,7 @@ msgstr "主题"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "简单概括问题"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Select category"
@@ -2451,17 +2451,17 @@ msgstr "搜索"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "获取扩展和主题的支持"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "请使用此表单获取与您的账户、政策合规问题等的支持。您提供的信息越详细，我们就越容易为您提供帮助。有关附加组件审核的问题，请参阅您附加组件的版本历史。我们会尽快回复您。"
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "发送请求"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -3349,7 +3349,7 @@ msgstr "重要"
 msgid ""
 "Read our %(policy_requirements_open)spolicy requirements%(policy_requirements_close)s regarding build processes and source code submission. If your submission requires source code, you must provide "
 "step-by-step build instructions, either inside the source code package or here, that will create an exact copy of the code."
-msgstr ""
+msgstr "请阅读我们关于构建流程和源代码提交的%(policy_requirements_open)s政策要求%(policy_requirements_close)s。如果您的提交需要包含源代码，您必须在源代码包内或在此处提供逐步构建说明，以确保能够创建一份完全一致的代码副本。"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:37
 msgid "These notes will only be visible to you and our reviewers."
@@ -5654,12 +5654,12 @@ msgstr "通过颜色标注评论、简化的导航方式、点赞手势等功能
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "消除 YouTube 干扰，例如推荐视频、片尾屏幕建议、评论等。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "“更好的 Twitch TV” — 用一系列新功能增强 Twitch 和 YouTube 体验。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:729
