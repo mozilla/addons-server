@@ -6088,7 +6088,7 @@ msgstr "Wyświetl wszystkie rozszerzenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pakiet startowy rozszerzeń"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
