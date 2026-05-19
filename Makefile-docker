@@ -94,25 +94,21 @@ initialize: ## ensure database exists
 
 PYTEST_SRC := src/olympia/
 
-.PHONY: test_needs_locales_compilation
-test_needs_locales_compilation:
-	pytest $(PYTEST_SRC) \
-		-m 'needs_locales_compilation' \
-		$(ARGS)
-	npm run test tests/js/
+.PHONY: test_js
+test_js: run_js_tests
 
 .PHONY: test_main
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
-		-m 'not es_tests and not needs_locales_compilation' \
+		-m 'not es_tests' \
 		$(ARGS)
 
 .PHONY: test_es_tests
 test_es_tests:
 	pytest \
 		$(PYTEST_SRC) \
-		-m 'es_tests and not needs_locales_compilation' \
+		-m 'es_tests' \
 		$(ARGS)
 
 .PHONY: test

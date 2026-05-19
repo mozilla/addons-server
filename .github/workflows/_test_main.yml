@@ -129,7 +129,7 @@ jobs:
             group="--group ${{ matrix.group }}"
             make test_main ARGS="${split} ${group}"
 
-  test_needs_locales:
+  test_js:
     runs-on: ubuntu-latest
     needs: [test_config]
 
@@ -144,8 +144,7 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           run: |
-            make compile_locales
-            make test_needs_locales_compilation
+            make test_js
 
   test_search:
     runs-on: ubuntu-latest
