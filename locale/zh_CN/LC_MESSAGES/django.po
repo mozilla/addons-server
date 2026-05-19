@@ -2059,7 +2059,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1765
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "addons.mozilla.org 的问题"
 
 #: src/olympia/devhub/forms.py:1773 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2075,7 +2075,7 @@ msgstr "选择类别"
 
 #: src/olympia/devhub/forms.py:1785
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "请向我们提供问题的更多细节"
 
 #: src/olympia/devhub/forms.py:1787
 msgid "Describe the issue"
