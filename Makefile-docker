@@ -111,21 +111,15 @@ test_requires_elasticsearch_tests:
 		-m 'requires_elasticsearch' \
 		$(ARGS)
 
+.PHONY: test_requires_autograph_tests
+test_requires_autograph_tests:
+	pytest \
+		$(PYTEST_SRC) \
+		-m 'requires_autograph' \
+		$(ARGS)
+
 .PHONY: test
 test: ## run the entire test suite
-	pytest \
-		$(PYTEST_SRC) \
-		$(ARGS)
-
-.PHONY: test_es
-test_es: ## run the ES tests
-	pytest \
-		$(PYTEST_SRC) \
-		-m es_tests \
-		$(ARGS)
-
-.PHONY: test_no_es
-test_no_es: ## run all but the ES tests
 	pytest \
 		$(PYTEST_SRC) \
 		$(ARGS)

@@ -100,6 +100,7 @@ filterwarnings = [
 markers = [
   "requires_elasticsearch: mark a test as a depending on elasticsearch.",
   "allow_external_http_requests: mark a test to allow external http requests and disable responses.",
+  "requires_autograph: mark a test as depending on autograph.",
 ]
 env = [
     "ENV=test",

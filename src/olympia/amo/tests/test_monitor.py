@@ -84,6 +84,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert rabbitmq_results[0][1]
 
+    @pytest.mark.requires_autograph
     def test_signer(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
