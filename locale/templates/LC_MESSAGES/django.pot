@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-12 15:57+0000\n"
+"POT-Creation-Date: 2026-05-19 16:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: src/olympia/abuse/actions.py:233
+#: src/olympia/abuse/actions.py:234
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
@@ -368,7 +368,7 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2353 src/olympia/addons/models.py:2432
+#: src/olympia/addons/models.py:2354 src/olympia/addons/models.py:2433
 #: src/olympia/constants/base.py:70
 msgid "Listed"
 msgstr ""
@@ -881,11 +881,11 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-#: src/olympia/blocklist/models.py:194
+#: src/olympia/blocklist/models.py:195
 msgid "Blocked"
 msgstr ""
 
-#: src/olympia/blocklist/models.py:194
+#: src/olympia/blocklist/models.py:195
 msgid "Restricted"
 msgstr ""
 
@@ -1439,7 +1439,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1143
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1145
 msgid "Deleted"
 msgstr ""
 
@@ -7882,33 +7882,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1128
+#: src/olympia/versions/models.py:1130
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1133
+#: src/olympia/versions/models.py:1135
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1135
+#: src/olympia/versions/models.py:1137
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1138
+#: src/olympia/versions/models.py:1140
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1145
+#: src/olympia/versions/models.py:1147
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1502
+#: src/olympia/versions/models.py:1504
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1629
+#: src/olympia/versions/models.py:1631
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
