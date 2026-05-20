@@ -1024,12 +1024,14 @@ class TestAPIKeyPage(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         form = response.context['form']
-        assert 'confirmation_token' in form.fields
+        assert 'confirmation_token' not in form.fields
 
-        _, confirmation_token = self._inputs(doc)
-        assert confirmation_token.get('value') is None
-
-        assert len(self._submit_actions(doc)) == 0
+        (resend_confirmation_button,) = self._submit_actions(doc)
+        assert 'Re-send email confirmation' in resend_confirmation_button.text
+        assert (
+            resend_confirmation_button.get('value')
+            == APIKeyForm.ACTION_CHOICES.RESEND_CONFIRM
+        )
 
     def test_view_without_credentials_confirmation_requested_with_token(self):
         APIKeyConfirmation.objects.create(

@@ -228,11 +228,11 @@ contact_support_throttles = (
 
 class APIKeyUserThrottle(GranularUserRateThrottle):
     scope = 'user_api_key'
-    rate = '2/day'
+    rate = '3/day'
 
 
 class APIKeyIPThrottle(GranularIPRateThrottle):
-    rate = '4/day'
+    rate = '6/day'
 
 
 api_key_throttles = (APIKeyUserThrottle, APIKeyIPThrottle)
