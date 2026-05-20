@@ -278,6 +278,31 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+    def test_get_rejected_version_returns_policies_and_comments(self):
+        self.note = self.log(
+            'Manual reasoning',
+            amo.LOG.REJECT_VERSION,
+            self.days_ago(0),
+            policy_texts=[
+                'Acceptable Use: do not do bad things.',
+                'Another policy violation.',
+            ],
+        )
+        self._set_tested_url()
+        self._login_developer()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['id'] == self.note.pk
+        assert result['action_label'] == amo.LOG.REJECT_VERSION.short
+        assert result['comments'] == 'Manual reasoning'
+        assert result['policies'] == [
+            'Acceptable Use: do not do bad things.',
+            'Another policy violation.',
+        ]
+
 
 class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
     client_class = APITestClientSessionID

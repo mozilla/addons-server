@@ -711,6 +711,12 @@ function initVersions() {
       date[0].textContent = note['date'];
       date.attr('datetime', note['date']);
       date.attr('title', note['date']);
+      let policiesContainer = clone.find('.review-entry-policies');
+      (note['policies'] || []).forEach(function (text) {
+        let li = document.createElement('li');
+        li.textContent = text;
+        policiesContainer.append(li);
+      });
       clone.find('pre:contains("$comments")')[0].textContent = note['comments'];
       if (note['attachment_url']) {
         clone.find('.review-entry-attachment').removeClass('hidden');
