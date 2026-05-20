@@ -236,6 +236,7 @@ class APIKeyUserThrottle(GranularUserRateThrottle):
 
 
 class APIKeyIPThrottle(GranularIPRateThrottle):
+    scope = 'ip_api_key'
     rate = '8/day'
 
 
