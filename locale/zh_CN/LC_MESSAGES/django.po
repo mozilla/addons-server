@@ -377,7 +377,7 @@ msgstr "附加组件禁用时无法提交上架版本。"
 
 #: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "附加组件上架请求被驳回期间，无法提交上架版本。"
 
 #: src/olympia/addons/serializers.py:634
 #, python-format
