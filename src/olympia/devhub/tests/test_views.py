@@ -1310,6 +1310,62 @@ class TestAPIKeyPage(TestCase):
         assert 'confirmation_token' in form.errors
         assert form.data.get('confirmation_token') == 'wrong'
 
+    def test_send_confirmation_again(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='old token', confirmed_once=False
+        )
+        response = self.client.post(
+            self.url,
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.RESEND_CONFIRM,
+                'g-recaptcha-response': 'test',
+            },
+        )
+        assert response.status_code == 302
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        assert message.to == [self.user.email]
+        assert not APIKey.objects.filter(user=self.user).exists()
+        confirmation.reload()
+        assert not confirmation.confirmed_once  # Still False.
+        assert confirmation.token
+        token = confirmation.token
+        assert token != 'old token'  # This was updated
+        expected_url = (
+            f'http://testserver/en-US/developers/addon/api/key/?token={token}'
+        )
+        assert message.subject == 'Confirmation for developer API keys'
+        assert expected_url in message.body
+
+    def test_throttling(self):
+        confirmation = APIKeyConfirmation.objects.create(
+            user=self.user, token='old token', confirmed_once=False
+        )
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(0, 4):
+                self._add_fake_throttling_action(
+                    view_class=APIKeyForm,
+                    url=self.url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
+        response = self.client.post(
+            self.url,
+            data={
+                'action': APIKeyForm.ACTION_CHOICES.RESEND_CONFIRM,
+                'g-recaptcha-response': 'test',
+            },
+        )
+        assert response.status_code == 200
+        form = response.context['form']
+        assert not form.is_valid()
+        assert form.non_field_errors() == [
+            'You have submitted this form too many times recently. '
+            'Please try again after some time.'
+        ]
+        confirmation.reload()
+        assert confirmation.token == 'old token'  # Hasn't changed.
+
 
 class TestUpload(UploadMixin, TestCase):
     fixtures = ['base/users']

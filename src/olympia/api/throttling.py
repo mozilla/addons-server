@@ -228,11 +228,15 @@ contact_support_throttles = (
 
 class APIKeyUserThrottle(GranularUserRateThrottle):
     scope = 'user_api_key'
-    rate = '3/day'
+    # A new user would typically need 2 requests (one to ask for the
+    # confirmation email to be sent, one to submit the token they received).
+    # Add another one if they need to ask for the email to be sent again, and
+    # another to be on the safe side.
+    rate = '4/day'
 
 
 class APIKeyIPThrottle(GranularIPRateThrottle):
-    rate = '6/day'
+    rate = '8/day'
 
 
 api_key_throttles = (APIKeyUserThrottle, APIKeyIPThrottle)
