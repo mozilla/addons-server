@@ -98,10 +98,9 @@ filterwarnings = [
   "ignore::ResourceWarning",
 ]
 markers = [
-  "es_tests: mark a test as an elasticsearch test.",
-  "needs_locales_compilation: mark a test as needing compiled locales to work.",
+  "requires_elasticsearch: mark a test as a depending on elasticsearch.",
   "allow_external_http_requests: mark a test to allow external http requests and disable responses.",
-  "internal_routes_allowed: mark a test as needing INTERNAL_ROUTES_ALLOWED=True.",
+  "requires_autograph: mark a test as depending on autograph.",
 ]
 env = [
     "ENV=test",

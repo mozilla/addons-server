@@ -1040,7 +1040,7 @@ def block_factory(*, version_ids=None, block_type=BlockType.BLOCKED, **kwargs):
     return block
 
 
-@pytest.mark.es_tests
+@pytest.mark.requires_elasticsearch
 class ESTestCaseMixin:
     @classmethod
     def get_index_name(cls, key):

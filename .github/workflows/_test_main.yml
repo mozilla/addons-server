@@ -111,13 +111,18 @@ jobs:
         run: |
           touch .env
 
-      - name: Spin up autograph
+      - name: Spin up MySQLd
         run: |
-          docker compose up --wait autograph
+          make docker_mysqld_volume_create
+          docker compose up -d mysqld
 
       - name: Spin up redis
         run: |
-          docker compose up --wait redis
+          docker compose up -d redis
+
+      - name: Spin up memcached
+        run: |
+          docker compose up -d memcached
 
       - name: Test (test_matrix)
         uses: ./.github/actions/run-docker-minimal
@@ -129,24 +134,7 @@ jobs:
             group="--group ${{ matrix.group }}"
             make test_main ARGS="${split} ${group}"
 
-#  test_internal_routes:
-#    runs-on: ubuntu-latest
-#    needs: [test_config]
-#
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          persist-credentials: false
-#
-#      - name: Test
-#        uses: ./.github/actions/run-docker-minimal
-#        with:
-#          digest: ${{ inputs.digest }}
-#          version: ${{ inputs.version }}
-#          run: |
-#            make test_internal_routes_allowed
-
-  test_needs_locales:
+  test_js:
     runs-on: ubuntu-latest
     needs: [test_config]
 
@@ -161,8 +149,7 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           run: |
-            make compile_locales
-            make test_needs_locales_compilation
+            make test_js
 
   test_search:
     runs-on: ubuntu-latest
@@ -179,7 +166,7 @@ jobs:
 
       - name: Spin up Elasticsearch
         run: |
-          docker compose up --wait elasticsearch
+          docker compose up -d elasticsearch
 
       - name: Test
         uses: ./.github/actions/run-docker-minimal
@@ -187,4 +174,29 @@ jobs:
           digest: ${{ inputs.digest }}
           version: ${{ inputs.version }}
           run: |
-            make test_es_tests
+            make test_requires_elasticsearch_tests
+
+  test_autograph:
+    runs-on: ubuntu-latest
+    needs: [test_config]
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Create empty environment
+        run: |
+          touch .env
+
+      - name: Spin up Autograph
+        run: |
+          docker compose up -d autograph
+
+      - name: Test
+        uses: ./.github/actions/run-docker-minimal
+        with:
+          digest: ${{ inputs.digest }}
+          version: ${{ inputs.version }}
+          run: |
+            make test_requires_autograph_tests

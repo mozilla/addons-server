@@ -45,6 +45,7 @@ def _get_recommendation_data(path):
         return json.loads(force_str(zobj.read('mozilla-recommendation.json')))
 
 
+@pytest.mark.requires_autograph
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestSigning(TestCase):
     def setUp(self):

@@ -46,7 +46,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert libraries_result == [('PIL+JPEG', True, 'Got it!')]
 
-    @pytest.mark.es_tests
+    @pytest.mark.requires_elasticsearch
     def test_elastic(self):
         status, elastic_result = monitors.elastic()
         assert status == ''
@@ -84,6 +84,7 @@ class TestMonitor(TestCase):
         assert status == ''
         assert rabbitmq_results[0][1]
 
+    @pytest.mark.requires_autograph
     def test_signer(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 

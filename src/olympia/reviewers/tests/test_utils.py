@@ -11,6 +11,7 @@ from django.db import transaction
 from django.test.utils import override_settings
 from django.urls import reverse
 
+import pytest
 import responses
 from waffle.testutils import override_switch
 
@@ -4781,6 +4782,7 @@ class TestReviewHelper(TestReviewHelperBase):
         }
 
 
+@pytest.mark.requires_autograph
 @override_settings(ENABLE_ADDON_SIGNING=True)
 class TestReviewHelperSigning(TestReviewHelperBase):
     """Tests that call signing but don't mock the actual call.

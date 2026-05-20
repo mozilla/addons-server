@@ -94,56 +94,35 @@ initialize: ## ensure database exists
 
 PYTEST_SRC := src/olympia/
 
-.PHONY: test_needs_locales_compilation
-test_needs_locales_compilation:
-	pytest $(PYTEST_SRC) \
-		-m 'needs_locales_compilation' \
-		$(ARGS)
-	npm run test tests/js/
+.PHONY: test_js
+test_js:
+	npm run test tests/js
 
 .PHONY: test_main
 test_main:
 	pytest $(PYTEST_SRC) \
 		-n auto \
-		-m 'not es_tests and not needs_locales_compilation and not internal_routes_allowed' \
+		-m 'not requires_elasticsearch and not requires_autograph' \
 		$(ARGS)
 
-.PHONY: test_internal_routes_allowed
-test_internal_routes_allowed:
-# We need to change the setting in the file because we can't
-# override an env variable here, and the next command requires
-# `INTERNAL_ROUTES_ALLOWED` to be set to `True`.
-	sed -i 's/^INTERNAL_ROUTES_ALLOWED.*/INTERNAL_ROUTES_ALLOWED=True/' settings_test.py
+.PHONY: test_requires_elasticsearch_tests
+test_requires_elasticsearch_tests:
 	pytest \
 		$(PYTEST_SRC) \
-		-m 'internal_routes_allowed' \
+		-m 'requires_elasticsearch' \
 		$(ARGS)
 
-.PHONY: test_es_tests
-test_es_tests:
+.PHONY: test_requires_autograph_tests
+test_requires_autograph_tests:
 	pytest \
 		$(PYTEST_SRC) \
-		-m 'es_tests and not needs_locales_compilation' \
+		-m 'requires_autograph' \
 		$(ARGS)
 
 .PHONY: test
 test: ## run the entire test suite
 	pytest \
 		$(PYTEST_SRC) \
-		$(ARGS)
-
-.PHONY: test_es
-test_es: ## run the ES tests
-	pytest \
-		$(PYTEST_SRC) \
-		-m es_tests \
-		$(ARGS)
-
-.PHONY: test_no_es
-test_no_es: ## run all but the ES tests
-	pytest \
-		$(PYTEST_SRC) \
-		-m "not es_tests" \
 		$(ARGS)
 
 .PHONY: test_force_db
@@ -166,10 +145,6 @@ test_failed: ## rerun the failed tests from the previous run
 	$(PYTEST_SRC) \
 	--lf \
 	$(ARGS)
-
-.PHONY: run_js_tests
-run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	npm run test
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
