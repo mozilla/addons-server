@@ -1562,7 +1562,11 @@ class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
                 self.available_actions.append(self.ACTION_CHOICES.RESEND_CONFIRM)
                 if waffle.switch_is_active('developer-submit-addon-captcha'):
                     self.fields['recaptcha'] = ReCaptchaField(label='', help_text='')
-                    self.fields['recaptcha'].widget.attrs['class'] += ' hidden'
+                    if not self.data:
+                        # Initially hidden, unless you're already submitting.
+                        # (on success you won't see it because we'll redirect,
+                        # but we need to show it again on error).
+                        self.fields['recaptcha'].widget.attrs['class'] += ' hidden'
         else:
             if waffle.switch_is_active('developer-submit-addon-captcha'):
                 self.fields['recaptcha'] = ReCaptchaField(

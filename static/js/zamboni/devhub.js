@@ -204,7 +204,7 @@ $(document).ready(function () {
   });
 
   $('.api-credentials .show-resend-button').on('click', function() {
-    $('button[value="resend_confirm"]').show();
+    $('button[value="resend_confirm"]').removeClass('hidden');
     $('#id_recaptcha').removeClass('hidden');
     $(this).remove();
   });

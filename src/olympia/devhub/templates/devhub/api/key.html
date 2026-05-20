@@ -64,7 +64,7 @@
     <div>
       {% for action in form.available_actions %}
         <button
-          class="button prominent"
+          class="button prominent {{ 'hidden' if action == 'resend_confirm' and request.method == 'GET' else ''}}"
           type="submit"
           name="action"
           value="{{ action }}"
