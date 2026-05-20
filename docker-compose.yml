@@ -96,7 +96,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.29.8@sha256:6e23479198b998e5e25921dff8455837c7636a67111a04a635cf1bb363d199dc
+    image: nginx:1.31.0@sha256:800e7c98538c6bf725f5177e841aa720ae0ed1c378bbea368b6330bfe18a36b3
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
