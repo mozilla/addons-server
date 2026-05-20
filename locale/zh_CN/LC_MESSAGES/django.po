@@ -1286,7 +1286,7 @@ msgstr "“{addon}”上架内容已通过审核。"
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr ""
+msgstr "此前被驳回的上架申请已通过审核"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
