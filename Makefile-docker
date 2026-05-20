@@ -95,7 +95,8 @@ initialize: ## ensure database exists
 PYTEST_SRC := src/olympia/
 
 .PHONY: test_js
-test_js: run_js_tests
+test_js:
+	npm run test tests/js
 
 .PHONY: test_main
 test_main:
@@ -144,10 +145,6 @@ test_failed: ## rerun the failed tests from the previous run
 	$(PYTEST_SRC) \
 	--lf \
 	$(ARGS)
-
-.PHONY: run_js_tests
-run_js_tests: ## Run the JavaScript test suite (requires compiled/compressed assets).
-	npm run test tests/js
 
 .PHONY: watch_js_tests
 watch_js_tests: ## Run+watch the JavaScript test suite (requires compiled/compressed assets).
