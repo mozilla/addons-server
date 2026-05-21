@@ -39,18 +39,20 @@
           {% endif %}
         </dd>
       </dl>
-    {% elif form.confirmation %}
+    {% elif 'resend_confirm' in form.available_actions or 'confirm' in form.available_actions %}
       <p>
         {% trans %}
           After following the confirmation link that was sent to your email address, you will find your API keys on this page.
         {% endtrans %}
-        <a class="show-resend-button" href="#">{{ _("Haven't received the email yet?") }}</a>
+        {% if 'resend_confirm' in form.available_actions %}
+          <a class="show-resend-button" href="#">{{ _("Haven't received the email yet?") }}</a>
+        {% endif %}
       </p>
     {% endif %}
     {% for field in form %}
       <div class="row api-input key-input">
         {% if field.help_text %}
-          <p>{{ field.help_text|format_html }}</p>
+          <p>{{ field.help_text|format_html(name=form.request.user.name) }}</p>
         {% endif %}
         {% if field.errors %}
           <div class="text-danger">

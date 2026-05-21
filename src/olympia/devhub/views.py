@@ -2142,7 +2142,11 @@ def api_key(request):
             send_key_change_email(request.user.email, new_credentials.key)
 
             # Don't redirect in this case: the credentials are only displayed
-            # this one time.
+            # this one time. Reset available actions though, it depends on
+            # credentials so it's out of date. Also remove confirmation token
+            # field if present, it's no longer relevant.
+            form.set_available_actions()
+            form.fields.pop('confirmation_token', None)
 
     context_data = {
         'title': gettext('Manage API Keys'),

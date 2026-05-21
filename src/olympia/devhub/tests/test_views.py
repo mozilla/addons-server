@@ -1032,6 +1032,8 @@ class TestAPIKeyPage(TestCase):
             resend_confirmation_button.get('value')
             == APIKeyForm.ACTION_CHOICES.RESEND_CONFIRM
         )
+        # Link to show resend email button is present.
+        assert doc('.show-resend-button')
 
     def test_view_without_credentials_confirmation_requested_with_token(self):
         APIKeyConfirmation.objects.create(
@@ -1058,6 +1060,8 @@ class TestAPIKeyPage(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
+        # Link to resend the email is no longer present.
+        assert not doc('.show-resend-button')
         (confirm_button,) = self._submit_actions(doc)
         assert 'Generate new credentials' in confirm_button.text
         assert confirm_button.get('value') == APIKeyForm.ACTION_CHOICES.GENERATE
@@ -1125,6 +1129,10 @@ class TestAPIKeyPage(TestCase):
         info = doc('.api-credentials dd')
         assert info[1].text_content() == apikey.key
         assert info[2].text_content().strip() == apikey.secret
+
+        # We removed the confirmation token from the form after confirming.
+        assert 'confirmation_token' not in response.context['form'].fields
+        assert not doc('#id_confirmation_token')
 
     def test_create_new_credentials_not_confirmed_yet(self):
         assert not APIKey.objects.filter(user=self.user).exists()

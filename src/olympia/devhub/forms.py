@@ -1523,6 +1523,9 @@ class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
         self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
         self.action = self.data.get('action', None)
+        self.set_available_actions()
+
+    def set_available_actions(self):
         self.available_actions = []
 
         # Available actions determine what you can do currently
@@ -1545,9 +1548,9 @@ class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
                 or self.data.get('confirmation_token') is not None
             ):
                 help_text = _(
-                    'Please click the confirm button below to generate '
-                    'API credentials for user <strong>{name}</strong>.'
-                ).format(name=self.request.user.name)
+                    'Please click the button below to generate API credentials for '
+                    'user <strong>{name}</strong>.'
+                )
                 self.fields['confirmation_token'] = forms.CharField(
                     label='',
                     max_length=20,
