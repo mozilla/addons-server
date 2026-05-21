@@ -161,21 +161,22 @@ class UserQuerySet(BaseQuerySet):
         BannedUserContent.objects.bulk_create(
             [BannedUserContent(user=user) for user in users], ignore_conflicts=True
         )
-        EmailUserRestriction.objects.bulk_create(
-            [
-                EmailUserRestriction(
-                    email_pattern=EmailUserRestriction.normalize_email(user.email),
-                    restriction_type=restriction_type,
-                    reason=f'Automatically added because of user {user.pk} ban',
-                )
-                for user in users
-                for restriction_type in [
-                    RESTRICTION_TYPES.ADDON_SUBMISSION,
-                    RESTRICTION_TYPES.RATING,
-                ]
-            ],
-            ignore_conflicts=True,
-        )
+        if user.email:
+            EmailUserRestriction.objects.bulk_create(
+                [
+                    EmailUserRestriction(
+                        email_pattern=EmailUserRestriction.normalize_email(user.email),
+                        restriction_type=restriction_type,
+                        reason=f'Automatically added because of user {user.pk} ban',
+                    )
+                    for user in users
+                    for restriction_type in [
+                        RESTRICTION_TYPES.ADDON_SUBMISSION,
+                        RESTRICTION_TYPES.RATING,
+                    ]
+                ],
+                ignore_conflicts=True,
+            )
 
         # Collect affected addons
         addon_ids = set(
@@ -318,9 +319,10 @@ class UserQuerySet(BaseQuerySet):
             user.deleted = False
             user.banned = None
             user.save()
-            EmailUserRestriction.objects.filter(
-                email_pattern=EmailUserRestriction.normalize_email(user.email)
-            ).delete()
+            if user.email:
+                EmailUserRestriction.objects.filter(
+                    email_pattern=EmailUserRestriction.normalize_email(user.email)
+                ).delete()
         if blocklist_submissions_pks:
             user_responsible = core.get_user() or get_task_user()
             revert_published_blocklist_submissions.delay(

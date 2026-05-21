@@ -1,0 +1,11 @@
+.bulk-ban-confirmation .cancel-link {
+    display: inline-block;
+    vertical-align: middle;
+    height: 0.9375rem;
+    line-height: 0.9375rem;
+    border-radius: 4px;
+    padding: 10px 15px;
+    color: var(--button-fg);
+    background: var(--close-button-bg);
+    margin: 0 0 0 10px;
+}

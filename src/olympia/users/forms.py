@@ -61,3 +61,16 @@ class IPNetworkUserRestrictionForm(AMOModelForm):
             data['network'] = f'{ip_address}/32'
 
         return data
+
+
+class BulkBanForm(forms.Form):
+    user_ids = forms.CharField(
+        label='', required=True, widget=forms.Textarea(attrs={'rows': 30, 'cols': 80})
+    )
+
+    def clean_user_ids(self):
+        data = self.cleaned_data.get('user_ids', '')
+        user_ids = {id_ for id_ in data.splitlines() if id_.isdigit()}
+        if not user_ids:
+            raise forms.ValidationError('This field must contain a least one user id')
+        return user_ids
