@@ -725,7 +725,7 @@ div.review-entry ul.review-entry-policies {
 
 div.review-entry .review-entry-comments-label {
     margin-top: 0.5em;
-    padding-left: 1em;
+    padding-left: 0.3em;
 }
 
 div.review-entry .review-entry-comments-label + pre {
