@@ -2041,12 +2041,12 @@ msgstr "Wotwołać"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "E-mejlowe wobkrućenje znowa pósłać"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Prošu klikńće na tłóčatko deleka, zo byšće přizjewjenske informacije API za wužiwarja <strong>{name}</strong> wutworił."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -3749,7 +3749,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Njejsće mejlku hišće dóstał?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4484,7 +4484,7 @@ msgstr "wot"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Přidatne komentary:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"

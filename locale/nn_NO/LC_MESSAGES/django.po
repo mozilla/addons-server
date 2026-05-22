@@ -2034,12 +2034,12 @@ msgstr "Tilbakekall"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Send e-poststadfestinga på nytt"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Klikk på knappen nedanfor for å generere API-legitimasjon for brukar <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2353,7 +2353,7 @@ msgstr "Du må spesifisere ytterlegare detaljar for å gå vidare."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Ei stadfestingslenke vil bli sendt til e-postadressa di snart."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
