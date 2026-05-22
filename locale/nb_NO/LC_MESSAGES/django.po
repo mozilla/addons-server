@@ -2355,7 +2355,7 @@ msgstr "Du må spesifisere ytterligere informasjon for å fortsette."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "En bekreftelseslenke vil bli sendt til e-postadressen din snart."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3728,11 +3728,11 @@ msgstr "JWT-hemmelighet"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Etter at du har fulgt bekreftelseslenken som ble sendt til e-postadressen din, finner du API-nøklene dine på denne siden."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Har du ikke mottatt e-posten ennå?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
