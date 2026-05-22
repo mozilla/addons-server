@@ -2077,12 +2077,12 @@ msgstr "Ανάκληση"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Εκ νέου αποστολή email επιβεβαίωσης"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Κάντε κλικ στο παρακάτω κουμπί για να δημιουργήσετε διαπιστευτήρια API για τον χρήστη <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2397,7 +2397,7 @@ msgstr "Πρέπει να παραθέσετε περαιτέρω λεπτομέ
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Θα αποσταλεί σύντομα ένας σύνδεσμος επιβεβαίωσης στη διεύθυνση email σας."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3779,11 +3779,11 @@ msgstr "Μυστικό JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Αφού ακολουθήσετε τον σύνδεσμο επιβεβαίωσης που απεστάλη στη διεύθυνση email σας, θα βρείτε τα κλειδιά API σε αυτήν τη σελίδα."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Δεν έχετε λάβει ακόμα το email;"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
