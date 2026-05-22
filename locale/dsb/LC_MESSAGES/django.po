@@ -2044,12 +2044,12 @@ msgstr "Wótwołaś"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "E-mailowe wobkšuśenje znowego pósłaś"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Pšosym klikniśo na tłocašk dołojce, aby pśizjawjeńske informacije API za wužywarja <strong>{name}</strong> napórał."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2363,7 +2363,7 @@ msgstr "Musyśo dalšne drobnostki pódaś, aby pókšacował."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Wobkšuśeński wótkaz buźo se skóro na wašu e-mailowu adresu słaś."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3746,11 +3746,11 @@ msgstr "JWT-kluc"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Gaž wobkšuśeńskemu wótkazoju slědujośo, kótaryž jo se na wašu e-mailowu adresu pósłał, namakajośo waše kluce API na toś tom boku."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Njejsćo mejlku hyšći dostał?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4485,7 +4485,7 @@ msgstr "wót"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Pśidatne komentary:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
