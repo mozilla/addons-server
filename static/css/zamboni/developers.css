@@ -717,6 +717,21 @@ div.review-entry pre {
     margin-bottom: 0px;
 }
 
+div.review-entry ul.review-entry-policies {
+    list-style-type: "- ";
+    padding-left: 1em;
+    margin: 0;
+}
+
+div.review-entry .review-entry-comments-label {
+    margin-top: 0.5em;
+    padding-left: 1em;
+}
+
+div.review-entry .review-entry-comments-label + pre {
+    padding-left: 1em;
+}
+
 div.dev-review-reply {
     margin: 0em 1em;
 }

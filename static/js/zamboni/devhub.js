@@ -717,6 +717,9 @@ function initVersions() {
         li.textContent = text;
         policiesContainer.append(li);
       });
+      if (note['comments']) {
+        clone.find('.review-entry-comments-label').removeClass('hidden');
+      }
       clone.find('pre:contains("$comments")')[0].textContent = note['comments'];
       if (note['attachment_url']) {
         clone.find('.review-entry-attachment').removeClass('hidden');

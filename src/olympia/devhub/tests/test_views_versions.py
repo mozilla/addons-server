@@ -779,6 +779,7 @@ class TestVersion(TestCase):
 
         review_entry = doc('.review-entry-empty')
         assert review_entry.find('.review-entry-policies').length == 2
+        assert review_entry.find('.review-entry-comments-label').length == 2
         assert review_entry.find('pre:contains("$comments")').length == 2
 
     def test_version_history_mixed_channels(self):
