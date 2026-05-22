@@ -2038,12 +2038,12 @@ msgstr "Zneplatnit"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Znovu odeslat e-mail s potvrzením"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Pro vygenerování API přihlašovacích údajů pro uživatele <strong>{name}</strong> prosím klepněte na tlačítko níže."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2357,7 +2357,7 @@ msgstr "Pro pokračování musíte poskytnout více detailů."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Na vaši e-mailovou adresu bude brzy odeslán odkaz pro potvrzení."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3731,11 +3731,11 @@ msgstr "JWT secret"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Po kliknutí na potvrzovací odkaz, který byl zaslán na vaši e-mailovou adresu, najdete své API klíče na této stránce."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Ještě jste e-mail neobdrželi?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format

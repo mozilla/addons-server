@@ -2038,12 +2038,12 @@ msgstr "Intrekken"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "E-mailbevestiging opnieuw verzenden"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Klik op de onderstaande knop om API-referenties voor gebruiker <strong>{name}</strong> te genereren."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2357,7 +2357,7 @@ msgstr "U moet meer details opgeven om verder te gaan."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Er wordt binnenkort een bevestigingskoppeling naar uw e-mailadres verzonden."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3733,11 +3733,11 @@ msgstr "JWT-geheim"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Nadat u de bevestigingskoppeling hebt geklikt die naar uw e-mailadres is verzonden, vindt u uw API-sleutels op deze pagina."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Hebt u de e-mail nog niet ontvangen?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format

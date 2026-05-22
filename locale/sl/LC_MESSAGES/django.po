@@ -2036,12 +2036,12 @@ msgstr "Prekliči"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Ponovno pošlji potrditev e-pošte"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Kliknite spodnji gumb za generiranje poverilnic API za uporabnika <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2354,7 +2354,7 @@ msgstr "Za nadaljevanje morate vnesti nadaljnje podrobnosti."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Na vaš e-poštni naslov bo kmalu poslana potrditvena povezava."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3728,11 +3728,11 @@ msgstr "Skrivnost JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Potem ko sledite potrditveni povezavi, ki je bila poslana na vaš e-poštni naslov, boste na tej strani našli svoje ključe API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Še niste prejeli e-pošte?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
