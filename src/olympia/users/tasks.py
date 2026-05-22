@@ -280,6 +280,7 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
     )
 
 
+@task
 def bulk_ban(ids):
     task_log.info(
         '[1@None] Bulk-banning users %d-%d [%d].',
