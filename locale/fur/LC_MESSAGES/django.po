@@ -2058,12 +2058,12 @@ msgstr "Revoche"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Torne mande la e-mail di conferme"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Fâs clic sul boton chi sot par gjenerâ lis credenziâls de API pal utent <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2377,7 +2377,7 @@ msgstr "Tu scugnis indicâ altris detais par continuâ."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Ca di pôc un colegament di conferme ti vignarà mandât ae tô direzion e-mail."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3762,11 +3762,11 @@ msgstr "Segret JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Dopo vê fat clic sul colegament di conferme che tu ricevarâs ae tô e-mail, su cheste pagjine tu cjatarâs lis tôs clâfs API."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "No tu âs ancjemò ricevude la e-mail?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format

@@ -2040,7 +2040,7 @@ msgstr "Revocar"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Reinviar e-mail di confirmation"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
@@ -4477,7 +4477,7 @@ msgstr "per"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Commentos additional:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
