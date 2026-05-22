@@ -4464,7 +4464,7 @@ msgstr "door"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Aanvullende opmerkingen:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
