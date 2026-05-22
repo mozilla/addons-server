@@ -12,6 +12,7 @@ from olympia.api.utils import is_gate_active
 class ActivityLogSerializer(AMOModelSerializer):
     action = serializers.SerializerMethodField()
     action_label = serializers.SerializerMethodField()
+    policies = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
     date = serializers.DateTimeField(source='created')
     user = serializers.SerializerMethodField()
@@ -25,6 +26,7 @@ class ActivityLogSerializer(AMOModelSerializer):
             'id',
             'action',
             'action_label',
+            'policies',
             'comments',
             'user',
             'date',
@@ -36,6 +38,14 @@ class ActivityLogSerializer(AMOModelSerializer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.to_highlight = kwargs.get('context', {}).get('to_highlight', [])
+
+    def get_policies(self, obj):
+        sanitize = getattr(obj.log(), 'sanitize', None)
+        if sanitize is not None:
+            return [sanitize]
+        # Some activity logs might not have `policy_texts`
+        policies = obj.details.get('policy_texts', []) if obj.details else []
+        return policies
 
     def get_comments(self, obj):
         comments = obj.details['comments'] if obj.details else ''
