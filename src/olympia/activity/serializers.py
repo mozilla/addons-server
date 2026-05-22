@@ -40,11 +40,11 @@ class ActivityLogSerializer(AMOModelSerializer):
         self.to_highlight = kwargs.get('context', {}).get('to_highlight', [])
 
     def get_policies(self, obj):
-        # Some activity logs might not have `policy_texts`
-        policies = obj.details.get('policy_texts', []) if obj.details else []
         sanitize = getattr(obj.log(), 'sanitize', None)
         if sanitize is not None:
             return [sanitize]
+        # Some activity logs might not have `policy_texts`
+        policies = obj.details.get('policy_texts', []) if obj.details else []
         return policies
 
     def get_comments(self, obj):
