@@ -280,11 +280,11 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
     )
 
 
-def bulk_ban(user_ids):
+def bulk_ban(ids):
     task_log.info(
         '[1@None] Bulk-banning users %d-%d [%d].',
         ids[0],
         ids[-1],
         len(ids),
     )
-    UserProfile.objects.filter(pk__in=chunk).ban_and_disable_related_content()
+    UserProfile.objects.filter(pk__in=ids).ban_and_disable_related_content()
