@@ -50,6 +50,7 @@ from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.api.throttling import (
     CheckThrottlesFormMixin,
     addon_submission_throttles,
+    api_key_throttles,
     contact_support_throttles,
 )
 from olympia.applications.models import AppVersion
@@ -1484,15 +1485,18 @@ class AgreementForm(forms.Form):
         return self.cleaned_data
 
 
-class APIKeyForm(forms.Form):
+class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
     class ACTION_CHOICES(StrEnumChoices):
         CONFIRM = 'confirm', _('Confirm email address')
         GENERATE = 'generate', _('Generate new credentials')
         REGENERATE = 'regenerate', _('Revoke and regenerate credentials')
         REVOKE = 'revoke', _('Revoke')
+        RESEND_CONFIRM = 'resend_confirm', _('Re-send email confirmation')
 
     ACTION_CHOICES.add_subset('REQUIRES_CREDENTIALS', ('REVOKE', 'REGENERATE'))
     ACTION_CHOICES.add_subset('REQUIRES_CONFIRMATION', ('GENERATE', 'REGENERATE'))
+
+    throttle_classes = api_key_throttles
 
     @cached_property
     def credentials(self):
@@ -1519,6 +1523,9 @@ class APIKeyForm(forms.Form):
         self.request = kwargs.pop('request', None)
         super().__init__(*args, **kwargs)
         self.action = self.data.get('action', None)
+        self.set_available_actions()
+
+    def set_available_actions(self):
         self.available_actions = []
 
         # Available actions determine what you can do currently
@@ -1541,26 +1548,28 @@ class APIKeyForm(forms.Form):
                 or self.data.get('confirmation_token') is not None
             ):
                 help_text = _(
-                    'Please click the confirm button below to generate '
-                    'API credentials for user <strong>{name}</strong>.'
-                ).format(name=self.request.user.name)
+                    'Please click the button below to generate API credentials for '
+                    'user <strong>{name}</strong>.'
+                )
+                self.fields['confirmation_token'] = forms.CharField(
+                    label='',
+                    max_length=20,
+                    widget=forms.HiddenInput(),
+                    initial=get_token_param,
+                    required=False,
+                    help_text=help_text,
+                    validators=[self.validate_confirmation_token],
+                )
                 self.available_actions.append(self.ACTION_CHOICES.GENERATE)
             else:
-                help_text = _(
-                    'A confirmation link will be sent to your email address. '
-                    'After confirmation you will find your API keys on this page.'
-                )
-
-            self.fields['confirmation_token'] = forms.CharField(
-                label='',
-                max_length=20,
-                widget=forms.HiddenInput(),
-                initial=get_token_param,
-                required=False,
-                help_text=help_text,
-                validators=[self.validate_confirmation_token],
-            )
-
+                self.available_actions.append(self.ACTION_CHOICES.RESEND_CONFIRM)
+                if waffle.switch_is_active('developer-submit-addon-captcha'):
+                    self.fields['recaptcha'] = ReCaptchaField(label='', help_text='')
+                    if not self.data:
+                        # Initially hidden, unless you're already submitting.
+                        # (on success you won't see it because we'll redirect,
+                        # but we need to show it again on error).
+                        self.fields['recaptcha'].widget.attrs['class'] += ' hidden'
         else:
             if waffle.switch_is_active('developer-submit-addon-captcha'):
                 self.fields['recaptcha'] = ReCaptchaField(
@@ -1584,6 +1593,7 @@ class APIKeyForm(forms.Form):
         credentials_revoked = False
         credentials_generated = False
         confirmation_created = False
+        confirmation_rerequested = False
 
         # User is revoking or regenerating credentials, revoke existing credentials
         if self.action in self.ACTION_CHOICES.REQUIRES_CREDENTIALS:
@@ -1603,10 +1613,15 @@ class APIKeyForm(forms.Form):
             )
             confirmation_created = True
 
+        if self.action == self.ACTION_CHOICES.RESEND_CONFIRM:
+            self.confirmation.update(token=APIKeyConfirmation.generate_token())
+            confirmation_rerequested = True
+
         return {
             'credentials_revoked': credentials_revoked,
             'credentials_generated': credentials_generated,
             'confirmation_created': confirmation_created,
+            'confirmation_rerequested': confirmation_rerequested,
         }
 
 
