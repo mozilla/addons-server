@@ -25,9 +25,12 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, RequestFingerprintLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
-from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.templatetags.jinja_helpers import vite_asset
-from olympia.amo.utils import backup_storage_enabled, create_signed_url_for_file_backup
+from olympia.amo.utils import (
+    backup_storage_enabled,
+    chunked,
+    create_signed_url_for_file_backup,
+)
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.constants.activity import LOG_STORE_IPS
@@ -461,9 +464,7 @@ class UserAdmin(AMOModelAdmin):
                 user_ids_to_ban = form.cleaned_data['user_ids']
                 form.fields['user_ids'].widget = HiddenInput()
                 if request.POST.get('post'):
-                    self._trigger_bulk_ban_task(
-                        request,
-                    )
+                    self._trigger_bulk_ban_task(request, user_ids_to_ban)
                     return HttpResponseRedirect(
                         reverse('admin:users_userprofile_changelist')
                     )
@@ -483,8 +484,8 @@ class UserAdmin(AMOModelAdmin):
         )
 
     def _trigger_bulk_ban_task(self, request, user_ids):
-        workflow = create_chunked_tasks_signatures(bulk_ban, list(user_ids), 50)
-        workflow.apply_async()
+        for chunk in chunked(user_ids, 50):
+            bulk_ban.delay(list(chunk))
         self.message_user(
             request,
             f'Bulk-ban for {len(user_ids)} user id(s) will be processed shortly.',
