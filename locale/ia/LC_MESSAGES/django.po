@@ -2045,7 +2045,7 @@ msgstr "Reinviar e-mail di confirmation"
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Clicca sur le button infra pro generar credentiales API pro le usator <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2361,7 +2361,7 @@ msgstr "Tu debe fornir altere detalios pro continuar."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Un ligamine de confirmation sera inviate a tu adresse de e-mail proximemente."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3735,7 +3735,7 @@ msgstr "Secreto JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Post sequer le ligamine de confirmation que es inviate a tu adresse de e-mail, tu trovara tu claves API sur iste pagina."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
