@@ -2360,7 +2360,7 @@ msgstr "Dyrbiće dalše podrobnosće podać, zo byšće pokročował."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Wobkrućenski wotkaz budźe so bórze na wašu e-mejlowu adresu słać."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3745,7 +3745,7 @@ msgstr "JWT-kluč"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Hdyž wobkrućenskemu wotkazej slědujeće, kotryž je so na wašu e-mejlowu adresu pósłał, namakaće waše kluče API na tutej stronje."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
