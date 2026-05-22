@@ -777,6 +777,11 @@ class TestVersion(TestCase):
             textarea = doc('.dev-review-reply-form textarea')[idx]
             assert textarea.attrib['maxlength'] == '100000'
 
+        review_entry = doc('.review-entry-empty')
+        assert review_entry.find('.review-entry-policies').length == 2
+        assert review_entry.find('.review-entry-comments-label').length == 2
+        assert review_entry.find('pre:contains("$comments")').length == 2
+
     def test_version_history_mixed_channels(self):
         v1 = self.version
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)

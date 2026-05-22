@@ -10,9 +10,11 @@ from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
 class LogMixin:
-    def log(self, comments, action, created=None):
+    def log(self, comments, action, created=None, policy_texts=None):
         version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         details = {'comments': comments, 'version': version.version}
+        if policy_texts is not None:
+            details['policy_texts'] = policy_texts
         kwargs = {'user': self.user, 'details': details}
         al = ActivityLog.objects.create(action, self.addon, version, **kwargs)
         if created:
@@ -80,15 +82,39 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert not result['highlight']
 
     def test_sanitized_activity_detail_not_exposed_to_developer(self):
-        self.entry = self.log('ßäď ŞŤųƒƒ', amo.LOG.REQUEST_ADMIN_REVIEW_THEME)
+        self.entry = self.log(
+            'ßäď ŞŤųƒƒ',
+            amo.LOG.REQUEST_ADMIN_REVIEW_THEME,
+            policy_texts=['Secret policy text.'],
+        )
         result = self.serialize()
 
         assert result['action_label'] == (amo.LOG.REQUEST_ADMIN_REVIEW_THEME.short)
-        # Comments should be the santized text rather than the actual content.
+        # Comments and policies should be the sanitized text rather than the
+        # actual content.
         assert result['comments'] == amo.LOG.REQUEST_ADMIN_REVIEW_THEME.sanitize
         assert result['comments'].startswith(
             'The add-on has been flagged for Admin Review.'
         )
+        assert result['policies'] == [amo.LOG.REQUEST_ADMIN_REVIEW_THEME.sanitize]
+
+    def test_policies(self):
+        self.entry = self.log(
+            'Oh nøes!',
+            amo.LOG.REJECT_VERSION,
+            policy_texts=['Policy one violation.', 'Policy two violation.'],
+        )
+        result = self.serialize()
+        assert result['policies'] == [
+            'Policy one violation.',
+            'Policy two violation.',
+        ]
+
+    def test_policies_missing_from_details(self):
+        # Create a log with a details property but no policies key inside.
+        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
+        result = self.serialize()
+        assert result['policies'] == []
 
     def test_log_entry_without_details(self):
         # Create a log but without a details property.
@@ -99,8 +125,9 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
             user=self.user,
         )
         result = self.serialize()
-        # Should output an empty string.
+        # Should output an empty string/list.
         assert result['comments'] == ''
+        assert result['policies'] == []
 
     def test_attachment_link(self):
         self.entry = ActivityLog.objects.create(
