@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-19 16:55+0000\n"
+"POT-Creation-Date: 2026-05-22 10:45+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3429,6 +3429,9 @@ msgstr ""
 
 msgid "by"
 msgstr "egilea:"
+
+msgid "Additional comments:"
+msgstr ""
 
 #, fuzzy
 msgid "Leave a reply"
