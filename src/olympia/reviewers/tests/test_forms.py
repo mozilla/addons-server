@@ -489,6 +489,10 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
         assert not form.errors
+        assert form.cleaned_data['most_aggressive_policy_actions'] == (
+            (DECISION_ACTIONS.AMO_DISABLE_ADDON,),
+            (),
+        )
 
         # multiple primary enforcement action per policy are prevented if that happens
         action_policy_c.update(
@@ -505,6 +509,55 @@ class TestReviewForm(TestCase):
                 'action.'
             ]
         }
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_versions_required_when_enforcement_is_on_versions(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        disable_policy = CinderPolicy.objects.create(
+            uuid='a',
+            name='disable',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        reject_policy = CinderPolicy.objects.create(
+            uuid='c',
+            name='reject',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+
+        data = {
+            'action': 'review_with_policy',
+            'cinder_policies': [disable_policy.id],
+        }
+        form = self.get_form(data=data)
+        # versions isn't required
+        assert form.is_valid(), form.errors
+
+        data['cinder_policies'] = [disable_policy.id, reject_policy.id]
+        form = self.get_form(data=data)
+        # disable action takes priority over reject, so versions isn't required
+        assert form.is_valid(), form.errors
+
+        # and versions is cleaned if present
+        data['versions'] = [self.version.id]
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['versions'] == []
+
+        del data['versions']
+        data['cinder_policies'] = [reject_policy.id]
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {'versions': ['This field is required.']}
+
+        data['versions'] = [self.version.id]
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+        assert not form.errors
+        assert list(form.cleaned_data['versions']) == [self.version]
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_resolve_appeal_job(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -761,8 +814,13 @@ class TestReviewForm(TestCase):
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
-        assert select.attrib.get('class') == 'data-toggle'
+        assert select.attrib.get('class') == 'data-toggle data-toggle-enforcement'
         assert select.attrib.get('data-value').split(' ') == expected_select_data_value
+        assert select.attrib.get('data-value-enforcement') == (
+            f"'{DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.value}' "
+            f"'{DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON.value}' "
+            f"'{DECISION_ACTIONS.AMO_APPROVE_VERSION.value}'"
+        )
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
@@ -771,6 +829,7 @@ class TestReviewForm(TestCase):
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value').split(' ') == [
             # That version is approved.
+            'review_with_policy',
             'block_multiple_versions',
             'reject_multiple_versions',
             'reply',
@@ -782,6 +841,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
+            'review_with_policy',
             'approve_multiple_versions',
             'reject_multiple_versions',
             'reply',
@@ -794,7 +854,7 @@ class TestReviewForm(TestCase):
         assert option3.attrib.get('data-value').split(' ') == [
             # That version is rejected, so it has unreject_multiple_versions,
             # but it was never signed so it doesn't get
-            # set_needs_human_review_multiple_versions
+            # set_needs_human_review_multiple_version
             'unreject_multiple_versions',
             'reply',
         ]
@@ -892,8 +952,13 @@ class TestReviewForm(TestCase):
         # <select> should have 'data-toggle' class and data-value attribute to
         # show/hide it depending on action in JavaScript.
         select = doc('select')[0]
-        assert select.attrib.get('class') == 'data-toggle'
+        assert select.attrib.get('class') == 'data-toggle data-toggle-enforcement'
         assert select.attrib.get('data-value').split(' ') == expected_select_data_value
+        assert select.attrib.get('data-value-enforcement') == (
+            f"'{DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.value}' "
+            f"'{DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON.value}' "
+            f"'{DECISION_ACTIONS.AMO_APPROVE_VERSION.value}'"
+        )
 
         # <option>s should as well, and the value depends on which version:
         # the approved one and the pending one should have different values.
@@ -902,6 +967,7 @@ class TestReviewForm(TestCase):
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value').split(' ') == [
             # That version is approved.
+            'review_with_policy',
             'block_multiple_versions',
             'confirm_multiple_versions',
             'reject_multiple_versions',
@@ -914,6 +980,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
+            'review_with_policy',
             'approve_multiple_versions',
             'reject_multiple_versions',
             'reply',
@@ -1403,7 +1470,12 @@ class TestReviewForm(TestCase):
         assert label_0.attr['data-value'] == 'resolve_appeal_job'
         assert label_1.attr['class'] == 'data-toggle-hide'
         assert label_1.attr['data-value'] == ' '.join(
-            ('resolve_reports_job', 'reject', 'reject_multiple_versions')
+            (
+                'resolve_reports_job',
+                'review_with_policy',
+                'reject',
+                'reject_multiple_versions',
+            )
         )
         assert label_2.attr['class'] == 'data-toggle-hide'
         assert label_2.attr['data-value'] == 'resolve_appeal_job'
@@ -1496,24 +1568,29 @@ class TestReviewForm(TestCase):
 
         assert label_0.attr['class'] == 'data-toggle'
         assert label_0.attr['data-value'] == ''
-        assert label_0.attr['data-enforcement-primary-actions'] == ''
-        assert label_0.attr['data-enforcement-followup-actions'] == ''
+        assert label_0.attr['data-enforcement-primary-actions'] == '[]'
+        assert label_0.attr['data-enforcement-followup-actions'] == '[]'
         assert label_0.attr['data-enforcement-actions-order'] == ''
 
         assert label_1.attr['class'] == 'data-toggle'
         assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
-        assert label_1.attr['data-enforcement-primary-actions'] == 'Add-on disable'
+        assert (
+            label_1.attr['data-enforcement-primary-actions']
+            == f'[{DECISION_ACTIONS.AMO_DISABLE_ADDON.value}]'
+        )
         assert label_1.attr['data-enforcement-followup-actions'] == (
-            '[Follow-up] Long-delayed soft block, [Follow-up] Short-delayed hard block'
+            f'[{DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON.value}, '
+            f'{DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.value}]'
         )
         assert label_1.attr['data-enforcement-actions-order'] == '090500'
 
         assert label_2.attr['class'] == 'data-toggle'
         assert label_2.attr['data-value'] == 'public'
         assert (
-            label_2.attr['data-enforcement-primary-actions'] == 'Approved (no action)'
+            label_2.attr['data-enforcement-primary-actions']
+            == f'[{DECISION_ACTIONS.AMO_APPROVE.value}]'
         )
-        assert label_2.attr['data-enforcement-followup-actions'] == ''
+        assert label_2.attr['data-enforcement-followup-actions'] == '[]'
         assert label_2.attr['data-enforcement-actions-order'] == ''
 
     def test_policy_values_fields(self):

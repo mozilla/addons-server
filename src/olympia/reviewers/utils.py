@@ -21,7 +21,7 @@ from olympia.abuse.models import (
     ContentDecisionFollowupAction,
 )
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
-from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
+from olympia.abuse.utils import filter_enforcement_actions
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.utils import notify_about_activity_log
@@ -577,7 +577,6 @@ class ReviewHelper:
                 policy_selection_enabled
                 and not is_static_theme
                 and not self.content_review
-                and addon_is_reviewable
                 and is_appropriate_reviewer
             ),
             'enforcement_actions': (
@@ -592,10 +591,7 @@ class ReviewHelper:
                 # DECISION_ACTIONS.AMO_IGNORE,
                 DECISION_ACTIONS.AMO_BLOCK_ADDON,
             ),
-            # TODO: allow multiple version selection so we can replace
-            # `reject_multiple_versions` too - we need to handle policies that would
-            # disable the add-on
-            # 'multiple_versions': True,
+            'multiple_versions': can_reject_multiple,
             'resolves_cinder_jobs': True,
             'can_attach': True,
         }
@@ -754,7 +750,7 @@ class ReviewHelper:
                 'This will reject the selected versions. '
                 'The comments will be sent to the developer.'
             ),
-            'available': can_reject_multiple,
+            'available': not policy_selection_enabled and can_reject_multiple,
             'enforcement_actions': (
                 DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
@@ -807,7 +803,10 @@ class ReviewHelper:
                 'admin page.'
             ),
             'available': (
-                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
+                not policy_selection_enabled
+                and not is_static_theme
+                and version_is_unlisted
+                and is_appropriate_reviewer
             ),
         }
         actions['confirm_multiple_versions'] = {
@@ -1144,18 +1143,14 @@ class ReviewBase:
         else:
             policies = []
 
-        if self.review_action and self.review_action.get('policy_enforcement'):
-            # get the most aggressive negative policy
-            # TODO: if we expand to support non-negative policies, we'll need to
-            # change this logic (e.g. most_postive_actions, or something)
-            most_aggressive_policy_actions = sorted(
-                (
-                    filter_enforcement_actions(policy.split_enforcement_actions, Addon)
-                    for policy in policies
-                ),
-                key=lambda actions: hash_addon_negative_actions(actions),
-                reverse=True,
-            )[0]
+        if (
+            self.review_action
+            and self.review_action.get('policy_enforcement')
+            and 'most_aggressive_policy_actions' in self.data
+        ):
+            most_aggressive_policy_actions = self.data.get(
+                'most_aggressive_policy_actions'
+            )
 
             # form validation/cleaning should ensure there is at least one policy
             # with a negative primary enforcement_action
@@ -1954,7 +1949,9 @@ class ReviewBase:
             'Policies selected for %s, [%s]'
             % (self.addon, ', '.join(p.uuid for p in self.data['cinder_policies']))
         )
-        self.record_decision(None, action_completed=False)
+        self.record_decision(
+            None, action_completed=False, versions=self.data.get('versions')
+        )
 
 
 class ReviewAddon(ReviewBase):

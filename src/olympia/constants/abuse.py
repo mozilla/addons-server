@@ -119,6 +119,14 @@ DECISION_ACTIONS.add_subset(
         'AMO_BLOCK_ADDON',
     ),
 )
+DECISION_ACTIONS.add_subset(
+    'VERSION_SPECIFIC',
+    (
+        'AMO_REJECT_VERSION_ADDON',
+        'AMO_REJECT_VERSION_WARNING_ADDON',
+        'AMO_APPROVE_VERSION',
+    ),
+)
 
 
 # Illegal categories, only used when the reason is `illegal`. The constants

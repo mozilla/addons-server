@@ -1080,8 +1080,24 @@ form.review-form .data-toggle {
     width: 100%;
 }
 
-#policy-enforcement-primary-actions {
-    font-weight: bold;
+#policy-enforcement-actions {
+    counter-reset: item;
+    list-style: none;
+
+    li {
+        float: none;
+
+        &.primary-enf {
+            font-weight: bold;
+        }
+    }
+    li:not(.hidden) {
+        counter-increment: item;
+    }
+
+    li:not(.hidden)::before {
+        content: counter(item) ". ";
+    }
 }
 
 .review-actions-reasons-select ul {
