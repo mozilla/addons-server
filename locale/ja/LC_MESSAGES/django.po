@@ -2077,11 +2077,11 @@ msgstr "カテゴリーを選択してください"
 
 #: src/olympia/devhub/forms.py:1800
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "問題について、さらに詳しく教えてください"
 
 #: src/olympia/devhub/forms.py:1802
 msgid "Describe the issue"
-msgstr ""
+msgstr "具体的な説明"
 
 #: src/olympia/devhub/tasks.py:179
 msgid "Invalid or corrupt add-on file."
