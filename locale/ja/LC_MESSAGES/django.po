@@ -125,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Mozilla アドオンの %(name)s についてご報告いただき、またご懸念事項について詳細な情報をご提供いただきありがとうございます。\n"
+"\n"
+"お客様の異議申し立てを審査した結果、このコンテンツは Mozilla のポリシー (%(policy_document_url)s) に違反していないという以前の判断は誤りであると判断しました。この判断に基づき、当該コンテンツを削除し、ユーザーにその旨を通知しました。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -423,7 +427,7 @@ msgstr "最新バージョンを除き、承認されたバージョンにのみ
 
 #: src/olympia/addons/utils.py:34
 msgid "This add-on summary or description cannot be used."
-msgstr ""
+msgstr "このアドオンの概要または説明は使用できません。"
 
 #: src/olympia/addons/utils.py:70
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
@@ -1976,7 +1980,7 @@ msgstr "ソースファイルがアップロードされましたが、あなた
 #: src/olympia/devhub/forms.py:1285
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "名前と概要を合わせた文字数が最大 {limit_value} 文字以内であることを確認してください (現在 {show_value} 文字です)。"
 
 #: src/olympia/devhub/forms.py:1412
 #, python-brace-format
@@ -2012,12 +2016,12 @@ msgstr "取り消す"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "確認メールを再送信"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "ユーザー <strong>{name}</strong> の API 認証情報を生成するには、以下のボタンをクリックしてください。"
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2033,7 +2037,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1683
 msgid "Choose version"
-msgstr ""
+msgstr "バージョンを選んでください"
 
 #: src/olympia/devhub/forms.py:1692
 msgid "Release notes"
@@ -2049,15 +2053,15 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1778
 msgid "Choose a category"
-msgstr ""
+msgstr "カテゴリーを選んでください"
 
 #: src/olympia/devhub/forms.py:1779
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "アドオンを準拠させるための技術サポート"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Issue with addons.mozilla.org"
-msgstr ""
+msgstr "addons.mozilla.org に関する問題"
 
 #: src/olympia/devhub/forms.py:1788 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
@@ -2065,11 +2069,11 @@ msgstr "件名"
 
 #: src/olympia/devhub/forms.py:1790
 msgid "Summarize the issue in a few words"
-msgstr ""
+msgstr "問題を簡潔にまとめてください"
 
 #: src/olympia/devhub/forms.py:1795
 msgid "Select category"
-msgstr ""
+msgstr "カテゴリーを選択してください"
 
 #: src/olympia/devhub/forms.py:1800
 msgid "Give us more details about the issue"
