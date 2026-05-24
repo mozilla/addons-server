@@ -2035,12 +2035,12 @@ msgstr "Thu hồi"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Gửi lại email xác minh"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Vui lòng nhấp vào nút bên dưới để tạo thông tin xác thực API cho người dùng <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2354,7 +2354,7 @@ msgstr "Bạn phải cung cấp thêm chi tiết để tiếp tục."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Một đường dẫn xác minh sẽ được gửi đến địa chỉ email của bạn trong thời gian ngắn."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3724,11 +3724,11 @@ msgstr "JWT bí mật"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Sau khi nhấp vào liên kết xác minh được gửi đến địa chỉ email của bạn, bạn sẽ tìm thấy khóa API của mình trên trang này."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Bạn vẫn chưa nhận được email?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4465,7 +4465,7 @@ msgstr "bởi"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Ghi chú bổ sung:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
