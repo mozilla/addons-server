@@ -2,12 +2,26 @@ from django.contrib import admin
 from django.utils.html import format_html, format_html_join
 
 from olympia import amo
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
 from olympia.constants.activity import LOG_STORE_IPS
 from olympia.reviewers.models import ReviewActionReason
 from olympia.zadmin.admin import related_single_content_link
 
 from .models import ActivityLog, ReviewActionReasonLog
+
+
+class ActionFilter(MultipleRelatedListFilter):
+    title = 'By action'
+    parameter_name = 'action'
+
+    def lookups(self, request, model_admin):
+        return ActivityLog.TYPES
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value is None:
+            return queryset
+        return queryset.filter(action__in=value)
 
 
 class ActivityLogAdmin(AMOModelAdmin):
@@ -18,6 +32,10 @@ class ActivityLogAdmin(AMOModelAdmin):
         'kept_forever',
         'known_ip_adresses',
         'ja4',
+    )
+    list_filter = (
+        'created',
+        ActionFilter,
     )
     raw_id_fields = ('user',)
     readonly_fields = (
@@ -51,10 +69,10 @@ class ActivityLogAdmin(AMOModelAdmin):
     search_by_ip_activity_reverse_accessor = 'activity_log'
     minimum_search_terms_to_search_by_id = 1
 
-    def lookup_allowed(self, lookup, value):
+    def lookup_allowed(self, lookup, value, request):
         if lookup == 'addonlog__addon':
             return True
-        return super().lookup_allowed(lookup, value)
+        return super().lookup_allowed(lookup, value, request)
 
     def has_add_permission(self, request):
         return False
