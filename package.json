@@ -48,7 +48,7 @@
     "eslint-plugin-prettier": "^5.5.5",
     "eslint-plugin-simple-import-sort": "^13.0.0",
     "glob": "^13.0.6",
-    "globals": "^17.5.0",
+    "globals": "^17.6.0",
     "jiti": "^2.5.1",
     "jsdom": "^29.1.1",
     "knip": "^5.88.0",
