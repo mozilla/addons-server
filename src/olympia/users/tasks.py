@@ -284,7 +284,7 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
 @use_primary_db
 def bulk_ban(ids):
     task_log.info(
-        '[1@None] Bulk-banning users %d-%d [%d].',
+        '[1@None] Bulk-banning users %s-%s [%d].',
         ids[0],
         ids[-1],
         len(ids),

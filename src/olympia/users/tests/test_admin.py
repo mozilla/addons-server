@@ -65,6 +65,19 @@ class TestUserAdmin(TestCase):
         assert format_datetime(banned_user.banned) in doc('#result_list').text()
         assert str(user) in doc('#result_list').text()
         assert str(user.email) in doc('#result_list').text()
+        # No extra permissions: no object tools
+        assert doc('.object-tools a') == []
+
+    def test_list_has_bulk_ban_link(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, 'Users:Ban')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        doc = pq(response.content)
+        assert doc('.object-tools a').attr('href') == reverse(
+            'admin:users_userprofile_bulk_ban'
+        )
 
     def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
@@ -786,6 +799,62 @@ class TestUserAdmin(TestCase):
         alog = ActivityLog.objects.latest('pk')
         assert alog.action == amo.LOG.ADMIN_USER_BANNED.id
         assert alog.arguments == [self.user]
+
+    def test_bulk_ban_no_permission(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        url = reverse('admin:users_userprofile_bulk_ban')
+        response = self.client.get(url)
+        assert response.status_code == 403
+
+    def test_bulk_ban(self):
+        target1 = user_factory()
+        target2 = user_factory()
+        innocent = user_factory()
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Ban')
+        self.client.force_login(user)
+        url = reverse('admin:users_userprofile_bulk_ban')
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('textarea#id_user_ids')
+
+        data = {'user_ids': '\n'.join(map(str, [target1.pk, target2.pk]))}
+        response = self.client.post(url, data)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert 'about to bulk-ban 2 user(s). Are you sure ?' in response.content.decode(
+            'utf-8'
+        )
+        assert doc('input#id_user_ids')
+        assert doc('input#id_user_ids')[0].attrib['type'] == 'hidden'
+        assert doc('input#id_user_ids')[0].value == data['user_ids']
+        assert doc('input[name=post]')
+        assert doc('input[name=post]')[0].attrib['type'] == 'hidden'
+        assert doc('input[name=post]')[0].value == 'yes'
+
+        data['post'] = 'yes'
+        response = self.client.post(url, data)
+        assert response.status_code == 302
+        self.assertCloseToNow(target1.reload().banned)
+        self.assertCloseToNow(target2.reload().banned)
+        assert not innocent.reload().banned
+        assert not user.reload().banned
+
+    def test_bulk_ban_invalid(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'Users:Ban')
+        self.client.force_login(user)
+        url = reverse('admin:users_userprofile_bulk_ban')
+        data = {'user_ids': 'invalid'}
+        response = self.client.post(url, data)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert (
+            doc('form .errorlist')[0].text_content()
+            == 'This field must contain a least one user id'
+        )
 
     def test_unban(self):
         unban_url = reverse('admin:users_userprofile_unban', args=(self.user.pk,))
