@@ -452,6 +452,11 @@ attach results to and the scan results:
 | `201 Created`     | Result created successfully                                                                    |
 | `400 Bad Request` | Validation error (unknown version, missing fields, extra fields)                               |
 | `403 Forbidden`   | Not authenticated as a scanner service account, or no active webhook with a `push` event found |
+| `409 Conflict`    | One or more of the `matchedRules` have already been pushed for this version                    |
+
+A push is rejected with `409 Conflict` when any rule in `matchedRules` has
+already been pushed for the same version via the same webhook. Only rules that
+exist as [scanner rules](#scanner-rules) are considered for this check.
 
 ### Adding a new event
 

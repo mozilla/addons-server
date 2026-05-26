@@ -203,6 +203,8 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         self.version = version_factory(addon=addon_factory())
         self.url = reverse_ns('scanner-result-push', api_version='v5')
         self.results = {'version': '1.0.0', 'matchedRules': []}
+        for name in ('rule-a', 'rule-b', 'rule-c'):
+            ScannerRule.objects.create(name=name, scanner=WEBHOOK, is_active=True)
 
     def _push_scanner_result(self, data=None):
         if data is None:
@@ -221,7 +223,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert scanner_result.webhook_event.event == WEBHOOK_PUSH
         assert scanner_result.webhook_event.webhook == self.webhook
 
-    def test_multiple_results_allowed(self):
+    def test_multiple_results_allowed_when_no_matched_rules(self):
         self._push_scanner_result()
         response = self._push_scanner_result()
 
@@ -233,6 +235,134 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
             ).count()
             == 2
         )
+
+    def test_multiple_results_allowed_with_disjoint_rules(self):
+        first = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert first.status_code == 201
+
+        second = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-b']},
+            }
+        )
+        assert second.status_code == 201
+        assert (
+            ScannerResult.objects.filter(
+                version=self.version,
+                scanner=WEBHOOK,
+            ).count()
+            == 2
+        )
+
+    def test_rejects_duplicate_rule(self):
+        first = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert first.status_code == 201
+
+        second = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert second.status_code == 409
+        assert second.json() == {
+            'detail': 'Scanner result already pushed for one of the rules'
+        }
+        assert (
+            ScannerResult.objects.filter(
+                version=self.version,
+                scanner=WEBHOOK,
+            ).count()
+            == 1
+        )
+
+    def test_rejects_partial_rule_overlap(self):
+        first = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {
+                    'version': '1.0.0',
+                    'matchedRules': ['rule-a', 'rule-b'],
+                },
+            }
+        )
+        assert first.status_code == 201
+
+        second = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {
+                    'version': '1.0.0',
+                    'matchedRules': ['rule-b', 'rule-c'],
+                },
+            }
+        )
+        assert second.status_code == 409
+        assert second.json() == {
+            'detail': 'Scanner result already pushed for one of the rules'
+        }
+
+    def test_same_rule_allowed_for_different_version(self):
+        first = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert first.status_code == 201
+
+        other_version = version_factory(addon=self.version.addon)
+        second = self._push_scanner_result(
+            data={
+                'version_id': other_version.pk,
+                'results': {'version': '1.0.1', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert second.status_code == 201
+
+    def test_same_rule_allowed_for_different_webhook(self):
+        first = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert first.status_code == 201
+
+        other_webhook = ScannerWebhook.objects.create(
+            name='other-webhook',
+            url='https://example.com/other',
+            api_key='secret2',
+        )
+        ScannerWebhookEvent.objects.create(
+            webhook=other_webhook,
+            event=WEBHOOK_PUSH,
+        )
+        self.api_key = APIKey.get_jwt_key(user=other_webhook.service_account)
+        self.grant_permission(
+            other_webhook.service_account,
+            'Scanners:PushResults',
+            'some access group',
+        )
+
+        second = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+        assert second.status_code == 201
 
     def test_no_push_event(self):
         self.event.delete()
