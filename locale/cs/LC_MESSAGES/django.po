@@ -3731,7 +3731,7 @@ msgstr "JWT secret"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr "Po kliknutí na potvrzovací odkaz, který byl zaslán na vaši e-mailovou adresu, najdete své API klíče na této stránce."
+msgstr "Po klepnutí na potvrzovací odkaz, který byl zaslán na vaši e-mailovou adresu, najdete své API klíče na této stránce."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
