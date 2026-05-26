@@ -79,6 +79,10 @@ updates:
       google:
         patterns:
           - "google-*"
+          - googleapis-common-protos
+          - proto-plus
+          - protobuf
+          - grpcio
       celery:
         patterns:
           - celery
