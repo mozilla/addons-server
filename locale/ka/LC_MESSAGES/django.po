@@ -2050,12 +2050,12 @@ msgstr "უარყოფა"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "ელფოსტით დასტურის ხელახლა გაგზავნა"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "გთხოვთ, დაწკაპოთ ღილაკზე ქვემოთ მომხმარებლის API-მოწმობის შესადგენად <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2367,7 +2367,7 @@ msgstr "გასაგრძელებლად, მეტი მონაც
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "დასტურის ბმული მალე გამოიგზავნება თქვენს ელფოსტის მისამართზე."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3738,11 +3738,11 @@ msgstr "JWT საიდუმლო კოდი"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "თქვენს ელფოსტის მისამართზე გამოგზავნილ დასტურის ბმულზე გადასვლით იხილავთ თქვენს API-გასაღებებს."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "ჯერ არ მიგიღიათ ელფოსტა?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4474,7 +4474,7 @@ msgstr "ავტორი"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "დამატებითი შენიშვნები:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
