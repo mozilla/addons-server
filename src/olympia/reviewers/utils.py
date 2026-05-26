@@ -1514,12 +1514,6 @@ class ReviewBase:
 
         log.info('Sending email for %s' % (self.addon))
         self.record_decision(amo.LOG.REJECT_VERSION, action_completed=False)
-        if self.human_review:
-            # Clear needs human review flags, but only on the latest version:
-            # it's the only version we can be certain that the reviewer looked
-            # at.
-            self.clear_specific_needs_human_review_flags(self.version)
-            self.set_human_review_date()
         self.log_sandbox_message()
 
     def request_admin_review(self):
@@ -1672,12 +1666,6 @@ class ReviewBase:
                 'Making %s versions %s disabled'
                 % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
             )
-
-        for version in self.data['versions']:
-            # Clear needs human review flags on rejected versions, we
-            # consider that the reviewer looked at them before rejecting.
-            self.clear_specific_needs_human_review_flags(version)
-            self.set_human_review_date(version)
 
         log.info('Sending email for %s' % (self.addon))
         self.record_decision(

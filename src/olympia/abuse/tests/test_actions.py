@@ -41,6 +41,7 @@ from olympia.core import set_user
 from olympia.files.models import File
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import VersionReviewerFlags
 
 from ..actions import (
@@ -1155,6 +1156,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action=self.takedown_decision_action,
             metadata={'content_review': content_review},
         )
+        NeedsHumanReview(version=self.old_version).save(_no_automatic_activity_log=True)
+        NeedsHumanReview(version=self.version).save(_no_automatic_activity_log=True)
         action_helper = ContentActionRejectVersion(self.decision)
         # process_action is only available for reviewer tools decisions.
         with self.assertRaises(NotImplementedError):
@@ -1181,6 +1184,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             assert version_flags.pending_rejection is None
             assert version_flags.pending_rejection_by is None
             assert version_flags.pending_content_rejection is None
+            assert not version.needshumanreview_set.filter(is_active=True).exists()
+            self.assertCloseToNow(version.reload().human_review_date)
         assert activity.arguments == [
             self.addon,
             self.decision,
@@ -1665,6 +1670,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
 
     def test_hold_action(self):
+        NeedsHumanReview(version=self.old_version).save(_no_automatic_activity_log=True)
+        NeedsHumanReview(version=self.version).save(_no_automatic_activity_log=True)
         self.decision.update(action=self.takedown_decision_action)
         action_helper = self.ActionClass(self.decision)
         activity = action_helper.hold_action()
@@ -1694,9 +1701,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert flags.auto_approval_disabled_until_next_approval
         assert not flags.auto_approval_disabled
         assert not flags.auto_approval_disabled_unlisted
+        assert self.version.needshumanreview_set.filter(is_active=True).exists()
+        assert self.version.reload().human_review_date is None
+        assert self.old_version.needshumanreview_set.filter(is_active=True).exists()
+        assert self.old_version.reload().human_review_date is None
 
     def test_hold_action_human(self):
         user = user_factory()
+        NeedsHumanReview(version=self.old_version).save(_no_automatic_activity_log=True)
+        NeedsHumanReview(version=self.version).save(_no_automatic_activity_log=True)
         self.decision.update(action=self.takedown_decision_action, reviewer_user=user)
         action_helper = self.ActionClass(self.decision)
         activity = action_helper.hold_action()
@@ -1718,6 +1731,10 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert flags.auto_approval_disabled_until_next_approval
         assert not flags.auto_approval_disabled
         assert not flags.auto_approval_disabled_unlisted
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+        self.assertCloseToNow(self.version.reload().human_review_date)
+        assert not self.old_version.needshumanreview_set.filter(is_active=True).exists()
+        self.assertCloseToNow(self.old_version.reload().human_review_date)
 
     def test_should_hold_action(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)

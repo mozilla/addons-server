@@ -6843,6 +6843,47 @@ class TestReview(ReviewBase):
             == DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_review_with_policy_action_reject_action(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        policy = CinderPolicy.objects.create(
+            uuid='1',
+            name='policy 1',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+        old_version = self.version
+        NeedsHumanReview.objects.create(version=old_version)
+        self.version = version_factory(addon=self.addon, version='3.0')
+        response = self.client.post(
+            self.url,
+            self.get_dict(
+                action='review_with_policy',
+                cinder_policies=[policy.id],
+            ),
+        )
+        assert response.status_code == 302, response.context['form'].errors
+        assert self.get_addon().status == amo.STATUS_APPROVED
+        log_entry = ActivityLog.objects.get(action=amo.LOG.REJECT_VERSION.id)
+        assert (
+            log_entry.contentdecisionlog_set.get().decision.action
+            == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        )
+        self.version.reload()
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+        file_ = self.version.file.reload()
+        assert file_.status == amo.STATUS_DISABLED
+        assert not self.version.pending_rejection
+
+        assert old_version.reload().needshumanreview_set.filter(is_active=True).exists()
+        assert old_version.file.status == amo.STATUS_APPROVED
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):
