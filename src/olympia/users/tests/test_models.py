@@ -240,6 +240,7 @@ class TestUserProfile(TestCase):
             occupation='some job too',
             read_dev_agreement=datetime.now(),
         )
+        user_no_email = user_factory(email=None, deleted=True)
         user_innocent = user_factory()
         addon_multi = addon_factory(
             users=UserProfile.objects.filter(id__in=[user_multi.id, user_innocent.id])
@@ -259,7 +260,7 @@ class TestUserProfile(TestCase):
 
         # Now that everything is set up, disable/delete related content.
         UserProfile.objects.filter(
-            pk__in=(user_sole.pk, user_multi.pk)
+            pk__in=(user_sole.pk, user_multi.pk, user_no_email.pk)
         ).ban_and_disable_related_content(hard_block_addons=hard_block_addons)
 
         assert copy_file_to_backup_storage_mock.call_count == 2

@@ -54,6 +54,14 @@ def select_request_metadata(headers):
 
 
 @contextlib.contextmanager
+def override_user(user):
+    original_user = get_user()
+    set_user(user)
+    yield
+    set_user(original_user)
+
+
+@contextlib.contextmanager
 def override_remote_addr_or_metadata(*, ip_address=None, metadata=None):
     """Override value returned by get_remote_addr() for a specific context."""
     original_ip = get_remote_addr()

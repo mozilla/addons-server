@@ -13,6 +13,7 @@ import requests
 from requests.exceptions import HTTPError, Timeout
 
 import olympia.core.logger
+from olympia import core
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -278,3 +279,20 @@ def bulk_add_disposable_email_domains(entries: list[tuple[str, str]], batch_size
         f'Processed {len(processed_domains)} domains: '
         f'{[obj.domain for obj in processed_domains]}'
     )
+
+
+@task
+@use_primary_db
+def bulk_ban(ids, *, user_responsible_id):
+    task_log.info(
+        '[1@None] Bulk-banning users %s-%s [%d] with %s.',
+        ids[0],
+        ids[-1],
+        len(ids),
+        user_responsible_id,
+    )
+    user_responsible = UserProfile.objects.get(pk=user_responsible_id)
+    with core.override_user(user_responsible):
+        UserProfile.objects.filter(pk__in=ids).order_by(
+            'pk'
+        ).ban_and_disable_related_content()

@@ -173,6 +173,7 @@ class UserQuerySet(BaseQuerySet):
                     RESTRICTION_TYPES.ADDON_SUBMISSION,
                     RESTRICTION_TYPES.RATING,
                 ]
+                if user.email
             ],
             ignore_conflicts=True,
         )
@@ -318,9 +319,10 @@ class UserQuerySet(BaseQuerySet):
             user.deleted = False
             user.banned = None
             user.save()
-            EmailUserRestriction.objects.filter(
-                email_pattern=EmailUserRestriction.normalize_email(user.email)
-            ).delete()
+            if user.email:
+                EmailUserRestriction.objects.filter(
+                    email_pattern=EmailUserRestriction.normalize_email(user.email)
+                ).delete()
         if blocklist_submissions_pks:
             user_responsible = core.get_user() or get_task_user()
             revert_published_blocklist_submissions.delay(
