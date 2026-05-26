@@ -842,6 +842,15 @@ class TestUserAdmin(TestCase):
         assert not innocent.reload().banned
         assert not user.reload().banned
 
+        activities = ActivityLog.objects.filter(
+            action=amo.LOG.ADMIN_USER_BANNED.id
+        ).order_by('pk')
+        assert len(activities) == 2
+        assert activities[0].user == user
+        assert activities[0].arguments == [target1]
+        assert activities[1].user == user
+        assert activities[1].arguments == [target2]
+
     def test_bulk_ban_invalid(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, 'Users:Ban')

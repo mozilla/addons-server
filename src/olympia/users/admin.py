@@ -485,7 +485,7 @@ class UserAdmin(AMOModelAdmin):
 
     def _trigger_bulk_ban_task(self, request, user_ids):
         for chunk in chunked(user_ids, 50):
-            bulk_ban.delay(list(chunk))
+            bulk_ban.delay(list(chunk), user_responsible_id=request.user.pk)
         self.message_user(
             request,
             f'Bulk-ban for {len(user_ids)} user id(s) will be processed shortly.',

@@ -14,6 +14,25 @@ def test_override_remote_addr_or_metadata():
     assert core.get_remote_addr() == original
 
 
+def test_override_user():
+    user = UserProfile()
+    core.set_user(AnonymousUser())
+    with core.override_user(user):
+        assert core.get_user() == user
+    assert core.get_user() is None
+
+    core.set_user(user)
+    with core.override_user(None):
+        assert core.get_user() is None
+    assert core.get_user() == user
+
+    with core.override_user(AnonymousUser()):
+        assert core.get_user() is None
+    assert core.get_user() == user
+
+    core.set_user(None)
+
+
 def test_set_get_user_anonymous():
     core.set_user(AnonymousUser())
     assert core.get_user() is None

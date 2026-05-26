@@ -73,4 +73,4 @@ class BulkBanForm(forms.Form):
         user_ids = {id_ for id_ in data.splitlines() if id_.isdigit()}
         if not user_ids:
             raise forms.ValidationError('This field must contain a least one user id')
-        return user_ids
+        return sorted(user_ids)
