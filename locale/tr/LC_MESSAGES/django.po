@@ -2039,12 +2039,12 @@ msgstr "İptal Et"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Onay e-postasını yeniden gönder"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "<strong>{name}</strong> kullanıcısı için API kimlik bilgileri oluşturmak için lütfen aşağıdaki düğmeye tıklayın."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2358,7 +2358,7 @@ msgstr "Devam etmek için daha fazla ayrıntı vermelisiniz."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Kısa süre içinde e-posta adresinize bir onay bağlantısı gönderilecektir."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3727,11 +3727,11 @@ msgstr "JWT gizli anahtarı"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "E-posta adresinize gönderilen onay bağlantısını tıkladıktan sonra API anahtarlarınızı bu sayfada bulabilirsiniz."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "E-posta gelmedi mi?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4464,7 +4464,7 @@ msgstr "geliştiren:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Ek yorumlar:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
