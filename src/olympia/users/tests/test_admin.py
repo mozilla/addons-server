@@ -820,7 +820,7 @@ class TestUserAdmin(TestCase):
         doc = pq(response.content)
         assert doc('textarea#id_user_ids')
 
-        data = {'user_ids': f'{target2.pk}\n{target1.pk}\n '}
+        data = {'user_ids': f'{target2.pk} \n{target1.pk}\n '}
         response = self.client.post(url, data)
         assert response.status_code == 200
         doc = pq(response.content)
