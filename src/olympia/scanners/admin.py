@@ -542,7 +542,7 @@ class AbstractScannerRuleAdminMixin:
     def get_readonly_fields(self, request, obj=None):
         fields = super().get_readonly_fields(request, obj)
         if obj:
-            fields += ('scanner',)
+            fields += ('scanner', 'name')
         return fields
 
     def matched_results_link(self, obj):
