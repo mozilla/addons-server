@@ -13,9 +13,9 @@ pickleshare==0.7.5 \
     --hash=sha256:9649af414d74d4df115d5d718f82acb59c9d418196b7b4290ed47a12ce62df56 \
     --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca
 # Sphinx is required by sphinxcontrib-httpdomain
-Sphinx==8.1.3 \
-    --hash=sha256:09719015511837b76bf6e03e42eb7595ac8c2e41eeb9c29c5b755c6b677992a2 \
-    --hash=sha256:43c1911eecb0d3e161ad78611bc905d1ad0e523e4ddc202a58a821773dc4c927
+Sphinx==9.1.0 \
+    --hash=sha256:7741722357dd75f8190766926071fed3bdc211c74dd2d7d4df5404da95930ddb \
+    --hash=sha256:c84fdd4e782504495fe4f2c0b3413d6c2bf388589bb352d439b2a3bb99991978
 # alabaster is required by Sphinx
 alabaster==1.0.0 \
     --hash=sha256:c00dca57bca26fa62a6d7d0a9fcce65f3e026e9bfe33e9c538fd3fbb2144fd9e \
@@ -439,3 +439,7 @@ time-machine==3.2.0 \
     --hash=sha256:da0ecd96bc7bbe450acaaabe569d84e81688f1be8ad58d1470e42371d145fb53 \
     --hash=sha256:e0d90bee170b219e1d15e6a58164aa808f5170090e4f090bd0670303e34181b1 \
     --hash=sha256:f09abeb8f03f044d72712207e0489a62098ad3ad16dac38927fcf80baca4d6a7
+# roman-numerals is required by sphinx
+roman-numerals==4.1.0 \
+    --hash=sha256:1af8b147eb1405d5839e78aeb93131690495fe9da5c91856cb33ad55a7f1e5b2 \
+    --hash=sha256:647ba99caddc2cc1e55a51e4360689115551bf4476d90e8162cf8c345fe233c7
