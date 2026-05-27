@@ -935,7 +935,7 @@ class CinderPolicy(ModelBase):
         related_name='children',
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
-    enforcement_actions = models.JSONField(default=list, null=True)
+    enforcement_actions = models.JSONField(default=list)
     status_in_cinder = models.SmallIntegerField(null=True, choices=POLICY_STATUSES)
 
     objects = CinderPolicyQuerySet.as_manager()
