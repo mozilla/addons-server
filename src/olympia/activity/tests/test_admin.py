@@ -115,9 +115,9 @@ class TestActivityLogAdmin(TestCase):
                 doc('.field-user_link')[1].text_content(),
             )
         ) == {str(user2), str(user3)}
-        # Make sure login ip is now displayed, and has the right value.
+        # Make sure ip address is displayed, and has the right value.
         # (twice since 2 rows are matching)
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2 127.0.0.2'
+        assert doc('.field-ip_address').text() == '127.0.0.2 127.0.0.2'
 
     def test_search_for_ja4(self):
         user = user_factory(email='someone@mozilla.com')

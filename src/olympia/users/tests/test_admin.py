@@ -187,7 +187,7 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert not doc('#result_list tbody tr')
-        assert not doc('.column-known_ip_adresses')
+        assert not doc('.column-known_ip_addresses')
 
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
@@ -212,7 +212,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure login ip is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2'
 
     def test_search_for_single_ip_other_ips_are_shown(self):
         user = user_factory(email='someone@mozilla.com')
@@ -244,7 +244,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure login ip is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2\n127.0.0.44'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2\n127.0.0.44'
 
     def test_search_for_single_ip_multiple_results_for_different_reasons(self):
         user = user_factory(email='someone@mozilla.com')
@@ -285,7 +285,7 @@ class TestUserAdmin(TestCase):
         # third users only have the one we're looking for, the one in the
         # middle has another (separated with a newline because it's from the
         # same cell, in a list) we're displaying as well.
-        assert doc('.field-known_ip_adresses').text() == (
+        assert doc('.field-known_ip_addresses').text() == (
             '127.0.0.2 127.0.0.1\n127.0.0.2 127.0.0.2'
         )
 
@@ -309,7 +309,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2'
 
     def test_search_for_ip_range(self):
         user = user_factory(email='someone@mozilla.com')
@@ -331,7 +331,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2'
 
     def test_search_for_ip_network(self):
         user = user_factory(email='someone@mozilla.com')
@@ -353,7 +353,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2'
 
     def test_search_for_multiple_ips_with_garbage(self):
         user = user_factory(email='someone@mozilla.com')
@@ -375,7 +375,7 @@ class TestUserAdmin(TestCase):
         # Make sure it's the right user.
         assert doc('.field-email').text() == self.user.email
         # Make sure last login is now displayed, and has the right value.
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2'
+        assert doc('.field-known_ip_addresses').text() == '127.0.0.2'
 
     def test_search_for_multiple_ips_with_deduplication(self):
         user = user_factory(email='someone@mozilla.com')
@@ -418,7 +418,7 @@ class TestUserAdmin(TestCase):
             ]
         )
         # Make sure each IP only appears once for each row.
-        assert doc('.field-known_ip_adresses').text() == (
+        assert doc('.field-known_ip_addresses').text() == (
             '127.0.0.2\n127.0.0.3 127.0.0.2 127.0.0.3'
         )
 
@@ -463,7 +463,7 @@ class TestUserAdmin(TestCase):
             ]
         )
         # Make sure each IP only appears once for each row.
-        assert doc('.field-known_ip_adresses').text() == (
+        assert doc('.field-known_ip_addresses').text() == (
             '127.0.0.2\n127.0.0.3 127.0.0.2 127.0.0.3'
         )
 
@@ -1014,7 +1014,7 @@ class TestUserAdmin(TestCase):
             == '<img src="%s" />' % self.user.picture_url
         )
 
-    def test_known_ip_adresses(self):
+    def test_known_ip_addresses(self):
         dummy_addon = addon_factory()
         another_user = user_factory()
         core.set_user(another_user)
@@ -1052,7 +1052,7 @@ class TestUserAdmin(TestCase):
         with core.override_remote_addr_or_metadata(ip_address='172.0.0.2'):
             ActivityLog.objects.create(amo.LOG.RESTRICTED, user=self.user)
         model_admin = UserAdmin(UserProfile, admin.site)
-        doc = pq(model_admin.known_ip_adresses(self.user))
+        doc = pq(model_admin.known_ip_addresses(self.user))
         result = doc('ul li').text().split()
         assert set(result) == {
             '130.1.2.4',
@@ -1087,7 +1087,7 @@ class TestUserAdmin(TestCase):
             ip_address='2001:db8:0:85a3::ac1f:8001'
         ):
             ActivityLog.objects.create(amo.LOG.LOG_IN, user=self.user)
-        doc = pq(model_admin.known_ip_adresses(self.user))
+        doc = pq(model_admin.known_ip_addresses(self.user))
         result = doc('ul li').text().split()
         assert set(result) == {
             '130.1.2.4',

@@ -293,7 +293,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        # Note that there is no request in this case, the ip_adress is coming
+        # Note that there is no request in this case, the ip_address is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
         assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0002'
@@ -333,7 +333,7 @@ class TestRestrictionChecker(TestCase):
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
-        # Note that there is no request in this case, the ip_adress is coming
+        # Note that there is no request in this case, the ip_address is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
         assert activity.requestfingerprintlog.ja4 == self.ja4
