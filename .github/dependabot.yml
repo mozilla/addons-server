@@ -75,6 +75,8 @@ updates:
   directory: "/"
   schedule:
     interval: daily
+  exclude-paths:
+    - "requirements/yara-x.txt"
   groups:
       google:
         patterns:
