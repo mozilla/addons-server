@@ -345,6 +345,10 @@ django-dbbackup==5.3.0 \
 pytest-env==1.6.0 \
     --hash=sha256:1e7f8a62215e5885835daaed694de8657c908505b964ec8097a7ce77b403d9a3 \
     --hash=sha256:ac02d6fba16af54d61e311dd70a3c61024a4e966881ea844affc3c8f0bf207d3
+# python-dotenv is required by pytest-env
+python-dotenv==1.2.2 \
+    --hash=sha256:1d8214789a24de455a8b8bd8ae6fe3c6b69a5e3d64aa8a8e5d68e694bbcb285a \
+    --hash=sha256:2c371a91fbd7ba082c2c1dc1f8bf89ca22564a087c2c287cd9b662adde799cf3
 django-model-info==2026.3.1 \
     --hash=sha256:0cd5043a999b30841f7e2ba64f1ec6e973a080e6c8f0ac8e7a3759131ff2a287 \
     --hash=sha256:4ceceb4766e56f7ec01b75d0ff1458eef14211fff819d3e1396d25ad55e7e323
