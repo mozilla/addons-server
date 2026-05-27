@@ -1210,9 +1210,9 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     msgid = match.group('msgid')
     default = {'message': message} if default_locale else {'message': None}
 
-    if locale in messages:
+    if locale in messages and messages[locale]:
         message = messages[locale].get(msgid, default)
-    elif default_locale in messages:
+    elif default_locale in messages and messages[default_locale]:
         message = messages[default_locale].get(msgid, default)
 
     if not isinstance(message, dict):
