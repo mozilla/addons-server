@@ -27,6 +27,7 @@ from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.scanners.models import ScannerResult
 from olympia.scanners.tasks import call_webhooks
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
@@ -341,6 +342,12 @@ def duplicate_addon_version_for_rollback(
         VersionLog.objects.bulk_create(
             VersionLog(version=version, activity_log=vl.activity_log)
             for vl in VersionLog.objects.filter(version=old_version)
+        )
+
+        # Duplicate any scanner [query] results
+        ScannerResult.objects.bulk_create(
+            sr.duplicate(version=version)
+            for sr in ScannerResult.objects.filter(version=old_version)
         )
 
         # Now log and notify the developers of that add-on.

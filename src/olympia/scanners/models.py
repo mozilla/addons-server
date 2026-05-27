@@ -155,6 +155,22 @@ class AbstractScannerResult(ModelBase):
                             res[ruleId].append({'filename': filename, 'data': data})
         return res
 
+    def duplicate(self, *, version=None, version_id=None):
+        overrides = {}
+        if version_id:
+            overrides['version_id'] = version_id
+        elif version:
+            overrides['version'] = version
+            overrides['version_id'] = version.id
+        return self.__class__(
+            **{
+                field.attname: getattr(self, field.attname)
+                for field in self._meta.concrete_fields
+                if not field.primary_key and field.attname not in overrides
+            },
+            **overrides,
+        )
+
 
 def rule_schema(instance=None):
     if instance:
