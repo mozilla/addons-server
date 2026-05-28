@@ -194,10 +194,10 @@ class AMOModelAdmin(admin.ModelAdmin):
     search_by_ip_activity_accessor = 'activitylog'
     search_by_ip_activity_reverse_accessor = 'activity_log__user'
     # get_search_results() below searches using `IPLog`. It sets an annotation
-    # that we can then use in the custom `known_ip_adresses` method referenced
+    # that we can then use in the custom `known_ip_addresses` method referenced
     # in the line below, which is added to the` list_display` fields for IP
     # searches.
-    extra_list_display_for_ip_searches = ('known_ip_adresses',)
+    extra_list_display_for_ip_searches = ('known_ip_addresses',)
     # We rarely care about showing this: it's the full count of the number of
     # objects for this model in the database, unfiltered. It does an extra
     # COUNT() query, so avoid it by default.
@@ -356,7 +356,7 @@ class AMOModelAdmin(admin.ModelAdmin):
                 for network in ips_and_networks['networks']:
                     condition |= models.Q(**{arg: (network[0], network[-1])})
         if condition or (
-            'known_ip_adresses' in self.list_display
+            'known_ip_addresses' in self.list_display
             and 'for_count' not in queryset.query.annotations
         ):
             queryset = self.annotate_queryset_with_activity_ips(queryset)
@@ -504,7 +504,7 @@ class AMOModelAdmin(admin.ModelAdmin):
         return queryset, may_have_duplicates
 
     @admin.display(ordering='activity_ips', description='IP addresses')
-    def known_ip_adresses(self, obj):
+    def known_ip_addresses(self, obj):
         # activity_ips is an annotation added by get_search_results() above
         # thanks to a GROUP_CONCAT. If present, use that (avoiding making
         # extra queries for each row of results), otherwise, look where

@@ -277,7 +277,7 @@ class TestRatingAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list .field-id')) == 6
-        assert doc('#result_list .field-known_ip_adresses').text().strip() == ' '.join(
+        assert doc('#result_list .field-known_ip_addresses').text().strip() == ' '.join(
             ['4.8.15.16', '4.8.15.16', '125.5.6.7', '125.1.2.3\n4.8.15.16 125.1.1.2']
         )
 
@@ -296,7 +296,7 @@ class TestRatingAdmin(TestCase):
         # Find link to sort by IP
         response = self.client.post(self.list_url, {'addon': self.addon.pk})
         doc = pq(response.content)
-        query_string = doc('th.column-known_ip_adresses a').attr('href')
+        query_string = doc('th.column-known_ip_addresses a').attr('href')
         assert query_string.startswith('?')
         data = {
             '_selected_action': str(self.rating.pk),
