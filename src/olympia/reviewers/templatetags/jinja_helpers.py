@@ -83,3 +83,13 @@ def activity_changes(activity):
             'added': data.get('added', []),
         }
     )
+
+
+@library.global_function
+@jinja2.pass_context
+def toggle_when_action(context, definition_key, *, default=False):
+    return ' '.join(
+        action_name
+        for action_name, definition in context['actions']
+        if definition.get(definition_key, default)
+    )

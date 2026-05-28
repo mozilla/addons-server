@@ -351,6 +351,11 @@ class ContentActionDisableAddon(ContentAction):
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
     action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
+    def is_human_reviewer(self):
+        return bool(
+            (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
+        )
+
     def should_hold_action(self):
         return bool(
             self.target.status != amo.STATUS_DISABLED
@@ -361,10 +366,9 @@ class ContentActionDisableAddon(ContentAction):
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         from olympia.activity.models import AttachmentLog
 
-        human_review = bool(
-            (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
+        extra_details = {'human_review': self.is_human_reviewer()} | (
+            extra_details or {}
         )
-        extra_details = {'human_review': human_review} | (extra_details or {})
         if (
             target_versions := self.target_versions.no_transforms()
             .only('pk', 'version', 'file')
@@ -563,6 +567,10 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                     'pending_content_rejection': None,
                 },
             )
+            if self.is_human_reviewer():
+                # Clear needs human review flags
+                self.clear_specific_needs_human_review_flags(version)
+                self.set_human_review_date(version)
 
         self.prevent_auto_approval()
         self.target.update_status()
@@ -571,10 +579,43 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
         )
 
+    def clear_specific_needs_human_review_flags(self, version):
+        """Clear needs_human_review flags on a specific version."""
+        from olympia.reviewers.models import NeedsHumanReview
+
+        from .models import CinderJob
+
+        qs = version.needshumanreview_set.filter(is_active=True)
+        unresolved_jobs = (
+            CinderJob.objects.for_addon(version.addon)
+            .unresolved()
+            .resolvable_in_reviewer_tools()
+            .exists()
+        )
+        if unresolved_jobs:
+            qs = qs.exclude(
+                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+            )
+        qs.update(is_active=False)
+        # Because the updating of needs human review was made with a queryset
+        # the post_save signal was not triggered so let's recheck the due date
+        # explicitly.
+        version.reset_due_date()
+
+    def set_human_review_date(self, version):
+        if self.is_human_reviewer() and not version.human_review_date:
+            version.update(human_review_date=datetime.now())
+
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
         # in relevant channels.
         self.prevent_auto_approval()
+        # The add-on was still reviewed
+        if self.is_human_reviewer():
+            for version in self.target_versions:
+                # Clear needs human review flags
+                self.clear_specific_needs_human_review_flags(version)
+                self.set_human_review_date(version)
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
@@ -650,6 +691,10 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                     'pending_content_rejection': self.content_review,
                 },
             )
+            if self.is_human_reviewer():
+                # Clear needs human review flags
+                self.clear_specific_needs_human_review_flags(version)
+                self.set_human_review_date(version)
         self.prevent_auto_approval()
         # Developers should be notified again once the deadline is close.
         AddonReviewerFlags.objects.update_or_create(
@@ -667,6 +712,11 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         # Even if the action is held, we want to always prevent auto-approval
         # in relevant channels.
         self.prevent_auto_approval()
+        if self.is_human_reviewer():
+            # Clear needs human review flags
+            for version in self.target_versions:
+                self.clear_specific_needs_human_review_flags(version)
+                self.set_human_review_date(version)
         return self.log_action(
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review

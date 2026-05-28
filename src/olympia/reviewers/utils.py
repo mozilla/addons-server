@@ -14,8 +14,14 @@ import waffle
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionFollowupAction,
+)
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
+from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, AttachmentLog
 from olympia.activity.utils import notify_about_activity_log
@@ -556,7 +562,43 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
+        policy_selection_enabled = waffle.switch_is_active(
+            'enable-policy-review-selection'
+        )
+
         # Definitions for all actions.
+        actions['review_with_policy'] = {
+            'method': self.handler.review_with_policy,
+            'policy_enforcement': True,
+            'minimal': False,
+            'details': ('Select a policy to perform on the version or add-on.'),
+            'label': 'Review',
+            'available': (
+                policy_selection_enabled
+                and not is_static_theme
+                and not self.content_review
+                and addon_is_reviewable
+                and is_appropriate_reviewer
+            ),
+            'enforcement_actions': (
+                # TODO: expand functionality to handle non-negative policies,
+                # and content review
+                # DECISION_ACTIONS.AMO_APPROVE,
+                # DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
+                # DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+                # DECISION_ACTIONS.AMO_IGNORE,
+                DECISION_ACTIONS.AMO_BLOCK_ADDON,
+            ),
+            # TODO: allow multiple version selection so we can replace
+            # `reject_multiple_versions` too - we need to handle policies that would
+            # disable the add-on
+            # 'multiple_versions': True,
+            'resolves_cinder_jobs': True,
+            'can_attach': True,
+        }
         actions['public'] = {
             'method': self.handler.approve_latest_version,
             'minimal': False,
@@ -574,7 +616,8 @@ class ReviewHelper:
                 and not version_is_blocked
             ),
             'enforcement_actions': (
-                not is_static_theme and (DECISION_ACTIONS.AMO_APPROVE,)
+                not is_static_theme
+                and (DECISION_ACTIONS.AMO_APPROVE, DECISION_ACTIONS.AMO_APPROVE_VERSION)
             ),
             'resolves_cinder_jobs': True,
             'boilerplate_text': 'Thank you for your contribution.',
@@ -590,7 +633,8 @@ class ReviewHelper:
             ),
             'minimal': False,
             'available': (
-                not self.content_review
+                not policy_selection_enabled
+                and not self.content_review
                 # We specifically don't let the individual reject action be
                 # available for unlisted review. `reject_latest_version` isn't
                 # currently implemented for unlisted.
@@ -898,7 +942,9 @@ class ReviewHelper:
             ),
             'minimal': False,
             'available': (
-                addon_is_not_disabled_or_deleted and is_appropriate_admin_reviewer
+                not policy_selection_enabled
+                and addon_is_not_disabled_or_deleted
+                and is_appropriate_admin_reviewer
             ),
             'enforcement_actions': (DECISION_ACTIONS.AMO_DISABLE_ADDON,),
             'resolves_cinder_jobs': True,
@@ -1081,6 +1127,8 @@ class ReviewBase:
         Not used by resolve_appeal_job."""
         # footgun: if action_completed=True then we don't call log_action here
         assert not log_action_kw or action_completed
+        # footgun: we need an activity_action if the action is already complete
+        assert not (activity_action is None and action_completed)
         decision_metadata = decision_metadata or {}
         log_action_kw = log_action_kw or {}
         if self.review_action and self.review_action.get('enforcement_actions'):
@@ -1096,19 +1144,40 @@ class ReviewBase:
         else:
             policies = []
 
-        cinder_action = getattr(activity_action, 'cinder_action', None)
+        if self.review_action and self.review_action.get('policy_enforcement'):
+            # get the most aggressive negative policy
+            # TODO: if we expand to support non-negative policies, we'll need to
+            # change this logic (e.g. most_postive_actions, or something)
+            most_aggressive_policy_actions = sorted(
+                (
+                    filter_enforcement_actions(policy.split_enforcement_actions, Addon)
+                    for policy in policies
+                ),
+                key=lambda actions: hash_addon_negative_actions(actions),
+                reverse=True,
+            )[0]
+
+            # form validation/cleaning should ensure there is at least one policy
+            # with a negative primary enforcement_action
+            cinder_action = most_aggressive_policy_actions.primary[0]
+            followup_actions = most_aggressive_policy_actions.followup
+        else:
+            cinder_action = getattr(activity_action, 'cinder_action', None)
+            followup_actions = []
+
         if not cinder_action and policies:
-            cinder_action = (
+            cinder_actions = [
                 # If there isn't a cinder_action from the activity action already, get
                 # it from the policy. There should only be one in the list as form
                 # validation raises for multiple cinder actions.
-                (
-                    actions := CinderPolicy.get_decision_actions_from_policies(
-                        policies, for_entity=Addon
-                    )
+                action
+                for policy in policies
+                for action in filter_enforcement_actions(
+                    policy.split_enforcement_actions.primary, Addon
                 )
-                and actions[0].value
-            )
+            ]
+            cinder_action = cinder_actions[0] if cinder_actions else None
+
         assert cinder_action
 
         versions = versions or ([self.version] if self.version else [])
@@ -1134,6 +1203,10 @@ class ReviewBase:
                 **decision_kw,
             )
             decision.policies.set(policies)
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=decision, action=action)
+                for action in followup_actions
+            )
             if versions:
                 decision.target_versions.set(versions)
             return decision
@@ -1441,12 +1514,6 @@ class ReviewBase:
 
         log.info('Sending email for %s' % (self.addon))
         self.record_decision(amo.LOG.REJECT_VERSION, action_completed=False)
-        if self.human_review:
-            # Clear needs human review flags, but only on the latest version:
-            # it's the only version we can be certain that the reviewer looked
-            # at.
-            self.clear_specific_needs_human_review_flags(self.version)
-            self.set_human_review_date()
         self.log_sandbox_message()
 
     def request_admin_review(self):
@@ -1599,12 +1666,6 @@ class ReviewBase:
                 'Making %s versions %s disabled'
                 % (self.addon, ', '.join(str(v.pk) for v in self.data['versions']))
             )
-
-        for version in self.data['versions']:
-            # Clear needs human review flags on rejected versions, we
-            # consider that the reviewer looked at them before rejecting.
-            self.clear_specific_needs_human_review_flags(version)
-            self.set_human_review_date(version)
 
         log.info('Sending email for %s' % (self.addon))
         self.record_decision(
@@ -1885,6 +1946,15 @@ class ReviewBase:
         self.log_action(
             amo.LOG.DISABLE_AUTO_APPROVAL, extra_details={'channel': self.channel}
         )
+
+    def review_with_policy(self):
+        """Process the policy selection and create a decision, that will carry out the
+        associated enforcement actions."""
+        log.info(
+            'Policies selected for %s, [%s]'
+            % (self.addon, ', '.join(p.uuid for p in self.data['cinder_policies']))
+        )
+        self.record_decision(None, action_completed=False)
 
 
 class ReviewAddon(ReviewBase):

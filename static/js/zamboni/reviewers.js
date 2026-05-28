@@ -118,10 +118,29 @@ $(document).ready(function () {
   policySelectionInputs.change((event) => {
     let checkbox = event.target;
     $("#policy-text-" + checkbox.value)[0].hidden = !checkbox.checked;
+
+    updatePolicyEnforcementActionsDisplay();
   });
   policySelectionInputs.trigger("click").trigger("click");
 
 });
+
+function updatePolicyEnforcementActionsDisplay() {
+  let policySelectionInputs = $('.review-actions-policies-select input[name="cinder_policies"]');
+  let highestCheckedPolicy;
+  policySelectionInputs.filter(":visible").filter(":checked").each(function () {
+    if (!highestCheckedPolicy || $(this).data('enforcement-actions-order') > highestCheckedPolicy.data('enforcement-actions-order')) {
+      highestCheckedPolicy = $(this);
+    }
+  });
+  if (highestCheckedPolicy) {
+    $("#policy-enforcement-primary-actions").text(highestCheckedPolicy.data('enforcement-primary-actions'));
+    $("#policy-enforcement-followup-actions").text(highestCheckedPolicy.data('enforcement-followup-actions'));
+  } else {
+    $("#policy-enforcement-primary-actions").text('No Action');
+    $("#policy-enforcement-followup-actions").text('');
+  }
+}
 
 function initReviewActions() {
   function showForm(element, pageload) {
@@ -175,6 +194,7 @@ function initReviewActions() {
       .hide();
 
     showHideDelayedRejectionDateWidget();
+    updatePolicyEnforcementActionsDisplay();
   }
 
   function showHideDelayedRejectionDateWidget() {
