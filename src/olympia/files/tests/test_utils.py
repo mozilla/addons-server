@@ -1459,6 +1459,21 @@ class TestResolvei18nMessage:
         result = utils.resolve_i18n_message('__MSG_foo__', messages, 'en')
         assert result == 'bar'
 
+    def test_ignores_broken_messages_in_locale(self):
+        messages = {'en-US': {'foo': {'message': 'bar'}}, 'de': []}
+
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de')
+        assert result is None
+
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'de', 'en-US')
+        assert result == 'bar'
+
+    def test_ignores_broken_messages_in_default_locale(self):
+        messages = {'en-US': {'foo': {'message': 'bar'}}, 'de': []}
+
+        result = utils.resolve_i18n_message('__MSG_foo__', messages, 'it', 'de')
+        assert result == '__MSG_foo__'
+
     def test_ignore_wrong_format_default(self):
         messages = {'en-US': {'foo': 'bar'}}
 
