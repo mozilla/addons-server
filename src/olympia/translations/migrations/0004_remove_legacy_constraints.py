@@ -13,7 +13,7 @@ def remove_legacy_translations_constraints(apps, schema_editor):
     models_related_to_translations = {
         f.related_model
         for f in Translation._meta.get_fields(include_hidden=True)
-        if f.auto_created and not f.concrete and (f.one_to_one or f.one_to_many)
+        if f.is_relation
     }
     connection = schema_editor.connection
     with connection.cursor() as cursor:
@@ -44,5 +44,7 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(remove_legacy_translations_constraints, lambda *args: None)
+        migrations.RunPython(
+            remove_legacy_translations_constraints,
+            reverse_code=migrations.RunPython.noop)
     ]

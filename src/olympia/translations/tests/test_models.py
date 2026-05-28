@@ -1064,7 +1064,7 @@ def test_no_db_constraints():
     models_related_to_translations = {
         f.related_model
         for f in Translation._meta.get_fields(include_hidden=True)
-        if f.auto_created and not f.concrete and (f.one_to_one or f.one_to_many)
+        if f.is_relation
     }
     assert models_related_to_translations
     connection = connections['default']
