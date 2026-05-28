@@ -8121,10 +8121,13 @@ class TestHeldDecisionQueue(ReviewerTest):
         self.url = reverse('reviewers.queue_decisions')
 
         self.addon_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon_factory()
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=addon_factory(),
+            from_job_queue='some-extension-queue',
         )
         self.user_decision = ContentDecision.objects.create(
-            action=DECISION_ACTIONS.AMO_BAN_USER, user=user_factory()
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            user=user_factory(),
         )
         self.collection_decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DELETE_COLLECTION,
@@ -8211,6 +8214,7 @@ class TestHeldDecisionReview(ReviewerTest):
             metadata={
                 ContentDecision.POLICY_DYNAMIC_VALUES: {policy.uuid: {'FOO': 'baa'}}
             },
+            from_job_queue='some-cinder-queue',
         )
         self.version = self.decision.addon.current_version
         self.decision.target_versions.set([self.version])
@@ -8427,3 +8431,13 @@ class TestHeldDecisionReview(ReviewerTest):
             field=None,
             errors=['Not currently held for 2nd level approval'],
         )
+
+    def test_manual_source(self):
+        self.decision.update(from_job_queue=None)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)('.entity-type-Extension')
+
+        assert f'Extension Decision for {self.decision.addon.name}' in doc.html()
+        assert doc('h2').attr('class') == 'held-item MANUAL'
+        assert 'Manual' == doc('.decision-source td').text()

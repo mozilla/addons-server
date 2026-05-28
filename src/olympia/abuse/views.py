@@ -193,7 +193,8 @@ class CinderWebhookMissingIdError(CinderWebhookError):
 
 
 def get_job_from_payload(payload):
-    if job_id := payload.get('source', {}).get('job', {}).get('id'):
+    source = payload.get('source', {})
+    if job_id := source.get('job', {}).get('id'):
         try:
             return CinderJob.objects.get(job_id=job_id)
         except CinderJob.DoesNotExist:
@@ -208,11 +209,12 @@ def get_job_from_payload(payload):
             raise CinderWebhookMissingIdError('No matching decision id found') from exc
         return prev_decision.cinder_job
 
+    if source.get('decision', {}).get('type') == 'manual':
+        log.debug('Cinder webhook decision is a manual decision, no job to link to.')
+        return None
     else:
-        # We may support this one day, but we currently don't support manual decisions
-        # that originated in Cinder
-        log.debug('Cinder webhook decision for cinder proactive decision skipped.')
-        raise CinderWebhookError('Unsupported Manual decision')
+        log.debug('Cinder webhook decision for unsupported scenario skipped.')
+        raise CinderWebhookError('Unsupported decision')
 
 
 def get_target_from_payload_entity(entity):
