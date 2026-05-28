@@ -610,7 +610,10 @@ class ReviewForm(forms.Form):
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_developer_appeal
             ]
-        if policies := self.cleaned_data.get('cinder_policies'):
+        is_policy_enforcement = selected_definition.get('policy_enforcement')
+        if (
+            is_policy_enforcement or self.cleaned_data.get('cinder_jobs_to_resolve')
+        ) and (policies := self.cleaned_data.get('cinder_policies')):
             if selected_actions := selected_definition.get('enforcement_actions'):
                 # clean policies to only applicable to current action.
                 policies = self.cleaned_data['cinder_policies'] = [

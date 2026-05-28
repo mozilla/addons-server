@@ -358,7 +358,7 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
 
-    def test_only_one_cinder_action_selected(self):
+    def test_policy_actions(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -410,21 +410,82 @@ class TestReviewForm(TestCase):
             ]
         }
 
-        # But not when the action has policy_enforcement=True
-        data['action'] = 'review_with_policy'
-        with override_switch('enable-policy-review-selection', active=True):
-            form = self.get_form(data=data)
+        # But it's fine if there are no jobs selected
+        data['cinder_jobs_to_resolve'] = []
+        form = self.get_form(data=data)
         assert form.is_valid(), form.errors
         assert not form.errors
 
-        data['action'] = 'reject'
-        # And it's fine if the poicies have the same action too
+        # And it's fine if the poicies have the same action
+        data['cinder_jobs_to_resolve'] = [job.id]
         data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
         assert not form.errors
 
+        # or if it's a single policy
         data['cinder_policies'] = [action_policy_c.id]
+        form = self.get_form(data=data)
+        assert form.is_valid(), form.errors
+        assert not form.errors
+
+        # multiple primary enforcement action per policy are prevented if that happens
+        action_policy_c.update(
+            enforcement_actions=[
+                DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
+            ]
+        )
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'Invalid policies selected with more than one primary enforcement '
+                'action.'
+            ]
+        }
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_policy_actions_with_policy_enforcement(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        no_action_policy = CinderPolicy.objects.create(
+            uuid='no', name='no action', expose_in_reviewer_tools=True
+        )
+        action_policy_a = CinderPolicy.objects.create(
+            uuid='a',
+            name='disable',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        action_policy_c = CinderPolicy.objects.create(
+            uuid='c',
+            name='reject',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+        form = self.get_form()
+        assert not form.is_bound
+        data = {
+            'action': 'review_with_policy',
+            'cinder_jobs_to_resolve': [job.id],
+            'cinder_policies': [no_action_policy.id],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'No policies selected with an associated cinder action.'
+            ]
+        }
+
+        # multiple policies with different enforcement actions are fine when the action
+        # has policy_enforcement=True
+        data['cinder_policies'] = [action_policy_a.id, action_policy_c.id]
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
         assert not form.errors
