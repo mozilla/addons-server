@@ -724,7 +724,13 @@ class TestDuplicateAddonVersionForRollback(TestCase):
 
     def check_scanner_results(self, old, new):
         assert new.scannerresults.count() == 1
-        assert new.scannerresults.get().results == old.scannerresults.get().results
+        new_result = new.scannerresults.get()
+        old_result = old.scannerresults.get()
+        assert new_result.scanner == old_result.scanner
+        assert new_result.results == old_result.results
+        assert list(new_result.matched_rules.all()) == list(
+            old_result.matched_rules.all()
+        )
 
     @mock.patch('olympia.versions.tasks.statsd.incr')
     @mock.patch('olympia.lib.crypto.tasks.sign_file')

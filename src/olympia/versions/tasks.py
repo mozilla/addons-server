@@ -345,10 +345,8 @@ def duplicate_addon_version_for_rollback(
         )
 
         # Duplicate any scanner [query] results
-        ScannerResult.objects.bulk_create(
+        for sr in ScannerResult.objects.filter(version=old_version):
             sr.duplicate(version=version)
-            for sr in ScannerResult.objects.filter(version=old_version)
-        )
 
         # Now log and notify the developers of that add-on.
         # Any exception should have caused an early return before reaching this point.

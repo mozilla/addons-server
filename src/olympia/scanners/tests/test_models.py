@@ -354,23 +354,25 @@ class TestScannerResultMixin:
             version=result_version,
             results={'matchedRules': ['ringo']},
         )
+        assert result.matched_rules.exists()
+
         dupe_version = version_factory(addon=addon)
         dupe = result.duplicate(version=dupe_version)
-        assert dupe.pk is None
+        assert dupe.pk is not None
         assert dupe.results == result.results
         assert dupe.scanner == result.scanner
         assert dupe.version == dupe_version
-        dupe.save()
-        assert dupe.pk is not None
+        assert list(dupe.matched_rules.all()) == list(result.matched_rules.all())
 
         dupe_again_version = version_factory(addon=addon)
         dupe_again = dupe.duplicate(version_id=dupe_again_version.id)
-        assert dupe_again.pk is None
+        assert dupe_again.pk is not None
         assert dupe_again.results == result.results
         assert dupe_again.scanner == result.scanner
         assert dupe_again.version == dupe_again_version
-        dupe_again.save()
-        assert dupe_again.pk is not None
+        assert list(dupe_again.matched_rules.all()) == list(
+            dupe_again.matched_rules.all()
+        )
 
 
 class TestScannerResult(TestScannerResultMixin, TestCase):
