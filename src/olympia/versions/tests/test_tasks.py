@@ -30,6 +30,7 @@ from olympia.constants.scanners import (
     WEBHOOK_ON_VERSION_CREATED,
 )
 from olympia.reviewers.models import NeedsHumanReview
+from olympia.scanners.models import WEBHOOK, ScannerResult, ScannerRule
 from olympia.scanners.serializers import (
     WebhookAddonSerializer,
     WebhookVersionSerializer,
@@ -721,10 +722,25 @@ class TestDuplicateAddonVersionForRollback(TestCase):
             f'by re-publishing as "{new.version}" successful' in mail.outbox[0].body
         )
 
+    def check_scanner_results(self, old, new):
+        assert new.scannerresults.count() == 1
+        new_result = new.scannerresults.get()
+        old_result = old.scannerresults.get()
+        assert new_result.scanner == old_result.scanner
+        assert new_result.results == old_result.results
+        assert list(new_result.matched_rules.all()) == list(
+            old_result.matched_rules.all()
+        )
+
     @mock.patch('olympia.versions.tasks.statsd.incr')
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def _test_rollback_success(self, sign_file_mock, statsd_mock):
         new_version_number = '123'
+        ScannerResult.objects.create(
+            scanner=ScannerRule.objects.create(name='ringo', scanner=WEBHOOK).scanner,
+            version=self.rollback_version,
+            results={'matchedRules': ['ringo']},
+        )
 
         duplicate_addon_version_for_rollback.delay(
             version_pk=self.rollback_version.pk,
@@ -749,6 +765,7 @@ class TestDuplicateAddonVersionForRollback(TestCase):
         self.check_version_fields(new_version)
         self.check_new_xpi(new_version)
         self.check_email(new_version)
+        self.check_scanner_results(self.rollback_version, new_version)
         return new_version
 
     def test_listed(self):

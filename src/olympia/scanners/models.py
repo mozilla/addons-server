@@ -155,6 +155,25 @@ class AbstractScannerResult(ModelBase):
                             res[ruleId].append({'filename': filename, 'data': data})
         return res
 
+    def duplicate(self, *, version=None, version_id=None):
+        """Creates a (saved) copy of this instance, for a different version."""
+        overrides = {}
+        if version_id:
+            overrides['version_id'] = version_id
+        elif version:
+            overrides['version'] = version
+            overrides['version_id'] = version.id
+        obj = self.__class__(
+            **{
+                field.attname: getattr(self, field.attname)
+                for field in self._meta.concrete_fields
+                if not field.primary_key and field.attname not in overrides
+            },
+            **overrides,
+        )
+        obj.save()  # to recreate the matched_rules m2m
+        return obj
+
 
 def rule_schema(instance=None):
     if instance:

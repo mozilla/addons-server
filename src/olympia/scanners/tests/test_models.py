@@ -10,7 +10,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -345,6 +345,34 @@ class TestScannerResultMixin:
                 },
             ],
         }
+
+    def test_duplicate(self):
+        addon = addon_factory()
+        result_version = version_factory(addon=addon)
+        result = ScannerResult.objects.create(
+            scanner=ScannerRule.objects.create(name='ringo', scanner=WEBHOOK).scanner,
+            version=result_version,
+            results={'matchedRules': ['ringo']},
+        )
+        assert result.matched_rules.exists()
+
+        dupe_version = version_factory(addon=addon)
+        dupe = result.duplicate(version=dupe_version)
+        assert dupe.pk is not None
+        assert dupe.results == result.results
+        assert dupe.scanner == result.scanner
+        assert dupe.version == dupe_version
+        assert list(dupe.matched_rules.all()) == list(result.matched_rules.all())
+
+        dupe_again_version = version_factory(addon=addon)
+        dupe_again = dupe.duplicate(version_id=dupe_again_version.id)
+        assert dupe_again.pk is not None
+        assert dupe_again.results == result.results
+        assert dupe_again.scanner == result.scanner
+        assert dupe_again.version == dupe_again_version
+        assert list(dupe_again.matched_rules.all()) == list(
+            dupe_again.matched_rules.all()
+        )
 
 
 class TestScannerResult(TestScannerResultMixin, TestCase):
