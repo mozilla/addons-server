@@ -6090,7 +6090,7 @@ msgstr "See all extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube extensions"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
