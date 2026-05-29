@@ -1057,3 +1057,22 @@ def test_translated_field_emoji_support():
     # Check that de finds the right translation.
     fresh_german = get_model()
     assert fresh_german.name == '😀'
+
+
+@pytest.mark.django_db
+def test_no_db_constraints():
+    models_related_to_translations = {
+        f.related_model
+        for f in Translation._meta.get_fields(include_hidden=True)
+        if f.is_relation
+    }
+    assert models_related_to_translations
+    connection = connections['default']
+    with connection.cursor() as cursor:
+        for model in models_related_to_translations:
+            constraints = connection.introspection.get_constraints(
+                cursor, model._meta.db_table
+            )
+            for name, info in constraints.items():
+                assert not name.endswith(f'{Translation._meta.db_table}_id'), name
+                assert info['foreign_key'] != (Translation._meta.db_table, 'id'), name

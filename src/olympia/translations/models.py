@@ -102,12 +102,7 @@ class Translation(ModelBase):
             assert self._get_pk_val() is not None
             collector = Collector(using=using)
             collector.collect([self], collect_related=False)
-            # In addition, because we have FK pointing to a non-unique column,
-            # we need to force MySQL to ignore constraints because it's dumb
-            # and would otherwise complain even if there are remaining rows
-            # that matches the FK.
-            with connections[using].constraint_checks_disabled():
-                collector.delete()
+            collector.delete()
         else:
             # If no other Translations with that id exist, then we should let
             # django behave normally. It should find the related model and set
