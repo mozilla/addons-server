@@ -6115,7 +6115,7 @@ msgstr "Alle Erweiterungen anzeigen"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube-Erweiterungen"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
