@@ -2072,12 +2072,12 @@ msgstr "Révoquer"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Renvoyer l’e-mail de confirmation"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Cliquez sur le bouton ci-dessous pour générer une clé d’API pour l’utilisateur <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2393,7 +2393,7 @@ msgstr "Vous devez fournir plus de détails pour continuer."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Un lien de confirmation vous sera envoyé sous peu à votre adresse e-mail."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3785,11 +3785,11 @@ msgstr "Secret JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Après avoir suivi le lien de confirmation envoyé par e-mail, vous trouverez vos clés d’API sur cette page."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Vous n’avez toujours pas reçu l’e-mail ?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4529,7 +4529,7 @@ msgstr "par "
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Commentaires supplémentaires :"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
@@ -6155,7 +6155,7 @@ msgstr "Voir toutes les extensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Extensions YouTube"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
