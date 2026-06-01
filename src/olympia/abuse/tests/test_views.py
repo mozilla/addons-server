@@ -1696,8 +1696,33 @@ class TestCinderWebhook(TestCase):
         }
 
     def test_proactive_decision_from_cinder(self):
+        data = self.get_data(filename='proactive_decision_from_cinder.json')
+        addon = addon_factory(
+            id=10001,
+            created=datetime.fromisoformat(
+                data['payload']['entity']['attributes']['created']
+            ),
+        )
+        self._setup_reports()
+        req = self.get_request(data=data)
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
+            response = cinder_webhook(req)
+            create_mock.assert_called()
+            create_mock.assert_called_with(
+                None,
+                target=addon,
+                decision_cinder_id=data['payload']['source']['decision']['id'],
+                decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
+                decision_notes='some notes',
+                policy_ids=[data['payload']['policies'][0]['id']],
+                job_queue=None,
+            )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_unsupported_decision_from_cinder(self):
         data = self.get_data(filename='proactive_decision_from_amo.json')
-        data['payload']['source']['decision']['type'] = 'queue_review'
+        data['payload']['source']['decision']['type'] = 'something'
         self._setup_reports()
         req = self.get_request(data=data)
         with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
@@ -1708,7 +1733,7 @@ class TestCinderWebhook(TestCase):
             'amo': {
                 'received': True,
                 'handled': False,
-                'not_handled_reason': 'Unsupported Manual decision',
+                'not_handled_reason': 'Unsupported decision',
             }
         }
 

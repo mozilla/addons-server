@@ -1137,6 +1137,8 @@ class ContentDecision(ModelBase):
             return DECISION_SOURCES.REVIEWER
         elif self.from_job_queue == CinderAddonHandledByLegal.queue:
             return DECISION_SOURCES.LEGAL
+        elif self.from_job_queue is None:
+            return DECISION_SOURCES.MANUAL
         else:
             return DECISION_SOURCES.TASKUS
 

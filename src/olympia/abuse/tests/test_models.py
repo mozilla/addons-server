@@ -2462,7 +2462,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
-        assert decision.source == DECISION_SOURCES.TASKUS
+        assert decision.source == DECISION_SOURCES.MANUAL
 
         decision.update(reviewer_user=self.task_user)
         assert decision.source == DECISION_SOURCES.AUTOMATION

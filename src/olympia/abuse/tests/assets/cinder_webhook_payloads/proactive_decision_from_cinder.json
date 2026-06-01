@@ -1,0 +1,71 @@
+{
+  "event": "decision.created",
+  "payload": {
+    "appeals_resolved": [],
+    "enforcement_actions": [
+      "amo-approve"
+    ],
+    "enforcement_actions_removed": [],
+    "entity": {
+      "attributes": {
+        "average_daily_users": 0,
+        "created": "2025-09-09T08:12:58.308105",
+        "guid": "{58d58fa6-2667-4695-a2d9-b05365899ba6}",
+        "id": "10001",
+        "last_updated": "2025-09-09T08:20:24.728686",
+        "name": "Livemarks_rollback2",
+        "promoted": "",
+        "slug": "livemarks_rollback2",
+        "summary": "Restores RSS live bookmark support to Firefox 64 and above."
+      },
+      "entity_schema": "amo_addon"
+    },
+    "notes": "some notes",
+    "point_updates": [],
+    "policies": [
+      {
+        "enforcement_actions": [
+          "amo-approve"
+        ],
+        "id": "bfc16995-6a3f-4fb7-abd5-58c4ecab44e6",
+        "is_illegal": false,
+        "is_non_violating": true,
+        "name": "Approve"
+      }
+    ],
+    "policies_removed": [],
+    "source": {
+      "decision": {
+        "id": "a51b39a6-e628-4cf6-b275-2a78bae497ee",
+        "metadata": {},
+        "notes": "some notes",
+        "type": "manual",
+        "user": {
+          "email": "awilliamson@test.com",
+          "groups": [
+            {
+              "name": "Admin"
+            },
+            {
+              "name": "Everyone"
+            }
+          ],
+          "name": "Andrew Williamson"
+        }
+      },
+      "user": {
+        "email": "awilliamson@test.com",
+        "groups": [
+          {
+            "name": "Admin"
+          },
+          {
+            "name": "Everyone"
+          }
+        ],
+        "name": "Andrew Williamson"
+      }
+    },
+    "timestamp": "2026-05-28T12:01:13.403410+00:00"
+  }
+}
