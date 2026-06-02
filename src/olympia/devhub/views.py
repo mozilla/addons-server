@@ -2104,8 +2104,12 @@ def api_key(request):
     if request.method == 'POST' and form.is_valid():
         result = form.save()
 
-        if result.get('confirmation_created'):
+        if result.get('confirmation_created') or result.get('confirmation_rerequested'):
             form.confirmation.send_confirmation_email()
+            msg = gettext(
+                'A confirmation link will be sent to your email address shortly.'
+            )
+            messages.success(request, msg)
             return redirect(reverse('devhub.api_key'))
 
         if result.get('credentials_revoked'):
@@ -2138,7 +2142,11 @@ def api_key(request):
             send_key_change_email(request.user.email, new_credentials.key)
 
             # Don't redirect in this case: the credentials are only displayed
-            # this one time.
+            # this one time. Reset available actions though, it depends on
+            # credentials so it's out of date. Also remove confirmation token
+            # field if present, it's no longer relevant.
+            form.set_available_actions()
+            form.fields.pop('confirmation_token', None)
 
     context_data = {
         'title': gettext('Manage API Keys'),

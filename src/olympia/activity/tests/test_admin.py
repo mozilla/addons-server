@@ -12,6 +12,12 @@ class TestActivityLogAdmin(TestCase):
     def setUp(self):
         self.list_url = reverse('admin:activity_activitylog_changelist')
 
+    def test_no_permission(self):
+        user = user_factory(email='someone@mozilla.com')
+        self.client.force_login(user)
+        response = self.client.get(self.list_url)
+        assert response.status_code == 403
+
     def test_list(self):
         author = user_factory()
         addon1 = addon_factory()
@@ -28,7 +34,7 @@ class TestActivityLogAdmin(TestCase):
         )
 
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'ActivityLog:View')
         self.client.force_login(user)
 
         with self.assertNumQueries(11):
@@ -46,9 +52,32 @@ class TestActivityLogAdmin(TestCase):
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 4  # 3 add versions, 1 log in.
 
+    def test_list_filter_action(self):
+        author = user_factory()
+        addon1 = addon_factory()
+        activity.log_create(amo.LOG.CREATE_ADDON, addon1, user=author)
+        activity.log_create(
+            amo.LOG.ADD_VERSION, addon1.current_version, addon1, user=author
+        )
+        activity.log_create(amo.LOG.USER_DISABLE, addon1, user=author)
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, 'ActivityLog:View')
+        self.client.force_login(user)
+        response = self.client.get(
+            self.list_url, {'action': [amo.LOG.CREATE_ADDON.id, amo.LOG.ADD_VERSION.id]}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 2
+
+        response = self.client.get(self.list_url, {'action': amo.LOG.USER_DISABLE.id})
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 1
+
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'ActivityLog:View')
         self.client.force_login(user)
         user2 = user_factory()
         user3 = user_factory()
@@ -86,13 +115,13 @@ class TestActivityLogAdmin(TestCase):
                 doc('.field-user_link')[1].text_content(),
             )
         ) == {str(user2), str(user3)}
-        # Make sure login ip is now displayed, and has the right value.
+        # Make sure ip address is displayed, and has the right value.
         # (twice since 2 rows are matching)
-        assert doc('.field-known_ip_adresses').text() == '127.0.0.2 127.0.0.2'
+        assert doc('.field-ip_address').text() == '127.0.0.2 127.0.0.2'
 
     def test_search_for_ja4(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'ActivityLog:View')
         self.client.force_login(user)
         user2 = user_factory()
         user3 = user_factory()
@@ -133,7 +162,7 @@ class TestActivityLogAdmin(TestCase):
         activity.log_create(
             amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
         )
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, 'ActivityLog:View')
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 200

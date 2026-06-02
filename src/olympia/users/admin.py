@@ -6,7 +6,7 @@ from django.contrib.admin.utils import unquote
 from django.db import models
 from django.db.models import Count, Q
 from django.db.utils import IntegrityError
-from django.forms import TextInput
+from django.forms import HiddenInput, TextInput
 from django.http import (
     Http404,
     HttpResponseForbidden,
@@ -25,7 +25,12 @@ from olympia.access import acl
 from olympia.activity.models import ActivityLog, RequestFingerprintLog
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.admin import AMOModelAdmin
-from olympia.amo.utils import backup_storage_enabled, create_signed_url_for_file_backup
+from olympia.amo.templatetags.jinja_helpers import vite_asset
+from olympia.amo.utils import (
+    backup_storage_enabled,
+    chunked,
+    create_signed_url_for_file_backup,
+)
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.bandwagon.models import Collection
 from olympia.constants.activity import LOG_STORE_IPS
@@ -45,6 +50,7 @@ from .models import (
     UserProfile,
     UserRestrictionHistory,
 )
+from .tasks import bulk_ban
 
 
 class GroupUserInline(admin.TabularInline):
@@ -107,6 +113,9 @@ class BannedUserContentInline(admin.TabularInline):
 
 @admin.register(UserProfile)
 class UserAdmin(AMOModelAdmin):
+    class Media:
+        css = {'all': (vite_asset('css/admin-user.less'),)}
+
     list_filter = ('banned',)
     list_display = (
         '__str__',
@@ -141,7 +150,7 @@ class UserAdmin(AMOModelAdmin):
         'history_for_this_user',
         'id',
         'has_full_profile',
-        'known_ip_adresses',
+        'known_ip_addresses',
         'known_ja4s',
         'last_known_activity_time',
         'last_login',
@@ -204,7 +213,7 @@ class UserAdmin(AMOModelAdmin):
                     'last_known_activity_time',
                     'activity',
                     'user_last_login_ip',
-                    'known_ip_adresses',
+                    'known_ip_addresses',
                     'known_ja4s',
                     'banned',
                     'notes',
@@ -242,6 +251,11 @@ class UserAdmin(AMOModelAdmin):
 
         urlpatterns = super().get_urls()
         custom_urlpatterns = [
+            re_path(
+                r'^bulk_ban/$',
+                wrap(self.bulk_ban_view),
+                name='users_userprofile_bulk_ban',
+            ),
             re_path(
                 r'^(?P<object_id>.+)/ban/$',
                 wrap(self.ban_view),
@@ -283,6 +297,19 @@ class UserAdmin(AMOModelAdmin):
             actions.pop('unban_action')
 
         return actions
+
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['has_users_edit_permission'] = acl.action_allowed_for(
+            request.user, amo.permissions.USERS_EDIT
+        )
+        extra_context['has_users_ban_permission'] = acl.action_allowed_for(
+            request.user, amo.permissions.USERS_BAN
+        )
+        return super().changelist_view(
+            request,
+            extra_context=extra_context,
+        )
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
         extra_context = extra_context or {}
@@ -425,10 +452,47 @@ class UserAdmin(AMOModelAdmin):
             reverse('admin:users_userprofile_change', args=(obj.pk,))
         )
 
+    def bulk_ban_view(self, request, extra_context=None):
+        if not acl.action_allowed_for(request.user, amo.permissions.USERS_BAN):
+            return HttpResponseForbidden()
+
+        user_ids_to_ban = None
+
+        if request.method == 'POST':
+            form = forms.BulkBanForm(request.POST)
+            if form.is_valid():
+                user_ids_to_ban = form.cleaned_data['user_ids']
+                form.fields['user_ids'].widget = HiddenInput()
+                if request.POST.get('post'):
+                    self._trigger_bulk_ban_task(request, user_ids_to_ban)
+                    return HttpResponseRedirect(
+                        reverse('admin:users_userprofile_changelist')
+                    )
+        else:
+            form = forms.BulkBanForm()
+        context = {
+            'title': 'Bulk ban users',
+            'form': form,
+            'user_ids_to_ban': user_ids_to_ban,
+            **self.admin_site.each_context(request),
+            'opts': self.opts,
+            'media': self.media + form.media,
+            **(extra_context or {}),
+        }
+        return TemplateResponse(
+            request, 'admin/users/userprofile/bulk_ban.html', context
+        )
+
+    def _trigger_bulk_ban_task(self, request, user_ids):
+        for chunk in chunked(user_ids, 50):
+            bulk_ban.delay(list(chunk), user_responsible_id=request.user.pk)
+        self.message_user(
+            request,
+            f'Bulk-ban for {len(user_ids)} user id(s) will be processed shortly.',
+        )
+
     def ban_action(self, request, qs):
-        qs.ban_and_disable_related_content(hard_block_addons=True)
-        kw = {'users': ', '.join(str(user) for user in qs)}
-        self.message_user(request, 'The users "%(users)s" have been banned.' % kw)
+        self._trigger_bulk_ban_task(request, qs.values_list('id', flat=True))
 
     ban_action.short_description = 'Ban selected users'
 

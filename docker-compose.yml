@@ -96,7 +96,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.29.8@sha256:6e23479198b998e5e25921dff8455837c7636a67111a04a635cf1bb363d199dc
+    image: nginx:1.31.1@sha256:5aca99593157f4ae539a5dec1092a0ad8762f8e2eb1789085a13a0f5622369f6
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -114,7 +114,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.4.8@sha256:2952e3be7807f06fc18de50b3ea1a632d5c70d63482ff7d7376fe3aa8999babf
+    image: mysql:8.4.9@sha256:c36050afdca850f23cef85703f84c7531a5ae155a11b5ee1c60acb09937c4084
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -132,8 +132,6 @@ services:
       - --skip-name-resolve
       # Disable performance schema for faster startup
       - --performance-schema=OFF
-      # Allow nonstandard FKs (needed for translations)
-      - --skip-restrict-fk-on-non-standard-key
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--silent"]
       start_interval: 1s
@@ -142,7 +140,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: elasticsearch:8.19.13@sha256:8b4e9c93353905721e37663f845756d6d7e57632357e865e66f0b70d6c9b3211
+    image: elasticsearch:8.19.15@sha256:8ff844933190136cec601777d633453f4008cc126a652257d5f63cd8e92207ef
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -156,7 +154,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2.21@sha256:5443f35e8fc8fc8496964b8e8ea39abaf99434d7e1741e514f7f56906b1c9ff0
+    image: redis:6.2.22@sha256:a3c4a4c39535d402567474dbc40afdcb126db6b248be6e26f29eec43c5974f9f
     volumes:
       - data_redis:/data
 
@@ -173,14 +171,14 @@ services:
       - data_rabbitmq:/var/lib/rabbitmq
 
   autograph:
-    image: mozilla/autograph:7.8.0@sha256:6bc5ebb21cc3b100d10e3dc131146b3193454ea35f0f1cc1cd870920f3653994
+    image: mozilla/autograph:8.0.0@sha256:2c6f008960e234f19d498547ce0a482501193902fcab7b66b6250e9bf0197490
     command: /go/bin/autograph -c /data/autograph/autograph_localdev_config.yaml
     volumes:
       - data_autograph:/data/autograph
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2026.05.14-1@sha256:bdd9f5c91e8d71582e7a9a63d84412389bb813facc9a67cbb4643bd790392cb4
+    image: mozilla/addons-frontend:2026.05.28@sha256:990e19d9c2898bc7f701799fbe1655e8ad85bdbe8d8bcea63c7394c2d942d23e
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the

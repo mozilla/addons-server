@@ -21,7 +21,6 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia.abuse.tasks import appeal_to_cinder
-from olympia.abuse.utils import filter_enforcement_actions, to_enforcement_actions
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import AccountViewSet
 from olympia.addons.views import AddonViewSet
@@ -41,7 +40,12 @@ from .serializers import (
     RatingAbuseReportSerializer,
     UserAbuseReportSerializer,
 )
-from .utils import get_instance_from_entity, is_same_time
+from .utils import (
+    filter_enforcement_actions,
+    get_instance_from_entity,
+    is_same_time,
+    split_enforcement_actions,
+)
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -193,7 +197,8 @@ class CinderWebhookMissingIdError(CinderWebhookError):
 
 
 def get_job_from_payload(payload):
-    if job_id := payload.get('source', {}).get('job', {}).get('id'):
+    source = payload.get('source', {})
+    if job_id := source.get('job', {}).get('id'):
         try:
             return CinderJob.objects.get(job_id=job_id)
         except CinderJob.DoesNotExist:
@@ -208,11 +213,12 @@ def get_job_from_payload(payload):
             raise CinderWebhookMissingIdError('No matching decision id found') from exc
         return prev_decision.cinder_job
 
+    if source.get('decision', {}).get('type') == 'manual':
+        log.debug('Cinder webhook decision is a manual decision, no job to link to.')
+        return None
     else:
-        # We may support this one day, but we currently don't support manual decisions
-        # that originated in Cinder
-        log.debug('Cinder webhook decision for cinder proactive decision skipped.')
-        raise CinderWebhookError('Unsupported Manual decision')
+        log.debug('Cinder webhook decision for unsupported scenario skipped.')
+        raise CinderWebhookError('Unsupported decision')
 
 
 def get_target_from_payload_entity(entity):
@@ -256,16 +262,16 @@ def process_webhook_payload_decision(payload):
         else get_target_from_payload_entity(payload.get('entity', {}))
     )
 
-    cinder_actions, followup_actions = filter_enforcement_actions(
-        to_enforcement_actions(payload.get('enforcement_actions')) or [],
-        target,
+    enforcement_actions = filter_enforcement_actions(
+        split_enforcement_actions(payload.get('enforcement_actions') or []),
+        target.__class__,
     )
     policy_ids = [policy['id'] for policy in payload.get('policies', [])]
 
-    if len(cinder_actions) != 1:
+    if len(enforcement_actions.primary) != 1:
         reason = (
             'more than one supported enforcement_actions'
-            if cinder_actions
+            if enforcement_actions.primary
             else 'no supported enforcement_actions'
         )
         log.exception(
@@ -279,7 +285,10 @@ def process_webhook_payload_decision(payload):
         cinder_job,
         target=target,
         decision_cinder_id=source.get('decision', {}).get('id'),
-        decision_actions=[cinder_actions[0], *followup_actions],
+        decision_actions=[
+            enforcement_actions.primary[0],
+            *enforcement_actions.followup,
+        ],
         decision_notes=payload.get('notes') or '',
         policy_ids=policy_ids,
         job_queue=queue_slug,
@@ -356,7 +365,6 @@ def cinder_webhook(request):
     # Normally setting the user would be done in the authentication class but
     # we don't have one here.
     set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
-
     try:
         if (
             not (payload := request.data.get('payload', {}))

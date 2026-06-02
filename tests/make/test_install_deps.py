@@ -115,6 +115,7 @@ class TestInstallDeps(unittest.TestCase):
                     '--progress-bar=off',
                     '--no-deps',
                     '--exists-action=w',
+                    '--no-compile',
                     '-r',
                     'requirements/pip.txt',
                     '-r',
@@ -140,6 +141,48 @@ class TestInstallDeps(unittest.TestCase):
                     'prod',
                     '--include',
                     'dev',
+                ],
+                check=True,
+            ),
+        ]
+
+    def test_correct_args_passed_to_subprocesses_prod(self):
+        """
+        Test that the correct arguments are passed to the subprocesses
+        """
+        main(['pip', 'prod'])
+
+        assert self.mocks['subprocess.run'].call_args_list == [
+            mock.call(
+                [
+                    'python3',
+                    '-m',
+                    'pip',
+                    'install',
+                    '--progress-bar=off',
+                    '--no-deps',
+                    '--exists-action=w',
+                    '-r',
+                    'requirements/pip.txt',
+                    '-r',
+                    'requirements/prod.txt',
+                ],
+                check=True,
+            ),
+            # NPM excludes the pip target
+            mock.call(
+                [
+                    'npm',
+                    'install',
+                    '--no-save',
+                    '--no-audit',
+                    '--no-fund',
+                    '--cache',
+                    '/data/olympia/deps/cache/npm',
+                    '--loglevel',
+                    'verbose',
+                    '--include',
+                    'prod',
                 ],
                 check=True,
             ),

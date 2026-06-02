@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 10:45+0000\n"
+"POT-Creation-Date: 2026-06-01 09:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -429,26 +429,26 @@ msgstr ""
 msgid "Copied"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:322
+#: static/js/zamboni/devhub.js:328
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:338
+#: static/js/zamboni/devhub.js:344
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:462
+#: static/js/zamboni/devhub.js:468
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:618
+#: static/js/zamboni/devhub.js:624
 #, python-brace-format
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1227
+#: static/js/zamboni/devhub.js:1233
 msgid "Image changes being processed"
 msgstr ""
 
@@ -476,41 +476,41 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:259
+#: static/js/zamboni/reviewers.js:279
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:267
+#: static/js/zamboni/reviewers.js:287
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:584
+#: static/js/zamboni/reviewers.js:604
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:597 static/js/zamboni/reviewers.js:623
+#: static/js/zamboni/reviewers.js:617 static/js/zamboni/reviewers.js:643
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:602
+#: static/js/zamboni/reviewers.js:622
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:609
+#: static/js/zamboni/reviewers.js:629
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:616
+#: static/js/zamboni/reviewers.js:636
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:628
+#: static/js/zamboni/reviewers.js:648
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:635
+#: static/js/zamboni/reviewers.js:655
 msgid "Review notes found"
 msgstr ""
 

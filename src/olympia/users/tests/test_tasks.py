@@ -16,6 +16,8 @@ from celery.exceptions import Retry
 from PIL import Image
 from requests.exceptions import Timeout
 
+from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.tests.test_helpers import get_image_path
@@ -28,6 +30,7 @@ from olympia.users.models import (
 )
 from olympia.users.tasks import (
     bulk_add_disposable_email_domains,
+    bulk_ban,
     delete_photo,
     resize_photo,
     send_suppressed_email_confirmation,
@@ -467,3 +470,24 @@ class TestBulkAddDisposableEmailDomains(TestCase):
                 bulk_add_disposable_email_domains.apply(
                     args=[self.entries, self.batch_size]
                 ).get()
+
+
+@pytest.mark.django_db
+def test_bulk_ban():
+    core.set_user(None)
+    target1 = user_factory()
+    target2 = user_factory()
+    user_responsible = user_factory()
+    bulk_ban.delay([target1.pk, target2.pk], user_responsible_id=user_responsible.pk)
+    assert target1.reload().banned
+    assert target2.reload().banned
+    assert not user_responsible.reload().banned
+
+    activities = ActivityLog.objects.filter(
+        action=amo.LOG.ADMIN_USER_BANNED.id
+    ).order_by('pk')
+    assert len(activities) == 2
+    assert activities[0].user == user_responsible
+    assert activities[0].arguments == [target1]
+    assert activities[1].user == user_responsible
+    assert activities[1].arguments == [target2]

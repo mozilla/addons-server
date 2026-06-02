@@ -47,6 +47,7 @@ from .cinder import (
     CinderUnauthenticatedReporter,
     CinderUser,
 )
+from .utils import split_enforcement_actions
 
 
 log = olympia.core.logger.getLogger('z.abuse')
@@ -935,7 +936,7 @@ class CinderPolicy(ModelBase):
         related_name='children',
     )
     expose_in_reviewer_tools = models.BooleanField(default=False)
-    enforcement_actions = models.JSONField(default=list, null=True)
+    enforcement_actions = models.JSONField(default=list)
     status_in_cinder = models.SmallIntegerField(null=True, choices=POLICY_STATUSES)
 
     objects = CinderPolicyQuerySet.as_manager()
@@ -961,27 +962,16 @@ class CinderPolicy(ModelBase):
         )
         return f'{self.full_name()}: {text}'
 
-    @classmethod
-    def get_full_texts(self, policies, *, values=None):
-        values = values or {}
-        return [policy.full_text(values=values.get(policy.uuid)) for policy in policies]
+    @cached_property
+    def split_enforcement_actions(self):
+        """Returns enums for this policy's enforcement action slugs, split into primary
+        and follow-up actions. Cached."""
+        return split_enforcement_actions(self.enforcement_actions or [])
 
     @classmethod
-    def get_decision_actions_from_policies(cls, policies, *, for_entity=None):
-        actions = {
-            action
-            for policy in policies
-            for api_value in policy.enforcement_actions
-            if policy.enforcement_actions
-            and api_value in DECISION_ACTIONS.api_values
-            and (action := DECISION_ACTIONS.from_api_value(api_value))
-            and (
-                not for_entity
-                or for_entity
-                in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
-            )
-        }
-        return list(actions)
+    def get_full_texts(cls, policies, *, values=None):
+        values = values or {}
+        return [policy.full_text(values=values.get(policy.uuid)) for policy in policies]
 
     def get_text_formatter_pairs(self):
         return [(text, key) for text, key, _, _ in Formatter().parse(self.text)]
@@ -1147,6 +1137,8 @@ class ContentDecision(ModelBase):
             return DECISION_SOURCES.REVIEWER
         elif self.from_job_queue == CinderAddonHandledByLegal.queue:
             return DECISION_SOURCES.LEGAL
+        elif self.from_job_queue is None:
+            return DECISION_SOURCES.MANUAL
         else:
             return DECISION_SOURCES.TASKUS
 

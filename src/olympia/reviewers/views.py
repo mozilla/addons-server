@@ -582,33 +582,11 @@ def review(request, addon, channel=None):
         .first()
     )
     # The actions we shouldn't show a minimal form for.
+    # FIXME: the full/minimal distinction is obsolete - we don't use the extra fields
     actions_full = []
-    # The actions we should show the comments form for (contrary to minimal
-    # form above, it defaults to True, because most actions do need to have
-    # the comments form).
-    actions_comments = []
-    # The actions for which we should display the delayed rejection fields.
-    actions_delayable = []
-    # The actions for which we should display the resolve abuse reports checkbox
-    actions_resolves_cinder_jobs = []
-    # The actions for which we should display the cinder policy select field.
-    actions_policies = []
-    # The actions for which to allow attachments.
-    actions_attachments = []
-
     for key, action in actions:
         if not (is_static_theme or action.get('minimal')):
             actions_full.append(key)
-        if action.get('comments', True):
-            actions_comments.append(key)
-        if action.get('delayable', False):
-            actions_delayable.append(key)
-        if action.get('enforcement_actions'):
-            actions_policies.append(key)
-        if action.get('resolves_cinder_jobs', False):
-            actions_resolves_cinder_jobs.append(key)
-        if action.get('can_attach', True):
-            actions_attachments.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -716,12 +694,7 @@ def review(request, addon, channel=None):
             and request.user.is_staff
         ),
         actions=actions,
-        actions_attachments=actions_attachments,
-        actions_comments=actions_comments,
-        actions_delayable=actions_delayable,
         actions_full=actions_full,
-        actions_policies=actions_policies,
-        actions_resolves_cinder_jobs=actions_resolves_cinder_jobs,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         approvals_info=approvals_info,

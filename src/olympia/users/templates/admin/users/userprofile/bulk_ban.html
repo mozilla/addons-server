@@ -1,0 +1,36 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static %}
+
+{% block extrahead %}
+  {{ block.super }}
+  {{ media }}
+  <script src="{% static 'admin/js/cancel.js' %}" async></script>
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} bulk-ban-confirmation{% endblock %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">Home</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; <a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>
+&rsaquo; Bulk ban
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  {% if user_ids_to_ban %}
+    <p>You're about to bulk-ban {{ user_ids_to_ban|length }} user(s). Are you sure ?</p>
+    {{ form.as_p }}
+    <input type="hidden" name="post" value="yes">
+    <input type="submit" value="Yes, I'm sure">
+    <a href="#" class="button cancel-link">No, take me back</a>
+  {% else %}
+    <p>Paste user ids to ban below, separated by newlines (only lines containing digits will be considered). A confirmation will be displayed on the next page.</p>
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+  {% endif %}
+</form>
+{% endblock content %}

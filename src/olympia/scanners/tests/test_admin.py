@@ -906,6 +906,7 @@ class TestScannerRuleAdmin(TestCase):
         request.user = self.user
         fields = self.admin.get_readonly_fields(request=request)
         assert 'scanner' not in fields
+        assert 'name' not in fields
 
     def test_get_readonly_fields_with_obj(self):
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
@@ -913,6 +914,7 @@ class TestScannerRuleAdmin(TestCase):
         request.user = self.user
         fields = self.admin.get_readonly_fields(request=request, obj=rule)
         assert 'scanner' in fields
+        assert 'name' in fields
 
     def test_create_form_filters_list_of_scanners(self):
         url = reverse('admin:scanners_scannerrule_add')

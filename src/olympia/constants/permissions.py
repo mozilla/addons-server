@@ -35,6 +35,9 @@ REVIEWER_TOOLS_UNLISTED_VIEW = AclPermission('ReviewerTools', 'ViewUnlisted')
 # These users gain access to the accounts API to super-create users.
 ACCOUNTS_SUPER_CREATE = AclPermission('Accounts', 'SuperCreate')
 
+# Can use activity log admin.
+ACTIVITYLOG_VIEW = AclPermission('ActivityLog', 'View')
+
 # Can review a listed add-on.
 ADDONS_REVIEW = AclPermission('Addons', 'Review')
 # Can review an unlisted add-on.
@@ -185,6 +188,7 @@ DJANGO_PERMISSIONS_MAPPING.update(
     {
         'abuse.change_abusereport': ABUSEREPORTS_EDIT,
         'abuse.view_cinderpolicy': CINDER_POLICIES_VIEW,
+        'activity.view_activitylog': ACTIVITYLOG_VIEW,
         'addons.view_addon': ADMIN_ADDONS_VIEW,
         'addons.change_addon': ADDONS_EDIT,
         **_addchangedelete('addons', 'addonuser', ADMIN_ADVANCED),

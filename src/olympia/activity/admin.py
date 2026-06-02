@@ -2,12 +2,26 @@ from django.contrib import admin
 from django.utils.html import format_html, format_html_join
 
 from olympia import amo
-from olympia.amo.admin import AMOModelAdmin
+from olympia.amo.admin import AMOModelAdmin, MultipleRelatedListFilter
 from olympia.constants.activity import LOG_STORE_IPS
 from olympia.reviewers.models import ReviewActionReason
 from olympia.zadmin.admin import related_single_content_link
 
 from .models import ActivityLog, ReviewActionReasonLog
+
+
+class ActionFilter(MultipleRelatedListFilter):
+    title = 'By action'
+    parameter_name = 'action'
+
+    def lookups(self, request, model_admin):
+        return ActivityLog.TYPES
+
+    def queryset(self, request, queryset):
+        value = self.value()
+        if value is None:
+            return queryset
+        return queryset.filter(action__in=value)
 
 
 class ActivityLogAdmin(AMOModelAdmin):
@@ -16,8 +30,12 @@ class ActivityLogAdmin(AMOModelAdmin):
         'user_link',
         'pretty_arguments',
         'kept_forever',
-        'known_ip_adresses',
+        'ip_address',
         'ja4',
+    )
+    list_filter = (
+        'created',
+        ActionFilter,
     )
     raw_id_fields = ('user',)
     readonly_fields = (
@@ -26,7 +44,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'details',
         'kept_forever',
-        'known_ip_adresses',
+        'ip_address',
         'ja4',
         'signals',
     )
@@ -36,13 +54,13 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'details',
         'kept_forever',
-        'known_ip_adresses',
+        'ip_address',
         'ja4',
         'signals',
     )
     raw_id_fields = ('user',)
     view_on_site = False
-    list_select_related = ('requestfingerprintlog',)
+    list_select_related = ('requestfingerprintlog', 'iplog')
     search_fields = ('=requestfingerprintlog__ja4',)
     search_by_ip_actions = LOG_STORE_IPS
     # We're already dealing with activity logs so the accessor should just be
@@ -50,17 +68,24 @@ class ActivityLogAdmin(AMOModelAdmin):
     search_by_ip_activity_accessor = ''
     search_by_ip_activity_reverse_accessor = 'activity_log'
     minimum_search_terms_to_search_by_id = 1
+    extra_list_display_for_ip_searches = ()
+    ordering = ('-pk',)
 
-    def lookup_allowed(self, lookup, value):
+    def lookup_allowed(self, lookup, value, request):
         if lookup == 'addonlog__addon':
             return True
-        return super().lookup_allowed(lookup, value)
+        return super().lookup_allowed(lookup, value, request)
 
     def has_add_permission(self, request):
         return False
 
     def has_delete_permission(self, request, obj=None):
         return False
+
+    def ip_address(self, obj):
+        if getattr(obj, 'iplog', None):
+            return obj.iplog.ip_address_binary
+        return None
 
     @admin.display(description='Arguments')
     def pretty_arguments(self, obj):

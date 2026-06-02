@@ -83,7 +83,7 @@ def test_sentry_data_scrubbing():
     # Email is redacted though.
     assert event['user']['email'] == '*** redacted ***'
 
-    # ip_adress is removed completely because sentry checks its format.
+    # ip_address is removed completely because sentry checks its format.
     assert 'ip_address' not in event['user']
 
     # Modify old_request_data according to what we should have done and see if

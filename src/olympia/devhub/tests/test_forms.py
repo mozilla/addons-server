@@ -1391,15 +1391,13 @@ class TestAPIKeyForm(TestCase):
         request = self._request(action=forms.APIKeyForm.ACTION_CHOICES.GENERATE)
         form = forms.APIKeyForm(request.POST, request=request)
         assert 'recaptcha' not in form.fields
-
-        confirmation_token = form.fields['confirmation_token']
-        self.assertEqual(confirmation_token.label, '')
-        self.assertEqual(confirmation_token.max_length, 20)
-        self.assertEqual(confirmation_token.required, False)
+        assert 'confirmation_token' not in form.fields
 
         form = forms.APIKeyForm(request.POST, request=request)
         assert not form.is_valid()
-        assert form.available_actions == []
+        assert form.available_actions == [
+            forms.APIKeyForm.ACTION_CHOICES.RESEND_CONFIRM,
+        ]
 
         request = self._request(
             action=forms.APIKeyForm.ACTION_CHOICES.GENERATE,

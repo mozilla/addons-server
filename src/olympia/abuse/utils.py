@@ -1,4 +1,5 @@
 import itertools
+from collections import namedtuple
 from datetime import datetime
 
 from django.conf import settings
@@ -70,36 +71,66 @@ def is_same_time(instance, created_string):
     return instance_time == string_time
 
 
-def filter_enforcement_actions(enforcement_actions, target):
-    """Filter enforcement action enums according to what is applicable to the
-    specified target. Return a list of primary actions, follow-up actions."""
-    from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
-
-    if not target:
-        return [], []
-    primary_cinder_actions = []
-    followup_actions = []
-    for action in enforcement_actions:
-        if (
-            target.__class__
-            not in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
-        ):
-            continue
-        if action.value in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS.values:
-            followup_actions.append(action)
-        else:
-            primary_cinder_actions.append(action)
-    return primary_cinder_actions, followup_actions
+SplitEnforcementActions = namedtuple('SplitEnforcementActions', ['primary', 'followup'])
 
 
-def to_enforcement_actions(enforcement_actions_slugs):
-    """Convert enforcement action slugs into enforcement action enums."""
-    return [
+def split_enforcement_actions(enforcement_action_slugs):
+    """Convert enforcement action slugs into enums and split them into primary and
+    follow-up actions."""
+    actions = [
         action
-        for action_slug in enforcement_actions_slugs
+        for action_slug in enforcement_action_slugs
         if action_slug in DECISION_ACTIONS.api_values
         and (action := DECISION_ACTIONS.from_api_value(action_slug))
     ]
+    primary_enforcement_actions = []
+    followup_actions = []
+    for action in actions:
+        if action.value in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS.values:
+            followup_actions.append(action)
+        else:
+            primary_enforcement_actions.append(action)
+    return SplitEnforcementActions(
+        tuple(primary_enforcement_actions), tuple(followup_actions)
+    )
+
+
+def filter_enforcement_actions(enforcement_actions, target_class):
+    """Filter enforcement action enums according to what is applicable to the
+    specified target.
+
+    Return a tuple of actions. If enforcement_actions is SplitEnforcementActions, it
+    will return a SplitEnforcementActions"""
+    from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
+
+    if enforcement_actions and isinstance(enforcement_actions, SplitEnforcementActions):
+        return SplitEnforcementActions(
+            filter_enforcement_actions(enforcement_actions.primary, target_class),
+            filter_enforcement_actions(enforcement_actions.followup, target_class),
+        )
+
+    return tuple(
+        action
+        for action in enforcement_actions
+        if target_class
+        in CONTENT_ACTION_FROM_DECISION_ACTION[action.value].valid_targets
+    )
+
+
+def hash_addon_negative_actions(actions):
+    """Order negative actions according to their severity, as defined in
+    DECISION_ACTIONS.ADDON_NEGATIVE_SORTED and return a bytestring to sort with.
+    """
+    return bytes(
+        sorted(
+            (
+                DECISION_ACTIONS.ADDON_NEGATIVE_SORTED.values.index(action)
+                for action in itertools.chain.from_iterable(actions)
+                if action in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED.values
+            ),
+            reverse=True,
+        )
+    )
 
 
 def find_automated_enforcement_actions_from_policies(*, policies, addon, version):
@@ -110,18 +141,12 @@ def find_automated_enforcement_actions_from_policies(*, policies, addon, version
     out any non-applicable actions, and return the most aggressive
     action + follow-up actions we are left with.
 
-    Return a list itself made of a list of actions and a list of follow-up actions."""
+    Return a SplitEnforcementActions namedtuple with primary and follow-up actions."""
     from .actions import CONTENT_ACTION_FROM_DECISION_ACTION
-    from .models import CinderPolicy, ContentDecision
-
-    def addon_negative_actions_priority_from_iterable(actions):
-        return [
-            DECISION_ACTIONS.ADDON_NEGATIVE_SORTED.values.index(action)
-            for action in itertools.chain.from_iterable(actions)
-        ]
+    from .models import ContentDecision
 
     # Default is to return no action + no follow-up actions
-    most_aggressive_actions = [[], []]
+    most_aggressive_actions = SplitEnforcementActions((), ())
     for policy in policies:
         # Successful appeal for that same decision against the add-on (ignoring
         # versions) means we should skip automation.
@@ -133,18 +158,15 @@ def find_automated_enforcement_actions_from_policies(*, policies, addon, version
         if successful_appeal:
             continue
 
-        actions = CinderPolicy.get_decision_actions_from_policies(
-            [policy], for_entity=addon.__class__
+        enforcement_actions = filter_enforcement_actions(
+            policy.split_enforcement_actions, addon.__class__
         )
-        primary_enforcement_actions, followup_actions = filter_enforcement_actions(
-            actions, addon
-        )
-        if len(primary_enforcement_actions) != 1:
+        if len(enforcement_actions.primary) != 1:
             # That shouldn't happen: scanner rules should only have policies
             # that have relevant actions for add-ons (and only 1 primary action
             # for add-ons should be set)
             continue
-        action = primary_enforcement_actions[0]
+        action = enforcement_actions.primary[0]
         ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[action]
         if (
             action not in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED
@@ -154,8 +176,8 @@ def find_automated_enforcement_actions_from_policies(*, policies, addon, version
         ):
             continue
 
-        if addon_negative_actions_priority_from_iterable(
-            (primary_enforcement_actions, followup_actions)
-        ) > addon_negative_actions_priority_from_iterable(most_aggressive_actions):
-            most_aggressive_actions = [primary_enforcement_actions, followup_actions]
+        if hash_addon_negative_actions(
+            enforcement_actions
+        ) > hash_addon_negative_actions(most_aggressive_actions):
+            most_aggressive_actions = enforcement_actions
     return most_aggressive_actions

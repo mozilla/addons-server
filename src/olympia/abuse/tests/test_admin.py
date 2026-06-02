@@ -587,7 +587,7 @@ class TestCinderPolicyAdmin(TestCase):
         self.client.force_login(self.user)
 
     def _make_list_request(self, *, read_only=False):
-        foo = CinderPolicy.objects.create(name='Foo', enforcement_actions=None)
+        foo = CinderPolicy.objects.create(name='Foo')
         CinderPolicy.objects.create(
             name='Bar', parent=foo, uuid=uuid.uuid4(), enforcement_actions=[]
         )

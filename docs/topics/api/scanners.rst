@@ -27,6 +27,8 @@ This endpoint allows a scanner to push results for an existing version.
     :statuscode 400: Invalid payload.
     :statuscode 403: Authentication failed or the authenticated user is not
         the service account of an active webhook with a push event.
+    :statuscode 409: One or more of the matched rules have already been pushed
+        for this version.
 
 
 ----------------------

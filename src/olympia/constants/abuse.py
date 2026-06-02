@@ -357,3 +357,4 @@ class DECISION_SOURCES(StrEnum):
     REVIEWER = 'AMO Reviewer'
     LEGAL = 'Legal'
     TASKUS = 'TaskUs'
+    MANUAL = 'Manual'

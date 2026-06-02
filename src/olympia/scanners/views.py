@@ -35,9 +35,25 @@ def push_scanner_result(request):
     serializer.is_valid(raise_exception=True)
 
     push_event = ScannerWebhookEvent.objects.get(webhook=webhook, event=WEBHOOK_PUSH)
+
+    version_id = serializer.validated_data['version_id']
+    new_rules = serializer.validated_data['results']['matchedRules']
+    if (
+        new_rules
+        and ScannerResult.objects.filter(
+            webhook_event=push_event,
+            version_id=version_id,
+            matched_rules__name__in=new_rules,
+        ).exists()
+    ):
+        return Response(
+            {'detail': 'Scanner result already pushed for one of the rules'},
+            status=status.HTTP_409_CONFLICT,
+        )
+
     scanner_result = ScannerResult.objects.create(
         scanner=WEBHOOK,
-        version_id=serializer.validated_data['version_id'],
+        version_id=version_id,
         webhook_event=push_event,
         results=serializer.validated_data['results'],
     )

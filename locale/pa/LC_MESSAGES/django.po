@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 10:45+0000\n"
+"POT-Creation-Date: 2026-06-01 09:26+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1573,11 +1573,11 @@ msgstr ""
 msgid "Revoke"
 msgstr ""
 
-#, python-brace-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgid "Re-send email confirmation"
 msgstr ""
 
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+#, python-brace-format
+msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
 msgstr ""
 
 #, fuzzy
@@ -1818,6 +1818,9 @@ msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਮੰਗ ਹੋਈ"
 
 msgid "You must provide further details to proceed."
+msgstr ""
+
+msgid "A confirmation link will be sent to your email address shortly."
 msgstr ""
 
 msgid "Your old credentials were revoked and are no longer valid."
@@ -2896,6 +2899,12 @@ msgid "JWT issuer"
 msgstr ""
 
 msgid "JWT secret"
+msgstr ""
+
+msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
+msgstr ""
+
+msgid "Haven't received the email yet?"
 msgstr ""
 
 #, python-format
@@ -4768,7 +4777,7 @@ msgid "See all extensions"
 msgstr "ਸਾਰੇ ਐਡ-ਆਨਾਂ ਦੀ ਝਲਕ ਵੇਖੋ"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
+msgid "YouTube extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.

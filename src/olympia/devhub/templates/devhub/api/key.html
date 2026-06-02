@@ -11,17 +11,15 @@
   <form method="post" class="api-credentials" name="api-credentials-form">
     {% csrf_token %}
     {% if '__all__' in form.errors %}
-      <div class="text-danger">
+      <p class="text-danger">
         {{ form.errors.__all__ }}
-      </div>
+      </p>
     {% endif %}
     <p>
       {% trans jwt_url='https://datatracker.ietf.org/doc/html/rfc7519', docs_url='https://mozilla.github.io/addons-server/topics/api/index.html',
       a_attrs='target="_blank" rel="noopener noreferrer"' %}
         To execute authenticated calls against the <a {{ a_attrs }} href="{{ docs_url }}">API</a> as an external consumer, you need to include a <a {{ a_attrs }} href="{{ jwt_url }}">JSON Web Token (JWT)</a> in the <code>Authorization</code> header for every request.
       {% endtrans %}
-    </p>
-    <p>
       {% trans %}
         Keep your API keys secret and never share them with anyone, including Mozilla staff or contributors.
       {% endtrans %}
@@ -41,25 +39,34 @@
           {% endif %}
         </dd>
       </dl>
+    {% elif 'resend_confirm' in form.available_actions or 'confirm' in form.available_actions %}
+      <p>
+        {% trans %}
+          After following the confirmation link that was sent to your email address, you will find your API keys on this page.
+        {% endtrans %}
+        {% if 'resend_confirm' in form.available_actions %}
+          <a class="show-resend-button" href="#">{{ _("Haven't received the email yet?") }}</a>
+        {% endif %}
+      </p>
     {% endif %}
     {% for field in form %}
       <div class="row api-input key-input">
         {% if field.help_text %}
-        <div>{{ field.help_text|format_html }}</div>
+          <p>{{ field.help_text|format_html(name=form.request.user.name) }}</p>
         {% endif %}
-        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-        {{ field }}
         {% if field.errors %}
           <div class="text-danger">
               {{ field.errors }}
           </div>
         {% endif %}
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
       </div>
     {% endfor %}
     <div>
       {% for action in form.available_actions %}
         <button
-          class="button prominent"
+          class="button prominent {{ 'hidden' if action == 'resend_confirm' and request.method == 'GET' else ''}}"
           type="submit"
           name="action"
           value="{{ action }}"

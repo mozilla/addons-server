@@ -39,7 +39,6 @@ from olympia.core import set_user
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
-from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
@@ -2315,46 +2314,6 @@ class TestCinderPolicy(TestCase):
             lone_policy,
         }
 
-    def test_get_decision_actions_from_policies(self):
-        policies = (
-            # no actions, ignored
-            CinderPolicy.objects.create(uuid='1', enforcement_actions=[]),
-            # multiple actions
-            CinderPolicy.objects.create(
-                uuid='2',
-                enforcement_actions=[
-                    'amo-disable-addon',
-                    'amo-approve',
-                    'amo-ban-user',
-                ],
-            ),
-            # some duplicates, and unsupported actions
-            CinderPolicy.objects.create(
-                uuid='3', enforcement_actions=['amo-disable-addon', 'not-amo-action']
-            ),
-        )
-        assert sorted(CinderPolicy.get_decision_actions_from_policies(policies)) == [
-            DECISION_ACTIONS.AMO_BAN_USER,
-            DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            DECISION_ACTIONS.AMO_APPROVE,
-        ]
-
-        assert sorted(
-            CinderPolicy.get_decision_actions_from_policies(policies, for_entity=Addon)
-        ) == [
-            DECISION_ACTIONS.AMO_DISABLE_ADDON,
-            DECISION_ACTIONS.AMO_APPROVE,
-        ]
-
-        assert sorted(
-            CinderPolicy.get_decision_actions_from_policies(
-                policies, for_entity=UserProfile
-            )
-        ) == [
-            DECISION_ACTIONS.AMO_BAN_USER,
-            DECISION_ACTIONS.AMO_APPROVE,
-        ]
-
     def test_get_text_formatter_pairs(self):
         policy = CinderPolicy.objects.create(
             name='Child Policy',
@@ -2503,7 +2462,7 @@ class TestContentDecision(TestCase):
         decision = ContentDecision.objects.create(
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
         )
-        assert decision.source == DECISION_SOURCES.TASKUS
+        assert decision.source == DECISION_SOURCES.MANUAL
 
         decision.update(reviewer_user=self.task_user)
         assert decision.source == DECISION_SOURCES.AUTOMATION

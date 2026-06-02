@@ -61,6 +61,8 @@ def main(targets):
         '--no-deps',
         '--exists-action=w',
     ]
+    if 'dev' in targets:
+        pip_args.append('--no-compile')
 
     # NPM_ARGS is set by the Dockerfile
     npm_args_env = os.environ['NPM_ARGS']

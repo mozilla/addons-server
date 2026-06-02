@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 10:45+0000\n"
+"POT-Creation-Date: 2026-06-01 09:26+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1637,12 +1637,12 @@ msgstr "Revoke and regenerate credentials"
 msgid "Revoke"
 msgstr "Revoke"
 
-#, python-brace-format
-msgid "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
-msgstr "Please click the confirm button below to generate API credentials for user <strong>{name}</strong>."
+msgid "Re-send email confirmation"
+msgstr "Re-send email confirmation"
 
-msgid "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
-msgstr "A confirmation link will be sent to your email address. After confirmation you will find your API keys on this page."
+#, python-brace-format
+msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
+msgstr "Please click the button below to generate API credentials for user <strong>{name}</strong>."
 
 msgid "You don't have any API credentials."
 msgstr "You don't have any API credentials."
@@ -1895,6 +1895,9 @@ msgstr "Review requested"
 #, fuzzy
 msgid "You must provide further details to proceed."
 msgstr "Review requested.  You must provide further details to proceed."
+
+msgid "A confirmation link will be sent to your email address shortly."
+msgstr "A confirmation link will be sent to your email address shortly."
 
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Your old credentials were revoked and are no longer valid."
@@ -3024,6 +3027,12 @@ msgstr "JWT issuer"
 
 msgid "JWT secret"
 msgstr "JWT secret"
+
+msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
+msgstr "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
+
+msgid "Haven't received the email yet?"
+msgstr "Haven't received the email yet?"
 
 #, python-format
 msgid ""
@@ -5054,8 +5063,8 @@ msgid "See all extensions"
 msgstr "Browse all add-ons"
 
 #. editorial content for the secondary hero shelves.
-msgid "Extension Starter Pack"
-msgstr "Extension Starter Pack"
+msgid "YouTube extensions"
+msgstr "YouTube extensions"
 
 #. editorial content for the secondary hero shelves.
 msgid "Productivity extensions"

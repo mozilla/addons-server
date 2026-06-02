@@ -552,7 +552,8 @@ class ActivityLogManager(ManagerBase):
 
 class ActivityLog(ModelBase):
     TYPES = sorted(
-        (value.id, key) for key, value in constants.activity.LOG_BY_ID.items()
+        (key, f'{value.__name__} ({key})')
+        for key, value in constants.activity.LOG_BY_ID.items()
     )
     # We should never hard-delete users, so the on_delete can be set to DO_NOTHING,
     # if somehow a hard-delete still occurs, it will raise an IntegrityError.
