@@ -494,9 +494,9 @@ asgiref==3.11.1 \
     --hash=sha256:5f184dc43b7e763efe848065441eac62229c9f7b0475f41f80e207a114eda4ce \
     --hash=sha256:e8667a091e69529631969fd45dc268fa79b99c92c5fcdda727757e52146ec133
 # billiard is required by celery
-billiard==4.2.3 \
-    --hash=sha256:96486f0885afc38219d02d5f0ccd5bec8226a414b834ab244008cbb0025b8dcb \
-    --hash=sha256:989e9b688e3abf153f307b68a1328dfacfb954e30a4f920005654e276c69236b
+billiard==4.2.4 \
+    --hash=sha256:525b42bdec68d2b983347ac312f892db930858495db601b5836ac24e6477cde5 \
+    --hash=sha256:55f542c371209e03cd5862299b74e52e4fbcba8250ba611ad94276b369b6a85f
 # bitarray is required by filtercascade
 bitarray == 3.8.1 \
     --hash=sha256:0256d57e294414bfe4fec4f852fd1d9ae361228c71b082332bf81c8b8fc69f80 \
@@ -606,9 +606,9 @@ bitarray == 3.8.1 \
 bleach==6.0.0 \
     --hash=sha256:1a1a85c1595e07d8db14c5f09f09e6433502c51c595970edc090551f0db99414 \
     --hash=sha256:33c16e3353dbd13028ab4799a0f89a83f113405c766e9c122df8a06f5b85b3f4
-celery==5.5.3 \
-    --hash=sha256:0b5761a07057acee94694464ca482416b959568904c9dfa41ce8413a7d65d525 \
-    --hash=sha256:6c972ae7968c2b5281227f01c3a3f984037d21c5129d07bf3550cc2afc6b10a5
+celery==5.6.3 \
+    --hash=sha256:0808f42f80909c4d5833202360ffafb2a4f83f4d8e23e1285d926610e9a7afa6 \
+    --hash=sha256:177006bd2054b882e9f01be59abd8529e88879ef50d7918a7050c5a9f4e12912
 # charset-normalizer is required by requests
 charset-normalizer==3.4.7 \
     --hash=sha256:007d05ec7321d12a40227aae9e2bc6dca73f3cb21058999a1df9e193555a9dcc \
@@ -827,9 +827,9 @@ html5lib==1.1 \
     --hash=sha256:0d78f8fde1c230e99fe37986a60526d7049ed4bf8a9fadbad5f00e22e58e041d \
     --hash=sha256:b2e5b40261e20f354d198eae92afc10d750afb487ed5e50f9c4eaf07c184146f
 # kombu is required by celery
-kombu==5.6.1 \
-    --hash=sha256:90f1febb57ad4f53ca327a87598191b2520e0c793c75ea3b88d98e3b111282e4 \
-    --hash=sha256:b69e3f5527ec32fc5196028a36376501682973e9620d6175d1c3d4eaf7e95409
+kombu==5.6.2 \
+    --hash=sha256:8060497058066c6f5aed7c26d7cd0d3b574990b09de842a8c5aaed0b92cc5a55 \
+    --hash=sha256:efcfc559da324d41d61ca311b0c64965ea35b4c55cc04ee36e55386145dace93
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
@@ -1668,6 +1668,10 @@ jsonschema-specifications==2025.9.1 \
 drf-spectacular-sidecar==2026.4.14 \
     --hash=sha256:a040d360ada2592722e90f40c2cf744376d9a30cccb3caaa5423bad791dec0aa \
     --hash=sha256:d4c299a85f3be44e93eaff3d83e986f27b744bb9823ba034aff9fd267ebc9fea
+# tzlocal is required by celery
+tzlocal==5.3.1 \
+    --hash=sha256:cceffc7edecefea1f595541dbd6e990cb1ea3d19bf01b2809f362a03dd7921fd \
+    --hash=sha256:eb1a66c3ef5847adf7a834f1be0800581b683b5608e74f86ecbcef8ab91bb85d
 # Required by ipython
 psutil==7.2.2 \
     --hash=sha256:0746f5f8d406af344fd547f1c8daa5f5c33dbc293bb8d6a16d80b4bb88f59372 \
