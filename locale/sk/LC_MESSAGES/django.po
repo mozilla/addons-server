@@ -2038,12 +2038,12 @@ msgstr "Odvolať"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Znovu odoslať potvrdenie e‑mailom"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Kliknutím na tlačidlo nižšie vygenerujete prihlasovacie údaje k API pre používateľa <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2356,7 +2356,7 @@ msgstr "Pre pokračovanie musíte poskytnúť ďalšie detaily."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Čoskoro vám bude na vašu e‑mailovú adresu odoslaný potvrdzovací odkaz."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3729,11 +3729,11 @@ msgstr "Kľúč JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Po kliknutí na potvrdzovací odkaz, ktorý bol odoslaný na vašu e‑mailovú adresu, nájdete na tejto stránke svoje API kľúče."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Ešte ste nedostali e‑mail?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4467,7 +4467,7 @@ msgstr "Autor"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Ďalšie komentáre:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
@@ -6086,7 +6086,7 @@ msgstr "Zobraziť všetky rozšírenia"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Rozšírenia pre YouTube"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
