@@ -128,9 +128,14 @@ class AbstractScannerResult(ModelBase):
             return res
         if self.scanner == YARA:
             for item in self.results:
-                res[item['rule']].append(
-                    {'filename': item.get('meta', {}).get('filename', '???')}
-                )
+                ruleId = item.get('rule')
+                data = item.get('meta', {}).copy()
+                filename = data.pop('filename', '???')
+                # Put the other metadata at the top of the list of files for
+                # that rule, without a filename since it's "global".
+                if ruleId not in res:
+                    res[ruleId].append({'filename': '', 'data': data})
+                res[ruleId].append({'filename': filename})
         elif self.scanner == NARC:
             for item in self.results:
                 res[item['rule']].append(item.get('meta', {}))
