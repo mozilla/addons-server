@@ -12,6 +12,7 @@ from django.urls import reverse
 
 import pytest
 import responses
+import time_machine
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -3505,7 +3506,7 @@ class TestContentDecision(TestCase):
         assert 'Parent, specifically Bad policy: This is bad' in mail.outbox[0].body
         assert 'some private notes' not in mail.outbox[0].body
 
-    def test_execute_action_disable_addon_with_additional_delayed_block_action(self):
+    def test_execute_action_disable_addon_with_followup_delayed_block_action(self):
         addon = addon_factory(users=[user_factory()])
         decision = ContentDecision.objects.create(
             addon=addon,
@@ -4259,6 +4260,28 @@ class TestContentDecision(TestCase):
             },
         )
         assert decision.has_policy_text_in_comments is False
+
+
+class TestContentDecisionFollowupAction(TestCase):
+    @time_machine.travel(datetime(2025, 6, 6))
+    def test_description_with_eta(self):
+        addon = addon_factory(users=[user_factory()])
+        decision = ContentDecision.objects.create(
+            addon=addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=decision,
+            action=DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON,
+        )
+
+        assert followup.description_with_eta == (
+            'Add-on versions will be Restricted, after 7 days, on 2025-06-13'
+        )
+
+        followup.update(action_date=datetime(2025, 6, 1))
+        assert followup.description_with_eta == (
+            'Add-on versions will be Restricted, after 7 days, on 2025-06-08'
+        )
 
 
 @pytest.mark.parametrize(

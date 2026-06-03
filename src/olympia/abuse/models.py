@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from itertools import chain
 from string import Formatter
 
@@ -1536,6 +1536,15 @@ class ContentDecisionFollowupAction(ModelBase):
             self.save(update_fields=('action_date',))
 
         return log_entry
+
+    @property
+    def description_with_eta(self):
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        description = ContentActionClass.description
+        if delay_days := getattr(ContentActionClass, 'delay_days', None):
+            start = date.today() if not self.action_date else self.action_date.date()
+            description += f', on {start + timedelta(days=delay_days)}'
+        return description
 
 
 class CinderAppeal(ModelBase):

@@ -1,6 +1,6 @@
 import json
 import uuid
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from inspect import isclass
 
 from django.conf import settings
@@ -2284,6 +2284,21 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         # blocked, (and another_version because it's not being rejected)
         self._test_process_action([self.version.id])
 
+    def test_primary_action_emails_mention_followups(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision, action=self.takedown_decision_action
+        )
+        action_helper = ContentActionDisableAddon(self.decision)
+
+        action_helper.notify_owners()
+
+        email_body = mail.outbox[0].body
+        future_date = date.today() + timedelta(days=self.ActionClass.delay_days)
+        assert 'If you do not remediate ' in email_body
+        assert followup.description_with_eta in email_body
+        assert f'days, on {future_date.strftime("%Y-%m-%d")}' in email_body
+
     def test_owner_content_approve_report_email(self):
         pass  # Covered by TestContentApproveContentListing
 
@@ -2406,6 +2421,11 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         # TODO: If/when we support emails we should implement this
         pass
 
+    def test_description(self):
+        assert self.ActionClass.description == (
+            'Add-on versions will be Restricted, after 7 days'
+        )
+
 
 class TestContentActionDelayedMidHardBlockAddon(
     TestContentActionDelayedShortSoftBlockAddon
@@ -2420,6 +2440,11 @@ class TestContentActionDelayedMidHardBlockAddon(
             block=self.existing_block,
             version=self.another_version,
             block_type=BlockType.SOFT_BLOCKED,
+        )
+
+    def test_description(self):
+        assert self.ActionClass.description == (
+            'Add-on versions will be Blocked, after 14 days'
         )
 
 

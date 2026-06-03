@@ -8,6 +8,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.functional import classproperty
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -156,7 +157,17 @@ class ContentAction:
             and self.target.is_public()
         )
 
+        followups = (
+            [
+                followup.description_with_eta
+                for followup in self.decision.followup_actions.all()
+            ]
+            if self.decision.id
+            else ()
+        )
+
         context_dict = {
+            'followups': followups,
             'is_listing_rejected': getattr(self.target, 'status', None)
             == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
@@ -821,7 +832,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 
 
 class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
-    description = 'Add-on will be blocked, after a delay'
+    # description is dynamic
     action = None  # Has to be redefined in child classes.
 
     def __init__(self, decision):
@@ -830,6 +841,12 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             raise ImproperlyConfigured(
                 f'{self.__class__.__name__} requires delay_days to be set'
             )
+
+    @classproperty
+    def description(cls):
+        days = getattr(cls, 'delay_days', 0)
+        user_block_label = getattr(cls, 'block_type', BlockType.BLOCKED).user_label
+        return f'Add-on versions will be {user_block_label}, after {days} days'
 
     @classmethod
     def get_existing_blocks_from_decision(cls, decision):
