@@ -2179,6 +2179,10 @@ class TestContentDecisionCanBeAppealed(TestCase):
         )
         assert not appeal_job.final_decision.can_be_appealed(is_reporter=False)
 
+    def test_author_cant_appeal_legal_disable_addon_decision(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON)
+        assert not self.decision.can_be_appealed(is_reporter=False)
+
 
 class TestCinderPolicy(TestCase):
     def test_create_cinder_policy_with_required_fields(self):
@@ -2591,8 +2595,6 @@ class TestContentDecision(TestCase):
             helper = decision.get_action_helper()
             assert helper.reporter_template_path is None
             assert helper.reporter_appeal_template_path is None
-            assert ActionClass.reporter_template_path is not None
-            assert ActionClass.reporter_appeal_template_path is not None
 
     def test_get_action_helper_override(self):
         addon = addon_factory()

@@ -1124,15 +1124,16 @@ class ContentActionTargetAppealApprove(
                 .defer('approval_notes')
                 .order_by('-pk')
             )
-            previous_decision_actions = self.previous_decisions.values_list(
-                'action', flat=True
+            previous_decision_actions = set(
+                self.previous_decisions.values_list('action', flat=True)
             )
             activity_log_action = None
 
-            if (
-                DECISION_ACTIONS.AMO_DISABLE_ADDON in previous_decision_actions
-                or DECISION_ACTIONS.AMO_BLOCK_ADDON in previous_decision_actions
-            ):
+            if {
+                DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                DECISION_ACTIONS.AMO_BLOCK_ADDON,
+                DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON,
+            } & previous_decision_actions:
                 # FIXME: we should also automatically revert the block if the
                 # previous decision was AMO_BLOCK_ADDON. (i.e. reverse_action)
                 target_versions = list(target_versions)
@@ -1329,6 +1330,18 @@ class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction
     reporter_template_path = 'abuse/emails/reporter_moderated_ignore.txt'
     # no appeal template because no appeals possible
     action = DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+
+
+class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
+    description = 'Add-on has been disabled, due to legal action'
+    action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
+    # This action should not be used to resolve abuse reports
+    reporter_template_path = None
+    reporter_appeal_template_path = None
+
+    def get_owners(self):
+        # For these actions, legal will handle communication themselves
+        return ()
 
 
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
