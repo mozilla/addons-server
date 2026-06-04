@@ -4,10 +4,12 @@ from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
+from django.core import mail
 
 import responses
 
 from olympia import amo
+from olympia.abuse.models import ContentDecision, ContentDecisionFollowupAction
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     TestCase,
@@ -16,6 +18,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.blocklist import BlockReason, BlockType
 
 from ..models import Block, BlocklistSubmission
@@ -436,6 +439,30 @@ class TestSaveVersionsToBlocks(TestCase):
         assert (
             version2.blockversion.reload().block_type == BlockType.BLOCKED  # Untouched.
         )
+
+    def test_email_notifications_for_followup_blocks(self):
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        followup_action = ContentDecisionFollowupAction.objects.create(
+            decision=ContentDecision.objects.create(
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON, addon=addon
+            ),
+            action=DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON,
+        )
+        submission = BlocklistSubmission.objects.create(
+            input_guids=addon.guid,
+            reason='some reason',
+            updated_by=user,
+            disable_addon=False,
+            disable_versions=False,
+            from_followup=followup_action,
+            block_type=BlockType.BLOCKED,
+            changed_version_ids=[addon.current_version.pk],
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED,
+        )
+        save_versions_to_blocks([addon.guid], submission)
+
+        assert 'Blocked' in mail.outbox[0].body
 
 
 class TestDeleteVersionsFromBlocks(TestCase):

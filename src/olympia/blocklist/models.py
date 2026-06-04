@@ -301,6 +301,9 @@ class BlocklistSubmission(ModelBase):
         default=BlockType.BLOCKED, choices=BlockType.choices
     )
     preserve_block_metadata = models.BooleanField(default=False, null=True)
+    from_followup = models.OneToOneField(
+        'abuse.ContentDecisionFollowupAction', null=True, on_delete=models.SET_NULL
+    )
 
     objects = BlocklistSubmissionManager()
 

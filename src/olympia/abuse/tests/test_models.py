@@ -3524,10 +3524,11 @@ class TestContentDecision(TestCase):
         self._test_execute_action_disable_addon_outcome(decision)
         assert followup.reload().action_date is not None
         assert BlocklistSubmission.objects.exists()
+        submission = BlocklistSubmission.objects.get()
         self.assertCloseToNow(
-            BlocklistSubmission.objects.get().delayed_until,
-            now=datetime.now() + timedelta(days=7),
+            submission.delayed_until, now=datetime.now() + timedelta(days=7)
         )
+        assert submission.from_followup == followup
 
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()
