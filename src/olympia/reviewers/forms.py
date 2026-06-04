@@ -116,12 +116,14 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     actions_filters = {
         amo.CHANNEL_UNLISTED: {
             amo.STATUS_APPROVED: [
+                'review_with_policy',
                 'block_multiple_versions',
                 'confirm_multiple_versions',
                 'reject_multiple_versions',
                 'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
+                'review_with_policy',
                 'approve_multiple_versions',
                 'reject_multiple_versions',
                 'reply',
@@ -133,11 +135,13 @@ class VersionsChoiceWidget(forms.SelectMultiple):
         },
         amo.CHANNEL_LISTED: {
             amo.STATUS_APPROVED: [
+                'review_with_policy',
                 'block_multiple_versions',
                 'reject_multiple_versions',
                 'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
+                'review_with_policy',
                 'approve_multiple_versions',
                 'reject_multiple_versions',
                 'reply',
@@ -300,7 +304,9 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
         ]
         if is_developer_appeal:
-            hide_for_these_actions.extend(('reject', 'reject_multiple_versions'))
+            hide_for_these_actions.extend(
+                ('review_with_policy', 'reject', 'reject_multiple_versions')
+            )
         attrs['data-value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
@@ -331,11 +337,11 @@ class CinderPolicyWidget(forms.CheckboxSelectMultiple):
         )
         attrs['class'] = 'data-toggle'
         attrs['data-value'] = ' '.join(visible_for_reviewer_actions)
-        attrs['data-enforcement-primary-actions'] = ', '.join(
-            DECISION_ACTIONS(action).label for action in enforcement_actions.primary
+        attrs['data-enforcement-primary-actions'] = str(
+            [action.value for action in enforcement_actions.primary]
         )
-        attrs['data-enforcement-followup-actions'] = ', '.join(
-            DECISION_ACTIONS(action).label for action in enforcement_actions.followup
+        attrs['data-enforcement-followup-actions'] = str(
+            [action.value for action in enforcement_actions.followup]
         )
         attrs['data-enforcement-actions-order'] = hash_addon_negative_actions(
             enforcement_actions
@@ -490,9 +496,12 @@ class ReviewForm(forms.Form):
         # the individual <option> which is also needed for unlisted review
         # where for some actions we display the dropdown hiding some of the
         # versions it contains.
-        widget=VersionsChoiceWidget(attrs={'class': 'data-toggle'}),
+        widget=VersionsChoiceWidget(
+            attrs={'class': 'data-toggle data-toggle-enforcement'}
+        ),
         required=False,
         queryset=Version.objects.none(),
+        label='Versions:',
     )  # queryset is set later in __init__.
 
     operating_systems = forms.CharField(required=False, label='Operating systems:')
@@ -566,7 +575,9 @@ class ReviewForm(forms.Form):
         if action:
             if not action.get('comments', True):
                 self.fields['comments'].required = False
-            if action.get('multiple_versions', False):
+            if action.get('multiple_versions', False) and not action.get(
+                'policy_enforcement', False
+            ):
                 self.fields['versions'].required = True
             if not action.get('enforcement_actions'):
                 self.fields['cinder_policies'].required = False
@@ -623,7 +634,7 @@ class ReviewForm(forms.Form):
                         selected_actions
                     )
                 ]
-            all_actions = set(
+            all_primary_actions = set(
                 filtered.primary
                 for policy in policies
                 if (
@@ -632,28 +643,57 @@ class ReviewForm(forms.Form):
                     )
                 )
             )
-            if len(all_actions) == 0:
+            if len(all_primary_actions) == 0:
                 self.add_error(
                     'cinder_policies',
                     'No policies selected with an associated cinder action.',
                 )
-            elif (
-                not selected_definition.get('policy_enforcement')
-                and len(all_actions) > 1
-            ):
+            elif not is_policy_enforcement and len(all_primary_actions) > 1:
                 self.add_error(
                     'cinder_policies',
                     'Multiple policies selected with different cinder actions.',
                 )
-            elif any(len(actions) != 1 for actions in all_actions):
+            elif any(len(actions) != 1 for actions in all_primary_actions):
                 self.add_error(
                     'cinder_policies',
                     'Invalid policies selected with more than one primary enforcement '
                     'action.',
                 )
-            # TODO: once we support non-negative policies, we'll need to check that the
-            # policy selection is consistent - e.g. you shouldn't be able to select a
-            # positive and negative policy together
+
+            if is_policy_enforcement:
+                # get the most aggressive negative policy
+                # TODO: if we expand to support non-negative policies, we'll need to
+                # change this logic (e.g. most_postive_actions, or something).
+                sorted_actions = sorted(
+                    (
+                        filter_enforcement_actions(
+                            policy.split_enforcement_actions, Addon
+                        )
+                        for policy in policies
+                    ),
+                    key=lambda actions: hash_addon_negative_actions(actions),
+                    reverse=True,
+                )
+
+                if sorted_actions:
+                    self.cleaned_data['most_aggressive_policy_actions'] = (
+                        sorted_actions[0]
+                    )
+                    if self.cleaned_data['most_aggressive_policy_actions'].primary[
+                        0
+                    ] in DECISION_ACTIONS.VERSION_SPECIFIC and selected_definition.get(
+                        'multiple_versions'
+                    ):
+                        # we need versions if the primary enf action is version specific
+                        if not self.cleaned_data['versions']:
+                            self.add_error('versions', 'This field is required.')
+                    else:
+                        # otherwise, don't confuse logging with versions
+                        self.cleaned_data['versions'] = []
+
+                # TODO: once we support non-negative policies, we'll need to check that
+                # the policy selection is consistent - e.g. you shouldn't be able to
+                # select a positive and negative policy together
 
         if selected_definition.get('delayable'):
             delayed_rejection = self.cleaned_data.get('delayed_rejection')
@@ -782,6 +822,9 @@ class ReviewForm(forms.Form):
             # Reset data-value depending on widget depending on actions available.
             self.fields['versions'].widget.attrs['data-value'] = ' '.join(
                 versions_actions
+            )
+            self.fields['versions'].widget.attrs['data-value-enforcement'] = ' '.join(
+                f"'{action.value}'" for action in DECISION_ACTIONS.VERSION_SPECIFIC
             )
 
         # Set choices on the action field dynamically to raise an error when

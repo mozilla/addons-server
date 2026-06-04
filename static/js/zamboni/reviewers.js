@@ -126,6 +126,9 @@ $(document).ready(function () {
 });
 
 function updatePolicyEnforcementActionsDisplay() {
+  if (!$('#policy-enforcement-actions:visible').length) {
+    return;
+  }
   let policySelectionInputs = $('.review-actions-policies-select input[name="cinder_policies"]');
   let highestCheckedPolicy;
   policySelectionInputs.filter(":visible").filter(":checked").each(function () {
@@ -133,12 +136,36 @@ function updatePolicyEnforcementActionsDisplay() {
       highestCheckedPolicy = $(this);
     }
   });
+  let $primaryActions = $("#policy-enforcement-actions li.primary-enf");
+  let $followupActions = $("#policy-enforcement-actions li.followup-enf");
+  let $data_toggle_enforcement = $(".data-toggle-enforcement");
+
+  $data_toggle_enforcement.filter(':visible').addClass('_visible');
+  $data_toggle_enforcement = $data_toggle_enforcement.filter('._visible');
+  $primaryActions.addClass('hidden');
+  $followupActions.addClass('hidden');
+  $data_toggle_enforcement.hide().prop('disabled', true);
+  $data_toggle_enforcement.parent('label').hide();
+
   if (highestCheckedPolicy) {
-    $("#policy-enforcement-primary-actions").text(highestCheckedPolicy.data('enforcement-primary-actions'));
-    $("#policy-enforcement-followup-actions").text(highestCheckedPolicy.data('enforcement-followup-actions'));
+    highestCheckedPolicy.data('enforcement-primary-actions').forEach(action => {
+      $primaryActions.filter(".action-" + action).removeClass('hidden');
+      let actionString = `'${action}'`;
+      $data_toggle_enforcement
+        .filter('[data-value-enforcement~="' + actionString + '"]')
+        .show()
+        .prop('disabled', false);
+      $data_toggle_enforcement
+        .filter('[data-value-enforcement~="' + actionString + '"]')
+        .parent('label')
+        .show();
+
+    });
+    highestCheckedPolicy.data('enforcement-followup-actions').forEach(action => {
+      $followupActions.filter(".action-" + action).removeClass('hidden');
+    });
   } else {
-    $("#policy-enforcement-primary-actions").text('No Action');
-    $("#policy-enforcement-followup-actions").text('');
+    $primaryActions.filter(".action-0").removeClass('hidden');
   }
 }
 

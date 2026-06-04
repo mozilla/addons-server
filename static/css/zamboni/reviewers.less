@@ -1026,7 +1026,8 @@ form.review-form .data-toggle {
 }
 
 .review-actions-comments {
-    width: 70%;
+    width: 60%;
+    order: 1;
     display: flex;
     flex-direction: column;
 
@@ -1045,7 +1046,7 @@ form.review-form .data-toggle {
 }
 
 .review-actions-reasons, .review-actions-policies {
-    width: 28%;
+    width: 38%;
 }
 
 .review-actions-section {
@@ -1080,8 +1081,24 @@ form.review-form .data-toggle {
     width: 100%;
 }
 
-#policy-enforcement-primary-actions {
-    font-weight: bold;
+#policy-enforcement-actions {
+    counter-reset: item;
+    list-style: none;
+
+    li {
+        float: none;
+
+        &.primary-enf {
+            font-weight: bold;
+        }
+    }
+    li:not(.hidden) {
+        counter-increment: item;
+    }
+
+    li:not(.hidden)::before {
+        content: counter(item) ". ";
+    }
 }
 
 .review-actions-reasons-select ul {

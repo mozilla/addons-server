@@ -171,9 +171,6 @@
         You can still submit this form, however only do so if you know it won't conflict.
       </div>
 
-      {{ form.versions }}
-      {{ form.versions.errors }}
-
       <div class="review-actions-section">
         <div class="review-actions-versions-reenabled data-toggle" data-value="enable_addon">
           {{ versions_that_would_be_enabled|count }} version(s) will be re-enabled:
@@ -218,9 +215,15 @@
             </div>
             <div class="data-toggle" data-value="{{ toggle_when_action('policy_enforcement') }}">
               <h4>Enforcement actions:</h4>
-              <span id="policy-enforcement-primary-actions"></span>;
-              <span id="policy-enforcement-followup-actions"></span>
-          </div>
+              <ol id="policy-enforcement-actions">
+                <li class="action-0 primary-enf">No Action</li>
+                {% for action in DECISION_ACTIONS %}
+                {% with enf='primary-enf' if not action in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS else 'followup-enf' %}
+                <li class="action-{{ action.value }} hidden {{ enf }}">{{ action.label }}</li>
+                {% endwith %}
+                {% endfor %}
+              </ol>
+            </div>
           </div>
           <div class="data-toggle"
                data-value="resolve_appeal_job">
@@ -233,6 +236,13 @@
             </div>
           </div>
         </div>
+
+      </div>
+      <div class="review-actions-section">
+        <label for="id_versions">{{ form.versions.label }}
+          {{ form.versions }}
+          {{ form.versions.errors }}
+        </label>
       </div>
 
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"

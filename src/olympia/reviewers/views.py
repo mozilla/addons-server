@@ -710,6 +710,7 @@ def review(request, addon, channel=None):
             else AddonApprovalsCounter().get_content_review_status_display()
         ),
         count=count,
+        DECISION_ACTIONS=DECISION_ACTIONS,
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,

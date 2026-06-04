@@ -17,6 +17,7 @@ from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.utils import filter_enforcement_actions
 from olympia.activity import log_create
 from olympia.activity.models import (
     ActivityLog,
@@ -1218,7 +1219,6 @@ class TestReviewHelper(TestReviewHelperBase):
         expected = [
             'review_with_policy',
             'public',
-            'reject_multiple_versions',
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
@@ -1377,12 +1377,14 @@ class TestReviewHelper(TestReviewHelperBase):
                         DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
                     ],
                 ),
-                CinderPolicy.objects.create(
-                    uuid='y',
-                    enforcement_actions=[
-                        DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
-                        DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.api_value,
-                    ],
+                (
+                    most := CinderPolicy.objects.create(
+                        uuid='y',
+                        enforcement_actions=[
+                            DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
+                            DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.api_value,
+                        ],
+                    )
                 ),
                 CinderPolicy.objects.create(
                     uuid='z',
@@ -1393,6 +1395,9 @@ class TestReviewHelper(TestReviewHelperBase):
                 ),
             ],
             'cinder_jobs_to_resolve': [cinder_job],
+            'most_aggressive_policy_actions': filter_enforcement_actions(
+                most.split_enforcement_actions, Addon
+            ),
         }
         self.helper.set_data(data)
         self.helper.handler.review_action = self.helper.actions.get(
@@ -4105,11 +4110,14 @@ class TestReviewHelper(TestReviewHelperBase):
         data = {
             'action': 'review_with_policy',
             'cinder_policies': [
-                CinderPolicy.objects.create(
+                policy := CinderPolicy.objects.create(
                     uuid='z',
                     enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
                 ),
             ],
+            'most_aggressive_policy_actions': filter_enforcement_actions(
+                policy.split_enforcement_actions, Addon
+            ),
         }
         self.helper.set_data(data)
         self.helper.handler.review_action = self.helper.actions['review_with_policy']

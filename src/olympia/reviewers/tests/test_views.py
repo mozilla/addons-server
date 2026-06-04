@@ -6814,7 +6814,7 @@ class TestReview(ReviewBase):
         )
 
     @override_switch('enable-policy-review-selection', active=True)
-    def test_review_with_review_with_policy_action(self):
+    def test_review_with_review_with_policy_action_disable(self):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}v1/create_decision',
@@ -6844,7 +6844,7 @@ class TestReview(ReviewBase):
         )
 
     @override_switch('enable-policy-review-selection', active=True)
-    def test_review_with_review_with_policy_action_reject_action(self):
+    def test_review_with_review_with_policy_action_reject(self):
         responses.add(
             responses.POST,
             f'{settings.CINDER_SERVER_URL}v1/create_decision',
@@ -6866,6 +6866,7 @@ class TestReview(ReviewBase):
             self.get_dict(
                 action='review_with_policy',
                 cinder_policies=[policy.id],
+                versions=[self.version.pk],
             ),
         )
         assert response.status_code == 302, response.context['form'].errors
@@ -6883,6 +6884,62 @@ class TestReview(ReviewBase):
 
         assert old_version.reload().needshumanreview_set.filter(is_active=True).exists()
         assert old_version.file.status == amo.STATUS_APPROVED
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_review_with_policy_action_multiple_reject(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        policy = CinderPolicy.objects.create(
+            uuid='1',
+            name='policy 1',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+        )
+        old_version = self.version
+        self.version = version_factory(addon=self.addon, version='3.0')
+        response = self.client.post(
+            self.url,
+            self.get_dict(
+                action='review_with_policy',
+                cinder_policies=[policy.id],
+                versions=[self.version.pk, old_version.pk],
+            ),
+        )
+        assert response.status_code == 302, response.context['form'].errors
+        assert self.get_addon().status == amo.STATUS_NULL
+        log_entry = ActivityLog.objects.get(action=amo.LOG.REJECT_VERSION.id)
+        decision = log_entry.contentdecisionlog_set.get().decision
+        assert log_entry.arguments == [
+            self.addon,
+            decision,
+            policy,
+            self.version,
+            old_version,
+        ]
+        assert decision.action == DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
+        assert self.version.file.reload().status == amo.STATUS_DISABLED
+        assert old_version.file.reload().status == amo.STATUS_DISABLED
+
+    def test_enforcement_actions_rendered(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+
+        enforcement_actions = doc('#policy-enforcement-actions li')
+        # We have a "No Action li at the top"
+        assert len(enforcement_actions('li')) == len(DECISION_ACTIONS) + 1
+
+        for action in DECISION_ACTIONS:
+            item = enforcement_actions(f'li.action-{action.value}')
+            assert item.length == 1
+            if action not in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS:
+                assert 'primary-enf' in item[0].classes
+            else:
+                assert 'followup-enf' in item[0].classes
 
 
 class TestAbuseReportsView(ReviewerTest):
