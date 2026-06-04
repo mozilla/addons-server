@@ -501,6 +501,7 @@ class ReviewForm(forms.Form):
         ),
         required=False,
         queryset=Version.objects.none(),
+        label='Versions:',
     )  # queryset is set later in __init__.
 
     operating_systems = forms.CharField(required=False, label='Operating systems:')

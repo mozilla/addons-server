@@ -239,8 +239,10 @@
 
       </div>
       <div class="review-actions-section">
-        {{ form.versions }}
-        {{ form.versions.errors }}
+        <label for="id_versions">{{ form.versions.label }}
+          {{ form.versions }}
+          {{ form.versions.errors }}
+        </label>
       </div>
 
       <div class="review-actions-section data-toggle review-resolve-abuse-reports"
