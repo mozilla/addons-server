@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-01 09:26+0000\n"
+"POT-Creation-Date: 2026-06-04 17:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -476,41 +476,41 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:279
+#: static/js/zamboni/reviewers.js:306
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:287
+#: static/js/zamboni/reviewers.js:314
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:604
+#: static/js/zamboni/reviewers.js:631
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:617 static/js/zamboni/reviewers.js:643
+#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:622
+#: static/js/zamboni/reviewers.js:649
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:629
+#: static/js/zamboni/reviewers.js:656
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:636
+#: static/js/zamboni/reviewers.js:663
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:648
+#: static/js/zamboni/reviewers.js:675
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:655
+#: static/js/zamboni/reviewers.js:682
 msgid "Review notes found"
 msgstr ""
 
