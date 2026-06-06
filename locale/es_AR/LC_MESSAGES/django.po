@@ -2085,7 +2085,7 @@ msgstr "Elegí una categoría"
 
 #: src/olympia/devhub/forms.py:1779
 msgid "Technical support for making your add-on compliant"
-msgstr ""
+msgstr "Soporte técnico para que tu complemento cumpla con las normativas"
 
 #: src/olympia/devhub/forms.py:1780
 msgid "Issue with addons.mozilla.org"
@@ -6057,7 +6057,7 @@ msgstr "Pasa el cursor sobre las imágenes web para ampliarlas."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
-msgstr ""
+msgstr "Herramienta de traducción repleta de funciones. Funciona en toda la web, libros electrónicos, archivos PDF e incluso subtítulos de video."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6201,15 +6201,13 @@ msgstr "Ver más herramientas de traducción seleccionadas"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1167
-#, fuzzy
 msgid "Social streaming"
-msgstr "Redes sociales"
+msgstr "Transmisión en redes sociales"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1169
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "Ver más extensiones populares"
+msgstr "Mirá más elecciones del equipo de transmisión en redes sociales"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1172
@@ -6352,7 +6350,7 @@ msgstr "Extensiones de Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1239
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Mirá más elecciones del equipo de extensiones para Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1247
