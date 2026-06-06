@@ -6157,7 +6157,7 @@ msgstr "Privacidad y seguridad"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "Mirá más elecciones del equipo de privacidad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1147
@@ -6301,9 +6301,8 @@ msgstr "Extensiones de creatividad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1214
-#, fuzzy
 msgid "See more creativity staff picks"
-msgstr "por versión del complemento"
+msgstr "Mirá más elecciones del equipo de creatividad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1217
@@ -6313,7 +6312,7 @@ msgstr "Extensiones de redes sociales"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1219
 msgid "See more social media staff picks"
-msgstr ""
+msgstr "Mirá más elecciones del equipo de redes sociales"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1222
@@ -6333,7 +6332,7 @@ msgstr "Extensiones de accesibilidad"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1229
 msgid "See more accessibility staff picks"
-msgstr ""
+msgstr "Mirá más elecciones del equipo de accesibilidad"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1232
