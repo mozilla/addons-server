@@ -2355,7 +2355,7 @@ msgstr "Морате да обезбедите додатне детаље да 
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Ускоро ће вам бити послата адреса за потврду на адресу е-поште."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
@@ -3731,11 +3731,11 @@ msgstr "Тајна JWT-а"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Након што испратите везу за потврду која је послата на вашу адресу е-поште, на овој страници ћете пронаћи своје API кључеве."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "Још увек нисте добили поруку?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4471,7 +4471,7 @@ msgstr "од"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Додатне напомене:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
@@ -6092,7 +6092,7 @@ msgstr "Погледајте све додатке"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "YouTube додаци"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
