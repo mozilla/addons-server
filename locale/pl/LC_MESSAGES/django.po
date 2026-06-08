@@ -4752,7 +4752,7 @@ msgstr "Łatwe tłumaczenie. Zaznacz tekst na dowolnej stronie internetowej — 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:80
 msgid "Tap academic wisdom. Access 10+ million research papers for free."
-msgstr ""
+msgstr "Czerp z wiedzy akademickiej. Uzyskaj bezpłatny dostęp do ponad 10 milionów artykułów naukowych."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:83
@@ -5224,9 +5224,8 @@ msgstr "Przechowuj bezpiecznie hasła i loguj się automatycznie do znanych witr
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
-#, fuzzy
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Zapisuj wprowadzone dane i wprowadzaj je automatycznie następnym razem."
+msgstr "Wypełniaj formularze automatycznie. Zapisz wprowadzone dane raz, a przy następnym użyciu zostaną one uzupełnione automatycznie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
