@@ -5208,9 +5208,8 @@ msgstr "Automatycznie przełączaj na bezpieczną wersję witryny, jeśli jest d
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:858
-#, fuzzy
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Określ własną liczbę dni przechowywania historii przeglądarki, zanim zostanie automatycznie wyczyszczona."
+msgstr "Usuń swoją historię przeglądania. Określ własną liczbę dni przechowywania historii przeglądarki, zanim zostanie automatycznie wyczyszczona."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
@@ -5240,9 +5239,8 @@ msgstr "Połóż kres uprowadzaniu twoich kart. Nie pozwól, aby kliknięte link
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:362
-#, fuzzy
 msgid "Easily perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr "Szukaj w Wikipedii, po prostu zaznaczając tekst na dowolnej stronie i klikając prawym przyciskiem myszy."
+msgstr "Łatwo przeszukuj Wikipedię po prostu zaznaczając tekst na dowolnej stronie i klikając prawym przyciskiem myszy."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:365
@@ -5349,9 +5347,8 @@ msgstr "Przycinaj zawartość internetową, taką jak artykuły, filmy, obrazy i
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:894
-#, fuzzy
 msgid "Only allow web content to run from sites you trust. Surf securely."
-msgstr "Zezwalaj na wyświetlanie zawartości internetowej tylko z zaufanych witryn."
+msgstr "Zezwalaj na wyświetlanie zawartości internetowej tylko z zaufanych witryn. Surfuj bezpiecznie."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
