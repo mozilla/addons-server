@@ -7,6 +7,7 @@ from rest_framework.decorators import (
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
 
+import olympia.core.logger
 from olympia import amo
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.api.permissions import GroupPermission
@@ -14,6 +15,9 @@ from olympia.constants.scanners import WEBHOOK, WEBHOOK_PUSH
 
 from .models import ScannerResult, ScannerWebhook, ScannerWebhookEvent
 from .serializers import PatchScannerResultSerializer, PushScannerResultSerializer
+
+
+log = olympia.core.logger.getLogger('z.scanners.views')
 
 
 @api_view(['POST'])
@@ -57,6 +61,9 @@ def push_scanner_result(request):
         webhook_event=push_event,
         results=serializer.validated_data['results'],
     )
+    log.info(
+        'Pushed new scanner result %s for version %s', scanner_result.pk, version_id
+    )
 
     return Response({'id': scanner_result.pk}, status=status.HTTP_201_CREATED)
 
@@ -92,5 +99,10 @@ def patch_scanner_result(request, pk=None):
     # We don't pass `update_fields` because the `save()` method
     # also updates other fields (e.g. has_matches, matched_rules).
     scanner_result.save()
+    log.info(
+        'Patched existing scanner result %s for version %s',
+        scanner_result.pk,
+        scanner_result.version_id,
+    )
 
     return Response(status=status.HTTP_204_NO_CONTENT)
