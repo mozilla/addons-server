@@ -5789,7 +5789,7 @@ msgstr "Niektóre witryny mają problemy z odtwarzaniem filmów na Androidzie. O
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:753
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "Widzisz interesujący obrazek w Internecie? Użyj dodatku TinEye, aby zbadać jego pochodzenie."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:771
