@@ -224,7 +224,8 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_appeal = obj.is_appeal
+        is_developer_appeal = obj.is_developer_appeal
+        is_reporter_appeal = not is_developer_appeal and obj.is_appeal
         queue_moves = list(obj.queue_moves.order_by('-created'))
         requeued_decisions = list(
             obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
@@ -261,10 +262,9 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
                 for appealed_decision in obj.appealed_decisions.all()
                 for appeal_obj in appealed_decision.appeals.all()
             )
-            if is_appeal
+            if is_reporter_appeal or is_developer_appeal
             else ()
         )
-        is_developer_appeal = is_appeal and obj.is_developer_appeal
         subtexts_gen = [
             *internal_notes,
             *(
@@ -278,7 +278,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             '<details><summary>Show detail on {} reports</summary><ul>{}</ul>'
             '</details>',
             format_datetime(obj.created),
-            '[Appeal] ' if is_appeal else '',
+            '[Appeal] ' if (is_reporter_appeal or is_developer_appeal) else '',
             format_html('[Forwarded on {}] ', format_datetime(forwarded))
             if forwarded
             else '',
@@ -292,7 +292,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         )
 
         attrs = attrs or {}
-        # Reviewers shouldn't use resolve_appeal_job to resolve "regular" jobs,
+        # Reviewers shouldn't use appeal_deny to resolve "regular" jobs,
         # and conversely shouldn't use resolve_reports_job to resolve appeals,
         # as resolving appeals is a bit more involved.
         # On top of that, they shouldn't resolve *developer* appeals when
@@ -300,13 +300,17 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # that's not always what we want.
         # The parent element will have `data-toggle-hide`, so data-value is
         # used to hide actions that are not supposed to be used for this job.
-        hide_for_these_actions = [
-            'resolve_appeal_job' if not is_appeal else 'resolve_reports_job'
-        ]
-        if is_developer_appeal:
-            hide_for_these_actions.extend(
-                ('review_with_policy', 'reject', 'reject_multiple_versions')
-            )
+        if is_reporter_appeal:
+            hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
+        elif is_developer_appeal:
+            hide_for_these_actions = [
+                'review_with_policy',
+                'reject',
+                'reject_multiple_versions',
+                'resolve_reports_job',
+            ]
+        else:
+            hide_for_these_actions = ['appeal_deny', 'appeal_override']
         attrs['data-value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
@@ -584,7 +588,7 @@ class ReviewForm(forms.Form):
             else:
                 # we no longer strictly require comments with cinder policies
                 self.fields['comments'].required = False
-            if selected_action == 'resolve_appeal_job':
+            if selected_action == 'appeal_deny':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
         if result:
@@ -600,27 +604,43 @@ class ReviewForm(forms.Form):
         selected_action = self.cleaned_data.get('action')
         selected_definition = self.helper.actions.get(selected_action, {})
         # If the user select a different type of job before changing actions there could
-        # be non-appeal jobs selected as cinder_jobs_to_resolve under resolve_appeal_job
+        # be non-appeal jobs selected as cinder_jobs_to_resolve under appeal_deny
         # action, or appeal jobs under resolve_reports_job/a reject action. So filter
         # them out.
-        if selected_action == 'resolve_appeal_job':
+        require_jobs = False
+        if selected_action == 'appeal_deny':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if job.is_appeal
             ]
+            require_jobs = True
+        elif selected_action == 'appeal_override':
+            self.cleaned_data['cinder_jobs_to_resolve'] = [
+                job
+                for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
+                if job.is_developer_appeal
+            ]
+            require_jobs = True
         elif selected_action == 'resolve_reports_job':
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_appeal
             ]
-        elif selected_action in ('reject', 'reject_multiple_versions'):
+            require_jobs = True
+        elif selected_action in (
+            'reject',
+            'reject_multiple_versions',
+            'review_with_policy',
+        ):
             self.cleaned_data['cinder_jobs_to_resolve'] = [
                 job
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_developer_appeal
             ]
+        if require_jobs and not self.cleaned_data.get('cinder_jobs_to_resolve'):
+            self.add_error('cinder_jobs_to_resolve', 'This field is required.')
         is_policy_enforcement = selected_definition.get('policy_enforcement')
         if (
             is_policy_enforcement or self.cleaned_data.get('cinder_jobs_to_resolve')
@@ -648,11 +668,6 @@ class ReviewForm(forms.Form):
                     'cinder_policies',
                     'No policies selected with an associated cinder action.',
                 )
-            elif not is_policy_enforcement and len(all_primary_actions) > 1:
-                self.add_error(
-                    'cinder_policies',
-                    'Multiple policies selected with different cinder actions.',
-                )
             elif any(len(actions) != 1 for actions in all_primary_actions):
                 self.add_error(
                     'cinder_policies',
@@ -660,11 +675,26 @@ class ReviewForm(forms.Form):
                     'action.',
                 )
 
-            if is_policy_enforcement:
-                # get the most aggressive negative policy
-                # TODO: if we expand to support non-negative policies, we'll need to
-                # change this logic (e.g. most_postive_actions, or something).
-                sorted_actions = sorted(
+            if not is_policy_enforcement:
+                if len(all_primary_actions) > 1:
+                    self.add_error(
+                        'cinder_policies',
+                        'Multiple policies selected with different cinder actions.',
+                    )
+            else:
+                negative_primary_actions = {
+                    ea
+                    for ea in all_primary_actions
+                    if len(ea) and ea[0] in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED
+                }
+                if not negative_primary_actions and len(all_primary_actions) > 1:
+                    self.add_error(
+                        'cinder_policies',
+                        'Selecting multiple policies selected with different '
+                        'non-negative cinder actions is not supported.',
+                    )
+
+                srtd_actions = sorted(
                     (
                         filter_enforcement_actions(
                             policy.split_enforcement_actions, Addon
@@ -675,11 +705,9 @@ class ReviewForm(forms.Form):
                     reverse=True,
                 )
 
-                if sorted_actions:
-                    self.cleaned_data['most_aggressive_policy_actions'] = (
-                        sorted_actions[0]
-                    )
-                    if self.cleaned_data['most_aggressive_policy_actions'].primary[
+                if srtd_actions:
+                    self.cleaned_data['most_important_policy_actions'] = srtd_actions[0]
+                    if self.cleaned_data['most_important_policy_actions'].primary[
                         0
                     ] in DECISION_ACTIONS.VERSION_SPECIFIC and selected_definition.get(
                         'multiple_versions'
@@ -690,10 +718,6 @@ class ReviewForm(forms.Form):
                     else:
                         # otherwise, don't confuse logging with versions
                         self.cleaned_data['versions'] = []
-
-                # TODO: once we support non-negative policies, we'll need to check that
-                # the policy selection is consistent - e.g. you shouldn't be able to
-                # select a positive and negative policy together
 
         if selected_definition.get('delayable'):
             delayed_rejection = self.cleaned_data.get('delayed_rejection')

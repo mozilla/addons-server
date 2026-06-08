@@ -1056,7 +1056,7 @@ class TestReviewHelper(TestReviewHelperBase):
             'reject_multiple_versions',
             'set_needs_human_review_multiple_versions',
             'reply',
-            'resolve_appeal_job',
+            'appeal_deny',
             'request_legal_review',
             'comment',
         ]
@@ -1395,7 +1395,7 @@ class TestReviewHelper(TestReviewHelperBase):
                 ),
             ],
             'cinder_jobs_to_resolve': [cinder_job],
-            'most_aggressive_policy_actions': filter_enforcement_actions(
+            'most_important_policy_actions': filter_enforcement_actions(
                 most.split_enforcement_actions, Addon
             ),
         }
@@ -1403,7 +1403,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.review_action = self.helper.actions.get(
             'review_with_policy'
         )
-        self.helper.handler.record_decision(None, action_completed=False)
+        self.helper.handler.record_policy_decision(versions=[])
         assert CinderPolicyLog.objects.count() == 4
         decision = (
             ActivityLog.objects.get(action=amo.LOG.FORCE_DISABLE.id)
@@ -4115,7 +4115,7 @@ class TestReviewHelper(TestReviewHelperBase):
                     enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
                 ),
             ],
-            'most_aggressive_policy_actions': filter_enforcement_actions(
+            'most_important_policy_actions': filter_enforcement_actions(
                 policy.split_enforcement_actions, Addon
             ),
         }
@@ -4425,7 +4425,7 @@ class TestReviewHelper(TestReviewHelperBase):
             }
         )
 
-    def test_resolve_appeal_job_policies(self):
+    def test_appeal_deny_policies(self):
         policy_a = CinderPolicy.objects.create(
             uuid='a', text='The {THING} with the {OTHER} thing or {SOMETHING}'
         )
@@ -4490,9 +4490,9 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         self.helper.set_data(data)
 
-        self.helper.handler.resolve_appeal_job()
+        self.helper.handler.appeal_deny()
 
-        assert CinderPolicyLog.objects.count() == 4
+        assert CinderPolicyLog.objects.count() == 5
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
         assert activity_log_qs.count() == 2
         decision_qs = ContentDecision.objects.filter(action_date__isnull=False)
@@ -4502,7 +4502,12 @@ class TestReviewHelper(TestReviewHelperBase):
         assert decision1.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
         assert decision2.action == DECISION_ACTIONS.AMO_APPROVE
         assert decision1.activities.get() == log1
-        assert decision2.activities.get() == log2
+        assert (
+            decision2.activities.exclude(
+                action=amo.LOG.APPROVE_LISTING_CONTENT.id
+            ).get()
+            == log2
+        )
         assert set(appeal_job1.reload().final_decision.policies.all()) == {
             policy_a,
             policy_b,
@@ -4520,7 +4525,7 @@ class TestReviewHelper(TestReviewHelperBase):
             policy_c.uuid: {'mmm': 'no!'},
         }
 
-    def test_resolve_appeal_job_versions(self):
+    def test_appeal_deny_versions(self):
         old_version1 = version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
         )
@@ -4557,7 +4562,7 @@ class TestReviewHelper(TestReviewHelperBase):
         }
         self.helper.set_data(data)
 
-        self.helper.handler.resolve_appeal_job()
+        self.helper.handler.appeal_deny()
 
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.DENY_APPEAL_JOB.id)
         assert activity_log_qs.count() == 1
@@ -4571,6 +4576,70 @@ class TestReviewHelper(TestReviewHelperBase):
         assert VersionLog.objects.filter(activity_log=log1).count() == 2
         vl1, vl2 = list(VersionLog.objects.filter(activity_log=log1))
         assert [vl1.version, vl2.version] == [old_version2, old_version1]
+
+    def test_appeal_override_with_approve(self):
+        old_version1 = version_factory(
+            addon=self.addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+            },
+        )
+        old_version2 = version_factory(
+            addon=self.addon, file_kw={'status': amo.STATUS_DISABLED}
+        )
+
+        appeal_job1 = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        ContentDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        ).target_versions.add(old_version1)
+        ContentDecision.objects.create(
+            appeal_job=appeal_job1,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            addon=self.addon,
+        ).target_versions.add(old_version2)
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{appeal_job1.job_id}/decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+        approve_policy = CinderPolicy.objects.create(
+            uuid='approve',
+            name='Approve',
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+
+        self.grant_permission(self.user, 'Addons:Review')
+        self.helper = self.get_helper()
+        data = {
+            'comments': 'Nope',
+            'cinder_jobs_to_resolve': [appeal_job1],
+            'cinder_policies': [approve_policy],
+            'most_important_policy_actions': approve_policy.split_enforcement_actions,
+        }
+        self.helper.set_data(data)
+
+        self.helper.handler.appeal_override()
+
+        activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.UNREJECT_VERSION.id)
+        assert activity_log_qs.count() == 1
+        decision_qs = ContentDecision.objects.filter(action_date__isnull=False)
+        assert decision_qs.count() == 1
+        log1 = activity_log_qs.first()
+        decision = decision_qs.first()
+        assert decision.action == DECISION_ACTIONS.AMO_APPROVE
+        assert decision.activities.get() == log1
+        assert list(decision.target_versions.all()) == [old_version2, old_version1]
+        assert VersionLog.objects.filter(activity_log=log1).count() == 2
+        vl1, vl2 = list(VersionLog.objects.filter(activity_log=log1))
+        assert [vl1.version, vl2.version] == [old_version1, old_version2]
+
+        assert old_version1.file.reload().status == amo.STATUS_APPROVED
+        assert old_version2.file.reload().status == amo.STATUS_AWAITING_REVIEW
 
     def test_reject_multiple_versions_resets_original_status_too(self):
         old_version = self.review_version

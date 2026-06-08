@@ -2734,7 +2734,7 @@ class TestReview(ReviewBase):
         self.assertCloseToNow(decision.action_date)
 
     @mock.patch('olympia.reviewers.utils.report_decision_to_cinder_and_notify.delay')
-    def test_resolve_appeal_job(self, resolve_mock):
+    def test_appeal_deny(self, resolve_mock):
         appeal_job1 = CinderJob.objects.create(
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
@@ -2761,7 +2761,7 @@ class TestReview(ReviewBase):
         response = self.client.post(
             self.url,
             {
-                'action': 'resolve_appeal_job',
+                'action': 'appeal_deny',
                 'comments': 'Nope',
                 'cinder_jobs_to_resolve': [appeal_job1.id, appeal_job2.id],
                 'appeal_action': ['deny'],
@@ -2779,7 +2779,12 @@ class TestReview(ReviewBase):
         log1, log2 = list(activity_log_qs.all())
         assert decision1.activities.get() == log1
         assert decision1.action == DECISION_ACTIONS.AMO_DISABLE_ADDON
-        assert decision2.activities.get() == log2
+        assert (
+            decision2.activities.exclude(
+                action=amo.LOG.APPROVE_LISTING_CONTENT.id
+            ).get()
+            == log2
+        )
         assert decision2.action == DECISION_ACTIONS.AMO_APPROVE
         assert resolve_mock.call_count == 2
 
