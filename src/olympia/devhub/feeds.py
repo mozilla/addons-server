@@ -6,7 +6,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.feedgenerator import Rss201rev2Feed
 from django.utils.translation import gettext
 
-import bleach
+from justhtml import JustHTML, SanitizationPolicy, Sanitize
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -41,7 +41,19 @@ class ActivityFeedRSS(Feed):
         )[:20]
 
     def clean_html(self, string):
-        return clean_nl(bleach.clean(str(string), tags=[], strip=True)).strip()
+        fragment = JustHTML(
+            str(string),
+            fragment=True,
+            transforms=[
+                Sanitize(
+                    policy=SanitizationPolicy(
+                        allowed_tags={},
+                        allowed_attributes={'*': []},
+                    )
+                )
+            ],
+        )
+        return clean_nl(fragment.to_html(pretty=False)).strip()
 
     def item_title(self, item):
         return self.clean_html(item.to_string())

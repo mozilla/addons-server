@@ -1,10 +1,21 @@
-from functools import partial, total_ordering
+import re
+from functools import total_ordering
 
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
 
-import bleach
 import markdown as md
+from justhtml import (
+    Edit,
+    JustHTML,
+    Linkify,
+    SanitizationPolicy,
+    Sanitize,
+    SetAttrs,
+    Unwrap,
+    UrlPolicy,
+    UrlRule,
+)
 
 import olympia.core.logger
 from olympia.amo.fields import PositiveAutoField
@@ -161,7 +172,7 @@ class Translation(ModelBase):
 
 
 class PureTranslation(Translation):
-    """Run the string through bleach to get version with escaped HTML."""
+    """Run the string through JustHTML to get version with escaped HTML."""
 
     allowed_tags = []
     allowed_attributes = {}
@@ -184,14 +195,35 @@ class PureTranslation(Translation):
         self.localized_string_clean = clean_nl(cleaned).strip()
 
     def clean_localized_string(self):
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags, attributes=self.allowed_attributes
+        fragment = JustHTML(
+            str(self.localized_string),
+            fragment=True,
+            transforms=[Sanitize(policy=self.get_sanitization_policy({}, {'*': []}))],
         )
-        return cleaner.clean(str(self.localized_string))
+        return fragment.to_html(pretty=False)
+
+    def get_sanitization_policy(self, tags, attr, tag_handling='escape'):
+        return SanitizationPolicy(
+            allowed_tags=tags,
+            allowed_attributes=attr,
+            # Prevent JustHTML from dropping <script> and <style>
+            # regardless of disallowed_tag_handling.
+            drop_content_tags=(),
+            disallowed_tag_handling=tag_handling,
+            # Prevent JustHTML from dropping href without an explicit URLPolicy.
+            url_policy=UrlPolicy(
+                allow_rules={
+                    ('a', 'href'): UrlRule(
+                        allowed_schemes=['http', 'https'],
+                        handling='allow',
+                    )
+                },
+            ),
+        )
 
 
 class PurifiedTranslation(PureTranslation):
-    """Run the string through bleach to get a safe version."""
+    """Run the string through JustHTML to get a safe version."""
 
     allowed_tags = [
         'a',
@@ -213,12 +245,6 @@ class PurifiedTranslation(PureTranslation):
         'acronym': ['title'],
     }
 
-    # All links (text and markup) are normalized.
-    linkify_filter = partial(
-        bleach.linkifier.LinkifyFilter,
-        callbacks=[linkify_bounce_url_callback, bleach.callbacks.nofollow],
-    )
-
     class Meta:
         proxy = True
 
@@ -227,13 +253,22 @@ class PurifiedTranslation(PureTranslation):
 
     def clean_localized_string(self):
         # Keep only the allowed tags and attributes, escape the rest.
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags,
-            attributes=self.allowed_attributes,
-            filters=[self.linkify_filter],
+        fragment = JustHTML(
+            str(self.localized_string),
+            fragment=True,
+            sanitize=False,
+            transforms=[
+                Sanitize(
+                    policy=self.get_sanitization_policy(
+                        self.allowed_tags, self.allowed_attributes
+                    )
+                ),
+                Linkify(),
+                Edit('a', linkify_bounce_url_callback),
+                SetAttrs('a', rel='nofollow'),
+            ],
         )
-
-        return cleaner.clean(str(self.localized_string))
+        return fragment.to_html(pretty=False)
 
 
 class PurifiedMarkdownTranslation(PurifiedTranslation):
@@ -241,31 +276,46 @@ class PurifiedMarkdownTranslation(PurifiedTranslation):
         proxy = True
 
     def clean_localized_string(self):
-        # bleach user-inputted html
-        cleaned = (
-            bleach.clean(self.localized_string, tags=[], attributes={})
-            if self.localized_string
-            else ''
-        )
+        cleaned = JustHTML(
+            str(self.localized_string) if self.localized_string else '',
+            fragment=True,
+            sanitize=False,
+            transforms=[Sanitize(policy=self.get_sanitization_policy({}, {'*': []}))],
+        ).to_html(pretty=False)
+
         # hack; cleaning breaks blockquotes
         text_with_brs = cleaned.replace('&gt;', '>')
+
         # the base syntax of markdown library does not provide abbreviations or fenced
         # code. see https://python-markdown.github.io/extensions/
         markdown = md.markdown(text_with_brs, extensions=['abbr', 'fenced_code'])
 
-        # Keep only the allowed tags and attributes, strip the rest.
-        cleaner = bleach.Cleaner(
-            tags=self.allowed_tags,
-            attributes=self.allowed_attributes,
-            filters=[self.linkify_filter],
-            strip=True,
+        # Markdown wraps paragraphs in <p>, which bleach used to unwrap into newlines.
+        # justHTML does not, so this needs to be manually accounted for.
+        markdown = re.sub(r'(</\w+>)\s*<p[^>]*>', r'\1\n\n', markdown)
+
+        fragment = JustHTML(
+            markdown,
+            fragment=True,
+            sanitize=False,
+            transforms=[
+                Unwrap('p'),  # Remove the outer <p> wrapper generated by markdown.
+                Sanitize(
+                    policy=self.get_sanitization_policy(
+                        self.allowed_tags, self.allowed_attributes, tag_handling='drop'
+                    ),
+                ),
+                Linkify(),
+                Edit('a', linkify_bounce_url_callback),
+                SetAttrs('a', rel='nofollow'),
+            ],
         )
 
-        return cleaner.clean(markdown)
+        return fragment.to_html(pretty=False)
 
 
 class LinkifiedTranslation(PurifiedTranslation):
-    """Run the string through bleach to get a linkified version."""
+    """Run the string through JustHTML to get a linkified version."""
 
     allowed_tags = ['a']
 

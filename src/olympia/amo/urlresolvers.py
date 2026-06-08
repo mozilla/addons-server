@@ -7,8 +7,17 @@ from django.conf import settings
 from django.utils.encoding import force_bytes
 from django.utils.translation.trans_real import parse_accept_lang_header
 
-import bleach
 import markupsafe
+from justhtml import (
+    Edit,
+    JustHTML,
+    Linkify,
+    SanitizationPolicy,
+    Sanitize,
+    SetAttrs,
+    UrlPolicy,
+    UrlRule,
+)
 
 from olympia import amo
 
@@ -146,35 +155,52 @@ def get_outgoing_url(url):
     return '/'.join([settings.REDIRECT_URL.rstrip('/'), sig, quote(url, safe='/&=')])
 
 
-def linkify_bounce_url_callback(attrs, new=False):
+def linkify_bounce_url_callback(node):
     """Linkify callback that uses get_outgoing_url."""
-    HREF_KEY = (None, 'href')
-    if HREF_KEY in attrs.keys():
-        attrs[HREF_KEY] = get_outgoing_url(attrs[HREF_KEY])
-    return attrs
-
-
-def linkify_only_full_urls(attrs, new=False):
-    """Linkify only full links, containing the scheme."""
-    if not new:  # This is an existing <a> tag, leave it be.
-        return attrs
-
-    # If the original text doesn't contain the scheme, don't linkify.
-    if not attrs['_text'].startswith(('http:', 'https:')):
-        return None
-
-    return attrs
+    if 'href' in node.attrs.keys():
+        node.attrs['href'] = get_outgoing_url(node.attrs['href'])
 
 
 def linkify_with_outgoing(text):
-    """Wrapper around bleach.linkify: uses get_outgoing_url."""
-    callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
-    return bleach.linkify(str(text), callbacks=callbacks)
+    """Wrapper around justhtml's linkify: uses get_outgoing_url."""
+    fragment = JustHTML(
+        text,
+        fragment=True,
+        sanitize=False,
+        transforms=[
+            Linkify(),
+            Edit('a', linkify_bounce_url_callback),
+            SetAttrs('a', rel='nofollow'),
+        ],
+    )
+    return fragment.to_html(pretty=False)
 
 
 def linkify_and_clean(text):
-    callbacks = [linkify_only_full_urls, bleach.callbacks.nofollow]
-    return bleach.linkify(bleach.clean(str(text)), callbacks=callbacks)
+    fragment = JustHTML(
+        text,
+        fragment=True,
+        transforms=[
+            Sanitize(
+                policy=SanitizationPolicy(
+                    allowed_tags={'a'},
+                    allowed_attributes={'a': ['href']},
+                    disallowed_tag_handling='escape',
+                    url_policy=UrlPolicy(
+                        allow_rules={
+                            ('a', 'href'): UrlRule(
+                                allowed_schemes=['http', 'https'],
+                                handling='allow',
+                            )
+                        },
+                    ),
+                )
+            ),
+            Linkify(extra_tlds={'http:', 'https:'}),
+            SetAttrs('a', rel='nofollow'),
+        ],
+    )
+    return fragment.to_html(pretty=False)
 
 
 def lang_from_accept_header(header):

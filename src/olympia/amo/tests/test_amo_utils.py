@@ -268,9 +268,9 @@ class TestSafeStorage(TestCase):
     [
         (
             '<script>alert("BALL SO HARD")</script>',
-            '&lt;script&gt;alert(&#34;BALL SO HARD&#34;)&lt;/script&gt;',
+            '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;',
         ),
-        ('Foo"', 'Foo&#34;'),
+        ('Foo"', 'Foo"'),
         ('Bän...g (bang)', 'Bän...g (bang)'),
         (u, u),
         ('-'.join([u, u]), '-'.join([u, u])),
@@ -285,16 +285,15 @@ def test_escape_all(test_input, expected):
 
 
 @mock.patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
-@mock.patch('bleach.callbacks.nofollow', lambda attrs, new: attrs)
 def test_escape_all_linkify_only_full(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
 
     assert escape_all('http://firefox.com') == (
-        '<a href="https://outgoing.firefox.com">http://firefox.com</a>'
+        '<a href="https://outgoing.firefox.com" rel="nofollow">http://firefox.com</a>'
     )
 
     assert escape_all('firefox.com') == (
-        '<a href="https://outgoing.firefox.com">firefox.com</a>'
+        '<a href="https://outgoing.firefox.com" rel="nofollow">firefox.com</a>'
     )
 
 

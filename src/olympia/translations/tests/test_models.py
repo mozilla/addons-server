@@ -407,7 +407,7 @@ class TranslationTestCase(TestCase):
 
     def test_new_purified_field(self):
         # This is not a full test of the html sanitizing.  We expect the
-        # underlying bleach library to have full tests.
+        # underlying JustHTML library to have full tests.
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(purified=s)
 
