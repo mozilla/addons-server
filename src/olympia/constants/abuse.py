@@ -39,6 +39,7 @@ class DECISION_ACTIONS(EnumChoicesApiDash):
     AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON = 21, '[Follow-up] Short-delayed hard block'
     AMO_FU_DELAY_MID_HARD_BLOCK_ADDON = 22, '[Follow-up] Mid-delayed hard block'
     AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON = 23, '[Follow-up] Long-delayed hard block'
+    AMO_LEGAL_DISABLE_ADDON = 24, 'Add-on disable, due to legal takedown'
 
 
 DECISION_ACTIONS.add_subset(
@@ -54,6 +55,7 @@ DECISION_ACTIONS.add_subset(
         # to be done manually.
         'AMO_BLOCK_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
+        # AMO_LEGAL_DISABLE_ADDON is specifically not appealable via AMO/Cinder
     ),
 )
 DECISION_ACTIONS.add_subset(
@@ -69,6 +71,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_REJECT_VERSION_ADDON',
         'AMO_BLOCK_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
+        'AMO_LEGAL_DISABLE_ADDON',
     ),
 )
 DECISION_ACTIONS.add_subset(

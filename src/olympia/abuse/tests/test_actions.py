@@ -58,6 +58,7 @@ from ..actions import (
     ContentActionDisableAddon,
     ContentActionForwardToLegal,
     ContentActionIgnore,
+    ContentActionLegalTakedownDisableAddon,
     ContentActionOverrideApprove,
     ContentActionRejectListingContent,
     ContentActionRejectVersion,
@@ -690,10 +691,6 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
 
         self.cinder_job.notify_reporters(action_helper)
         action_helper.notify_owners()
-        subject = f'Mozilla Add-ons: {self.addon.name}'
-        self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
-        return subject
 
     def test_log_action_no_notes(self):
         self.decision.update(private_notes='', action=self.takedown_decision_action)
@@ -711,7 +708,10 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         assert ActivityLog.objects.count() == 0
 
     def test_execute_action(self):
-        subject = self._process_action_and_notify()
+        self._process_action_and_notify()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+        self._test_owner_takedown_email(subject, self.disable_snippet)
+        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled
@@ -731,7 +731,10 @@ class TestContentActionDisableAddon(BaseTestContentAction, TestCase):
         CinderAppeal.objects.create(
             decision=original_job.final_decision, reporter_report=self.abuse_report_auth
         )
-        subject = self._process_action_and_notify()
+        self._process_action_and_notify()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+        self._test_owner_takedown_email(subject, self.disable_snippet)
+        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
@@ -2030,7 +2033,7 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         assert block_version_activity.user == self.task_user
 
     def _process_action_and_notify(self):
-        subject = super()._process_action_and_notify()
+        super()._process_action_and_notify()
 
         assert ActivityLog.objects.count() == 4
         block_activity = ActivityLog.objects.all()[3]
@@ -2045,8 +2048,6 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
             self.old_version.blockversion.auto_block_reason
             == BlockReason.FRAUD_DECEPTIVE
         )
-
-        return subject
 
     def test_already_taken_down(self):
         """For a block action, this shouldn't affect the block, only the disable"""
@@ -2682,10 +2683,6 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert action_helper.action == self.takedown_decision_action
         self.cinder_job.notify_reporters(action_helper)
         action_helper.notify_owners()
-        subject = f'Mozilla Add-ons: {self.addon.name}'
-        self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
-        return subject
 
     def _test_approve_appeal_or_override(self, ActionClass):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -2715,7 +2712,10 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_execute_action(self):
-        subject = self._process_action_and_notify()
+        self._process_action_and_notify()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+        self._test_owner_takedown_email(subject, self.disable_snippet)
+        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
         # Content-rejection doesn't affect auto-approval disabled flags.
@@ -2817,6 +2817,9 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         # it should work the same if it's already rejected - the developer can ask for
         # a new review, and we reject it again
         self._process_action_and_notify()
+        subject = f'Mozilla Add-ons: {self.addon.name}'
+        self._test_owner_takedown_email(subject, self.disable_snippet)
+        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -3224,6 +3227,58 @@ class TestContentActionRating(BaseTestContentAction, TestCase):
         assert second_activity.arguments == [self.rating, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+
+
+class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
+    ActionClass = ContentActionLegalTakedownDisableAddon
+    takedown_decision_action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
+
+    def test_execute_action(self):
+        self._process_action_and_notify()
+        assert len(mail.outbox) == 0
+        flags = self.addon.reviewerflags.reload()
+        assert flags.auto_approval_disabled
+        assert flags.auto_approval_disabled_unlisted
+
+    def test_approve_appeal_success(self):
+        # No appeals
+        pass
+
+    def test_approve_appeal_success_but_listing_rejected(self):
+        # No appeals
+        pass
+
+    def test_approve_appeal_success_but_not_approved(self):
+        # No appeals
+        pass
+
+    def test_email_content_not_escaped(self):
+        # No emails
+        pass
+
+    def test_execute_action_after_reporter_appeal(self):
+        # Not a supported action to use as an override to support a reporter appeal
+        pass
+
+    def test_notify_owners_non_public_url(self):
+        # No emails
+        pass
+
+    def test_notify_owners_with_for_proactive_decision(self):
+        # No emails
+        pass
+
+    def test_notify_owners_with_for_third_party_decision(self):
+        # No emails
+        pass
+
+    def test_notify_owners_with_manual_reasoning_text(self):
+        # No emails
+        pass
+
+    def test_notify_reporters_reporters_provided(self):
+        # No emails
+        pass
 
 
 def test_no_action_duplicates():
