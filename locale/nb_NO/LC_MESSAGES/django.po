@@ -3962,7 +3962,7 @@ msgstr "Administrationsside"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:53
 msgid "View Statistics Dashboard"
-msgstr "Vis statistikkoversikt"
+msgstr "Vis statistikkdashbord"
 
 #: src/olympia/devhub/templates/devhub/includes/agreement.html:4
 #, python-format
@@ -6704,17 +6704,17 @@ msgstr "Eksporter"
 #: src/olympia/stats/templates/stats/stats.html:17
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr "{0} :: Statistikkpanel :: Tillegg for {1}"
+msgstr "{0} :: Statistikkdashbord :: Tillegg for {1}"
 
 #: src/olympia/stats/templates/stats/stats.html:19
 #, python-brace-format
 msgid "{0} :: Statistics Dashboard"
-msgstr "{0} :: Statistikkpanel"
+msgstr "{0} :: Statistikkdashbord"
 
 #: src/olympia/stats/templates/stats/stats.html:21
 #, python-brace-format
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr "Statistikkpanel :: Tillegg for {0}"
+msgstr "Statistikkdashbord :: Tillegg for {0}"
 
 #. {0} is an add-on name
 #: src/olympia/stats/templates/stats/stats.html:32 src/olympia/stats/templates/stats/stats.html:35
@@ -6724,7 +6724,7 @@ msgstr "Statistikk for {0}"
 
 #: src/olympia/stats/templates/stats/stats.html:38
 msgid "Statistics Dashboard"
-msgstr "Statistikkpanel"
+msgstr "Statistikkdashbord"
 
 #: src/olympia/stats/templates/stats/stats.html:45
 msgid "Controls:"
