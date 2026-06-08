@@ -4999,9 +4999,8 @@ msgstr "Uzyskaj dostęp do ostatnio zamkniętych kart, klikając prawym przycisk
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:221
-#, fuzzy
 msgid "Inspire productivity. Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Zmodyfikuj stronę nowej karty przy użyciu pięknego tła, ustawiając dzienny cel i nie tylko."
+msgstr "Pobudź swoją produktywność. Zmodyfikuj stronę nowej karty, aby wyświetlić piękne tło, ustawić codzienny cel i nie tylko."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:224
