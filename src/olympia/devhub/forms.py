@@ -1,5 +1,4 @@
 import itertools
-import os
 import tarfile
 import zipfile
 from functools import cached_property
@@ -44,7 +43,7 @@ from olympia.amo.enum import StrEnumChoices
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.utils import slug_validator, verify_no_urls
+from olympia.amo.utils import SafeStorage, slug_validator, verify_no_urls
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.api.throttling import (
@@ -261,7 +260,8 @@ class AddonFormMedia(AddonFormBase):
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']
-            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
+            upload_storage = SafeStorage(root_setting='TMP_PATH', rel_location='icon')
+            upload_path = upload_storage.path(upload_hash)
             remove_icons(addon)
             addons_tasks.resize_icon.delay(
                 upload_path,
@@ -1381,7 +1381,10 @@ class PreviewForm(TranslationFormMixin, AMOModelForm):
             super().save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = os.path.join(settings.TMP_PATH, 'preview', upload_hash)
+                upload_storage = SafeStorage(
+                    root_setting='TMP_PATH', rel_location='preview'
+                )
+                upload_path = upload_storage.path(upload_hash)
                 addons_tasks.resize_preview.delay(
                     upload_path,
                     self.instance.pk,
