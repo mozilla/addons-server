@@ -2048,12 +2048,12 @@ msgstr "Revocar"
 
 #: src/olympia/devhub/forms.py:1494
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Reenviar correo de confirmación"
 
 #: src/olympia/devhub/forms.py:1551
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Dar clic en el botón de abajo para generar las credenciales de la API para la cuenta de <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1576
 msgid "You don't have any API credentials."
@@ -2369,7 +2369,7 @@ msgstr "Debes proporcionar más detalles para continuar."
 
 #: src/olympia/devhub/views.py:2110
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "En breve se enviará un enlace de confirmación a la dirección de correo electrónico."
 
 #: src/olympia/devhub/views.py:2125
 msgid "Your old credentials were revoked and are no longer valid."
