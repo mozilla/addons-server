@@ -3762,11 +3762,11 @@ msgstr "Secreto JWT"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:44
 msgid "After following the confirmation link that was sent to your email address, you will find your API keys on this page."
-msgstr ""
+msgstr "Tras ingresar al enlace de confirmación enviado a la dirección de correo electrónico, las claves de la API aparecerán en esta página."
 
 #: src/olympia/devhub/templates/devhub/api/key.html:48
 msgid "Haven't received the email yet?"
-msgstr ""
+msgstr "¿No se ha recibido el correo electrónico?"
 
 #: src/olympia/devhub/templates/devhub/emails/api_key_confirmation.ltxt:10
 #, python-format
@@ -4508,7 +4508,7 @@ msgstr "por"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:128
 msgid "Additional comments:"
-msgstr ""
+msgstr "Comentarios adicionales:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:141
 msgid "Leave a reply"
@@ -4579,6 +4579,8 @@ msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
+"Una vez que una versión haya sido eliminada, no será posible subir una nueva versión con el mismo número. Dicha versión también quedará restringida, lo que deshabilitará y evitará cualquier "
+"instalación posterior en Firefox. Quienes ya cuenten con la instalación podrán optar por reactivar el complemento."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:281
 msgid "Are you sure you wish to delete this version?"
@@ -4920,7 +4922,7 @@ msgstr "Cambia la forma de explorar Reddit a través de etiquetas y otras opcion
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "Capturar páginas web, realizar ediciones y compartir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -5538,9 +5540,8 @@ msgstr "Bloquee los sitios web que le distraen. Sólo tienes que indicar los sit
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:762
-#, fuzzy
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
-msgstr "Crea fácilmente tus propios temas visuales para darle a Firefox la apariencia que prefieras."
+msgstr "Personalización de la apariencia del navegador. Es posible diseñar temas visuales propios con total facilidad para que Firefox luzca al gusto de cada persona."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:521
@@ -5554,9 +5555,8 @@ msgstr "Usa el reconocimiento de voz para activar la búsqueda por voz en Google
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:527
-#, fuzzy
 msgid "Track products and get notified when prices drop on items you're interested in at Amazon, Best Buy, eBay, Home Depot, and Walmart."
-msgstr "Recibe notificaciones cuando bajen los precios de los productos que te interesan en Amazon, Best Buy, eBay, Home Depot y Walmart."
+msgstr "Seguimiento de productos y alertas automáticas ante bajas de precio en artículos de interés en Amazon, Best Buy, eBay, Home Depot y Walmart."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5627,7 +5627,7 @@ msgstr "Bloquear todos los anuncios: videos, ventanas emergentes, banners y más
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:906
 msgid "Watch streaming media with friends and family anywhere."
-msgstr ""
+msgstr "Disfrutar de contenido en streaming en compañía de amigos y familiares desde cualquier lugar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5688,9 +5688,8 @@ msgstr "¡Adiós, molestas advertencias de cookies!"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:604
-#, fuzzy
 msgid "All your emoji needs—always just a click away."
-msgstr "Mejora tus emojis. Elige entre decenas de sorprendentes emojis para cada ocasión con un solo clic."
+msgstr "Todos los emojis necesarios, siempre a un solo clic."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:608
@@ -5730,12 +5729,12 @@ msgstr "Personaliza YouTube a tu gusto. Dale un nuevo aspecto, nuevas caracterí
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:640
 msgid "Changes the color of Firefox to match the appearance of any website."
-msgstr ""
+msgstr "Modificación del color de Firefox para adaptarse a la apariencia de cualquier sitio web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:650
 msgid "Protect your privacy against a unique form of JavaScript “fingerprinting”."
-msgstr ""
+msgstr "Protección de la privacidad contra una forma única de “fingerprinting” en JavaScript."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
@@ -5745,12 +5744,12 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
 msgid "Powerful pop-up dictionary optimized for learning new languages."
-msgstr ""
+msgstr "Potente diccionario emergente optimizado para el aprendizaje de nuevos idiomas."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:673
 msgid "Hover your mouse over thumbnails to easily browse and download HD images."
-msgstr ""
+msgstr "Colocar el cursor sobre las miniaturas para explorar y descargar imágenes en alta definición con facilidad."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:676
@@ -5760,7 +5759,7 @@ msgstr "Elimina resultados de búsqueda no deseados o que distraen, así como el
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:679
 msgid "Makes Firefox appear as Chrome to websites trying to block Firefox."
-msgstr ""
+msgstr "Haz que Firefox aparezca como Chrome ante los sitios web que intentan bloquearlo."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
@@ -5814,14 +5813,13 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:732
-#, fuzzy
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
-msgstr "Algunos sitios tienen problemas para reproducir vídeos en Firefox para Android. Esta extensión te ofrece una solución."
+msgstr "Algunos sitios web presentan dificultades para reproducir videos en Android. Aquí se presenta una solución."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:753
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
-msgstr ""
+msgstr "¿Encontraste una imagen interesante en la web? Usa TinEye para descubrir su origen."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:771
@@ -5831,7 +5829,7 @@ msgstr "Guarda imágenes fácilmente: simplemente, agrégalas desde tu pestaña 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:774
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
-msgstr ""
+msgstr "Control definitivo de pestañas: cierre de pestañas duplicadas, combinación de ventanas, copia de títulos de pestañas y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:792
