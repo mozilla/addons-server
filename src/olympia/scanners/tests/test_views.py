@@ -1,3 +1,5 @@
+from unittest import mock
+
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -48,7 +50,8 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
             kwargs={'pk': self.scanner_result.pk},
         )
 
-    def test_success(self):
+    @mock.patch('olympia.scanners.views.log')
+    def test_success(self, log_mock):
         assert not self.scanner_result.results
 
         results = {'version': '1.2.3', 'matchedRules': []}
@@ -57,6 +60,13 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 204
         self.scanner_result.refresh_from_db()
         assert self.scanner_result.results == results
+        assert log_mock.info.call_count == 1
+        assert (
+            log_mock.info.call_args[0][0]
+            == 'Patched existing scanner result %s for version %s'
+        )
+        assert log_mock.info.call_args[0][1] == self.scanner_result.pk
+        assert log_mock.info.call_args[0][2] == self.scanner_result.version.pk
 
     def test_success_with_null_results(self):
         self.scanner_result.update(results=None)
@@ -211,7 +221,8 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
             data = {'version_id': self.version.pk, 'results': self.results}
         return self.post(self.url, data=data, format='json')
 
-    def test_success(self):
+    @mock.patch('olympia.scanners.views.log')
+    def test_success(self, log_mock):
         response = self._push_scanner_result()
 
         assert response.status_code == 201
@@ -222,6 +233,13 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert scanner_result.results == self.results
         assert scanner_result.webhook_event.event == WEBHOOK_PUSH
         assert scanner_result.webhook_event.webhook == self.webhook
+        assert log_mock.info.call_count == 1
+        assert (
+            log_mock.info.call_args[0][0]
+            == 'Pushed new scanner result %s for version %s'
+        )
+        assert log_mock.info.call_args[0][1] == scanner_result.pk
+        assert log_mock.info.call_args[0][2] == self.version.pk
 
     def test_multiple_results_allowed_when_no_matched_rules(self):
         self._push_scanner_result()
