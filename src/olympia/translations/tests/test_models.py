@@ -760,6 +760,11 @@ class TestPurifiedMarkdownTranslation(TestCase):
             '<strong>bold text</strong> or <em>italics</em>&lt;b&gt;not bold&lt;/b&gt;'
         )
 
+    def test_disallowed_markdown_stripped(self):
+        s = '__bold text__\n\n### This is my heading!'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        assert x.__html__() == ('<strong>bold text</strong>')
+
     def test_html(self):
         s = '<script>some naughty xss</script>'
         x = PurifiedMarkdownTranslation(localized_string=s)
