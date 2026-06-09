@@ -2193,14 +2193,17 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
         result.save()
         content = formatted_matched_rules_with_files_and_data(result)
         doc = pq(content)
-        assert len(doc('li')) == 5
-        assert doc('li')[1].text.strip() == 'somefilename1'
+        # 5 files + 1 leading entry for the rule's global metadata.
+        assert len(doc('li')) == 6
+        assert doc('li')[2].text.strip() == 'somefilename1'
 
         content = formatted_matched_rules_with_files_and_data(result, limit_to=2)
         doc = pq(content)
-        assert len(doc('li')) == 3  # 2 + 1 for the "…and and more 3 files"
-        assert doc('li')[1].text.strip() == 'somefilename1'
-        assert doc('li')[2].text == '…and 3 more files'
+        # 1 for the global metadata + 1 file + 1 for the "…and 4 more files"
+        # because it's a yara result.
+        assert len(doc('li')) == 3
+        assert doc('li')[1].text.strip() == 'somefilename0'
+        assert doc('li')[2].text == '…and 4 more files'
 
 
 class TestScannerWebhookAdmin(TestCase):

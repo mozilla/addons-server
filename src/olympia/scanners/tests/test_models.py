@@ -165,8 +165,15 @@ class TestScannerResultMixin:
         match3 = self.create_fake_yara_match(rule=rule1, filename=file2)
         result.add_yara_result(rule=match3.rule, tags=match3.tags, meta=match3.meta)
         assert result.get_files_and_data_by_matched_rules() == {
-            rule1: [{'filename': file1}, {'filename': file2}],
-            rule2: [{'filename': file2}],
+            rule1: [
+                {'filename': '', 'data': {'description': 'some description'}},
+                {'filename': file1},
+                {'filename': file2},
+            ],
+            rule2: [
+                {'filename': '', 'data': {'description': 'some description'}},
+                {'filename': file2},
+            ],
         }
 
     def test_get_files_and_data_by_matched_rules_no_file_somehow(self):
@@ -175,7 +182,10 @@ class TestScannerResultMixin:
         result.add_yara_result(rule=rule.name)
         result.save()
         assert result.get_files_and_data_by_matched_rules() == {
-            'foobar': [{'filename': '???'}],
+            'foobar': [
+                {'filename': '', 'data': {}},
+                {'filename': '???'},
+            ],
         }
 
     def test_get_files_and_data_by_matched_rules_with_no_results(self):
