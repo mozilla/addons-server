@@ -47,7 +47,7 @@ class ActivityFeedRSS(Feed):
             transforms=[
                 Sanitize(
                     policy=SanitizationPolicy(
-                        allowed_tags={},
+                        allowed_tags=[],
                         allowed_attributes={'*': []},
                     )
                 )
