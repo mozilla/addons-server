@@ -23,11 +23,9 @@ Use ### headings to separate steps so steps will be visible in the table of cont
 
 Brief description of the runbook.
 
-## Steps
+## Step 1
 
-### Step 1
+## Step 2
 
-### Step 2
-
-### Step 3
+## Step 3
 ```

@@ -2,13 +2,11 @@
 
 Test the devhub statistics dashboard locally with bigquery credentials.
 
-## Steps
-
-### Setup bigquery credentials
+## Setup bigquery credentials
 
 [Bigquery Credentials Setup](./bigquery_credentials_setup.md)
 
-### Enable a local addon to read from bigquery dev database
+## Enable a local addon to read from bigquery dev database
 
 Only a [subset of addons][enabled_dev_guids] in dev push data to bigquery. In order to read from bigquery your local addon will need to use a matching `guid`.
 
@@ -24,7 +22,7 @@ addon.addonguid.guid = <guid>
 addon.addonguid.save()  # Need to trigger post-save to update hashed_guid.
 ```
 
-### Run the statistics dashboard
+## Run the statistics dashboard
 
 Open your addon `<http://olympia.test/en-US/firefox/addon/<pk>/statistics/>`
 
