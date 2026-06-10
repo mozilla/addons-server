@@ -4,10 +4,10 @@
             <a class="Footer-mozilla-link" href="https://mozilla.org/" title="{% trans %}Go to Mozilla's homepage{% endtrans %}"><span class="Icon Icon-mozilla Footer-mozilla-logo"><span class="visually-hidden">{{ _("Go to Mozilla's homepage") }}</span></span></a>
         </div>
 
-        <section class="Footer-amo-links">
+        <section class="Footer-column Footer-amo-links">
             <h4 class="Footer-links-header"><a href="{{ url('home') }}">{{ _('Add-ons') }}</a></h4>
 
-            <ul class="Footer-links">
+            <ul class="Footer-column Footer-links">
                 <li><a href="{{ url('pages.about') }}">{{ _('About') }}</a></li>
                 <li><a href="{{ settings.EXTERNAL_SITE_URL }}/blog/">{{ _('Firefox Add-ons Blog') }}</a></li>
                 <li><a class="Footer-extension-workshop-link" href="{{ settings.EXTENSION_WORKSHOP_URL }}/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=footer-link">{{ _('Extension Workshop') }}</a></li>
@@ -20,31 +20,57 @@
             </ul>
         </section>
 
-        <section class="Footer-browsers-links">
-            <h4 class="Footer-links-header">{{ _('Browsers') }}</h4>
+        <section class="Footer-column Footer-download-links">
+            <h4 class="Footer-links-header">{{ _('Download') }}</h4>
 
             <ul class="Footer-links">
-                <li><a href="https://www.mozilla.org/firefox/new/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Desktop') }}</a></li>
-                <li><a href="https://www.mozilla.org/firefox/mobile/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Mobile') }}</a></li>
-                <li><a href="https://www.mozilla.org/firefox/enterprise/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Enterprise') }}</a></li>
+                <li><a href="https://www.firefox.com/thanks/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Download Firefox') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/windows/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Windows') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/mac/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('macOS') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/ios/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('iOS') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/android/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Android') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/linux/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Linux') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/download/all/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('All') }}</a></li>
             </ul>
         </section>
 
-        <section class="Footer-products-links">
-            <h4 class="Footer-links-header">{{ _('Products') }}</h4>
+        <section class="Footer-column Footer-build-links">
+            <section class="Footer-latest-links">
+            <h4 class="Footer-links-header">{{ _('Latest Builds') }}</h4>
 
             <ul class="Footer-links">
-                <li><a href="https://www.mozilla.org/firefox/browsers/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">{{ _('Browsers') }}</a></li>
-                <li><a href="https://www.mozilla.org/products/vpn/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link#pricing">VPN</a></li>
-                <li><a href="https://relay.firefox.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Relay</a></li>
-                <li><a href="https://monitor.firefox.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Monitor</a></li>
-                <li><a href="https://getpocket.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=footer-link">Pocket</a></li>
+                <li><a href="https://www.firefox.com/en-US/channel/desktop/#nightly?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Nightly') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/channel/desktop/#beta?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Beta') }}</a></li>
             </ul>
+        </section>
+        <section class="Footer-business-links">
+            <h4 class="Footer-links-header">{{ _('Firefox for Business') }}</h4>
 
-            <ul class="Footer-links Footer-links-social">
-                <li class="Footer-link-social"><a href="https://bsky.app/profile/firefox.com"><span class="Icon Icon-bluesky"><span class="visually-hidden">Bluesky (@firefox.com)</span></span></a></li>
-                <li class="Footer-link-social"><a href="https://www.instagram.com/firefox/"><span class="Icon Icon-instagram"><span class="visually-hidden">Instagram (Firefox)</span></span></a></li>
-                <li class="Footer-link-social"><a href="https://www.youtube.com/firefoxchannel"><span class="Icon Icon-youtube"><span class="visually-hidden">YouTube (firefoxchannel)</span></span></a></li>
+            <ul class="Footer-links">
+                <li><a href="https://www.firefox.com/en-US/browsers/enterprise/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Enterprise') }}</a></li>
+            </ul>
+        </section>
+        </section>
+
+        <section class="Footer-column Footer-community-links">
+            <h4 class="Footer-links-header">{{ _('Community') }}</h4>
+
+            <ul class="Footer-links">
+                <li><a href="https://connect.mozilla.org/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Connect') }}</a></li>
+                <li><a href="https://www.mozilla.org/contribute/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Contribute') }}</a></li>
+                <li><a href="https://www.firefox.com/en-US/channel/desktop/developer/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Developer') }}</a></li>
+            </ul>
+        </section>
+
+        <section class="Footer-column Footer-follow-links">
+            <h4 class="Footer-links-header">{{ _('Follow') }}</h4>
+
+            <ul class="Footer-links">
+                <li><a href="https://www.instagram.com/firefox/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Instagram') }}</a></li>
+                <li><a href="https://www.youtube.com/user/firefoxchannel?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Youtube') }}</a></li>
+                <li><a href="https://www.tiktok.com/@firefox/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('TikTok') }}</a></li>
+                <li><a href="https://bsky.app/profile/firefox.com/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Bluesky') }}</a></li>
+                <li><a href="https://www.youtube.com/@firefox/podcasts/?utm_content=footer-link&utm_medium=referral&utm_source=addons.mozilla.org">{{ _('Podcast') }}</a></li>
             </ul>
         </section>
 
