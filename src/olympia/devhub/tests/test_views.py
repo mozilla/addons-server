@@ -104,7 +104,7 @@ class TestDashboard(HubTest):
         assert doc('title').text() == (
             'Manage My Submissions :: Developer Hub :: Add-ons for Firefox'
         )
-        assert doc('.Footer-links').length == 4
+        assert doc('.Footer-links').length == 6
         assert doc('.Footer-copyright').length == 1
 
     def get_action_links(self, addon_id):
