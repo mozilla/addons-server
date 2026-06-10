@@ -5833,9 +5833,8 @@ msgstr "Control definitivo de pestañas: cierre de pestañas duplicadas, combina
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:792
-#, fuzzy
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
-msgstr "Lee archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
+msgstr "Lee archivos ePUB directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:813
