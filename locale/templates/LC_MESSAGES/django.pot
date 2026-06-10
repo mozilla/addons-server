@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-10 10:30+0000\n"
+"POT-Creation-Date: 2026-06-10 13:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1970,12 +1970,12 @@ msgstr ""
 msgid "The Unlicense"
 msgstr ""
 
-#: src/olympia/devhub/feeds.py:52
+#: src/olympia/devhub/feeds.py:64
 #, python-format
 msgid "Recent Changes for %s"
 msgstr ""
 
-#: src/olympia/devhub/feeds.py:54
+#: src/olympia/devhub/feeds.py:66
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
