@@ -300,10 +300,17 @@ def test_external_url():
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
-    res = urlresolvers.linkify_bounce_url_callback({(None, 'href'): 'foo'})
+    class DummyNode:
+        attrs: dict
+
+        def __init__(self, attrs):
+            self.attrs = attrs
+
+    node = DummyNode({'href': 'foo'})
+    urlresolvers.linkify_bounce_url_callback(node)
 
     # Make sure get_outgoing_url was called.
-    assert res == {(None, 'href'): 'bar'}
+    assert node.attrs['href'] == 'bar'
     mock_get_outgoing_url.assert_called_with('foo')
 
 
@@ -311,9 +318,8 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
 )
 def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
+    def side_effect(node):
+        node.attrs['href'] = 'bar'
 
     mock_linkify_bounce_url_callback.side_effect = side_effect
 
@@ -327,9 +333,8 @@ def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
     'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
 )
 def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
+    def side_effect(node):
+        node.attrs['href'] = 'bar'
 
     mock_linkify_bounce_url_callback.side_effect = side_effect
 

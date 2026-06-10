@@ -407,7 +407,7 @@ class TranslationTestCase(TestCase):
 
     def test_new_purified_field(self):
         # This is not a full test of the html sanitizing.  We expect the
-        # underlying bleach library to have full tests.
+        # underlying JustHTML library to have full tests.
         s = '<a id=xx href="http://xxx.com">yay</a> <i>http://yyy.com</i>'
         m = FancyModel.objects.create(purified=s)
 
@@ -759,6 +759,11 @@ class TestPurifiedMarkdownTranslation(TestCase):
         assert x.__html__() == (
             '<strong>bold text</strong> or <em>italics</em>&lt;b&gt;not bold&lt;/b&gt;'
         )
+
+    def test_disallowed_markdown_stripped(self):
+        s = '__bold text__\n\n### This is my heading!'
+        x = PurifiedMarkdownTranslation(localized_string=s)
+        assert x.__html__() == ('<strong>bold text</strong>')
 
     def test_html(self):
         s = '<script>some naughty xss</script>'

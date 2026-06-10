@@ -1224,13 +1224,13 @@ class TestAddonModels(TestCase):
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_faketag_surrounded(self):
-        before = 'This is a <test of bleach'
-        after = 'This is a'
+        before = 'This is a <test of JustHTML'
+        after = 'This is a &lt;test of JustHTML'
         assert self.newlines_helper(before) == after
 
     def test_newlines_malformed_tag_surrounded(self):
-        before = 'This is a <strong of bleach'
-        after = 'This is a'
+        before = 'This is a <strong of JustHTML'
+        after = 'This is a &lt;strong of JustHTML'
         assert self.newlines_helper(before) == after
 
     def test_newlines_less_than(self):
