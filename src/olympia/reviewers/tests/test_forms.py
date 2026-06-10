@@ -579,10 +579,15 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert form.cleaned_data['versions'] == []
 
+        # versions are required for a policy that requires versions
         del data['versions']
         data['cinder_policies'] = [reject_policy.id]
         form = self.get_form(data=data)
         assert not form.is_valid()
+        action = form.cleaned_data['action']
+        assert action == 'review_with_policy'
+        assert form.cleaned_data['cinder_policies'] == [reject_policy]
+        assert form.helper.get_actions()[action]['multiple_versions']
         assert form.errors == {'versions': ['This field is required.']}
 
         data['versions'] = [self.version.id]
@@ -590,6 +595,17 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
         assert list(form.cleaned_data['versions']) == [self.version]
+
+        # test that versions is required when there *aren't* any versions
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        del data['versions']
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        action = form.cleaned_data['action']
+        assert action == 'review_with_policy'
+        assert form.cleaned_data['cinder_policies'] == [reject_policy]
+        assert not form.helper.get_actions()[action]['multiple_versions']
+        assert form.errors == {'versions': ['This field is required.']}
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_appeal_deny(self):
         self.grant_permission(self.request.user, 'Addons:Review')
