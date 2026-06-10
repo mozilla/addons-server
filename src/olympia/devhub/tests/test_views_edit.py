@@ -1015,9 +1015,11 @@ class TestEditMedia(BaseTestEdit):
         doc = pq(self.client.get(self.media_edit_url).content)
         field = doc('input[name=icon_upload]')
         assert field.length == 1
-        assert sorted(field.attr('data-allowed-types').split('|')) == (
-            ['image/jpeg', 'image/png']
-        )
+        assert sorted(field.attr('data-allowed-types').split(',')) == [
+            'image/jpeg',
+            'image/png',
+        ]
+        assert sorted(field.attr('accept').split(',')) == ['image/jpeg', 'image/png']
         assert field.attr('data-upload-url') == self.icon_upload
 
     def test_edit_media_defaulticon(self):

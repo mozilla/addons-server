@@ -51,6 +51,7 @@ from olympia.amo.reverse import get_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
 from olympia.amo.utils import (
     MenuItem,
+    SafeStorage,
     StopWatch,
     escape_all,
     is_safe_url,
@@ -1018,9 +1019,10 @@ def upload_image(request, addon_id, addon, upload_type):
         upload_preview.seek(0)
 
         upload_hash = uuid4().hex
-        loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
+        upload_storage = SafeStorage(root_setting='TMP_PATH', rel_location=upload_type)
+        filepath = upload_storage.path(upload_hash)
 
-        with storage.open(loc, 'wb') as fd:
+        with upload_storage.open(filepath, 'wb') as fd:
             for chunk in upload_preview:
                 fd.write(chunk)
 
@@ -1085,9 +1087,9 @@ def upload_image(request, addon_id, addon, upload_type):
             if icon_size[0] != icon_size[1]:
                 errors.append(gettext('Icon must be square (same width and height).'))
 
-        if errors and is_preview and os.path.exists(loc):
+        if errors and is_preview and upload_storage.exists(filepath):
             # Delete the temporary preview file in case of error.
-            os.unlink(loc)
+            upload_storage.delete(filepath)
     else:
         errors.append(gettext('There was an error uploading your preview.'))
 

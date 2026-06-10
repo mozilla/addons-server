@@ -273,8 +273,8 @@ THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
 IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
 
-# The string concatinating all accepted image MIME-types with '|'
-SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
+# The string concatinating all accepted image MIME-types with ','
+SUPPORTED_IMAGE_TYPES = ','.join(IMG_TYPES)
 
 # Acceptable Add-on file extensions.
 # This is being used by `parse_addon` so please make sure we don't have
