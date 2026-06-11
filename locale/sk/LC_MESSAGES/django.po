@@ -7009,15 +7009,15 @@ msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
-msgstr ""
+msgstr "TikTok"
 
 #: src/olympia/templates/photon-footer.html:72
 msgid "Bluesky"
-msgstr ""
+msgstr "Bluesky"
 
 #: src/olympia/templates/photon-footer.html:73
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
