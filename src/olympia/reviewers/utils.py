@@ -966,16 +966,34 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
             ),
         }
-        actions['resolve_appeal_job'] = {
-            'method': self.handler.resolve_appeal_job,
-            'label': 'Resolve Appeals',
+        actions['appeal_deny'] = {
+            'method': self.handler.appeal_deny,
+            'label': 'Resolve Appeals with Denial',
             'details': (
-                'Allows abuse report jobs to be resolved without an action on the '
+                'Resolve appeal jobs by denying them, without taking an action on the '
                 'add-on or versions.'
             ),
             'minimal': True,
             'available': is_reviewer and has_unresolved_appeal_jobs,
             'resolves_cinder_jobs': True,
+        }
+        actions['appeal_override'] = {
+            'method': self.handler.appeal_override,
+            'policy_enforcement': True,
+            'minimal': True,
+            'details': (
+                'Resolve appeal jobs from developers by overriding with new decision.'
+            ),
+            'label': 'Resolve Appeals with Override',
+            'available': (
+                policy_selection_enabled and is_reviewer and has_unresolved_appeal_jobs
+            ),
+            'enforcement_actions': (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_IGNORE,
+            ),
+            'resolves_cinder_jobs': True,
+            'can_attach': True,
         }
         actions['request_legal_review'] = {
             'method': self.handler.request_legal_review,
@@ -1123,11 +1141,10 @@ class ReviewBase:
         call log_action; then trigger a task to notify Cinder and/or interested parties
         and/or carry out the action.
 
-        Not used by resolve_appeal_job."""
+        Not used by appeal_deny, or actions that are 'policy_enforcement': True.
+        """
         # footgun: if action_completed=True then we don't call log_action here
         assert not log_action_kw or action_completed
-        # footgun: we need an activity_action if the action is already complete
-        assert not (activity_action is None and action_completed)
         decision_metadata = decision_metadata or {}
         log_action_kw = log_action_kw or {}
         if self.review_action and self.review_action.get('enforcement_actions'):
@@ -1143,22 +1160,7 @@ class ReviewBase:
         else:
             policies = []
 
-        if (
-            self.review_action
-            and self.review_action.get('policy_enforcement')
-            and 'most_aggressive_policy_actions' in self.data
-        ):
-            most_aggressive_policy_actions = self.data.get(
-                'most_aggressive_policy_actions'
-            )
-
-            # form validation/cleaning should ensure there is at least one policy
-            # with a negative primary enforcement_action
-            cinder_action = most_aggressive_policy_actions.primary[0]
-            followup_actions = most_aggressive_policy_actions.followup
-        else:
-            cinder_action = getattr(activity_action, 'cinder_action', None)
-            followup_actions = []
+        cinder_action = getattr(activity_action, 'cinder_action', None)
 
         if not cinder_action and policies:
             cinder_actions = [
@@ -1198,10 +1200,6 @@ class ReviewBase:
                 **decision_kw,
             )
             decision.policies.set(policies)
-            ContentDecisionFollowupAction.objects.bulk_create(
-                ContentDecisionFollowupAction(decision=decision, action=action)
-                for action in followup_actions
-            )
             if versions:
                 decision.target_versions.set(versions)
             return decision
@@ -1246,6 +1244,102 @@ class ReviewBase:
                     self.log_attachment(log_entry)
                     if update_queue_history:
                         self.update_queue_history(log_entry)
+            elif log_entry:
+                # decision.execute_action() explicitly returned None but we
+                # already have a log_entry: that means this decision was
+                # already carried out, we are just resolving multiple jobs with
+                # the same action. We need to attach the extra "no-op"
+                # decisions to the log_entry to have proper records.
+                log_entry.set_arguments(
+                    [log_entry.arguments[0], decision, *log_entry.arguments[1:]]
+                )
+                del log_entry.arguments
+                log_entry.contentdecision_set.add(decision)
+                log_entry.save()
+            report_decision_to_cinder_and_notify.delay(
+                decision_id=decision.id, notify_owners=notify_owners
+            )
+
+    def record_policy_decision(self, *, versions, versions_per_job=None):
+        """Create the ContentDecision for the decision that's been made with a policy
+        selection.
+
+        Note: this is somewhat of a duplicate of record_decision, but specialized for
+        actions that use `policy_enforcement`, to reduce complexity.
+        Eventually record_decision will be replaced by this function.
+
+        versions_per_job is used for appeals: it is a mapping from CinderJob.pk to a
+        list of versions. It takes precedence over versions, when not None."""
+
+        decision_metadata = {}
+        policies = self.data.get('cinder_policies', [])
+        if 'policy_values' in self.data:
+            # We want to strip out empty values -
+            # both where the reviewer has provided no value, and unselected policies
+            decision_metadata[ContentDecision.POLICY_DYNAMIC_VALUES] = {
+                uuid_: trimmed
+                for uuid_, vals in self.data['policy_values'].items()
+                if (trimmed := {k: v for k, v in vals.items() if v})
+            }
+
+        most_important_policy_actions = self.data.get('most_important_policy_actions')
+        # form validation/cleaning should ensure there is at least one policy
+        # with a negative primary enforcement_action
+        cinder_action = most_important_policy_actions.primary[0]
+        followup_actions = most_important_policy_actions.followup
+
+        assert cinder_action
+
+        decision_kw = {
+            'addon': self.addon,
+            'action': cinder_action,
+            'action_date': None,
+            # Note: there is only a single field for comments in reviewer tools
+            # regardless of whether the comments are intended to be shared with
+            # the developer or kept private. We use `reasoning` field on the
+            # decision to store that comment in both cases, the decision action
+            # will then determine whether that `reasoning` is exposed or not.
+            'reasoning': self.data.get('comments', ''),
+            'reviewer_user': self.user,
+            'metadata': decision_metadata,
+        }
+
+        def create_decision(job):
+            decision = ContentDecision.objects.create(
+                cinder_job=job,
+                override_of=job.final_decision if job else None,
+                **decision_kw,
+            )
+            decision.policies.set(policies)
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=decision, action=action)
+                for action in followup_actions
+            )
+            if versions_per_job is not None:
+                decision.target_versions.set(versions_per_job.get(job.id, []))
+            elif versions:
+                decision.target_versions.set(versions)
+            return decision
+
+        if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
+            # with appeals and escalations there could be multiple jobs
+            decisions = [create_decision(job) for job in cinder_jobs]
+        else:
+            decisions = [create_decision(None)]
+
+        log_entry = None
+        for decision in decisions:
+            # If there are multiple decisions, in theory only one should really
+            # be executed completely and log an activity, the rest should be
+            # no-op that we just need for record-keeping purposes. We will only
+            # notify the owners for that "complete" one.
+            notify_owners = False
+            log_entry_for_decision = decision.execute_action()
+            if log_entry_for_decision:
+                notify_owners = True
+                log_entry = log_entry_for_decision
+                self.log_attachment(log_entry)
+                self.update_queue_history(log_entry)
             elif log_entry:
                 # decision.execute_action() explicitly returned None but we
                 # already have a log_entry: that means this decision was
@@ -1384,7 +1478,7 @@ class ReviewBase:
         if self.data.get('cinder_jobs_to_resolve', ()):
             self.record_decision(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
 
-    def resolve_appeal_job(self):
+    def appeal_deny(self):
         # It's possible to have multiple appeal jobs, so handle them seperately.
         version = self.version
         self.version = None
@@ -1395,13 +1489,13 @@ class ReviewBase:
             )
             # we just need a single action for this appeal
             # - use min() to favor AMO_DISABLE_ADDON over AMO_REJECT_VERSION_ADDON
-            previous_action_id = min(
+            cinder_action = min(
                 decision.action for decision in job.appealed_decisions.all()
             )
             previous_versions = list(
                 Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
             )
-
+            followup_actions = []
             metadata = {}
             for mtda in job.appealed_decisions.all().values_list('metadata', flat=True):
                 if ContentDecision.POLICY_DYNAMIC_VALUES not in mtda:
@@ -1422,13 +1516,16 @@ class ReviewBase:
             # notify cinder
             decision = ContentDecision.objects.create(
                 addon=self.addon,
-                action=previous_action_id,
-                action_date=datetime.now(),
+                action=cinder_action,
                 reasoning=self.data.get('comments', ''),
                 reviewer_user=self.user,
                 cinder_job=job,
                 override_of=job.final_decision,
                 metadata=metadata,
+            )
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=decision, action=action)
+                for action in followup_actions
             )
             decision.policies.set(policies)
             decision.target_versions.set(previous_versions)
@@ -1442,6 +1539,15 @@ class ReviewBase:
             log_entry = decision.execute_action()
             self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
+
+    def appeal_override(self):
+        versions_per_job = {
+            job.id: list(
+                Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
+            )
+            for job in self.data.get('cinder_jobs_to_resolve', ())
+        }
+        self.record_policy_decision(versions=None, versions_per_job=versions_per_job)
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
@@ -1949,9 +2055,7 @@ class ReviewBase:
             'Policies selected for %s, [%s]'
             % (self.addon, ', '.join(p.uuid for p in self.data['cinder_policies']))
         )
-        self.record_decision(
-            None, action_completed=False, versions=self.data.get('versions')
-        )
+        self.record_policy_decision(versions=self.data.get('versions'))
 
 
 class ReviewAddon(ReviewBase):

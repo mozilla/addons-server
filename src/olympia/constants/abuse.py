@@ -15,7 +15,7 @@ class DECISION_ACTIONS(EnumChoicesApiDash):
     # 4 is unused
     AMO_DELETE_RATING = 5, 'Rating delete'
     AMO_DELETE_COLLECTION = 6, 'Collection delete'
-    AMO_APPROVE = 7, 'Approved (no action)'
+    AMO_APPROVE = 7, 'Approved'
     # Rejecting versions is not an available action for moderators in cinder
     # - it is only handled by the reviewer tools by AMO Reviewers.
     # It should not be sent by the cinder webhook, & does not have an action defined
