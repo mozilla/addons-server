@@ -10,8 +10,10 @@ from django.apps import AppConfig
 from django.conf import settings
 from django.core.checks import Error, Tags, register
 from django.db import connection
+from django.db.migrations import RunPython
 
 import requests
+from multidb.pinning import use_primary_db
 
 from olympia.core.utils import REQUIRED_VERSION_KEYS, get_version_json
 
@@ -214,6 +216,13 @@ class CoreConfig(AppConfig):
 
     def ready(self):
         super().ready()
+        # Ensure data-migrations always run on primary db unless they explicit
+        # use a replica (opposite of the default behavior applied everywhere
+        # else). It's more dangerous for us to execute some data migrations
+        # using potentially stale data from replica than it is to use the
+        # primary for all of them.
+        RunPython.database_forwards = use_primary_db(RunPython.database_forwards)
+        RunPython.database_backwards = use_primary_db(RunPython.database_backwards)
 
         import olympia.schema  # noqa: F401
 
