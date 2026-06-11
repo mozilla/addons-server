@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-10 13:17+0000\n"
+"POT-Creation-Date: 2026-06-11 13:36+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -5438,16 +5438,67 @@ msgstr ""
 msgid "Review Guide"
 msgstr ""
 
-msgid "Browsers"
+msgid "Download"
 msgstr ""
 
-msgid "Desktop"
+msgid "Download Firefox"
+msgstr ""
+
+msgid "Windows"
+msgstr ""
+
+msgid "macOS"
+msgstr ""
+
+msgid "iOS"
+msgstr ""
+
+msgid "Android"
+msgstr ""
+
+msgid "Linux"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Latest Builds"
+msgstr ""
+
+msgid "Nightly"
+msgstr ""
+
+msgid "Beta"
+msgstr ""
+
+msgid "Firefox for Business"
 msgstr ""
 
 msgid "Enterprise"
 msgstr ""
 
-msgid "Products"
+msgid "Community"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Follow"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Youtube"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Bluesky"
+msgstr ""
+
+msgid "Podcast"
 msgstr ""
 
 msgid "Privacy"

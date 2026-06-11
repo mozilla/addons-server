@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-10 13:17+0000\n"
+"POT-Creation-Date: 2026-06-11 13:36+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5484,16 +5484,67 @@ msgstr "Denunciar abuso"
 msgid "Review Guide"
 msgstr ""
 
-msgid "Browsers"
+msgid "Download"
 msgstr ""
 
-msgid "Desktop"
+msgid "Download Firefox"
+msgstr ""
+
+msgid "Windows"
+msgstr ""
+
+msgid "macOS"
+msgstr ""
+
+msgid "iOS"
+msgstr ""
+
+msgid "Android"
+msgstr ""
+
+msgid "Linux"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Latest Builds"
+msgstr ""
+
+msgid "Nightly"
+msgstr ""
+
+msgid "Beta"
+msgstr ""
+
+msgid "Firefox for Business"
 msgstr ""
 
 msgid "Enterprise"
 msgstr ""
 
-msgid "Products"
+msgid "Community"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Follow"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "Youtube"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Bluesky"
+msgstr ""
+
+msgid "Podcast"
 msgstr ""
 
 msgid "Privacy"
