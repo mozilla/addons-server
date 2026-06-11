@@ -7008,7 +7008,7 @@ msgstr "Közösség"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
-msgstr ""
+msgstr "Connect"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
