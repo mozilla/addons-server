@@ -31,16 +31,31 @@
 .Footer-wrapper {
     padding: 58px @side-margin;
 
-    @media @medium {
+    @media @large {
         display: grid;
         grid-template-areas:
-          'logo amo-links browsers-links products-links'
-          'legal-links legal-links legal-links legal-links'
-          'copyright copyright language language';
+            'logo amo-links download-links build-links'
+            'logo community-links follow-links follow-links'
+            'legal-links legal-links legal-links legal-links'
+            'copyright copyright copyright language';
         grid-template-columns: 1fr 1fr 1fr 1fr;
         margin: 0 auto;
         max-width: @grid-max;
         width: 100%;
+        gap: 0 2em;
+    }
+
+@media @extraExtraLarge {
+        display: grid;
+        grid-template-areas:
+        'logo amo-links download-links build-links community-links follow-links'
+        'legal-links legal-links legal-links legal-links legal-links legal-links'
+        'copyright copyright copyright copyright copyright language';
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        margin: 0 auto;
+        max-width: @grid-max;
+        width: 100%;
+        gap: 0 2em;
     }
 }
 
@@ -81,21 +96,43 @@
     grid-area: amo-links;
 }
 
-.Footer-browsers-links {
-    grid-area: browsers-links;
+.Footer-download-links {
+  grid-area: download-links;
 }
 
-.Footer-products-links {
-    grid-area: products-links;
+.Footer-build-links {
+  grid-area: build-links;
+}
+
+.Footer-community-links {
+  grid-area: community-links;
+}
+
+.Footer-follow-links {
+  grid-area: follow-links;
+}
+
+.Footer-column > section:not(:last-child) {
+  @media @large {
+    padding-bottom: 1em;
+  }
+}
+
+.Footer-column:nth-child(-n + 3 of .Footer-column) .Footer-links-header {
+  @media @large {
+    margin: 0;
+  }
+}
+
+.Footer-column:nth-child(n + 4 of .Footer-column) .Footer-links-header {
+  @media @extraExtraLarge {
+    margin: 0;
+  }
 }
 
 .Footer-links-header {
     margin: 40px 0 0;
     font-weight: 700;
-
-    @media @large {
-      margin: 0;
-    }
 
     a:link,
     a:visited {
