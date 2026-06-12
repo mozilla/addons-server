@@ -7072,7 +7072,7 @@ msgstr "Instagram"
 
 #: src/olympia/templates/photon-footer.html:70
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
