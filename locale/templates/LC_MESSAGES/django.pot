@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-12 08:54+0000\n"
+"POT-Creation-Date: 2026-06-12 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: src/olympia/abuse/actions.py:234
+#: src/olympia/abuse/actions.py:246
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr ""
@@ -44,7 +44,7 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1500
+#: src/olympia/abuse/models.py:1498
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -881,14 +881,6 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-#: src/olympia/blocklist/models.py:195
-msgid "Blocked"
-msgstr ""
-
-#: src/olympia/blocklist/models.py:195
-msgid "Restricted"
-msgstr ""
-
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
 msgid "{addon} was created."
@@ -1552,6 +1544,14 @@ msgstr ""
 
 #: src/olympia/constants/base.py:156
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Blocked"
+msgstr ""
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Restricted"
 msgstr ""
 
 #: src/olympia/constants/categories.py:68
