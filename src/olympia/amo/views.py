@@ -19,7 +19,7 @@ from rest_framework import exceptions as drf_exceptions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from olympia import amo
+from olympia import amo, core
 from olympia.accounts.utils import get_fxa_config
 from olympia.amo.utils import HttpResponseXSendFile, use_fake_fxa
 from olympia.api.exceptions import base_500_data
@@ -111,7 +111,7 @@ def dummy_upload(request):
 @csrf_exempt
 @non_atomic_requests
 def client_info(request):
-    if getattr(settings, 'ENV', None) != 'dev':
+    if getattr(settings, 'ENV', None) not in ('dev', 'local'):
         raise PermissionDenied
     keys = (
         'HTTP_USER_AGENT',
@@ -120,9 +120,12 @@ def client_info(request):
         'REMOTE_ADDR',
         'SERVER_NAME',
     )
-    data = {key: request.META.get(key) for key in keys}
-    data['POST'] = request.POST
-    data['GET'] = request.GET
+    data = {
+        'META': {key: request.META.get(key) for key in keys},
+        'POST': request.POST,
+        'GET': request.GET,
+        'core_request_metadata': core.get_request_metadata(),
+    }
     return JsonResponse(data)
 
 

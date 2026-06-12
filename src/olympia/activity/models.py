@@ -259,6 +259,7 @@ class IPLog(ModelBase):
     activity_log = models.OneToOneField('ActivityLog', on_delete=models.CASCADE)
     _ip_address = models.CharField(max_length=45, db_column='ip_address', null=True)
     ip_address_binary = IPAddressBinaryField(null=True)
+    asn = models.PositiveIntegerField(null=True)
 
     class Meta:
         db_table = 'log_activity_ip'
@@ -524,22 +525,27 @@ class ActivityLogManager(ManagerBase):
             ip_address := core.get_remote_addr()
         ):
             # Index specific actions by their IP address. Note that the caller
-            # must take care of overriding remote addr if the action is created
-            # from a task.
+            # must take care of overriding remote addr/metadata if the action
+            # is created from a task.
+            metadata = core.get_request_metadata()
+            try:
+                asn = int(metadata.get('Asn'))
+            except (ValueError, TypeError):
+                asn = None
             IPLog.objects.create(
                 ip_address_binary=ip_address,
+                asn=asn,
                 activity_log=al,
                 created=kw.get('created', timezone.now()),
             )
 
-            # Also, if we're storing the ip address, store the request fingerprints too
-            ja4 = core.get_request_metadata().get('Client-JA4') or ''
-            if ja4:
-                ja4 = ja4[: RequestFingerprintLog._meta.get_field('ja4').max_length]
-            # it should be a comma-seperated string
-            signals = (core.get_request_metadata().get('X-SigSci-Tags') or '').split(
-                ','
-            )
+            # Also, if we're storing the ip address, store some extra metadata
+            # as well.
+            ja4 = metadata.get('Client-JA4') or ''
+            # ja4 should be truncated just in case.
+            ja4 = ja4[: RequestFingerprintLog._meta.get_field('ja4').max_length]
+            # signals should be a comma-separated string.
+            signals = (metadata.get('X-SigSci-Tags') or '').split(',')
             RequestFingerprintLog.objects.create(
                 ja4=ja4,
                 signals=signals,

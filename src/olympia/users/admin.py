@@ -39,6 +39,7 @@ from olympia.zadmin.admin import related_content_link, related_single_content_li
 
 from . import forms
 from .models import (
+    AsnUserRestriction,
     BannedUserContent,
     DeniedName,
     DisposableEmailDomainRestriction,
@@ -755,6 +756,24 @@ class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
 
 
 @admin.register(FingerprintRestriction)
+class FingerprintRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
+    list_display = ('ja4', 'restriction_type', 'reason')
+    list_filter = ('restriction_type',)
+    search_fields = ('^ja4',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
+    }
+
+
+@admin.register(AsnUserRestriction)
+class AsnUserRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
+    list_display = ('asn', 'restriction_type', 'reason')
+    list_filter = ('restriction_type',)
+    search_fields = ('^asn',)
+
+
 class FingerprintRestrictionAdmin(AMOModelAdmin):
     actions = ['delete_selected']
     list_display = ('ja4', 'restriction_type', 'reason')

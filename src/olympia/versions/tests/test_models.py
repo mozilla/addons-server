@@ -1989,7 +1989,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.upload.update(
             user=user,
             ip_address='5.6.7.8',
-            request_metadata={'Client-JA4': 'd123-456', 'X-SigSci-Tags': 'TAG1,TAG2'},
+            request_metadata={
+                'Asn': '64509',
+                'Client-JA4': 'd123-456',
+                'X-SigSci-Tags': 'TAG1,TAG2',
+            },
             source=source,
         )
         with self.assertLogs(logger='z.versions', level='INFO') as logs:
@@ -2024,6 +2028,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert activities[1].arguments == [version, self.addon]
         assert activities[1].user == user
         assert activities[1].iplog._ip_address == self.upload.ip_address
+        assert activities[1].iplog.asn == 64509
         assert activities[1].requestfingerprintlog.ja4 == 'd123-456'
         assert activities[1].requestfingerprintlog.signals == ['TAG1', 'TAG2']
 
