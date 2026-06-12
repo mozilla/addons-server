@@ -707,10 +707,9 @@ class ReviewForm(forms.Form):
 
                 if srtd_actions:
                     self.cleaned_data['most_important_policy_actions'] = srtd_actions[0]
-                    if self.cleaned_data['most_important_policy_actions'].primary[
-                        0
-                    ] in DECISION_ACTIONS.VERSION_SPECIFIC and selected_definition.get(
-                        'multiple_versions'
+                    if (
+                        self.cleaned_data['most_important_policy_actions'].primary[0]
+                        in DECISION_ACTIONS.VERSION_SPECIFIC
                     ):
                         # we need versions if the primary enf action is version specific
                         if not self.cleaned_data['versions']:
