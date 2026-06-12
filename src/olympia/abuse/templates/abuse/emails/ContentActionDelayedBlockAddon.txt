@@ -6,7 +6,7 @@ Our review found that your content violates the following Mozilla policy or poli
 
 Affected versions: {{ version_list }}
 
-We previously notified you of our finding, and the action we took. As the issue was not remediated, the affected versions are now {% if restricted %}Restricted{% else %}Blocked{% endif %}. Those version won't be available for download from addons.mozilla.org.
+We previously notified you of our finding, and the action we took. As the issue was not remediated, the affected versions are now {% if restricted %}Restricted{% else %}Blocked{% endif %}. Those versions won't be available for download from addons.mozilla.org.
 {% if restricted %}
 For users who have already installed the {{ type }}, it will be disabled and users will be informed about the violation. They may choose to enable the {{ type }} again.
 {% else %}
