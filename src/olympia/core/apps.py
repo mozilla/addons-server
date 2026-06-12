@@ -217,10 +217,11 @@ class CoreConfig(AppConfig):
     def ready(self):
         super().ready()
         # Ensure data-migrations always run on primary db unless they explicit
-        # use a replica (opposite of the default behavior applied everywhere
-        # else). It's more dangerous for us to execute some data migrations
-        # using potentially stale data from replica than it is to use the
-        # primary for all of them.
+        # use a replica (with qs.using(multidb.get_replica()) or similar).
+        # This is the opposite of the default behavior applied everywhere else:
+        # In data migrations, it's more dangerous for us to execute the
+        # migration using potentially stale data from replica than it is to use
+        # the primary database.
         RunPython.database_forwards = use_primary_db(RunPython.database_forwards)
         RunPython.database_backwards = use_primary_db(RunPython.database_backwards)
 
