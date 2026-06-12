@@ -1,4 +1,7 @@
 from enum import Enum
+from types import DynamicClassAttribute
+
+from django.utils.translation import gettext_lazy as _
 
 from olympia.amo.enum import EnumChoices
 
@@ -21,7 +24,13 @@ class BlockListAction(Enum):
     CLEAR_STASH = 'clear_stash'
 
 
-class BlockType(EnumChoices):
+class _BlockTypeWithUserLabel(EnumChoices):
+    @DynamicClassAttribute
+    def user_label(self):
+        return _('Blocked') if self.name == 'BLOCKED' else _('Restricted')
+
+
+class BlockType(_BlockTypeWithUserLabel):
     BLOCKED = 0, '🛑 Hard-Blocked'
     SOFT_BLOCKED = 1, '⚠️ Soft-Blocked'
 

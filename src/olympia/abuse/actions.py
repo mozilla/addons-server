@@ -5,9 +5,11 @@ from inspect import isclass
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.functional import classproperty
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -156,7 +158,17 @@ class ContentAction:
             and self.target.is_public()
         )
 
+        followups = (
+            [
+                followup.description_with_eta
+                for followup in self.decision.followup_actions.all()
+            ]
+            if self.decision.id
+            else ()
+        )
+
         context_dict = {
+            'followups': followups,
             'is_listing_rejected': getattr(self.target, 'status', None)
             == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
@@ -821,15 +833,27 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 
 
 class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
-    description = 'Add-on will be blocked, after a delay'
+    # description is dynamic
     action = None  # Has to be redefined in child classes.
 
-    def __init__(self, decision):
+    def __init__(self, decision, followup=None):
         super().__init__(decision)
+        self.followup = followup
         if not self.delay_days:
             raise ImproperlyConfigured(
                 f'{self.__class__.__name__} requires delay_days to be set'
             )
+
+    @property
+    def owner_template_path(self):
+        # override because we want subclasses to use the same template
+        return 'abuse/emails/ContentActionDelayedBlockAddon.txt'
+
+    @classproperty
+    def description(cls):
+        days = getattr(cls, 'delay_days', 0)
+        user_block_label = getattr(cls, 'block_type', BlockType.BLOCKED).user_label
+        return f'Add-on versions will be {user_block_label}, after {days} days'
 
     @classmethod
     def get_existing_blocks_from_decision(cls, decision):
@@ -858,16 +882,17 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         if versions:
             delayed_until = datetime.now() + timedelta(days=self.delay_days)
             submission = BlocklistSubmission(
-                input_guids=self.target.guid,
-                block_type=self.block_type,
-                updated_by_id=self.updated_by_user_id,
                 auto_block_reason=BlockReason.FRAUD_DECEPTIVE,
-                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                block_type=self.block_type,
                 changed_version_ids=[ver.pk for ver in versions],
                 disable_addon=False,
                 disable_versions=False,
                 delayed_until=delayed_until,
+                from_followup=self.followup,
+                input_guids=self.target.guid,
                 preserve_block_metadata=True,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                updated_by_id=self.updated_by_user_id,
             )
             submission.save()
 
@@ -896,7 +921,7 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             BlocklistSubmission(
                 input_guids=guid,
                 action=BlocklistSubmission.ACTIONS.DELETE,
-                updated_by_id=cls(original_decision).updated_by_user_id,
+                updated_by_id=cls(original_decision, None).updated_by_user_id,
                 signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 changed_version_ids=already_blocked_version_ids,
                 preserve_block_metadata=True,
@@ -919,15 +944,38 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
                     )
                 )
 
-    def get_owners(self):
-        # TODO: Define our own email strategy and template copy
-        return ()
-
     @classmethod
     def should_be_skipped_by_automation(cls, **kwargs):
         # Follow-up blocks shouldn't be skipped by automation, they are not the
         # main action.
         return False
+
+    def notify_owners(self):
+        if not self.followup:
+            # TODO support standalone delayed block actions?
+            return
+        submission = self.followup.blocklistsubmission
+
+        extra_context = {'restricted': self.block_type == BlockType.SOFT_BLOCKED}
+        version_numbers = list(
+            self.target.versions.filter(
+                id__in=submission.changed_version_ids
+            ).values_list('version', flat=True)
+        )
+        extra_context['version_list'] = ', '.join(version_numbers)
+        extra_context['followups'] = [
+            remaining.description_with_eta
+            for remaining in self.decision.followup_actions.exclude(
+                Q(id=self.followup.id)  # i.e. this submission
+                # and any other submission that has already been published
+                | Q(
+                    blocklistsubmission__signoff_state=(
+                        submission.SIGNOFF_STATES.PUBLISHED
+                    )
+                ),
+            )
+        ]
+        return super().notify_owners(extra_context=extra_context)
 
 
 class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):

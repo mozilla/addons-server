@@ -1,6 +1,6 @@
 import json
 import uuid
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from inspect import isclass
 
 from django.conf import settings
@@ -2224,9 +2224,9 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
             (self.version, self.old_version)
         )
 
-    def _test_process_action(self, version_ids):
+    def _test_process_action(self, version_ids, followup_action):
         assert not BlocklistSubmission.objects.exists()
-        action_helper = self.ActionClass(self.decision)
+        action_helper = self.ActionClass(self.decision, followup_action)
         assert action_helper.action == self.takedown_decision_action
         action_helper.process_action()
         assert BlocklistSubmission.objects.count() == 1
@@ -2254,13 +2254,23 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
             submission.delayed_until,
             now=datetime.now() + timedelta(days=self.ActionClass.delay_days),
         )
+        assert submission.from_followup == followup_action
+
+        action_helper.notify_owners()
+        if followup_action:
+            assert len(mail.outbox) == 1
+            assert mail.outbox[0].to == [self.author.email]
+            assert 'We previously notified you of our finding' in mail.outbox[0].body
+            assert str(action_helper.block_type.user_label) in mail.outbox[0].body
+        else:
+            assert len(mail.outbox) == 0
 
     def test_process_action_standalone(self):
         # Note: this isn't currently a codepath that's possible - the class is only used
         # as a follow-up action.
         self.decision.update(action=self.takedown_decision_action)
         assert not self.decision.target_versions.exists()
-        self._test_process_action([self.another_version.id, self.version.id])
+        self._test_process_action([self.another_version.id, self.version.id], None)
         # shouldn't change the addon or version.file statues.
         assert self.addon.status != amo.STATUS_DISABLED
         assert self.version.file.status != amo.STATUS_DISABLED
@@ -2268,14 +2278,49 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
 
     def test_process_action_followup_from_disable_addon(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision, action=self.takedown_decision_action
+        )
         self.addon.update(status=amo.STATUS_DISABLED)
         # typically this _would_ be set, but it shouldn't be used anyway
         assert not self.decision.target_versions.exists()
         # we're expecting all the non-blocked versions to be blocked
-        self._test_process_action([self.another_version.id, self.version.id])
+        self._test_process_action([self.another_version.id, self.version.id], followup)
+        assert 'additional enforcement actions will be taken' not in mail.outbox[0].body
+        assert (
+            f'Affected versions: {self.another_version.version}, {self.version.version}'
+            in mail.outbox[0].body
+        )
+
+    def test_process_action_with_multiple_followups(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision, action=self.takedown_decision_action
+        )
+        another_followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision,
+            action=DECISION_ACTIONS.AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON,
+        )
+        self.addon.update(status=amo.STATUS_DISABLED)
+        # typically this _would_ be set, but it shouldn't be used anyway
+        assert not self.decision.target_versions.exists()
+        # we're expecting all the non-blocked versions to be blocked
+        self._test_process_action([self.another_version.id, self.version.id], followup)
+        email_body = mail.outbox[0].body
+        assert 'additional enforcement actions will be taken' in email_body
+        assert another_followup.description_with_eta in email_body
+        future_date = date.today() + timedelta(days=28)
+        assert f'days, on {future_date.strftime("%Y-%m-%d")}' in email_body
+        assert (
+            f'Affected versions: {self.another_version.version}, {self.version.version}'
+            in email_body
+        )
 
     def test_process_action_followup_from_reject_version(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision, action=self.takedown_decision_action
+        )
         self.version.file.update(status=amo.STATUS_DISABLED)
         self.old_version.file.update(status=amo.STATUS_DISABLED)
         # we're setting it up as if ContentActionRejectVersion was rejecting version and
@@ -2283,7 +2328,24 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         self.decision.target_versions.set((self.version, self.old_version))
         # but we expect the follow-up action to ignore old_version since it's already
         # blocked, (and another_version because it's not being rejected)
-        self._test_process_action([self.version.id])
+        self._test_process_action([self.version.id], followup)
+        assert 'additional enforcement actions will be taken' not in mail.outbox[0].body
+        assert f'Affected versions: {self.version.version}\n' in mail.outbox[0].body
+
+    def test_primary_action_emails_mention_followups(self):
+        self.decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        followup = ContentDecisionFollowupAction.objects.create(
+            decision=self.decision, action=self.takedown_decision_action
+        )
+        action_helper = ContentActionDisableAddon(self.decision)
+
+        action_helper.notify_owners()
+
+        email_body = mail.outbox[0].body
+        future_date = date.today() + timedelta(days=self.ActionClass.delay_days)
+        assert 'If you do not remediate ' in email_body
+        assert followup.description_with_eta in email_body
+        assert f'days, on {future_date.strftime("%Y-%m-%d")}' in email_body
 
     def test_owner_content_approve_report_email(self):
         pass  # Covered by TestContentApproveContentListing
@@ -2407,6 +2469,11 @@ class TestContentActionDelayedShortSoftBlockAddon(BaseTestContentAction, TestCas
         # TODO: If/when we support emails we should implement this
         pass
 
+    def test_description(self):
+        assert self.ActionClass.description == (
+            'Add-on versions will be Restricted, after 7 days'
+        )
+
 
 class TestContentActionDelayedMidHardBlockAddon(
     TestContentActionDelayedShortSoftBlockAddon
@@ -2421,6 +2488,11 @@ class TestContentActionDelayedMidHardBlockAddon(
             block=self.existing_block,
             version=self.another_version,
             block_type=BlockType.SOFT_BLOCKED,
+        )
+
+    def test_description(self):
+        assert self.ActionClass.description == (
+            'Add-on versions will be Blocked, after 14 days'
         )
 
 

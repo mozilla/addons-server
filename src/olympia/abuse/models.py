@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from itertools import chain
 from string import Formatter
 
@@ -1445,9 +1445,6 @@ class ContentDecision(ModelBase):
         log_entry = self.activities.exclude(
             action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
         ).last()
-        has_attachment = AttachmentLog.objects.filter(
-            activity_log__contentdecisionlog__decision=self
-        ).exists()
 
         if self.cinder_job:
             self.cinder_job.notify_reporters(action_helper)
@@ -1463,9 +1460,12 @@ class ContentDecision(ModelBase):
                 if log_entry
                 else []
             )
-            is_addon_enabled = self.addon and not (
+            is_addon_enabled = not (
                 details.get('is_addon_being_disabled') or self.addon.is_disabled
             )
+            has_attachment = AttachmentLog.objects.filter(
+                activity_log__contentdecisionlog__decision=self
+            ).exists()
             extra_context = {
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': details.get('delayed_rejection_days'),
@@ -1474,9 +1474,7 @@ class ContentDecision(ModelBase):
                 'is_addon_enabled': is_addon_enabled,
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
                 'has_attachment': has_attachment,
-                'dev_url': absolutify(self.target.get_dev_url('versions'))
-                if self.addon_id
-                else None,
+                'dev_url': absolutify(self.target.get_dev_url('versions')),
                 # If we expanded the reason/policy text into notes in the reviewer tools
                 # we wouldn't have set this key in details - so the default is what we
                 # want: we don't want to duplicate it as policies too;
@@ -1530,12 +1528,25 @@ class ContentDecisionFollowupAction(ModelBase):
         if not self.action_date:
             self.action_date = datetime.now()
             ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
-            action_helper = ContentActionClass(decision=self.decision)
+            action_helper = ContentActionClass(decision=self.decision, followup=self)
             log_entry = action_helper.process_action()
             # But only save it afterwards in case process_action failed
             self.save(update_fields=('action_date',))
 
         return log_entry
+
+    @property
+    def description_with_eta(self):
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        description = ContentActionClass.description
+        if delay_days := getattr(ContentActionClass, 'delay_days', None):
+            start = date.today() if not self.action_date else self.action_date.date()
+            description += f', on {start + timedelta(days=delay_days)}'
+        return description
+
+    def send_notifications(self):
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        ContentActionClass(decision=self.decision, followup=self).notify_owners()
 
 
 class CinderAppeal(ModelBase):
