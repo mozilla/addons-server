@@ -7006,7 +7006,7 @@ msgstr "Społeczność"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
-msgstr ""
+msgstr "Connect"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
@@ -7018,7 +7018,7 @@ msgstr "Instagram"
 
 #: src/olympia/templates/photon-footer.html:70
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
