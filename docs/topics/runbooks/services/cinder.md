@@ -2,6 +2,9 @@
 
 Cinder is a content moderation tool that AMO uses to track abuse reports, decisions on content (both on the back of abuse reports, and proactively), and appeals for our decisions.  The Cinder tooling on their website is used by a moderation team managed by Trust & Safety (T&S), and by Mozilla Legal. The tooling is not routinely used by AMO reviewers and Operations (who have their own dedicated reviewer and Django admin tools), but AMO submits to, and relies on, Cinder for all* decisions, regardless of the tool's location.
 
+```{warning}
+This document is a reference for AMO engineering, detailing the common steps/setup engineers may need for developing/testing intergration with Cinder.  It is not intended to be a user guide for moderators, operations, or other users.
+```
 
 ```{note}
 * There is still some work ongoing to create decisions for all actions made in Django admin.
@@ -19,12 +22,12 @@ Cinder is a content moderation tool that AMO uses to track abuse reports, decisi
   - `amo-report` a helper entity, created to store some extra metadata for an abuse report
   - `amo-unauthenticated-reporter` an entity created when an abuse report is submitted without being logged in, but with an email/name. (Authenticated users would use `amo-user`.)
 - Report: abuse reports, submitted by users. When reported to AMO they are bundled into jobs by Cinder.
-- Job: these are either created with an abuse report, bundled into open jobs by subsequent abuse reports, created by automated events, or created manually.
-- Decision: decisions are either made on jobs (which close the job), or without a job, on an entity directly.
+- Job: these are either created with an abuse report, bundled into open jobs by subsequent abuse reports, created by an appeal, created by automated events, or created manually.
+- Decision: decisions are either made on jobs (which closes the job), or without a job, on an entity directly.
 - Appeal: some decisions can be appealed by the affected parties (e.g. add-on owner, abuse reporter, etc.). The appeal creates an appeal job.
 - Policy: a decision has one or more policies attached to it, to represent what offenses took place. (Or not, in the case of non-offending policies, e.g. Approve). Each policy has one or more enforcement actions attached to it.
 - (Enforcement) Action: something that should happen to an entity, based on a decision.
-- Queue: jobs are created in queues. When an abuse report is submitted, it is reported to a queue. They are generally split per entity (though that is not a requirement - some queues, such as T&S Escalations, contain jobs of different types of entities).
+- Queue: jobs are created in queues. When an abuse report is submitted, it is reported to a queue. They are generally split per entity (though that is not a requirement - some queues, such as T&S Escalations, contain jobs of different types of entities; and add-on entities are split into extensions -listings- and themes).
 
 
 ## Environments and access
@@ -45,7 +48,10 @@ Ask in #cinder-xfn on Slack for access. You will need to be added to the <https:
 
 <https://mozilla.cinderapp.com/>
 
-Cinder production is used for production AMO only - <https://addons.mozilla.org> - so it contains live, sensitive, and privileged data. It should not be used for testing - actions taken there will have immediate consequences on production AMO.
+Cinder production is used for production AMO only - <https://addons.mozilla.org> - so it contains live, sensitive, and privileged data.
+```{warning}
+Cinder production should not be used for testing - actions taken there will have immediate consequences on production AMO.
+```
 
 #### Access
 
@@ -68,7 +74,7 @@ CINDER_API_TOKEN = '<token-here>'
 
 ## Webhook integration/payload
 
-AMO dev, stage, and production all have webhooks defined at <https://mozilla-staging.cinderapp.com/settings/webhooks/configuration> (and similarly for production), which send JSON payloads on actions taken in Cinder.  You don't generally need to create these for local development. You would need a permanent, internet-accessible webhook URL, for a start. Instead, we replay the payloads sent to AMO locally.
+AMO dev, stage, and production all have webhooks defined at <https://mozilla-staging.cinderapp.com/settings/webhooks/configuration> (and similarly for production), which send JSON payloads on actions taken in Cinder.  You don't generally need to create these for local development. You would need a permanent, internet-accessible webhook URL, for a start. Instead, we replay the payloads sent to AMO dev or stage locally.
 
 All webhook payloads are displayed in <https://mozilla-staging.cinderapp.com/settings/webhooks/activity>.  Clicking "show payload/response" exposes the JSON - you can copy it with the copy icon on the right-hand side.
 
@@ -76,6 +82,8 @@ Locally, the webhook payload can be copied to a local .json file and consumed, s
 
 
 ## Useful waffle switches to enable
+
+See [Waffle](../../development/waffle.md) for waffle switch overview.
 
 - `manage.py waffle_switch dsa-job-technical-processing on` to create cinder jobs for abuse reports
 - `manage.py waffle_switch dsa-abuse-reports-review on` to flag add-ons for review in our reviewer tools queue when they are reported for specific reasons and locations
