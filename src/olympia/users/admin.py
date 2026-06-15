@@ -774,16 +774,6 @@ class AsnUserRestrictionAdmin(AMOModelAdmin):
     search_fields = ('^asn',)
 
 
-class FingerprintRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
-    list_display = ('ja4', 'restriction_type', 'reason')
-    list_filter = ('restriction_type',)
-    search_fields = ('^ja4',)
-    formfield_overrides = {
-        models.CharField: {'widget': TextInput(attrs={'size': '125'})},
-    }
-
-
 @admin.register(UserRestrictionHistory)
 class UserRestrictionHistoryAdmin(AMOModelAdmin):
     raw_id_fields = ('user',)
