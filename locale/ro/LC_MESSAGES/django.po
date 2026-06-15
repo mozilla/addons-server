@@ -6970,51 +6970,51 @@ msgstr "Ghid pentru revizori"
 
 #: src/olympia/templates/photon-footer.html:24
 msgid "Download"
-msgstr ""
+msgstr "Descarcă"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Download Firefox"
-msgstr ""
+msgstr "Descarcă Firefox"
 
 #: src/olympia/templates/photon-footer.html:28
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "macOS"
-msgstr ""
+msgstr "macOS"
 
 #: src/olympia/templates/photon-footer.html:30
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: src/olympia/templates/photon-footer.html:31
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/templates/photon-footer.html:32
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/templates/photon-footer.html:33
 msgid "All"
-msgstr ""
+msgstr "Toate"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
-msgstr ""
+msgstr "Ultimele versiuni"
 
 #: src/olympia/templates/photon-footer.html:42
 msgid "Nightly"
-msgstr ""
+msgstr "Nightly"
 
 #: src/olympia/templates/photon-footer.html:43
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 #: src/olympia/templates/photon-footer.html:47
 msgid "Firefox for Business"
-msgstr ""
+msgstr "Firefox pentru afaceri"
 
 #: src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
@@ -7022,35 +7022,35 @@ msgstr "Întreprindere"
 
 #: src/olympia/templates/photon-footer.html:56
 msgid "Community"
-msgstr ""
+msgstr "Comunitate"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
-msgstr ""
+msgstr "Conectare"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
-msgstr ""
+msgstr "Urmărește"
 
 #: src/olympia/templates/photon-footer.html:69
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 #: src/olympia/templates/photon-footer.html:70
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
-msgstr ""
+msgstr "TikTok"
 
 #: src/olympia/templates/photon-footer.html:72
 msgid "Bluesky"
-msgstr ""
+msgstr "Bluesky"
 
 #: src/olympia/templates/photon-footer.html:73
 msgid "Podcast"
-msgstr ""
+msgstr "Podcast"
 
 #: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
