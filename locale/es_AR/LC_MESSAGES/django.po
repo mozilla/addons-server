@@ -3433,6 +3433,8 @@ msgid ""
 "Read our %(policy_requirements_open)spolicy requirements%(policy_requirements_close)s regarding build processes and source code submission. If your submission requires source code, you must provide "
 "step-by-step build instructions, either inside the source code package or here, that will create an exact copy of the code."
 msgstr ""
+"Leé nuestros %(policy_requirements_open)s requisitos de las políticas%(policy_requirements_close)s  sobre los procesos de compilación y el envío de código fuente. Si tu envío requiere código fuente,"
+" tenés que proporcionar instrucciones de compilación paso a paso (ya sea dentro del paquete de código o acá mismo) que permitan crear una copia exacta del código."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:224 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:37
 msgid "These notes will only be visible to you and our reviewers."
@@ -7035,7 +7037,7 @@ msgstr "Instagram"
 
 #: src/olympia/templates/photon-footer.html:70
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
