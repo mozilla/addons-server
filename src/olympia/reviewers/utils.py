@@ -533,9 +533,12 @@ class ReviewHelper:
         use_content_rejection = self.content_review and waffle.switch_is_active(
             'enable-content-rejection'
         )
+        policy_selection_enabled = waffle.switch_is_active(
+            'enable-policy-review-selection'
+        )
 
         # Special logic for availability of reject/approve multiple action:
-        if version_is_unlisted:
+        if version_is_unlisted or policy_selection_enabled:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
         elif use_content_rejection:
@@ -562,12 +565,8 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
-        policy_selection_enabled = waffle.switch_is_active(
-            'enable-policy-review-selection'
-        )
-
         # Definitions for all actions.
-        actions['review_with_policy'] = {
+        actions['review_with_policy_approve'] = {
             'method': self.handler.review_with_policy,
             'policy_enforcement': True,
             'minimal': False,
@@ -580,15 +579,30 @@ class ReviewHelper:
                 and is_appropriate_reviewer
             ),
             'enforcement_actions': (
-                # TODO: expand functionality to handle non-negative policies,
-                # and content review
-                # DECISION_ACTIONS.AMO_APPROVE,
-                # DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
-                # DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            ),
+            'multiple_versions': can_approve_multiple,
+            'resolves_cinder_jobs': True,
+            'can_attach': True,
+        }
+        actions['review_with_policy'] = {
+            'method': self.handler.review_with_policy,
+            'policy_enforcement': True,
+            'minimal': False,
+            'details': ('Select a policy to perform on the version or add-on.'),
+            'label': 'Review Negatively',
+            'available': (
+                policy_selection_enabled
+                and not is_static_theme
+                and not self.content_review
+                and is_appropriate_reviewer
+            ),
+            'enforcement_actions': (
+                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
                 DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-                # DECISION_ACTIONS.AMO_IGNORE,
                 DECISION_ACTIONS.AMO_BLOCK_ADDON,
             ),
             'multiple_versions': can_reject_multiple,
@@ -605,7 +619,8 @@ class ReviewHelper:
             ),
             'label': 'Approve',
             'available': (
-                not self.content_review
+                not policy_selection_enabled
+                and not self.content_review
                 and addon_is_reviewable
                 and version_is_unreviewed
                 and (is_appropriate_reviewer or not self.human_review)
@@ -721,7 +736,8 @@ class ReviewHelper:
             'minimal': True,
             'comments': False,
             'available': (
-                not self.content_review
+                not policy_selection_enabled
+                and not self.content_review
                 and current_or_latest_listed_version_was_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
@@ -736,7 +752,7 @@ class ReviewHelper:
                 'This will approve the selected versions. '
                 'The comments will be sent to the developer.'
             ),
-            'available': (can_approve_multiple),
+            'available': (not policy_selection_enabled and can_approve_multiple),
             'enforcement_actions': (DECISION_ACTIONS.AMO_APPROVE,),
             'resolves_cinder_jobs': True,
         }
@@ -820,7 +836,10 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
+                not policy_selection_enabled
+                and not is_static_theme
+                and version_is_unlisted
+                and is_appropriate_reviewer
             ),
             'resolves_cinder_jobs': True,
         }

@@ -28,6 +28,7 @@ from olympia.constants.blocklist import BlockReason
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
+from olympia.lib.crypto.signing import sign_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
@@ -68,11 +69,17 @@ class ContentAction:
                 f'{self.valid_targets}'
             )
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(
+        self,
+        activity_log_action,
+        *extra_args,
+        extra_details=None,
+        skip_private_notes=False,
+    ):
         user_kw = (
             {'user': self.decision.reviewer_user} if self.decision.reviewer_user else {}
         )
-        if self.decision.private_notes:
+        if self.decision.private_notes and not skip_private_notes:
             # If the decision contained private notes, add a separate action
             # for them.
             log_create(
@@ -356,40 +363,45 @@ class ContentActionBanUser(ContentAction):
         return [self.target]
 
 
-class ContentActionDisableAddon(ContentAction):
-    description = 'Add-on has been disabled'
+class ContentActionAddon(ContentAction):
+    """Base class for content actions for Addons."""
+
     valid_targets = (Addon,)
-    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
-    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
-    action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     def is_human_reviewer(self):
         return bool(
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
 
-    def should_hold_action(self):
-        return bool(
-            self.target.status != amo.STATUS_DISABLED
-            # is a high profile add-on
-            and any(self.target.promoted_groups(currently_approved=False).high_profile)
-        )
+    @property
+    def target_versions(self):
+        return self.decision.target_versions.all()
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(
+        self,
+        activity_log_action,
+        *extra_args,
+        extra_details=None,
+        skip_private_notes=False,
+    ):
         from olympia.activity.models import AttachmentLog
 
         extra_details = {'human_review': self.is_human_reviewer()} | (
             extra_details or {}
         )
-        if (
+        if 'versions' not in extra_details and (
             target_versions := self.target_versions.no_transforms()
             .only('pk', 'version', 'file')
             .order_by('-pk')
         ):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
+
         activity_log = super().log_action(
-            activity_log_action, *extra_args, extra_details=extra_details
+            activity_log_action,
+            *extra_args,
+            extra_details=extra_details,
+            skip_private_notes=skip_private_notes,
         )
         # move any attachments to latest decision
         if attachment := AttachmentLog.objects.filter(
@@ -399,9 +411,71 @@ class ContentActionDisableAddon(ContentAction):
             activity_log.attachmentlog = attachment  # update fk
         return activity_log
 
-    @property
-    def target_versions(self):
-        return self.decision.target_versions.all()
+    def set_human_review_date(self, version):
+        if self.is_human_reviewer() and not version.human_review_date:
+            version.update(human_review_date=datetime.now())
+
+    def clear_specific_needs_human_review_flags(self, version):
+        """Clear needs_human_review flags on a specific version."""
+        from olympia.reviewers.models import NeedsHumanReview
+
+        from .models import CinderJob
+
+        qs = version.needshumanreview_set.filter(is_active=True)
+        if not hasattr(self, 'unresolved_jobs'):
+            # this isn't going to change between iterations, so be efficient
+            self.unresolved_jobs = (
+                CinderJob.objects.for_addon(self.target)
+                .unresolved()
+                .resolvable_in_reviewer_tools()
+                .exists()
+            )
+        if self.unresolved_jobs:
+            qs = qs.exclude(
+                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+            )
+        qs.update(is_active=False)
+        # Because the updating of needs human review was made with a queryset
+        # the post_save signal was not triggered so let's recheck the due date
+        # explicitly.
+        version.reset_due_date()
+
+    def _clear_all_needs_human_review_flags_in_channel(self, channel):
+        """Clear needs_human_review flags on all versions in the same channel.
+
+        Doesn't clear abuse or appeal related flags.
+        To be called when approving a listed version: For listed, the version
+        reviewers are approving is always the latest listed one, and then users
+        are supposed to automatically get the update to that version, so we
+        don't need to care about older ones anymore.
+        """
+        from olympia.reviewers.models import NeedsHumanReview
+
+        # Do a mass UPDATE. The NeedsHumanReview coming from abuse/appeal/escalations
+        # are only cleared in ContentDecision.execute_action() if the
+        # reviewer has selected to resolve all jobs of that type though.
+        NeedsHumanReview.objects.filter(
+            version__addon=self.target, version__channel=channel, is_active=True
+        ).exclude(
+            reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+        ).update(is_active=False)
+        # Trigger a check of all due dates on the add-on since we mass-updated
+        # versions.
+        self.target.update_all_due_dates()
+
+
+class ContentActionDisableAddon(ContentActionAddon):
+    description = 'Add-on has been disabled'
+    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    def should_hold_action(self):
+        return bool(
+            self.target.status != amo.STATUS_DISABLED
+            # is a high profile add-on
+            and any(self.target.promoted_groups(currently_approved=False).high_profile)
+        )
 
     @property
     def versions_force_disable_will_affect(self):
@@ -590,33 +664,6 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         return self.log_action(
             amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
         )
-
-    def clear_specific_needs_human_review_flags(self, version):
-        """Clear needs_human_review flags on a specific version."""
-        from olympia.reviewers.models import NeedsHumanReview
-
-        from .models import CinderJob
-
-        qs = version.needshumanreview_set.filter(is_active=True)
-        unresolved_jobs = (
-            CinderJob.objects.for_addon(version.addon)
-            .unresolved()
-            .resolvable_in_reviewer_tools()
-            .exists()
-        )
-        if unresolved_jobs:
-            qs = qs.exclude(
-                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
-            )
-        qs.update(is_active=False)
-        # Because the updating of needs human review was made with a queryset
-        # the post_save signal was not triggered so let's recheck the due date
-        # explicitly.
-        version.reset_due_date()
-
-    def set_human_review_date(self, version):
-        if self.is_human_reviewer() and not version.human_review_date:
-            version.update(human_review_date=datetime.now())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -1046,8 +1093,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
         return None
 
 
-class ContentActionForwardToLegal(ContentAction):
-    valid_targets = (Addon,)
+class ContentActionForwardToLegal(ContentActionAddon):
     action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
 
     def process_action(self, release_hold=False):
@@ -1057,9 +1103,8 @@ class ContentActionForwardToLegal(ContentAction):
         return self.log_action(amo.LOG.REQUEST_LEGAL)
 
 
-class ContentActionChangePendingRejectionDate(ContentAction):
+class ContentActionChangePendingRejectionDate(ContentActionAddon):
     description = 'Add-on pending rejection date has changed'
-    valid_targets = (Addon,)
     action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
 
     def get_owners(self):
@@ -1336,15 +1381,185 @@ class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
         return None
 
 
-class ContentActionApproveInitialDecision(
-    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, ContentAction
-):
+class ContentActionApproveVersion(ContentActionAddon):
     description = (
         'Reported content is within policy, initial decision, approving versions'
     )
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
     action = DECISION_ACTIONS.AMO_APPROVE_VERSION
+
+    def get_owners(self):
+        if (
+            isinstance(self.target, Addon)
+            and (self.is_human_reviewer or self.target.type != amo.ADDON_LPAPP)
+            and self.decision.activities.filter(
+                # FORCE_ENABLE is logged via the reviewer tools enable_addon action.
+                action__in=(amo.LOG.APPROVE_VERSION.id, amo.LOG.FORCE_ENABLE.id)
+            ).exists()
+        ):
+            # Don't notify decisions (to cinder or owners) for auto-approved langpacks
+            # or if the decision wasn't (freshly) approving any versions.
+            return self.target.authors.all()
+        else:
+            return ()
+
+    def _set_promoted(self, versions):
+        group = self.target.promoted_groups(currently_approved=False)
+        if group and versions:
+            channel = versions[0].channel
+            if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
+                channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review)
+            ):
+                # These addons shouldn't be be attempted for auto approval
+                # anyway, but double check that the cron job isn't trying to
+                # approve it.
+                assert self.is_human_reviewer
+            for version in versions:
+                self.target.approve_for_version(version)
+
+    def process_version(self, version):
+        from olympia.reviewers.models import NeedsHumanReview
+
+        # Sign addon.
+        assert not version.is_blocked
+
+        if version.file.status == amo.STATUS_AWAITING_REVIEW:
+            if version.file.is_experiment:
+                self.log_action(
+                    amo.LOG.EXPERIMENT_SIGNED,
+                    version.file,
+                    extra_details={'versions': [version.version]},
+                    skip_private_notes=True,
+                )
+            sign_file(version.file)
+            if version.channel == amo.CHANNEL_UNLISTED:
+                self.log_action(
+                    amo.LOG.UNLISTED_SIGNED,
+                    version.file,
+                    extra_details={'versions': [version.version]},
+                    skip_private_notes=True,
+                )
+
+            # Save files first, because set_addon checks to make sure there
+            # is at least one public file or it won't make the addon public.
+            version.file.update(
+                datestatuschanged=datetime.now(),
+                approval_date=datetime.now(),
+                original_status=amo.STATUS_NULL,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+                status=amo.STATUS_APPROVED,
+            )
+            already_approved = False
+        else:
+            already_approved = True
+
+        self.set_human_review_date(version)
+
+        if self.is_human_reviewer():
+            # Clear pending rejection since we approved that version.
+            VersionReviewerFlags.objects.filter(version=version).update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
+            if version.channel == amo.CHANNEL_UNLISTED:
+                self.clear_specific_needs_human_review_flags(version)
+        elif (
+            version.channel == amo.CHANNEL_UNLISTED
+            and version.needshumanreview_set.filter(is_active=True)
+            and (delay := self.target.auto_approval_delayed_until_unlisted)
+            and delay < datetime.now()
+        ):
+            # if we're auto-approving because its past the approval delay,
+            # flag it.
+            NeedsHumanReview.objects.create(
+                version=version,
+                reason=NeedsHumanReview.REASONS.AUTO_APPROVED_PAST_APPROVAL_DELAY,
+            )
+        return already_approved
+
+    def process_action(self, release_hold=False):
+        if not self.decision.reviewer_user:
+            # This action should only be used by reviewer tools, not cinder webhook
+            raise NotImplementedError
+
+        if not isinstance(self.target, Addon) or not (
+            versions := list(self.target_versions)
+        ):
+            return None
+
+        was_public = self.target.is_public()
+        already_approved_versions, newly_approved_versions = [], []
+        for version in versions:
+            if self.process_version(version):
+                already_approved_versions.append(version)
+            else:
+                newly_approved_versions.append(version)
+
+        self._set_promoted(versions)
+        if not was_public and newly_approved_versions:
+            self.target.update_status()
+
+        channel = versions[0].channel
+        if self.is_human_reviewer():
+            if channel == amo.CHANNEL_LISTED:
+                # No need for a human review anymore in this channel.
+                self._clear_all_needs_human_review_flags_in_channel(amo.CHANNEL_LISTED)
+                # The counter can be incremented.
+                AddonApprovalsCounter.increment_for_addon(addon=self.target)
+
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.target,
+                defaults={
+                    'auto_approval_disabled_until_next_approval'
+                    if channel == amo.CHANNEL_LISTED
+                    else 'auto_approval_disabled_until_next_approval_unlisted': False
+                },
+            )
+            self.target.reviewerflags.reload()
+        elif channel == amo.CHANNEL_LISTED:
+            # Automatic approval, reset the counter.
+            AddonApprovalsCounter.reset_for_addon(addon=self.target)
+
+        if newly_approved_versions:
+            approve_log = self.log_action(
+                amo.LOG.APPROVE_VERSION,
+                *newly_approved_versions,
+                extra_details={
+                    'versions': [version.version for version in newly_approved_versions]
+                },
+            )
+            if not was_public and self.target.is_public():
+                log.info('Making %s public' % (self.target))
+            else:
+                log.info(
+                    'Making %s files [%s] public'
+                    % (
+                        self.target,
+                        ', '.join(
+                            version.file.file.name
+                            for version in newly_approved_versions
+                        ),
+                    )
+                )
+        if already_approved_versions:
+            confirm_approve_log = self.log_action(
+                amo.LOG.CONFIRM_AUTO_APPROVED,
+                *already_approved_versions,
+                extra_details={
+                    'versions': [
+                        version.version for version in already_approved_versions
+                    ]
+                },
+                skip_private_notes=bool(newly_approved_versions),
+            )
+        return (
+            (newly_approved_versions and approve_log)
+            or (already_approved_versions and confirm_approve_log)
+            or None
+        )
 
 
 class ContentActionTargetAppealRemovalAffirmation(

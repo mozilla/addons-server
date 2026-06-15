@@ -6930,6 +6930,95 @@ class TestReview(ReviewBase):
         assert self.version.file.reload().status == amo.STATUS_DISABLED
         assert old_version.file.reload().status == amo.STATUS_DISABLED
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_review_with_policy_action_approve(self):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        policy = CinderPolicy.objects.create(
+            uuid='1',
+            name='policy 1',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+        self.addon.update(status=amo.STATUS_REJECTED)
+        response = self.client.post(
+            self.url,
+            self.get_dict(
+                action='review_with_policy_approve',
+                cinder_policies=[policy.id],
+                # no versions
+            ),
+        )
+        assert response.status_code == 302, response.context['form'].errors
+        assert self.get_addon().status == amo.STATUS_APPROVED
+        log_entry = ActivityLog.objects.get(
+            action=amo.LOG.APPROVE_REJECTED_LISTING_CONTENT.id
+        )
+        assert (
+            log_entry.contentdecisionlog_set.get().decision.action
+            == DECISION_ACTIONS.AMO_APPROVE
+        )
+
+    @override_switch('enable-policy-review-selection', active=True)
+    @mock.patch('olympia.abuse.actions.sign_file')
+    def test_review_with_review_with_policy_action_approve_versions(self, sign_mock):
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        self.grant_permission(self.reviewer, 'Addons:Review')
+        policy = CinderPolicy.objects.create(
+            uuid='1',
+            name='policy 1',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE_VERSION.api_value],
+        )
+        old_version = self.version
+        old_version.file.update(status=amo.STATUS_DISABLED)
+        NeedsHumanReview.objects.create(version=old_version)
+        self.version = version_factory(
+            addon=self.addon,
+            version='3.0',
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        response = self.client.post(
+            self.url,
+            self.get_dict(
+                action='review_with_policy_approve',
+                cinder_policies=[policy.id],
+                versions=[self.version.pk],
+            ),
+        )
+        assert response.status_code == 302, response.context['form'].errors
+        assert self.get_addon().status == amo.STATUS_APPROVED
+        log_entry = ActivityLog.objects.get(action=amo.LOG.APPROVE_VERSION.id)
+        assert (
+            log_entry.contentdecisionlog_set.get().decision.action
+            == DECISION_ACTIONS.AMO_APPROVE_VERSION
+        )
+        self.version.reload()
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+        file_ = self.version.file.reload()
+        assert file_.status == amo.STATUS_APPROVED
+        assert not self.version.pending_rejection
+
+        # we clear all NHR for a listed channel approval
+        assert (
+            not old_version.reload()
+            .needshumanreview_set.filter(is_active=True)
+            .exists()
+        )
+        assert old_version.file.status == amo.STATUS_DISABLED
+
+        sign_mock.assert_called_once_with(file_)
+
     def test_enforcement_actions_rendered(self):
         response = self.client.get(self.url)
         doc = pq(response.content)

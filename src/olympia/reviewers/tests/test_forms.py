@@ -604,7 +604,7 @@ class TestReviewForm(TestCase):
         action = form.cleaned_data['action']
         assert action == 'review_with_policy'
         assert form.cleaned_data['cinder_policies'] == [reject_policy]
-        assert not form.helper.get_actions()[action]['multiple_versions']
+        assert form.helper.get_actions()[action]['multiple_versions']
         assert form.errors == {'versions': ['This field is required.']}
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_appeal_deny(self):
@@ -884,6 +884,7 @@ class TestReviewForm(TestCase):
             'reject_multiple_versions',
             'reply',
             'set_needs_human_review_multiple_versions',
+            'review_with_policy_approve',
         ]
         assert option1.attrib.get('value') == str(self.version.pk)
 
@@ -891,6 +892,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
+            'review_with_policy_approve',
             'review_with_policy',
             'approve_multiple_versions',
             'reject_multiple_versions',
@@ -1017,6 +1019,7 @@ class TestReviewForm(TestCase):
         assert option1.attrib.get('class') == 'data-toggle'
         assert option1.attrib.get('data-value').split(' ') == [
             # That version is approved.
+            'review_with_policy_approve',
             'review_with_policy',
             'block_multiple_versions',
             'confirm_multiple_versions',
@@ -1030,6 +1033,7 @@ class TestReviewForm(TestCase):
         assert option2.attrib.get('class') == 'data-toggle'
         assert option2.attrib.get('data-value').split(' ') == [
             # That version is pending.
+            'review_with_policy_approve',
             'review_with_policy',
             'approve_multiple_versions',
             'reject_multiple_versions',
@@ -1521,6 +1525,7 @@ class TestReviewForm(TestCase):
         assert label_1.attr['class'] == 'data-toggle-hide'
         assert label_1.attr['data-value'] == ' '.join(
             (
+                'review_with_policy_approve',
                 'review_with_policy',
                 'reject',
                 'reject_multiple_versions',

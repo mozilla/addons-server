@@ -1109,7 +1109,12 @@ class TestReviewHelper(TestReviewHelperBase):
                 addon_status=amo.STATUS_NOMINATED,
                 file_status=amo.STATUS_AWAITING_REVIEW,
             )
+            assert actions['review_with_policy_approve']['enforcement_actions'] == (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            )
             assert actions['review_with_policy']['enforcement_actions'] == (
+                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
                 DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -1217,8 +1222,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Addons:Review')
         self.grant_permission(self.user, 'Reviews:Admin')
         expected = [
+            'review_with_policy_approve',
             'review_with_policy',
-            'public',
             'change_or_clear_pending_rejection_multiple_versions',
             'clear_needs_human_review_multiple_versions',
             'set_needs_human_review_multiple_versions',
@@ -4136,14 +4141,63 @@ class TestReviewHelper(TestReviewHelperBase):
         self.check_subject(message)
         assert 'disabled' in message.body
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_policy_with_version_approval(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.setup_data(amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW)
+        assert not ContentDecision.objects.exists()
+        data = {
+            'action': 'review_with_policy',
+            'cinder_policies': [
+                policy := CinderPolicy.objects.create(
+                    uuid='z',
+                    enforcement_actions=[
+                        DECISION_ACTIONS.AMO_APPROVE_VERSION.api_value
+                    ],
+                ),
+            ],
+            'versions': [self.review_version],
+            'most_important_policy_actions': filter_enforcement_actions(
+                policy.split_enforcement_actions, Addon
+            ),
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions['review_with_policy']
+        with patch('olympia.abuse.actions.sign_file') as sign_file_mock:
+            self.helper.handler.review_with_policy()
+            sign_file_mock.assert_called_once()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.review_version.file.reload().status == amo.STATUS_APPROVED
+        assert ActivityLog.objects.count() == 2
+        activity_log = ActivityLog.objects.first()
+        assert activity_log.action == amo.LOG.APPROVE_VERSION.id
+        assert activity_log.arguments == [
+            self.addon,
+            ContentDecision.objects.get(),
+            policy,
+            self.review_version,
+        ]
+        activity_log = ActivityLog.objects.last()
+        assert activity_log.action == amo.LOG.CHANGE_STATUS.id
+        assert activity_log.arguments[0] == self.addon
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'approved' in message.body
+
     def test_enable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
-        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
+        self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_APPROVED)
         other_version = version_factory(addon=self.addon)
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
         Addon.disable_all_files(
             [self.addon], File.STATUS_DISABLED_REASONS.ADDON_DISABLE
         )
+        self.addon.update(status=amo.STATUS_NULL)
+        ActivityLog.objects.all().delete()
 
         self.helper.handler.enable_addon()
 
