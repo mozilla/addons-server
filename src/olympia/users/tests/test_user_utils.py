@@ -307,6 +307,7 @@ class TestRestrictionChecker(TestCase):
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
             request_metadata={
+                'Asn': self.asn,
                 'Client-JA4': 'd1234-5678-0002',
                 'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
             },
@@ -348,6 +349,7 @@ class TestRestrictionChecker(TestCase):
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
             request_metadata={
+                'Asn': self.asn,
                 'Client-JA4': self.ja4,
                 'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
             },
