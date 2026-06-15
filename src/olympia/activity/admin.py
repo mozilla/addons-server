@@ -31,7 +31,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'kept_forever',
         'ip_address',
-        'iplog__asn',
+        'asn',
         'ja4',
     )
     list_filter = (
@@ -46,7 +46,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'details',
         'kept_forever',
         'ip_address',
-        'iplog__asn',
+        'asn',
         'ja4',
         'signals',
     )
@@ -57,7 +57,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'details',
         'kept_forever',
         'ip_address',
-        'iplog__asn',
+        'asn',
         'ja4',
         'signals',
     )
@@ -88,6 +88,11 @@ class ActivityLogAdmin(AMOModelAdmin):
     def ip_address(self, obj):
         if getattr(obj, 'iplog', None):
             return obj.iplog.ip_address_binary
+        return None
+
+    def asn(self, obj):
+        if getattr(obj, 'iplog', None):
+            return obj.iplog.asn
         return None
 
     @admin.display(description='Arguments')
