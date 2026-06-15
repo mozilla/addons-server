@@ -31,6 +31,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'pretty_arguments',
         'kept_forever',
         'ip_address',
+        'iplog__asn',
         'ja4',
     )
     list_filter = (
@@ -45,6 +46,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'details',
         'kept_forever',
         'ip_address',
+        'iplog__asn',
         'ja4',
         'signals',
     )
@@ -55,6 +57,7 @@ class ActivityLogAdmin(AMOModelAdmin):
         'details',
         'kept_forever',
         'ip_address',
+        'iplog__asn',
         'ja4',
         'signals',
     )
