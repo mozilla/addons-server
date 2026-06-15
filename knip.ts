@@ -29,9 +29,9 @@ export default {
   ignoreDependencies: [
     "addons-linter",
     // Disable rules causing errors
+    "esbuild",  // Used by vite through configuration
     "jqmodal",
     "jquery-pjax",
-    "highcharts",
     "source-map",
     // Used in docs
     "panzoom",
@@ -61,8 +61,6 @@ export default {
     "static/css/zamboni/nick.css",
     "static/css/zamboni/themes_review.less",
     "static/css/zamboni/translations/trans.css",
-    "static/js/lib/highcharts-module.js",
-    "static/js/lib/highcharts.src.js",
   ],
   compilers: {
     // Custom compilers for less/css files
