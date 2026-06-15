@@ -1,10 +1,12 @@
 {% block content %}
-A developer has replied to your review of add-on {{ name }}.
+Good news, a developer has replied to your review of {{ name }}.
 
-Reply:
+Their reply:
 {% if reply_title %}{{ reply_title }}
 {% endif %}{{ reply }}
 
-You can read the review below:
+You can read the full review here:
 {{ rating_url }}
+
+Thanks for sharing your feedback and helping make Firefox add-ons better!
 {% endblock %}

@@ -1,10 +1,11 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
 
-You're receiving this message because you requested to verify your email.
-To finish this process, please click on the link below:
+Thanks for building for Firefox! You're receiving this message because you asked to verify your email address. To finish up, just click the link below:
 
 {{ confirmation_link }}
 
-Regards,
+If you didn't request this, you can safely ignore this email.
+
+We're here if you need anything,
 
 The Mozilla Add-ons Team{% endblocktrans %}

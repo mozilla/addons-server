@@ -1,7 +1,9 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans %}Hello,
 
-You’re receiving this message because your user account {{ name }} on {{ site_url }} has been deleted. This could have been done automatically if you recently deleted your Mozilla account.
+You’re receiving this message to let you know that your user account {{ name }} on {{ site_url }} has been deleted. If you recently deleted your Mozilla account, this may have happened automatically as part of that process.
 
-Regards,
+Thank you for having been part of the Firefox add-ons community. If you believe this was a mistake or have any questions, please get in touch with us.
 
-Mozilla Add-ons Team{% endblocktrans %}
+Warm regards,
+
+The Mozilla Add-ons Team{% endblocktrans %}

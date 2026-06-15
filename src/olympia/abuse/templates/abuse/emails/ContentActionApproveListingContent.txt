@@ -1,19 +1,19 @@
 Hello,
 
-Previously, your {{ type }} was suspended/removed from Mozilla Add-ons, based on a finding that you had violated Mozilla's policies.
+Your {{ type }} had previously been suspended or removed from Mozilla Add-ons following a review of our policies.
 
 {% if is_public %}
-We have now determined that your content is within policy, and based on that determination, we have restored your {{ type }}. It is now available at {{ target_url }}.
+We've taken another look and determined that your content is within policy. We've restored your {{ type }}, and it's now available again at {{ target_url }}.
 {% else %}
-We have now determined that your content is within policy, and based on that determination, we have re-enabled your {{ type }}.  See {{ target_url }} for more information on its availability.
+We've taken another look and determined that your content is within policy. We've re-enabled your {{ type }}; see {{ target_url }} for more on its availability.
 {% endif %}
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
 
 {% if has_attachment %}
-An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}
+A reviewer has attached a file. {% if dev_url %}You can view it or reply by visiting {{ dev_url }}.{% endif %}
 
 {% endif %}
-Thank you.
+Thank you for your patience.
 
 More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
 

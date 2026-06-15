@@ -1,8 +1,13 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}The following API Key was added to your account:
+{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
+
+A new API key was just added to your account:
 
 {{ key }}
 
-If you believe this key was created in error, you can remove the key and
-disable access at the following location:
+If this was you, there's nothing more to do. If you don't recognize this key, please remove it and disable access right away here:
 
-{{ url }}{% endblocktrans %}
+{{ url }}
+
+Thanks for building for Firefox,
+
+The Mozilla Add-ons Team{% endblocktrans %}

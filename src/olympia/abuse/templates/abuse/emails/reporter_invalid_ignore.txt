@@ -1,8 +1,8 @@
 Hello,
 
-Thank you for your report about {{ name }}, at {{ target_url }}.
+Thank you for taking the time to report {{ name }}, at {{ target_url }}.
 
-Based on the information you submitted, we were unable to identify a violation of Mozilla’s policies ({{ policy_document_url }}). The {{ type }} will therefore not be subject to any moderation action.
+Based on the information provided, we weren't able to identify a violation of our policies ({{ policy_document_url }}), so the {{ type }} won't be subject to any moderation action. We still appreciate you bringing it to our attention.
 
 {% with policy=policies|first %}{{ policy.text }}{% endwith %}
 [{{ reference_id }}]

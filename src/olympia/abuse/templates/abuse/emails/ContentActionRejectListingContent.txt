@@ -1,10 +1,10 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
-Your {{ type }} {{ name }} was manually reviewed by the Mozilla Add-ons team {% if is_third_party_initiated %}based on a report we received from a third party{% else %}in an assessment performed on our own initiative of content that was submitted to Mozilla Add-ons{% endif %}.
+Thank you for submitting {{ type }} {{ name }} to Mozilla Add-ons. Our team carried out a manual review {% if is_third_party_initiated %}— prompted by a report we received from a third party —{% else %}— on our own initiative, on content submitted to Mozilla Add-ons —{% endif %}and found that some of your listing content doesn't meet our policies.
 
-Our review found that your listing content violates the following Mozilla policy or policies:
+Specifically, your listing content conflicts with the following Mozilla policy or policies:
 {% include 'abuse/emails/includes/policies.txt' %}
 
-Based on that finding, your {{ type }} listing has been removed on {{ target_url }}, so your {{ type }} is no longer available for download from Mozilla Add-ons, anywhere in the world, until you address the violations and request a further review.
+As a result, your {{ type }} listing has been removed on {{ target_url }}, so your {{ type }} is not available for download from Mozilla Add-ons anywhere in the world until the issue is resolved. Once you've updated the listing, please request a further review and we'll take another look.
 
-The approval status of any versions are unchanged, and users who have previously installed your add-on will be able to continue using it.
+The approval status of your versions is unchanged, and users who already installed your add-on can continue using it.
 {% endblock %}

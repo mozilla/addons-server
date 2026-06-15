@@ -1,10 +1,10 @@
 Hello,
 
-Thank you for your report about {{ name }}, at {{ target_url }}.
+Thank you for taking the time to report {{ name }}, at {{ target_url }}.
 
-This content was already assessed in a prior review, and any violations that were found have either been addressed, or are currently being resolved. Because our moderation team has already reviewed this content, your report will not be processed.
+Our moderation team had already reviewed this content in an earlier assessment, and any issues found have either been addressed or are being resolved. Because it's already been handled, we won't process this report separately but we appreciate you flagging it.
 
-Thank you for your attention.
+Thank you.
 
 [{{ reference_id }}]
 --

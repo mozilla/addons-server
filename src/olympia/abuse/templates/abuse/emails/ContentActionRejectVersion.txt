@@ -8,5 +8,5 @@ Affected versions: {{ version_list }}
 
 Based on that finding, those versions of your {{ type }} have been disabled on {{ target_url }} and any public version affected will no longer be available for download from Mozilla Add-ons, anywhere in the world. {% if is_addon_being_blocked %}In addition, in some cases, users who have previously installed those versions won't be able to continue using them.{% else %}Users who have previously installed those versions will be able to continue using them.{% endif %}
 
-{% if is_addon_enabled %}You may upload a new version which addresses the policy violation(s).{% endif %}
+{% if is_addon_enabled %}We'd be glad to see {{ name }} back on Mozilla Add-ons. Once you've addressed the policy issue(s) above, you can upload a new version, and we'll take another look.{% endif %}
 {% endblock %}

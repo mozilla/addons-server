@@ -6,5 +6,5 @@ Our review found that your content violates the following Mozilla policy or poli
 
 Affected versions: {{ version_list }}
 
-Based on that finding, those versions of your {{ type }} will be disabled on {{ target_url }} in {{ delayed_rejection_days }} day(s). Once disabled, any public version affected will no longer be available for download from Mozilla Add-ons, anywhere in the world, but any compliant versions will remain in place, and you may choose to upload a new version that addresses the policy violation. Users who have previously installed the disabled versions will be able to continue using them.
+To give you time to resolve this, those versions of your {{ type }} will be disabled on {{ target_url }} in {{ delayed_rejection_days }} day(s). Once disabled, any affected public version will no longer be available for download from Mozilla Add-ons anywhere in the world. Any compliant versions will stay in place, and you're welcome to upload a new version that addresses the policy issue(s) before the deadline. Users who already installed the disabled versions can continue using them.
 {% endblock %}

@@ -1,10 +1,12 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_name=addon.name author_name=author.user.name domain=DOMAIN %}Greetings {{ author_name }},
+{% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_name=addon.name author_name=author.user.name domain=DOMAIN %}Hello {{ author_name }},
 
-You have been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting the invitation will give you access to edit the add-on, and may show your name in the authors list on the website.
+Great news, you've been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting will let you help edit the add-on, and your name may appear in the authors list on the website.
 
-Click on the link below to respond if you want to be added as an author for {{ addon_name }}.
+If you'd like to join, just click the link below to accept the invitation:
 
 {{ author_confirmation_link }}
 
-Kind regards,
+If you weren't expecting this invitation, you can safely ignore this email.
+
+We're glad to have you building for Firefox,
 The Mozilla Add-ons Team{% endblocktrans %}

@@ -1,9 +1,11 @@
 Hello,
 
-An email was received, apparently from you. Unfortunately we couldn't process it because of:
+Thanks for getting in touch. We received an email that looks like it came from you, but unfortunately we weren't able to process it:
 {{ reason }}
 
-Please visit {{ SITE_URL }} to leave a reply instead.
+You can still leave your reply directly on our site. Just visit {{ SITE_URL }} and we'll make sure it reaches the right place.
+
+If you continue to run into trouble, please don't hesitate to reach out.
 --
 Mozilla Add-ons
 {{ SITE_URL }}

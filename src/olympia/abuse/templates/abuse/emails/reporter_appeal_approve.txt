@@ -1,8 +1,8 @@
 {% extends "abuse/emails/base_reporter.txt" %}{% load i18n %}{% block content %}{# L10n: This is an email. Whitespace matters #}{% blocktranslate %}
-Thank you for your report about {{ name }} on Mozilla Add-ons, and for providing more information about your concerns.
+Thank you for your report about {{ name }} on Mozilla Add-ons, and for taking the time to share more about your concerns.
 
-After reviewing your appeal, we determined that the previous decision, that this content does not violate Mozilla’s policies ({{ policy_document_url }}), was correct. Based on that determination, we have denied your appeal, and will not take any action against the account or the content.
+After carefully reviewing your appeal, we found that the earlier decision, that this content is within Mozilla’s policies ({{ policy_document_url }}) was correct. For that reason we won't be taking action against the account or the content.
 {{ manual_reasoning_text }}.
 
-Thank you for your attention.
+Thank you again for helping us keep Mozilla Add-ons safe.
 {% endblocktranslate %}{% endblock %}

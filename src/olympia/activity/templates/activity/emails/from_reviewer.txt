@@ -1,18 +1,18 @@
 Hello,
 
-A reviewer at addons.mozilla.org is contacting you regarding version {{ number }} of the add-on {{ name }}. You are receiving this email because {{ email_reason }}.
+Thanks for your work on {{ name }}. A reviewer from the addons.mozilla.org team has taken a look at version {{ number }} and would like to share some feedback with you. You're receiving this email because {{ email_reason }}.
 
-{{ author }} wrote:
+Here's what {{ author }} shared:
 
 {{ comments|safe }}
 
 {% if has_attachment %}
-An attachment was provided. To respond or view the file, visit {{ url }}.
+They've also attached a file. You can review it and reply by visiting {{ url }}.
 {% else %}
-To respond, please reply to this email or visit {{ url }}.
+When you're ready, simply reply to this email or visit {{ url }} to respond.
 {% endif %}
 
-Thank you for your attention.
+We're grateful for the time and care you put into your add-on, and we're here to help if anything is unclear.
 
 -- 
 Mozilla Add-ons

@@ -1,8 +1,13 @@
-{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}The API Key was revoked from your account:
+{% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
+
+The following API key was revoked from your account and can no longer be used:
 
 {{ key }}
 
-If you believe this key was revoked in error, you can create a new one
-at the following location:
+If you expected this, no action is needed. If this wasn't you or you still need API access, you can create a new key here:
 
-{{ url }}{% endblocktrans %}
+{{ url }}
+
+We're here to help if anything looks off,
+
+The Mozilla Add-ons Team{% endblocktrans %}

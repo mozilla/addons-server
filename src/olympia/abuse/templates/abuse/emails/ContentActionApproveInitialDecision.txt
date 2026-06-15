@@ -1,23 +1,23 @@
 Hello,
 
 {% if is_listing_rejected %}
-Your {{ type }} has been approved for distribution, but the listing on Mozilla Add-ons remains unavailable until you address the violations and request a further review.  You can edit it at {{ target_url }}.
+Good news, your {{ type }} has been approved for distribution. Its listing on Mozilla Add-ons will stay unavailable until the outstanding issue(s) are resolved; once you've made the updates, request a further review and we'll take another look. You can edit it at {{ target_url }}.
 {% elif not auto_approval %}
-Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
+Good news, your {{ type }} has been approved on Mozilla Add-ons and is now available at {{ target_url }}.
 {% else %}
-Your {{ type }} has been automatically screened and tentatively approved. It is now available at {{ target_url }}.
+Thanks for your submission. Your {{ type }} has passed our automated screening and is tentatively approved. It's now available at {{ target_url }}.
 
-Your add-on can be subject to human review at any time. Reviewers may determine that it requires changes or should be removed. If that occurs, you will receive a separate notification with details and next steps.
+Add-ons may be reviewed by a person at any time, and a reviewer may ask for changes or determine that an add-on should be removed. If that happens, we'll send you a separate message with the details and clear next steps.
 {% endif %}
 {% if version_list %}Approved versions: {{ version_list }}
 {% endif %}
 {% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}.{% endif %}
 
 {% if has_attachment %}
-An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}
+A reviewer has attached a file. {% if dev_url %}You can view it or reply by visiting {{ dev_url }}.{% endif %}
 
 {% endif %}
-Thank you.
+Thank you, and thanks for building for Firefox.
 
 More information about Mozilla's add-on policies can be found at {{ policy_document_url }}.
 

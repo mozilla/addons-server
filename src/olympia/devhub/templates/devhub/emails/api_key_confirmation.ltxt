@@ -1,10 +1,11 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
 
-You're receiving this message because you requested new developer API keys for
-{{ domain }}. To finish this process, please click on the link below:
+Thanks for building for Firefox! You're receiving this message because you requested new developer API keys for {{ domain }}. To finish setting them up, just click the link below:
 
 {{ api_key_confirmation_link }}
 
-Regards,
+If you didn't request these keys, you can safely ignore this email and no keys will be created.
+
+We're here if you need anything,
 
 The Mozilla Add-ons Team{% endblocktrans %}
