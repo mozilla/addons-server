@@ -6978,15 +6978,15 @@ msgstr "Vuide pes recensions"
 
 #: src/olympia/templates/photon-footer.html:24
 msgid "Download"
-msgstr ""
+msgstr "Discjame"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Download Firefox"
-msgstr ""
+msgstr "Discjame Firefox"
 
 #: src/olympia/templates/photon-footer.html:28
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "macOS"
