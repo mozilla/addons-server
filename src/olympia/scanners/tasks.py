@@ -25,6 +25,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.middleware import REQUEST_ID_HEADER
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     attach_trans_dict,
@@ -162,6 +163,7 @@ def _call_webhook(webhook, payload):
             headers={
                 'Content-Type': 'application/json',
                 'Authorization': f'HMAC-SHA256 {digest}',
+                REQUEST_ID_HEADER: uuid.uuid4().hex,
             },
         )
 

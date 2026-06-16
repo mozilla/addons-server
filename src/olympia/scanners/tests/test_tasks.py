@@ -2573,15 +2573,16 @@ class TestCallWebhook(TestCase):
         expected_digest = (
             '1987be0ea649633a3eaca7c504b9995fe20aa054d7423e490df927b1ede917a1'
         )
-        requests_mock.assert_called_with(
-            url=webhook.url,
-            data=json.dumps(payload),
-            timeout=123,
-            headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'HMAC-SHA256 {expected_digest}',
-            },
+        assert requests_mock.call_count == 1
+        call_kwargs = requests_mock.call_args.kwargs
+        assert call_kwargs['url'] == webhook.url
+        assert call_kwargs['data'] == json.dumps(payload)
+        assert call_kwargs['timeout'] == 123
+        assert call_kwargs['headers']['Content-Type'] == 'application/json'
+        assert (
+            call_kwargs['headers']['Authorization'] == f'HMAC-SHA256 {expected_digest}'
         )
+        assert call_kwargs['headers']['X-AMO-Request-ID']
         assert returned_value == response_data
 
     @override_settings(SCANNER_TIMEOUT=123)
