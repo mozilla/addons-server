@@ -6133,7 +6133,7 @@ msgstr "Ver todas las extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Extensiones de YouTube"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6369,12 +6369,12 @@ msgstr "Extensiones de Twitch"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1239
 msgid "See more Twitch extension staff picks"
-msgstr ""
+msgstr "Ver más selecciones del equipo de extensiones de Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1247
 msgid "Gaming & media extensions"
-msgstr ""
+msgstr "Extensiones de juegos y medios"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1249
@@ -7085,6 +7085,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
+"Salvo que en <a href=\"https://www.mozilla.org/about/legal/\">se indique lo contrario</a>, el contenido de este sitio esta bajo la <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\">Licencia Creative Commons Attribution Share-Alike v3.0</a> o cualquier versión posterior."
 
 #: src/olympia/templates/user_login.html:24
 #, python-format
@@ -7176,11 +7178,9 @@ msgstr ""
 "privacidad, donde se explica cómo administraremos tu información."
 
 #: src/olympia/users/models.py:1377
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
-msgstr ""
-"Antes de comenzar, lee y acepta nuestro Acuerdo de distribución de complementos de Firefox y nuestras Reglas y políticas de revisión. En el acuerdo también encontrarás un enlace a nuestro Aviso de "
-"privacidad, donde se explica cómo administraremos tu información."
+msgstr "Por favor lee y acepta nuestro acuerdo de distribución de complementos de Firefox así como nuestras políticas y reglas de revisión visitando {url}"
 
 #: src/olympia/users/notifications.py:27
 msgid "an add-on developer replies to my review"
