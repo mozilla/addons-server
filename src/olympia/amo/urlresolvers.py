@@ -9,7 +9,6 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 
 import markupsafe
 from justhtml import (
-    Edit,
     JustHTML,
     Linkify,
     SanitizationPolicy,
@@ -159,21 +158,6 @@ def linkify_bounce_url_callback(node):
     """Linkify callback that uses get_outgoing_url."""
     if 'href' in node.attrs.keys():
         node.attrs['href'] = get_outgoing_url(node.attrs['href'])
-
-
-def linkify_with_outgoing(text):
-    """Wrapper around justhtml's linkify: uses get_outgoing_url."""
-    fragment = JustHTML(
-        text,
-        fragment=True,
-        sanitize=False,
-        transforms=[
-            Linkify(),
-            Edit('a', linkify_bounce_url_callback),
-            SetAttrs('a', rel='nofollow'),
-        ],
-    )
-    return fragment.to_html(pretty=False)
 
 
 def linkify_and_clean(text):

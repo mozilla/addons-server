@@ -45,7 +45,6 @@ import basket
 import colorgram
 import homoglyphs_fork
 import html5lib
-import markupsafe
 import pytz
 from babel import Locale
 from django_statsd.clients import statsd
@@ -56,7 +55,6 @@ from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
-from olympia.amo.urlresolvers import linkify_with_outgoing
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
@@ -894,27 +892,6 @@ def get_email_backend(real_email=False):
     else:
         backend = 'olympia.amo.mail.DevEmailBackend'
     return django.core.mail.get_connection(backend)
-
-
-def escape_all(value):
-    """Escape html in JSON value, including nested items.
-
-    Only linkify full urls, including a scheme, if "linkify_only_full" is True.
-
-    """
-    if isinstance(value, str):
-        value = markupsafe.escape(force_str(value))
-        value = linkify_with_outgoing(value)
-        return value
-    elif isinstance(value, list):
-        for i, lv in enumerate(value):
-            value[i] = escape_all(lv)
-    elif isinstance(value, dict):
-        for k, lv in value.items():
-            value[k] = escape_all(lv)
-    elif isinstance(value, Translation):
-        value = markupsafe.escape(force_str(value))
-    return value
 
 
 class SafeStorage(FileSystemStorage):

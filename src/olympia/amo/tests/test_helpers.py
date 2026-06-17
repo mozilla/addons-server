@@ -10,7 +10,6 @@ from django.urls import NoReverseMatch
 from django.utils.encoding import force_bytes
 
 import pytest
-from pyquery import PyQuery
 
 import olympia
 from olympia import amo
@@ -312,38 +311,6 @@ def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     # Make sure get_outgoing_url was called.
     assert node.attrs['href'] == 'bar'
     mock_get_outgoing_url.assert_called_with('foo')
-
-
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
-)
-def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
-    def side_effect(node):
-        node.attrs['href'] = 'bar'
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
-    # Use PyQuery because the attributes could be rendered in any order.
-    doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
-
-
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
-)
-def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
-    def side_effect(node):
-        node.attrs['href'] = 'bar'
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing(
-        'a markup <a href="http://example.com">link</a> with text'
-    )
-    # Use PyQuery because the attributes could be rendered in any order.
-    doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
 def get_image_path(name):

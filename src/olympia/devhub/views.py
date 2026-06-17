@@ -49,11 +49,11 @@ from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.reverse import get_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
+from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.amo.utils import (
     MenuItem,
     SafeStorage,
     StopWatch,
-    escape_all,
     is_safe_url,
     send_mail,
     send_mail_jinja,
@@ -785,7 +785,7 @@ def json_upload_detail(request, upload, addon_slug=None):
                         # already escaped because they are coming from
                         # `processed_validation`, but we need to do that for
                         # those coming from ValidationError exceptions as well.
-                        'message': escape_all(msg),
+                        'message': linkify_and_clean(msg),
                         'tier': 1,
                         'fatal': True,
                     },
