@@ -59,6 +59,9 @@ log = olympia.core.logger.getLogger('amo.middleware')
 
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
+# Name of the header used to expose/propagate the request id across services.
+REQUEST_ID_HEADER = 'X-AMO-Request-ID'
+
 
 class LocaleAndAppURLMiddleware(MiddlewareMixin):
     """
@@ -350,16 +353,26 @@ class RequestIdMiddleware(MiddlewareMixin):
     e.g to correlate logs with sentry exceptions.
 
     We are exposing this request id in the `X-AMO-Request-ID` response header.
+
+    If the incoming request already carries an `X-AMO-Request-ID` header that
+    looks like a valid UUID, we reuse it instead of generating a new one.
     """
 
     def process_request(self, request):
-        request.request_id = uuid.uuid4().hex
+        request_id = request.headers.get(REQUEST_ID_HEADER)
+        if request_id:
+            try:
+                uuid.UUID(request_id)
+            except ValueError:
+                # The header is present but isn't a valid UUID, ignore it.
+                request_id = None
+        request.request_id = request_id or uuid.uuid4().hex
 
     def process_response(self, request, response):
         request_id = getattr(request, 'request_id', None)
 
         if request_id:
-            response['X-AMO-Request-ID'] = request.request_id
+            response[REQUEST_ID_HEADER] = request.request_id
 
         return response
 
