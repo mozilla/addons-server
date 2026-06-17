@@ -19,6 +19,11 @@ Each service registered as a scanner webhook must be protected with a shared
 secret (api) key. Read [the authentication section](#scanners-authentication)
 for more information.
 
+Every webhook call includes a `X-AMO-Request-ID` header carrying a unique id
+generated for each webhook call. Scanners are encouraged to log it and include
+it in their own logs so a single webhook call can be correlated across AMO and
+the scanner service.
+
 (scanners-authentication)=
 ### Authentication
 
