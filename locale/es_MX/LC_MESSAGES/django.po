@@ -6364,7 +6364,7 @@ msgstr "Mira más selecciones del personal de extensiones para principiantes"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1237
 msgid "Twitch extensions"
-msgstr ""
+msgstr "Extensiones de Twitch"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1239
@@ -7255,6 +7255,16 @@ msgid ""
 "Kind regards,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Saludos, %(author_name)s:\n"
+"\n"
+"Has recibido una invitación para convertirte en autor/a de %(addon_name)s en %(domain)s. Al aceptar la invitación, tendrás acceso para editar el complemento y tu nombre podría aparecer en la lista de autores del sitio web.\n"
+"\n"
+"Haz clic en el enlace a continuación para confirmar si deseas ser añadido/a como autor/a de %(addon_name)s.\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Atentamente,\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
