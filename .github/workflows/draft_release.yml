@@ -10,6 +10,9 @@ on:
         options:
           - diox
           - eviljeff
+          - chrstinalin
+          - willdurand
+          - nothingrandom
       tag:
         description: 'Release date YYYY.MM.DD Also used to generate the tag name.'
         required: true
