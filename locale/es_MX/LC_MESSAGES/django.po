@@ -5764,7 +5764,7 @@ msgstr "Haz que Firefox aparezca como Chrome ante los sitios web que intentan bl
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:685
 msgid "Manage your Gmail (even multiple accounts) right from Firefox's toolbar button."
-msgstr ""
+msgstr "Gestiona tu Gmail (incluso varias cuentas) directamente desde el botón de la barra de herramientas de Firefox."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
