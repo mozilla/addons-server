@@ -664,14 +664,27 @@ def test_client_info():
     assert response.status_code == 403
 
     with override_settings(ENV='dev'):
-        response = Client().get(reverse('amo.client_info'))
+        with mock.patch.object(
+            core, 'get_request_metadata'
+        ) as get_request_metadata_mock:
+            get_request_metadata_mock.return_value = {
+                'Asn': '64511',
+                'Client-JA4': 'fakeja4',
+            }
+            response = Client().get(reverse('amo.client_info'))
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': None,
-            'HTTP_X_COUNTRY_CODE': None,
-            'HTTP_X_FORWARDED_FOR': None,
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': None,
+                'HTTP_X_COUNTRY_CODE': None,
+                'HTTP_X_FORWARDED_FOR': None,
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {
+                'Asn': '64511',
+                'Client-JA4': 'fakeja4',
+            },
             'GET': {},
             'POST': {},
         }
@@ -685,11 +698,14 @@ def test_client_info():
         )
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': 'Foo/5.0',
-            'HTTP_X_COUNTRY_CODE': 'FR',
-            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': 'Foo/5.0',
+                'HTTP_X_COUNTRY_CODE': 'FR',
+                'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {},
             'GET': {'foo': 'bar'},
             'POST': {},
         }
@@ -703,11 +719,14 @@ def test_client_info():
         )
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': 'Foo/5.0',
-            'HTTP_X_COUNTRY_CODE': 'FR',
-            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': 'Foo/5.0',
+                'HTTP_X_COUNTRY_CODE': 'FR',
+                'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {},
             'GET': {},
             'POST': {'foo': 'bar'},
         }
