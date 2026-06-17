@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-12 14:55+0000\n"
+"POT-Creation-Date: 2026-06-17 13:09+0000\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -6940,67 +6940,67 @@ msgid "Review Guide"
 msgstr "Vodič za ocenjivanje"
 
 msgid "Download"
-msgstr ""
+msgstr "Preuzmite"
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Preuzmite Firefox"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "macOS"
-msgstr ""
+msgstr "macOS"
 
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "All"
-msgstr ""
+msgstr "Svi"
 
 msgid "Latest Builds"
-msgstr ""
+msgstr "Najnovije gradnje"
 
 msgid "Nightly"
-msgstr ""
+msgstr "Nightly"
 
 msgid "Beta"
-msgstr ""
+msgstr "Beta"
 
 msgid "Firefox for Business"
-msgstr ""
+msgstr "Firefox za preduzeća"
 
 msgid "Enterprise"
 msgstr "Preduzeće"
 
 msgid "Community"
-msgstr ""
+msgstr "Zajednica"
 
 msgid "Connect"
-msgstr ""
+msgstr "Poveži se"
 
 msgid "Follow"
-msgstr ""
+msgstr "Prati"
 
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 msgid "TikTok"
-msgstr ""
+msgstr "TikTok"
 
 msgid "Bluesky"
-msgstr ""
+msgstr "Bluesky"
 
 msgid "Podcast"
-msgstr ""
+msgstr "Podkast"
 
 msgid "Privacy"
 msgstr "Privatnost"
