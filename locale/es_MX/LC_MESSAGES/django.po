@@ -5804,7 +5804,7 @@ msgstr ""
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
 msgid "Eliminate YouTube distractions like recommendations, end-screen suggestions, comments & more."
-msgstr ""
+msgstr "Elimina las distracciones de YouTube, como las recomendaciones, las sugerencias en la pantalla final, los comentarios y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
@@ -5890,9 +5890,8 @@ msgstr "Elimina esos largos parámetros de seguimiento de las URL de los resulta
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:960
-#, fuzzy
 msgid "Get weather updates directly from Firefox."
-msgstr "Actualizaciones instantáneas del clima en todo el mundo."
+msgstr "Obtén actualizaciones meteorológicas directamente desde Firefox."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:963
@@ -7299,6 +7298,13 @@ msgid ""
 "\n"
 "Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Recibes este mensaje porque tu cuenta de usuario %(name)s en %(site_url)s ha sido eliminada. Esto podría haber ocurrido automáticamente si eliminaste tu cuenta de Mozilla recientemente.\n"
+"\n"
+"Saludos,\n"
+"\n"
+"Equipo de Complementos de Mozilla"
 
 #: src/olympia/versions/models.py:1130
 #, python-format
