@@ -5799,7 +5799,7 @@ msgstr "Guarda y organiza todos los recursos que encuentres en la web: artículo
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
 msgid "Enhance your Reddit experience with color-coded comments, simpler navigation, gestures for upvoting & much more."
-msgstr ""
+msgstr "Optimiza tu experiencia en Reddit con comentarios categorizados por color, navegación simplificada, gestos para votar y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:723
@@ -5809,7 +5809,7 @@ msgstr "Elimina las distracciones de YouTube, como las recomendaciones, las suge
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:726
 msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new features."
-msgstr ""
+msgstr "\"Better Twitch TV\" optimiza tu experiencia en Twitch y YouTube con infinidad de nuevas funciones."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:732
@@ -5914,7 +5914,7 @@ msgstr "Vuelve a una época más sencilla, cuando tus primeros resultados de bú
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:981
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
-msgstr ""
+msgstr "Crea la barra de desplazamiento de tus sueños, con el ancho y el color que tu escojas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:993
@@ -5978,9 +5978,8 @@ msgstr "El gestor de descargas masivas hace que las descargas extremas sean extr
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1032
-#, fuzzy
 msgid "Remove ads & receive better protection against malware."
-msgstr "No solo bloquea los anuncios molestos, también te protege frente a malware y rastreo de publicidad."
+msgstr "Eliminación de anuncios y protección avanzada contra el malware."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1035
@@ -6020,7 +6019,7 @@ msgstr "Resume fácilmente correos electrónicos, documentos, artículos y trans
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1056
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
-msgstr ""
+msgstr "Tú tienes el control. Desactiva el VPN en los sitios web no compatibles, y configura ubicaciones diferentes para cada sitio web. Solo disponible para Windows."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1059
