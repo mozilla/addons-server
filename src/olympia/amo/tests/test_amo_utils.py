@@ -10,7 +10,6 @@ import pytest
 from olympia.amo.tests import TestCase, get_temp_filename
 from olympia.amo.utils import (
     SafeStorage,
-    escape_all,
     find_language,
     from_string,
     no_jinja_autoescape,
@@ -261,40 +260,6 @@ class TestSafeStorage(TestCase):
         self.stor.delete(fn)
         assert not os.path.exists(fn)
         assert os.path.exists(dp)
-
-
-@pytest.mark.parametrize(
-    'test_input,expected',
-    [
-        (
-            '<script>alert("BALL SO HARD")</script>',
-            '&lt;script&gt;alert("BALL SO HARD")&lt;/script&gt;',
-        ),
-        ('Foo"', 'Foo"'),
-        ('Bän...g (bang)', 'Bän...g (bang)'),
-        (u, u),
-        ('-'.join([u, u]), '-'.join([u, u])),
-        (' - '.join([u, u]), ' - '.join([u, u])),
-        ('x荿', 'x\u837f'),
-        ('ϧ΃蒬蓣', '\u03e7\u0383\u84ac\u84e3'),
-        ('¿x', '¿x'),
-    ],
-)
-def test_escape_all(test_input, expected):
-    assert escape_all(test_input) == expected
-
-
-@mock.patch('olympia.amo.templatetags.jinja_helpers.urlresolvers.get_outgoing_url')
-def test_escape_all_linkify_only_full(mock_get_outgoing_url):
-    mock_get_outgoing_url.return_value = 'https://outgoing.firefox.com'
-
-    assert escape_all('http://firefox.com') == (
-        '<a href="https://outgoing.firefox.com" rel="nofollow">http://firefox.com</a>'
-    )
-
-    assert escape_all('firefox.com') == (
-        '<a href="https://outgoing.firefox.com" rel="nofollow">firefox.com</a>'
-    )
 
 
 def test_no_jinja_autoescape():
