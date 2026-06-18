@@ -5774,7 +5774,7 @@ msgstr "Controla el tiempo que pasas navegando, analiza tus hábitos, bloquea lo
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
 msgid "Improve your writing — get instant access to the power of synonyms."
-msgstr ""
+msgstr "Mejora tu escritura con el poder de los sinónimos."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
