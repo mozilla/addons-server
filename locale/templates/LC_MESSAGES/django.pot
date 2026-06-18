@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-17 14:01+0000\n"
+"POT-Creation-Date: 2026-06-18 15:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -611,11 +611,11 @@ msgid ""
 "We'll be back to full capacity shortly."
 msgstr ""
 
-#: src/olympia/amo/utils.py:1216 src/olympia/bandwagon/serializers.py:97
+#: src/olympia/amo/utils.py:1193 src/olympia/bandwagon/serializers.py:97
 msgid "This name cannot be used."
 msgstr ""
 
-#: src/olympia/amo/utils.py:1246
+#: src/olympia/amo/utils.py:1223
 msgid "URLs are not allowed."
 msgstr ""
 
