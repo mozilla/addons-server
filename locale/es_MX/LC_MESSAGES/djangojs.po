@@ -471,7 +471,7 @@ msgstr "{name} estuvo viendo esta página antes."
 
 #: static/js/zamboni/reviewers.js:314
 msgid "Review page polling failed."
-msgstr "Error en la encuesta de la revisión de la página."
+msgstr "Falló la recuperación de la página de revisión."
 
 #: static/js/zamboni/reviewers.js:631
 #, python-brace-format
