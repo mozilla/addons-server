@@ -5784,17 +5784,17 @@ msgstr "Funciones de traducción avanzada para una experiencia lingüística opt
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
 msgid "Leave yourself little notes on any website."
-msgstr ""
+msgstr "Déjate pequeñas notas en cualquier sitio web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:700
 msgid "Discover and download higher quality versions of interesting images and videos you find on the web."
-msgstr ""
+msgstr "Obtén y descarga versiones de alta calidad de imágenes y vídeos interesantes que hayas encontrado en la web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:703
 msgid "Save and organize anything you find on the web — articles, media, PDFs & more."
-msgstr ""
+msgstr "Guarda y organiza todos los recursos que encuentres en la web: artículos, imágenes, audio, archivos PDF y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:706
@@ -5874,12 +5874,12 @@ msgstr "Edita cualquier página web antes de imprimirla. Elimina anuncios y cont
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:933
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "Lector avanzado para recopilar todas tus fuentes RSS/Atom/RDF."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:951
 msgid "Web pages read aloud. 40+ languages supported."
-msgstr "Páginas web leídas en voz alta. Más de 40 idiomas compatibles."
+msgstr "Páginas web leídas en voz alta, compatible con más de 40 idiomas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:957
