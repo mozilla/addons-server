@@ -7025,7 +7025,7 @@ msgstr "Linux"
 
 #: src/olympia/templates/photon-footer.html:33
 msgid "All"
-msgstr ""
+msgstr "Όλα"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
@@ -7041,7 +7041,7 @@ msgstr "Beta"
 
 #: src/olympia/templates/photon-footer.html:47
 msgid "Firefox for Business"
-msgstr ""
+msgstr "Firefox για επιχειρήσεις"
 
 #: src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
