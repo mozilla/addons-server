@@ -6024,32 +6024,32 @@ msgstr "Tú tienes el control. Desactiva el VPN en los sitios web no compatibles
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1059
 msgid "Automatically handle GDPR consent forms."
-msgstr ""
+msgstr "Gestión automatizada de formularios de consentimiento de tratamiento de datos RGPD."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1062
 msgid "Block malicious websites from port scanning."
-msgstr ""
+msgstr "Bloquea la detección de puertos en sitios web maliciosos."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1065
 msgid "Enhance your Twitch experience."
-msgstr ""
+msgstr "Optimiza tu experiencia en Twitch."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1068
 msgid "Re-take control of Twitter/X and customize your experience."
-msgstr ""
+msgstr "Retoma el control de Twitter/X y personaliza tu experiencia."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1071
 msgid "Translate text without leaving the page you're on (PDF compatible)."
-msgstr ""
+msgstr "Traduce cualquier texto sin salir de la página en la que estás (compatible con archivos PDF)."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1074
 msgid "Change the color of Firefox to match every website you visit."
-msgstr ""
+msgstr "Cambia el color de Firefox para que coincida con cada página que visitas."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1077

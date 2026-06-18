@@ -6014,7 +6014,7 @@ msgstr "Tenés el control. Desactivá la VPN cuando un sitio web no funcione y c
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1059
 msgid "Automatically handle GDPR consent forms."
-msgstr "Administrá automáticamente los formularios de consentimiento de GDPR."
+msgstr "Administrá automáticamente los formularios de consentimiento de RGPD."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1062
