@@ -5739,7 +5739,7 @@ msgstr "Protección de la privacidad contra una forma única de “fingerprintin
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:658
 msgid "Automatically deny cookie pop-up tracking requests."
-msgstr ""
+msgstr "Denegar automáticamente solicitudes de cookies de rastreo en ventanas emergentes."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:670
@@ -5779,7 +5779,7 @@ msgstr "Mejora tu escritura con el poder de los sinónimos."
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:694
 msgid "Deep translation features for a rich language experience anywhere on the web."
-msgstr ""
+msgstr "Funciones de traducción avanzada para una experiencia lingüística optimizada en cualquier lugar de la web."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:697
@@ -5848,9 +5848,8 @@ msgstr "Personaliza la apariencia de cualquier sitio web. Cambia colores, fondos
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:873
-#, fuzzy
 msgid "Use mouse gestures to close tabs, navigate pages & more."
-msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
+msgstr "Usa gestos del ratón para cerrar pestañas, retroceder y avanzar entre páginas, y mucho más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:876
@@ -5870,7 +5869,7 @@ msgstr "Guarda una página web completa, incluyendo imágenes y estilo, como un 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:924
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
-msgstr ""
+msgstr "Edita cualquier página web antes de imprimirla. Elimina anuncios y contenido no deseado."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:933
