@@ -6054,7 +6054,7 @@ msgstr "Cambia el color de Firefox para que coincida con cada página que visita
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1077
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
-msgstr ""
+msgstr "Si estás aprendiendo un nuevo idioma, Yomitan es el diccionario ideal para acompañarte en tu aprendizaje."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1080
@@ -6084,27 +6084,27 @@ msgstr "Administra tu Gmail (incluso varias cuentas) desde una ventana emergente
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1095
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Simplifica la interfaz de YouTube. Elimina elementos no deseados como la lista de videos relacionados, sugerencias de cortos, y muchos elementos más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1098
 msgid "Leave yourself little notes on any web page."
-msgstr ""
+msgstr "Déjate pequeñas notas en cualquier sitio web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1101
 msgid "Serenity for your Reddit experience."
-msgstr ""
+msgstr "Disfruta Reddit con serenidad."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1104
 msgid "Save and organize anything you find on the web."
-msgstr ""
+msgstr "Guarda y organiza todos los recursos que encuentres en la web."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1107
 msgid "WebM video controls at your fingertips."
-msgstr ""
+msgstr "Controles de video WebM al alcance de tu mano."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1110
@@ -6193,9 +6193,8 @@ msgstr "Ver más temas recomendados"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1157
-#, fuzzy
 msgid "Strong password managers"
-msgstr "Gestores de contraseña recomendados"
+msgstr "Administradores de contraseñas seguras"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1159
@@ -6240,21 +6239,19 @@ msgstr "Extensiones etiquetas con {tag}"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1179
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
-msgstr "Ver más extensiones populares"
+msgstr "Ver más extensiones etiquetadas con \"{tag}\""
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1182
-#, fuzzy
 msgid "Elite ad blockers"
-msgstr "Actualizar bloqueadores de complementos"
+msgstr "Bloqueadores de anuncios de avanzados"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1184
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "Ver más extensiones recomendadas"
+msgstr "Ver más bloqueadores de anuncios recomendados"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1187
