@@ -5769,7 +5769,7 @@ msgstr "Gestiona tu Gmail (incluso varias cuentas) directamente desde el botón 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:688
 msgid "Track the time you spend on the web, analyze your habits, block distracting sites & more."
-msgstr ""
+msgstr "Controla el tiempo que pasas navegando, analiza tus hábitos, bloquea los sitios que te distraen y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:691
@@ -5838,9 +5838,8 @@ msgstr "Lee archivos ePUB directamente en Firefox: aumenta el tamaño de la fuen
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:813
-#, fuzzy
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
-msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 configuraciones posibles."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:864
