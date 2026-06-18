@@ -32,14 +32,16 @@
 # IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-from django.template.base import Lexer
-from django.template.base import TokenType
-
-from django.utils.translation import trim_whitespace
+from django.template.base import Lexer, TokenType
 from django.utils.encoding import smart_str
-
+from django.utils.translation import trim_whitespace
 from django.utils.translation.template import (
-    inline_re, block_re, endblock_re, plural_re, constant_re)
+    block_re,
+    constant_re,
+    endblock_re,
+    inline_re,
+    plural_re,
+)
 
 
 TOKEN_TEXT = TokenType.TEXT
@@ -103,25 +105,32 @@ def extract_django(fileobj, keywords, comment_tags, options):
                             yield (
                                 lineno,
                                 'npgettext',
-                                [smart_str(message_context),
-                                 smart_str(join_tokens(singular, trimmed)),
-                                 smart_str(join_tokens(plural, trimmed))],
+                                [
+                                    smart_str(message_context),
+                                    smart_str(join_tokens(singular, trimmed)),
+                                    smart_str(join_tokens(plural, trimmed)),
+                                ],
                                 [],
                             )
                         else:
                             yield (
                                 lineno,
                                 'ngettext',
-                                (smart_str(join_tokens(singular, trimmed)),
-                                 smart_str(join_tokens(plural, trimmed))),
-                                [])
+                                (
+                                    smart_str(join_tokens(singular, trimmed)),
+                                    smart_str(join_tokens(plural, trimmed)),
+                                ),
+                                [],
+                            )
                     else:
                         if message_context:
                             yield (
                                 lineno,
                                 'pgettext',
-                                [smart_str(message_context),
-                                 smart_str(join_tokens(singular, trimmed))],
+                                [
+                                    smart_str(message_context),
+                                    smart_str(join_tokens(singular, trimmed)),
+                                ],
                                 [],
                             )
                         else:
@@ -129,7 +138,8 @@ def extract_django(fileobj, keywords, comment_tags, options):
                                 lineno,
                                 None,
                                 smart_str(join_tokens(singular, trimmed)),
-                                [])
+                                [],
+                            )
 
                     intrans = False
                     inplural = False
@@ -139,8 +149,10 @@ def extract_django(fileobj, keywords, comment_tags, options):
                 elif pluralmatch:
                     inplural = True
                 else:
-                    raise SyntaxError('Translation blocks must not include '
-                                      'other block tags: %s' % t.contents)
+                    raise SyntaxError(
+                        'Translation blocks must not include '
+                        'other block tags: %s' % t.contents
+                    )
             elif t.token_type == TOKEN_VAR:
                 if inplural:
                     plural.append('%%(%s)s' % t.contents)
