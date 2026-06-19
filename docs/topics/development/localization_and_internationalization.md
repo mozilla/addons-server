@@ -4,7 +4,7 @@ Localization and internationalization are important aspects of the **addons-serv
 
 ## Locale Availibility
 
-Locales are defined in two parts. In [`src/olympia/core/languages.py`](https://github.com/mozilla/addons-server/blob/master/src/olympia/core/languages.py) --
+Locales are defined in two parts. In [`src/olympia/core/languages.py`](https://github.com/mozilla/addons-server/blob/master/src/olympia/core/languages.py):
 
 1. Entirely new locales are added via the `ALL_LANGUAGES` list.
 2. Enabled locales are defined separately via the `PROD_LANGUAGES` list.
