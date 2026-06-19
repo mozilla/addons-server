@@ -675,25 +675,18 @@ class ReviewForm(forms.Form):
                     'action.',
                 )
 
-            if not is_policy_enforcement:
-                if len(all_primary_actions) > 1:
-                    self.add_error(
-                        'cinder_policies',
-                        'Multiple policies selected with different cinder actions.',
-                    )
-            else:
-                negative_primary_actions = {
-                    ea
-                    for ea in all_primary_actions
-                    if len(ea) and ea[0] in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED
-                }
-                if not negative_primary_actions and len(all_primary_actions) > 1:
-                    self.add_error(
-                        'cinder_policies',
-                        'Selecting multiple policies selected with different '
-                        'non-negative cinder actions is not supported.',
-                    )
-
+            negative_primary_actions = {
+                ea
+                for ea in all_primary_actions
+                if len(ea) and ea[0] in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED
+            }
+            if not negative_primary_actions and len(all_primary_actions) > 1:
+                self.add_error(
+                    'cinder_policies',
+                    'Selecting multiple policies with different non-negative '
+                    'enforcement actions is not supported.',
+                )
+            if is_policy_enforcement:
                 srtd_actions = sorted(
                     (
                         filter_enforcement_actions(

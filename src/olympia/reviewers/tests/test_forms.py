@@ -401,23 +401,13 @@ class TestReviewForm(TestCase):
             ]
         }
 
+        # Fine: those are not positive actions
         data['cinder_policies'] = [action_policy_a.id, action_policy_c.id]
         form = self.get_form(data=data)
-        assert not form.is_valid()
-        assert form.errors == {
-            'cinder_policies': [
-                'Multiple policies selected with different cinder actions.'
-            ]
-        }
-
-        # But it's fine if there are no jobs selected
-        data['cinder_jobs_to_resolve'] = []
-        form = self.get_form(data=data)
-        assert form.is_valid(), form.errors
+        assert form.is_valid()
         assert not form.errors
 
-        # And it's fine if the poicies have the same action
-        data['cinder_jobs_to_resolve'] = [job.id]
+        # Also fine if the policies have the same action
         data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
@@ -442,6 +432,41 @@ class TestReviewForm(TestCase):
             'cinder_policies': [
                 'Invalid policies selected with more than one primary enforcement '
                 'action.'
+            ]
+        }
+
+    def test_policy_actions_multiple_positive(self):
+        # Selecting policies that result in multiple positive enforcement
+        # actions should raise an error.
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        action_policy_approve = CinderPolicy.objects.create(
+            uuid='approve',
+            name='approve',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
+        )
+        action_policy_ignore = CinderPolicy.objects.create(
+            uuid='ignore',
+            name='ignore',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+        )
+        data = {
+            'action': 'resolve_reports_job',
+            'cinder_jobs_to_resolve': [job.id],
+            'cinder_policies': [action_policy_ignore.id, action_policy_approve.id],
+        }
+        form = self.get_form(data=data)
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'Selecting multiple policies with different non-negative '
+                'enforcement actions is not supported.'
             ]
         }
 
@@ -537,8 +562,8 @@ class TestReviewForm(TestCase):
         assert not form.is_valid()
         assert form.errors == {
             'cinder_policies': [
-                'Selecting multiple policies selected with different '
-                'non-negative cinder actions is not supported.'
+                'Selecting multiple policies with different non-negative '
+                'enforcement actions is not supported.'
             ]
         }
 
