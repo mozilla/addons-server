@@ -41,7 +41,7 @@
     "@eslint/js": "^10.0.1",
     "@rollup/plugin-babel": "^7.1.0",
     "@rollup/plugin-inject": "^5.0.5",
-    "@vitest/eslint-plugin": "^1.6.19",
+    "@vitest/eslint-plugin": "^1.6.20",
     "dotenv": "^17.4.2",
     "esbuild": "^0.28.1",
     "eslint": "^10.4.1",
