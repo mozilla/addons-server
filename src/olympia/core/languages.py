@@ -209,6 +209,7 @@ PROD_LANGUAGES = [
     'sk',
     'sl',
     'sq',
+    'sr',
     'sv-SE',
     'tr',
     'uk',

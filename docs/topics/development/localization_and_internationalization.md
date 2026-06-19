@@ -2,6 +2,17 @@
 
 Localization and internationalization are important aspects of the **addons-server** project, ensuring that the application can support multiple languages and locales. This section covers the key concepts and processes for managing localization and internationalization.
 
+## Locale Availibility
+
+Locales are defined in two parts. In [`src/olympia/core/languages.py`](https://github.com/mozilla/addons-server/blob/master/src/olympia/core/languages.py):
+
+1. Entirely new locales are added via the `ALL_LANGUAGES` list.
+2. Enabled locales are defined separately via the `PROD_LANGUAGES` list.
+
+These lists should always be kept in sync with `addons-frontend`. See the documentation [here](https://github.com/mozilla/addons-frontend/blob/master/docs/i18n.md) for details.
+
+Dev shows the full language list defined by `ALL_LANGUAGES`. Stage and production only show locales explicitly enabled by `PROD_LANGUAGES`. Locales are enabled when their completion rate for both [AMO](https://pontoon.mozilla.org/projects/amo/) and [AMO Frontend](https://pontoon.mozilla.org/projects/amo-frontend/) projects on [Pontoon](https://pontoon.mozilla.org/) are high enough.
+
 ## Locale Management
 
 Locale management involves compiling and managing translation files. The **addons-server** project uses a structured approach to handle localization files efficiently.
