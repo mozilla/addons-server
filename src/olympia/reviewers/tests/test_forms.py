@@ -408,7 +408,6 @@ class TestReviewForm(TestCase):
         assert not form.errors
 
         # Also fine if the policies have the same action
-        data['cinder_jobs_to_resolve'] = [job.id]
         data['cinder_policies'] = [action_policy_a.id, action_policy_b.id]
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
