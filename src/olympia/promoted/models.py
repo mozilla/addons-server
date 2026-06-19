@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
@@ -6,7 +5,6 @@ from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
@@ -41,9 +39,9 @@ class PromotedGroupManager(ManagerBase):
         if not addon.current_version:
             return self.none()
         approved_promotions = addon.approved_promotions().values_list(
-            'promoted_group__group_id', flat=True
+            'promoted_group_pk', flat=True
         )
-        return self.all_for(addon=addon).filter(group_id__in=approved_promotions)
+        return self.all_for(addon=addon).filter(id__in=approved_promotions)
 
     def active(self):
         return self.get_queryset().active()
@@ -54,10 +52,6 @@ class PromotedGroup(models.Model):
     NOTE: This model replaces the legacy PromotedClass and its constants
     """
 
-    group_id = models.SmallIntegerField(
-        help_text='The legacy ID from back when promoted groups were static classes',
-        choices=PROMOTED_GROUP_CHOICES.choices,
-    )
     name = models.CharField(
         max_length=255, help_text='Human-readable name for the promotion group.'
     )
@@ -124,18 +118,6 @@ class PromotedGroup(models.Model):
         ),
     )
     objects = PromotedGroupManager()
-
-    def save(self, *args, **kwargs):
-        # Obsolete, never used in production, only there to prevent us from re-using
-        # the ids. Both these classes used to have specific properties set that were
-        # removed since they are not supposed to be used anyway.
-        if (
-            self.group_id in PROMOTED_GROUP_CHOICES.values
-            and self.group_id not in PROMOTED_GROUP_CHOICES.ACTIVE.values
-            and not self.pk
-        ):
-            raise ValidationError(f'Legacy ID {self.group_id} is not allowed')
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

@@ -4,7 +4,6 @@ from django.core.management.base import BaseCommand
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import PromotedAddon, PromotedGroup
 from olympia.users.models import UserProfile
 
@@ -22,7 +21,7 @@ class Command(BaseCommand):
         )
         for addon in addons:
             self.stdout.write(f'Promoting {addon.slug}')
-            group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            group = PromotedGroup.objects.get(name='By Firefox')
             PromotedAddon.objects.get_or_create(
                 addon=addon,
                 application_id=amo.FIREFOX.id,

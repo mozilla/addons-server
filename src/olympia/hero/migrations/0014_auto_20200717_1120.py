@@ -4,7 +4,7 @@ from django.db import migrations, models
 import django.db.models.deletion
 
 from olympia.amo.decorators import use_primary_db
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 @use_primary_db
 def add_promoted_for_each_recommended(apps, schema_editor):

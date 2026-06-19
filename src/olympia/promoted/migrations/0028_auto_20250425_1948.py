@@ -3,9 +3,9 @@
 from django.db import migrations
 
 from olympia.addons.tasks import index_addons
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
-PROMOTED_GROUPS_TO_UPDATE = [PROMOTED_GROUP_CHOICES.STRATEGIC, 
+PROMOTED_GROUPS_TO_UPDATE = [PROMOTED_GROUP_CHOICES.STRATEGIC,
                              PROMOTED_GROUP_CHOICES.NOTABLE]
 
 def update_public_promoted_groups(apps, schema_editor):

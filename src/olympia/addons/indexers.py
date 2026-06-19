@@ -4,7 +4,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import attach_trans_dict, to_language
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.search.utils import create_index
 from olympia.versions.compare import version_int
@@ -487,7 +487,6 @@ class AddonIndexer:
                 'promoted': {
                     'type': 'object',
                     'properties': {
-                        'group_id': {'type': 'byte'},
                         'category': {'type': 'keyword'},
                         'approved_for_apps': {'type': 'byte'},
                     },
@@ -662,7 +661,7 @@ class AddonIndexer:
         data['has_privacy_policy'] = bool(obj.privacy_policy)
 
         data['is_recommended'] = any(
-            PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+            promotion.api_name == RECOMMENDED_API_NAME
             for promotion in obj.publicly_promoted_groups
         )
 
@@ -678,7 +677,6 @@ class AddonIndexer:
 
         data['promoted'] = [
             {
-                'group_id': promotion.group_id,
                 'category': promotion.api_name,
                 # store the app approvals because .approved_applications needs it.
                 'approved_for_apps': [
@@ -688,8 +686,6 @@ class AddonIndexer:
             for promotion in obj.publicly_promoted_groups
         ]
         # Add an additional bump for certain promoted groups.
-        # TODO: actually use this value in the search ranking algorithm, and drop
-        # the existing function that uses PROMOTED_GROUPS_CHOICES
         max_promoted_ranking_bump = max(
             (
                 promotion.search_ranking_bump

@@ -15,11 +15,7 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    BADGED_API_NAME,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import BADGED_API_NAME
 from olympia.versions.compare import version_int
 
 
@@ -406,8 +402,6 @@ class AddonFeaturedQueryParam(AddonQueryParam):
 
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
-    reverse_dict = PROMOTED_API_NAME_TO_IDS
-    valid_values = PROMOTED_API_NAME_TO_IDS.values()
 
     def __init__(self, request, query_data=None):
         super().__init__(request)
@@ -435,7 +429,7 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
         )
 
     def get_es_query(self):
-        query = [Q(self.operator, **{'promoted.group_id': self.get_values()})]
+        query = [Q(self.operator, **{'promoted.category': self.get_values()})]
 
         if app := self.get_app():
             query.append(Q('term', **{'promoted.approved_for_apps': app}))
@@ -911,30 +905,8 @@ class SearchQueryFilter(BaseFilterBackend):
                     ),
                 }
             ),
+            query.SF('field_value_factor', field='ranking_bump'),
         ]
-        ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUP_CHOICES.ACTIVE,
-            lambda g: getattr(g, 'search_ranking_bump', 0.0),
-            reverse=True,
-        )
-        for bump, promo_groups in ranking_bump_groups:
-            if not bump:
-                continue
-            functions.append(
-                query.SF(
-                    {
-                        'weight': bump,
-                        'filter': (
-                            Q(
-                                'terms',
-                                **{
-                                    'promoted.group_id': [p.value for p in promo_groups]
-                                },
-                            )
-                        ),
-                    }
-                )
-            )
 
         # Assemble everything together
         qs = qs.query(

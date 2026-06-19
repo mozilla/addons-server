@@ -6,7 +6,7 @@ import django.db.models.deletion
 import django.utils.timezone
 import olympia.amo.models
 from olympia.constants import applications
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 _PromotedSuperClass = namedtuple(
     '_PromotedSuperClass',
