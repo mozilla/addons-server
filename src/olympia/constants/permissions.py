@@ -48,8 +48,6 @@ ADDONS_CONTENT_REVIEW = AclPermission('Addons', 'ContentReview')
 ADDON_REVIEWER_MOTD_EDIT = AclPermission('AddonReviewerMOTD', 'Edit')
 # Can review a static theme.
 STATIC_THEMES_REVIEW = AclPermission('Addons', 'ThemeReview')
-# Can review recommend(ed|able) add-ons
-ADDONS_RECOMMENDED_REVIEW = AclPermission('Addons', 'RecommendedReview')
 # Can triage (and therefore see in the queues) add-ons with a temporary delay
 ADDONS_TRIAGE_DELAYED = AclPermission('Addons', 'TriageDelayed')
 # Can see add-ons with all due dates in the queue, rather than just upcoming ones

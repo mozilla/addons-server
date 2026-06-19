@@ -32,7 +32,6 @@ from olympia.addons.models import (
     AddonUser,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
 from olympia.ratings.models import Rating
@@ -430,10 +429,7 @@ class ReviewHelper:
         is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
-        if PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id:
-            permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
-            permission_post_review = permission
-        elif version_is_unlisted:
+        if version_is_unlisted:
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
         elif any(promoted_group.admin_review):
