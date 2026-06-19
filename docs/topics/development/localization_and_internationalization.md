@@ -11,7 +11,7 @@ Locales are defined in two parts. In [`src/olympia/core/languages.py`](https://g
 
 These lists should always be kept in sync with `addons-frontend`. See the documentation [here](https://github.com/mozilla/addons-frontend/blob/master/docs/i18n.md) for details.
 
-Dev shows the full language list defined by `ALL_LANGUAGES`. Stage and production only show locales explicitly enabled by `PROD_LANGUAGES`. Locales are enabled when the completion rate for both `AMO` and `AMO Frontend` projects on [Pontoon](https://pontoon.mozilla.org/projects/) are high enough.
+Dev shows the full language list defined by `ALL_LANGUAGES`. Stage and production only show locales explicitly enabled by `PROD_LANGUAGES`. Locales are enabled when their completion rate for both [AMO](https://pontoon.mozilla.org/projects/amo/) and [AMO Frontend](https://pontoon.mozilla.org/projects/amo-frontend/) projects on [Pontoon](https://pontoon.mozilla.org/) are high enough.
 
 ## Locale Management
 
