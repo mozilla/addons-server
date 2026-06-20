@@ -7057,7 +7057,7 @@ msgstr "Connect"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
-msgstr ""
+msgstr "Ακολουθήστε"
 
 #: src/olympia/templates/photon-footer.html:69
 msgid "Instagram"
