@@ -44,7 +44,7 @@ from olympia.core import set_user
 from olympia.files.models import File
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import NeedsHumanReview
+from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.versions.models import VersionReviewerFlags
 
 from ..actions import (
@@ -2876,6 +2876,10 @@ class TestContentActionApproveVersion(
             reviewer_user=self.reviewer,
         )
         assert self.decision.target_versions.exists()
+        AutoApprovalSummary.objects.create(
+            version=self.version, verdict=amo.AUTO_APPROVED, weight=151
+        )
+        # no autoapproval summary for old_version
         action_helper = self.ActionClass(self.decision)
 
         activity = action_helper.process_action()
@@ -2897,6 +2901,8 @@ class TestContentActionApproveVersion(
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.reviewer
         assert second_activity.details == {'comments': self.decision.private_notes}
+        assert self.version.autoapprovalsummary.reload().confirmed is True
+        assert hasattr(self.old_version, 'autoapprovalsummary') is False
 
         # get this again, to replicate how send_notifications works
         action_helper = self.ActionClass(self.decision)

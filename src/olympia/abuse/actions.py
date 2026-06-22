@@ -1419,7 +1419,7 @@ class ContentActionApproveVersion(ContentActionAddon):
                 self.target.approve_for_version(version)
 
     def process_version(self, version):
-        from olympia.reviewers.models import NeedsHumanReview
+        from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 
         # Sign addon.
         assert not version.is_blocked
@@ -1463,6 +1463,10 @@ class ContentActionApproveVersion(ContentActionAddon):
                 pending_rejection_by=None,
                 pending_content_rejection=None,
             )
+            try:
+                version.autoapprovalsummary.update(confirmed=True)
+            except AutoApprovalSummary.DoesNotExist:
+                pass
             if version.channel == amo.CHANNEL_UNLISTED:
                 self.clear_specific_needs_human_review_flags(version)
         elif (
