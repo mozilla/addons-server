@@ -23,11 +23,13 @@ from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.forms import AMOModelForm
+from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
+    MAX_PAST_DECISIONS_SHOWN_INLINE,
+    MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS,
     REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
 )
 from olympia.files.utils import SafeZip
@@ -158,49 +160,53 @@ class VersionsChoiceWidget(forms.SelectMultiple):
 
     def create_option(self, *args, **kwargs):
         option = super().create_option(*args, **kwargs)
-        # label_from_instance() on VersionsChoiceField returns the full object,
-        # not a label, this is what makes this work.
+        # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
+        # full object, not a label, this is what makes this work.
         obj = option['label']
-        if getattr(self, 'versions_actions', None):
-            status = obj.file.status if obj.file else None
-            # We annotate that needs_human_review property in review().
-            needs_human_review = getattr(obj, 'needs_human_review', False)
-            # Add our special `data-toggle` class and the right `data-value`
-            # depending on what state the version is in.
-            actions = self.actions_filters[obj.channel].get(status, []).copy()
-            if status == amo.STATUS_DISABLED and obj.is_blocked:
-                # We don't want blocked versions to get unrejected. Reply is
-                # fine though.
-                actions.remove('unreject_multiple_versions')
-            if obj.pending_rejection:
-                actions.append('change_or_clear_pending_rejection_multiple_versions')
-            if needs_human_review:
-                actions.append('clear_needs_human_review_multiple_versions')
-            # Setting needs human review is available if the version is not
-            # disabled or was signed. Note that we can record multiple reasons
-            # for a version to require human review.
-            if obj.file.status != amo.STATUS_DISABLED or obj.file.is_signed:
-                actions.append('set_needs_human_review_multiple_versions')
+        if not obj or not hasattr(self, 'versions_actions'):
+            option['label'] = ''
+            return option
 
-            # If a version was auto-approved but deleted, we still want to
-            # allow confirmation of its auto-approval.
-            if obj.deleted and obj.was_auto_approved:
-                actions.append('confirm_multiple_versions')
-            # If the version is the current version and was auto-approved, make it
-            # possible to confirm the auto-approval via policy-selection
-            if obj == obj.addon.current_version and obj.was_auto_approved:
-                actions.append('review_with_policy_approve')
+        # We annotate that needs_human_review property in review().
+        needs_human_review = getattr(obj, 'needs_human_review', False)
+        # Add our special `data-toggle` class and the right `data-value`
+        # depending on what state the version is in.
+        actions = self.actions_filters[obj.channel].get(obj.file.status, []).copy()
+        if obj.file.status == amo.STATUS_DISABLED and obj.is_blocked:
+            # We don't want blocked versions to get unrejected. Reply is
+            # fine though.
+            actions.remove('unreject_multiple_versions')
+        if obj.pending_rejection:
+            actions.append('change_or_clear_pending_rejection_multiple_versions')
+        if needs_human_review:
+            actions.append('clear_needs_human_review_multiple_versions')
+        # Setting needs human review is available if the version is not
+        # disabled or was signed. Note that we can record multiple reasons
+        # for a version to require human review.
+        if obj.file.status != amo.STATUS_DISABLED or obj.file.is_signed:
+            actions.append('set_needs_human_review_multiple_versions')
 
-            option['attrs']['class'] = 'data-toggle'
-            option['attrs']['data-value'] = ' '.join(actions)
+        # If a version was auto-approved but deleted, we still want to
+        # allow confirmation of its auto-approval.
+        if obj.deleted and obj.was_auto_approved:
+            actions.append('confirm_multiple_versions')
+        # If the version is the current version and was auto-approved, make it
+        # possible to confirm the auto-approval via policy-selection
+        if obj == obj.addon.current_version and obj.was_auto_approved:
+            actions.append('review_with_policy_approve')
+        option['attrs']['class'] = 'data-toggle'
+        option['attrs']['data-value'] = ' '.join(actions)
+
         # Just in case, let's now force the label to be a string (it would be
         # converted anyway, but it's probably safer that way).
-        option['label'] = (
-            str(obj)
-            + markupsafe.Markup(
-                f' - {obj.get_review_status_display(True)}' if obj else ''
-            )
+        option['label'] = markupsafe.Markup(
+            f'{obj} - {obj.get_review_status_display(True)}'
             + (' (needs human review)' if needs_human_review else '')
+            + (
+                f' <- was {amo.STATUS_CHOICES_FILE.get(obj.file.original_status)}'
+                if obj.file.status == amo.STATUS_DISABLED
+                else ''
+            )
         )
         return option
 
@@ -443,6 +449,48 @@ class PolicyValueMultiWidget(forms.MultiWidget):
         return context
 
 
+class DecisionChoiceWidget(forms.Select):
+    """
+    Widget to add boilerplate_text to action options.
+    """
+
+    def create_option(self, *args, **kwargs):
+        option = super().create_option(*args, **kwargs)
+        obj = option['label']
+        if not obj or not isinstance(obj, ContentDecision):
+            return option
+
+        label = f'{format_datetime(obj.created)}: {DECISION_ACTIONS(obj.action).label}'
+        versions = {
+            str(ver.id): ver.version
+            for ver in obj.target_versions.values_list('id', 'version', named=True)
+        }
+        if obj.action in DECISION_ACTIONS.VERSION_SPECIFIC and versions:
+            shown = ', '.join(
+                list(versions.values())[:MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS]
+            )
+            remainder = len(versions) - MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS
+            label += (
+                f' (versions: {shown} [+{remainder} more])'
+                if remainder > 0
+                else f' (versions: {shown})'
+            )
+        if not bool(obj.action_date):
+            label = '[HELD] ' + label
+        option['label'] = label
+        option['attrs']['data-versions'] = ' '.join(list(versions))
+        return option
+
+
+class DecisionField(LimitedModelChoiceField):
+    limit_choice_count = MAX_PAST_DECISIONS_SHOWN_INLINE
+
+    def label_from_instance(self, obj):
+        """Return the object instead of transforming into a label at this stage
+        so that it's available in the widget."""
+        return obj
+
+
 class PolicyValueMultiValueField(forms.MultiValueField):
     def __init__(self, queryset, **kw):
         self.queryset = queryset
@@ -579,6 +627,13 @@ class ReviewForm(forms.Form):
         # queryset is set later in __init__
         queryset=CinderPolicy.objects.none(),
     )
+    override_decision = DecisionField(
+        required=False,
+        label='Decision to override:',
+        queryset=ContentDecision.objects.none(),
+        empty_label='- No override: create new decision -',
+        widget=DecisionChoiceWidget(),
+    )
 
     def is_valid(self):
         # Some actions do not require comments and policies.
@@ -647,6 +702,13 @@ class ReviewForm(forms.Form):
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_developer_appeal
             ]
+        if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
+            'override_decision'
+        ):
+            self.add_error(
+                'cinder_jobs_to_resolve',
+                'Cannot resolve jobs while overriding a previous decision.',
+            )
         if require_jobs and not self.cleaned_data.get('cinder_jobs_to_resolve'):
             self.add_error('cinder_jobs_to_resolve', 'This field is required.')
         is_policy_enforcement = selected_definition.get('policy_enforcement')
@@ -875,6 +937,10 @@ class ReviewForm(forms.Form):
         self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
 
         self.fields['policy_values'].queryset = self.fields['cinder_policies'].queryset
+
+        self.fields['override_decision'].queryset = ContentDecision.objects.filter(
+            addon=self.helper.addon, overridden_by__isnull=True
+        ).order_by('-created')
 
     @property
     def unreviewed_files(self):

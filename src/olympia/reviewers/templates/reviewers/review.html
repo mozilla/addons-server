@@ -172,7 +172,7 @@
       </div>
 
       <div class="review-actions-section">
-        <div class="review-actions-versions-reenabled data-toggle" data-value="enable_addon">
+        <div class="review-actions-versions-reenabled data-toggle" data-value="{{ toggle_when_action('enable_addon') }}">
           {{ versions_that_would_be_enabled|count }} version(s) will be re-enabled:
           <ul>
             {% for ver in versions_that_would_be_enabled[:MAX_VERSIONS_SHOWN_INLINE] %}
@@ -256,6 +256,12 @@
           </div>
           {{ form.cinder_jobs_to_resolve }}
           {{ form.cinder_jobs_to_resolve.errors }}
+      </div>
+
+      <div class="review-actions-section data-toggle" data-value="{{ toggle_when_action('allows_decision_selection') }}">
+          <label for="id_override_decision">{{ form.override_decision.label }}</label>
+          {{ form.override_decision }} Maximum {{ MAX_PAST_DECISIONS_SHOWN_INLINE }} most recent decisions shown.
+          {{ form.override_decision.errors }}
       </div>
 
       <div class="review-actions-section review-actions-files data-toggle review-files"

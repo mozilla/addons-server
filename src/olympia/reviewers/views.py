@@ -52,6 +52,7 @@ from olympia.api.permissions import (
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
+    MAX_PAST_DECISIONS_SHOWN_INLINE,
     MAX_VERSIONS_SHOWN_INLINE,
     REVIEWS_PER_PAGE,
     REVIEWS_PER_PAGE_MAX,
@@ -732,6 +733,7 @@ def review(request, addon, channel=None):
             and not version.pending_rejection
         ),
         promoted_groups=promoted_groups,
+        MAX_PAST_DECISIONS_SHOWN_INLINE=MAX_PAST_DECISIONS_SHOWN_INLINE,
         name_translations=name_translations,
         now=datetime.now(),
         num_pages=num_pages,

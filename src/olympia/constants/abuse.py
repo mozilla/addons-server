@@ -69,13 +69,24 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_RATING',
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
+        'AMO_REJECT_VERSION_WARNING_ADDON',
         'AMO_BLOCK_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
         'AMO_LEGAL_DISABLE_ADDON',
     ),
 )
 DECISION_ACTIONS.add_subset(
-    'NON_OFFENDING', ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_IGNORE')
+    'NON_OFFENDING',
+    ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_IGNORE', 'AMO_CLOSED_NO_ACTION'),
+)
+DECISION_ACTIONS.add_subset(
+    'META',  # These aren't final decisions, but can track movements between queues, etc
+    (
+        'AMO_ESCALATE_ADDON',
+        'AMO_LEGAL_FORWARD',
+        'AMO_CHANGE_PENDING_REJECTION_DATE',
+        'AMO_REQUEUE',
+    ),
 )
 DECISION_ACTIONS.add_subset(
     'SKIP_DECISION',
@@ -119,6 +130,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_REJECT_VERSION_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
         'AMO_DISABLE_ADDON',
+        'AMO_LEGAL_DISABLE_ADDON',
         'AMO_BLOCK_ADDON',
     ),
 )

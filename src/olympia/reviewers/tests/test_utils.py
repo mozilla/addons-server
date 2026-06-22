@@ -163,7 +163,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.sign_file_mock = patcher.start()
 
     def check_subject(self, msg):
-        decision = ContentDecision.objects.first() or ContentDecision(
+        decision = ContentDecision.objects.last() or ContentDecision(
             addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
         )
         assert msg.subject == (
@@ -4188,6 +4188,74 @@ class TestReviewHelper(TestReviewHelperBase):
         self.check_subject(message)
         assert 'approved' in message.body
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_policy_with_version_approval_overriding_rejection(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_AWAITING_REVIEW,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+        self.addon.update(status=amo.STATUS_NULL)
+        self.helper = self.get_helper()
+        mail.outbox = []
+        ActivityLog.objects.for_addons(self.addon).delete()
+
+        prior_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+        )
+        prior_decision.target_versions.add(self.review_version)
+
+        policy = CinderPolicy.objects.create(
+            uuid='z',
+            enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE_VERSION.api_value],
+        )
+        data = {
+            'cinder_policies': [policy],
+            'versions': [self.review_version],
+            'most_important_policy_actions': filter_enforcement_actions(
+                policy.split_enforcement_actions, Addon
+            ),
+            'override_decision': prior_decision,
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions[
+            'review_with_policy_approve'
+        ]
+        with patch('olympia.abuse.actions.sign_file') as sign_file_mock:
+            self.helper.handler.review_with_policy()
+            sign_file_mock.assert_called_once()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.review_version.file.reload().status == amo.STATUS_APPROVED
+
+        new_decision = ContentDecision.objects.get(
+            action=DECISION_ACTIONS.AMO_APPROVE_VERSION
+        )
+        assert new_decision.override_of == prior_decision
+
+        # 2 logs: UNREJECT_VERSION (oldest) APPROVE_VERSION (newest).
+        logs = ActivityLog.objects.exclude(action=amo.LOG.CHANGE_STATUS.id)
+        assert logs.count() == 2
+        activity_log = logs.first()  # newest
+        assert activity_log.action == amo.LOG.APPROVE_VERSION.id
+        assert activity_log.arguments == [
+            self.addon,
+            new_decision,
+            policy,
+            self.review_version,
+        ]
+        activity_log = logs.last()  # oldest
+        assert activity_log.action == amo.LOG.UNREJECT_VERSION.id
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'approved' in message.body
+
     def test_enable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_APPROVED)
@@ -4680,16 +4748,23 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.appeal_override()
 
         activity_log_qs = ActivityLog.objects.filter(action=amo.LOG.UNREJECT_VERSION.id)
-        assert activity_log_qs.count() == 1
+        assert activity_log_qs.count() == 2, activity_log_qs.values_list(
+            'action', flat=True
+        )
         decision_qs = ContentDecision.objects.filter(action_date__isnull=False)
         assert decision_qs.count() == 1
         log1 = activity_log_qs.first()
+        log2 = activity_log_qs.last()
+        assert log1.action == log2.action
         decision = decision_qs.first()
+        assert (
+            log1.contentdecision_set.get() == log2.contentdecision_set.get() == decision
+        )
         assert decision.action == DECISION_ACTIONS.AMO_APPROVE
-        assert decision.activities.get() == log1
         assert list(decision.target_versions.all()) == [old_version2, old_version1]
-        assert VersionLog.objects.filter(activity_log=log1).count() == 2
-        vl1, vl2 = list(VersionLog.objects.filter(activity_log=log1))
+        vlog = VersionLog.objects.filter(activity_log__in=[log1, log2])
+        assert vlog.count() == 2
+        vl2, vl1 = list(vlog)
         assert [vl1.version, vl2.version] == [old_version1, old_version2]
 
         assert old_version1.file.reload().status == amo.STATUS_APPROVED
