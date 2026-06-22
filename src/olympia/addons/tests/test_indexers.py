@@ -14,7 +14,7 @@ from olympia.amo.tests import (
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedApproval
@@ -528,14 +528,15 @@ class TestAddonIndexer(TestCase):
         assert extracted['is_recommended'] is False
 
         # Promoted extension.
-        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.addon = addon_factory(
+            promoted_kwargs={'api_name': 'public-group', 'public': True}
+        )
         promotion_groups = self.addon.publicly_promoted_groups
         assert len(promotion_groups) == 1
-        assert promotion_groups[0].group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
+        assert promotion_groups[0].category == 'public-group'
         extracted = self._extract()
 
         assert extracted['promoted'][0]
-        assert extracted['promoted'][0]['group_id'] == promotion_groups[0].group_id
         assert extracted['promoted'][0]['category'] == promotion_groups[0].api_name
         assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
@@ -557,19 +558,17 @@ class TestAddonIndexer(TestCase):
         # With multiple promotions
         self.make_addon_promoted(
             addon=self.addon,
-            group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_kwargs={'api_name': 'other-public', 'public': True},
             apps=[amo.FIREFOX],
         )
         self.addon.approve_for_version()
         del self.addon.publicly_promoted_groups
         promotion_groups = self.addon.publicly_promoted_groups
         assert len(promotion_groups) == 2
-        assert promotion_groups[0].group_id == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        assert promotion_groups[1].group_id == PROMOTED_GROUP_CHOICES.LINE
+        assert promotion_groups[0].category == 'public-group'
+        assert promotion_groups[1].category == 'other-public'
         extracted = self._extract()
         assert extracted['promoted']
-        assert extracted['promoted'][0]['group_id'] == promotion_groups[0].group_id
-        assert extracted['promoted'][1]['group_id'] == promotion_groups[1].group_id
         assert extracted['promoted'][0]['category'] == promotion_groups[0].api_name
         assert extracted['promoted'][1]['category'] == promotion_groups[1].api_name
 
@@ -590,9 +589,7 @@ class TestAddonIndexer(TestCase):
         featured_collection.add_addon(self.addon)
         extracted = self._extract()
         assert extracted['promoted'][0]
-        assert (
-            extracted['promoted'][0]['group_id'] == PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
+        assert extracted['promoted'][0]['category'] == RECOMMENDED_API_NAME
         assert extracted['promoted'][0]['approved_for_apps'] == [
             amo.FIREFOX.id,
             amo.ANDROID.id,

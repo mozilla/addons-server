@@ -601,12 +601,14 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             version.update(channel=channel)
 
     @classmethod
-    def make_addon_promoted(cls, addon, group_id, approve_version=False, apps=None):
-        """
-        Promotes the addon for the group in the given apps, or all if none are given.
-        """
-
-        promoted_group = PromotedGroup.objects.get(group_id=group_id)
+    def make_addon_promoted(
+        cls, addon, *, approve_version=False, apps=None, **promoted_kw
+    ):
+        if 'api_name' in promoted_kw and 'name' not in promoted_kw:
+            promoted_kw['name'] = promoted_kw['api_name']
+        elif 'name' in promoted_kw and 'api_name' not in promoted_kw:
+            promoted_kw['api_name'] = promoted_kw['name'].lower().replace(' ', '_')
+        promoted_group, _ = PromotedGroup.objects.get_or_create(**promoted_kw)
 
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []
@@ -724,7 +726,7 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
 
-    promoted_group_id = kw.pop('promoted_id', None)
+    promoted_kwargs = kw.pop('promoted_kwargs', None)
     reviewer_flags = kw.pop('reviewer_flags', None)
 
     kwargs = {
@@ -752,12 +754,8 @@ def addon_factory(status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **k
         addon = Addon.objects.create(type=type_, **kwargs)
 
     # Save 2.
-    if promoted_group_id:
-        group = PromotedGroup.objects.get(group_id=promoted_group_id)
-        for app in amo.APP_USAGE:
-            PromotedAddon.objects.create(
-                addon=addon, promoted_group=group, application_id=app.id
-            )
+    if promoted_kwargs:
+        TestCase.make_addon_promoted(addon, **promoted_kwargs)
         if 'promotion_approved' not in version_kw:
             version_kw['promotion_approved'] = True
 

@@ -38,11 +38,9 @@ from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.core import set_user
 from olympia.files.models import File
-from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
 from olympia.versions.models import VersionReviewerFlags
@@ -585,7 +583,7 @@ class TestContentActionBanUser(
         assert action_helper.should_hold_action() is False
         addon = addon_factory(users=[self.user])
         assert action_helper.should_hold_action() is False
-        self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(addon, api_name='recommended', high_profile=True)
         assert action_helper.should_hold_action() is True
 
         self.user.banned = datetime.now()
@@ -867,7 +865,7 @@ class TestContentActionDisableAddon(
         action_helper = self.ActionClass(self.decision)
         assert action_helper.should_hold_action() is False
 
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         assert action_helper.should_hold_action() is True
 
         self.addon.status = amo.STATUS_DISABLED
@@ -1473,7 +1471,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.version.file.update(is_signed=True)
         self.another_version.file.update(approval_date=datetime(2025, 2, 3))
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         self._test_reject_version(content_review=False, expected_emails_from_action=1)
         assert len(mail.outbox) == 4
         assert mail.outbox[0].recipients() == [stakeholder.email]
@@ -1629,7 +1627,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.version.file.update(is_signed=True)
         self.another_version.file.update(approval_date=datetime(2025, 2, 3))
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         self._test_reject_version_delayed(
             content_review=False, expected_emails_from_action=1
         )
@@ -1743,7 +1741,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         action_helper = self.ActionClass(self.decision)
         assert action_helper.should_hold_action() is False
 
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         self.decision.target_versions.add(self.another_version)
         assert self.decision.target_versions.filter(file__is_signed=True).exists()
         assert action_helper.should_hold_action() is True
@@ -1755,7 +1753,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
     def test_should_hold_action_some_versions_remain(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON)
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         self.version.file.update(is_signed=True)
 
         # While there are more public listed versions that wouldn't be affected
@@ -1830,7 +1828,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 0
 
         # make the addon promoted
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         body = mail.outbox[0].body
@@ -1912,7 +1910,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.decision.update(private_notes='These are the private notes.')
 
         # make the addon promoted
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         assert mail.outbox[0].recipients() == [stakeholder.email]
@@ -1943,7 +1941,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
 
         # make the addon promoted
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 1
         assert mail.outbox[0].recipients() == [stakeholder.email]
@@ -2080,14 +2078,11 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         assert ActivityLog.objects.count() == 0
 
     def test_should_hold_action(self):
-        PromotedGroup.objects.get_or_create(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
-        )
         self.decision.update(action=self.default_decision_action)
         action_helper = self.ActionClass(self.decision)
         assert action_helper.should_hold_action() is False
 
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         assert action_helper.should_hold_action() is True
 
         # if one version is not blocked we still hold the action
@@ -2949,15 +2944,15 @@ class TestContentActionApproveVersion(
         assert 'has been approved' in mail.outbox[0].body
 
     def test_execute_action_promoted(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(self.addon, api_name='recommended', high_profile=True)
         assert not self.addon.promoted_groups()
         self.test_execute_action()
         assert self.addon.promoted_groups()
         assert self.version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='recommended'
         ).exists()
         assert self.old_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='recommended'
         ).exists()
 
     def test_execute_action_not_human(self):
@@ -3567,7 +3562,9 @@ class TestContentActionRating(
 
         AddonUser.objects.create(addon=self.rating.addon, user=self.rating.user)
         assert action_helper.should_hold_action() is False
-        self.make_addon_promoted(self.rating.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            self.rating.addon, api_name='recommended', high_profile=True
+        )
         assert action_helper.should_hold_action() is False
         self.rating.update(
             reply_to=Rating.objects.create(
