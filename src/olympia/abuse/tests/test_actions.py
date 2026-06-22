@@ -61,7 +61,6 @@ from ..actions import (
     ContentActionForwardToLegal,
     ContentActionIgnore,
     ContentActionLegalTakedownDisableAddon,
-    ContentActionOverrideApprove,
     ContentActionRejectListingContent,
     ContentActionRejectVersion,
     ContentActionRejectVersionDelayed,
@@ -295,15 +294,37 @@ class NegativeContentActionMixin:
         # override of a negative action.
         raise NotImplementedError
 
+    def _reverse_appeal_or_override(self, ActionClass):
+        """Carry out the reversal that an appeal or an override triggers and
+        return ``(activity, action_helper)``.
+
+        For an appeal this is the dedicated ContentActionTargetAppealApprove
+        helper's process_action. For an override (reverse-then-apply) the
+        previous action is reversed via ContentDecision.reverse_overridden_action
+        and the action helper is the one for the new action."""
+        if self.decision.override_of_id:
+            activity = self.decision.reverse_overridden_action()
+            return activity, self.decision.get_action_helper()
+        action_helper = ActionClass(self.decision)
+        return action_helper.process_action(), action_helper
+
     def test_approve_appeal_success(self):
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override(ContentActionTargetAppealApprove)
         assert 'After reviewing your appeal' in mail.outbox[0].body
 
     def test_approve_override_success(self):
-        self.decision.update(override_of=self.past_negative_decision)
-        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
-        assert 'After reviewing your appeal' not in mail.outbox[0].body
+        # An override that reverses a takedown applies the new action (here a
+        # plain approval). The previous action is reversed (see the per-class
+        # _test_approve_appeal_or_override), but - unlike an appeal - no restore
+        # email is sent: only the new action notifies (and approving a restored
+        # target sends no owner email).
+        self.decision.update(
+            override_of=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+        )
+        self._test_approve_appeal_or_override(None)
+        assert len(mail.outbox) == 0
 
     def test_notify_reporters_reporters_provided(self):
         action_helper = self.ActionClass(self.decision)
@@ -529,8 +550,7 @@ class TestContentActionBanUser(
     def _test_approve_appeal_or_override(self, ActionClass):
         self.decision.update(action=DECISION_ACTIONS.AMO_APPROVE)
         self.user.update(banned=self.days_ago(1), deleted=True)
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         self.user.reload()
         assert not self.user.banned
@@ -547,11 +567,13 @@ class TestContentActionBanUser(
         assert second_activity.arguments == [self.user, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.user.name}')
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(f'Mozilla Add-ons: {self.user.name}')
 
     def test_target_appeal_decline(self):
         self.user.update(banned=self.days_ago(1), deleted=True)
@@ -744,8 +766,7 @@ class TestContentActionDisableAddon(
     def _test_approve_appeal_or_override(self, ActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -757,11 +778,13 @@ class TestContentActionDisableAddon(
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
@@ -1044,8 +1067,7 @@ class TestContentActionDisableAddon(
     def _test_approve_appeal_or_override_but_listing_rejected(self, ActionClass):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_REJECTED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -1061,13 +1083,15 @@ class TestContentActionDisableAddon(
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: {self.addon.name}', fragment='remains unavailable'
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: {self.addon.name}', fragment='remains unavailable'
+            )
 
     def test_approve_appeal_success_but_listing_rejected(self):
         AddonApprovalsCounter.objects.create(
@@ -1086,11 +1110,14 @@ class TestContentActionDisableAddon(
             addon=self.addon,
             content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
-        self.decision.update(override_of=self.past_negative_decision)
-        self._test_approve_appeal_or_override_but_listing_rejected(
-            ContentActionOverrideApprove
+        self.decision.update(
+            override_of=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
         )
-        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+        self._test_approve_appeal_or_override_but_listing_rejected(None)
+        # The reversal re-enabled the add-on but the separately-rejected listing
+        # content is not restored by the reversal, and no restore email is sent.
+        assert len(mail.outbox) == 0
         assert self.addon.reload().status == amo.STATUS_REJECTED
 
     def _test_approve_appeal_or_override_but_not_approved(self, ActionClass):
@@ -1099,8 +1126,7 @@ class TestContentActionDisableAddon(
         self.addon.update(status=amo.STATUS_DISABLED)
 
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.FORCE_ENABLE
@@ -1116,14 +1142,16 @@ class TestContentActionDisableAddon(
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: {self.addon.name}',
+                fragment='information on its availability',
+            )
 
     def test_approve_appeal_success_but_not_approved(self):
         self.past_negative_decision.update(appeal_job=self.cinder_job)
@@ -1132,10 +1160,12 @@ class TestContentActionDisableAddon(
         )
 
     def test_approve_override_success_but_not_approved(self):
-        self.decision.update(override_of=self.past_negative_decision)
-        self._test_approve_appeal_or_override_but_not_approved(
-            ContentActionOverrideApprove
+        self.decision.update(
+            override_of=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
         )
+        self._test_approve_appeal_or_override_but_not_approved(None)
+        assert len(mail.outbox) == 0
 
 
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
@@ -1232,8 +1262,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         # set-up where version.file doesn't have an original_status for some reason
         self.version.file.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         # safe fallback to AWAITING_REVIEW when original_status not defined
         assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
@@ -1254,13 +1283,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: {self.addon.name}', fragment=fragment
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: {self.addon.name}', fragment=fragment
+            )
 
     def test_approve_appeal_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -1281,12 +1312,15 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             addon=self.addon,
             content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
-        self.decision.update(override_of=self.past_negative_decision)
-        self._test_approve_appeal_or_override(
-            ContentActionOverrideApprove, fragment='we have re-enabled'
+        self.decision.update(
+            override_of=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
         )
+        self._test_approve_appeal_or_override(None)
+        # The reversal un-rejected the versions but didn't restore the
+        # separately-rejected listing content, and sent no restore email.
+        assert len(mail.outbox) == 0
         assert self.addon.reload().status == amo.STATUS_REJECTED
-        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
 
     def test_approve_override_success_for_delayed_reject(self):
         for version in self.past_negative_decision.target_versions.all():
@@ -1299,12 +1333,14 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.past_negative_decision.update(
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
         )
-        self.decision.update(override_of=self.past_negative_decision)
+        self.decision.update(
+            override_of=self.past_negative_decision,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+        )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.old_version.file.update(status=amo.STATUS_APPROVED)
         ActivityLog.objects.all().delete()
-        action_helper = ContentActionOverrideApprove(self.decision)
-        activity = action_helper.process_action()
+        activity = self.decision.reverse_overridden_action()
 
         assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
         assert self.old_version.file.reload().status == amo.STATUS_APPROVED
@@ -1962,8 +1998,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self.another_version.update(channel=amo.CHANNEL_UNLISTED)
         self.addon.update(status=amo.STATUS_NULL)
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.UNREJECT_VERSION
@@ -1985,14 +2020,16 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: {self.addon.name}',
+                fragment='information on its availability',
+            )
 
 
 class TestContentActionBlockAddon(TestContentActionDisableAddon):
@@ -2380,8 +2417,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
             BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
         )
 
-        action_helper = ActionClass(self.decision)
-        action_helper.process_action()
+        self._reverse_appeal_or_override(ActionClass)
 
         # Block was deleted
         assert (
@@ -2411,7 +2447,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
     def test_approve_override_success(self):
         self.decision.update(override_of=self.past_negative_decision)
         self.past_negative_decision.update(action=self.default_decision_action)
-        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
+        self._test_approve_appeal_or_override(None)
         # TODO: once we add support for emails, re-enable this?
         # assert 'After reviewing your appeal' not in mail.outbox[0].body
 
@@ -2456,7 +2492,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
             action=self.default_decision_action,
             action_date=datetime.now(),
         )
-        self._test_approve_appeal_or_override(ContentActionOverrideApprove)
+        self._test_approve_appeal_or_override(None)
 
     def test_email_content_not_escaped(self):
         # TODO: If/when we support emails we should implement this
@@ -3051,8 +3087,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     def _test_approve_appeal_or_override(self, ActionClass):
         self.addon.update(status=amo.STATUS_REJECTED)
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_APPROVED
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
@@ -3069,11 +3104,13 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(f'Mozilla Add-ons: {self.addon.name}')
 
     def test_execute_action(self):
         self._process_action_and_notify()
@@ -3150,8 +3187,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self.addon.update(status=amo.STATUS_REJECTED)
 
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.addon.reload().status == amo.STATUS_NOMINATED
         assert activity.log == amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
@@ -3167,14 +3203,16 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         assert second_activity.arguments == [self.addon, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: {self.addon.name}',
+                fragment='information on its availability',
+            )
 
     def test_already_taken_down(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -3327,8 +3365,7 @@ class TestContentActionCollection(
 
     def _test_approve_appeal_or_override(self, ActionClass):
         self.collection.update(deleted=True)
-        action_helper = ActionClass(self.decision)
-        log_entry = action_helper.process_action()
+        log_entry, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert self.collection.reload()
         assert not self.collection.deleted
@@ -3342,11 +3379,13 @@ class TestContentActionCollection(
         assert second_activity.arguments == [self.collection, self.decision]
         assert second_activity.user == self.task_user
         assert second_activity.details == {'comments': self.decision.private_notes}
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(f'Mozilla Add-ons: {self.collection.name}')
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(f'Mozilla Add-ons: {self.collection.name}')
 
     def test_target_appeal_decline(self):
         self.collection.update(deleted=True)
@@ -3508,8 +3547,7 @@ class TestContentActionRating(
     def _test_approve_appeal_or_override(self, ActionClass):
         self.rating.delete()
         ActivityLog.objects.all().delete()
-        action_helper = ActionClass(self.decision)
-        activity = action_helper.process_action()
+        activity, action_helper = self._reverse_appeal_or_override(ActionClass)
 
         assert activity.log == amo.LOG.UNDELETE_RATING
         assert activity.arguments == [
@@ -3535,13 +3573,15 @@ class TestContentActionRating(
         assert second_activity.details == {'comments': self.decision.private_notes}
 
         assert not self.rating.reload().deleted
+        # The reversal itself never notifies anyone.
         assert len(mail.outbox) == 0
 
-        self.cinder_job.notify_reporters(action_helper)
-        action_helper.notify_owners()
-        self._test_owner_restore_email(
-            f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
-        )
+        if not self.decision.override_of_id:
+            self.cinder_job.notify_reporters(action_helper)
+            action_helper.notify_owners()
+            self._test_owner_restore_email(
+                f'Mozilla Add-ons: "Saying ..." for {self.rating.addon.name}'
+            )
 
     def test_target_appeal_decline(self):
         self.rating.delete()

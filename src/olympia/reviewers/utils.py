@@ -584,6 +584,7 @@ class ReviewHelper:
             ),
             'multiple_versions': can_approve_multiple,
             'resolves_cinder_jobs': True,
+            'allows_decision_selection': True,
             'can_attach': True,
         }
         actions['review_with_policy'] = {
@@ -607,6 +608,7 @@ class ReviewHelper:
             ),
             'multiple_versions': can_reject_multiple,
             'resolves_cinder_jobs': True,
+            'allows_decision_selection': True,
             'can_attach': True,
         }
         actions['public'] = {
@@ -784,7 +786,8 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                not version_is_unlisted
+                not policy_selection_enabled
+                and not version_is_unlisted
                 and not use_content_rejection
                 and addon_is_not_disabled_or_deleted
                 and version_was_rejected
@@ -802,7 +805,8 @@ class ReviewHelper:
             ),
             'comments': False,
             'available': (
-                version_is_unlisted
+                not policy_selection_enabled
+                and version_is_unlisted
                 and addon_is_not_disabled_or_deleted
                 and is_appropriate_admin_reviewer
             ),
@@ -944,10 +948,12 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': (
-                addon_is_not_deleted
+                not policy_selection_enabled
+                and addon_is_not_deleted
                 and not addon_is_not_disabled
                 and is_appropriate_admin_reviewer
             ),
+            'enable_addon': True,
             'resolves_cinder_jobs': True,
             'can_attach': False,
         }
@@ -1011,6 +1017,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_APPROVE,
                 DECISION_ACTIONS.AMO_IGNORE,
             ),
+            'enable_addon': True,
             'resolves_cinder_jobs': True,
             'can_attach': True,
         }
@@ -1021,7 +1028,7 @@ class ReviewHelper:
                 'If you have concerns about the legality of this add-on that requires '
                 "Mozilla's legal to investigate, enter your comments in the area "
                 'below. They will not be sent to the developer.'
-                'If it relates to an open abuse report job or appeal resolve then job.'
+                'If it relates to an abuse report job, or appeal, resolve the job.'
             ),
             'minimal': True,
             'available': is_appropriate_reviewer,
@@ -1323,10 +1330,11 @@ class ReviewBase:
             'metadata': decision_metadata,
         }
 
-        def create_decision(job):
+        def create_decision(*, job=None, override_decision=None):
+            override_decision = job.final_decision if job else override_decision or None
             decision = ContentDecision.objects.create(
                 cinder_job=job,
-                override_of=job.final_decision if job else None,
+                override_of=override_decision,
                 **decision_kw,
             )
             decision.policies.set(policies)
@@ -1342,9 +1350,14 @@ class ReviewBase:
 
         if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
             # with appeals and escalations there could be multiple jobs
-            decisions = [create_decision(job) for job in cinder_jobs]
+            decisions = [create_decision(job=job) for job in cinder_jobs]
         else:
-            decisions = [create_decision(None)]
+            override_decision = (
+                self.review_action
+                and self.review_action.get('allows_decision_selection')
+                and self.data.get('override_decision')
+            )
+            decisions = [create_decision(override_decision=override_decision)]
 
         log_entry = None
         for decision in decisions:
