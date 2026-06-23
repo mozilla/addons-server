@@ -9,6 +9,7 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
@@ -299,7 +300,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
     @mock.patch('olympia.reviewers.management.commands.auto_approve.ReviewHelper')
-    def test_approve(self, review_helper_mock, statsd_incr_mock):
+    def test_approve_with_review_helper(self, review_helper_mock, statsd_incr_mock):
         review_helper_mock.return_value.actions = {'public': mock.MagicMock()}
         command = auto_approve.Command()
         command.approve(self.version)
@@ -314,6 +315,37 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             },
         )
         assert review_helper_mock().actions['public']['method'].call_count == 1
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args == (
+            ('reviewers.auto_approve.approve.success',),
+            {},
+        )
+
+    @override_switch('enable-policy-review-selection', active=True)
+    @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.report_decision_to_cinder_and_notify.delay'
+    )
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.ContentDecision.execute_action'
+    )
+    def test_approve_with_action_class(
+        self, execute_action_mock, report_decision_mock, statsd_incr_mock
+    ):
+        report_decision_mock.return_value = mock.MagicMock()
+        command = auto_approve.Command()
+        command.approve(self.version)
+        decision = ContentDecision.objects.get()
+        assert report_decision_mock.call_count == 1
+        assert report_decision_mock.call_args == (
+            (),
+            {'decision_id': decision.id},
+        )
+        assert decision.target == self.addon
+        assert decision.target_versions.get() == self.version
+        assert decision.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+        assert decision.reasoning == auto_approve.Command.LISTED_COMMENT
+        assert decision.reviewer_user_id == settings.TASK_USER_ID
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
             ('reviewers.auto_approve.approve.success',),
