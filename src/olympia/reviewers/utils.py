@@ -571,7 +571,7 @@ class ReviewHelper:
             'policy_enforcement': True,
             'minimal': False,
             'details': ('Select a policy to perform on the version or add-on.'),
-            'label': 'Review',
+            'label': 'Positive Review',
             'available': (
                 policy_selection_enabled
                 and not is_static_theme
@@ -591,7 +591,7 @@ class ReviewHelper:
             'policy_enforcement': True,
             'minimal': False,
             'details': ('Select a policy to perform on the version or add-on.'),
-            'label': 'Review Negatively',
+            'label': 'Negative Review',
             'available': (
                 policy_selection_enabled
                 and not is_static_theme

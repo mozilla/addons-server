@@ -1391,13 +1391,11 @@ class ContentActionApproveVersion(ContentActionAddon):
 
     def get_owners(self):
         if (
-            isinstance(self.target, Addon)
-            and (self.is_human_reviewer or self.target.type != amo.ADDON_LPAPP)
-            and self.decision.activities.filter(
-                # FORCE_ENABLE is logged via the reviewer tools enable_addon action.
-                action__in=(amo.LOG.APPROVE_VERSION.id, amo.LOG.FORCE_ENABLE.id)
-            ).exists()
-        ):
+            self.is_human_reviewer or self.target.type != amo.ADDON_LPAPP
+        ) and self.decision.activities.filter(
+            # FORCE_ENABLE is logged via the reviewer tools enable_addon action.
+            action__in=(amo.LOG.APPROVE_VERSION.id, amo.LOG.FORCE_ENABLE.id)
+        ).exists():
             # Don't notify decisions (to cinder or owners) for auto-approved langpacks
             # or if the decision wasn't (freshly) approving any versions.
             return self.target.authors.all()
@@ -1488,9 +1486,7 @@ class ContentActionApproveVersion(ContentActionAddon):
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
 
-        if not isinstance(self.target, Addon) or not (
-            versions := list(self.target_versions)
-        ):
+        if not (versions := list(self.target_versions)):
             return None
 
         was_public = self.target.is_public()
