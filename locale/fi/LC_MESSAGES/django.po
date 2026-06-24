@@ -110,6 +110,13 @@ msgid ""
 "\n"
 "Thank you for your attention.\n"
 msgstr ""
+"\n"
+"Kiitos ilmoituksestasi Mozilla-lisäosia koskevasta %(name)s-sisällöstä ja lisätietojen antamisesta huolenaiheisiisi liittyen.\n"
+"\n"
+"Tarkasteltuamme valituksesi totesimme, että aiempi päätös, jonka mukaan tämä sisältö ei riko Mozillan käytäntöjä (%(policy_document_url)s), oli oikea. Tämän päätöksen perusteella olemme hylänneet valituksesi emmekä ryhdy toimiin tiliä tai sisältöä vastaan.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Kiitos huomiostasi.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -119,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we have determined that our prior decision, that this content does not violate Mozilla's policies (%(policy_document_url)s), was incorrect. Based on that determination, we have removed the content, and notified the user of our action.\n"
 msgstr ""
+"\n"
+"Kiitos ilmoituksestasi Mozilla-lisäosia koskevasta %(name)s-sisällöstä ja lisätietojen antamisesta huolenaiheisiisi liittyen.\n"
+"\n"
+"Tarkasteltuamme valituksesi totesimme, että aiempi päätös, jonka mukaan tämä sisältö ei riko Mozillan käytäntöjä (%(policy_document_url)s), oli väärä. Tämän päätöksen perusteella olemme poistaneet sisällön ja ilmoittaneet käyttäjälle toimenpiteestämme.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
