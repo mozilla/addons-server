@@ -6967,7 +6967,7 @@ msgstr "Vše"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
-msgstr "Nejnovější verze"
+msgstr "Nejnovější sestavení"
 
 #: src/olympia/templates/photon-footer.html:42
 msgid "Nightly"
@@ -6991,11 +6991,11 @@ msgstr "Komunita"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
-msgstr "Připojit"
+msgstr "Připojit se"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
-msgstr "Sledovat"
+msgstr "Sledovat nás"
 
 #: src/olympia/templates/photon-footer.html:69
 msgid "Instagram"
