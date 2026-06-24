@@ -148,6 +148,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it does not violate Mozilla's policies (%(policy_document_url)s).  It will therefore not be subject to any moderation action.\n"
 msgstr ""
+"\n"
+"Kiitos ilmoituksestasi aiheesta %(name)s osoitteessa %(target_url)s.\n"
+"\n"
+"Olemme tarkistaneet ilmoituksesi ja kyseessä olevan sisällön ja havainneet, ettei se riko Mozillan käytäntöjä (%(policy_document_url)s). Siksi sitä ei moderoida.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -166,6 +170,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question, and found that it violates Mozilla's policies (%(policy_document_url)s), and have therefore removed the content.\n"
 msgstr ""
+"\n"
+"Kiitos ilmoituksestasi Mozilla Add-ons -sivuston lisäosasta: %(name)s.\n"
+"\n"
+"Olemme tarkistaneet ilmoituksesi ja kyseessä olevan sisällön ja havainneet, että se rikkoo Mozillan käytäntöjä (%(policy_document_url)s), ja siksi olemme poistaneet sisällön.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
