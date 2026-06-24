@@ -1294,7 +1294,7 @@ msgstr "Conteúdo da lista de {addon} aprovado."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr "Lista rejeitada aprovada"
+msgstr "Aprovada lista anteriormente rejeitada"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
@@ -2036,7 +2036,7 @@ msgstr "Revogar"
 
 #: src/olympia/devhub/forms.py:1497
 msgid "Re-send email confirmation"
-msgstr "Reenviar e-mail de confirmação"
+msgstr "Reenviar email de confirmação"
 
 #: src/olympia/devhub/forms.py:1554
 #, python-brace-format
@@ -2077,7 +2077,7 @@ msgstr "Escolha uma categoria"
 
 #: src/olympia/devhub/forms.py:1782
 msgid "Technical support for making your add-on compliant"
-msgstr "Suporte técnico para tornar o seu complemento compatível"
+msgstr "Suporte técnico para sua extensão atender as normas"
 
 #: src/olympia/devhub/forms.py:1783
 msgid "Issue with addons.mozilla.org"
