@@ -116,6 +116,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     actions_filters = {
         amo.CHANNEL_UNLISTED: {
             amo.STATUS_APPROVED: [
+                'review_with_policy_approve',
                 'review_with_policy',
                 'block_multiple_versions',
                 'confirm_multiple_versions',
@@ -123,6 +124,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
+                'review_with_policy_approve',
                 'review_with_policy',
                 'approve_multiple_versions',
                 'reject_multiple_versions',
@@ -141,6 +143,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 'reply',
             ],
             amo.STATUS_AWAITING_REVIEW: [
+                'review_with_policy_approve',
                 'review_with_policy',
                 'approve_multiple_versions',
                 'reject_multiple_versions',
@@ -183,6 +186,10 @@ class VersionsChoiceWidget(forms.SelectMultiple):
             # allow confirmation of its auto-approval.
             if obj.deleted and obj.was_auto_approved:
                 actions.append('confirm_multiple_versions')
+            # If the version is the current version and was auto-approved, make it
+            # possible to confirm the auto-approval via policy-selection
+            if obj == obj.addon.current_version and obj.was_auto_approved:
+                actions.append('review_with_policy_approve')
 
             option['attrs']['class'] = 'data-toggle'
             option['attrs']['data-value'] = ' '.join(actions)
@@ -304,6 +311,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
         elif is_developer_appeal:
             hide_for_these_actions = [
+                'review_with_policy_approve',
                 'review_with_policy',
                 'reject',
                 'reject_multiple_versions',

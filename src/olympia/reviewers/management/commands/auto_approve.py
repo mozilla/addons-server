@@ -4,13 +4,17 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.utils.functional import cached_property
 
 import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderPolicy, ContentDecision
+from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import WAIT_ON_SCANNERS_TIMEOUT
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
@@ -38,6 +42,16 @@ class ApprovalNotAvailableError(Exception):
 
 class Command(BaseCommand):
     help = 'Auto-approve add-on versions based on predefined criteria'
+
+    # The comment is not translated on purpose, to behave like
+    # regular human approval does.
+    LISTED_COMMENT = (
+        'This version has been screened and approved for the '
+        'public. Keep in mind that other reviewers may look into '
+        'this version in the future and determine that it '
+        'requires changes or should be taken down.'
+    )
+    UNLISTED_COMMENT = 'automatic validation'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -189,6 +203,14 @@ class Command(BaseCommand):
 
     @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):
+        """Approve a version, either by calling ReviewHelper or by creating a
+        ContentDecision and calling its execute_action() method."""
+        if waffle.switch_is_active('enable-policy-review-selection'):
+            self.approve_with_action_class(version)
+        else:
+            self.approve_with_reviewer_helper(version)
+
+    def approve_with_reviewer_helper(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
         sign the files, send the e-mail, etc."""
         helper = ReviewHelper(
@@ -201,18 +223,36 @@ class Command(BaseCommand):
         if not approve_action:
             raise ApprovalNotAvailableError
         if version.channel == amo.CHANNEL_LISTED:
-            helper.handler.data = {
-                # The comment is not translated on purpose, to behave like
-                # regular human approval does.
-                'comments': 'This version has been screened and approved for the '
-                'public. Keep in mind that other reviewers may look into '
-                'this version in the future and determine that it '
-                'requires changes or should be taken down.'
-                '\r\n\r\nThank you!'
-            }
+            helper.handler.data = {'comments': self.LISTED_COMMENT}
         else:
             helper.handler.data = {'comments': 'automatic validation'}
         approve_action['method']()
+        statsd.incr('reviewers.auto_approve.approve.success')
+
+    @cached_property
+    def approve_policy(self):
+        return CinderPolicy.objects.filter(
+            enforcement_actions=DECISION_ACTIONS.AMO_APPROVE_VERSION
+        ).first()
+
+    def approve_with_action_class(self, version):
+        """Do the approval itself, caling the report_decision_to_cinder_and_notify,
+        which changes the status, signs the files, sends the e-mail, etc."""
+        decision = ContentDecision.objects.create(
+            addon=version.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            reasoning=(
+                self.LISTED_COMMENT
+                if version.channel == amo.CHANNEL_LISTED
+                else self.UNLISTED_COMMENT
+            ),
+            reviewer_user_id=settings.TASK_USER_ID,
+        )
+        if self.approve_policy:
+            decision.policies.set([self.approve_policy])
+        decision.target_versions.set([version])
+        decision.execute_action()
+        report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
         statsd.incr('reviewers.auto_approve.approve.success')
 
     def disapprove(self, version):
