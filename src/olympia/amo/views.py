@@ -56,13 +56,6 @@ MONITORS = {
 
 @never_cache
 @non_atomic_requests
-def front_heartbeat(request):
-    """Check internal monitors only."""
-    return _exec_monitors(MONITORS['internal'])
-
-
-@never_cache
-@non_atomic_requests
 def services_monitor(request):
     """Check all monitors."""
     return _exec_monitors(

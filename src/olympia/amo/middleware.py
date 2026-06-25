@@ -416,8 +416,9 @@ class CacheControlMiddleware:
         return response
 
 
-class LBHeartbeatMiddleware:
-    """Middleware to capture request to /__lbheartbeat__ and return a 200.
+class HeartbeatMiddleware:
+    """Middleware to capture request to /__lbheartbeat__ and
+    __heartbeat__ and return a 200.
     Must be placed above CommonMiddleware to work with ELB.
     """
 
@@ -425,7 +426,7 @@ class LBHeartbeatMiddleware:
         self.get_response = get_response
 
     def __call__(self, request):
-        if request.path == '/__lbheartbeat__':
+        if request.path in ('/__lbheartbeat__', '/__heartbeat__'):
             response = HttpResponse(status=200)
             add_never_cache_headers(response)
             return response

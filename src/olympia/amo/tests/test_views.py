@@ -370,9 +370,10 @@ class TestOtherStuff(TestCase):
         assert e.text == 'Firefox Add-ons'
 
 
-class TestHeartbeat(TestCase):
+class TestServicesMonitor(TestCase):
     def setUp(self):
         super().setUp()
+        self.url = reverse('amo.services_monitor')
 
         self.mocks = {}
         for check in [
@@ -391,46 +392,34 @@ class TestHeartbeat(TestCase):
             self.mocks[check].return_value = ('', None)
             self.addCleanup(patcher.stop)
 
-    def test_front_heartbeat_success(self):
-        response = self.client.get(reverse('amo.front_heartbeat'))
-        assert response.status_code == 200
-
-    def test_front_heartbeat_failure(self):
+    def test_services_monitor_database_failure(self):
         self.mocks['database'].return_value = ('boom', None)
 
-        response = self.client.get(reverse('amo.front_heartbeat'))
+        response = self.client.get(self.url)
 
         assert response.status_code >= 500
         assert response.json()['database']['status'] == 'boom'
 
-    @override_switch('dummy-monitor-fails', True)
-    def test_front_heartbeat_dummy_monitor_no_failure(self):
-        url = reverse('amo.front_heartbeat')
-        response = self.client.get(url)
-
-        assert response.status_code == 200
-
     def test_services_monitor_success(self):
-        response = self.client.get(reverse('amo.services_monitor'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_services_monitor_failure(self):
         self.mocks['rabbitmq'].return_value = ('boom', None)
 
-        response = self.client.get(reverse('amo.services_monitor'))
+        response = self.client.get(self.url)
 
         assert response.status_code >= 500
         assert response.json()['rabbitmq']['status'] == 'boom'
 
     def test_services_monitor_dummy_monitor_failure(self):
-        url = reverse('amo.services_monitor')
-        response = self.client.get(url)
+        response = self.client.get(self.url)
 
         assert response.status_code == 200
         self.assertTrue(response.json()['dummy_monitor']['state'])
 
         with override_switch('dummy-monitor-fails', True):
-            response = self.client.get(url)
+            response = self.client.get(self.url)
 
             assert response.status_code >= 500
             assert response.json()['dummy_monitor']['status'] == 'Dummy monitor failed'
