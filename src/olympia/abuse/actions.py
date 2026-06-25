@@ -1597,6 +1597,8 @@ class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction
 
 class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     description = 'Add-on has been disabled, due to legal action'
+    legal_takedown_template_path = 'abuse/emails/legal_takedown_notification.txt'
+    legal_takedown_group_name = 'Legal-Takedown-Notifications'
     action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
     # This action should not be used to resolve abuse reports
     reporter_template_path = None
@@ -1605,6 +1607,37 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     def get_owners(self):
         # For these actions, legal will handle communication themselves
         return ()
+
+    def notify_legal(self, action_type):
+        """Notify legal of takedown-related activity."""
+        if legal_takedown_group := Group.objects.filter(
+            name=self.legal_takedown_group_name
+        ).first():
+            if not (
+                recipients := [user.email for user in legal_takedown_group.users.all()]
+            ):
+                return
+            template = loader.get_template(self.legal_takedown_template_path)
+            context_dict = {
+                'action_type': action_type,
+                'slug': str(self.target.slug),
+                'guid': self.target.guid,
+                'id': self.target.id,
+                'target_url': absolutify(
+                    reverse('reviewers.review', args=[self.target.id])
+                ),
+            }
+            subject = f'Takedown Notice: Add-on {action_type.title()}'
+            message = template.render(context_dict)
+            send_mail(subject, message, recipient_list=recipients)
+
+    def process_action(self, release_hold=False):
+        self.notify_legal('processed')
+        return super().process_action(release_hold)
+
+    def hold_action(self):
+        self.notify_legal('held')
+        return super().hold_action()
 
 
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
