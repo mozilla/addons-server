@@ -402,7 +402,7 @@ msgstr "<b>{0}</b> ajanjaksolla {1} - {2}"
 #: static/js/stats/csv_keys.js:104
 #, python-brace-format
 msgid "<b>{0}</b> average in last {1} days"
-msgstr ""
+msgstr "<b>{0}</b> keskiarvo viimeisen {1} päivän ajalta"
 
 #: static/js/stats/overview.js:18
 msgid "No data available."
