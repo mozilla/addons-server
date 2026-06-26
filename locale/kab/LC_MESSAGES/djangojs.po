@@ -416,7 +416,7 @@ msgstr "Ayen-nniḍen"
 
 #: static/js/zamboni/devhub.js:196
 msgid "Copied"
-msgstr ""
+msgstr "Yettwanɣel"
 
 #: static/js/zamboni/devhub.js:328
 msgid "Changes Saved"

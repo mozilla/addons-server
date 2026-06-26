@@ -3346,7 +3346,7 @@ msgstr "Yella wayen nniḍen i yessefk ad ẓren imsekyaden i ucegger n uzegrir-
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "D axatar"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -4437,7 +4437,7 @@ msgstr "Tukksa n lqem-agi ad yekkes ilebda:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:273
 msgid "Important:"
-msgstr ""
+msgstr "D axatar:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:274
 msgid ""
@@ -5990,7 +5990,7 @@ msgstr "Wali meṛṛa isiɣzaf"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
 msgid "YouTube extensions"
-msgstr ""
+msgstr "Isiɣzaf n YouTube"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6479,11 +6479,11 @@ msgstr "Yettwasezmel %(rating)s ɣef 5 n yetran"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:11
 msgid "Show all"
-msgstr ""
+msgstr "Sken-iten-id akk"
 
 #: src/olympia/scanners/templates/admin/scanners/scannerresult/pagination.html:12
 msgid "Save"
-msgstr ""
+msgstr "Sekles"
 
 #: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
 #: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
@@ -6839,35 +6839,35 @@ msgstr "Amnir n ucegger"
 
 #: src/olympia/templates/photon-footer.html:24
 msgid "Download"
-msgstr ""
+msgstr "Sader"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Download Firefox"
-msgstr ""
+msgstr "Sader Firefox"
 
 #: src/olympia/templates/photon-footer.html:28
 msgid "Windows"
-msgstr ""
+msgstr "Asfaylu"
 
 #: src/olympia/templates/photon-footer.html:29
 msgid "macOS"
-msgstr ""
+msgstr "macOS"
 
 #: src/olympia/templates/photon-footer.html:30
 msgid "iOS"
-msgstr ""
+msgstr "iOS"
 
 #: src/olympia/templates/photon-footer.html:31
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #: src/olympia/templates/photon-footer.html:32
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: src/olympia/templates/photon-footer.html:33
 msgid "All"
-msgstr ""
+msgstr "Akk"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
@@ -6891,11 +6891,11 @@ msgstr "Takebbanit"
 
 #: src/olympia/templates/photon-footer.html:56
 msgid "Community"
-msgstr ""
+msgstr "Tamɣiwant"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
-msgstr ""
+msgstr "Qqen"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
@@ -6911,11 +6911,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
-msgstr ""
+msgstr "TikTok"
 
 #: src/olympia/templates/photon-footer.html:72
 msgid "Bluesky"
-msgstr ""
+msgstr "Bluesky"
 
 #: src/olympia/templates/photon-footer.html:73
 msgid "Podcast"
