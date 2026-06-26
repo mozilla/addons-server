@@ -4750,7 +4750,7 @@ msgstr "Kapjon nyelvtani segítségét bárhol, ahol ír a weben – közösség
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:828
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr "Jelenítsen meg a világ óráit a Firefox állapotsorában."
+msgstr "A világ óráinak megjelenítése a Firefox állapotsorában."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:77
