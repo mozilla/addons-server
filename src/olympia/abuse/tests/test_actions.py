@@ -3628,7 +3628,6 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
         assert self.addon.slug in body
         assert self.addon.guid in body
         assert str(self.addon.id) in body
-        assert f'/review/{self.addon.id}' in body
 
     def test_process_action(self):
         stakeholder = user_factory()
@@ -3649,7 +3648,6 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
             'It has been put in second level approval queue and execution has paused.'
             not in body
         )
-        assert f'/review/{self.addon.id}' in body
 
     def test_hold_action(self):
         stakeholder = user_factory()
@@ -3661,7 +3659,10 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
         assert len(mail.outbox) == 1
         body = mail.outbox[0].body
         assert mail.outbox[0].recipients() == [stakeholder.email]
-        assert mail.outbox[0].subject == 'Takedown Notice: Add-on Held'
+        assert (
+            mail.outbox[0].subject
+            == 'Takedown Notice: Add-on Held and in Second Level Approval'
+        )
         assert self.addon.slug in body
         assert self.addon.guid in body
         assert str(self.addon.id) in body
@@ -3670,7 +3671,6 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
             'It has been put in second level approval queue and execution has paused.'
             in body
         )
-        assert f'/review/{self.addon.id}' in body
 
     def test_approve_appeal_success(self):
         # No appeals

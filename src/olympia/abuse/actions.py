@@ -1608,35 +1608,32 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
         # For these actions, legal will handle communication themselves
         return ()
 
-    def notify_legal(self, action_type):
+    def notify_legal(self, is_held=False):
         """Notify legal of takedown-related activity."""
-        if legal_takedown_group := Group.objects.filter(
-            name=self.legal_takedown_group_name
-        ).first():
-            if not (
-                recipients := [user.email for user in legal_takedown_group.users.all()]
-            ):
-                return
+        if recipients := list(
+            Group.objects.filter(name=self.legal_takedown_group_name).values_list(
+                'users__email', flat=True
+            )
+        ):
             template = loader.get_template(self.legal_takedown_template_path)
             context_dict = {
-                'action_type': action_type,
+                'is_held': is_held,
                 'slug': str(self.target.slug),
                 'guid': self.target.guid,
                 'id': self.target.id,
-                'target_url': absolutify(
-                    reverse('reviewers.review', args=[self.target.id])
-                ),
             }
-            subject = f'Takedown Notice: Add-on {action_type.title()}'
+            subject = 'Takedown Notice: Add-on Processed'
+            if is_held:
+                subject = 'Takedown Notice: Add-on Held and in Second Level Approval'
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
 
     def process_action(self, release_hold=False):
-        self.notify_legal('processed')
+        self.notify_legal()
         return super().process_action(release_hold)
 
     def hold_action(self):
-        self.notify_legal('held')
+        self.notify_legal(is_held=True)
         return super().hold_action()
 
 

@@ -4,11 +4,8 @@ Add-on: {{ slug }}
 GUID: {{ guid }}
 id: {{ id }}
 
-{% if action_type == 'held' %}
+{% if is_held %}
 It has been put in second level approval queue and execution has paused.
 {% else %}
 The takedown has been executed.
 {% endif %}
-
-For more details, follow this link:
-{{ target_url }}
