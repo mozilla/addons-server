@@ -926,6 +926,32 @@ class TestContentActionDisableAddon(
         assert flags.auto_approval_disabled
         assert flags.auto_approval_disabled_unlisted
 
+    def test_hold_action_clears_all_nhr(self):
+        version1 = version_factory(addon=self.addon)
+        version2 = version_factory(addon=self.addon)
+        NeedsHumanReview.objects.create(version=version1, is_active=True)
+        NeedsHumanReview.objects.create(version=version2, is_active=True)
+
+        assert (
+            NeedsHumanReview.objects.filter(
+                version__in=self.addon.versions.all(), is_active=True
+            ).count()
+            == 2
+        )
+        assert version1.due_date
+        assert version2.due_date
+
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+        version1.reload()
+        version2.reload()
+
+        assert not NeedsHumanReview.objects.filter(
+            version__in=self.addon.versions.all(), is_active=True
+        ).exists()
+        assert not version1.due_date
+        assert not version2.due_date
+
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD, cinder_job=None)
         action_helper = ContentActionForwardToLegal(self.decision)
