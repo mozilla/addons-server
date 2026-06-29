@@ -510,7 +510,15 @@ class ContentActionDisableAddon(ContentActionAddon):
     def hold_action(self):
         self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
+            from olympia.reviewers.models import NeedsHumanReview
+
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
+            NeedsHumanReview.objects.filter(
+                version__in=self.target.versions(
+                    manager='unfiltered_for_relations'
+                ).all()
+            ).update(is_active=False)
+            self.target.update_all_due_dates()
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
