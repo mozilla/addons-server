@@ -3614,6 +3614,64 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
         assert flags.auto_approval_disabled
         assert flags.auto_approval_disabled_unlisted
 
+    def test_notify_legal(self):
+        stakeholder = user_factory()
+        Group.objects.get(name=self.ActionClass.legal_takedown_group_name).users.add(
+            stakeholder
+        )
+        action_helper = self.ActionClass(self.decision)
+        action_helper.notify_legal('action')
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert 'Takedown Notice' in mail.outbox[0].subject
+        assert self.addon.slug in body
+        assert self.addon.guid in body
+        assert str(self.addon.id) in body
+
+    def test_process_action_notifies_legal(self):
+        stakeholder = user_factory()
+        Group.objects.get(name=self.ActionClass.legal_takedown_group_name).users.add(
+            stakeholder
+        )
+        action_helper = self.ActionClass(self.decision)
+        action_helper.process_action()
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert mail.outbox[0].subject == 'Takedown Notice: Add-on Processed'
+        assert self.addon.slug in body
+        assert self.addon.guid in body
+        assert str(self.addon.id) in body
+        assert 'The takedown has been executed.' in body
+        assert (
+            'It has been put in second level approval queue and execution has paused.'
+            not in body
+        )
+
+    def test_hold_action_notifies_legal(self):
+        stakeholder = user_factory()
+        Group.objects.get(name=self.ActionClass.legal_takedown_group_name).users.add(
+            stakeholder
+        )
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+        assert len(mail.outbox) == 1
+        body = mail.outbox[0].body
+        assert mail.outbox[0].recipients() == [stakeholder.email]
+        assert (
+            mail.outbox[0].subject
+            == 'Takedown Notice: Add-on Held and in Second Level Approval'
+        )
+        assert self.addon.slug in body
+        assert self.addon.guid in body
+        assert str(self.addon.id) in body
+        assert 'The takedown has been executed.' not in body
+        assert (
+            'It has been put in second level approval queue and execution has paused.'
+            in body
+        )
+
     def test_approve_appeal_success(self):
         # No appeals
         pass

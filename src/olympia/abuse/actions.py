@@ -1597,6 +1597,8 @@ class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction
 
 class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     description = 'Add-on has been disabled, due to legal action'
+    legal_takedown_template_path = 'abuse/emails/legal_takedown_notification.txt'
+    legal_takedown_group_name = 'Legal-Takedown-Notifications'
     action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
     # This action should not be used to resolve abuse reports
     reporter_template_path = None
@@ -1605,6 +1607,34 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     def get_owners(self):
         # For these actions, legal will handle communication themselves
         return ()
+
+    def notify_legal(self, is_held=False):
+        """Notify legal of takedown-related activity."""
+        if recipients := list(
+            Group.objects.filter(name=self.legal_takedown_group_name).values_list(
+                'users__email', flat=True
+            )
+        ):
+            template = loader.get_template(self.legal_takedown_template_path)
+            context_dict = {
+                'is_held': is_held,
+                'slug': str(self.target.slug),
+                'guid': self.target.guid,
+                'id': self.target.id,
+            }
+            subject = 'Takedown Notice: Add-on Processed'
+            if is_held:
+                subject = 'Takedown Notice: Add-on Held and in Second Level Approval'
+            message = template.render(context_dict)
+            send_mail(subject, message, recipient_list=recipients)
+
+    def process_action(self, release_hold=False):
+        self.notify_legal()
+        return super().process_action(release_hold)
+
+    def hold_action(self):
+        self.notify_legal(is_held=True)
+        return super().hold_action()
 
 
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
