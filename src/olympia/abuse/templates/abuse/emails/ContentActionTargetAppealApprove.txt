@@ -3,11 +3,11 @@ Hello,
 Your {{ type }} had previously been suspended or removed from Mozilla Add-ons following a review of our policies.
 
 {% if is_public %}
-  {% if not is_override %}Thank you for appealing. After taking another look, we've{% else %}We've taken another look and{% endif %} determined that the earlier decision was incorrect. We've restored your {{ type }}, and it's now available again at {{ target_url }}.
+  {% if not is_override %}Thank you for appealing. After reviewing your appeal, we've{% else %}We've reviewed your appeal and{% endif %} determined that the earlier decision was incorrect. We've restored your {{ type }}, and it's now available again at {{ target_url }}.
 {% elif is_listing_rejected %}
-  {% if not is_override %}Thank you for appealing. After taking another look, we've{% else %}We've taken another look and{% endif %} determined that the earlier decision was incorrect, and we've re-enabled your {{ type }}. Its listing on Mozilla Add-ons will stay unavailable until the outstanding issue(s) are resolved; once you've made the updates, request a further review and we'll take another look. You can edit it at {{ target_url }}.
+  {% if not is_override %}Thank you for appealing. After reviewing your appeal, we've{% else %}We've reviewed your appeal and{% endif %} determined that the earlier decision was incorrect, and we've re-enabled your {{ type }}. Its listing on Mozilla Add-ons will stay unavailable until the outstanding issue(s) are resolved; once you've made the updates, request a further review and we'll take another look. You can edit it at {{ target_url }}.
 {% else %}
-  {% if not is_override %}Thank you for appealing. After taking another look, we've{% else %}We've taken another look and{% endif %} determined that the earlier decision was incorrect, and we've re-enabled your {{ type }}. See {{ target_url }} for more on its availability.
+  {% if not is_override %}Thank you for appealing. After reviewing your appeal, we've{% else %}We've reviewed your appeal, and{% endif %} determined that the earlier decision was incorrect, and we've re-enabled your {{ type }}. See {{ target_url }} for more on its availability.
 {% endif %}
 
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
