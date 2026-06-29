@@ -1677,7 +1677,7 @@ msgstr "Turagt tazayezt n Mozilla 2.0"
 
 #: src/olympia/constants/licenses.py:22
 msgid "Apache License 2.0"
-msgstr ""
+msgstr "Turagt Apache 2.0"
 
 #: src/olympia/constants/licenses.py:29
 msgid "GNU General Public License v2.0 only"
@@ -2009,11 +2009,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1686
 msgid "Choose version"
-msgstr ""
+msgstr "Fren lqem"
 
 #: src/olympia/devhub/forms.py:1695
 msgid "Release notes"
-msgstr ""
+msgstr "Iwenniten n lqem"
 
 #: src/olympia/devhub/forms.py:1696
 msgid "Automatic rollback based on version [m.m]."
@@ -2025,7 +2025,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Choose a category"
-msgstr ""
+msgstr "Fren taggayt"
 
 #: src/olympia/devhub/forms.py:1782
 msgid "Technical support for making your add-on compliant"
@@ -2045,7 +2045,7 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1798
 msgid "Select category"
-msgstr ""
+msgstr "Fren taggayt"
 
 #: src/olympia/devhub/forms.py:1803
 msgid "Give us more details about the issue"
@@ -2440,7 +2440,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "Azen assuter"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -4036,7 +4036,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "Iwenniten n lqem"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
@@ -4561,7 +4561,7 @@ msgstr "Fren asebter i tettwaliḍ yal tikkelt mi ara teldiḍ iccer amaynut."
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:801
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr "Twalaḍ tugna ierrzen deg Web dɣa tmennaḍ-d ad tissineḍ ugar? Ԑreḍ afecku-ya n unadi n tugniwin."
+msgstr "Twalaḍ tugna igerrzen deg Web dɣa tmennaḍ-d ad tissineḍ ugar? Ԑreḍ afecku-ya n unadi n tugniwin."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6025,7 +6025,7 @@ msgstr "Wali isental yettwasnen aṭas"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1142
 msgid "Privacy & security"
-msgstr ""
+msgstr "Tabaḍnit & tɣellist"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1144
@@ -6871,11 +6871,11 @@ msgstr "Akk"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
-msgstr ""
+msgstr "Ileqman ineggura"
 
 #: src/olympia/templates/photon-footer.html:42
 msgid "Nightly"
-msgstr ""
+msgstr "Nightly"
 
 #: src/olympia/templates/photon-footer.html:43
 msgid "Beta"
@@ -6899,15 +6899,15 @@ msgstr "Qqen"
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
-msgstr ""
+msgstr "Ḍfer"
 
 #: src/olympia/templates/photon-footer.html:69
 msgid "Instagram"
-msgstr ""
+msgstr "Instagram"
 
 #: src/olympia/templates/photon-footer.html:70
 msgid "YouTube"
-msgstr ""
+msgstr "YouTube"
 
 #: src/olympia/templates/photon-footer.html:71
 msgid "TikTok"
@@ -6919,7 +6919,7 @@ msgstr "Bluesky"
 
 #: src/olympia/templates/photon-footer.html:73
 msgid "Podcast"
-msgstr ""
+msgstr "Apudkast"
 
 #: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
