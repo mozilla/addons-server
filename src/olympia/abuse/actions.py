@@ -626,6 +626,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 defaults=auto_approval_flags,
             )
 
+    def get_activity_action(self):
+        return amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
+
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
@@ -661,9 +664,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.prevent_auto_approval()
         self.target.update_status()
         self.notify_stakeholders('Rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
-        )
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -717,6 +718,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     # should_hold_action as ContentActionRejectVersion
 
+    def get_activity_action(self):
+        return (
+            amo.LOG.REJECT_CONTENT_DELAYED
+            if self.content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
+
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
@@ -761,11 +769,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             defaults={'notified_about_expiring_delayed_rejections': False},
         )
         self.notify_stakeholders(f'{self.delayed_rejection_days} day delayed rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT_DELAYED
-            if self.content_review
-            else amo.LOG.REJECT_VERSION_DELAYED
-        )
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -780,6 +784,25 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review
             else amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED
+        )
+
+
+class ContentActionRejectVersionFromDelayed(ContentActionRejectVersion):
+    action = None  # This should only be used specifically from auto_reject
+
+    def prevent_auto_approval(self):
+        # We don't want to change auto-approval for the final rejection
+        pass
+
+    def is_human_reviewer(self):
+        # When executed, this is always non-human.
+        return False
+
+    def get_activity_action(self):
+        return (
+            amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED
+            if self.content_review
+            else amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED
         )
 
 
