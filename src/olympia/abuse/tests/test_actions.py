@@ -3629,7 +3629,7 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
         assert self.addon.guid in body
         assert str(self.addon.id) in body
 
-    def test_process_action(self):
+    def test_process_action_notifies_legal(self):
         stakeholder = user_factory()
         Group.objects.get(name=self.ActionClass.legal_takedown_group_name).users.add(
             stakeholder
@@ -3649,7 +3649,7 @@ class TestContentActionLegalTakedownDisableAddon(TestContentActionDisableAddon):
             not in body
         )
 
-    def test_hold_action(self):
+    def test_hold_action_notifies_legal(self):
         stakeholder = user_factory()
         Group.objects.get(name=self.ActionClass.legal_takedown_group_name).users.add(
             stakeholder
