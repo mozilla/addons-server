@@ -1656,6 +1656,18 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             pending_rejection_by=self.user,
             pending_content_rejection=True,
         )
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            addon=self.addon,
+            action_date=self.yesterday,
+            reviewer_user=self.user,
+            metadata={
+                'content_review': True,
+                ContentDecision.POLICY_DYNAMIC_VALUES: {},
+            },
+        )
+        decision.target_versions.add(self.version, another_pending_rejection)
+        decision.policies.set(policies)
         ActivityLog.objects.for_addons(self.addon).exclude(
             id__in=[a.pk for a in activity_logs_to_keep]
         ).delete()
@@ -1664,7 +1676,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         command.dry_run = False
         command.reject_versions(
             addon=self.addon,
-            versions=[self.version, another_pending_rejection],
+            versions=Version.objects.filter(
+                id__in=[self.version.id, another_pending_rejection.id]
+            ),
             latest_version=another_pending_rejection,
         )
 
@@ -1676,23 +1690,29 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
 
         # There should be a single new activity log for the rejection
         # and one because the add-on is changing status as a result.
-        logs = ActivityLog.objects.for_addons(self.addon).exclude(
-            id__in=[a.pk for a in activity_logs_to_keep]
+        logs = (
+            ActivityLog.objects.for_addons(self.addon)
+            .exclude(id__in=[a.pk for a in activity_logs_to_keep])
+            .order_by('action')
         )
-        decision = ContentDecision.objects.filter(action_date__isnull=False).get()
+        decision = (
+            ContentDecision.objects.filter(action_date__isnull=False)
+            .exclude(action_date=self.yesterday)
+            .get()
+        )
         assert len(logs) == 2
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
-        expected_arguments = [
+        expected_arguments = {
             self.addon,
             self.version,
             another_pending_rejection,
             *policies,
             decision,
-        ]
-        assert logs[1].arguments == expected_arguments
+        }
+        assert set(logs[1].arguments) == expected_arguments
         assert logs[1].user == self.user
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections
@@ -1991,6 +2011,19 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
         assert 'right to appeal' in mail.outbox[1].body
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_reject_with_action_class(self):
+        policy = CinderPolicy.objects.create(
+            name='some policy', uuid='12345678', text='Bad stuff'
+        )
+        self._test_reject_versions(policies=[policy])
+        self._ensure_auto_approval_until_next_approval_is_not_set()
+        assert len(mail.outbox) == 1
+        new_decision = ContentDecision.objects.exclude(action_date=self.yesterday).get()
+        assert list(new_decision.policies.all()) == [policy]
+        assert 'right to appeal' in mail.outbox[0].body
+        assert 'Bad stuff' in mail.outbox[0].body
 
     def test_addon_locked(self):
         set_reviewing_cache(self.addon.pk, 42)
