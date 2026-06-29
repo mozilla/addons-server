@@ -3,9 +3,9 @@ Hello,
 Your {{ type }} had previously been suspended or removed from Mozilla Add-ons following a review of our policies.
 
 {% if is_public %}
-We've taken another look and determined that your content is within policy. We've restored your {{ type }}, and it's now available again at {{ target_url }}.
+We've checked and determined that your content is within policy. We've restored your {{ type }}, and it's now available again at {{ target_url }}.
 {% else %}
-We've taken another look and determined that your content is within policy. We've re-enabled your {{ type }}; see {{ target_url }} for more on its availability.
+We've checked and determined that your content is within policy. We've re-enabled your {{ type }}; see {{ target_url }} for more on its availability.
 {% endif %}
 {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}
 
