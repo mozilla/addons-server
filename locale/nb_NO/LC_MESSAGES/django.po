@@ -3068,7 +3068,7 @@ msgstr "Vil bli standarden på fremtidige detaljsider for tillegg."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:65
 msgid "Upload a Custom Icon..."
-msgstr "Last opp et egendefinert ikon…"
+msgstr "Last opp et tilpasset ikon…"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:75
 msgid "PNG and JPG supported."
