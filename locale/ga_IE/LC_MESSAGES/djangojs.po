@@ -22,7 +22,6 @@ msgid "Select a file..."
 msgstr "Roghnaigh comhad..."
 
 #: static/js/common/upload-addon.js:82
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi or .crx"
 msgstr "Ba chóir duit an breiseán a chur i gcomhad .zip, .xpi, .crx, .jar, nó .xml"
 
