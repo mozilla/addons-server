@@ -4905,7 +4905,7 @@ msgstr "Bedre oversikt med visuelle bokmerker. Få tilgang til favorittsidene di
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:173
 msgid "Designate a custom home page for your new tabs."
-msgstr "Designer en egendefinert startside for dine nye faner."
+msgstr "Angi en tilpasset startside for nye faner."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -5197,7 +5197,7 @@ msgstr "Naviger automatisk til den sikre versjonen av et nettsted hvis det er ti
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:858
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
-msgstr "Slett din navigasjonshistorikk. Angi et egendefinert antall dager for å beholde nettleserhistorikken før den slettes automatisk."
+msgstr "Slett nettleserhistorikken din. Angi hvor mange dager nettleserhistorikken skal beholdes før den slettes automatisk."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:344
