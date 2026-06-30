@@ -4998,6 +4998,39 @@ class TestVersionViewSetRollback(TestCase):
         assert response.status_code == 400
         assert response.data == {'new_version_string': ['This field is required.']}
 
+    def test_rollback_no_permission_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+        assert response.data['is_disabled_by_mozilla']
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
+    def test_rollback_no_permission_disallowed(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(self.url)
+        assert (
+            'Please read and accept our Firefox Add-on Distribution Agreement'
+            in response.data['detail']
+        )
+
+    def test_rollback_partial_permission_reviewer(self):
+        # Reviewer can read but cannot rollback.
+        user = user_factory(id=settings.TASK_USER_ID)
+        self.grant_permission(user, 'Addons:ContentReview')
+        self.client.login_api(user)
+
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
+        url = reverse_ns('addon-version-list', kwargs={'addon_pk': self.addon.pk})
+        response = self.client.get(url)
+        assert response.status_code == 200
+
     def test_rollback_success(self):
         user_factory(id=settings.TASK_USER_ID)
         assert self.addon.versions.count() == 3
