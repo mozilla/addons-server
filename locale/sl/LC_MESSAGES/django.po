@@ -6969,7 +6969,7 @@ msgstr "Vse"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
-msgstr "Zadnje izdaje"
+msgstr "Zadnje graditve"
 
 #: src/olympia/templates/photon-footer.html:42
 msgid "Nightly"
@@ -7017,7 +7017,7 @@ msgstr "Bluesky"
 
 #: src/olympia/templates/photon-footer.html:73
 msgid "Podcast"
-msgstr "Podcast"
+msgstr "Podkast"
 
 #: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
