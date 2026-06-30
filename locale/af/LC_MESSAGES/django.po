@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-24 10:53+0000\n"
+"POT-Creation-Date: 2026-06-30 14:32+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4694,11 +4694,12 @@ msgid "See all extensions"
 msgstr "Blaai deur alle byvoegings"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
+#. editorial content for the homepage shelves.
+msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4893,10 +4894,6 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.

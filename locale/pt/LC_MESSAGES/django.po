@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-24 10:53+0000\n"
+"POT-Creation-Date: 2026-06-30 14:32+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4796,11 +4796,12 @@ msgid "See all extensions"
 msgstr "Navegar em todos os extras"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "Productivity extensions"
+#. editorial content for the homepage shelves.
+msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4996,10 +4997,6 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
-msgstr ""
-
-#. editorial content for the homepage shelves.
-msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
