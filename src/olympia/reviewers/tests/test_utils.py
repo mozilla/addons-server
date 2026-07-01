@@ -2780,7 +2780,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_reject_multiple_versions({})
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'versions of your Extension have been disabled' in message.body
+        assert 'versions of your extension have been disabled' in message.body
         assert 'received from a third party' not in message.body
 
     def test_reject_multiple_versions_non_human(self):
@@ -2801,8 +2801,8 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_reject_multiple_versions({'cinder_jobs_to_resolve': [cinder_job]})
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'Extension Delicious Bookmarks was manually reviewed' in message.body
-        assert 'those versions of your Extension have been disabled' in message.body
+        assert 'extension Delicious Bookmarks was manually reviewed' in message.body
+        assert 'those versions of your extension have been disabled' in message.body
         assert 'received from a third party' in message.body
         assert not NeedsHumanReview.objects.filter(is_active=True).exists()
 
@@ -2883,7 +2883,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self._test_reject_multiple_versions_with_delay({})
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'Your Extension Delicious Bookmarks was manually' in message.body
+        assert 'Your extension Delicious Bookmarks was manually' in message.body
         assert 'will be disabled' in message.body
 
     def test_reject_multiple_versions_with_delay_resolving_abuse_reports(self):
@@ -2903,7 +2903,7 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'Your Extension Delicious Bookmarks was manually' in message.body
+        assert 'Your extension Delicious Bookmarks was manually' in message.body
         assert 'will be disabled' in message.body
         log = (
             ActivityLog.objects.for_addons(self.addon)
@@ -2955,8 +2955,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         self.check_subject(message)
-        assert 'Your Extension Delicious Bookmarks was manually' in message.body
-        assert 'versions of your Extension have been disabled' in message.body
+        assert 'Your extension Delicious Bookmarks was manually' in message.body
+        assert 'versions of your extension have been disabled' in message.body
         assert 'Affected versions: 2.1.072, 3.1' in message.body
         log_token = ActivityLogToken.objects.filter(version=extra_version).get()
         assert log_token.uuid.hex in message.reply_to[0]
@@ -3021,7 +3021,7 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         self.check_subject(message)
-        assert 'Your Extension Delicious Bookmarks was manually' in message.body
+        assert 'Your extension Delicious Bookmarks was manually' in message.body
         assert 'have been disabled' in message.body
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
@@ -3077,7 +3077,7 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         self.check_subject(message)
-        assert 'Your Extension Delicious Bookmarks was manually' in message.body
+        assert 'Your extension Delicious Bookmarks was manually' in message.body
         assert 'will be disabled' in message.body
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
@@ -3345,7 +3345,7 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
         self.check_subject(message)
-        assert 'versions of your Extension have been disabled' in message.body
+        assert 'versions of your extension have been disabled' in message.body
         log_token = ActivityLogToken.objects.get()
         assert log_token.uuid.hex in message.reply_to[0]
 
@@ -3574,7 +3574,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert 'have restored your Extension' in message.body
+        assert 'have restored your extension' in message.body
 
     @override_switch('enable-content-rejection', active=True)
     def test_reject_listing_content_review(self):

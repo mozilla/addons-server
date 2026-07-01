@@ -1746,7 +1746,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your Extension have been disabled'
+        assert 'your extension have been disabled'
         assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):
@@ -1788,7 +1788,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_reject_versions_with_multiple_delayed_rejections(self):
@@ -1850,7 +1850,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # Only the latest comment should be used.
         assert 'Some cômments' in mail.outbox[0].body
         assert 'Some old cômments' not in mail.outbox[0].body
-        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_reject_versions_different_user(self):

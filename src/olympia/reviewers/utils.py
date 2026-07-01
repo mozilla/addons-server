@@ -631,7 +631,6 @@ class ReviewHelper:
                 and (DECISION_ACTIONS.AMO_APPROVE, DECISION_ACTIONS.AMO_APPROVE_VERSION)
             ),
             'resolves_cinder_jobs': True,
-            'boilerplate_text': 'Thank you for your contribution.',
             'can_attach': True,
         }
         actions['reject'] = {
