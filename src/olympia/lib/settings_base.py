@@ -1463,10 +1463,10 @@ SCANNER_TIMEOUT = 60  # seconds
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000
-REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS = 10
+REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS = 5
 
 # Each env is expected to overwrite those credentials.
 BLOCKLIST_REMOTE_SETTINGS_USERNAME = env(
