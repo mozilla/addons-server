@@ -1,4 +1,3 @@
-import itertools
 import tarfile
 import zipfile
 from functools import cached_property
@@ -41,7 +40,7 @@ from olympia.addons.utils import (
 )
 from olympia.amo.enum import StrEnumChoices
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
-from olympia.amo.forms import AMOModelForm
+from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.messages import DoubleSafe
 from olympia.amo.utils import SafeStorage, slug_validator, verify_no_urls
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
@@ -1626,33 +1625,6 @@ class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
             'confirmation_created': confirmation_created,
             'confirmation_rerequested': confirmation_rerequested,
         }
-
-
-class LimitedModelChoiceField(forms.ModelChoiceField):
-    limit_choice_count = 100  # django docs suggest 100 is the max you should use
-
-    def __init__(self, queryset, *, limit_choice_count, **kwargs):
-        self.limit_choice_count = limit_choice_count
-        super().__init__(queryset, **kwargs)
-
-    def _set_queryset(self, queryset):
-        if hasattr(self, '_choices'):
-            del self._choices
-        super()._set_queryset(queryset)
-
-    queryset = property(forms.ModelChoiceField.queryset.fget, _set_queryset)
-
-    def _get_choices(self):
-        # If self._choices is set, we called this before.
-        if hasattr(self, '_choices'):
-            return self._choices
-
-        count = self.limit_choice_count + (1 if self.empty_label else 0)
-        # We need to limit the choices, but we can't slice the queryset.
-        self._choices = list(itertools.islice(self.iterator(self), count))
-        return self._choices
-
-    choices = property(_get_choices, forms.ModelChoiceField.choices.fset)
 
 
 class RollbackVersionForm(forms.Form):

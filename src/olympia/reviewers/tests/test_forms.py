@@ -254,6 +254,7 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
 
+    @override_switch('enable-policy-review-selection', active=True)
     def test_cannot_resolve_jobs_and_override_decision(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -265,13 +266,13 @@ class TestReviewForm(TestCase):
             uuid='x',
             name='ok',
             expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         decision = ContentDecision.objects.create(
             addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
         )
         data = {
-            'action': 'resolve_reports_job',
+            'action': 'review_with_policy',
             'cinder_jobs_to_resolve': [job.id],
             'cinder_policies': [policy.id],
             'override_decision': decision.id,
@@ -279,10 +280,11 @@ class TestReviewForm(TestCase):
         form = self.get_form(data=data)
         assert form.is_bound
         assert not form.is_valid()
-        assert (
-            'Cannot resolve jobs while overriding a previous decision.'
-            in form.errors['cinder_jobs_to_resolve']
-        )
+        assert form.errors == {
+            'cinder_jobs_to_resolve': [
+                'Cannot resolve jobs while overriding a previous decision.'
+            ]
+        }
 
     def test_override_decision_queryset(self):
         self.grant_permission(self.request.user, 'Addons:Review')

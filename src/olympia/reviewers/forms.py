@@ -23,7 +23,7 @@ from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.forms import AMOModelForm
+from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
@@ -445,7 +445,9 @@ class PolicyValueMultiWidget(forms.MultiWidget):
         return context
 
 
-class DecisionField(forms.ModelChoiceField):
+class DecisionField(LimitedModelChoiceField):
+    limit_choice_count = MAX_PAST_DECISIONS_SHOWN_INLINE
+
     def label_from_instance(self, obj):
         label = f'{format_datetime(obj.created)}: {DECISION_ACTIONS(obj.action).label}'
         versions = (
@@ -914,7 +916,7 @@ class ReviewForm(forms.Form):
 
         self.fields['override_decision'].queryset = ContentDecision.objects.filter(
             addon=self.helper.addon, overridden_by__isnull=True
-        ).order_by('-created')[:MAX_PAST_DECISIONS_SHOWN_INLINE]
+        ).order_by('-created')
 
     @property
     def unreviewed_files(self):
