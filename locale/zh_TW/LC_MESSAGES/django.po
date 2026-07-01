@@ -5999,7 +5999,7 @@ msgstr "瀏覽所有擴充套件"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "擴充套件組合包"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
