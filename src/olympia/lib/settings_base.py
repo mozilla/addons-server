@@ -1465,6 +1465,7 @@ REMOTE_SETTINGS_API_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_URL = 'https://remote-settings-dev.allizom.org/v1/'
 REMOTE_SETTINGS_WRITER_BUCKET = 'staging'
 REMOTE_SETTINGS_CHECK_TIMEOUT_SECONDS = 10
+REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS = 5
 
 # Each env is expected to overwrite those credentials.
 BLOCKLIST_REMOTE_SETTINGS_USERNAME = env(
