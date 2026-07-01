@@ -1112,6 +1112,7 @@ class TestReviewHelper(TestReviewHelperBase):
             assert actions['review_with_policy_approve']['enforcement_actions'] == (
                 DECISION_ACTIONS.AMO_APPROVE,
                 DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_OVERRIDE_REVERSE,
             )
             assert actions['review_with_policy']['enforcement_actions'] == (
                 DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,

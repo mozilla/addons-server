@@ -313,6 +313,38 @@ class TestReviewForm(TestCase):
             overriding_decision,
         }
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_can_only_use_override_enforcement_action_with_override(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_OVERRIDE_REVERSE.api_value],
+        )
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        data = {
+            'action': 'review_with_policy_approve',
+            'cinder_policies': [policy.id],
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'Selecting a policy with Override Reverse previous actions '
+                'requires selecting a previous decision to override.'
+            ]
+        }
+        # But you can if a decision to override is specified
+        data['override_decision'] = decision.id
+        form = self.get_form(data=data)
+        assert form.is_valid()
+
     def test_comments_optional_for_actions_with_enforcement_actions(self):
         policy = CinderPolicy.objects.create(
             uuid='xxx',

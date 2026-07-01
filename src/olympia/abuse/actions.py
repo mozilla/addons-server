@@ -1734,6 +1734,14 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
         return ()
 
 
+class ContentActionOverrideReverse(AnyTargetMixin, NoActionMixin, ContentAction):
+    description = 'Add-on has been overridden to reverse a previous action'
+    action = DECISION_ACTIONS.AMO_OVERRIDE_REVERSE
+
+    # There is no process_action for this action, it is only used to trigger the reverse
+    # for previous actions
+
+
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):
     pass
 

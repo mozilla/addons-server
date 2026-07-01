@@ -732,6 +732,18 @@ class ReviewForm(forms.Form):
                     'Selecting multiple policies with different non-negative '
                     'enforcement actions is not supported.',
                 )
+            if (
+                not self.cleaned_data.get('override_decision')
+                and policies
+                and policies[0].split_enforcement_actions.primary
+                == (DECISION_ACTIONS.AMO_OVERRIDE_REVERSE,)
+            ):
+                self.add_error(
+                    'cinder_policies',
+                    'Selecting a policy with '
+                    f'{DECISION_ACTIONS.AMO_OVERRIDE_REVERSE.label} requires '
+                    'selecting a previous decision to override.',
+                )
             if is_policy_enforcement:
                 srtd_actions = sorted(
                     (

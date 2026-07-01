@@ -581,6 +581,7 @@ class ReviewHelper:
             'enforcement_actions': (
                 DECISION_ACTIONS.AMO_APPROVE,
                 DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_OVERRIDE_REVERSE,
             ),
             'multiple_versions': can_approve_multiple,
             'resolves_cinder_jobs': True,

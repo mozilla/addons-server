@@ -40,6 +40,7 @@ class DECISION_ACTIONS(EnumChoicesApiDash):
     AMO_FU_DELAY_MID_HARD_BLOCK_ADDON = 22, '[Follow-up] Mid-delayed hard block'
     AMO_FU_DELAY_LONG_HARD_BLOCK_ADDON = 23, '[Follow-up] Long-delayed hard block'
     AMO_LEGAL_DISABLE_ADDON = 24, 'Add-on disable, due to legal takedown'
+    AMO_OVERRIDE_REVERSE = 25, 'Override Reverse previous actions'
 
 
 DECISION_ACTIONS.add_subset(
@@ -86,6 +87,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_LEGAL_FORWARD',
         'AMO_CHANGE_PENDING_REJECTION_DATE',
         'AMO_REQUEUE',
+        'AMO_OVERRIDE_REVERSE',
     ),
 )
 DECISION_ACTIONS.add_subset(
