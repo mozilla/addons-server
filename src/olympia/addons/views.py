@@ -476,7 +476,8 @@ class AddonChildMixin:
         if permission_classes is None:
             permission_classes = (
                 AddonViewSet.write_permission_classes
-                if self.action in ('create', 'update', 'partial_update', 'destroy')
+                if self.action
+                in ('create', 'update', 'partial_update', 'destroy', 'rollback')
                 else AddonViewSet.permission_classes
             )
         if georestriction_classes is None:
