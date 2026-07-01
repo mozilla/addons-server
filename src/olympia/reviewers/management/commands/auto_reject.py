@@ -4,9 +4,18 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+import waffle
+
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import CinderJob, CinderPolicy
+from olympia.abuse.actions import ContentActionRejectVersionFromDelayed
+from olympia.abuse.models import (
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionFollowupAction,
+)
+from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
@@ -60,7 +69,8 @@ class Command(BaseCommand):
         )
 
     def reject_versions(self, *, addon, versions, latest_version):
-        """Reject specific versions for an addon."""
+        """Reject specific versions, either by calling ReviewHelper or by creating a
+        ContentDecision and calling its execute_action() method."""
         if self.dry_run:
             log.info(
                 'Would reject versions %s from add-on %s but this is a dry run.',
@@ -68,6 +78,15 @@ class Command(BaseCommand):
                 addon,
             )
             return
+        if waffle.switch_is_active('enable-policy-review-selection'):
+            self.reject_versions_with_action_class(addon=addon, versions=versions)
+        else:
+            self.reject_versions_with_review_helper(
+                addon=addon, versions=versions, latest_version=latest_version
+            )
+
+    def reject_versions_with_review_helper(self, *, addon, versions, latest_version):
+        """Reject specific versions for an addon, via reviwer tools ReviewHelper."""
         helper = ReviewHelper(
             addon=addon, version=latest_version, human_review=False, channel=None
         )
@@ -101,6 +120,51 @@ class Command(BaseCommand):
             pending_rejection_by=None,
             pending_content_rejection=None,
         )
+
+    def reject_versions_with_action_class(self, *, addon, versions):
+        """Reject specific versions for an addon, via reviwer tools ReviewHelper."""
+        previous_decisions = ContentDecision.objects.filter(
+            action_date__isnull=False,
+            overridden_by__isnull=True,
+            target_versions__in=versions,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+        ).distinct()
+
+        for previous_decision in previous_decisions:
+            if not versions or not previous_decision.target_versions.exists():
+                log.info(
+                    'Skipping rejection for add-on %s since there are no versions '
+                    'to reject or no previous decision to override.',
+                    addon.pk,
+                )
+                continue
+            decision_versions = previous_decision.target_versions.filter(
+                id__in=versions
+            )
+            new_decision = ContentDecision.objects.create(
+                cinder_job=previous_decision.cinder_job,
+                override_of=previous_decision,
+                addon=addon,
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+                action_date=datetime.now(),
+                reasoning=previous_decision.reasoning,
+                reviewer_user_id=previous_decision.reviewer_user_id,
+                metadata=previous_decision.metadata,
+            )
+            new_decision.policies.set(previous_decision.policies.all())
+            new_decision.target_versions.set(decision_versions)
+            # We copy the follow-up actions, but we don't need to re-execute them.
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=new_decision, action=action)
+                for action in previous_decision.followup_actions.all()
+            )
+            action_helper = ContentActionRejectVersionFromDelayed(decision=new_decision)
+            action_helper.process_action()
+
+            if new_decision.cinder_job:
+                new_decision.cinder_job.pending_rejections.clear()
+
+            report_decision_to_cinder_and_notify.delay(decision_id=new_decision.id)
 
     def process_addon(self, *, addon, now):
         try:
