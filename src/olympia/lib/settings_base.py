@@ -737,26 +737,30 @@ CELERY_TASK_QUEUES = (
 # We have separate workers for processing some tasks without waiting for others
 # Notes:
 # - Always add routes here instead of @task(queue=<name>)
-# - Make sure the queues exist by coordinating with cloudops-deployment repo.
+# - Make sure the queues exist by coordinating with webservices-infra repo.
 CELERY_TASK_ROUTES = {
     # Priority.
     # If your tasks need to be run as soon as possible, add them here so they
     # are routed to the priority queue.
-    'olympia.addons.tasks.index_addons': {'queue': 'priority'},
-    'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
-    'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.blocklist.tasks.block_addons_on_user_ban': {'queue': 'priority'},
+    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'priority'},
+    'olympia.blocklist.tasks.process_blocklistsubmission': {'queue': 'priority'},
     'olympia.blocklist.tasks.revert_published_blocklist_submissions': {
         'queue': 'priority'
     },
+    'olympia.blocklist.tasks.upload_filter': {'queue': 'priority'},
     'olympia.versions.tasks.generate_static_theme_preview': {'queue': 'priority'},
     # Adhoc
     # A queue to be used for one-off tasks that could be resource intensive or
     # tasks we want completely separate from the rest.
+    'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
     'olympia.addons.tasks.delete_erroneously_added_overgrowth_needshumanreview': {
         'queue': 'adhoc'
     },
     'olympia.addons.tasks.find_inconsistencies_between_es_and_db': {'queue': 'adhoc'},
+    'olympia.devhub.tasks.recreate_previews': {'queue': 'adhoc'},
+    'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
+    'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
@@ -764,23 +768,11 @@ CELERY_TASK_ROUTES = {
     'olympia.search.management.commands.reindex.update_aliases': {'queue': 'adhoc'},
     'olympia.translations.tasks.strip_html_from_summaries': {'queue': 'adhoc'},
     'olympia.translations.tasks.update_outgoing_url': {'queue': 'adhoc'},
-    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
-    'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
-    'olympia.activity.tasks.create_ratinglog': {'queue': 'adhoc'},
-    'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
-    'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
     'olympia.users.tasks.bulk_ban': {'queue': 'adhoc'},
     'olympia.users.tasks.restrict_banned_users': {'queue': 'adhoc'},
+    'olympia.versions.tasks.delete_list_theme_previews': {'queue': 'adhoc'},
+    'olympia.versions.tasks.hard_delete_versions': {'queue': 'adhoc'},
     # Misc AMO tasks.
-    'olympia.blocklist.tasks.monitor_remote_settings': {'queue': 'amo'},
-    'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'amo'},
-    'olympia.abuse.tasks.handle_forward_to_legal_action': {'queue': 'amo'},
-    'olympia.abuse.tasks.report_to_cinder': {'queue': 'amo'},
-    'olympia.abuse.tasks.report_decision_to_cinder_and_notify': {'queue': 'amo'},
-    'olympia.abuse.tasks.sync_cinder_policies': {'queue': 'amo'},
-    'olympia.abuse.tasks.auto_resolve_job': {'queue': 'adhoc'},
-    'olympia.abuse.tasks.submit_addon_for_content_review': {'queue': 'adhoc'},
-    'olympia.abuse.tasks.submit_addon_change_for_content_review': {'queue': 'adhoc'},
     'olympia.accounts.tasks.clear_sessions_event': {'queue': 'amo'},
     'olympia.accounts.tasks.delete_user_event': {'queue': 'amo'},
     'olympia.accounts.tasks.primary_email_change_event': {'queue': 'amo'},
@@ -795,11 +787,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.tasks.restore_all_addon_media_from_backup': {'queue': 'amo'},
     'olympia.addons.tasks.version_changed': {'queue': 'amo'},
     'olympia.amo.tasks.delete_logs': {'queue': 'amo'},
-    'olympia.amo.tasks.send_email': {'queue': 'amo'},
     'olympia.amo.tasks.set_modified_on_object': {'queue': 'amo'},
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'amo'},
     'olympia.blocklist.tasks.cleanup_old_files': {'queue': 'amo'},
-    'olympia.devhub.tasks.recreate_previews': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_bayesian_rating': {'queue': 'amo'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'amo'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'amo'},
@@ -809,8 +799,7 @@ CELERY_TASK_ROUTES = {
     'olympia.users.tasks.resize_photo': {'queue': 'amo'},
     'olympia.users.tasks.update_user_ratings_task': {'queue': 'amo'},
     'olympia.versions.tasks.delete_preview_files': {'queue': 'amo'},
-    'olympia.versions.tasks.duplicate_addon_version_for_rollback': {'queue': 'amo'},
-    # 'Default' queue. In theory shouldn't be used, it's mostly a fallback.
+    # 'Default' queue. Keep relatively small.
     'celery.accumulate': {'queue': 'default'},
     'celery.backend_cleanup': {'queue': 'default'},
     'celery.chain': {'queue': 'default'},
@@ -820,12 +809,14 @@ CELERY_TASK_ROUTES = {
     'celery.group': {'queue': 'default'},
     'celery.map': {'queue': 'default'},
     'celery.starmap': {'queue': 'default'},
+    'olympia.addons.tasks.index_addons': {'queue': 'default'},
+    'olympia.amo.tasks.send_email': {'queue': 'default'},
     # Devhub & related.
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_data_collection_permissions': {'queue': 'devhub'},
-    'olympia.devhub.tasks.create_support_ticket': {'queue': 'devhub'},
     'olympia.devhub.tasks.check_for_api_keys_in_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.create_initial_validation_results': {'queue': 'devhub'},
+    'olympia.devhub.tasks.create_support_ticket': {'queue': 'devhub'},
     'olympia.devhub.tasks.forward_linter_results': {'queue': 'devhub'},
     'olympia.devhub.tasks.get_preview_sizes': {'queue': 'devhub'},
     'olympia.devhub.tasks.handle_file_validation_result': {'queue': 'devhub'},
@@ -843,27 +834,39 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_source_code_uploaded': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_version_created': {'queue': 'devhub'},
+    'olympia.versions.tasks.duplicate_addon_version_for_rollback': {'queue': 'devhub'},
     'olympia.versions.tasks.soft_block_versions': {'queue': 'devhub'},
     # Crons.
-    'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
-    'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
-    'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
-    'olympia.promoted.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
     'olympia.abuse.tasks.flag_high_abuse_reports_addons_according_to_review_tier': {
         'queue': 'cron'
     },
     'olympia.addons.tasks.flag_high_hotness_according_to_review_tier': {
         'queue': 'cron'
     },
+    'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_hotness': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_weekly_downloads': {'queue': 'cron'},
+    'olympia.promoted.tasks.add_high_adu_extensions_to_notable': {'queue': 'cron'},
     'olympia.ratings.tasks.flag_high_rating_addons_according_to_review_tier': {
         'queue': 'cron'
     },
-    'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
-    'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
     'olympia.users.tasks.bulk_add_disposable_email_domains': {'queue': 'devhub'},
+    'olympia.users.tasks.send_suppressed_email_confirmation': {'queue': 'devhub'},
+    'olympia.users.tasks.sync_suppressed_emails_task': {'queue': 'cron'},
     # Reviewers.
+    'olympia.abuse.tasks.appeal_to_cinder': {'queue': 'reviewers'},
+    'olympia.abuse.tasks.auto_resolve_job': {'queue': 'reviewers'},
+    'olympia.abuse.tasks.handle_forward_to_legal_action': {'queue': 'reviewers'},
+    'olympia.abuse.tasks.report_decision_to_cinder_and_notify': {'queue': 'reviewers'},
+    'olympia.abuse.tasks.report_to_cinder': {'queue': 'reviewers'},
+    'olympia.abuse.tasks.submit_addon_change_for_content_review': {
+        'queue': 'reviewers'
+    },
+    'olympia.abuse.tasks.submit_addon_for_content_review': {'queue': 'reviewers'},
     'olympia.reviewers.tasks.recalculate_post_review_weight': {'queue': 'reviewers'},
     # Admin.
+    'olympia.abuse.tasks.sync_cinder_policies': {'queue': 'zadmin'},
+    'olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task': {'queue': 'zadmin'},
     'olympia.scanners.tasks.mark_scanner_query_rule_as_completed_or_aborted': {
         'queue': 'zadmin'
     },
@@ -872,7 +875,6 @@ CELERY_TASK_ROUTES = {
         'queue': 'zadmin'
     },
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.blocklist.tasks.upload_mlbf_to_remote_settings_task': {'queue': 'zadmin'},
 }
 
 # See PEP 391 for formatting help.
