@@ -1411,7 +1411,7 @@ class TestCinderWebhook(TestCase):
         process_mock.assert_called()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
-        assert 'will not reinstate your Extension' in mail.outbox[0].body
+        assert 'will not reinstate your extension' in mail.outbox[0].body
 
     def test_create_and_execute_decision_triggers_emails_when_disable_reverted(self):
         data = self.get_data(filename='target_appeal_change_to_approve.json')
@@ -1437,7 +1437,7 @@ class TestCinderWebhook(TestCase):
         process_mock.assert_called()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
-        assert 'we have restored your Extension' in mail.outbox[0].body
+        assert 'we have restored your extension' in mail.outbox[0].body
 
     def test_create_and_execute_decision_triggers_emails_for_reporter_appeal_disable(
         self,

@@ -189,7 +189,7 @@ class ContentAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.decision.get_target_display(),
+            'type': self.decision.get_target_display().lower(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -261,7 +261,7 @@ class ContentAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.decision.get_target_display(),
+                    'type': self.decision.get_target_display().lower(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
@@ -593,7 +593,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 'target_url': self.target.get_absolute_url()
                 if self.target.get_url_path()
                 else '',
-                'type': self.decision.get_target_display(),
+                'type': self.decision.get_target_display().lower(),
                 'version_list_listed': ', '.join(
                     vr.version for vr in versions if vr.channel == amo.CHANNEL_LISTED
                 ),

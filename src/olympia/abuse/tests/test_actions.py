@@ -714,7 +714,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled
@@ -737,7 +737,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
@@ -1141,7 +1141,7 @@ class TestContentActionDisableAddon(
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectVersion
     activity_log_action = amo.LOG.REJECT_VERSION
-    disable_snippet = 'versions of your Extension have been disabled'
+    disable_snippet = 'versions of your extension have been disabled'
     default_decision_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
     def setUp(self):
@@ -1480,7 +1480,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].subject == f'Rejection issued for {self.addon.name}'
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
+            'extension; first approved 2025-02-03.' in mail.outbox[0].body
         )
 
     def test_execute_action_after_reporter_appeal(self):
@@ -1641,7 +1641,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
+            'extension; first approved 2025-02-03.' in mail.outbox[0].body
         )
 
     def test_execute_action_delayed_after_reporter_appeal(self):
@@ -1849,7 +1849,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-01-02' in body
+            'extension; first approved 2025-01-02' in body
         )
 
         # an unlisted version should result in second link to the unlisted review page
@@ -1866,7 +1866,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert f'/review-unlisted/{self.addon.id}' in body
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-01-02.' in body
+            'extension; first approved 2025-01-02.' in body
         )
 
         # if the listed version(s) affected are the last approved versions indicate that
@@ -3079,7 +3079,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
         # Content-rejection doesn't affect auto-approval disabled flags.
@@ -3183,7 +3183,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_REJECTED)

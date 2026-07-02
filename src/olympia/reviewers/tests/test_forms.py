@@ -788,10 +788,7 @@ class TestReviewForm(TestCase):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         form = self.get_form()
         doc = pq(str(form['action']))
-        assert (
-            doc('input')[0].attrib.get('data-value')
-            == 'Thank you for your contribution.'
-        )
+        assert doc('input')[0].attrib.get('data-value') is None
         assert doc('input')[1].attrib.get('data-value') is None
         assert doc('input')[2].attrib.get('data-value') is None
         assert doc('input')[3].attrib.get('data-value') is None
