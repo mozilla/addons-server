@@ -378,7 +378,7 @@ class ContentActionBanUser(ContentAction):
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
         target = new_decision.target
-        if isinstance(target, UserProfile) and target.banned:
+        if target.banned:
             UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
                 skip_activity_log=True
             )
@@ -542,17 +542,35 @@ class ContentActionDisableAddon(ContentActionAddon):
 
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
-        # Note: for ContentActionBlockAddon (which inherits this) we only
+        def get_target_versions():
+            files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+                version__addon=target
+            )
+            return (
+                target.versions(manager='unfiltered_for_relations')
+                .filter(pk__in=files_qs.values_list('version'))
+                .no_transforms()
+                .defer('approval_notes')
+                .order_by('-pk')
+            )
+
+        # FIXME: ContentActionBlockAddon (which inherits this) only
         # re-enable the add-on - the versions stay blocked and have to be
-        # unblocked manually, matching the behavior for successful appeals.
+        # unblocked manually
         target = new_decision.target
-        if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
+
+        if target.status == amo.STATUS_DISABLED:
             target.force_enable(skip_activity_log=True)
             # Re-enabling the add-on isn't tied to the new decision's
             # target_versions (those belong to the new action being applied), so
             # don't let log_action add them as version arguments.
+            target_versions = list(get_target_versions())
             return cls(new_decision).log_action(
-                amo.LOG.FORCE_ENABLE, extra_details={'versions': []}
+                amo.LOG.FORCE_ENABLE,
+                *target_versions,
+                extra_details={
+                    'versions': [version.version for version in target_versions]
+                },
             )
         return None
 
@@ -1048,9 +1066,8 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         # Note: when the original primary action was ContentDisableAddon, the versions
         # blocked may have been more than target_versions, but we're leaving the other
         # versions blocked.
-        original_decision = reversed_decision
-        guid = original_decision.target.guid
-        versions = original_decision.target_versions.all()
+        guid = reversed_decision.target.guid
+        versions = reversed_decision.target_versions.all()
         # First unblock any versions that have already been blocked
         already_blocked_version_ids = list(
             versions.filter(blockversion__block_type=cls.block_type).values_list(
@@ -1063,11 +1080,11 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
         )
         delete_versions_from_blocks(
-            cls.get_existing_blocks_from_decision(original_decision),
+            cls.get_existing_blocks_from_decision(reversed_decision),
             BlocklistSubmission(
                 input_guids=guid,
                 action=BlocklistSubmission.ACTIONS.DELETE,
-                updated_by_id=cls(original_decision, None).updated_by_user_id,
+                updated_by_id=cls(reversed_decision, None).updated_by_user_id,
                 signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 changed_version_ids=already_blocked_version_ids,
                 preserve_block_metadata=True,
@@ -1194,12 +1211,12 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
         target = new_decision.target
-        if isinstance(target, Addon) and target.status == amo.STATUS_REJECTED:
+        if target.status == amo.STATUS_REJECTED:
             AddonApprovalsCounter.approve_content_for_addon(target)
             # Call update function to correct the status
             target.update_status()
             return cls(new_decision).log_action(
-                amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
+                amo.LOG.APPROVE_REJECTED_LISTING_CONTENT, extra_details={'versions': []}
             )
         return None
 
@@ -1249,7 +1266,7 @@ class ContentActionDeleteCollection(ContentAction):
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
         target = new_decision.target
-        if isinstance(target, Collection) and target.deleted:
+        if target.deleted:
             target.undelete()
             return cls(new_decision).log_action(amo.LOG.COLLECTION_UNDELETED)
         return None
@@ -1300,7 +1317,7 @@ class ContentActionDeleteRating(ContentAction):
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
         target = new_decision.target
-        if isinstance(target, Rating) and target.deleted:
+        if target.deleted:
             target.undelete(skip_activity_log=True)
             return cls(new_decision).log_action(
                 amo.LOG.UNDELETE_RATING,
@@ -1324,20 +1341,6 @@ class ContentActionTargetAppealApprove(
     description = 'Reported content is within policy, after appeal'
 
     @property
-    def target_versions(self):
-        target = self.target
-        if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
-                version__addon=target
-            )
-            qs = target.versions(manager='unfiltered_for_relations').filter(
-                pk__in=files_qs.values_list('version')
-            )
-        else:
-            qs = self.decision.target_versions.all()
-        return qs
-
-    @property
     def previous_decisions(self):
         """Queryset with previous decisions made that this action would revert."""
         return self.decision.cinder_job.appealed_decisions.all()
@@ -1345,117 +1348,15 @@ class ContentActionTargetAppealApprove(
     def process_action(self, release_hold=False):
         from olympia.abuse.models import ContentDecisionFollowupAction
 
-        target = self.target
         log_entry = None
-        if isinstance(target, Addon):
-            target_versions = (
-                self.target_versions.no_transforms()
-                .defer('approval_notes')
-                .order_by('-pk')
-            )
-            previous_decision_actions = set(
-                self.previous_decisions.values_list('action', flat=True)
-            )
-            activity_log_action = None
 
-            # Reverse any previous decision whose primary action was a delayed
-            # block (the other primary actions are handled inline below). This
-            # unblocks/cancels the pending block.
-            for prev_decision in self.previous_decisions:
-                if prev_decision.action in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS:
-                    CONTENT_ACTION_FROM_DECISION_ACTION[
-                        prev_decision.action
-                    ].reverse_action(reversed_decision=prev_decision)
-
-            if {
-                DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                DECISION_ACTIONS.AMO_BLOCK_ADDON,
-                DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON,
-            } & previous_decision_actions:
-                # FIXME: we should also automatically revert the block if the
-                # previous decision was AMO_BLOCK_ADDON. (i.e. reverse_action)
-                target_versions = list(target_versions)
-                if target.status == amo.STATUS_DISABLED:
-                    target.force_enable(skip_activity_log=True)
-                activity_log_action = amo.LOG.FORCE_ENABLE
-
-            if DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON in previous_decision_actions:
-                target_versions = list(
-                    target_versions.filter(
-                        # we only need to unreject disabled versions we rejected
-                        file__status=amo.STATUS_DISABLED,
-                        file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
-                    )
-                )
-                for version in target_versions:
-                    version.file.update(
-                        datestatuschanged=datetime.now(),
-                        status=(
-                            # safeguard against original_status not being valid
-                            version.file.original_status
-                            if version.file.original_status in amo.STATUS_CHOICES_FILE
-                            else amo.STATUS_AWAITING_REVIEW
-                        ),
-                        original_status=amo.STATUS_NULL,
-                    )
-                target.update_status()
-                activity_log_action = amo.LOG.UNREJECT_VERSION
-            if (
-                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
-                in previous_decision_actions
-            ):
-                for version in target_versions:
-                    VersionReviewerFlags.objects.update_or_create(
-                        version=version,
-                        defaults={
-                            'pending_rejection': None,
-                            'pending_rejection_by': None,
-                            'pending_content_rejection': None,
-                        },
-                    )
-                activity_log_action = amo.LOG.CLEAR_PENDING_REJECTION
-            if (
-                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
-                and target.status == amo.STATUS_REJECTED
-            ):
-                target_versions = target_versions.none()
-                AddonApprovalsCounter.approve_content_for_addon(target)
-                # Call update function to correct ihe status
-                target.update_status()
-                activity_log_action = amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
-
-            if not activity_log_action:
-                return
-
-            log_entry = self.log_action(
-                activity_log_action,
-                *target_versions,
-                extra_details={
-                    'versions': [version.version for version in target_versions]
-                },
-            )
-
-        elif isinstance(target, UserProfile) and target.banned:
-            UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
-                skip_activity_log=True
-            )
-            log_entry = self.log_action(amo.LOG.ADMIN_USER_UNBAN)
-
-        elif isinstance(target, Collection) and target.deleted:
-            target.undelete()
-            log_entry = self.log_action(amo.LOG.COLLECTION_UNDELETED)
-
-        elif isinstance(target, Rating) and target.deleted:
-            target.undelete(skip_activity_log=True)
-            log_entry = self.log_action(
-                amo.LOG.UNDELETE_RATING,
-                self.target.addon,
-                extra_details={
-                    'body': str(target.body),
-                    'addon_id': target.addon.pk,
-                    'addon_title': str(target.addon.name),
-                    'is_flagged': target.ratingflag_set.exists(),
-                },
+        # Reverse any previous decision whose primary action was a delayed
+        # block (the other primary actions are handled inline below). This
+        # unblocks/cancels the pending block.
+        for prev_decision in self.previous_decisions:
+            ActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[prev_decision.action]
+            log_entry = ActionClass.reverse_action(
+                reversed_decision=prev_decision, new_decision=self.decision
             )
 
         # follow-up actions
