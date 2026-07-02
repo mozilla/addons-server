@@ -468,3 +468,25 @@ def test_filter_enforcement_actions():
         ),
         (DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON,),
     )
+
+
+def test_decision_actions():
+    assert set(DECISION_ACTIONS) == set(
+        (
+            *DECISION_ACTIONS.REMOVING,
+            *DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS,
+            *DECISION_ACTIONS.NON_OFFENDING,
+            *DECISION_ACTIONS.META,
+        )
+    )
+
+    assert set(DECISION_ACTIONS.ADDON_NEGATIVE_SORTED) == set(
+        (
+            action
+            for action in (
+                *DECISION_ACTIONS.REMOVING,
+                *DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS,
+            )
+            if 'ADDON' in action.name or action.name == 'AMO_REJECT_LISTING_CONTENT'
+        )
+    )

@@ -23,11 +23,13 @@ from olympia.abuse.models import CinderJob, CinderPolicy, ContentDecision
 from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_actions
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.forms import AMOModelForm
+from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
+    MAX_PAST_DECISIONS_SHOWN_INLINE,
+    MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS,
     REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
 )
 from olympia.files.utils import SafeZip
@@ -443,6 +445,29 @@ class PolicyValueMultiWidget(forms.MultiWidget):
         return context
 
 
+class DecisionField(LimitedModelChoiceField):
+    limit_choice_count = MAX_PAST_DECISIONS_SHOWN_INLINE
+
+    def label_from_instance(self, obj):
+        label = f'{format_datetime(obj.created)}: {DECISION_ACTIONS(obj.action).label}'
+        versions = (
+            list(obj.target_versions.values_list('version', flat=True))
+            if obj.action in DECISION_ACTIONS.VERSION_SPECIFIC
+            else []
+        )
+        if versions:
+            shown = ', '.join(versions[:MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS])
+            remainder = len(versions) - MAX_VERSIONS_SHOWN_FOR_PAST_DECISIONS
+            label += (
+                f' (versions: {shown} and {remainder} more)'
+                if remainder > 0
+                else f' (versions: {shown})'
+            )
+        if not bool(obj.action_date):
+            label = '[HELD] ' + label
+        return label
+
+
 class PolicyValueMultiValueField(forms.MultiValueField):
     def __init__(self, queryset, **kw):
         self.queryset = queryset
@@ -579,6 +604,12 @@ class ReviewForm(forms.Form):
         # queryset is set later in __init__
         queryset=CinderPolicy.objects.none(),
     )
+    override_decision = DecisionField(
+        required=False,
+        label='Decision to override:',
+        queryset=ContentDecision.objects.none(),
+        empty_label='- No override: create new decision -',
+    )
 
     def is_valid(self):
         # Some actions do not require comments and policies.
@@ -647,6 +678,13 @@ class ReviewForm(forms.Form):
                 for job in self.cleaned_data.get('cinder_jobs_to_resolve', ())
                 if not job.is_developer_appeal
             ]
+        if self.cleaned_data.get('cinder_jobs_to_resolve') and self.cleaned_data.get(
+            'override_decision'
+        ):
+            self.add_error(
+                'cinder_jobs_to_resolve',
+                'Cannot resolve jobs while overriding a previous decision.',
+            )
         if require_jobs and not self.cleaned_data.get('cinder_jobs_to_resolve'):
             self.add_error('cinder_jobs_to_resolve', 'This field is required.')
         is_policy_enforcement = selected_definition.get('policy_enforcement')
@@ -693,6 +731,18 @@ class ReviewForm(forms.Form):
                     'cinder_policies',
                     'Selecting multiple policies with different non-negative '
                     'enforcement actions is not supported.',
+                )
+            if (
+                not self.cleaned_data.get('override_decision')
+                and policies
+                and policies[0].split_enforcement_actions.primary
+                == (DECISION_ACTIONS.AMO_OVERRIDE_REVERSE,)
+            ):
+                self.add_error(
+                    'cinder_policies',
+                    'Selecting a policy with '
+                    f'{DECISION_ACTIONS.AMO_OVERRIDE_REVERSE.label} requires '
+                    'selecting a previous decision to override.',
                 )
             if is_policy_enforcement:
                 srtd_actions = sorted(
@@ -875,6 +925,10 @@ class ReviewForm(forms.Form):
         self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
 
         self.fields['policy_values'].queryset = self.fields['cinder_policies'].queryset
+
+        self.fields['override_decision'].queryset = ContentDecision.objects.filter(
+            addon=self.helper.addon, overridden_by__isnull=True
+        ).order_by('-created')
 
     @property
     def unreviewed_files(self):

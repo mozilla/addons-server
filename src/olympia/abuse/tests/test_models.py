@@ -50,7 +50,6 @@ from ..actions import (
     ContentActionDeleteCollection,
     ContentActionDeleteRating,
     ContentActionDisableAddon,
-    ContentActionOverrideApprove,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -2527,16 +2526,21 @@ class TestContentDecision(TestCase):
             action_existing_to_class[(action, None, action)] = (
                 ContentActionTargetAppealRemovalAffirmation
             )
-            # add override from takedown to approve cases
+            # Override of a takedown: the helper always matches the *new*
+            # action (the previous action is reversed separately, in
+            # reverse_overridden_action), so it's the same class as the base
+            # case for that action.
             action_existing_to_class[(DECISION_ACTIONS.AMO_APPROVE, action, None)] = (
-                ContentActionOverrideApprove
+                CONTENT_ACTION_FROM_DECISION_ACTION[DECISION_ACTIONS.AMO_APPROVE]
             )
             action_existing_to_class[
                 (DECISION_ACTIONS.AMO_APPROVE_VERSION, action, None)
-            ] = ContentActionOverrideApprove
+            ] = CONTENT_ACTION_FROM_DECISION_ACTION[
+                DECISION_ACTIONS.AMO_APPROVE_VERSION
+            ]
             # and override from takedown to ignore
             action_existing_to_class[(DECISION_ACTIONS.AMO_IGNORE, action, None)] = (
-                ContentActionOverrideApprove
+                CONTENT_ACTION_FROM_DECISION_ACTION[DECISION_ACTIONS.AMO_IGNORE]
             )
 
         for (
@@ -2613,43 +2617,49 @@ class TestContentDecision(TestCase):
             override_of=second_decision,
         )
 
-        action_existing_to_class = {}
         action_date = datetime.now()
-        for action in DECISION_ACTIONS.REMOVING.values:
-            for approve_action in (
+        for overridden_action in DECISION_ACTIONS.REMOVING.values:
+            for new_action in (
                 DECISION_ACTIONS.AMO_APPROVE,
                 DECISION_ACTIONS.AMO_APPROVE_VERSION,
                 DECISION_ACTIONS.AMO_IGNORE,
             ):
-                action_existing_to_class[
-                    (approve_action, action, action_date, None)
-                ] = ContentActionOverrideApprove
-
-                # But if there is no action_date the override is ignored
-                action_existing_to_class[(approve_action, action, None, None)] = (
-                    CONTENT_ACTION_FROM_DECISION_ACTION[approve_action]
+                current_decision.update(action=new_action)
+                # The most recent carried-out decision in the override chain is
+                # the one being overridden (and reversed).
+                second_decision.update(
+                    action=overridden_action, action_date=action_date
                 )
+                first_decision.update(action=overridden_action, action_date=None)
+                helper = current_decision.get_action_helper()
+                # The helper always matches the *new* action; the overridden
+                # action is reversed separately in reverse_overridden_action.
+                assert (
+                    helper.__class__ == CONTENT_ACTION_FROM_DECISION_ACTION[new_action]
+                )
+                assert current_decision.get_overridden_decision() == second_decision
 
-                # Previous decisions are also considered though
-                action_existing_to_class[
-                    (approve_action, action, None, action_date)
-                ] = ContentActionOverrideApprove
+                # If the most recent decision wasn't carried out, we walk further
+                # up the chain to find the one that was.
+                second_decision.update(action_date=None)
+                first_decision.update(action_date=action_date)
+                assert current_decision.get_overridden_decision() == first_decision
 
-        for (
-            new_action,
-            overridden_action,
-            second_decision_date,
-            first_decision_date,
-        ), ActionClass in action_existing_to_class.items():
-            current_decision.update(action=new_action)
-            second_decision.update(
-                action=overridden_action, action_date=second_decision_date
-            )
-            first_decision.update(
-                action=overridden_action, action_date=first_decision_date
-            )
+                # And if nothing in the chain was carried out, nothing is
+                # considered overridden.
+                first_decision.update(action_date=None)
+                assert current_decision.get_overridden_decision() is None
 
-            assert current_decision.get_action_helper().__class__ == ActionClass
+        # Overriding a takedown with the same takedown re-affirms it: the helper
+        # still matches the action, but the reporter isn't notified again.
+        second_decision.update(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON, action_date=action_date
+        )
+        current_decision.update(action=DECISION_ACTIONS.AMO_DISABLE_ADDON)
+        helper = current_decision.get_action_helper()
+        assert helper.__class__ == ContentActionDisableAddon
+        assert helper.reporter_template_path is None
+        assert helper.reporter_appeal_template_path is None
 
     def _test_appeal_as_target(self, *, resolvable_in_reviewer_tools, expected_queue):
         addon = addon_factory(

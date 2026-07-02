@@ -33,7 +33,6 @@ from olympia.versions.models import Version, VersionReviewerFlags
 
 from .actions import (
     CONTENT_ACTION_FROM_DECISION_ACTION,
-    ContentActionOverrideApprove,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -1142,21 +1141,31 @@ class ContentDecision(ModelBase):
         else:
             return DECISION_SOURCES.TASKUS
 
-    def get_action_helper(self):
-        # Base case when it's a new decision, that wasn't an appeal
-        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
-        skip_reporter_notify = False
+    def get_overridden_decision(self):
+        """Return the decision this one overrides (the most recent one in the
+        override chain that was actually carried out), or None."""
 
-        def find_overridden_action(override_of):
+        def find_overridden_decision(override_of):
             if not override_of:
                 return None
             return (
-                override_of.action
+                override_of
                 if override_of.action_date
-                else find_overridden_action(override_of.override_of)
+                else find_overridden_decision(override_of.override_of)
             )
 
-        overridden_action = find_overridden_action(self.override_of)
+        return find_overridden_decision(self.override_of)
+
+    def get_action_helper(self):
+        # Base case when it's a new decision, that wasn't an appeal: the action
+        # helper always matches the (real) action of the decision. For overrides
+        # the new action is applied normally; the *previous* action is reversed
+        # separately in reverse_overridden_action() (reverse-then-apply).
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        skip_reporter_notify = False
+
+        overridden_decision = self.get_overridden_decision()
+        overridden_action = getattr(overridden_decision, 'action', None)
         appealed_action = (
             getattr(self.cinder_job.appealed_decisions.first(), 'action', None)
             if self.cinder_job
@@ -1174,14 +1183,11 @@ class ContentDecision(ModelBase):
                     ContentActionClass = ContentActionTargetAppealRemovalAffirmation
             # (a reporter appeal doesn't need any alternate ContentAction class)
 
-        elif overridden_action in DECISION_ACTIONS.REMOVING:
-            # override on a decision that was a takedown before, and wasn't an appeal
-            if self.action in DECISION_ACTIONS.NON_OFFENDING:
-                ContentActionClass = ContentActionOverrideApprove
-            if self.action == overridden_action:
-                # For an override that is still a takedown we can send the same emails
-                # to the target; but we don't want to notify the reporter again.
-                skip_reporter_notify = True
+        elif overridden_action and self.action == overridden_action:
+            # An override that re-affirms the same action: no reversal will take
+            # place (see reverse_overridden_action), we just re-apply it. We send
+            # the same emails to the target but don't notify the reporter again.
+            skip_reporter_notify = True
 
         cinder_action = ContentActionClass(decision=self)
         if skip_reporter_notify:
@@ -1369,6 +1375,29 @@ class ContentDecision(ModelBase):
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             self.update(cinder_id=decision_cinder_id)
 
+    def reverse_overridden_action(self):
+        """When this decision overrides a previous one, reverse the effects of
+        the overridden action (and its follow-up actions) before the new action
+        is applied - i.e. reverse-then-apply.
+
+        Nothing is reversed if there is no overridden decision, or if the new
+        action is the same as the overridden one (in which case we're just
+        re-affirming it and reversing would needlessly flap the target)."""
+        overridden = self.get_overridden_decision()
+        if not overridden or overridden.action == self.action:
+            return None
+
+        OverriddenActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[overridden.action]
+        log_entry = OverriddenActionClass.reverse_action(
+            reversed_decision=overridden, new_decision=self
+        )
+        # Reverse any follow-up actions (e.g. delayed blocks) of the overridden
+        # decision too.
+        for followup in overridden.followup_actions.filter(action_date__isnull=False):
+            FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[followup.action]
+            FollowUpActionClass.reverse_action(reversed_decision=followup.decision)
+        return log_entry
+
     def execute_action(self, *, release_hold=False):
         """Execute the action for the decision, if not already carried out.
         The action may be held for 2nd level approval.
@@ -1379,6 +1408,9 @@ class ContentDecision(ModelBase):
             if release_hold or not action_helper.should_hold_action():
                 # We set the action_date because .can_be_appealed depends on it
                 self.action_date = datetime.now()
+                # If this decision overrides a previous one, reverse the previous
+                # action first, then apply the new action below.
+                self.reverse_overridden_action()
                 log_entry = action_helper.process_action(release_hold=release_hold)
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date',))

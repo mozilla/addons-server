@@ -31,7 +31,7 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
-from ..forms import HeldDecisionReviewForm, ReviewForm, ReviewQueueFilter
+from ..forms import DecisionField, HeldDecisionReviewForm, ReviewForm, ReviewQueueFilter
 from ..models import AutoApprovalSummary, NeedsHumanReview
 from ..utils import ReviewHelper
 
@@ -253,6 +253,97 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid(), form.errors
         assert not form.errors
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_cannot_resolve_jobs_and_override_decision(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        data = {
+            'action': 'review_with_policy',
+            'cinder_jobs_to_resolve': [job.id],
+            'cinder_policies': [policy.id],
+            'override_decision': decision.id,
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_jobs_to_resolve': [
+                'Cannot resolve jobs while overriding a previous decision.'
+            ]
+        }
+
+    def test_override_decision_queryset(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        # A decision for this add-on that hasn't been overridden: included.
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        # A decision for this add-on that has already been overridden: excluded,
+        # but the decision overriding it (also for this add-on) is included.
+        overridden_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        overriding_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=overridden_decision,
+        )
+        # A decision for a different add-on: excluded.
+        ContentDecision.objects.create(
+            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+
+        form = self.get_form()
+        assert set(form.fields['override_decision'].queryset) == {
+            decision,
+            overriding_decision,
+        }
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_can_only_use_override_enforcement_action_with_override(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            name='ok',
+            expose_in_reviewer_tools=True,
+            enforcement_actions=[DECISION_ACTIONS.AMO_OVERRIDE_REVERSE.api_value],
+        )
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        data = {
+            'action': 'review_with_policy_approve',
+            'cinder_policies': [policy.id],
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_policies': [
+                'Selecting a policy with Override Reverse previous actions '
+                'requires selecting a previous decision to override.'
+            ]
+        }
+        # But you can if a decision to override is specified
+        data['override_decision'] = decision.id
+        form = self.get_form(data=data)
+        assert form.is_valid()
 
     def test_comments_optional_for_actions_with_enforcement_actions(self):
         policy = CinderPolicy.objects.create(
@@ -1787,3 +1878,55 @@ def test_review_queue_filter_form_due_date_reasons():
     assert form.fields['due_date_reasons'].choices == [
         (entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS
     ]
+
+
+class TestDecisionFieldLabel(TestCase):
+    def _make_field(self):
+        return DecisionField(queryset=ContentDecision.objects.all())
+
+    def test_label_version_specific(self):
+        """VERSION_SPECIFIC actions include version info; truncate beyond 5."""
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+        )
+        field = self._make_field()
+
+        # No versions yet - no version info in label
+        assert 'versions' not in field.label_from_instance(decision)
+
+        # Add 2 versions - both shown, no truncation
+        v1 = version_factory(addon=addon, version='1.0')
+        v2 = version_factory(addon=addon, version='2.0')
+        decision.target_versions.add(v1, v2)
+        label = field.label_from_instance(decision)
+        assert 'versions: ' in label
+        assert 'more' not in label
+
+        # Add 5 more (7 total) - truncated with remainder
+        decision.target_versions.add(
+            *[version_factory(addon=addon, version=f'3.{i}') for i in range(5)]
+        )
+        assert 'and 2 more' in field.label_from_instance(decision)
+
+    def test_label_non_version_specific_action(self):
+        """Non-VERSION_SPECIFIC actions never include version info."""
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        decision.target_versions.add(version_factory(addon=addon))
+        assert 'versions' not in self._make_field().label_from_instance(decision)
+
+    def test_label_held_decision(self):
+        """Held decisions (no action_date) are prefixed with [HELD]."""
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=None,
+        )
+        assert self._make_field().label_from_instance(decision).startswith('[HELD] ')
