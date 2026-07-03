@@ -8401,6 +8401,32 @@ class TestAddonPendingAuthorViewSet(TestCase):
             ]
         }
 
+    def test_sender_validation(self):
+        # not allowed to send an invitation if not an author, even with elevated permissions
+        user = user_factory(email='reviewer@mozilla.com', display_name='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        response = self.client.post(
+            self.list_url, data={'user_id': user.id, 'role': 'developer'}
+        )
+        assert response.status_code == 403, response.content
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        self.grant_permission(user, '*:*')
+        response = self.client.post(
+            self.list_url, data={'user_id': user.id, 'role': 'developer'}
+        )
+        assert response.status_code == 403, response.content
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        # but the author can send, even if they have elevated permissions themselves
+        self.client.login_api(self.user)
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 201
+
     def test_update_role(self):
         self.client.login_api(self.user)
         response = self.client.patch(self.detail_url, {'role': 'developer'})

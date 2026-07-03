@@ -46,7 +46,7 @@ from olympia.api.authentication import (
 )
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer,
-    AllowUnlistedViewerOrReviewerReadOnly,
+    AllowUnlistedViewerOrReviewer,
     GroupPermission,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
@@ -1057,7 +1057,7 @@ class AddonReviewerViewSet(GenericViewSet):
     @drf_action(
         detail=True,
         methods=['post'],
-        permission_classes=[AllowUnlistedViewerOrReviewerReadOnly],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def subscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
@@ -1069,7 +1069,7 @@ class AddonReviewerViewSet(GenericViewSet):
     @drf_action(
         detail=True,
         methods=['post'],
-        permission_classes=[AllowUnlistedViewerOrReviewerReadOnly],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def unsubscribe_unlisted(self, request, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
