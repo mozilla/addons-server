@@ -413,7 +413,7 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
         if BADGED_API_NAME in values:
             values = [
                 *(value for value in values if value != BADGED_API_NAME),
-                *BADGED_GROUPS
+                *BADGED_GROUPS,
             ]
         return values
 

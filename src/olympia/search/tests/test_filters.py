@@ -187,11 +187,7 @@ class TestQueryFilter(FilterTestsBase):
             'weight': 4.0,
         }
         assert functions[2] == {
-            'filter': {
-                'terms': {
-                    'promoted.category': BADGED_GROUPS
-                }
-            },
+            'filter': {'terms': {'promoted.category': BADGED_GROUPS}},
             'weight': 5.0,
         }
         return qs
@@ -698,11 +694,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
-        assert {
-            'terms': {
-                'promoted.category': BADGED_GROUPS
-            }
-        } in filter_
+        assert {'terms': {'promoted.category': BADGED_GROUPS}} in filter_
 
     @patch(
         'olympia.search.filters.switch_is_active',
@@ -715,11 +707,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
-        assert {
-            'terms': {
-                'promoted.category': BADGED_GROUPS
-            }
-        } not in filter_
+        assert {'terms': {'promoted.category': BADGED_GROUPS}} not in filter_
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -946,13 +934,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         # test multiple param values
         qs = self._filter(data={'promoted': 'recommended,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [
-            {
-                'terms': {
-                    'promoted.category': ['recommended', 'line']
-                }
-            }
-        ] == filter_
+        assert [{'terms': {'promoted.category': ['recommended', 'line']}}] == filter_
 
         # test combining multiple values with the meta "badged" group
         qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
@@ -962,7 +944,9 @@ class TestSearchParameterFilter(FilterTestsBase):
                 'terms': {
                     'promoted.category': [
                         # recommended shouldn't be there twice
-                        'recommended', 'line', 'strategic'
+                        'recommended',
+                        'line',
+                        'strategic',
                     ]
                 }
             }
