@@ -56,7 +56,9 @@ class PromotedGroup(models.Model):
         max_length=255, help_text='Human-readable name for the promotion group.'
     )
     api_name = models.CharField(
-        max_length=100, help_text='Programmatic API name for the promotion group.'
+        max_length=100,
+        help_text='Programmatic API name for the promotion group.',
+        unique=True,
     )
     search_ranking_bump = models.FloatField(
         help_text=(
