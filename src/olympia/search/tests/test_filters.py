@@ -186,10 +186,7 @@ class TestQueryFilter(FilterTestsBase):
             },
             'weight': 4.0,
         }
-        assert functions[2] == {
-            'filter': {'terms': {'promoted.category': BADGED_GROUPS}},
-            'weight': 5.0,
-        }
+        assert functions[2] == {'field_value_factor': {'field': 'ranking_bump'}}
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):

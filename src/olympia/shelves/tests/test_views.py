@@ -16,7 +16,7 @@ from olympia.amo.tests import (
     reverse_ns,
 )
 from olympia.bandwagon.models import CollectionAddon
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.hero.models import PrimaryHero, SecondaryHero, SecondaryHeroModule
 from olympia.hero.serializers import (
     PrimaryHeroShelfSerializer,
@@ -69,7 +69,11 @@ class TestShelfViewSet(ESTestCase):
             summary=None,
         )
 
-        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        group, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME,
+            name='Recommended',
+            listed_pre_review=True,
+        )
         PromotedAddon.objects.create(
             addon=addon_ext, promoted_group=group, application_id=amo.FIREFOX.id
         )

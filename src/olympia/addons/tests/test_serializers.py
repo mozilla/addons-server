@@ -63,7 +63,7 @@ from olympia.constants.licenses import (
     LICENSES_BY_BUILTIN,
 )
 from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
+    RECOMMENDED_API_NAME,
 )
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import (
@@ -538,7 +538,12 @@ class AddonSerializerOutputTestMixin:
 
     def test_is_featured(self):
         # As we've dropped featuring, we're faking it with recommended status
-        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.addon = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
         result = self.serialize()
 
         assert 'is_featured' not in result
@@ -554,11 +559,16 @@ class AddonSerializerOutputTestMixin:
 
     def test_promoted(self):
         # With a promoted extension.
-        self.addon = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.addon = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
 
         result = self.serialize()
         promoted = result['promoted'][0]
-        assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+        assert promoted['category'] == RECOMMENDED_API_NAME
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
         # With a specific application approved.
@@ -569,32 +579,25 @@ class AddonSerializerOutputTestMixin:
         assert result['promoted'][0]['apps'] == [amo.FIREFOX.short]
 
         # Test multiple promotions.
+        line_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='line', name='By Firefox', listed_pre_review=True
+        )
         PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.LINE
-            ),
+            promoted_group=line_group,
             application_id=amo.FIREFOX.id,
         )
         self.addon.approve_for_version(self.addon.current_version)
         result = self.serialize()
         assert len(result['promoted']) == 2
-        assert (
-            result['promoted'][0]['category']
-            == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
-        )
-        assert (
-            result['promoted'][1]['category'] == PROMOTED_GROUP_CHOICES.LINE.api_value
-        )
+        assert result['promoted'][0]['category'] == RECOMMENDED_API_NAME
+        assert result['promoted'][1]['category'] == 'line'
 
         # Directly returns first promotion in v3, v4
         gates = {self.request.version: ('promoted-groups-shim',)}
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
-            assert (
-                result['promoted']['category']
-                == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
-            )
+            assert result['promoted']['category'] == RECOMMENDED_API_NAME
 
         # With a recommended theme.
         PromotedAddon.objects.filter(addon=self.addon).delete()
@@ -606,11 +609,15 @@ class AddonSerializerOutputTestMixin:
 
         result = self.serialize()
         promoted = result['promoted'][0]
-        assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+        assert promoted['category'] == RECOMMENDED_API_NAME
         assert promoted['apps'] == [app.short for app in amo.APP_USAGE]
 
     def test_promoted_shim(self):
-        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        group, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME,
+            name='Recommended',
+            listed_pre_review=True,
+        )
         self.addon = addon_factory()
 
         PromotedAddon.objects.create(
@@ -631,16 +638,22 @@ class AddonSerializerOutputTestMixin:
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             promoted = result['promoted']
-            assert promoted['category'] == PROMOTED_GROUP_CHOICES.RECOMMENDED.api_value
+            assert promoted['category'] == RECOMMENDED_API_NAME
             assert promoted['apps'] == [amo.FIREFOX.short]
 
     def test_private_promoted_api_hidden(self):
-        for group in PromotedGroup.objects.filter(is_public=False):
-            self.addon = addon_factory(promoted_id=group.group_id)
-            result = self.serialize()
-            assert not result['promoted']
-            # But still promoted
-            assert group.group_id in self.addon.promoted_groups().group_id
+        self.addon = addon_factory(
+            promoted_kwargs={
+                'api_name': 'private-group',
+                'name': 'Private group',
+                'listed_pre_review': True,
+                'is_public': False,
+            }
+        )
+        result = self.serialize()
+        assert not result['promoted']
+        # But still promoted
+        assert 'private-group' in self.addon.promoted_groups().api_name
 
     def test_translations(self):
         translated_descriptions = {

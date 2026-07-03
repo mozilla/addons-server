@@ -41,7 +41,7 @@ def add_high_adu_extensions_to_notable():
     log.info(
         'Starting adding %s addons to %s',
         count,
-        notable_group.api_value,
+        notable_group.api_name,
     )
     for addon_id, addon_slug, adu in addons_ids_and_slugs:
         due_date = next(due_date_generator)
@@ -55,7 +55,7 @@ def add_high_adu_extensions_to_notable():
                     'With addon id[%s], attempt to overwrite %s with %s. Skipping',
                     addon_id,
                     [promo.group.name for promo in promotions],
-                    notable_group.api_value,
+                    notable_group.api_name,
                 )
             else:
                 raise PromotedAddon.DoesNotExist
@@ -76,6 +76,6 @@ def add_high_adu_extensions_to_notable():
             addon_id,
             addon_slug,
             adu,
-            notable_group.api_value,
+            notable_group.api_name,
         )
-    log.info('Done adding %s addons to %s', count, notable_group.api_value)
+    log.info('Done adding %s addons to %s', count, notable_group.api_name)

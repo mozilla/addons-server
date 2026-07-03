@@ -26,7 +26,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import BlockVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import WEBHOOK, WEBHOOK_DURING_VALIDATION
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import (
@@ -1175,20 +1174,20 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=self.addon, api_name='recommended', listed_pre_review=True
         )
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
-        )  # STRATEGIC isn't prereview
+            addon=self.addon, api_name='strategic'
+        )  # strategic isn't prereview
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
-        )  # LINE is though
+            addon=self.addon, api_name='line', listed_pre_review=True
+        )  # line is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
@@ -1196,8 +1195,11 @@ class TestAutoApprovalSummary(TestCase):
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-        )  # NOTABLE is
+            addon=self.addon,
+            api_name='notable',
+            listed_pre_review=True,
+            unlisted_pre_review=True,
+        )  # notable is
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_LISTED)  # and for listed too

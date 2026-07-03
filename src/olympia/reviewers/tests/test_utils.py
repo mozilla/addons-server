@@ -38,7 +38,6 @@ from olympia.amo.tests import (
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.lib.crypto.signing import SigningError
 from olympia.lib.crypto.tests.test_signing import (
@@ -316,11 +315,21 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # Now make add a recommended promoted addon. The user should lose all
-        # approve/reject actions (they are no longer considered an
-        # "appropriate" reviewer for that add-on).
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        expected = ['reply', 'comment']
+        # Now add a recommended promoted addon. It's a listed pre-review group
+        # so the individual approve/reject actions aren't offered, but the
+        # multiple-versions and confirm actions still are for an
+        # Addons:Review holder.
+        self.make_addon_promoted(
+            self.addon, api_name='recommended', listed_pre_review=True, badged=True
+        )
+        expected = [
+            'confirm_auto_approved',
+            'reject_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'request_legal_review',
+            'comment',
+        ]
         assert (
             list(
                 self.get_review_actions(
@@ -476,181 +485,6 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-    def test_actions_recommended(self):
-        # Having Addons:Review is not enough to review
-        # recommended extensions.
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        self.grant_permission(self.user, 'Addons:Review')
-        expected = ['reply', 'comment']
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
-                ).keys()
-            )
-            == expected
-        )
-
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_NOMINATED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # Having Addons:RecommendedReview allows you to do it.
-        self.grant_permission(self.user, 'Addons:RecommendedReview')
-        expected = [
-            'public',
-            'reject',
-            'reject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
-            'reply',
-            'request_legal_review',
-            'comment',
-        ]
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-    def test_actions_recommended_content_review(self):
-        # Having Addons:ContentReview is not enough to content review
-        # recommended extensions.
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        self.grant_permission(self.user, 'Addons:ContentReview')
-        expected = ['reply', 'comment']
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_APPROVED,
-                    content_review=True,
-                ).keys()
-            )
-            == expected
-        )
-
-        # Having Addons:RecommendedReview allows you to do it (though you'd
-        # be better off just do a full review).
-        self.grant_permission(self.user, 'Addons:RecommendedReview')
-        expected = [
-            'approve_listing_content',
-            'reject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
-            'reply',
-            'request_legal_review',
-            'comment',
-        ]
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_APPROVED,
-                    content_review=True,
-                ).keys()
-            )
-            == expected
-        )
-
-    def test_actions_promoted_admin_review_needs_admin_permission(self):
-        # Having Addons:Review or Addons:RecommendedReview
-        # is not enough to review promoted addons that are in a group that is
-        # admin_review=True.
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
-        self.grant_permission(self.user, 'Addons:Review')
-        expected = ['comment']
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
-                ).keys()
-            )
-            == expected
-        )
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # only for groups that are admin_review though
-        self.addon.promotedaddon.all().delete()
-        self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.NOTABLE, approve_version=True
-        )
-        expected = [
-            'public',
-            'reject',
-            'reject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
-            'reply',
-            'request_legal_review',
-            'comment',
-        ]
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # change it back to an admin_review group
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-
-        self.grant_permission(self.user, 'Addons:RecommendedReview')
-        expected = ['comment']
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
-        # You need admin review permission. Also because it's a promoted add-on
-        # despite being admin you don't get the enable/disable auto-approval
-        # action.
-        self.grant_permission(self.user, 'Reviews:Admin')
-        expected = [
-            'public',
-            'reject',
-            'reject_multiple_versions',
-            'change_or_clear_pending_rejection_multiple_versions',
-            'clear_needs_human_review_multiple_versions',
-            'set_needs_human_review_multiple_versions',
-            'reply',
-            'disable_addon',
-            'request_legal_review',
-            'comment',
-        ]
-        assert (
-            list(
-                self.get_review_actions(
-                    addon_status=amo.STATUS_APPROVED,
-                    file_status=amo.STATUS_AWAITING_REVIEW,
-                ).keys()
-            )
-            == expected
-        )
-
     def test_actions_unlisted(self):
         # Just regular review permissions don't let you do much on an unlisted
         # review page.
@@ -689,7 +523,9 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
         # unlisted shouldn't be affected by promoted group status either
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(
+            self.addon, api_name='line', listed_pre_review=True, admin_review=True
+        )
         assert (
             list(
                 self.get_review_actions(
@@ -2347,7 +2183,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.grant_permission(self.user, 'Addons:Review')
         self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            addon=self.addon, api_name='notable', listed_pre_review=True
         )
         self.create_paths()
 
@@ -2359,7 +2195,7 @@ class TestReviewHelper(TestReviewHelperBase):
         self.helper.handler.confirm_auto_approved()
 
         self.addon.reload()
-        assert PROMOTED_GROUP_CHOICES.NOTABLE in self.addon.promoted_groups().group_id
+        assert 'notable' in self.addon.promoted_groups().api_name
 
     def test_addon_with_version_need_human_review_confirm_auto_approval(self):
         NeedsHumanReview.objects.create(version=self.addon.current_version)
@@ -3636,50 +3472,50 @@ class TestReviewHelper(TestReviewHelperBase):
         )
 
     def test_nominated_to_approved_recommended(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon, api_name='recommended', listed_pre_review=True
+        )
         assert not self.addon.promoted_groups()
         self.test_nomination_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='recommended'
         ).exists()
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
-        )
+        assert 'recommended' in self.addon.promoted_groups().api_name
 
     def test_nominated_to_approved_other_promoted(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(self.addon, api_name='line', listed_pre_review=True)
         assert not self.addon.promoted_groups()
         self.test_nomination_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE
+            promoted_group__api_name='line'
         ).exists()
-        assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
+        assert 'line' in self.addon.promoted_groups().api_name
 
     def test_approved_update_recommended(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon, api_name='recommended', listed_pre_review=True
+        )
         assert not self.addon.promoted_groups()
         self.test_public_addon_with_version_awaiting_review_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='recommended'
         ).exists()
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
-        )
+        assert 'recommended' in self.addon.promoted_groups().api_name
 
     def test_approved_update_other_promoted(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(self.addon, api_name='line', listed_pre_review=True)
         assert not self.addon.promoted_groups()
         self.test_public_addon_with_version_awaiting_review_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE
+            promoted_group__api_name='line'
         ).exists()
-        assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
+        assert 'line' in self.addon.promoted_groups().api_name
 
     def test_autoapprove_promoted(self):
-        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        group.listed_pre_review = False
-        group.save()
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        # Non-pre-review group (listed_pre_review defaults to False), so the
+        # task user is allowed to auto-approve the version.
+        self.make_addon_promoted(self.addon, api_name='a-non-pre-review-group')
+        group = PromotedGroup.objects.get(api_name='a-non-pre-review-group')
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
         self.test_nomination_to_public()
@@ -3693,11 +3529,9 @@ class TestReviewHelper(TestReviewHelperBase):
         assert group in self.addon.promoted_groups()
 
     def test_autoapprove_promoted_notable(self):
-        # as above with notable
-        group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
-        group.listed_pre_review = False
-        group.save()
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
+        # as above with another non-pre-review group
+        self.make_addon_promoted(self.addon, api_name='another-non-pre-review-group')
+        group = PromotedGroup.objects.get(api_name='another-non-pre-review-group')
         self.user = UserProfile.objects.get(id=settings.TASK_USER_ID)
 
         self.test_nomination_to_public()
@@ -5089,7 +4923,15 @@ class TestReviewHelperSigning(TestReviewHelperBase):
     def test_nominated_to_public_recommended(self):
         self.setup_data(amo.STATUS_NOMINATED)
 
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon,
+            api_name='recommended',
+            listed_pre_review=True,
+            autograph_signing_states={
+                'firefox': 'recommended',
+                'android': 'recommended-android',
+            },
+        )
         assert not self.addon.promoted_groups()
 
         self.helper.handler.approve_latest_version()
@@ -5098,11 +4940,9 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
 
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='recommended'
         ).exists()
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
-        )
+        assert 'recommended' in self.addon.promoted_groups().api_name
 
         signature_info, manifest = _get_signature_details(self.file.file.path)
 

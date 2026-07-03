@@ -3,7 +3,7 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, user_factory
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.discovery.models import DiscoveryItem
 
 
@@ -281,12 +281,14 @@ class TestDiscoveryItemViewSet(TestCase):
 
         self.make_addon_promoted(
             addon=self.items[0].addon,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             approve_version=True,
         )
         self.make_addon_promoted(
             addon=self.items[2].addon,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             approve_version=True,
         )
         with self.assertNumQueries(1):

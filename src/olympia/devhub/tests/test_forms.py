@@ -29,7 +29,7 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.tags.models import AddonTag, Tag
@@ -481,7 +481,11 @@ class TestCompatForm(TestCase):
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name=RECOMMENDED_API_NAME,
+            name='Recommended',
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         del self.addon.publicly_promoted_groups  # Reset property
         data = None

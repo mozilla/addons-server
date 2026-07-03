@@ -6,7 +6,7 @@ from django.test.utils import override_settings
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.hero.models import (
     PrimaryHero,
     PrimaryHeroImage,
@@ -43,9 +43,31 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_requires_approved_can_primary_hero_group(self):
         addon = addon_factory()
-        promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        # The error message below lists every active can_primary_hero group by
+        # name, so create the three that can be added to a primary shelf.
+        recommended_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='recommended',
+            name='Recommended',
+            can_primary_hero=True,
+            active=True,
+            listed_pre_review=True,
         )
+        PromotedGroup.objects.get_or_create(
+            api_name='line',
+            name='By Firefox',
+            can_primary_hero=True,
+            active=True,
+        )
+        spotlight_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='spotlight',
+            name='Spotlight',
+            can_primary_hero=True,
+            active=True,
+        )
+        strategic_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='strategic', name='Strategic', can_primary_hero=False
+        )
+        promoted_group = recommended_group
         promotion = PromotedAddon.objects.create(
             addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
         )
@@ -64,19 +86,17 @@ class TestPrimaryHero(TestCase):
         ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in ph.addon.promoted_groups().group_id
+        assert 'recommended' in ph.addon.promoted_groups().api_name
         ph.clean()  # it raises if there's an error
 
         # change to a different group
-        promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
-        )
+        promoted_group = strategic_group
         promotion.update(promoted_group=promoted_group)
         promotion.reload()
         ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert PROMOTED_GROUP_CHOICES.STRATEGIC in ph.addon.promoted_groups().group_id
+        assert 'strategic' in ph.addon.promoted_groups().api_name
         with self.assertRaises(ValidationError) as context:
             # STRATEGIC isn't a group that can be added as a primary hero
             ph.clean()
@@ -86,15 +106,13 @@ class TestPrimaryHero(TestCase):
         ]
 
         # change to a different group that *can* be added as a primary hero
-        promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        promoted_group = spotlight_group
         promotion.update(promoted_group=promoted_group)
         promotion.reload()
         ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in ph.addon.promoted_groups().group_id
+        assert 'spotlight' in ph.addon.promoted_groups().api_name
         ph.clean()  # it raises if there's an error
 
     def test_clean_external_requires_homepage(self):
@@ -117,8 +135,8 @@ class TestPrimaryHero(TestCase):
     def test_clean_gradient_and_image(self):
         # Currently, gradient is required and image isn't.
         addon = addon_factory()
-        recommended_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        recommended_group, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME, name='Recommended', can_primary_hero=True
         )
         PromotedAddon.objects.create(
             addon=addon, promoted_group=recommended_group, application_id=amo.FIREFOX.id
@@ -145,8 +163,8 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_only_enabled(self):
         addon = addon_factory()
-        promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        promoted_group, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME, name='Recommended', can_primary_hero=True
         )
         PromotedAddon.objects.create(
             addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id

@@ -17,7 +17,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import NOTABLE_API_NAME, RECOMMENDED_API_NAME
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -2011,7 +2011,7 @@ class TestRunQueryRuleMixin:
 
     def test_exclude_promoted_addons(self):
         self.make_addon_promoted(
-            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            self.version.addon, api_name=NOTABLE_API_NAME, listed_pre_review=True
         )
         self.rule.update(exclude_promoted_addons=True, state=SCHEDULED)
         run_scanner_query_rule.delay(self.rule.pk)
@@ -2202,7 +2202,7 @@ class TestRunQueryRuleMixin:
     def test_run_on_chunk_was_promoted(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         self.make_addon_promoted(
-            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.version.addon, api_name=RECOMMENDED_API_NAME, listed_pre_review=True
         )
         run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 

@@ -1,10 +1,8 @@
-from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants import applications
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -17,9 +15,7 @@ class TestPromotedGroupManager(TestCase):
         self.addon: Addon = addon_factory()
         self.application_id = applications.FIREFOX.id
 
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.promotion = PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=self.promoted_group,
@@ -46,9 +42,7 @@ class TestPromotedGroupManager(TestCase):
 
     def test_promoted_group_non_pre_reviewed(self):
         # alternatively, addon has a non-pre-reviewed promoted group
-        strategic_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
-        )
+        strategic_group = PromotedGroup.objects.get(api_name='strategic')
         self.promotion.promoted_group = strategic_group
         self.promotion.save()
         assert strategic_group in PromotedGroup.objects.approved_for(self.addon)
@@ -81,16 +75,12 @@ class TestPromotedGroupQuerySet(TestCase):
         self.addon = addon_factory()
         self.promotion1 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name='notable'),
             application_id=applications.FIREFOX.id,
         )
         self.promotion2 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
             application_id=applications.FIREFOX.id,
         )
 
@@ -105,17 +95,6 @@ class TestPromotedGroupQuerySet(TestCase):
 
 
 class TestPromotedGroup(TestCase):
-    def test_deactived_group_ids_raise(self):
-        for group in PROMOTED_GROUP_CHOICES:
-            if group in PROMOTED_GROUP_CHOICES.ACTIVE:
-                continue
-            with self.assertRaises(ValidationError):
-                PromotedGroup.objects.create(
-                    group_id=group.value,
-                    name='Test',
-                    api_name='test',
-                )
-
     def test_str_method(self):
         # Ensure the __str__ method returns the name
         for pg in PromotedGroup.objects.all():
@@ -125,9 +104,7 @@ class TestPromotedGroup(TestCase):
 class TestPromotedAddon(TestCase):
     def setUp(self):
         self.addon: Addon = addon_factory()
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.application_id = applications.FIREFOX.id
         self.required_fields = {
             'addon': self.addon,
@@ -205,9 +182,7 @@ class TestPromotedAddon(TestCase):
 class TestPromotedApproval(TestCase):
     def setUp(self):
         self.addon = addon_factory()
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.application_id = applications.FIREFOX.id
         self.required_fields = {
             'promoted_group': self.promoted_group,

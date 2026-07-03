@@ -6,7 +6,7 @@ import time_machine
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.models import PromotedGroup
 from olympia.reviewers.cron import record_reviewer_queues_counts
 from olympia.reviewers.models import NeedsHumanReview, QueueCount
 from olympia.reviewers.views import reviewer_tables_registry
@@ -18,8 +18,8 @@ class TestQueueCount(TestCase):
 
     def _test_expected_count(self, date):
         # We are recording every queue, plus drilling down in every promoted group
-        expected_count = len(reviewer_tables_registry) + len(
-            PROMOTED_GROUP_CHOICES.ACTIVE
+        expected_count = (
+            len(reviewer_tables_registry) + PromotedGroup.objects.active().count()
         )
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
@@ -48,21 +48,33 @@ class TestQueueCount(TestCase):
         )
         self.addon_recommended_1 = addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'recommended',
+                'listed_pre_review': True,
+                'active': True,
+            },
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },
         )
         addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'recommended',
+                'listed_pre_review': True,
+                'active': True,
+            },
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },
         )
         addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_id=PROMOTED_GROUP_CHOICES.NOTABLE,
+            promoted_kwargs={
+                'api_name': 'notable',
+                'listed_pre_review': True,
+                'active': True,
+            },
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },

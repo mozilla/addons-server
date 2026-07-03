@@ -39,7 +39,7 @@ class PromotedGroupManager(ManagerBase):
         if not addon.current_version:
             return self.none()
         approved_promotions = addon.approved_promotions().values_list(
-            'promoted_group_pk', flat=True
+            'promoted_group_id', flat=True
         )
         return self.all_for(addon=addon).filter(id__in=approved_promotions)
 

@@ -608,7 +608,13 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             promoted_kw['name'] = promoted_kw['api_name']
         elif 'name' in promoted_kw and 'api_name' not in promoted_kw:
             promoted_kw['api_name'] = promoted_kw['name'].lower().replace(' ', '_')
-        promoted_group, _ = PromotedGroup.objects.get_or_create(**promoted_kw)
+        # api_name is unique, so key the lookup on it and only apply the
+        # remaining fields when actually creating the group. This lets tests
+        # reuse a well-known group (e.g. the seeded 'recommended'/'line') by
+        # api_name without colliding on the unique constraint.
+        promoted_group, _ = PromotedGroup.objects.get_or_create(
+            api_name=promoted_kw.pop('api_name'), defaults=promoted_kw
+        )
 
         apps_to_create = apps if apps else amo.APP_USAGE
         promotions = []

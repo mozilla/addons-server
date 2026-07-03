@@ -693,8 +693,11 @@ class AddonIndexer:
             ),
             default=1.0,
         )
-        if max_promoted_ranking_bump:
-            data['ranking_bump'] = max_promoted_ranking_bump
+        # ranking_bump is a multiplicative factor in the search ranking, so a
+        # group without a bump (or no promotion at all) must map to a neutral
+        # 1.0 rather than 0.0/absent, which would zero the score or make
+        # field_value_factor fail on the missing field.
+        data['ranking_bump'] = max_promoted_ranking_bump or 1.0
 
         data['ratings'] = {
             'average': obj.average_rating,

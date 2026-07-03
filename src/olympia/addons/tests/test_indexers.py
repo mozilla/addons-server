@@ -529,11 +529,15 @@ class TestAddonIndexer(TestCase):
 
         # Promoted extension.
         self.addon = addon_factory(
-            promoted_kwargs={'api_name': 'public-group', 'public': True}
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'is_public': True,
+                'search_ranking_bump': 5.0,
+            }
         )
         promotion_groups = self.addon.publicly_promoted_groups
         assert len(promotion_groups) == 1
-        assert promotion_groups[0].category == 'public-group'
+        assert promotion_groups[0].api_name == RECOMMENDED_API_NAME
         extracted = self._extract()
 
         assert extracted['promoted'][0]
@@ -558,15 +562,16 @@ class TestAddonIndexer(TestCase):
         # With multiple promotions
         self.make_addon_promoted(
             addon=self.addon,
-            promoted_kwargs={'api_name': 'other-public', 'public': True},
+            api_name='other-public',
+            is_public=True,
             apps=[amo.FIREFOX],
         )
         self.addon.approve_for_version()
         del self.addon.publicly_promoted_groups
         promotion_groups = self.addon.publicly_promoted_groups
         assert len(promotion_groups) == 2
-        assert promotion_groups[0].category == 'public-group'
-        assert promotion_groups[1].category == 'other-public'
+        assert promotion_groups[0].api_name == RECOMMENDED_API_NAME
+        assert promotion_groups[1].api_name == 'other-public'
         extracted = self._extract()
         assert extracted['promoted']
         assert extracted['promoted'][0]['category'] == promotion_groups[0].api_name
