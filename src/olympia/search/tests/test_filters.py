@@ -4,7 +4,6 @@ from unittest.mock import Mock, patch
 
 from django.test import SimpleTestCase
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.http import urlsafe_base64_encode
 
@@ -14,7 +13,7 @@ from rest_framework import serializers
 
 from olympia import amo
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import BADGED_GROUPS
 from olympia.search.filters import (
     AddonCreatedQueryParam,
     AddonRatingQueryParam,
@@ -190,10 +189,7 @@ class TestQueryFilter(FilterTestsBase):
         assert functions[2] == {
             'filter': {
                 'terms': {
-                    'promoted.group_id': [
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                    ]
+                    'promoted.category': BADGED_GROUPS
                 }
             },
             'weight': 5.0,
@@ -704,9 +700,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
             'terms': {
-                'promoted.group_id': [
-                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
-                ]
+                'promoted.category': BADGED_GROUPS
             }
         } in filter_
 
@@ -723,9 +717,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'terms': {'guid': ['@foobar']}} in filter_
         assert {
             'terms': {
-                'promoted.group_id': [
-                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
-                ]
+                'promoted.category': BADGED_GROUPS
             }
         } not in filter_
 
@@ -942,19 +934,14 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "featured" parameter.']
 
     def test_search_by_promoted(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'promoted': 'foo'})
-        assert context.exception.detail == ['Invalid "promoted" parameter.']
+        qs = self._filter(data={'promoted': 'foo'})
+        filter_ = qs['query']['bool']['filter']
+        assert [{'terms': {'promoted.category': ['foo']}}] == filter_
 
-        for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
-            qs = self._filter(data={'promoted': api_name})
-            filter_ = qs['query']['bool']['filter']
-            assert [{'terms': {'promoted.group_id': ids}}] == filter_
-
-            qs = self._filter(data={'promoted': api_name, 'app': 'firefox'})
-            filter_ = qs['query']['bool']['filter']
-            assert {'terms': {'promoted.group_id': ids}} in filter_
-            assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
+        qs = self._filter(data={'promoted': 'foo', 'app': 'firefox'})
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'promoted.category': ['foo']}} in filter_
+        assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
 
         # test multiple param values
         qs = self._filter(data={'promoted': 'recommended,line'})
@@ -962,10 +949,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert [
             {
                 'terms': {
-                    'promoted.group_id': [
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                    ]
+                    'promoted.category': ['recommended', 'line']
                 }
             }
         ] == filter_
@@ -976,36 +960,13 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert [
             {
                 'terms': {
-                    'promoted.group_id': [
+                    'promoted.category': [
                         # recommended shouldn't be there twice
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                        PROMOTED_GROUP_CHOICES.STRATEGIC,
+                        'recommended', 'line', 'strategic'
                     ]
                 }
             }
         ] == filter_
-
-    def test_search_by_promoted_obsolete_groups(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            with override_settings(DRF_API_GATES={}):
-                self._filter(data={'promoted': 'sponsored,line'})
-        assert context.exception.detail == ['Invalid "promoted" parameter.']
-
-        # test that now obsolete groups are silently filtered out
-        overridden_api_gates = {'v5': ('promoted-verified-sponsored',)}
-        with override_settings(DRF_API_GATES=overridden_api_gates):
-            qs = self._filter(data={'promoted': 'sponsored,line'})
-        filter_ = qs['query']['bool']['filter']
-        assert [
-            {'terms': {'promoted.group_id': [PROMOTED_GROUP_CHOICES.LINE]}}
-        ] == filter_
-
-        # and repeat to check when there are no groups remaining
-        with override_settings(DRF_API_GATES=overridden_api_gates):
-            qs = self._filter(data={'promoted': 'verified'})
-        filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': []}}] == filter_
 
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})

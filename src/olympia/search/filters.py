@@ -15,7 +15,7 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import BADGED_API_NAME
+from olympia.constants.promoted import BADGED_API_NAME, BADGED_GROUPS
 from olympia.versions.compare import version_int
 
 
@@ -409,17 +409,13 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
             self.query_data = query_data
 
     def get_values(self):
-        obsolete = (
-            ('verified', 'sponsored')
-            if is_gate_active(self.request, 'promoted-verified-sponsored')
-            else ()
-        )
-        values = str(self.query_data.get(self.query_param, '')).split(',')
-        processed_values = [
-            self.process_value(value) for value in values if value not in obsolete
-        ]
-        # The values are lists of ids so flatten into a single list
-        return list({y for x in processed_values for y in x})
+        values = super().get_values()
+        if BADGED_API_NAME in values:
+            values = [
+                *(value for value in values if value != BADGED_API_NAME),
+                *BADGED_GROUPS
+            ]
+        return values
 
     def get_app(self):
         return (
