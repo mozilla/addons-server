@@ -8402,7 +8402,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         }
 
     def test_sender_validation(self):
-        # not allowed to send an invitation if not an author, even with elevated permissions
+        # cannot send invitation if not an author, even with elevated permissions
         user = user_factory(email='reviewer@mozilla.com', display_name='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
