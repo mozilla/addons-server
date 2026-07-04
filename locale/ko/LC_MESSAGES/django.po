@@ -6852,7 +6852,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:33
 msgid "All"
-msgstr ""
+msgstr "모두"
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
@@ -6868,11 +6868,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:47
 msgid "Firefox for Business"
-msgstr ""
+msgstr "기업용 Firefox"
 
 #: src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
-msgstr ""
+msgstr "기업"
 
 #: src/olympia/templates/photon-footer.html:56
 msgid "Community"
