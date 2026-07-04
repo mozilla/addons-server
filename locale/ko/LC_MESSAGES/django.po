@@ -5972,7 +5972,7 @@ msgstr "모든 확장 기능 보기"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "확장 기능 스타터 팩"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6808,7 +6808,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:16
 msgid "Community Blog"
-msgstr ""
+msgstr "커뮤니티 블로그"
 
 #: src/olympia/templates/photon-footer.html:17
 msgid "Forum"
@@ -6824,11 +6824,11 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:24
 msgid "Download"
-msgstr ""
+msgstr "다운로드"
 
 #: src/olympia/templates/photon-footer.html:27
 msgid "Download Firefox"
-msgstr ""
+msgstr "Firefox 다운로드"
 
 #: src/olympia/templates/photon-footer.html:28
 msgid "Windows"
@@ -6856,7 +6856,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:39
 msgid "Latest Builds"
-msgstr ""
+msgstr "최신 빌드"
 
 #: src/olympia/templates/photon-footer.html:42
 msgid "Nightly"
@@ -6876,7 +6876,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:56
 msgid "Community"
-msgstr ""
+msgstr "커뮤니티"
 
 #: src/olympia/templates/photon-footer.html:59
 msgid "Connect"
@@ -6884,7 +6884,7 @@ msgstr ""
 
 #: src/olympia/templates/photon-footer.html:66
 msgid "Follow"
-msgstr ""
+msgstr "팔로우"
 
 #: src/olympia/templates/photon-footer.html:69
 msgid "Instagram"
