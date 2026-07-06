@@ -440,7 +440,7 @@ class ContentActionAddon(ContentAction):
         # explicitly.
         version.reset_due_date()
 
-    def _clear_all_needs_human_review_flags_in_channel(self, channel):
+    def _clear_all_needs_human_review_flags_in_channel(self, channel=None):
         """Clear needs_human_review flags on all versions in the same channel.
 
         Doesn't clear abuse or appeal related flags.
@@ -455,7 +455,9 @@ class ContentActionAddon(ContentAction):
         # are only cleared in ContentDecision.execute_action() if the
         # reviewer has selected to resolve all jobs of that type though.
         NeedsHumanReview.objects.filter(
-            version__addon=self.target, version__channel=channel, is_active=True
+            version__addon=self.target,
+            is_active=True,
+            **({'version__channel': channel} if channel else {}),
         ).exclude(
             reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
         ).update(is_active=False)
@@ -510,15 +512,8 @@ class ContentActionDisableAddon(ContentActionAddon):
     def hold_action(self):
         self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
-            from olympia.reviewers.models import NeedsHumanReview
-
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
-            NeedsHumanReview.objects.filter(
-                version__in=self.target.versions(
-                    manager='unfiltered_for_relations'
-                ).all()
-            ).update(is_active=False)
-            self.target.update_all_due_dates()
+            self._clear_all_needs_human_review_flags_in_channel()
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
