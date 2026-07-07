@@ -21,7 +21,7 @@ class Command(BaseCommand):
         )
         for addon in addons:
             self.stdout.write(f'Promoting {addon.slug}')
-            group = PromotedGroup.objects.get(name='By Firefox')
+            group = PromotedGroup.objects.get(api_name='line')
             PromotedAddon.objects.get_or_create(
                 addon=addon,
                 application_id=amo.FIREFOX.id,
