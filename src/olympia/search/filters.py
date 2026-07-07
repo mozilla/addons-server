@@ -900,7 +900,11 @@ class SearchQueryFilter(BaseFilterBackend):
                     ),
                 }
             ),
-            query.SF('field_value_factor', field='ranking_bump'),
+            # ranking_bump is a multiplicative factor. Documents without a bump
+            # (non-promoted add-ons, or promoted groups with no search ranking
+            # bump) don't have the field indexed, so treat it as a neutral 1.0
+            # rather than letting field_value_factor fail on the missing field.
+            query.SF('field_value_factor', field='ranking_bump', missing=1),
         ]
 
         # Assemble everything together

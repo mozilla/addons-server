@@ -186,7 +186,9 @@ class TestQueryFilter(FilterTestsBase):
             },
             'weight': 4.0,
         }
-        assert functions[2] == {'field_value_factor': {'field': 'ranking_bump'}}
+        assert functions[2] == {
+            'field_value_factor': {'field': 'ranking_bump', 'missing': 1}
+        }
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
