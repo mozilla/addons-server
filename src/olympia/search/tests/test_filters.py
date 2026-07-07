@@ -933,7 +933,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         # test multiple param values
         qs = self._filter(data={'promoted': 'recommended,line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.category': ['recommended', 'line']}}] == filter_
+        assert [{'terms': {'promoted.category': ['line', 'recommended']}}] == filter_
 
         # test combining multiple values with the meta "badged" group
         qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
@@ -943,8 +943,8 @@ class TestSearchParameterFilter(FilterTestsBase):
                 'terms': {
                     'promoted.category': [
                         # recommended shouldn't be there twice
-                        'recommended',
                         'line',
+                        'recommended',
                         'strategic',
                     ]
                 }

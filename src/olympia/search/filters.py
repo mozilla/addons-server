@@ -409,12 +409,13 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
             self.query_data = query_data
 
     def get_values(self):
-        # Expand the meta "badged" group in place into its constituent groups,
-        # deduplicating while preserving order.
-        expanded = []
-        for value in super().get_values():
-            expanded.extend(BADGED_GROUPS if value == BADGED_API_NAME else [value])
-        return list(dict.fromkeys(expanded))
+        # Expand the meta "badged" group into its constituent groups if present
+        values = super().get_values()
+        processed_values = {
+            *(val for val in values if val != BADGED_API_NAME),
+            *(BADGED_GROUPS if BADGED_API_NAME in values else ()),
+        }
+        return sorted(processed_values)
 
     def get_app(self):
         return (
