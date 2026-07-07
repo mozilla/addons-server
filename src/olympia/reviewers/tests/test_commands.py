@@ -12,7 +12,13 @@ import responses
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    AbuseReport,
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionFollowupAction,
+)
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -1668,6 +1674,12 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         )
         decision.target_versions.add(self.version, another_pending_rejection)
         decision.policies.set(policies)
+        decision.followup_actions.add(
+            ContentDecisionFollowupAction.objects.create(
+                decision=decision,
+                action=DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON,
+            )
+        )
         ActivityLog.objects.for_addons(self.addon).exclude(
             id__in=[a.pk for a in activity_logs_to_keep]
         ).delete()
@@ -2024,6 +2036,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert list(new_decision.policies.all()) == [policy]
         assert 'right to appeal' in mail.outbox[0].body
         assert 'Bad stuff' in mail.outbox[0].body
+        assert 'Blocked' in mail.outbox[0].body
 
     def test_addon_locked(self):
         set_reviewing_cache(self.addon.pk, 42)

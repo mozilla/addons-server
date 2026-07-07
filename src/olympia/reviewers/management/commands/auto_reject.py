@@ -155,8 +155,10 @@ class Command(BaseCommand):
             new_decision.target_versions.set(decision_versions)
             # We copy the follow-up actions, but we don't need to re-execute them.
             ContentDecisionFollowupAction.objects.bulk_create(
-                ContentDecisionFollowupAction(decision=new_decision, action=action)
-                for action in previous_decision.followup_actions.all()
+                ContentDecisionFollowupAction(
+                    decision=new_decision, action=followup_action.action
+                )
+                for followup_action in previous_decision.followup_actions.all()
             )
             action_helper = ContentActionRejectVersionAfterDelay(decision=new_decision)
             action_helper.process_action()
