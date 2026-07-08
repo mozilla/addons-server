@@ -4774,7 +4774,7 @@ msgstr "Да ли је страница коју тражите недоступ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:810
 msgid "Hover over an image to magnify it."
-msgstr "Поместите курсор преко слике да бисте је увеличали."
+msgstr "Померите курсор преко слике да бисте је увеличали."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6027,7 +6027,7 @@ msgstr "Добијте моћни тезаурус директно у Firefox-�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Hover over web images to enlarge their appearance."
-msgstr "Поместите курсор преко веб-слика да бисте повећали њихов изглед."
+msgstr "Померите курсор преко веб-слика да бисте повећали њихов изглед."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6103,7 +6103,7 @@ msgstr "Twitch додаци"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1130 src/olympia/discovery/strings.jinja2:1132
 msgid "See staff picks"
-msgstr "Погледајте избор особљења"
+msgstr "Погледајте избор особља"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1135
@@ -6133,7 +6133,7 @@ msgstr "Приватност и безбедност"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1147
 msgid "See more privacy staff picks"
-msgstr "Погледајте још избора особљења за приватност"
+msgstr "Погледајте још избора особља за приватност"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1150
