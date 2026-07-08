@@ -13,7 +13,6 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
-from django.utils.html import format_html, format_html_join
 
 import markupsafe
 
@@ -24,7 +23,6 @@ from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
-from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
@@ -223,7 +221,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
     select elements with additional attribute to allow toggling.
     """
 
-    option_template_name = 'reviewers/includes/input_option_with_label_attrs.html'
+    option_template_name = 'reviewers/widgets/cinder_job.html'
 
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
@@ -242,14 +240,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None
         reports = obj.all_abuse_reports
-        reasons_set = {(report.REASONS(report.reason).label,) for report in reports}
-        messages_gen = (
-            (
-                (f'v[{report.addon_version}]: ' if report.addon_version else ''),
-                report.message or '<no message>',
-            )
-            for report in reports
-        )
+        reasons = {report.REASONS(report.reason).label for report in reports}
         forwarded_or_requeued_notes = (
             [
                 *(move.notes for move in queue_moves),
@@ -258,47 +249,27 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             if requeued or forwarded
             else []
         )
-        internal_notes = (
-            ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
-            if forwarded_or_requeued_notes
-            else ()
-        )
+
         appeals = (
             (
-                (appeal_obj.text, appeal_obj.reporter_report_id is not None)
+                appeal_obj
                 for appealed_decision in obj.appealed_decisions.all()
                 for appeal_obj in appealed_decision.appeals.all()
             )
             if is_reporter_appeal or is_developer_appeal
             else ()
         )
-        subtexts_gen = [
-            *internal_notes,
-            *(
-                (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
-                for text, is_reporter in appeals
-            ),
-        ]
 
-        label = format_html(
-            '(Created on {}) {}{}{}{}<br/><span>{}</span>'
-            '<details><summary>Show detail on {} reports</summary><ul>{}</ul>'
-            '</details>',
-            format_datetime(obj.created),
-            '[Appeal] ' if (is_reporter_appeal or is_developer_appeal) else '',
-            format_html('[Forwarded on {}] ', format_datetime(forwarded))
-            if forwarded
-            else '',
-            format_html('[Requeued on {}] ', format_datetime(requeued))
-            if requeued
-            else '',
-            format_html_join(', ', '"{}"', reasons_set),
-            format_html_join('', '{}<br/>', subtexts_gen),
-            len(reports),
-            format_html_join('', '<li>{}{}</li>', messages_gen),
-        )
-
-        attrs = attrs or {}
+        label = {
+            'job_created': obj.created,
+            'is_appeal': is_reporter_appeal or is_developer_appeal,
+            'forwarded_date': forwarded,
+            'requeued_date': requeued,
+            'reasons': reasons,
+            'internal_notes': forwarded_or_requeued_notes,
+            'appeals': appeals,
+            'reports': reports,
+        }
         # Reviewers shouldn't use appeal_deny to resolve "regular" jobs,
         # and conversely shouldn't use resolve_reports_job to resolve appeals,
         # as resolving appeals is a bit more involved.
@@ -319,7 +290,8 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             ]
         else:
             hide_for_these_actions = ['appeal_deny', 'appeal_override']
-        attrs['data-value'] = ' '.join(hide_for_these_actions)
+        attrs = attrs or {}
+        attrs['data_value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )

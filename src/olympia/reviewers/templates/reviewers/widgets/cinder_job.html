@@ -1,0 +1,20 @@
+<label for="{{ widget.attrs.id }}" data-value="{{ widget.attrs.data_value }}" class="{{ widget.attrs.class }}">{% include "django/forms/widgets/input.html" %}
+(Created on {{ widget.label.job_created|date:'DATETIME_FORMAT' }})
+{% if widget.label.is_appeal %}[Appeal] {% endif %}
+{% if widget.label.forwarded_date %}[Forwarded on {{ widget.label.forwarded_date|date:'DATETIME_FORMAT' }}] {% endif %}
+{% if widget.label.requeued_date %}[Requeued on {{ widget.label.requeued_date|date:'DATETIME_FORMAT' }}] {% endif %}
+{% for reason in widget.label.reasons %}"{{ reason }}" {% endfor %}
+<br/>
+<span>
+    {% if widget.label.internal_notes %}Reasoning: {{ widget.label.internal_notes|join:'; ' }}{% endif %}
+    {% for appeal in widget.label.appeals %}
+        {% if appeal.reporter_report_id %}Reporter{% else %}Developer{% endif %} Appeal: {{ appeal.text }}<br>
+    {% endfor %}
+</span>
+<details>
+    <summary>Show detail on {{ widget.label.reports|length }} reports</summary>
+    <ul>{% for report in widget.label.reports %}
+        <li>{% if report.addon_version %}v[{{ report.addon_version }}]: {% endif %}{{ report.message|default:'&lt;no message&gt;' }}</li>
+        {% endfor %}</ul>
+</details>
+</label>

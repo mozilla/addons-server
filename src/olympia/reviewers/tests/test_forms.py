@@ -1520,7 +1520,7 @@ class TestReviewForm(TestCase):
             '[Forwarded on May 22, 2025, 11:42 a.m.] '
             '[Requeued on May 23, 2025, 10:54 p.m.] '
             '"DSA: It violates Mozilla\'s Add-on Policies"\n'
-            'Reasoning: Zee de zee; Why o why\n\n'
+            'Reasoning: Zee de zee; Why o why\n'
             'Show detail on 1 reports\n'
             'v[<script>alert()</script>]: ddd'
         )
