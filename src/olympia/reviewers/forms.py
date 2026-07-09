@@ -229,18 +229,22 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_developer_appeal = obj.is_developer_appeal
-        is_reporter_appeal = not is_developer_appeal and obj.is_appeal
-        queue_moves = list(obj.queue_moves.order_by('-created'))
-        requeued_decisions = list(
-            obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
-                '-created'
-            )
+        queue_moves = sorted(
+            obj.queue_moves.all(), key=lambda m: m.created, reverse=True
         )
+        requeued_decisions = getattr(
+            obj,
+            'prefetched_requeue_decisions',
+            None,
+        )
+        if requeued_decisions is None:
+            requeued_decisions = list(
+                obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
+                    '-created'
+                )
+            )
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None
-        reports = obj.all_abuse_reports
-        reasons = {report.REASONS(report.reason).label for report in reports}
         forwarded_or_requeued_notes = (
             [
                 *(move.notes for move in queue_moves),
@@ -249,26 +253,24 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             if requeued or forwarded
             else []
         )
-
-        appeals = (
-            (
-                appeal_obj
-                for appealed_decision in obj.appealed_decisions.all()
-                for appeal_obj in appealed_decision.appeals.all()
-            )
-            if is_reporter_appeal or is_developer_appeal
-            else ()
-        )
+        appealed_decisions = list(obj.appealed_decisions.all())
+        is_developer_appeal = appealed_decisions and obj.is_developer_appeal
+        # optimization: we don't show the original reports for a developer appeal
+        reports = obj.all_abuse_reports if not is_developer_appeal else []
+        reasons = {report.REASONS(report.reason).label for report in reports}
 
         label = {
-            'job_created': obj.created,
-            'is_appeal': is_reporter_appeal or is_developer_appeal,
+            'appealed_decisions': appealed_decisions,
+            'created_date': obj.created,
             'forwarded_date': forwarded,
-            'requeued_date': requeued,
-            'reasons': reasons,
             'internal_notes': forwarded_or_requeued_notes,
-            'appeals': appeals,
+            'is_developer_appeal': is_developer_appeal,
+            'reasons': reasons,
+            'requeued_date': requeued,
             'reports': reports,
+            'version_count': sum(
+                len(decision.target_versions.all()) for decision in appealed_decisions
+            ),
         }
         # Reviewers shouldn't use appeal_deny to resolve "regular" jobs,
         # and conversely shouldn't use resolve_reports_job to resolve appeals,
@@ -278,16 +280,17 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # that's not always what we want.
         # The parent element will have `data-toggle-hide`, so data-value is
         # used to hide actions that are not supposed to be used for this job.
-        if is_reporter_appeal:
-            hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
-        elif is_developer_appeal:
-            hide_for_these_actions = [
-                'review_with_policy_approve',
-                'review_with_policy',
-                'reject',
-                'reject_multiple_versions',
-                'resolve_reports_job',
-            ]
+        if appealed_decisions:
+            if is_developer_appeal:
+                hide_for_these_actions = [
+                    'review_with_policy_approve',
+                    'review_with_policy',
+                    'reject',
+                    'reject_multiple_versions',
+                    'resolve_reports_job',
+                ]
+            else:
+                hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
         else:
             hide_for_these_actions = ['appeal_deny', 'appeal_override']
         attrs = attrs or {}
