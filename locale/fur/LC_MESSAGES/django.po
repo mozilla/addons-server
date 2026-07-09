@@ -6129,7 +6129,7 @@ msgstr "Viôt dutis lis estensions"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Pachet di estensions par scomençâ"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
