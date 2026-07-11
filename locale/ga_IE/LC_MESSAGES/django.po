@@ -20,7 +20,7 @@ msgstr ""
 
 #: src/olympia/abuse/forms.py:30
 msgid "Email address"
-msgstr ""
+msgstr "Seoladh ríomhphoist"
 
 #: src/olympia/abuse/forms.py:45
 msgid "Invalid email provided."
@@ -36,12 +36,12 @@ msgstr ""
 
 #: src/olympia/abuse/models.py:1122
 msgid "User profile"
-msgstr ""
+msgstr "Próifíl úsáideora"
 
 #: src/olympia/abuse/models.py:1498
 #, python-brace-format
 msgid "\"{}\" for {}"
-msgstr ""
+msgstr "\"{}\" le haghaidh {}"
 
 #: src/olympia/abuse/serializers.py:32
 #, python-brace-format
@@ -59,11 +59,11 @@ msgstr ""
 #: src/olympia/abuse/templates/abuse/appeal.html:16
 #, python-brace-format
 msgid "Decision {0}"
-msgstr ""
+msgstr "Cinneadh {0}"
 
 #: src/olympia/abuse/templates/abuse/appeal.html:20
 msgid "Thank you. Your appeal has been recorded."
-msgstr ""
+msgstr "Go raibh maith agat. Tá d’achomharc taifeadta."
 
 #: src/olympia/abuse/templates/abuse/appeal.html:31
 msgid "OK"
