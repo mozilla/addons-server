@@ -1661,9 +1661,9 @@ rpds-py==2026.5.1 \
 jsonschema-specifications==2025.9.1 \
     --hash=sha256:98802fee3a11ee76ecaca44429fda8a41bff98b00a0f2838151b113f210cc6fe \
     --hash=sha256:b540987f239e745613c7a9176f3edb72b832a4ac465cf02712288397832b5e8d
-drf-spectacular-sidecar==2026.6.1 \
-    --hash=sha256:4560572773c7e5f636d36cd2903204e2c59560af0548da254e311f94458c51a2 \
-    --hash=sha256:e159874fa85ccee39b801e260f2a3585fbe36a0c79bf811824eef9010ab98ea9
+drf-spectacular-sidecar==2026.7.1 \
+    --hash=sha256:40113c4066c7bc3ef15a7ce1c40cda227a907a9986748024a813a9e0595eba25 \
+    --hash=sha256:bc6d50c9b64660e45e09296d39553b3e759eedd825fc41d631ee5b3f88e0c5de
 # tzlocal is required by celery
 tzlocal==5.4.3 \
     --hash=sha256:24ce97bb58e2a973f7640ec2553ab4e6f6d5a0d0d1aa9dc43bca21d89e1feb82 \
