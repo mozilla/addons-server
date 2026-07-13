@@ -9,12 +9,19 @@ from olympia.amo.tests import (
 from olympia.api.models import APIKey
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.constants.scanners import (
+    ABORTING,
+    COMPLETED,
+    NEW,
+    RUNNING,
+    SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_PUSH,
     YARA,
 )
 from olympia.scanners.models import (
+    ScannerQueryResult,
+    ScannerQueryRule,
     ScannerResult,
     ScannerRule,
     ScannerWebhook,
@@ -419,3 +426,223 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
 
         assert response.status_code == 400
         assert response.json() == {'results': ['This field is required.']}
+
+
+VALID_YARA_DEFINITION = 'rule some_rule { condition: true }'
+
+
+class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.create_api_user()
+        self.grant_permission(
+            self.user, 'Admin:ScannersQueryEdit', 'Scanner query editors'
+        )
+        self.grant_permission(
+            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+        )
+        self.list_url = reverse_ns('scanner-query-rule-list', api_version='v5')
+
+    def _detail_url(self, rule, action=None):
+        name = 'scanner-query-rule-detail'
+        if action:
+            name = f'scanner-query-rule-{action}'
+        return reverse_ns(name, api_version='v5', kwargs={'pk': rule.pk})
+
+    def _create_rule(self, **kwargs):
+        defaults = {
+            'name': 'some_rule',
+            'scanner': YARA,
+            'definition': VALID_YARA_DEFINITION,
+        }
+        defaults.update(kwargs)
+        return ScannerQueryRule.objects.create(**defaults)
+
+    def test_auth_required(self):
+        response = self.client.get(self.list_url)
+        assert response.status_code == 401
+
+    def test_permission_required(self):
+        self.user.groupuser_set.all().delete()
+        response = self.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_view_permission_cannot_create(self):
+        self.user.groupuser_set.all().delete()
+        self.grant_permission(
+            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+        )
+        response = self.post(
+            self.list_url,
+            data={
+                'name': 'some_rule',
+                'scanner': YARA,
+                'definition': VALID_YARA_DEFINITION,
+            },
+            format='json',
+        )
+        assert response.status_code == 403
+
+    def test_list(self):
+        self._create_rule()
+        response = self.get(self.list_url)
+        assert response.status_code == 200
+        assert response.json()['count'] == 1
+
+    def test_create(self):
+        response = self.post(
+            self.list_url,
+            data={
+                'name': 'some_rule',
+                'pretty_name': 'Some rule',
+                'scanner': YARA,
+                'definition': VALID_YARA_DEFINITION,
+            },
+            format='json',
+        )
+        assert response.status_code == 201, response.content
+        rule = ScannerQueryRule.objects.get()
+        assert rule.name == 'some_rule'
+        assert rule.scanner == YARA
+        assert rule.state == NEW
+        data = response.json()
+        assert data['id'] == rule.pk
+        assert data['state_display'] == 'New'
+        # The definition should be echoed back (creator has view access).
+        assert data['definition'] == VALID_YARA_DEFINITION
+
+    def test_create_invalid_definition(self):
+        response = self.post(
+            self.list_url,
+            data={
+                'name': 'some_rule',
+                'scanner': YARA,
+                # Name in definition doesn't match the rule name.
+                'definition': 'rule other_rule { condition: true }',
+            },
+            format='json',
+        )
+        assert response.status_code == 400
+        assert 'definition' in response.json()
+
+    def test_patch_while_new(self):
+        rule = self._create_rule()
+        response = self.patch(
+            self._detail_url(rule),
+            data={'description': 'updated'},
+            format='json',
+        )
+        assert response.status_code == 200, response.content
+        rule.refresh_from_db()
+        assert rule.description == 'updated'
+
+    def test_cannot_patch_once_not_new(self):
+        rule = self._create_rule()
+        rule.update(state=RUNNING)
+        response = self.patch(
+            self._detail_url(rule),
+            data={'description': 'updated'},
+            format='json',
+        )
+        assert response.status_code == 400
+        rule.refresh_from_db()
+        assert rule.description == ''
+
+    def test_delete(self):
+        rule = self._create_rule()
+        response = self.delete(self._detail_url(rule))
+        assert response.status_code == 204
+        assert not ScannerQueryRule.objects.exists()
+
+    @mock.patch('olympia.scanners.views.run_scanner_query_rule')
+    def test_run(self, run_task_mock):
+        rule = self._create_rule()
+        response = self.post(self._detail_url(rule, action='run'))
+        assert response.status_code == 202, response.content
+        rule.refresh_from_db()
+        assert rule.state == SCHEDULED
+        run_task_mock.delay.assert_called_once_with(rule.pk)
+
+    @mock.patch('olympia.scanners.views.run_scanner_query_rule')
+    def test_run_invalid_state(self, run_task_mock):
+        rule = self._create_rule()
+        rule.update(state=COMPLETED)
+        response = self.post(self._detail_url(rule, action='run'))
+        assert response.status_code == 409
+        run_task_mock.delay.assert_not_called()
+
+    def test_abort(self):
+        rule = self._create_rule()
+        rule.update(state=RUNNING)
+        response = self.post(self._detail_url(rule, action='abort'))
+        assert response.status_code == 200
+        rule.refresh_from_db()
+        assert rule.state == ABORTING
+
+    def test_abort_invalid_state(self):
+        rule = self._create_rule()
+        rule.update(state=COMPLETED)
+        response = self.post(self._detail_url(rule, action='abort'))
+        assert response.status_code == 409
+
+
+class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+        self.create_api_user()
+        self.grant_permission(
+            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+        )
+        self.rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        version = version_factory(addon=addon_factory())
+        self.result = ScannerQueryResult(scanner=YARA, version=version)
+        self.result.add_yara_result(rule='some_rule', meta={'filename': 'foo.js'})
+        self.result.save()
+        assert self.result.matched_rule == self.rule
+        self.list_url = self._list_url(self.rule)
+
+    def _list_url(self, rule):
+        return reverse_ns(
+            'scanner-query-rule-result-list',
+            api_version='v5',
+            kwargs={'query_rule_pk': rule.pk},
+        )
+
+    def test_auth_required(self):
+        response = self.client.get(self.list_url)
+        assert response.status_code == 401
+
+    def test_permission_required(self):
+        self.user.groupuser_set.all().delete()
+        response = self.get(self.list_url)
+        assert response.status_code == 403
+
+    def test_list(self):
+        response = self.get(self.list_url)
+        assert response.status_code == 200
+        data = response.json()
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == self.result.pk
+        assert data['results'][0]['matched_rule'] == self.rule.pk
+        assert 'some_rule' in data['results'][0]['matches']
+
+    def test_unknown_rule_returns_404(self):
+        url = reverse_ns(
+            'scanner-query-rule-result-list',
+            api_version='v5',
+            kwargs={'query_rule_pk': 999999},
+        )
+        response = self.get(url)
+        assert response.status_code == 404
+
+    def test_scoped_to_parent_rule(self):
+        other_rule = ScannerQueryRule.objects.create(
+            name='other_rule',
+            scanner=YARA,
+            definition='rule other_rule { condition: true }',
+        )
+        response = self.get(self._list_url(other_rule))
+        assert response.status_code == 200
+        assert response.json()['count'] == 0

@@ -3,9 +3,13 @@ from django.urls import reverse
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, version_factory
+from olympia.constants.scanners import NEW, RUNNING, WEBHOOK, YARA
+from olympia.scanners.models import ScannerQueryResult, ScannerQueryRule
 from olympia.scanners.serializers import (
     PatchScannerResultSerializer,
     PushScannerResultSerializer,
+    ScannerQueryResultSerializer,
+    ScannerQueryRuleSerializer,
     WebhookAddonSerializer,
     WebhookVersionSerializer,
 )
@@ -264,3 +268,99 @@ class TestPatchScannerResultSerializer(TestCase):
             {'results': self.valid_results, 'unexpected': 'value'}
         )
         assert 'unexpected' in serializer.errors
+
+
+VALID_YARA_DEFINITION = 'rule some_rule { condition: true }'
+
+
+class TestScannerQueryRuleSerializer(TestCase):
+    def test_create_valid(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                'scanner': YARA,
+                'definition': VALID_YARA_DEFINITION,
+            }
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.pk
+        assert rule.name == 'some_rule'
+        assert rule.state == NEW
+
+    def test_invalid_definition(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                'scanner': YARA,
+                # Name in definition does not match rule name.
+                'definition': 'rule other { condition: true }',
+            }
+        )
+        assert not serializer.is_valid()
+        assert 'definition' in serializer.errors
+
+    def test_scanner_choices_limited(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                # WEBHOOK is not a valid query-rule scanner.
+                'scanner': WEBHOOK,
+                'definition': VALID_YARA_DEFINITION,
+            }
+        )
+        assert not serializer.is_valid()
+        assert 'scanner' in serializer.errors
+
+    def test_read_only_fields_serialized(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        data = ScannerQueryRuleSerializer(rule).data
+        assert data['state'] == NEW
+        assert data['state_display'] == 'New'
+        assert data['scanner_display'] == 'yara'
+        assert data['results_count'] == 0
+        assert data['completion_rate'] is None
+
+    def test_cannot_update_when_not_new(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        rule.update(state=RUNNING)
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule, data={'description': 'updated'}, partial=True
+        )
+        assert not serializer.is_valid()
+
+    def test_can_update_when_new(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule, data={'description': 'updated'}, partial=True
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.description == 'updated'
+
+
+class TestScannerQueryResultSerializer(TestCase):
+    def test_serialize(self):
+        ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        version = version_factory(addon=addon_factory(guid='@some-guid'))
+        result = ScannerQueryResult(scanner=YARA, version=version)
+        result.add_yara_result(rule='some_rule', meta={'filename': 'foo.js'})
+        result.save()
+
+        data = ScannerQueryResultSerializer(result).data
+        assert data['id'] == result.pk
+        assert data['scanner_display'] == 'yara'
+        assert data['addon_guid'] == '@some-guid'
+        assert data['version_id'] == version.pk
+        assert data['version_string'] == version.version
+        assert 'some_rule' in data['matches']
+        # Raw results are not exposed, only definition-safe match info.
+        assert 'results' not in data
