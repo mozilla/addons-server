@@ -19,7 +19,6 @@ from olympia.constants.scanners import ABORTING, SCHEDULED, WEBHOOK, WEBHOOK_PUS
 
 from .models import (
     ImproperScannerQueryRuleStateError,
-    ScannerQueryResult,
     ScannerQueryRule,
     ScannerResult,
     ScannerWebhook,
@@ -169,9 +168,7 @@ class ScannerQueryRuleViewSet(ModelViewSet):
             )
         run_scanner_query_rule.delay(rule.pk)
         log.info('Scanner query rule %s has been queued for execution.', rule.pk)
-        return Response(
-            self.get_serializer(rule).data, status=status.HTTP_202_ACCEPTED
-        )
+        return Response(self.get_serializer(rule).data, status=status.HTTP_202_ACCEPTED)
 
     @action(detail=True, methods=['post'])
     def abort(self, request, pk=None):
