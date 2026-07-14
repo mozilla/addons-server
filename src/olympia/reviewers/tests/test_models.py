@@ -1174,7 +1174,7 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         self.make_addon_promoted(
-            addon=self.addon, api_name='recommended', listed_pre_review=True
+            addon=self.addon, api_name='pre_review', listed_pre_review=True
         )
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 

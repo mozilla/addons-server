@@ -83,7 +83,7 @@ class TestForceMinAndroidCompatibility(TestCase):
                     'max_app_version': '*',
                 },
                 promoted_kwargs={
-                    'api_name': 'recommended',
+                    'api_name': 'all_fenix_versions',
                     'can_be_compatible_with_all_fenix_versions': True,
                 },
             ),
@@ -231,7 +231,7 @@ class TestBumpMinAndroidCompatibility(TestCase):
                 'max_app_version': '*',
             },
             promoted_kwargs={
-                'api_name': 'recommended',
+                'api_name': 'all_fenix_versions',
                 'can_be_compatible_with_all_fenix_versions': True,
             },
         )

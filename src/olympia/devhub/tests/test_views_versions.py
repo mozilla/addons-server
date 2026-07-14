@@ -29,7 +29,6 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import BlockType
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
@@ -221,8 +220,7 @@ class TestVersion(TestCase):
         # version.
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='pre_review',
             listed_pre_review=True,
             badged=True,
             approve_version=True,
@@ -250,8 +248,7 @@ class TestVersion(TestCase):
         # version if the previous version is approved for recommendation too.
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='pre_review',
             listed_pre_review=True,
             approve_version=True,
         )
@@ -281,16 +278,15 @@ class TestVersion(TestCase):
 
         self.addon.reload()
         assert self.addon.current_version == previous_version
-        # It's still recommended.
-        assert 'recommended' in self.addon.promoted_groups().api_name
+        # It's still promoted.
+        assert 'pre_review' in self.addon.promoted_groups().api_name
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='pre_review',
             listed_pre_review=True,
             approve_version=True,
         )
@@ -320,8 +316,7 @@ class TestVersion(TestCase):
         # then deleting the current version is fine.
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='pre_review',
             listed_pre_review=True,
         )
         assert self.version == self.addon.current_version

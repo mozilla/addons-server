@@ -3531,7 +3531,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name='all_fenix_versions',
             listed_pre_review=True,
             can_be_compatible_with_all_fenix_versions=True,
             approve_version=True,
@@ -3559,7 +3559,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name='all_fenix_versions',
             listed_pre_review=True,
             can_be_compatible_with_all_fenix_versions=True,
             approve_version=True,
@@ -4679,7 +4679,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def test_cannot_disable_if_promoted(self):
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name='pre_review',
             name='Recommended',
             listed_pre_review=True,
             badged=True,
@@ -4842,7 +4842,7 @@ class TestVersionViewSetDelete(TestCase):
     def test_cannot_delete_if_promoted(self):
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name='pre_review',
             name='Recommended',
             listed_pre_review=True,
             badged=True,
@@ -6327,7 +6327,7 @@ class TestAddonSearchView(ESTestCase):
 
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'promoted': 'recommended'})
+        data = self.perform_search(self.url, {'promoted': RECOMMENDED_API_NAME})
         assert data['count'] == 4
         assert len(data['results']) == 4
         assert {res['id'] for res in data['results']} == {
@@ -6339,7 +6339,7 @@ class TestAddonSearchView(ESTestCase):
 
         # And with app filtering too
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'firefox'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'firefox'}
         )
         assert data['count'] == 3
         assert len(data['results']) == 3
@@ -6351,7 +6351,7 @@ class TestAddonSearchView(ESTestCase):
 
         # That will filter out for a different app
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'android'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'android'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2

@@ -640,7 +640,7 @@ class TestDashboard(TestCase):
         user_factory(pk=settings.TASK_USER_ID)
         # Recommended extensions
         version = addon_factory(
-            promoted_kwargs={'api_name': 'recommended', 'listed_pre_review': True},
+            promoted_kwargs={'api_name': 'pre_review', 'listed_pre_review': True},
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         ).versions.get()
@@ -650,7 +650,7 @@ class TestDashboard(TestCase):
         version = version_factory(
             addon=addon_factory(
                 promoted_kwargs={
-                    'api_name': 'recommended',
+                    'api_name': 'pre_review',
                     'listed_pre_review': True,
                 },
                 version_kw={'promotion_approved': False},
@@ -4337,7 +4337,7 @@ class TestReview(ReviewBase):
         assert translations == expected
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_recommended_addon(self, mock_sign_file):
+    def test_approve_pre_review_addon(self, mock_sign_file):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -4348,7 +4348,7 @@ class TestReview(ReviewBase):
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name='pre_review',
             listed_pre_review=True,
             badged=True,
         )
@@ -4368,7 +4368,7 @@ class TestReview(ReviewBase):
         assert addon.current_version
         assert addon.current_version.file.status == amo.STATUS_APPROVED
         assert addon.current_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='pre_review'
         ).exists()
         assert mock_sign_file.called
 

@@ -46,7 +46,7 @@ class TestPrimaryHero(TestCase):
         # The error message below lists every active can_primary_hero group by
         # name, so create the three that can be added to a primary shelf.
         recommended_group, _ = PromotedGroup.objects.get_or_create(
-            api_name='recommended',
+            api_name=RECOMMENDED_API_NAME,
             name='Recommended',
             can_primary_hero=True,
             active=True,
@@ -86,7 +86,7 @@ class TestPrimaryHero(TestCase):
         ph.addon.approve_for_version(ph.addon.current_version)
         ph.reload()
         ph.enabled = True
-        assert 'recommended' in ph.addon.promoted_groups().api_name
+        assert RECOMMENDED_API_NAME in ph.addon.promoted_groups().api_name
         ph.clean()  # it raises if there's an error
 
         # change to a different group
@@ -135,11 +135,11 @@ class TestPrimaryHero(TestCase):
     def test_clean_gradient_and_image(self):
         # Currently, gradient is required and image isn't.
         addon = addon_factory()
-        recommended_group, _ = PromotedGroup.objects.get_or_create(
-            api_name=RECOMMENDED_API_NAME, name='Recommended', can_primary_hero=True
+        promoted_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='primary_hero', name='Primary Hero', can_primary_hero=True
         )
         PromotedAddon.objects.create(
-            addon=addon, promoted_group=recommended_group, application_id=amo.FIREFOX.id
+            addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id
         )
         ph = PrimaryHero.objects.create(addon=addon)
         ph.addon.approve_for_version(ph.addon.current_version)
@@ -164,7 +164,7 @@ class TestPrimaryHero(TestCase):
     def test_clean_only_enabled(self):
         addon = addon_factory()
         promoted_group, _ = PromotedGroup.objects.get_or_create(
-            api_name=RECOMMENDED_API_NAME, name='Recommended', can_primary_hero=True
+            api_name='primary_hero', name='Primary Hero', can_primary_hero=True
         )
         PromotedAddon.objects.create(
             addon=addon, promoted_group=promoted_group, application_id=amo.FIREFOX.id

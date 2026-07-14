@@ -5,7 +5,6 @@ from django.utils.encoding import force_str
 
 from olympia import amo
 from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -465,7 +464,7 @@ class TestRankingScenarios(ESTestCase):
             summary='A new friend in every new tab.',
             weekly_downloads=350,
             promoted_kwargs={
-                'api_name': RECOMMENDED_API_NAME,
+                'api_name': 'search_bump',
                 'listed_pre_review': True,
                 'search_ranking_bump': 5.0,
             },
@@ -627,7 +626,7 @@ class TestRankingScenarios(ESTestCase):
             summary='A new friend in every new window.',
             weekly_downloads=350,
             promoted_kwargs={
-                'api_name': RECOMMENDED_API_NAME,
+                'api_name': 'search_bump',
                 'listed_pre_review': True,
                 'search_ranking_bump': 5.0,
             },

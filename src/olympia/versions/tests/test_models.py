@@ -439,7 +439,7 @@ class TestVersionManager(TestCase):
         # Or if it's in a pre-review promoted group it will.
         recommended = addon_factory(**addon_kws).current_version
         self.make_addon_promoted(
-            addon=recommended.addon, api_name='recommended', listed_pre_review=True
+            addon=recommended.addon, api_name='pre_review', listed_pre_review=True
         )
         NeedsHumanReview.objects.create(
             version=recommended,
@@ -1414,13 +1414,13 @@ class TestVersion(AMOPaths, TestCase):
 
         self.make_addon_promoted(
             addon,
-            api_name='recommended',
+            api_name='badged_pre_review',
             listed_pre_review=True,
             badged=True,
             approve_version=True,
         )
         addon = addon.reload()
-        assert 'recommended' in addon.promoted_groups().api_name
+        assert 'badged_pre_review' in addon.promoted_groups().api_name
         # But a promoted one, that's in a prereview group, can't be disabled
         assert not addon.current_version.can_be_disabled_and_deleted()
 
@@ -1429,10 +1429,10 @@ class TestVersion(AMOPaths, TestCase):
         addon = addon.reload()
         assert previous_version != addon.current_version
         assert addon.current_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         assert previous_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         # unless the previous version is also approved for the same group
         assert addon.current_version.can_be_disabled_and_deleted()
@@ -1446,7 +1446,7 @@ class TestVersion(AMOPaths, TestCase):
         previous_version.promoted_versions.update(promoted_group=line_group)
         assert not addon.current_version.can_be_disabled_and_deleted()
         previous_version.promoted_versions.update(
-            promoted_group=PromotedGroup.objects.get(api_name='recommended')
+            promoted_group=PromotedGroup.objects.get(api_name='badged_pre_review')
         )
 
         # Check the scenario when some of the previous versions are approved
@@ -1461,30 +1461,30 @@ class TestVersion(AMOPaths, TestCase):
         version_b = version_b.reload()
         assert version_d == addon.current_version
         assert version_a.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         assert version_b.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         # ignored because disabled
         assert not version_c.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         assert version_d.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='badged_pre_review'
         ).exists()
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert version_d.can_be_disabled_and_deleted()
-        assert 'recommended' in addon.promoted_groups().api_name
+        assert 'badged_pre_review' in addon.promoted_groups().api_name
         # now un-approve version_b
         version_b.promoted_versions.all().delete()
         assert version_a.can_be_disabled_and_deleted()
         assert version_b.can_be_disabled_and_deleted()
         assert version_c.can_be_disabled_and_deleted()
         assert not version_d.can_be_disabled_and_deleted()
-        assert 'recommended' in addon.promoted_groups().api_name
+        assert 'badged_pre_review' in addon.promoted_groups().api_name
 
     def test_unbadged_non_prereview_promoted_can_be_disabled_and_deleted(self):
         addon = Addon.objects.get(id=3615)
@@ -1518,7 +1518,7 @@ class TestVersion(AMOPaths, TestCase):
         version_factory(addon=addon)
         self.make_addon_promoted(
             addon,
-            api_name='recommended',
+            api_name='badged_pre_review',
             listed_pre_review=True,
             badged=True,
             approve_version=True,
@@ -3203,7 +3203,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
     def test_recommended_for_android(self):
         addon = addon_factory(
             promoted_kwargs={
-                'api_name': 'recommended',
+                'api_name': 'all_fenix_versions',
                 'can_be_compatible_with_all_fenix_versions': True,
             }
         )
@@ -3253,7 +3253,7 @@ class TestApplicationsVersionsVersionRangeContainsForbiddenCompatibility(TestCas
     def test_recommended_or_line_for_desktop(self):
         addon = addon_factory(
             promoted_kwargs={
-                'api_name': 'recommended',
+                'api_name': 'all_fenix_versions',
                 'listed_pre_review': True,
                 'can_be_compatible_with_all_fenix_versions': True,
             }

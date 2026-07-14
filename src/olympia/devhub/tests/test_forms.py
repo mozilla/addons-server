@@ -29,7 +29,6 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.tags.models import AddonTag, Tag
@@ -482,8 +481,7 @@ class TestCompatForm(TestCase):
         )
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='all_fenix_versions',
             can_be_compatible_with_all_fenix_versions=True,
             approve_version=True,
         )

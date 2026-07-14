@@ -32,7 +32,7 @@ from olympia.amo.tests import (
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSE_CC_COPYRIGHT
-from olympia.constants.promoted import NOTABLE_API_NAME, RECOMMENDED_API_NAME
+from olympia.constants.promoted import NOTABLE_API_NAME
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -2773,8 +2773,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
 
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='all_fenix_versions',
             can_be_compatible_with_all_fenix_versions=True,
             approve_version=True,
         )

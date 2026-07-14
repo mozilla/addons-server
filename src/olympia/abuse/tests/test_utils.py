@@ -38,7 +38,7 @@ def test_reject_and_block_addons():
     normal_addon = addon_factory(users=[user_factory()])
     normal_addon_version = normal_addon.current_version
     recommended_addon = addon_factory(
-        promoted_kwargs={'api_name': 'recommended', 'high_profile': True},
+        promoted_kwargs={'api_name': 'high_profile', 'high_profile': True},
         users=[user_factory()],
         version_kw={'promotion_approved': False},
     )

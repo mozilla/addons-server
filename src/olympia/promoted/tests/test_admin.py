@@ -10,6 +10,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.tests.test_helpers import get_uploaded_file
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.hero.models import PrimaryHero, PrimaryHeroImage
 from olympia.promoted.models import (
     PromotedApproval,
@@ -165,13 +166,13 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory(name='Present')
         PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         also_present = addon_factory(name='Also Present')
         PromotedAddon.objects.create(
             addon=also_present,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         PromotedAddon.objects.create(
@@ -186,7 +187,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         filters = {
             # See DiscoveryAddonAdmin.list_filter
             'promotedaddon__promoted_group__id__exact': (
-                PromotedGroup.objects.get(api_name='recommended').pk
+                PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME).pk
             )
         }
         response = self.client.get(self.list_url, filters, follow=True)
@@ -220,7 +221,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         ver1 = addon.current_version
@@ -231,12 +232,12 @@ class TestDiscoveryAddonAdmin(TestCase):
         approvals = [
             PromotedApproval.objects.create(
                 version=ver1,
-                promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+                promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
                 application_id=amo.FIREFOX.id,
             ),
             PromotedApproval.objects.create(
                 version=ver2,
-                promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+                promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
                 application_id=amo.ANDROID.id,
             ),
             PromotedApproval.objects.create(
@@ -246,7 +247,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             ),
             PromotedApproval.objects.create(
                 version=ver3,
-                promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+                promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
                 application_id=amo.FIREFOX.id,
             ),
         ]
@@ -312,13 +313,13 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         ver1 = addon.current_version
         approval = PromotedApproval.objects.create(
             version=ver1,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
@@ -341,7 +342,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             follow=True,
         )
         approval.reload()
-        assert approval.promoted_group.api_name == 'recommended'
+        assert approval.promoted_group.api_name == RECOMMENDED_API_NAME
         assert response.status_code == 200
         assert PromotedAddon.objects.count() == 1
 
@@ -367,14 +368,14 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         ver1 = addon.current_version
         approvals = [
             PromotedApproval.objects.create(
                 version=ver1,
-                promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+                promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
                 application_id=amo.FIREFOX.id,
             ),
         ]
@@ -405,7 +406,7 @@ class TestDiscoveryAddonAdmin(TestCase):
 
         promotion.reload()
         assert PromotedAddon.objects.count() == 1
-        assert promotion.promoted_group.api_name == 'recommended'
+        assert promotion.promoted_group.api_name == RECOMMENDED_API_NAME
         assert PromotedApproval.objects.count() == 1
 
         # Try to delete the approval instead
@@ -427,12 +428,12 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         PromotedApproval.objects.create(
             version=addon.current_version,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
@@ -462,7 +463,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         promotion = PromotedAddon.objects.create(
             addon=addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
@@ -492,7 +493,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         self.grant_permission(user, 'Discovery:Edit')
         self.client.force_login(user)
         # create an approval that doesn't have a matching PromotedAddon yet
-        group = PromotedGroup.objects.get(api_name='recommended')
+        group = PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         assert PromotedAddon.objects.count() == 0
@@ -512,7 +513,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         assert PromotedAddon.objects.count() == 1
         item = PromotedAddon.objects.get()
         assert item.addon == addon
-        assert item.promoted_group.api_name == 'recommended'
+        assert item.promoted_group.api_name == RECOMMENDED_API_NAME
         assert item.application_id == amo.FIREFOX.id
         assert item.application == amo.FIREFOX
         assert PromotedApproval.objects.count() == 0  # we didn't create any approvals

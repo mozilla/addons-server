@@ -3,6 +3,7 @@ from django.db import IntegrityError, transaction
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants import applications
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -80,7 +81,7 @@ class TestPromotedGroupQuerySet(TestCase):
         )
         self.promotion2 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(api_name='recommended'),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=applications.FIREFOX.id,
         )
 

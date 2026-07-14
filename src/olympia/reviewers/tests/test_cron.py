@@ -46,10 +46,10 @@ class TestQueueCount(TestCase):
                 'reason': NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
             },
         )
-        self.addon_recommended_1 = addon_factory(
+        self.addon_pre_review_1 = addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             promoted_kwargs={
-                'api_name': 'recommended',
+                'api_name': 'pre_review',
                 'listed_pre_review': True,
                 'active': True,
             },
@@ -60,7 +60,7 @@ class TestQueueCount(TestCase):
         addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             promoted_kwargs={
-                'api_name': 'recommended',
+                'api_name': 'pre_review',
                 'listed_pre_review': True,
                 'active': True,
             },
@@ -90,7 +90,7 @@ class TestQueueCount(TestCase):
         assert metric.date == expected_date
         assert metric.value == 5
 
-        metric = QueueCount.objects.get(name='queue_extension/recommended')
+        metric = QueueCount.objects.get(name='queue_extension/pre_review')
         assert metric.date == expected_date
         assert metric.value == 2
 
@@ -106,8 +106,8 @@ class TestQueueCount(TestCase):
         self.test_basic()
         previous_date = QueueCount.objects.latest('pk').date
 
-        self.addon_recommended_1.current_version.file.update(status=amo.STATUS_APPROVED)
-        self.addon_recommended_1.current_version.needshumanreview_set.all()[0].update(
+        self.addon_pre_review_1.current_version.file.update(status=amo.STATUS_APPROVED)
+        self.addon_pre_review_1.current_version.needshumanreview_set.all()[0].update(
             is_active=False
         )
 
@@ -123,7 +123,7 @@ class TestQueueCount(TestCase):
         )
         assert (
             QueueCount.objects.get(
-                date=previous_date, name='queue_extension/recommended'
+                date=previous_date, name='queue_extension/pre_review'
             ).value
             == 2
         )
@@ -143,10 +143,10 @@ class TestQueueCount(TestCase):
             == 4
         )
 
-        # One fewer add-on in the queue that was recommended.
+        # One fewer add-on in the queue that was pre-review.
         assert (
             QueueCount.objects.get(
-                date=expected_date, name='queue_extension/recommended'
+                date=expected_date, name='queue_extension/pre_review'
             ).value
             == 1
         )

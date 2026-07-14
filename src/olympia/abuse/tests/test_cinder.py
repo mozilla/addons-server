@@ -30,6 +30,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -388,7 +389,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        self.make_addon_promoted(addon, api_name='recommended', high_profile=True)
+        self.make_addon_promoted(addon, api_name=RECOMMENDED_API_NAME)
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
         encoded_message = cinder_addon.get_str(message)

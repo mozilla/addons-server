@@ -41,7 +41,6 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
@@ -337,7 +336,7 @@ class TestDevRequired(TestCase):
     def test_dev_promoted_status(self):
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='badged',
             name='Recommended',
             badged=True,
         )
@@ -348,7 +347,7 @@ class TestDevRequired(TestCase):
             addon=self.addon, api_name='spotlight', name='Spotlight', badged=False
         )
         self.addon.approve_for_version()
-        assert 'recommended' in self.addon.promoted_groups().api_name
+        assert 'badged' in self.addon.promoted_groups().api_name
         assert 'line' in self.addon.promoted_groups().api_name
         assert 'spotlight' in self.addon.promoted_groups().api_name
 
@@ -574,7 +573,7 @@ class TestHome(TestCase):
     def test_my_addons_recommended(self):
         self.make_addon_promoted(
             addon=self.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='badged',
             name='Recommended',
             badged=True,
             approve_version=True,

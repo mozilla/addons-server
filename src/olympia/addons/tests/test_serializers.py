@@ -614,8 +614,8 @@ class AddonSerializerOutputTestMixin:
 
     def test_promoted_shim(self):
         group, _ = PromotedGroup.objects.get_or_create(
-            api_name=RECOMMENDED_API_NAME,
-            name='Recommended',
+            api_name='promoted',
+            name='Promoted',
             listed_pre_review=True,
         )
         self.addon = addon_factory()
@@ -638,7 +638,7 @@ class AddonSerializerOutputTestMixin:
         with override_settings(DRF_API_GATES=gates):
             result = self.serialize()
             promoted = result['promoted']
-            assert promoted['category'] == RECOMMENDED_API_NAME
+            assert promoted['category'] == 'promoted'
             assert promoted['apps'] == [amo.FIREFOX.short]
 
     def test_private_promoted_api_hidden(self):

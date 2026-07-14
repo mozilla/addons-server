@@ -13,7 +13,7 @@ from rest_framework import serializers
 
 from olympia import amo
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import BADGED_GROUPS
+from olympia.constants.promoted import BADGED_GROUPS, RECOMMENDED_API_NAME
 from olympia.search.filters import (
     AddonCreatedQueryParam,
     AddonRatingQueryParam,
@@ -581,7 +581,7 @@ class TestSortingFilter(FilterTestsBase):
 
     @time_machine.travel('2023-12-24', tick=False)
     def test_sort_random(self):
-        qs = self._filter(data={'promoted': 'recommended', 'sort': 'random'})
+        qs = self._filter(data={'promoted': RECOMMENDED_API_NAME, 'sort': 'random'})
         # Note: this test does not call AddonPromotedQueryParam so it won't
         # apply the recommended filtering. That's tested below in
         # TestCombinedFilter.test_filter_promoted_sort_random
@@ -931,12 +931,14 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
 
         # test multiple param values
-        qs = self._filter(data={'promoted': 'recommended,line'})
+        qs = self._filter(data={'promoted': f'{RECOMMENDED_API_NAME},line'})
         filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.category': ['line', 'recommended']}}] == filter_
+        assert [
+            {'terms': {'promoted.category': ['line', RECOMMENDED_API_NAME]}}
+        ] == filter_
 
         # test combining multiple values with the meta "badged" group
-        qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
+        qs = self._filter(data={'promoted': f'badged,{RECOMMENDED_API_NAME},strategic'})
         filter_ = qs['query']['bool']['filter']
         assert [
             {
@@ -944,7 +946,7 @@ class TestSearchParameterFilter(FilterTestsBase):
                     'promoted.category': [
                         # recommended shouldn't be there twice
                         'line',
-                        'recommended',
+                        RECOMMENDED_API_NAME,
                         'strategic',
                     ]
                 }

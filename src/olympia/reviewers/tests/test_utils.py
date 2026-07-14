@@ -38,6 +38,7 @@ from olympia.amo.tests import (
 from olympia.amo.utils import send_mail
 from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.files.models import File
 from olympia.lib.crypto.signing import SigningError
 from olympia.lib.crypto.tests.test_signing import (
@@ -315,12 +316,12 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
-        # Now add a recommended promoted addon. It's a listed pre-review group
-        # so the individual approve/reject actions aren't offered, but the
+        # Now add a listed pre-review promoted addon. It's a listed pre-review
+        # group so the individual approve/reject actions aren't offered, but the
         # multiple-versions and confirm actions still are for an
         # Addons:Review holder.
         self.make_addon_promoted(
-            self.addon, api_name='recommended', listed_pre_review=True, badged=True
+            self.addon, api_name='pre_review', listed_pre_review=True, badged=True
         )
         expected = [
             'confirm_auto_approved',
@@ -3471,16 +3472,16 @@ class TestReviewHelper(TestReviewHelperBase):
             in message.body
         )
 
-    def test_nominated_to_approved_recommended(self):
+    def test_nominated_to_approved_pre_review(self):
         self.make_addon_promoted(
-            self.addon, api_name='recommended', listed_pre_review=True
+            self.addon, api_name='pre_review', listed_pre_review=True
         )
         assert not self.addon.promoted_groups()
         self.test_nomination_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='pre_review'
         ).exists()
-        assert 'recommended' in self.addon.promoted_groups().api_name
+        assert 'pre_review' in self.addon.promoted_groups().api_name
 
     def test_nominated_to_approved_other_promoted(self):
         self.make_addon_promoted(self.addon, api_name='line', listed_pre_review=True)
@@ -3491,16 +3492,16 @@ class TestReviewHelper(TestReviewHelperBase):
         ).exists()
         assert 'line' in self.addon.promoted_groups().api_name
 
-    def test_approved_update_recommended(self):
+    def test_approved_update_pre_review(self):
         self.make_addon_promoted(
-            self.addon, api_name='recommended', listed_pre_review=True
+            self.addon, api_name='pre_review', listed_pre_review=True
         )
         assert not self.addon.promoted_groups()
         self.test_public_addon_with_version_awaiting_review_to_public()
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name='pre_review'
         ).exists()
-        assert 'recommended' in self.addon.promoted_groups().api_name
+        assert 'pre_review' in self.addon.promoted_groups().api_name
 
     def test_approved_update_other_promoted(self):
         self.make_addon_promoted(self.addon, api_name='line', listed_pre_review=True)
@@ -4925,7 +4926,7 @@ class TestReviewHelperSigning(TestReviewHelperBase):
 
         self.make_addon_promoted(
             self.addon,
-            api_name='recommended',
+            api_name=RECOMMENDED_API_NAME,
             listed_pre_review=True,
             autograph_signing_states={
                 'firefox': 'recommended',
@@ -4940,9 +4941,9 @@ class TestReviewHelperSigning(TestReviewHelperBase):
         assert self.addon.versions.all()[0].file.status == (amo.STATUS_APPROVED)
 
         assert self.addon.current_version.promoted_versions.filter(
-            promoted_group__api_name='recommended'
+            promoted_group__api_name=RECOMMENDED_API_NAME
         ).exists()
-        assert 'recommended' in self.addon.promoted_groups().api_name
+        assert RECOMMENDED_API_NAME in self.addon.promoted_groups().api_name
 
         signature_info, manifest = _get_signature_details(self.file.file.path)
 

@@ -28,7 +28,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.tests.test_helpers import get_addon_file
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import VersionString, version_int
 
@@ -444,7 +443,7 @@ class TestSigning(TestCase):
     def test_call_signing_promoted_recommended(self):
         self.make_addon_promoted(
             self.file_.version.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='signed_recommended',
             listed_pre_review=True,
             autograph_signing_states={
                 amo.FIREFOX.short: 'recommended',
@@ -458,7 +457,7 @@ class TestSigning(TestCase):
     def test_call_signing_promoted_recommended_android_only(self):
         self.make_addon_promoted(
             self.file_.version.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='signed_recommended',
             listed_pre_review=True,
             autograph_signing_states={
                 amo.FIREFOX.short: 'recommended',
@@ -475,7 +474,7 @@ class TestSigning(TestCase):
         # never be signed as promoted.
         self.make_addon_promoted(
             self.file_.version.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='signed_recommended',
             listed_pre_review=True,
             autograph_signing_states={
                 amo.FIREFOX.short: 'recommended',
@@ -687,7 +686,7 @@ class TestTasks(TestCase):
     def test_resign_carry_over_promotion(self, mock_sign_file):
         self.make_addon_promoted(
             self.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='pre_review',
             listed_pre_review=True,
             approve_version=True,
         )
@@ -705,7 +704,7 @@ class TestTasks(TestCase):
     def test_resign_doesnt_carry_over_unapproved_promotion(self, mock_sign_file):
         self.make_addon_promoted(
             self.addon,
-            api_name=RECOMMENDED_API_NAME,
+            api_name='pre_review',
             listed_pre_review=True,
             approve_version=False,
         )

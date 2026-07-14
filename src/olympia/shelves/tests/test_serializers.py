@@ -121,7 +121,7 @@ class TestShelvesSerializer(ESTestCase):
             title='Recommended extensions',
             endpoint='search',
             addon_type=amo.ADDON_EXTENSION,
-            criteria='?promoted=recommended&sort=random&type=extension',
+            criteria=f'?promoted={RECOMMENDED_API_NAME}&sort=random&type=extension',
             footer_text='See more recommended extensions',
             footer_pathname='/somewhere',
         )
@@ -204,7 +204,7 @@ class TestShelvesSerializer(ESTestCase):
         assert pop_data['addons'][0]['type'] == 'statictheme'
 
         assert pop_data['addons'][1]['name'] == {'en-US': 'test addon test04'}
-        assert pop_data['addons'][1]['promoted'][0]['category'] == ('recommended')
+        assert pop_data['addons'][1]['promoted'][0]['category'] == RECOMMENDED_API_NAME
         assert pop_data['addons'][1]['type'] == 'statictheme'
 
         # Test 'Recommended Extensions' shelf - should include 1 addon
@@ -213,7 +213,7 @@ class TestShelvesSerializer(ESTestCase):
 
         assert len(rec_data['addons']) == 1
         assert rec_data['addons'][0]['name'] == {'en-US': 'test addon test03'}
-        assert rec_data['addons'][0]['promoted'][0]['category'] == ('recommended')
+        assert rec_data['addons'][0]['promoted'][0]['category'] == RECOMMENDED_API_NAME
         assert rec_data['addons'][0]['type'] == 'extension'
 
     def test_url_and_addons_collections(self):
@@ -243,7 +243,7 @@ class TestShelvesSerializer(ESTestCase):
         url = (
             'http://testserver'
             + reverse('search.search')
-            + '?promoted=recommended&sort=random&type=extension'
+            + f'?promoted={RECOMMENDED_API_NAME}&sort=random&type=extension'
         )
         assert data['footer'] == {
             'url': url,

@@ -21,7 +21,6 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
@@ -1003,7 +1002,7 @@ class TestActions(TestCase):
         addon = addon_factory(
             average_daily_users=4242,
             promoted_kwargs={
-                'api_name': RECOMMENDED_API_NAME,
+                'api_name': 'high_profile',
                 'high_profile': True,
             },
             version_kw={'promotion_approved': False},
@@ -1326,7 +1325,7 @@ class TestRunAction(TestCase):
         self, flag_for_human_review_mock, no_action_mock
     ):
         self.make_addon_promoted(
-            self.addon, api_name=RECOMMENDED_API_NAME, listed_pre_review=True
+            self.addon, api_name='pre_review', listed_pre_review=True
         )
         # Create another rule and add it to the current scanner result, but set to
         # exclude_promoted_addons=True.
@@ -1790,10 +1789,8 @@ class TestRunAction(TestCase):
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         self.scanner_rule.update(policy=policy)
-        # Make the add-on recommended, that will force 2nd level approval.
-        self.make_addon_promoted(
-            self.addon, api_name=RECOMMENDED_API_NAME, high_profile=True
-        )
+        # Make the add-on high-profile, that will force 2nd level approval.
+        self.make_addon_promoted(self.addon, api_name='high_profile', high_profile=True)
 
         ScannerResult.run_actions(self.version)
 
