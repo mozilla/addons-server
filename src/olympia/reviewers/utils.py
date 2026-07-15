@@ -585,6 +585,7 @@ class ReviewHelper:
             'multiple_versions': can_approve_multiple,
             'resolves_cinder_jobs': True,
             'can_attach': True,
+            'has_comments': True,
         }
         actions['review_with_policy'] = {
             'method': self.handler.review_with_policy,
@@ -608,6 +609,7 @@ class ReviewHelper:
             'multiple_versions': can_reject_multiple,
             'resolves_cinder_jobs': True,
             'can_attach': True,
+            'has_comments': True,
         }
         actions['public'] = {
             'method': self.handler.approve_latest_version,
@@ -632,6 +634,7 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
             'can_attach': True,
+            'has_comments': True,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -658,6 +661,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['approve_listing_content'] = {
             'method': self.handler.approve_listing_content,
@@ -667,7 +671,6 @@ class ReviewHelper:
                 'The developer will not be notified.'
             ),
             'minimal': False,
-            'comments': False,
             'available': (
                 self.content_review
                 and self.addon.status != amo.STATUS_REJECTED
@@ -688,7 +691,6 @@ class ReviewHelper:
                 'The developer will be notified.'
             ),
             'minimal': False,
-            'comments': False,
             'available': (
                 self.content_review
                 and self.addon.status == amo.STATUS_REJECTED
@@ -709,7 +711,6 @@ class ReviewHelper:
                 'review after they make changes.'
             ),
             'minimal': False,
-            'comments': True,
             'available': (
                 use_content_rejection
                 and addon_is_valid_and_version_is_listed
@@ -722,6 +723,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
@@ -733,7 +735,6 @@ class ReviewHelper:
                 'without notifying the developer.'
             ),
             'minimal': True,
-            'comments': False,
             'available': (
                 not policy_selection_enabled
                 and not self.content_review
@@ -754,6 +755,7 @@ class ReviewHelper:
             'available': (not policy_selection_enabled and can_approve_multiple),
             'enforcement_actions': (DECISION_ACTIONS.AMO_APPROVE,),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -772,6 +774,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -781,7 +784,6 @@ class ReviewHelper:
                 'This will un-reject the latest version without notifying the '
                 'developer.'
             ),
-            'comments': False,
             'available': (
                 not version_is_unlisted
                 and not use_content_rejection
@@ -799,7 +801,6 @@ class ReviewHelper:
                 'This will un-reject the selected versions without notifying the '
                 'developer.'
             ),
-            'comments': False,
             'available': (
                 version_is_unlisted
                 and addon_is_not_disabled_or_deleted
@@ -811,7 +812,6 @@ class ReviewHelper:
             'label': 'Block Multiple Versions',
             'minimal': True,
             'multiple_versions': True,
-            'comments': False,
             'details': (
                 'This will disable the selected approved '
                 'versions silently, and open up the block creation '
@@ -833,7 +833,6 @@ class ReviewHelper:
                 'This will confirm approval of the selected '
                 'versions without notifying the developer.'
             ),
-            'comments': False,
             'available': (
                 not policy_selection_enabled
                 and not is_static_theme
@@ -854,7 +853,6 @@ class ReviewHelper:
             'delayable': True,
             'multiple_versions': True,
             'minimal': True,
-            'comments': False,
             'available': not use_content_rejection and is_appropriate_admin_reviewer,
         }
         actions['clear_needs_human_review_multiple_versions'] = {
@@ -866,7 +864,6 @@ class ReviewHelper:
             ),
             'multiple_versions': True,
             'minimal': True,
-            'comments': False,
             'available': is_appropriate_admin_reviewer,
         }
         actions['set_needs_human_review_multiple_versions'] = {
@@ -879,6 +876,8 @@ class ReviewHelper:
             'multiple_versions': True,
             'minimal': True,
             'available': addon_is_not_disabled and is_appropriate_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['enable_auto_approval'] = {
             'method': self.handler.enable_auto_approval,
@@ -887,6 +886,8 @@ class ReviewHelper:
             'available': auto_approval_is_disabled
             and not addon_requires_pre_review
             and is_appropriate_admin_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['disable_auto_approval'] = {
             'method': self.handler.disable_auto_approval,
@@ -897,6 +898,8 @@ class ReviewHelper:
                 and not addon_requires_pre_review
                 and is_appropriate_admin_reviewer
             ),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
@@ -912,6 +915,8 @@ class ReviewHelper:
                 and is_reviewer
                 and (not any(promoted_group.admin_review) or is_appropriate_reviewer)
             ),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['request_admin_review'] = {
             'method': self.handler.request_admin_review,
@@ -924,13 +929,14 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': (self.version is not None and is_reviewer and is_static_theme),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['clear_admin_review'] = {
             'method': self.handler.clear_admin_review,
             'label': 'Clear admin review',
             'details': ('Clear needs admin review flag on the add-on.'),
             'minimal': True,
-            'comments': False,
             'available': is_appropriate_admin_reviewer and is_static_theme,
         }
         actions['enable_addon'] = {
@@ -949,6 +955,8 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
             'can_attach': False,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['disable_addon'] = {
             'method': self.handler.disable_addon,
@@ -966,6 +974,7 @@ class ReviewHelper:
             'enforcement_actions': (DECISION_ACTIONS.AMO_DISABLE_ADDON,),
             'resolves_cinder_jobs': True,
             'can_attach': False,
+            'has_comments': True,
         }
         actions['resolve_reports_job'] = {
             'method': self.handler.resolve_reports_job,
@@ -976,7 +985,6 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': is_reviewer and has_unresolved_abuse_report_jobs,
-            'comments': False,
             'resolves_cinder_jobs': True,
             'enforcement_actions': (
                 DECISION_ACTIONS.AMO_APPROVE,
@@ -994,6 +1002,8 @@ class ReviewHelper:
             'minimal': True,
             'available': is_reviewer and has_unresolved_appeal_jobs,
             'resolves_cinder_jobs': True,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['appeal_override'] = {
             'method': self.handler.appeal_override,
@@ -1012,6 +1022,7 @@ class ReviewHelper:
             ),
             'resolves_cinder_jobs': True,
             'can_attach': True,
+            'has_comments': True,
         }
         actions['request_legal_review'] = {
             'method': self.handler.request_legal_review,
@@ -1025,6 +1036,8 @@ class ReviewHelper:
             'minimal': True,
             'available': is_appropriate_reviewer,
             'resolves_cinder_jobs': True,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -1035,6 +1048,8 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': is_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
@@ -1047,7 +1062,7 @@ class ReviewHelper:
         # to have any, because the reviewer might have submitted some by
         # accident after switching between tabs, and the logging methods will
         # automatically include them if some are present.
-        if not action.get('comments', True):
+        if not action.get('has_comments'):
             self.handler.data['comments'] = ''
         self.handler.review_action = action
         return action['method']()
