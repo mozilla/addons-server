@@ -3482,8 +3482,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mail wannear’t dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oer duorje kin eardat publikaasje plakfynt, of "
-"langer as jo add-on selektearre is foar hânmjittige beoardieling. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo spammap."
+"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mailberjocht wannear’t dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oeren duorje kin eardat publikaasje plak "
+"fynt, of langer as jo add-on selektearre is foar hânmjittige beoardieling. As jo nei 24 oeren gjin e-mailberjocht ûntfange, kontrolearje dan jo spammap."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -4054,8 +4054,8 @@ msgstr "Ferzjeûndetekening yn behanneling"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear’t it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo"
-" spammap."
+"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear’t it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mailberjocht ûntfange, "
+"kontrolearje dan jo spammap."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
