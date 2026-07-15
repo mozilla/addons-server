@@ -258,33 +258,6 @@
           {{ form.cinder_jobs_to_resolve.errors }}
       </div>
 
-      <div class="review-actions-section review-actions-files data-toggle review-files"
-           data-value="{{ actions_full|join(' ') }}">
-        <label><strong>Files:</strong></label>
-        <ul>
-          {% for file in form.unreviewed_files %}
-          <li>
-            {{ file.pretty_filename }} &middot;
-            {{ file.get_review_status_display() }}
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="review-actions-section review-actions-tested data-toggle review-tested"
-           data-value="{{ actions_full|join(' ') }}">
-        <strong>Tested on:</strong>
-        <label>
-          {{ form.operating_systems.label }}
-        </label>
-        {{ form.operating_systems }}
-        <label>
-          {{ form.applications.label }}
-        </label>
-        {{ form.applications }}
-        {{ form.operating_systems.errors }}
-        {{ form.applications.errors }}
-      </div>
       {% if form.delayed_rejection and form.delayed_rejection_date %}
         <div class="review-actions-section data-toggle review-delayed-rejection"
              data-value="{{ toggle_when_action('delayable') }}">
