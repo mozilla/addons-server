@@ -533,7 +533,7 @@ class ReviewHelper:
         use_content_rejection = self.content_review and waffle.switch_is_active(
             'enable-content-rejection'
         )
-        policy_selection_enabled = waffle.switch_is_active(
+        policy_selection_enabled = not is_static_theme and waffle.switch_is_active(
             'enable-policy-review-selection'
         )
 
@@ -574,7 +574,6 @@ class ReviewHelper:
             'label': 'Positive Review',
             'available': (
                 policy_selection_enabled
-                and not is_static_theme
                 and not self.content_review
                 and is_appropriate_reviewer
             ),
@@ -594,7 +593,6 @@ class ReviewHelper:
             'label': 'Negative Review',
             'available': (
                 policy_selection_enabled
-                and not is_static_theme
                 and not self.content_review
                 and is_appropriate_reviewer
             ),
@@ -751,7 +749,7 @@ class ReviewHelper:
                 'This will approve the selected versions. '
                 'The comments will be sent to the developer.'
             ),
-            'available': (not policy_selection_enabled and can_approve_multiple),
+            'available': not policy_selection_enabled and can_approve_multiple,
             'enforcement_actions': (DECISION_ACTIONS.AMO_APPROVE,),
             'resolves_cinder_jobs': True,
         }

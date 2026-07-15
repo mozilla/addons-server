@@ -463,6 +463,10 @@ class TestReviewHelper(TestReviewHelperBase):
             == expected
         )
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_actions_public_static_theme_with_policy_review_selection(self):
+        self.test_actions_public_static_theme()
+
     def test_actions_no_version(self):
         """Addons with no versions in that channel have no version set."""
         expected = []
