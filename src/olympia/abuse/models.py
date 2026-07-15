@@ -26,6 +26,7 @@ from olympia.constants.abuse import (
     DECISION_SOURCES,
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
+    POLICY_EXPOSURE,
 )
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -935,7 +936,9 @@ class CinderPolicy(ModelBase):
         on_delete=models.SET_NULL,
         related_name='children',
     )
-    expose_in_reviewer_tools = models.BooleanField(default=False)
+    expose_in_reviewer_tools = models.SmallIntegerField(
+        default=POLICY_EXPOSURE.NONE, choices=POLICY_EXPOSURE.choices
+    )
     enforcement_actions = models.JSONField(default=list)
     status_in_cinder = models.SmallIntegerField(null=True, choices=POLICY_STATUSES)
 

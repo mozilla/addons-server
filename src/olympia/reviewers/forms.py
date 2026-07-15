@@ -25,7 +25,7 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import format_datetime
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
     REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT,
@@ -867,8 +867,13 @@ class ReviewForm(forms.Form):
         ].queryset = self.helper.unresolved_cinderjob_qs
 
         # Set the queryset for policies to show as options
+        policy_choices = (
+            POLICY_EXPOSURE.FOR_THEMES
+            if self.helper.addon.type == amo.ADDON_STATICTHEME
+            else POLICY_EXPOSURE.FOR_EXTENSIONS
+        )
         self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
-            expose_in_reviewer_tools=True
+            expose_in_reviewer_tools__in=policy_choices
         ).select_related('parent')
 
         # Pass on the reviewer tools actions so we can set the show/hide on policies

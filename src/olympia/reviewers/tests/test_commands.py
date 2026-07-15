@@ -29,7 +29,7 @@ from olympia.amo.tests import (
     version_review_flags_factory,
 )
 from olympia.amo.utils import days_ago
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import DELAY_AUTO_APPROVAL, NARC, YARA
 from olympia.files.models import FileManifest, FileValidation
@@ -772,7 +772,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
             name='Reject Policy',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             uuid=uuid.uuid4().hex,
         )
         ScannerRule.objects.create(
@@ -824,7 +824,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
             name='Disable Policy',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             uuid=uuid.uuid4().hex,
         )
         ScannerRule.objects.create(

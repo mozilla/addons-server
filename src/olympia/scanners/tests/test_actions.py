@@ -20,7 +20,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL,
@@ -1392,7 +1392,7 @@ class TestRunAction(TestCase):
             text='Just saying.',
             # expose_in_reviewer_tools shouldn't matter if the link already
             # exists - it's only for availability in the admin/reviewer tools.
-            expose_in_reviewer_tools=False,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.NONE,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         # Extra useless policy shouldn't get picked up.

@@ -369,3 +369,14 @@ class DECISION_SOURCES(StrEnum):
     LEGAL = 'Legal'
     TASKUS = 'TaskUs'
     MANUAL = 'Manual'
+
+
+class POLICY_EXPOSURE(EnumChoices):
+    NONE = 0, 'Not exposed'
+    BOTH = 1, 'All add-ons'
+    EXTENSION = 2, 'Extensions'
+    THEME = 3, 'Themes'
+
+
+POLICY_EXPOSURE.add_subset('FOR_EXTENSIONS', ('BOTH', 'EXTENSION'))
+POLICY_EXPOSURE.add_subset('FOR_THEMES', ('BOTH', 'THEME'))
