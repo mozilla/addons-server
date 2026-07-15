@@ -2530,6 +2530,48 @@ class TestReview(ReviewBase):
         self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
         assert self.client.head(self.url).status_code == 200
 
+    def test_need_correct_reviewer_for_promoted_addon(self):
+        self.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        self.make_addon_promoted(
+            self.addon, name='Admin Only', admin_review=True, listed_pre_review=True
+        )
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(dict(response.context['form'].fields['action'].choices).keys())
+        expected_choices = ['comment']
+        assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_promoted')
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == (
+                "This is a Admin Only add-on. You don't have permission to review it."
+            )
+
+        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        choices = list(dict(response.context['form'].fields['action'].choices).keys())
+        expected_choices = [
+            'public',
+            'reject',
+            'reject_multiple_versions',
+            'change_or_clear_pending_rejection_multiple_versions',
+            'clear_needs_human_review_multiple_versions',
+            'set_needs_human_review_multiple_versions',
+            'reply',
+            'disable_addon',
+            'request_legal_review',
+            'comment',
+        ]
+        assert choices == expected_choices
+
+        doc = pq(response.content)
+        assert doc('.is_promoted')
+        for entry in doc('.is_promoted').items():
+            assert entry.text() == ('This is a Admin Only add-on.')
+
     def test_not_recommendable(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
