@@ -41,9 +41,11 @@
   </span>
   <details>
     <summary>Show detail on {{ widget.label.reports|length }} reports</summary>
-    <ul>{% for report in widget.label.reports %}
-        <li>{% if report.addon_version %}v[{{ report.addon_version }}]: {% endif %}{{ report.message|default:'&lt;no message&gt;' }}</li>
-        {% endfor %}</ul>
+    <ul>
+        {% for report in widget.label.reports %}
+            <li>{% if report.addon_version %}v[{{ report.addon_version }}]: {% endif %}{{ report.message|default:'&lt;no message&gt;' }}</li>
+        {% endfor %}
+    </ul>
 </details>
 {% endif %}
 </label>
