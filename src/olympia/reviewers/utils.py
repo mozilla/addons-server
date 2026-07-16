@@ -4,6 +4,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.files.base import ContentFile
+from django.db.models import Prefetch
 from django.urls import reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
@@ -520,6 +521,15 @@ class ReviewHelper:
                 'appealed_decisions__cinder_job',
                 'appealed_decisions__override_of__cinder_job',
                 'appealed_decisions__appeals',
+                'appealed_decisions__target_versions',
+                'queue_moves',
+                Prefetch(
+                    'decisions',
+                    queryset=ContentDecision.objects.filter(
+                        action=DECISION_ACTIONS.AMO_REQUEUE
+                    ).order_by('-created'),
+                    to_attr='prefetched_requeue_decisions',
+                ),
             )
         )
         unresolved_cinder_jobs = list(self.unresolved_cinderjob_qs)
