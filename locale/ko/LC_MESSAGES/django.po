@@ -6008,7 +6008,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1147
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "에디터 추천 개인 정보 보호 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1150
@@ -6039,7 +6039,7 @@ msgstr "추천 비밀번호 관리자"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1162
 msgid "See more password manager staff picks"
-msgstr "비밀번호 관리자 직원 추천 더보기"
+msgstr "에디터 추천 비밀번호 관리자 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1165
@@ -6049,7 +6049,7 @@ msgstr "번역 도구"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1167
 msgid "See more translation tool staff picks"
-msgstr "번역 도구 직원 추천 더보기"
+msgstr "에디터 추천 번역 도구 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1170
@@ -6059,7 +6059,7 @@ msgstr "소셜 스트리밍"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1172
 msgid "See more social streaming staff picks"
-msgstr "소셜 스트리밍 직원 추천 더보기"
+msgstr "에디터 추천 소셜 스트리밍 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1175
@@ -6069,7 +6069,7 @@ msgstr "탭 관리자"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1177
 msgid "See more tab management staff picks"
-msgstr "탭 관리 직원 추천 더보기"
+msgstr "에디터 추천 탭 관리 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1180
@@ -6091,7 +6091,7 @@ msgstr "엘리트 광고 차단기"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1187
 msgid "See more ad blocker staff picks"
-msgstr "광고 차단기 직원 추천 더보기"
+msgstr "에디터 추천 광고 차단기 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1190
@@ -6101,7 +6101,7 @@ msgstr "YouTube 사용자 지정"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1192
 msgid "See more YouTube extension staff picks"
-msgstr "YouTube 확장 기능 직원 추천 더보기"
+msgstr "에디터 추천 YouTube 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1195
