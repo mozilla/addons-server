@@ -3005,8 +3005,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente includ enumerarea "
-"defectelor majore, informații despre raportarea defectelor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
+"Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente inclus enumerarea "
+"erorilor majore, informații despre raportarea erorilor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -4410,7 +4410,7 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informații despre schimbările din versiunea actuală, funcționalități noi, defecte cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
+"Informații despre schimbările din versiunea actuală, funcționalități noi, erori cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
 "suplimente la actualizare."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:93
