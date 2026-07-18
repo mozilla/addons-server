@@ -6076,7 +6076,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Gói tiện ích mở rộng khởi đầu"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
