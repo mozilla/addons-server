@@ -5206,7 +5206,7 @@ msgstr "Bucură-te de muzică de la peste 30.000 de posturi radio de pe întreg 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:930
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr "Economisește lățime de bandă prin difuzare audio numai din videoclipurile de pe YouTube."
+msgstr "Economisești lățime de bandă când redai doar fluxul audio din videoclipuri pe YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335
