@@ -265,7 +265,8 @@ function initReviewActions() {
   }
 
   $('#id_override_decision').change(function () {
-    showForm(review_checked.parentsUntil('#id_action', 'div'), true);
+    let $this_tab = $('#review-actions [name=action]:checked').parentsUntil('#id_action', 'div');
+    showForm($this_tab);
   });
 
 
