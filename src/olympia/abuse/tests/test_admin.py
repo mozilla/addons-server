@@ -19,6 +19,7 @@ from olympia.amo.tests import (
     grant_permission,
     user_factory,
 )
+from olympia.constants.abuse import POLICY_EXPOSURE
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.versions.models import VersionPreview
@@ -626,11 +627,9 @@ class TestCinderPolicyAdmin(TestCase):
             'id': 'abuse_sync_cinder_policies',
             'value': 'Sync from Cinder',
         }
-        assert len(
-            doc(
-                'input[id^="id_form-"][id$="-expose_in_reviewer_tools"][type="checkbox"]'
-            )
-        ) == (CinderPolicy.objects.count() if not read_only else 0)
+        assert len(doc('select[id^="id_form-"][id$="-expose_in_reviewer_tools"]')) == (
+            CinderPolicy.objects.count() if not read_only else 0
+        )
 
     def test_list_no_permission(self):
         self.login(permission=None)
@@ -647,11 +646,11 @@ class TestCinderPolicyAdmin(TestCase):
 
     def _make_edit_request(self, expected_status_code):
         policy = CinderPolicy.objects.create(
-            name='Bar', uuid=uuid.uuid4(), expose_in_reviewer_tools=False
+            name='Bar', uuid=uuid.uuid4(), expose_in_reviewer_tools=POLICY_EXPOSURE.NONE
         )
         detail_url = reverse('admin:abuse_cinderpolicy_change', args=(policy.id,))
         response = self.client.post(
-            detail_url, {'expose_in_reviewer_tools': True}, follow=True
+            detail_url, {'expose_in_reviewer_tools': POLICY_EXPOSURE.BOTH}, follow=True
         )
         assert response.status_code == expected_status_code
         return policy
@@ -659,17 +658,17 @@ class TestCinderPolicyAdmin(TestCase):
     def test_edit_policies(self):
         self.login()
         policy = self._make_edit_request(200)
-        assert policy.reload().expose_in_reviewer_tools is True
+        assert policy.reload().expose_in_reviewer_tools == POLICY_EXPOSURE.BOTH
 
     def test_edit_policies_cannot_with_no_permission(self):
         self.login(permission=None)
         policy = self._make_edit_request(403)
-        assert policy.reload().expose_in_reviewer_tools is False
+        assert policy.reload().expose_in_reviewer_tools == POLICY_EXPOSURE.NONE
 
     def test_edit_policies_cannot_with_view_permission(self):
         self.login(permission='CinderPolicies:View')
         policy = self._make_edit_request(403)
-        assert policy.reload().expose_in_reviewer_tools is False
+        assert policy.reload().expose_in_reviewer_tools == POLICY_EXPOSURE.NONE
 
     def test_sync_policies_no_permission(self):
         self.login(permission=None)

@@ -19,6 +19,7 @@ from olympia.constants.abuse import (
     DECISION_ACTIONS,
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
+    POLICY_EXPOSURE,
 )
 from olympia.files.models import File
 from olympia.reviewers.models import NeedsHumanReview, ReviewActionReason, UsageTier
@@ -1168,7 +1169,7 @@ class TestSyncCinderPolicies(TestCase):
             uuid=uuid.uuid4().hex,
             name='Existing policy',
             text='Existing policy with no decision or ReviewActionReason but exposed',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
         )
 
         # This policy should be kept because it's still present in Cinder
@@ -1183,13 +1184,13 @@ class TestSyncCinderPolicies(TestCase):
             name='Now archived',
             text='Existing policy but now archived',
             status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED,
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
         )
         existing_reviewer_policy = CinderPolicy.objects.create(
             uuid=uuid.uuid4().hex,
             name='Reviewers',
             text='Existing policy in reviewer tools',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
         )
         # we're returning 4 policies
         data = [
@@ -1245,7 +1246,10 @@ class TestSyncCinderPolicies(TestCase):
             updated_policy_but_now_archived.reload().status_in_cinder
             == CinderPolicy.POLICY_STATUSES.ARCHIVED
         )
-        assert updated_policy_but_now_archived.expose_in_reviewer_tools is False
+        assert (
+            updated_policy_but_now_archived.expose_in_reviewer_tools
+            == POLICY_EXPOSURE.NONE
+        )
 
         # all the policies deleted from Cinder remain but are marked deleted
         assert (
@@ -1265,9 +1269,16 @@ class TestSyncCinderPolicies(TestCase):
             == CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER
         )
         # And they're all not exposed in reviewer tools now
-        assert CinderPolicy.objects.filter(expose_in_reviewer_tools=True).count() == 1
         assert (
-            CinderPolicy.objects.filter(expose_in_reviewer_tools=True).get()
+            CinderPolicy.objects.filter(
+                expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+            ).count()
+            == 1
+        )
+        assert (
+            CinderPolicy.objects.filter(
+                expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+            ).get()
             == existing_reviewer_policy
         )
 
