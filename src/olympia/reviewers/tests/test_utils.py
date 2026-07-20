@@ -123,12 +123,7 @@ class TestReviewHelperBase(TestCase):
         self.helper.set_data(data)
 
     def get_data(self):
-        return {
-            'comments': 'foo',
-            'action': 'public',
-            'operating_systems': 'osx',
-            'applications': 'Firefox',
-        }
+        return {'comments': 'foo', 'action': 'public'}
 
     def get_helper(self, content_review=False, human_review=True):
         return ReviewHelper(

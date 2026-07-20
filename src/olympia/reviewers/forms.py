@@ -491,8 +491,6 @@ class ReviewForm(forms.Form):
         label='Versions:',
     )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False, label='Operating systems:')
-    applications = forms.CharField(required=False, label='Applications:')
     delayed_rejection = forms.NullBooleanField(
         initial=False,
         required=False,
@@ -850,15 +848,6 @@ class ReviewForm(forms.Form):
         self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
 
         self.fields['policy_values'].queryset = self.fields['cinder_policies'].queryset
-
-    @property
-    def unreviewed_files(self):
-        return (
-            (self.helper.version.file,)
-            if self.helper.version
-            and self.helper.version.file.status == amo.STATUS_AWAITING_REVIEW
-            else ()
-        )
 
 
 class MOTDForm(forms.Form):
