@@ -23,6 +23,7 @@ from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
+from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
