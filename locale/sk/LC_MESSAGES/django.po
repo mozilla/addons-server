@@ -370,7 +370,7 @@ msgstr "Odoslanie nie je platné."
 msgid "File is already disabled."
 msgstr "Súbor je už zakázaný."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovšia schválená verzia doplnku %s sa nedá odstrániť, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."
@@ -1829,11 +1829,6 @@ msgstr "Nedávne zmeny pre Moje doplnky"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Doplnky Open Search už {blog_link_open}nie sú na AMO podporované{blog_link_close}. Namiesto toho môžete vytvoriť {doc_link_open}rozšírenie pre vyhľadávanie{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Nahrávanie manifestu verzie 3 momentálne nie je podporované. {start_href}Prečítajte si viac plánoch na jeho podoru{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

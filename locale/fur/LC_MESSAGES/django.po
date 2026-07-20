@@ -371,7 +371,7 @@ msgstr "Il cjariament in rêt nol è valit."
 msgid "File is already disabled."
 msgstr "Il file al è za disativât."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1851,11 +1851,6 @@ msgstr "Modifichis resintis pai miei components adizionâi"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "I components adizionâi Open Search {blog_link_open}no son plui supuartâts su AMO{blog_link_close}. Al lôr puest tu puedis creâ une {doc_link_open}estension di ricercje{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "In chest moment nol è pussibil cjariâ in rêt estensions cun manifest V3. {start_href}Altris informazions sui timps previodûts pe implementazion{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

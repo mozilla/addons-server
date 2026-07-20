@@ -366,7 +366,7 @@ msgstr "上传无效。"
 msgid "File is already disabled."
 msgstr "已禁用文件。"
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "此 %s 附加组件先前的版本未通过审核成为 %s 推广项目，无法删除此推广附加组件最新通过审核的版本。若您需要协助，请联系 AMO 管理员。"
@@ -1812,11 +1812,6 @@ msgstr "我的附加组件的近期更改"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "{blog_link_open}AMO 已不再支持{blog_link_close} Open Search 附加组件。您可以改为创建{doc_link_open}搜索引擎扩展{doc_link_close}。"
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "当前不支持上传 Manifest v3。{start_href}可在此了解支持时间表{end_href}。"
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

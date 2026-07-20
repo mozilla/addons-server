@@ -254,32 +254,6 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
         assert not form.errors
 
-    def test_comments_optional_for_actions_with_enforcement_actions(self):
-        policy = CinderPolicy.objects.create(
-            uuid='xxx',
-            name='ok',
-            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
-            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
-        )
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Reviews:Admin')
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        action_names_and_enforcement_actions = (
-            ('public', DECISION_ACTIONS.AMO_APPROVE.api_value),
-            ('reject', DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value),
-            ('disable_addon', DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value),
-        )
-        for action_name, enforcement_action in action_names_and_enforcement_actions:
-            policy.update(enforcement_actions=[enforcement_action])
-            form = self.get_form(
-                data={'action': action_name, 'cinder_policies': [policy.id]}
-            )
-            assert 'comments' not in form.helper.actions[action_name]
-            assert form.is_bound
-            assert form.is_valid(), form.errors
-            assert not form.errors
-
     def test_policy_values_parsed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)

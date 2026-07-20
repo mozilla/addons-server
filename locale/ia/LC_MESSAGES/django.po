@@ -370,7 +370,7 @@ msgstr "Le incargamento non es valide."
 msgid "File is already disabled."
 msgstr "Le file es jam disactivate."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1834,11 +1834,6 @@ msgstr "Recente cambiamentos pro mi additivos"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Le additivos de recerca aperte {blog_link_open}non es plus compatibile con AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifesto V3 non es compatibile actualmente con incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

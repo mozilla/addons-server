@@ -366,7 +366,7 @@ msgstr "업로드가 유효하지 않습니다."
 msgid "File is already disabled."
 msgstr "파일이 이미 비활성화 되었습니다."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "이 %s 부가기능의 최신 승인 버전은 이전 버전이 %s 프로모션용으로 승인되지 않았기 때문에 삭제할 수 없습니다. 이에 대한 도움이 필요하면 AMO 관리자에게 문의하십시오."
@@ -1815,11 +1815,6 @@ msgstr "내 부가 기능의 최근 변경사항"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search 부가 기능은 {blog_link_open}AMO에서 더 이상 지원되지 않습니다{blog_link_close}. 대신 {doc_link_open}검색 확장 프로그램{doc_link_close}을 만들 수 있습니다."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "매니페스트 V3는 현재 업로드가 지원되지 않습니다. {start_href}지원 일정에 대해 자세히 알아보세요{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
@@ -5983,7 +5978,7 @@ msgstr ""
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1130 src/olympia/discovery/strings.jinja2:1132
 msgid "See staff picks"
-msgstr "직원 추천 보기"
+msgstr "에디터 추천 보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1135
@@ -6013,7 +6008,7 @@ msgstr ""
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1147
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "에디터 추천 개인 정보 보호 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1150
@@ -6044,7 +6039,7 @@ msgstr "추천 비밀번호 관리자"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1162
 msgid "See more password manager staff picks"
-msgstr "비밀번호 관리자 직원 추천 더보기"
+msgstr "에디터 추천 비밀번호 관리자 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1165
@@ -6054,7 +6049,7 @@ msgstr "번역 도구"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1167
 msgid "See more translation tool staff picks"
-msgstr "번역 도구 직원 추천 더보기"
+msgstr "에디터 추천 번역 도구 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1170
@@ -6064,7 +6059,7 @@ msgstr "소셜 스트리밍"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1172
 msgid "See more social streaming staff picks"
-msgstr "소셜 스트리밍 직원 추천 더보기"
+msgstr "에디터 추천 소셜 스트리밍 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1175
@@ -6074,7 +6069,7 @@ msgstr "탭 관리자"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1177
 msgid "See more tab management staff picks"
-msgstr "탭 관리 직원 추천 더보기"
+msgstr "에디터 추천 탭 관리 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1180
@@ -6096,7 +6091,7 @@ msgstr "엘리트 광고 차단기"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1187
 msgid "See more ad blocker staff picks"
-msgstr "광고 차단기 직원 추천 더보기"
+msgstr "에디터 추천 광고 차단기 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1190
@@ -6106,7 +6101,7 @@ msgstr "YouTube 사용자 지정"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1192
 msgid "See more YouTube extension staff picks"
-msgstr "YouTube 확장 기능 직원 추천 더보기"
+msgstr "에디터 추천 YouTube 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1195
@@ -6146,7 +6141,7 @@ msgstr "스팀 향상기"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1212
 msgid "See more Steam staff picks"
-msgstr "Steam 직원 추천 더보기"
+msgstr "에디터 추천 Steam 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1215
@@ -6156,7 +6151,7 @@ msgstr "창의성 확장 기능"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1217
 msgid "See more creativity staff picks"
-msgstr "창의성 직원 추천 더보기"
+msgstr "에디터 추천 창의성 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1220
@@ -6166,7 +6161,7 @@ msgstr "소셜 미디어 확장 기능"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1222
 msgid "See more social media staff picks"
-msgstr "소셜 미디어 직원 추천 더보기"
+msgstr "에디터 추천 소셜 미디어 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1225
@@ -6176,7 +6171,7 @@ msgstr "최고의 다운로드 관리자"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1227
 msgid "See more download manager staff picks"
-msgstr "다운로드 관리자 직원 추천 더보기"
+msgstr "에디터 추천 다운로드 관리자 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1230
@@ -6186,7 +6181,7 @@ msgstr "접근성 확장 기능"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1232
 msgid "See more accessibility staff picks"
-msgstr "접근성 직원 추천 더보기"
+msgstr "에디터 추천 접근성 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1235
@@ -6196,12 +6191,12 @@ msgstr "확장 기능 스타터 팩"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1237
 msgid "See more starter extension staff picks"
-msgstr "스타터 확장 기능 직원 추천 더보기"
+msgstr "에디터 추천 입문자용 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1242
 msgid "See more Twitch extension staff picks"
-msgstr "Twitch 확장 기능 직원 추천 더보기"
+msgstr "에디터 추천 Twitch 확장 기능 더보기"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1250
@@ -6211,7 +6206,7 @@ msgstr "게임 및 미디어 확장 기능"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1252
 msgid "See more staff picks"
-msgstr "직원 추천 더보기"
+msgstr "에디터 추천 더보기"
 
 #: src/olympia/files/models.py:326
 msgid "Unreviewed"

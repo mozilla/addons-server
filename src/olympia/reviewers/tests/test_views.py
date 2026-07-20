@@ -2435,11 +2435,7 @@ class ReviewBase(QueueTest):
         return Addon.objects.get(pk=self.addon.pk)
 
     def get_dict(self, **kw):
-        data = {
-            'operating_systems': 'win',
-            'applications': 'some app',
-            'comments': 'some comment',
-        }
+        data = {'comments': 'some comment'}
         data.update(kw)
         return data
 
@@ -3450,12 +3446,7 @@ class TestReview(ReviewBase):
         check_entry(version_history)
 
     def test_files_in_item_history(self):
-        data = {
-            'action': 'public',
-            'operating_systems': 'win',
-            'applications': 'something',
-            'comments': 'something',
-        }
+        data = {'action': 'public', 'comments': 'something'}
         self.client.post(self.url, data)
 
         response = self.client.get(self.url)
@@ -4142,8 +4133,6 @@ class TestReview(ReviewBase):
 
         data = {
             'action': action,
-            'operating_systems': 'win',
-            'applications': 'some app',
             'comments': 'some comment',
             'cinder_policies': [policy.id],
             'versions': [version.pk],
@@ -5955,11 +5944,6 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
         ]
 
-        # We don't have approve/reject actions so these have an empty
-        # data-value.
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-
     def test_test_data_value_attributes_admin(self):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
@@ -6075,11 +6059,6 @@ class TestReview(ReviewBase):
             'data-value'
         ].split(' ') == ['approve_multiple_versions', 'reject_multiple_versions']
 
-        # We don't have approve/reject actions so these have an empty
-        # data-value.
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-
         assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
             'data-value'
         ].split(' ') == [
@@ -6105,8 +6084,6 @@ class TestReview(ReviewBase):
         assert not doc('select#id_versions.data-toggle')[0]
         assert doc('.data-toggle.review-comments')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-actions-policies')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
         # Viewer won't see delayed rejection inputs, need a reviewer.
         assert not doc('.data-toggle.review-delayed-rejection')
@@ -6142,14 +6119,6 @@ class TestReview(ReviewBase):
             'reply',
             'request_legal_review',
             'comment',
-        ]
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'].split(' ') == [
-            'public',
-            'reject',
-        ]
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'].split(' ') == [
-            'public',
-            'reject',
         ]
         assert doc('.data-toggle.review-actions-policies')[0].attrib[
             'data-value'
@@ -6191,12 +6160,9 @@ class TestReview(ReviewBase):
             'request_legal_review',
             'comment',
         ]
-        # we don't show files, reasons, and tested with for any static theme actions
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-actions-policies')[0].attrib[
             'data-value'
         ].split(' ') == ['reject', 'reject_multiple_versions']
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
     def test_post_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and

@@ -350,7 +350,7 @@ msgstr "Lähetys ei ole kelvollinen."
 msgid "File is already disabled."
 msgstr "Tiedosto on jo poistettu käytöstä."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1801,11 +1801,6 @@ msgstr "Omien lisäosien viimeaikaiset muutokset"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search -lisäosia {blog_link_open}ei enää tueta AMO:ssa{blog_link_close}. Voit luoda {doc_link_open}hakulaajennuksen sen sijaan{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifestin versiota 3 ei tällä hetkellä tueta lähetystä varten. {start_href}Lue lisää tuen aikajanasta{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
