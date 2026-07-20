@@ -558,7 +558,7 @@ class ReviewForm(forms.Form):
         selected_action = self.data.get('action')
         action = self.helper.actions.get(selected_action)
         if action:
-            if not action.get('comments', True):
+            if not action.get('require_comments'):
                 self.fields['comments'].required = False
             if action.get('multiple_versions', False) and not action.get(
                 'policy_enforcement', False
@@ -566,9 +566,6 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('enforcement_actions'):
                 self.fields['cinder_policies'].required = False
-            else:
-                # we no longer strictly require comments with cinder policies
-                self.fields['comments'].required = False
             if selected_action == 'appeal_deny':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
