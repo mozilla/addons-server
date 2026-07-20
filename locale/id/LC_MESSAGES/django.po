@@ -1804,11 +1804,6 @@ msgstr "Perubahan Terbaru Untuk Pengaya Saya"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Pengaya Open Search {blog_link_open}tidak lagi didukung di AMO{blog_link_close}. Anda dapat membuat sebuah {doc_link_open}ekstensi pencari sebagai pengganti{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 saat ini tidak didukung untuk diunggah. {start_href}Baca lebih lanjut tentang garis waktu dukungan{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."

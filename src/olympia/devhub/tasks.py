@@ -480,10 +480,10 @@ def run_addons_linter(path, channel):
     if waffle.switch_is_active('disable-linter-xpi-autoclose'):
         args.append('--disable-xpi-autoclose')
 
-    if waffle.switch_is_active('enable-mv3-submissions'):
-        args.append('--max-manifest-version=3')
-    else:
-        args.append('--max-manifest-version=2')
+    # While it is currently the default in the linter, let's pin the max
+    # version to 3 in case the default changes in the linter at some point in
+    # the (hopefully far) future.
+    args.append('--max-manifest-version=3')
 
     if settings.ADDONS_LINTER_ENABLE_SERVICE_WORKER:
         args.append('--enable-background-service-worker')

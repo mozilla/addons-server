@@ -1832,11 +1832,6 @@ msgstr "Những thay đổi gần đây cho tiện ích của tôi"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Tiện ích Open Search đã {blog_link_open}không còn được hỗ trợ trên AMO{blog_link_close}. Thay vào đó bạn có thể tạo một {doc_link_open}tiện ích tìm kiếm{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Hiện tại không hỗ trợ tải lên với Manifest V3. {start_href}Đọc thêm về tiến trình hỗ trợ{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
@@ -6081,7 +6076,7 @@ msgstr "Xem tất cả các tiện ích mở rộng"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Gói tiện ích mở rộng khởi đầu"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

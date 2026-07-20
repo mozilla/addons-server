@@ -1834,11 +1834,6 @@ msgstr "Resinte wizigingen foar myn add-ons"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-add-ons wurde {blog_link_open}net mear stipe op AMO{blog_link_close}. Jo kinne yn stee dêrfan in {doc_link_open}sykútwreiding meitsje{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Opladen fan Manifest v3 wurdt op dit stuit net stipe. {start_href}Mear ynfo oer de stipetiidsline{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Dizze identifikator wurdt al brûkt. Kies in oar."
@@ -3482,8 +3477,8 @@ msgid ""
 "You’re done! ✨ You will receive a confirmation email when this version is published on %(site_domain)s. Note that it may take up to 24 hours before publication occurs, or longer if your add-on is "
 "selected for manual review. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mail wannear’t dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oer duorje kin eardat publikaasje plakfynt, of "
-"langer as jo add-on selektearre is foar hânmjittige beoardieling. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo spammap."
+"Jo binne klear! ✨ Jo ûntfange in befêstigings-e-mailberjocht wannear’t dizze ferzje publisearre is op %(site_domain)s. Hâld der rekkening mei dat it oant 24 oeren duorje kin eardat publikaasje plak "
+"fynt, of langer as jo add-on selektearre is foar hânmjittige beoardieling. As jo nei 24 oeren gjin e-mailberjocht ûntfange, kontrolearje dan jo spammap."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
@@ -4054,8 +4049,8 @@ msgstr "Ferzjeûndetekening yn behanneling"
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
 msgstr ""
-"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear’t it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mail ûntfange, kontrolearje dan jo"
-" spammap."
+"Jo binne klear! ✨ Jo ûntfange in e-mailberjocht wannear’t it ûndertekene bestân klear is om download te wurden fan de Untwikkelershub út. As jo nei 24 oeren gjin e-mailberjocht ûntfange, "
+"kontrolearje dan jo spammap."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"

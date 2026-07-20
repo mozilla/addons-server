@@ -1866,11 +1866,6 @@ msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_l
 msgstr ""
 "Les modules complémentaires Open Search {blog_link_open}ne sont plus pris en charge sur AMO{blog_link_close}. Vous pouvez créer une {doc_link_open}extension de recherche{doc_link_close} à la place."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "La version 3 du fichier Manifest n’est actuellement pas prise en charge pour la mise en ligne. {start_href}En savoir plus sur la chronologie de la prise en charge{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Ce raccourci est déjà utilisé. Merci d’en choisir un autre."

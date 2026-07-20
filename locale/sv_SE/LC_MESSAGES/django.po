@@ -1828,11 +1828,6 @@ msgstr "Senaste ändringar för mitt tillägg"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-tillägg stöds {blog_link_open}inte längre på AMO{blog_link_close}. Du kan istället skapa ett {doc_link_open}söktillägg{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 stöds för närvarande inte för uppladdning. {start_href}Läs mer om supportens tidslinje{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Sluggen används redan. Välj en annan."
@@ -6099,7 +6094,7 @@ msgstr "Se alla tillägg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Startpaket för tillägg"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

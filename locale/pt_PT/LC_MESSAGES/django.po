@@ -1840,11 +1840,6 @@ msgstr "Alterações recentes aos meus extras"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Os extras de Pesquisa aberta {blog_link_open}já não são suportados no AMO {blog_link_close}. Como alternativa, pode criar uma {doc_link_open}extensão de pesquisa{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Atualmente, o envio da V3 do manifesto ainda não é suportada. {start_href}Leia mais sobre o cronograma de suporte{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Este identificador já está a ser utilizado. Por favor, escolha outro."

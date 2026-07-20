@@ -13,7 +13,6 @@ from django.forms.models import (
     ModelMultipleChoiceField,
     modelformset_factory,
 )
-from django.utils.html import format_html, format_html_join
 
 import markupsafe
 
@@ -24,7 +23,6 @@ from olympia.abuse.utils import filter_enforcement_actions, hash_addon_negative_
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
-from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
@@ -229,7 +227,7 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
     select elements with additional attribute to allow toggling.
     """
 
-    option_template_name = 'reviewers/includes/input_option_with_label_attrs.html'
+    option_template_name = 'reviewers/widgets/cinder_job.html'
 
     def create_option(
         self, name, value, label, selected, index, subindex=None, attrs=None
@@ -237,25 +235,22 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # label_from_instance() on WidgetRenderedModelMultipleChoiceField returns the
         # full object, not a label, this is what makes this work.
         obj = label
-        is_developer_appeal = obj.is_developer_appeal
-        is_reporter_appeal = not is_developer_appeal and obj.is_appeal
-        queue_moves = list(obj.queue_moves.order_by('-created'))
-        requeued_decisions = list(
-            obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
-                '-created'
-            )
+        queue_moves = sorted(
+            obj.queue_moves.all(), key=lambda m: m.created, reverse=True
         )
+        requeued_decisions = getattr(
+            obj,
+            'prefetched_requeue_decisions',
+            None,
+        )
+        if requeued_decisions is None:
+            requeued_decisions = list(
+                obj.decisions.filter(action=DECISION_ACTIONS.AMO_REQUEUE).order_by(
+                    '-created'
+                )
+            )
         forwarded = queue_moves[0].created if queue_moves else None
         requeued = requeued_decisions[0].created if requeued_decisions else None
-        reports = obj.all_abuse_reports
-        reasons_set = {(report.REASONS(report.reason).label,) for report in reports}
-        messages_gen = (
-            (
-                (f'v[{report.addon_version}]: ' if report.addon_version else ''),
-                report.message or '<no message>',
-            )
-            for report in reports
-        )
         forwarded_or_requeued_notes = (
             [
                 *(move.notes for move in queue_moves),
@@ -264,47 +259,25 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
             if requeued or forwarded
             else []
         )
-        internal_notes = (
-            ((f'Reasoning: {"; ".join(forwarded_or_requeued_notes)}',),)
-            if forwarded_or_requeued_notes
-            else ()
-        )
-        appeals = (
-            (
-                (appeal_obj.text, appeal_obj.reporter_report_id is not None)
-                for appealed_decision in obj.appealed_decisions.all()
-                for appeal_obj in appealed_decision.appeals.all()
-            )
-            if is_reporter_appeal or is_developer_appeal
-            else ()
-        )
-        subtexts_gen = [
-            *internal_notes,
-            *(
-                (f'{"Reporter" if is_reporter else "Developer"} Appeal: {text}',)
-                for text, is_reporter in appeals
+        appealed_decisions = list(obj.appealed_decisions.all())
+        is_developer_appeal = appealed_decisions and obj.is_developer_appeal
+        # optimization: we don't show the original reports for a developer appeal
+        reports = obj.all_abuse_reports if not is_developer_appeal else []
+        reasons = {report.REASONS(report.reason).label for report in reports}
+
+        label = {
+            'appealed_decisions': appealed_decisions,
+            'created_date': obj.created,
+            'forwarded_date': forwarded,
+            'internal_notes': forwarded_or_requeued_notes,
+            'is_developer_appeal': is_developer_appeal,
+            'reasons': reasons,
+            'requeued_date': requeued,
+            'reports': reports,
+            'version_count': sum(
+                len(decision.target_versions.all()) for decision in appealed_decisions
             ),
-        ]
-
-        label = format_html(
-            '(Created on {}) {}{}{}{}<br/><span>{}</span>'
-            '<details><summary>Show detail on {} reports</summary><ul>{}</ul>'
-            '</details>',
-            format_datetime(obj.created),
-            '[Appeal] ' if (is_reporter_appeal or is_developer_appeal) else '',
-            format_html('[Forwarded on {}] ', format_datetime(forwarded))
-            if forwarded
-            else '',
-            format_html('[Requeued on {}] ', format_datetime(requeued))
-            if requeued
-            else '',
-            format_html_join(', ', '"{}"', reasons_set),
-            format_html_join('', '{}<br/>', subtexts_gen),
-            len(reports),
-            format_html_join('', '<li>{}{}</li>', messages_gen),
-        )
-
-        attrs = attrs or {}
+        }
         # Reviewers shouldn't use appeal_deny to resolve "regular" jobs,
         # and conversely shouldn't use resolve_reports_job to resolve appeals,
         # as resolving appeals is a bit more involved.
@@ -313,19 +286,21 @@ class CinderJobsWidget(forms.CheckboxSelectMultiple):
         # that's not always what we want.
         # The parent element will have `data-toggle-hide`, so data-value is
         # used to hide actions that are not supposed to be used for this job.
-        if is_reporter_appeal:
-            hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
-        elif is_developer_appeal:
-            hide_for_these_actions = [
-                'review_with_policy_approve',
-                'review_with_policy',
-                'reject',
-                'reject_multiple_versions',
-                'resolve_reports_job',
-            ]
+        if appealed_decisions:
+            if is_developer_appeal:
+                hide_for_these_actions = [
+                    'review_with_policy_approve',
+                    'review_with_policy',
+                    'reject',
+                    'reject_multiple_versions',
+                    'resolve_reports_job',
+                ]
+            else:
+                hide_for_these_actions = ['appeal_override', 'resolve_reports_job']
         else:
             hide_for_these_actions = ['appeal_deny', 'appeal_override']
-        attrs['data-value'] = ' '.join(hide_for_these_actions)
+        attrs = attrs or {}
+        attrs['data_value'] = ' '.join(hide_for_these_actions)
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )
@@ -564,8 +539,6 @@ class ReviewForm(forms.Form):
         label='Versions:',
     )  # queryset is set later in __init__.
 
-    operating_systems = forms.CharField(required=False, label='Operating systems:')
-    applications = forms.CharField(required=False, label='Applications:')
     delayed_rejection = forms.NullBooleanField(
         initial=False,
         required=False,
@@ -941,15 +914,6 @@ class ReviewForm(forms.Form):
         self.fields['override_decision'].queryset = ContentDecision.objects.filter(
             addon=self.helper.addon, overridden_by__isnull=True
         ).order_by('-created')
-
-    @property
-    def unreviewed_files(self):
-        return (
-            (self.helper.version.file,)
-            if self.helper.version
-            and self.helper.version.file.status == amo.STATUS_AWAITING_REVIEW
-            else ()
-        )
 
 
 class MOTDForm(forms.Form):

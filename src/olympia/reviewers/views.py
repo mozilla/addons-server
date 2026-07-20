@@ -582,12 +582,6 @@ def review(request, addon, channel=None):
         .order_by('-created')
         .first()
     )
-    # The actions we shouldn't show a minimal form for.
-    # FIXME: the full/minimal distinction is obsolete - we don't use the extra fields
-    actions_full = []
-    for key, action in actions:
-        if not (is_static_theme or action.get('minimal')):
-            actions_full.append(key)
 
     addons_sharing_same_guid = (
         Addon.unfiltered.all()
@@ -695,7 +689,6 @@ def review(request, addon, channel=None):
             and request.user.is_staff
         ),
         actions=actions,
-        actions_full=actions_full,
         addon=addon,
         addons_sharing_same_guid=addons_sharing_same_guid,
         approvals_info=approvals_info,

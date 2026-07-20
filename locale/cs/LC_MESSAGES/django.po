@@ -1831,11 +1831,6 @@ msgstr "Nedávné změny pro mé doplňky"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Doplňky ve formátu Open Search {blog_link_open}již nejsou na webu doplňků podporovány{blog_link_close}. Místo nich můžete vytvořit {doc_link_open}rozšíření pro vyhledávání{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 není v současné době pro nahrávání podporován. {start_href}Přečtěte si více o době podpory{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Toto URL je již používáno. Zvolte prosím jiné."

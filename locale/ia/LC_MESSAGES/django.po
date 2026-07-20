@@ -1835,11 +1835,6 @@ msgstr "Recente cambiamentos pro mi additivos"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Le additivos de recerca aperte {blog_link_open}non es plus compatibile con AMO{blog_link_close}. Tu pote crear in vice un {doc_link_open}extension de recerca{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifesto V3 non es compatibile actualmente con incargamento. {start_href}Lege plus sur le chronogramma de supporto{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Iste identificator es ja in uso. Per favor elige un altere."

@@ -1785,11 +1785,6 @@ msgstr "Isnifal n melmi kan i yizegrar-iw"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Izegrar Open Search ur ttusefraken ara s {blog_link_open}ɣef AMO{blog_link_close}. Tzemreḍ ad d-ternuḍ aseɣzaf n unadi {doc_link_open}deg wadeg n{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."

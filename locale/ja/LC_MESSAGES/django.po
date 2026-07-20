@@ -376,7 +376,7 @@ msgstr "アドオンが無効になっている間、リストに載ったバー
 
 #: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr ""
+msgstr "アドオンの登録が却下されている場合、リストに掲載されているバージョンは送信できません。"
 
 #: src/olympia/addons/serializers.py:634
 #, python-format
@@ -1815,11 +1815,6 @@ msgstr "自分のアドオンの最近の変更"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Searchアドオンは、{blog_link_open}AMO でのサポートを終了しました{blog_link_close}。代わりに、{doc_link_open}検索の拡張機能{doc_link_close} を作成できます。"
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "現在、Manifest V3 のアップロードはサポートされていません。{start_href}サポートのタイムラインの詳細について{end_href} をご覧ください。"
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "このスラグは既に使われています。別のスラグを付けてください。"
@@ -2033,7 +2028,7 @@ msgstr "問題が発生しました。開発者サポートにお問い合わせ
 
 #: src/olympia/devhub/forms.py:1679
 msgid "No appropriate version available"
-msgstr ""
+msgstr "適切なバージョンが利用できません"
 
 #: src/olympia/devhub/forms.py:1686
 msgid "Choose version"
@@ -2049,7 +2044,7 @@ msgstr "バージョン [m.m] に基づいて自動的にロールバックし�
 
 #: src/olympia/devhub/forms.py:1771
 msgid "You must select a channel and version to rollback to."
-msgstr ""
+msgstr "ロールバックするチャンネルとバージョンを選択する必要があります。"
 
 #: src/olympia/devhub/forms.py:1781
 msgid "Choose a category"
@@ -2445,7 +2440,7 @@ msgstr "その他の資料"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "サポートへの問い合わせ"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2457,17 +2452,17 @@ msgstr "検索"
 
 #: src/olympia/devhub/templates/devhub/support.html:3
 msgid "Get support for extensions and themes"
-msgstr ""
+msgstr "拡張機能とテーマのサポートを受ける"
 
 #: src/olympia/devhub/templates/devhub/support.html:11
 msgid ""
 "Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please"
 " refer to your add-on(s) version history. We'll get back to you as soon as possible."
-msgstr ""
+msgstr "アカウントに関するサポート、ポリシー遵守に関する問題などについては、こちらのフォームをご利用ください。詳細な情報をご提供いただければ、より迅速に対応できます。アドオンのレビューに関するご質問は、アドオンのバージョン履歴をご参照ください。できる限り早くご連絡いたします。"
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "依頼を送信"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format

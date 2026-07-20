@@ -123,12 +123,7 @@ class TestReviewHelperBase(TestCase):
         self.helper.set_data(data)
 
     def get_data(self):
-        return {
-            'comments': 'foo',
-            'action': 'public',
-            'operating_systems': 'osx',
-            'applications': 'Firefox',
-        }
+        return {'comments': 'foo', 'action': 'public'}
 
     def get_helper(self, content_review=False, human_review=True):
         return ReviewHelper(
@@ -462,6 +457,10 @@ class TestReviewHelper(TestReviewHelperBase):
             )
             == expected
         )
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_actions_public_static_theme_with_policy_review_selection(self):
+        self.test_actions_public_static_theme()
 
     def test_actions_no_version(self):
         """Addons with no versions in that channel have no version set."""

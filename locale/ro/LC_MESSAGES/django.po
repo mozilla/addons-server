@@ -1845,11 +1845,6 @@ msgstr "Modificări recente pentru suplimentele mele"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Suplimentele cu căutare deschisă {blog_link_open}nu mai au suport pe AMO{blog_link_close}. Poți crea {doc_link_open}în schimb o extensie de căutare{doc_link_close}."
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Manifest V3 nu este acceptat pentru încărcare momentan. {start_href}Citește mai multe despre cronologia asistenței{end_href}."
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "Acest slug este deja în uz. Te rugăm să alegi altul."
@@ -3010,8 +3005,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente includ enumerarea "
-"defectelor majore, informații despre raportarea defectelor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
+"Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente inclus enumerarea "
+"erorilor majore, informații despre raportarea erorilor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -4415,7 +4410,7 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Informații despre schimbările din versiunea actuală, funcționalități noi, defecte cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
+"Informații despre schimbările din versiunea actuală, funcționalități noi, erori cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
 "suplimente la actualizare."
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:93
@@ -5211,7 +5206,7 @@ msgstr "Bucură-te de muzică de la peste 30.000 de posturi radio de pe întreg 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:930
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
-msgstr "Economisește lățime de bandă prin difuzare audio numai din videoclipurile de pe YouTube."
+msgstr "Economisești lățime de bandă când redai doar fluxul audio din videoclipuri pe YouTube."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:335

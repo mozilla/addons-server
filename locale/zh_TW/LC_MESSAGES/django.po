@@ -1813,11 +1813,6 @@ msgstr "我的附加元件最近的更改"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "{blog_link_open}AMO 已不再支援{blog_link_close} Open Search 附加元件。請改成建立{doc_link_open}搜尋引擎擴充套件{doc_link_close}。"
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "目前不支援上傳 Manifest v3。{start_href}在此了解支援時間範圍{end_href}。"
-
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
