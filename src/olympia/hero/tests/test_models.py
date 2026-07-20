@@ -43,26 +43,23 @@ class TestPrimaryHero(TestCase):
 
     def test_clean_requires_approved_can_primary_hero_group(self):
         addon = addon_factory()
-        # The error message below lists every active can_primary_hero group by
+        # The error message below lists every can_primary_hero group by
         # name, so create the three that can be added to a primary shelf.
         recommended_group, _ = PromotedGroup.objects.get_or_create(
             api_name=RECOMMENDED_API_NAME,
             name='Recommended',
             can_primary_hero=True,
-            active=True,
             listed_pre_review=True,
         )
         PromotedGroup.objects.get_or_create(
             api_name='line',
             name='By Firefox',
             can_primary_hero=True,
-            active=True,
         )
         spotlight_group, _ = PromotedGroup.objects.get_or_create(
             api_name='spotlight',
             name='Spotlight',
             can_primary_hero=True,
-            active=True,
         )
         strategic_group, _ = PromotedGroup.objects.get_or_create(
             api_name='strategic', name='Strategic', can_primary_hero=False

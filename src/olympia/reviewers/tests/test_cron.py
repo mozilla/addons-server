@@ -18,9 +18,7 @@ class TestQueueCount(TestCase):
 
     def _test_expected_count(self, date):
         # We are recording every queue, plus drilling down in every promoted group
-        expected_count = (
-            len(reviewer_tables_registry) + PromotedGroup.objects.active().count()
-        )
+        expected_count = len(reviewer_tables_registry) + PromotedGroup.objects.count()
         assert QueueCount.objects.filter(date=date).count() == expected_count
 
     def test_empty(self):
@@ -48,33 +46,21 @@ class TestQueueCount(TestCase):
         )
         self.addon_pre_review_1 = addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_kwargs={
-                'api_name': 'pre_review',
-                'listed_pre_review': True,
-                'active': True,
-            },
+            promoted_kwargs={'api_name': 'pre_review', 'listed_pre_review': True},
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },
         )
         addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_kwargs={
-                'api_name': 'pre_review',
-                'listed_pre_review': True,
-                'active': True,
-            },
+            promoted_kwargs={'api_name': 'pre_review', 'listed_pre_review': True},
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },
         )
         addon_factory(
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            promoted_kwargs={
-                'api_name': 'notable',
-                'listed_pre_review': True,
-                'active': True,
-            },
+            promoted_kwargs={'api_name': 'notable', 'listed_pre_review': True},
             needshumanreview_kw={
                 'reason': NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             },

@@ -15,7 +15,7 @@ def record_reviewer_queues_counts():
     }
     # Also drill down manual review queue by promoted class (there is no real
     # queue for each, but we still want that data).
-    for group in PromotedGroup.objects.active():
+    for group in PromotedGroup.objects.all():
         querysets[f'{PendingManualApprovalQueueTable.name}/{group.api_name}'] = (
             PendingManualApprovalQueueTable.get_queryset(None).filter(
                 promotedaddon__promoted_group=group

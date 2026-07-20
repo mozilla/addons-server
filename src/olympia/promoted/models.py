@@ -25,9 +25,6 @@ class PromotedGroupQuerySet(BaseQuerySet):
     def name(self):
         return ', '.join(self.__getattr__('name'))
 
-    def active(self):
-        return self.filter(active=True)
-
 
 class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet
@@ -42,9 +39,6 @@ class PromotedGroupManager(ManagerBase):
             'promoted_group_id', flat=True
         )
         return self.all_for(addon=addon).filter(id__in=approved_promotions)
-
-    def active(self):
-        return self.get_queryset().active()
 
 
 class PromotedGroup(models.Model):
@@ -105,13 +99,6 @@ class PromotedGroup(models.Model):
     high_profile_rating = models.BooleanField(
         default=False,
         help_text='Indicates if developer replies are treated as high-profile.',
-    )
-    active = models.BooleanField(
-        default=False,
-        help_text=(
-            'Marks whether this promotion group is active '
-            '(inactive groups are considered obsolete).'
-        ),
     )
     is_public = models.BooleanField(
         default=True,
