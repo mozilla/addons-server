@@ -34,11 +34,11 @@ msgstr "Dôvod odvolania"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Vysvetlite, prečo si myslíte, že toto rozhodnutie bolo urobené omylom a/alebo nie je v súlade s platnými zásadami alebo zákonmi."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Používateľský profil"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pre {}"
@@ -370,7 +370,7 @@ msgstr "Odoslanie nie je platné."
 msgid "File is already disabled."
 msgstr "Súbor je už zakázaný."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Najnovšia schválená verzia doplnku %s sa nedá odstrániť, pretože predchádzajúca verzia %s nebola schválená na zverejnenie. Ak s tým potrebujete pomôcť, kontaktujte správcov stránok AMO."

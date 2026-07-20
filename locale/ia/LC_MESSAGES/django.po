@@ -34,11 +34,11 @@ msgstr "Ration del appello"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Per favor explica perque tu crede que iste decision era errate, o non es alineate con le criterio o le lege applicabile."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Profilo de usator"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pro {}"
@@ -370,7 +370,7 @@ msgstr "Le incargamento non es valide."
 msgid "File is already disabled."
 msgstr "Le file es jam disactivate."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""

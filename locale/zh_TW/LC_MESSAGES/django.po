@@ -34,11 +34,11 @@ msgstr "申訴原因"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "請說明您認為此決定有誤，或是與審查規則、法律不符的原因。"
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "使用者資料"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -366,7 +366,7 @@ msgstr "上傳無效。"
 msgid "File is already disabled."
 msgstr "已停用檔案。"
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"

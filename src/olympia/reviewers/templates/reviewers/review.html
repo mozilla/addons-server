@@ -196,7 +196,7 @@
             <div class="policy-texts data-toggle" data-value="{{ toggle_when_action('enforcement_actions') }}">
               {{ form.policy_values }}
             </div>
-            <div class="review-comments data-toggle" data-value="{{ toggle_when_action('comments', default=True) }}">
+            <div class="review-comments data-toggle" data-value="{{ toggle_when_action('has_comments') }}">
               <details>
                 <summary><label for="id_comments">{{ form.comments.label }}</label></summary>
                 {{ form.comments }}

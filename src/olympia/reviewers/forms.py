@@ -24,7 +24,7 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.templatetags.jinja_helpers import format_datetime
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
     MAX_PAST_DECISIONS_SHOWN_INLINE,
@@ -614,7 +614,7 @@ class ReviewForm(forms.Form):
         selected_action = self.data.get('action')
         action = self.helper.actions.get(selected_action)
         if action:
-            if not action.get('comments', True):
+            if not action.get('require_comments'):
                 self.fields['comments'].required = False
             if action.get('multiple_versions', False) and not action.get(
                 'policy_enforcement', False
@@ -622,9 +622,6 @@ class ReviewForm(forms.Form):
                 self.fields['versions'].required = True
             if not action.get('enforcement_actions'):
                 self.fields['cinder_policies'].required = False
-            else:
-                # we no longer strictly require comments with cinder policies
-                self.fields['comments'].required = False
             if selected_action == 'appeal_deny':
                 self.fields['appeal_action'].required = True
         result = super().is_valid()
@@ -903,8 +900,13 @@ class ReviewForm(forms.Form):
         ].queryset = self.helper.unresolved_cinderjob_qs
 
         # Set the queryset for policies to show as options
+        policy_choices = (
+            POLICY_EXPOSURE.FOR_THEMES
+            if self.helper.addon.type == amo.ADDON_STATICTHEME
+            else POLICY_EXPOSURE.FOR_EXTENSIONS
+        )
         self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
-            expose_in_reviewer_tools=True
+            expose_in_reviewer_tools__in=policy_choices
         ).select_related('parent')
 
         # Pass on the reviewer tools actions so we can set the show/hide on policies

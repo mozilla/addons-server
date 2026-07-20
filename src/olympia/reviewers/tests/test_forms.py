@@ -26,7 +26,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.bandwagon.models import Collection
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -240,7 +240,7 @@ class TestReviewForm(TestCase):
         policy = CinderPolicy.objects.create(
             uuid='x',
             name='ok',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         form = self.get_form()
@@ -271,7 +271,7 @@ class TestReviewForm(TestCase):
         policy = CinderPolicy.objects.create(
             uuid='x',
             name='ok',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         decision = ContentDecision.objects.create(
@@ -319,32 +319,6 @@ class TestReviewForm(TestCase):
             overriding_decision,
         }
 
-    def test_comments_optional_for_actions_with_enforcement_actions(self):
-        policy = CinderPolicy.objects.create(
-            uuid='xxx',
-            name='ok',
-            expose_in_reviewer_tools=True,
-            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
-        )
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Reviews:Admin')
-        self.addon.update(status=amo.STATUS_NOMINATED)
-        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        action_names_and_enforcement_actions = (
-            ('public', DECISION_ACTIONS.AMO_APPROVE.api_value),
-            ('reject', DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value),
-            ('disable_addon', DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value),
-        )
-        for action_name, enforcement_action in action_names_and_enforcement_actions:
-            policy.update(enforcement_actions=[enforcement_action])
-            form = self.get_form(
-                data={'action': action_name, 'cinder_policies': [policy.id]}
-            )
-            assert 'comments' not in form.helper.actions[action_name]
-            assert form.is_bound
-            assert form.is_valid(), form.errors
-            assert not form.errors
-
     def test_policy_values_parsed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
         self.addon.update(status=amo.STATUS_NOMINATED)
@@ -352,14 +326,14 @@ class TestReviewForm(TestCase):
         policy = CinderPolicy.objects.create(
             uuid='xxx',
             name='ok',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
             text='Blah blah {SOME-PLACEHOLDER} blah blah.',
         )
         unselected_policy = CinderPolicy.objects.create(
             uuid='yyy',
             name='not okay',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
             text='policy text {UNSELECTED}',
         )
@@ -431,24 +405,24 @@ class TestReviewForm(TestCase):
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
         no_action_policy = CinderPolicy.objects.create(
-            uuid='no', name='no action', expose_in_reviewer_tools=True
+            uuid='no', name='no action', expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
         )
         action_policy_a = CinderPolicy.objects.create(
             uuid='a',
             name='disable',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         action_policy_b = CinderPolicy.objects.create(
             uuid='b',
             name='disable again',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         action_policy_c = CinderPolicy.objects.create(
             uuid='c',
             name='reject',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         form = self.get_form()
@@ -512,13 +486,13 @@ class TestReviewForm(TestCase):
         action_policy_approve = CinderPolicy.objects.create(
             uuid='approve',
             name='approve',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         action_policy_ignore = CinderPolicy.objects.create(
             uuid='ignore',
             name='ignore',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         data = {
@@ -544,30 +518,30 @@ class TestReviewForm(TestCase):
             job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
         )
         no_action_policy = CinderPolicy.objects.create(
-            uuid='no', name='no action', expose_in_reviewer_tools=True
+            uuid='no', name='no action', expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
         )
         action_policy_disable = CinderPolicy.objects.create(
             uuid='disable',
             name='disable',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         action_policy_reject = CinderPolicy.objects.create(
             uuid='reject',
             name='reject',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         action_policy_approve = CinderPolicy.objects.create(
             uuid='approve',
             name='approve',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         action_policy_ignore = CinderPolicy.objects.create(
             uuid='ignore',
             name='ignore',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         form = self.get_form()
@@ -601,7 +575,7 @@ class TestReviewForm(TestCase):
         action_policy_multiple_primary = CinderPolicy.objects.create(
             uuid='multi',
             name='multi',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value,
@@ -640,13 +614,13 @@ class TestReviewForm(TestCase):
         disable_policy = CinderPolicy.objects.create(
             uuid='a',
             name='disable',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         reject_policy = CinderPolicy.objects.create(
             uuid='c',
             name='reject',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
 
@@ -716,7 +690,7 @@ class TestReviewForm(TestCase):
         policy = CinderPolicy.objects.create(
             uuid='a',
             name='ignore',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
 
@@ -788,7 +762,7 @@ class TestReviewForm(TestCase):
         policy = CinderPolicy.objects.create(
             uuid='a',
             name='ignore',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
 
@@ -869,7 +843,7 @@ class TestReviewForm(TestCase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[
                             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
                         ],
@@ -1266,7 +1240,7 @@ class TestReviewForm(TestCase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[
                             DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
                         ],
@@ -1362,7 +1336,7 @@ class TestReviewForm(TestCase):
                 CinderPolicy.objects.create(
                     uuid='1',
                     name='policy 1',
-                    expose_in_reviewer_tools=True,
+                    expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                     enforcement_actions=[
                         DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
                     ],
@@ -1389,7 +1363,7 @@ class TestReviewForm(TestCase):
                 CinderPolicy.objects.create(
                     uuid='1',
                     name='policy 1',
-                    expose_in_reviewer_tools=True,
+                    expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                     enforcement_actions=[
                         DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value
                     ],
@@ -1659,19 +1633,39 @@ class TestReviewForm(TestCase):
         assert label_two_reports.attr['data-value'] == 'appeal_deny appeal_override'
 
     def test_cinder_policies_choices(self):
-        policy_exposed = CinderPolicy.objects.create(
-            uuid='1', name='foo', expose_in_reviewer_tools=True
+        both_policy_exposed = CinderPolicy.objects.create(
+            uuid='1', name='foo', expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+        )
+        ext_policy_exposed = CinderPolicy.objects.create(
+            uuid='2', name='foo', expose_in_reviewer_tools=POLICY_EXPOSURE.EXTENSION
         )
         CinderPolicy.objects.create(
-            uuid='2', name='baa', expose_in_reviewer_tools=False
+            uuid='3', name='baa', expose_in_reviewer_tools=POLICY_EXPOSURE.NONE
+        )
+        thm_policy_exposed = CinderPolicy.objects.create(
+            uuid='4', name='baa', expose_in_reviewer_tools=POLICY_EXPOSURE.THEME
         )
 
         form = self.get_form()
         choices = form.fields['cinder_policies'].choices
         qs_list = list(choices.queryset)
         assert qs_list == [
-            # only policies that are expose_in_reviewer_tools=True should be included
-            policy_exposed
+            # only policies that are expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+            # or POLICY_EXPOSURE.EXTENSION should be included
+            both_policy_exposed,
+            ext_policy_exposed,
+        ]
+
+        # if it's a theme though, it's POLICY_EXPOSURE.THEME instead
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        form = self.get_form()
+        choices = form.fields['cinder_policies'].choices
+        qs_list = list(choices.queryset)
+        assert qs_list == [
+            # only policies that are expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+            # or POLICY_EXPOSURE.THEME should be included
+            both_policy_exposed,
+            thm_policy_exposed,
         ]
 
     def test_upload_attachment(self):
@@ -1702,12 +1696,14 @@ class TestReviewForm(TestCase):
     def test_cinder_policy_choices(self):
         CinderPolicy.objects.create(uuid='not-exposed', name='not exposed')
         CinderPolicy.objects.create(
-            uuid='no-enforcement', name='no enforcement', expose_in_reviewer_tools=True
+            uuid='no-enforcement',
+            name='no enforcement',
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
         )
         CinderPolicy.objects.create(
             uuid='4-rejections',
             name='for rejections',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-invalid-action',
@@ -1718,7 +1714,7 @@ class TestReviewForm(TestCase):
         CinderPolicy.objects.create(
             uuid='4-approve',
             name='for approving',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -1762,7 +1758,7 @@ class TestReviewForm(TestCase):
         policy_0 = CinderPolicy.objects.create(
             uuid='4-rejections',
             name='for rejections',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-other-action',
@@ -1772,7 +1768,7 @@ class TestReviewForm(TestCase):
         policy_1 = CinderPolicy.objects.create(
             uuid='4-approve',
             name='for approving',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
             text='No placeholders here',
         )

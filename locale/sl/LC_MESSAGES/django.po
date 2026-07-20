@@ -34,11 +34,11 @@ msgstr "Razlog za pritožbo"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Pojasnite, zakaj menite, da je bila ta odločitev sprejeta pomotoma oziroma da ni v skladu z veljavnim pravilnikom ali zakonodajo."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Uporabniški profil"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" za {}"
@@ -371,7 +371,7 @@ msgstr "Nalaganje je neveljavno."
 msgid "File is already disabled."
 msgstr "Datoteka je že onemogočena."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Zadnje odobrene različice tega dodatka %s ni mogoče izbrisati, ker prejšnja različica ni bila odobrena za promocijo %s. Če potrebujete pomoč pri tem, se obrnite na skrbnike AMO."

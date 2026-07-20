@@ -34,11 +34,11 @@ msgstr "Motivo do recurso"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Explique por que você acredita que esta decisão foi tomada por erro e/ou não está de acordo com a política ou lei aplicável."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Perfil do usuário"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" de {}"
@@ -369,7 +369,7 @@ msgstr "O envio não é válido."
 msgid "File is already disabled."
 msgstr "O arquivo já está desativado."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""

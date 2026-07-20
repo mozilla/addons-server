@@ -34,11 +34,11 @@ msgstr "Основание за обжалване"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Обяснете защо смятате, че решението е взето погрешно и/или не е в съответствие с приложимата политика и закони."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Потребителски профил"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"\"{}\" за {}"
@@ -331,7 +331,7 @@ msgstr "Качването не е валидно."
 msgid "File is already disabled."
 msgstr "Файлът вече е деактивиран."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""

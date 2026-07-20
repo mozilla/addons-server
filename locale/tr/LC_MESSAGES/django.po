@@ -34,11 +34,11 @@ msgstr "İtiraz nedeni"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Lütfen bu kararın neden hatalı olduğunu ve/veya geçerli politika veya yasalara uygun olmadığını düşündüğünüzü açıklayın."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Kullanıcı profili"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" için {}"
@@ -369,7 +369,7 @@ msgstr "Yükleme geçerli değil."
 msgid "File is already disabled."
 msgstr "Dosya zaten devre dışı."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Bu %s eklentisinin en son onaylanmış sürümü silinemez çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda yardıma ihtiyacınız varsa lütfen AMO yöneticileri ile iletişime geçin."

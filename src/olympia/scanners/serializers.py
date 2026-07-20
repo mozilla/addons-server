@@ -66,7 +66,7 @@ class WebhookVersionSerializer(VersionSerializer):
         return absolutify(reverse('downloads.source', kwargs={'version_id': obj.id}))
 
 
-class PushScannerResultSerializer(serializers.Serializer):
+class ScannerResultsValidationMixin:
     RESULTS_SCHEMA = {
         'type': 'object',
         'required': ['version', 'matchedRules'],
@@ -86,17 +86,6 @@ class PushScannerResultSerializer(serializers.Serializer):
         },
     }
 
-    version_id = serializers.IntegerField()
-    results = serializers.JSONField()
-
-    def validate_version_id(self, value):
-        try:
-            Version.unfiltered.get(pk=value)
-        except Version.DoesNotExist as err:
-            raise serializers.ValidationError('Version not found.') from err
-
-        return value
-
     def validate_results(self, value):
         try:
             jsonschema.validate(value, self.RESULTS_SCHEMA)
@@ -114,22 +103,6 @@ class PushScannerResultSerializer(serializers.Serializer):
         return value
 
     def validate(self, data):
-        if hasattr(self, 'initial_data'):
-            extra_fields = set(self.initial_data.keys()) - set(self.fields.keys())
-            if extra_fields:
-                raise serializers.ValidationError(
-                    {field: 'Unexpected field.' for field in extra_fields}
-                )
-
-        return data
-
-
-class PatchScannerResultSerializer(serializers.Serializer):
-    """Serializer for updating scanner result data via PATCH endpoint."""
-
-    results = serializers.JSONField()
-
-    def validate(self, data):
         # Validate that no extra fields are present in the initial data.
         if hasattr(self, 'initial_data'):
             extra_fields = set(self.initial_data.keys()) - set(self.fields.keys())
@@ -139,3 +112,26 @@ class PatchScannerResultSerializer(serializers.Serializer):
                 )
 
         return data
+
+
+class PushScannerResultSerializer(
+    ScannerResultsValidationMixin, serializers.Serializer
+):
+    version_id = serializers.IntegerField()
+    results = serializers.JSONField()
+
+    def validate_version_id(self, value):
+        try:
+            Version.unfiltered.get(pk=value)
+        except Version.DoesNotExist as err:
+            raise serializers.ValidationError('Version not found.') from err
+
+        return value
+
+
+class PatchScannerResultSerializer(
+    ScannerResultsValidationMixin, serializers.Serializer
+):
+    """Serializer for updating scanner result data via PATCH endpoint."""
+
+    results = serializers.JSONField()

@@ -34,11 +34,11 @@ msgstr "주장 이유"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "이 결정이 잘못되었거나 관련 정책이나 법률에 부합하지 않는다고 생각하는 이유를 설명해 주세요."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "사용자 프로필"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "{}용 \"{}\""
@@ -366,7 +366,7 @@ msgstr "업로드가 유효하지 않습니다."
 msgid "File is already disabled."
 msgstr "파일이 이미 비활성화 되었습니다."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "이 %s 부가기능의 최신 승인 버전은 이전 버전이 %s 프로모션용으로 승인되지 않았기 때문에 삭제할 수 없습니다. 이에 대한 도움이 필요하면 AMO 관리자에게 문의하십시오."
