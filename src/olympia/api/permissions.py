@@ -178,6 +178,8 @@ class AllowListedViewerOrReviewer(BasePermission):
       'Addons:Review' or 'Addons:ContentReview' permission.
     """
 
+    disallow_unsafe = False
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 
@@ -186,11 +188,16 @@ class AllowListedViewerOrReviewer(BasePermission):
             request.method in SAFE_METHODS
             and acl.action_allowed_for(request.user, permissions.REVIEWER_TOOLS_VIEW)
         )
-        can_access_because_listed_reviewer = obj.has_listed_versions(
-            include_deleted=True
-        ) and acl.is_reviewer(request.user, obj)
-
+        can_access_because_listed_reviewer = (
+            obj.has_listed_versions(include_deleted=True)
+            and acl.is_reviewer(request.user, obj)
+            and (not self.disallow_unsafe or request.method in SAFE_METHODS)
+        )
         return can_access_because_viewer or can_access_because_listed_reviewer
+
+
+class AllowListedViewerOrReviewerReadOnly(AllowListedViewerOrReviewer):
+    disallow_unsafe = True
 
 
 class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
@@ -219,7 +226,7 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
         )
         can_access_because_unlisted_reviewer = acl.is_unlisted_addons_reviewer(
             request.user
-        )
+        ) and (not self.disallow_unsafe or request.method in SAFE_METHODS)
         has_unlisted_or_no_listed = obj.has_unlisted_versions(
             include_deleted=True
         ) or not obj.has_listed_versions(include_deleted=True)
@@ -227,6 +234,10 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
         return has_unlisted_or_no_listed and (
             can_access_because_unlisted_viewer or can_access_because_unlisted_reviewer
         )
+
+
+class AllowUnlistedViewerOrReviewerReadOnly(AllowUnlistedViewerOrReviewer):
+    disallow_unsafe = True
 
 
 class AllowAnyKindOfReviewer(BasePermission):

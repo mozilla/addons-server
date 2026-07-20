@@ -43,10 +43,10 @@ from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
     AllowIfNotMozillaDisabled,
-    AllowListedViewerOrReviewer,
+    AllowListedViewerOrReviewerReadOnly,
     AllowReadOnlyIfPublic,
     AllowRelatedObjectPermissions,
-    AllowUnlistedViewerOrReviewer,
+    AllowUnlistedViewerOrReviewerReadOnly,
     AnyOf,
     APIGatePermission,
     GroupPermission,
@@ -253,8 +253,8 @@ class AddonViewSet(
         AnyOf(
             AllowReadOnlyIfPublic,
             AllowAddonAuthor,
-            AllowListedViewerOrReviewer,
-            AllowUnlistedViewerOrReviewer,
+            AllowListedViewerOrReviewerReadOnly,
+            AllowUnlistedViewerOrReviewerReadOnly,
         )
     ]
     authentication_classes = [
@@ -578,8 +578,8 @@ class AddonVersionViewSet(
             # be add-on author or reviewer.
             self.permission_classes = [
                 AnyOf(
-                    AllowListedViewerOrReviewer,
-                    AllowUnlistedViewerOrReviewer,
+                    AllowListedViewerOrReviewerReadOnly,
+                    AllowUnlistedViewerOrReviewerReadOnly,
                     AllowAddonAuthor,
                 )
             ]
@@ -607,14 +607,16 @@ class AddonVersionViewSet(
             # authors..
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowUnlistedViewerOrReviewer, AllowAddonAuthor)]
+                    'addon',
+                    [AnyOf(AllowUnlistedViewerOrReviewerReadOnly, AllowAddonAuthor)],
                 )
             ]
         elif not obj.is_public():
             # If the instance is disabled, only allow reviewers and authors.
             self.permission_classes = [
                 AllowRelatedObjectPermissions(
-                    'addon', [AnyOf(AllowListedViewerOrReviewer, AllowAddonAuthor)]
+                    'addon',
+                    [AnyOf(AllowListedViewerOrReviewerReadOnly, AllowAddonAuthor)],
                 )
             ]
 
@@ -879,8 +881,8 @@ class AddonAuthorViewSet(
                     AllowAddonOwner
                     if self.action in self.owner_actions
                     else AllowAddonAuthor,
-                    AllowListedViewerOrReviewer,
-                    AllowUnlistedViewerOrReviewer,
+                    AllowListedViewerOrReviewerReadOnly,
+                    AllowUnlistedViewerOrReviewerReadOnly,
                 ),
             ]
         )
