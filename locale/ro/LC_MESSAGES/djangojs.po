@@ -466,7 +466,7 @@ msgstr[2] "<b>{0}</b> de caractere rămase"
 
 #: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Funcționalitatea este temporar dezactivată cât timp facem mentenanța site-ului web. Te rugăm să reîncerci puțin mai târziu."
+msgstr "Funcționalitatea este temporar dezactivată cât timp facem mentenanța site-ului web. Te rugăm să reîncerci ceva mai târziu."
 
 #: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
