@@ -3948,7 +3948,7 @@ msgstr "Aceasta este cea mai recentă versiune încărcată, dar încă nu este 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:26
 msgid "Signed for self-distribution. Updates are handled by you."
-msgstr "Semnat pentru autodistribuție. Actualizările sunt gestionate de tine."
+msgstr "Semnat pentru distribuire automată. Actualizările sunt gestionate de tine."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
 msgid "Latest Version:"
@@ -4225,7 +4225,7 @@ msgstr "Sunt de acord ca Mozilla să îmi gestioneze informațiile, conform expl
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:40
 msgid "Sign Up"
-msgstr "Înregistrează-te"
+msgstr "Fă-ți cont"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/connect.html:44
 msgid "Thanks!"
@@ -7167,7 +7167,7 @@ msgstr "suplimente sau funcții Firefox noi devin disponibile"
 
 #: src/olympia/users/notifications.py:45
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr "compatibilitatea suplimentului meu este actualizată cu succes"
+msgstr "compatibilitatea suplimentului a fost actualizată cu succes"
 
 #: src/olympia/users/notifications.py:54
 msgid "someone writes a review of my add-on"
@@ -7179,7 +7179,7 @@ msgstr "rămâi la curent cu știrile și evenimentele relevante pentru dezvolta
 
 #: src/olympia/users/notifications.py:81
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr "compatibilitatea suplimentului meu nu poate fi actualizată"
+msgstr "compatibilitatea suplimentului nu poate fi actualizată"
 
 #: src/olympia/users/notifications.py:90
 msgid "my add-on is reviewed by a reviewer"
