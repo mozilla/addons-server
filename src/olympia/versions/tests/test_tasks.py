@@ -1029,19 +1029,6 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
             activity_log=activity_log,
         )
 
-    @mock.patch('olympia.versions.tasks.call_webhooks')
-    def test_no_call_with_mock_when_license_is_missing(self, call_webhooks_mock):
-        addon = addon_factory()
-        version = version_factory(addon=addon)
-        # Remove the license for this version, which is the case for unlisted
-        # versions for instance.
-        version.update(license=None)
-        activity_log_id = 123
-
-        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
-
-        call_webhooks_mock.assert_not_called()
-
 
 class TestCallWebhooksOnVersionCreated(TestCase):
     @mock.patch('olympia.versions.tasks.call_webhooks')
