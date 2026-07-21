@@ -34,11 +34,11 @@ msgstr "Motivo del ricorso"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Spiega perché ritieni che questa decisione sia stata presa per errore e/o non sia in linea con le regole o leggi applicabili."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Profilo utente"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "“{}” per {}"
@@ -372,7 +372,7 @@ msgstr "Upload non valido."
 msgid "File is already disabled."
 msgstr "Il file è già disattivato."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1862,11 +1862,6 @@ msgstr "Modifiche recenti per i miei componenti aggiuntivi"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "I componenti aggiuntivi Open Search {blog_link_open}non sono più supportati su AMO{blog_link_close}. Puoi invece creare un’{doc_link_open}estensione di ricerca{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Non è attualmente possibile caricare estensioni con manifesto V3. {start_href}Ulteriori informazioni sui tempi previsti per l’implementazione{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

@@ -1,7 +1,7 @@
 Hello,
 
 {% if is_listing_rejected %}
-Your {{ type }} has been approved for distribution, but the listing on Mozilla Add-ons remains unavailable until you address the violations and request a further review.  You can edit it at {{ target_url }}.
+Your {{ type }} has been approved for distribution, but the listing on Mozilla Add-ons remains unavailable until you address the violations and request a further review. You can edit it at {{ target_url }}.
 {% elif not auto_approval %}
 Your {{ type }} has been approved on Mozilla Add-ons and it is now available at {{ target_url }}.
 {% else %}
@@ -11,7 +11,7 @@ Your add-on can be subject to human review at any time. Reviewers may determine 
 {% endif %}
 {% if version_list %}Approved versions: {{ version_list }}
 {% endif %}
-{% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}.{% endif %}
+{% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}{% endif %}
 
 {% if has_attachment %}
 An attachment was provided. {% if dev_url %}To respond or view the file, visit {{ dev_url }}.{% endif %}

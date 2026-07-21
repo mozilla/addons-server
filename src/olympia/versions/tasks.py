@@ -81,7 +81,10 @@ def _build_static_theme_preview_context(theme_manifest, file_):
         for (path, alignment, tiling) in itertools.zip_longest(
             additional_srcs, additional_alignments, additional_tiling
         )
-        if path is not None
+        # Ignore non-string entries such as `{'linear-gradient': '...'}` which
+        # aren't image paths we can extract and would otherwise raise a
+        # TypeError (they're unhashable and not path-like).
+        if isinstance(path, str)
     ]
     context.update(additional_backgrounds=additional_backgrounds)
     return context

@@ -34,11 +34,11 @@ msgstr "Reden van bezwaar"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Leg uit waarom u denkt dat deze beslissing ten onrechte is genomen en/of niet in overeenstemming is met het toepasselijke beleid of de toepasselijke wet."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Gebruikersprofiel"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "‘{}’ voor {}"
@@ -371,7 +371,7 @@ msgstr "Upload is niet geldig."
 msgid "File is already disabled."
 msgstr "Bestand is al uitgeschakeld."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1832,11 +1832,6 @@ msgstr "Recente wijzigingen voor mijn add-ons"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Open Search-add-ons worden {blog_link_open}niet meer ondersteund op AMO{blog_link_close}. U kunt in plaats daarvan een {doc_link_open}zoekextensie maken{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Uploaden van Manifest v3 wordt momenteel niet ondersteund. {start_href}Meer info over de ondersteuningstijdlijn{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

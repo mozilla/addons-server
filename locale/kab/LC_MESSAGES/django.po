@@ -34,11 +34,11 @@ msgstr ""
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Amaɣnu n useqdac"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" i {}"
@@ -328,7 +328,7 @@ msgstr "Asali d arameɣtu."
 msgid "File is already disabled."
 msgstr "Afaylu yettwarmed yakan."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Lqem aneggaru yettwaqeblen i uzegrir-a %s ur izmir ara ad yettwakkes acku lqem aqbur ur yettwaqbel ara i usmel %s. Ma ulac aɣilif, nermes inedbalen n AMO ma tesriḍ tallelt ɣef waya."
@@ -1784,11 +1784,6 @@ msgstr "Isnifal n melmi kan i yizegrar-iw"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Izegrar Open Search ur ttusefraken ara s {blog_link_open}ɣef AMO{blog_link_close}. Tzemreḍ ad d-ternuḍ aseɣzaf n unadi {doc_link_open}deg wadeg n{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."

@@ -189,7 +189,7 @@ class ContentAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.decision.get_target_display(),
+            'type': self.decision.get_target_display().lower(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -261,7 +261,7 @@ class ContentAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.decision.get_target_display(),
+                    'type': self.decision.get_target_display().lower(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
@@ -440,7 +440,7 @@ class ContentActionAddon(ContentAction):
         # explicitly.
         version.reset_due_date()
 
-    def _clear_all_needs_human_review_flags_in_channel(self, channel):
+    def _clear_all_needs_human_review_flags_in_channel(self, channel=None):
         """Clear needs_human_review flags on all versions in the same channel.
 
         Doesn't clear abuse or appeal related flags.
@@ -455,7 +455,9 @@ class ContentActionAddon(ContentAction):
         # are only cleared in ContentDecision.execute_action() if the
         # reviewer has selected to resolve all jobs of that type though.
         NeedsHumanReview.objects.filter(
-            version__addon=self.target, version__channel=channel, is_active=True
+            version__addon=self.target,
+            is_active=True,
+            **({'version__channel': channel} if channel else {}),
         ).exclude(
             reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
         ).update(is_active=False)
@@ -511,6 +513,7 @@ class ContentActionDisableAddon(ContentActionAddon):
         self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
+            self._clear_all_needs_human_review_flags_in_channel()
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
@@ -593,7 +596,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 'target_url': self.target.get_absolute_url()
                 if self.target.get_url_path()
                 else '',
-                'type': self.decision.get_target_display(),
+                'type': self.decision.get_target_display().lower(),
                 'version_list_listed': ', '.join(
                     vr.version for vr in versions if vr.channel == amo.CHANNEL_LISTED
                 ),
@@ -625,6 +628,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 addon=self.target,
                 defaults=auto_approval_flags,
             )
+
+    def get_activity_action(self):
+        return amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
 
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
@@ -661,9 +667,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.prevent_auto_approval()
         self.target.update_status()
         self.notify_stakeholders('Rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
-        )
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -717,6 +721,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     # should_hold_action as ContentActionRejectVersion
 
+    def get_activity_action(self):
+        return (
+            amo.LOG.REJECT_CONTENT_DELAYED
+            if self.content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
+
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
@@ -761,11 +772,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             defaults={'notified_about_expiring_delayed_rejections': False},
         )
         self.notify_stakeholders(f'{self.delayed_rejection_days} day delayed rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT_DELAYED
-            if self.content_review
-            else amo.LOG.REJECT_VERSION_DELAYED
-        )
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -780,6 +787,25 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review
             else amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED
+        )
+
+
+class ContentActionRejectVersionAfterDelay(ContentActionRejectVersion):
+    action = None  # This should only be used specifically from auto_reject
+
+    def prevent_auto_approval(self):
+        # We don't want to change auto-approval for the final rejection
+        pass
+
+    def is_human_reviewer(self):
+        # When executed, this is always non-human.
+        return False
+
+    def get_activity_action(self):
+        return (
+            amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED
+            if self.content_review
+            else amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED
         )
 
 

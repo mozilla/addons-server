@@ -34,11 +34,11 @@ msgstr "Разлог за жалбу"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Објасните зашто сматрате да је ова одлука донета погрешно и/или да није у складу са важећом политиком или законом."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Кориснички профил"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" за {}"
@@ -370,7 +370,7 @@ msgstr "Отпремање није исправно."
 msgid "File is already disabled."
 msgstr "Датотека је већ онемогућена."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "Најновије одобрено издање овог %s додатка не може бити обрисано зато што претходно издање није одобрено за %s промоцију. Контактирајте AMO администраторе ако вам је потребна помоћ око овога."
@@ -1828,11 +1828,6 @@ msgstr "Скорашње измене за моје додатке"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Додаци за Open Search {blog_link_open}више нису подржани на AMO{blog_link_close}. Уместо тога можете направити {doc_link_open}додатак за претрагу{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Манифест V3 тренутно није подржан за отпремање. {start_href}Прочитајте више о временској линији подршке{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
@@ -4774,7 +4769,7 @@ msgstr "Да ли је страница коју тражите недоступ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:810
 msgid "Hover over an image to magnify it."
-msgstr "Поместите курсор преко слике да бисте је увеличали."
+msgstr "Померите курсор преко слике да бисте је увеличали."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
@@ -6027,7 +6022,7 @@ msgstr "Добијте моћни тезаурус директно у Firefox-�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1086
 msgid "Hover over web images to enlarge their appearance."
-msgstr "Поместите курсор преко веб-слика да бисте повећали њихов изглед."
+msgstr "Померите курсор преко веб-слика да бисте повећали њихов изглед."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1089
@@ -6092,7 +6087,7 @@ msgstr "Погледајте све додатке"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Почетни пакет додатака"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.
@@ -6103,7 +6098,7 @@ msgstr "Twitch додаци"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1128 src/olympia/discovery/strings.jinja2:1130 src/olympia/discovery/strings.jinja2:1132
 msgid "See staff picks"
-msgstr "Погледајте избор особљења"
+msgstr "Погледајте избор особља"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1135
@@ -6133,7 +6128,7 @@ msgstr "Приватност и безбедност"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1147
 msgid "See more privacy staff picks"
-msgstr "Погледајте још избора особљења за приватност"
+msgstr "Погледајте још избора особља за приватност"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1150

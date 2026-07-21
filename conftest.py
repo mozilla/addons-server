@@ -70,7 +70,7 @@ def mock_basket(settings):
     USER_TOKEN = '13f64f64-1de7-42f6-8c7f-a19e2fae5021'
     responses.add(
         responses.GET,
-        settings.BASKET_URL + '/news/lookup-user/',
+        settings.BASKET_URL + '/api/v1/users/lookup/',
         json={'status': 'ok', 'newsletters': [], 'token': USER_TOKEN},
     )
     responses.add(

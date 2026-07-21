@@ -58,7 +58,7 @@ from olympia.amo.tests import (
 )
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import WEBHOOK, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -2437,11 +2437,7 @@ class ReviewBase(QueueTest):
         return Addon.objects.get(pk=self.addon.pk)
 
     def get_dict(self, **kw):
-        data = {
-            'operating_systems': 'win',
-            'applications': 'some app',
-            'comments': 'some comment',
-        }
+        data = {'comments': 'some comment'}
         data.update(kw)
         return data
 
@@ -2669,7 +2665,7 @@ class TestReview(ReviewBase):
         )
         policy = CinderPolicy.objects.create(
             uuid='x',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_IGNORE.api_value],
         )
         AbuseReport.objects.create(
@@ -3418,12 +3414,7 @@ class TestReview(ReviewBase):
         check_entry(version_history)
 
     def test_files_in_item_history(self):
-        data = {
-            'action': 'public',
-            'operating_systems': 'win',
-            'applications': 'something',
-            'comments': 'something',
-        }
+        data = {'action': 'public', 'comments': 'something'}
         self.client.post(self.url, data)
 
         response = self.client.get(self.url)
@@ -4099,7 +4090,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid=uuid.uuid4(),
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         if version.channel == amo.CHANNEL_LISTED:
@@ -4110,8 +4101,6 @@ class TestReview(ReviewBase):
 
         data = {
             'action': action,
-            'operating_systems': 'win',
-            'applications': 'some app',
             'comments': 'some comment',
             'cinder_policies': [policy.id],
             'versions': [version.pk],
@@ -4383,7 +4372,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4421,7 +4410,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -4469,7 +4458,7 @@ class TestReview(ReviewBase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
                     ).id
                 ],
@@ -4493,7 +4482,7 @@ class TestReview(ReviewBase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
                     ).id
                 ],
@@ -4550,7 +4539,7 @@ class TestReview(ReviewBase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
                     ).id
                 ],
@@ -4626,7 +4615,7 @@ class TestReview(ReviewBase):
     def test_reject_listing_content_review_with_policies(self):
         policy = CinderPolicy.objects.create(
             uuid='x',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT.api_value],
         )
         extra_data = {
@@ -4738,7 +4727,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         old_version = self.version
@@ -4811,7 +4800,7 @@ class TestReview(ReviewBase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
                     ).id
                 ],
@@ -4840,7 +4829,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         old_version = self.version
@@ -4881,7 +4870,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         old_version = self.version
@@ -4925,7 +4914,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON.api_value
             ],
@@ -4977,7 +4966,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='123-reject',
             name='Bad thing',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-other-action',
@@ -5030,7 +5019,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='123-reject',
             name='Bad thing',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-other-action',
@@ -5930,11 +5919,6 @@ class TestReview(ReviewBase):
             'reject_multiple_versions',
         ]
 
-        # We don't have approve/reject actions so these have an empty
-        # data-value.
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-
     def test_test_data_value_attributes_admin(self):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
@@ -6050,11 +6034,6 @@ class TestReview(ReviewBase):
             'data-value'
         ].split(' ') == ['approve_multiple_versions', 'reject_multiple_versions']
 
-        # We don't have approve/reject actions so these have an empty
-        # data-value.
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
-
         assert doc('.data-toggle.review-delayed-rejection')[0].attrib[
             'data-value'
         ].split(' ') == [
@@ -6080,8 +6059,6 @@ class TestReview(ReviewBase):
         assert not doc('select#id_versions.data-toggle')[0]
         assert doc('.data-toggle.review-comments')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-actions-policies')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
         # Viewer won't see delayed rejection inputs, need a reviewer.
         assert not doc('.data-toggle.review-delayed-rejection')
@@ -6117,14 +6094,6 @@ class TestReview(ReviewBase):
             'reply',
             'request_legal_review',
             'comment',
-        ]
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'].split(' ') == [
-            'public',
-            'reject',
-        ]
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'].split(' ') == [
-            'public',
-            'reject',
         ]
         assert doc('.data-toggle.review-actions-policies')[0].attrib[
             'data-value'
@@ -6166,12 +6135,9 @@ class TestReview(ReviewBase):
             'request_legal_review',
             'comment',
         ]
-        # we don't show files, reasons, and tested with for any static theme actions
-        assert doc('.data-toggle.review-files')[0].attrib['data-value'] == ''
         assert doc('.data-toggle.review-actions-policies')[0].attrib[
             'data-value'
         ].split(' ') == ['reject', 'reject_multiple_versions']
-        assert doc('.data-toggle.review-tested')[0].attrib['data-value'] == ''
 
     def test_post_review_ignore_disabled(self):
         # Though the latest version will be disabled, the add-on is public and
@@ -6573,7 +6539,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         self.addon.update(status=amo.STATUS_APPROVED)
@@ -6645,7 +6611,7 @@ class TestReview(ReviewBase):
                     CinderPolicy.objects.create(
                         uuid='1',
                         name='policy 1',
-                        expose_in_reviewer_tools=True,
+                        expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
                         enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
                     ).id
                 ],
@@ -6758,13 +6724,13 @@ class TestReview(ReviewBase):
         policy_fixed = CinderPolicy.objects.create(
             uuid='no-enforcement',
             name='no enforcement',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             text='Something something',
         )
         policy_dynamic = CinderPolicy.objects.create(
             uuid='4-rejections',
             name='for rejections',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[
                 DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value,
                 'some-other-action',
@@ -6805,7 +6771,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         response = self.client.post(
@@ -6835,7 +6801,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         old_version = self.version
@@ -6877,7 +6843,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
         )
         old_version = self.version
@@ -6917,7 +6883,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -6952,7 +6918,7 @@ class TestReview(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE_VERSION.api_value],
         )
         old_version = self.version
@@ -7112,7 +7078,7 @@ class TestReviewPending(ReviewBase):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         assert self.version.file.status == amo.STATUS_AWAITING_REVIEW

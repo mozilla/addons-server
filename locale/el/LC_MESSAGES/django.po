@@ -34,11 +34,11 @@ msgstr "Λόγος ένστασης"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "Εξηγήστε γιατί πιστεύετε ότι αυτή η απόφαση λήφθηκε κατά λάθος ή/και γιατί δεν συμμορφώνεται με την ισχύουσα πολιτική ή νομοθεσία."
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Προφίλ χρήστη"
 
-#: src/olympia/abuse/models.py:1498
+#: src/olympia/abuse/models.py:1501
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "«{}» για {}"
@@ -371,7 +371,7 @@ msgstr "Η μεταφόρτωση δεν είναι έγκυρη."
 msgid "File is already disabled."
 msgstr "Το αρχείο είναι ήδη ανενεργό."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:772
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:774
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -1870,11 +1870,6 @@ msgstr "Πρόσφατες αλλαγές για τα πρόσθετα μου"
 #, python-brace-format
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Τα πρόσθετα Open Search {blog_link_open}δεν υποστηρίζονται πλέον στο AMO{blog_link_close}. Μπορείτε να δημιουργήσετε μια {doc_link_open}επέκταση αναζήτησης{doc_link_close}."
-
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "Δεν υποστηρίζεται προς το παρόν η μεταφόρτωση για το Manifest V3. {start_href}Διαβάστε περισσότερα για το χρονοδιάγραμμα υποστήριξης{end_href}."
 
 #: src/olympia/devhub/forms.py:100
 msgid "This slug is already in use. Please choose another."
@@ -6148,7 +6143,7 @@ msgstr "Προβολή όλων των επεκτάσεων"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1122
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "Βασικό πακέτο επεκτάσεων"
 
 #. editorial content for the secondary hero shelves.
 #. editorial content for the homepage shelves.

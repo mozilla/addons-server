@@ -712,7 +712,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled
@@ -735,7 +735,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
@@ -923,6 +923,30 @@ class TestContentActionDisableAddon(
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled
         assert flags.auto_approval_disabled_unlisted
+
+    def test_hold_action_clears_all_nhr(self):
+        version1 = version_factory(addon=self.addon)
+        version2 = version_factory(addon=self.addon)
+        NeedsHumanReview.objects.create(version=version1, is_active=True)
+        NeedsHumanReview.objects.create(version=version2, is_active=True)
+
+        assert (
+            NeedsHumanReview.objects.filter(
+                version__in=self.addon.versions.all(), is_active=True
+            ).count()
+            == 2
+        )
+        assert version1.due_date
+        assert version2.due_date
+
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+
+        assert not NeedsHumanReview.objects.filter(
+            version__in=self.addon.versions.all(), is_active=True
+        ).exists()
+        assert not version1.reload().due_date
+        assert not version2.reload().due_date
 
     def test_forward_from_reviewers_no_job(self):
         self.decision.update(action=DECISION_ACTIONS.AMO_LEGAL_FORWARD, cinder_job=None)
@@ -1139,7 +1163,7 @@ class TestContentActionDisableAddon(
 class TestContentActionRejectVersion(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectVersion
     activity_log_action = amo.LOG.REJECT_VERSION
-    disable_snippet = 'versions of your Extension have been disabled'
+    disable_snippet = 'versions of your extension have been disabled'
     default_decision_action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
 
     def setUp(self):
@@ -1147,6 +1171,17 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         # Set up another_version as approved so that the rejection of the other
         # 2 versions leaves one version approved and the add-on stays public.
         self.another_version.file.update(status=amo.STATUS_APPROVED)
+
+    def test_hold_action_clears_all_nhr(self):
+        # Only force-disable action clears unconditionally.
+        version = version_factory(addon=self.addon)
+        nhr = NeedsHumanReview.objects.create(version=version, is_active=True)
+
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+
+        assert nhr.reload().is_active
+        assert version.reload().due_date
 
     def _test_reject_version(self, *, content_review, expected_emails_from_action=0):
         old_version_original_status = self.old_version.file.status
@@ -1478,7 +1513,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].subject == f'Rejection issued for {self.addon.name}'
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
+            'extension; first approved 2025-02-03.' in mail.outbox[0].body
         )
 
     def test_execute_action_after_reporter_appeal(self):
@@ -1639,7 +1674,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-02-03.' in mail.outbox[0].body
+            'extension; first approved 2025-02-03.' in mail.outbox[0].body
         )
 
     def test_execute_action_delayed_after_reporter_appeal(self):
@@ -1847,7 +1882,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-01-02' in body
+            'extension; first approved 2025-01-02' in body
         )
 
         # an unlisted version should result in second link to the unlisted review page
@@ -1864,7 +1899,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert f'/review-unlisted/{self.addon.id}' in body
         assert (
             f'{self.another_version.version} will be the new current version of the '
-            'Extension; first approved 2025-01-02.' in body
+            'extension; first approved 2025-01-02.' in body
         )
 
         # if the listed version(s) affected are the last approved versions indicate that
@@ -2009,6 +2044,17 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         )
         block = Block.objects.create(addon=self.addon, updated_by=self.task_user)
         BlockVersion.objects.create(block=block, version=self.another_version)
+
+    def test_hold_action_clears_all_nhr(self):
+        # Only force-disable action clears unconditionally.
+        version = version_factory(addon=self.addon)
+        nhr = NeedsHumanReview.objects.create(version=version, is_active=True)
+
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+
+        assert nhr.reload().is_active
+        assert version.reload().due_date
 
     def _check_block_activity_logs(self, block_activity, block_version_activity):
         assert block_activity.log == amo.LOG.BLOCKLIST_BLOCK_EDITED
@@ -3017,6 +3063,17 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     disable_snippet = 'until you address the violations and request a further review'
     activity_log_action = amo.LOG.REJECT_LISTING_CONTENT
 
+    def test_hold_action_clears_all_nhr(self):
+        # Only force-disable action clears unconditionally.
+        version = version_factory(addon=self.addon)
+        nhr = NeedsHumanReview.objects.create(version=version, is_active=True)
+
+        action_helper = self.ActionClass(self.decision)
+        action_helper.hold_action()
+
+        assert nhr.reload().is_active
+        assert version.reload().due_date
+
     def _process_action_and_notify(self):
         self.decision.update(action=self.default_decision_action)
         action_helper = self.ActionClass(self.decision)
@@ -3076,7 +3133,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
         # Content-rejection doesn't affect auto-approval disabled flags.
@@ -3180,7 +3237,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your Extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_REJECTED)
