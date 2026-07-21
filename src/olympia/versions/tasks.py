@@ -473,15 +473,6 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
 
         version = Version.unfiltered.get(pk=version_pk)
 
-        if not version.license:
-            log.info(
-                'Missing license in call_webhooks_on_source_code_uploaded for '
-                'Version %s (activity_log_id = %s)',
-                version_pk,
-                activity_log_id,
-            )
-            return
-
         activity_log = ActivityLog.objects.get(pk=activity_log_id)
 
         payload = {
