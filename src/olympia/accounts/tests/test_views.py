@@ -1465,6 +1465,34 @@ class TestAccountLookup(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 403
 
 
+class TestAccountRetrieveWithJWT(APIKeyAuthTestMixin, TestCase):
+    """Retrieving an account via API key (JWT), gated by Users:Lookup."""
+
+    def setUp(self):
+        self.target_user = user_factory(
+            biography='something!', email='developer@example.com'
+        )
+        self.url = reverse_ns('account-detail', kwargs={'pk': self.target_user.pk})
+        self.create_api_user()
+        super().setUp()
+
+    def test_retrieve_with_lookup_permission_returns_email(self):
+        self.grant_permission(self.user, 'Users:Lookup')
+        response = self.get(self.url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.target_user.name
+        assert response.data['biography'] == self.target_user.biography
+        assert response.data['email'] == self.target_user.email
+        assert 'last_login_ip' not in response.data
+        assert 'permissions' not in response.data
+
+    def test_retrieve_without_lookup_permission_hides_email(self):
+        response = self.get(self.url)
+        assert response.status_code == 200
+        assert response.data['name'] == self.target_user.name
+        assert 'email' not in response.data
+
+
 class TestAccountViewSetUpdate(TestCase):
     client_class = APITestClientSessionID
     update_data = {
