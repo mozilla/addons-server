@@ -461,6 +461,7 @@ class AllowSelf(BasePermission):
 class AccountViewSet(
     RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, GenericViewSet
 ):
+    authentication_classes = [JWTKeyAuthentication, SessionIDAuthentication]
     permission_classes = [
         ByHttpMethod(
             {
