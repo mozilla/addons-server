@@ -1,5 +1,6 @@
 from unittest import mock
 
+from olympia import amo
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -646,3 +647,75 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         response = self.get(self._list_url(other_rule))
         assert response.status_code == 200
         assert response.json()['count'] == 0
+
+    def _create_result(
+        self,
+        *,
+        adu=0,
+        channel=amo.CHANNEL_LISTED,
+        was_blocked=None,
+        is_signed=False,
+    ):
+        version = version_factory(
+            addon=addon_factory(average_daily_users=adu),
+            channel=channel,
+            file_kw={'is_signed': is_signed},
+        )
+        result = ScannerQueryResult(
+            scanner=YARA, version=version, was_blocked=was_blocked
+        )
+        result.add_yara_result(rule='some_rule')
+        result.save()
+        assert result.matched_rule == self.rule
+        return result
+
+    def _ids(self, response):
+        return [r['id'] for r in response.json()['results']]
+
+    def test_filter_was_blocked(self):
+        blocked = self._create_result(was_blocked=True)
+        self._create_result(was_blocked=False)
+
+        response = self.get(self.list_url, data={'was_blocked': 'true'})
+        assert response.status_code == 200
+        assert self._ids(response) == [blocked.pk]
+
+    def test_filter_was_signed(self):
+        signed = self._create_result(is_signed=True)
+        self._create_result(is_signed=False)
+
+        response = self.get(self.list_url, data={'was_signed': 'true'})
+        assert response.status_code == 200
+        # self.result (setUp) is unsigned, so only the signed one matches.
+        assert self._ids(response) == [signed.pk]
+
+    def test_filter_channel(self):
+        unlisted = self._create_result(channel=amo.CHANNEL_UNLISTED)
+        self._create_result(channel=amo.CHANNEL_LISTED)
+
+        response = self.get(self.list_url, data={'channel': amo.CHANNEL_UNLISTED})
+        assert response.status_code == 200
+        assert self._ids(response) == [unlisted.pk]
+
+    def test_invalid_filter_value_returns_400(self):
+        response = self.get(self.list_url, data={'was_blocked': 'notabool'})
+        assert response.status_code == 400
+
+        response = self.get(self.list_url, data={'channel': 'notanint'})
+        assert response.status_code == 400
+
+    def test_order_by_adu(self):
+        low = self._create_result(adu=1)
+        high = self._create_result(adu=1000)
+
+        ids = self._ids(self.get(self.list_url, data={'sort': 'addon_adu'}))
+        assert ids.index(low.pk) < ids.index(high.pk)
+
+        ids = self._ids(self.get(self.list_url, data={'sort': '-addon_adu'}))
+        assert ids.index(high.pk) < ids.index(low.pk)
+
+    def test_default_ordering_is_newest_first(self):
+        newer = self._create_result()
+        # self.result (setUp) is older, self.result.pk < newer.pk.
+        ids = self._ids(self.get(self.list_url))
+        assert ids.index(newer.pk) < ids.index(self.result.pk)

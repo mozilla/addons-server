@@ -1,13 +1,14 @@
+from django.db.models import F
 from django.shortcuts import get_object_or_404
 
-from rest_framework import status
+from rest_framework import filters, serializers, status
 from rest_framework.decorators import (
     action,
     api_view,
     authentication_classes,
     permission_classes,
 )
-from rest_framework.exceptions import PermissionDenied
+from rest_framework.exceptions import ParseError, PermissionDenied
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
@@ -193,10 +194,31 @@ class ScannerQueryResultViewSet(ReadOnlyModelViewSet):
     """Read-only API to browse the matches (ScannerQueryResults) of a rule.
 
     Nested under ScannerQueryRuleViewSet, so the results are always scoped to
-    a single parent rule: ``/scanner/query-rules/{query_rule_pk}/results/``."""
+    a single parent rule: ``/scanner/query-rules/{query_rule_pk}/results/``.
+
+    Supports filtering by the query params in ``boolean_filters`` and
+    ``integer_filters``, and ordering via ``?sort=`` (see ``ordering_fields``).
+    """
 
     authentication_classes = [JWTKeyAuthentication]
     serializer_class = ScannerQueryResultSerializer
+    filter_backends = [filters.OrderingFilter]
+    # `addon_adu` and `version_created` are annotations added in get_queryset().
+    ordering_fields = ('id', 'addon_adu', 'version_created')
+    ordering = ('-id',)
+
+    # Public query param -> ORM lookup.
+    boolean_filters = {
+        'was_blocked': 'was_blocked',
+        'was_promoted': 'was_promoted',
+        'was_signed': 'version__file__is_signed',
+        'addon_disabled_by_user': 'version__addon__disabled_by_user',
+    }
+    integer_filters = {
+        'channel': 'version__channel',
+        'addon_status': 'version__addon__status',
+        'file_status': 'version__file__status',
+    }
 
     def get_permissions(self):
         return [GroupPermission(amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)]
@@ -209,8 +231,35 @@ class ScannerQueryResultViewSet(ReadOnlyModelViewSet):
         return self.rule_object
 
     def get_queryset(self):
-        return (
-            self.get_rule_object()
-            .results.select_related('version__addon')
-            .order_by('-pk')
+        qs = self.get_rule_object().results.select_related(
+            'version__addon', 'version__file'
         )
+        qs = qs.annotate(
+            addon_adu=F('version__addon__average_daily_users'),
+            version_created=F('version__created'),
+        )
+        return self.filter_by_params(qs)
+
+    def filter_by_params(self, qs):
+        params = self.request.query_params
+        for param, lookup in self.boolean_filters.items():
+            if param in params:
+                qs = qs.filter(**{lookup: self._parse_bool(param, params[param])})
+        for param, lookup in self.integer_filters.items():
+            if param in params:
+                qs = qs.filter(**{lookup: self._parse_int(param, params[param])})
+        return qs
+
+    @staticmethod
+    def _parse_bool(param, value):
+        try:
+            return serializers.BooleanField().to_internal_value(value)
+        except serializers.ValidationError as exc:
+            raise ParseError(f'Invalid boolean value for "{param}".') from exc
+
+    @staticmethod
+    def _parse_int(param, value):
+        try:
+            return int(value)
+        except (TypeError, ValueError) as exc:
+            raise ParseError(f'Invalid integer value for "{param}".') from exc
