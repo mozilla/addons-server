@@ -644,6 +644,51 @@ class TestCinderPolicyAdmin(TestCase):
         self.login(permission='CinderPolicies:View')
         self._make_list_request(read_only=True)
 
+    def test_list_with_filter(self):
+        self.login()
+        CinderPolicy.objects.create(
+            name='Published Policy',
+            uuid=uuid.uuid4(),
+            status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
+        )
+        CinderPolicy.objects.create(
+            name='Archived Policy',
+            uuid=uuid.uuid4(),
+            status_in_cinder=CinderPolicy.POLICY_STATUSES.ARCHIVED,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.NONE,
+        )
+        CinderPolicy.objects.create(
+            name='Draft Policy',
+            uuid=uuid.uuid4(),
+            status_in_cinder=CinderPolicy.POLICY_STATUSES.DRAFT,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.EXTENSION,
+        )
+
+        # Filter by status_in_cinder=PUBLISHED
+        response = self.client.get(
+            self.list_url,
+            {'status_in_cinder__exact': CinderPolicy.POLICY_STATUSES.PUBLISHED},
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 1
+        assert 'Published Policy' in doc('#result_list').text()
+        assert 'Archived Policy' not in doc('#result_list').text()
+        assert 'Draft Policy' not in doc('#result_list').text()
+
+        # Filter by expose_in_reviewer_tools=EXTENSION
+        response = self.client.get(
+            self.list_url,
+            {'expose_in_reviewer_tools__exact': POLICY_EXPOSURE.EXTENSION},
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert len(doc('#result_list tbody tr')) == 1
+        assert 'Draft Policy' in doc('#result_list').text()
+        assert 'Published Policy' not in doc('#result_list').text()
+        assert 'Archived Policy' not in doc('#result_list').text()
+
     def _make_edit_request(self, expected_status_code):
         policy = CinderPolicy.objects.create(
             name='Bar', uuid=uuid.uuid4(), expose_in_reviewer_tools=POLICY_EXPOSURE.NONE

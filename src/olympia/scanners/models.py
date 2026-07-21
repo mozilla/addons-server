@@ -328,7 +328,7 @@ class ScannerRule(AbstractScannerRule):
             'Policy used to automatically derive an action from when the rule hit.'
         ),
         limit_choices_to={
-            'expose_in_reviewer_tools__in': POLICY_EXPOSURE.FOR_EXTENSIONS
+            'expose_in_reviewer_tools__in': POLICY_EXPOSURE.FOR_EXTENSIONS.values
         },
     )
     is_active = models.BooleanField(
