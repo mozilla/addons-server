@@ -1,4 +1,5 @@
 import io
+import math
 import os
 import re
 import tempfile
@@ -9,7 +10,9 @@ from django.conf import settings
 from django.utils.encoding import force_str
 from django.utils.translation import gettext
 
+import tinycss2
 from PIL import Image
+from tinycss2.color3 import parse_color
 
 from olympia import amo
 from olympia.amo.utils import convert_svg_to_png
@@ -78,6 +81,10 @@ def encode_header(header_blob, file_ext):
 
 
 class AdditionalBackground:
+    # Image backgrounds are rendered as SVG <pattern>s (as opposed to the CSS
+    # gradients handled by GradientBackground, see below).
+    is_gradient = False
+
     @classmethod
     def split_alignment(cls, alignment):
         alignments = alignment.split()
@@ -126,6 +133,235 @@ class AdditionalBackground:
             self.pattern_height = self.height
         else:
             self.pattern_height = svg_height
+
+
+# CSS gradient functions we accept as `additional_backgrounds` entries. Firefox
+# themes may use a `{'linear-gradient': '...'}` object instead of an image path.
+GRADIENT_FUNCTIONS = frozenset(
+    (
+        'linear-gradient',
+        'radial-gradient',
+        'repeating-linear-gradient',
+        'repeating-radial-gradient',
+    )
+)
+# CSS `<side-or-corner>` keywords mapped to the equivalent gradient line angle,
+# so `linear-gradient(to bottom, ...)` and `linear-gradient(180deg, ...)` share
+# the same code path.
+_SIDE_TO_ANGLE = {'top': 0, 'right': 90, 'bottom': 180, 'left': 270}
+_CORNER_TO_ANGLE = {
+    frozenset(('top', 'right')): 45,
+    frozenset(('bottom', 'right')): 135,
+    frozenset(('bottom', 'left')): 225,
+    frozenset(('top', 'left')): 315,
+}
+
+
+def _strip_whitespace(tokens):
+    return [token for token in tokens if token.type != 'whitespace']
+
+
+def _split_on_commas(tokens):
+    """Split a list of tinycss2 component values on top-level comma tokens."""
+    segments, current = [], []
+    for token in tokens:
+        if token.type == 'literal' and token.value == ',':
+            segments.append(current)
+            current = []
+        else:
+            current.append(token)
+    segments.append(current)
+    return segments
+
+
+def _parse_gradient_function(entry):
+    """Turn an `additional_backgrounds` entry into a validated tinycss2 gradient
+    function node, or return None if it isn't a valid CSS gradient.
+
+    Entries that aren't image paths are expected to be dicts (JSON objects) with
+    the CSS function name as the key and its parameters as the value, e.g.
+    ``{'linear-gradient': 'to bottom, #FF6BBA 0%, #FFC999 50%'}``.
+    """
+    try:
+        gradient_dict = dict(entry)
+    except (TypeError, ValueError):
+        return None
+    # A gradient is described by a single `function: parameters` pair.
+    if len(gradient_dict) != 1:
+        return None
+    ((name, params),) = gradient_dict.items()
+    if not isinstance(name, str) or not isinstance(params, str):
+        return None
+    name = name.strip().lower()
+    if name not in GRADIENT_FUNCTIONS:
+        return None
+    # Re-assemble the CSS declaration and let tinycss2 validate it: the result
+    # must be a single, well-formed gradient function and nothing else (which
+    # also rejects attempts to smuggle extra tokens in through the parameters).
+    nodes = _strip_whitespace(tinycss2.parse_component_value_list(f'{name}({params})'))
+    if len(nodes) != 1:
+        return None
+    func = nodes[0]
+    if func.type != 'function' or func.lower_name != name:
+        return None
+    if any(argument.type == 'error' for argument in func.arguments):
+        return None
+    return func
+
+
+def _parse_color_stops(segment):
+    """Parse a gradient color-stop segment into a list of `(color, offset)` tuples,
+    or return None if it isn't a valid color stop.
+
+    A color stop is exactly one color optionally followed by one or two positions
+    (CSS `<linear-color-stop>`; the two-position form is expanded into two stops).
+    `None` covers both "this segment is a direction, not a stop" and "this stop is
+    invalid"; the caller decides how to treat each case.
+    """
+    color_tokens, offsets = [], []
+    for token in _strip_whitespace(segment):
+        if token.type == 'percentage':
+            offsets.append(token.value / 100.0)
+        elif token.type in ('dimension', 'number'):
+            # Absolute lengths (e.g. `20px`) and bare numbers can't be mapped to
+            # an objectBoundingBox offset, so treat the stop as invalid rather
+            # than silently rendering it at the wrong position.
+            return None
+        else:
+            color_tokens.append(token)
+    if len(color_tokens) != 1 or parse_color(color_tokens[0]) is None:
+        return None
+    if len(offsets) > 2:
+        return None
+    color = tinycss2.serialize(color_tokens).strip()
+    if not offsets:
+        return [(color, None)]
+    return [(color, offset) for offset in offsets]
+
+
+def _angle_to_vector(angle):
+    """Map an axis-aligned CSS gradient line angle to SVG `linearGradient`
+    coordinates in the default objectBoundingBox space (0deg points up, growing
+    clockwise)."""
+    radians = math.radians(angle % 360)
+    x2 = 0.5 + 0.5 * math.sin(radians)
+    y2 = 0.5 - 0.5 * math.cos(radians)
+    return (round(1 - x2, 4), round(1 - y2, 4), round(x2, 4), round(y2, 4))
+
+
+def _direction_to_angle(segment):
+    """Return the gradient line angle described by a leading direction segment
+    (e.g. `to bottom`, `45deg`), or None if the segment isn't a direction."""
+    tokens = _strip_whitespace(segment)
+    if not tokens:
+        return None
+    first = tokens[0]
+    if first.type == 'ident' and first.lower_value == 'to':
+        sides = {token.lower_value for token in tokens[1:] if token.type == 'ident'}
+        if len(sides) == 1:
+            return _SIDE_TO_ANGLE.get(next(iter(sides)))
+        return _CORNER_TO_ANGLE.get(frozenset(sides))
+    if first.type == 'dimension' and first.lower_unit in ('deg', 'grad', 'rad', 'turn'):
+        return {
+            'deg': first.value,
+            'grad': first.value * 0.9,
+            'rad': math.degrees(first.value),
+            'turn': first.value * 360,
+        }[first.lower_unit]
+    if first.type == 'number' and first.value == 0:
+        return 0
+    return None
+
+
+def _resolve_stop_offsets(offsets):
+    """Fill in missing color-stop positions following the CSS rules: unset first
+    and last stops default to 0% and 100%, runs of unset stops in between are
+    evenly distributed, and offsets are clamped to a non-decreasing [0, 1]."""
+    resolved = list(offsets)
+    count = len(resolved)
+    if resolved[0] is None:
+        resolved[0] = 0.0
+    if resolved[-1] is None:
+        resolved[-1] = 1.0
+    index = 0
+    while index < count:
+        if resolved[index] is None:
+            end = index
+            while resolved[end] is None:
+                end += 1
+            start_value, end_value = resolved[index - 1], resolved[end]
+            steps = end - (index - 1)
+            for step in range(index, end):
+                resolved[step] = (
+                    start_value
+                    + (end_value - start_value) * (step - (index - 1)) / steps
+                )
+            index = end
+        else:
+            index += 1
+    for index in range(1, count):
+        resolved[index] = max(resolved[index], resolved[index - 1])
+    return [min(1.0, max(0.0, value)) for value in resolved]
+
+
+class GradientBackground:
+    """A CSS gradient `additional_backgrounds` entry, rendered as an SVG
+    `<linearGradient>`/`<radialGradient>` in the theme preview."""
+
+    is_gradient = True
+
+    def __init__(self, stops, angle, is_radial):
+        self.is_radial = is_radial
+        # Only linear gradients use a gradient vector; radial gradients are
+        # rendered centered and the template never reads these coordinates.
+        if not is_radial:
+            self.x1, self.y1, self.x2, self.y2 = _angle_to_vector(angle)
+        offsets = _resolve_stop_offsets([offset for _, offset in stops])
+        self.stops = [
+            {'color': color, 'offset': round(offset, 4)}
+            for (color, _), offset in zip(stops, offsets, strict=True)
+        ]
+
+
+def parse_gradient_background(entry):
+    """Build a GradientBackground from an `additional_backgrounds` entry, or
+    return None if it isn't a CSS gradient we can faithfully render.
+
+    To avoid showing previews that diverge from how the browser paints the theme,
+    anything we can't represent exactly is rejected (and therefore not rendered):
+    invalid directions or color stops, absolute-length stop positions, and
+    non-axis-aligned linear gradients (which the preview's objectBoundingBox space
+    would skew because of its aspect ratio).
+    """
+    func = _parse_gradient_function(entry)
+    if func is None:
+        return None
+    is_radial = 'radial' in func.lower_name
+    segments = _split_on_commas(func.arguments)
+    if not segments:
+        return None
+    angle = 180  # CSS default direction is `to bottom`.
+    stops = []
+    # A leading segment that isn't a color stop is the gradient's direction (for
+    # linear gradients) or shape/position (for radial gradients).
+    first = _parse_color_stops(segments[0])
+    if first is None:
+        if not is_radial:
+            angle = _direction_to_angle(segments[0])
+            if angle is None or angle % 90 != 0:
+                return None
+    else:
+        stops.extend(first)
+    # Every remaining segment must be a valid color stop, otherwise the whole
+    # gradient is invalid CSS and we reject it.
+    for segment in segments[1:]:
+        parsed = _parse_color_stops(segment)
+        if parsed is None:
+            return None
+        stops.extend(parsed)
+    if len(stops) < 2:
+        return None
+    return GradientBackground(stops, angle, is_radial=is_radial)
 
 
 DEPRECATED_COLOR_TO_CSS = {

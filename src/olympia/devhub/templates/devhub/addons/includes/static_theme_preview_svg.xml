@@ -14,13 +14,27 @@
      xmlns:svgjs="http://svgjs.com/svgjs" font-size="16px" font-family="Helvetica, Arial, sans-serif">
     <defs>
         {% for background in additional_backgrounds %}
-          {{ background.calculate_pattern_offsets(browser_width, additional_backgrounds_height) or '' }}
-          <pattern id="AdditionalBackground{{ loop.index }}"
-                   width="{{ background.pattern_width }}" height="{{ background.pattern_height }}"
-                   x="{{ background.pattern_x }}" y="{{ background.pattern_y }}" patternUnits="userSpaceOnUse">
-            <image width="{{ background.width }}" height="{{ background.height }}"
-                   xlink:href="{{ background.src }}"></image>
-          </pattern>
+          {% if background.is_gradient %}
+            {% if background.is_radial %}
+            <radialGradient id="AdditionalBackground{{ loop.index }}">
+              {% for stop in background.stops %}<stop offset="{{ stop.offset }}" stop-color="{{ stop.color }}"></stop>{% endfor %}
+            </radialGradient>
+            {% else %}
+            <linearGradient id="AdditionalBackground{{ loop.index }}"
+                            x1="{{ background.x1 }}" y1="{{ background.y1 }}"
+                            x2="{{ background.x2 }}" y2="{{ background.y2 }}">
+              {% for stop in background.stops %}<stop offset="{{ stop.offset }}" stop-color="{{ stop.color }}"></stop>{% endfor %}
+            </linearGradient>
+            {% endif %}
+          {% else %}
+            {{ background.calculate_pattern_offsets(browser_width, additional_backgrounds_height) or '' }}
+            <pattern id="AdditionalBackground{{ loop.index }}"
+                     width="{{ background.pattern_width }}" height="{{ background.pattern_height }}"
+                     x="{{ background.pattern_x }}" y="{{ background.pattern_y }}" patternUnits="userSpaceOnUse">
+              <image width="{{ background.width }}" height="{{ background.height }}"
+                     xlink:href="{{ background.src }}"></image>
+            </pattern>
+          {% endif %}
         {% endfor %}
     </defs>
     <g transform="scale({{ svg_scale }})">
