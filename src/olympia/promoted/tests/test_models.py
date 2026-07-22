@@ -1,3 +1,5 @@
+from unittest import mock
+
 from django.db import IntegrityError, transaction
 
 from olympia.addons.models import Addon
@@ -100,6 +102,69 @@ class TestPromotedGroup(TestCase):
         # Ensure the __str__ method returns the name
         for pg in PromotedGroup.objects.all():
             self.assertEqual(str(pg), pg.name)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_on_create_does_not_trigger_index_addons(self, index_addons_mock):
+        PromotedGroup.objects.create(name='Test Group', api_name='test_create_group')
+        assert index_addons_mock.call_count == 0
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_is_public_change_triggers_index_addons(self, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_public_change', is_public=True
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        index_addons_mock.reset_mock()
+
+        group.is_public = False
+        group.save()
+
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def _test_field_changes_triggers_when_public(self, field, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_bump', is_public=False
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        index_addons_mock.reset_mock()
+
+        setattr(group, field, 2.0)
+        group.save()
+
+        # should not trigger index_addons because the group is not public
+        assert index_addons_mock.call_count == 0
+
+        # Now make the group public and save again
+        group.is_public = True
+        group.save()
+        index_addons_mock.reset_mock()  # ignore this index
+
+        setattr(group, field, 3.0)
+        group.save()
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    def test_save_api_name_change_triggers_when_public(self):
+        self._test_field_changes_triggers_when_public('api_name')
+
+    def test_save_search_ranking_bump_change_triggers_when_public(self):
+        self._test_field_changes_triggers_when_public('search_ranking_bump')
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_unrelated_change_does_not_trigger_index_addons(
+        self, index_addons_mock
+    ):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_unrelated', is_public=True
+        )
+        index_addons_mock.reset_mock()
+
+        group.name = 'Test Group Renamed'
+        group.save()
+
+        assert index_addons_mock.call_count == 0
 
 
 class TestPromotedAddon(TestCase):

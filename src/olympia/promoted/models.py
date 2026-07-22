@@ -51,12 +51,18 @@ class PromotedGroup(models.Model):
     )
     api_name = models.CharField(
         max_length=100,
-        help_text='Programmatic API name for the promotion group.',
+        help_text=(
+            'Programmatic API name for the promotion group - be careful with changes '
+            'as some api_names are referenced in constants. If the group is public, '
+            'changing this value will trigger a reindex of all add-ons in this group.'
+        ),
         unique=True,
     )
     search_ranking_bump = models.FloatField(
         help_text=(
-            'Boost value used to influence search ranking for add-ons in this group.'
+            'For public groups, boost value used to influence search ranking for '
+            'add-ons in this group. '
+            'Changing this value will trigger a reindex for those add-ons.'
         ),
         default=0.0,
     )
@@ -72,9 +78,13 @@ class PromotedGroup(models.Model):
     )
     badged = models.BooleanField(
         default=False,
-        help_text='Specifies if the add-on receives a badge upon promotion.',
+        help_text=(
+            'Specifies if the add-on receives a badge upon promotion. '
+            'Changes require a patch to update constants.'
+        ),
     )
     autograph_signing_states = models.JSONField(
+        blank=True,
         default=dict,
         help_text='Mapping of application shorthand to autograph signing states.',
     )
@@ -103,13 +113,46 @@ class PromotedGroup(models.Model):
     is_public = models.BooleanField(
         default=True,
         help_text=(
-            'Marks whether this promotion group is public (accessible via the API).'
+            'Marks whether this promotion group is public (accessible via the API). '
+            'Changing this value will trigger a reindex of all add-ons in this group.'
         ),
     )
     objects = PromotedGroupManager()
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):
+        pre_save = None if not self.pk else PromotedGroup.objects.get(pk=self.pk)
+        super().save(*args, **kwargs)
+        if pre_save is not None and (
+            pre_save.is_public != self.is_public
+            or self.is_public
+            and (
+                pre_save.search_ranking_bump != self.search_ranking_bump
+                or pre_save.api_name != self.api_name
+            )
+        ):
+            from olympia.addons.tasks import index_addons
+
+            addon_ids = list(
+                self.promotedaddon_set.values_list('addon_id', flat=True).distinct()
+            )
+            if addon_ids:
+                index_addons.delay(addon_ids)
+
+    def delete(self, *args, **kwargs):
+        addon_ids = (
+            list(self.promotedaddon_set.values_list('addon_id', flat=True).distinct())
+            if self.is_public
+            else []
+        )
+        super().delete(*args, **kwargs)
+
+        if addon_ids:
+            from olympia.addons.tasks import index_addons
+
+            index_addons.delay(addon_ids)
 
 
 class PromotedAddon(ModelBase):
