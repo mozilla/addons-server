@@ -17,6 +17,7 @@ from olympia.abuse.models import (
     ContentDecision,
 )
 from olympia.addons.models import Addon
+from olympia.amo.templatetags.jinja_helpers import format_datetime
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -31,7 +32,12 @@ from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
-from ..forms import HeldDecisionReviewForm, ReviewForm, ReviewQueueFilter
+from ..forms import (
+    DecisionChoiceWidget,
+    HeldDecisionReviewForm,
+    ReviewForm,
+    ReviewQueueFilter,
+)
 from ..models import AutoApprovalSummary, NeedsHumanReview
 from ..utils import ReviewHelper
 
@@ -253,6 +259,65 @@ class TestReviewForm(TestCase):
         assert form.is_bound
         assert form.is_valid(), form.errors
         assert not form.errors
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_cannot_resolve_jobs_and_override_decision(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        self.addon.update(status=amo.STATUS_NOMINATED)
+        self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
+        job = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=self.addon
+        )
+        policy = CinderPolicy.objects.create(
+            uuid='x',
+            name='ok',
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        data = {
+            'action': 'review_with_policy',
+            'cinder_jobs_to_resolve': [job.id],
+            'cinder_policies': [policy.id],
+            'override_decision': decision.id,
+        }
+        form = self.get_form(data=data)
+        assert form.is_bound
+        assert not form.is_valid()
+        assert form.errors == {
+            'cinder_jobs_to_resolve': [
+                'Cannot resolve jobs while overriding a previous decision.'
+            ]
+        }
+
+    def test_override_decision_queryset(self):
+        self.grant_permission(self.request.user, 'Addons:Review')
+        # A decision for this add-on that hasn't been overridden: included.
+        decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        # A decision for this add-on that has already been overridden: excluded,
+        # but the decision overriding it (also for this add-on) is included.
+        overridden_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        overriding_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE,
+            override_of=overridden_decision,
+        )
+        # A decision for a different add-on: excluded.
+        ContentDecision.objects.create(
+            addon=addon_factory(), action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+
+        form = self.get_form()
+        assert set(form.fields['override_decision'].queryset) == {
+            decision,
+            overriding_decision,
+        }
 
     def test_policy_values_parsed(self):
         self.grant_permission(self.request.user, 'Addons:Review')
@@ -1727,6 +1792,42 @@ class TestReviewForm(TestCase):
         assert 'hidden' in div_1[0].attrib
         assert div_1.html() == ('No placeholders here')
 
+    def test_version_option_label_original_status(self):
+        """Disabled version options have '<- was {original_status}' in their label."""
+        self.grant_permission(self.request.user, 'Addons:Review')
+        for version in Version.unfiltered.all():
+            AutoApprovalSummary.objects.create(
+                version=version, verdict=amo.AUTO_APPROVED
+            )
+        disabled_was_approved = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+            },
+        )
+        disabled_was_pending = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_AWAITING_REVIEW,
+            },
+        )
+        form = self.get_form()
+        doc = pq(str(form['versions']))
+
+        opt_approved = doc('option[value="%s"]' % disabled_was_approved.pk)[0]
+        assert '<- was Approved' in opt_approved.text_content()
+
+        opt_pending = doc('option[value="%s"]' % disabled_was_pending.pk)[0]
+        assert '<- was Awaiting Review' in opt_pending.text_content()
+
+        # Non-disabled version should not have the original_status suffix
+        opt_current = doc('option[value="%s"]' % self.version.pk)[0]
+        assert '<- was' not in opt_current.text_content()
+
 
 class TestHeldDecisionReviewForm(TestCase):
     def test_pending_decision(self):
@@ -1803,3 +1904,104 @@ def test_review_queue_filter_form_due_date_reasons():
     assert form.fields['due_date_reasons'].choices == [
         (entry.annotation, entry.label) for entry in NeedsHumanReview.REASONS
     ]
+
+
+class TestDecisionField(TestCase):
+    def _get_option(self, decision):
+        return DecisionChoiceWidget().create_option(
+            'override_decision', decision.pk, decision, set(), 0
+        )
+
+    def test_label_version_specific(self):
+        """VERSION_SPECIFIC actions include version info; truncate beyond 5."""
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+        )
+
+        # No versions yet - no version info in label
+        assert 'versions' not in self._get_option(decision)['label']
+
+        # Add 2 versions - both shown, no truncation
+        v1 = version_factory(addon=addon, version='1.0')
+        v2 = version_factory(addon=addon, version='2.0')
+        decision.target_versions.add(v1, v2)
+        option = self._get_option(decision)
+        assert 'versions: ' in option['label']
+        assert 'more' not in option['label']
+
+        # Add 5 more (7 total) - truncated with remainder
+        decision.target_versions.add(
+            *[version_factory(addon=addon, version=f'3.{i}') for i in range(5)]
+        )
+        assert '[+2 more]' in self._get_option(decision)['label']
+
+    def test_label_non_version_specific_action(self):
+        """Non-VERSION_SPECIFIC actions never include version info."""
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        decision.target_versions.add(version_factory(addon=addon))
+        assert 'versions' not in self._get_option(decision)['label']
+
+    def test_label_held_decision(self):
+        """Held decisions (no action_date) are prefixed with [HELD]."""
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=None,
+        )
+        assert self._get_option(decision)['label'].startswith('[HELD] ')
+
+    def test_label_format(self):
+        """Label is '{formatted_datetime}: {action_label}'."""
+        decision = ContentDecision.objects.create(
+            addon=addon_factory(),
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        option = self._get_option(decision)
+        assert option['label'] == (
+            f'{format_datetime(decision.created)}: '
+            f'{DECISION_ACTIONS.AMO_DISABLE_ADDON.label}'
+        )
+
+    def test_data_versions_attribute(self):
+        """data-versions contains space-separated version PKs from target_versions."""
+        addon = addon_factory()
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+        )
+        v1 = version_factory(addon=addon, version='1.0')
+        v2 = version_factory(addon=addon, version='2.0')
+        decision.target_versions.add(v1, v2)
+
+        option = self._get_option(decision)
+        assert set(option['attrs']['data-versions'].split()) == {str(v1.pk), str(v2.pk)}
+
+        # data-versions is always populated from target_versions regardless of
+        # action type - non-VERSION_SPECIFIC actions still get version PKs
+        decision_disable = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        decision_disable.target_versions.add(v1)
+        assert self._get_option(decision_disable)['attrs']['data-versions'] == str(
+            v1.pk
+        )
+
+        # No target versions means empty data-versions
+        decision_no_versions = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        assert self._get_option(decision_no_versions)['attrs']['data-versions'] == ''
