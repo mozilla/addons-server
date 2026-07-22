@@ -477,18 +477,21 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
             self.list_url,
             data={
                 'name': 'some_rule',
-                'scanner': YARA,
+                'scanner': 'yara',
                 'definition': VALID_YARA_DEFINITION,
             },
             format='json',
         )
         assert response.status_code == 403
+        assert not ScannerQueryRule.objects.exists()
 
     def test_list(self):
-        self._create_rule()
+        rule = self._create_rule()
         response = self.get(self.list_url)
         assert response.status_code == 200
-        assert response.json()['count'] == 1
+        data = response.json()
+        assert data['count'] == 1
+        assert data['results'][0]['id'] == rule.pk
 
     def test_create(self):
         response = self.post(
@@ -496,7 +499,7 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
             data={
                 'name': 'some_rule',
                 'pretty_name': 'Some rule',
-                'scanner': YARA,
+                'scanner': 'yara',
                 'definition': VALID_YARA_DEFINITION,
             },
             format='json',
@@ -508,7 +511,8 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         assert rule.state == NEW
         data = response.json()
         assert data['id'] == rule.pk
-        assert data['state_display'] == 'New'
+        assert data['scanner'] == 'yara'
+        assert data['state'] == 'new'
         # The definition should be echoed back (creator has view access).
         assert data['definition'] == VALID_YARA_DEFINITION
 
@@ -516,15 +520,15 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         response = self.post(
             self.list_url,
             data={
-                'name': 'some_rule',
-                'scanner': YARA,
-                # Name in definition doesn't match the rule name.
-                'definition': 'rule other_rule { condition: true }',
+                'scanner': 'yara',
+                # Missing condition, so it does not compile.
+                'definition': 'rule some_rule { }',
             },
             format='json',
         )
         assert response.status_code == 400
         assert 'definition' in response.json()
+        assert not ScannerQueryRule.objects.exists()
 
     def test_patch_while_new(self):
         rule = self._create_rule()
@@ -548,6 +552,19 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 400
         rule.refresh_from_db()
         assert rule.description == ''
+
+    def test_name_and_scanner_read_only_after_create(self):
+        rule = self._create_rule()
+        response = self.patch(
+            self._detail_url(rule),
+            data={'name': 'renamed', 'scanner': 'narc'},
+            format='json',
+        )
+        assert response.status_code == 200, response.content
+        rule.refresh_from_db()
+        # Both were ignored: read-only once the rule exists.
+        assert rule.name == 'some_rule'
+        assert rule.scanner == YARA
 
     def test_delete(self):
         rule = self._create_rule()
@@ -585,6 +602,8 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         rule.update(state=COMPLETED)
         response = self.post(self._detail_url(rule, action='abort'))
         assert response.status_code == 409
+        rule.refresh_from_db()
+        assert rule.state == COMPLETED
 
 
 class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
@@ -626,7 +645,6 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         data = response.json()
         assert data['count'] == 1
         assert data['results'][0]['id'] == self.result.pk
-        assert data['results'][0]['matched_rule'] == self.rule.pk
         assert 'some_rule' in data['results'][0]['matches']
 
     def test_unknown_rule_returns_404(self):
@@ -654,15 +672,26 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         adu=0,
         channel=amo.CHANNEL_LISTED,
         was_blocked=None,
+        was_promoted=None,
         is_signed=False,
+        addon_status=amo.STATUS_APPROVED,
+        file_status=amo.STATUS_APPROVED,
+        disabled_by_user=False,
     ):
         version = version_factory(
-            addon=addon_factory(average_daily_users=adu),
+            addon=addon_factory(
+                average_daily_users=adu,
+                status=addon_status,
+                disabled_by_user=disabled_by_user,
+            ),
             channel=channel,
-            file_kw={'is_signed': is_signed},
+            file_kw={'is_signed': is_signed, 'status': file_status},
         )
         result = ScannerQueryResult(
-            scanner=YARA, version=version, was_blocked=was_blocked
+            scanner=YARA,
+            version=version,
+            was_blocked=was_blocked,
+            was_promoted=was_promoted,
         )
         result.add_yara_result(rule='some_rule')
         result.save()
@@ -680,6 +709,14 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 200
         assert self._ids(response) == [blocked.pk]
 
+    def test_filter_was_promoted(self):
+        promoted = self._create_result(was_promoted=True)
+        self._create_result(was_promoted=False)
+
+        response = self.get(self.list_url, data={'was_promoted': 'true'})
+        assert response.status_code == 200
+        assert self._ids(response) == [promoted.pk]
+
     def test_filter_was_signed(self):
         signed = self._create_result(is_signed=True)
         self._create_result(is_signed=False)
@@ -689,11 +726,35 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         # self.result (setUp) is unsigned, so only the signed one matches.
         assert self._ids(response) == [signed.pk]
 
+    def test_filter_addon_disabled_by_user(self):
+        invisible = self._create_result(disabled_by_user=True)
+        self._create_result(disabled_by_user=False)
+
+        response = self.get(self.list_url, data={'addon_disabled_by_user': 'true'})
+        assert response.status_code == 200
+        assert self._ids(response) == [invisible.pk]
+
+    def test_filter_addon_status(self):
+        disabled = self._create_result(addon_status=amo.STATUS_DISABLED)
+        self._create_result(addon_status=amo.STATUS_APPROVED)
+
+        response = self.get(self.list_url, data={'addon_status': 'disabled'})
+        assert response.status_code == 200
+        assert self._ids(response) == [disabled.pk]
+
+    def test_filter_file_status(self):
+        disabled = self._create_result(file_status=amo.STATUS_DISABLED)
+        self._create_result(file_status=amo.STATUS_APPROVED)
+
+        response = self.get(self.list_url, data={'file_status': 'disabled'})
+        assert response.status_code == 200
+        assert self._ids(response) == [disabled.pk]
+
     def test_filter_channel(self):
         unlisted = self._create_result(channel=amo.CHANNEL_UNLISTED)
         self._create_result(channel=amo.CHANNEL_LISTED)
 
-        response = self.get(self.list_url, data={'channel': amo.CHANNEL_UNLISTED})
+        response = self.get(self.list_url, data={'channel': 'unlisted'})
         assert response.status_code == 200
         assert self._ids(response) == [unlisted.pk]
 
@@ -713,6 +774,18 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
 
         ids = self._ids(self.get(self.list_url, data={'sort': '-addon_adu'}))
         assert ids.index(high.pk) < ids.index(low.pk)
+
+    def test_order_by_version_created(self):
+        older = self._create_result()
+        newer = self._create_result()
+        older.version.update(created=self.days_ago(10))
+        newer.version.update(created=self.days_ago(1))
+
+        ids = self._ids(self.get(self.list_url, data={'sort': 'version_created'}))
+        assert ids.index(older.pk) < ids.index(newer.pk)
+
+        ids = self._ids(self.get(self.list_url, data={'sort': '-version_created'}))
+        assert ids.index(newer.pk) < ids.index(older.pk)
 
     def test_default_ordering_is_newest_first(self):
         newer = self._create_result()

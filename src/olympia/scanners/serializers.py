@@ -1,19 +1,33 @@
+import re
+
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.urls import reverse
 
 import jsonschema
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.serializers import (
     AddonSerializer,
     VersionSerializer,
 )
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.constants.scanners import NEW
+from olympia.api.fields import ReverseChoiceField
+from olympia.constants.scanners import (
+    NEW,
+    QUERY_RULE_STATES_CHOICES_API,
+    SCANNER_CHOICES_API,
+    YARA,
+)
 from olympia.versions.models import Version
 
-from .models import ScannerQueryResult, ScannerQueryRule
+from .models import ScannerQueryResult, ScannerQueryRule, rule_schema
+
+
+# Same pattern the admin's change-form JS uses to infer the rule name from a
+# yara definition (`rule some_rule {`).
+YARA_RULE_NAME_RE = re.compile(r'rule\s+(.+?)\s+{')
 
 
 class WebhookAddonSerializer(AddonSerializer):
@@ -157,11 +171,21 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
 
     The rule can only be modified while it is still in the ``NEW`` state (the
     same invariant the admin enforces): once it has been scheduled or run, its
-    definition is frozen and a new rule should be created to iterate."""
+    definition is frozen and a new rule should be created to iterate. ``name``
+    and ``scanner`` are also frozen after creation, matching the admin.
 
-    state_display = serializers.CharField(source='get_state_display', read_only=True)
-    scanner_display = serializers.CharField(
-        source='get_scanner_display', read_only=True
+    For yara rules, ``name`` is inferred from the definition (the ``rule
+    <name>`` identifier) and any value provided by the client is ignored, again
+    matching the admin. For narc rules, ``name`` is required."""
+
+    scanner = ReverseChoiceField(choices=list(SCANNER_CHOICES_API.items()))
+    state = ReverseChoiceField(
+        choices=list(QUERY_RULE_STATES_CHOICES_API.items()), read_only=True
+    )
+    run_on_specific_channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()),
+        required=False,
+        allow_null=True,
     )
     completion_rate = serializers.SerializerMethodField()
     results_count = serializers.SerializerMethodField()
@@ -174,7 +198,6 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
             'pretty_name',
             'description',
             'scanner',
-            'scanner_display',
             'definition',
             'configuration',
             'run_on_disabled_addons',
@@ -182,7 +205,6 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
             'run_on_specific_channel',
             'exclude_promoted_addons',
             'state',
-            'state_display',
             'task_count',
             'completed',
             'completion_rate',
@@ -192,9 +214,7 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
         )
         read_only_fields = (
             'id',
-            'scanner_display',
             'state',
-            'state_display',
             'task_count',
             'completed',
             'completion_rate',
@@ -202,6 +222,23 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
             'created',
             'modified',
         )
+        # Not required at the field level: for yara it is derived from the
+        # definition, for narc it is enforced in validate().
+        extra_kwargs = {'name': {'required': False}}
+        # Drop the auto (name, scanner) UniqueTogetherValidator: it runs before
+        # validate() and would require `name` up-front, before we get a chance
+        # to derive it from the definition for yara. Uniqueness is enforced via
+        # instance.validate_unique() in validate() instead.
+        validators = []
+
+    def get_fields(self):
+        fields = super().get_fields()
+        # `name` and `scanner` are only editable at creation time, like in the
+        # admin (they are part of the rule's identity and change its schema).
+        if self.instance is not None:
+            fields['name'].read_only = True
+            fields['scanner'].read_only = True
+        return fields
 
     def get_completion_rate(self, obj):
         return obj.completion_rate()
@@ -209,19 +246,50 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
     def get_results_count(self, obj):
         return obj.results.count()
 
+    def validate_configuration_against_schema(self, instance, configuration):
+        """Validate the configuration against the schema for the rule's scanner
+        (only NARC has options; anything else expects an empty object)."""
+        allowed = rule_schema(instance).get('keys', {})
+        unknown = sorted(set(configuration) - set(allowed))
+        if unknown:
+            raise serializers.ValidationError(
+                {'configuration': f'Unknown configuration keys: {unknown}.'}
+            )
+        for key, value in configuration.items():
+            if allowed[key].get('type') == 'boolean' and not isinstance(value, bool):
+                raise serializers.ValidationError(
+                    {'configuration': f'"{key}" must be a boolean.'}
+                )
+
+    def validate_name_for_scanner(self, data):
+        """On creation, derive the name from the definition for yara (ignoring
+        any client-provided value, like the admin does), and require an explicit
+        name for narc."""
+        if data.get('scanner') == YARA:
+            match = YARA_RULE_NAME_RE.search(data.get('definition') or '')
+            if match:
+                data['name'] = match.group(1)
+            # If it didn't match, leave name as-is; clean() will surface a
+            # helpful error about the definition.
+        elif not data.get('name'):
+            raise serializers.ValidationError(
+                {'name': 'This field is required for this scanner.'}
+            )
+
     def validate(self, data):
         # Build/patch the instance and call the model's clean(), which compiles
         # the YARA/NARC definition and checks the name matches. We deliberately
         # call clean() and not full_clean(): field-level constraints are already
-        # enforced by the serializer fields, and the (name, scanner) uniqueness
-        # is handled by the UniqueTogetherValidator DRF adds automatically.
+        # enforced by the serializer fields. We do call validate_unique() to
+        # enforce the (name, scanner) uniqueness constraint (see Meta.validators).
         if self.instance is None:
+            self.validate_name_for_scanner(data)
             instance = ScannerQueryRule(**data)
         else:
             if self.instance.state != NEW:
                 raise serializers.ValidationError(
                     'A scanner query rule can only be modified while it is in '
-                    'the "New" state. Create a new rule to iterate on it.'
+                    'the "new" state. Create a new rule to iterate on it.'
                 )
             instance = self.instance
             for attr, value in data.items():
@@ -229,12 +297,39 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
 
         try:
             instance.clean()
+            instance.validate_unique()
         except DjangoValidationError as exc:
             raise serializers.ValidationError(
                 exc.message_dict if hasattr(exc, 'error_dict') else exc.messages
             ) from exc
 
+        if 'configuration' in data:
+            self.validate_configuration_against_schema(instance, data['configuration'])
+
         return data
+
+
+class ScannerQueryResultAddonSerializer(serializers.ModelSerializer):
+    """Minimal add-on representation for a scanner query result."""
+
+    class Meta:
+        model = Addon
+        fields = ('id', 'guid', 'average_daily_users')
+        read_only_fields = fields
+
+
+class ScannerQueryResultVersionSerializer(serializers.ModelSerializer):
+    """Minimal version representation for a scanner query result."""
+
+    addon = ScannerQueryResultAddonSerializer(read_only=True)
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
+    )
+
+    class Meta:
+        model = Version
+        fields = ('id', 'version', 'channel', 'created', 'addon')
+        read_only_fields = fields
 
 
 class ScannerQueryResultSerializer(serializers.ModelSerializer):
@@ -244,40 +339,20 @@ class ScannerQueryResultSerializer(serializers.ModelSerializer):
     ``get_files_and_data_by_matched_rules()`` (the same representation the
     admin surfaces), which is the convenient shape for iterating on a rule."""
 
-    scanner_display = serializers.CharField(
-        source='get_scanner_display', read_only=True
-    )
-    addon_id = serializers.IntegerField(
-        source='version.addon_id', read_only=True, allow_null=True
-    )
-    addon_guid = serializers.CharField(
-        source='version.addon.guid', read_only=True, allow_null=True
-    )
-    version_string = serializers.CharField(
-        source='version.version', read_only=True, allow_null=True
-    )
-    channel = serializers.CharField(
-        source='version.get_channel_display', read_only=True, allow_null=True
-    )
+    version = ScannerQueryResultVersionSerializer(read_only=True)
     matches = serializers.SerializerMethodField()
 
     class Meta:
         model = ScannerQueryResult
         fields = (
             'id',
-            'scanner',
-            'scanner_display',
-            'matched_rule',
             'was_blocked',
             'was_promoted',
-            'addon_id',
-            'addon_guid',
-            'version_id',
-            'version_string',
-            'channel',
+            'version',
             'matches',
             'created',
         )
+        read_only_fields = fields
 
     def get_matches(self, obj):
         return dict(obj.get_files_and_data_by_matched_rules())

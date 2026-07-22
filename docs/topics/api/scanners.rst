@@ -67,13 +67,43 @@ objects and to read their matches.
         operations, and ``Admin:ScannersQueryEdit`` for create, update, delete,
         run and abort operations.
 
-A rule can only be edited while it is in the ``New`` state; once it has been
+A rule can only be edited while it is in the ``new`` state; once it has been
 scheduled or run its definition is frozen and a new rule should be created to
-iterate on it.
+iterate on it. ``name`` and ``scanner`` are also frozen after creation and can
+only be set when the rule is created.
 
-The ``scanner`` field accepts ``3`` (yara) or ``5`` (narc). The ``state`` field
-is one of ``1`` (New), ``2`` (Running), ``3`` (Aborted), ``4`` (Completed),
-``5`` (Aborting) or ``6`` (Scheduled).
+For ``yara`` rules the ``name`` is inferred from the definition (the
+``rule <name>`` identifier); any ``name`` sent by the client is ignored. For
+``narc`` rules the ``name`` is required.
+
+The ``scanner`` field accepts ``yara`` or ``narc``. The ``state`` field is one
+of ``new``, ``running``, ``aborted``, ``completed``, ``aborting`` or
+``scheduled``.
+
+Configuration
+-------------
+
+Only ``narc`` rules have configuration options. ``configuration`` is an object
+whose keys are booleans; unknown keys or non-boolean values are rejected. When
+omitted at creation, it is populated with the defaults noted below. ``yara``
+rules must not have any configuration.
+
+* ``examine_slug`` (default ``false``): Run the rule against the add-on slug
+  used for the listing on AMO.
+* ``examine_listing_names`` (default ``true``): Run against the add-on name(s)
+  used for the listing on AMO.
+* ``examine_listing_summaries`` (default ``false``): Run against the add-on
+  summary/summaries used for the listing on AMO.
+* ``examine_xpi_names`` (default ``true``): Run against the add-on name(s) in
+  the XPI.
+* ``examine_xpi_descriptions`` (default ``false``): Run against the add-on
+  description(s) in the XPI.
+* ``examine_authors_names`` (default ``true``): Run against the name of each
+  author attached to the add-on.
+* ``examine_normalized_variants`` (default ``true``): For each string being
+  examined, also examine a normalized variant.
+* ``examine_homoglyphs_variants`` (default ``true``): For each string being
+  examined, also examine homoglyph variants.
 
 
 List / create rules
@@ -94,20 +124,19 @@ List / create rules
     Create a new query rule. The definition is validated (YARA/NARC
     compilation and, for YARA, that the rule name matches the ``name`` field).
 
-    :<json string name: The exact name of the rule used by the scanner (required).
-    :<json int scanner: ``3`` (yara) or ``5`` (narc) (required).
+    :<json string name: The exact name of the rule (frozen after creation). Required for ``narc``; ignored and inferred from the definition for ``yara``.
+    :<json string scanner: ``yara`` or ``narc`` (required, frozen after creation).
     :<json string definition: The rule definition (required).
     :<json string pretty_name: Human-readable name (optional).
     :<json string description: Human-readable description (optional).
-    :<json object configuration: Scanner-specific configuration (optional).
+    :<json object configuration: Scanner-specific configuration (optional, see above).
     :<json boolean run_on_disabled_addons: Run on force-disabled add-ons too (optional).
     :<json boolean run_on_current_version_only: Run on the current listed version only (optional).
-    :<json int run_on_specific_channel: Restrict to a channel, ``1`` (unlisted) or ``2`` (listed) (optional).
+    :<json string run_on_specific_channel: Restrict to a channel, ``unlisted`` or ``listed`` (optional).
     :<json boolean exclude_promoted_addons: Exclude promoted add-ons (optional).
     :>json int id: The primary key of the created rule.
-    :>json int state: The rule state (``1`` / New for a freshly created rule).
-    :>json string state_display: Human-readable state.
-    :>json string scanner_display: Human-readable scanner name.
+    :>json string scanner: The scanner (``yara`` or ``narc``).
+    :>json string state: The rule state (``new`` for a freshly created rule).
     :>json string completion_rate: Progress string while running, otherwise ``null``.
     :>json int results_count: Number of matches recorded so far.
     :statuscode 201: Rule created successfully.
@@ -158,7 +187,7 @@ Run / abort a rule
     Schedule the rule to run. The rule transitions to the ``Scheduled`` state
     and a background task is enqueued.
 
-    :>json int state: The updated state (``6`` / Scheduled).
+    :>json string state: The updated state (``scheduled``).
     :statuscode 202: Run scheduled successfully.
     :statuscode 401: Authentication failed.
     :statuscode 403: The authenticated user lacks the required permission.
@@ -194,21 +223,25 @@ Rule results
     :query boolean was_signed: Only results whose file is signed.
     :query boolean addon_disabled_by_user: Only results whose add-on listing is
         invisible (``true``) or visible (``false``).
-    :query int channel: Version channel, ``1`` (unlisted) or ``2`` (listed).
-    :query int addon_status: Filter by the add-on status.
-    :query int file_status: Filter by the file status.
+    :query string channel: Version channel, ``unlisted`` or ``listed``.
+    :query string addon_status: Add-on status (e.g. ``public``, ``disabled``).
+    :query string file_status: File status (e.g. ``public``, ``disabled``).
     :query string sort: Ordering field. One of ``id``, ``addon_adu``
         (add-on average daily users) or ``version_created``. Prefix with ``-``
         for descending order (e.g. ``-addon_adu``). Defaults to ``-id``.
     :>json int count: The number of results.
     :>json array results: The array of results.
     :>json int results[].id: The result id.
-    :>json int results[].matched_rule: The id of the rule that matched.
-    :>json string results[].addon_guid: The add-on GUID (may be ``null``).
-    :>json int results[].version_id: The version id (may be ``null``).
-    :>json string results[].version_string: The version number (may be ``null``).
-    :>json string results[].channel: The version channel (may be ``null``).
+    :>json boolean results[].was_blocked: Whether the version was blocked.
+    :>json boolean results[].was_promoted: Whether the add-on was promoted.
+    :>json object results[].version: Minimal version representation (may be ``null``).
+    :>json int results[].version.id: The version id.
+    :>json string results[].version.version: The version number.
+    :>json string results[].version.channel: The version channel (``listed`` or ``unlisted``).
+    :>json string results[].version.created: When the version was created.
+    :>json object results[].version.addon: The add-on (``id``, ``guid``, ``average_daily_users``).
     :>json object results[].matches: The matched files and metadata, keyed by rule name.
+    :>json string results[].created: When the result was recorded.
     :statuscode 200: Results returned successfully.
     :statuscode 401: Authentication failed.
     :statuscode 403: The authenticated user lacks the required permission.
