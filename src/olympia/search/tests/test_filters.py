@@ -4,7 +4,6 @@ from unittest.mock import Mock, patch
 
 from django.test import SimpleTestCase
 from django.test.client import RequestFactory
-from django.test.utils import override_settings
 from django.utils import translation
 from django.utils.http import urlsafe_base64_encode
 
@@ -14,7 +13,7 @@ from rest_framework import serializers
 
 from olympia import amo
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_API_NAME_TO_IDS, PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import BADGED_GROUPS, RECOMMENDED_API_NAME
 from olympia.search.filters import (
     AddonCreatedQueryParam,
     AddonRatingQueryParam,
@@ -188,15 +187,7 @@ class TestQueryFilter(FilterTestsBase):
             'weight': 4.0,
         }
         assert functions[2] == {
-            'filter': {
-                'terms': {
-                    'promoted.group_id': [
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                    ]
-                }
-            },
-            'weight': 5.0,
+            'field_value_factor': {'field': 'ranking_bump', 'missing': 1}
         }
         return qs
 
@@ -590,7 +581,7 @@ class TestSortingFilter(FilterTestsBase):
 
     @time_machine.travel('2023-12-24', tick=False)
     def test_sort_random(self):
-        qs = self._filter(data={'promoted': 'recommended', 'sort': 'random'})
+        qs = self._filter(data={'promoted': RECOMMENDED_API_NAME, 'sort': 'random'})
         # Note: this test does not call AddonPromotedQueryParam so it won't
         # apply the recommended filtering. That's tested below in
         # TestCombinedFilter.test_filter_promoted_sort_random
@@ -702,13 +693,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
-        assert {
-            'terms': {
-                'promoted.group_id': [
-                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
-                ]
-            }
-        } in filter_
+        assert {'terms': {'promoted.category': BADGED_GROUPS}} in filter_
 
     @patch(
         'olympia.search.filters.switch_is_active',
@@ -721,13 +706,7 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'guid': ['@foobar']}} in filter_
-        assert {
-            'terms': {
-                'promoted.group_id': [
-                    group_id for group_id in PROMOTED_GROUP_CHOICES.BADGED.values
-                ]
-            }
-        } not in filter_
+        assert {'terms': {'promoted.category': BADGED_GROUPS}} not in filter_
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -942,70 +921,37 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert context.exception.detail == ['Invalid "featured" parameter.']
 
     def test_search_by_promoted(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'promoted': 'foo'})
-        assert context.exception.detail == ['Invalid "promoted" parameter.']
+        qs = self._filter(data={'promoted': 'foo'})
+        filter_ = qs['query']['bool']['filter']
+        assert [{'terms': {'promoted.category': ['foo']}}] == filter_
 
-        for api_name, ids in PROMOTED_API_NAME_TO_IDS.items():
-            qs = self._filter(data={'promoted': api_name})
-            filter_ = qs['query']['bool']['filter']
-            assert [{'terms': {'promoted.group_id': ids}}] == filter_
-
-            qs = self._filter(data={'promoted': api_name, 'app': 'firefox'})
-            filter_ = qs['query']['bool']['filter']
-            assert {'terms': {'promoted.group_id': ids}} in filter_
-            assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
+        qs = self._filter(data={'promoted': 'foo', 'app': 'firefox'})
+        filter_ = qs['query']['bool']['filter']
+        assert {'terms': {'promoted.category': ['foo']}} in filter_
+        assert {'term': {'promoted.approved_for_apps': amo.FIREFOX.id}} in filter_
 
         # test multiple param values
-        qs = self._filter(data={'promoted': 'recommended,line'})
+        qs = self._filter(data={'promoted': f'{RECOMMENDED_API_NAME},line'})
         filter_ = qs['query']['bool']['filter']
         assert [
-            {
-                'terms': {
-                    'promoted.group_id': [
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                    ]
-                }
-            }
+            {'terms': {'promoted.category': ['line', RECOMMENDED_API_NAME]}}
         ] == filter_
 
         # test combining multiple values with the meta "badged" group
-        qs = self._filter(data={'promoted': 'badged,recommended,strategic'})
+        qs = self._filter(data={'promoted': f'badged,{RECOMMENDED_API_NAME},strategic'})
         filter_ = qs['query']['bool']['filter']
         assert [
             {
                 'terms': {
-                    'promoted.group_id': [
+                    'promoted.category': [
                         # recommended shouldn't be there twice
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED,
-                        PROMOTED_GROUP_CHOICES.LINE,
-                        PROMOTED_GROUP_CHOICES.STRATEGIC,
+                        'line',
+                        RECOMMENDED_API_NAME,
+                        'strategic',
                     ]
                 }
             }
         ] == filter_
-
-    def test_search_by_promoted_obsolete_groups(self):
-        with self.assertRaises(serializers.ValidationError) as context:
-            with override_settings(DRF_API_GATES={}):
-                self._filter(data={'promoted': 'sponsored,line'})
-        assert context.exception.detail == ['Invalid "promoted" parameter.']
-
-        # test that now obsolete groups are silently filtered out
-        overridden_api_gates = {'v5': ('promoted-verified-sponsored',)}
-        with override_settings(DRF_API_GATES=overridden_api_gates):
-            qs = self._filter(data={'promoted': 'sponsored,line'})
-        filter_ = qs['query']['bool']['filter']
-        assert [
-            {'terms': {'promoted.group_id': [PROMOTED_GROUP_CHOICES.LINE]}}
-        ] == filter_
-
-        # and repeat to check when there are no groups remaining
-        with override_settings(DRF_API_GATES=overridden_api_gates):
-            qs = self._filter(data={'promoted': 'verified'})
-        filter_ = qs['query']['bool']['filter']
-        assert [{'terms': {'promoted.group_id': []}}] == filter_
 
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})

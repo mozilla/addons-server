@@ -1319,7 +1319,6 @@ DRF_API_GATES = {
         'del-version-license-slug',
         'del-preview-position',
         'categories-application',
-        'promoted-verified-sponsored',
         'minimal-profile-has-all-fields-shim',
         'promoted-groups-shim',
     ),
@@ -1337,7 +1336,6 @@ DRF_API_GATES = {
         'del-version-license-slug',
         'del-preview-position',
         'categories-application',
-        'promoted-verified-sponsored',
         'block-min-max-versions-shim',
         'block-versions-list-shim',
         'promoted-groups-shim',
@@ -1348,7 +1346,6 @@ DRF_API_GATES = {
         'ratings-can_reply',
         'ratings-score-filter',
         'addon-submission-api',
-        'promoted-verified-sponsored',
         'block-versions-list-shim',
     ),
 }

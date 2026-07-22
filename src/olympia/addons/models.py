@@ -59,9 +59,7 @@ from olympia.amo.utils import (
 from olympia.constants.blocklist import BlockReason
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1631,11 +1629,7 @@ class Addon(OnChangeMixin, ModelBase):
             if self._is_recommended_theme():
                 from olympia.promoted.models import PromotedGroup
 
-                return [
-                    PromotedGroup.objects.get(
-                        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-                    )
-                ]
+                return [PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME)]
         return []
 
     @cached_property

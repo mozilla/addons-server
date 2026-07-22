@@ -35,7 +35,6 @@ from olympia.constants.abuse import (
     ILLEGAL_SUBCATEGORIES,
 )
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.core import set_user
 from olympia.files.models import File
 from olympia.ratings.models import Rating
@@ -3425,7 +3424,7 @@ class TestContentDecision(TestCase):
         self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
         addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(
-            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon, api_name='high_profile', high_profile=True, approve_version=True
         )
         decision = ContentDecision.objects.create(
             addon=addon,
@@ -3557,7 +3556,7 @@ class TestContentDecision(TestCase):
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
-            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon, api_name='high_profile', high_profile=True, approve_version=True
         )
         version.needshumanreview_set.create(
             reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
@@ -3823,7 +3822,7 @@ class TestContentDecision(TestCase):
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
-            addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon, api_name='high_profile', high_profile=True, approve_version=True
         )
         some_time_ago = self.days_ago(13)
         little_over_fourteen_days = timedelta(days=14, minutes=1)
@@ -4105,7 +4104,10 @@ class TestContentDecision(TestCase):
             reviewer_user=self.reviewer_user,
         )
         self.make_addon_promoted(
-            rating.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            rating.addon,
+            api_name='high_profile_rating',
+            high_profile_rating=True,
+            approve_version=True,
         )
         assert decision.action_date is None
         mail.outbox.clear()

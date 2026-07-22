@@ -45,7 +45,7 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockVersion
 from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
@@ -1763,93 +1763,90 @@ class TestAddonModels(TestCase):
     def test_unapproved_promoted_groups(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         assert addon.promoted_groups(currently_approved=False)
         assert not addon.promoted_groups()
 
     def test_approved_promoted_groups(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
+        # spotlight group used later to swap a promotion to an unapproved group
+        spotlight_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='spotlight', name='spotlight', listed_pre_review=True
+        )
         addon.approve_for_version()
         assert addon.promoted_groups()
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
         # if the group for one approved group changes, its
         # approval for the current version isn't valid,
         # but other groups remain valid
         PromotedAddon.objects.filter(
-            addon=addon, promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        ).update(
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            )
-        )
-        assert (
-            PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            in addon.promoted_groups(currently_approved=False).group_id
-        )
-        assert (
-            PROMOTED_GROUP_CHOICES.LINE
-            in addon.promoted_groups(currently_approved=False).group_id
-        )
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT not in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
+            addon=addon, promoted_group__api_name='pre_review'
+        ).update(promoted_group=spotlight_group)
+        assert 'spotlight' in addon.promoted_groups(currently_approved=False).api_name
+        assert 'line' in addon.promoted_groups(currently_approved=False).api_name
+        assert 'spotlight' not in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
 
     def test_unapproved_group_after_approval_promoted_groups(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         addon.approve_for_version()
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
-        assert addon.promoted_groups()
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.NOTABLE not in addon.promoted_groups().group_id
-        assert (
-            PROMOTED_GROUP_CHOICES.NOTABLE
-            in addon.promoted_groups(currently_approved=False).group_id
+        self.make_addon_promoted(
+            addon=addon, api_name='notable', listed_pre_review=True
         )
+        assert addon.promoted_groups()
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
+        assert 'notable' not in addon.promoted_groups().api_name
+        assert 'notable' in addon.promoted_groups(currently_approved=False).api_name
         # Unless approved.
         addon.approve_for_version()
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.NOTABLE in addon.promoted_groups().group_id
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
+        assert 'notable' in addon.promoted_groups().api_name
 
     def test_application_specific_multiple_promoted_groups(self):
         addon = addon_factory()
         self.make_addon_promoted(
             addon=addon,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name='pre_review',
+            listed_pre_review=True,
             approve_version=True,
         )
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, approve_version=True
+            addon=addon,
+            api_name='line',
+            listed_pre_review=True,
+            approve_version=True,
         )
         # Application specific group membership should still work
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
         # update to android only
         PromotedAddon.objects.filter(
             addon=addon,
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_group__api_name='line',
             application_id=amo.FIREFOX.id,
         ).delete()
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE in addon.promoted_groups().group_id
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' in addon.promoted_groups().api_name
 
         # but if there's no approval for Android it's not promoted
         addon.current_version.promoted_versions.filter(
             application_id=amo.ANDROID.id
         ).delete()
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.LINE not in addon.promoted_groups().group_id
+        assert 'pre_review' in addon.promoted_groups().api_name
+        assert 'line' not in addon.promoted_groups().api_name
 
     def test_no_promoted(self):
         addon = addon_factory()
@@ -1859,7 +1856,7 @@ class TestAddonModels(TestCase):
     def test_promoted_groups_doesnt_error_with_no_version(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
         addon.current_version.file.update(status=amo.STATUS_DISABLED)
         addon.update_version()
@@ -1870,84 +1867,79 @@ class TestAddonModels(TestCase):
     def test_unapproved_promoted(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         assert addon.publicly_promoted_groups == []
 
     def test_approved_promoted(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
+        # spotlight group used later to swap a promotion to an unapproved group
+        spotlight_group, _ = PromotedGroup.objects.get_or_create(
+            api_name='spotlight', name='spotlight', listed_pre_review=True
+        )
         addon.approve_for_version(addon.current_version)
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+            PromotedGroup.objects.get(api_name='pre_review')
             in addon.publicly_promoted_groups
         )
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
-            in addon.publicly_promoted_groups
+            PromotedGroup.objects.get(api_name='line') in addon.publicly_promoted_groups
         )
         # If the group changes the approval for that group
         # in the current version isn't valid.
         PromotedAddon.objects.filter(
-            addon=addon, promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        ).update(
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-            )
-        )
+            addon=addon, promoted_group__api_name='pre_review'
+        ).update(promoted_group=spotlight_group)
         del addon.publicly_promoted_groups
+        assert spotlight_group not in addon.publicly_promoted_groups
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-            not in addon.publicly_promoted_groups
-        )
-        assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
-            in addon.publicly_promoted_groups
+            PromotedGroup.objects.get(api_name='line') in addon.publicly_promoted_groups
         )
 
     def test_unapproved_group_after_approval_promoted(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=addon, api_name='pre_review', listed_pre_review=True
         )
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         addon.approve_for_version(addon.current_version)
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        self.make_addon_promoted(
+            addon=addon, api_name='spotlight', listed_pre_review=True
+        )
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line') in addon.publicly_promoted_groups
+        )
+        assert (
+            PromotedGroup.objects.get(api_name='pre_review')
             in addon.publicly_promoted_groups
         )
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-            in addon.publicly_promoted_groups
-        )
-        assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
             not in addon.publicly_promoted_groups
         )
         # Approving approves them all
         addon.approve_for_version(addon.current_version)
         del addon.publicly_promoted_groups
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line') in addon.publicly_promoted_groups
+        )
+        assert (
+            PromotedGroup.objects.get(api_name='pre_review')
             in addon.publicly_promoted_groups
         )
         assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-            in addon.publicly_promoted_groups
-        )
-        assert (
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
             in addon.publicly_promoted_groups
         )
 
     def test_promoted_theme(self):
-        recommended = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+        recommended, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME, name='Recommended'
         )
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
         # default case - no group so return None.
@@ -2009,7 +2001,12 @@ class TestAddonModels(TestCase):
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # It's promoted but nothing has been approved.
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(
+            addon=addon,
+            api_name='line',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+        )
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         # The latest version is approved.
@@ -2019,81 +2016,89 @@ class TestAddonModels(TestCase):
 
         addon.promotedaddon.all().delete()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.FIREFOX]
+            addon=addon,
+            api_name='line',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            apps=[amo.FIREFOX],
         )
         assert not addon.can_be_compatible_with_all_fenix_versions
 
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.ANDROID]
+            addon=addon,
+            api_name='line',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            apps=[amo.ANDROID],
         )
         assert addon.can_be_compatible_with_all_fenix_versions
 
     def test_all_approved_applications_for_group_removal_after_approval(self):
         addon = addon_factory()
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(
+            addon=addon, api_name='spotlight', listed_pre_review=True
+        )
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
         ) == [amo.FIREFOX, amo.ANDROID]
         assert (
             addon.approved_applications_for(
-                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+                PromotedGroup.objects.get(api_name='spotlight')
             )
             == []
         )
 
         addon.approve_for_version()
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
         ) == [amo.FIREFOX, amo.ANDROID]
         assert addon.approved_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
         ) == [amo.FIREFOX, amo.ANDROID]
 
         # If an app is removed, it should no longer be in all_apps nor approved
         PromotedAddon.objects.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_group__api_name='line',
             application_id=amo.FIREFOX.id,
         ).delete()
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.ANDROID]
         assert addon.approved_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.ANDROID]
 
         # Shouldn't affect any other promotion
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
         ) == [amo.FIREFOX, amo.ANDROID]
         assert addon.approved_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+            PromotedGroup.objects.get(api_name='spotlight')
         ) == [amo.FIREFOX, amo.ANDROID]
 
         # But the approval still exists
         assert PromotedApproval.objects.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_group__api_name='line',
             application_id=amo.FIREFOX.id,
         ).exists()
 
         # And if we add the PromotedAddon back, it should be approved again
-        self.make_addon_promoted(addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon=addon, api_name='line', listed_pre_review=True)
         assert addon.approved_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.FIREFOX, amo.ANDROID]
 
     def test_all_approved_applications_for_group_addition_after_approval(self):
         addon = addon_factory()
         self.make_addon_promoted(
-            addon=addon, group_id=PROMOTED_GROUP_CHOICES.LINE, apps=[amo.FIREFOX]
+            addon=addon, api_name='line', listed_pre_review=True, apps=[amo.FIREFOX]
         )
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.FIREFOX]
         assert (
-            addon.approved_applications_for(
-                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
-            )
+            addon.approved_applications_for(PromotedGroup.objects.get(api_name='line'))
             == []
         )
 
@@ -2101,13 +2106,14 @@ class TestAddonModels(TestCase):
         addon.approve_for_version()
         self.make_addon_promoted(
             addon=addon,
-            group_id=PROMOTED_GROUP_CHOICES.LINE,
+            api_name='line',
+            listed_pre_review=True,
         )
         assert addon.all_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.FIREFOX, amo.ANDROID]
         assert addon.approved_applications_for(
-            PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+            PromotedGroup.objects.get(api_name='line')
         ) == [amo.FIREFOX]
 
     def test_rollbackable_versions_qs_unavailable(self):

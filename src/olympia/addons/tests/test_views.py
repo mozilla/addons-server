@@ -48,7 +48,7 @@ from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
+    RECOMMENDED_API_NAME,
 )
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
@@ -3530,7 +3530,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='all_fenix_versions',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         response = self.request(
             compatibility={
@@ -3554,7 +3558,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='all_fenix_versions',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         response = self.request(
             compatibility={'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID}}
@@ -4670,7 +4678,12 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def test_cannot_disable_if_promoted(self):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='pre_review',
+            name='Recommended',
+            listed_pre_review=True,
+            badged=True,
+            approve_version=True,
         )
 
         response = self.client.patch(self.url, data={'is_disabled': True})
@@ -4828,7 +4841,12 @@ class TestVersionViewSetDelete(TestCase):
 
     def test_cannot_delete_if_promoted(self):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='pre_review',
+            name='Recommended',
+            listed_pre_review=True,
+            badged=True,
+            approve_version=True,
         )
         self.client.login_api(self.user)
 
@@ -6156,10 +6174,13 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(
             slug='my-addon',
             name='Featured Addôn',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon.promoted_groups().api_name
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -6176,7 +6197,11 @@ class TestAddonSearchView(ESTestCase):
         )
 
         addon = addon_factory(
-            name='Recomménded Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            name='Recomménded Addôn',
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -6184,7 +6209,7 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon).values_list(
                 'application_id', flat=True
@@ -6199,7 +6224,11 @@ class TestAddonSearchView(ESTestCase):
         ]
 
         addon2 = addon_factory(
-            name='Fírefox Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            name='Fírefox Addôn',
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -6211,10 +6240,11 @@ class TestAddonSearchView(ESTestCase):
         addon2.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon=addon2,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.FIREFOX],
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon2.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon2).values_list(
                 'application_id', flat=True
@@ -6243,18 +6273,17 @@ class TestAddonSearchView(ESTestCase):
         )
         self.make_addon_promoted(
             addon4,
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.FIREFOX],
             approve_version=True,
         )
         PromotedAddon.objects.create(
             addon=addon4,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.ANDROID.id,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon4.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon4).values_list(
                 'application_id', flat=True
@@ -6275,18 +6304,17 @@ class TestAddonSearchView(ESTestCase):
         )
         self.make_addon_promoted(
             addon5,
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.ANDROID],
             approve_version=True,
         )
         PromotedAddon.objects.create(
             addon=addon5,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon5.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon5).values_list(
                 'application_id', flat=True
@@ -6299,7 +6327,7 @@ class TestAddonSearchView(ESTestCase):
 
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'promoted': 'recommended'})
+        data = self.perform_search(self.url, {'promoted': RECOMMENDED_API_NAME})
         assert data['count'] == 4
         assert len(data['results']) == 4
         assert {res['id'] for res in data['results']} == {
@@ -6311,7 +6339,7 @@ class TestAddonSearchView(ESTestCase):
 
         # And with app filtering too
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'firefox'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'firefox'}
         )
         assert data['count'] == 3
         assert len(data['results']) == 3
@@ -6323,21 +6351,20 @@ class TestAddonSearchView(ESTestCase):
 
         # That will filter out for a different app
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'android'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'android'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert {res['id'] for res in data['results']} == {addon.pk, addon5.pk}
 
         # test with other other promotions
-        for group_id, group_name in (
-            (PROMOTED_GROUP_CHOICES.LINE, PROMOTED_GROUP_CHOICES.LINE.api_value),
-            (
-                PROMOTED_GROUP_CHOICES.SPOTLIGHT,
-                PROMOTED_GROUP_CHOICES.SPOTLIGHT.api_value,
-            ),
-        ):
-            self.make_addon_promoted(addon, group_id, approve_version=True)
+        for group_name in ('line', 'spotlight'):
+            self.make_addon_promoted(
+                addon,
+                api_name=group_name,
+                listed_pre_review=True,
+                approve_version=True,
+            )
             self.reindex(Addon)
             data = self.perform_search(
                 self.url, {'promoted': group_name, 'app': 'firefox'}
@@ -6724,7 +6751,11 @@ class TestAddonSearchView(ESTestCase):
             name='My Addôn',
             guid='random@guid',
             popularity=999,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+                'badged': True,
+            },
         )
         addon_factory()
         self.reindex(Addon)
@@ -6976,10 +7007,18 @@ class TestAddonSearchView(ESTestCase):
 
         # Now made some of the add-ons recommended
         self.make_addon_promoted(
-            addon2, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon2,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
+            search_ranking_bump=5.0,
+            approve_version=True,
         )
         self.make_addon_promoted(
-            addon4, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon4,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
+            search_ranking_bump=5.0,
+            approve_version=True,
         )
         self.refresh()
 
@@ -7211,7 +7250,10 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         not_promoted = addon_factory(name='not promoted')
         spotlight = addon_factory(name='is promoted')
         self.make_addon_promoted(
-            spotlight, PROMOTED_GROUP_CHOICES.SPOTLIGHT, approve_version=True
+            spotlight,
+            api_name='spotlight',
+            listed_pre_review=True,
+            approve_version=True,
         )
         addon_factory(name='something')
 
@@ -7250,10 +7292,20 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        addon2 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon1.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
+        addon1 = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
+        addon2 = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
+        assert RECOMMENDED_API_NAME in addon1.promoted_groups().api_name
+        assert RECOMMENDED_API_NAME in addon2.promoted_groups().api_name
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
@@ -7268,7 +7320,12 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+            addon_factory(
+                promoted_kwargs={
+                    'api_name': RECOMMENDED_API_NAME,
+                    'listed_pre_review': True,
+                }
+            )
 
         self.refresh()
 

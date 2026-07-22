@@ -28,7 +28,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.amo.tests.test_helpers import get_addon_file
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import VersionString, version_int
 
@@ -427,7 +426,15 @@ class TestSigning(TestCase):
         # in "pending" and only *after* we approve and sign them they will
         # become "promoted" for that group. If their promoted group changes
         # we won't sign further versions as promoted.
-        self.make_addon_promoted(self.file_.version.addon, PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(
+            self.file_.version.addon,
+            api_name='line',
+            listed_pre_review=True,
+            autograph_signing_states={
+                amo.FIREFOX.short: 'line',
+                amo.ANDROID.short: 'line',
+            },
+        )
 
         # it's promoted for all applications, but it's the same state for both
         # desktop and android so don't include twice.
@@ -435,7 +442,13 @@ class TestSigning(TestCase):
 
     def test_call_signing_promoted_recommended(self):
         self.make_addon_promoted(
-            self.file_.version.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.file_.version.addon,
+            api_name='signed_recommended',
+            listed_pre_review=True,
+            autograph_signing_states={
+                amo.FIREFOX.short: 'recommended',
+                amo.ANDROID.short: 'recommended-android',
+            },
         )
 
         # Recommended has different states for desktop and android
@@ -444,7 +457,12 @@ class TestSigning(TestCase):
     def test_call_signing_promoted_recommended_android_only(self):
         self.make_addon_promoted(
             self.file_.version.addon,
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name='signed_recommended',
+            listed_pre_review=True,
+            autograph_signing_states={
+                amo.FIREFOX.short: 'recommended',
+                amo.ANDROID.short: 'recommended-android',
+            },
             apps=[amo.ANDROID],
         )
 
@@ -455,7 +473,13 @@ class TestSigning(TestCase):
         # Unlisted versions, even when the add-on is in promoted group, should
         # never be signed as promoted.
         self.make_addon_promoted(
-            self.file_.version.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.file_.version.addon,
+            api_name='signed_recommended',
+            listed_pre_review=True,
+            autograph_signing_states={
+                amo.FIREFOX.short: 'recommended',
+                amo.ANDROID.short: 'recommended-android',
+            },
         )
         self.version.update(channel=amo.CHANNEL_UNLISTED)
 
@@ -470,9 +494,11 @@ class TestSigning(TestCase):
         assert 'Name: mozilla-recommendation.json' not in manifest
 
     def test_call_signing_promoted_no_special_autograph_group(self):
-        # SPOTLIGHT addons aren't signed differently.
+        # Groups without autograph_signing_states aren't signed differently.
         self.make_addon_promoted(
-            self.file_.version.addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT
+            self.file_.version.addon,
+            api_name='spotlight',
+            listed_pre_review=True,
         )
 
         assert signing.sign_file(self.file_)
@@ -659,7 +685,10 @@ class TestTasks(TestCase):
 
     def test_resign_carry_over_promotion(self, mock_sign_file):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            approve_version=True,
         )
         assert self.addon.publicly_promoted_groups
         # Should have an approval for Firefox and one for Android.
@@ -674,7 +703,10 @@ class TestTasks(TestCase):
 
     def test_resign_doesnt_carry_over_unapproved_promotion(self, mock_sign_file):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=False
+            self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            approve_version=False,
         )
         assert not self.addon.publicly_promoted_groups
         assert self.addon.current_version.promoted_versions.count() == 0

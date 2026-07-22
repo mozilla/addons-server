@@ -41,7 +41,6 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
@@ -336,18 +335,21 @@ class TestDevRequired(TestCase):
 
     def test_dev_promoted_status(self):
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=self.addon,
+            api_name='badged',
+            name='Recommended',
+            badged=True,
         )
-        self.make_addon_promoted(addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE)
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
+            addon=self.addon, api_name='line', name='By Firefox', badged=True
+        )
+        self.make_addon_promoted(
+            addon=self.addon, api_name='spotlight', name='Spotlight', badged=False
         )
         self.addon.approve_for_version()
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
-        )
-        assert PROMOTED_GROUP_CHOICES.LINE in self.addon.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.SPOTLIGHT in self.addon.promoted_groups().group_id
+        assert 'badged' in self.addon.promoted_groups().api_name
+        assert 'line' in self.addon.promoted_groups().api_name
+        assert 'spotlight' in self.addon.promoted_groups().api_name
 
         response = self.client.get(self.get_url)
         assert response.status_code == 200
@@ -570,7 +572,11 @@ class TestHome(TestCase):
 
     def test_my_addons_recommended(self):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='badged',
+            name='Recommended',
+            badged=True,
+            approve_version=True,
         )
         latest_version = self.addon.find_latest_version(amo.CHANNEL_LISTED)
         latest_file = latest_version.file

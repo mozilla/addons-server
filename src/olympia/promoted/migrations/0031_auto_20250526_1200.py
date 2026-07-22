@@ -2,7 +2,7 @@
 
 from django.db import migrations
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 def set_partner_group_pre_review(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')

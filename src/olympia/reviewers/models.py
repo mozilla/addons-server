@@ -192,7 +192,6 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
     listed_perms = [
         amo.permissions.ADDONS_REVIEW,
         amo.permissions.ADDONS_CONTENT_REVIEW,
-        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
         amo.permissions.STATIC_THEMES_REVIEW,
         amo.permissions.REVIEWER_TOOLS_VIEW,
     ]

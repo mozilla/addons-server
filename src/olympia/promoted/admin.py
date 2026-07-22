@@ -116,7 +116,6 @@ class PromotedGroupAdmin(AMOModelAdmin):
         'high_profile',
         'high_profile_rating',
         'search_ranking_bump',
-        'active',
     ]
     list_filter = list_display
     search_fields = ('name',)

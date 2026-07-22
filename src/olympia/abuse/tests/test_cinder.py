@@ -30,7 +30,7 @@ from olympia.constants.abuse import (
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
 )
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.promoted.models import PromotedAddon
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import NeedsHumanReview
@@ -389,7 +389,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(addon, api_name=RECOMMENDED_API_NAME)
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
         encoded_message = cinder_addon.get_str(message)
@@ -457,7 +457,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
             privacy_policy='Söme privacy policy',
             version_kw={'release_notes': 'Søme release notes'},
         )
-        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(addon, api_name='notable', high_profile=True)
         message = ' bad addon!'
         cinder_addon = self.CinderClass(addon)
         encoded_message = cinder_addon.get_str(message)
@@ -1802,7 +1802,7 @@ class TestCinderAddonContentReview(TestCinderAddon):
             version_kw={'release_notes': 'Søme release notes'},
             requires_payment=True,
         )
-        self.make_addon_promoted(addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(addon, api_name='notable', high_profile=True)
         cinder_addon = self.CinderClass(addon)
 
         data = cinder_addon.build_event_payload()

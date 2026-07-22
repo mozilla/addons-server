@@ -1,4 +1,3 @@
-from django.core.exceptions import ValidationError
 from django.db import models
 from django.dispatch import receiver
 
@@ -6,7 +5,6 @@ from olympia.abuse.models import ManagerBase
 from olympia.addons.models import Addon
 from olympia.amo.models import BaseQuerySet, ModelBase
 from olympia.constants.applications import APP_IDS, APPS_CHOICES
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.versions.models import Version
 
@@ -27,9 +25,6 @@ class PromotedGroupQuerySet(BaseQuerySet):
     def name(self):
         return ', '.join(self.__getattr__('name'))
 
-    def active(self):
-        return self.filter(active=True)
-
 
 class PromotedGroupManager(ManagerBase):
     _queryset_class = PromotedGroupQuerySet
@@ -41,12 +36,9 @@ class PromotedGroupManager(ManagerBase):
         if not addon.current_version:
             return self.none()
         approved_promotions = addon.approved_promotions().values_list(
-            'promoted_group__group_id', flat=True
+            'promoted_group_id', flat=True
         )
-        return self.all_for(addon=addon).filter(group_id__in=approved_promotions)
-
-    def active(self):
-        return self.get_queryset().active()
+        return self.all_for(addon=addon).filter(id__in=approved_promotions)
 
 
 class PromotedGroup(models.Model):
@@ -54,15 +46,13 @@ class PromotedGroup(models.Model):
     NOTE: This model replaces the legacy PromotedClass and its constants
     """
 
-    group_id = models.SmallIntegerField(
-        help_text='The legacy ID from back when promoted groups were static classes',
-        choices=PROMOTED_GROUP_CHOICES.choices,
-    )
     name = models.CharField(
         max_length=255, help_text='Human-readable name for the promotion group.'
     )
     api_name = models.CharField(
-        max_length=100, help_text='Programmatic API name for the promotion group.'
+        max_length=100,
+        help_text='Programmatic API name for the promotion group.',
+        unique=True,
     )
     search_ranking_bump = models.FloatField(
         help_text=(
@@ -110,13 +100,6 @@ class PromotedGroup(models.Model):
         default=False,
         help_text='Indicates if developer replies are treated as high-profile.',
     )
-    active = models.BooleanField(
-        default=False,
-        help_text=(
-            'Marks whether this promotion group is active '
-            '(inactive groups are considered obsolete).'
-        ),
-    )
     is_public = models.BooleanField(
         default=True,
         help_text=(
@@ -124,18 +107,6 @@ class PromotedGroup(models.Model):
         ),
     )
     objects = PromotedGroupManager()
-
-    def save(self, *args, **kwargs):
-        # Obsolete, never used in production, only there to prevent us from re-using
-        # the ids. Both these classes used to have specific properties set that were
-        # removed since they are not supposed to be used anyway.
-        if (
-            self.group_id in PROMOTED_GROUP_CHOICES.values
-            and self.group_id not in PROMOTED_GROUP_CHOICES.ACTIVE.values
-            and not self.pk
-        ):
-            raise ValidationError(f'Legacy ID {self.group_id} is not allowed')
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name

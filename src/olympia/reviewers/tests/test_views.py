@@ -59,7 +59,6 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
 from olympia.blocklist.utils import block_activity_log_save
 from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.constants.scanners import WEBHOOK, YARA
 from olympia.files.models import File, FileValidation, WebextPermission
@@ -641,7 +640,7 @@ class TestDashboard(TestCase):
         user_factory(pk=settings.TASK_USER_ID)
         # Recommended extensions
         version = addon_factory(
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'api_name': 'pre_review', 'listed_pre_review': True},
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         ).versions.get()
@@ -650,7 +649,10 @@ class TestDashboard(TestCase):
         )
         version = version_factory(
             addon=addon_factory(
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={
+                    'api_name': 'pre_review',
+                    'listed_pre_review': True,
+                },
                 version_kw={'promotion_approved': False},
             ),
             promotion_approved=True,
@@ -1303,7 +1305,7 @@ class TestQueueBasics(QueueTest):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
             due_date=datetime.now() + timedelta(hours=24),
         )
-        self.make_addon_promoted(addon, PROMOTED_GROUP_CHOICES.LINE)
+        self.make_addon_promoted(addon, api_name='line', listed_pre_review=True)
 
         r = self.client.get(reverse('reviewers.queue_extension'))
 
@@ -2525,44 +2527,10 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 200
 
     def test_need_correct_reviewer_for_promoted_addon(self):
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        choices = list(dict(response.context['form'].fields['action'].choices).keys())
-        expected_choices = ['reply', 'comment']
-        assert choices == expected_choices
-
-        doc = pq(response.content)
-        assert doc('.is_promoted')
-        for entry in doc('.is_promoted').items():
-            assert entry.text() == (
-                "This is a Recommended add-on. You don't have permission to review it."
-            )
-
-        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        choices = list(dict(response.context['form'].fields['action'].choices).keys())
-        expected_choices = [
-            'public',
-            'reject',
-            'reject_multiple_versions',
-            'set_needs_human_review_multiple_versions',
-            'reply',
-            'request_legal_review',
-            'comment',
-        ]
-        assert choices == expected_choices
-
-        doc = pq(response.content)
-        assert doc('.is_promoted')
-        for entry in doc('.is_promoted').items():
-            assert entry.text() == ('This is a Recommended add-on.')
-
-        # Change to a different class of promoted addon
-        self.addon.promotedaddon.all().delete()
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.SPOTLIGHT)
+        self.make_addon_promoted(
+            self.addon, name='Admin Only', admin_review=True, listed_pre_review=True
+        )
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2574,7 +2542,7 @@ class TestReview(ReviewBase):
         assert doc('.is_promoted')
         for entry in doc('.is_promoted').items():
             assert entry.text() == (
-                "This is a Spotlight add-on. You don't have permission to review it."
+                "This is a Admin Only add-on. You don't have permission to review it."
             )
 
         self.grant_permission(self.reviewer, 'Reviews:Admin')
@@ -2598,7 +2566,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert doc('.is_promoted')
         for entry in doc('.is_promoted').items():
-            assert entry.text() == ('This is a Spotlight add-on.')
+            assert entry.text() == ('This is a Admin Only add-on.')
 
     def test_not_recommendable(self):
         response = self.client.get(self.url)
@@ -4401,7 +4369,7 @@ class TestReview(ReviewBase):
         assert translations == expected
 
     @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_approve_recommended_addon(self, mock_sign_file):
+    def test_approve_pre_review_addon(self, mock_sign_file):
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -4410,7 +4378,12 @@ class TestReview(ReviewBase):
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            badged=True,
+        )
         self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.post(
             self.url,
@@ -4427,7 +4400,7 @@ class TestReview(ReviewBase):
         assert addon.current_version
         assert addon.current_version.file.status == amo.STATUS_APPROVED
         assert addon.current_version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            promoted_group__api_name='pre_review'
         ).exists()
         assert mock_sign_file.called
 
@@ -4443,7 +4416,9 @@ class TestReview(ReviewBase):
         )
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NULL)
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(
+            self.addon, api_name='notable', unlisted_pre_review=True
+        )
         self.make_addon_unlisted(self.addon)
         self.grant_permission(self.reviewer, 'Addons:Review')
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -4462,7 +4437,7 @@ class TestReview(ReviewBase):
         self.version.file.reload()
         assert self.version.file.status == amo.STATUS_APPROVED
         assert self.version.promoted_versions.filter(
-            promoted_group__group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            promoted_group__api_name='notable'
         ).exists()
         assert mock_sign_file.called
 

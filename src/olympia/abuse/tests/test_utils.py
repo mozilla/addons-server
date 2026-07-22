@@ -16,8 +16,6 @@ from olympia.bandwagon.models import Collection
 from olympia.blocklist.models import Block, BlockVersion
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.blocklist import BlockReason, BlockType
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.promoted.models import PromotedGroup
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 
@@ -39,11 +37,8 @@ def test_reject_and_block_addons():
     user_factory(id=settings.TASK_USER_ID)
     normal_addon = addon_factory(users=[user_factory()])
     normal_addon_version = normal_addon.current_version
-    PromotedGroup.objects.get_or_create(
-        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
-    )
     recommended_addon = addon_factory(
-        promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+        promoted_kwargs={'api_name': 'high_profile', 'high_profile': True},
         users=[user_factory()],
         version_kw={'promotion_approved': False},
     )

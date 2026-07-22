@@ -2,11 +2,11 @@
 
 from django.db import migrations
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 def set_partner_group_high_profile_rating(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')
-    try: 
+    try:
         group = PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.PARTNER)
         group.high_profile_rating = True
         group.save()

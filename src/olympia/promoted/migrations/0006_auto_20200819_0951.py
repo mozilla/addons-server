@@ -4,7 +4,7 @@ from django.db import migrations
 
 from olympia import amo
 from olympia.addons.tasks import index_addons
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 
 @amo.decorators.use_primary_db
