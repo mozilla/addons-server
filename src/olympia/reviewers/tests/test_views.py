@@ -6978,6 +6978,20 @@ class TestReview(ReviewBase):
             else:
                 assert 'followup-enf' in item[0].classes
 
+    def test_blocklist_banner(self):
+        assert self.addon.current_version.channel == amo.CHANNEL_LISTED
+        self.addon.block_non_enterprise_versions()
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('.has_enterprise')
+        for entry in doc('.has_enterprise').items():
+            assert (
+                'This add-on has enterprise version(s) and its listed and '
+                'unlisted versions will be blocked' in entry.text()
+            )
+
 
 class TestAbuseReportsView(ReviewerTest):
     def setUp(self):

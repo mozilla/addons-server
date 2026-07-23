@@ -44,3 +44,7 @@ class BlockReason(EnumChoices):
     USER_BANNED = 1, 'This add-on has been blocked because its author has been banned.'
     ADDON_DELETED = 2, REASON_ADDON_DELETED
     VERSION_DELETED = 3, REASON_VERSION_DELETED
+    ENTERPRISE_UPLOAD = (
+        4,
+        'This add-on had an enterprise version uploaded more than 90 days ago.',
+    )

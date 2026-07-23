@@ -1609,6 +1609,52 @@ class Addon(OnChangeMixin, ModelBase):
             or (has_unlisted and has_enterprise)
         )
 
+    def block_non_enterprise_versions(self):
+        from olympia.blocklist.models import BlocklistSubmission
+
+        version_ids = list(
+            self.versions.exclude(channel=amo.CHANNEL_ENTERPRISE).values_list(
+                'id', flat=True
+            )
+        )
+        if not version_ids:
+            return
+
+        is_blocked = (
+            BlocklistSubmission.objects.filter(
+                auto_block_reason=BlockReason.ENTERPRISE_UPLOAD,
+                input_guids=self.guid,
+            )
+            .exclude(
+                signoff_state__in=BlocklistSubmission.SIGNOFF_STATES.STATES_FINISHED.values
+            )
+            .exists()
+        )
+
+        if not is_blocked:
+            submission = BlocklistSubmission(
+                auto_block_reason=BlockReason.ENTERPRISE_UPLOAD,
+                input_guids=self.guid,
+                changed_version_ids=version_ids,
+                disable_addon=False,
+                disable_versions=True,
+                delayed_until=datetime.now() + timedelta(days=90),
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                updated_by=get_task_user(),
+            )
+            submission.save()
+            submission.update_signoff_for_auto_approval()
+
+    def rollback_enterprise_block(self):
+        from olympia.blocklist.models import BlocklistSubmission
+
+        BlocklistSubmission.objects.filter(
+            auto_block_reason=BlockReason.ENTERPRISE_UPLOAD,
+            input_guids=self.guid,
+        ).exclude(
+            signoff_state__in=BlocklistSubmission.SIGNOFF_STATES.STATES_FINISHED.values
+        ).delete()
+
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
 

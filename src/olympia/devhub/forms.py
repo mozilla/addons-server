@@ -1437,7 +1437,9 @@ class DistributionChoiceForm(forms.Form):
             'An enterprise add-on. <span class="helptext">'
             'After your submission is signed by Mozilla, you can download the .xpi '
             'file from the Developer Hub and distribute it to your audience via a '
-            'Firefox for Enterprise policy.</span>'
+            'Firefox for Enterprise policy. Note that this will block any existing '
+            'listed and unlisted versions after 90 days, and you will no longer be '
+            'able to upload new listed or unlisted versions.</span>'
         ),
         site_domain=settings.DOMAIN,
     )

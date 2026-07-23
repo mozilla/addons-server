@@ -41,6 +41,13 @@
   {% endif %}
 </p>
 {% endif %}
+{% if enterprise_block_delayed_until and channel != amo.CHANNEL_ENTERPRISE %}
+<p class="has_enterprise">
+  This add-on has enterprise version(s) and its listed and unlisted versions will be blocked 
+    on {{ enterprise_block_delayed_until|date }}
+    at {{ enterprise_block_delayed_until|time }}
+</p>
+{% endif %}
 
 <div id="addon"
      class="primary addon-type-{{ amo.ADDON_SLUGS.get(addon.type, addon.type) }}"

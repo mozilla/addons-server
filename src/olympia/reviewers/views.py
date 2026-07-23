@@ -49,6 +49,7 @@ from olympia.api.permissions import (
     AllowUnlistedViewerOrReviewer,
     GroupPermission,
 )
+from olympia.blocklist.models import BlocklistSubmission
 from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import (
     HELD_DECISION_CHOICES,
@@ -68,7 +69,7 @@ from olympia.stats.utils import (
     get_average_daily_users_per_version_from_bigquery,
 )
 from olympia.users.models import UserProfile
-from olympia.versions.models import Version
+from olympia.versions.models import BlockReason, Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
@@ -677,6 +678,18 @@ def review(request, addon, channel=None):
         else []
     )
 
+    enterprise_block = (
+        BlocklistSubmission.objects.filter(
+            auto_block_reason=BlockReason.ENTERPRISE_UPLOAD,
+            input_guids=addon.guid,
+        )
+        .exclude(
+            signoff_state__in=BlocklistSubmission.SIGNOFF_STATES.STATES_FINISHED.values
+        )
+        .filter()
+        .first()
+    )
+
     Addon._attach_authors([addon], listed=None, to_attr='current_authors')
 
     ctx = context(
@@ -707,6 +720,9 @@ def review(request, addon, channel=None):
         ),
         count=count,
         DECISION_ACTIONS=DECISION_ACTIONS,
+        enterprise_block_delayed_until=enterprise_block.delayed_until
+        if enterprise_block and enterprise_block.delayed_until > datetime.now()
+        else None,
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,

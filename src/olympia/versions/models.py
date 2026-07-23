@@ -667,6 +667,11 @@ class Version(OnChangeMixin, ModelBase):
 
             call_webhooks_on_version_created.delay(version_pk=version.pk)
 
+        # Once an enterprise version is uploaded, block existing
+        # non-enterprise versions after 90 days.
+        if channel == amo.CHANNEL_ENTERPRISE:
+            addon.block_non_enterprise_versions()
+
         return version
 
     def get_url_path(self):
@@ -717,6 +722,13 @@ class Version(OnChangeMixin, ModelBase):
             soft_block_versions.delay(
                 version_ids=[self.id], auto_block_reason=BlockReason.VERSION_DELETED
             )
+
+        # check if rollback of pending blocks is necessary.
+        if (
+            self.channel == amo.CHANNEL_ENTERPRISE
+            and not self.addon.has_enterprise_versions()
+        ):
+            self.addon.rollback_enterprise_block()
 
     @property
     def is_user_disabled(self):
