@@ -468,22 +468,32 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         response = self.get(self.list_url)
         assert response.status_code == 403
 
-    def test_view_permission_cannot_create(self):
+    def test_write_operations_require_edit_permission(self):
+        rule = self._create_rule()
         self.user.groupuser_set.all().delete()
+        # Read-only permission, no write access
         self.grant_permission(
             self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
         )
-        response = self.post(
-            self.list_url,
-            data={
-                'name': 'some_rule',
-                'scanner': 'yara',
-                'definition': VALID_YARA_DEFINITION,
-            },
-            format='json',
+        detail_url = self._detail_url(rule)
+        payload = {'scanner': 'yara', 'definition': VALID_YARA_DEFINITION}
+
+        assert self.post(self.list_url, data=payload, format='json').status_code == 403
+        assert (
+            self.patch(detail_url, data={'description': 'x'}, format='json').status_code
+            == 403
         )
-        assert response.status_code == 403
-        assert not ScannerQueryRule.objects.exists()
+        assert self.put(detail_url, data=payload, format='json').status_code == 403
+        assert self.delete(detail_url).status_code == 403
+        assert self.post(self._detail_url(rule, action='run')).status_code == 403
+        assert self.post(self._detail_url(rule, action='abort')).status_code == 403
+
+        # Reads still work, and nothing was created, modified or deleted:
+        assert self.get(detail_url).status_code == 200
+        assert ScannerQueryRule.objects.count() == 1
+        rule.refresh_from_db()
+        assert rule.description == ''
+        assert rule.state == NEW
 
     def test_list(self):
         rule = self._create_rule()
