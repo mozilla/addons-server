@@ -3,12 +3,23 @@ from django.urls import reverse
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns, version_factory
+from olympia.constants.scanners import (
+    NARC,
+    NARC_RULE_CONFIGURATION_SCHEMA,
+    NEW,
+    RUNNING,
+    YARA,
+)
+from olympia.scanners.models import ScannerQueryResult, ScannerQueryRule
 from olympia.scanners.serializers import (
     PatchScannerResultSerializer,
     PushScannerResultSerializer,
+    ScannerQueryResultSerializer,
+    ScannerQueryRuleSerializer,
     WebhookAddonSerializer,
     WebhookVersionSerializer,
 )
+from olympia.scanners.utils import default_from_schema
 
 
 class TestWebhookAddonSerializer(TestCase):
@@ -264,3 +275,248 @@ class TestPatchScannerResultSerializer(TestCase):
             {'results': self.valid_results, 'unexpected': 'value'}
         )
         assert 'unexpected' in serializer.errors
+
+
+VALID_YARA_DEFINITION = 'rule some_rule { condition: true }'
+
+
+class TestScannerQueryRuleSerializer(TestCase):
+    def _create_narc_rule(self):
+        return ScannerQueryRule.objects.create(
+            name='narc_rule', scanner=NARC, definition='test'
+        )
+
+    def test_create_valid(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                'scanner': 'yara',
+                'definition': VALID_YARA_DEFINITION,
+            }
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.pk
+        assert rule.name == 'some_rule'
+        assert rule.scanner == YARA
+        assert rule.state == NEW
+
+    def test_yara_name_derived_from_definition(self):
+        # name is not provided; it is inferred from the definition.
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'scanner': 'yara',
+                'definition': 'rule derived_name { condition: true }',
+            }
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.name == 'derived_name'
+
+    def test_yara_ignores_provided_name(self):
+        # Any client-provided name is ignored for yara; the definition wins.
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'ignored',
+                'scanner': 'yara',
+                'definition': 'rule derived_name { condition: true }',
+            }
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.name == 'derived_name'
+
+    def test_narc_requires_name(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={'scanner': 'narc', 'definition': 'test'}
+        )
+        assert not serializer.is_valid()
+        assert 'name' in serializer.errors
+
+    def test_invalid_definition(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'scanner': 'yara',
+                # Missing condition, so it does not compile.
+                'definition': 'rule some_rule { }',
+            }
+        )
+        assert not serializer.is_valid()
+        assert 'definition' in serializer.errors
+
+    def test_duplicate_name_and_scanner_rejected(self):
+        ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        # Derives name 'some_rule' from the definition -> collides with above.
+        serializer = ScannerQueryRuleSerializer(
+            data={'scanner': 'yara', 'definition': VALID_YARA_DEFINITION}
+        )
+        assert not serializer.is_valid()
+
+    def test_scanner_choices_limited(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                # webhook is not a valid query-rule scanner.
+                'scanner': 'webhook',
+                'definition': VALID_YARA_DEFINITION,
+            }
+        )
+        assert not serializer.is_valid()
+        assert 'scanner' in serializer.errors
+
+    def test_read_only_fields_serialized(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        data = ScannerQueryRuleSerializer(rule).data
+        assert data['scanner'] == 'yara'
+        assert data['state'] == 'new'
+        assert 'scanner_display' not in data
+        assert 'state_display' not in data
+        assert data['results_count'] == 0
+        assert data['completion_rate'] is None
+
+    def test_cannot_update_when_not_new(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        rule.update(state=RUNNING)
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule, data={'description': 'updated'}, partial=True
+        )
+        assert not serializer.is_valid()
+
+    def test_can_update_when_new(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule, data={'description': 'updated'}, partial=True
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.description == 'updated'
+
+    def test_name_and_scanner_read_only_after_create(self):
+        rule = ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule,
+            data={'name': 'renamed', 'scanner': 'narc'},
+            partial=True,
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        # Both are ignored: they are read-only once the rule exists.
+        assert rule.name == 'some_rule'
+        assert rule.scanner == YARA
+
+    def test_configuration_default_after_create(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={'name': 'narc_rule', 'scanner': 'narc', 'definition': 'test'}
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.configuration == default_from_schema(NARC_RULE_CONFIGURATION_SCHEMA)
+
+    def test_configuration_can_be_modified(self):
+        rule = self._create_narc_rule()
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule,
+            data={'configuration': {'examine_slug': True}},
+            partial=True,
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.configuration == {'examine_slug': True}
+
+    def test_configuration_unknown_key_rejected(self):
+        rule = self._create_narc_rule()
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule,
+            data={'configuration': {'not_a_real_option': True}},
+            partial=True,
+        )
+        assert not serializer.is_valid()
+        assert 'configuration' in serializer.errors
+
+    def test_configuration_wrong_type_rejected(self):
+        rule = self._create_narc_rule()
+        serializer = ScannerQueryRuleSerializer(
+            instance=rule,
+            data={'configuration': {'examine_slug': 'not a boolean'}},
+            partial=True,
+        )
+        assert not serializer.is_valid()
+        assert 'configuration' in serializer.errors
+
+    def test_configuration_rejected_for_yara(self):
+        # yara rules have no configuration options.
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                'scanner': 'yara',
+                'definition': VALID_YARA_DEFINITION,
+                'configuration': {'examine_slug': True},
+            }
+        )
+        assert not serializer.is_valid()
+        assert 'configuration' in serializer.errors
+
+    def test_run_on_specific_channel_uses_string_constant(self):
+        serializer = ScannerQueryRuleSerializer(
+            data={
+                'name': 'some_rule',
+                'scanner': 'yara',
+                'definition': VALID_YARA_DEFINITION,
+                'run_on_specific_channel': 'listed',
+            }
+        )
+        assert serializer.is_valid(), serializer.errors
+        rule = serializer.save()
+        assert rule.run_on_specific_channel == amo.CHANNEL_LISTED
+        data = ScannerQueryRuleSerializer(rule).data
+        assert data['run_on_specific_channel'] == 'listed'
+
+
+class TestScannerQueryResultSerializer(TestCase):
+    def test_serialize(self):
+        ScannerQueryRule.objects.create(
+            name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION
+        )
+        addon = addon_factory(guid='@some-guid', average_daily_users=123)
+        version = version_factory(addon=addon)
+        result = ScannerQueryResult(scanner=YARA, version=version)
+        result.add_yara_result(rule='some_rule', meta={'filename': 'foo.js'})
+        result.save()
+
+        data = ScannerQueryResultSerializer(result).data
+        assert data.keys() == {
+            'id',
+            'was_blocked',
+            'was_promoted',
+            'version',
+            'matches',
+            'created',
+        }
+        assert data['id'] == result.pk
+        assert data['was_blocked'] == result.was_blocked
+        assert data['was_promoted'] == result.was_promoted
+        assert data['version'].keys() == {
+            'id',
+            'version',
+            'channel',
+            'created',
+            'addon',
+        }
+        assert data['version']['id'] == version.pk
+        assert data['version']['channel'] == 'listed'
+        assert data['version']['addon'] == {
+            'id': addon.id,
+            'guid': '@some-guid',
+            'average_daily_users': 123,
+        }
+        assert 'some_rule' in data['matches']
