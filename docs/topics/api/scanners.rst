@@ -50,3 +50,199 @@ This endpoint allows to update scanner results.
     :statuscode 204: Results successfully updated.
     :statuscode 400: Invalid payload.
     :statuscode 409: Scanner results already recorded.
+
+
+------------
+Query rules
+------------
+
+.. _scanner-query-rules:
+
+These endpoints allow authorized users to create and run ``ScannerQueryRule``
+objects and to read their matches.
+
+    .. note::
+        Requires JWT authentication. The authenticated user must belong to a
+        group with the ``Admin:ScannersQueryView`` permission for read
+        operations, and ``Admin:ScannersQueryEdit`` for create, update, delete,
+        run and abort operations.
+
+A rule can only be edited while it is in the ``new`` state; once it has been
+scheduled or run its definition is frozen and a new rule should be created to
+iterate on it. ``name`` and ``scanner`` are also frozen after creation and can
+only be set when the rule is created.
+
+For ``yara`` rules the ``name`` is inferred from the definition (the
+``rule <name>`` identifier); any ``name`` sent by the client is ignored. For
+``narc`` rules the ``name`` is required.
+
+The ``scanner`` field accepts ``yara`` or ``narc``. The ``state`` field is one
+of ``new``, ``running``, ``aborted``, ``completed``, ``aborting`` or
+``scheduled``.
+
+Configuration
+-------------
+
+Only ``narc`` rules have configuration options. ``configuration`` is an object
+whose keys are booleans; unknown keys or non-boolean values are rejected. When
+omitted at creation, it is populated with the defaults noted below. ``yara``
+rules must not have any configuration.
+
+* ``examine_slug`` (default ``false``): Run the rule against the add-on slug
+  used for the listing on AMO.
+* ``examine_listing_names`` (default ``true``): Run against the add-on name(s)
+  used for the listing on AMO.
+* ``examine_listing_summaries`` (default ``false``): Run against the add-on
+  summary/summaries used for the listing on AMO.
+* ``examine_xpi_names`` (default ``true``): Run against the add-on name(s) in
+  the XPI.
+* ``examine_xpi_descriptions`` (default ``false``): Run against the add-on
+  description(s) in the XPI.
+* ``examine_authors_names`` (default ``true``): Run against the name of each
+  author attached to the add-on.
+* ``examine_normalized_variants`` (default ``true``): For each string being
+  examined, also examine a normalized variant.
+* ``examine_homoglyphs_variants`` (default ``true``): For each string being
+  examined, also examine homoglyph variants.
+
+
+List / create rules
+-------------------
+
+.. http:get:: /api/v5/scanner/query-rules/
+
+    Return a paginated list of query rules, most recently created first.
+
+    :>json int count: The number of rules.
+    :>json array results: The array of rules (see the fields below).
+    :statuscode 200: Rules returned successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+
+.. http:post:: /api/v5/scanner/query-rules/
+
+    Create a new query rule. The definition is validated (YARA/NARC
+    compilation and, for YARA, that the rule name matches the ``name`` field).
+
+    :<json string name: The exact name of the rule (frozen after creation). Required for ``narc``; ignored and inferred from the definition for ``yara``.
+    :<json string scanner: ``yara`` or ``narc`` (required, frozen after creation).
+    :<json string definition: The rule definition (required).
+    :<json string pretty_name: Human-readable name (optional).
+    :<json string description: Human-readable description (optional).
+    :<json object configuration: Scanner-specific configuration (optional, see above).
+    :<json boolean run_on_disabled_addons: Run on force-disabled add-ons too (optional).
+    :<json boolean run_on_current_version_only: Run on the current listed version only (optional).
+    :<json string run_on_specific_channel: Restrict to a channel, ``unlisted`` or ``listed`` (optional).
+    :<json boolean exclude_promoted_addons: Exclude promoted add-ons (optional).
+    :>json int id: The primary key of the created rule.
+    :>json string scanner: The scanner (``yara`` or ``narc``).
+    :>json string state: The rule state (``new`` for a freshly created rule).
+    :>json string completion_rate: Progress string while running, otherwise ``null``.
+    :>json int results_count: Number of matches recorded so far.
+    :statuscode 201: Rule created successfully.
+    :statuscode 400: Invalid payload (e.g. the definition does not compile).
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+
+
+Retrieve / update / delete a rule
+---------------------------------
+
+.. http:get:: /api/v5/scanner/query-rules/(int:pk)/
+
+    Return a single query rule. Poll this endpoint to track a run via the
+    ``state``, ``completion_rate`` and ``completed`` fields.
+
+    :statuscode 200: Rule returned successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.
+
+.. http:patch:: /api/v5/scanner/query-rules/(int:pk)/
+
+    Update a query rule. Only allowed while the rule is in the ``New`` state.
+    Accepts the same writable fields as the create endpoint.
+
+    :statuscode 200: Rule updated successfully.
+    :statuscode 400: Invalid payload, or the rule is not in the ``New`` state.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.
+
+.. http:delete:: /api/v5/scanner/query-rules/(int:pk)/
+
+    Delete a query rule and its results.
+
+    :statuscode 204: Rule deleted successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.
+
+
+Run / abort a rule
+------------------
+
+.. http:post:: /api/v5/scanner/query-rules/(int:pk)/run/
+
+    Schedule the rule to run. The rule transitions to the ``Scheduled`` state
+    and a background task is enqueued.
+
+    :>json string state: The updated state (``scheduled``).
+    :statuscode 202: Run scheduled successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.
+    :statuscode 409: The rule is not in a state from which it can be run.
+
+.. http:post:: /api/v5/scanner/query-rules/(int:pk)/abort/
+
+    Abort a scheduled or running rule. The rule transitions to the
+    ``Aborting`` state.
+
+    :statuscode 200: Abort requested successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.
+    :statuscode 409: The rule is not in a state from which it can be aborted.
+
+
+Rule results
+------------
+
+.. http:get:: /api/v5/scanner/query-rules/(int:query_rule_pk)/results/
+
+    Return a paginated list of the matches for a rule. Only the
+    definition-safe match information is exposed (the files and metadata that
+    hit), not the raw scanner output.
+
+    The list can be filtered and ordered with the query parameters below.
+    Invalid filter values return a ``400``.
+
+    :query boolean was_blocked: Only results whose version was blocked.
+    :query boolean was_promoted: Only results whose add-on was promoted.
+    :query boolean was_signed: Only results whose file is signed.
+    :query boolean addon_disabled_by_user: Only results whose add-on listing is
+        invisible (``true``) or visible (``false``).
+    :query string channel: Version channel, ``unlisted`` or ``listed``.
+    :query string addon_status: Add-on status (e.g. ``public``, ``disabled``).
+    :query string file_status: File status (e.g. ``public``, ``disabled``).
+    :query string sort: Ordering field. One of ``id``, ``addon_adu``
+        (add-on average daily users) or ``version_created``. Prefix with ``-``
+        for descending order (e.g. ``-addon_adu``). Defaults to ``-id``.
+    :>json int count: The number of results.
+    :>json array results: The array of results.
+    :>json int results[].id: The result id.
+    :>json boolean results[].was_blocked: Whether the version was blocked.
+    :>json boolean results[].was_promoted: Whether the add-on was promoted.
+    :>json object results[].version: Minimal version representation (may be ``null``).
+    :>json int results[].version.id: The version id.
+    :>json string results[].version.version: The version number.
+    :>json string results[].version.channel: The version channel (``listed`` or ``unlisted``).
+    :>json string results[].version.created: When the version was created.
+    :>json object results[].version.addon: The add-on (``id``, ``guid``, ``average_daily_users``).
+    :>json object results[].matches: The matched files and metadata, keyed by rule name.
+    :>json string results[].created: When the result was recorded.
+    :statuscode 200: Results returned successfully.
+    :statuscode 401: Authentication failed.
+    :statuscode 403: The authenticated user lacks the required permission.
+    :statuscode 404: No rule with that id.

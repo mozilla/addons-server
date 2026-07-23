@@ -57,6 +57,21 @@ QUERY_RULE_STATES = {
     SCHEDULED: 'Scheduled',
 }
 
+# Query rules currently only support yara and narc.
+SCANNER_CHOICES_API = {
+    YARA: 'yara',
+    NARC: 'narc',
+}
+
+QUERY_RULE_STATES_CHOICES_API = {
+    NEW: 'new',
+    RUNNING: 'running',
+    ABORTED: 'aborted',
+    ABORTING: 'aborting',
+    COMPLETED: 'completed',
+    SCHEDULED: 'scheduled',
+}
+
 # Scanner service accounts group
 SCANNER_SERVICE_ACCOUNTS_GROUP = 'Service accounts for scanners'
 
