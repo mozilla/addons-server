@@ -2266,8 +2266,15 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
 
     def test_run_on_chunk_num_queries(self):
         # Extra addons shouldn't affect number of queries.
-        extra_addon1 = addon_factory(file_kw={'filename': 'webextension.xpi'})
-        extra_addon2 = addon_factory(file_kw={'filename': 'webextension.xpi'})
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
         # Make the rule not match to avoid queries when saving results, we
         # don't care about those at this time.
         self.rule.update(
@@ -2284,8 +2291,9 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
             run_scanner_query_rule_on_versions_chunk(
                 [
                     self.version.pk,
-                    extra_addon1.current_version.pk,
-                    extra_addon2.current_version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
                 ],
                 self.rule.pk,
             )
@@ -2293,8 +2301,15 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
 
     def test_run_on_chunk_num_queries_matching(self):
         # Extra addons shouldn't affect number of queries.
-        extra_addon1 = addon_factory(file_kw={'filename': 'webextension.xpi'})
-        extra_addon2 = addon_factory(file_kw={'filename': 'webextension.xpi'})
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
         self.rule.update(state=RUNNING)
         # Force waffle switch to be cached to not affect queries count.
         waffle.switch_is_active('use-yara-x')
@@ -2306,12 +2321,13 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
             run_scanner_query_rule_on_versions_chunk(
                 [
                     self.version.pk,
-                    extra_addon1.current_version.pk,
-                    extra_addon2.current_version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
                 ],
                 self.rule.pk,
             )
-        assert ScannerQueryResult.objects.count() == 3
+        assert ScannerQueryResult.objects.count() == 4
 
 
 @override_switch(name='use-yara-x', active=True)
@@ -2374,8 +2390,15 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
 
     def test_run_on_chunk_num_queries(self):
         # Extra addons shouldn't affect number of queries.
-        extra_addon1 = addon_factory(file_kw={'filename': 'webextension.xpi'})
-        extra_addon2 = addon_factory(file_kw={'filename': 'webextension.xpi'})
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
         # Make the rule not match to avoid queries when saving results, we
         # don't care about those at this time.
         self.rule.update(
@@ -2392,8 +2415,9 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
             run_scanner_query_rule_on_versions_chunk(
                 [
                     self.version.pk,
-                    extra_addon1.current_version.pk,
-                    extra_addon2.current_version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
                 ],
                 self.rule.pk,
             )
@@ -2401,8 +2425,15 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
 
     def test_run_on_chunk_num_queries_matching(self):
         # Extra addons shouldn't affect number of queries.
-        extra_addon1 = addon_factory(file_kw={'filename': 'webextension.xpi'})
-        extra_addon2 = addon_factory(file_kw={'filename': 'webextension.xpi'})
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
         self.rule.update(state=RUNNING)
         with self.assertNumQueries(6):
             # - 1 for the rule
@@ -2414,12 +2445,13 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
             run_scanner_query_rule_on_versions_chunk(
                 [
                     self.version.pk,
-                    extra_addon1.current_version.pk,
-                    extra_addon2.current_version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
                 ],
                 self.rule.pk,
             )
-        assert ScannerQueryResult.objects.count() == 3
+        assert ScannerQueryResult.objects.count() == 4
 
 
 class TestCallWebhooks(UploadMixin, TestCase):
