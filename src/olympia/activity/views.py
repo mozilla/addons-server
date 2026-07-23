@@ -88,7 +88,7 @@ class VersionReviewNotesViewSet(
         # The only thing left to test is that the Version is not deleted.
         version = self.get_version_object()
         if version.deleted and not GroupPermission(
-            amo.permissions.ADDONS_VIEW_DELETED
+            amo.permissions.ADDONS_API_VIEW_DELETED
         ).has_object_permission(request, self, version):
             raise http.Http404
 

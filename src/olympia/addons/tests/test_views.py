@@ -261,10 +261,10 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
-    def test_get_not_public_reviewer(self):
+    def test_get_not_public_addons_api_view(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -361,9 +361,9 @@ class AddonAndVersionViewSetDetailMixin:
         # depend on Accept-Encoding.
         assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
-    def test_get_not_listed_simple_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_get_unlisted_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -373,17 +373,12 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
-    def test_get_not_listed_specific_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.make_addon_unlisted(self.addon)
-        self.client.login_api(user)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-    def test_get_not_listed_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+    def test_get_unlisted_addons_api_view_unlisted(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -421,23 +416,12 @@ class AddonAndVersionViewSetDetailMixin:
         assert 'is_disabled_by_developer' not in data
         assert 'is_disabled_by_mozilla' not in data
 
-    def test_get_deleted_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.addon.delete()
-        self.client.login_api(user)
-        response = self.client.get(self.url)
-        assert response.status_code == 404
-        data = json.loads(force_str(response.content))
-        assert data['detail'] == 'Not found.'
-        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
-        # added for 401/403.
-        assert 'is_disabled_by_developer' not in data
-        assert 'is_disabled_by_mozilla' not in data
-
-    def test_get_deleted_admin(self):
-        user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, 'Addons:ViewDeleted,Addons:Review')
+    def test_get_deleted_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -521,7 +505,7 @@ class AddonAndVersionViewSetDetailMixin:
 
         # But admins can still access:
         user = user_factory()
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(user)
         response = self.client.get(
             self.url, data={'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr'
@@ -610,9 +594,9 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = self._test_url()
         assert 'latest_unlisted_version' not in result
 
-    def test_hide_latest_unlisted_version_simple_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_hide_latest_unlisted_version_no_unlisted_permission(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -635,22 +619,12 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
-    def test_show_latest_unlisted_version_unlisted_reviewer(self):
+    def test_show_latest_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='author')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
         )
-        unlisted_version.update(created=self.days_ago(1))
-        result = self._test_url()
-        assert result['latest_unlisted_version']
-        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
-
-    def test_show_latest_unlisted_version_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='author')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -1670,7 +1644,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.CHANNEL_UNLISTED,
         )
         self.minimal_data = {'version': {'upload': upload.uuid}}
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.request()
         assert response.status_code == 201, response.content
@@ -1692,7 +1666,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.CHANNEL_UNLISTED,
         )
         self.minimal_data = {'version': {'upload': upload.uuid}}
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.request(
             data={
@@ -3049,9 +3023,9 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    def test_disabled_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_disabled_version_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
@@ -3065,7 +3039,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
@@ -3083,12 +3057,14 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 403
 
     def test_deleted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.client.login_api(user)
         self.version.delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 404
+        self._test_url()
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -3100,7 +3076,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.delete()
         self._test_url()
@@ -3117,24 +3093,20 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_unlisted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_unlisted_version_no_unlisted_permission(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_unlisted_version_unlisted_reviewer(self):
+    def test_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self._test_url()
-
-    def test_unlisted_version_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
@@ -3148,7 +3120,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
@@ -4820,14 +4792,14 @@ class TestVersionViewSetDelete(TestCase):
         assert response.status_code == 403
         assert not self.version.reload().deleted
 
-        # even if they are a reviewer
-        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_REVIEW))
+        # even if they have the API view permission
+        self.grant_permission(another_user, amo.permissions.ADDONS_API_VIEW)
         response = self.client.delete(self.url)
         assert response.status_code == 403
         assert not self.version.reload().deleted
 
         # or have admin-ish permissions
-        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_EDIT))
+        self.grant_permission(another_user, amo.permissions.ADDONS_EDIT)
         response = self.client.delete(self.url)
         assert response.status_code == 403
         assert not self.version.reload().deleted
@@ -5201,9 +5173,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         data = json.loads(force_str(response.content))
         assert data == ['Invalid "filter" parameter specified.']
 
-    def test_disabled_version_reviewer(self):
+    def test_disabled_version_addons_api_view(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
@@ -5223,7 +5195,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
@@ -5249,17 +5221,18 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url, data={'filter': 'all_with_deleted'})
         assert response.status_code == 403
 
-    def test_deleted_version_reviewer(self):
+    def test_deleted_version_addons_api_view(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
         self._test_url_only_contains_old_version(filter='all_without_unlisted')
-        response = self.client.get(self.url, data={'filter': 'all_with_deleted'})
-        assert response.status_code == 403
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 403
+
+        self._test_url_contains_all(filter='all_with_deleted')
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -5273,7 +5246,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
@@ -5285,18 +5258,16 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_with_unlisted_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self._test_url_contains_all(filter='all_with_unlisted')
 
-    def test_with_unlisted_unlisted_reviewer(self):
+    def test_with_unlisted_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-
-    def test_with_unlisted_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
 
         self._test_url_contains_all(filter='all_with_unlisted')
@@ -5310,29 +5281,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_with_unlisted_when_no_unlisted_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        # delete the unlisted version so only the listed versions remain.
-        self.unlisted_version.delete()
-
-        # confirm that we have access to view unlisted versions.
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results']
-        assert len(result['results']) == 2
-        result_version = result['results'][0]
-        assert result_version['id'] == self.version.pk
-        assert result_version['version'] == self.version.version
-
-        # And that without_unlisted doesn't fail when there are no unlisted
-        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
-        assert response.status_code == 200
-
-    def test_all_with_unlisted_when_no_unlisted_versions_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         # delete the unlisted version so only the listed versions remain.
         self.unlisted_version.delete()
@@ -5384,32 +5336,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_without_unlisted_when_no_listed_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        # delete the listed versions so only the unlisted version remains.
-        self.version.delete()
-        self.old_version.delete()
-
-        # confirm that we have access to view unlisted versions.
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results']
-        assert len(result['results']) == 1
-        result_version = result['results'][0]
-        assert result_version['id'] == self.unlisted_version.pk
-        assert result_version['version'] == self.unlisted_version.version
-
-        # And that without_unlisted doesn't fail when there are no unlisted
-        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results'] == []
-
-    def test_all_without_unlisted_when_no_listed_versions_for_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         # delete the listed versions so only the unlisted version remains.
         self.version.delete()
@@ -8461,7 +8391,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
     def test_sender_validation(self):
         # cannot send invitation if not an author, even with elevated permissions
         user = user_factory(email='reviewer@mozilla.com', display_name='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         response = self.client.post(
             self.list_url, data={'user_id': user.id, 'role': 'developer'}
@@ -8470,7 +8400,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         assert response.data['detail'] == (
             'You do not have permission to perform this action.'
         )
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         response = self.client.post(
             self.list_url, data={'user_id': user.id, 'role': 'developer'}
         )

@@ -151,13 +151,13 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
         # There was a listed version, it has been deleted but still, it was
         # there, so listed reviewers should still be able to access if they
-        # have Addons:ViewDeleted
+        # have Addons:ApiViewDeleted
         self._login_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 404
 
         user = UserProfile.objects.get(username='reviewer')
-        self.grant_permission(user, 'Addons:ViewDeleted')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_DELETED)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
