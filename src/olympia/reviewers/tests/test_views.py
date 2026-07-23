@@ -3005,7 +3005,7 @@ class TestReview(ReviewBase):
             str(author.get_role_display()),
             self.addon,
         )
-        with self.assertNumQueries(61):
+        with self.assertNumQueries(63):
             # FIXME: obviously too high, but it's a starting point.
             # Potential further optimizations:
             # - Remove trivial... and not so trivial duplicates
@@ -3075,6 +3075,7 @@ class TestReview(ReviewBase):
             # 59. unresolved DSA related abuse reports
             # 60. waffle switch for enable-policy-review-selection (wrong order)
             # 61. fetch previous decisions (wrong order)
+            # 62-63. (not in order) enterprise version checks
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -6294,7 +6295,7 @@ class TestReview(ReviewBase):
                     results={'matchedRules': [webhook_rule.name]},
                 )
 
-        with self.assertNumQueries(62):
+        with self.assertNumQueries(64):
             # See test_item_history_pagination() for more details about the
             # queries count. What's important here is that the extra versions
             # and scanner results don't cause extra queries.

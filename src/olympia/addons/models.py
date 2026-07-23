@@ -1592,6 +1592,23 @@ class Addon(OnChangeMixin, ModelBase):
             manager = self.versions
         return manager.filter(channel=amo.CHANNEL_UNLISTED).exists()
 
+    def has_enterprise_versions(self, include_deleted=False):
+        if include_deleted:
+            manager = self.versions(manager='unfiltered_for_relations')
+        else:
+            manager = self.versions
+        return manager.filter(channel=amo.CHANNEL_ENTERPRISE).exists()
+
+    def has_multiple_channels(self, include_deleted=False):
+        has_listed = self.has_listed_versions(include_deleted)
+        has_unlisted = self.has_unlisted_versions(include_deleted)
+        has_enterprise = self.has_enterprise_versions(include_deleted)
+        return (
+            (has_listed and has_unlisted)
+            or (has_listed and has_enterprise)
+            or (has_unlisted and has_enterprise)
+        )
+
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
 
