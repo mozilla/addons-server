@@ -10,9 +10,3 @@ services:
   actionlint:
     extends: base
     image: rhysd/actionlint:1.7.12@sha256:b1934ee5f1c509618f2508e6eb47ee0d3520686341fec936f3b79331f9315667
-
-  zizmor:
-    extends: base
-    image: ghcr.io/zizmorcore/zizmor:1.26.1@sha256:d1117e5dbd9ee4970644067b534ab6ab50371f3c6f7f4d05446eb603a6e78f48
-    environment:
-      - GH_TOKEN
