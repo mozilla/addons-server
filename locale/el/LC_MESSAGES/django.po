@@ -3412,8 +3412,8 @@ msgstr "Αυτό το πρόσθετο είναι πειραματικό"
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:127
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Ενεργοποιήστε αυτήν την επιλογή αν το πρόσθετό σας είναι πειραματικό ή όχι έτοιμο για γενική χρήση. Το πρόσθετο θα καταχωρηθεί, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε αργότερα αυτήν τη "
-"ρύθμιση."
+"Ενεργοποιήστε αυτήν την επιλογή αν το πρόσθετό σας είναι σε πειραματικό στάδιο ή αν δεν έτοιμο για γενική χρήση. Το πρόσθετο θα καταχωριστεί, αλλά με μειωμένη ορατότητα. Μπορείτε να αλλάξετε "
+"αργότερα αυτήν τη ρύθμιση."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:152
 msgid "Support email:"
@@ -3525,19 +3525,19 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:31
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
-msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή. Προετοιμάστε την καταχώρησή σας για δημοσίευση:"
+msgstr "Το πρόσθετό σας θα κάνει μεγαλύτερη επιτυχία με μια λεπτομερή περιγραφή. Προετοιμάστε την καταχώρισή σας για δημοσίευση:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:36
 #, python-format
 msgid ""
 "You can attract users to your extension by adding a detailed description and screenshots to your listing. Get help <a %(a_attrs)s>creating an appealing listing</a> on Firefox Extension Workshop."
 msgstr ""
-"Μπορείτε να προσελκύσετε χρήστες στην επέκτασή σας προσθέτοντας μια λεπτομερή περιγραφή και στιγμιότυπα οθόνης στην καταχώρησή σας. Λάβετε βοήθεια με τη <a %(a_attrs)s>δημιουργία ελκυστικών "
-"καταχωρήσεων</a> στο εργαστήριο επεκτάσεων Firefox."
+"Μπορείτε να προσελκύσετε χρήστες στην επέκτασή σας προσθέτοντας μια λεπτομερή περιγραφή και στιγμιότυπα οθόνης στην καταχώρισή σας. Λάβετε βοήθεια με τη <a %(a_attrs)s>δημιουργία ελκυστικών "
+"καταχωρίσεων</a> στο εργαστήριο επεκτάσεων Firefox."
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:43
 msgid "Manage Listing"
-msgstr "Διαχείριση καταχώρησης"
+msgstr "Διαχείριση καταχώρισης"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/done.html:47
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, concatenated or otherwise machine-generated code."
@@ -3938,12 +3938,12 @@ msgstr "Το πρόσθετό σας απενεργοποιήθηκε από έ�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:32
 msgid "Your add-on listing was rejected. It is not listed in our gallery. Please address the reasons and reapply for review."
-msgstr "Η καταχώρηση του προσθέτου σας απορρίφθηκε. Δεν εμφανίζεται στη συλλογή μας. Επιλύστε τα ζητήματα που οδήγησαν στην απόρριψη και κάντε ξανά αίτηση για αξιολόγηση."
+msgstr "Η καταχώριση του προσθέτου σας απορρίφθηκε. Δεν εμφανίζεται στη συλλογή μας. Επιλύστε τα ζητήματα που οδήγησαν στην απόρριψη και κάντε ξανά αίτηση για έλεγχο."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:35
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
-"Το πρόσθετό σας δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση δεν θα γίνονται "
+"Το πρόσθετό σας δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρισης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων προς καταχώριση δεν θα γίνονται "
 "αποδεκτές σε αυτήν την κατάσταση."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
@@ -3959,11 +3959,11 @@ msgstr "Τελευταία ενημέρωση:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:58
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Καταχωρήθηκε σε αυτόν τον ιστότοπο αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από τον ιστότοπο"
+msgstr "Καταχωρίζεται σε αυτόν τον ιστότοπο μετά τον επιτυχή έλεγχο του κώδικα. Η διαχείριση των αυτόματων ενημερώσεων πραγματοποιείται από αυτόν τον ιστότοπο"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:70
 msgid "Listed Version:"
-msgstr "Καταχωρημένη έκδοση:"
+msgstr "Καταχωρισμένη έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:72
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
@@ -3971,7 +3971,7 @@ msgstr "Αυτή είναι η έκδοση του προσθέτου σας π�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:81
 msgid "Next Listed Version:"
-msgstr "Επόμενη καταχωρημένη έκδοση:"
+msgstr "Επόμενη καταχωρισμένη έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
@@ -3988,7 +3988,7 @@ msgstr "Τελευταία έκδοση:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
-msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδοση που δεν έχει καταχωρηθεί"
+msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδοση που δεν έχει καταχωριστεί"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
 msgid "Upload New Version"
@@ -4000,11 +4000,11 @@ msgstr "Προβολή όλων"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
 msgid "Listed Review Page"
-msgstr "Σελίδα καταχωρημένης κριτικής"
+msgstr "Σελίδα καταχωρισμένης κριτικής"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
 msgid "Unlisted Review Page"
-msgstr "Σελίδα μη καταχωρημένης κριτικής"
+msgstr "Σελίδα μη καταχωρισμένης κριτικής"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Admin Manage"
@@ -4075,11 +4075,11 @@ msgstr "Προβολή ιστολογίου &#9658;"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:2
 msgid "Our review found that your listing content violates the following Mozilla policy or policies:"
-msgstr "Η αξιολόγησή μας εντόπισε ότι το περιεχόμενο της καταχώρησής σας παραβιάζει τις εξής πολιτικές της Mozilla:"
+msgstr "Κατά τον έλεγχό μας, εντοπίσαμε ότι το περιεχόμενο της καταχώρισής σας παραβιάζει τις εξής πολιτικές της Mozilla:"
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:14
 msgid "To address these issues, please update your listing and request another review of the content."
-msgstr "Για την επίλυση αυτών των ζητημάτων, ενημερώστε την καταχώρησή σας και αιτηθείτε νέα αξιολόγηση του περιεχομένου."
+msgstr "Για την επίλυση αυτών των ζητημάτων, ενημερώστε την καταχώρισή σας και αιτηθείτε νέο έλεγχο του περιεχομένου."
 
 #: src/olympia/devhub/templates/devhub/includes/content_rejected.html:17
 msgid "Appeal already made"
@@ -4109,7 +4109,7 @@ msgstr "Άδεια"
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:6
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
-msgstr "Επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που θέλετε να παραχωρήσετε στον πηγαίο σας κώδικα. Αφορά μόνο τα καταχωρημένα πρόσθετα."
+msgstr "Επιλέξτε μια κατάλληλη άδεια για τα δικαιώματα που θέλετε να παραχωρήσετε στον πηγαίο σας κώδικα. Αφορά μόνο τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/includes/listing_header.html:2
 msgid "Sort by:"
@@ -4188,7 +4188,7 @@ msgstr "Συμφωνία άδειας τελικού χρήστη"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:4
 msgid "Please note that a EULA is not the same as a code license, such as the GPL or MPL. It is only relevant for listed add-ons."
-msgstr "Σημειώστε ότι μια EULA δεν είναι ίδια με μια άδεια κώδικα, όπως η GPL ή η MPL. Αφορά μόνο τα καταχωρημένα πρόσθετα."
+msgstr "Σημειώστε ότι μια EULA δεν είναι ίδια με μια άδεια κώδικα, όπως η GPL ή η MPL. Αφορά μόνο τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:21
 msgid "Privacy Policy"
@@ -4335,7 +4335,7 @@ msgstr "Μάθετε περισσότερα για την κοινότητα τ�
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Καταχωρήθηκε σε αυτόν τον ιστότοπο αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από τον ιστότοπο."
+msgstr "Καταχωρίζεται σε αυτόν τον ιστότοπο μετά τον επιτυχή έλεγχο του κώδικα. Η διαχείριση των αυτόματων ενημερώσεων πραγματοποιείται από αυτόν τον ιστότοπο."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:95
@@ -4538,7 +4538,7 @@ msgstr "Απάντηση"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:163
 msgid "Listed versions"
-msgstr "Καταχωρημένες εκδόσεις"
+msgstr "Καταχωρισμένες εκδόσεις"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:170
 msgid "Currently on AMO"
@@ -4581,8 +4581,8 @@ msgstr "Διαγραφή της έκδοσης {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
-"Πρόκειται να διαγράψετε την τρέχουσα έκδοση του προσθέτου σας. Αυτό ενδέχεται να προκαλέσει την αλλαγή της κατάστασης του προσθέτου σας, ή την απόκρυψη της καταχώρησής του, αν αυτή είναι η μόνη "
-"δημόσια έκδοση του προσθέτου σας."
+"Πρόκειται να διαγράψετε την τρέχουσα έκδοση του προσθέτου σας. Αυτό ενδέχεται να προκαλέσει την αλλαγή της κατάστασής του ή την απόκρυψη της καταχώρισής του, αν αυτή αποτελεί τη μόνη δημόσια έκδοση "
+"του προσθέτου σας."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:268
 msgid "Deleting this version will permanently delete:"
@@ -5272,7 +5272,7 @@ msgstr "Ασφαλής αποθήκευση κωδικών πρόσβασης κ
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:350
 msgid "Fill forms automatically. Save entered data once and it will auto-fill next time."
-msgstr "Συμπληρώστε φόρμες αυτόματα. Αποθηκεύστε τα καταχωρημένα δεδομένα μία φορά και θα συμπληρωθούν αυτόματα την επόμενη φορά."
+msgstr "Συμπληρώστε φόρμες αυτόματα. Αποθηκεύστε τα καταχωρισμένα δεδομένα μία φορά και θα συμπληρωθούν αυτόματα την επόμενη φορά."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:356
@@ -6687,11 +6687,11 @@ msgstr "Μη έγκυρο ID προσθέτου στο URL ή στο πακέτ�
 
 #: src/olympia/signing/views.py:212
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
-msgstr "Δεν μπορείτε να προσθέσετε καταχωρημένες εκδόσεις σε πρόσθετο με κατάσταση «Αόρατο»."
+msgstr "Δεν μπορείτε να προσθέσετε καταχωρισμένες εκδόσεις σε πρόσθετο με κατάσταση «Αόρατο»."
 
 #: src/olympia/signing/views.py:227
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
-msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρημένη έκδοση σε αυτό το πρόσθετο μέσω του API λόγω απουσίας μεταδεδομένων. Κάντε υποβολή μέσω του ιστοτόπου"
+msgstr "Δεν μπορείτε να προσθέσετε μια καταχωρισμένη έκδοση σε αυτό το πρόσθετο μέσω του API λόγω απουσίας μεταδεδομένων. Κάντε υποβολή μέσω του ιστοτόπου"
 
 #: src/olympia/signing/views.py:282
 msgid "No uploaded file for that add-on and version."
