@@ -70,7 +70,7 @@ def main(targets):
         '--no-save',
         '--no-audit',
         '--no-fund',
-    ] + npm_args_env.split()
+    ]
 
     # Add the relevant targets to the includes lists
     for target in targets:
