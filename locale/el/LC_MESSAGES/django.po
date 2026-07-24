@@ -357,7 +357,7 @@ msgstr "Οι εικόνες πρέπει να είναι μικρότερες α
 
 #: src/olympia/addons/models.py:2348 src/olympia/addons/models.py:2427 src/olympia/constants/base.py:70
 msgid "Listed"
-msgstr "Καταχωρημένο"
+msgstr "Καταχωρισμένο"
 
 #: src/olympia/addons/serializers.py:344
 msgid "Built in licenses can not be updated."
@@ -384,7 +384,7 @@ msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν �
 
 #: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr "Δεν είναι δυνατή η υποβολή καταχωρημένων εκδόσεων όσο η καταχώρηση του πρόσθετου έχει απορριφθεί."
+msgstr "Δεν είναι δυνατή η υποβολή καταχωρισμένων εκδόσεων όσο η καταχώριση του πρόσθετου έχει απορριφθεί."
 
 #: src/olympia/addons/serializers.py:634
 #, python-format
