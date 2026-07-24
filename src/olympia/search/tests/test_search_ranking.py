@@ -678,7 +678,7 @@ class TestRankingScenarios(ESTestCase):
         cls.refresh()
 
     def test_scenario_tabby_cat(self):
-        self._check_scenario('Tabby cat', (['Tabby Cat', 43308],))
+        self._check_scenario('Tabby cat', (['Tabby Cat', 44668],))
 
     def test_scenario_tabbycat(self):
         self._check_scenario(
@@ -732,7 +732,7 @@ class TestRankingScenarios(ESTestCase):
         # Tab Mix Plus and Redux DevTools used to be found in this test but we
         # now require all terms to be present through minimum_should_match on
         # the fuzzy name query (and they have nothing else to match).
-        self._check_scenario('tab center redux', (['Tab Center Redux', 10832],))
+        self._check_scenario('tab center redux', (['Tab Center Redux', 12084],))
 
     def test_scenario_websocket(self):
         # Should *not* find add-ons that simply mention 'Source', 'Persona',
@@ -743,7 +743,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Open Image in New Tab',
             (
-                ['Open Image in New Tab', 5573],
+                ['Open Image in New Tab', 7631],
                 ['Open image in a new tab', 1736],
             ),
         )
@@ -804,11 +804,11 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario('Menu Wizzard', (['Menu Wizard', 1531],))  # (fuzzy, typo)
 
     def test_scenario_frame_demolition(self):
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4751],))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4751],))
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (['reStyle', 4051],))
@@ -874,7 +874,7 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario(
             'Disable Hello, Pocket & Reader+',
-            (['Disable Hello, Pocket & Reader+', 8682],),  # yeay!
+            (['Disable Hello, Pocket & Reader+', 11806],),  # yeay!
         )
 
     def test_scenario_grapple(self):
@@ -911,7 +911,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'merge all windows',
             (
-                ['Merge All Windows', 1281],
+                ['Merge All Windows', 1446],
                 ['Merge Windows', 188],
             ),
         )
@@ -921,7 +921,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'test addon test21',
             (
-                ['test addon test21', 1288],
+                ['test addon test21', 1438],
                 ['test addon test31', 184],
                 ['test addon test11', 174],
             ),
@@ -932,7 +932,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Amazon 1-Click Lock',
             (
-                ['Amazon 1-Click Lock', 4812],
+                ['Amazon 1-Click Lock', 6313],
                 ['1-Click YouTube Video Download', 127],
             ),
         )
@@ -943,14 +943,14 @@ class TestRankingScenarios(ESTestCase):
         # translation exists.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 788],),
+            (['Foobar unique english', 1079],),
             lang='en-US',
         )
 
         # Then in canadian english. Should get the same score.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 788],),
+            (['Foobar unique english', 1079],),
             lang='en-CA',
         )
 
@@ -967,7 +967,7 @@ class TestRankingScenarios(ESTestCase):
         # the default_locale for this addon (fr).
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique francais', 788],),
+            (['Foobar unique francais', 1079],),
             lang='en-GB',
             expected_lang='fr',
         )
@@ -976,7 +976,7 @@ class TestRankingScenarios(ESTestCase):
         # match, the translation exists, it's even the default locale.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1069],),
+            (['Foobar unique francais', 1374],),
             lang='fr',
         )
 
@@ -989,7 +989,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'he' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1061],),
+            (['Foobar unique francais', 1366],),
             lang='he',
             expected_lang='fr',
         )
@@ -1003,7 +1003,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'it' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1061],),
+            (['Foobar unique francais', 1366],),
             lang='it',
             expected_lang='fr',
         )
@@ -1013,7 +1013,7 @@ class TestRankingScenarios(ESTestCase):
         # Note that the name returned follows the language requested.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique english', 1061],),
+            (['Foobar unique english', 1366],),
             lang='en-US',
         )
 

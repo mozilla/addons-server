@@ -57,3 +57,9 @@ SEARCH_LANGUAGE_TO_ANALYZER = {}
 for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
+
+
+# Tokens wrapped around the add-on name in the "name_exact_sentinel" fields, so
+# that a phrase query including them only matches the name in its entirety.
+SENTINEL_BEGIN = '__SENTINEL_BEGIN__'
+SENTINEL_END = '__SENTINEL_END__'

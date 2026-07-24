@@ -642,6 +642,67 @@ class SearchQueryFilter(BaseFilterBackend):
             )
         return clause
 
+    def generate_sentinel_exact_match_query(self, search_query, lang):
+        """
+        Return the query used for exact name matching, after analysis.
+
+        Same intent as generate_exact_name_match_query(), but against analyzed
+        fields, so that stemming and punctuation differences still count as an
+        exact match ("adblocker" finding "AdBlock" in english). Since a phrase
+        query would otherwise also match a name merely *containing* the query,
+        both the indexed name and the query are wrapped in sentinel tokens: the
+        phrase can then only match if it spans the whole name.
+
+        Like generate_exact_name_match_query(), it has 2 modes depending on
+        whether we have an analyzer for the language we're searching in.
+        """
+        sentinel_query = f'{amo.SENTINEL_BEGIN} {search_query} {amo.SENTINEL_END}'
+        analyzer = self.get_locale_analyzer(lang)
+        if analyzer is None:
+            clause = query.MatchPhrase(
+                **{
+                    'name_exact_sentinel': {
+                        '_name': 'MatchPhrase(name_exact_sentinel)',
+                        'query': sentinel_query,
+                        'boost': 50.0,
+                    }
+                }
+            )
+        else:
+            queries = [
+                {'match_phrase': {'name_exact_sentinel': sentinel_query}},
+            ]
+            fields = [
+                'name_exact_sentinel_l10n_%s' % lang
+                for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
+            ]
+            queries.extend(
+                [{'match_phrase': {field: sentinel_query}} for field in fields]
+            )
+            clause = query.DisMax(
+                _name='DisMax(MatchPhrase(name_exact_sentinel), %s)'
+                % ', '.join(['MatchPhrase(%s)' % field for field in fields]),
+                boost=50.0,
+                queries=queries,
+            )
+        return clause
+
+    def generate_whole_name_match_query(self, search_query, lang):
+        """
+        Return the query matching the add-on name in its entirety.
+
+        Note: as in generate_exact_name_match_query(), the DisMax means an
+        add-on matching both the non-analyzed and the analyzed variant only
+        gets the highest of the two boosts, not their sum.
+        """
+        return query.DisMax(
+            _name='DisMax(ExactName, ExactNameSentinel)',
+            queries=[
+                self.generate_exact_name_match_query(search_query, lang),
+                self.generate_sentinel_exact_match_query(search_query, lang),
+            ],
+        )
+
     def primary_should_rules(self, search_query, lang):
         """Return "primary" should rules for the query.
 
@@ -651,14 +712,15 @@ class SearchQueryFilter(BaseFilterBackend):
         Applied rules:
 
         * Exact match on the name, using the right translation if possible
-          (boost=100.0)
+          (boost=100.0), or on the analyzed name if the query covers it
+          entirely (boost=50.0)
         * Then text matches, using a language specific analyzer if possible
           (boost=5.0)
         * Phrase matches that allows swapped terms (boost=8.0)
         * Then text matches, using the standard text analyzer (boost=6.0)
         * Then look for the query as a prefix of a name (boost=3.0)
         """
-        should = [self.generate_exact_name_match_query(search_query, lang)]
+        should = [self.generate_whole_name_match_query(search_query, lang)]
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match

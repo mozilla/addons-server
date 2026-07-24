@@ -49,20 +49,51 @@ class TestQueryFilter(FilterTestsBase):
 
     def _test_q(self, qs, query):
         should = qs['query']['function_score']['query']['bool']['should']
+        sentinel_query = f'{amo.SENTINEL_BEGIN} {query} {amo.SENTINEL_END}'
 
         assert len(should) == 8
 
         assert should[0] == {
             'dis_max': {
-                '_name': 'DisMax(Term(name.raw), Term(name_l10n_en-us.raw), '
-                'Term(name_l10n_en-ca.raw), '
-                'Term(name_l10n_en-gb.raw))',
-                'boost': 100.0,
+                '_name': 'DisMax(ExactName, ExactNameSentinel)',
                 'queries': [
-                    {'term': {'name.raw': query}},
-                    {'term': {'name_l10n_en-us.raw': query}},
-                    {'term': {'name_l10n_en-ca.raw': query}},
-                    {'term': {'name_l10n_en-gb.raw': query}},
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(Term(name.raw), '
+                                'Term(name_l10n_en-us.raw), '
+                                'Term(name_l10n_en-ca.raw), '
+                                'Term(name_l10n_en-gb.raw))'
+                            ),
+                            'boost': 100.0,
+                            'queries': [
+                                {'term': {'name.raw': query}},
+                                {'term': {'name_l10n_en-us.raw': query}},
+                                {'term': {'name_l10n_en-ca.raw': query}},
+                                {'term': {'name_l10n_en-gb.raw': query}},
+                            ],
+                        }
+                    },
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(MatchPhrase(name_exact_sentinel), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                            ),
+                            'boost': 50.0,
+                            'queries': [
+                                {'match_phrase': {field: sentinel_query}}
+                                for field in (
+                                    'name_exact_sentinel',
+                                    'name_exact_sentinel_l10n_en-us',
+                                    'name_exact_sentinel_l10n_en-ca',
+                                    'name_exact_sentinel_l10n_en-gb',
+                                )
+                            ],
+                        }
+                    },
                 ],
             }
         }
@@ -386,7 +417,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert expected in should
+        assert expected in should[0]['dis_max']['queries']
 
         # In a language we don't have a language-specific analyzer for, it
         # should fall back to the "name.raw" field that uses the default locale
@@ -405,7 +436,67 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert expected in should
+        assert expected in should[0]['dis_max']['queries']
+
+    def test_q_exact_sentinel(self):
+        sentinel_query = f'{amo.SENTINEL_BEGIN} adblock plus {amo.SENTINEL_END}'
+
+        qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'dis_max': {
+                '_name': (
+                    'DisMax(MatchPhrase(name_exact_sentinel), '
+                    'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                    'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                    'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                ),
+                'boost': 50.0,
+                'queries': [
+                    {'match_phrase': {field: sentinel_query}}
+                    for field in (
+                        'name_exact_sentinel',
+                        'name_exact_sentinel_l10n_en-us',
+                        'name_exact_sentinel_l10n_en-ca',
+                        'name_exact_sentinel_l10n_en-gb',
+                    )
+                ],
+            }
+        }
+
+        assert expected in should[0]['dis_max']['queries']
+
+        # In a language we don't have a language-specific analyzer for, it
+        # should fall back to the "name_exact_sentinel" field that uses the
+        # default locale translation.
+        with translation.override('mn'):
+            qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'match_phrase': {
+                'name_exact_sentinel': {
+                    '_name': 'MatchPhrase(name_exact_sentinel)',
+                    'query': sentinel_query,
+                    'boost': 50.0,
+                }
+            }
+        }
+
+        assert expected in should[0]['dis_max']['queries']
+
+    def test_q_exact_sentinel_single_word(self):
+        qs = self._filter(data={'q': 'Blah'})
+        should = qs['query']['function_score']['query']['bool']['should']
+        sentinel_queries = should[0]['dis_max']['queries'][1]['dis_max']['queries']
+
+        # Contrary to MatchPhrase(name), which is skipped for single word
+        # queries, the sentinels make this one safe to use: it can't match an
+        # add-on whose name merely contains "blah".
+        expected = f'{amo.SENTINEL_BEGIN} blah {amo.SENTINEL_END}'
+
+        assert {'match_phrase': {'name_exact_sentinel': expected}} in sentinel_queries
 
 
 class TestReviewedContentFilter(FilterTestsBase):

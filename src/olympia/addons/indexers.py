@@ -5,7 +5,11 @@ from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import attach_trans_dict, to_language
 from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
+from olympia.constants.search import (
+    SEARCH_LANGUAGE_TO_ANALYZER,
+    SENTINEL_BEGIN,
+    SENTINEL_END,
+)
 from olympia.search.utils import create_index
 from olympia.versions.compare import version_int
 
@@ -158,12 +162,38 @@ class AddonIndexer:
             for lang in SEARCH_LANGUAGE_TO_ANALYZER
         }
 
+    @classmethod
+    def extract_field_sentinel_translations(cls, data, field):
+        """
+        Returns a dict containing the sentinel variant of the <field> and
+        <field>_l10n_<lang> values already extracted in data.
+
+        Wrapping a value in sentinel tokens lets a phrase query including them
+        match only if it spans the whole value. Empty values are kept empty,
+        we don't want to index lone sentinels.
+        """
+
+        def wrap(value):
+            return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}' if value else ''
+
+        return {
+            '%s_exact_sentinel' % field: wrap(data[field]),
+            **{
+                '%s_exact_sentinel_l10n_%s' % (field, lang): wrap(
+                    data['%s_l10n_%s' % (field, lang)]
+                )
+                for lang in SEARCH_LANGUAGE_TO_ANALYZER
+            },
+        }
+
     # Fields we don't need to expose in the results, only used for filtering
     # or sorting.
     hidden_fields = (
         '*.raw',
         'colors',
         'hotness',
+        'name_exact_sentinel',
+        'name_exact_sentinel_l10n_*',
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
         # - One field with all translations (e.g., "name").
@@ -468,6 +498,14 @@ class AddonIndexer:
                         },
                     },
                 },
+                'name_exact_sentinel': {
+                    'type': 'text',
+                    # Deliberately *not* standard_with_word_split: its filters
+                    # emit several tokens at the same position, which would let
+                    # the phrase query matching this field succeed on unrelated
+                    # names merely sharing one of those tokens.
+                    'analyzer': 'standard',
+                },
                 'previews': {
                     'type': 'object',
                     'properties': {
@@ -527,7 +565,9 @@ class AddonIndexer:
 
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
-        cls.attach_language_specific_analyzers(mapping, ('description', 'summary'))
+        cls.attach_language_specific_analyzers(
+            mapping, ('description', 'name_exact_sentinel', 'summary')
+        )
 
         cls.attach_language_specific_analyzers_with_raw_variant(mapping, ('name',))
 
@@ -713,6 +753,8 @@ class AddonIndexer:
                 cls.extract_field_search_translation(obj, field, obj.default_locale)
             )
             data.update(cls.extract_field_analyzed_translations(obj, field))
+
+        data.update(cls.extract_field_sentinel_translations(data, 'name'))
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.
