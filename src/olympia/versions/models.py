@@ -1170,6 +1170,8 @@ class VersionReviewerFlags(ModelBase):
         UserProfile, null=True, on_delete=models.CASCADE
     )
     pending_content_rejection = models.BooleanField(null=True)
+    # Note, this is unused when 'enable-policy-review-selection' is enabled
+    # Remove this field when the switch is removed.
     pending_resolution_cinder_jobs = models.ManyToManyField(
         to='abuse.CinderJob', related_name='pending_rejections'
     )
