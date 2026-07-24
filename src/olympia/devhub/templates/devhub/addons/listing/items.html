@@ -8,7 +8,7 @@
         <p class="incomplete">
           {{ _('This add-on is missing some required information before it can be submitted for publication.') }}
         </p>
-      {% elif addon.status == amo.STATUS_NULL and not addon.has_unlisted_versions() and not addon.has_listed_versions() %}
+      {% elif addon.status == amo.STATUS_NULL and not addon.has_unlisted_versions() and not addon.has_listed_versions() and not addon.has_enterprise_versions() %}
         <p class="incomplete">
           {{ _("This add-on doesn't have any versions.")}}
         </p>

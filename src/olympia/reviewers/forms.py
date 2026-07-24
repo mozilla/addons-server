@@ -155,6 +155,27 @@ class VersionsChoiceWidget(forms.SelectMultiple):
                 'reply',
             ],
         },
+        amo.CHANNEL_ENTERPRISE: {
+            amo.STATUS_APPROVED: [
+                'review_with_policy_approve',
+                'review_with_policy',
+                'block_multiple_versions',
+                'confirm_multiple_versions',
+                'reject_multiple_versions',
+                'reply',
+            ],
+            amo.STATUS_AWAITING_REVIEW: [
+                'review_with_policy_approve',
+                'review_with_policy',
+                'approve_multiple_versions',
+                'reject_multiple_versions',
+                'reply',
+            ],
+            amo.STATUS_DISABLED: [
+                'unreject_multiple_versions',
+                'reply',
+            ],
+        },
     }
 
     def create_option(self, *args, **kwargs):

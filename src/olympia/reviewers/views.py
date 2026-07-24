@@ -448,8 +448,10 @@ def review(request, addon, channel=None):
 
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
-    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
-        include_deleted=True
+    unlisted_only = (
+        channel == amo.CHANNEL_UNLISTED
+        or channel == amo.CHANNEL_LISTED
+        and not addon.has_listed_versions(include_deleted=True)
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -739,7 +741,6 @@ def review(request, addon, channel=None):
         subscribed_unlisted=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).exists(),
-        unlisted=(channel == amo.CHANNEL_UNLISTED),
         user_ratings=user_ratings,
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
@@ -897,8 +898,10 @@ def whiteboard(request, addon, channel):
     channel_as_text = channel
     channel, content_review = determine_channel(channel)
 
-    unlisted_only = channel == amo.CHANNEL_UNLISTED or not addon.has_listed_versions(
-        include_deleted=True
+    unlisted_only = (
+        channel == amo.CHANNEL_UNLISTED
+        or channel == amo.CHANNEL_LISTED
+        and not addon.has_listed_versions(include_deleted=True)
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied

@@ -30,8 +30,10 @@
             <li class="light history-comment">{{ policy_text }}</li>
           {% endfor %}
           </ul>
-          {# <pre> rather than <div> so that white space is preserved on copy #}
-          <pre class="light history-comment">{{ record.details.comments }}</pre>
+          {% if record.details.comments %}
+            {# <pre> rather than <div> so that white space is preserved on copy #}
+            <pre class="light history-comment">{{ record.details.comments }}</pre>
+          {% endif %}
           {% if record.details.reason %}
             <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
           {% endif %}

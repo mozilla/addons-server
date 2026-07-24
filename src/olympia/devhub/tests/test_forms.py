@@ -670,6 +670,35 @@ class TestDistributionChoiceForm(TestCase):
         assert len(form.fields['channel'].choices) == 1
         assert form.fields['channel'].choices[0][0] == 'unlisted'
 
+    @override_switch('enterprise-channel', active=True)
+    def test_choices_addon_enterprise(self):
+        # No add-on passed, all choices are present.
+        form = forms.DistributionChoiceForm()
+        assert len(form.fields['channel'].choices) == 3
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+        assert form.fields['channel'].choices[2][0] == 'enterprise'
+
+        # Themes are not given the enterprise option.
+        form = forms.DistributionChoiceForm(is_theme=True)
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # Addons with listed/unlisted versions do not have the enterprise option.
+        addon = addon_factory()
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # Addons with existing enterprise versions are only given the enterprise option.
+        addon.update(type=amo.ADDON_EXTENSION)
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_ENTERPRISE})
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 1
+        assert form.fields['channel'].choices[0][0] == 'enterprise'
+
 
 class TestDescribeForm(TestCase):
     fixtures = ('base/addon_3615', 'addons/denied')
