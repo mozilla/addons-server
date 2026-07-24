@@ -57,3 +57,8 @@ SEARCH_LANGUAGE_TO_ANALYZER = {}
 for analyzer, languages in SEARCH_ANALYZER_MAP.items():
     for language in languages:
         SEARCH_LANGUAGE_TO_ANALYZER[language] = analyzer
+
+
+# Sentinel tokens for exact with analyzer search.
+SENTINEL_BEGIN = '__SENTINEL_BEGIN__'
+SENTINEL_END = '__SENTINEL_END__'

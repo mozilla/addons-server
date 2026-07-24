@@ -5,7 +5,11 @@ from olympia import amo
 from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import attach_trans_dict, to_language
 from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
+from olympia.constants.search import (
+    SEARCH_LANGUAGE_TO_ANALYZER,
+    SENTINEL_BEGIN,
+    SENTINEL_END,
+)
 from olympia.search.utils import create_index
 from olympia.versions.compare import version_int
 
@@ -178,6 +182,7 @@ class AddonIndexer:
         'description_l10n_*',
         'summary',
         'summary_l10n_*',
+        'name_exact_sentinel',
     )
 
     index_settings = {
@@ -468,6 +473,10 @@ class AddonIndexer:
                         },
                     },
                 },
+                'name_exact_sentinel': {
+                    'type': 'text',
+                    'analyzer': 'standard_with_word_split',
+                },
                 'previews': {
                     'type': 'object',
                     'properties': {
@@ -713,6 +722,12 @@ class AddonIndexer:
                 cls.extract_field_search_translation(obj, field, obj.default_locale)
             )
             data.update(cls.extract_field_analyzed_translations(obj, field))
+
+        data['name_exact_sentinel'] = (
+            f'{SENTINEL_BEGIN} {data["name"]} {SENTINEL_END}'
+            if data.get('name')
+            else ''
+        )
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.

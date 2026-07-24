@@ -50,7 +50,7 @@ class TestQueryFilter(FilterTestsBase):
     def _test_q(self, qs, query):
         should = qs['query']['function_score']['query']['bool']['should']
 
-        assert len(should) == 8
+        assert len(should) == 9
 
         assert should[0] == {
             'dis_max': {
@@ -68,6 +68,16 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         assert should[1] == {
+            'match_phrase': {
+                'name_exact_sentinel': {
+                    '_name': 'MatchPhrase(name_exact_sentinel)',
+                    'boost': 50.0,
+                    'query': f'{amo.SENTINEL_BEGIN} {query} {amo.SENTINEL_END}',
+                }
+            }
+        }
+
+        assert should[2] == {
             'multi_match': {
                 '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,name_l10n_en-gb)',
                 'analyzer': 'english',
@@ -78,7 +88,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[2] == {
+        assert should[3] == {
             'match_phrase': {
                 'name': {
                     '_name': 'MatchPhrase(name)',
@@ -89,7 +99,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[3] == {
+        assert should[4] == {
             'match': {
                 'name': {
                     '_name': 'Match(name)',
@@ -101,11 +111,11 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[4] == {
+        assert should[5] == {
             'prefix': {'name': {'_name': 'Prefix(name)', 'value': query, 'boost': 3.0}}
         }
 
-        assert should[5] == {
+        assert should[6] == {
             'dis_max': {
                 '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))',
                 'boost': 4.0,
@@ -132,7 +142,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[6] == {
+        assert should[7] == {
             'multi_match': {
                 '_name': 'MultiMatch(Match(summary), '
                 'Match(summary_l10n_en-us), '
@@ -150,7 +160,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[7] == {
+        assert should[8] == {
             'multi_match': {
                 '_name': 'MultiMatch(Match(description), '
                 'Match(description_l10n_en-us), '
@@ -404,6 +414,30 @@ class TestQueryFilter(FilterTestsBase):
                 }
             }
         }
+
+        assert expected in should
+
+    def test_q_exact_sentinel(self):
+        qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'match_phrase': {
+                'name_exact_sentinel': {
+                    '_name': 'MatchPhrase(name_exact_sentinel)',
+                    'boost': 50.0,
+                    'query': (
+                        f'{amo.SENTINEL_BEGIN} adblock plus {amo.SENTINEL_END}'
+                    ),
+                }
+            }
+        }
+
+        assert expected in should
+
+        with translation.override('mn'):
+            qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
 
         assert expected in should
 

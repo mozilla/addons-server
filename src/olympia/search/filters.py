@@ -642,6 +642,17 @@ class SearchQueryFilter(BaseFilterBackend):
             )
         return clause
 
+    def generate_sentinel_exact_match_query(self, search_query):
+        return query.MatchPhrase(
+            **{
+                'name_exact_sentinel': {
+                    '_name': 'MatchPhrase(name_exact_sentinel)',
+                    'query': f'{amo.SENTINEL_BEGIN} {search_query} {amo.SENTINEL_END}',
+                    'boost': 50.0,
+                },
+            }
+        )
+
     def primary_should_rules(self, search_query, lang):
         """Return "primary" should rules for the query.
 
@@ -658,7 +669,10 @@ class SearchQueryFilter(BaseFilterBackend):
         * Then text matches, using the standard text analyzer (boost=6.0)
         * Then look for the query as a prefix of a name (boost=3.0)
         """
-        should = [self.generate_exact_name_match_query(search_query, lang)]
+        should = [
+            self.generate_exact_name_match_query(search_query, lang),
+            self.generate_sentinel_exact_match_query(search_query),
+        ]
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match

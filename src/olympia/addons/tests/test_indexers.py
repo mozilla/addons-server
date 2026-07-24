@@ -15,7 +15,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
+from olympia.constants.search import (
+    SEARCH_LANGUAGE_TO_ANALYZER,
+    SENTINEL_BEGIN,
+    SENTINEL_END,
+)
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedApproval
 from olympia.versions.compare import version_int
@@ -79,6 +83,7 @@ class TestAddonIndexer(TestCase):
             'is_recommended',
             'listed_authors',
             'name',
+            'name_exact_sentinel',
             'previews',
             'promoted',
             'ranking_bump',
@@ -396,6 +401,11 @@ class TestAddonIndexer(TestCase):
         # need to always contain a string.
         assert extracted['name'] == 'Name in ënglish'
         assert extracted['summary'] == ''
+        # The dedicated sentinel field should wrap the default locale name.
+        assert (
+            extracted['name_exact_sentinel']
+            == f'{SENTINEL_BEGIN} Name in ënglish {SENTINEL_END}'
+        )
 
     def test_extract_translations_engb_default(self):
         """Make sure we do correctly extract things for en-GB default locale"""
@@ -437,6 +447,19 @@ class TestAddonIndexer(TestCase):
             extracted['description_l10n_es-es']
             == 'Deje que su navegador coma sus plátanos'
         )
+        assert extracted['name'] == 'Banana Bonkers'
+        assert (
+            extracted['name_exact_sentinel']
+            == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
+        )
+
+    def test_extract_name_exact_sentinel_empty_name(self):
+        """Make sure the sentinel field is an empty string"""
+        self.addon.name = ''
+        self.addon.save()
+        extracted = self._extract()
+        assert extracted['name'] == ''
+        assert extracted['name_exact_sentinel'] == ''
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(
