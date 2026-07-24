@@ -1461,11 +1461,7 @@ class DistributionChoiceForm(forms.Form):
                 # versions while in either of these states.
                 choices.append(('listed', mark_safe(self.LISTED_LABEL)))
             choices.append(('unlisted', mark_safe(self.UNLISTED_LABEL)))
-        if (
-            (not self.addon or self.addon.has_enterprise_versions())
-            and not self.is_theme
-            and waffle.switch_is_active('enterprise-channel')
-        ):
+        if not self.is_theme and waffle.switch_is_active('enterprise-channel'):
             choices.append(('enterprise', mark_safe(self.ENTERPRISE_LABEL)))
 
         self.fields['channel'].choices = choices

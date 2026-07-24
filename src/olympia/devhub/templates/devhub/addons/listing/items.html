@@ -1,6 +1,7 @@
 {% from "devhub/addons/listing/macros.html" import dev_heading, dev_item_info %}
 {% set collection = collection or None %}
 {% for addon in addons %}
+  {% set has_multiple_channels = addon.has_multiple_channels() %}
   <div class="item addon ignore-compatibility" data-addonid="{{ addon.id }}">
     <div class="info {{ amo.ADDON_TYPE_CHOICES_API.get(addon.type) }}">
       {{ dev_heading(addon, amo) }}

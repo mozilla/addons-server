@@ -8,6 +8,7 @@
 <section class="secondary" role="complementary">
   <div class="addon-status">
     <ul class="addon-details">
+      {% set has_multiple_channels = addon.has_multiple_channels() %}
       {% include "devhub/includes/addon_details.html" %}
     </ul>
     <p class="addon-upload">

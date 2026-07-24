@@ -52,7 +52,7 @@
 {% endif %}
 
 {% if addon.has_listed_versions() %}
-    {% if addon.has_multiple_channels() %}
+    {% if has_multiple_channels %}
       <li class="distribution-tag-listed">
         <span class="distribution-tag-listed tooltip"
               title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site') }}"
@@ -95,7 +95,7 @@
 
 {% set latest_unlisted_version=addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) %}
 {% if latest_unlisted_version %}
-    {% if addon.has_multiple_channels() %}
+    {% if has_multiple_channels %}
       <li class="distribution-tag-unlisted">
           <span class="distribution-tag-unlisted tooltip"
                 title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
@@ -112,7 +112,7 @@
 
 {% set latest_enterprise_version=addon.find_latest_version(channel=amo.CHANNEL_ENTERPRISE) %}
 {% if latest_enterprise_version and waffle.switch('enterprise-channel') %}    
-{% if addon.has_multiple_channels() %}
+{% if has_multiple_channels %}
       <li class="distribution-tag-enterprise">
           <span class="distribution-tag-enterprise tooltip"
                 title="{{ _('Signed for enterprise.') }}"

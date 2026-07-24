@@ -14,8 +14,10 @@
 {% if latest_unlisted_version_including_disabled %}
   {% set has_unlisted_versions = True %}
 {% endif %}
+{% set has_enterprise_versions = addon.has_enterprise_versions() %}
+{% set has_multiple_channels = addon.has_multiple_channels() %}
 
-{% if addon.has_multiple_channels() %}
+{% if has_multiple_channels %}
   {% macro distro_tag(channel) %}
     {% if channel == amo.CHANNEL_LISTED %}
       <span class="distribution-tag-listed tooltip"
@@ -158,7 +160,7 @@
   {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
      to allow developers to toggle it back so that they can upload listed versions. If the add-on has an enterprise
      version, only show if the listed version is still publicly available. #}
-  {% if (has_listed_versions or addon.disabled_by_user) and (not addon.has_enterprise_versions() or latest_listed_version) %}
+  {% if (has_listed_versions or addon.disabled_by_user) and (not has_enterprise_versions or latest_listed_version) %}
     {% if addon.status == amo.STATUS_REJECTED %}
       {{ content_rejected_info(addon) }}
     {% else %}
