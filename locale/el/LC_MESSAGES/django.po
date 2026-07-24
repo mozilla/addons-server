@@ -380,11 +380,11 @@ msgstr ""
 
 #: src/olympia/addons/serializers.py:586
 msgid "Listed versions cannot be submitted while add-on is disabled."
-msgstr "Οι καταχωρημένες εκδόσεις δεν μπορούν να υποβληθούν, όσο το πρόσθετο είναι ανενεργό."
+msgstr "Δεν είναι δυνατή η υποβολή καταχωρισμένων εκδόσεων όσο το πρόσθετο είναι ανενεργό."
 
 #: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
-msgstr "Δεν είναι δυνατή η υποβολή καταχωρισμένων εκδόσεων όσο η καταχώριση του πρόσθετου έχει απορριφθεί."
+msgstr "Δεν είναι δυνατή η υποβολή καταχωρισμένων εκδόσεων όσο η καταχώριση του προσθέτου έχει απορριφθεί."
 
 #: src/olympia/addons/serializers.py:634
 #, python-format
@@ -403,7 +403,7 @@ msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έν
 
 #: src/olympia/addons/serializers.py:937
 msgid "Add-ons need at least one listed author."
-msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν καταχωρημένο δημιουργό."
+msgstr "Τα πρόσθετα χρειάζονται τουλάχιστον έναν καταχωρισμένο δημιουργό."
 
 #: src/olympia/addons/serializers.py:969
 msgid "Account not found."
@@ -448,7 +448,7 @@ msgstr "Δεν είναι δυνατή η ταυτόχρονη παροχή τω
 
 #: src/olympia/addons/validators.py:75
 msgid "This field, or custom_license, is required for listed versions."
-msgstr "Αυτό το πεδίο, ή το «custom_license», απαιτείται για τις καταχωρημένες εκδόσεις."
+msgstr "Αυτό το πεδίο, ή το «custom_license», απαιτείται για τις καταχωρισμένες εκδόσεις."
 
 #: src/olympia/addons/validators.py:102
 msgid "Wrong add-on type for this license."
@@ -460,12 +460,12 @@ msgstr "Οι προσαρμοσμένες άδειες δεν υποστηρίζ
 
 #: src/olympia/addons/validators.py:143
 msgid "This field is required for add-ons with listed versions."
-msgstr "Αυτό το πεδίο απαιτείται για πρόσθετα με καταχωρημένες εκδόσεις."
+msgstr "Αυτό το πεδίο απαιτείται για πρόσθετα με καταχωρισμένες εκδόσεις."
 
 #: src/olympia/addons/validators.py:169
 #, python-brace-format
 msgid "Add-on metadata is required to be set to create a listed version: {missing_addon_metadata}."
-msgstr "Απαιτείται ορισμός μεταδεδομένων προσθέτου για τη δημιουργία μιας καταχωρισμένης έκδοσης: {missing_addon_metadata}."
+msgstr "Απαιτείται ορισμός των μεταδεδομένων προσθέτου για τη δημιουργία μιας καταχωρισμένης έκδοσης: {missing_addon_metadata}."
 
 #: src/olympia/addons/validators.py:283
 msgid "A GUID must be specified in the manifest."
@@ -1067,7 +1067,7 @@ msgstr "Το {addon} ελέγχθηκε."
 #: src/olympia/constants/activity.py:539
 #, python-brace-format
 msgid "{addon} unlisted."
-msgstr "Το {addon} έχει αποκαταχωρηθεί."
+msgstr "Η καταχώριση του {addon} έχει καταργηθεί."
 
 #. L10n: {0} is the add-on GUID.
 #: src/olympia/constants/activity.py:563
@@ -1296,29 +1296,29 @@ msgstr "Η ιδιότητα {0} του λογαριασμού {user} ενημε�
 #: src/olympia/constants/activity.py:1280
 #, python-brace-format
 msgid "{addon} listing content approved."
-msgstr "Εγκρίθηκε το περιεχόμενο της καταχώρησης του {addon}."
+msgstr "Εγκρίθηκε το περιεχόμενο της καταχώρισης του {addon}."
 
 #: src/olympia/constants/activity.py:1282
 msgid "Rejected listing approved"
-msgstr "Η απορριφθείσα καταχώρηση εγκρίθηκε"
+msgstr "Η απορριφθείσα καταχώριση εγκρίθηκε"
 
 #: src/olympia/constants/activity.py:1294
 #, python-brace-format
 msgid "{addon} listing content rejected."
-msgstr "Απορρίφθηκε το περιεχόμενο της καταχώρησης του {addon}."
+msgstr "Απορρίφθηκε το περιεχόμενο της καταχώρισης του {addon}."
 
 #: src/olympia/constants/activity.py:1295
 msgid "Listing rejected"
-msgstr "Η καταχώρηση απορρίφθηκε"
+msgstr "Η καταχώριση απορρίφθηκε"
 
 #: src/olympia/constants/activity.py:1317
 #, python-brace-format
 msgid "{addon} listing content review requested."
-msgstr "Ζητήθηκε καταχώρηση του περιεχομένου της καταχώρησης του {addon}."
+msgstr "Ζητήθηκε έλεγχος του περιεχομένου της καταχώρισης του {addon}."
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
-msgstr "Ζητήθηκε αξιολόγηση καταχώρησης"
+msgstr "Ζητήθηκε έλεγχος καταχώρισης"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -1358,7 +1358,7 @@ msgstr "Αναμένεται αξιολόγηση"
 
 #: src/olympia/constants/base.py:27
 msgid "Listing Content Rejected"
-msgstr "Το περιεχόμενο της καταχώρησης απορρίφθηκε"
+msgstr "Το περιεχόμενο της καταχώρισης απορρίφθηκε"
 
 #: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
 msgid "Disabled by Mozilla"
@@ -2038,7 +2038,7 @@ msgstr "Βεβαιωθείτε ότι το όνομα και το επώνυμο
 #: src/olympia/devhub/forms.py:1414
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr "Σε αυτόν τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας καταχωρείται δημόσια στο {site_domain}.</span>"
+msgstr "Σε αυτόν τον ιστότοπο. <span class=\"helptext\">Η υποβολή σας καταχωρίζεται δημόσια στο {site_domain}.</span>"
 
 #: src/olympia/devhub/forms.py:1421
 #, python-brace-format
@@ -2232,7 +2232,7 @@ msgstr "Το όνομα URL ήταν λάθος. Το πρόσθετο δεν δ
 
 #: src/olympia/devhub/views.py:437
 msgid "Request for a new review of listing content acknowledged."
-msgstr "Το αίτημα για νέα αξιολόγηση του περιεχομένου της καταχώρησης εγκρίθηκε."
+msgstr "Το αίτημα για νέο έλεγχο του περιεχομένου της καταχώρισης εγκρίθηκε."
 
 #: src/olympia/devhub/views.py:481
 msgid "Invitation accepted."
@@ -2638,7 +2638,7 @@ msgstr "Κατάσταση"
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:87
 msgid "We have not found any email records for you in the last 2 days."
-msgstr "Δεν βρήκαμε καμία καταχώρηση email για εσάς τις δύο τελευταίες ημέρες."
+msgstr "Δεν ήταν δυνατή η εύρεση καμίας καταχώρισης email για εσάς τις δύο τελευταίες ημέρες."
 
 #: src/olympia/devhub/templates/devhub/verify_email.html:91
 msgid "Refresh results"
@@ -2789,8 +2789,9 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό δημιουργών με 2 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, όπως προσθήκη "
-"και αφαίρεση άλλων δημιουργών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, εκτός από προσθήκη και αφαίρεση άλλων δημιουργών</li> </ul>"
+"<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό δημιουργών με 2 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρισης του προσθέτου, όπως την "
+"προσθήκη και αφαίρεση άλλων δημιουργών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρισης του προσθέτου, εκτός από την προσθήκη και αφαίρεση άλλων δημιουργών</li> "
+"</ul>"
 
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:34 src/olympia/devhub/templates/devhub/addons/owner.html:102
 msgid "Close"
@@ -2844,7 +2845,8 @@ msgstr "Προεπιλεγμένη γλώσσα"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:56
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Οι πληροφορίες σχετικά με το πρόσθετό σας εμφανίζονται σε αυτήν τη γλώσσα, εκτός κι αν την παρακάμψετε με μια μετάφραση για μια συγκεκριμένη γλώσσα. Αυτό αφορά μόνο τα καταχωρημένα πρόσθετα."
+msgstr ""
+"Οι πληροφορίες σχετικά με το πρόσθετό σας θα εμφανίζονται σε αυτήν τη γλώσσα, εκτός κι αν την παρακάμψετε με μια μετάφραση για μια συγκεκριμένη γλώσσα. Αυτό αφορά μόνο τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
@@ -2855,8 +2857,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
-"Αν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνσή της εδώ. Αν ο ιστότοπός σας μεταφράζεται σε άλλες γλώσσες, μπορούν να προστεθούν πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
-"καταχωρημένα πρόσθετα."
+"Εάν το πρόσθετό σας έχει άλλη αρχική σελίδα, εισαγάγετε τη διεύθυνσή της εδώ. Αν ο ιστότοπός σας μεταφράζεται σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις του πεδίου. Αφορά μόνο "
+"καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
@@ -2910,7 +2912,7 @@ msgstr "Επιλέξτε ένα σύντομο και μοναδικό URL (slug
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:69
 msgid "View Listing"
-msgstr "Προβολή καταχώρησης"
+msgstr "Προβολή καταχώρισης"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:98 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:36
@@ -2991,8 +2993,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
-"Αν θέλετε να γίνεται προβολή ενός email για απορίες υποστήριξης, εισάγετέ το εδώ. Αν έχετε διαφορετικές διευθύνσεις για κάθε γλώσσα, μπορείτε να προσθέσετε πολλές μεταφράσεις αυτού του πεδίου. Αυτό "
-"ισχύει μόνο για τα καταχωρημένα πρόσθετα."
+"Εάν θέλετε να γίνεται προβολή ενός email για απορίες υποστήριξης, εισαγάγετέ το εδώ. Αν έχετε διαφορετικές διευθύνσεις για κάθε γλώσσα, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις αυτού του πεδίου."
+" Αυτό ισχύει μόνο για τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:246
 msgid "Website"
@@ -3003,8 +3005,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Αν το πρόσθετό σας διαθέτει έναν ιστότοπο ή φόρουμ υποστήριξης, εισαγάγετε εδώ τη διεύθυνσή του. Αν ο ιστότοπός σας έχει μεταφραστεί σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις "
-"αυτού του πεδίου. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
+"Εάν το πρόσθετό σας διαθέτει έναν ιστότοπο ή φόρουμ υποστήριξης, εισαγάγετε εδώ τη διεύθυνσή του. Αν ο ιστότοπός σας έχει μεταφραστεί σε άλλες γλώσσες, μπορείτε να προσθέσετε πολλαπλές μεταφράσεις "
+"αυτού του πεδίου. Αυτό ισχύει μόνο για τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/media.html:3
 msgid "Images"
@@ -3029,8 +3031,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Κάθε πληροφορία που ενδέχεται να θέλουν να γνωρίζουν οι τελικοί χρήστες και δεν ισχύει κατ' ανάγκη στην περίληψη ή την περιγραφή του προσθέτου. Οι συνήθεις χρήσεις περιλαμβάνουν την καταγραφή "
-"γνωστών σημαντικών σφαλμάτων, πληροφορίες σχετικά με τον τρόπο αναφοράς σφαλμάτων, την αναμενόμενη ημερομηνία κυκλοφορίας μιας νέας έκδοσης κ.λπ. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
+"Οποιαδήποτε πληροφορία που ίσως θέλουν να γνωρίζουν οι τελικοί χρήστες και δεν εμπίπτει απαραίτητα στην περίληψη ή την περιγραφή του προσθέτου. Οι συνήθεις χρήσεις περιλαμβάνουν την καταγραφή "
+"γνωστών σημαντικών σφαλμάτων, πληροφορίες σχετικά με τον τρόπο αναφοράς σφαλμάτων, την αναμενόμενη ημερομηνία κυκλοφορίας μιας νέας έκδοσης κ.λπ. Αυτό ισχύει μόνο για τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:46
 msgid "Universally unique identifier"
@@ -3071,7 +3073,7 @@ msgid ""
 "relevant for listed add-ons."
 msgstr ""
 "Μεταφορτώστε ένα εικονίδιο για το πρόσθετό σας ή επιλέξτε ένα από τα δικά μας. Το εικονίδιο εμφανίζεται σχεδόν οπουδήποτε βρίσκεται το πρόσθετό σας. Οι μεταφορτωμένες εικόνες πρέπει να έχουν έναν "
-"από τους εξής τύπους: .png, .jpg. Αυτό ισχύει μόνο για τα καταχωρημένα πρόσθετα."
+"από τους εξής τύπους: .png, .jpg. Αυτό ισχύει μόνο για τα καταχωρισμένα πρόσθετα."
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:25
 msgid "Select an icon for your add-on:"
@@ -3084,7 +3086,7 @@ msgstr "32x32px"
 
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:40
 msgid "Used in listings of add-ons, like search results."
-msgstr "Χρησιμοποιείται στις καταχωρήσεις προσθέτων, όπως αποτελέσματα αναζήτησης."
+msgstr "Χρησιμοποιείται στις καταχωρίσεις προσθέτων, όπως αποτελέσματα αναζήτησης."
 
 #. The size of the icon
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:48
@@ -3159,7 +3161,7 @@ msgstr "Το πρόσθετό σας έχει οριστεί σε «Αόρατο
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:5
 msgid "Your add-on listing was rejected."
-msgstr "Η καταχώρηση του προσθέτου σας απορρίφθηκε."
+msgstr "Η καταχώριση του προσθέτου σας απορρίφθηκε."
 
 #: src/olympia/devhub/templates/devhub/addons/includes/cant_submit_new_listed_versions_warning.html:7
 msgid "While in this state, \"On your own\" is the only distribution method available."
@@ -3393,7 +3395,7 @@ msgstr "Όνομα:"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:68
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Όνομα καταχώρησης στον ιστότοπο. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
+msgstr "Το όνομα της καταχώρισης σε αυτόν τον ιστότοπο. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:87
 msgid "Summary:"
