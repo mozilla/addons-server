@@ -1,6 +1,7 @@
 name: ssdlc-sbom
 
 on:
+  # Generate SBOM on releases only (not on dev/master branch).
   release:
     types: [published]
   workflow_dispatch:
