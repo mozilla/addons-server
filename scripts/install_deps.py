@@ -53,9 +53,9 @@ def main(targets):
     pip_includes = []
     npm_includes = []
 
-    # PIP_COMMAND is set by the Dockerfile
-    pip_command = os.environ['PIP_COMMAND']
-    pip_args = pip_command.split() + [
+    pip_args = [
+        'python3',
+        '-m pip',
         'install',
         '--progress-bar=off',
         '--no-deps',
@@ -64,8 +64,6 @@ def main(targets):
     if 'dev' in targets:
         pip_args.append('--no-compile')
 
-    # NPM_ARGS is set by the Dockerfile
-    npm_args_env = os.environ['NPM_ARGS']
     npm_args = [
         'npm',
         'install',
