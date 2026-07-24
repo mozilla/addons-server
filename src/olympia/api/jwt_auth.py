@@ -35,10 +35,13 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     # be displayed to the client. Be careful not to reveal anything
     # sensitive. When you raise other exceptions, the user will see
     # a generic failure message.
+
+    # First decode the JWT to raise nicer errors when the user did something
+    # wrong.
     token_data = jwt.decode(
         token,
         options={
-            'verify_signature': False,
+            'verify_signature': False,  # nosemgrep
             'verify_exp': False,
             'verify_nbf': False,
             'verify_iat': False,
@@ -61,8 +64,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
             detail='Unknown JWT iss (issuer).'
         ) from exc
 
-    # TODO: add nonce checking to prevent replays. bug 1213354.
-
+    # Actual verification options.
     options = {
         'verify_signature': True,
         'verify_exp': True,
