@@ -55,7 +55,8 @@ def main(targets):
 
     pip_args = [
         'python3',
-        '-m pip',
+        '-m'
+        'pip',
         'install',
         '--progress-bar=off',
         '--no-deps',
