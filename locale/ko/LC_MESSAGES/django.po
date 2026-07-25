@@ -2050,7 +2050,7 @@ msgstr "복구할 채널과 버전을 선택해야 합니다."
 
 #: src/olympia/devhub/forms.py:1753
 msgid "Choose a category"
-msgstr ""
+msgstr "카테고리 선택"
 
 #: src/olympia/devhub/forms.py:1754
 msgid "Technical support for making your add-on compliant"
@@ -2070,11 +2070,11 @@ msgstr ""
 
 #: src/olympia/devhub/forms.py:1770
 msgid "Select category"
-msgstr ""
+msgstr "카테고리 선택"
 
 #: src/olympia/devhub/forms.py:1775
 msgid "Give us more details about the issue"
-msgstr ""
+msgstr "문제에 대한 자세한 정보를 알려주세요"
 
 #: src/olympia/devhub/forms.py:1777
 msgid "Describe the issue"
@@ -2442,7 +2442,7 @@ msgstr "그밖의 자원"
 
 #: src/olympia/devhub/templates/devhub/nav.html:67
 msgid "Contact Support"
-msgstr ""
+msgstr "지원팀 연락하기"
 
 #: src/olympia/devhub/templates/devhub/search.html:6
 msgid "Search Developer Docs"
@@ -2464,7 +2464,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/support.html:17
 msgid "Send request"
-msgstr ""
+msgstr "요청 보내기"
 
 #: src/olympia/devhub/templates/devhub/suppressed_email.html:4
 #, python-format
@@ -3349,7 +3349,7 @@ msgstr "저희 검토자들이 이 부가기능을 검토할 때 고려해야 �
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "중요"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -4013,7 +4013,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "롤백"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
