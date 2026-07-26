@@ -7089,7 +7089,7 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
 msgstr ""
-"Εκτός από τα μέρη όπου υπάρχει σχετική <a href=\"https://www.mozilla.org/about/legal/\">διευκρίνιση</a>, το περιεχόμενο αυτού του ιστοτόπου διατίθεται στα πλαίσια της άδειας <a "
+"Εκτός από τα μέρη όπου υπάρχει σχετική <a href=\"https://www.mozilla.org/about/legal/\">διευκρίνιση</a>, το περιεχόμενο αυτού του ιστοτόπου διατίθεται στο πλαίσιο της άδειας <a "
 "href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> ή οποιασδήποτε νεότερης έκδοσης."
 
 #: src/olympia/templates/user_login.html:24
