@@ -35,7 +35,6 @@ class TestInstallDeps(unittest.TestCase):
         ]
         with override_env(
             **{
-                'PIP_COMMAND': 'pip-test',
                 'DEPS_DIR': '/data/olympia/deps',
                 'NPM_DEPS_DIR': '/data/olympia/deps/npm',
                 'NPM_ARGS': 'npm-test',
@@ -81,24 +80,6 @@ class TestInstallDeps(unittest.TestCase):
         }
         self._test_remove_existing_deps(args, expect_remove=True)
 
-    @override_env(PIP_COMMAND='pip-test', NPM_ARGS='npm-test')
-    def test_pip_command_set_on_environment(self):
-        main(['prod'])
-        assert self.mocks['subprocess.run'].call_args_list[0][0][0][0] == 'pip-test'
-
-    @override_env()
-    def test_pip_command_not_set_on_environment(self):
-        self.assertRaises(KeyError, main, ['prod'])
-
-    @override_env(NPM_ARGS='npm-test', PIP_COMMAND='pip-test')
-    def test_npm_command_set_on_environment(self):
-        main(['prod'])
-        assert 'npm-test' in self.mocks['subprocess.run'].call_args_list[1][0][0]
-
-    @override_env()
-    def test_npm_command_not_set_on_environment(self):
-        self.assertRaises(KeyError, main, ['prod'])
-
     def test_correct_args_passed_to_subprocesses(self):
         """
         Test that the correct arguments are passed to the subprocesses
@@ -133,10 +114,6 @@ class TestInstallDeps(unittest.TestCase):
                     '--no-save',
                     '--no-audit',
                     '--no-fund',
-                    '--cache',
-                    '/data/olympia/deps/cache/npm',
-                    '--loglevel',
-                    'verbose',
                     '--include',
                     'prod',
                     '--include',
@@ -177,10 +154,6 @@ class TestInstallDeps(unittest.TestCase):
                     '--no-save',
                     '--no-audit',
                     '--no-fund',
-                    '--cache',
-                    '/data/olympia/deps/cache/npm',
-                    '--loglevel',
-                    'verbose',
                     '--include',
                     'prod',
                 ],

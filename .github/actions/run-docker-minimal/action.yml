@@ -51,10 +51,10 @@ runs:
       continue-on-error: true
       shell: bash
       env:
-        run: ${{ inputs.run }}
+        input_to_run: ${{ inputs.run }}
       run: |
         # Run command in our minimal environment.
-        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web bash -c "${run}"
+        docker compose -f docker-compose.yml -f docker-compose.ci.yml run --rm  --user olympia web bash -c "${input_to_run}"
 
     - name: Post Run (logs and exit code)
       if: always()

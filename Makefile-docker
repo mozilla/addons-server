@@ -171,7 +171,7 @@ extract_locales: ## extracts and merges translation strings
 
 .PHONE: compile_locales
 compile_locales: ## compiles translation strings
-	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/locale.txt
+	python3 -m pip install --progress-bar=off --no-deps -r requirements/locale.txt
 	$(HOME)/scripts/compile_locales.py
 
 .PHONY: help_submake

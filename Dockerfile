@@ -108,9 +108,6 @@ ENV NPM_DEBUG=true
 # Set python path to the project root and src to resolve olympia modules correctly
 ENV PYTHONPATH=${HOME}:${HOME}/src
 
-ENV PIP_COMMAND="python3 -m pip"
-ENV NPM_ARGS="--cache ${NPM_CACHE_DIR} --loglevel verbose"
-
 # All we need in "base" is pip to be installed
 #this let's other layers install packages using the correct version.
 RUN \
@@ -137,6 +134,7 @@ RUN \
     --mount=type=bind,source=./requirements/prod.txt,target=${HOME}/requirements/prod.txt \
     --mount=type=bind,source=./requirements/yara-x.txt,target=${HOME}/requirements/yara-x.txt \
     # Files required to install npm dependencies
+    --mount=type=bind,source=.npmrc,target=${HOME}/.npmrc \
     --mount=type=bind,source=package.json,target=${HOME}/package.json \
     --mount=type=bind,source=package-lock.json,target=${HOME}/package-lock.json \
     # Mounts for caching dependencies
