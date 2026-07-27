@@ -1,3 +1,6 @@
+import json
+from unittest import mock
+
 from django.urls import reverse
 
 from olympia import amo
@@ -59,6 +62,85 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.get(reverse(self.list_url_name), follow=True)
         assert response.status_code == 403
+
+    def _get_promotedgroup_form(self, group, **overrides):
+        """Return POST form data reflecting the given group's current state.
+
+        Pass a keyword argument with value None to explicitly remove that key
+        (e.g. ``is_public=None`` to leave the checkbox unchecked/False).
+        """
+        data = {
+            'name': group.name,
+            'api_name': group.api_name,
+            'search_ranking_bump': str(group.search_ranking_bump),
+            'autograph_signing_states': json.dumps(group.autograph_signing_states),
+        }
+        for field in (
+            'listed_pre_review',
+            'unlisted_pre_review',
+            'admin_review',
+            'can_primary_hero',
+            'immediate_approval',
+            'flag_for_human_review',
+            'can_be_compatible_with_all_fenix_versions',
+            'high_profile',
+            'high_profile_rating',
+            'is_public',
+        ):
+            if getattr(group, field):
+                data[field] = 'on'
+        for key, value in overrides.items():
+            if value is None:
+                data.pop(key, None)
+            else:
+                data[key] = value
+        return data
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_update_is_public_triggers_index_addons(self, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_toggle_public', is_public=True
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        change_url = reverse(
+            'admin:discovery_discoverypromotedgroup_change', args=[group.pk]
+        )
+        index_addons_mock.reset_mock()
+
+        # Submit without 'is_public' to flip it to False
+        response = self.client.post(
+            change_url,
+            self._get_promotedgroup_form(group, is_public=None),
+            follow=True,
+        )
+        assert response.status_code == 200
+        group.refresh_from_db()
+        assert not group.is_public
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_delete_triggers_index_addons(self, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Delete Group', api_name='test_delete_group', is_public=True
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, '*:*')
+        self.client.force_login(user)
+        delete_url = reverse(
+            'admin:discovery_discoverypromotedgroup_delete', args=[group.pk]
+        )
+        index_addons_mock.reset_mock()
+
+        response = self.client.post(delete_url, {'post': 'yes'}, follow=True)
+        assert response.status_code == 200
+        assert not PromotedGroup.objects.filter(pk=group.pk).exists()
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
 
 
 class TestDiscoveryAddonAdmin(TestCase):
