@@ -41,6 +41,10 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     token_data = jwt.decode(
         token,
         options={
+            # We need to decode the token without verifying here, because we
+            # want to raise a nicer error if the user misconfigured something.
+            # The actual jwt.decode() with proper verification options set is
+            # a few lines below.
             'verify_signature': False,  # nosemgrep
             'verify_exp': False,
             'verify_nbf': False,
