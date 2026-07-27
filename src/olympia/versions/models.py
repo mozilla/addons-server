@@ -414,12 +414,6 @@ class Version(OnChangeMixin, ModelBase):
         if channel == amo.CHANNEL_ENTERPRISE and addon.type != amo.ADDON_EXTENSION:
             raise VersionCreateError('Only extensions can be enterprise add-ons.')
 
-        if channel != amo.CHANNEL_ENTERPRISE and addon.has_enterprise_versions():
-            raise VersionCreateError(
-                'Add-ons with enterprise versions cannot have versions in '
-                'non-enterprise channels.'
-            )
-
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
                 'Addon is Mozilla Disabled; no new versions are allowed.'

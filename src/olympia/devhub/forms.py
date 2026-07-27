@@ -1454,13 +1454,13 @@ class DistributionChoiceForm(forms.Form):
         super().__init__(*args, **kwargs)
         choices = []
 
-        if not self.addon or not self.addon.has_enterprise_versions():
-            if not self.addon or self.addon.can_submit_listed_versions():
-                # If the add-on is "invisible" or the listing was rejected,
-                # 'listed' is not a valid choice, you can't upload new listed
-                # versions while in either of these states.
-                choices.append(('listed', mark_safe(self.LISTED_LABEL)))
-            choices.append(('unlisted', mark_safe(self.UNLISTED_LABEL)))
+        if not self.addon or self.addon.can_submit_listed_versions():
+            # If the add-on is "invisible" or the listing was rejected,
+            # 'listed' is not a valid choice, you can't upload new listed
+            # versions while in either of these states.
+            choices.append(('listed', mark_safe(self.LISTED_LABEL)))
+        choices.append(('unlisted', mark_safe(self.UNLISTED_LABEL)))
+
         if not self.is_theme and waffle.switch_is_active('enterprise-channel'):
             choices.append(('enterprise', mark_safe(self.ENTERPRISE_LABEL)))
 

@@ -693,13 +693,6 @@ class TestDistributionChoiceForm(TestCase):
         assert form.fields['channel'].choices[1][0] == 'unlisted'
         assert form.fields['channel'].choices[2][0] == 'enterprise'
 
-        # Addons with existing enterprise versions are only given the enterprise option.
-        addon.update(type=amo.ADDON_EXTENSION)
-        addon = addon_factory(version_kw={'channel': amo.CHANNEL_ENTERPRISE})
-        form = forms.DistributionChoiceForm(addon=addon)
-        assert len(form.fields['channel'].choices) == 1
-        assert form.fields['channel'].choices[0][0] == 'enterprise'
-
 
 class TestDescribeForm(TestCase):
     fixtures = ('base/addon_3615', 'addons/denied')
