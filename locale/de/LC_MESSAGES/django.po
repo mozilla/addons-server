@@ -2034,6 +2034,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Ein Add-on für Unternehmen. <span class=\"helptext\">Nachdem Ihre Einreichung von Mozilla signiert wurde, können Sie die .xpi-Datei aus dem Entwickler-Zentrum herunterladen und über eine Richtlinie "
+"zu Firefox für Unternehmen an Ihr Publikum verteilen.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3971,11 +3973,11 @@ msgstr "Dies ist die neueste hochgeladene ungelistete Version"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Für Unternehmen signiert."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Dies ist die neueste hochgeladene Version für Unternehmen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3995,7 +3997,7 @@ msgstr "Überprüfungsseite für ungelistete Add-ons"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Überprüfungsseite für Unternehmen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6117,7 +6119,7 @@ msgstr "Tarnen Sie Firefox als Chrome-Browser, um Websites zu täuschen, die Fir
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Entfernen Sie Ablenkungen, ändern Sie die Ansichtsoptionen, ändern Sie die Wiedergabegeschwindigkeit und mehr."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
