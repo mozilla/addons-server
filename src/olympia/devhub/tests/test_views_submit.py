@@ -1233,6 +1233,11 @@ class TestAddonSubmitSource(TestSubmitBase):
             'devhub.addons.cancel', args=(self.addon.slug, 'unlisted')
         )
 
+    def test_skip_source_enterprise(self):
+        self.addon.versions.update(channel=amo.CHANNEL_ENTERPRISE)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
+
 
 class DetailsPageMixin:
     """Some common methods between TestAddonSubmitDetails and

@@ -174,6 +174,10 @@ class VersionManager(ManagerBase):
                 channel=amo.CHANNEL_UNLISTED,
                 addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
             )
+            | Q(
+                channel=amo.CHANNEL_ENTERPRISE,
+                addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
+            )
         )
         return qs
 
@@ -401,6 +405,14 @@ class Version(OnChangeMixin, ModelBase):
                 for app in amo.APP_USAGE
             }
         assert selected_apps or compatibility
+
+        if channel == amo.CHANNEL_ENTERPRISE and not waffle.switch_is_active(
+            'enterprise-channel'
+        ):
+            raise VersionCreateError('The enterprise channel is not enabled.')
+
+        if channel == amo.CHANNEL_ENTERPRISE and addon.type != amo.ADDON_EXTENSION:
+            raise VersionCreateError('Only extensions can be enterprise add-ons.')
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(

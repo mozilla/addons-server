@@ -303,6 +303,16 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # Test that they are all present.
         assert list(qs) == expected
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_enterprise_auto_approve_no_nhr(self, sign_file_mock):
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        assert not AutoApprovalSummary.objects.exists()
+        call_command('auto_approve')
+        self.version.reload()
+        summary = AutoApprovalSummary.objects.get(version=self.version)
+        assert summary.verdict == amo.AUTO_APPROVED
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
     @mock.patch('olympia.reviewers.management.commands.auto_approve.ReviewHelper')
     def test_approve_with_review_helper(self, review_helper_mock, statsd_incr_mock):

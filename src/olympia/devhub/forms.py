@@ -1432,6 +1432,15 @@ class DistributionChoiceForm(forms.Form):
             '?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'
         ),
     )
+    ENTERPRISE_LABEL = format_html_lazy(
+        _(
+            'An enterprise add-on. <span class="helptext">'
+            'After your submission is signed by Mozilla, you can download the .xpi '
+            'file from the Developer Hub and distribute it to your audience via a '
+            'Firefox for Enterprise policy.</span>'
+        ),
+        site_domain=settings.DOMAIN,
+    )
 
     channel = forms.ChoiceField(
         choices=[],
@@ -1441,16 +1450,19 @@ class DistributionChoiceForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon', None)
+        self.is_theme = kwargs.pop('is_theme', None)
         super().__init__(*args, **kwargs)
-        choices = [
-            ('listed', mark_safe(self.LISTED_LABEL)),
-            ('unlisted', mark_safe(self.UNLISTED_LABEL)),
-        ]
-        if self.addon and not self.addon.can_submit_listed_versions():
+        choices = []
+
+        if not self.addon or self.addon.can_submit_listed_versions():
             # If the add-on is "invisible" or the listing was rejected,
             # 'listed' is not a valid choice, you can't upload new listed
             # versions while in either of these states.
-            choices.pop(0)
+            choices.append(('listed', mark_safe(self.LISTED_LABEL)))
+        choices.append(('unlisted', mark_safe(self.UNLISTED_LABEL)))
+
+        if not self.is_theme and waffle.switch_is_active('enterprise-channel'):
+            choices.append(('enterprise', mark_safe(self.ENTERPRISE_LABEL)))
 
         self.fields['channel'].choices = choices
 

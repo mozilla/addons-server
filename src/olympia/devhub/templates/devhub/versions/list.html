@@ -14,8 +14,10 @@
 {% if latest_unlisted_version_including_disabled %}
   {% set has_unlisted_versions = True %}
 {% endif %}
+{% set has_enterprise_versions = addon.has_enterprise_versions() %}
+{% set has_multiple_channels = addon.has_multiple_channels() %}
 
-{% if has_listed_versions and has_unlisted_versions %}
+{% if has_multiple_channels %}
   {% macro distro_tag(channel) %}
     {% if channel == amo.CHANNEL_LISTED %}
       <span class="distribution-tag-listed tooltip"
@@ -25,6 +27,10 @@
       <span class="distribution-tag-unlisted tooltip"
             title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
             >Self</span>
+    {% elif channel == amo.CHANNEL_ENTERPRISE %}
+      <span class="distribution-tag-enterprise tooltip"
+            title="{{ _('Signed for enterprise.') }}"
+            >Enterprise</span>
     {% endif %}
   {% endmacro %}
 {% else %}
@@ -152,8 +158,9 @@
 </header>
 <section id="edit-addon" class="primary devhub-form" role="main">
   {# Only show listing visibility if there are listed versions... or if somehow the add-on is already invisible,
-     to allow developers to toggle it back so that they can upload listed versions #}
-  {% if has_listed_versions or addon.disabled_by_user %}
+     to allow developers to toggle it back so that they can upload listed versions. If the add-on has an enterprise
+     version, only show if the listed version is still publicly available. #}
+  {% if (has_listed_versions or addon.disabled_by_user) and (not has_enterprise_versions or latest_listed_version) %}
     {% if addon.status == amo.STATUS_REJECTED %}
       {{ content_rejected_info(addon) }}
     {% else %}
@@ -199,7 +206,7 @@
     {% set other_versions_header_text =_('Other versions') %}
   {% else %}
     {% set other_versions_header_text =_('All versions') %}
-  {% endif %}
+{% endif %}
   <div id="other-versions-header">
     <h3>{{ other_versions_header_text }}</h3>
 

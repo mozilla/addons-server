@@ -403,6 +403,8 @@ class ReviewHelper:
         }
         if channel == amo.CHANNEL_UNLISTED:
             self.handler = ReviewUnlisted(**kwargs)
+        elif channel == amo.CHANNEL_ENTERPRISE:
+            self.handler = ReviewEnterprise(**kwargs)
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(**kwargs)
         else:
@@ -418,6 +420,9 @@ class ReviewHelper:
         #   the review page or not.
         version_is_unlisted = (
             self.version and self.version.channel == amo.CHANNEL_UNLISTED
+        )
+        version_is_enterprise = (
+            self.version and self.version.channel == amo.CHANNEL_ENTERPRISE
         )
         version_is_listed = self.version and self.version.channel == amo.CHANNEL_LISTED
         promoted_group = self.addon.promoted_groups(currently_approved=False)
@@ -475,9 +480,9 @@ class ReviewHelper:
             amo.STATUS_DELETED,
             amo.STATUS_DISABLED,
         )
-        addon_is_incomplete_and_version_is_unlisted = (
-            self.addon.status == amo.STATUS_NULL and version_is_unlisted
-        )
+        addon_is_incomplete_and_version_is_unlisted = self.addon.status == (
+            amo.STATUS_NULL
+        ) and (version_is_unlisted or version_is_enterprise)
         addon_is_reviewable = (
             addon_is_not_disabled_or_deleted and self.addon.status != amo.STATUS_NULL
         ) or addon_is_incomplete_and_version_is_unlisted
@@ -1141,7 +1146,8 @@ class ReviewBase:
                 return
             channel = versions[0].channel
             if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
-                channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review)
+                channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
+                and any(group.unlisted_pre_review)
             ):
                 # These addons shouldn't be be attempted for auto approval
                 # anyway, but double check that the cron job isn't trying to
@@ -2138,7 +2144,7 @@ class ReviewUnlisted(ReviewBase):
     channel = amo.CHANNEL_UNLISTED
 
     def _approve_version(self, version):
-        assert version.channel == amo.CHANNEL_UNLISTED
+        assert version.channel == self.channel
         assert not version.is_blocked
         if version.file and version.file.status == amo.STATUS_AWAITING_REVIEW:
             sign_file(version.file)
@@ -2161,7 +2167,7 @@ class ReviewUnlisted(ReviewBase):
 
     def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
-        assert self.version.channel == amo.CHANNEL_UNLISTED
+        assert self.version.channel == self.channel
 
         # Do all main approval bits.
         self._approve_version(self.version)
@@ -2223,7 +2229,7 @@ class ReviewUnlisted(ReviewBase):
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
-        assert self.version.channel == amo.CHANNEL_UNLISTED
+        assert self.version.channel == self.channel
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None so that the action is
         # recorded against the specific versions we are approving.
@@ -2273,3 +2279,18 @@ class ReviewUnlisted(ReviewBase):
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status()
+
+
+class ReviewEnterprise(ReviewUnlisted):
+    channel = amo.CHANNEL_ENTERPRISE
+
+    def approve_latest_version(self):
+        """Set an enterprise addon version files to public."""
+        assert self.version.channel == self.channel
+        self._approve_version(self.version)
+        log.info(
+            'Making %s files %s public'
+            % (self.addon, self.file.file.name if self.file else '')
+        )
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(amo.LOG.APPROVE_VERSION)

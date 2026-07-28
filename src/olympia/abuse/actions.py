@@ -674,6 +674,11 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 'version_list_unlisted': ', '.join(
                     vr.version for vr in versions if vr.channel == amo.CHANNEL_UNLISTED
                 ),
+                'version_list_enterprise': ', '.join(
+                    vr.version
+                    for vr in versions
+                    if vr.channel == amo.CHANNEL_ENTERPRISE
+                ),
             }
             subject = f'{rejection_type} issued for {self.decision.get_target_name()}'
             message = template.render(context_dict)
@@ -1474,7 +1479,8 @@ class ContentActionApproveVersion(ContentActionAddon):
         if group and versions:
             channel = versions[0].channel
             if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
-                channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review)
+                channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
+                and any(group.unlisted_pre_review)
             ):
                 # These addons shouldn't be be attempted for auto approval
                 # anyway, but double check that the cron job isn't trying to
@@ -1498,11 +1504,14 @@ class ContentActionApproveVersion(ContentActionAddon):
                     skip_private_notes=True,
                 )
             sign_file(version.file)
-            if version.channel == amo.CHANNEL_UNLISTED:
+            if version.channel in [amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE]:
                 self.log_action(
                     amo.LOG.UNLISTED_SIGNED,
                     version.file,
-                    extra_details={'versions': [version.version]},
+                    extra_details={
+                        'versions': [version.version],
+                        'is_enterprise': version.channel == amo.CHANNEL_ENTERPRISE,
+                    },
                     skip_private_notes=True,
                 )
 

@@ -477,6 +477,9 @@ def run_addons_linter(path, channel):
     if channel == amo.CHANNEL_UNLISTED:
         args.append('--self-hosted')
 
+    if channel == amo.CHANNEL_ENTERPRISE:
+        args.append('--enterprise')
+
     if waffle.switch_is_active('disable-linter-xpi-autoclose'):
         args.append('--disable-xpi-autoclose')
 

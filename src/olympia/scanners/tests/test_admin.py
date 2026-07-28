@@ -1578,6 +1578,7 @@ class TestScannerQueryResultAdmin(TestCase):
             ('By version channel', 'All', '?'),
             ('By version channel', 'Unlisted', '?version__channel__exact=1'),
             ('By version channel', 'Listed', '?version__channel__exact=2'),
+            ('By version channel', 'Enterprise', '?version__channel__exact=3'),
             ('By version creation date', 'All', '?'),
             ('By add-on status', 'All', '?'),
             ('By add-on status', 'Incomplete', '?version__addon__status__exact=0'),

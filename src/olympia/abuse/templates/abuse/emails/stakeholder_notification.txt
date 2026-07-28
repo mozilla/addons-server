@@ -1,6 +1,7 @@
 {{ rejection_type }} for versions:
 [Listed] {{ version_list_listed }}
 [Unlisted] {{ version_list_unlisted }}
+[Enterprise] {{ version_list_enterprise }}
 
 {% if policy_texts %}
 Policies:
