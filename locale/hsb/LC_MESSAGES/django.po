@@ -2023,6 +2023,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Přidatk za předewzaća. <span class=\"helptext\">Po tym zo je so waše zapodaće wot Mozilla signowało, móžeće dataju .xpi z wuwiwanskeho centruma sćahnyć a na swój publikum přez prawidła Firefox za "
+"předewzaća rozdźělić.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -6111,7 +6113,7 @@ msgstr "Tarnujće Firefox jako wobhladowak Chrome, zo byšće websydła slepił,
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Wotstrońće wotchilenja, změńće napohladowe nastajenja, změńće wothrawansku spěšnosć a wjace."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
