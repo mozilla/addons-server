@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-{% set channel_param = 'listed' if version.channel == amo.CHANNEL_LISTED else 'unlisted' if version.channel == amo.CHANNEL_UNLISTED else 'enterprise' %}
+{% set channel_param = amo.CHANNEL_CHOICES_API[version.channel] %}
 
 <form method="post" enctype="multipart/form-data" id="submit-source">
     {% csrf_token %}

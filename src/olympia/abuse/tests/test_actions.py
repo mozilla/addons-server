@@ -1910,6 +1910,11 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         unlisted_version = version_factory(
             addon=self.addon, channel=amo.CHANNEL_UNLISTED, file_kw={'is_signed': True}
         )
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+            file_kw={'is_signed': True},
+        )
         Group.objects.get(name=self.ActionClass.stakeholder_acl_group_name).users.add(
             stakeholder
         )
@@ -1933,7 +1938,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert (
             f'teh reason for versions:\n'
             f'[Listed] {listed_version.version}\n'
-            '[Unlisted] \n' in body
+            f'[Unlisted] \n'
+            '[Enterprise] \n' in body
         )
         assert f'/review-listed/{self.addon.id}' in body
         assert f'/review-unlisted/{self.addon.id}' not in body
@@ -1946,6 +1952,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
 
         # an unlisted version should result in second link to the unlisted review page
         self.decision.target_versions.add(unlisted_version)
+        self.decision.target_versions.add(enterprise_version)
         action_helper.notify_stakeholders('teh reason')
         assert len(mail.outbox) == 2  # another email
         body = mail.outbox[1].body
@@ -1953,9 +1960,11 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             'teh reason for versions:\n'
             f'[Listed] {listed_version.version}\n'
             f'[Unlisted] {unlisted_version.version}\n'
+            f'[Enterprise] {enterprise_version.version}\n'
         ) in body
         assert f'/review-listed/{self.addon.id} | ' in body
         assert f'/review-unlisted/{self.addon.id}' in body
+        assert f'/review-enterprise/{self.addon.id}' in body
         assert (
             f'{self.another_version.version} will be the new current version of the '
             'extension; first approved 2025-01-02.' in body

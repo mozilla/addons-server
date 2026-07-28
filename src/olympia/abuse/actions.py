@@ -1478,10 +1478,8 @@ class ContentActionApproveVersion(ContentActionAddon):
         group = self.target.promoted_groups(currently_approved=False)
         if group and versions:
             channel = versions[0].channel
-            if (
-                (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review))
-                or (channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review))
-                or channel == amo.CHANNEL_ENTERPRISE
+            if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
+                channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
                 and any(group.unlisted_pre_review)
             ):
                 # These addons shouldn't be be attempted for auto approval

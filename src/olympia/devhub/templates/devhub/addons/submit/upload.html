@@ -4,7 +4,7 @@
 
 {% block primary %}
 
-{% set channel_param = 'listed' if channel == amo.CHANNEL_LISTED else 'unlisted' if channel == amo.CHANNEL_UNLISTED else 'enterprise'%}
+{% set channel_param = amo.CHANNEL_CHOICES_API[channel] %}
 
 <form method="post" id="create-addon" class="item new-addon-file" enctype="multipart/form-data"
     data-addon-is-listed="{% if channel_param == 'listed' %}true{% else %}false{% endif %}">

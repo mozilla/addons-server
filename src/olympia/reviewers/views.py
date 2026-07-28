@@ -449,7 +449,7 @@ def review(request, addon, channel=None):
     # Are we looking at an unlisted review page, or (weirdly) the listed
     # review page of an unlisted-only add-on?
     unlisted_only = (
-        channel == amo.CHANNEL_UNLISTED
+        channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
         or channel == amo.CHANNEL_LISTED
         and not addon.has_listed_versions(include_deleted=True)
     )

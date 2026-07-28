@@ -3,7 +3,7 @@
 {% block title %}{{ dev_page_title(_('Describe Add-on'), addon) }}{% endblock %}
 
 {% block primary %}
-  {% set channel_param = 'listed' if version.channel == amo.CHANNEL_LISTED else 'unlisted' if version.channel == amo.CHANNEL_UNLISTED else 'enterprise' %}
+  {% set channel_param = amo.CHANNEL_CHOICES_API[version.channel] %}
   <h3>{{ _('Describe Version') }}</h3>
   <form method="post" id="submit-describe" class="item">
     {% csrf_token %}
