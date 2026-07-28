@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:14+0000\n"
+"POT-Creation-Date: 2026-07-28 16:04+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1114,6 +1114,9 @@ msgstr "Deleted"
 msgid "Unlisted"
 msgstr "Unlisted"
 
+msgid "Enterprise"
+msgstr "Enterprise"
+
 msgid "Signing API"
 msgstr "Signing API"
 
@@ -1617,6 +1620,13 @@ msgid ""
 msgstr ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
+msgstr ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
 
 msgid "Display Name"
 msgstr "Display Name"
@@ -3219,6 +3229,12 @@ msgstr "Latest Version:"
 msgid "This is the newest uploaded unlisted version"
 msgstr "This is the newest uploaded version, however it isn’t live on the site yet."
 
+msgid "Signed for enterprise."
+msgstr "Signed for enterprise."
+
+msgid "This is the newest uploaded enterprise version"
+msgstr "This is the newest uploaded enterprise version"
+
 msgid "Upload New Version"
 msgstr "Upload New Version"
 
@@ -3232,6 +3248,9 @@ msgstr "Last Review"
 #, fuzzy
 msgid "Unlisted Review Page"
 msgstr "Unlisted Queues"
+
+msgid "Enterprise Review Page"
+msgstr "Enterprise Review Page"
 
 #, fuzzy
 msgid "Admin Manage"
@@ -5044,6 +5063,10 @@ msgstr "WebM video controls at your fingertips."
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 
+#. editorial content for the primary hero shelves.
+msgid "Remove distractions, change viewing options, alter playback speed & more."
+msgstr "Remove distractions, change viewing options, alter playback speed & more."
+
 #. editorial content for the secondary hero shelves.
 #, fuzzy
 msgid "Extensions are like apps for Firefox."
@@ -5791,9 +5814,6 @@ msgstr "Beta"
 
 msgid "Firefox for Business"
 msgstr "Firefox for Business"
-
-msgid "Enterprise"
-msgstr "Enterprise"
 
 msgid "Community"
 msgstr "Community"

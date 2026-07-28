@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-22 10:14+0000\n"
+"POT-Creation-Date: 2026-07-28 16:04+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -1051,6 +1051,9 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+msgid "Enterprise"
+msgstr ""
+
 msgid "Signing API"
 msgstr ""
 
@@ -1545,6 +1548,11 @@ msgstr ""
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr ""
+
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -3004,6 +3012,12 @@ msgstr ""
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
+msgid "Signed for enterprise."
+msgstr ""
+
+msgid "This is the newest uploaded enterprise version"
+msgstr ""
+
 msgid "Upload New Version"
 msgstr ""
 
@@ -3023,6 +3037,9 @@ msgstr "Moderatutako berrikuspenak (%s)"
 #, fuzzy
 msgid "Unlisted Review Page"
 msgstr "Moderatutako berrikuspenak (%s)"
+
+msgid "Enterprise Review Page"
+msgstr ""
 
 #, fuzzy
 msgid "Admin Manage"
@@ -4731,6 +4748,10 @@ msgstr ""
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Remove distractions, change viewing options, alter playback speed & more."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -5465,9 +5486,6 @@ msgid "Beta"
 msgstr ""
 
 msgid "Firefox for Business"
-msgstr ""
-
-msgid "Enterprise"
 msgstr ""
 
 msgid "Community"
