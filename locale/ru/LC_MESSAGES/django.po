@@ -2024,6 +2024,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Корпоративное дополнение. <span class=\"helptext\">После того, как ваша заявка будет подписана Mozilla, вы можете загрузить .xpi-файл из Центра разработки и распространить его среди своей аудитории "
+"через политику Firefox Enterprise.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3961,11 +3963,11 @@ msgstr "Это новейшая загруженная скрытая верси
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Подписано для организации."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Это новейшая загруженная корпоративная версия"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3985,7 +3987,7 @@ msgstr "Страница проверки скрытых"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Страница проверки корпоративных версий"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6109,7 +6111,7 @@ msgstr "Замаскируйте Firefox под браузер Chrome, чтоб�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Убирайте отвлекающие элементы, настраивайте просмотр, меняйте скорость воспроизведения и многое другое."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
