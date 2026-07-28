@@ -2476,6 +2476,113 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.has_unlisted_versions(include_deleted=True)
 
 
+@override_switch('enterprise-channel', active=True)
+class TestEnterpriseBlocking(UploadMixin, TestCase):
+    def setUp(self):
+        self.user = user_factory(pk=settings.TASK_USER_ID)
+        self.addon = addon_factory()
+
+    def upload_version(self, addon, version_str, channel):
+        return Version.from_upload(
+            self.get_upload(
+                'webextension.xpi',
+                user=self.user,
+                channel=channel,
+            ),
+            addon,
+            channel,
+            selected_apps=[amo.FIREFOX.id],
+            parsed_data={'manifest_version': 2, 'version': version_str},
+        )
+
+    def test_block_non_enterprise_versions(self):
+        assert self.addon.current_version.channel == amo.CHANNEL_LISTED
+        assert not BlocklistSubmission.objects.filter(
+            input_guids=self.addon.guid
+        ).exists()
+
+        version_1 = self.upload_version(
+            self.addon, '1.0', channel=amo.CHANNEL_ENTERPRISE
+        )
+
+        submission = BlocklistSubmission.objects.filter(
+            input_guids=self.addon.guid
+        ).get()
+        assert len(submission.changed_version_ids) == 1
+        assert self.addon.current_version.id in submission.changed_version_ids
+        assert submission.auto_block_reason == BlockReason.ENTERPRISE_UPLOAD
+        self.assertCloseToNow(
+            submission.delayed_until, now=datetime.now() + timedelta(days=90)
+        )
+
+        version_2 = self.upload_version(
+            self.addon, '2.0', channel=amo.CHANNEL_ENTERPRISE
+        )
+
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+        assert self.addon.current_version.id in submission.changed_version_ids
+
+        version_1.delete()
+
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+        assert self.addon.current_version.id in submission.changed_version_ids
+
+        version_2.delete()
+
+        assert not BlocklistSubmission.objects.filter(
+            input_guids=self.addon.guid
+        ).exists()
+
+    def test_rollback_enterprise_block_processed(self):
+        assert self.addon.current_version.channel == amo.CHANNEL_LISTED
+        assert not BlocklistSubmission.objects.filter(
+            input_guids=self.addon.guid
+        ).exists()
+
+        version = self.upload_version(self.addon, '1.0', channel=amo.CHANNEL_ENTERPRISE)
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+        BlocklistSubmission.objects.filter(input_guids=self.addon.guid).update(
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        )
+        version.delete()
+
+        # Processed blocks don't roll back on deletion.
+        assert (
+            BlocklistSubmission.objects.filter(input_guids=self.addon.guid).count() == 1
+        )
+
+        unlisted_version = self.upload_version(
+            self.addon, '2.0', channel=amo.CHANNEL_UNLISTED
+        )
+        self.upload_version(self.addon, '3.0', channel=amo.CHANNEL_ENTERPRISE)
+
+        submissions = BlocklistSubmission.objects.filter(input_guids=self.addon.guid)
+        assert submissions.count() == 2
+
+        original_block = submissions.get(
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        )
+        new_block = submissions.exclude(
+            signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
+        ).get()
+
+        assert original_block.changed_version_ids == [self.addon.current_version.id]
+        assert new_block.auto_block_reason == BlockReason.ENTERPRISE_UPLOAD
+        assert (
+            new_block.signoff_state == BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED
+        )
+        assert new_block.changed_version_ids == [
+            unlisted_version.id,
+            self.addon.current_version.id,
+        ]
+
+
 class TestAddonDueDate(TestCase):
     fixtures = ['base/addon_3615']
 

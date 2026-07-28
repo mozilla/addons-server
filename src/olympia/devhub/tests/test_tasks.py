@@ -458,6 +458,14 @@ class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
 
         assert '--enable-data-collection-permissions=true' in self.FakePopen.get_args()
 
+    @mock.patch('olympia.devhub.tasks.subprocess')
+    def test_enterprise_linting_flag(self, subprocess_mock):
+        subprocess_mock.Popen = self.FakePopen
+
+        tasks.run_addons_linter(path=self.valid_path, channel=amo.CHANNEL_ENTERPRISE)
+
+        assert '--enterprise' in self.FakePopen.get_args()
+
 
 class TestValidateFilePath(ValidatorTestCase):
     def copy_addon_file(self, name):

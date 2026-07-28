@@ -1942,6 +1942,53 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 parsed_data=self.dummy_parsed_data,
             )
 
+    def test_enterprise_channel_only_allowed_for_extensions(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_ENTERPRISE,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    def test_enterprise_addon_disabled_waffle_switch(self):
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_ENTERPRISE,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+
+    @override_switch('enterprise-channel', active=True)
+    def test_enterprise_addon_cannot_have_non_enterprise_versions(self):
+        Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_ENTERPRISE,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_UNLISTED,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+
     def test_addon_is_attached_to_upload_if_it_wasnt(self):
         assert self.upload.addon is None
         version = Version.from_upload(

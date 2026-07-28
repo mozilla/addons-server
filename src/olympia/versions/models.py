@@ -174,6 +174,10 @@ class VersionManager(ManagerBase):
                 channel=amo.CHANNEL_UNLISTED,
                 addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
             )
+            | Q(
+                channel=amo.CHANNEL_ENTERPRISE,
+                addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
+            )
         )
         return qs
 
@@ -401,6 +405,20 @@ class Version(OnChangeMixin, ModelBase):
                 for app in amo.APP_USAGE
             }
         assert selected_apps or compatibility
+
+        if channel == amo.CHANNEL_ENTERPRISE and not waffle.switch_is_active(
+            'enterprise-channel'
+        ):
+            raise VersionCreateError('The enterprise channel is not enabled.')
+
+        if channel == amo.CHANNEL_ENTERPRISE and addon.type != amo.ADDON_EXTENSION:
+            raise VersionCreateError('Only extensions can be enterprise add-ons.')
+
+        if channel != amo.CHANNEL_ENTERPRISE and addon.has_enterprise_versions():
+            raise VersionCreateError(
+                'Add-ons with enterprise versions cannot have versions in '
+                'non-enterprise channels.'
+            )
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
@@ -649,6 +667,11 @@ class Version(OnChangeMixin, ModelBase):
 
             call_webhooks_on_version_created.delay(version_pk=version.pk)
 
+        # Once an enterprise version is uploaded, block existing
+        # non-enterprise versions after 90 days.
+        if channel == amo.CHANNEL_ENTERPRISE:
+            addon.block_non_enterprise_versions()
+
         return version
 
     def get_url_path(self):
@@ -699,6 +722,13 @@ class Version(OnChangeMixin, ModelBase):
             soft_block_versions.delay(
                 version_ids=[self.id], auto_block_reason=BlockReason.VERSION_DELETED
             )
+
+        # check if rollback of pending blocks is necessary.
+        if (
+            self.channel == amo.CHANNEL_ENTERPRISE
+            and not self.addon.has_enterprise_versions()
+        ):
+            self.addon.rollback_enterprise_block()
 
     @property
     def is_user_disabled(self):

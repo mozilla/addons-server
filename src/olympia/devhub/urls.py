@@ -24,7 +24,7 @@ detail_patterns = [
         name='devhub.addons.rejected_review_request',
     ),
     re_path(
-        r'^cancel-latest-(?P<channel>listed|unlisted)$',
+        r'^cancel-latest-(?P<channel>listed|unlisted|enterprise)$',
         views.cancel,
         name='devhub.addons.cancel',
     ),
@@ -48,7 +48,7 @@ detail_patterns = [
         name='devhub.addons.upload_icon',
     ),
     re_path(
-        r'^upload-(?P<channel>listed|unlisted)$',
+        r'^upload-(?P<channel>listed|unlisted|enterprise)$',
         views.upload_for_version,
         name='devhub.upload_for_version',
     ),
@@ -84,7 +84,7 @@ detail_patterns = [
         name='devhub.submit.version.distribution',
     ),
     re_path(
-        r'^versions/submit/upload-(?P<channel>listed|unlisted)$',
+        r'^versions/submit/upload-(?P<channel>listed|unlisted|enterprise)$',
         views.submit_version_upload,
         name='devhub.submit.version.upload',
     ),
@@ -180,7 +180,7 @@ urlpatterns = [
         name='devhub.submit.distribution',
     ),
     re_path(
-        r'^addon/submit/upload-(?P<channel>listed|unlisted)$',
+        r'^addon/submit/upload-(?P<channel>listed|unlisted|enterprise)$',
         views.submit_addon_upload,
         name='devhub.submit.upload',
     ),
@@ -227,6 +227,11 @@ urlpatterns = [
         r'^upload/unlisted$',
         partial(views.upload, channel='unlisted'),
         name='devhub.upload_unlisted',
+    ),
+    re_path(
+        r'^upload/enterprise$',
+        partial(views.upload, channel='enterprise'),
+        name='devhub.upload_enterprise',
     ),
     re_path(
         r'^upload/([^/]+)(?:/([^/]+))?$',
