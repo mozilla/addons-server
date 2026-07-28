@@ -2051,6 +2051,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Un componente aggiuntivo per aziende. <span class=\"helptext\">Dopo che la tua richiesta è stata firmata da Mozilla, puoi scaricare il file .xpi dall’Hub per sviluppatori e distribuirlo ai tuoi "
+"utenti tramite una policy di Firefox for Enterprise.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -4005,11 +4007,11 @@ msgstr "È l’ultima versione caricata e non elencata"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Firmato per aziende."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Questa è l’ultima versione per l’organizzazione caricata"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -4029,7 +4031,7 @@ msgstr "Pagina revisione non elencati"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Pagina di revisione per aziende"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6158,7 +6160,7 @@ msgstr "Fai apparire Firefox come se fosse Chrome per ingannare i siti che cerca
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Rimuovi le distrazioni, modifica le opzioni di visualizzazione, modifica la velocità di riproduzione e altro ancora."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119

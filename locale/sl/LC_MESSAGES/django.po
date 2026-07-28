@@ -2018,6 +2018,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Dodatek za podjetja. <span class=\"helptext\">Potem ko Mozilla podpiše vašo oddajo, lahko prenesete datoteko .xpi iz Razvojnega središča in jo prek pravilnika Firefoxa za podjetja distribuirate "
+"svojemu občinstvu.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3948,11 +3950,11 @@ msgstr "To je najnovejša naložena nenavedena različica"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Podpisano za podjetje."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "To je najnovejša naložena različica za podjetja"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3972,7 +3974,7 @@ msgstr "Čakalna vrsta za nenavedene"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Stran za pregled podjetij"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6090,7 +6092,7 @@ msgstr "Zakrinkajte Firefox v Chrome in pretentajte spletna mesta, ki poskušajo
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Odstranite motnje, spremenite možnosti ogleda, hitrost predvajanja in več."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
