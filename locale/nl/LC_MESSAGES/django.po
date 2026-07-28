@@ -2021,7 +2021,7 @@ msgid ""
 "Enterprise policy.</span>"
 msgstr ""
 "Een zakelijke add-on. <span class=\"helptext\">Nadat uw inzending is ondertekend door Mozilla, kunt u het .xpi-bestand downloaden vanuit de Ontwikkelaarshub en onder uw publiek verspreiden via een "
-"Firefox voor ondernemingen-beleid.</span>"
+"Firefox voor Ondernemingen-beleid.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
