@@ -1967,7 +1967,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
-        assert str(e.exception) == 'Enterprise extensions cannot have source uploads.'
+        assert str(e.exception) == 'Enterprise versions cannot have source uploads.'
 
     def test_enterprise_addon_disabled_waffle_switch(self):
         with self.assertRaises(VersionCreateError) as e:

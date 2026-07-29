@@ -415,9 +415,7 @@ class Version(OnChangeMixin, ModelBase):
             raise VersionCreateError('Only extensions can be enterprise add-ons.')
 
         if channel == amo.CHANNEL_ENTERPRISE and upload.source:
-            raise VersionCreateError(
-                'Enterprise extensions cannot have source uploads.'
-            )
+            raise VersionCreateError('Enterprise versions cannot have source uploads.')
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
