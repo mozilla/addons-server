@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-28 16:04+0000\n"
+"POT-Creation-Date: 2026-07-29 12:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -397,7 +397,7 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
+#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:223
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
@@ -7351,21 +7351,21 @@ msgid ""
 "characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:187
+#: src/olympia/signing/views.py:192
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:212
+#: src/olympia/signing/views.py:217
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:227
+#: src/olympia/signing/views.py:232
 msgid ""
 "You cannot add a listed version to this add-on via the API due to missing "
 "metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:282
+#: src/olympia/signing/views.py:287
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
