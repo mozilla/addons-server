@@ -1942,9 +1942,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 parsed_data=self.dummy_parsed_data,
             )
 
+    @override_switch('enterprise-channel', active=True)
     def test_enterprise_channel_only_allowed_for_extensions(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        with self.assertRaises(VersionCreateError):
+        with self.assertRaises(VersionCreateError) as e:
             Version.from_upload(
                 self.upload,
                 self.addon,
@@ -1952,9 +1953,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
+        assert str(e.exception) == 'Only extensions can be enterprise add-ons.'
+
+    @override_switch('enterprise-channel', active=True)
+    def test_enterprise_channel_disallow_source(self):
+        self.upload.source = 'src'
+
+        with self.assertRaises(VersionCreateError) as e:
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_ENTERPRISE,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+        assert str(e.exception) == 'Enterprise extensions cannot have source uploads.'
 
     def test_enterprise_addon_disabled_waffle_switch(self):
-        with self.assertRaises(VersionCreateError):
+        with self.assertRaises(VersionCreateError) as e:
             Version.from_upload(
                 self.upload,
                 self.addon,
@@ -1962,6 +1978,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
+        assert str(e.exception) == 'The enterprise channel is not enabled.'
 
     def test_addon_is_attached_to_upload_if_it_wasnt(self):
         assert self.upload.addon is None
