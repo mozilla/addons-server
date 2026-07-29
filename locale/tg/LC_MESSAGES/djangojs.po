@@ -284,7 +284,7 @@ msgstr ""
 #: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Барномаҳо аз {0} то {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:48
