@@ -1995,7 +1995,7 @@ msgstr "由您自己託管。<span class=\"helptext\">當您送出的內容由 M
 msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
-msgstr ""
+msgstr "企業內部使用的附加元件。<span class=\"helptext\">當 Mozilla 簽署您送審的內容後，就可以到「開發者交流中心」下載 .xpi 檔，依照 Firefox for Enterprise 政策發布給您的使用者使用。</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3880,11 +3880,11 @@ msgstr "這是最新的未上架版本"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "已簽署企業附加元件。"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "這是最新上傳的企業版本"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3904,7 +3904,7 @@ msgstr "未上架元件審核頁面"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "企業套件審核頁面"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6001,7 +6001,7 @@ msgstr "將 Firefox 扮裝成 Chrome 瀏覽器，躲避會封鎖 Firefox 的網�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "移除干擾、更改檢視選項、調整播放速度等功能。"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
