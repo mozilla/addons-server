@@ -2015,6 +2015,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Ett företagstillägg. <span class=\"helptext\">När din inskickning har signerats av Mozilla kan du ladda ner .xpi-filen från utvecklarhubben och distribuera den till din publik via en Firefox "
+"företagspolicy.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3959,11 +3961,11 @@ msgstr "Detta är den senaste uppladdade olistade versionen"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Signerad för företag."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Detta är den senaste uppladdade företagsversionen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3983,7 +3985,7 @@ msgstr "Granskningssida för olistade"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Granskningssida för företag"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6101,7 +6103,7 @@ msgstr "Maskera Firefox till webbläsaren Chrome för att falska webbplatser som
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Ta bort distraktioner, ändra visningsalternativ, ändra uppspelningshastighet och mer."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
