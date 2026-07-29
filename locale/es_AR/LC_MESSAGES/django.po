@@ -6121,7 +6121,7 @@ msgstr "Disfrazá Firefox como el navegador Chrome para engañar a sitios web qu
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Eliminá distracciones, cambiá opciones de visualización, alterá la velocidad de reproducción y más."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
