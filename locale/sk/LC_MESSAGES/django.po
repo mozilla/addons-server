@@ -2020,6 +2020,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Doplnok pre podniky. <span class=\"helptext\">Po podpísaní vášho príspevku spoločnosťou Mozilla si môžete stiahnuť súbor .xpi z Centra pre vývojárov a distribuovať ho svojmu publiku prostredníctvom "
+"pravidiel pre Firefox pre podniky.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3947,11 +3949,11 @@ msgstr "Toto je najnovšia nahraná neverejná verzia"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Podpísané pre podniky."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Toto je najnovšia nahraná podniková verzia"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3971,7 +3973,7 @@ msgstr "Stránka pre kontrolu neverejných verzií"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Stránka pre kontrolu podnikových verzií"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6088,7 +6090,7 @@ msgstr "Zamaskujte Firefox ako prehliadač Chrome, aby ste vedeli zobraziť aj w
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Odstráňte rušivé elementy, zmeňte možnosti zobrazenia, upravte rýchlosť prehrávania a ďalšie."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
