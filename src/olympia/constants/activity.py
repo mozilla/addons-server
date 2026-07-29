@@ -1329,6 +1329,15 @@ class SESSION_ANOMALY(_LOG):
     store_ip = True
 
 
+class DECISION_CREATED(_LOG):
+    id = 216
+    format = _('Decision on {addon} made with no new action taken.')
+    short = _('Decision made')
+    keep = True
+    review_queue = True
+    reviewer_review_action = True
+
+
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]
 # Make sure there's no duplicate IDs.
 assert len(LOGS) == len({log.id for log in LOGS})
