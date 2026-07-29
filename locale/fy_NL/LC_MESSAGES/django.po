@@ -2021,6 +2021,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"In saaklike add-on. <span class=\"helptext\">Neidat jo ynstjoering ûndertekene is troch Mozilla, kinne jo it .xpi-bestân downloade fan de Untwikkelershub út en ûnder jo publyk ferspriede fia in "
+"Firefox foar Undernimmingen-belied.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3952,11 +3954,11 @@ msgstr "Dit is de nijste opladen net-fermelde ferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Undertekene foar ûndernimmingen."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Dit is de nijste opladen ûndernimmingsferzje"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3976,7 +3978,7 @@ msgstr "Side foar net-fermelde beoardielingen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Beoardielingsside foar ûndernimmingen"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
