@@ -2026,6 +2026,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Dodank za pśedewześa. <span class=\"helptext\">Za tym až jo se wašo zapódaśe wót Mozilla signěrowało, móžośo dataju .xpi z wuwijańskego centruma ześěgnuś a na swój publikum pśez pšawidła Firefox za "
+"pśedewześa rozdźěliś.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3964,11 +3966,11 @@ msgstr "To jo nejnowša nagrata njenalicona wersija"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Za pśedewześe signěrowany."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "To jo nejnowša nagrata pśedewześowa wersija"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3988,7 +3990,7 @@ msgstr "Pśeglědowański bok za njenalicone dodanki"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Bok pśeglědowanja za pśedewześa"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"

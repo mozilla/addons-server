@@ -3965,7 +3965,7 @@ msgstr "To je najnowša nahrata njenalistowana wersija"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr "Za předewzaće signowana."
+msgstr "Za předewzaće signowany."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
