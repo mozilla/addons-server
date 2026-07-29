@@ -6099,7 +6099,7 @@ msgstr "Fermomje Firefox as de Chrome-browser om websites dy’t Firefox probear
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Smyt ôfliedingen, wizigje werjefteopsjes, wizigje de ôfspylsnelheid en mear."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
