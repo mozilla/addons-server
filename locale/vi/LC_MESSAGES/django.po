@@ -2017,6 +2017,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Một tiện ích mở rộng dành cho doanh nghiệp. <span class=\"helptext\">Sau khi Mozilla phê duyệt bản gửi của bạn, bạn có thể tải xuống tập tin .xpi từ Developer Hub và phân phối tập tin đó cho người "
+"dùng của mình thông qua chính sách Firefox dành cho doanh nghiệp.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3945,11 +3947,11 @@ msgstr "Đây là phiên bản không công khai được tải lên mới nhấ
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Đã ký cho doanh nghiệp."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Đây là phiên bản doanh nghiệp mới nhất được tải lên"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3969,7 +3971,7 @@ msgstr "Trang đánh giá chưa liệt kê"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Trang đánh giá doanh nghiệp"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6083,7 +6085,7 @@ msgstr "Ngụy trang Firefox thành trình duyệt Chrome để đánh lừa cá
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Loại bỏ các yếu tố gây xao nhãng, thay đổi tùy chọn hiển thị, điều chỉnh tốc độ phát lại và nhiều hơn nữa."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
