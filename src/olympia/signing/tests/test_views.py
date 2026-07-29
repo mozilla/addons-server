@@ -16,7 +16,7 @@ from rest_framework.response import Response
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonUser, DeniedGuid
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
@@ -430,6 +430,35 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.data['error'] == (
             'You cannot submit an add-on using an ID ending with this suffix'
         )
+
+    def test_restricted_guid_addon_not_allowed_no_guid_in_xpi(self):
+        guid = 'systemaddon@mozilla.com'
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            guid=guid,
+            version='1.0',
+            filename='src/olympia/files/fixtures/files/webextension_no_id.xpi',
+        )
+        assert response.status_code == 400
+        assert response.data['error'] == (
+            'You cannot submit an add-on using an ID ending with this suffix'
+        )
+
+    def test_denied_guid_addon_not_allowed_no_guid_in_xpi(self):
+        guid = 'some@addon'
+        DeniedGuid.objects.create(guid=guid)
+        qs = Addon.unfiltered.filter(guid=guid)
+        assert not qs.exists()
+        response = self.request(
+            'PUT',
+            guid=guid,
+            version='1.0',
+            filename='src/olympia/files/fixtures/files/webextension_no_id.xpi',
+        )
+        assert response.status_code == 400
+        assert response.data['error'] == ('Duplicate add-on ID found.')
 
     def test_restricted_guid_addon_update_allowed(self):
         """Updates to restricted IDs are allowed from anyone."""
