@@ -6114,7 +6114,7 @@ msgstr "Tarnujśo Firefox ako wobglědowak Chrome, aby websedła torił, kótare
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1116
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Wótwónoźćo wótchylenja, změńśo naglědowe nastajenja, změńśo malsnosć wótgrawanja a wěcej."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1119
