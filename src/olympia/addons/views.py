@@ -563,7 +563,7 @@ class AddonVersionViewSet(
             self.permission_classes = [
                 GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
             ]
-        elif requested == 'all_with_unlisted':
+        elif requested in ('all_with_unlisted', 'enterprise_only'):
             # To see unlisted versions, you need to be add-on author or
             # unlisted reviewer.
             self.permission_classes = [
@@ -602,7 +602,7 @@ class AddonVersionViewSet(
         ).has_object_permission(request, self, obj):
             raise http.Http404
 
-        if obj.channel == amo.CHANNEL_UNLISTED:
+        if obj.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
             # If the instance is unlisted, only allow unlisted reviewers and
             # authors..
             self.permission_classes = [
@@ -625,11 +625,15 @@ class AddonVersionViewSet(
     def get_queryset(self):
         """Return the right base queryset depending on the situation."""
         requested = self.request.GET.get('filter')
-        valid_filters = (
+        valid_filters = [
             'all_with_deleted',
             'all_with_unlisted',
             'all_without_unlisted',
-        )
+        ]
+
+        if not is_gate_active(self.request, 'enterprise-channel-shim'):
+            valid_filters.append('enterprise_only')
+
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
@@ -655,6 +659,8 @@ class AddonVersionViewSet(
             queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
             queryset = addon.versions.filter(channel=amo.CHANNEL_LISTED)
+        elif requested == 'enterprise_only':
+            queryset = addon.versions.filter(channel=amo.CHANNEL_ENTERPRISE)
         else:
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED

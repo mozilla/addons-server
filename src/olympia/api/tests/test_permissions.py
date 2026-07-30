@@ -601,11 +601,40 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.method = 'GET'
         assert self.permission.has_object_permission(self.request, myview, obj)
 
+    def test_enterprise_reviewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        obj = Mock(spec=[])
+        obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: True
+
+        # Enterprise is restricted in similar manner to unlisted.
+        assert self.permission.has_permission(self.request, myview)
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
+    def test_enterprise_viewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'ReviewerTools:ViewUnlisted')
+        obj = Mock(spec=[])
+        obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: True
+
+        # Enterprise is restricted in similar manner to unlisted.
+        assert self.permission.has_permission(self.request, myview)
+
+        # self.request is a POST, viewers should not have access to that.
+        assert not self.permission.has_object_permission(self.request, myview, obj)
+
+        # GET requests should be allowed.
+        self.request.method = 'GET'
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
     def test_object_with_listed_versions_but_no_unlisted_versions(self):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: False
         obj.has_listed_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
@@ -616,6 +645,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.grant_permission(self.request.user, 'ReviewerTools:ViewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: False
         obj.has_listed_versions = lambda include_deleted=False: True
 
         assert self.permission.has_permission(self.request, myview)
@@ -626,6 +656,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: False
         obj.has_listed_versions = lambda include_deleted=False: False
 
         assert self.permission.has_permission(self.request, myview)
@@ -636,6 +667,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.grant_permission(self.request.user, 'ReviewerTools:ViewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: False
         obj.has_listed_versions = lambda include_deleted=False: False
 
         assert self.permission.has_permission(self.request, myview)
@@ -675,11 +707,24 @@ class TestAllowUnlistedViewerOrReviewerReadOnly(TestAllowUnlistedViewerOrReviewe
         self.request.method = 'GET'
         assert self.permission.has_object_permission(self.request, myview, obj)
 
+    def test_enterprise_reviewer(self):
+        self.request.user = user_factory()
+        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        obj = Mock(spec=[])
+        obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: True
+
+        assert self.permission.has_permission(self.request, myview)
+        assert not self.permission.has_object_permission(self.request, myview, obj)
+        self.request.method = 'GET'
+        assert self.permission.has_object_permission(self.request, myview, obj)
+
     def test_object_with_no_unlisted_versions_and_no_listed_versions(self):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
         obj = Mock(spec=[])
         obj.has_unlisted_versions = lambda include_deleted=False: False
+        obj.has_enterprise_versions = lambda include_deleted=False: False
         obj.has_listed_versions = lambda include_deleted=False: False
         assert self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
