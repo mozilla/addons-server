@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-30 15:45+0000\n"
+"POT-Creation-Date: 2026-07-30 19:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1430,7 +1430,7 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr ""
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1157
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1160
 msgid "Deleted"
 msgstr ""
 
@@ -3001,7 +3001,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/owner.html:78
-#: src/olympia/devhub/templates/devhub/versions/edit.html:134
+#: src/olympia/devhub/templates/devhub/versions/edit.html:136
 #: src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr ""
@@ -3097,7 +3097,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
-#: src/olympia/devhub/templates/devhub/versions/edit.html:134
+#: src/olympia/devhub/templates/devhub/versions/edit.html:136
 #: src/olympia/devhub/templates/devhub/versions/list.html:297
 #: src/olympia/devhub/templates/devhub/versions/list.html:346
 #: src/olympia/translations/templates/translations/trans-menu.html:50
@@ -3111,7 +3111,7 @@ msgstr ""
 #: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
-#: src/olympia/devhub/templates/devhub/versions/edit.html:136
+#: src/olympia/devhub/templates/devhub/versions/edit.html:138
 #: src/olympia/devhub/templates/devhub/versions/list.html:297
 #: src/olympia/devhub/templates/devhub/versions/list.html:307
 #: src/olympia/devhub/templates/devhub/versions/list.html:346
@@ -4845,11 +4845,11 @@ msgid ""
 "add-on, such as test account information."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:120
+#: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "Source code"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:121
+#: src/olympia/devhub/templates/devhub/versions/edit.html:122
 msgid ""
 "If your add-on contains minified, concatenated or otherwise machine-generated"
 " code, make the source available here for reviewers."
@@ -7982,33 +7982,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1142
+#: src/olympia/versions/models.py:1145
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr ""
 
-#: src/olympia/versions/models.py:1147
+#: src/olympia/versions/models.py:1150
 msgid "Auto-approved, Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1149
+#: src/olympia/versions/models.py:1152
 msgid "Auto-approved, not Confirmed"
 msgstr ""
 
-#: src/olympia/versions/models.py:1152
+#: src/olympia/versions/models.py:1155
 msgid "Approved, Manual"
 msgstr ""
 
-#: src/olympia/versions/models.py:1159
+#: src/olympia/versions/models.py:1162
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1518
+#: src/olympia/versions/models.py:1521
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr ""
 
-#: src/olympia/versions/models.py:1645
+#: src/olympia/versions/models.py:1648
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""
