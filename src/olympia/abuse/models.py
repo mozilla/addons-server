@@ -219,7 +219,7 @@ class CinderJob(ModelBase):
         )
         return not self.is_appeal and (is_disabled or is_human_reviewed)
 
-    def handle_already_moderated(self, abuse_report, entity_helper):
+    def handle_already_moderated(self, abuse_report, entity_helper, metadata=None):
         decision = ContentDecision.objects.create(
             addon=(self.target_addon if self.target_addon_id else abuse_report.addon),
             rating=getattr(abuse_report, 'rating', None),
@@ -230,6 +230,7 @@ class CinderJob(ModelBase):
             reviewer_user_id=settings.TASK_USER_ID,
             cinder_job=self,
             override_of=self.final_decision,
+            metadata=metadata or {},
         )
         decision.policies.set(
             CinderPolicy.objects.filter(
