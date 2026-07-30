@@ -115,6 +115,32 @@ class TestVersion(TestCase):
         doc = self.get_doc()
         assert '<strong>Invisible:</strong>' in doc.html()
 
+    def test_enterprise_source_hidden(self):
+        assert self.version.channel == amo.CHANNEL_LISTED
+        url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
+        response = self.client.get(url)
+        assert pq(response.content)('#id_source')
+
+        unlisted_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        url = reverse(
+            'devhub.versions.edit', args=(self.addon.slug, unlisted_version.pk)
+        )
+        response = self.client.get(url)
+        assert pq(response.content)('#id_source')
+
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+        )
+        url = reverse(
+            'devhub.versions.edit', args=(self.addon.slug, enterprise_version.pk)
+        )
+        response = self.client.get(url)
+        assert not pq(response.content)('#id_source')
+
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
         response = self.client.get(url)
