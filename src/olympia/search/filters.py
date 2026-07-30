@@ -647,11 +647,14 @@ class SearchQueryFilter(BaseFilterBackend):
         Return the query used for exact name matching, after analysis.
 
         Same intent as generate_exact_name_match_query(), but against analyzed
-        fields, so that stemming and punctuation differences still count as an
-        exact match ("adblocker" finding "AdBlock" in english). Since a phrase
-        query would otherwise also match a name merely *containing* the query,
-        both the indexed name and the query are wrapped in sentinel tokens: the
-        phrase can then only match if it spans the whole name.
+        fields, so that stemming and tokenizer differences still count as an
+        exact match ("adblocker" finding "AdBlock" in english, both stemmed to
+        "adblock"; "frame-demolition" finding "Frame Demolition", since the
+        tokenizer splits on the hyphen the same way it splits on the space).
+        Since a phrase query would otherwise also match a name merely
+        *containing* the query, both the indexed name and the query are
+        wrapped in sentinel tokens: the phrase can then only match if it spans
+        the whole name.
 
         Like generate_exact_name_match_query(), it has 2 modes depending on
         whether we have an analyzer for the language we're searching in.
@@ -687,20 +690,25 @@ class SearchQueryFilter(BaseFilterBackend):
             )
         return clause
 
-    def generate_whole_name_match_query(self, search_query, lang):
+    def generate_guarded_sentinel_exact_match_query(self, search_query, lang):
         """
-        Return the query matching the add-on name in its entirety.
+        Return the sentinel exact match, but only scored when the raw exact
+        match (generate_exact_name_match_query()) does *not* also match.
 
-        Note: as in generate_exact_name_match_query(), the DisMax means an
-        add-on matching both the non-analyzed and the analyzed variant only
-        gets the highest of the two boosts, not their sum.
+        Without this guard, the sentinel would win a "highest boost" DisMax
+        more often than intended: BM25 sums a phrase query's idf across all of
+        its terms, and the sentinel phrase always has more terms (the name's
+        words plus the 2 sentinel tokens) than the raw match's single keyword
+        token, so its combined idf regularly exceeds the raw match's despite
+        the sentinel's boost being half as much. Guarding it behind must_not
+        keeps it a pure fallback: it only ever adds relevance for names the
+        raw match can't already find exactly, and never changes the score for
+        names that already match exactly.
         """
-        return query.DisMax(
-            _name='DisMax(ExactName, ExactNameSentinel)',
-            queries=[
-                self.generate_exact_name_match_query(search_query, lang),
-                self.generate_sentinel_exact_match_query(search_query, lang),
-            ],
+        return query.Bool(
+            _name='Bool(ExactNameSentinel, !ExactName)',
+            must=[self.generate_sentinel_exact_match_query(search_query, lang)],
+            must_not=[self.generate_exact_name_match_query(search_query, lang)],
         )
 
     def primary_should_rules(self, search_query, lang):
@@ -712,15 +720,18 @@ class SearchQueryFilter(BaseFilterBackend):
         Applied rules:
 
         * Exact match on the name, using the right translation if possible
-          (boost=100.0), or on the analyzed name if the query covers it
-          entirely (boost=50.0)
+          (boost=100.0); if that didn't match, an analyzed (stemmed) exact
+          match on the name as a fallback (boost=50.0)
         * Then text matches, using a language specific analyzer if possible
           (boost=5.0)
         * Phrase matches that allows swapped terms (boost=8.0)
         * Then text matches, using the standard text analyzer (boost=6.0)
         * Then look for the query as a prefix of a name (boost=3.0)
         """
-        should = [self.generate_whole_name_match_query(search_query, lang)]
+        should = [
+            self.generate_exact_name_match_query(search_query, lang),
+            self.generate_guarded_sentinel_exact_match_query(search_query, lang),
+        ]
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match

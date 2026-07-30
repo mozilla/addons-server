@@ -8,7 +8,7 @@ from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
-class TestRankingScenarios(ESTestCase):
+class RankingScenarioTestCase(ESTestCase):
     client_class = APITestClientSessionID
 
     def _check_scenario(self, query, expected, **kwargs):
@@ -79,6 +79,8 @@ class TestRankingScenarios(ESTestCase):
 
         return results
 
+
+class TestRankingScenarios(RankingScenarioTestCase):
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
@@ -678,7 +680,7 @@ class TestRankingScenarios(ESTestCase):
         cls.refresh()
 
     def test_scenario_tabby_cat(self):
-        self._check_scenario('Tabby cat', (['Tabby Cat', 44668],))
+        self._check_scenario('Tabby cat', (['Tabby Cat', 43308],))
 
     def test_scenario_tabbycat(self):
         self._check_scenario(
@@ -732,7 +734,7 @@ class TestRankingScenarios(ESTestCase):
         # Tab Mix Plus and Redux DevTools used to be found in this test but we
         # now require all terms to be present through minimum_should_match on
         # the fuzzy name query (and they have nothing else to match).
-        self._check_scenario('tab center redux', (['Tab Center Redux', 12084],))
+        self._check_scenario('tab center redux', (['Tab Center Redux', 10832],))
 
     def test_scenario_websocket(self):
         # Should *not* find add-ons that simply mention 'Source', 'Persona',
@@ -743,7 +745,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Open Image in New Tab',
             (
-                ['Open Image in New Tab', 7631],
+                ['Open Image in New Tab', 5573],
                 ['Open image in a new tab', 1736],
             ),
         )
@@ -804,11 +806,11 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario('Menu Wizzard', (['Menu Wizard', 1531],))  # (fuzzy, typo)
 
     def test_scenario_frame_demolition(self):
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4751],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
-        self._check_scenario('Frame Demolition', (['Frame Demolition', 4751],))
+        self._check_scenario('Frame Demolition', (['Frame Demolition', 4621],))
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (['reStyle', 4051],))
@@ -874,7 +876,7 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario(
             'Disable Hello, Pocket & Reader+',
-            (['Disable Hello, Pocket & Reader+', 11806],),  # yeay!
+            (['Disable Hello, Pocket & Reader+', 8682],),  # yeay!
         )
 
     def test_scenario_grapple(self):
@@ -911,7 +913,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'merge all windows',
             (
-                ['Merge All Windows', 1446],
+                ['Merge All Windows', 1281],
                 ['Merge Windows', 188],
             ),
         )
@@ -921,7 +923,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'test addon test21',
             (
-                ['test addon test21', 1438],
+                ['test addon test21', 1288],
                 ['test addon test31', 184],
                 ['test addon test11', 174],
             ),
@@ -932,7 +934,7 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(
             'Amazon 1-Click Lock',
             (
-                ['Amazon 1-Click Lock', 6313],
+                ['Amazon 1-Click Lock', 4812],
                 ['1-Click YouTube Video Download', 127],
             ),
         )
@@ -943,14 +945,14 @@ class TestRankingScenarios(ESTestCase):
         # translation exists.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 1079],),
+            (['Foobar unique english', 788],),
             lang='en-US',
         )
 
         # Then in canadian english. Should get the same score.
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique english', 1079],),
+            (['Foobar unique english', 788],),
             lang='en-CA',
         )
 
@@ -967,7 +969,7 @@ class TestRankingScenarios(ESTestCase):
         # the default_locale for this addon (fr).
         self._check_scenario(
             'foobar unique english',
-            (['Foobar unique francais', 1079],),
+            (['Foobar unique francais', 788],),
             lang='en-GB',
             expected_lang='fr',
         )
@@ -976,7 +978,7 @@ class TestRankingScenarios(ESTestCase):
         # match, the translation exists, it's even the default locale.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1374],),
+            (['Foobar unique francais', 1069],),
             lang='fr',
         )
 
@@ -989,7 +991,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'he' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1366],),
+            (['Foobar unique francais', 1061],),
             lang='he',
             expected_lang='fr',
         )
@@ -1003,7 +1005,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'it' in settings.AMO_LANGUAGES
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique francais', 1366],),
+            (['Foobar unique francais', 1061],),
             lang='it',
             expected_lang='fr',
         )
@@ -1013,7 +1015,7 @@ class TestRankingScenarios(ESTestCase):
         # Note that the name returned follows the language requested.
         self._check_scenario(
             'foobar unique francais',
-            (['Foobar unique english', 1366],),
+            (['Foobar unique english', 1061],),
             lang='en-US',
         )
 
@@ -1090,3 +1092,48 @@ class TestRankingScenarios(ESTestCase):
         # rounded down is 1, so we would only need one matching trigram to
         # return a result...
         self._check_scenario('xyeta', ())
+
+
+class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
+    # Kept in its own corpus, isolated from TestRankingScenarios: BM25 idf
+    # depends on the total number of documents in the index, so adding
+    # fixtures to the shared corpus would shift every score in that class by
+    # a small amount.
+    @classmethod
+    def setUpTestData(cls):
+        super().setUpTestData()
+
+        cls.empty_index('default')
+
+        # "AdBlocker" and "AdBlock" both stem to "adblock" under the english
+        # analyzer, so this is a case the raw (non-analyzed) exact match can't
+        # find on its own, but the sentinel can.
+        amo.tests.addon_factory(
+            name='AdBlock',
+            average_daily_users=500,
+            weekly_downloads=100,
+            description=None,
+            summary=None,
+        )
+        # A decoy that only partially matches ("adblock" is a word in its
+        # name, stemmed) and is far more popular, so that if it beats AdBlock
+        # we know popularity/field-length norms alone aren't doing the job of
+        # finding the true (stemmed) exact match.
+        amo.tests.addon_factory(
+            name='AdBlocker Ultimate',
+            average_daily_users=5000,
+            weekly_downloads=1000,
+            description=None,
+            summary=None,
+        )
+
+        cls.refresh()
+
+    def test_stemming_finds_exact_name_over_more_popular_partial_match(self):
+        self._check_scenario(
+            'adblocker',
+            (
+                ['AdBlock', 373],
+                ['AdBlocker Ultimate', 239],
+            ),
+        )
