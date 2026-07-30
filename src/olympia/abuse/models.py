@@ -1483,13 +1483,16 @@ class ContentDecision(ModelBase):
             return
 
         action_helper = self.get_action_helper()
-        log_entry = self.activities.exclude(
-            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
-        ).last()
 
         if self.cinder_job:
             self.cinder_job.notify_reporters(action_helper)
 
+        if not notify_owners:
+            return
+
+        log_entry = self.activities.exclude(
+            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+        ).last()
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
             is_auto_approval = (
@@ -1526,10 +1529,9 @@ class ContentDecision(ModelBase):
         else:
             extra_context = {}
 
-        if notify_owners:
-            action_helper.notify_owners(
-                log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
-            )
+        action_helper.notify_owners(
+            log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
+        )
 
     def get_target_review_url(self):
         return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})

@@ -5,8 +5,7 @@ from django.core.management.base import BaseCommand
 import olympia.core.logger
 from olympia import amo
 from olympia.abuse.actions import ContentActionRejectVersionDelayed
-from olympia.abuse.models import CinderJob, ContentDecision
-from olympia.activity.models import ActivityLog
+from olympia.abuse.models import ContentDecision
 from olympia.addons.models import Addon, AddonReviewerFlags
 from olympia.constants.abuse import DECISION_ACTIONS
 
@@ -60,56 +59,55 @@ class Command(BaseCommand):
         )
 
     def notify_developers(self, *, addon, versions):
-        # Fetch the activity log to retrieve the comments to include in the
-        # email. There is no global one, so we just take the latest we can find
-        # for those versions with a delayed rejection action.
-        relevant_activity_log = (
-            ActivityLog.objects.for_versions(versions)
-            .filter(
-                action__in=(
-                    amo.LOG.REJECT_CONTENT_DELAYED.id,
-                    amo.LOG.REJECT_VERSION_DELAYED.id,
-                )
+        rejection_decisions = (
+            ContentDecision.objects.filter(
+                action_date__isnull=False,
+                overridden_by__isnull=True,
+                target_versions__in=versions,
+                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             )
-            .last()
+            .order_by('id')
+            .distinct()
         )
-        if (
-            not relevant_activity_log
-            or not relevant_activity_log.details
-            or not relevant_activity_log.details.get('comments')
-        ):
+
+        if not rejection_decisions.exists():
             log.info(
                 'Skipping notification about versions pending rejections for '
-                'add-on %s since there is no activity log or comments.',
+                'add-on %s since there are no decisions.',
                 addon.pk,
             )
             return
         log.info('Sending email for %s' % addon)
-        cinder_job = (
-            CinderJob.objects.filter(pending_rejections__version__in=versions)
-            .distinct()
-            .first()
-        )
-        # We just need the decision to send an accurate email
-        decision = (
-            final_decision
-            if cinder_job and (final_decision := cinder_job.final_decision)
-            # Fake a decision if there isn't a job
-            else ContentDecision(
-                addon=addon,
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+
+        for decision in rejection_decisions:
+            action_helper = ContentActionRejectVersionDelayed(decision)
+            relevant_activity_log = decision.activities.filter(
+                action__in=(
+                    amo.LOG.REJECT_CONTENT_DELAYED.id,
+                    amo.LOG.REJECT_VERSION_DELAYED.id,
+                )
+            ).last()
+            if not relevant_activity_log:
+                log.warning(
+                    'No relevant activity log found for decision %s, skipping '
+                    'notification for add-on %s',
+                    decision.pk,
+                    addon.pk,
+                )
+                continue
+            decision_versions = decision.target_versions.filter(
+                id__in=versions
+            ).values_list('version', flat=True)
+            action_helper.notify_owners(
+                log_entry_id=relevant_activity_log.id,
+                extra_context={
+                    'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
+                    'version_list': ', '.join(decision_versions),
+                    'policy_texts': relevant_activity_log.details.get(
+                        'policy_texts', ()
+                    ),
+                },
             )
-        )
-        decision.reasoning = relevant_activity_log.details.get('comments', '')
-        action_helper = ContentActionRejectVersionDelayed(decision)
-        action_helper.notify_owners(
-            log_entry_id=relevant_activity_log.id,
-            extra_context={
-                'delayed_rejection_days': self.EXPIRING_PERIOD_DAYS,
-                'version_list': ', '.join(str(v.version) for v in versions),
-                'policy_texts': relevant_activity_log.details.get('policy_texts', ()),
-            },
-        )
 
         # Note that we did this so that we don't notify developers of this
         # add-on again until next rejection.
