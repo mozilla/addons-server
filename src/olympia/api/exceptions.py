@@ -80,6 +80,12 @@ def custom_exception_handler(exc, context=None):
         # still logging it to Sentry.
         data = base_500_data()
 
+        # Because we return a Response below instead of returning None (which
+        # is what DRF's own handler does for non-API exceptions), the exception
+        # never propagates out of the view, so ATOMIC_REQUESTS would commit
+        # whatever the view managed to write before blowing up. Roll it back.
+        set_rollback()
+
         # Send the got_request_exception signal so other apps like sentry
         # are aware of the exception. The sender does not match what a real
         # exception would do (we don't have access to the handler here) but it
