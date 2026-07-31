@@ -376,7 +376,7 @@ class NegativeContentActionMixin:
         assert len(mail.outbox) == 0
 
         user = user_factory()
-        self.grant_permission(user, ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user, ADDONS_HIGH_IMPACT_APPROVE)
         self.ActionClass(self.decision).notify_2nd_level_approvers()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -631,7 +631,7 @@ class TestContentActionBanUser(
         self.user.update(email='foo@baa')
         assert action_helper.should_hold_action() is False
         del self.user.groups_list
-        self.grant_permission(self.user, 'this:thing')
+        self.grant_permission(self.user, amo.permissions.NONE)
         assert action_helper.should_hold_action() is True
 
         self.user.groups_list = []

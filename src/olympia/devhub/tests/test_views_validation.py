@@ -244,7 +244,8 @@ class TestFileValidation(TestCase):
         self.client.logout()
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
-            UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            amo.permissions.REVIEWER_TOOLS_VIEW,
         )
         assert self.client.head(self.url, follow=False).status_code == 200
 
@@ -252,7 +253,8 @@ class TestFileValidation(TestCase):
         self.client.logout()
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
-            UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            amo.permissions.REVIEWER_TOOLS_VIEW,
         )
         assert self.client.head(self.json_url, follow=False).status_code == 200
 
@@ -262,7 +264,8 @@ class TestFileValidation(TestCase):
         self.client.logout()
         self.client.force_login(UserProfile.objects.get(email='regular@mozilla.com'))
         self.grant_permission(
-            UserProfile.objects.get(email='regular@mozilla.com'), 'ReviewerTools:View'
+            UserProfile.objects.get(email='regular@mozilla.com'),
+            amo.permissions.REVIEWER_TOOLS_VIEW,
         )
         assert self.client.head(self.json_url, follow=False).status_code == 200
 
@@ -355,7 +358,7 @@ class TestFileValidation(TestCase):
         self.client.force_login(UserProfile.objects.get(email='reviewer@mozilla.com'))
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted',
+            amo.permissions.ADDONS_REVIEW_UNLISTED,
         )
 
         self.addon.delete()
@@ -366,7 +369,9 @@ class TestFileValidation(TestCase):
 
     def test_unlisted_viewers_can_see_json_results_for_deleted_addon(self):
         unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
-        self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            unlisted_viewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         self.client.logout()
         self.client.force_login(
             UserProfile.objects.get(email='unlisted_viewer@mozilla.com')

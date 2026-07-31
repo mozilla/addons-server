@@ -438,18 +438,11 @@ def activate_locale(locale=None, app=None):
     translation.activate(old_locale)
 
 
-def grant_permission(user_obj, rules, name):
-    def flatten_to_string(str_or_permission):
-        if isinstance(str_or_permission, str):
-            return str_or_permission
-        elif isinstance(str_or_permission, amo.permissions.AclPermission):
-            return ':'.join(str_or_permission)
-        elif isinstance(str_or_permission, (tuple, list)):
-            return ','.join(flatten_to_string(item) for item in str_or_permission)
-        else:
-            return ''
+def grant_permission(user_obj, permission, name):
+    if not isinstance(permission, amo.permissions.AclPermission):
+        raise ValueError('Invalid rules provided to grant_permission')
 
-    group = Group.objects.create(name=name, rules=flatten_to_string(rules))
+    group = Group.objects.create(name=name, rules=str(permission))
     GroupUser.objects.create(group=group, user=user_obj)
 
 
@@ -584,9 +577,9 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     def create_flag(self, *args, **kwargs):
         return create_flag(*args, **kwargs)
 
-    def grant_permission(self, user_obj, rules, name='Test Group'):
-        """Creates group with rule, and adds user to group."""
-        grant_permission(user_obj, rules, name)
+    def grant_permission(self, user_obj, permission, name='Test Group'):
+        """Creates group with rules, and adds user to group."""
+        grant_permission(user_obj, permission, name)
 
     def days_ago(self, days):
         return days_ago(days)

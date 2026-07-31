@@ -87,7 +87,7 @@ class TestAppVersionsAPIPut(APIKeyAuthTestMixin, TestCase):
             'appversions', kwargs={'application': 'firefox', 'version': '42.0'}
         )
         self.create_api_user()
-        self.grant_permission(self.user, 'AppVersions:Create')
+        self.grant_permission(self.user, amo.permissions.APPVERSIONS_CREATE)
         AppVersion.objects.all().delete()
 
     def test_not_authenticated(self):

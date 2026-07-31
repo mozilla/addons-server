@@ -47,7 +47,6 @@ def any_reviewer_required(f):
     - Addons:ReviewUnlisted
     - Addons:ContentReview
     - Addons:ThemeReview
-    - Addons:RecommendedReview
     """
 
     @functools.wraps(f)

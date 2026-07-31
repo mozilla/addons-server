@@ -375,10 +375,8 @@ class AddonAndVersionViewSetDetailMixin:
 
     def test_get_unlisted_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='user')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -418,10 +416,8 @@ class AddonAndVersionViewSetDetailMixin:
 
     def test_get_deleted_addons_api_view(self):
         user = UserProfile.objects.create(username='user')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_DELETED)
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -621,10 +617,8 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_show_latest_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='author')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -809,7 +803,7 @@ class AddonViewSetCreateUpdateMixin(RequestMixin):
             'name': ['Add-on names cannot contain the Mozilla or Firefox trademarks.']
         }
 
-        self.grant_permission(self.user, 'Trademark:Bypass')
+        self.grant_permission(self.user, amo.permissions.TRADEMARK_BYPASS)
         response = self.request(name=name)
         assert response.status_code == self.SUCCESS_STATUS_CODE, response.content
         assert response.data['name'] == name
@@ -3058,10 +3052,8 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_reviewer(self):
         user = UserProfile.objects.create(username='user')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_DELETED)
         self.client.login_api(user)
         self.version.delete()
         self._test_url()
@@ -3103,10 +3095,8 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
@@ -4925,7 +4915,7 @@ class TestVersionViewSetRollback(TestCase):
         }
 
     def test_new_version_string_must_be_unique(self):
-        self.grant_permission(self.user, 'API:BypassThrottling')
+        self.grant_permission(self.user, amo.permissions.API_BYPASS_THROTTLING)
         self.first_version.delete()  # deleted shouldn't matter
         # the version number should be unique across channels
         unlisted_version = version_factory(
@@ -5008,7 +4998,7 @@ class TestVersionViewSetRollback(TestCase):
     def test_rollback_partial_permission_reviewer(self):
         # Reviewer can read but cannot rollback.
         user = user_factory(id=settings.TASK_USER_ID)
-        self.grant_permission(user, 'Addons:ContentReview')
+        self.grant_permission(user, amo.permissions.ADDONS_CONTENT_REVIEW)
         self.client.login_api(user)
 
         response = self.client.post(self.url)
@@ -5223,10 +5213,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_addons_api_view(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_DELETED)
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
@@ -5264,10 +5252,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_with_unlisted_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
 
         self._test_url_contains_all(filter='all_with_unlisted')
@@ -5281,10 +5267,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_with_unlisted_when_no_unlisted_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
         # delete the unlisted version so only the listed versions remain.
         self.unlisted_version.delete()
@@ -5336,10 +5320,8 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_without_unlisted_when_no_listed_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(
-            user,
-            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
-        )
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
         # delete the listed versions so only the unlisted version remains.
         self.version.delete()
@@ -5560,7 +5542,7 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert not self.addon.privacy_policy
 
     def test_update_reviewer_not_author(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.patch(
             self.url,
@@ -8410,7 +8392,7 @@ class TestAddonPendingAuthorViewSet(TestCase):
         )
         # but the author can send, even if they have elevated permissions themselves
         self.client.login_api(self.user)
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         response = self.client.post(self.list_url, data={'user_id': user.id})
         assert response.status_code == 201
 

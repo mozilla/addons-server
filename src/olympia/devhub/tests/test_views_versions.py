@@ -1516,7 +1516,7 @@ class TestVersionEditDetails(TestVersionEditBase):
     def test_email_is_sent_to_relevant_people_for_source_code_upload(self):
         # Have a reviewer review a version.
         reviewer = user_factory()
-        self.grant_permission(reviewer, 'Addons:Review')
+        self.grant_permission(reviewer, amo.permissions.ADDONS_REVIEW)
         ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION_DELAYED, self.addon, self.version, user=reviewer
         )
