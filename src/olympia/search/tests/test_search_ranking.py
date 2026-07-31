@@ -1095,19 +1095,16 @@ class TestRankingScenarios(RankingScenarioTestCase):
 
 
 class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
-    # Kept in its own corpus, isolated from TestRankingScenarios: BM25 idf
-    # depends on the total number of documents in the index, so adding
-    # fixtures to the shared corpus would shift every score in that class by
-    # a small amount.
+    # Own corpus: BM25 idf depends on the document count, so adding fixtures
+    # to TestRankingScenarios's shared corpus would shift its scores.
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
 
         cls.empty_index('default')
 
-        # "AdBlocker" and "AdBlock" both stem to "adblock" under the english
-        # analyzer, so this is a case the raw (non-analyzed) exact match can't
-        # find on its own, but the sentinel can.
+        # "AdBlocker" and "AdBlock" both stem to "adblock" in english, so only
+        # the sentinel (not the raw, non-analyzed exact match) can find this.
         amo.tests.addon_factory(
             name='AdBlock',
             average_daily_users=500,
@@ -1115,10 +1112,8 @@ class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
             description=None,
             summary=None,
         )
-        # A decoy that only partially matches ("adblock" is a word in its
-        # name, stemmed) and is far more popular, so that if it beats AdBlock
-        # we know popularity/field-length norms alone aren't doing the job of
-        # finding the true (stemmed) exact match.
+        # More popular decoy that only partially matches, to prove popularity
+        # and field-length norms alone don't already solve this.
         amo.tests.addon_factory(
             name='AdBlocker Ultimate',
             average_daily_users=5000,

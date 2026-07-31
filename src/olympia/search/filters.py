@@ -647,14 +647,10 @@ class SearchQueryFilter(BaseFilterBackend):
         Return the query used for exact name matching, after analysis.
 
         Same intent as generate_exact_name_match_query(), but against analyzed
-        fields, so that stemming and tokenizer differences still count as an
-        exact match ("adblocker" finding "AdBlock" in english, both stemmed to
-        "adblock"; "frame-demolition" finding "Frame Demolition", since the
-        tokenizer splits on the hyphen the same way it splits on the space).
-        Since a phrase query would otherwise also match a name merely
-        *containing* the query, both the indexed name and the query are
-        wrapped in sentinel tokens: the phrase can then only match if it spans
-        the whole name.
+        fields, so stemming still counts as an exact match ("adblocker"
+        finding "AdBlock" in english). The indexed name and the query are
+        wrapped in sentinel tokens so the phrase can only match the whole
+        name, not a name merely containing the query.
 
         Like generate_exact_name_match_query(), it has 2 modes depending on
         whether we have an analyzer for the language we're searching in.
@@ -695,15 +691,9 @@ class SearchQueryFilter(BaseFilterBackend):
         Return the sentinel exact match, but only scored when the raw exact
         match (generate_exact_name_match_query()) does *not* also match.
 
-        Without this guard, the sentinel would win a "highest boost" DisMax
-        more often than intended: BM25 sums a phrase query's idf across all of
-        its terms, and the sentinel phrase always has more terms (the name's
-        words plus the 2 sentinel tokens) than the raw match's single keyword
-        token, so its combined idf regularly exceeds the raw match's despite
-        the sentinel's boost being half as much. Guarding it behind must_not
-        keeps it a pure fallback: it only ever adds relevance for names the
-        raw match can't already find exactly, and never changes the score for
-        names that already match exactly.
+        A phrase query's BM25 score sums the idf of all its terms, so the
+        multi-term sentinel phrase can outscore the single-term raw match
+        despite its lower boost. The guard keeps it a pure fallback.
         """
         return query.Bool(
             _name='Bool(ExactNameSentinel, !ExactName)',

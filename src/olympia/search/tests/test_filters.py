@@ -47,8 +47,13 @@ class FilterTestsBase(SimpleTestCase):
 class TestQueryFilter(FilterTestsBase):
     filter_classes = [SearchQueryFilter]
 
-    def _expected_exact_name_query(self, query):
-        return {
+    def _test_q(self, qs, query):
+        should = qs['query']['function_score']['query']['bool']['should']
+        sentinel_query = f'{amo.SENTINEL_BEGIN} {query} {amo.SENTINEL_END}'
+
+        assert len(should) == 9
+
+        assert should[0] == {
             'dis_max': {
                 '_name': 'DisMax(Term(name.raw), Term(name_l10n_en-us.raw), '
                 'Term(name_l10n_en-ca.raw), '
@@ -63,41 +68,61 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-    def _expected_sentinel_exact_name_query(self, query):
-        sentinel_query = f'{amo.SENTINEL_BEGIN} {query} {amo.SENTINEL_END}'
-        return {
-            'dis_max': {
-                '_name': (
-                    'DisMax(MatchPhrase(name_exact_sentinel), '
-                    'MatchPhrase(name_exact_sentinel_l10n_en-us), '
-                    'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
-                    'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
-                ),
-                'boost': 50.0,
-                'queries': [
-                    {'match_phrase': {field: sentinel_query}}
-                    for field in (
-                        'name_exact_sentinel',
-                        'name_exact_sentinel_l10n_en-us',
-                        'name_exact_sentinel_l10n_en-ca',
-                        'name_exact_sentinel_l10n_en-gb',
-                    )
-                ],
-            }
-        }
-
-    def _test_q(self, qs, query):
-        should = qs['query']['function_score']['query']['bool']['should']
-
-        assert len(should) == 9
-
-        assert should[0] == self._expected_exact_name_query(query)
-
         assert should[1] == {
             'bool': {
                 '_name': 'Bool(ExactNameSentinel, !ExactName)',
-                'must': [self._expected_sentinel_exact_name_query(query)],
-                'must_not': [self._expected_exact_name_query(query)],
+                'must': [
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(MatchPhrase(name_exact_sentinel), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                            ),
+                            'boost': 50.0,
+                            'queries': [
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-us': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-ca': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-gb': sentinel_query
+                                    }
+                                },
+                            ],
+                        }
+                    }
+                ],
+                'must_not': [
+                    {
+                        'dis_max': {
+                            '_name': 'DisMax(Term(name.raw), '
+                            'Term(name_l10n_en-us.raw), '
+                            'Term(name_l10n_en-ca.raw), '
+                            'Term(name_l10n_en-gb.raw))',
+                            'boost': 100.0,
+                            'queries': [
+                                {'term': {'name.raw': query}},
+                                {'term': {'name_l10n_en-us.raw': query}},
+                                {'term': {'name_l10n_en-ca.raw': query}},
+                                {'term': {'name_l10n_en-gb.raw': query}},
+                            ],
+                        }
+                    }
+                ],
             }
         }
 
@@ -405,7 +430,22 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
 
-        assert self._expected_exact_name_query('adblock plus') in should
+        expected = {
+            'dis_max': {
+                '_name': 'DisMax(Term(name.raw), Term(name_l10n_en-us.raw), '
+                'Term(name_l10n_en-ca.raw), '
+                'Term(name_l10n_en-gb.raw))',
+                'boost': 100.0,
+                'queries': [
+                    {'term': {'name.raw': 'adblock plus'}},
+                    {'term': {'name_l10n_en-us.raw': 'adblock plus'}},
+                    {'term': {'name_l10n_en-ca.raw': 'adblock plus'}},
+                    {'term': {'name_l10n_en-gb.raw': 'adblock plus'}},
+                ],
+            }
+        }
+
+        assert expected in should
 
         # In a language we don't have a language-specific analyzer for, it
         # should fall back to the "name.raw" field that uses the default locale
@@ -430,22 +470,71 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
 
+        sentinel_query = f'{amo.SENTINEL_BEGIN} adblock plus {amo.SENTINEL_END}'
         assert should[1] == {
             'bool': {
                 '_name': 'Bool(ExactNameSentinel, !ExactName)',
-                'must': [self._expected_sentinel_exact_name_query('adblock plus')],
-                'must_not': [self._expected_exact_name_query('adblock plus')],
+                'must': [
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(MatchPhrase(name_exact_sentinel), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                            ),
+                            'boost': 50.0,
+                            'queries': [
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-us': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-ca': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-gb': sentinel_query
+                                    }
+                                },
+                            ],
+                        }
+                    }
+                ],
+                'must_not': [
+                    {
+                        'dis_max': {
+                            '_name': 'DisMax(Term(name.raw), '
+                            'Term(name_l10n_en-us.raw), '
+                            'Term(name_l10n_en-ca.raw), '
+                            'Term(name_l10n_en-gb.raw))',
+                            'boost': 100.0,
+                            'queries': [
+                                {'term': {'name.raw': 'adblock plus'}},
+                                {'term': {'name_l10n_en-us.raw': 'adblock plus'}},
+                                {'term': {'name_l10n_en-ca.raw': 'adblock plus'}},
+                                {'term': {'name_l10n_en-gb.raw': 'adblock plus'}},
+                            ],
+                        }
+                    }
+                ],
             }
         }
 
         # In a language we don't have a language-specific analyzer for, it
-        # should fall back to the "name_exact_sentinel" field that uses the
-        # default locale translation, same as the exact match's must_not does.
+        # should fall back to the "name_exact_sentinel" field.
         with translation.override('mn'):
             qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
 
-        sentinel_query = f'{amo.SENTINEL_BEGIN} adblock plus {amo.SENTINEL_END}'
         assert should[1] == {
             'bool': {
                 '_name': 'Bool(ExactNameSentinel, !ExactName)',
@@ -478,14 +567,65 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'Blah'})
         should = qs['query']['function_score']['query']['bool']['should']
 
+        sentinel_query = f'{amo.SENTINEL_BEGIN} blah {amo.SENTINEL_END}'
         # Contrary to MatchPhrase(name), which is skipped for single word
         # queries, the sentinels make this one safe to use: it can't match an
         # add-on whose name merely contains "blah".
         assert should[1] == {
             'bool': {
                 '_name': 'Bool(ExactNameSentinel, !ExactName)',
-                'must': [self._expected_sentinel_exact_name_query('blah')],
-                'must_not': [self._expected_exact_name_query('blah')],
+                'must': [
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(MatchPhrase(name_exact_sentinel), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                            ),
+                            'boost': 50.0,
+                            'queries': [
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-us': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-ca': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-gb': sentinel_query
+                                    }
+                                },
+                            ],
+                        }
+                    }
+                ],
+                'must_not': [
+                    {
+                        'dis_max': {
+                            '_name': 'DisMax(Term(name.raw), '
+                            'Term(name_l10n_en-us.raw), '
+                            'Term(name_l10n_en-ca.raw), '
+                            'Term(name_l10n_en-gb.raw))',
+                            'boost': 100.0,
+                            'queries': [
+                                {'term': {'name.raw': 'blah'}},
+                                {'term': {'name_l10n_en-us.raw': 'blah'}},
+                                {'term': {'name_l10n_en-ca.raw': 'blah'}},
+                                {'term': {'name_l10n_en-gb.raw': 'blah'}},
+                            ],
+                        }
+                    }
+                ],
             }
         }
 
