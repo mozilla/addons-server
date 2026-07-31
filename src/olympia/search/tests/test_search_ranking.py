@@ -1103,32 +1103,48 @@ class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
 
         cls.empty_index('default')
 
-        # "AdBlocker" and "AdBlock" both stem to "adblock" in english, so only
-        # the sentinel (not the raw, non-analyzed exact match) can find this.
+        # Everything below has the same popularity and no summary or
+        # description, so only the name can affect the ranking.
+        # The add-on a search for "tabs manager" is after: "tabs" stems to
+        # "tab" in english, making it a whole-name match. Only the sentinel
+        # can see that, the raw exact match needs identical strings.
         amo.tests.addon_factory(
-            name='AdBlock',
+            name='Tab Manager',
             average_daily_users=500,
-            weekly_downloads=100,
+            weekly_downloads=500,
             description=None,
             summary=None,
         )
-        # More popular decoy that only partially matches, to prove popularity
-        # and field-length norms alone don't already solve this.
-        amo.tests.addon_factory(
-            name='AdBlocker Ultimate',
-            average_daily_users=5000,
-            weekly_downloads=1000,
-            description=None,
-            summary=None,
-        )
+        # Managers of something else entirely, which happen to also mention
+        # tabs. Match(name) uses operator=and, so it matches them on both
+        # "tabs" and "manager" no matter how far apart those are in the name,
+        # a clause Tab Manager can't match without stemming.
+        for name in (
+            'Download Manager for Tabs',
+            'Password Manager with Tabs',
+            'Bookmark Manager and Tabs Organizer',
+        ):
+            amo.tests.addon_factory(
+                name=name,
+                average_daily_users=500,
+                weekly_downloads=500,
+                description=None,
+                summary=None,
+            )
 
         cls.refresh()
 
-    def test_stemming_finds_exact_name_over_more_popular_partial_match(self):
+    def test_sentinel_ranks_stemmed_exact_match_above_partial_matches(self):
+        # Without the sentinel "Tab Manager" has no whole-name match to boost
+        # it, and that one extra clause the others pick up outweighs its much
+        # better norms: it drops to *last* with a score of ~48, behind three
+        # add-ons that aren't even tab managers.
         self._check_scenario(
-            'adblocker',
+            'tabs manager',
             (
-                ['AdBlock', 373],
-                ['AdBlocker Ultimate', 239],
+                ['Tab Manager', 296],
+                ['Download Manager for Tabs', 85],
+                ['Password Manager with Tabs', 84],
+                ['Bookmark Manager and Tabs Organizer', 73],
             ),
         )
