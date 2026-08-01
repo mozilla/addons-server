@@ -4700,7 +4700,7 @@ msgstr "Effektiv og lett annonseblokkering. uBlock Origin bruker tusenvis av inn
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Nyt en serie av nye funksjoner, som kino-modus, annonse-blokkering, kontroll av automatisk avspilling og mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6090,7 +6090,7 @@ msgstr "Forkled Firefox som Chrome-nettleseren for å lure nettsteder som prøve
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Fjern distraksjoner, endre visningsalternativer, juster avspillingshastighet og mer."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6115,7 +6115,7 @@ msgstr "Startpakke for utvidelser"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Produktivitetsutvidelser"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
