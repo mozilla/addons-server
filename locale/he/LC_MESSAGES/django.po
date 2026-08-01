@@ -4616,7 +4616,7 @@ msgstr "חוסם פרסומות יעיל וקל. uBlock Origin אוכף אלפי
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "הנאה ממגוון של תכונות חדשות כגון מצב קולנוע, חסימת פרסומות, בקרת נגינה אוטומטית ועוד."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6031,7 +6031,7 @@ msgstr "ערכת הרחבות למתחילים"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "הרחבות פרודוקטיביות"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
