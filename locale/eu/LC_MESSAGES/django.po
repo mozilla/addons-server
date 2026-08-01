@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-07-30 19:10+0000\n"
+"POT-Creation-Date: 2026-08-01 14:01+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -3629,8 +3629,7 @@ msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of co
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4533,6 +4532,10 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr ""
 
@@ -4770,8 +4773,7 @@ msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#. editorial content for the homepage shelves.
-msgid "Twitch extensions"
+msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -4972,6 +4974,10 @@ msgstr ""
 
 #. editorial content for the homepage shelves.
 msgid "See more starter extension staff picks"
+msgstr ""
+
+#. editorial content for the homepage shelves.
+msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
