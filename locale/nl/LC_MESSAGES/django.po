@@ -4712,7 +4712,7 @@ msgstr "Een lichtgewicht en effectieve adblocker. uBlock Origin hanteert duizend
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Geniet van een pakket nieuwe functies, zoals bioscoopmodus, advertentieblokkering, beheer voor automatisch afspelen en meer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6130,7 +6130,7 @@ msgstr "Extensie-startpakket"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Productiviteitsextensies"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137

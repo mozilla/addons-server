@@ -4706,7 +4706,7 @@ msgstr "Um bloqueador de anúncios leve e eficaz. O uBlock Origin impõe milhare
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Aproveite uma variedade de novos recursos, como modo cinema, bloqueio de anúncios, reprodução automática, e mais."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6123,7 +6123,7 @@ msgstr "Pacote de extensões para iniciar"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Extensões de produtividade"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137

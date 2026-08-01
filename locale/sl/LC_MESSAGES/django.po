@@ -4705,7 +4705,7 @@ msgstr "Učinkovito in lahko blokiranje oglasov. uBlock Origin uporablja tisoče
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Uživajte v nizu novih funkcij, kot so način kina, zavračanje oglasov, nadzor samodejnega predvajanja in več."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6121,7 +6121,7 @@ msgstr "Paket razširitev za začetek"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Razširitve za produktivnost"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
