@@ -1984,7 +1984,7 @@ msgstr "名前と概要を合わせた文字数が最大 {limit_value} 文字以
 #: src/olympia/devhub/forms.py:1414
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
-msgstr ""
+msgstr "このサイトでは、<span class=\"helptext\">あなたの投稿が {site_domain} に公開されています。</span>"
 
 #: src/olympia/devhub/forms.py:1421
 #, python-brace-format
@@ -3353,7 +3353,7 @@ msgstr "このアドオンの審査にあたって担当者に何か伝えたい
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:213 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:26
 msgid "Important"
-msgstr ""
+msgstr "重要"
 
 #: src/olympia/devhub/templates/devhub/addons/submit/describe.html:214 src/olympia/devhub/templates/devhub/addons/submit/describe_minimal.html:27
 #, python-format
@@ -3978,7 +3978,7 @@ msgstr "{label_open}非公開:{label_close} 検索結果に含まれず、詳細
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:5
 msgid "Some Markdown supported."
-msgstr ""
+msgstr "一部 Markdown 形式に対応しています。"
 
 #: src/olympia/devhub/templates/devhub/includes/macros.html:55
 msgid "Remove this application"
@@ -4019,7 +4019,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
-msgstr ""
+msgstr "リリースノート"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
