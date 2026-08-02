@@ -4733,7 +4733,7 @@ msgstr "Un bloqueador de publicidad ligero y eficiente. uBlock Origin ejecuta mi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Disfrutá de una serie de funciones nuevas, como el modo cine, el bloqueo de publicidad, el control de la reproducción automática y mucho más."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6095,7 +6095,7 @@ msgstr "Administrá tu Gmail (incluso varias cuentas) directamente desde una ven
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1100
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
-msgstr ""
+msgstr "Limpiá la interfaz de YouTube. Eliminá elementos no deseados como videos relacionados, shorts y más."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1103
@@ -6150,7 +6150,7 @@ msgstr "Paquete inicial de extensiones"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Extensiones de productividad"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
