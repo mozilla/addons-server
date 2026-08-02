@@ -1148,3 +1148,70 @@ class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
                 ['Bookmark Manager and Tabs Organizer', 73],
             ),
         )
+
+
+class TestSentinelRankingProductionScenario(RankingScenarioTestCase):
+    # Real add-on names and average_daily_users, taken from a production
+    # search for "tab manager" (2026-08-01). Own corpus, see the comment on
+    # TestSentinelStemmingRankingScenario for why.
+    @classmethod
+    def setUpTestData(cls):
+        super().setUpTestData()
+
+        cls.empty_index('default')
+
+        # 2 real, small tab managers: "Tab manager" stems to the same tokens
+        # as "Tab Manager" ("tab", "manag"), so both are whole-name matches
+        # for the query below, but only the sentinel can see that for the one
+        # that isn't already spelled with a singular "Tab".
+        amo.tests.addon_factory(
+            name='Tab Manager',
+            average_daily_users=106,
+            description=None,
+        )
+        amo.tests.addon_factory(
+            name='Tab manager',
+            average_daily_users=194,
+            description=None,
+        )
+        # Real, more popular add-ons that also mention tabs and/or managing,
+        # but aren't tab managers.
+        for name, users in (
+            ('Task Manager Tab & Custom Web Search', 28072),
+            ('SleepyTabs - Tab Suspender & Manager', 1781),
+            ('Tab Session Manager', 150325),
+            ('Tabby - Window & Tab Manager', 13032),
+            ('Workona Spaces & Tab Manager', 1851),
+            ('Tab Manager Plus for Firefox', 4030),
+            ('Tab Mute Manager', 258),
+        ):
+            amo.tests.addon_factory(
+                name=name,
+                average_daily_users=users,
+                description=None,
+            )
+
+        cls.refresh()
+
+    def test_sentinel_ranks_real_tab_managers_above_bigger_unrelated_managers(self):
+        # Without the sentinel, neither "Tab manager" nor "Tab Manager" has a
+        # whole-name match, so they're buried at position 6 and 8 (last),
+        # behind unrelated add-ons that only share a word - including a
+        # 1-star "Task Manager Tab" extension that hijacks the search bar.
+        # With the sentinel they jump to position 1 and 2, right after
+        # "SleepyTabs" (a real tab manager in its own right, which the
+        # sentinel correctly leaves alone).
+        self._check_scenario(
+            'tabs manager',
+            (
+                ['SleepyTabs - Tab Suspender & Manager', 252],
+                ['Tab manager', 129],
+                ['Tab Manager', 115],
+                ['Tab Session Manager', 45],
+                ['Tabby - Window & Tab Manager', 34],
+                ['Task Manager Tab & Custom Web Search', 30],
+                ['Tab Manager Plus for Firefox', 28],
+                ['Workona Spaces & Tab Manager', 25],
+                ['Tab Mute Manager', 22],
+            ),
+        )
