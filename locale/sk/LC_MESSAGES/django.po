@@ -4704,7 +4704,7 @@ msgstr "Efektívny a rýchly nástroj na blokovanie reklám. uBlock Origin nasad
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Vychutnajte si sadu nových funkcií, ako je režim kina, blokovanie reklám, ovládanie automatického prehrávania a ďalšie."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6119,7 +6119,7 @@ msgstr "Štartovací balíček rozšírení"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Rozšírenia pre produktivitu"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
