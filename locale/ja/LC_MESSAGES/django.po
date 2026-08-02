@@ -1997,7 +1997,7 @@ msgstr ""
 msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
-msgstr ""
+msgstr "エンタープライズ向けアドオンです。<span class=\"helptext\">Mozilla による署名後、開発者ハブから .xpi ファイルをダウンロードしてください。エンタープライズ版 Firefox のポリシーを通じてユーザーに配布できます。</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
