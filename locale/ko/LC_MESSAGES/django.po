@@ -4587,7 +4587,7 @@ msgstr "가볍고 효과적인 광고 차단기입니다. uBlock Origin은 메�
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "시네마 모드, 광고 차단, 자동 재생 제어 등과 같은 새로운 기능을 즐겨보세요."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6003,7 +6003,7 @@ msgstr "확장 기능 스타터 팩"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "생산성 확장 기능"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
