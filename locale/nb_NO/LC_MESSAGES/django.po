@@ -3947,11 +3947,11 @@ msgstr "Dette er den nyeste opplastede ikke-oppførte versjonen"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Signert for virksomheter."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Dette er den nyeste opplastede versjonen for virksomheter"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3971,7 +3971,7 @@ msgstr "Gjennomgangsside for ikke-oppført"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Gjennomgangsside for virksomheter"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
