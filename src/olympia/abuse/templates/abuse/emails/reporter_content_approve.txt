@@ -4,5 +4,5 @@ Thank you for taking the time to report {{ name }}, at {{ target_url }}.
 We reviewed your report and the content in question and found that it is within Mozilla's policies ({{ policy_document_url }}), so it won't be subject to any moderation action. However, we appreciate you flagging it for us.
 {% endblocktranslate %}
 
-{% if appeal_url %}{% blocktranslate %}If you disagree, you have the right to appeal this decision within 6 months from the date of this email. See {{ appeal_url }} for details on the appeal process, including how to file an appeal for this specific decision.{% endblocktranslate %}{% endif %}
+{% if appeal_url %}{% blocktranslate %}If you believe the contect adheres to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See {{ appeal_url }} for details on the appeal process, including how to file an appeal for this specific decision.{% endblocktranslate %}{% endif %}
 {% endblock %}

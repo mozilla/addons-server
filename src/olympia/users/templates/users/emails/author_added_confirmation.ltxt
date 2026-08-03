@@ -1,8 +1,8 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters! #}{% blocktrans with addon_name=addon.name author_name=author.user.name domain=DOMAIN %}Hello {{ author_name }},
 
-Great news, you've been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting will let you help edit the add-on, and your name may appear in the authors list on the website.
+Great news, you've been invited to become an author of {{ addon_name }} on {{ domain }}. Accepting will let you edit the add-on, and your name may appear in the authors list on the website.
 
-If you'd like to join, just click the link below to accept the invitation:
+If you'd like to accept the invitation, just click the link below:
 
 {{ author_confirmation_link }}
 
