@@ -223,7 +223,7 @@ Rule results
     :query boolean was_signed: Only results whose file is signed.
     :query boolean addon_disabled_by_user: Only results whose add-on listing is
         invisible (``true``) or visible (``false``).
-    :query string channel: Version channel, ``unlisted`` or ``listed``.
+    :query string channel: Version channel. Can be either ``unlisted``, ``listed``, or ``enterprise``.
     :query string addon_status: Add-on status (e.g. ``public``, ``disabled``).
     :query string file_status: File status (e.g. ``public``, ``disabled``).
     :query string sort: Ordering field. One of ``id``, ``addon_adu``
@@ -237,7 +237,7 @@ Rule results
     :>json object results[].version: Minimal version representation (may be ``null``).
     :>json int results[].version.id: The version id.
     :>json string results[].version.version: The version number.
-    :>json string results[].version.channel: The version channel (``listed`` or ``unlisted``).
+    :>json string results[].version.channel: The version channel (``listed``, ``unlisted``, or ``enterprise``).
     :>json string results[].version.created: When the version was created.
     :>json object results[].version.addon: The add-on (``id``, ``guid``, ``average_daily_users``).
     :>json object results[].matches: The matched files and metadata, keyed by rule name.
