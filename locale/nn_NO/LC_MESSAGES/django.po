@@ -2016,6 +2016,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Eit tillegg for verksemder. <span class=\"helptext\">Når innsendinga er signert av Mozilla, kan du laste ned .xpi-fila frå «Utviklarhubb» og distribuere ho til brukarane via ein Firefox for "
+"verksemder-policy.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3944,11 +3946,11 @@ msgstr "Dette er den nyaste opplasta ikkje-oppførte versjonen"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Signert for verksemder."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Dette er den nyaste opplasta versjonen for verksemder"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3968,7 +3970,7 @@ msgstr "Vureringsside for ikkje-oppførte"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Gjennomgangsside for verksemder"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -4699,7 +4701,7 @@ msgstr "Effektiv og lett annonseblokkering. uBlock Origin brukar tusenvis av inn
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Nyt ein serie av nye funksjonar, som kino-modus, annonse-blokkering, kontroll av automatisk avspeling og meir."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6089,7 +6091,7 @@ msgstr "Forkle Firefox som Chrome-nettlesaren for å lure nettstadar som prøver
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Fjern distraksjonar, endre visningsalternativ, juster avspelingsfart, og meir."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6114,7 +6116,7 @@ msgstr "Startpakke for utvidingar"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Produktivitetsutvidingar"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
