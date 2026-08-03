@@ -2,7 +2,7 @@ Hello,
 
 Thank you for taking the time to report {{ name }}, at {{ target_url }}.
 
-Our moderation team had already reviewed this content in an earlier assessment, and any issues found have either been addressed or are being resolved. Because it's already been handled, we won't process this report separately but we appreciate you flagging it.
+Our moderation team had already reviewed this content in an earlier assessment, and any issues found have either been addressed or are being resolved. Because it's already been handled, we won't process this report but we appreciate you flagging it.
 
 Thank you.
 

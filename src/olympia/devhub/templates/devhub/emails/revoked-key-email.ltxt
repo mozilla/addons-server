@@ -4,7 +4,8 @@ The following API key was revoked from your account and can no longer be used:
 
 {{ key }}
 
-If you expected this, no action is needed. If this wasn't you or you still need API access, you can create a new key here:
+If you expected this, no action is needed. 
+If you believe this key was revoked in error, you can create a new one here:
 
 {{ url }}
 

@@ -3,7 +3,7 @@ Hello,
 Your {{ type }} had previously been suspended or removed from Mozilla Add-ons following a finding that it did not meet Mozilla's policies.
 
 Thank you for appealing. After carefully reviewing your appeal, we found that it did not provide a sufficient basis to overturn our earlier finding, and the original decision stands. {% if manual_reasoning_text %}{{ manual_reasoning_text }}. {% endif %}For that reason, we are unable to reinstate your {{ type }}.
-{% if is_addon_enabled %}If you submit a new version of this add-on (or have already done so), that version will be reviewed separately on its own merits.{% endif %}
+{% if is_addon_enabled %}If you submit a new version of this add-on (or have already done so), that version will be reviewed independently.{% endif %}
 
 {% if has_attachment %}
 A reviewer has attached a file. {% if dev_url %}You can view it or reply by visiting {{ dev_url }}.{% endif %}

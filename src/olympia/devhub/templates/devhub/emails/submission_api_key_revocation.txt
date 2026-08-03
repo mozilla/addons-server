@@ -3,7 +3,7 @@
 We wanted to let you know right away: we noticed that your secret AMO API credentials were included in an add-on submitted to addons.mozilla.org. To keep your account and your add-on(s) safe, we've gone ahead and revoked the affected credentials. There's nothing wrong on your end — this just happens sometimes, and we're here to help you get back on track.
 You can generate fresh API credentials any time at {{ api_keys_url }}
 
-To help keep your credentials secure going forward, it's best to keep them private and avoid including them in any public repository, add-on, or other public place. Whenever you have a moment, it's worth reviewing your code repositories and extensions to remove any references to your AMO credentials.
+To help keep your credentials secure moving forward, it's best to keep them private and avoid including them in any public repository, add-on, or other public place. Whenever you have a moment, it's worth reviewing your code repositories and extensions to remove any references to your AMO credentials.
 
 If you have any questions, we're happy to help.
 

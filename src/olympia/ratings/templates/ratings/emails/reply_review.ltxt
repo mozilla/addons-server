@@ -5,7 +5,7 @@ Their reply:
 {% if reply_title %}{{ reply_title }}
 {% endif %}{{ reply }}
 
-You can read the full review here:
+You can read the full review at:
 {{ rating_url }}
 
 Thanks for sharing your feedback and helping make Firefox add-ons better!

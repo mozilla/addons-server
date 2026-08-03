@@ -2,7 +2,7 @@ Hello,
 
 Thank you for taking the time to report {{ name }}, at {{ target_url }}.
 
-Based on the information provided, we weren't able to identify a violation of our policies ({{ policy_document_url }}), so the {{ type }} won't be subject to any moderation action. We still appreciate you bringing it to our attention.
+Based on the information provided, we weren't able to identify a violation of the Mozilla policies ({{ policy_document_url }}), so the {{ type }} won't be subject to any moderation action. We still appreciate you bringing it to our attention.
 
 {% with policy=policies|first %}{{ policy.text }}{% endwith %}
 [{{ reference_id }}]
