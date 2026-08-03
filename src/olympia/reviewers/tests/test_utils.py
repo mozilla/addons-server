@@ -4090,6 +4090,70 @@ class TestReviewHelper(TestReviewHelperBase):
         self.check_subject(message)
         assert 'approved' in message.body
 
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_review_with_policy_disable_override_to_disable(self):
+        self.grant_permission(self.user, 'Addons:Review')
+        self.file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_AWAITING_REVIEW,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+        )
+        self.addon.update(status=amo.STATUS_DISABLED)
+        self.helper = self.get_helper()
+        mail.outbox = []
+        ActivityLog.objects.for_addons(self.addon).delete()
+        prior_decision = ContentDecision.objects.create(
+            addon=self.addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+        )
+        prior_decision.target_versions.add(self.review_version)
+
+        new_policy = CinderPolicy.objects.create(
+            uuid='z',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+            name='New pólicy',
+            text='Pólicy téxt',
+        )
+        data = {
+            'cinder_policies': [new_policy],
+            'most_important_policy_actions': filter_enforcement_actions(
+                new_policy.split_enforcement_actions, Addon
+            ),
+            'override_decision': prior_decision,
+            'policy_values': {},
+        }
+        self.helper.set_data(data)
+        self.helper.handler.review_action = self.helper.actions['review_with_policy']
+        self.helper.handler.review_with_policy()
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_DISABLED
+        assert self.review_version.file.reload().status == amo.STATUS_DISABLED
+
+        new_decision = ContentDecision.objects.exclude(id=prior_decision.id).get(
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON
+        )
+        assert new_decision.override_of == prior_decision
+
+        logs = ActivityLog.objects
+        assert logs.count() == 1
+        activity_log = logs.first()
+        assert activity_log.action == amo.LOG.DECISION_CREATED.id
+        assert activity_log.arguments == [
+            self.addon,
+            new_decision,
+            new_policy,
+            self.review_version,
+        ]
+
+        assert len(mail.outbox) == 1
+        message = mail.outbox[0]
+        self.check_subject(message)
+        assert 'no longer available for download' in message.body
+        assert 'New pólicy' in message.body
+        assert 'Pólicy téxt' in message.body
+
     def test_enable_addon(self):
         self.grant_permission(self.user, 'Reviews:Admin')
         self.setup_data(amo.STATUS_NULL, file_status=amo.STATUS_APPROVED)

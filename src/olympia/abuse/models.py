@@ -1393,6 +1393,7 @@ class ContentDecision(ModelBase):
                 reversed_decision=overridden, new_decision=self
             )
         else:
+            self.target_versions.set(overridden.target_versions.all())
             log_entry = None
 
         # Reverse any follow-up actions (e.g. delayed blocks) of the overridden

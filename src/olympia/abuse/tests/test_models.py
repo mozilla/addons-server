@@ -3772,7 +3772,7 @@ class TestContentDecision(TestCase):
             f'{older_version.version}, {newer_version.version}' in mail_item.body
         )
 
-    def test_execute_action_same_override_to_same_enforcement(self):
+    def test_execute_action_override_to_same_enforcement(self):
         addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
         addon.versions.get().file.update(
             status=amo.STATUS_DISABLED,
@@ -3788,6 +3788,7 @@ class TestContentDecision(TestCase):
         overridden.policies.add(
             CinderPolicy.objects.create(uuid='1234', name='Bad policy')
         )
+        overridden.target_versions.set(addon.versions.all())
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
@@ -3810,6 +3811,10 @@ class TestContentDecision(TestCase):
         assert 'Other bad policy' in mail.outbox[0].body
 
         assert decision.activities.get().action == amo.LOG.DECISION_CREATED.id
+
+        assert list(decision.target_versions.all()) == list(
+            overridden.target_versions.all()
+        )
 
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()

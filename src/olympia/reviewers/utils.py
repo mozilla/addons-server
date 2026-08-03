@@ -1384,12 +1384,12 @@ class ReviewBase:
             decisions = [create_decision(override_decision=override_decision)]
 
         log_entry = None
-        for decision in decisions:
+        for idx, decision in enumerate(decisions):
             # If there are multiple decisions, in theory only one should really
             # be executed completely and log an activity, the rest should be
             # no-op that we just need for record-keeping purposes. We will only
             # notify the owners for that "complete" one.
-            notify_owners = False
+            notify_owners = idx == 0
             log_entry_for_decision = decision.execute_action()
             if log_entry_for_decision:
                 notify_owners = True
