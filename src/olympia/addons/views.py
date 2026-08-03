@@ -29,25 +29,21 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.access import acl
 from olympia.activity.models import ActivityLog
 from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import StopWatch
-from olympia.api.authentication import (
-    JWTKeyAuthentication,
-    SessionIDAuthentication,
-)
+from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
 from olympia.api.exceptions import UnavailableForLegalReasons
 from olympia.api.pagination import ESPageNumberPagination, LargePageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowAddonOwner,
+    AllowForVersionChannel,
+    AllowHasListedVersions,
     AllowIfNotMozillaDisabled,
-    AllowListedViewerOrReviewerReadOnly,
-    AllowReadOnlyIfPublic,
+    AllowIfPublic,
+    AllowReadOnly,
     AllowRelatedObjectPermissions,
-    AllowUnlistedViewerOrReviewerReadOnly,
-    AnyOf,
     APIGatePermission,
     GroupPermission,
     RegionalRestriction,
@@ -250,11 +246,17 @@ class AddonViewSet(
         AllowIfNotMozillaDisabled,
     ]
     permission_classes = [
-        AnyOf(
-            AllowReadOnlyIfPublic,
-            AllowAddonAuthor,
-            AllowListedViewerOrReviewerReadOnly,
-            AllowUnlistedViewerOrReviewerReadOnly,
+        AllowAddonAuthor
+        | (
+            AllowReadOnly
+            & (
+                AllowIfPublic
+                | (
+                    AllowHasListedVersions
+                    & GroupPermission(amo.permissions.ADDONS_API_VIEW)
+                )
+                | GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
+            )
         )
     ]
     authentication_classes = [
@@ -274,8 +276,8 @@ class AddonViewSet(
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if self.request.user.is_authenticated and acl.action_allowed_for(
-            self.request.user, amo.permissions.ADDONS_VIEW_DELETED
+        if GroupPermission(amo.permissions.ADDONS_API_VIEW_DELETED).has_permission(
+            self.request, self
         ):
             qs = Addon.unfiltered.all()
         else:
@@ -299,7 +301,9 @@ class AddonViewSet(
         request = self.request
         if request.user.is_authenticated and (
             self.action in ('create', 'update', 'partial_update')
-            or acl.is_unlisted_addons_viewer_or_reviewer(request.user)
+            or GroupPermission(
+                amo.permissions.ADDONS_API_VIEW_UNLISTED
+            ).has_object_permission(request, self, obj)
             or (obj and obj.authors.filter(pk=request.user.pk).exists())
         ):
             return self.serializer_class_for_developers
@@ -502,12 +506,26 @@ class AddonVersionViewSet(
     ListModelMixin,
     GenericViewSet,
 ):
-    # Permissions are always checked against the parent add-on in
-    # get_addon_object() using AddonViewSet's permissions so we don't need
-    # to set any here. Some extra permission classes are added dynamically
-    # below in check_permissions() and check_object_permissions() depending on
-    # what the client is requesting to see.
-    permission_classes = []
+    # Permissions are also checked against the parent add-on in get_addon_object()
+    # using AddonViewSet's permissions in check_permissions()
+    permission_classes = [
+        AllowRelatedObjectPermissions('addon', [AllowAddonAuthor])
+        | (
+            AllowReadOnly
+            & (
+                (AllowIfPublic & AllowForVersionChannel(amo.CHANNEL_LISTED))
+                | (
+                    AllowForVersionChannel(amo.CHANNEL_LISTED)
+                    & GroupPermission(amo.permissions.ADDONS_API_VIEW)
+                )
+                | (
+                    AllowForVersionChannel(amo.CHANNEL_UNLISTED)
+                    & GroupPermission(amo.permissions.ADDONS_API_VIEW)
+                    & GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
+                )
+            )
+        )
+    ]
     authentication_classes = [
         JWTKeyAuthentication,
         SessionIDAuthentication,
@@ -527,16 +545,12 @@ class AddonVersionViewSet(
         return super().get_object()
 
     def get_serializer_class(self):
-        use_developer_serializer = getattr(
-            self.request, 'user', None
-        ) and acl.author_or_unlisted_viewer_or_reviewer(
-            self.request.user, self.get_addon_object()
-        )
+        use_developer_serializer = (
+            GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED) | AllowAddonAuthor
+        )().has_object_permission(self.request, self, self.get_addon_object())
 
-        if (
-            self.action == 'list'
-            and self.request
-            and not is_gate_active(self.request, 'keep-license-text-in-version-list')
+        if self.action == 'list' and not is_gate_active(
+            self.request, 'keep-license-text-in-version-list'
         ):
             serializer_class = (
                 ListVersionSerializer
@@ -557,68 +571,45 @@ class AddonVersionViewSet(
         )
 
     def check_permissions(self, request):
+        # if a filter is used we override and downscope permissions
         requested = self.request.GET.get('filter')
         if requested == 'all_with_deleted':
-            # To see deleted versions, you need Addons:ViewDeleted.
-            self.permission_classes = [
-                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED)
+            # To see deleted versions, you need Addons:ApiViewDeleted.
+            permission_classes = [
+                GroupPermission(amo.permissions.ADDONS_API_VIEW_DELETED)
             ]
         elif requested == 'all_with_unlisted':
-            # To see unlisted versions, you need to be add-on author or
-            # unlisted reviewer.
-            self.permission_classes = [
-                AnyOf(
-                    GroupPermission(amo.permissions.ADDONS_REVIEW_UNLISTED),
-                    GroupPermission(amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW),
-                    AllowAddonAuthor,
+            # To see unlisted versions, you need to be add-on author or have
+            # Addons:ApiView and Addons:ApiViewUnlisted.
+            permission_classes = [
+                AllowAddonAuthor
+                | (
+                    GroupPermission(amo.permissions.ADDONS_API_VIEW)
+                    & GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
                 )
             ]
         elif requested == 'all_without_unlisted':
             # To see all listed versions (not just public ones) you need to
-            # be add-on author or reviewer.
-            self.permission_classes = [
-                AnyOf(
-                    AllowListedViewerOrReviewerReadOnly,
-                    AllowUnlistedViewerOrReviewerReadOnly,
-                    AllowAddonAuthor,
-                )
+            # be an add-on author or have Addons:ApiView.
+            permission_classes = [
+                AllowAddonAuthor | GroupPermission(amo.permissions.ADDONS_API_VIEW)
             ]
-        # When listing, we can't use AllowRelatedObjectPermissions() with
-        # check_permissions(), because AllowAddonAuthor needs an author to
-        # do the actual permission check. To work around that, we call
-        # super + check_object_permission() ourselves, passing down the
-        # addon object directly.
-        # Note that just calling get_addon_object() will trigger permission
-        # checks on its own using AddonViewSet permission classes, regardless
-        # of what permission classes are set on self.
-        return super().check_object_permissions(request, self.get_addon_object())
+        else:
+            # None will just use the permission_classes for the addon
+            permission_classes = None
+
+        # Getting the parent add-on object will check permissions against it
+        self.get_addon_object(permission_classes=permission_classes)
+        return super().check_permissions(request)
 
     def check_object_permissions(self, request, obj):
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if obj.deleted and not GroupPermission(
-            amo.permissions.ADDONS_VIEW_DELETED
+            amo.permissions.ADDONS_API_VIEW_DELETED
         ).has_object_permission(request, self, obj):
             raise http.Http404
-
-        if obj.channel == amo.CHANNEL_UNLISTED:
-            # If the instance is unlisted, only allow unlisted reviewers and
-            # authors..
-            self.permission_classes = [
-                AllowRelatedObjectPermissions(
-                    'addon',
-                    [AnyOf(AllowUnlistedViewerOrReviewerReadOnly, AllowAddonAuthor)],
-                )
-            ]
-        elif not obj.is_public():
-            # If the instance is disabled, only allow reviewers and authors.
-            self.permission_classes = [
-                AllowRelatedObjectPermissions(
-                    'addon',
-                    [AnyOf(AllowListedViewerOrReviewerReadOnly, AllowAddonAuthor)],
-                )
-            ]
 
         super().check_object_permissions(request, obj)
 
@@ -877,13 +868,12 @@ class AddonAuthorViewSet(
         # We're overriding the permission_classes to restrict access to add-on authors.
         addon = self.get_addon_object(
             permission_classes=[
-                AnyOf(
+                (
                     AllowAddonOwner
                     if self.action in self.owner_actions
-                    else AllowAddonAuthor,
-                    AllowListedViewerOrReviewerReadOnly,
-                    AllowUnlistedViewerOrReviewerReadOnly,
-                ),
+                    else AllowAddonAuthor
+                )
+                | (GroupPermission(amo.permissions.ADDONS_API_VIEW) & AllowReadOnly),
             ]
         )
         return super().check_permissions(request) and super().check_object_permissions(

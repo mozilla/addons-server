@@ -439,7 +439,17 @@ def activate_locale(locale=None, app=None):
 
 
 def grant_permission(user_obj, rules, name):
-    group = Group.objects.create(name=name, rules=rules)
+    def flatten_to_string(str_or_permission):
+        if isinstance(str_or_permission, str):
+            return str_or_permission
+        elif isinstance(str_or_permission, amo.permissions.AclPermission):
+            return ':'.join(str_or_permission)
+        elif isinstance(str_or_permission, (tuple, list)):
+            return ','.join(flatten_to_string(item) for item in str_or_permission)
+        else:
+            return ''
+
+    group = Group.objects.create(name=name, rules=flatten_to_string(rules))
     GroupUser.objects.create(group=group, user=user_obj)
 
 

@@ -10,8 +10,8 @@ from olympia.addons.models import Addon, attach_tags
 from olympia.amo.utils import attach_trans_dict
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
-    AllOf,
-    AllowReadOnlyIfPublic,
+    AllowIfPublic,
+    AllowReadOnly,
     AnyOf,
     PreventActionPermission,
 )
@@ -43,20 +43,20 @@ class CollectionViewSet(ModelViewSet):
             # Collection contributors can access the featured themes collection
             # (it's community-managed) and change it's addons, but can't delete
             # or edit it's details.
-            AllOf(
-                AllowCollectionContributor,
-                PreventActionPermission(
+            (
+                AllowCollectionContributor
+                & PreventActionPermission(
                     ('create', 'list', 'update', 'destroy', 'partial_update')
-                ),
+                )
             ),
             # Content curators can modify existing mozilla collections as they
             # see fit, but can't list or delete them.
-            AllOf(
-                AllowContentCurators,
-                PreventActionPermission(('create', 'destroy', 'list')),
+            (
+                AllowContentCurators
+                & PreventActionPermission(('create', 'destroy', 'list'))
             ),
             # Everyone else can do read-only stuff, except list.
-            AllOf(AllowReadOnlyIfPublic, PreventActionPermission('list')),
+            (AllowReadOnly & AllowIfPublic & PreventActionPermission('list')),
         ),
     ]
     lookup_field = 'slug'

@@ -1,7 +1,12 @@
 from collections import defaultdict, namedtuple
 
 
-AclPermission = namedtuple('AclPermission', 'app, action')
+class AclPermission(namedtuple('AclPermission', 'app, action')):
+    __slots__ = ()
+
+    def __str__(self):
+        return f'{self.app}:{self.action}'
+
 
 # Null rule.  Only useful in tests really as no access group should have this.
 NONE = AclPermission('None', 'None')
@@ -25,8 +30,12 @@ ADMIN_CURATION = AclPermission('Admin', 'Curation')
 ADDONS_EDIT = AclPermission('Addons', 'Edit')
 # Can view add-ons in django admin
 ADMIN_ADDONS_VIEW = AclPermission('Addons', 'AdminView')
+# Can view non-public add-ons in the API.
+ADDONS_API_VIEW = AclPermission('Addons', 'ApiView')
+# Can view unlisted versions in the API.
+ADDONS_API_VIEW_UNLISTED = AclPermission('Addons', 'ApiViewUnlisted')
 # Can view deleted add-ons in the API.
-ADDONS_VIEW_DELETED = AclPermission('Addons', 'ViewDeleted')
+ADDONS_API_VIEW_DELETED = AclPermission('Addons', 'ApiViewDeleted')
 # Can view only the reviewer tools.
 REVIEWER_TOOLS_VIEW = AclPermission('ReviewerTools', 'View')
 # Can view only the reviewer tools.
