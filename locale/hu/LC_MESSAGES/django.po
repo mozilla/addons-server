@@ -2025,6 +2025,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Egy vállalati kiegészítő. <span class=\"helptext\">Miután a Mozilla aláírta a beküldését, letöltheti az .xpi fájlt a Fejlesztőközpontból, és a Firefox vállalati házirendjén keresztül megoszthatja a "
+"közönségével.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -3957,11 +3959,11 @@ msgstr "Ez a legújabb feltöltött, nem listázott változat"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Vállalati verzió számára aláírva."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Ez a legújabb feltöltött vállalati verzió"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3981,7 +3983,7 @@ msgstr "Nem listázott értékelési oldal"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Vállalati értékelési oldal"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -4719,7 +4721,7 @@ msgstr "Hatékony, könnyűsúlyú reklámblokkoló. Az uBlock Origin tartalomsz
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Élvezzen egy csokornyi új funkciót, mint a mozi mód, reklámblokkolás, automatikus lejátszásvezérlés, és így tovább."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6109,7 +6111,7 @@ msgstr "Álcázza a Firefoxot Chrome böngészőnek, hogy megtévessze a Firefox
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Távolítsa el a zavaró tényezőket, módosítsa a megtekintési beállításokat, a lejátszási sebességet és egyebeket."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6134,7 +6136,7 @@ msgstr "Kiegészítő-kezdőcsomag"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Hasznos kiegészítők"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
