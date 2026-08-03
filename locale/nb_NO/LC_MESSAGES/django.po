@@ -2010,7 +2010,7 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
-"På egenhånd. <span class=\"helptext\">Etter at innsendingen din er signert av Mozilla, kan du laste ned .xpi-filen fra utviklerhuben og distribuere den til målgruppen din. Sørg for at "
+"På egenhånd. <span class=\"helptext\">Etter at innsendingen din er signert av Mozilla, kan du laste ned .xpi-filen fra utviklerhubben og distribuere den til målgruppen din. Sørg for at "
 "tilleggsmanifestets <a {a_attrs}>update_url</a> er oppgitt, da dette er URL-en der Firefox finner oppdateringer for automatisk distribusjon til brukerne dine.</span>"
 
 #: src/olympia/devhub/forms.py:1437
@@ -2423,7 +2423,7 @@ msgstr "Gå tilbake til DevHub-hjemmesiden"
 #. Text in small tag is smaller and on its own line.
 #: src/olympia/devhub/templates/devhub/nav.html:4
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Utviklersenter for <small>tillegg</small>"
+msgstr "Utviklerhubb for <small>tillegg</small>"
 
 #: src/olympia/devhub/templates/devhub/nav.html:21
 msgid "more add-ons..."
@@ -4065,7 +4065,8 @@ msgstr "Versjonsignering venter"
 
 #: src/olympia/devhub/templates/devhub/includes/done_unlisted.html:3
 msgid "You’re done! ✨ You will be notified by email when the signed file is ready to be downloaded from the Developer Hub. If you do not see an email after 24 hours, please check your spam folder."
-msgstr "Du er ferdig! ✨ Du vil bli varslet via e-post når den signerte filen er klar til å lastes ned fra utviklerhuben. Hvis du ikke ser en e-post innen 24 timer, kan du sjekke søppelpostmappen din."
+msgstr ""
+"Du er ferdig! ✨ Du vil bli varslet via e-post når den signerte filen er klar til å lastes ned fra utviklerhubben. Hvis du ikke ser en e-post innen 24 timer, kan du sjekke søppelpostmappen din."
 
 #: src/olympia/devhub/templates/devhub/includes/license_form.html:5 src/olympia/devhub/templates/devhub/versions/edit.html:83
 msgid "License"
@@ -4361,11 +4362,11 @@ msgstr "Klar til å sende inn eller behandle utvidelsen din?"
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:7
 msgid "Sign in to the Developer Hub to submit or manage extensions and themes."
-msgstr "Logg på utviklersenteret for å sende inn eller behandle utvidelser og temaer."
+msgstr "Logg på utviklerhubb for å sende inn eller behandle utvidelser og temaer."
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/submit_or_manage_extension.html:11
 msgid "Register for a developer account or log in to the Developer Hub"
-msgstr "Registrer deg for en utviklerkonto eller logg deg på Developer Hub"
+msgstr "Registrer deg for en utviklerkonto eller logg deg på Utviklerhubb"
 
 #: src/olympia/devhub/templates/devhub/versions/edit.html:5
 #, python-brace-format
