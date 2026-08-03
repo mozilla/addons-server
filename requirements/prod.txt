@@ -912,9 +912,9 @@ mmh3==5.2.1 \
 pymemcache==4.0.0 \
     --hash=sha256:27bf9bd1bbc1e20f83633208620d56de50f14185055e49504f4f5e94e94aff94 \
     --hash=sha256:f507bc20e0dc8d562f8df9d872107a278df049fa496805c1431b926f3ddd0eab
-prompt_toolkit==3.0.52 \
-    --hash=sha256:28cde192929c8e7321de85de1ddbe736f1375148b02f2e17edd840042b1be855 \
-    --hash=sha256:9aac639a3bbd33284347de5ad8d68ecc044b91a762dc39b7c21095fcd6a19955
+prompt_toolkit==3.0.53 \
+    --hash=sha256:01c0891d7f9237d5e339f7d3e42cdae80b7534abb1c7c0e3352efba6231492f2 \
+    --hash=sha256:9ec8a0ad96d5c56148b3f914aa79c1564c3fde5d2e6b876e7bc327e353cf8fa6
 # python-dateutil is required by elasticsearch
 python-dateutil==2.9.0.post0 \
     --hash=sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3 \
