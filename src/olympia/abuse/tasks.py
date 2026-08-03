@@ -302,10 +302,9 @@ def handle_forward_to_legal_action(*, decision_pk):
 
 @task
 @use_primary_db
-def auto_resolve_job(*, job_pk):
+def auto_resolve_job(*, job_pk, force=False):
     job = CinderJob.objects.get(pk=job_pk)
-    if job.should_auto_resolve():
-        # if it should be auto resolved, fire a task to resolve it
+    if force or job.should_auto_resolve():
         log.info(
             'Found job#%s to auto resolve for addon#%s.',
             job.id,
@@ -314,7 +313,11 @@ def auto_resolve_job(*, job_pk):
         entity_helper = CinderJob.get_entity_helper(
             job.target, resolved_in_reviewer_tools=True
         )
-        job.handle_already_moderated(job.abusereport_set.first(), entity_helper)
+        job.handle_already_moderated(
+            job.abusereport_set.first(),
+            entity_helper,
+            metadata={'automation_source': 'auto_resolve_reports command'},
+        )
         job.clear_needs_human_review_flags()
 
 
