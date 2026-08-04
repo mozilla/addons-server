@@ -4765,7 +4765,7 @@ msgstr "Bloqueur de publicités poids plume et très efficace, uBlock Origin app
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Bénéficiez de nouvelles fonctionnalités comme le mode cinéma, le blocage des publicités, le contrôle de la lecture automatique et bien davantage."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6163,7 +6163,7 @@ msgstr "Faites passer Firefox pour le navigateur Chrome afin de tromper les site
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Éliminez les distractions, ajustez les options d’affichage, modifiez la vitesse de lecture et bien plus encore."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6188,7 +6188,7 @@ msgstr "Extensions pour démarrer"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Extensions de productivité"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
