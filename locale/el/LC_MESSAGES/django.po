@@ -4004,7 +4004,7 @@ msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδ�
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Εγκρίθηκε για επιχειρήσεις."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
