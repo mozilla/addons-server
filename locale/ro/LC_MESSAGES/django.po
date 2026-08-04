@@ -2386,7 +2386,7 @@ msgstr "Datele tale vechi de autentificare au fost revocate și nu mai sunt vali
 
 #: src/olympia/devhub/views.py:2144
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr "Au fost generate credențiale API noi și sunt afișate mai jos. Asigură-te că ai copiat secretul JWT pentru că nu va mai fi afișat încă o dată."
+msgstr "Au fost generate date de autentificare API noi și sunt afișate mai jos. Asigură-te că ai copiat secretul JWT pentru că nu va mai fi afișat încă o dată."
 
 #: src/olympia/devhub/views.py:2172
 msgid "New API key created"
