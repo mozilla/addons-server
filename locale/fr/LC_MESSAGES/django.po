@@ -2054,6 +2054,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Un module d’entreprise. <span class=\"helptext\">Une fois votre envoi signé par Mozilla, vous pourrez télécharger le fichier .xpi depuis le Pôle développeurs et le distribuer via une stratégie de "
+"Firefox pour entreprises.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -4002,7 +4004,7 @@ msgstr "Ceci est la dernière version téléchargée non répertoriée"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Signé pour l’entreprise."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
