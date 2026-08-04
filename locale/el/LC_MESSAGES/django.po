@@ -2059,6 +2059,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Ένα εταιρικό πρόσθετο. <span class=\"helptext\">Αφού υπογραφεί το αίτημά σας από τη Mozilla, μπορείτε να κάνετε λήψη του αρχείου .xpi από το Κέντρο Προγραμματιστών και να το διανείμετε στο κοινό σας"
+" μέσω της πολιτικής του Firefox για επιχειρήσεις.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -4006,7 +4008,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Αυτή είναι η νεότερη μεταφορτωμένη έκδοση για επιχειρήσεις που δεν έχει καταχωριστεί"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -4026,7 +4028,7 @@ msgstr "Σελίδα μη καταχωρισμένης κριτικής"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Σελίδα αξιολόγησης για επιχειρήσεις"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -4765,7 +4767,7 @@ msgstr "Ελαφρύ και αποτελεσματικό πρόσθετο φρα
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Απολαύστε μια σουίτα νέων λειτουργιών όπως λειτουργία κινηματογράφου, φραγή διαφημίσεων, έλεγχος αυτόματης αναπαραγωγής και άλλα."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6156,7 +6158,7 @@ msgstr "Μεταμφιέστε το Firefox σε Chrome για να παρακά
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Αφαιρέστε τους περισπασμούς, αλλάξτε τις επιλογές προβολής, την ταχύτητα αναπαραγωγής και πολλά άλλα."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
