@@ -1094,89 +1094,25 @@ class TestRankingScenarios(RankingScenarioTestCase):
         self._check_scenario('xyeta', ())
 
 
-class TestSentinelStemmingRankingScenario(RankingScenarioTestCase):
-    # Own corpus: BM25 idf depends on the document count, so adding fixtures
-    # to TestRankingScenarios's shared corpus would shift its scores.
+class TestSentinelRankingScenarios(RankingScenarioTestCase):
+    # Own corpus: BM25 idf depends on the document count, so adding these to
+    # TestRankingScenarios's shared corpus would shift all of its scores.
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
 
         cls.empty_index('default')
 
-        # Everything below has the same popularity and no summary or
-        # description, so only the name can affect the ranking.
-        # The add-on a search for "tabs manager" is after: "tabs" stems to
-        # "tab" in english, making it a whole-name match. Only the sentinel
-        # can see that, the raw exact match needs identical strings.
-        amo.tests.addon_factory(
-            name='Tab Manager',
-            average_daily_users=500,
-            weekly_downloads=500,
-            description=None,
-            summary=None,
-        )
-        # Managers of something else entirely, which happen to also mention
-        # tabs. Match(name) uses operator=and, so it matches them on both
-        # "tabs" and "manager" no matter how far apart those are in the name,
-        # a clause Tab Manager can't match without stemming.
-        for name in (
-            'Download Manager for Tabs',
-            'Password Manager with Tabs',
-            'Bookmark Manager and Tabs Organizer',
-        ):
-            amo.tests.addon_factory(
-                name=name,
-                average_daily_users=500,
-                weekly_downloads=500,
-                description=None,
-                summary=None,
-            )
-
-        cls.refresh()
-
-    def test_sentinel_ranks_stemmed_exact_match_above_partial_matches(self):
-        # Without the sentinel "Tab Manager" has no whole-name match to boost
-        # it, and that one extra clause the others pick up outweighs its much
-        # better norms: it drops to *last* with a score of ~48, behind three
-        # add-ons that aren't even tab managers.
-        self._check_scenario(
-            'tabs manager',
-            (
-                ['Tab Manager', 296],
-                ['Download Manager for Tabs', 85],
-                ['Password Manager with Tabs', 84],
-                ['Bookmark Manager and Tabs Organizer', 73],
-            ),
-        )
-
-
-class TestSentinelRankingProductionScenario(RankingScenarioTestCase):
-    # Real add-on names and average_daily_users, taken from a production
-    # search for "tab manager" (2026-08-01). Own corpus, see the comment on
-    # TestSentinelStemmingRankingScenario for why.
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-
-        cls.empty_index('default')
-
-        # 2 real, small tab managers: "Tab manager" stems to the same tokens
-        # as "Tab Manager" ("tab", "manag"), so both are whole-name matches
-        # for the query below, but only the sentinel can see that for the one
-        # that isn't already spelled with a singular "Tab".
-        amo.tests.addon_factory(
-            name='Tab Manager',
-            average_daily_users=106,
-            description=None,
-        )
-        amo.tests.addon_factory(
-            name='Tab manager',
-            average_daily_users=194,
-            description=None,
-        )
-        # Real, more popular add-ons that also mention tabs and/or managing,
-        # but aren't tab managers.
-        for name, users in (
+        # Real names and average_daily_users, from a production search for
+        # "tab manager" (2026-08-01). The 2 genuine, small tab managers:
+        # "Tab manager" stems to the same tokens as the query below, so both
+        # are whole name matches for it, but only the sentinel can see that
+        # for the one that isn't already spelled with a singular "Tab".
+        names_and_users = (
+            ('Tab Manager', 106),
+            ('Tab manager', 194),
+            # More popular add-ons that mention tabs and/or managing, but
+            # aren't tab managers.
             ('Task Manager Tab & Custom Web Search', 28072),
             ('SleepyTabs - Tab Suspender & Manager', 1781),
             ('Tab Session Manager', 150325),
@@ -1184,34 +1120,60 @@ class TestSentinelRankingProductionScenario(RankingScenarioTestCase):
             ('Workona Spaces & Tab Manager', 1851),
             ('Tab Manager Plus for Firefox', 4030),
             ('Tab Mute Manager', 258),
-        ):
+            # Not from production: the shape the stop word test below needs,
+            # a whole name match plus exactly one word.
+            ('My Tab Manager', 200),
+        )
+        for name, users in names_and_users:
             amo.tests.addon_factory(
-                name=name,
-                average_daily_users=users,
-                description=None,
+                name=name, average_daily_users=users, description=None
             )
 
         cls.refresh()
 
-    def test_sentinel_ranks_real_tab_managers_above_bigger_unrelated_managers(self):
+    def test_stemmed_whole_name_match_ranks_above_partial_matches(self):
         # Without the sentinel, neither "Tab manager" nor "Tab Manager" has a
-        # whole-name match, so they're buried at position 6 and 8 (last),
-        # behind unrelated add-ons that only share a word - including a
-        # 1-star "Task Manager Tab" extension that hijacks the search bar.
-        # With the sentinel they jump to position 1 and 2, right after
-        # "SleepyTabs" (a real tab manager in its own right, which the
-        # sentinel correctly leaves alone).
+        # whole name match, so they're buried at position 7 and 10 (last),
+        # behind add-ons that only share a word with the query.
+        # "SleepyTabs" keeps the top spot: it isn't a whole name match either,
+        # it just scores well on the ordinary name clauses. The sentinel
+        # improves this ranking, it doesn't decide it on its own.
+        # Everything from "Tab Session Manager" down is the query plus at
+        # least one word, so the sentinel gives it nothing.
         self._check_scenario(
             'tabs manager',
             (
-                ['SleepyTabs - Tab Suspender & Manager', 252],
-                ['Tab manager', 129],
-                ['Tab Manager', 115],
-                ['Tab Session Manager', 45],
-                ['Tabby - Window & Tab Manager', 34],
-                ['Task Manager Tab & Custom Web Search', 30],
-                ['Tab Manager Plus for Firefox', 28],
-                ['Workona Spaces & Tab Manager', 25],
-                ['Tab Mute Manager', 22],
+                ['SleepyTabs - Tab Suspender & Manager', 256],
+                ['Tab manager', 117],
+                ['Tab Manager', 104],
+                ['Tab Session Manager', 40],
+                ['Tabby - Window & Tab Manager', 30],
+                ['Task Manager Tab & Custom Web Search', 27],
+                ['Tab Manager Plus for Firefox', 25],
+                ['Workona Spaces & Tab Manager', 22],
+                ['My Tab Manager', 20],
+                ['Tab Mute Manager', 20],
+            ),
+        )
+
+    def test_stop_word_in_query_does_not_span_an_extra_word(self):
+        # The language analyzers drop stop words but keep their position, and a
+        # phrase query matches any word against the hole that leaves. Before
+        # NO_STOP_ANALYZER_SUFFIX, "the tab manager" therefore spanned
+        # "My Tab Manager" end to end and took the whole name boost with it:
+        # 117 and first place, instead of the 28 and 6th place below.
+        self._check_scenario(
+            'the tab manager',
+            (
+                ['Tab Session Manager', 51],
+                ['Tab Manager Plus for Firefox', 36],
+                ['Workona Spaces & Tab Manager', 32],
+                ['Tabby - Window & Tab Manager', 30],
+                ['Tab manager', 29],
+                ['My Tab Manager', 28],
+                ['Task Manager Tab & Custom Web Search', 27],
+                ['Tab Manager', 26],
+                ['Tab Mute Manager', 25],
+                ['SleepyTabs - Tab Suspender & Manager', 21],
             ),
         )

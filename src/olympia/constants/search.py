@@ -63,3 +63,9 @@ for analyzer, languages in SEARCH_ANALYZER_MAP.items():
 # that a phrase query including them only matches the name in its entirety.
 SENTINEL_BEGIN = '__SENTINEL_BEGIN__'
 SENTINEL_END = '__SENTINEL_END__'
+
+# Suffix of the stop word free variant we declare for each analyzer in
+# SEARCH_ANALYZER_MAP. The "name_exact_sentinel" fields need it: removing a stop
+# word leaves a hole in the token positions, and a phrase query matches any word
+# against a hole, so "the tab manager" would match "My Tab Manager".
+NO_STOP_ANALYZER_SUFFIX = '_no_stop'

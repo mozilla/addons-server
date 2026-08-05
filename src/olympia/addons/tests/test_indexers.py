@@ -458,7 +458,6 @@ class TestAddonIndexer(TestCase):
             extracted['description_l10n_es-es']
             == 'Deje que su navegador coma sus plátanos'
         )
-        assert extracted['name'] == 'Banana Bonkers'
         assert (
             extracted['name_exact_sentinel']
             == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
@@ -469,16 +468,27 @@ class TestAddonIndexer(TestCase):
         )
         assert extracted['name_exact_sentinel_l10n_en-us'] == ''
 
-    def test_extract_name_exact_sentinel_empty_name(self):
-        """Make sure we don't index lone sentinels when there is no name"""
+    def test_extract_name_exact_sentinel_degenerate_names(self):
+        """Names that could produce lone or nested sentinels."""
         self.addon.name = ''
         self.addon.save()
 
         extracted = self._extract()
 
-        assert extracted['name'] == ''
         assert extracted['name_exact_sentinel'] == ''
         assert extracted['name_exact_sentinel_l10n_en-us'] == ''
+
+        # A name already containing the sentinels still gets exactly one pair,
+        # otherwise the phrase query could match the inner one.
+        self.addon.name = f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
+        self.addon.save()
+
+        extracted = self._extract()
+
+        assert (
+            extracted['name_exact_sentinel']
+            == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
+        )
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(

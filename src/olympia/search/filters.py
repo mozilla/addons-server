@@ -647,10 +647,10 @@ class SearchQueryFilter(BaseFilterBackend):
         Return the query used for exact name matching, after analysis.
 
         Same intent as generate_exact_name_match_query(), but against analyzed
-        fields, so stemming still counts as an exact match ("adblocker"
-        finding "AdBlock" in english). The indexed name and the query are
-        wrapped in sentinel tokens so the phrase can only match the whole
-        name, not a name merely containing the query.
+        fields, so a name matching the query once stemmed still counts as an
+        exact match ("tabs manager" finding "Tab Manager"). Both the indexed
+        name and the query are wrapped in sentinel tokens, so the phrase can
+        only match a whole name, not a name merely containing the query.
 
         Like generate_exact_name_match_query(), it has 2 modes depending on
         whether we have an analyzer for the language we're searching in.
@@ -691,13 +691,15 @@ class SearchQueryFilter(BaseFilterBackend):
         Return the sentinel exact match, but only scored when the raw exact
         match (generate_exact_name_match_query()) does *not* also match.
 
-        A phrase query's BM25 score sums the idf of all its terms, so the
-        multi-term sentinel phrase can outscore the single-term raw match
-        despite its lower boost. The guard keeps it a pure fallback.
+        This makes it a strict fallback per add-on: an add-on already matching
+        literally keeps exactly the score it had before. Other add-ons whose
+        name stems the same way do gain the sentinel boost, which is the point.
         """
         return query.Bool(
             _name='Bool(ExactNameSentinel, !ExactName)',
             must=[self.generate_sentinel_exact_match_query(search_query, lang)],
+            # must_not is a filter context, so the boost and `_name` this clause
+            # carries are ignored - it's only here to exclude documents.
             must_not=[self.generate_exact_name_match_query(search_query, lang)],
         )
 

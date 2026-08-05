@@ -6,6 +6,8 @@ from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import attach_trans_dict, to_language
 from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.search import (
+    NO_STOP_ANALYZER_SUFFIX,
+    SEARCH_ANALYZER_MAP,
     SEARCH_LANGUAGE_TO_ANALYZER,
     SENTINEL_BEGIN,
     SENTINEL_END,
@@ -75,20 +77,25 @@ class AddonIndexer:
         }
 
     @classmethod
-    def attach_language_specific_analyzers(cls, mapping, field_names):
+    def attach_language_specific_analyzers(
+        cls, mapping, field_names, analyzer_suffix=''
+    ):
         """
         For each field in field_names, attach language-specific mappings that
         will use specific analyzers for these fields in every language that we
         support.
 
         These mappings are used by the search filtering code if they exist.
+
+        `analyzer_suffix` picks a variant of each analyzer instead of the
+        analyzer itself, see NO_STOP_ANALYZER_SUFFIX.
         """
         for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
                 property_name = '%s_l10n_%s' % (field, lang)
                 mapping['properties'][property_name] = {
                     'type': 'text',
-                    'analyzer': analyzer,
+                    'analyzer': '%s%s' % (analyzer, analyzer_suffix),
                 }
 
     @classmethod
@@ -166,14 +173,20 @@ class AddonIndexer:
     def extract_field_sentinel_translations(cls, data, field):
         """
         Returns a dict containing the sentinel variant of the <field> and
-        <field>_l10n_<lang> values already extracted in data.
+        <field>_l10n_<lang> values already extracted in data. Wrapping a value
+        in sentinel tokens lets a phrase query including them match only if it
+        spans the whole value.
 
-        Wrapping a value in sentinel tokens lets a phrase query including them
-        match only if it spans the whole value. Empty values are kept empty,
-        we don't want to index lone sentinels.
+        Unlike the other extract_field_*() methods this one reads `data` rather
+        than the add-on, to avoid repeating how the default locale translation
+        is picked. It needs to run *after* extract_field_search_translation()
+        and extract_field_analyzed_translations() have filled `data`.
         """
 
         def wrap(value):
+            # Sentinels already in the name would nest and let the phrase query
+            # match the inner pair. Empty stays empty, no lone sentinels.
+            value = value.replace(SENTINEL_BEGIN, '').replace(SENTINEL_END, '').strip()
             return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}' if value else ''
 
         return {
@@ -192,8 +205,7 @@ class AddonIndexer:
         '*.raw',
         'colors',
         'hotness',
-        'name_exact_sentinel',
-        'name_exact_sentinel_l10n_*',
+        'name_exact_sentinel*',
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
         # - One field with all translations (e.g., "name").
@@ -213,6 +225,17 @@ class AddonIndexer:
     index_settings = {
         'analysis': {
             'analyzer': {
+                # Stop word free variant of each language-specific analyzer,
+                # used by the "name_exact_sentinel" fields. Stemming still
+                # runs, which is the point of those fields.
+                # See NO_STOP_ANALYZER_SUFFIX.
+                **{
+                    '%s%s' % (analyzer, NO_STOP_ANALYZER_SUFFIX): {
+                        'type': analyzer,
+                        'stopwords': '_none_',
+                    }
+                    for analyzer in SEARCH_ANALYZER_MAP
+                },
                 'standard_with_word_split': {
                     # This analyzer tries to split the text into words by using
                     # various methods. It also lowercases them and make sure
@@ -500,10 +523,12 @@ class AddonIndexer:
                 },
                 'name_exact_sentinel': {
                     'type': 'text',
-                    # Deliberately *not* standard_with_word_split: its filters
-                    # emit several tokens at the same position, which would let
-                    # the phrase query matching this field succeed on unrelated
-                    # names merely sharing one of those tokens.
+                    # Deliberately *not* standard_with_word_split: it emits
+                    # several tokens at the same position, which would let the
+                    # phrase query match names merely sharing one of them.
+                    # standard has no stop word filter, so unlike the
+                    # language-specific variants of this field it needs no
+                    # NO_STOP_ANALYZER_SUFFIX.
                     'analyzer': 'standard',
                 },
                 'previews': {
@@ -565,8 +590,12 @@ class AddonIndexer:
 
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
+        cls.attach_language_specific_analyzers(mapping, ('description', 'summary'))
+
+        # The sentinel field needs the stemming those analyzers provide, but not
+        # their stop word removal, see NO_STOP_ANALYZER_SUFFIX.
         cls.attach_language_specific_analyzers(
-            mapping, ('description', 'name_exact_sentinel', 'summary')
+            mapping, ('name_exact_sentinel',), analyzer_suffix=NO_STOP_ANALYZER_SUFFIX
         )
 
         cls.attach_language_specific_analyzers_with_raw_variant(mapping, ('name',))
