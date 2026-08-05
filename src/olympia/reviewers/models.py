@@ -238,7 +238,6 @@ class AutoApprovalSummary(ModelBase):
     )
     is_promoted_prereview = models.BooleanField(
         default=False,
-        null=True,  # TODO: remove this once code has deployed to prod.
         help_text='Is in a promoted add-on group that requires pre-review',
     )
     should_be_delayed = models.BooleanField(
@@ -252,6 +251,9 @@ class AutoApprovalSummary(ModelBase):
     )
     is_waiting_on_scanners = models.BooleanField(
         default=False, help_text='Is waiting on scanners'
+    )
+    scanner_actions_executed = models.BooleanField(
+        default=False, null=True, help_text='Scanner actions have been executed'
     )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED

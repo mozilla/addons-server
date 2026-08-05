@@ -731,6 +731,45 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         assert not run_actions_mock.called
 
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_does_not_execute_run_actions_for_summary_created_before_the_field(
+        self, run_actions_mock
+    ):
+        """Summaries created before `scanner_actions_executed` was introduced
+        have it set to NULL, and back then the actions were always executed
+        when the summary was created."""
+        self.create_switch('run-action-in-auto-approve', active=True)
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            is_waiting_on_scanners=False,
+            scanner_actions_executed=None,
+        )
+
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_does_not_execute_run_actions_for_summary_created_before_the_field_waiting(
+        self, run_actions_mock
+    ):
+        """Same as above, except the summary was created while we were waiting
+        on scanners: the actions were executed back then as well, so we should
+        not execute them a second time once the scanners are done."""
+        self.create_switch('run-action-in-auto-approve', active=True)
+        self.create_switch('enable-scanner-webhooks', active=True)
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            is_waiting_on_scanners=True,
+            scanner_actions_executed=None,
+        )
+        # The scanner is done, so we are no longer waiting on it.
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_delay_approval(self, sign_file_mock):
         """Functional test making sure that the scanners _delay_auto_approval()
@@ -914,6 +953,21 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_actions_delay_approval()
 
+    def create_pending_webhook_scanner_result(self):
+        """Create a result for a webhook event we block auto-approval on, for
+        which the scanner acknowledged the event but hasn't sent results yet."""
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=webhook
+        )
+        return ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results={'ok': True},
+        )
+
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_with_scanner_results_sent_asynchronously(self, sign_file_mock):
         """Functional test making sure that the action of a rule matched by a
@@ -924,18 +978,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         rule = ScannerRule.objects.create(
             is_active=True, name='foo', action=DELAY_AUTO_APPROVAL, scanner=WEBHOOK
         )
-        webhook = ScannerWebhook.objects.create(name='some-scanner')
-        webhook.update(modified=self.days_ago(1))
-        event = ScannerWebhookEvent.objects.create(
-            event=WEBHOOK_ON_VERSION_CREATED, webhook=webhook
-        )
-        # The scanner acknowledged the event but hasn't sent its results yet.
-        scanner_result = ScannerResult.objects.create(
-            version=self.version,
-            scanner=WEBHOOK,
-            webhook_event=event,
-            results={'ok': True},
-        )
+        scanner_result = self.create_pending_webhook_scanner_result()
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
 
         # First run: nothing to do yet, we're waiting on the scanner.
@@ -968,6 +1011,33 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         )
         assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
         assert not sign_file_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_only_executes_run_actions_once_after_waiting_on_scanners(
+        self, run_actions_mock
+    ):
+        self.create_switch('run-action-in-auto-approve', active=True)
+        self.create_switch('enable-scanner-webhooks', active=True)
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        scanner_result = self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+        assert not self.version.autoapprovalsummary.scanner_actions_executed
+
+        scanner_result.results = {'matchedRules': []}
+        scanner_result.save()
+        call_command('auto_approve')
+
+        run_actions_mock.assert_called_with(self.version)
+        assert self.version.autoapprovalsummary.reload().scanner_actions_executed
+
+        run_actions_mock.reset_mock()
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
 
     def test_run_disapprove(self):
         def check_assertions():
