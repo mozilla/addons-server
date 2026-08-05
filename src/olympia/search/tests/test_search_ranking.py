@@ -1111,6 +1111,10 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         names_and_users = (
             ('Tab Manager', 106),
             ('Tab manager', 194),
+            # Not from production either: same name stemmed, and the same
+            # average_daily_users as "Tab Manager", so that the gap between
+            # them in the literal query below is only the clause that matched.
+            ('Tab Managers', 106),
             # More popular add-ons that mention tabs and/or managing, but
             # aren't tab managers.
             ('Task Manager Tab & Custom Web Search', 28072),
@@ -1132,9 +1136,9 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         cls.refresh()
 
     def test_stemmed_whole_name_match_ranks_above_partial_matches(self):
-        # Without the sentinel, neither "Tab manager" nor "Tab Manager" has a
-        # whole name match, so they're buried at position 7 and 10 (last),
-        # behind add-ons that only share a word with the query.
+        # Without the sentinel, none of the 3 whole name matches has one, so
+        # they're buried at positions 7, 10 and 11 (last), behind add-ons that
+        # only share a word with the query.
         # "SleepyTabs" keeps the top spot: it isn't a whole name match either,
         # it just scores well on the ordinary name clauses. The sentinel
         # improves this ranking, it doesn't decide it on its own.
@@ -1143,16 +1147,39 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         self._check_scenario(
             'tabs manager',
             (
-                ['SleepyTabs - Tab Suspender & Manager', 256],
-                ['Tab manager', 117],
-                ['Tab Manager', 104],
-                ['Tab Session Manager', 40],
-                ['Tabby - Window & Tab Manager', 30],
-                ['Task Manager Tab & Custom Web Search', 27],
-                ['Tab Manager Plus for Firefox', 25],
-                ['Workona Spaces & Tab Manager', 22],
-                ['My Tab Manager', 20],
-                ['Tab Mute Manager', 20],
+                ['SleepyTabs - Tab Suspender & Manager', 261],
+                ['Tab manager', 106],
+                ['Tab Manager', 94],
+                ['Tab Managers', 94],
+                ['Tab Session Manager', 36],
+                ['Tabby - Window & Tab Manager', 27],
+                ['Task Manager Tab & Custom Web Search', 24],
+                ['Tab Manager Plus for Firefox', 22],
+                ['Workona Spaces & Tab Manager', 20],
+                ['My Tab Manager', 18],
+                ['Tab Mute Manager', 18],
+            ),
+        )
+
+    def test_literal_whole_name_match_outranks_a_stemmed_one(self):
+        # 100.0 and 50.0 are multipliers on a BM25 score, not scores, so which
+        # of the 2 exact match clauses wins needs pinning. "Tab Manager" and
+        # "Tab Managers" are equally popular, so the gap between them here is
+        # only the clause each one matched.
+        self._check_scenario(
+            'tab manager',
+            (
+                ['Tab manager', 1471],
+                ['Tab Manager', 1305],
+                ['Tab Managers', 106],
+                ['Tab Session Manager', 58],
+                ['Tab Manager Plus for Firefox', 39],
+                ['Tabby - Window & Tab Manager', 36],
+                ['Workona Spaces & Tab Manager', 35],
+                ['Task Manager Tab & Custom Web Search', 31],
+                ['My Tab Manager', 30],
+                ['Tab Mute Manager', 28],
+                ['SleepyTabs - Tab Suspender & Manager', 25],
             ),
         )
 
@@ -1161,19 +1188,20 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         # phrase query matches any word against the hole that leaves. Before
         # NO_STOP_ANALYZER_SUFFIX, "the tab manager" therefore spanned
         # "My Tab Manager" end to end and took the whole name boost with it:
-        # 117 and first place, instead of the 28 and 6th place below.
+        # 106 and first place, instead of the 25 and 6th place below.
         self._check_scenario(
             'the tab manager',
             (
-                ['Tab Session Manager', 51],
-                ['Tab Manager Plus for Firefox', 36],
-                ['Workona Spaces & Tab Manager', 32],
-                ['Tabby - Window & Tab Manager', 30],
-                ['Tab manager', 29],
-                ['My Tab Manager', 28],
-                ['Task Manager Tab & Custom Web Search', 27],
-                ['Tab Manager', 26],
-                ['Tab Mute Manager', 25],
-                ['SleepyTabs - Tab Suspender & Manager', 21],
+                ['Tab Session Manager', 46],
+                ['Tab Manager Plus for Firefox', 32],
+                ['Workona Spaces & Tab Manager', 28],
+                ['Tabby - Window & Tab Manager', 27],
+                ['Tab manager', 27],
+                ['My Tab Manager', 25],
+                ['Task Manager Tab & Custom Web Search', 24],
+                ['Tab Manager', 24],
+                ['Tab Managers', 23],
+                ['Tab Mute Manager', 23],
+                ['SleepyTabs - Tab Suspender & Manager', 18],
             ),
         )

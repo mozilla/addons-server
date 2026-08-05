@@ -187,7 +187,7 @@ class AddonIndexer:
             # Sentinels already in the name would nest and let the phrase query
             # match the inner pair. Empty stays empty, no lone sentinels.
             value = value.replace(SENTINEL_BEGIN, '').replace(SENTINEL_END, '').strip()
-            return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}' if value else ''
+            return '%s %s %s' % (SENTINEL_BEGIN, value, SENTINEL_END) if value else ''
 
         return {
             '%s_exact_sentinel' % field: wrap(data[field]),
@@ -205,7 +205,6 @@ class AddonIndexer:
         '*.raw',
         'colors',
         'hotness',
-        'name_exact_sentinel*',
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
         # - One field with all translations (e.g., "name").
@@ -217,6 +216,7 @@ class AddonIndexer:
         'name',
         'description',
         'name_l10n_*',
+        'name_exact_sentinel*',
         'description_l10n_*',
         'summary',
         'summary_l10n_*',
@@ -523,12 +523,8 @@ class AddonIndexer:
                 },
                 'name_exact_sentinel': {
                     'type': 'text',
-                    # Deliberately *not* standard_with_word_split: it emits
-                    # several tokens at the same position, which would let the
-                    # phrase query match names merely sharing one of them.
-                    # standard has no stop word filter, so unlike the
-                    # language-specific variants of this field it needs no
-                    # NO_STOP_ANALYZER_SUFFIX.
+                    # Not standard_with_word_split: it emits several tokens at
+                    # the same position, which the phrase query would match.
                     'analyzer': 'standard',
                 },
                 'previews': {

@@ -652,6 +652,10 @@ class SearchQueryFilter(BaseFilterBackend):
         name and the query are wrapped in sentinel tokens, so the phrase can
         only match a whole name, not a name merely containing the query.
 
+        Wrapped in a bool whose must_not is generate_exact_name_match_query(),
+        making it a strict per add-on fallback: an add-on already matching
+        literally keeps exactly the score it had before.
+
         Like generate_exact_name_match_query(), it has 2 modes depending on
         whether we have an analyzer for the language we're searching in.
         """
@@ -684,22 +688,10 @@ class SearchQueryFilter(BaseFilterBackend):
                 boost=50.0,
                 queries=queries,
             )
-        return clause
-
-    def generate_guarded_sentinel_exact_match_query(self, search_query, lang):
-        """
-        Return the sentinel exact match, but only scored when the raw exact
-        match (generate_exact_name_match_query()) does *not* also match.
-
-        This makes it a strict fallback per add-on: an add-on already matching
-        literally keeps exactly the score it had before. Other add-ons whose
-        name stems the same way do gain the sentinel boost, which is the point.
-        """
         return query.Bool(
             _name='Bool(ExactNameSentinel, !ExactName)',
-            must=[self.generate_sentinel_exact_match_query(search_query, lang)],
-            # must_not is a filter context, so the boost and `_name` this clause
-            # carries are ignored - it's only here to exclude documents.
+            must=[clause],
+            # must_not is a filter context: this clause only excludes documents.
             must_not=[self.generate_exact_name_match_query(search_query, lang)],
         )
 
@@ -720,10 +712,12 @@ class SearchQueryFilter(BaseFilterBackend):
         * Then text matches, using the standard text analyzer (boost=6.0)
         * Then look for the query as a prefix of a name (boost=3.0)
         """
-        should = [
-            self.generate_exact_name_match_query(search_query, lang),
-            self.generate_guarded_sentinel_exact_match_query(search_query, lang),
-        ]
+        should = [self.generate_exact_name_match_query(search_query, lang)]
+
+        # A query with no word characters analyzes to just the two sentinels,
+        # which would match every name that also analyzes to nothing.
+        if re.search(r'\w', search_query):
+            should.append(self.generate_sentinel_exact_match_query(search_query, lang))
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match

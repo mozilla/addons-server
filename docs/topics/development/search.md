@@ -55,7 +55,7 @@ The key fields we search against are `name`, `summary` and `description`. Becaus
 
 - For all fields described above also contains a subfield called `raw` that holds a non-analyzed variant for exact matches in the corresponding language (stored as a `keyword`, with a `lowercase` normalizer).
 - A `name.trigram` variant for the field in the default language, which is using a custom analyzer that depends on a `ngram` tokenizer (with `min_gram=3`, `max_gram=3` and `token_chars=["letter", "digit"]`).
-- A `name_exact_sentinel` variant for the field in the default language, and a `name_exact_sentinel_l10n_{analyzer}` variant for every translation, holding the name wrapped between two marker tokens (`__SENTINEL_BEGIN__` and `__SENTINEL_END__`). A phrase query including the markers then only matches if it spans the name from start to end, which lets us treat a stemmed name as an exact match. The default language variant uses the `standard` analyzer, the per-translation ones use the language-specific analyzers with stop words turned off (removing a stop word leaves a hole in the token positions, and a phrase query matches any word against a hole).
+- A `name_exact_sentinel` variant for the field in the default language, and a `name_exact_sentinel_l10n_{analyzer}` variant for every translation, holding the name wrapped between two marker tokens (`__SENTINEL_BEGIN__` and `__SENTINEL_END__`). A phrase query including the markers then only matches if it spans the name from start to end, which lets us treat a stemmed name as an exact match. The default language variant uses the `standard` analyzer, the per-translation ones use the language-specific analyzers with stop words turned off (see `NO_STOP_ANALYZER_SUFFIX`).
 
 ### Flow of a search query through AMO
 

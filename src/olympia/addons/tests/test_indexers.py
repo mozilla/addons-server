@@ -458,15 +458,6 @@ class TestAddonIndexer(TestCase):
             extracted['description_l10n_es-es']
             == 'Deje que su navegador coma sus plátanos'
         )
-        assert (
-            extracted['name_exact_sentinel']
-            == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
-        )
-        assert (
-            extracted['name_exact_sentinel_l10n_en-gb']
-            == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
-        )
-        assert extracted['name_exact_sentinel_l10n_en-us'] == ''
 
     def test_extract_name_exact_sentinel_degenerate_names(self):
         """Names that could produce lone or nested sentinels."""

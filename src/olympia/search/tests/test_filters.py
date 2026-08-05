@@ -301,8 +301,8 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         assert len(should) == 8
-        # The sentinel clause is still there, and still uses a phrase query -
-        # but nested, and against fields where it can only match a whole name.
+        # Only MatchPhrase(name) is skipped for single-word queries. The
+        # sentinel clause keeps its phrase query, nested inside a bool.
         for conditions in should:
             assert 'match_phrase' not in conditions
 
@@ -490,6 +490,15 @@ class TestQueryFilter(FilterTestsBase):
                 ],
             }
         }
+
+    def test_q_no_word_characters_skips_exact_sentinel(self):
+        """Such a query analyzes to the sentinels alone, matching any name
+        that also analyzes to nothing."""
+        qs = self._filter(data={'q': '???'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        # The sentinel clause is the only bool among the primary rules.
+        assert not any('bool' in conditions for conditions in should)
 
 
 class TestReviewedContentFilter(FilterTestsBase):
