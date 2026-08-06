@@ -481,23 +481,25 @@ def test_generate_static_theme_preview_with_alternative_properties(
 
 
 def check_render_additional(svg_content, inner_svg_width, colors):
-    # check additional background pattern is correct
+    # check additional background pattern is correct. Collapse whitespace so the
+    # assertions don't depend on the template's indentation.
+    normalized = ' '.join(svg_content.split())
     image_width = 270
     image_height = 200
     pattern_x_offset = (inner_svg_width - image_width) // 2
     pattern_tag = (
-        '<pattern id="AdditionalBackground1"\n'
-        '                   width="%s" height="%s"\n'
-        '                   x="%s" y="%s" patternUnits="userSpaceOnUse">'
+        '<pattern id="AdditionalBackground1" '
+        'width="%s" height="%s" '
+        'x="%s" y="%s" patternUnits="userSpaceOnUse">'
         % (image_width, image_height, pattern_x_offset, 0)
     )
-    assert pattern_tag in svg_content, svg_content
+    assert pattern_tag in normalized, svg_content
     image_tag = f'<image width="{image_width}" height="{image_height}"'
-    assert image_tag in svg_content, svg_content
+    assert image_tag in normalized, svg_content
     rect_tag = (
         '<rect width="100%" height="100%" fill="url(#AdditionalBackground1)"></rect>'
     )
-    assert rect_tag in svg_content, svg_content
+    assert rect_tag in normalized, svg_content
     # and image content is included and was encoded
     additional = os.path.join(HEADER_ROOT, 'weta_for_tiling.png')
     with root_storage.open(additional, 'rb') as header_file:
@@ -649,10 +651,9 @@ def test_generate_preview_with_gradient_in_additional_backgrounds(
     extract_colors_from_image_mock,
     index_addons_mock,
 ):
-    # A `linear-gradient` object amongst the additional_backgrounds isn't an
-    # image path we can extract; it should be ignored gracefully rather than
-    # crashing preview generation, and the actual image backgrounds should
-    # still be rendered.
+    # A `linear-gradient` object amongst the additional_backgrounds is a CSS
+    # gradient rather than an image path; it should be validated and rendered as
+    # an SVG gradient alongside the actual image backgrounds.
     write_svg_to_png_mock.side_effect = write_empty_png
     convert_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
@@ -660,9 +661,9 @@ def test_generate_preview_with_gradient_in_additional_backgrounds(
     ]
 
     # Same manifest as test_generate_preview_with_additional_backgrounds, but
-    # with a `linear-gradient` object added to additional_backgrounds: it isn't
-    # an image path we can extract and should be ignored gracefully. The real
-    # image still lines up with the (positional) alignment/tiling properties.
+    # with a `linear-gradient` object added to additional_backgrounds: it is
+    # rendered as an SVG gradient. The real image still lines up with the
+    # (positional) alignment/tiling properties.
     theme_manifest = {
         'images': {
             'theme_frame': 'empty.png',
@@ -709,12 +710,21 @@ def test_generate_preview_with_gradient_in_additional_backgrounds(
         for (key, prop, color) in default_colors
     ]
 
-    # The gradient was skipped, so only a single AdditionalBackground (the real
-    # image, `weta_for_tiling.png`) is rendered.
+    # The first AdditionalBackground is the real image (`weta_for_tiling.png`).
     firefox_svg = force_str(write_svg_to_png_mock.call_args_list[0][0][0])
     check_render_additional(firefox_svg, 680, colors)
     assert 'AdditionalBackground1' in firefox_svg
-    assert 'AdditionalBackground2' not in firefox_svg
+
+    # The `linear-gradient` is rendered as a second background, an SVG
+    # linearGradient (`to bottom` maps to a top-to-bottom gradient line, and the
+    # negative first stop position is clamped to 0).
+    normalized = ' '.join(firefox_svg.split())
+    assert (
+        '<linearGradient id="AdditionalBackground2" '
+        'x1="0.5" y1="0.0" x2="0.5" y2="1.0">' in normalized
+    ), firefox_svg
+    assert '<stop offset="0.0" stop-color="#FF6BBA"></stop>' in normalized
+    assert '<stop offset="0.5" stop-color="#FFC999"></stop>' in normalized
 
     index_addons_mock.assert_called_with([addon.id])
 
