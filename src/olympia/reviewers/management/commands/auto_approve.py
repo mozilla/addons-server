@@ -120,13 +120,11 @@ class Command(BaseCommand):
                     str(version.version),
                 )
 
-                # We want to execute `run_actions()`/`run_narc()` only once.
-                summary_exists = AutoApprovalSummary.objects.filter(
-                    version=version
-                ).exists()
+                summary = AutoApprovalSummary.objects.filter(version=version).first()
 
                 if waffle.switch_is_active('enable-narc'):
-                    if not summary_exists:
+                    # We want to execute `run_narc()` only once.
+                    if not summary:
                         # NARC scanner rules depend on the Add-on and can't be
                         # run reliably at validation as it might not be
                         # attached to the upload at that point.
@@ -137,20 +135,39 @@ class Command(BaseCommand):
                         # ScannerResult.run_actions() below.
                         run_narc_on_version(version.pk, run_actions_on_match=False)
 
+                scanner_actions_executed = False
                 if waffle.switch_is_active('run-action-in-auto-approve'):
-                    if summary_exists:
+                    # NULL means the summary predates this field, back when
+                    # run_actions() was always executed on the first run.
+                    already_executed = (
+                        summary is not None
+                        and summary.scanner_actions_executed is not False
+                    )
+                    if already_executed:
                         log.info(
-                            'Not running run_actions() because it has '
-                            'already been executed'
+                            'Not running run_actions() on version %s because it '
+                            'has already been executed',
+                            version.pk,
+                        )
+                    elif AutoApprovalSummary.check_is_waiting_on_scanners(version):
+                        log.info(
+                            'Not running run_actions() on version %s because it '
+                            'is still waiting on scanners',
+                            version.pk,
                         )
                     else:
                         ScannerResult.run_actions(version)
+                        scanner_actions_executed = True
 
                 version.autoapprovalsummary, info = (
                     AutoApprovalSummary.create_summary_for_version(
                         version, dry_run=self.dry_run
                     )
                 )
+                if scanner_actions_executed:
+                    # The summary might not have existed before, so we can only
+                    # record that we have executed the actions now.
+                    version.autoapprovalsummary.update(scanner_actions_executed=True)
                 self.stats.update({k: int(v) for k, v in info.items()})
                 if version.autoapprovalsummary.verdict == self.successful_verdict:
                     if version.autoapprovalsummary.verdict == amo.AUTO_APPROVED:
