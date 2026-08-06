@@ -394,6 +394,8 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.reviewers.models import NeedsHumanReview
 
+        from .tasks import call_webhooks_on_version_created
+
         assert parsed_data is not None
 
         if addon.type == amo.ADDON_STATICTHEME:
@@ -656,10 +658,7 @@ class Version(OnChangeMixin, ModelBase):
             version=version, source=upload.source, client_info=client_info
         )
 
-        if waffle.switch_is_active('enable-scanner-webhooks'):
-            from .tasks import call_webhooks_on_version_created
-
-            call_webhooks_on_version_created.delay(version_pk=version.pk)
+        call_webhooks_on_version_created.delay(version_pk=version.pk)
 
         return version
 
@@ -849,10 +848,9 @@ class Version(OnChangeMixin, ModelBase):
                 reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
 
-            if waffle.switch_is_active('enable-scanner-webhooks'):
-                call_webhooks_on_source_code_uploaded.delay(
-                    version_pk=self.pk, activity_log_id=note.id
-                )
+            call_webhooks_on_source_code_uploaded.delay(
+                version_pk=self.pk, activity_log_id=note.id
+            )
 
     @classmethod
     def transformer(cls, versions):

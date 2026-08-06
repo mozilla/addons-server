@@ -686,10 +686,6 @@ class AutoApprovalSummary(ModelBase):
         if waffle.switch_is_active('disable-check-is-waiting-on-scanners'):
             return False
 
-        # This check is only relevant when scanner webhooks are enabled.
-        if not waffle.switch_is_active('enable-scanner-webhooks'):
-            return False
-
         webhook_event_ids = ScannerWebhookEvent.objects.filter(
             # We want to find the active events to wait for...
             event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,

@@ -655,9 +655,8 @@ class TestVersion(AMOPaths, TestCase):
         assert activity.user == user
         assert not version.needshumanreview_set.count()
 
-    @override_switch('enable-scanner-webhooks', active=True)
     @mock.patch('olympia.versions.tasks.call_webhooks_on_source_code_uploaded.delay')
-    def test_call_webhooks_on_source_code_uploaded_when_switch_is_enabled(
+    def test_call_webhooks_on_source_code_uploaded(
         self, call_webhooks_on_source_code_uploaded_mock
     ):
         user = UserProfile.objects.latest('pk')
@@ -675,20 +674,6 @@ class TestVersion(AMOPaths, TestCase):
         call_webhooks_on_source_code_uploaded_mock.assert_called_with(
             version_pk=version.pk, activity_log_id=activity.id
         )
-
-    @override_switch('enable-scanner-webhooks', active=False)
-    @mock.patch('olympia.versions.tasks.call_webhooks_on_source_code_uploaded.delay')
-    def test_call_webhooks_on_source_code_uploaded_when_switch_is_disabled(
-        self, call_webhooks_on_source_code_uploaded_mock
-    ):
-        user = UserProfile.objects.latest('pk')
-        version = Version.objects.get(pk=81551)
-        version.source = self.file_fixture_path('webextension_no_id.zip')
-        assert version.sources_provided
-
-        version.flag_if_sources_were_provided(user)
-
-        call_webhooks_on_source_code_uploaded_mock.assert_not_called()
 
     def test_flag_if_sources_were_provided_pending_rejection(self):
         user = UserProfile.objects.latest('pk')
@@ -2037,7 +2022,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             },
             source=source,
         )
-        with self.assertLogs(logger='z.versions', level='INFO') as logs:
+        with (
+            mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay'),
+            self.assertLogs(logger='z.versions', level='INFO') as logs,
+        ):
             version = Version.from_upload(
                 self.upload,
                 self.addon,
@@ -2273,6 +2261,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
         mock_path = 'olympia.versions.models.statsd.'
         with (
+            mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay'),
             mock.patch(f'{mock_path}timing') as mock_timing,
             mock.patch(f'{mock_path}incr') as mock_incr,
         ):
@@ -2794,9 +2783,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert provenance.client_info == 'Something/42.0'
         assert provenance.source == self.upload.source
 
-    @override_switch('enable-scanner-webhooks', active=True)
     @mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay')
-    def test_call_webhooks_on_version_created_when_switch_is_enabled(
+    def test_call_webhooks_on_version_created(
         self, call_webhooks_on_version_created_mock
     ):
         version = Version.from_upload(
@@ -2807,20 +2795,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             parsed_data=self.dummy_parsed_data,
         )
         call_webhooks_on_version_created_mock.assert_called_with(version_pk=version.pk)
-
-    @override_switch('enable-scanner-webhooks', active=False)
-    @mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay')
-    def test_call_webhooks_on_version_created_when_switch_is_disabled(
-        self, call_webhooks_on_version_created_mock
-    ):
-        Version.from_upload(
-            self.upload,
-            self.addon,
-            amo.CHANNEL_LISTED,
-            selected_apps=[self.selected_app],
-            parsed_data=self.dummy_parsed_data,
-        )
-        call_webhooks_on_version_created_mock.assert_not_called()
 
 
 class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
