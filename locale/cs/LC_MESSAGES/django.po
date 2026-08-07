@@ -3949,11 +3949,11 @@ msgstr "Toto je nejnovější nezveřejněná nahraná veze"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr "Podepsáno pro firmy."
+msgstr "Určeno pro podniky."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr "Toto je nejnovější nahraná verze Enterprise"
+msgstr "Toto je nejnovější nahraná podnikové verze"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -3973,7 +3973,7 @@ msgstr "Stránka kontroly neveřejných doplňků"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr "Podniková stránka recenzí"
+msgstr "Stránka pro kontrolu podnikových verzí"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
