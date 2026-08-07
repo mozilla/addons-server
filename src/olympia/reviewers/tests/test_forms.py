@@ -1732,6 +1732,7 @@ class TestReviewForm(TestCase):
         assert label_0.attr['data-enforcement-primary-actions'] == '[]'
         assert label_0.attr['data-enforcement-followup-actions'] == '[]'
         assert label_0.attr['data-enforcement-actions-order'] == ''
+        assert label_0('input')[0].type == 'checkbox'
 
         assert label_1.attr['class'] == 'data-toggle'
         assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
@@ -1744,6 +1745,7 @@ class TestReviewForm(TestCase):
             f'{DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.value}]'
         )
         assert label_1.attr['data-enforcement-actions-order'] == '090500'
+        assert label_1('input')[0].type == 'checkbox'
 
         assert label_2.attr['class'] == 'data-toggle'
         assert label_2.attr['data-value'] == 'public'
@@ -1753,6 +1755,7 @@ class TestReviewForm(TestCase):
         )
         assert label_2.attr['data-enforcement-followup-actions'] == '[]'
         assert label_2.attr['data-enforcement-actions-order'] == ''
+        assert label_2('input')[0].type == 'radio'
 
     def test_policy_values_fields(self):
         policy_0 = CinderPolicy.objects.create(
