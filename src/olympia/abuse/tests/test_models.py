@@ -3376,7 +3376,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_ban_user_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         user = user_factory(email='superstarops@mozilla.com')
         decision = ContentDecision.objects.create(
             user=user,
@@ -3421,7 +3421,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_disable_addon_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(
             addon, api_name='high_profile', high_profile=True, approve_version=True
@@ -3552,7 +3552,7 @@ class TestContentDecision(TestCase):
         assert VersionReviewerFlags.objects.filter(version=version).exists()
 
     def test_execute_action_reject_version_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -3818,7 +3818,7 @@ class TestContentDecision(TestCase):
         assert addon.current_version.reviewerflags.pending_rejection == in_fourteen_days
 
     def test_execute_action_reject_version_delayed_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -4042,7 +4042,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_collection_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         collection = collection_factory(author=self.task_user)
         decision = ContentDecision.objects.create(
             collection=collection,
@@ -4087,7 +4087,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_rating_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         user = user_factory()
         addon = addon_factory(users=[user])
         rating = Rating.objects.create(

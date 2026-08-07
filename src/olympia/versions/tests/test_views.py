@@ -511,7 +511,7 @@ class NonPublicFileDownloadsMixin:
 
     def test_file_download_permission_allowed_with_perm(self):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, ':'.join(amo.permissions.ADDONS_FILE_DOWNLOAD))
+        self.grant_permission(user, amo.permissions.ADDONS_FILE_DOWNLOAD)
         self.login(user)
         self.assert_served_successfully(self.client.get(self.file_url), cache=False)
 
@@ -574,7 +574,7 @@ class TestUnlistedFileDownloads(
         self.make_addon_unlisted(self.addon)
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted',
+            amo.permissions.ADDONS_REVIEW_UNLISTED,
         )
 
 
@@ -908,9 +908,7 @@ class TestDownloadSource(TestCase):
 
     def test_download_for_source_download_permission(self):
         """File downloading is allowed for users with source download permission."""
-        self.grant_permission(
-            self.user, ':'.join(amo.permissions.ADDONS_SOURCE_DOWNLOAD)
-        )
+        self.grant_permission(self.user, amo.permissions.ADDONS_SOURCE_DOWNLOAD)
         self.addon.authors.clear()
         self.login(self.user)
         assert self.client.get(self.url).status_code == 200

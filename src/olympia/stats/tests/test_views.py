@@ -1160,7 +1160,7 @@ class TestStatsWithBigQuery(TestCase):
         url = reverse('stats.overview', args=[self.addon.id])
         # Login as privileged user to be able to access the stats for a deleted add-on.
         self.client.logout()
-        self.grant_permission(self.user, '*:*')
+        self.grant_permission(self.user, amo.permissions.SUPERPOWERS)
         self.client.force_login(self.user)
 
         response = self.client.get(url)

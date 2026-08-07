@@ -1,5 +1,6 @@
 from django.urls import reverse
 
+from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
 
 from ..models import Tag
@@ -12,7 +13,7 @@ class TestTagAdmin(TestCase):
     def test_can_list_with_discovery_edit_permission(self):
         item = Tag.objects.all().first()
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -23,7 +24,7 @@ class TestTagAdmin(TestCase):
         tag_count = Tag.objects.count()
         self.detail_url = reverse('admin:tags_tag_change', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -48,7 +49,7 @@ class TestTagAdmin(TestCase):
         item = Tag.objects.all().first()
         self.delete_url = reverse('admin:tags_tag_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(self.delete_url, follow=True)
@@ -64,7 +65,7 @@ class TestTagAdmin(TestCase):
         tag_count = Tag.objects.count()
         self.add_url = reverse('admin:tags_tag_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 200

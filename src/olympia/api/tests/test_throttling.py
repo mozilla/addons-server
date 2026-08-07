@@ -120,7 +120,7 @@ class TestGranularUserRateThrottle(TestCase):
         assert allow_request_mock.call_count == 1
 
         # User with the right permission: bypass throttling.
-        self.grant_permission(request.user, 'API:BypassThrottling')
+        self.grant_permission(request.user, amo.permissions.API_BYPASS_THROTTLING)
         allow_request_mock.reset_mock()
         assert self.throttle.allow_request(request, view) is True
         assert allow_request_mock.call_count == 0

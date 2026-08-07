@@ -122,7 +122,7 @@ class TestRatingsModerationLog(ReviewerTest):
     def setUp(self):
         super().setUp()
         user = user_factory()
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
         self.url = reverse('reviewers.ratings_moderation_log')
         core.set_user(user)
@@ -235,7 +235,7 @@ class TestReviewLog(ReviewerTest):
         assert not doc('tbody tr :not(.hide)')
 
         # But they should have 2 showing for someone with the right perms.
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         with self.assertNumQueries(14):
             # 14 queries:
             # - 2 savepoints because of tests
@@ -468,7 +468,7 @@ class TestReviewLog(ReviewerTest):
     def test_approval_multiple_versions(self):
         addon = Addon.objects.get(pk=3615)
         self.make_addon_unlisted(addon)
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED, version='3.0')
         ActivityLog.objects.create(
             amo.LOG.CONFIRM_AUTO_APPROVED,
@@ -596,23 +596,29 @@ class TestReviewLog(ReviewerTest):
             assert not doc('tbody tr :not(.hide)')
 
         self.make_approvals()
-        for perm in ['Review', 'ContentReview']:
+        for perm in [
+            amo.permissions.ADDONS_REVIEW,
+            amo.permissions.ADDONS_CONTENT_REVIEW,
+        ]:
             GroupUser.objects.filter(user=self.user).delete()
-            self.grant_permission(self.user, 'Addons:%s' % perm)
+            self.grant_permission(self.user, perm)
             # Should have 2 showing.
             check_two_showing()
 
         # Should have none showing if the addons are static themes.
         for addon in Addon.objects.all():
             addon.update(type=amo.ADDON_STATICTHEME)
-        for perm in ['Review', 'ContentReview']:
+        for perm in [
+            amo.permissions.ADDONS_REVIEW,
+            amo.permissions.ADDONS_CONTENT_REVIEW,
+        ]:
             GroupUser.objects.filter(user=self.user).delete()
-            self.grant_permission(self.user, 'Addons:%s' % perm)
+            self.grant_permission(self.user, perm)
             check_none_showing()
 
         # But they should have 2 showing for someone with the right perms.
         GroupUser.objects.filter(user=self.user).delete()
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
         check_two_showing()
 
         # Check if we set them back to extensions theme reviewers can't see 'em
@@ -779,7 +785,7 @@ class TestDashboard(TestCase):
         )
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
-        self.grant_permission(self.user, 'ReviewerTools:View')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_VIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -850,7 +856,7 @@ class TestDashboard(TestCase):
         )
 
         # Grant user the permission to see only the legacy/post add-ons section
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
 
         # Test.
         response = self.client.get(self.url)
@@ -881,7 +887,7 @@ class TestDashboard(TestCase):
         )
 
         # Grant user the permission to see only the Content Review section.
-        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.grant_permission(self.user, amo.permissions.ADDONS_CONTENT_REVIEW)
 
         # Test.
         response = self.client.get(self.url)
@@ -911,7 +917,7 @@ class TestDashboard(TestCase):
         rating.ratingflag_set.create()
 
         # Grant user the permission to see only the ratings to review section.
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
 
         # Test.
         response = self.client.get(self.url)
@@ -955,7 +961,7 @@ class TestDashboard(TestCase):
         )
 
         # Grant user the permission to see only the legacy add-ons section.
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
 
         # Test.
         response = self.client.get(self.url)
@@ -974,8 +980,8 @@ class TestDashboard(TestCase):
     def test_legacy_reviewer_and_ratings_moderator(self):
         # Grant user the permission to see both the legacy add-ons and the
         # ratings moderation sections.
-        self.grant_permission(self.user, 'Addons:Review')
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
 
         # Test.
         response = self.client.get(self.url)
@@ -1001,7 +1007,7 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[5].attrib['rel'] == 'noopener noreferrer'
 
     def test_view_mobile_site_link_hidden(self):
-        self.grant_permission(self.user, 'ReviewerTools:View')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_VIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1018,7 +1024,7 @@ class QueueTest(ReviewerTest):
         self.login_as_reviewer()
         if self.listed is False:
             # Testing unlisted views: needs Addons:ReviewUnlisted perm.
-            self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+            self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.url = reverse('reviewers.queue_extension')
         self.addons = OrderedDict()
         self.expected_addons = []
@@ -1366,7 +1372,7 @@ class TestQueueBasics(QueueTest):
         expected = [reverse('reviewers.queue_extension')]
         assert links == expected
 
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1377,7 +1383,7 @@ class TestQueueBasics(QueueTest):
         ]
         assert links == expected
 
-        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.grant_permission(self.user, amo.permissions.ADDONS_CONTENT_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1385,7 +1391,7 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_content_review'))
         assert links == expected
 
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1393,7 +1399,7 @@ class TestQueueBasics(QueueTest):
         expected.append(reverse('reviewers.queue_pending_rejection'))
         assert links == expected
 
-        self.grant_permission(self.user, 'Addons:HighImpactApprove')
+        self.grant_permission(self.user, amo.permissions.ADDONS_HIGH_IMPACT_APPROVE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -1405,7 +1411,7 @@ class TestQueueBasics(QueueTest):
     def test_queue_is_never_executing_the_full_query(self):
         """Test that queue() is paginating without accidentally executing the
         full query."""
-        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.grant_permission(self.user, amo.permissions.ADDONS_CONTENT_REVIEW)
         request = RequestFactory().get('/')
         request.user = self.user
 
@@ -1590,7 +1596,7 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
     def test_webextension_with_auto_approval_delayed_with_triage_permission(self):
-        self.grant_permission(self.user, 'Addons:TriageDelayed')
+        self.grant_permission(self.user, amo.permissions.ADDONS_TRIAGE_DELAYED)
         self.generate_files()
         AddonReviewerFlags.objects.create(
             addon=self.addons['Pending One'],
@@ -1670,7 +1676,7 @@ class TestExtensionQueue(QueueTest):
         self._test_results()
 
         # Even if you have that permission also
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
         self._test_results()
 
     def test_pending_rejection_filtered_out(self):
@@ -1726,7 +1732,7 @@ class TestExtensionQueue(QueueTest):
 
     def test_long_due_dates_shown_with_permission(self):
         # self.grant_permission(self.user, 'Addons:AllDueDates')
-        self.grant_permission(self.user, '*:*')
+        self.grant_permission(self.user, amo.permissions.SUPERPOWERS)
         self._setup_queue_with_long_due_dates()
         self.expected_addons = [
             self.addons['Nominated Two'],
@@ -1835,7 +1841,7 @@ class TestThemeQueue(QueueTest):
         self.expected_versions = self.get_expected_versions(self.expected_addons)
         self.url = reverse('reviewers.queue_theme')
         GroupUser.objects.filter(user=self.user).delete()
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
 
     def test_results(self):
         with self.assertNumQueries(15):
@@ -1934,7 +1940,7 @@ class TestThemeQueue(QueueTest):
         self._test_results()
 
         # Even if you have that permission also
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self._test_results()
 
     def test_redirects_old_urls(self):
@@ -1966,7 +1972,7 @@ class TestModeratedQueue(QueueTest):
         assert RatingFlag.objects.filter(flag=RatingFlag.SPAM).count() == 1
         assert Rating.objects.filter(editorreview=True).count() == 1
         self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
 
     def test_results(self):
         response = self.client.get(self.url)
@@ -2165,7 +2171,7 @@ class TestContentReviewQueue(QueueTest):
     def login_with_permission(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.user.groupuser_set.all().delete()  # Remove all permissions
-        self.grant_permission(user, 'Addons:ContentReview')
+        self.grant_permission(user, amo.permissions.ADDONS_CONTENT_REVIEW)
         self.client.force_login(user)
         return user
 
@@ -2464,7 +2470,7 @@ class TestReview(ReviewBase):
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert self.client.get(self.url).status_code == 200
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review_viewer(self):
@@ -2476,7 +2482,9 @@ class TestReview(ReviewBase):
         )
         self.addon.update(status=amo.STATUS_NOMINATED, slug='awaiting')
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
-        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            self.reviewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         assert self.client.get(self.url).status_code == 200
 
     def test_needs_unlisted_reviewer_for_only_unlisted(self):
@@ -2494,7 +2502,7 @@ class TestReview(ReviewBase):
         assert self.client.post(self.url).status_code == 403
 
         # It works with the right permission.
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert self.client.head(self.url).status_code == 200
 
     def test_needs_unlisted_viewer_for_only_unlisted(self):
@@ -2512,7 +2520,9 @@ class TestReview(ReviewBase):
         assert self.client.post(self.url).status_code == 403
 
         # It works with the right permission.
-        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            self.reviewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         assert self.client.head(self.url).status_code == 200
 
     def test_dont_need_unlisted_reviewer_for_mixed_channels(self):
@@ -2521,9 +2531,11 @@ class TestReview(ReviewBase):
         assert self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         assert self.addon.current_version.channel == amo.CHANNEL_LISTED
         assert self.client.head(self.url).status_code == 200
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert self.client.head(self.url).status_code == 200
-        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            self.reviewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         assert self.client.head(self.url).status_code == 200
 
     def test_need_correct_reviewer_for_promoted_addon(self):
@@ -2545,7 +2557,7 @@ class TestReview(ReviewBase):
                 "This is a Admin Only add-on. You don't have permission to review it."
             )
 
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         response = self.client.get(self.url)
         assert response.status_code == 200
         choices = list(dict(response.context['form'].fields['action'].choices).keys())
@@ -2599,7 +2611,7 @@ class TestReview(ReviewBase):
         assert doc('#id_whiteboard-private')
 
         # Content review.
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
@@ -2613,7 +2625,7 @@ class TestReview(ReviewBase):
         )
 
         # Unlisted review.
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(self.url)
@@ -2636,7 +2648,7 @@ class TestReview(ReviewBase):
         )
 
     def test_whiteboard_for_static_themes(self):
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3117,7 +3129,7 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_APPROVED},
         )
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.test_item_history(channel=amo.CHANNEL_UNLISTED)
 
     def test_item_history_with_unlisted_review_page_viewer(self):
@@ -3131,7 +3143,9 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_APPROVED},
         )
         self.url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
-        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            self.reviewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         self.test_item_history(channel=amo.CHANNEL_UNLISTED)
 
     def test_item_history_compat_ordered(self):
@@ -3189,7 +3203,7 @@ class TestReview(ReviewBase):
         self.addon.update_version()
         assert self.addon.versions.filter(channel=amo.CHANNEL_UNLISTED).count() == 1
 
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
@@ -3703,7 +3717,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_extra_actions_subscribe_checked_state(self):
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4059,7 +4073,9 @@ class TestReview(ReviewBase):
         assert self.client.get(self.url).status_code == 403
 
         # Unlisted viewers can view but not submit reviews.
-        self.grant_permission(self.reviewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            self.reviewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
@@ -4067,7 +4083,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 302
 
         # Unlisted reviewers can submit reviews.
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert self.client.get(self.url).status_code == 200
         response = self.client.post(
             self.url, {'action': 'comment', 'comments': 'hello sailor'}
@@ -4292,7 +4308,7 @@ class TestReview(ReviewBase):
         assert info.find('a.compare').length == 0
 
     def test_file_info_for_static_themes(self):
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4344,7 +4360,7 @@ class TestReview(ReviewBase):
         assert b'The developer has provided source code.' in response.content
 
         # A reviewer with source code view access should be able to download too
-        self.grant_permission(user, ':'.join(amo.permissions.ADDONS_SOURCE_DOWNLOAD))
+        self.grant_permission(user, amo.permissions.ADDONS_SOURCE_DOWNLOAD)
         self.client.force_login(user)
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
@@ -4385,7 +4401,6 @@ class TestReview(ReviewBase):
             listed_pre_review=True,
             badged=True,
         )
-        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         response = self.client.post(
             self.url,
             {
@@ -4421,8 +4436,8 @@ class TestReview(ReviewBase):
             self.addon, api_name='notable', unlisted_pre_review=True
         )
         self.make_addon_unlisted(self.addon)
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.post(
             unlisted_url,
@@ -4446,7 +4461,6 @@ class TestReview(ReviewBase):
     def test_policy_required_for_approve(self, mock_sign_file):
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
-        self.grant_permission(self.reviewer, 'Addons:RecommendedReview')
         data = {'action': 'public', 'comments': 'all good'}
         response = self.client.post(self.url, data)
         self.assertFormError(
@@ -4475,7 +4489,7 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         response = self.client.post(
             content_url,
             {
@@ -4532,7 +4546,7 @@ class TestReview(ReviewBase):
         self.addon.update(status=amo.STATUS_REJECTED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         content_url = reverse('reviewers.review', args=['content', self.addon.pk])
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         response = self.client.post(
             content_url,
             {
@@ -4577,7 +4591,7 @@ class TestReview(ReviewBase):
         summary = AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
 
         response = self.client.post(
             content_url,
@@ -4627,7 +4641,7 @@ class TestReview(ReviewBase):
 
     def test_content_review_redirect_if_only_permission(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         content_url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 302
@@ -4639,8 +4653,8 @@ class TestReview(ReviewBase):
 
     def test_dont_content_review_redirect_if_theme_reviewer_only(self):
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4651,7 +4665,7 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_theme_review=True
         )
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
         for action in ['public', 'reject']:
             response = self.client.post(self.url, self.get_dict(action=action))
             assert response.status_code == 200  # Form error.
@@ -4685,8 +4699,8 @@ class TestReview(ReviewBase):
         AddonReviewerFlags.objects.create(
             addon=self.addon, needs_admin_theme_review=True
         )
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         response = self.client.post(
             self.url, {'action': 'public', 'comments': 'it`s good'}
         )
@@ -4699,7 +4713,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.post(
             self.url,
             {
@@ -4743,8 +4757,8 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
         response = self.client.post(
             self.url,
@@ -4782,8 +4796,8 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
         data = {
             'action': 'approve_multiple_versions',
@@ -4841,7 +4855,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
 
         response = self.client.post(
             self.url,
@@ -4882,7 +4896,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
 
         response = self.client.post(
             self.url,
@@ -4928,7 +4942,8 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
 
         in_the_future = datetime.now() + timedelta(
             days=REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT, hours=1
@@ -4982,7 +4997,7 @@ class TestReview(ReviewBase):
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
 
         response = self.client.post(
             self.url,
@@ -5030,7 +5045,7 @@ class TestReview(ReviewBase):
         )
         self.version = version_factory(addon=self.addon, version='3.0')
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
 
         response = self.client.post(
             self.url,
@@ -5057,7 +5072,8 @@ class TestReview(ReviewBase):
         assert doc('#id_policy_values_1').attr.value == 'stuff!'
 
     def test_change_pending_rejection_date(self):
-        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         old_version = self.version
         in_the_future = datetime.now() + timedelta(hours=1)
         in_the_future2 = datetime.now() + timedelta(days=2, hours=1)
@@ -5104,8 +5120,8 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_DISABLED},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         assert self.addon.status == amo.STATUS_APPROVED
 
         response = self.client.post(self.url, {'action': 'unreject_latest_version'})
@@ -5125,8 +5141,8 @@ class TestReview(ReviewBase):
             file_kw={'status': amo.STATUS_DISABLED},
         )
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         assert self.addon.status == amo.STATUS_NULL
 
         response = self.client.post(self.url, {'action': 'unreject_latest_version'})
@@ -5144,9 +5160,9 @@ class TestReview(ReviewBase):
         )
         self.make_addon_unlisted(self.addon)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert self.addon.status == amo.STATUS_NULL
 
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
@@ -5170,9 +5186,9 @@ class TestReview(ReviewBase):
         NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
-        self.grant_permission(self.reviewer, 'Blocklist:Create')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
+        self.grant_permission(self.reviewer, amo.permissions.BLOCKLIST_CREATE)
 
         response = self.client.post(
             self.url,
@@ -5198,7 +5214,7 @@ class TestReview(ReviewBase):
         NeedsHumanReview.objects.create(version=self.version)
 
         GroupUser.objects.filter(user=self.reviewer).all().delete()
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
 
         response = self.client.post(
             self.url,
@@ -5213,7 +5229,7 @@ class TestReview(ReviewBase):
         assert self.version.needshumanreview_set.filter(is_active=True).exists()
         assert old_version.needshumanreview_set.filter(is_active=True).exists()
 
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         response = self.client.post(
             self.url,
             {
@@ -5624,7 +5640,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5646,7 +5662,7 @@ class TestReview(ReviewBase):
         assert doc('.listing-content-status td').text() == 'Unreviewed'
 
     def test_no_auto_approval_summaries_since_everything_is_public(self):
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5734,14 +5750,14 @@ class TestReview(ReviewBase):
 
     def test_abuse_reports_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports()
 
     def test_abuse_reports_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports()
@@ -5775,14 +5791,14 @@ class TestReview(ReviewBase):
 
     def test_abuse_reports_developers_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports_developers()
 
     def test_abuse_reports_developers_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_abuse_reports_developers()
@@ -5835,7 +5851,7 @@ class TestReview(ReviewBase):
             user=user,
         )
 
-        self.grant_permission(self.reviewer, 'Ratings:Moderate')
+        self.grant_permission(self.reviewer, amo.permissions.RATINGS_MODERATE)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -5855,14 +5871,14 @@ class TestReview(ReviewBase):
 
     def test_user_ratings_unlisted_addon(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_user_ratings()
 
     def test_user_ratings_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
         self.make_addon_unlisted(self.addon)
         self.test_user_ratings()
@@ -5871,7 +5887,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5925,7 +5941,8 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
         )
-        self.grant_permission(self.reviewer, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -5989,7 +6006,7 @@ class TestReview(ReviewBase):
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version
         )
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
 
@@ -6048,7 +6065,9 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED, version=self.version
         )
         unlisted_viewer = user_factory(email='unlisted_viewer@mozilla.com')
-        self.grant_permission(unlisted_viewer, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            unlisted_viewer, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
+        )
         self.client.logout()
         self.client.force_login(unlisted_viewer)
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
@@ -6104,7 +6123,7 @@ class TestReview(ReviewBase):
     def test_data_value_attributes_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -6148,7 +6167,7 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED, version=self.version
         )
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         expected_actions = [
@@ -6168,7 +6187,7 @@ class TestReview(ReviewBase):
             verdict=amo.AUTO_APPROVED, version=self.version
         )
         version_factory(addon=self.addon, file_kw={'status': amo.STATUS_DISABLED})
-        self.grant_permission(self.reviewer, 'Addons:ContentReview')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_CONTENT_REVIEW)
         self.url = reverse('reviewers.review', args=['content', self.addon.pk])
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -6184,7 +6203,7 @@ class TestReview(ReviewBase):
 
     def test_static_theme_backgrounds(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.grant_permission(self.reviewer, 'Addons:ThemeReview')
+        self.grant_permission(self.reviewer, amo.permissions.STATIC_THEMES_REVIEW)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -6390,7 +6409,7 @@ class TestReview(ReviewBase):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.version = version_factory(addon=self.addon, version='3.0')
         self.make_addon_unlisted(self.addon)
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
         response = self.client.post(
             self.url,
@@ -6537,7 +6556,7 @@ class TestReview(ReviewBase):
     def test_abuse_reports_resolved_as_disable_addon_with_disable_action(
         self, mock_resolve_task
     ):
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -6589,7 +6608,7 @@ class TestReview(ReviewBase):
         self.version = version_factory(
             addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
         )
-        self.grant_permission(self.reviewer, 'Reviews:Admin')
+        self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         cinder_job = CinderJob.objects.create(
             job_id='123', target_addon=self.addon, resolvable_in_reviewer_tools=True
         )
@@ -6769,7 +6788,7 @@ class TestReview(ReviewBase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -6799,7 +6818,7 @@ class TestReview(ReviewBase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -6841,7 +6860,7 @@ class TestReview(ReviewBase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -6881,7 +6900,7 @@ class TestReview(ReviewBase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -6916,7 +6935,7 @@ class TestReview(ReviewBase):
             json={'uuid': uuid.uuid4().hex},
             status=201,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         policy = CinderPolicy.objects.create(
             uuid='1',
             name='policy 1',
@@ -7101,7 +7120,7 @@ class TestReviewPending(ReviewBase):
             verdict=amo.NOT_AUTO_APPROVED,
             is_locked=True,
         )
-        self.grant_permission(self.reviewer, 'Addons:Review')
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -7235,7 +7254,7 @@ class TestWhiteboard(ReviewBase):
         public_whiteboard_info = 'New content for public'
         private_whiteboard_info = 'New content for private'
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ContentReview')
+        self.grant_permission(user, amo.permissions.ADDONS_CONTENT_REVIEW)
         response = self.client.post(
             url,
             {
@@ -7295,7 +7314,7 @@ class TestWhiteboard(ReviewBase):
 
         # Everything works once you have permission.
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         response = self.client.post(
             url,
             {
@@ -7411,7 +7430,7 @@ class TestPolicyView(ReviewerTest):
         assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.force_login(user)
         response = self.client.get(self.eula_url + '?channel=unlisted')
         assert response.status_code == 200
@@ -7449,7 +7468,7 @@ class TestPolicyView(ReviewerTest):
         assert response.status_code == 403
 
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.force_login(user)
         response = self.client.get(self.privacy_url + '?channel=unlisted')
         assert response.status_code == 200
@@ -7666,7 +7685,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_subscribe_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         self.subscribe_url_listed = reverse_ns(
             'reviewers-addon-subscribe-listed', kwargs={'pk': self.addon.pk + 42}
@@ -7684,7 +7703,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_listed)
         assert response.status_code == 202
@@ -7694,7 +7713,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
@@ -7704,14 +7723,14 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         subscribe_url = reverse_ns(
             'reviewers-addon-subscribe', kwargs={'pk': self.addon.pk}
@@ -7721,21 +7740,21 @@ class TestAddonReviewerViewSet(TestCase):
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe_listed(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_listed)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe_unlisted(self):
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
     def test_subscribe_unlisted_viewer(self):
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.subscribe_url_unlisted)
         assert response.status_code == 202
@@ -7755,7 +7774,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
     def test_unsubscribe_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         self.subscribe_url_listed = reverse_ns(
             'reviewers-addon-subscribe-listed', kwargs={'pk': self.addon.pk + 42}
@@ -7770,13 +7789,13 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 404
 
     def test_unsubscribe_not_subscribed(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_listed)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
 
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
@@ -7786,7 +7805,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         unsubscribe_url = reverse_ns(
             'reviewers-addon-unsubscribe', kwargs={'pk': self.addon.pk}
@@ -7799,7 +7818,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_listed)
         assert response.status_code == 202
@@ -7809,7 +7828,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
@@ -7819,7 +7838,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=self.user, addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
         assert response.status_code == 202
@@ -7837,7 +7856,7 @@ class TestAddonReviewerViewSet(TestCase):
         ReviewerSubscription.objects.create(
             user=another_user, addon=self.addon, channel=amo.CHANNEL_LISTED
         )
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_listed)
         assert response.status_code == 202
@@ -7856,12 +7875,12 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 403
 
         # Being a reviewer is not enough.
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         response = self.client.patch(self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 403
 
     def test_patch_flags_addon_does_not_exist(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         self.flags_url = reverse_ns(
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk + 42}
@@ -7875,7 +7894,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_patch_flags_only_save_changed(self):
         instance = AddonReviewerFlags.objects.create(addon=self.addon)
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         with mock.patch(
             'olympia.reviewers.views.AddonReviewerFlags.objects.get_or_create',
@@ -7901,7 +7920,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_patch_flags_no_flags_yet_still_works_transparently(self):
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         response = self.client.patch(self.flags_url, {'auto_approval_disabled': True})
         assert response.status_code == 200
@@ -7918,7 +7937,7 @@ class TestAddonReviewerViewSet(TestCase):
             auto_approval_delayed_until=self.days_ago(42),
             auto_approval_delayed_until_unlisted=self.days_ago(0),
         )
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         data = {
             'auto_approval_disabled': False,
@@ -7942,7 +7961,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert reviewer_flags.auto_approval_delayed_until_unlisted is None
 
     def test_deny_resubmission(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         assert DeniedGuid.objects.count() == 0
         response = self.client.post(self.deny_resubmission_url)
@@ -7950,7 +7969,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert DeniedGuid.objects.count() == 1
 
     def test_deny_resubmission_with_denied_guid(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         self.addon.deny_resubmission()
         assert DeniedGuid.objects.count() == 1
@@ -7959,7 +7978,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert DeniedGuid.objects.count() == 1
 
     def test_allow_resubmission(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         self.addon.deny_resubmission()
         assert DeniedGuid.objects.count() == 1
@@ -7968,7 +7987,7 @@ class TestAddonReviewerViewSet(TestCase):
         assert DeniedGuid.objects.count() == 0
 
     def test_allow_resubmission_with_non_denied_guid(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         response = self.client.post(self.allow_resubmission_url)
         assert response.status_code == 409
@@ -7976,7 +7995,7 @@ class TestAddonReviewerViewSet(TestCase):
 
     def test_due_date(self):
         user_factory(pk=settings.TASK_USER_ID)
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         version = self.addon.current_version
         NeedsHumanReview.objects.create(version=version)
@@ -7994,7 +8013,7 @@ class TestAddonReviewerViewSet(TestCase):
         self.assertCloseToNow(version.due_date, now=new_due_date)
 
     def test_set_needs_human_review(self):
-        self.grant_permission(self.user, 'Reviews:Admin')
+        self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
         self.client.login_api(self.user)
         version = self.addon.current_version
         assert not version.needshumanreview_set.exists()
@@ -8036,25 +8055,25 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         )
 
     def test_reviewer_can_see_json_results(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code == 200
 
     def test_deleted_addon(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
 
         self.addon.delete()
         assert self.client.get(self.url).status_code == 200
 
     def test_unlisted_reviewer_can_see_results_for_unlisted(self):
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
 
     def test_unlisted_viewer_can_see_results_for_unlisted(self):
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code == 200
@@ -8068,7 +8087,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
 
     @mock.patch.object(acl, 'is_reviewer', lambda user, addon: False)
     def test_wrong_type_of_reviewer_cannot_see_json_results(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         assert self.client.get(self.url).status_code in [
             401,
@@ -8076,7 +8095,7 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
         ]  # JWT auth is a 401; web auth is 403
 
     def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url).status_code in [
@@ -8219,7 +8238,7 @@ class TestReviewVersionRedirect(ReviewerTest):
     def login_as_reviewer(self):
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
-            'Addons:ReviewUnlisted',
+            amo.permissions.ADDONS_REVIEW_UNLISTED,
         )
         return super().login_as_reviewer()
 
@@ -8330,7 +8349,7 @@ class TestHeldDecisionQueue(ReviewerTest):
 
     def test_results(self):
         user = user_factory()
-        self.grant_permission(user, 'Addons:HighImpactApprove')
+        self.grant_permission(user, amo.permissions.ADDONS_HIGH_IMPACT_APPROVE)
         self.client.force_login(user)
 
         response = self.client.get(self.url)
@@ -8380,7 +8399,7 @@ class TestHeldDecisionQueue(ReviewerTest):
 
     def test_reviewer_viewer_can_access(self):
         user = user_factory()
-        self.grant_permission(user, 'ReviewerTools:View')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_VIEW)
         self.client.force_login(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -8416,7 +8435,7 @@ class TestHeldDecisionReview(ReviewerTest):
         )
         self.url = reverse('reviewers.decision_review', args=(self.decision.id,))
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:HighImpactApprove')
+        self.grant_permission(self.user, amo.permissions.ADDONS_HIGH_IMPACT_APPROVE)
         self.client.force_login(self.user)
 
     def _test_review_page_addon(self):
@@ -8592,7 +8611,7 @@ class TestHeldDecisionReview(ReviewerTest):
 
     def test_reviewer_viewer_can_access(self):
         user = user_factory()
-        self.grant_permission(user, 'ReviewerTools:View')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_VIEW)
         self.client.force_login(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -8600,7 +8619,7 @@ class TestHeldDecisionReview(ReviewerTest):
 
     def test_reviewer_viewer_cannot_submit(self):
         user = user_factory()
-        self.grant_permission(user, 'ReviewerTools:View')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_VIEW)
         self.client.force_login(user)
         response = self.client.post(self.url, {'choice': 'yes'})
 

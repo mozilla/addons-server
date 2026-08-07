@@ -5,6 +5,7 @@ from django.utils.encoding import force_str
 
 from pyquery import PyQuery as pq
 
+from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.files.models import FileManifest, FileValidation, WebextPermission
 
@@ -17,7 +18,7 @@ class TestFileAdmin(TestCase):
         addon = addon_factory()
         file_ = addon.current_version.file
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -28,7 +29,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.file
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -71,7 +72,7 @@ class TestFileAdmin(TestCase):
 
         # Just checking that simply changing the permission resolves
         # as wanted
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
 
@@ -80,7 +81,7 @@ class TestFileAdmin(TestCase):
         file_ = addon.current_version.file
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -99,7 +100,7 @@ class TestFileAdmin(TestCase):
 
         detail_url = reverse('admin:files_file_change', args=(file_.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200

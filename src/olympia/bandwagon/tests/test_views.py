@@ -61,17 +61,17 @@ class TestCollectionViewSetList(TestCase):
         other_url = reverse_ns('collection-list', kwargs={'user_pk': random_user.pk})
         collection_factory(author=random_user)
 
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.client.get(other_url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Collections:Contribute')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         self.client.login_api(self.user)
         response = self.client.get(other_url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Admin:Curation')
+        self.grant_permission(self.user, amo.permissions.ADMIN_CURATION)
         response = self.client.get(other_url)
         assert response.status_code == 403
 
@@ -173,17 +173,17 @@ class TestCollectionViewSetDetail(TestCase):
         random_user = user_factory()
         collection = collection_factory(author=random_user, listed=False)
 
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Collections:Contribute')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         self.client.login_api(self.user)
         response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Admin:Curation')
+        self.grant_permission(self.user, amo.permissions.ADMIN_CURATION)
         response = self.client.get(self._get_url(random_user, collection))
         assert response.status_code == 403
 
@@ -203,7 +203,7 @@ class TestCollectionViewSetDetail(TestCase):
             response = self.client.get(self.url)
             assert response.status_code == 403
 
-            self.grant_permission(random_user, 'Collections:Contribute')
+            self.grant_permission(random_user, amo.permissions.COLLECTIONS_CONTRIBUTE)
             # Now they can access it.
             response = self.client.get(self.url)
             assert response.status_code == 200
@@ -474,7 +474,7 @@ class CollectionViewSetDataMixin:
         assert json.loads(response.content) == {'name': ['This name cannot be used.']}
 
         # But you can if you have the correct permission
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
@@ -487,7 +487,7 @@ class CollectionViewSetDataMixin:
         assert response.status_code == 400
         assert json.loads(response.content) == {'name': ['This name cannot be used.']}
         # even with permission
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code == 400
@@ -512,7 +512,7 @@ class CollectionViewSetDataMixin:
         }
 
         # But you can if you have the correct permission
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code in (200, 201)
@@ -527,7 +527,7 @@ class CollectionViewSetDataMixin:
             'slug': ['This custom URL cannot be used.']
         }
         # even with permission
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         response = self.send(data=data)
         assert response.status_code == 400
@@ -636,18 +636,18 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 403
 
     def test_admin_create_fails(self):
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         random_user = user_factory()
         url = self.get_url(random_user)
         response = self.send(url=url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Collections:Contribute')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         response = self.send(url=url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Admin:Curation')
+        self.grant_permission(self.user, amo.permissions.ADMIN_CURATION)
         response = self.send(url=url)
         assert response.status_code == 403
 
@@ -697,7 +697,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         assert response.status_code == 403
 
     def test_admin_patch(self):
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
@@ -706,11 +706,11 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         response = self.send(url=url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Collections:Contribute')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         response = self.send(url=url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Admin:Curation')
+        self.grant_permission(self.user, amo.permissions.ADMIN_CURATION)
         response = self.send(url=url)
         assert response.status_code == 403
 
@@ -728,7 +728,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
-        self.grant_permission(random_user, 'Collections:Contribute')
+        self.grant_permission(random_user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         url = self.get_url(random_user)
         setting_key = 'COLLECTION_FEATURED_THEMES_ID'
         with override_settings(**{setting_key: self.collection.id}):
@@ -810,7 +810,7 @@ class TestCollectionViewSetDelete(TestCase):
         assert response.status_code == 403
 
     def test_admin_delete(self):
-        self.grant_permission(self.user, 'Collections:Edit')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(self.user)
         random_user = user_factory()
         self.collection.update(author=random_user)
@@ -818,11 +818,11 @@ class TestCollectionViewSetDelete(TestCase):
         response = self.client.delete(url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Collections:Contribute')
+        self.grant_permission(self.user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         response = self.client.delete(url)
         assert response.status_code == 403
 
-        self.grant_permission(self.user, 'Admin:Curation')
+        self.grant_permission(self.user, amo.permissions.ADMIN_CURATION)
         response = self.client.delete(url)
         assert response.status_code == 403
         assert Collection.objects.filter(id=self.collection.id).exists()
@@ -837,7 +837,7 @@ class TestCollectionViewSetDelete(TestCase):
         self.client.login_api(self.user)
         different_user = user_factory()
         self.collection.update(author=different_user)
-        self.grant_permission(different_user, 'Collections:Contribute')
+        self.grant_permission(different_user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         url = self.get_url(different_user)
         setting_key = 'COLLECTION_FEATURED_THEMES_ID'
         with override_settings(**{setting_key: self.collection.id}):
@@ -880,16 +880,16 @@ class CollectionAddonViewSetMixin:
     def test_not_listed_admin(self):
         self.collection.update(listed=False)
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Collections:Edit')
+        self.grant_permission(admin_user, amo.permissions.COLLECTIONS_EDIT)
         self.client.login_api(admin_user)
         response = self.send(self.url)
         assert response.status_code == 403
 
-        self.grant_permission(admin_user, 'Collections:Contribute')
+        self.grant_permission(admin_user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         response = self.send(self.url)
         assert response.status_code == 403
 
-        self.grant_permission(admin_user, 'Admin:Curation')
+        self.grant_permission(admin_user, amo.permissions.ADMIN_CURATION)
         response = self.send(self.url)
         assert response.status_code == 403
 
@@ -899,7 +899,7 @@ class CollectionAddonViewSetMixin:
     def test_contributor(self):
         self.collection.update(listed=False)
         random_user = user_factory()
-        self.grant_permission(random_user, 'Collections:Contribute')
+        self.grant_permission(random_user, amo.permissions.COLLECTIONS_CONTRIBUTE)
         self.client.login_api(random_user)
         # should fail as self.collection isn't special
         response = self.send(self.url)
