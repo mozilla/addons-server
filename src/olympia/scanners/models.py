@@ -23,7 +23,7 @@ from olympia.abuse.utils import (
 from olympia.access.models import Group, GroupUser
 from olympia.amo.models import ModelBase
 from olympia.constants.abuse import POLICY_EXPOSURE
-from olympia.constants.base import ADDON_EXTENSION
+from olympia.constants.base import ADDON_EXTENSION, COSE_DATE_CUTOFF
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -649,6 +649,9 @@ class ScannerQueryRule(AbstractScannerRule):
         blank=True,
         help_text='Run this rule on versions in the specific channel only.',
         choices=[(None, '')] + list(amo.CHANNEL_CHOICES.items()),
+    )
+    created_after = models.DateField(
+        db_default=None, default=COSE_DATE_CUTOFF, null=True, blank=True
     )
     celery_group_result_id = models.UUIDField(default=None, null=True)
     task_count = models.PositiveIntegerField(default=0)

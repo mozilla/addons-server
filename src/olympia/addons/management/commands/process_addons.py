@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.db.models import Exists, F, OuterRef, Q
 
 from olympia import amo
@@ -20,6 +18,7 @@ from olympia.constants.base import (
     _ADDON_PLUGIN,
     _ADDON_THEME,
     _ADDON_WEBAPP,
+    COSE_DATE_CUTOFF,
 )
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import bump_and_resign_addons
@@ -82,7 +81,7 @@ class Command(ProcessObjectsCommand):
                     # created before the 5th of April
                     Q(
                         status=amo.STATUS_APPROVED,
-                        _current_version__created__lt=datetime(2019, 4, 5),
+                        _current_version__created__lt=COSE_DATE_CUTOFF,
                         disabled_by_user=False,
                         type__in=(
                             amo.ADDON_EXTENSION,
