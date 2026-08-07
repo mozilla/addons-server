@@ -143,7 +143,13 @@ class Command(BaseCommand):
                         summary is not None
                         and summary.scanner_actions_executed is not False
                     )
-                    if already_executed:
+                    if version.channel == amo.CHANNEL_ENTERPRISE:
+                        log.info(
+                            'Not running run_actions() on version %s because it '
+                            'is an enterprise version',
+                            version.pk,
+                        )
+                    elif already_executed:
                         log.info(
                             'Not running run_actions() on version %s because it '
                             'has already been executed',

@@ -320,8 +320,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert not AutoApprovalSummary.objects.exists()
         call_command('auto_approve')
         self.version.reload()
+        self.version.file.reload()
         summary = AutoApprovalSummary.objects.get(version=self.version)
         assert summary.verdict == amo.AUTO_APPROVED
+        assert self.version.file.status == amo.STATUS_APPROVED
         assert not self.version.needshumanreview_set.filter(is_active=True).exists()
 
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
@@ -901,6 +903,61 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         call_command('auto_approve')  # Shouldn't matter if it's called twice.
         check_assertions()
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_actions_enterprise(self, sign_file_mock):
+        """When auto-approving, scanner matches are ignored when enterprise."""
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        self.create_switch('run-action-in-auto-approve', active=True)
+        reject_policy = CinderPolicy.objects.create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+            name='Reject Policy',
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
+            uuid=uuid.uuid4().hex,
+        )
+        ScannerRule.objects.create(
+            is_active=True, name='foo', policy=reject_policy, scanner=YARA
+        )
+
+        assert self.version.channel == amo.CHANNEL_LISTED
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+        )
+
+        result = ScannerResult.objects.create(
+            scanner=YARA,
+            version=self.version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}],
+        )
+        enterprise_result = ScannerResult.objects.create(
+            scanner=YARA,
+            version=enterprise_version,
+            results=[{'rule': 'foo', 'tags': [], 'meta': {}}],
+        )
+
+        assert result.has_matches
+        assert enterprise_result.has_matches
+
+        call_command('auto_approve')
+
+        self.version.reload()
+        self.version.file.reload()
+        assert self.version.file.status == amo.STATUS_DISABLED
+
+        enterprise_version.reload()
+        enterprise_version.file.reload()
+        assert enterprise_version.file.status == amo.STATUS_APPROVED
+
+        assert AutoApprovalSummary.objects.filter(version=self.version).exists()
+        assert not AutoApprovalSummary.objects.filter(
+            version=enterprise_version
+        ).exists()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_delay_approval_with_run_narc(self, sign_file_mock):
