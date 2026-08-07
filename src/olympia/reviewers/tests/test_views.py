@@ -26,6 +26,7 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core, ratings
+from olympia.abuse.actions import CONTENT_ACTION_FROM_DECISION_ACTION
 from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
@@ -6349,7 +6350,7 @@ class TestReview(ReviewBase):
     def test_blocked_versions(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert b'Blocked' not in response.content
+        assert b'-Blocked' not in response.content
 
         block = block_factory(guid=self.addon.guid, updated_by=user_factory())
         response = self.client.get(self.url)
@@ -6977,6 +6978,9 @@ class TestReview(ReviewBase):
                 assert 'primary-enf' in item[0].classes
             else:
                 assert 'followup-enf' in item[0].classes
+            assert item.text() == (
+                CONTENT_ACTION_FROM_DECISION_ACTION[action].description
+            )
 
 
 class TestAbuseReportsView(ReviewerTest):
