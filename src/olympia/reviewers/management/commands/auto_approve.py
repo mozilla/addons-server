@@ -136,28 +136,27 @@ class Command(BaseCommand):
                         run_narc_on_version(version.pk, run_actions_on_match=False)
 
                 scanner_actions_executed = False
-                if waffle.switch_is_active('run-action-in-auto-approve'):
-                    # NULL means the summary predates this field, back when
-                    # run_actions() was always executed on the first run.
-                    already_executed = (
-                        summary is not None
-                        and summary.scanner_actions_executed is not False
+                # NULL means the summary predates this field, back when
+                # run_actions() was always executed on the first run.
+                already_executed = (
+                    summary is not None
+                    and summary.scanner_actions_executed is not False
+                )
+                if already_executed:
+                    log.info(
+                        'Not running run_actions() on version %s because it '
+                        'has already been executed',
+                        version.pk,
                     )
-                    if already_executed:
-                        log.info(
-                            'Not running run_actions() on version %s because it '
-                            'has already been executed',
-                            version.pk,
-                        )
-                    elif AutoApprovalSummary.check_is_waiting_on_scanners(version):
-                        log.info(
-                            'Not running run_actions() on version %s because it '
-                            'is still waiting on scanners',
-                            version.pk,
-                        )
-                    else:
-                        ScannerResult.run_actions(version)
-                        scanner_actions_executed = True
+                elif AutoApprovalSummary.check_is_waiting_on_scanners(version):
+                    log.info(
+                        'Not running run_actions() on version %s because it '
+                        'is still waiting on scanners',
+                        version.pk,
+                    )
+                else:
+                    ScannerResult.run_actions(version)
+                    scanner_actions_executed = True
 
                 version.autoapprovalsummary, info = (
                     AutoApprovalSummary.create_summary_for_version(
