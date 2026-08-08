@@ -2126,6 +2126,39 @@ class TestRunQueryRuleMixin:
         # just make sure the id was set to something.
         assert self.rule.celery_group_result_id is not None
 
+    def test_run_created_after(self):
+        # Pretend we went through the admin, run after a specific date
+        some_time_ago = self.days_ago(42)
+        self.rule.update(state=SCHEDULED, created_after=some_time_ago)
+
+        # Make existing version old: it shouldn't be found.
+        self.version.update(created=self.days_ago(1200))
+
+        # Add a couple versions that should be found.
+        expected_versions = [
+            version_factory(
+                file_kw={'filename': 'webextension.xpi'},
+                addon=self.version.addon,
+            ),
+            addon_factory(
+                version_kw={'created': some_time_ago},
+                file_kw={'filename': 'webextension.xpi'},
+            ).current_version,
+        ]
+
+        # Run the task.
+        run_scanner_query_rule.delay(self.rule.pk)
+
+        # Only the newer versions should have been found.
+        assert ScannerQueryResult.objects.count() == 2
+
+        assert sorted(
+            ScannerQueryResult.objects.values_list('version_id', flat=True)
+        ) == sorted(v.pk for v in expected_versions)
+        self.rule.reload()
+        assert self.rule.state == COMPLETED
+        assert self.rule.task_count == 1
+
     def test_run_not_new(self):
         self.rule.update(state=RUNNING)  # Not SCHEDULED.
         run_scanner_query_rule.delay(self.rule.pk)
