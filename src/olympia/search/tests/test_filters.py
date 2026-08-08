@@ -455,7 +455,7 @@ class TestQueryFilter(FilterTestsBase):
         assert expected in should
 
     def test_q_exact_sentinel_no_language_analyzer(self):
-        """Fall back to "name_exact_sentinel" alone. _test_q() covers the rest"""
+        """Fall back to "name_exact_sentinel" alone. _test_q() covers the rest."""
         with translation.override('mn'):
             qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
@@ -492,8 +492,8 @@ class TestQueryFilter(FilterTestsBase):
         }
 
     def test_q_no_word_characters_skips_exact_sentinel(self):
-        """Such a query analyzes to the sentinels alone, matching any name
-        that also analyzes to nothing."""
+        """A query with no word characters analyzes to the sentinels alone,
+        matching any name that also analyzes to nothing."""
         qs = self._filter(data={'q': '???'})
         should = qs['query']['function_score']['query']['bool']['should']
 

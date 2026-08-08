@@ -406,8 +406,7 @@ class TestAddonIndexer(TestCase):
         # need to always contain a string.
         assert extracted['name'] == 'Name in ënglish'
         assert extracted['summary'] == ''
-        # The sentinel fields wrap their non-sentinel counterpart, so that a
-        # phrase query including the sentinels can only match the whole name.
+        # The sentinel fields wrap their non-sentinel counterpart.
         assert (
             extracted['name_exact_sentinel']
             == f'{SENTINEL_BEGIN} Name in ënglish {SENTINEL_END}'

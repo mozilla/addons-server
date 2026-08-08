@@ -652,8 +652,8 @@ class SearchQueryFilter(BaseFilterBackend):
         name and the query are wrapped in sentinel tokens, so the phrase can
         only match a whole name, not a name merely containing the query.
 
-        Wrapped in a bool whose must_not is generate_exact_name_match_query(),
-        making it a strict per add-on fallback: an add-on already matching
+        The clause is wrapped in a bool whose must_not is
+        generate_exact_name_match_query(), so an add-on already matching
         literally keeps exactly the score it had before.
 
         Like generate_exact_name_match_query(), it has 2 modes depending on

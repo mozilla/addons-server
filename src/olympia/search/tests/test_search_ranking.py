@@ -1096,27 +1096,24 @@ class TestRankingScenarios(RankingScenarioTestCase):
 
 class TestSentinelRankingScenarios(RankingScenarioTestCase):
     # Own corpus: BM25 idf depends on the document count, so adding these to
-    # TestRankingScenarios's shared corpus would shift all of its scores.
+    # the TestRankingScenarios corpus would shift all of its scores.
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
 
         cls.empty_index('default')
 
-        # Real names and average_daily_users, from a production search for
-        # "tab manager" (2026-08-01). The 2 genuine, small tab managers:
-        # "Tab manager" stems to the same tokens as the query below, so both
-        # are whole name matches for it, but only the sentinel can see that
-        # for the one that isn't already spelled with a singular "Tab".
+        # This data was taken from a production search for "tab manager" to
+        # test the exact name scenarios below. (2026-08-01)
         names_and_users = (
+            # The 2 genuine tab managers, both with few users.
             ('Tab Manager', 106),
             ('Tab manager', 194),
-            # Not from production either: same name stemmed, and the same
-            # average_daily_users as "Tab Manager", so that the gap between
-            # them in the literal query below is only the clause that matched.
+            # Dummy data: "Tab Manager" pluralised and equally popular, so it
+            # only matches the literal query below once stemmed.
             ('Tab Managers', 106),
-            # More popular add-ons that mention tabs and/or managing, but
-            # aren't tab managers.
+            # Popular add-ons that mention tabs or managing, but aren't tab
+            # managers.
             ('Task Manager Tab & Custom Web Search', 28072),
             ('SleepyTabs - Tab Suspender & Manager', 1781),
             ('Tab Session Manager', 150325),
@@ -1124,8 +1121,8 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
             ('Workona Spaces & Tab Manager', 1851),
             ('Tab Manager Plus for Firefox', 4030),
             ('Tab Mute Manager', 258),
-            # Not from production: the shape the stop word test below needs,
-            # a whole name match plus exactly one word.
+            # Dummy data: a whole name match plus exactly one word, the shape
+            # the stop word test below needs.
             ('My Tab Manager', 200),
         )
         for name, users in names_and_users:
@@ -1136,14 +1133,10 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         cls.refresh()
 
     def test_stemmed_whole_name_match_ranks_above_partial_matches(self):
-        # Without the sentinel, none of the 3 whole name matches has one, so
-        # they're buried at positions 7, 10 and 11 (last), behind add-ons that
-        # only share a word with the query.
-        # "SleepyTabs" keeps the top spot: it isn't a whole name match either,
-        # it just scores well on the ordinary name clauses. The sentinel
-        # improves this ranking, it doesn't decide it on its own.
-        # Everything from "Tab Session Manager" down is the query plus at
-        # least one word, so the sentinel gives it nothing.
+        # Before the sentinel, the 3 whole name matches ranked 7th, 10th and
+        # 11th, behind add-ons that merely share a word with the query.
+        # "SleepyTabs" still takes the top spot on the ordinary name clauses:
+        # the sentinel improves this ranking, it doesn't decide it.
         self._check_scenario(
             'tabs manager',
             (
@@ -1185,7 +1178,7 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
 
     def test_stop_word_in_query_does_not_span_an_extra_word(self):
         # The language analyzers drop stop words but keep their position, and a
-        # phrase query matches any word against the hole that leaves. Before
+        # phrase query matches any word against the hole left behind. Before
         # NO_STOP_ANALYZER_SUFFIX, "the tab manager" therefore spanned
         # "My Tab Manager" end to end and took the whole name boost with it:
         # 106 and first place, instead of the 25 and 6th place below.
