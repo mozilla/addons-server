@@ -503,6 +503,7 @@ class TestQueryFilter(FilterTestsBase):
             for conditions in should
         )
 
+
 class TestReviewedContentFilter(FilterTestsBase):
     filter_classes = [ReviewedContentFilter]
 
