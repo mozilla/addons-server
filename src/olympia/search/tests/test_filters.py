@@ -497,9 +497,11 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': '???'})
         should = qs['query']['function_score']['query']['bool']['should']
 
-        # The sentinel clause is the only bool among the primary rules.
-        assert not any('bool' in conditions for conditions in should)
-
+        assert not any(
+            conditions.get('bool', {}).get('_name')
+            == 'Bool(ExactNameSentinel, !ExactName)'
+            for conditions in should
+        )
 
 class TestReviewedContentFilter(FilterTestsBase):
     filter_classes = [ReviewedContentFilter]
