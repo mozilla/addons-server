@@ -183,10 +183,16 @@ class AddonIndexer:
         """
 
         def wrap(value):
-            # Sentinels already in the name would nest, letting the phrase
-            # query match the inner pair. Empty stays empty, not a lone pair.
-            value = value.replace(SENTINEL_BEGIN, '').replace(SENTINEL_END, '').strip()
-            return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}' if value else ''
+            # An empty name stays empty rather than becoming a lone pair, and a
+            # name holding a sentinel of its own is left out entirely: wrapping
+            # it would nest the pairs, and the phrase query could then match
+            # the inner one. Compared lowercased, because that is what the
+            # analyzers do to both sides before any token is ever matched.
+            value = value.strip()
+            sentinels = (SENTINEL_BEGIN.lower(), SENTINEL_END.lower())
+            if not value or any(sentinel in value.lower() for sentinel in sentinels):
+                return ''
+            return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}'
 
         return {
             f'{field}_exact_sentinel': wrap(data[field]),

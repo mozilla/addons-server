@@ -468,17 +468,22 @@ class TestAddonIndexer(TestCase):
         assert extracted['name_exact_sentinel'] == ''
         assert extracted['name_exact_sentinel_l10n_en-us'] == ''
 
-        # A name already containing the sentinels still gets exactly one pair,
-        # otherwise the phrase query could match the inner one.
-        self.addon.name = f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
-        self.addon.save()
+        # A name holding a sentinel of its own gets no value at all: wrapping
+        # it would nest the pairs and let the phrase query match the inner one.
+        # Neither the case nor the position of the sentinel changes that, the
+        # analyzers lowercase and a phrase can match anywhere in the field.
+        for name in (
+            f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}',
+            f'{SENTINEL_BEGIN.lower()} Banana Bonkers {SENTINEL_END.lower()}',
+            f'Banana {SENTINEL_END} Bonkers',
+        ):
+            self.addon.name = name
+            self.addon.save()
 
-        extracted = self._extract()
+            extracted = self._extract()
 
-        assert (
-            extracted['name_exact_sentinel']
-            == f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}'
-        )
+            assert extracted['name_exact_sentinel'] == '', name
+            assert extracted['name_exact_sentinel_l10n_en-us'] == '', name
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(
