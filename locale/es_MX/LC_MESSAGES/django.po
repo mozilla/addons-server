@@ -2030,7 +2030,7 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
-"Un complemento empresarial. <span class=\"helptext\">Una vez que Mozilla haya aprobado tu envío, podrás descargar el archivo .xpi desde el Centro para desarrolladores y distribuirlo a tus usuarios "
+"Un complemento empresarial. <span class=\"helptext\">Una vez que Mozilla haya firmado tu envío, podrás descargar el archivo .xpi desde el Centro para desarrolladores y distribuirlo a tus usuarios "
 "mediante una política de Firefox para empresas.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
@@ -3982,11 +3982,11 @@ msgstr "Esta es la última versión disponible no listada"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Firmado para uso empresarial."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Esta es la versión empresarial más reciente que se ha subido"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -4006,7 +4006,7 @@ msgstr "Página de revisión no listada"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Página de revisión empresarial"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -6137,7 +6137,7 @@ msgstr "Disfraza a Firefox como el navegador Chrome para acceder a sitios que in
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Elimina distracciones, cambia las opciones de visualización, ajusta la velocidad de reproducción y mucho más."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
