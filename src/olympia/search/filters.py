@@ -676,15 +676,17 @@ class SearchQueryFilter(BaseFilterBackend):
                 {'match_phrase': {'name_exact_sentinel': sentinel_query}},
             ]
             fields = [
-                'name_exact_sentinel_l10n_%s' % lang
+                f'name_exact_sentinel_l10n_{lang}'
                 for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
             ]
             queries.extend(
                 [{'match_phrase': {field: sentinel_query}} for field in fields]
             )
+            match_phrase_fields = ', '.join(f'MatchPhrase({field})' for field in fields)
             clause = query.DisMax(
-                _name='DisMax(MatchPhrase(name_exact_sentinel), %s)'
-                % ', '.join(['MatchPhrase(%s)' % field for field in fields]),
+                _name=(
+                    f'DisMax(MatchPhrase(name_exact_sentinel), {match_phrase_fields})'
+                ),
                 boost=50.0,
                 queries=queries,
             )

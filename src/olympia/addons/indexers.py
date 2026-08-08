@@ -95,7 +95,7 @@ class AddonIndexer:
                 property_name = '%s_l10n_%s' % (field, lang)
                 mapping['properties'][property_name] = {
                     'type': 'text',
-                    'analyzer': '%s%s' % (analyzer, analyzer_suffix),
+                    'analyzer': f'{analyzer}{analyzer_suffix}',
                 }
 
     @classmethod
@@ -187,13 +187,13 @@ class AddonIndexer:
             # Sentinels already in the name would nest and let the phrase query
             # match the inner pair. Empty stays empty, no lone sentinels.
             value = value.replace(SENTINEL_BEGIN, '').replace(SENTINEL_END, '').strip()
-            return '%s %s %s' % (SENTINEL_BEGIN, value, SENTINEL_END) if value else ''
+            return f'{SENTINEL_BEGIN} {value} {SENTINEL_END}' if value else ''
 
         return {
-            '%s_exact_sentinel' % field: wrap(data[field]),
+            f'{field}_exact_sentinel': wrap(data[field]),
             **{
-                '%s_exact_sentinel_l10n_%s' % (field, lang): wrap(
-                    data['%s_l10n_%s' % (field, lang)]
+                f'{field}_exact_sentinel_l10n_{lang}': wrap(
+                    data[f'{field}_l10n_{lang}']
                 )
                 for lang in SEARCH_LANGUAGE_TO_ANALYZER
             },
@@ -230,7 +230,7 @@ class AddonIndexer:
                 # runs, which is the point of those fields.
                 # See NO_STOP_ANALYZER_SUFFIX.
                 **{
-                    '%s%s' % (analyzer, NO_STOP_ANALYZER_SUFFIX): {
+                    f'{analyzer}{NO_STOP_ANALYZER_SUFFIX}': {
                         'type': analyzer,
                         'stopwords': '_none_',
                     }
