@@ -361,6 +361,14 @@ class CinderPolicyWidget(forms.CheckboxSelectMultiple):
         attrs['data-enforcement-actions-order'] = hash_addon_negative_actions(
             enforcement_actions
         ).hex()
+        self.input_type = (
+            forms.CheckboxSelectMultiple.input_type
+            if not any(
+                enf not in DECISION_ACTIONS.ADDON_NEGATIVE_SORTED
+                for enf in enforcement_actions.primary
+            )
+            else forms.RadioSelect.input_type
+        )
         return super().create_option(
             name, value, label, selected, index, subindex, attrs
         )
