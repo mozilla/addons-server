@@ -215,10 +215,8 @@
               <h4>Enforcement actions:</h4>
               <ol id="policy-enforcement-actions">
                 <li class="action-0 primary-enf">No Action</li>
-                {% for action in DECISION_ACTIONS %}
-                {% with enf='primary-enf' if not action in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS else 'followup-enf' %}
-                <li class="action-{{ action.value }} hidden {{ enf }}">{{ action.label }}</li>
-                {% endwith %}
+                {% for class, value, label in decision_actions %}
+                <li class="action-{{ value }} hidden {{ class }}">{{ label }}</li>
                 {% endfor %}
               </ol>
             </div>

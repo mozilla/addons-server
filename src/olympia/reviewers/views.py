@@ -23,7 +23,11 @@ from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    AbuseReport,
+    CinderPolicy,
+    ContentDecision,
+)
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.access import acl
 from olympia.activity.models import ActivityLog, CommentLog
@@ -70,6 +74,7 @@ from olympia.stats.utils import (
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
+from src.olympia.abuse.actions import CONTENT_ACTION_FROM_DECISION_ACTION
 
 from .decorators import (
     any_reviewer_or_moderator_required,
@@ -706,7 +711,16 @@ def review(request, addon, channel=None):
             else AddonApprovalsCounter().get_content_review_status_display()
         ),
         count=count,
-        DECISION_ACTIONS=DECISION_ACTIONS,
+        decision_actions=[
+            (
+                'primary-enf'
+                if action not in DECISION_ACTIONS.FOLLOWUP_CINDER_ACTIONS
+                else 'followup-enf',
+                action.value,
+                CONTENT_ACTION_FROM_DECISION_ACTION[action].description,
+            )
+            for action in DECISION_ACTIONS
+        ],
         flags=flags,
         form=form,
         format_matched_rules=formatted_matched_rules_with_files_and_data,

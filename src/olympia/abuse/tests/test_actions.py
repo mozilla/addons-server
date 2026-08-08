@@ -2094,6 +2094,14 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             fragment='information on its availability',
         )
 
+    def test_description(self):
+        assert ContentActionRejectVersion.description == (
+            'Add-on version(s) will be rejected'
+        )
+        assert ContentActionRejectVersionDelayed.description == (
+            'Add-on version(s) will be rejected, after 30 days'
+        )
+
 
 class TestContentActionBlockAddon(TestContentActionDisableAddon):
     ActionClass = ContentActionBlockAddon
