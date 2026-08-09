@@ -2020,8 +2020,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
-"Podnikový doplněk. <span class=\"helptext\">Poté, co Mozilla váš doplněk podepíše, si můžete z Centra pro vývojáře stáhnout soubor .xpi a distribuovat ho mezi uživatele podle zásad Firefoxu pro "
-"firmy.</span>"
+"Doplněk pro podnikové prostředí. <span class=\"helptext\">Jakmile bude váš návrh podepsán společností Mozilla, můžete si soubor .xpi stáhnout z portálu Developer Hub a distribuovat jej svým "
+"uživatelům prostřednictvím zásad služby Firefox for Enterprise.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
@@ -4701,7 +4701,7 @@ msgstr "Jednoduché a účinné blokování reklam. uBlock Origin dokáže efekt
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr "Užijte si řadu nových funkcí, jako je režim kina, blokování reklam, ovládání automatického přehrávání a další."
+msgstr "Využijte celou řadu nových funkcí, jako je režim kina, blokování reklam, ovládání automatického přehrávání a další."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6092,7 +6092,7 @@ msgstr "Převlečte Firefox za prohlížeč Chrome a podvrhněte webové stránk
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr "Odstraňte rušivé vlivy, změňte možnosti zobrazení, zrychlete přehrávání a mnoho dalšího."
+msgstr "Odstraňte rušivé prvky, upravte nastavení zobrazení, změňte rychlost přehrávání a další."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
