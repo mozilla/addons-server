@@ -6086,7 +6086,7 @@ msgstr "Firefox’u engellemeye çalışan siteleri kandırmak için Firefox’u
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "Dikkat dağıtıcı unsurları kaldırın, görüntüleme seçeneklerini değiştirin, oynatma hızını ayarlayın ve daha fazlasını yapın."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
