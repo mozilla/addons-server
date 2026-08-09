@@ -3804,7 +3804,7 @@ msgstr "제작일:"
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:48 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:81
 msgid "Last Updated:"
-msgstr "마지막 업데이트:"
+msgstr "최근 업데이트:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:58
