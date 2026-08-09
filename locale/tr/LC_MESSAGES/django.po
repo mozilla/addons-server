@@ -3945,7 +3945,7 @@ msgstr "Bu, yüklenen en yeni listelenmemiş sürüm"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
-msgstr ""
+msgstr "Kurumsal kullanım için imzalandı."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
@@ -3969,7 +3969,7 @@ msgstr "Listelenmemiş İnceleme Sayfası"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
 msgid "Enterprise Review Page"
-msgstr ""
+msgstr "Kurumsal İnceleme Sayfası"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
@@ -4696,7 +4696,7 @@ msgstr "Etkili ve hafif bir reklam engelleyici. uBlock Origin, binlerce içerik 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Sinema modu, reklam engelleme, otomatik oynatma kontrolü gibi yeni özelliklerin ve daha fazlasının keyfini çıkarın."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
