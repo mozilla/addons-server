@@ -4710,7 +4710,7 @@ msgstr "მსუბუქი და მძლავრი რეკლამე
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "ისიამოვნეთ ახალი შესაძლებლობების ნაკრებით, მათ შორის კინოთეატრის ჩვენებით, რეკლამების შეზღუდვით, დაკვრის თვითმართვით და სხვ."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6103,7 +6103,7 @@ msgstr "შენიღბეთ Firefox, თითქოს Chrome-ბრაუ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1118
 msgid "Remove distractions, change viewing options, alter playback speed & more."
-msgstr ""
+msgstr "მოაცილეთ ყურადღების გამფანტავი შიგთავსი, მომართეთ ჩვენების პარამეტრები, ცვალეთ დაკვრის სიჩქარე და სხვ."
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
@@ -6128,7 +6128,7 @@ msgstr "გაფართოებების საწყისი ნაკ�
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "სასარგებლო გაფართოებები"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
