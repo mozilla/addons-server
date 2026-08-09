@@ -716,9 +716,9 @@ class SearchQueryFilter(BaseFilterBackend):
         """
         should = [self.generate_exact_name_match_query(search_query, lang)]
 
-        # A query with no word characters analyzes to just the two sentinels,
+        # A query with no letters or digits analyzes to just the two sentinels,
         # which would match every name that also analyzes to nothing.
-        if re.search(r'\w', search_query):
+        if re.search(r'[^\W_]', search_query):
             should.append(self.generate_sentinel_exact_match_query(search_query, lang))
 
         # If we are searching with a language that we support, we also try to

@@ -491,17 +491,19 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-    def test_q_no_word_characters_skips_exact_sentinel(self):
-        """A query with no word characters analyzes to the sentinels alone,
-        matching any name that also analyzes to nothing."""
-        qs = self._filter(data={'q': '???'})
-        should = qs['query']['function_score']['query']['bool']['should']
+    def test_q_no_letters_or_digits_skips_exact_sentinel(self):
+        """A query with no letters or digits analyzes to the sentinels alone,
+        matching any name that also analyzes to nothing. Underscores count as
+        word characters, but the analyzer drops them just the same."""
+        for query in ('???', '_'):
+            qs = self._filter(data={'q': query})
+            should = qs['query']['function_score']['query']['bool']['should']
 
-        assert not any(
-            conditions.get('bool', {}).get('_name')
-            == 'Bool(ExactNameSentinel, !ExactName)'
-            for conditions in should
-        )
+            assert not any(
+                conditions.get('bool', {}).get('_name')
+                == 'Bool(ExactNameSentinel, !ExactName)'
+                for conditions in should
+            ), query
 
 
 class TestReviewedContentFilter(FilterTestsBase):
