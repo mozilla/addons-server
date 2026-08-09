@@ -4699,7 +4699,7 @@ msgstr "Trình chặn quảng cáo hiệu quả, nhẹ. uBlock Origin thực thi
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Tận hưởng hàng loạt tính năng mới, như chế độ xem phim, chặn quảng cáo, điều khiển tự động phát và nhiều hơn nữa."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -6114,7 +6114,7 @@ msgstr "Gói tiện ích mở rộng khởi đầu"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng năng suất"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
