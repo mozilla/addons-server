@@ -70,7 +70,7 @@ class TestQueryFilter(FilterTestsBase):
 
         assert should[1] == {
             'bool': {
-                '_name': 'Bool(ExactNameSentinel, !ExactName)',
+                '_name': 'Bool(AnalyzedExactName, !ExactName)',
                 'must': [
                     {
                         'dis_max': {
@@ -463,7 +463,7 @@ class TestQueryFilter(FilterTestsBase):
 
         assert should[1] == {
             'bool': {
-                '_name': 'Bool(ExactNameSentinel, !ExactName)',
+                '_name': 'Bool(AnalyzedExactName, !ExactName)',
                 'must': [
                     {
                         'match_phrase': {
@@ -502,7 +502,7 @@ class TestQueryFilter(FilterTestsBase):
 
             assert not any(
                 conditions.get('bool', {}).get('_name')
-                == 'Bool(ExactNameSentinel, !ExactName)'
+                == 'Bool(AnalyzedExactName, !ExactName)'
                 for conditions in should
             ), query
 

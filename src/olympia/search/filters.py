@@ -687,7 +687,7 @@ class SearchQueryFilter(BaseFilterBackend):
                 queries=queries,
             )
         return query.Bool(
-            _name='Bool(ExactNameSentinel, !ExactName)',
+            _name='Bool(AnalyzedExactName, !ExactName)',
             must=[clause],
             # must_not is a filter context: this clause only excludes documents.
             must_not=[self.generate_exact_name_match_query(search_query, lang)],
