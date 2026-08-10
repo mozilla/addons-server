@@ -606,7 +606,7 @@ class SearchQueryFilter(BaseFilterBackend):
         - In the second one, we did store a translation in that language...
           potentially. We don't know in advance if there is a translation for
           each add-on! We need to do a query against both `name.raw` and
-          `name_l10n_<analyzer>.raw`, applying the boost only once if both
+          `name_l10n_<lang>.raw`, applying the boost only once if both
           match. This is where the DisMax comes in, it's what MultiMatch
           would do, except that it works with Term queries.
         """
