@@ -701,17 +701,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert run_narc_mock.call_count == 0
 
     @mock.patch.object(ScannerResult, 'run_actions')
-    def test_does_not_execute_run_actions_when_switch_is_inactive(
-        self, run_actions_mock
-    ):
-        call_command('auto_approve')
-
-        assert not run_actions_mock.called
-
-    @mock.patch.object(ScannerResult, 'run_actions')
-    def test_executes_run_actions_when_switch_is_active(self, run_actions_mock):
-        self.create_switch('run-action-in-auto-approve', active=True)
-
+    def test_executes_run_actions(self, run_actions_mock):
         call_command('auto_approve')
 
         assert run_actions_mock.called
@@ -720,7 +710,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     @mock.patch.object(ScannerResult, 'run_actions')
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_only_executes_run_actions_once(self, sign_file_mock, run_actions_mock):
-        self.create_switch('run-action-in-auto-approve', active=True)
         call_command('auto_approve')
 
         assert run_actions_mock.called
@@ -738,7 +727,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         """Summaries created before `scanner_actions_executed` was introduced
         have it set to NULL, and back then the actions were always executed
         when the summary was created."""
-        self.create_switch('run-action-in-auto-approve', active=True)
         AutoApprovalSummary.objects.create(
             version=self.version,
             is_waiting_on_scanners=False,
@@ -756,7 +744,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         """Same as above, except the summary was created while we were waiting
         on scanners: the actions were executed back then as well, so we should
         not execute them a second time once the scanners are done."""
-        self.create_switch('run-action-in-auto-approve', active=True)
         self.create_switch('enable-scanner-webhooks', active=True)
         AutoApprovalSummary.objects.create(
             version=self.version,
@@ -785,7 +772,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         ScannerRule.objects.create(
             is_active=True, name='foo', action=DELAY_AUTO_APPROVAL, scanner=YARA
         )
@@ -827,7 +813,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
             name='Reject Policy',
@@ -879,7 +864,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
             name='Disable Policy',
@@ -925,7 +909,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         self.create_switch('enable-narc', active=True)
         rule = ScannerRule.objects.create(
             is_active=True,
@@ -973,7 +956,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         """Functional test making sure that the action of a rule matched by a
         scanner sending its results asynchronously is executed before the
         version is auto-approved."""
-        self.create_switch('run-action-in-auto-approve', active=True)
         self.create_switch('enable-scanner-webhooks', active=True)
         rule = ScannerRule.objects.create(
             is_active=True, name='foo', action=DELAY_AUTO_APPROVAL, scanner=WEBHOOK
@@ -1016,7 +998,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def test_only_executes_run_actions_once_after_waiting_on_scanners(
         self, run_actions_mock
     ):
-        self.create_switch('run-action-in-auto-approve', active=True)
         self.create_switch('enable-scanner-webhooks', active=True)
         # Keep the version out of auto-approval so that it remains a candidate.
         AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
