@@ -230,8 +230,8 @@ class AddonIndexer:
     index_settings = {
         'analysis': {
             'analyzer': {
-                # Stop-word-free variant of each language-specific analyzer,
-                # for the "name_exact_sentinel" fields. See NO_STOPWORDS_ANALYZER_SUFFIX.
+                # Stop-word-free variant of each language-specific analyzer, for
+                # the "name_exact_sentinel" fields. See NO_STOPWORDS_ANALYZER_SUFFIX.
                 **{
                     f'{analyzer}{NO_STOPWORDS_ANALYZER_SUFFIX}': {
                         'type': analyzer,
@@ -594,7 +594,9 @@ class AddonIndexer:
         # The sentinel field needs the stemming those analyzers provide, but not
         # their stop-word removal, see NO_STOPWORDS_ANALYZER_SUFFIX.
         cls.attach_language_specific_analyzers(
-            mapping, ('name_exact_sentinel',), analyzer_suffix=NO_STOPWORDS_ANALYZER_SUFFIX
+            mapping,
+            ('name_exact_sentinel',),
+            analyzer_suffix=NO_STOPWORDS_ANALYZER_SUFFIX,
         )
 
         cls.attach_language_specific_analyzers_with_raw_variant(mapping, ('name',))

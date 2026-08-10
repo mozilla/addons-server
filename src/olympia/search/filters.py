@@ -642,22 +642,18 @@ class SearchQueryFilter(BaseFilterBackend):
             )
         return clause
 
-    def generate_sentinel_exact_match_query(self, search_query, lang):
+    def generate_analyzed_exact_name_match_query(self, search_query, lang):
         """
-        Return the query used for exact name matching, after analysis.
+        Return the exact name match query, applied after analysis.
 
-        Same intent as generate_exact_name_match_query(), but against analyzed
-        fields, so a name matching the query once stemmed still counts as an
-        exact match ("tabs manager" finding "Tab Manager"). Both the indexed
-        name and the query are wrapped in sentinel tokens, so the phrase can
-        only match a whole name, not a name merely containing the query.
+        Same as generate_exact_name_match_query() but against analyzed fields,
+        so a name that matches once stemmed still counts ("tabs manager"
+        finding "Tab Manager"). Sentinel tokens wrap both sides, so the phrase
+        can only match a whole name, never one that merely contains it.
 
-        The clause is wrapped in a bool whose must_not is
-        generate_exact_name_match_query(), so an add-on already matching
-        literally keeps exactly the score it had before.
-
-        Like generate_exact_name_match_query(), it has 2 modes depending on
-        whether we have an analyzer for the language we're searching in.
+        The must_not makes it a strict fallback: an add-on that already matches
+        literally keeps the score it had. Like the literal match, it has 2
+        modes depending on whether the language has an analyzer.
         """
         sentinel_query = f'{amo.SENTINEL_BEGIN} {search_query} {amo.SENTINEL_END}'
         analyzer = self.get_locale_analyzer(lang)
@@ -719,7 +715,9 @@ class SearchQueryFilter(BaseFilterBackend):
         # A query with no letters or digits analyzes to just the two sentinels,
         # which would match every name that also analyzes to nothing.
         if re.search(r'[^\W_]', search_query):
-            should.append(self.generate_sentinel_exact_match_query(search_query, lang))
+            should.append(
+                self.generate_analyzed_exact_name_match_query(search_query, lang)
+            )
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match
