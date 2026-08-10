@@ -230,8 +230,8 @@ class AddonIndexer:
     index_settings = {
         'analysis': {
             'analyzer': {
-                # Stop-word-free variant of each language-specific analyzer, for
-                # the "name_exact_sentinel" fields. See NO_STOPWORDS_ANALYZER_SUFFIX.
+                # Variant of each language-specific analyzer that keeps stop
+                # words, for the "name_exact_sentinel" fields.
                 **{
                     f'{analyzer}{NO_STOPWORDS_ANALYZER_SUFFIX}': {
                         'type': analyzer,
