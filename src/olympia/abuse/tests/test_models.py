@@ -3725,7 +3725,7 @@ class TestContentDecision(TestCase):
         decision.send_notifications()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [addon.authors.get().email]
-        assert 'we have restored your extension' in mail.outbox[0].body
+        assert "We've restored your extension" in mail.outbox[0].body
 
     def test_execute_action_approve_override_on_reject(self):
         # Overriding a reject with a version approval unrejects the versions,

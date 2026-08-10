@@ -208,8 +208,8 @@ class NegativeContentActionMixin:
         assert mail.outbox[1].subject == (
             subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
         )
-        assert 'have therefore removed' in mail.outbox[0].body
-        assert 'have therefore removed' in mail.outbox[1].body
+        assert 'removed the content' in mail.outbox[0].body
+        assert 'removed the content' in mail.outbox[1].body
         assert 'appeal' not in mail.outbox[0].body
         assert 'appeal' not in mail.outbox[1].body
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
@@ -230,7 +230,7 @@ class NegativeContentActionMixin:
         assert mail.outbox[0].subject == (
             subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
         )
-        assert 'have removed' in mail.outbox[0].body
+        assert 'removed the content' in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
         assert 'After reviewing' in mail.outbox[0].body
@@ -264,10 +264,12 @@ class NegativeContentActionMixin:
 
     def _test_owner_affirmation_email(self, subject, should_allow_uploads=False):
         mail_item = mail.outbox[0]
-        self._check_owner_email(mail_item, subject, 'not provide sufficient basis')
+        self._check_owner_email(mail_item, subject, 'not provide a sufficient basis')
         assert 'right to appeal' not in mail_item.body
         notes = f'{self.decision.reasoning}. ' if self.decision.reasoning else ''
-        assert f' policies. {notes}Based on that determination' in (mail_item.body)
+        assert f'the original decision stands. {notes}For that reason' in (
+            mail_item.body
+        )
         assert '&#x27;' not in mail_item.body
         if isinstance(self.decision.target, Addon):
             # Verify we used activity mail for Addon related target emails
@@ -278,7 +280,7 @@ class NegativeContentActionMixin:
         else:
             assert 'If you submit a new version' not in mail_item.body
 
-    def _test_owner_restore_email(self, subject, *, fragment='we have restored'):
+    def _test_owner_restore_email(self, subject, *, fragment="We've restored"):
         mail_item = mail.outbox[0]
         assert len(mail.outbox) == 1
         self._check_owner_email(mail_item, subject, fragment)
@@ -297,14 +299,14 @@ class NegativeContentActionMixin:
         self._check_owner_email(
             mail_item,
             subject,
-            'We have now determined that your content is within policy',
+            "adheres to Mozilla's policies. We've",
         )
         assert 'right to appeal' not in mail_item.body
         assert self.decision.reasoning in mail_item.body
         assert self.decision.private_notes not in mail_item.body
 
     def _notify_owners_after_reversal(
-        self, action_helper, subject, *, fragment='we have restored'
+        self, action_helper, subject, *, fragment="We've restored"
     ):
         # After an appeal/override reverses a negative action, notify the target
         # owners and check the resulting email. An appeal sends the dedicated
@@ -368,7 +370,7 @@ class NegativeContentActionMixin:
         assert mail.outbox[0].subject.endswith(
             f' [ref:ab89/{self.abuse_report_no_auth.id}]'
         )
-        assert 'have therefore removed' in mail.outbox[0].body
+        assert 'removed the content' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
 
     def test_notify_2nd_level_approvers(self):
@@ -398,8 +400,8 @@ class PositiveContentActionMixin:
         assert mail.outbox[1].subject == (
             subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
         )
-        assert 'does not violate Mozilla' in mail.outbox[0].body
-        assert 'does not violate Mozilla' in mail.outbox[1].body
+        assert "adheres to Mozilla's policies" in mail.outbox[0].body
+        assert "adheres to Mozilla's policies" in mail.outbox[1].body
         assert 'was correct' not in mail.outbox[0].body
         assert (
             reverse(
@@ -437,7 +439,7 @@ class PositiveContentActionMixin:
         assert mail.outbox[0].subject == (
             subject + f' [ref:ab89/{self.abuse_report_auth.id}]'
         )
-        assert 'does not violate Mozilla' in mail.outbox[0].body
+        assert "adheres to Mozilla's policies" in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert 'was correct' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[0].body
@@ -475,7 +477,10 @@ class PositiveContentActionMixin:
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
 
         for idx in range(0, 1):
-            assert 'were unable to identify a violation' in mail.outbox[idx].body
+            assert (
+                "weren't able to identify content that doesn't adhere to"
+                in mail.outbox[idx].body
+            )
             assert 'right to appeal' not in mail.outbox[idx].body
             assert 'This is bad thing' in mail.outbox[idx].body  # policy text
             assert 'Bad policy' not in mail.outbox[idx].body  # policy name
@@ -669,7 +674,7 @@ class TestContentActionDisableAddon(
 ):
     ActionClass = ContentActionDisableAddon
     activity_log_action = amo.LOG.FORCE_DISABLE
-    disable_snippet = 'permanently disabled'
+    disable_snippet = 'has been disabled on'
     default_decision_action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     def setUp(self):
@@ -1143,7 +1148,7 @@ class TestContentActionDisableAddon(
         self._notify_owners_after_reversal(
             action_helper,
             f'Mozilla Add-ons: {self.addon.name}',
-            fragment='remains unavailable',
+            fragment='will stay unavailable',
         )
 
     def test_approve_appeal_success_but_listing_rejected(self):
@@ -1155,7 +1160,9 @@ class TestContentActionDisableAddon(
         self._test_approve_appeal_or_override_but_listing_rejected(
             ContentActionTargetAppealApprove
         )
-        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+        assert (
+            'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
+        )
         assert self.addon.reload().status == amo.STATUS_REJECTED
 
     def test_approve_override_success_but_listing_rejected(self):
@@ -1200,7 +1207,7 @@ class TestContentActionDisableAddon(
         self._notify_owners_after_reversal(
             action_helper,
             f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
+            fragment='more on its availability',
         )
 
     def test_approve_appeal_success_but_not_approved(self):
@@ -1314,7 +1321,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         return subject
 
     def _test_approve_appeal_or_override(
-        self, ActionClass, *, fragment='we have restored'
+        self, ActionClass, *, fragment="We've restored"
     ):
         self.old_version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
@@ -1358,10 +1365,12 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override(
-            ContentActionTargetAppealApprove, fragment='we have re-enabled'
+            ContentActionTargetAppealApprove, fragment="we've re-enabled"
         )
         assert self.addon.reload().status == amo.STATUS_REJECTED
-        assert 'listing on Mozilla Add-ons remains unavailable' in mail.outbox[0].body
+        assert (
+            'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
+        )
 
     def test_approve_override_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -2091,7 +2100,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         self._notify_owners_after_reversal(
             action_helper,
             f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
+            fragment='more on its availability',
         )
 
 
@@ -2745,9 +2754,11 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert 'within policy, and based on that determination' in mail.outbox[-1].body
-        assert 'It is now available' in mail.outbox[-1].body
-        assert 'information on its availability.' not in mail.outbox[-1].body
+        assert (
+            "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
+        )
+        assert "it's now available again" in mail.outbox[-1].body
+        assert 'more on its availability' not in mail.outbox[-1].body
 
     def test_content_approve_rejected_listing_content_but_awaiting_approval(self):
         AddonApprovalsCounter.objects.create(
@@ -2800,9 +2811,11 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert 'within policy, and based on that determination' in mail.outbox[-1].body
-        assert 'It is now available' not in mail.outbox[-1].body
-        assert 'information on its availability.' in mail.outbox[-1].body
+        assert (
+            "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
+        )
+        assert "it's now available again" not in mail.outbox[-1].body
+        assert 'more on its availability' in mail.outbox[-1].body
 
     def test_email_content_not_escaped(self):
         self.addon.update(status=amo.STATUS_REJECTED)
@@ -3126,7 +3139,7 @@ class TestContentActionApproveVersion(
 class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectListingContent
     default_decision_action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
-    disable_snippet = 'until you address the violations and request a further review'
+    disable_snippet = "until the issue is resolved"
     activity_log_action = amo.LOG.REJECT_LISTING_CONTENT
 
     def test_hold_action_clears_all_nhr(self):
@@ -3292,7 +3305,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._notify_owners_after_reversal(
             action_helper,
             f'Mozilla Add-ons: {self.addon.name}',
-            fragment='information on its availability',
+            fragment='more on its availability',
         )
 
     def test_already_taken_down(self):
