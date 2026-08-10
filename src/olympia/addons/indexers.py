@@ -591,8 +591,9 @@ class AddonIndexer:
         # analyzed/indexed.
         cls.attach_language_specific_analyzers(mapping, ('description', 'summary'))
 
-        # The sentinel field needs the stemming those analyzers provide, but not
-        # their stop-word removal, see NO_STOPWORDS_ANALYZER_SUFFIX.
+        # The sentinel field needs their language-specific analysis, including
+        # stemming where applicable, but not their stop-word removal, see
+        # NO_STOPWORDS_ANALYZER_SUFFIX.
         cls.attach_language_specific_analyzers(
             mapping,
             ('name_exact_sentinel',),
