@@ -635,6 +635,91 @@ def test_generate_preview_with_additional_backgrounds(
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.addons.tasks.index_addons.delay')
+@mock.patch('olympia.versions.tasks.extract_colors_from_image')
+@mock.patch('olympia.versions.tasks.pngcrush_image')
+@mock.patch('olympia.versions.tasks.resize_image')
+@mock.patch('olympia.versions.tasks.write_svg_to_png')
+@mock.patch('olympia.versions.tasks.convert_svg_to_png')
+def test_generate_preview_with_gradient_in_additional_backgrounds(
+    convert_svg_to_png_mock,
+    write_svg_to_png_mock,
+    resize_image_mock,
+    pngcrush_image_mock,
+    extract_colors_from_image_mock,
+    index_addons_mock,
+):
+    # A `linear-gradient` object amongst the additional_backgrounds isn't an
+    # image path we can extract; it should be ignored gracefully rather than
+    # crashing preview generation, and the actual image backgrounds should
+    # still be rendered.
+    write_svg_to_png_mock.side_effect = write_empty_png
+    convert_svg_to_png_mock.return_value = True
+    extract_colors_from_image_mock.return_value = [
+        {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
+    ]
+
+    # Same manifest as test_generate_preview_with_additional_backgrounds, but
+    # with a `linear-gradient` object added to additional_backgrounds: it isn't
+    # an image path we can extract and should be ignored gracefully. The real
+    # image still lines up with the (positional) alignment/tiling properties.
+    theme_manifest = {
+        'images': {
+            'theme_frame': 'empty.png',
+            'additional_backgrounds': [
+                'weta_for_tiling.png',
+                {'linear-gradient': 'to bottom, #FF6BBA -18.096%, #FFC999 50%'},
+            ],
+        },
+        'colors': {
+            'textcolor': '#123456',
+        },
+        'properties': {
+            'additional_backgrounds_alignment': ['top'],
+            'additional_backgrounds_tiling': ['repeat-x'],
+        },
+    }
+    addon = addon_factory(
+        file_kw={
+            'filename': os.path.join(
+                settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
+            )
+        }
+    )
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
+
+    # Preview generation completed without raising and produced the previews.
+    assert write_svg_to_png_mock.call_count == 2
+    assert convert_svg_to_png_mock.call_count == 1
+    assert VersionPreview.objects.filter(version=addon.current_version).count() == len(
+        amo.THEME_PREVIEW_RENDERINGS
+    )
+
+    default_colors = (
+        ('frame', 'fill', 'rgba(229,230,232,1)'),  # amo.THEME_FRAME_COLOR_DEFAULT
+        ('tab_background_text', 'fill', '#123456'),  # the only one defined in manifest
+        ('bookmark_text', 'fill', '#123456'),  # should default to tab_background_text
+        ('toolbar_field', 'fill', 'rgba(255,255,255,1)'),
+        ('toolbar_field_text', 'fill', ''),
+        ('tab_line', 'stroke', 'rgba(0,0,0,0.25)'),
+        ('tab_selected toolbar', 'fill', 'rgba(255,255,255,0.6)'),
+    )
+    colors = [
+        f'class="{key} {prop}" {prop}="{color}"'
+        for (key, prop, color) in default_colors
+    ]
+
+    # The gradient was skipped, so only a single AdditionalBackground (the real
+    # image, `weta_for_tiling.png`) is rendered.
+    firefox_svg = force_str(write_svg_to_png_mock.call_args_list[0][0][0])
+    check_render_additional(firefox_svg, 680, colors)
+    assert 'AdditionalBackground1' in firefox_svg
+    assert 'AdditionalBackground2' not in firefox_svg
+
+    index_addons_mock.assert_called_with([addon.id])
+
+
+@pytest.mark.django_db
 def test_hard_delete_task():
     addon = addon_factory()
     version1 = addon.current_version
@@ -943,19 +1028,6 @@ class TestCallWebhooksOnSourceCodeUploaded(TestCase):
             version=version,
             activity_log=activity_log,
         )
-
-    @mock.patch('olympia.versions.tasks.call_webhooks')
-    def test_no_call_with_mock_when_license_is_missing(self, call_webhooks_mock):
-        addon = addon_factory()
-        version = version_factory(addon=addon)
-        # Remove the license for this version, which is the case for unlisted
-        # versions for instance.
-        version.update(license=None)
-        activity_log_id = 123
-
-        call_webhooks_on_source_code_uploaded(version.pk, activity_log_id)
-
-        call_webhooks_mock.assert_not_called()
 
 
 class TestCallWebhooksOnVersionCreated(TestCase):

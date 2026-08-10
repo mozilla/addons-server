@@ -4,9 +4,7 @@ Setup bigquery credentials for dev on local environment.
 This will allow you to connect to the dev BigQuery database
 and run queries.
 
-## Steps
-
-### Get dev bigquery credentials json file
+## Get dev bigquery credentials json file
 
 [Shell into a dev pod](../dev/shell_into_dev_pod.md)
 
@@ -21,12 +19,12 @@ which is explicitly gitignored to prevent it from being checked into git.
 Do not share this file with anyone.
 ```
 
-### Run the project locally
+## Run the project locally
 
     a. update `local_settings.py` to point `GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY` to the file on your local machine
     b. run `make up` to start the django server with this value enabled
 
-### Verify it is working
+## Verify it is working
 
 Verify you can connect to bigquery by running `make djshell` and then:
 

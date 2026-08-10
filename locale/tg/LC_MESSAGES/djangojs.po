@@ -284,7 +284,7 @@ msgstr ""
 #: static/js/stats/csv_keys.js:44
 #, python-brace-format
 msgid "Applications from {0} to {1}"
-msgstr ""
+msgstr "Барномаҳо аз {0} то {1}"
 
 #. L10n: {0} is an integer.
 #: static/js/stats/csv_keys.js:48
@@ -461,41 +461,41 @@ msgstr ""
 msgid "Remove this localization"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr ""
 

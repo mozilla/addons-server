@@ -17,7 +17,7 @@ from olympia.addons.utils import generate_addon_guid
 from olympia.amo.tests import addon_factory, copy_file_to_temp, user_factory
 from olympia.constants.applications import FIREFOX
 from olympia.constants.base import ADDON_EXTENSION, ADDON_STATICTHEME
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.devhub.utils import create_version_for_upload
 from olympia.hero.models import PrimaryHero, SecondaryHero
 from olympia.landfill.collection import generate_collection
@@ -38,6 +38,23 @@ class GenerateAddonsSerializer(serializers.Serializer):
         self.fxa_id = None
         self.fxa_email = 'uitest-%s@restmail.net' % uuid.uuid4()
         self.user = self._create_addon_user()
+        self.recommended, _ = PromotedGroup.objects.get_or_create(
+            api_name=RECOMMENDED_API_NAME,
+            defaults={
+                'name': 'Recommended',
+                'search_ranking_bump': 5.0,
+                'listed_pre_review': True,
+                'badged': True,
+                'autograph_signing_states': {
+                    'firefox': 'recommended',
+                    'android': 'recommended-android',
+                },
+                'can_primary_hero': True,
+                'can_be_compatible_with_all_fenix_versions': True,
+                'high_profile': True,
+                'high_profile_rating': True,
+            },
+        )
 
     def _create_addon_user(self):
         """Create addon user with fxa information assigned."""
@@ -66,7 +83,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         for _ in range(5):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             AddonUser.objects.create(user=user_factory(), addon=addon)
             promoted_group = PromotedGroup.objects.all_for(addon=addon).first()
@@ -87,7 +104,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             generate_version(addon=addon)
             addon.update_version()
@@ -114,7 +131,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author)],
                 name=f'{name}',
                 slug=f'{name}',
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             addon.save()
         else:
@@ -124,7 +141,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 users=[UserProfile.objects.get(username=author.username)],
                 name=f'{name}',
                 slug=f'{name}',
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             addon.save()
         return addon
@@ -154,7 +171,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon.',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'api_name': self.recommended.api_name},
         )
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -205,7 +222,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=500,
             weekly_downloads=9999999,
             developer_comments='This is a testing addon for Android.',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'api_name': self.recommended.api_name},
         )
         Preview.objects.create(addon=addon, position=1)
         Rating.objects.create(addon=addon, rating=5, user=user_factory())
@@ -243,7 +260,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 tags=['some_tag', 'another_tag', 'ui-testing', 'selenium', 'python'],
                 weekly_downloads=9999999,
                 developer_comments='This is a testing addon.',
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             addon.save()
             generate_collection(addon, app=FIREFOX)
@@ -276,7 +293,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             total_ratings=777,
             weekly_downloads=123456,
             developer_comments='This is a testing theme, used within pytest.',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'api_name': self.recommended.api_name},
         )
         addon.save()
         generate_collection(addon, app=FIREFOX)
@@ -294,7 +311,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = addon_factory(
                 status=amo.STATUS_APPROVED,
                 type=ADDON_STATICTHEME,
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={'api_name': self.recommended.api_name},
             )
             generate_collection(addon)
 

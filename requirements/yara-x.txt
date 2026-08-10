@@ -1,3 +1,3 @@
 # our own fork of yara-x
-https://github.com/mozilla/yara-x/releases/download/2026.05.28/yara_x-1.16.0-cp38-abi3-manylinux_2_34_x86_64.whl \
-    --hash=sha256:6753438cc68a68eee22b7501cfe093d613cfde89dcf0452ebf14f82c85c72281
+https://github.com/mozilla/yara-x/releases/download/2026.06.16/yara_x-1.18.0-cp38-abi3-manylinux_2_34_x86_64.whl \
+    --hash=sha256:d8ef2535f0d2fae60b9f5f092f2b202b04f24c4b6251c7df4a00dd59bc665a8f

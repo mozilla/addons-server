@@ -116,16 +116,7 @@ class PromotedGroupAdmin(AMOModelAdmin):
         'high_profile',
         'high_profile_rating',
         'search_ranking_bump',
-        'active',
     ]
     list_filter = list_display
     search_fields = ('name',)
-
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
+    readonly_fields = ('badged',)

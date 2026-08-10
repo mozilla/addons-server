@@ -26,7 +26,6 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import BlockVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.scanners import WEBHOOK, WEBHOOK_DURING_VALIDATION
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import (
@@ -1175,20 +1174,20 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            addon=self.addon, api_name='pre_review', listed_pre_review=True
         )
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
-        )  # STRATEGIC isn't prereview
+            addon=self.addon, api_name='strategic'
+        )  # strategic isn't prereview
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.LINE
-        )  # LINE is though
+            addon=self.addon, api_name='line', listed_pre_review=True
+        )  # line is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
@@ -1196,8 +1195,11 @@ class TestAutoApprovalSummary(TestCase):
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
         self.make_addon_promoted(
-            addon=self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-        )  # NOTABLE is
+            addon=self.addon,
+            api_name='notable',
+            listed_pre_review=True,
+            unlisted_pre_review=True,
+        )  # notable is
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
         self.version.update(channel=amo.CHANNEL_LISTED)  # and for listed too
@@ -1357,16 +1359,10 @@ class TestAutoApprovalSummary(TestCase):
         flags.update(pending_content_rejection=True)
         assert AutoApprovalSummary.check_is_pending_rejection(self.version) is True
 
-    def test_check_is_waiting_on_scanners_switch_off(self):
-        self.create_switch('enable-scanner-webhooks', active=False)
-        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
-
     def test_check_is_waiting_on_scanners_no_events(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_inactive_webhook(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         ScannerWebhookEvent.objects.create(
             event=WEBHOOK_DURING_VALIDATION,
             webhook=ScannerWebhook.objects.create(name='some-scanner', is_active=False),
@@ -1374,7 +1370,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_inactive_event(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         ScannerWebhookEvent.objects.create(
@@ -1385,7 +1380,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_webhook_modified_after_version(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(-1))
         ScannerWebhookEvent.objects.create(
@@ -1394,7 +1388,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_no_scanner_result(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         ScannerWebhookEvent.objects.create(
@@ -1403,7 +1396,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
 
     def test_check_is_waiting_on_scanners_disable_switch_active(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         self.create_switch('disable-check-is-waiting-on-scanners', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
@@ -1413,7 +1405,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_result_with_matched_rules(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         event = ScannerWebhookEvent.objects.create(
@@ -1428,7 +1419,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_result_with_none_results(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         event = ScannerWebhookEvent.objects.create(
@@ -1443,7 +1433,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_result_without_matched_rules(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         event = ScannerWebhookEvent.objects.create(
@@ -1458,7 +1447,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
 
     def test_check_is_waiting_on_scanners_multiple_events_all_complete(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         ScannerResult.objects.create(
@@ -1482,7 +1470,6 @@ class TestAutoApprovalSummary(TestCase):
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_multiple_events_partially_complete(self):
-        self.create_switch('enable-scanner-webhooks', active=True)
         webhook = ScannerWebhook.objects.create(name='some-scanner')
         webhook.update(modified=self.days_ago(1))
         ScannerResult.objects.create(

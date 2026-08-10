@@ -61,3 +61,17 @@ def test_select_request_metadata():
     assert core.select_request_metadata(
         HttpHeaders({'HTTP_Client-JA4': None, 'HTTP_X_SigSci-TAGS': 'SOME,tags'})
     ) == {'X-SigSci-Tags': 'SOME,tags'}
+
+    assert core.select_request_metadata(
+        HttpHeaders({'HTTP_Client-JA4': 'something', 'HTTP_X_SigSci-TAGS': 'SOME,tags'})
+    ) == {'Client-JA4': 'something', 'X-SigSci-Tags': 'SOME,tags'}
+
+    assert core.select_request_metadata(
+        HttpHeaders(
+            {
+                'HTTP_Asn': '64510',
+                'HTTP_Client-JA4': 'something',
+                'HTTP_X_SigSci-TAGS': 'SOME,tags',
+            }
+        )
+    ) == {'Asn': '64510', 'Client-JA4': 'something', 'X-SigSci-Tags': 'SOME,tags'}

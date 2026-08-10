@@ -5,9 +5,11 @@ from inspect import isclass
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
+from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
 from django.utils import translation
+from django.utils.functional import classproperty
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 
@@ -26,6 +28,7 @@ from olympia.constants.blocklist import BlockReason
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
+from olympia.lib.crypto.signing import sign_file
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
@@ -66,11 +69,17 @@ class ContentAction:
                 f'{self.valid_targets}'
             )
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(
+        self,
+        activity_log_action,
+        *extra_args,
+        extra_details=None,
+        skip_private_notes=False,
+    ):
         user_kw = (
             {'user': self.decision.reviewer_user} if self.decision.reviewer_user else {}
         )
-        if self.decision.private_notes:
+        if self.decision.private_notes and not skip_private_notes:
             # If the decision contained private notes, add a separate action
             # for them.
             log_create(
@@ -120,6 +129,28 @@ class ContentAction:
         appropriate details."""
         pass
 
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        """Undo the effect this action had when it was applied through
+        `reversed_decision`.
+
+        Returns the activity log entry produced, or None when
+        there was nothing to reverse."""
+        return None
+
+    def reverses_previous_action(self):
+        """Whether this decision overrides a *different* previous action that
+        notified the target's owners (i.e. a takedown).
+
+        Such an override changes the outcome the owners were previously told
+        about, so the new action needs to notify them again about the new
+        decision - the same way the original action did."""
+        return bool(
+            (overridden := self.decision.get_overridden_decision())
+            and overridden.action != self.decision.action
+            and overridden.action in DECISION_ACTIONS.REMOVING
+        )
+
     def get_owners(self):
         """No owner emails will be sent. Override to send owner emails"""
         return ()
@@ -156,7 +187,17 @@ class ContentAction:
             and self.target.is_public()
         )
 
+        followups = (
+            [
+                followup.description_with_eta
+                for followup in self.decision.followup_actions.all()
+            ]
+            if self.decision.id
+            else ()
+        )
+
         context_dict = {
+            'followups': followups,
             'is_listing_rejected': getattr(self.target, 'status', None)
             == amo.STATUS_REJECTED,
             'is_third_party_initiated': self.decision.is_third_party_initiated,
@@ -170,7 +211,7 @@ class ContentAction:
             'reference_id': reference_id,
             'target': self.target,
             'target_url': target_url,
-            'type': self.decision.get_target_display(),
+            'type': self.decision.get_target_display().lower(),
             'SITE_URL': settings.SITE_URL,
             **(extra_context or {}),
         }
@@ -242,7 +283,7 @@ class ContentAction:
                     'policy_document_url': POLICY_DOCUMENT_URL,
                     'reference_id': reference_id,
                     'target_url': absolutify(self.target.get_url_path()),
-                    'type': self.decision.get_target_display(),
+                    'type': self.decision.get_target_display().lower(),
                     'SITE_URL': settings.SITE_URL,
                 }
                 if is_appeal:
@@ -340,44 +381,59 @@ class ContentActionBanUser(ContentAction):
         if not self.target.banned:
             return self.log_action(amo.LOG.HELD_ACTION_ADMIN_USER_BANNED)
 
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        target = new_decision.target
+        if target.banned:
+            UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
+                skip_activity_log=True
+            )
+            return cls(new_decision).log_action(amo.LOG.ADMIN_USER_UNBAN)
+        return None
+
     def get_owners(self):
         return [self.target]
 
 
-class ContentActionDisableAddon(ContentAction):
-    description = 'Add-on has been disabled'
+class ContentActionAddon(ContentAction):
+    """Base class for content actions for Addons."""
+
     valid_targets = (Addon,)
-    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
-    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
-    action = DECISION_ACTIONS.AMO_DISABLE_ADDON
 
     def is_human_reviewer(self):
         return bool(
             (user := self.decision.reviewer_user) and user.id != settings.TASK_USER_ID
         )
 
-    def should_hold_action(self):
-        return bool(
-            self.target.status != amo.STATUS_DISABLED
-            # is a high profile add-on
-            and any(self.target.promoted_groups(currently_approved=False).high_profile)
-        )
+    @property
+    def target_versions(self):
+        return self.decision.target_versions.all()
 
-    def log_action(self, activity_log_action, *extra_args, extra_details=None):
+    def log_action(
+        self,
+        activity_log_action,
+        *extra_args,
+        extra_details=None,
+        skip_private_notes=False,
+    ):
         from olympia.activity.models import AttachmentLog
 
         extra_details = {'human_review': self.is_human_reviewer()} | (
             extra_details or {}
         )
-        if (
+        if 'versions' not in extra_details and (
             target_versions := self.target_versions.no_transforms()
             .only('pk', 'version', 'file')
             .order_by('-pk')
         ):
             extra_args = (*target_versions, *extra_args)
             extra_details['versions'] = [version.version for version in target_versions]
+
         activity_log = super().log_action(
-            activity_log_action, *extra_args, extra_details=extra_details
+            activity_log_action,
+            *extra_args,
+            extra_details=extra_details,
+            skip_private_notes=skip_private_notes,
         )
         # move any attachments to latest decision
         if attachment := AttachmentLog.objects.filter(
@@ -387,9 +443,81 @@ class ContentActionDisableAddon(ContentAction):
             activity_log.attachmentlog = attachment  # update fk
         return activity_log
 
-    @property
-    def target_versions(self):
-        return self.decision.target_versions.all()
+    def set_human_review_date(self, version):
+        if self.is_human_reviewer() and not version.human_review_date:
+            version.update(human_review_date=datetime.now())
+
+    def clear_specific_needs_human_review_flags(self, version):
+        """Clear needs_human_review flags on a specific version."""
+        from olympia.reviewers.models import NeedsHumanReview
+
+        from .models import CinderJob
+
+        qs = version.needshumanreview_set.filter(is_active=True)
+        if not hasattr(self, 'unresolved_jobs'):
+            # this isn't going to change between iterations, so be efficient
+            self.unresolved_jobs = (
+                CinderJob.objects.for_addon(self.target)
+                .unresolved()
+                .resolvable_in_reviewer_tools()
+                .exists()
+            )
+        if self.unresolved_jobs:
+            qs = qs.exclude(
+                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+            )
+        qs.update(is_active=False)
+        # Because the updating of needs human review was made with a queryset
+        # the post_save signal was not triggered so let's recheck the due date
+        # explicitly.
+        version.reset_due_date()
+
+    def _clear_all_needs_human_review_flags_in_channel(self, channel=None):
+        """Clear needs_human_review flags on all versions in the same channel.
+
+        Doesn't clear abuse or appeal related flags.
+        To be called when approving a listed version: For listed, the version
+        reviewers are approving is always the latest listed one, and then users
+        are supposed to automatically get the update to that version, so we
+        don't need to care about older ones anymore.
+        """
+        from olympia.reviewers.models import NeedsHumanReview
+
+        # Do a mass UPDATE. The NeedsHumanReview coming from abuse/appeal/escalations
+        # are only cleared in ContentDecision.execute_action() if the
+        # reviewer has selected to resolve all jobs of that type though.
+        NeedsHumanReview.objects.filter(
+            version__addon=self.target,
+            is_active=True,
+            **({'version__channel': channel} if channel else {}),
+        ).exclude(
+            reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
+        ).update(is_active=False)
+        # Trigger a check of all due dates on the add-on since we mass-updated
+        # versions.
+        self.target.update_all_due_dates()
+
+    @classmethod
+    def reverse_action_log_action(cls, new_decision, activity_action, versions):
+        return cls(new_decision).log_action(
+            activity_action,
+            *versions,
+            extra_details={'versions': [version.version for version in versions]},
+        )
+
+
+class ContentActionDisableAddon(ContentActionAddon):
+    description = 'Add-on has been disabled'
+    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
+    action = DECISION_ACTIONS.AMO_DISABLE_ADDON
+
+    def should_hold_action(self):
+        return bool(
+            self.target.status != amo.STATUS_DISABLED
+            # is a high profile add-on
+            and any(self.target.promoted_groups(currently_approved=False).high_profile)
+        )
 
     @property
     def versions_force_disable_will_affect(self):
@@ -425,7 +553,39 @@ class ContentActionDisableAddon(ContentAction):
         self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
+            self._clear_all_needs_human_review_flags_in_channel()
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
+        return None
+
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        def get_target_versions():
+            files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
+                version__addon=target
+            )
+            return (
+                target.versions(manager='unfiltered_for_relations')
+                .filter(pk__in=files_qs.values_list('version'))
+                .no_transforms()
+                .defer('approval_notes')
+                .order_by('-pk')
+            )
+
+        # FIXME: ContentActionBlockAddon (which inherits this) only
+        # re-enable the add-on - the versions stay blocked and have to be
+        # unblocked manually
+        target = new_decision.target
+
+        if target.status == amo.STATUS_DISABLED:
+            # Collect the versions that will be re-enabled *before* force_enable,
+            # since afterwards they're no longer disabled and the query would be
+            # empty. These aren't tied to the new decision's target_versions
+            # (those belong to the new action being applied)
+            target_versions = list(get_target_versions())
+            target.force_enable(skip_activity_log=True)
+            return cls.reverse_action_log_action(
+                new_decision, amo.LOG.FORCE_ENABLE, target_versions
+            )
         return None
 
     def get_owners(self):
@@ -507,12 +667,17 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 'target_url': self.target.get_absolute_url()
                 if self.target.get_url_path()
                 else '',
-                'type': self.decision.get_target_display(),
+                'type': self.decision.get_target_display().lower(),
                 'version_list_listed': ', '.join(
                     vr.version for vr in versions if vr.channel == amo.CHANNEL_LISTED
                 ),
                 'version_list_unlisted': ', '.join(
                     vr.version for vr in versions if vr.channel == amo.CHANNEL_UNLISTED
+                ),
+                'version_list_enterprise': ', '.join(
+                    vr.version
+                    for vr in versions
+                    if vr.channel == amo.CHANNEL_ENTERPRISE
                 ),
             }
             subject = f'{rejection_type} issued for {self.decision.get_target_name()}'
@@ -539,6 +704,9 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 addon=self.target,
                 defaults=auto_approval_flags,
             )
+
+    def get_activity_action(self):
+        return amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
 
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
@@ -575,36 +743,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         self.prevent_auto_approval()
         self.target.update_status()
         self.notify_stakeholders('Rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
-        )
-
-    def clear_specific_needs_human_review_flags(self, version):
-        """Clear needs_human_review flags on a specific version."""
-        from olympia.reviewers.models import NeedsHumanReview
-
-        from .models import CinderJob
-
-        qs = version.needshumanreview_set.filter(is_active=True)
-        unresolved_jobs = (
-            CinderJob.objects.for_addon(version.addon)
-            .unresolved()
-            .resolvable_in_reviewer_tools()
-            .exists()
-        )
-        if unresolved_jobs:
-            qs = qs.exclude(
-                reason__in=NeedsHumanReview.REASONS.ABUSE_OR_APPEAL_RELATED.values
-            )
-        qs.update(is_active=False)
-        # Because the updating of needs human review was made with a queryset
-        # the post_save signal was not triggered so let's recheck the due date
-        # explicitly.
-        version.reset_due_date()
-
-    def set_human_review_date(self, version):
-        if self.is_human_reviewer() and not version.human_review_date:
-            version.update(human_review_date=datetime.now())
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -620,6 +759,38 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             amo.LOG.HELD_ACTION_REJECT_CONTENT
             if self.content_review
             else amo.LOG.HELD_ACTION_REJECT_VERSIONS
+        )
+
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        target = new_decision.target
+        # We only need to un-reject the versions we disabled as part of the
+        # rejection (and that haven't been disabled again for another reason).
+        versions = list(
+            reversed_decision.target_versions.all()
+            .no_transforms()
+            .filter(
+                file__status=amo.STATUS_DISABLED,
+                file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            )
+            .order_by('-pk')
+        )
+        if not versions:
+            return None
+        for version in versions:
+            version.file.update(
+                datestatuschanged=datetime.now(),
+                status=(
+                    # safeguard against original_status not being valid
+                    version.file.original_status
+                    if version.file.original_status in amo.STATUS_CHOICES_FILE
+                    else amo.STATUS_AWAITING_REVIEW
+                ),
+                original_status=amo.STATUS_NULL,
+            )
+        target.update_status()
+        return cls.reverse_action_log_action(
+            new_decision, amo.LOG.UNREJECT_VERSION, versions
         )
 
 
@@ -657,6 +828,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
         )
 
     # should_hold_action as ContentActionRejectVersion
+
+    def get_activity_action(self):
+        return (
+            amo.LOG.REJECT_CONTENT_DELAYED
+            if self.content_review
+            else amo.LOG.REJECT_VERSION_DELAYED
+        )
 
     def process_action(self, release_hold=False):
         if not self.decision.reviewer_user:
@@ -702,11 +880,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             defaults={'notified_about_expiring_delayed_rejections': False},
         )
         self.notify_stakeholders(f'{self.delayed_rejection_days} day delayed rejection')
-        return self.log_action(
-            amo.LOG.REJECT_CONTENT_DELAYED
-            if self.content_review
-            else amo.LOG.REJECT_VERSION_DELAYED
-        )
+        return self.log_action(self.get_activity_action())
 
     def hold_action(self):
         # Even if the action is held, we want to always prevent auto-approval
@@ -721,6 +895,45 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             amo.LOG.HELD_ACTION_REJECT_CONTENT_DELAYED
             if self.content_review
             else amo.LOG.HELD_ACTION_REJECT_VERSIONS_DELAYED
+        )
+
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        versions = list(
+            reversed_decision.target_versions.all().no_transforms().order_by('-pk')
+        )
+        if not versions:
+            return None
+        for version in versions:
+            VersionReviewerFlags.objects.update_or_create(
+                version=version,
+                defaults={
+                    'pending_rejection': None,
+                    'pending_rejection_by': None,
+                    'pending_content_rejection': None,
+                },
+            )
+        return cls.reverse_action_log_action(
+            new_decision, amo.LOG.CLEAR_PENDING_REJECTION, versions
+        )
+
+
+class ContentActionRejectVersionAfterDelay(ContentActionRejectVersion):
+    action = None  # This should only be used specifically from auto_reject
+
+    def prevent_auto_approval(self):
+        # We don't want to change auto-approval for the final rejection
+        pass
+
+    def is_human_reviewer(self):
+        # When executed, this is always non-human.
+        return False
+
+    def get_activity_action(self):
+        return (
+            amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED
+            if self.content_review
+            else amo.LOG.AUTO_REJECT_VERSION_AFTER_DELAY_EXPIRED
         )
 
 
@@ -821,15 +1034,27 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
 
 
 class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
-    description = 'Add-on will be blocked, after a delay'
+    # description is dynamic
     action = None  # Has to be redefined in child classes.
 
-    def __init__(self, decision):
+    def __init__(self, decision, followup=None):
         super().__init__(decision)
+        self.followup = followup
         if not self.delay_days:
             raise ImproperlyConfigured(
                 f'{self.__class__.__name__} requires delay_days to be set'
             )
+
+    @property
+    def owner_template_path(self):
+        # override because we want subclasses to use the same template
+        return 'abuse/emails/ContentActionDelayedBlockAddon.txt'
+
+    @classproperty
+    def description(cls):
+        days = getattr(cls, 'delay_days', 0)
+        user_block_label = getattr(cls, 'block_type', BlockType.BLOCKED).user_label
+        return f'Add-on versions will be {user_block_label}, after {days} days'
 
     @classmethod
     def get_existing_blocks_from_decision(cls, decision):
@@ -858,28 +1083,29 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         if versions:
             delayed_until = datetime.now() + timedelta(days=self.delay_days)
             submission = BlocklistSubmission(
-                input_guids=self.target.guid,
-                block_type=self.block_type,
-                updated_by_id=self.updated_by_user_id,
                 auto_block_reason=BlockReason.FRAUD_DECEPTIVE,
-                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                block_type=self.block_type,
                 changed_version_ids=[ver.pk for ver in versions],
                 disable_addon=False,
                 disable_versions=False,
                 delayed_until=delayed_until,
+                from_followup=self.followup,
+                input_guids=self.target.guid,
                 preserve_block_metadata=True,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                updated_by_id=self.updated_by_user_id,
             )
             submission.save()
 
         return None
 
     @classmethod
-    def reverse_action(cls, original_decision):
+    def reverse_action(cls, *, reversed_decision, new_decision=None):
         # Note: when the original primary action was ContentDisableAddon, the versions
         # blocked may have been more than target_versions, but we're leaving the other
         # versions blocked.
-        guid = original_decision.target.guid
-        versions = original_decision.target_versions.all()
+        guid = reversed_decision.target.guid
+        versions = reversed_decision.target_versions.all()
         # First unblock any versions that have already been blocked
         already_blocked_version_ids = list(
             versions.filter(blockversion__block_type=cls.block_type).values_list(
@@ -892,11 +1118,11 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
         )
         delete_versions_from_blocks(
-            cls.get_existing_blocks_from_decision(original_decision),
+            cls.get_existing_blocks_from_decision(reversed_decision),
             BlocklistSubmission(
                 input_guids=guid,
                 action=BlocklistSubmission.ACTIONS.DELETE,
-                updated_by_id=cls(original_decision).updated_by_user_id,
+                updated_by_id=cls(reversed_decision, None).updated_by_user_id,
                 signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
                 changed_version_ids=already_blocked_version_ids,
                 preserve_block_metadata=True,
@@ -919,15 +1145,38 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
                     )
                 )
 
-    def get_owners(self):
-        # TODO: Define our own email strategy and template copy
-        return ()
-
     @classmethod
     def should_be_skipped_by_automation(cls, **kwargs):
         # Follow-up blocks shouldn't be skipped by automation, they are not the
         # main action.
         return False
+
+    def notify_owners(self):
+        if not self.followup:
+            # TODO support standalone delayed block actions?
+            return
+        submission = self.followup.blocklistsubmission
+
+        extra_context = {'restricted': self.block_type == BlockType.SOFT_BLOCKED}
+        version_numbers = list(
+            self.target.versions.filter(
+                id__in=submission.changed_version_ids
+            ).values_list('version', flat=True)
+        )
+        extra_context['version_list'] = ', '.join(version_numbers)
+        extra_context['followups'] = [
+            remaining.description_with_eta
+            for remaining in self.decision.followup_actions.exclude(
+                Q(id=self.followup.id)  # i.e. this submission
+                # and any other submission that has already been published
+                | Q(
+                    blocklistsubmission__signoff_state=(
+                        submission.SIGNOFF_STATES.PUBLISHED
+                    )
+                ),
+            )
+        ]
+        return super().notify_owners(extra_context=extra_context)
 
 
 class ContentActionDelayedShortSoftBlockAddon(_ContentActionDelayedBlockAddon):
@@ -997,9 +1246,20 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
             return self.log_action(amo.LOG.HELD_ACTION_REJECT_LISTING_CONTENT)
         return None
 
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        target = new_decision.target
+        if target.status == amo.STATUS_REJECTED:
+            AddonApprovalsCounter.approve_content_for_addon(target)
+            # Call update function to correct the status
+            target.update_status()
+            return cls.reverse_action_log_action(
+                new_decision, amo.LOG.APPROVE_REJECTED_LISTING_CONTENT, []
+            )
+        return None
 
-class ContentActionForwardToLegal(ContentAction):
-    valid_targets = (Addon,)
+
+class ContentActionForwardToLegal(ContentActionAddon):
     action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
 
     def process_action(self, release_hold=False):
@@ -1009,9 +1269,8 @@ class ContentActionForwardToLegal(ContentAction):
         return self.log_action(amo.LOG.REQUEST_LEGAL)
 
 
-class ContentActionChangePendingRejectionDate(ContentAction):
+class ContentActionChangePendingRejectionDate(ContentActionAddon):
     description = 'Add-on pending rejection date has changed'
-    valid_targets = (Addon,)
     action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
 
     def get_owners(self):
@@ -1040,6 +1299,14 @@ class ContentActionDeleteCollection(ContentAction):
     def hold_action(self):
         if not self.target.deleted:
             return self.log_action(amo.LOG.HELD_ACTION_COLLECTION_DELETED)
+        return None
+
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        target = new_decision.target
+        if target.deleted:
+            target.undelete()
+            return cls(new_decision).log_action(amo.LOG.COLLECTION_UNDELETED)
         return None
 
     def get_owners(self):
@@ -1085,6 +1352,23 @@ class ContentActionDeleteRating(ContentAction):
             return self.log_action(amo.LOG.HELD_ACTION_DELETE_RATING, self.target.addon)
         return None
 
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        target = new_decision.target
+        if target.deleted:
+            target.undelete(skip_activity_log=True)
+            return cls(new_decision).log_action(
+                amo.LOG.UNDELETE_RATING,
+                target.addon,
+                extra_details={
+                    'body': str(target.body),
+                    'addon_id': target.addon.pk,
+                    'addon_title': str(target.addon.name),
+                    'is_flagged': target.ratingflag_set.exists(),
+                },
+            )
+        return None
+
     def get_owners(self):
         return [self.target.user]
 
@@ -1095,20 +1379,6 @@ class ContentActionTargetAppealApprove(
     description = 'Reported content is within policy, after appeal'
 
     @property
-    def target_versions(self):
-        target = self.target
-        if isinstance(target, Addon) and target.status == amo.STATUS_DISABLED:
-            files_qs = File.objects.disabled_that_would_be_renabled_with_addon().filter(
-                version__addon=target
-            )
-            qs = target.versions(manager='unfiltered_for_relations').filter(
-                pk__in=files_qs.values_list('version')
-            )
-        else:
-            qs = self.decision.target_versions.all()
-        return qs
-
-    @property
     def previous_decisions(self):
         """Queryset with previous decisions made that this action would revert."""
         return self.decision.cinder_job.appealed_decisions.all()
@@ -1116,116 +1386,15 @@ class ContentActionTargetAppealApprove(
     def process_action(self, release_hold=False):
         from olympia.abuse.models import ContentDecisionFollowupAction
 
-        target = self.target
         log_entry = None
-        if isinstance(target, Addon):
-            target_versions = (
-                self.target_versions.no_transforms()
-                .defer('approval_notes')
-                .order_by('-pk')
-            )
-            previous_decision_actions = set(
-                self.previous_decisions.values_list('action', flat=True)
-            )
-            activity_log_action = None
 
-            if {
-                DECISION_ACTIONS.AMO_DISABLE_ADDON,
-                DECISION_ACTIONS.AMO_BLOCK_ADDON,
-                DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON,
-            } & previous_decision_actions:
-                # FIXME: we should also automatically revert the block if the
-                # previous decision was AMO_BLOCK_ADDON. (i.e. reverse_action)
-                target_versions = list(target_versions)
-                if target.status == amo.STATUS_DISABLED:
-                    target.force_enable(skip_activity_log=True)
-                activity_log_action = amo.LOG.FORCE_ENABLE
-
-            # TODO: rewrite the rest of this function to use per-class reverse_action.
-            for prev_decision in self.previous_decisions:
-                FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
-                    prev_decision.action
-                ]
-                if hasattr(FollowUpActionClass, 'reverse_action'):
-                    FollowUpActionClass.reverse_action(prev_decision)
-
-            if DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON in previous_decision_actions:
-                target_versions = list(
-                    target_versions.filter(
-                        # we only need to unreject disabled versions we rejected
-                        file__status=amo.STATUS_DISABLED,
-                        file__status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
-                    )
-                )
-                for version in target_versions:
-                    version.file.update(
-                        datestatuschanged=datetime.now(),
-                        status=(
-                            # safeguard against original_status not being valid
-                            version.file.original_status
-                            if version.file.original_status in amo.STATUS_CHOICES_FILE
-                            else amo.STATUS_AWAITING_REVIEW
-                        ),
-                        original_status=amo.STATUS_NULL,
-                    )
-                target.update_status()
-                activity_log_action = amo.LOG.UNREJECT_VERSION
-            if (
-                DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
-                in previous_decision_actions
-            ):
-                for version in target_versions:
-                    VersionReviewerFlags.objects.update_or_create(
-                        version=version,
-                        defaults={
-                            'pending_rejection': None,
-                            'pending_rejection_by': None,
-                            'pending_content_rejection': None,
-                        },
-                    )
-                activity_log_action = amo.LOG.CLEAR_PENDING_REJECTION
-            if (
-                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT in previous_decision_actions
-                and target.status == amo.STATUS_REJECTED
-            ):
-                target_versions = target_versions.none()
-                AddonApprovalsCounter.approve_content_for_addon(target)
-                # Call update function to correct ihe status
-                target.update_status()
-                activity_log_action = amo.LOG.APPROVE_REJECTED_LISTING_CONTENT
-
-            if not activity_log_action:
-                return
-
-            log_entry = self.log_action(
-                activity_log_action,
-                *target_versions,
-                extra_details={
-                    'versions': [version.version for version in target_versions]
-                },
-            )
-
-        elif isinstance(target, UserProfile) and target.banned:
-            UserProfile.objects.filter(pk=target.pk).unban_and_reenable_related_content(
-                skip_activity_log=True
-            )
-            log_entry = self.log_action(amo.LOG.ADMIN_USER_UNBAN)
-
-        elif isinstance(target, Collection) and target.deleted:
-            target.undelete()
-            log_entry = self.log_action(amo.LOG.COLLECTION_UNDELETED)
-
-        elif isinstance(target, Rating) and target.deleted:
-            target.undelete(skip_activity_log=True)
-            log_entry = self.log_action(
-                amo.LOG.UNDELETE_RATING,
-                self.target.addon,
-                extra_details={
-                    'body': str(target.body),
-                    'addon_id': target.addon.pk,
-                    'addon_title': str(target.addon.name),
-                    'is_flagged': target.ratingflag_set.exists(),
-                },
+        # Reverse any previous decision whose primary action was a delayed
+        # block (the other primary actions are handled inline below). This
+        # unblocks/cancels the pending block.
+        for prev_decision in self.previous_decisions:
+            ActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[prev_decision.action]
+            log_entry = ActionClass.reverse_action(
+                reversed_decision=prev_decision, new_decision=self.decision
             )
 
         # follow-up actions
@@ -1236,24 +1405,16 @@ class ContentActionTargetAppealApprove(
             FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
                 followup_action.action
             ]
-            FollowUpActionClass.reverse_action(followup_action.decision)
+            FollowUpActionClass.reverse_action(
+                reversed_decision=followup_action.decision
+            )
 
         return log_entry
 
 
-class ContentActionOverrideApprove(ContentActionTargetAppealApprove):
-    description = 'Reported content is within policy, after override'
-
-    @property
-    def previous_decisions(self):
-        """Queryset with previous decisions made that this action would revert."""
-        # If there is no overriden decision this will be an impossible query
-        # returning nothing, which is what we want here since this class is
-        # specific to overrides actions.
-        return self.decision.__class__.objects.filter(pk=self.decision.override_of_id)
-
-
-class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
+class ContentActionApproveListingContent(
+    AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
+):
     description = 'Reported content is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
@@ -1267,10 +1428,11 @@ class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
         )
 
     def get_owners(self):
-        if self.status == amo.STATUS_REJECTED:
-            # If we're approving listing content that was rejected, we need to
-            # notify the authors.
-            return self.target.authors.all()
+        if self.status == amo.STATUS_REJECTED or self.reverses_previous_action():
+            # If we're approving listing content that was rejected, or this
+            # override reverses a previous takedown, we need to notify the owners
+            # about the new decision.
+            return super().get_owners()
         return ()
 
     def process_action(self, release_hold=False):
@@ -1288,15 +1450,192 @@ class ContentActionApproveListingContent(AnyTargetMixin, ContentAction):
         return None
 
 
-class ContentActionApproveInitialDecision(
-    AnyTargetMixin, NoActionMixin, AnyOwnerEmailMixin, ContentAction
-):
+class ContentActionApproveVersion(ContentActionAddon):
     description = (
         'Reported content is within policy, initial decision, approving versions'
     )
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
     action = DECISION_ACTIONS.AMO_APPROVE_VERSION
+
+    def get_owners(self):
+        if (
+            (self.is_human_reviewer or self.target.type != amo.ADDON_LPAPP)
+            and self.decision.activities.filter(
+                # FORCE_ENABLE is logged via the reviewer tools enable_addon action.
+                action__in=(amo.LOG.APPROVE_VERSION.id, amo.LOG.FORCE_ENABLE.id)
+            ).exists()
+        ) or self.reverses_previous_action():
+            # Don't notify decisions (to cinder or owners) for auto-approved langpacks
+            # or if the decision wasn't (freshly) approving any versions - unless
+            # this override reverses a previous takedown, in which case the owners
+            # need to be told about the new decision.
+            return self.target.authors.all()
+        else:
+            return ()
+
+    def _set_promoted(self, versions):
+        group = self.target.promoted_groups(currently_approved=False)
+        if group and versions:
+            channel = versions[0].channel
+            if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
+                channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
+                and any(group.unlisted_pre_review)
+            ):
+                # These addons shouldn't be be attempted for auto approval
+                # anyway, but double check that the cron job isn't trying to
+                # approve it.
+                assert self.is_human_reviewer
+            for version in versions:
+                self.target.approve_for_version(version)
+
+    def process_version(self, version):
+        from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
+
+        # Sign addon.
+        assert not version.is_blocked
+
+        if version.file.status == amo.STATUS_AWAITING_REVIEW:
+            if version.file.is_experiment:
+                self.log_action(
+                    amo.LOG.EXPERIMENT_SIGNED,
+                    version.file,
+                    extra_details={'versions': [version.version]},
+                    skip_private_notes=True,
+                )
+            sign_file(version.file)
+            if version.channel in [amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE]:
+                self.log_action(
+                    amo.LOG.UNLISTED_SIGNED,
+                    version.file,
+                    extra_details={
+                        'versions': [version.version],
+                        'is_enterprise': version.channel == amo.CHANNEL_ENTERPRISE,
+                    },
+                    skip_private_notes=True,
+                )
+
+            # Save files first, because set_addon checks to make sure there
+            # is at least one public file or it won't make the addon public.
+            version.file.update(
+                datestatuschanged=datetime.now(),
+                approval_date=datetime.now(),
+                original_status=amo.STATUS_NULL,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+                status=amo.STATUS_APPROVED,
+            )
+            already_approved = False
+        else:
+            already_approved = True
+
+        self.set_human_review_date(version)
+
+        if self.is_human_reviewer():
+            # Clear pending rejection since we approved that version.
+            VersionReviewerFlags.objects.filter(version=version).update(
+                pending_rejection=None,
+                pending_rejection_by=None,
+                pending_content_rejection=None,
+            )
+            try:
+                version.autoapprovalsummary.update(confirmed=True)
+            except AutoApprovalSummary.DoesNotExist:
+                pass
+            if version.channel == amo.CHANNEL_UNLISTED:
+                self.clear_specific_needs_human_review_flags(version)
+        elif (
+            version.channel == amo.CHANNEL_UNLISTED
+            and version.needshumanreview_set.filter(is_active=True)
+            and (delay := self.target.auto_approval_delayed_until_unlisted)
+            and delay < datetime.now()
+        ):
+            # if we're auto-approving because its past the approval delay,
+            # flag it.
+            NeedsHumanReview.objects.create(
+                version=version,
+                reason=NeedsHumanReview.REASONS.AUTO_APPROVED_PAST_APPROVAL_DELAY,
+            )
+        return already_approved
+
+    def process_action(self, release_hold=False):
+        if not self.decision.reviewer_user:
+            # This action should only be used by reviewer tools, not cinder webhook
+            raise NotImplementedError
+
+        if not (versions := list(self.target_versions)):
+            return None
+
+        was_public = self.target.is_public()
+        already_approved_versions, newly_approved_versions = [], []
+        for version in versions:
+            if self.process_version(version):
+                already_approved_versions.append(version)
+            else:
+                newly_approved_versions.append(version)
+
+        self._set_promoted(versions)
+        if not was_public and newly_approved_versions:
+            self.target.update_status()
+
+        channel = versions[0].channel
+        if self.is_human_reviewer():
+            if channel == amo.CHANNEL_LISTED:
+                # No need for a human review anymore in this channel.
+                self._clear_all_needs_human_review_flags_in_channel(amo.CHANNEL_LISTED)
+                # The counter can be incremented.
+                AddonApprovalsCounter.increment_for_addon(addon=self.target)
+
+            # An approval took place so we can reset this.
+            AddonReviewerFlags.objects.update_or_create(
+                addon=self.target,
+                defaults={
+                    'auto_approval_disabled_until_next_approval'
+                    if channel == amo.CHANNEL_LISTED
+                    else 'auto_approval_disabled_until_next_approval_unlisted': False
+                },
+            )
+            self.target.reviewerflags.reload()
+        elif channel == amo.CHANNEL_LISTED:
+            # Automatic approval, reset the counter.
+            AddonApprovalsCounter.reset_for_addon(addon=self.target)
+
+        if newly_approved_versions:
+            approve_log = self.log_action(
+                amo.LOG.APPROVE_VERSION,
+                *newly_approved_versions,
+                extra_details={
+                    'versions': [version.version for version in newly_approved_versions]
+                },
+            )
+            if not was_public and self.target.is_public():
+                log.info('Making %s public' % (self.target))
+            else:
+                log.info(
+                    'Making %s files [%s] public'
+                    % (
+                        self.target,
+                        ', '.join(
+                            version.file.file.name
+                            for version in newly_approved_versions
+                        ),
+                    )
+                )
+        if already_approved_versions:
+            confirm_approve_log = self.log_action(
+                amo.LOG.CONFIRM_AUTO_APPROVED,
+                *already_approved_versions,
+                extra_details={
+                    'versions': [
+                        version.version for version in already_approved_versions
+                    ]
+                },
+                skip_private_notes=bool(newly_approved_versions),
+            )
+        return (
+            (newly_approved_versions and approve_log)
+            or (already_approved_versions and confirm_approve_log)
+            or None
+        )
 
 
 class ContentActionTargetAppealRemovalAffirmation(
@@ -1334,6 +1673,8 @@ class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction
 
 class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     description = 'Add-on has been disabled, due to legal action'
+    legal_takedown_template_path = 'abuse/emails/legal_takedown_notification.txt'
+    legal_takedown_group_name = 'Legal-Takedown-Notifications'
     action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
     # This action should not be used to resolve abuse reports
     reporter_template_path = None
@@ -1342,6 +1683,34 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
     def get_owners(self):
         # For these actions, legal will handle communication themselves
         return ()
+
+    def notify_legal(self, is_held=False):
+        """Notify legal of takedown-related activity."""
+        if recipients := list(
+            Group.objects.filter(name=self.legal_takedown_group_name).values_list(
+                'users__email', flat=True
+            )
+        ):
+            template = loader.get_template(self.legal_takedown_template_path)
+            context_dict = {
+                'is_held': is_held,
+                'slug': str(self.target.slug),
+                'guid': self.target.guid,
+                'id': self.target.id,
+            }
+            subject = 'Takedown Notice: Add-on Processed'
+            if is_held:
+                subject = 'Takedown Notice: Add-on Held and in Second Level Approval'
+            message = template.render(context_dict)
+            send_mail(subject, message, recipient_list=recipients)
+
+    def process_action(self, release_hold=False):
+        self.notify_legal()
+        return super().process_action(release_hold)
+
+    def hold_action(self):
+        self.notify_legal(is_held=True)
+        return super().hold_action()
 
 
 class ContentActionNotImplemented(AnyTargetMixin, NoActionMixin, ContentAction):

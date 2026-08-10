@@ -174,6 +174,10 @@ class VersionManager(ManagerBase):
                 channel=amo.CHANNEL_UNLISTED,
                 addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
             )
+            | Q(
+                channel=amo.CHANNEL_ENTERPRISE,
+                addon__status__in=amo.VALID_ADDON_STATUSES + (amo.STATUS_NULL,),
+            )
         )
         return qs
 
@@ -390,6 +394,8 @@ class Version(OnChangeMixin, ModelBase):
         from olympia.devhub.tasks import send_initial_submission_acknowledgement_email
         from olympia.reviewers.models import NeedsHumanReview
 
+        from .tasks import call_webhooks_on_version_created
+
         assert parsed_data is not None
 
         if addon.type == amo.ADDON_STATICTHEME:
@@ -401,6 +407,14 @@ class Version(OnChangeMixin, ModelBase):
                 for app in amo.APP_USAGE
             }
         assert selected_apps or compatibility
+
+        if channel == amo.CHANNEL_ENTERPRISE and not waffle.switch_is_active(
+            'enterprise-channel'
+        ):
+            raise VersionCreateError('The enterprise channel is not enabled.')
+
+        if channel == amo.CHANNEL_ENTERPRISE and addon.type != amo.ADDON_EXTENSION:
+            raise VersionCreateError('Only extensions can be enterprise add-ons.')
 
         if addon.status == amo.STATUS_DISABLED:
             raise VersionCreateError(
@@ -644,10 +658,7 @@ class Version(OnChangeMixin, ModelBase):
             version=version, source=upload.source, client_info=client_info
         )
 
-        if waffle.switch_is_active('enable-scanner-webhooks'):
-            from .tasks import call_webhooks_on_version_created
-
-            call_webhooks_on_version_created.delay(version_pk=version.pk)
+        call_webhooks_on_version_created.delay(version_pk=version.pk)
 
         return version
 
@@ -837,10 +848,9 @@ class Version(OnChangeMixin, ModelBase):
                 reason = NeedsHumanReview.REASONS.PENDING_REJECTION_SOURCES_PROVIDED
                 NeedsHumanReview.objects.create(version=self, reason=reason)
 
-            if waffle.switch_is_active('enable-scanner-webhooks'):
-                call_webhooks_on_source_code_uploaded.delay(
-                    version_pk=self.pk, activity_log_id=note.id
-                )
+            call_webhooks_on_source_code_uploaded.delay(
+                version_pk=self.pk, activity_log_id=note.id
+            )
 
     @classmethod
     def transformer(cls, versions):
@@ -1082,7 +1092,7 @@ class Version(OnChangeMixin, ModelBase):
             .distinct()[:1]
         )
         previous_approval = PromotedApproval.objects.filter(
-            promoted_group__group_id__in=promotions.group_id,
+            promoted_group__in=promotions,
             version__in=previous_version,
         )
         return previous_approval.exists()
@@ -1170,6 +1180,8 @@ class VersionReviewerFlags(ModelBase):
         UserProfile, null=True, on_delete=models.CASCADE
     )
     pending_content_rejection = models.BooleanField(null=True)
+    # Note, this is unused when 'enable-policy-review-selection' is enabled
+    # Remove this field when the switch is removed.
     pending_resolution_cinder_jobs = models.ManyToManyField(
         to='abuse.CinderJob', related_name='pending_rejections'
     )

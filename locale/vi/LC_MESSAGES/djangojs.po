@@ -456,41 +456,41 @@ msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tô
 msgid "Remove this localization"
 msgstr "Xóa bản dịch này"
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} đã xem trang này đầu tiên."
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} đã xem tiện ích này trước tiên."
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr "Đang tải&hellip;"
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr "Ghi chú về phiên bản"
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr "Ghi chú cho người duyệt"
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr "Không tìm thấy ghi chú về phiên bản"
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr "Xem lại văn bản"
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr "Xem lại ghi chú"
 

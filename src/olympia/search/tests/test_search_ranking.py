@@ -5,7 +5,6 @@ from django.utils.encoding import force_str
 
 from olympia import amo
 from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
@@ -464,7 +463,11 @@ class TestRankingScenarios(ESTestCase):
             slug='tabby-cat-friend',
             summary='A new friend in every new tab.',
             weekly_downloads=350,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'search_bump',
+                'listed_pre_review': True,
+                'search_ranking_bump': 5.0,
+            },
         )
         amo.tests.addon_factory(
             average_daily_users=5819,
@@ -622,7 +625,11 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-1',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'search_bump',
+                'listed_pre_review': True,
+                'search_ranking_bump': 5.0,
+            },
         )
         amo.tests.addon_factory(
             average_daily_users=4089,
@@ -631,7 +638,11 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-2',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_kwargs={
+                'api_name': 'line',
+                'listed_pre_review': True,
+                'search_ranking_bump': 5.0,
+            },
         )
         amo.tests.addon_factory(
             average_daily_users=4089,
@@ -640,7 +651,10 @@ class TestRankingScenarios(ESTestCase):
             slug='stripy-dog-3',
             summary='A new friend in every new window.',
             weekly_downloads=350,
-            promoted_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT,
+            promoted_kwargs={
+                'api_name': 'spotlight',
+                'listed_pre_review': True,
+            },
         )
         amo.tests.addon_factory(
             average_daily_users=4089,

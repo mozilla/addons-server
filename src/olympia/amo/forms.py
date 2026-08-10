@@ -1,3 +1,5 @@
+import itertools
+
 from django import forms
 from django.utils.functional import cached_property
 
@@ -37,3 +39,32 @@ class AMOModelForm(BaseModelSerializerAndFormMixin, forms.ModelForm):
                     changed_data.remove(field)
 
         return changed_data
+
+
+class LimitedModelChoiceField(forms.ModelChoiceField):
+    limit_choice_count = 100  # django docs suggest 100 is the max you should use
+
+    def __init__(self, queryset, *, limit_choice_count=None, **kwargs):
+        if limit_choice_count is not None:
+            self.limit_choice_count = limit_choice_count
+        self.to_field_name = kwargs.get('to_field_name', None)
+        super().__init__(queryset, **kwargs)
+
+    def _set_queryset(self, queryset):
+        if hasattr(self, '_choices'):
+            del self._choices
+        super()._set_queryset(queryset)
+
+    queryset = property(forms.ModelChoiceField.queryset.fget, _set_queryset)
+
+    def _get_choices(self):
+        # If self._choices is set, we called this before.
+        if hasattr(self, '_choices'):
+            return self._choices
+
+        count = self.limit_choice_count + (1 if self.empty_label else 0)
+        # We need to limit the choices, but we can't slice the queryset.
+        self._choices = list(itertools.islice(self.iterator(self), count))
+        return self._choices
+
+    choices = property(_get_choices, forms.ModelChoiceField.choices.fset)

@@ -15,11 +15,7 @@ from waffle import switch_is_active
 from olympia import amo
 from olympia.api.utils import is_gate_active
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    BADGED_API_NAME,
-    PROMOTED_API_NAME_TO_IDS,
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import BADGED_API_NAME, BADGED_GROUPS
 from olympia.versions.compare import version_int
 
 
@@ -406,8 +402,6 @@ class AddonFeaturedQueryParam(AddonQueryParam):
 
 class AddonPromotedQueryParam(AddonQueryMultiParam):
     query_param = 'promoted'
-    reverse_dict = PROMOTED_API_NAME_TO_IDS
-    valid_values = PROMOTED_API_NAME_TO_IDS.values()
 
     def __init__(self, request, query_data=None):
         super().__init__(request)
@@ -415,17 +409,13 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
             self.query_data = query_data
 
     def get_values(self):
-        obsolete = (
-            ('verified', 'sponsored')
-            if is_gate_active(self.request, 'promoted-verified-sponsored')
-            else ()
-        )
-        values = str(self.query_data.get(self.query_param, '')).split(',')
-        processed_values = [
-            self.process_value(value) for value in values if value not in obsolete
-        ]
-        # The values are lists of ids so flatten into a single list
-        return list({y for x in processed_values for y in x})
+        # Expand the meta "badged" group into its constituent groups if present
+        values = super().get_values()
+        processed_values = {
+            *(val for val in values if val != BADGED_API_NAME),
+            *(BADGED_GROUPS if BADGED_API_NAME in values else ()),
+        }
+        return sorted(processed_values)
 
     def get_app(self):
         return (
@@ -435,7 +425,7 @@ class AddonPromotedQueryParam(AddonQueryMultiParam):
         )
 
     def get_es_query(self):
-        query = [Q(self.operator, **{'promoted.group_id': self.get_values()})]
+        query = [Q(self.operator, **{'promoted.category': self.get_values()})]
 
         if app := self.get_app():
             query.append(Q('term', **{'promoted.approved_for_apps': app}))
@@ -911,30 +901,12 @@ class SearchQueryFilter(BaseFilterBackend):
                     ),
                 }
             ),
+            # ranking_bump is a multiplicative factor. Documents without a bump
+            # (non-promoted add-ons, or promoted groups with no search ranking
+            # bump) don't have the field indexed, so treat it as a neutral 1.0
+            # rather than letting field_value_factor fail on the missing field.
+            query.SF('field_value_factor', field='ranking_bump', missing=1),
         ]
-        ranking_bump_groups = amo.utils.sorted_groupby(
-            PROMOTED_GROUP_CHOICES.ACTIVE,
-            lambda g: getattr(g, 'search_ranking_bump', 0.0),
-            reverse=True,
-        )
-        for bump, promo_groups in ranking_bump_groups:
-            if not bump:
-                continue
-            functions.append(
-                query.SF(
-                    {
-                        'weight': bump,
-                        'filter': (
-                            Q(
-                                'terms',
-                                **{
-                                    'promoted.group_id': [p.value for p in promo_groups]
-                                },
-                            )
-                        ),
-                    }
-                )
-            )
 
         # Assemble everything together
         qs = qs.query(

@@ -59,7 +59,7 @@ urlpatterns = (
     # 'content' is not a channel, but is a special kind of review that we only
     # do for listed add-ons, so we abuse the channel parameter to handle that.
     re_path(
-        r'^review(?:-(?P<channel>listed|unlisted|content))?/%s$' % ADDON_ID,
+        r'^review(?:-(?P<channel>listed|unlisted|enterprise|content))?/%s$' % ADDON_ID,
         views.review,
         name='reviewers.review',
     ),
@@ -69,7 +69,7 @@ urlpatterns = (
         name='reviewers.review_version_redirect',
     ),
     re_path(
-        r'^whiteboard/(?P<channel>listed|unlisted|content)/%s$' % ADDON_ID,
+        r'^whiteboard/(?P<channel>listed|unlisted|enterprise|content)/%s$' % ADDON_ID,
         views.whiteboard,
         name='reviewers.whiteboard',
     ),

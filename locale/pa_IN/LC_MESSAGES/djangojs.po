@@ -157,7 +157,7 @@ msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ 
 
 #: static/js/common/upload-base.js:69
 msgid "The filetype you uploaded isn't recognized."
-msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
+msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਇਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
 
 #: static/js/common/upload-base.js:79 static/js/zamboni/global.js:569
 #, python-brace-format
@@ -464,41 +464,41 @@ msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ
 msgid "Remove this localization"
 msgstr "ਇਹ ਭਾਸ਼ਾ ਹਟਾਓ"
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ਇਹ ਐਡ-ਆਨ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr "&hellip; ਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr "ਵਰਜ਼ਨ ਸੂਚਨਾ"
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr "ਪੜਤਾਲਾਂ ਲਈ ਨੋਟਿਸ"
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr "ਕੋਈ ਵਰਜ਼ਨ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲੇ"
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr "ਲਿਖਤ ਦੀ ਪੜਤਾਲ ਕਰੋ"
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr "ਪੜਤਾਲ ਨੋਟਿਸ ਮਿਲੇ"
 

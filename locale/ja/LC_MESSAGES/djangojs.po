@@ -452,41 +452,41 @@ msgstr "この機能はサイトメンテナンスのため一時的に無効に
 msgid "Remove this localization"
 msgstr "このローカライズを削除"
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} が初めてこのページを見ました。"
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr "評価ページの投票に失敗しました。"
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} が初めてこのアドオンを見ました。"
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr "読み込み中..."
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr "バージョンノート"
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr "審査担当者へのメモ"
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr "バージョンノートはありません"
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr "レビューテキスト"
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr "レビューノートが見つかりました"
 

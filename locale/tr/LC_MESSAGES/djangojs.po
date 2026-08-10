@@ -463,41 +463,41 @@ msgstr "Bakım nedeniyle bu özellik şu anda devre dışıdır. Lütfen daha so
 msgid "Remove this localization"
 msgstr "Bu yerelleştirmeyi kaldır"
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} bu sayfayı ilk olarak inceliyordu."
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr "İnceleme sayfası yoklaması başarısız oldu."
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "İlk {name} bu eklentiye bakıyordu."
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr "Yükleniyor&hellip;"
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr "Sürüm notları"
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr "İnceleyicilere yönelik notlar"
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr "Hiçbir sürüm notu bulunamadı"
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr "İnceleme Metni"
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr "İnceleme notları bulundu"
 

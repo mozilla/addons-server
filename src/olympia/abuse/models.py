@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from itertools import chain
 from string import Formatter
 
@@ -26,6 +26,7 @@ from olympia.constants.abuse import (
     DECISION_SOURCES,
     ILLEGAL_CATEGORIES,
     ILLEGAL_SUBCATEGORIES,
+    POLICY_EXPOSURE,
 )
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -33,7 +34,6 @@ from olympia.versions.models import Version, VersionReviewerFlags
 
 from .actions import (
     CONTENT_ACTION_FROM_DECISION_ACTION,
-    ContentActionOverrideApprove,
     ContentActionTargetAppealApprove,
     ContentActionTargetAppealRemovalAffirmation,
 )
@@ -219,7 +219,7 @@ class CinderJob(ModelBase):
         )
         return not self.is_appeal and (is_disabled or is_human_reviewed)
 
-    def handle_already_moderated(self, abuse_report, entity_helper):
+    def handle_already_moderated(self, abuse_report, entity_helper, metadata=None):
         decision = ContentDecision.objects.create(
             addon=(self.target_addon if self.target_addon_id else abuse_report.addon),
             rating=getattr(abuse_report, 'rating', None),
@@ -230,6 +230,7 @@ class CinderJob(ModelBase):
             reviewer_user_id=settings.TASK_USER_ID,
             cinder_job=self,
             override_of=self.final_decision,
+            metadata=metadata or {},
         )
         decision.policies.set(
             CinderPolicy.objects.filter(
@@ -935,7 +936,9 @@ class CinderPolicy(ModelBase):
         on_delete=models.SET_NULL,
         related_name='children',
     )
-    expose_in_reviewer_tools = models.BooleanField(default=False)
+    expose_in_reviewer_tools = models.SmallIntegerField(
+        default=POLICY_EXPOSURE.NONE, choices=POLICY_EXPOSURE.choices
+    )
     enforcement_actions = models.JSONField(default=list)
     status_in_cinder = models.SmallIntegerField(null=True, choices=POLICY_STATUSES)
 
@@ -1142,21 +1145,31 @@ class ContentDecision(ModelBase):
         else:
             return DECISION_SOURCES.TASKUS
 
-    def get_action_helper(self):
-        # Base case when it's a new decision, that wasn't an appeal
-        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
-        skip_reporter_notify = False
+    def get_overridden_decision(self):
+        """Return the decision this one overrides (the most recent one in the
+        override chain that was actually carried out), or None."""
 
-        def find_overridden_action(override_of):
+        def find_overridden_decision(override_of):
             if not override_of:
                 return None
             return (
-                override_of.action
+                override_of
                 if override_of.action_date
-                else find_overridden_action(override_of.override_of)
+                else find_overridden_decision(override_of.override_of)
             )
 
-        overridden_action = find_overridden_action(self.override_of)
+        return find_overridden_decision(self.override_of)
+
+    def get_action_helper(self):
+        # Base case when it's a new decision, that wasn't an appeal: the action
+        # helper always matches the (real) action of the decision. For overrides
+        # the new action is applied normally; the *previous* action is reversed
+        # separately in reverse_overridden_action() (reverse-then-apply).
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        skip_reporter_notify = False
+
+        overridden_decision = self.get_overridden_decision()
+        overridden_action = getattr(overridden_decision, 'action', None)
         appealed_action = (
             getattr(self.cinder_job.appealed_decisions.first(), 'action', None)
             if self.cinder_job
@@ -1174,14 +1187,11 @@ class ContentDecision(ModelBase):
                     ContentActionClass = ContentActionTargetAppealRemovalAffirmation
             # (a reporter appeal doesn't need any alternate ContentAction class)
 
-        elif overridden_action in DECISION_ACTIONS.REMOVING:
-            # override on a decision that was a takedown before, and wasn't an appeal
-            if self.action in DECISION_ACTIONS.NON_OFFENDING:
-                ContentActionClass = ContentActionOverrideApprove
-            if self.action == overridden_action:
-                # For an override that is still a takedown we can send the same emails
-                # to the target; but we don't want to notify the reporter again.
-                skip_reporter_notify = True
+        elif overridden_action and self.action == overridden_action:
+            # An override that re-affirms the same action: no reversal will take
+            # place (see reverse_overridden_action), we just re-apply it. We send
+            # the same emails to the target but don't notify the reporter again.
+            skip_reporter_notify = True
 
         cinder_action = ContentActionClass(decision=self)
         if skip_reporter_notify:
@@ -1369,6 +1379,35 @@ class ContentDecision(ModelBase):
                 decision_cinder_id = entity_helper.create_decision(**create_decision_kw)
             self.update(cinder_id=decision_cinder_id)
 
+    def reverse_overridden_action(self):
+        """When this decision overrides a previous one, reverse the effects of the
+        overridden action (and its follow-up actions), if the new action is different"""
+        overridden = self.get_overridden_decision()
+        if not overridden:
+            return None
+
+        if overridden.action != self.action:
+            OverriddenActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
+                overridden.action
+            ]
+            log_entry = OverriddenActionClass.reverse_action(
+                reversed_decision=overridden, new_decision=self
+            )
+
+        # Reverse any follow-up actions (e.g. delayed blocks) of the overridden
+        # decision too.
+        new_followup_actions = list(
+            self.followup_actions.values_list('action', flat=True)
+        )
+        for followup in overridden.followup_actions.filter(action_date__isnull=False):
+            if followup.action in new_followup_actions:
+                # If the follow-up action is the same as the new action, we don't need
+                # to reverse it.
+                continue
+            FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[followup.action]
+            FollowUpActionClass.reverse_action(reversed_decision=followup.decision)
+        return log_entry
+
     def execute_action(self, *, release_hold=False):
         """Execute the action for the decision, if not already carried out.
         The action may be held for 2nd level approval.
@@ -1379,6 +1418,9 @@ class ContentDecision(ModelBase):
             if release_hold or not action_helper.should_hold_action():
                 # We set the action_date because .can_be_appealed depends on it
                 self.action_date = datetime.now()
+                # If this decision overrides a previous one, reverse the previous
+                # action first, then apply the new action below.
+                self.reverse_overridden_action()
                 log_entry = action_helper.process_action(release_hold=release_hold)
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date',))
@@ -1442,16 +1484,16 @@ class ContentDecision(ModelBase):
             return
 
         action_helper = self.get_action_helper()
-        log_entry = self.activities.exclude(
-            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
-        ).last()
-        has_attachment = AttachmentLog.objects.filter(
-            activity_log__contentdecisionlog__decision=self
-        ).exists()
 
         if self.cinder_job:
             self.cinder_job.notify_reporters(action_helper)
 
+        if not notify_owners:
+            return
+
+        log_entry = self.activities.exclude(
+            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+        ).last()
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
             is_auto_approval = (
@@ -1463,9 +1505,12 @@ class ContentDecision(ModelBase):
                 if log_entry
                 else []
             )
-            is_addon_enabled = self.addon and not (
+            is_addon_enabled = not (
                 details.get('is_addon_being_disabled') or self.addon.is_disabled
             )
+            has_attachment = AttachmentLog.objects.filter(
+                activity_log__contentdecisionlog__decision=self
+            ).exists()
             extra_context = {
                 'auto_approval': is_auto_approval,
                 'delayed_rejection_days': details.get('delayed_rejection_days'),
@@ -1474,9 +1519,7 @@ class ContentDecision(ModelBase):
                 'is_addon_enabled': is_addon_enabled,
                 'version_list': ', '.join(ver_str for ver_str in version_numbers),
                 'has_attachment': has_attachment,
-                'dev_url': absolutify(self.target.get_dev_url('versions'))
-                if self.addon_id
-                else None,
+                'dev_url': absolutify(self.target.get_dev_url('versions')),
                 # If we expanded the reason/policy text into notes in the reviewer tools
                 # we wouldn't have set this key in details - so the default is what we
                 # want: we don't want to duplicate it as policies too;
@@ -1487,10 +1530,9 @@ class ContentDecision(ModelBase):
         else:
             extra_context = {}
 
-        if notify_owners:
-            action_helper.notify_owners(
-                log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
-            )
+        action_helper.notify_owners(
+            log_entry_id=getattr(log_entry, 'id', None), extra_context=extra_context
+        )
 
     def get_target_review_url(self):
         return reverse('reviewers.decision_review', kwargs={'decision_id': self.id})
@@ -1530,12 +1572,25 @@ class ContentDecisionFollowupAction(ModelBase):
         if not self.action_date:
             self.action_date = datetime.now()
             ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
-            action_helper = ContentActionClass(decision=self.decision)
+            action_helper = ContentActionClass(decision=self.decision, followup=self)
             log_entry = action_helper.process_action()
             # But only save it afterwards in case process_action failed
             self.save(update_fields=('action_date',))
 
         return log_entry
+
+    @property
+    def description_with_eta(self):
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        description = ContentActionClass.description
+        if delay_days := getattr(ContentActionClass, 'delay_days', None):
+            start = date.today() if not self.action_date else self.action_date.date()
+            description += f', on {start + timedelta(days=delay_days)}'
+        return description
+
+    def send_notifications(self):
+        ContentActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[self.action]
+        ContentActionClass(decision=self.decision, followup=self).notify_owners()
 
 
 class CinderAppeal(ModelBase):

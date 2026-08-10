@@ -1,7 +1,8 @@
 import uuid
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 from django.conf import settings
+from django.core import mail
 from django.core.management import call_command
 
 import pytest
@@ -106,8 +107,16 @@ class TestAutoResolveReports(TestCase):
         assert CinderJob.objects.unresolved().get() == job_not_reviewed
         assert job1.reload().final_decision
         assert job1.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job1.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
+        )
         assert job2.reload().final_decision
         assert job2.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job2.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
+        )
         # NHRs should be cleared.
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon1, is_active=True
@@ -115,6 +124,173 @@ class TestAutoResolveReports(TestCase):
         assert not NeedsHumanReview.objects.filter(
             version__addon=addon2, is_active=True
         ).exists()
+
+    def test_auto_resolve_force_reviewer(self):
+        addon1 = addon_factory()
+        job1 = CinderJob.objects.create(
+            job_id='1', resolvable_in_reviewer_tools=True, target_addon=addon1
+        )
+        AbuseReport.objects.create(
+            guid=addon1.guid, cinder_job=job1, reporter_email='some1@user'
+        )
+        unreviewed = version_factory(
+            addon=addon1, file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        job_not_reviewer_tools = CinderJob.objects.create(
+            job_id='nope', resolvable_in_reviewer_tools=False, target_addon=addon1
+        )
+        AbuseReport.objects.create(
+            guid=addon1.guid,
+            addon_version=unreviewed.version,
+            cinder_job=job_not_reviewer_tools,
+            reporter_email='somenot@user',
+        )
+        addon2 = addon_factory()
+        job2 = CinderJob.objects.create(
+            job_id='2', resolvable_in_reviewer_tools=True, target_addon=addon2
+        )
+        AbuseReport.objects.create(
+            guid=addon2.guid,
+            addon_version=addon2.current_version.version,
+            cinder_job=job2,
+            reporter=user_factory(email='some2@user'),
+        )
+        job_appeal = CinderJob.objects.create(
+            job_id='appeal', resolvable_in_reviewer_tools=True, target_addon=addon2
+        )
+        CinderJob.objects.create(
+            job_id='appealled',
+            decision=ContentDecision.objects.create(
+                addon=addon2,
+                action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+                appeal_job=job_appeal,
+            ),
+        )
+        assert CinderJob.objects.unresolved().count() == 4
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job1.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job2.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            version=unreviewed,
+        )
+        NeedsHumanReview.objects.create(
+            reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION,
+            version=addon2.current_version,
+        )
+        call_command('auto_resolve_reports', '--force-reviewer')
+
+        assert CinderJob.objects.unresolved().count() == 2
+        assert set(CinderJob.objects.unresolved().all()) == {
+            job_not_reviewer_tools,
+            job_appeal,
+        }
+        assert job1.reload().final_decision
+        assert job1.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job1.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
+        )
+        assert job2.reload().final_decision
+        assert job2.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job2.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
+        )
+        # NHRs should be cleared.
+        assert not NeedsHumanReview.objects.filter(
+            version__addon=addon1, is_active=True
+        ).exists()
+        assert not NeedsHumanReview.objects.filter(
+            version__addon=addon2, is_active=True
+        ).exists()
+        assert len(mail.outbox) == 2
+        assert {tuple(email.recipients()) for email in mail.outbox} == {
+            ('some1@user',),
+            ('some2@user',),
+        }
+
+    def test_auto_resolve_before_date(self):
+        today = date.today()
+        addon = addon_factory(version_kw={'human_review_date': datetime.now()})
+        job_old = CinderJob.objects.create(
+            job_id='1',
+            resolvable_in_reviewer_tools=True,
+            target_addon=addon,
+        )
+        AbuseReport.objects.create(
+            guid=job_old.target_addon.guid,
+            cinder_job=job_old,
+            created=today - timedelta(days=5),
+            reporter_email='some1@user',
+        )
+        job_new = CinderJob.objects.create(
+            job_id='nope',
+            resolvable_in_reviewer_tools=True,
+            target_addon=addon,
+        )
+        AbuseReport.objects.create(
+            guid=job_new.target_addon.guid,
+            cinder_job=job_new,
+            created=today - timedelta(days=1),
+        )
+        job_mixed = CinderJob.objects.create(
+            job_id='2',
+            resolvable_in_reviewer_tools=True,
+            target_addon=addon_factory(
+                version_kw={'human_review_date': datetime.now()}
+            ),
+        )
+        AbuseReport.objects.create(
+            guid=job_mixed.target_addon.guid,
+            addon_version=job_mixed.target_addon.current_version.version,
+            cinder_job=job_mixed,
+            created=(
+                datetime.combine(today, datetime.min.time())
+                - timedelta(days=3, seconds=5)
+            ),
+        )
+        AbuseReport.objects.create(
+            guid=job_mixed.target_addon.guid,
+            addon_version=job_mixed.target_addon.current_version.version,
+            cinder_job=job_mixed,
+            created=(datetime.combine(today, datetime.min.time()) - timedelta(days=2)),
+        )
+        assert CinderJob.objects.unresolved().count() == 3
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_old.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        responses.add(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/jobs/{job_mixed.job_id}/decision',
+            json={'uuid': uuid.uuid4().hex},
+            status=201,
+        )
+        before_date = today - timedelta(days=3)  # set a date in the past
+        call_command('auto_resolve_reports', before=str(before_date))
+
+        assert CinderJob.objects.unresolved().count() == 2
+        assert set(CinderJob.objects.unresolved().all()) == {job_new, job_mixed}
+        assert job_old.reload().final_decision
+        assert job_old.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        assert (
+            job_old.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
+        )
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].recipients() == ['some1@user']
 
     def test_auto_resolve_forwarded_job(self):
         addon1 = addon_factory(version_kw={'human_review_date': datetime.now()})
@@ -199,6 +375,10 @@ class TestAutoResolveReports(TestCase):
         assert job_forwarded.reload().final_decision
         assert (
             job_forwarded.final_decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
+        )
+        assert (
+            job_forwarded.final_decision.metadata['automation_source']
+            == 'auto_resolve_reports command'
         )
         # NHR should be cleared.
         assert not NeedsHumanReview.objects.filter(

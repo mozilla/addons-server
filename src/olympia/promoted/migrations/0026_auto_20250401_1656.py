@@ -2,7 +2,7 @@
 
 from django.db import migrations, models
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.promoted.migrations import PROMOTED_GROUP_CHOICES
 
 def create_partner_promoted_group(apps, schema_editor):
     PromotedGroup = apps.get_model('promoted', 'PromotedGroup')

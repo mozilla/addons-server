@@ -1,0 +1,11 @@
+The following add-on has been affected by a takedown.
+
+Add-on: {{ slug }}
+GUID: {{ guid }}
+id: {{ id }}
+
+{% if is_held %}
+It has been put in second level approval queue and execution has paused.
+{% else %}
+The takedown has been executed.
+{% endif %}

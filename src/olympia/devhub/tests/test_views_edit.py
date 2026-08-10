@@ -833,6 +833,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             ['Select a valid choice. 100 is not one of the available choices.']
         )
 
+    @override_switch('enterprise-channel', active=True)
     def test_nav_links_admin(self):
         self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
         response = self.client.get(self.url)
@@ -845,6 +846,9 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             'reviewers.review', args=['unlisted', self.addon.pk]
         )
         assert links.eq(3).attr('href') == reverse(
+            'reviewers.review', args=['enterprise', self.addon.pk]
+        )
+        assert links.eq(4).attr('href') == reverse(
             'admin:addons_addon_change', args=[self.addon.id]
         )
 
@@ -1015,9 +1019,11 @@ class TestEditMedia(BaseTestEdit):
         doc = pq(self.client.get(self.media_edit_url).content)
         field = doc('input[name=icon_upload]')
         assert field.length == 1
-        assert sorted(field.attr('data-allowed-types').split('|')) == (
-            ['image/jpeg', 'image/png']
-        )
+        assert sorted(field.attr('data-allowed-types').split(',')) == [
+            'image/jpeg',
+            'image/png',
+        ]
+        assert sorted(field.attr('accept').split(',')) == ['image/jpeg', 'image/png']
         assert field.attr('data-upload-url') == self.icon_upload
 
     def test_edit_media_defaulticon(self):

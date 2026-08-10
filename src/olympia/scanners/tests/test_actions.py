@@ -20,8 +20,7 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import Block, BlocklistSubmission, BlockType, BlockVersion
-from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.constants.scanners import (
     DELAY_AUTO_APPROVAL,
     DELAY_AUTO_APPROVAL_INDEFINITELY,
@@ -31,7 +30,6 @@ from olympia.constants.scanners import (
     YARA,
 )
 from olympia.files.models import FileUpload
-from olympia.promoted.models import PromotedGroup
 from olympia.reviewers.models import UsageTier
 from olympia.scanners.actions import (
     _delay_auto_approval,
@@ -1001,12 +999,12 @@ class TestActions(TestCase):
         UsageTier.objects.create(
             upper_adu_threshold=10000, disable_and_block_action_available=True
         )
-        PromotedGroup.objects.get_or_create(
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED, high_profile=True
-        )
         addon = addon_factory(
             average_daily_users=4242,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'high_profile',
+                'high_profile': True,
+            },
             version_kw={'promotion_approved': False},
         )
 
@@ -1327,7 +1325,7 @@ class TestRunAction(TestCase):
         self, flag_for_human_review_mock, no_action_mock
     ):
         self.make_addon_promoted(
-            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.addon, api_name='pre_review', listed_pre_review=True
         )
         # Create another rule and add it to the current scanner result, but set to
         # exclude_promoted_addons=True.
@@ -1392,7 +1390,7 @@ class TestRunAction(TestCase):
             text='Just saying.',
             # expose_in_reviewer_tools shouldn't matter if the link already
             # exists - it's only for availability in the admin/reviewer tools.
-            expose_in_reviewer_tools=False,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.NONE,
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         # Extra useless policy shouldn't get picked up.
@@ -1541,7 +1539,8 @@ class TestRunAction(TestCase):
             # second level approval - if the rule didn't have
             # exclude_promoted_addons=True the add-on would be taken down.
             self.addon,
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC,
+            api_name='strategic',
+            admin_review=True,
         )
 
         ScannerResult.run_actions(self.version)
@@ -1790,10 +1789,8 @@ class TestRunAction(TestCase):
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
         )
         self.scanner_rule.update(policy=policy)
-        # Make the add-on recommended, that will force 2nd level approval.
-        self.make_addon_promoted(
-            self.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-        )
+        # Make the add-on high-profile, that will force 2nd level approval.
+        self.make_addon_promoted(self.addon, api_name='high_profile', high_profile=True)
 
         ScannerResult.run_actions(self.version)
 

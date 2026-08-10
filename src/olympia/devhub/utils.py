@@ -268,13 +268,13 @@ class Validator:
         process, combining tasks in parallel (group) with tasks chained
         together (where the output is used as input of the next task).
         """
-        tasks_in_parallel = [tasks.forward_linter_results.s(upload_pk)]
+        tasks_in_parallel = [
+            tasks.forward_linter_results.s(upload_pk),
+            call_webhooks_during_validation.s(upload_pk),
+        ]
 
         if waffle.switch_is_active('enable-yara'):
             tasks_in_parallel.append(run_yara.s(upload_pk))
-
-        if waffle.switch_is_active('enable-scanner-webhooks'):
-            tasks_in_parallel.append(call_webhooks_during_validation.s(upload_pk))
 
         return [
             tasks.create_initial_validation_results.si(),

@@ -3,7 +3,13 @@
     - {{ policytext|safe }}
 {% endfor %}
 {% if manual_reasoning_text %}{{ manual_reasoning_text|safe }}. {% endif %}
+{% if followups %}
 
+If you do not remediate this issue within the required time period, additional enforcement actions will be taken:
+{% for followup in followups %}
+    - {{ followup }}
+{% endfor %}
+{% endif %}
 {% if has_attachment %}
 A reviewer has attached a file. {% if dev_url %}You can view it or reply by visiting {{ dev_url }}.{% endif %}
 

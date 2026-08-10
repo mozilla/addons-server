@@ -41,6 +41,7 @@ from olympia.files.models import File, FileUpload
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     RESTRICTION_TYPES,
+    AsnUserRestriction,
     BannedUserContent,
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
@@ -1773,6 +1774,72 @@ class TestFingerprintRestriction(TestCase):
         FingerprintRestriction.objects.create(ja4=restricted_ja4)
         request = RequestFactory().get('/', headers={'Client-JA4': 'another_ja4'})
         assert FingerprintRestriction.allow_submission(request)
+
+
+class TestAsnRestriction(TestCase):
+    def test_str(self):
+        obj = AsnUserRestriction(asn=64498)
+        assert str(obj) == '64498'
+
+    def test_no_asn_submission_allowed(self):
+        AsnUserRestriction.objects.create(asn=64498)
+        request = RequestFactory().get('/')
+        assert AsnUserRestriction.allow_submission(request)
+
+    def test_no_asn_auto_approval_allowed(self):
+        AsnUserRestriction.objects.create(asn=64498)
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert AsnUserRestriction.allow_auto_approval(upload)
+
+    def test_asn_submission_restricted(self):
+        restricted_asn = 64498
+        AsnUserRestriction.objects.create(asn=restricted_asn)
+        request = RequestFactory().get('/', headers={'Asn': restricted_asn})
+        assert not AsnUserRestriction.allow_submission(request)
+
+    def test_asn_rating_restriction(self):
+        restricted_asn = 64498
+        AsnUserRestriction.objects.create(
+            asn=restricted_asn, restriction_type=RESTRICTION_TYPES.RATING
+        )
+
+        # Submissions are not restricted.
+        request = RequestFactory().get('/', headers={'Asn': restricted_asn})
+        assert AsnUserRestriction.allow_submission(request)
+        assert not AsnUserRestriction.allow_rating(request)
+
+    def test_asn_auto_approval_restricted(self):
+        restricted_asn = 64498
+        AsnUserRestriction.objects.create(
+            asn=restricted_asn, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+
+        # Submissions or ratings are not restricted.
+        request = RequestFactory().get('/', headers={'Asn': restricted_asn})
+        assert AsnUserRestriction.allow_submission(request)
+        assert AsnUserRestriction.allow_rating(request)
+        assert AsnUserRestriction.allow_rating_without_moderation(request)
+
+        # Auto-approval is restricted.
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={'Asn': restricted_asn},
+        )
+        assert not AsnUserRestriction.allow_auto_approval(upload)
+
+    def test_asn_different_restriction(self):
+        restricted_asn = 64498
+        AsnUserRestriction.objects.create(asn=restricted_asn)
+        request = RequestFactory().get('/', headers={'Asn': '64499'})
+        assert AsnUserRestriction.allow_submission(request)
 
 
 @override_settings(

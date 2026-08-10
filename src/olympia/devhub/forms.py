@@ -1,5 +1,3 @@
-import itertools
-import os
 import tarfile
 import zipfile
 from functools import cached_property
@@ -42,9 +40,9 @@ from olympia.addons.utils import (
 )
 from olympia.amo.enum import StrEnumChoices
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
-from olympia.amo.forms import AMOModelForm
+from olympia.amo.forms import AMOModelForm, LimitedModelChoiceField
 from olympia.amo.messages import DoubleSafe
-from olympia.amo.utils import slug_validator, verify_no_urls
+from olympia.amo.utils import SafeStorage, slug_validator, verify_no_urls
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.api.throttling import (
@@ -261,7 +259,8 @@ class AddonFormMedia(AddonFormBase):
     def save(self, addon, commit=True):
         if self.cleaned_data['icon_upload_hash']:
             upload_hash = self.cleaned_data['icon_upload_hash']
-            upload_path = os.path.join(settings.TMP_PATH, 'icon', upload_hash)
+            upload_storage = SafeStorage(root_setting='TMP_PATH', rel_location='icon')
+            upload_path = upload_storage.path(upload_hash)
             remove_icons(addon)
             addons_tasks.resize_icon.delay(
                 upload_path,
@@ -1381,7 +1380,10 @@ class PreviewForm(TranslationFormMixin, AMOModelForm):
             super().save(commit=commit)
             if self.cleaned_data['upload_hash']:
                 upload_hash = self.cleaned_data['upload_hash']
-                upload_path = os.path.join(settings.TMP_PATH, 'preview', upload_hash)
+                upload_storage = SafeStorage(
+                    root_setting='TMP_PATH', rel_location='preview'
+                )
+                upload_path = upload_storage.path(upload_hash)
                 addons_tasks.resize_preview.delay(
                     upload_path,
                     self.instance.pk,
@@ -1430,6 +1432,15 @@ class DistributionChoiceForm(forms.Form):
             '?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=submission"'
         ),
     )
+    ENTERPRISE_LABEL = format_html_lazy(
+        _(
+            'An enterprise add-on. <span class="helptext">'
+            'After your submission is signed by Mozilla, you can download the .xpi '
+            'file from the Developer Hub and distribute it to your audience via a '
+            'Firefox for Enterprise policy.</span>'
+        ),
+        site_domain=settings.DOMAIN,
+    )
 
     channel = forms.ChoiceField(
         choices=[],
@@ -1439,16 +1450,19 @@ class DistributionChoiceForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon', None)
+        self.is_theme = kwargs.pop('is_theme', None)
         super().__init__(*args, **kwargs)
-        choices = [
-            ('listed', mark_safe(self.LISTED_LABEL)),
-            ('unlisted', mark_safe(self.UNLISTED_LABEL)),
-        ]
-        if self.addon and not self.addon.can_submit_listed_versions():
+        choices = []
+
+        if not self.addon or self.addon.can_submit_listed_versions():
             # If the add-on is "invisible" or the listing was rejected,
             # 'listed' is not a valid choice, you can't upload new listed
             # versions while in either of these states.
-            choices.pop(0)
+            choices.append(('listed', mark_safe(self.LISTED_LABEL)))
+        choices.append(('unlisted', mark_safe(self.UNLISTED_LABEL)))
+
+        if not self.is_theme and waffle.switch_is_active('enterprise-channel'):
+            choices.append(('enterprise', mark_safe(self.ENTERPRISE_LABEL)))
 
         self.fields['channel'].choices = choices
 
@@ -1623,33 +1637,6 @@ class APIKeyForm(CheckThrottlesFormMixin, forms.Form):
             'confirmation_created': confirmation_created,
             'confirmation_rerequested': confirmation_rerequested,
         }
-
-
-class LimitedModelChoiceField(forms.ModelChoiceField):
-    limit_choice_count = 100  # django docs suggest 100 is the max you should use
-
-    def __init__(self, queryset, *, limit_choice_count, **kwargs):
-        self.limit_choice_count = limit_choice_count
-        super().__init__(queryset, **kwargs)
-
-    def _set_queryset(self, queryset):
-        if hasattr(self, '_choices'):
-            del self._choices
-        super()._set_queryset(queryset)
-
-    queryset = property(forms.ModelChoiceField.queryset.fget, _set_queryset)
-
-    def _get_choices(self):
-        # If self._choices is set, we called this before.
-        if hasattr(self, '_choices'):
-            return self._choices
-
-        count = self.limit_choice_count + (1 if self.empty_label else 0)
-        # We need to limit the choices, but we can't slice the queryset.
-        self._choices = list(itertools.islice(self.iterator(self), count))
-        return self._choices
-
-    choices = property(_get_choices, forms.ModelChoiceField.choices.fset)
 
 
 class RollbackVersionForm(forms.Form):

@@ -466,47 +466,47 @@ msgstr[2] "<b>{0}</b> de caractere rămase"
 
 #: static/js/zamboni/init.js:12
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "Funcționalitatea este temporar dezactivată cât timp facem mentenanța site-ului web. Te rugăm să reîncerci puțin mai târziu."
+msgstr "Funcționalitatea este temporar dezactivată cât timp facem mentenanța site-ului web. Te rugăm să reîncerci ceva mai târziu."
 
 #: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
 msgstr "Elimină această localizare"
 
-#: static/js/zamboni/reviewers.js:306
+#: static/js/zamboni/reviewers.js:324
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} a vizualizat mai întâi această pagină."
 
-#: static/js/zamboni/reviewers.js:314
+#: static/js/zamboni/reviewers.js:332
 msgid "Review page polling failed."
 msgstr "Interogarea paginii de recenzii a eșuat."
 
-#: static/js/zamboni/reviewers.js:631
+#: static/js/zamboni/reviewers.js:649
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} a vizualizat mai întâi acest supliment."
 
-#: static/js/zamboni/reviewers.js:644 static/js/zamboni/reviewers.js:670
+#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
 msgid "Loading&hellip;"
 msgstr "Se încarcă&hellip;"
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:667
 msgid "Version Notes"
 msgstr "Note privind versiunea"
 
-#: static/js/zamboni/reviewers.js:656
+#: static/js/zamboni/reviewers.js:674
 msgid "Notes for Reviewers"
 msgstr "Note pentru revizori"
 
-#: static/js/zamboni/reviewers.js:663
+#: static/js/zamboni/reviewers.js:681
 msgid "No version notes found"
 msgstr "Nu s-a găsit nicio notă privind versiunea"
 
-#: static/js/zamboni/reviewers.js:675
+#: static/js/zamboni/reviewers.js:693
 msgid "Review Text"
 msgstr "Recenzează textul"
 
-#: static/js/zamboni/reviewers.js:682
+#: static/js/zamboni/reviewers.js:700
 msgid "Review notes found"
 msgstr "Note de recenzie găsite"
 

@@ -7,6 +7,7 @@ from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
 import requests
+import waffle
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -17,7 +18,7 @@ from olympia.amo.tests import (
     user_factory,
     version_factory,
 )
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import NOTABLE_API_NAME
 from olympia.constants.scanners import (
     ABORTED,
     ABORTING,
@@ -2011,7 +2012,7 @@ class TestRunQueryRuleMixin:
 
     def test_exclude_promoted_addons(self):
         self.make_addon_promoted(
-            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE
+            self.version.addon, api_name=NOTABLE_API_NAME, listed_pre_review=True
         )
         self.rule.update(exclude_promoted_addons=True, state=SCHEDULED)
         run_scanner_query_rule.delay(self.rule.pk)
@@ -2202,7 +2203,7 @@ class TestRunQueryRuleMixin:
     def test_run_on_chunk_was_promoted(self):
         self.rule.update(state=RUNNING)  # Pretend we started running the rule.
         self.make_addon_promoted(
-            self.version.addon, group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            self.version.addon, api_name='pre_review', listed_pre_review=True
         )
         run_scanner_query_rule_on_versions_chunk([self.version.pk], self.rule.pk)
 
@@ -2263,6 +2264,71 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
 
+    def test_run_on_chunk_num_queries(self):
+        # Extra addons shouldn't affect number of queries.
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
+        # Make the rule not match to avoid queries when saving results, we
+        # don't care about those at this time.
+        self.rule.update(
+            definition='rule always_false { condition: false }',
+            name='always_false',
+            state=RUNNING,
+        )
+        # Force waffle switch to be cached to not affect queries count.
+        waffle.switch_is_active('use-yara-x')
+        with self.assertNumQueries(3):
+            # - 1 for the rule
+            # - 1 for all promoted addon info (prefetched even if no match)
+            # - 1 for all versions + file
+            run_scanner_query_rule_on_versions_chunk(
+                [
+                    self.version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
+                ],
+                self.rule.pk,
+            )
+        assert ScannerQueryResult.objects.count() == 0
+
+    def test_run_on_chunk_num_queries_matching(self):
+        # Extra addons shouldn't affect number of queries.
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
+        self.rule.update(state=RUNNING)
+        # Force waffle switch to be cached to not affect queries count.
+        waffle.switch_is_active('use-yara-x')
+        with self.assertNumQueries(4):
+            # - 1 for the rule
+            # - 1 for all versions + file
+            # - 1 for all promoted addon info
+            # - 1 for bulk-saving all results
+            run_scanner_query_rule_on_versions_chunk(
+                [
+                    self.version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
+                ],
+                self.rule.pk,
+            )
+        assert ScannerQueryResult.objects.count() == 4
+
 
 @override_switch(name='use-yara-x', active=True)
 class TestRunYaraXQueryRule(TestRunYaraQueryRule):
@@ -2321,6 +2387,71 @@ class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
         ]
         self.rule.reload()
         assert self.rule.state == RUNNING  # Not touched by this task.
+
+    def test_run_on_chunk_num_queries(self):
+        # Extra addons shouldn't affect number of queries.
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
+        # Make the rule not match to avoid queries when saving results, we
+        # don't care about those at this time.
+        self.rule.update(
+            definition='willnotmatchanything',
+            name='willnotmatchanything',
+            state=RUNNING,
+        )
+        with self.assertNumQueries(5):
+            # - 1 for the rule
+            # - 1 for all promoted addon info (prefetched even if no match)
+            # - 1 for all authors
+            # - 1 for all translations
+            # - 1 for all versions + file
+            run_scanner_query_rule_on_versions_chunk(
+                [
+                    self.version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
+                ],
+                self.rule.pk,
+            )
+        assert ScannerQueryResult.objects.count() == 0
+
+    def test_run_on_chunk_num_queries_matching(self):
+        # Extra addons shouldn't affect number of queries.
+        extra_addon1_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version1 = addon_factory(
+            file_kw={'filename': 'webextension.xpi'}
+        ).current_version
+        extra_addon2_version2 = version_factory(
+            addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
+        )
+        self.rule.update(state=RUNNING)
+        with self.assertNumQueries(6):
+            # - 1 for the rule
+            # - 1 for all versions + file
+            # - 1 for all authors
+            # - 1 for all translations
+            # - 1 for all promoted addon info
+            # - 1 for bulk-saving all results
+            run_scanner_query_rule_on_versions_chunk(
+                [
+                    self.version.pk,
+                    extra_addon1_version1.pk,
+                    extra_addon2_version1.pk,
+                    extra_addon2_version2.pk,
+                ],
+                self.rule.pk,
+            )
+        assert ScannerQueryResult.objects.count() == 4
 
 
 class TestCallWebhooks(UploadMixin, TestCase):
@@ -2573,15 +2704,16 @@ class TestCallWebhook(TestCase):
         expected_digest = (
             '1987be0ea649633a3eaca7c504b9995fe20aa054d7423e490df927b1ede917a1'
         )
-        requests_mock.assert_called_with(
-            url=webhook.url,
-            data=json.dumps(payload),
-            timeout=123,
-            headers={
-                'Content-Type': 'application/json',
-                'Authorization': f'HMAC-SHA256 {expected_digest}',
-            },
+        assert requests_mock.call_count == 1
+        call_kwargs = requests_mock.call_args.kwargs
+        assert call_kwargs['url'] == webhook.url
+        assert call_kwargs['data'] == json.dumps(payload)
+        assert call_kwargs['timeout'] == 123
+        assert call_kwargs['headers']['Content-Type'] == 'application/json'
+        assert (
+            call_kwargs['headers']['Authorization'] == f'HMAC-SHA256 {expected_digest}'
         )
+        assert call_kwargs['headers']['X-AMO-Request-ID']
         assert returned_value == response_data
 
     @override_settings(SCANNER_TIMEOUT=123)

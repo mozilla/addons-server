@@ -211,9 +211,9 @@ class PrimaryHero(ModelBase):
                 )
                 if not can_add_to_primary:
                     can_hero_groups = ', '.join(
-                        PromotedGroup.objects.active()
-                        .filter(can_primary_hero=True)
-                        .values_list('name', flat=True)
+                        PromotedGroup.objects.filter(can_primary_hero=True).values_list(
+                            'name', flat=True
+                        )
                     )
                     error_dict['enabled'] = ValidationError(
                         'Only add-ons that are %s can be enabled for '

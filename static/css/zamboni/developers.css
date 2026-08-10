@@ -1575,7 +1575,9 @@ button.search-button {
   -webkit-transform: scalex(-1);
 }
 
-span.distribution-tag-listed, span.distribution-tag-unlisted {
+span.distribution-tag-listed,
+span.distribution-tag-unlisted,
+span.distribution-tag-enterprise {
     color: white;
     border-radius: 4px;
     padding: 1px 5px;
@@ -1588,6 +1590,10 @@ span.distribution-tag-listed {
 
 span.distribution-tag-unlisted {
     background-color: #7A2F7A;
+}
+
+span.distribution-tag-enterprise {
+    background-color: #ff9216;
 }
 
 .source-submission-note p {

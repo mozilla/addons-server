@@ -9,9 +9,16 @@ from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
 import responses
+from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.abuse.models import AbuseReport, CinderJob, CinderPolicy, ContentDecision
+from olympia.abuse.models import (
+    AbuseReport,
+    CinderJob,
+    CinderPolicy,
+    ContentDecision,
+    ContentDecisionFollowupAction,
+)
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import AddonApprovalsCounter, AddonReviewerFlags
 from olympia.amo.tests import (
@@ -22,14 +29,24 @@ from olympia.amo.tests import (
     version_review_flags_factory,
 )
 from olympia.amo.utils import days_ago
-from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
-from olympia.constants.scanners import DELAY_AUTO_APPROVAL, NARC, YARA
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
+from olympia.constants.scanners import (
+    DELAY_AUTO_APPROVAL,
+    NARC,
+    WEBHOOK,
+    WEBHOOK_ON_VERSION_CREATED,
+    YARA,
+)
 from olympia.files.models import FileManifest, FileValidation
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.ratings.models import Rating
-from olympia.scanners.models import ScannerResult, ScannerRule
+from olympia.scanners.models import (
+    ScannerResult,
+    ScannerRule,
+    ScannerWebhook,
+    ScannerWebhookEvent,
+)
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..management.commands import auto_approve, auto_reject
@@ -128,7 +145,7 @@ class AutoApproveTestsMixin:
         recommendable_addon_nominated = addon_factory(
             name='Recommendable Addon',
             status=amo.STATUS_NOMINATED,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'name': 'some group', 'listed_pre_review': True},
             version_kw={
                 'due_date': self.days_ago(3),
                 'created': self.days_ago(6),
@@ -138,7 +155,7 @@ class AutoApproveTestsMixin:
 
         recommended_addon = addon_factory(
             name='Recommended Addon',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={'name': 'some other group', 'listed_pre_review': True},
             version_kw={'promotion_approved': False},
         )
         recommended_addon_version = version_factory(
@@ -297,9 +314,19 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         # Test that they are all present.
         assert list(qs) == expected
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_enterprise_auto_approve_no_nhr(self, sign_file_mock):
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        assert not AutoApprovalSummary.objects.exists()
+        call_command('auto_approve')
+        self.version.reload()
+        summary = AutoApprovalSummary.objects.get(version=self.version)
+        assert summary.verdict == amo.AUTO_APPROVED
+        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
     @mock.patch('olympia.reviewers.management.commands.auto_approve.ReviewHelper')
-    def test_approve(self, review_helper_mock, statsd_incr_mock):
+    def test_approve_with_review_helper(self, review_helper_mock, statsd_incr_mock):
         review_helper_mock.return_value.actions = {'public': mock.MagicMock()}
         command = auto_approve.Command()
         command.approve(self.version)
@@ -314,6 +341,37 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             },
         )
         assert review_helper_mock().actions['public']['method'].call_count == 1
+        assert statsd_incr_mock.call_count == 1
+        assert statsd_incr_mock.call_args == (
+            ('reviewers.auto_approve.approve.success',),
+            {},
+        )
+
+    @override_switch('enable-policy-review-selection', active=True)
+    @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.report_decision_to_cinder_and_notify.delay'
+    )
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.ContentDecision.execute_action'
+    )
+    def test_approve_with_action_class(
+        self, execute_action_mock, report_decision_mock, statsd_incr_mock
+    ):
+        report_decision_mock.return_value = mock.MagicMock()
+        command = auto_approve.Command()
+        command.approve(self.version)
+        decision = ContentDecision.objects.get()
+        assert report_decision_mock.call_count == 1
+        assert report_decision_mock.call_args == (
+            (),
+            {'decision_id': decision.id},
+        )
+        assert decision.target == self.addon
+        assert decision.target_versions.get() == self.version
+        assert decision.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
+        assert decision.reasoning == auto_approve.Command.LISTED_COMMENT
+        assert decision.reviewer_user_id == settings.TASK_USER_ID
         assert statsd_incr_mock.call_count == 1
         assert statsd_incr_mock.call_args == (
             ('reviewers.auto_approve.approve.success',),
@@ -643,17 +701,7 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert run_narc_mock.call_count == 0
 
     @mock.patch.object(ScannerResult, 'run_actions')
-    def test_does_not_execute_run_actions_when_switch_is_inactive(
-        self, run_actions_mock
-    ):
-        call_command('auto_approve')
-
-        assert not run_actions_mock.called
-
-    @mock.patch.object(ScannerResult, 'run_actions')
-    def test_executes_run_actions_when_switch_is_active(self, run_actions_mock):
-        self.create_switch('run-action-in-auto-approve', active=True)
-
+    def test_executes_run_actions(self, run_actions_mock):
         call_command('auto_approve')
 
         assert run_actions_mock.called
@@ -662,13 +710,49 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     @mock.patch.object(ScannerResult, 'run_actions')
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_only_executes_run_actions_once(self, sign_file_mock, run_actions_mock):
-        self.create_switch('run-action-in-auto-approve', active=True)
         call_command('auto_approve')
 
         assert run_actions_mock.called
         run_actions_mock.assert_called_with(self.version)
 
         run_actions_mock.reset_mock()
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_does_not_execute_run_actions_for_summary_created_before_the_field(
+        self, run_actions_mock
+    ):
+        """Summaries created before `scanner_actions_executed` was introduced
+        have it set to NULL, and back then the actions were always executed
+        when the summary was created."""
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            is_waiting_on_scanners=False,
+            scanner_actions_executed=None,
+        )
+
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_does_not_execute_run_actions_for_summary_created_before_the_field_waiting(
+        self, run_actions_mock
+    ):
+        """Same as above, except the summary was created while we were waiting
+        on scanners: the actions were executed back then as well, so we should
+        not execute them a second time once the scanners are done."""
+        self.create_switch('enable-scanner-webhooks', active=True)
+        AutoApprovalSummary.objects.create(
+            version=self.version,
+            is_waiting_on_scanners=True,
+            scanner_actions_executed=None,
+        )
+        # The scanner is done, so we are no longer waiting on it.
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
         call_command('auto_approve')
 
         assert not run_actions_mock.called
@@ -688,7 +772,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         ScannerRule.objects.create(
             is_active=True, name='foo', action=DELAY_AUTO_APPROVAL, scanner=YARA
         )
@@ -730,11 +813,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
             name='Reject Policy',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             uuid=uuid.uuid4().hex,
         )
         ScannerRule.objects.create(
@@ -782,11 +864,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         reject_policy = CinderPolicy.objects.create(
             enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
             name='Disable Policy',
-            expose_in_reviewer_tools=True,
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
             uuid=uuid.uuid4().hex,
         )
         ScannerRule.objects.create(
@@ -828,7 +909,6 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
             assert not sign_file_mock.called
 
-        self.create_switch('run-action-in-auto-approve', active=True)
         self.create_switch('enable-narc', active=True)
         rule = ScannerRule.objects.create(
             is_active=True,
@@ -856,6 +936,90 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self.test_run_actions_delay_approval()
 
+    def create_pending_webhook_scanner_result(self):
+        """Create a result for a webhook event we block auto-approval on, for
+        which the scanner acknowledged the event but hasn't sent results yet."""
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=webhook
+        )
+        return ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results={'ok': True},
+        )
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_actions_with_scanner_results_sent_asynchronously(self, sign_file_mock):
+        """Functional test making sure that the action of a rule matched by a
+        scanner sending its results asynchronously is executed before the
+        version is auto-approved."""
+        self.create_switch('enable-scanner-webhooks', active=True)
+        rule = ScannerRule.objects.create(
+            is_active=True, name='foo', action=DELAY_AUTO_APPROVAL, scanner=WEBHOOK
+        )
+        scanner_result = self.create_pending_webhook_scanner_result()
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
+        # First run: nothing to do yet, we're waiting on the scanner.
+        call_command('auto_approve')
+
+        summary = AutoApprovalSummary.objects.get(version=self.version)
+        assert summary.is_waiting_on_scanners
+        assert summary.verdict == amo.NOT_AUTO_APPROVED
+        assert not sign_file_mock.called
+
+        # The scanner sends its results, as it would with a PATCH on the
+        # `scanner_result_url` it was given.
+        scanner_result.results = {'matchedRules': [rule.name]}
+        scanner_result.save()
+        assert list(scanner_result.matched_rules.all()) == [rule]
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
+
+        # Second run: the action of the rule that matched should be executed...
+        call_command('auto_approve')
+
+        assert AddonReviewerFlags.objects.filter(
+            addon=self.addon, auto_approval_delayed_until__isnull=False
+        ).exists()
+        assert self.version.needshumanreview_set.filter(
+            reason=NeedsHumanReview.REASONS.SCANNER_ACTION, is_active=True
+        ).exists()
+        # ... and the version shouldn't have been approved.
+        assert AutoApprovalSummary.objects.get(version=self.version).verdict == (
+            amo.NOT_AUTO_APPROVED
+        )
+        assert self.version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert not sign_file_mock.called
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_only_executes_run_actions_once_after_waiting_on_scanners(
+        self, run_actions_mock
+    ):
+        self.create_switch('enable-scanner-webhooks', active=True)
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        scanner_result = self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+        assert not self.version.autoapprovalsummary.scanner_actions_executed
+
+        scanner_result.results = {'matchedRules': []}
+        scanner_result.save()
+        call_command('auto_approve')
+
+        run_actions_mock.assert_called_with(self.version)
+        assert self.version.autoapprovalsummary.reload().scanner_actions_executed
+
+        run_actions_mock.reset_mock()
+        call_command('auto_approve')
+
+        assert not run_actions_mock.called
+
     def test_run_disapprove(self):
         def check_assertions():
             # Hasn't been approved, a NHR was created.
@@ -882,7 +1046,9 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
             assert nhr.reason == NeedsHumanReview.REASONS.BELONGS_TO_PROMOTED_GROUP
             assert nhr.is_active
 
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(
+            self.addon, name='pre review group', listed_pre_review=True
+        )
         call_command('auto_approve')
         check_assertions()
 
@@ -988,19 +1154,62 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
     def setUpTestData(cls):
         cls.user = user_factory(pk=settings.TASK_USER_ID)
 
+    def _setup_pending_rejection(
+        self,
+        *,
+        addon,
+        versions=None,
+        pending_rejection=None,
+        create_flags=True,
+        log_action=None,
+        followup_actions=(),
+        **decision_kwargs,
+    ):
+        """Set up an add-on with versions pending rejection: flag the versions,
+        create the matching delayed rejection activity logs and the
+        ``ContentDecision`` those activity logs belong to. Any actions passed in
+        ``followup_actions`` are attached to the decision as
+        ``ContentDecisionFollowupAction``s. Returns the decision."""
+        versions = list(addon.versions.all()) if versions is None else versions
+        pending_rejection = pending_rejection or datetime.now() + timedelta(hours=23)
+        log_action = log_action or amo.LOG.REJECT_VERSION_DELAYED
+
+        decision_kwargs.setdefault(
+            'action', DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
+        )
+        decision_kwargs.setdefault('action_date', datetime.now())
+        comments = 'fôo'
+        decision = ContentDecision.objects.create(
+            addon=addon, reasoning=comments, **decision_kwargs
+        )
+        decision.target_versions.set(versions)
+        for followup_action in followup_actions:
+            ContentDecisionFollowupAction.objects.create(
+                decision=decision, action=followup_action
+            )
+        for version in versions:
+            if create_flags:
+                version_review_flags_factory(
+                    version=version, pending_rejection=pending_rejection
+                )
+            # Passing the decision connects the activity log to it, like the
+            # actual rejection would have done.
+            ActivityLog.objects.create(
+                log_action,
+                addon,
+                version,
+                decision,
+                details={'comments': comments},
+                user=self.user,
+            )
+        return decision
+
     def test_not_pending_rejection(self):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            # Add some activity logs, but no pending_rejection flag.
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        # Set up the activity logs and decision, but no pending_rejection flag.
+        self._setup_pending_rejection(addon=addon, create_flags=False)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
@@ -1008,17 +1217,9 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(days=2)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(
+            addon=addon, pending_rejection=datetime.now() + timedelta(days=2)
+        )
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
@@ -1026,17 +1227,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         # Disabled by user: we don't notify.
         addon.update(disabled_by_user=True)
         call_command('send_pending_rejection_last_warning_notifications')
@@ -1056,19 +1247,10 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
+        self._setup_pending_rejection(addon=addon)
+        # Disable the files: we should be left with no versions to notify the
+        # developers about, since they have already been disabled.
         for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
-            # Disable file: we should be left with no versions to notify the
-            # developers about, since they have already been disabled.
             version.file.update(status=amo.STATUS_DISABLED)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
@@ -1077,17 +1259,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         # Add another version not pending rejection but unreviewed: we should
         # not notify developers in that case.
         version_factory(addon=addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -1098,17 +1270,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon, file_kw={'status': amo.STATUS_DISABLED})
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         # Add another version public and not pending rejection: we should
         # not notify developers in that case.
         version_factory(addon=addon)
@@ -1124,17 +1286,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             addon=addon, notified_about_expiring_delayed_rejections=True
         )
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
@@ -1144,17 +1296,10 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
         )
         version_factory(addon=addon, version='42.1')
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'Some cômments'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(
+            addon=addon,
+            followup_actions=[DECISION_ACTIONS.AMO_FU_DELAY_MID_SOFT_BLOCK_ADDON],
+        )
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
@@ -1163,49 +1308,32 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
             message.subject == f'Mozilla Add-ons: {addon.name} [ref:Addon#{addon.id}]'
         )
         assert message.to == [author.email]
-        assert 'Some cômments' in message.body
+        assert 'fôo' in message.body
         for version in addon.versions.all():
             assert version.version in message.body
         assert 'right to appeal' not in message.body
         assert 'assessment performed on our own initiative' in message.body
         assert 'received from a third party' not in message.body
+        # The follow-up actions attached to the decision are listed in the email.
+        assert 'additional enforcement actions will be taken' in message.body
+        assert 'Add-on versions will be Restricted, after 14 days' in message.body
 
     def test_pending_rejection_close_to_deadline_with_cinder_job(self):
         author = user_factory()
         addon = addon_factory(
             users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
         )
-        version = addon.current_version
         version_factory(addon=addon, version='42.1')
-        cinder_job = CinderJob.objects.create(
-            job_id='1',
-            decision=ContentDecision.objects.create(
-                cinder_id='13579',
-                action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-                addon=addon,
-            ),
-        )
+        decision = self._setup_pending_rejection(addon=addon, cinder_id='13579')
+        cinder_job = CinderJob.objects.create(job_id='1', decision=decision)
         AbuseReport.objects.create(guid=addon.guid, cinder_job=cinder_job)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'Some cômments'},
-                user=self.user,
-            )
-        # The job was resolved with the first rejection, but will still be picked up.
-        cinder_job.pending_rejections.add(version.reviewerflags)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
         message = mail.outbox[0]
         assert message.subject == f'Mozilla Add-ons: {addon.name} [ref:13579]'
         assert message.to == [author.email]
-        assert 'Some cômments' in message.body
+        assert 'fôo' in message.body
         for version in addon.versions.all():
             assert version.version in message.body
         assert 'right to appeal' not in message.body
@@ -1221,17 +1349,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         disabled_version = version_factory(
             addon=addon, version='42.1', file_kw={'status': amo.STATUS_DISABLED}
         )
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 1
         assert addon.reviewerflags.notified_about_expiring_delayed_rejections
@@ -1248,17 +1366,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         more_recent_version = version_factory(
             addon=addon, file_kw={'status': amo.STATUS_DISABLED}, version='42.2'
         )
@@ -1279,17 +1387,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         more_recent_version = version_factory(addon=addon, version='43.0')
         more_recent_version.delete()
         call_command('send_pending_rejection_last_warning_notifications')
@@ -1309,17 +1407,7 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         )
         version1 = addon.current_version
         version2 = version_factory(addon=addon, version='42.1')
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         more_recent_version = version_factory(addon=addon, version='43.0')
         version_review_flags_factory(
             version=more_recent_version,
@@ -1346,17 +1434,12 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         addon2 = addon_factory(users=[author2], version_kw={'version': '22.0'})
         version21 = addon2.current_version
         version22 = version_factory(addon=addon2, version='22.1')
-        for version in Version.objects.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_CONTENT_DELAYED,
-                version.addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(
+            addon=addon1, log_action=amo.LOG.REJECT_CONTENT_DELAYED
+        )
+        self._setup_pending_rejection(
+            addon=addon2, log_action=amo.LOG.REJECT_CONTENT_DELAYED
+        )
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 2
         assert addon1.reviewerflags.notified_about_expiring_delayed_rejections
@@ -1376,18 +1459,18 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         assert version21.version in message.body
         assert version22.version in message.body
 
-    def test_somehow_no_activity_log_skip(self):
+    def test_no_decision_skip(self):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
+        # There is no matching decision for those versions, so we should not
+        # send the notification here.
         for version in addon.versions.all():
             version_review_flags_factory(
                 version=version, pending_rejection=datetime.now() + timedelta(hours=23)
             )
-            # The ActivityLog doesn't match a pending rejection, so we should
-            # not send the notification here.
             ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION,
+                amo.LOG.REJECT_VERSION_DELAYED,
                 addon,
                 version,
                 details={'comments': 'fôo'},
@@ -1396,58 +1479,67 @@ class TestSendPendingRejectionLastWarningNotification(TestCase):
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
-    def test_somehow_no_activity_log_details_skip(self):
+    def test_decision_not_actioned_skip(self):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            # The ActivityLog doesn't have details, so we should
-            # not send the notification here.
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED, addon, version, user=self.user
-            )
+        # The decision hasn't been actioned yet (no action_date), so we should
+        # not send the notification here.
+        self._setup_pending_rejection(addon=addon, action_date=None)
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
 
-    def test_somehow_no_activity_log_comments_skip(self):
+    def test_decision_overridden_skip(self):
         author = user_factory()
         addon = addon_factory(users=[author])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            # The ActivityLog doesn't have comments, so we should
-            # not send the notification here.
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                user=self.user,
-                details={'foo': 'bar'},
-            )
+        # The decision has been overridden by a later one, so we should not
+        # send the notification here.
+        decision = self._setup_pending_rejection(addon=addon)
+        ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            action_date=datetime.now(),
+            override_of=decision,
+        )
         call_command('send_pending_rejection_last_warning_notifications')
         assert len(mail.outbox) == 0
+
+    def test_multiple_decisions_for_versions(self):
+        author = user_factory()
+        addon = addon_factory(
+            users=[author], version_kw={'version': amo.DEFAULT_WEBEXT_MIN_VERSION}
+        )
+        version_1 = addon.current_version
+        version_2 = version_factory(addon=addon, version='42.1')
+        # Two separate rejection decisions cover the versions pending rejection
+        # (e.g. a second rejection was issued for further policy violations). We
+        # send a reminder email for each of them.
+        self._setup_pending_rejection(
+            addon=addon, versions=[version_1], cinder_id='11111'
+        )
+        self._setup_pending_rejection(
+            addon=addon, versions=[version_2], cinder_id='22222'
+        )
+        call_command('send_pending_rejection_last_warning_notifications')
+        assert len(mail.outbox) == 2
+        assert addon.reviewerflags.notified_about_expiring_delayed_rejections
+        assert {message.subject for message in mail.outbox} == {
+            f'Mozilla Add-ons: {addon.name} [ref:11111]',
+            f'Mozilla Add-ons: {addon.name} [ref:22222]',
+        }
+        for message in mail.outbox:
+            assert message.to == [author.email]
+            assert 'fôo' in message.body
+        assert version_1.version in mail.outbox[0].body
+        assert version_2.version in mail.outbox[1].body
 
     def test_multiple_developers_are_notified(self):
         author1 = user_factory()
         author2 = user_factory()
         addon = addon_factory(users=[author1, author2])
         version_factory(addon=addon)
-        for version in addon.versions.all():
-            version_review_flags_factory(
-                version=version, pending_rejection=datetime.now() + timedelta(hours=23)
-            )
-            ActivityLog.objects.create(
-                amo.LOG.REJECT_VERSION_DELAYED,
-                addon,
-                version,
-                details={'comments': 'fôo'},
-                user=self.user,
-            )
+        self._setup_pending_rejection(addon=addon)
         more_recent_version = version_factory(addon=addon)
         version_review_flags_factory(
             version=more_recent_version,
@@ -1624,6 +1716,24 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
             pending_rejection_by=self.user,
             pending_content_rejection=True,
         )
+        decision = ContentDecision.objects.create(
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            addon=self.addon,
+            action_date=self.yesterday,
+            reviewer_user=self.user,
+            metadata={
+                'content_review': True,
+                ContentDecision.POLICY_DYNAMIC_VALUES: {},
+            },
+        )
+        decision.target_versions.add(self.version, another_pending_rejection)
+        decision.policies.set(policies)
+        decision.followup_actions.add(
+            ContentDecisionFollowupAction.objects.create(
+                decision=decision,
+                action=DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON,
+            )
+        )
         ActivityLog.objects.for_addons(self.addon).exclude(
             id__in=[a.pk for a in activity_logs_to_keep]
         ).delete()
@@ -1632,7 +1742,9 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         command.dry_run = False
         command.reject_versions(
             addon=self.addon,
-            versions=[self.version, another_pending_rejection],
+            versions=Version.objects.filter(
+                id__in=[self.version.id, another_pending_rejection.id]
+            ),
             latest_version=another_pending_rejection,
         )
 
@@ -1644,23 +1756,29 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
 
         # There should be a single new activity log for the rejection
         # and one because the add-on is changing status as a result.
-        logs = ActivityLog.objects.for_addons(self.addon).exclude(
-            id__in=[a.pk for a in activity_logs_to_keep]
+        logs = (
+            ActivityLog.objects.for_addons(self.addon)
+            .exclude(id__in=[a.pk for a in activity_logs_to_keep])
+            .order_by('action')
         )
-        decision = ContentDecision.objects.filter(action_date__isnull=False).get()
+        decision = (
+            ContentDecision.objects.filter(action_date__isnull=False)
+            .exclude(action_date=self.yesterday)
+            .get()
+        )
         assert len(logs) == 2
         assert logs[0].action == amo.LOG.CHANGE_STATUS.id
         assert logs[0].arguments == [self.addon, amo.STATUS_NULL]
         assert logs[0].user == self.task_user
         assert logs[1].action == amo.LOG.AUTO_REJECT_CONTENT_AFTER_DELAY_EXPIRED.id
-        expected_arguments = [
+        expected_arguments = {
             self.addon,
             self.version,
             another_pending_rejection,
             *policies,
             decision,
-        ]
-        assert logs[1].arguments == expected_arguments
+        }
+        assert set(logs[1].arguments) == expected_arguments
         assert logs[1].user == self.user
         # All pending rejections flags in the past should have been dropped
         # when the rejection was applied (there are no other pending rejections
@@ -1714,7 +1832,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your Extension have been disabled'
+        assert 'your extension have been disabled'
         assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):
@@ -1756,7 +1874,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer while resolving cinder jobs
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_reject_versions_with_multiple_delayed_rejections(self):
@@ -1818,7 +1936,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # Only the latest comment should be used.
         assert 'Some cômments' in mail.outbox[0].body
         assert 'Some old cômments' not in mail.outbox[0].body
-        assert 'your Extension have been disabled' in mail.outbox[0].body
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'in an assessment performed on our own initiative' in mail.outbox[0].body
 
     def test_reject_versions_different_user(self):
@@ -1959,6 +2077,20 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         assert len(mail.outbox) == 2
         assert 'right to appeal' in mail.outbox[0].body
         assert 'right to appeal' in mail.outbox[1].body
+
+    @override_switch('enable-policy-review-selection', active=True)
+    def test_reject_with_action_class(self):
+        policy = CinderPolicy.objects.create(
+            name='some policy', uuid='12345678', text='Bad stuff'
+        )
+        self._test_reject_versions(policies=[policy])
+        self._ensure_auto_approval_until_next_approval_is_not_set()
+        assert len(mail.outbox) == 1
+        new_decision = ContentDecision.objects.exclude(action_date=self.yesterday).get()
+        assert list(new_decision.policies.all()) == [policy]
+        assert 'right to appeal' in mail.outbox[0].body
+        assert 'Bad stuff' in mail.outbox[0].body
+        assert 'Blocked' in mail.outbox[0].body
 
     def test_addon_locked(self):
         set_reviewing_cache(self.addon.pk, 42)

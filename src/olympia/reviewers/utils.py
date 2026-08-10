@@ -4,6 +4,7 @@ from datetime import datetime
 from django.conf import settings
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.files.base import ContentFile
+from django.db.models import Prefetch
 from django.urls import reverse
 from django.utils.html import format_html, format_html_join
 from django.utils.http import urlencode
@@ -32,7 +33,6 @@ from olympia.addons.models import (
     AddonUser,
 )
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
 from olympia.ratings.models import Rating
@@ -403,6 +403,8 @@ class ReviewHelper:
         }
         if channel == amo.CHANNEL_UNLISTED:
             self.handler = ReviewUnlisted(**kwargs)
+        elif channel == amo.CHANNEL_ENTERPRISE:
+            self.handler = ReviewEnterprise(**kwargs)
         elif self.addon.status == amo.STATUS_NOMINATED:
             self.handler = ReviewAddon(**kwargs)
         else:
@@ -419,6 +421,9 @@ class ReviewHelper:
         version_is_unlisted = (
             self.version and self.version.channel == amo.CHANNEL_UNLISTED
         )
+        version_is_enterprise = (
+            self.version and self.version.channel == amo.CHANNEL_ENTERPRISE
+        )
         version_is_listed = self.version and self.version.channel == amo.CHANNEL_LISTED
         promoted_group = self.addon.promoted_groups(currently_approved=False)
         is_static_theme = self.addon.type == amo.ADDON_STATICTHEME
@@ -430,10 +435,7 @@ class ReviewHelper:
         is_admin_needed = is_admin_needed_post_review = False
 
         # More complex/specific cases.
-        if PROMOTED_GROUP_CHOICES.RECOMMENDED in promoted_group.group_id:
-            permission = amo.permissions.ADDONS_RECOMMENDED_REVIEW
-            permission_post_review = permission
-        elif version_is_unlisted:
+        if version_is_unlisted:
             permission = amo.permissions.ADDONS_REVIEW_UNLISTED
             permission_post_review = permission
         elif any(promoted_group.admin_review):
@@ -478,9 +480,9 @@ class ReviewHelper:
             amo.STATUS_DELETED,
             amo.STATUS_DISABLED,
         )
-        addon_is_incomplete_and_version_is_unlisted = (
-            self.addon.status == amo.STATUS_NULL and version_is_unlisted
-        )
+        addon_is_incomplete_and_version_is_unlisted = self.addon.status == (
+            amo.STATUS_NULL
+        ) and (version_is_unlisted or version_is_enterprise)
         addon_is_reviewable = (
             addon_is_not_disabled_or_deleted and self.addon.status != amo.STATUS_NULL
         ) or addon_is_incomplete_and_version_is_unlisted
@@ -520,6 +522,15 @@ class ReviewHelper:
                 'appealed_decisions__cinder_job',
                 'appealed_decisions__override_of__cinder_job',
                 'appealed_decisions__appeals',
+                'appealed_decisions__target_versions',
+                'queue_moves',
+                Prefetch(
+                    'decisions',
+                    queryset=ContentDecision.objects.filter(
+                        action=DECISION_ACTIONS.AMO_REQUEUE
+                    ).order_by('-created'),
+                    to_attr='prefetched_requeue_decisions',
+                ),
             )
         )
         unresolved_cinder_jobs = list(self.unresolved_cinderjob_qs)
@@ -533,9 +544,12 @@ class ReviewHelper:
         use_content_rejection = self.content_review and waffle.switch_is_active(
             'enable-content-rejection'
         )
+        policy_selection_enabled = not is_static_theme and waffle.switch_is_active(
+            'enable-policy-review-selection'
+        )
 
         # Special logic for availability of reject/approve multiple action:
-        if version_is_unlisted:
+        if version_is_unlisted or policy_selection_enabled:
             can_reject_multiple = is_appropriate_reviewer
             can_approve_multiple = is_appropriate_reviewer
         elif use_content_rejection:
@@ -562,38 +576,51 @@ class ReviewHelper:
             )
             can_approve_multiple = False
 
-        policy_selection_enabled = waffle.switch_is_active(
-            'enable-policy-review-selection'
-        )
-
         # Definitions for all actions.
+        actions['review_with_policy_approve'] = {
+            'method': self.handler.review_with_policy,
+            'policy_enforcement': True,
+            'minimal': False,
+            'details': ('Select a policy to perform on the version or add-on.'),
+            'label': 'Positive Review',
+            'available': (
+                policy_selection_enabled
+                and not self.content_review
+                and is_appropriate_reviewer
+            ),
+            'enforcement_actions': (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            ),
+            'multiple_versions': can_approve_multiple,
+            'resolves_cinder_jobs': True,
+            'allows_decision_selection': True,
+            'can_attach': True,
+            'has_comments': True,
+        }
         actions['review_with_policy'] = {
             'method': self.handler.review_with_policy,
             'policy_enforcement': True,
             'minimal': False,
             'details': ('Select a policy to perform on the version or add-on.'),
-            'label': 'Review',
+            'label': 'Negative Review',
             'available': (
                 policy_selection_enabled
-                and not is_static_theme
                 and not self.content_review
                 and is_appropriate_reviewer
             ),
             'enforcement_actions': (
-                # TODO: expand functionality to handle non-negative policies,
-                # and content review
-                # DECISION_ACTIONS.AMO_APPROVE,
-                # DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
-                # DECISION_ACTIONS.AMO_APPROVE_VERSION,
+                DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT,
                 DECISION_ACTIONS.AMO_DISABLE_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
-                # DECISION_ACTIONS.AMO_IGNORE,
                 DECISION_ACTIONS.AMO_BLOCK_ADDON,
             ),
             'multiple_versions': can_reject_multiple,
             'resolves_cinder_jobs': True,
+            'allows_decision_selection': True,
             'can_attach': True,
+            'has_comments': True,
         }
         actions['public'] = {
             'method': self.handler.approve_latest_version,
@@ -605,7 +632,8 @@ class ReviewHelper:
             ),
             'label': 'Approve',
             'available': (
-                not self.content_review
+                not policy_selection_enabled
+                and not self.content_review
                 and addon_is_reviewable
                 and version_is_unreviewed
                 and (is_appropriate_reviewer or not self.human_review)
@@ -616,8 +644,8 @@ class ReviewHelper:
                 and (DECISION_ACTIONS.AMO_APPROVE, DECISION_ACTIONS.AMO_APPROVE_VERSION)
             ),
             'resolves_cinder_jobs': True,
-            'boilerplate_text': 'Thank you for your contribution.',
             'can_attach': True,
+            'has_comments': True,
         }
         actions['reject'] = {
             'method': self.handler.reject_latest_version,
@@ -644,6 +672,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['approve_listing_content'] = {
             'method': self.handler.approve_listing_content,
@@ -653,7 +682,6 @@ class ReviewHelper:
                 'The developer will not be notified.'
             ),
             'minimal': False,
-            'comments': False,
             'available': (
                 self.content_review
                 and self.addon.status != amo.STATUS_REJECTED
@@ -674,7 +702,6 @@ class ReviewHelper:
                 'The developer will be notified.'
             ),
             'minimal': False,
-            'comments': False,
             'available': (
                 self.content_review
                 and self.addon.status == amo.STATUS_REJECTED
@@ -695,7 +722,6 @@ class ReviewHelper:
                 'review after they make changes.'
             ),
             'minimal': False,
-            'comments': True,
             'available': (
                 use_content_rejection
                 and addon_is_valid_and_version_is_listed
@@ -708,6 +734,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['confirm_auto_approved'] = {
             'method': self.handler.confirm_auto_approved,
@@ -719,9 +746,9 @@ class ReviewHelper:
                 'without notifying the developer.'
             ),
             'minimal': True,
-            'comments': False,
             'available': (
-                not self.content_review
+                not policy_selection_enabled
+                and not self.content_review
                 and current_or_latest_listed_version_was_auto_approved
                 and is_appropriate_reviewer_post_review
             ),
@@ -736,9 +763,10 @@ class ReviewHelper:
                 'This will approve the selected versions. '
                 'The comments will be sent to the developer.'
             ),
-            'available': (can_approve_multiple),
+            'available': not policy_selection_enabled and can_approve_multiple,
             'enforcement_actions': (DECISION_ACTIONS.AMO_APPROVE,),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['reject_multiple_versions'] = {
             'method': self.handler.reject_multiple_versions,
@@ -757,6 +785,7 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
             ),
             'resolves_cinder_jobs': True,
+            'has_comments': True,
         }
         actions['unreject_latest_version'] = {
             'method': self.handler.unreject_latest_version,
@@ -766,9 +795,9 @@ class ReviewHelper:
                 'This will un-reject the latest version without notifying the '
                 'developer.'
             ),
-            'comments': False,
             'available': (
-                not version_is_unlisted
+                not policy_selection_enabled
+                and not version_is_unlisted
                 and not use_content_rejection
                 and addon_is_not_disabled_or_deleted
                 and version_was_rejected
@@ -784,9 +813,9 @@ class ReviewHelper:
                 'This will un-reject the selected versions without notifying the '
                 'developer.'
             ),
-            'comments': False,
             'available': (
-                version_is_unlisted
+                not policy_selection_enabled
+                and version_is_unlisted
                 and addon_is_not_disabled_or_deleted
                 and is_appropriate_admin_reviewer
             ),
@@ -796,7 +825,6 @@ class ReviewHelper:
             'label': 'Block Multiple Versions',
             'minimal': True,
             'multiple_versions': True,
-            'comments': False,
             'details': (
                 'This will disable the selected approved '
                 'versions silently, and open up the block creation '
@@ -818,9 +846,11 @@ class ReviewHelper:
                 'This will confirm approval of the selected '
                 'versions without notifying the developer.'
             ),
-            'comments': False,
             'available': (
-                not is_static_theme and version_is_unlisted and is_appropriate_reviewer
+                not policy_selection_enabled
+                and not is_static_theme
+                and version_is_unlisted
+                and is_appropriate_reviewer
             ),
             'resolves_cinder_jobs': True,
         }
@@ -836,7 +866,6 @@ class ReviewHelper:
             'delayable': True,
             'multiple_versions': True,
             'minimal': True,
-            'comments': False,
             'available': not use_content_rejection and is_appropriate_admin_reviewer,
         }
         actions['clear_needs_human_review_multiple_versions'] = {
@@ -848,7 +877,6 @@ class ReviewHelper:
             ),
             'multiple_versions': True,
             'minimal': True,
-            'comments': False,
             'available': is_appropriate_admin_reviewer,
         }
         actions['set_needs_human_review_multiple_versions'] = {
@@ -861,6 +889,8 @@ class ReviewHelper:
             'multiple_versions': True,
             'minimal': True,
             'available': addon_is_not_disabled and is_appropriate_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['enable_auto_approval'] = {
             'method': self.handler.enable_auto_approval,
@@ -869,6 +899,8 @@ class ReviewHelper:
             'available': auto_approval_is_disabled
             and not addon_requires_pre_review
             and is_appropriate_admin_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['disable_auto_approval'] = {
             'method': self.handler.disable_auto_approval,
@@ -879,6 +911,8 @@ class ReviewHelper:
                 and not addon_requires_pre_review
                 and is_appropriate_admin_reviewer
             ),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['reply'] = {
             'method': self.handler.reviewer_reply,
@@ -894,6 +928,8 @@ class ReviewHelper:
                 and is_reviewer
                 and (not any(promoted_group.admin_review) or is_appropriate_reviewer)
             ),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['request_admin_review'] = {
             'method': self.handler.request_admin_review,
@@ -906,13 +942,14 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': (self.version is not None and is_reviewer and is_static_theme),
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['clear_admin_review'] = {
             'method': self.handler.clear_admin_review,
             'label': 'Clear admin review',
             'details': ('Clear needs admin review flag on the add-on.'),
             'minimal': True,
-            'comments': False,
             'available': is_appropriate_admin_reviewer and is_static_theme,
         }
         actions['enable_addon'] = {
@@ -925,12 +962,16 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': (
-                addon_is_not_deleted
+                not policy_selection_enabled
+                and addon_is_not_deleted
                 and not addon_is_not_disabled
                 and is_appropriate_admin_reviewer
             ),
+            'enable_addon': True,
             'resolves_cinder_jobs': True,
             'can_attach': False,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['disable_addon'] = {
             'method': self.handler.disable_addon,
@@ -948,6 +989,7 @@ class ReviewHelper:
             'enforcement_actions': (DECISION_ACTIONS.AMO_DISABLE_ADDON,),
             'resolves_cinder_jobs': True,
             'can_attach': False,
+            'has_comments': True,
         }
         actions['resolve_reports_job'] = {
             'method': self.handler.resolve_reports_job,
@@ -958,7 +1000,6 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': is_reviewer and has_unresolved_abuse_report_jobs,
-            'comments': False,
             'resolves_cinder_jobs': True,
             'enforcement_actions': (
                 DECISION_ACTIONS.AMO_APPROVE,
@@ -966,16 +1007,38 @@ class ReviewHelper:
                 DECISION_ACTIONS.AMO_CLOSED_NO_ACTION,
             ),
         }
-        actions['resolve_appeal_job'] = {
-            'method': self.handler.resolve_appeal_job,
-            'label': 'Resolve Appeals',
+        actions['appeal_deny'] = {
+            'method': self.handler.appeal_deny,
+            'label': 'Resolve Appeals with Denial',
             'details': (
-                'Allows abuse report jobs to be resolved without an action on the '
+                'Resolve appeal jobs by denying them, without taking an action on the '
                 'add-on or versions.'
             ),
             'minimal': True,
             'available': is_reviewer and has_unresolved_appeal_jobs,
             'resolves_cinder_jobs': True,
+            'has_comments': True,
+            'require_comments': True,
+        }
+        actions['appeal_override'] = {
+            'method': self.handler.appeal_override,
+            'policy_enforcement': True,
+            'minimal': True,
+            'details': (
+                'Resolve appeal jobs from developers by overriding with new decision.'
+            ),
+            'label': 'Resolve Appeals with Override',
+            'available': (
+                policy_selection_enabled and is_reviewer and has_unresolved_appeal_jobs
+            ),
+            'enforcement_actions': (
+                DECISION_ACTIONS.AMO_APPROVE,
+                DECISION_ACTIONS.AMO_IGNORE,
+            ),
+            'enable_addon': True,
+            'resolves_cinder_jobs': True,
+            'can_attach': True,
+            'has_comments': True,
         }
         actions['request_legal_review'] = {
             'method': self.handler.request_legal_review,
@@ -984,11 +1047,13 @@ class ReviewHelper:
                 'If you have concerns about the legality of this add-on that requires '
                 "Mozilla's legal to investigate, enter your comments in the area "
                 'below. They will not be sent to the developer.'
-                'If it relates to an open abuse report job or appeal resolve then job.'
+                'If it relates to an abuse report job, or appeal, resolve the job.'
             ),
             'minimal': True,
             'available': is_appropriate_reviewer,
             'resolves_cinder_jobs': True,
+            'has_comments': True,
+            'require_comments': True,
         }
         actions['comment'] = {
             'method': self.handler.process_comment,
@@ -999,6 +1064,8 @@ class ReviewHelper:
             ),
             'minimal': True,
             'available': is_reviewer,
+            'has_comments': True,
+            'require_comments': True,
         }
         return OrderedDict(
             ((key, action) for key, action in actions.items() if action['available'])
@@ -1011,7 +1078,7 @@ class ReviewHelper:
         # to have any, because the reviewer might have submitted some by
         # accident after switching between tabs, and the logging methods will
         # automatically include them if some are present.
-        if not action.get('comments', True):
+        if not action.get('has_comments'):
             self.handler.data['comments'] = ''
         self.handler.review_action = action
         return action['method']()
@@ -1079,7 +1146,8 @@ class ReviewBase:
                 return
             channel = versions[0].channel
             if (channel == amo.CHANNEL_LISTED and any(group.listed_pre_review)) or (
-                channel == amo.CHANNEL_UNLISTED and any(group.unlisted_pre_review)
+                channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
+                and any(group.unlisted_pre_review)
             ):
                 # These addons shouldn't be be attempted for auto approval
                 # anyway, but double check that the cron job isn't trying to
@@ -1123,11 +1191,10 @@ class ReviewBase:
         call log_action; then trigger a task to notify Cinder and/or interested parties
         and/or carry out the action.
 
-        Not used by resolve_appeal_job."""
+        Not used by appeal_deny, or actions that are 'policy_enforcement': True.
+        """
         # footgun: if action_completed=True then we don't call log_action here
         assert not log_action_kw or action_completed
-        # footgun: we need an activity_action if the action is already complete
-        assert not (activity_action is None and action_completed)
         decision_metadata = decision_metadata or {}
         log_action_kw = log_action_kw or {}
         if self.review_action and self.review_action.get('enforcement_actions'):
@@ -1143,22 +1210,7 @@ class ReviewBase:
         else:
             policies = []
 
-        if (
-            self.review_action
-            and self.review_action.get('policy_enforcement')
-            and 'most_aggressive_policy_actions' in self.data
-        ):
-            most_aggressive_policy_actions = self.data.get(
-                'most_aggressive_policy_actions'
-            )
-
-            # form validation/cleaning should ensure there is at least one policy
-            # with a negative primary enforcement_action
-            cinder_action = most_aggressive_policy_actions.primary[0]
-            followup_actions = most_aggressive_policy_actions.followup
-        else:
-            cinder_action = getattr(activity_action, 'cinder_action', None)
-            followup_actions = []
+        cinder_action = getattr(activity_action, 'cinder_action', None)
 
         if not cinder_action and policies:
             cinder_actions = [
@@ -1198,10 +1250,6 @@ class ReviewBase:
                 **decision_kw,
             )
             decision.policies.set(policies)
-            ContentDecisionFollowupAction.objects.bulk_create(
-                ContentDecisionFollowupAction(decision=decision, action=action)
-                for action in followup_actions
-            )
             if versions:
                 decision.target_versions.set(versions)
             return decision
@@ -1246,6 +1294,108 @@ class ReviewBase:
                     self.log_attachment(log_entry)
                     if update_queue_history:
                         self.update_queue_history(log_entry)
+            elif log_entry:
+                # decision.execute_action() explicitly returned None but we
+                # already have a log_entry: that means this decision was
+                # already carried out, we are just resolving multiple jobs with
+                # the same action. We need to attach the extra "no-op"
+                # decisions to the log_entry to have proper records.
+                log_entry.set_arguments(
+                    [log_entry.arguments[0], decision, *log_entry.arguments[1:]]
+                )
+                del log_entry.arguments
+                log_entry.contentdecision_set.add(decision)
+                log_entry.save()
+            report_decision_to_cinder_and_notify.delay(
+                decision_id=decision.id, notify_owners=notify_owners
+            )
+
+    def record_policy_decision(self, *, versions, versions_per_job=None):
+        """Create the ContentDecision for the decision that's been made with a policy
+        selection.
+
+        Note: this is somewhat of a duplicate of record_decision, but specialized for
+        actions that use `policy_enforcement`, to reduce complexity.
+        Eventually record_decision will be replaced by this function.
+
+        versions_per_job is used for appeals: it is a mapping from CinderJob.pk to a
+        list of versions. It takes precedence over versions, when not None."""
+
+        decision_metadata = {}
+        policies = self.data.get('cinder_policies', [])
+        if 'policy_values' in self.data:
+            # We want to strip out empty values -
+            # both where the reviewer has provided no value, and unselected policies
+            decision_metadata[ContentDecision.POLICY_DYNAMIC_VALUES] = {
+                uuid_: trimmed
+                for uuid_, vals in self.data['policy_values'].items()
+                if (trimmed := {k: v for k, v in vals.items() if v})
+            }
+
+        most_important_policy_actions = self.data.get('most_important_policy_actions')
+        # form validation/cleaning should ensure there is at least one policy
+        # with a negative primary enforcement_action
+        cinder_action = most_important_policy_actions.primary[0]
+        followup_actions = most_important_policy_actions.followup
+
+        assert cinder_action
+
+        decision_kw = {
+            'addon': self.addon,
+            'action': cinder_action,
+            'action_date': None,
+            # Note: there is only a single field for comments in reviewer tools
+            # regardless of whether the comments are intended to be shared with
+            # the developer or kept private. We use `reasoning` field on the
+            # decision to store that comment in both cases, the decision action
+            # will then determine whether that `reasoning` is exposed or not.
+            'reasoning': self.data.get('comments', ''),
+            'reviewer_user': self.user,
+            'metadata': decision_metadata,
+        }
+
+        def create_decision(*, job=None, override_decision=None):
+            override_decision = job.final_decision if job else override_decision or None
+            decision = ContentDecision.objects.create(
+                cinder_job=job,
+                override_of=override_decision,
+                **decision_kw,
+            )
+            decision.policies.set(policies)
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=decision, action=action)
+                for action in followup_actions
+            )
+            if versions_per_job is not None:
+                decision.target_versions.set(versions_per_job.get(job.id, []))
+            elif versions:
+                decision.target_versions.set(versions)
+            return decision
+
+        if cinder_jobs := self.data.get('cinder_jobs_to_resolve', ()):
+            # with appeals and escalations there could be multiple jobs
+            decisions = [create_decision(job=job) for job in cinder_jobs]
+        else:
+            override_decision = (
+                self.review_action
+                and self.review_action.get('allows_decision_selection')
+                and self.data.get('override_decision')
+            )
+            decisions = [create_decision(override_decision=override_decision)]
+
+        log_entry = None
+        for decision in decisions:
+            # If there are multiple decisions, in theory only one should really
+            # be executed completely and log an activity, the rest should be
+            # no-op that we just need for record-keeping purposes. We will only
+            # notify the owners for that "complete" one.
+            notify_owners = False
+            log_entry_for_decision = decision.execute_action()
+            if log_entry_for_decision:
+                notify_owners = True
+                log_entry = log_entry_for_decision
+                self.log_attachment(log_entry)
+                self.update_queue_history(log_entry)
             elif log_entry:
                 # decision.execute_action() explicitly returned None but we
                 # already have a log_entry: that means this decision was
@@ -1384,7 +1534,7 @@ class ReviewBase:
         if self.data.get('cinder_jobs_to_resolve', ()):
             self.record_decision(amo.LOG.RESOLVE_CINDER_JOB_WITH_NO_ACTION)
 
-    def resolve_appeal_job(self):
+    def appeal_deny(self):
         # It's possible to have multiple appeal jobs, so handle them seperately.
         version = self.version
         self.version = None
@@ -1395,13 +1545,13 @@ class ReviewBase:
             )
             # we just need a single action for this appeal
             # - use min() to favor AMO_DISABLE_ADDON over AMO_REJECT_VERSION_ADDON
-            previous_action_id = min(
+            cinder_action = min(
                 decision.action for decision in job.appealed_decisions.all()
             )
             previous_versions = list(
                 Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
             )
-
+            followup_actions = []
             metadata = {}
             for mtda in job.appealed_decisions.all().values_list('metadata', flat=True):
                 if ContentDecision.POLICY_DYNAMIC_VALUES not in mtda:
@@ -1422,13 +1572,16 @@ class ReviewBase:
             # notify cinder
             decision = ContentDecision.objects.create(
                 addon=self.addon,
-                action=previous_action_id,
-                action_date=datetime.now(),
+                action=cinder_action,
                 reasoning=self.data.get('comments', ''),
                 reviewer_user=self.user,
                 cinder_job=job,
                 override_of=job.final_decision,
                 metadata=metadata,
+            )
+            ContentDecisionFollowupAction.objects.bulk_create(
+                ContentDecisionFollowupAction(decision=decision, action=action)
+                for action in followup_actions
             )
             decision.policies.set(policies)
             decision.target_versions.set(previous_versions)
@@ -1442,6 +1595,15 @@ class ReviewBase:
             log_entry = decision.execute_action()
             self.update_queue_history(log_entry)
             report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
+
+    def appeal_override(self):
+        versions_per_job = {
+            job.id: list(
+                Version.unfiltered.filter(contentdecision__appeal_job=job).distinct()
+            )
+            for job in self.data.get('cinder_jobs_to_resolve', ())
+        }
+        self.record_policy_decision(versions=None, versions_per_job=versions_per_job)
 
     def approve_latest_version(self):
         """Approve the add-on latest version (potentially setting the add-on to
@@ -1949,9 +2111,7 @@ class ReviewBase:
             'Policies selected for %s, [%s]'
             % (self.addon, ', '.join(p.uuid for p in self.data['cinder_policies']))
         )
-        self.record_decision(
-            None, action_completed=False, versions=self.data.get('versions')
-        )
+        self.record_policy_decision(versions=self.data.get('versions'))
 
 
 class ReviewAddon(ReviewBase):
@@ -1984,7 +2144,7 @@ class ReviewUnlisted(ReviewBase):
     channel = amo.CHANNEL_UNLISTED
 
     def _approve_version(self, version):
-        assert version.channel == amo.CHANNEL_UNLISTED
+        assert version.channel == self.channel
         assert not version.is_blocked
         if version.file and version.file.status == amo.STATUS_AWAITING_REVIEW:
             sign_file(version.file)
@@ -2007,7 +2167,7 @@ class ReviewUnlisted(ReviewBase):
 
     def approve_latest_version(self):
         """Set an unlisted addon version files to public."""
-        assert self.version.channel == amo.CHANNEL_UNLISTED
+        assert self.version.channel == self.channel
 
         # Do all main approval bits.
         self._approve_version(self.version)
@@ -2069,7 +2229,7 @@ class ReviewUnlisted(ReviewBase):
 
     def approve_multiple_versions(self):
         """Set multiple unlisted add-on versions files to public."""
-        assert self.version.channel == amo.CHANNEL_UNLISTED
+        assert self.version.channel == self.channel
         # self.version and self.file won't point to the versions we want to
         # modify in this action, so set them to None so that the action is
         # recorded against the specific versions we are approving.
@@ -2119,3 +2279,18 @@ class ReviewUnlisted(ReviewBase):
         if self.data['versions']:
             # if these are listed versions then the addon status may need updating
             self.addon.update_status()
+
+
+class ReviewEnterprise(ReviewUnlisted):
+    channel = amo.CHANNEL_ENTERPRISE
+
+    def approve_latest_version(self):
+        """Set an enterprise addon version files to public."""
+        assert self.version.channel == self.channel
+        self._approve_version(self.version)
+        log.info(
+            'Making %s files %s public'
+            % (self.addon, self.file.file.name if self.file else '')
+        )
+        log.info('Sending email for %s' % (self.addon))
+        self.record_decision(amo.LOG.APPROVE_VERSION)

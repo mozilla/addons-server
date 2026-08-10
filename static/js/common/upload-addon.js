@@ -691,7 +691,7 @@ $.fn.addonUploader = function (options) {
               // Note: validation messages can contain HTML, in the form of
               // links or entities, because devhub.views.json_upload_detail()
               // uses processed_validation with escapes and linkifies linter
-              // messages (and escape_all() on non-linter messages).
+              // messages (and linkify_and_clean() on non-linter messages).
               // So we need to use html() and not text() to display them.
               $('<li>').html(checklistMessages[i]).appendTo(messages_ul);
             });

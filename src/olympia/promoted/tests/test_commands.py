@@ -3,7 +3,6 @@ from django.core.management import call_command
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -31,7 +30,11 @@ class TestPromoteByFirefoxThemesCommand(TestCase):
         already_promoted = addon_factory(
             type=amo.ADDON_STATICTHEME,
             users=[firefox_user],
-            promoted_id=PROMOTED_GROUP_CHOICES.LINE,
+            promoted_kwargs={
+                'api_name': 'line',
+                'listed_pre_review': True,
+                'badged': True,
+            },
         )
 
         expected_affected = addon_factory(
@@ -52,5 +55,5 @@ class TestPromoteByFirefoxThemesCommand(TestCase):
             )
 
             assert list(addon.promoted_groups()) == [
-                PromotedGroup.objects.get(group_id=PROMOTED_GROUP_CHOICES.LINE)
+                PromotedGroup.objects.get(api_name='line')
             ]

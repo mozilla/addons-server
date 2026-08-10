@@ -76,6 +76,9 @@
   {% if decision.addon %}
     <li><a href="{{ url('reviewers.review', 'listed', decision.addon_id) }}">Listed Review page</a></li>
     <li><a href="{{ url('reviewers.review', 'unlisted', decision.addon_id) }}">Unlisted Review page</a></li>
+    {% if waffle.switch('enterprise-channel') %}
+      <li><a href="{{ url('reviewers.review', 'enterprise', decision.addon_id) }}">Enterprise Review page</a></li>
+    {% endif %}
     <li><a href="{{ url('admin:addons_addon_change', decision.addon_id) }}">Admin</a></li>
   {% elif decision.user %}
     <li><a href="{{ url('admin:users_userprofile_change', decision.user_id) }}">Admin</a></li>

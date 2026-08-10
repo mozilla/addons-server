@@ -434,6 +434,28 @@ class TestActivityLog(TestCase):
         ip_log = IPLog.objects.get()
         assert ip_log.activity_log == activity
         assert ip_log._ip_address == '15.16.23.42'
+        assert ip_log.asn is None
+        assert ip_log.ip_address_binary == IPv4Address('15.16.23.42')
+
+    def test_ip_log_with_metadata(self):
+        addon = Addon.objects.get()
+        assert IPLog.objects.count() == 0
+        action = amo.LOG.ADD_VERSION
+        assert getattr(action, 'store_ip', False)
+        with core.override_remote_addr_or_metadata(
+            ip_address='15.16.23.42', metadata={'Asn': 64508}
+        ):
+            activity = ActivityLog.objects.create(
+                action,
+                addon,
+                addon.current_version,
+                user=self.request.user,
+            )
+        assert IPLog.objects.count() == 1
+        ip_log = IPLog.objects.get()
+        assert ip_log.activity_log == activity
+        assert ip_log._ip_address == '15.16.23.42'
+        assert ip_log.asn == 64508
         assert ip_log.ip_address_binary == IPv4Address('15.16.23.42')
 
     def test_request_fingerprint_log(self):

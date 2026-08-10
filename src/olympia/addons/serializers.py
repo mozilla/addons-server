@@ -41,7 +41,7 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
 from olympia.constants.base import ADDON_TYPE_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
@@ -1000,10 +1000,7 @@ class AddonPendingAuthorSerializer(AddonAuthorSerializer):
 
 class PromotedGroupSerializer(AMOModelSerializer):
     apps = serializers.SerializerMethodField()
-    category = ReverseChoiceField(
-        choices=PROMOTED_GROUP_CHOICES.api_choices,
-        source='group_id',
-    )
+    category = serializers.CharField(source='api_name')
 
     class Meta:
         model = PromotedGroup
@@ -1204,7 +1201,7 @@ class AddonSerializer(AMOModelSerializer):
         # fake it with promoted status instead.
         def is_recommended(obj):
             return any(
-                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion.group_id
+                promotion.api_name == RECOMMENDED_API_NAME
                 for promotion in obj.publicly_promoted_groups
             )
 
@@ -1652,11 +1649,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
             obj.promoted = []
             for promotion in promoted_list:
                 approved_for_apps = promotion.get('approved_for_apps')
-                group = PROMOTED_GROUP_CHOICES(promotion['group_id'])
                 obj.promoted.append(
                     {
-                        'group_id': promotion['group_id'],
-                        'category': promotion.get('category', group.api_value),
+                        'category': promotion.get('category'),
                         'apps': [
                             APP_IDS.get(app_id).short for app_id in approved_for_apps
                         ],
@@ -1702,7 +1697,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     def get_is_featured(self, obj):
         def is_recommended(obj):
             return any(
-                PROMOTED_GROUP_CHOICES.RECOMMENDED == promotion['group_id']
+                promotion['category'] == RECOMMENDED_API_NAME
                 for promotion in obj.promoted
             )
 

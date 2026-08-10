@@ -250,6 +250,7 @@ def save_versions_to_blocks(guids, submission):
             submission_obj=submission,
         )
         if submission.disable_versions is True:
+            # disable_versions_for_block triggers email notifications
             disable_versions_for_block(block, submission)
         if submission.disable_addon:
             if block.addon.status == amo.STATUS_DELETED:
@@ -262,7 +263,10 @@ def save_versions_to_blocks(guids, submission):
                 # it's done last, after we've gone through
                 # disable_versions_for_block().
                 block.addon.update(status=amo.STATUS_DISABLED)
-
+    if submission.disable_versions is False and (followup := submission.from_followup):
+        # Otherwise, if this relates to a follow-up, we need to send emails manually.
+        # Followup actions are per-addon, so we only need to do this once per submission
+        followup.send_notifications()
     return blocks
 
 

@@ -64,20 +64,24 @@ VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
 # Version channels
 CHANNEL_UNLISTED = 1
 CHANNEL_LISTED = 2
+CHANNEL_ENTERPRISE = 3
 
 CHANNEL_CHOICES = {
     CHANNEL_UNLISTED: _('Unlisted'),
     CHANNEL_LISTED: _('Listed'),
+    CHANNEL_ENTERPRISE: _('Enterprise'),
 }
 
 CHANNEL_CHOICES_API = {
     CHANNEL_UNLISTED: 'unlisted',
     CHANNEL_LISTED: 'listed',
+    CHANNEL_ENTERPRISE: 'enterprise',
 }
 
 CHANNEL_CHOICES_LOOKUP = {
     'unlisted': CHANNEL_UNLISTED,
     'listed': CHANNEL_LISTED,
+    'enterprise': CHANNEL_ENTERPRISE,
 }
 
 UPLOAD_SOURCE_DEVHUB = 1
@@ -273,8 +277,8 @@ THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
 IMG_TYPES = ('image/png', 'image/jpeg')
 VIDEO_TYPES = ('video/webm',)
 
-# The string concatinating all accepted image MIME-types with '|'
-SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
+# The string concatinating all accepted image MIME-types with ','
+SUPPORTED_IMAGE_TYPES = ','.join(IMG_TYPES)
 
 # Acceptable Add-on file extensions.
 # This is being used by `parse_addon` so please make sure we don't have

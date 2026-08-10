@@ -12,7 +12,7 @@ from olympia.amo.models import FakeEmail
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.activity import RETENTION_DAYS
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.scanners import YARA
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
@@ -229,7 +229,8 @@ class TestWriteSitemaps(TestCase):
         addon_factory()
         TestCase.make_addon_promoted(
             addon_factory(version_kw={'application': amo.ANDROID.id}),
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             approve_version=True,
         )
         assert len(os.listdir(settings.SITEMAP_STORAGE_PATH)) == 0

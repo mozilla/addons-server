@@ -10,7 +10,6 @@ from django.urls import NoReverseMatch
 from django.utils.encoding import force_bytes
 
 import pytest
-from pyquery import PyQuery
 
 import olympia
 from olympia import amo
@@ -300,45 +299,18 @@ def test_external_url():
 def test_linkify_bounce_url_callback(mock_get_outgoing_url):
     mock_get_outgoing_url.return_value = 'bar'
 
-    res = urlresolvers.linkify_bounce_url_callback({(None, 'href'): 'foo'})
+    class DummyNode:
+        attrs: dict
+
+        def __init__(self, attrs):
+            self.attrs = attrs
+
+    node = DummyNode({'href': 'foo'})
+    urlresolvers.linkify_bounce_url_callback(node)
 
     # Make sure get_outgoing_url was called.
-    assert res == {(None, 'href'): 'bar'}
+    assert node.attrs['href'] == 'bar'
     mock_get_outgoing_url.assert_called_with('foo')
-
-
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
-)
-def test_linkify_with_outgoing_text_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing('a text http://example.com link')
-    # Use PyQuery because the attributes could be rendered in any order.
-    doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'http://example.com'
-
-
-@patch(
-    'olympia.amo.templatetags.jinja_helpers.urlresolvers.linkify_bounce_url_callback'
-)
-def test_linkify_with_outgoing_markup_links(mock_linkify_bounce_url_callback):
-    def side_effect(attrs, new=False):
-        attrs[(None, 'href')] = 'bar'
-        return attrs
-
-    mock_linkify_bounce_url_callback.side_effect = side_effect
-
-    res = urlresolvers.linkify_with_outgoing(
-        'a markup <a href="http://example.com">link</a> with text'
-    )
-    # Use PyQuery because the attributes could be rendered in any order.
-    doc = PyQuery(res)
-    assert doc('a[href="bar"][rel="nofollow"]')[0].text == 'link'
 
 
 def get_image_path(name):

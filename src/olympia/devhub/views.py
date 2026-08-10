@@ -49,10 +49,11 @@ from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.reverse import get_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
+from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.amo.utils import (
     MenuItem,
+    SafeStorage,
     StopWatch,
-    escape_all,
     is_safe_url,
     send_mail,
     send_mail_jinja,
@@ -784,7 +785,7 @@ def json_upload_detail(request, upload, addon_slug=None):
                         # already escaped because they are coming from
                         # `processed_validation`, but we need to do that for
                         # those coming from ValidationError exceptions as well.
-                        'message': escape_all(msg),
+                        'message': linkify_and_clean(msg),
                         'tier': 1,
                         'fatal': True,
                     },
@@ -1018,9 +1019,10 @@ def upload_image(request, addon_id, addon, upload_type):
         upload_preview.seek(0)
 
         upload_hash = uuid4().hex
-        loc = os.path.join(settings.TMP_PATH, upload_type, upload_hash)
+        upload_storage = SafeStorage(root_setting='TMP_PATH', rel_location=upload_type)
+        filepath = upload_storage.path(upload_hash)
 
-        with storage.open(loc, 'wb') as fd:
+        with upload_storage.open(filepath, 'wb') as fd:
             for chunk in upload_preview:
                 fd.write(chunk)
 
@@ -1085,9 +1087,9 @@ def upload_image(request, addon_id, addon, upload_type):
             if icon_size[0] != icon_size[1]:
                 errors.append(gettext('Icon must be square (same width and height).'))
 
-        if errors and is_preview and os.path.exists(loc):
+        if errors and is_preview and upload_storage.exists(filepath):
             # Delete the temporary preview file in case of error.
-            os.unlink(loc)
+            upload_storage.delete(filepath)
     else:
         errors.append(gettext('There was an error uploading your preview.'))
 
@@ -1414,7 +1416,7 @@ def submit_version_agreement(request, addon_id, addon):
 
 
 @transaction.atomic
-def _submit_distribution(request, addon, next_view):
+def _submit_distribution(request, addon, next_view, is_theme=None):
     # Accept GET for the first load so we can preselect the channel, but only
     # when there is no addon or the add-on is not "invisible".
     if request.method == 'POST':
@@ -1423,7 +1425,7 @@ def _submit_distribution(request, addon, next_view):
         data = request.GET
     else:
         data = None
-    form = forms.DistributionChoiceForm(data, addon=addon)
+    form = forms.DistributionChoiceForm(data, addon=addon, is_theme=is_theme)
 
     if request.method == 'POST' and form.is_valid():
         data = form.cleaned_data
@@ -1449,14 +1451,16 @@ def _submit_distribution(request, addon, next_view):
 def submit_addon_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.agreement')
-    return _submit_distribution(request, None, 'devhub.submit.upload')
+    return _submit_distribution(request, None, 'devhub.submit.upload', is_theme=False)
 
 
 @login_required
 def submit_theme_distribution(request):
     if not RestrictionChecker(request=request).is_submission_allowed():
         return redirect('devhub.submit.theme.agreement')
-    return _submit_distribution(request, None, 'devhub.submit.theme.upload')
+    return _submit_distribution(
+        request, None, 'devhub.submit.theme.upload', is_theme=True
+    )
 
 
 @dev_required(submitting=True)
@@ -1604,14 +1608,14 @@ def _submit_upload(
         addon.update_status()
         return redirect(next_view, *url_args)
     is_admin = acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN)
-    if addon:
-        channel_choice_text = (
-            forms.DistributionChoiceForm().LISTED_LABEL
-            if channel == amo.CHANNEL_LISTED
-            else forms.DistributionChoiceForm().UNLISTED_LABEL
-        )
-    else:
+    if not addon:
         channel_choice_text = ''  # We only need this for Version upload.
+    elif channel == amo.CHANNEL_LISTED:
+        channel_choice_text = forms.DistributionChoiceForm().LISTED_LABEL
+    elif channel == amo.CHANNEL_UNLISTED:
+        channel_choice_text = forms.DistributionChoiceForm().UNLISTED_LABEL
+    else:
+        channel_choice_text = forms.DistributionChoiceForm().ENTERPRISE_LABEL
 
     submit_page = 'version' if addon else 'addon'
     template = (
@@ -1759,7 +1763,11 @@ def _submit_source(request, addon, version, submit_page, next_view):
         if version and submit_page == 'version'
         else [addon.slug]
     )
-    if addon.type != amo.ADDON_EXTENSION:
+    # Skip source code submission for Enterprise add-ons.
+    if (
+        addon.type != amo.ADDON_EXTENSION
+        or addon.versions.latest().channel == amo.CHANNEL_ENTERPRISE
+    ):
         return redirect(next_view, *redirect_args)
     source_form = forms.SourceForm(
         request.POST or None,

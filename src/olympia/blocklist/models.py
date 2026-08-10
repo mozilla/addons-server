@@ -7,7 +7,6 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import format_html
-from django.utils.translation import gettext_lazy as _
 
 from multidb import get_replica
 
@@ -192,7 +191,7 @@ class BlockVersion(ModelBase):
 
     def get_user_facing_block_type_display(self):
         """Like get_block_type_display(), but using strings meant for end-users."""
-        return _('Blocked') if self.block_type == BlockType.BLOCKED else _('Restricted')
+        return BlockType(self.block_type).user_label
 
     def get_admin_facing_auto_block_reason_display(self):
         """Get the auto block reason display for admin-facing - the label is too long"""
@@ -302,6 +301,9 @@ class BlocklistSubmission(ModelBase):
         default=BlockType.BLOCKED, choices=BlockType.choices
     )
     preserve_block_metadata = models.BooleanField(default=False, null=True)
+    from_followup = models.OneToOneField(
+        'abuse.ContentDecisionFollowupAction', null=True, on_delete=models.SET_NULL
+    )
 
     objects = BlocklistSubmissionManager()
 

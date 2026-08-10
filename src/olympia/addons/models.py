@@ -59,9 +59,7 @@ from olympia.amo.utils import (
 from olympia.constants.blocklist import BlockReason
 from olympia.constants.browsers import BROWSERS
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
-)
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
 from olympia.files.utils import extract_translations, resolve_i18n_message
@@ -1577,22 +1575,33 @@ class Addon(OnChangeMixin, ModelBase):
     def can_be_deleted(self):
         return not self.is_deleted
 
-    def has_listed_versions(self, include_deleted=False):
+    def _get_version_manager(self, include_deleted=False):
         if include_deleted:
-            manager = self.versions(manager='unfiltered_for_relations')
+            return self.versions(manager='unfiltered_for_relations')
         else:
-            manager = self.versions
+            return self.versions
+
+    def has_listed_versions(self, include_deleted=False):
+        manager = self._get_version_manager(include_deleted)
         return (
             self._current_version_id
             or manager.filter(channel=amo.CHANNEL_LISTED).exists()
         )
 
     def has_unlisted_versions(self, include_deleted=False):
-        if include_deleted:
-            manager = self.versions(manager='unfiltered_for_relations')
-        else:
-            manager = self.versions
+        manager = self._get_version_manager(include_deleted)
         return manager.filter(channel=amo.CHANNEL_UNLISTED).exists()
+
+    def has_enterprise_versions(self, include_deleted=False):
+        manager = self._get_version_manager(include_deleted)
+        return manager.filter(channel=amo.CHANNEL_ENTERPRISE).exists()
+
+    def has_multiple_channels(self, include_deleted=False):
+        manager = self._get_version_manager(include_deleted)
+        num_channels = (
+            manager.values_list('channel', flat=True).order_by('channel').distinct()
+        )
+        return len(num_channels) > 1
 
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon
@@ -1631,11 +1640,7 @@ class Addon(OnChangeMixin, ModelBase):
             if self._is_recommended_theme():
                 from olympia.promoted.models import PromotedGroup
 
-                return [
-                    PromotedGroup.objects.get(
-                        group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-                    )
-                ]
+                return [PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME)]
         return []
 
     @cached_property

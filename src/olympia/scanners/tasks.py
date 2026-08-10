@@ -25,6 +25,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.celery import create_chunked_tasks_signatures, task
 from olympia.amo.decorators import use_primary_db
+from olympia.amo.middleware import REQUEST_ID_HEADER
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
     attach_trans_dict,
@@ -162,6 +163,7 @@ def _call_webhook(webhook, payload):
             headers={
                 'Content-Type': 'application/json',
                 'Authorization': f'HMAC-SHA256 {digest}',
+                REQUEST_ID_HEADER: uuid.uuid4().hex,
             },
         )
 
@@ -325,15 +327,15 @@ def _run_narc(*, scanner_result, version, rules=None):
         }
     )
     addon = version.addon
-    attach_trans_dict(Addon, [addon], field_names=['name', 'summary'])
+    if not hasattr(addon, 'translations'):
+        attach_trans_dict(Addon, [addon], field_names=['name', 'summary'])
     name_values_from_db = dict(addon.translations[addon.name_id])
     summary_values_from_db = dict(addon.translations[addon.summary_id])
-    values_from_authors = list(
-        addon.authors.all()
-        .exclude(display_name=None)
-        .values_list('display_name', flat=True)
-    )
-
+    values_from_authors = [
+        author.display_name
+        for author in addon.authors.all()
+        if author.display_name is not None
+    ]
     # Because we're running on a Version, not a FileUpload, we should already
     # have a FileManifest, so we don't even need to parse the XPI to grab the
     # fields we want to look at - we can just build a dict with the data needed
@@ -721,20 +723,37 @@ def run_scanner_query_rule_on_versions_chunk(version_pks, query_rule_pk):
             rule.get_state_display(),
         )
         return
-    for version_pk in version_pks:
+    qs = (
+        Version.unfiltered.all()
+        .select_related('addon__addonguid', 'blockversion')
+        .prefetch_related('addon__promotedaddon')
+        .no_transforms()
+        .filter(pk__in=version_pks)
+        .order_by('pk')
+    )
+    if rule.scanner == NARC:
+        qs = qs.select_related('addon', 'file__file_manifest').prefetch_related(
+            # We don't need their roles or whether they are listed, so we can
+            # use a simple prefetch. Otherwise this would not work correctly,
+            # see Addon._attach_authors().
+            'addon__authors'
+        )
+        # Attaching translations is not lazy so do this last, it evaluates the
+        # queryset.
+        attach_trans_dict(
+            Addon, [version.addon for version in qs], field_names=['name', 'summary']
+        )
+    results = []
+    for version in qs:
         try:
-            version = (
-                Version.unfiltered.all()
-                .select_related('addon__addonguid')
-                .no_transforms()
-                .get(pk=version_pk)
-            )
-            _run_scanner_query_rule_on_version(version, rule)
+            if result := _run_scanner_query_rule_on_version(version, rule):
+                results.append(result)
         except Exception:
             log.exception(
                 'Error in run_scanner_query_rule_on_version task for Version %s.',
-                version_pk,
+                version.pk,
             )
+    ScannerQueryResult.objects.bulk_create(results)
 
 
 def _run_scanner_query_rule_on_version(version, rule):
@@ -753,9 +772,13 @@ def _run_scanner_query_rule_on_version(version, rule):
     # Unlike ScannerResult, we only want to save ScannerQueryResult if there is
     # a match, there would be too many things to save otherwise and we don't
     # really care about non-matches.
-    if scanner_result.results:
-        scanner_result.was_blocked = version.is_blocked
-        scanner_result.was_promoted = version.addon.is_promoted
-        scanner_result.save()
+    if not scanner_result.results:
+        return None
 
+    # Make sure to use our prefetch_related() here to avoid extra queries.
+    scanner_result.was_blocked = version.is_blocked
+    scanner_result.was_promoted = version.addon.promotedaddon.exists()
+    # We're going to create results in bulk in the parent, bypassing .save() so
+    # we need to add the matched_rule ourselves.
+    scanner_result.matched_rule = rule
     return scanner_result

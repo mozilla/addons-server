@@ -41,7 +41,7 @@
             <td>
                 {% for addon_sharing_same_guid in addons_sharing_same_guid %}
                   {% set review_url = url('reviewers.review', 'unlisted', addon_sharing_same_guid.pk)
-                                      if unlisted else url('reviewers.review', addon_sharing_same_guid.pk) %}
+                                      if channel == amo.CHANNEL_UNLISTED else url('reviewers.review', addon_sharing_same_guid.pk) %}
                   <a href="{{ review_url }}">{{ addon_sharing_same_guid }}</a>&nbsp;
                 {% endfor %}
               </td>
@@ -147,7 +147,7 @@
           <tr class="meta-abuse">
             <th>Abuse Reports</th>
             <td>
-                <a href="{{ url('reviewers.abuse_reports', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
+                <a href="{{ url('reviewers.abuse_reports', addon.pk)|absolutify }}{{ '?channel=unlisted' if channel == amo.CHANNEL_UNLISTED else '' }}">
                   <strong>{{ reports.paginator.count|numberfmt }}</strong>
                 </a>
             </td>
@@ -157,7 +157,7 @@
             <tr>
               <th>Privacy Policy</th>
               <td>
-                <a href="{{ url('reviewers.privacy', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">
+                <a href="{{ url('reviewers.privacy', addon.pk)|absolutify }}{{ '?channel=unlisted' if channel == amo.CHANNEL_UNLISTED else '' }}">
                   View Privacy Policy</a>
               </td>
             </tr>
@@ -172,7 +172,7 @@
             <tr>
               <th>EULA</th>
               <td>
-                <a href="{{ url('reviewers.eula', addon.pk)|absolutify }}{{ '?channel=unlisted' if unlisted else '' }}">View End-User License Agreement</a>
+                <a href="{{ url('reviewers.eula', addon.pk)|absolutify }}{{ '?channel=unlisted' if channel == amo.CHANNEL_UNLISTED else '' }}">View End-User License Agreement</a>
               </td>
             </tr>
           {% endif %}

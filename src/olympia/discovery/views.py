@@ -5,7 +5,7 @@ from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
     DiscoveryEditorialContentSerializer,
@@ -71,10 +71,8 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         if self.request.query_params.get('recommended', False) == 'true':
             qs = qs.filter(
                 **{
-                    'addon__promotedaddon__promoted_group__group_id': (
-                        PROMOTED_GROUP_CHOICES.RECOMMENDED
-                    ),
-                    'addon___current_version__promoted_versions__promoted_group__group_id': PROMOTED_GROUP_CHOICES.RECOMMENDED,  # noqa
+                    'addon__promotedaddon__promoted_group__api_name': RECOMMENDED_API_NAME,  # noqa
+                    'addon___current_version__promoted_versions__promoted_group__api_name': RECOMMENDED_API_NAME,  # noqa
                 }
             ).distinct()
         return qs

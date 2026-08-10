@@ -1,4 +1,5 @@
 import os
+import uuid
 from unittest.mock import Mock, PropertyMock, patch
 
 from django import test
@@ -71,11 +72,23 @@ class TestMiddleware(TestCase):
         assert process_request.call_count == 3
 
     def test_lbheartbeat_middleware(self):
-        # /__lbheartbeat__ should be return a 200 from middleware, bypassing later
+        # /__lbheartbeat__ should return a 200 from middleware, bypassing later
         # middleware and view code.
 
         with self.assertNumQueries(0):
             response = test.Client().get('/__lbheartbeat__', SERVER_NAME='elb-internal')
+        assert response.status_code == 200
+        assert response.content == b''
+        assert response['Cache-Control'] == (
+            'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_heartbeat_middleware(self):
+        # /__heartbeat__ should return a 200 from middleware, bypassing later
+        # middleware and view code.
+
+        with self.assertNumQueries(0):
+            response = test.Client().get('/__heartbeat__', SERVER_NAME='elb-internal')
         assert response.status_code == 200
         assert response.content == b''
         assert response['Cache-Control'] == (
@@ -142,9 +155,21 @@ def test_request_id_middleware(client):
     assert isinstance(response['X-AMO-Request-ID'], str)
 
     # Test that we set `request.request_id` too
-
     request = RequestFactory().get('/')
     RequestIdMiddleware(lambda: None).process_request(request)
+    assert request.request_id
+
+    # Test that we reuse the request id from the incoming header when it looks
+    # like a valid UUID.
+    incoming_request_id = uuid.uuid4().hex
+    request = RequestFactory().get('/', HTTP_X_AMO_REQUEST_ID=incoming_request_id)
+    RequestIdMiddleware(lambda: None).process_request(request)
+    assert request.request_id == incoming_request_id
+
+    # Test that we ignore an incoming header that isn't a valid UUID.
+    request = RequestFactory().get('/', HTTP_X_AMO_REQUEST_ID='not-a-uuid')
+    RequestIdMiddleware(lambda: None).process_request(request)
+    assert request.request_id != 'not-a-uuid'
     assert request.request_id
 
 

@@ -1021,6 +1021,44 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
         return True
 
 
+class AsnUserRestriction(RestrictionAbstractBaseModel):
+    asn = models.PositiveIntegerField(db_index=True)
+
+    error_message = IPNetworkUserRestriction.error_message
+
+    class Meta:
+        db_table = 'users_asn_restriction'
+        constraints = [
+            models.UniqueConstraint(
+                fields=('asn', 'restriction_type'),
+                name='asn_restriction_type_uniq',
+            )
+        ]
+
+    def __str__(self):
+        return str(self.asn)
+
+    @classmethod
+    def allow_asn(cls, asn, *, restriction_type):
+        return not cls.objects.filter(
+            asn=asn, restriction_type=restriction_type
+        ).exists()
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        if not (asn := request.headers.get('Asn')):
+            return True
+        return cls.allow_asn(asn, restriction_type=restriction_type)
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        if not upload.request_metadata or not (
+            asn := upload.request_metadata.get('Asn')
+        ):
+            return True
+        return cls.allow_asn(asn, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL)
+
+
 class NormalizeEmailMixin:
     @classmethod
     def normalize_email(cls, email):
@@ -1378,6 +1416,7 @@ class UserRestrictionHistory(ModelBase):
         (4, EmailReputationRestriction),
         (5, IPReputationRestriction),
         (6, FingerprintRestriction),
+        (7, AsnUserRestriction),
     )
 
     user = models.ForeignKey(

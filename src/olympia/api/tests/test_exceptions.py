@@ -11,6 +11,9 @@ from rest_framework.routers import SimpleRouter
 from rest_framework.settings import api_settings
 from rest_framework.viewsets import GenericViewSet
 
+from olympia import amo
+from olympia.applications.models import AppVersion
+
 
 class DummyViewSet(GenericViewSet):
     """Dummy test viewset that raises an exception when calling list()."""
@@ -19,8 +22,19 @@ class DummyViewSet(GenericViewSet):
         raise Exception('something went wrong')
 
 
+class DummyWriteViewSet(GenericViewSet):
+    """Dummy test viewset that writes to the database before raising."""
+
+    def create(self, *args, **kwargs):
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='99999.0')
+        raise Exception('something went wrong')
+
+
 test_exception = SimpleRouter()
 test_exception.register('testexcept', DummyViewSet, basename='test-exception')
+test_exception.register(
+    'testexceptwrite', DummyWriteViewSet, basename='test-exception-write'
+)
 
 
 @override_settings(ROOT_URLCONF=tuple(test_exception.urls))
@@ -59,6 +73,28 @@ class TestExceptionHandlerWithViewSet(TestCase):
         assert isinstance(
             got_request_exception_mock.send.call_args[1]['request'], Request
         )
+
+
+@override_settings(ROOT_URLCONF=tuple(test_exception.urls))
+class TestExceptionHandlerRollback(TestCase):
+    # The test client connects to got_request_exception, so we need to mock it
+    # otherwise it would immediately re-raise the exception.
+    @mock.patch('olympia.api.exceptions.got_request_exception')
+    def test_non_api_exception_rolls_back_writes(self, got_request_exception_mock):
+        # Deliberately a POST: NonAtomicRequestsForSafeHttpMethodsMiddleware
+        # would make the view non-atomic for safe methods, and we want
+        # ATOMIC_REQUESTS to be in effect here.
+        url = reverse('test-exception-write-list')
+        with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False, DEBUG=False):
+            response = self.client.post(url)
+            assert response.status_code == 500
+
+        # Our handler turns the exception into a Response, so it never
+        # propagates out of the view. Without an explicit set_rollback() the
+        # write the view made before raising would have been committed.
+        assert not AppVersion.objects.filter(
+            application=amo.FIREFOX.id, version='99999.0'
+        ).exists()
 
 
 class TestExceptionHandler(TestCase):

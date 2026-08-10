@@ -36,7 +36,7 @@ runs:
         digest: ${{ inputs.digest }}
         target: ${{ inputs.target }}
         deps: ${{ inputs.deps }}
-        run: ${{ inputs.run }}
+        input_to_run: ${{ inputs.run }}
       run: |
         # Start the specified services
         make up \
@@ -47,7 +47,7 @@ runs:
           OLYMPIA_DEPS="${deps}" \
           SKIP_DATA_SEED="true" \
           DOCKER_WAIT="true"
-        docker compose exec --user olympia web bash -c "${run}"
+        docker compose exec --user olympia web bash -c "${input_to_run}"
 
     - name: Post Run (logs and exit code)
       if: always()

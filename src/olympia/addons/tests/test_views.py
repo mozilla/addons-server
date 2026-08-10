@@ -48,7 +48,7 @@ from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSE_GPL3
 from olympia.constants.promoted import (
-    PROMOTED_GROUP_CHOICES,
+    RECOMMENDED_API_NAME,
 )
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon, parse_xpi
@@ -261,10 +261,10 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
-    def test_get_not_public_reviewer(self):
+    def test_get_not_public_addons_api_view(self):
         self.addon.update(status=amo.STATUS_NOMINATED)
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -361,9 +361,9 @@ class AddonAndVersionViewSetDetailMixin:
         # depend on Accept-Encoding.
         assert response['Vary'] == 'origin, X-Country-Code, Accept-Language'
 
-    def test_get_not_listed_simple_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_get_unlisted_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -373,17 +373,12 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_developer'] is False
         assert data['is_disabled_by_mozilla'] is False
 
-    def test_get_not_listed_specific_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.make_addon_unlisted(self.addon)
-        self.client.login_api(user)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-    def test_get_not_listed_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+    def test_get_unlisted_addons_api_view_unlisted(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.make_addon_unlisted(self.addon)
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -421,23 +416,12 @@ class AddonAndVersionViewSetDetailMixin:
         assert 'is_disabled_by_developer' not in data
         assert 'is_disabled_by_mozilla' not in data
 
-    def test_get_deleted_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.addon.delete()
-        self.client.login_api(user)
-        response = self.client.get(self.url)
-        assert response.status_code == 404
-        data = json.loads(force_str(response.content))
-        assert data['detail'] == 'Not found.'
-        # `is_disabled_by_developer` and `is_disabled_by_mozilla` are only
-        # added for 401/403.
-        assert 'is_disabled_by_developer' not in data
-        assert 'is_disabled_by_mozilla' not in data
-
-    def test_get_deleted_admin(self):
-        user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, 'Addons:ViewDeleted,Addons:Review')
+    def test_get_deleted_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.addon.delete()
         self.client.login_api(user)
         response = self.client.get(self.url)
@@ -521,7 +505,7 @@ class AddonAndVersionViewSetDetailMixin:
 
         # But admins can still access:
         user = user_factory()
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(user)
         response = self.client.get(
             self.url, data={'lang': 'en-US'}, HTTP_X_COUNTRY_CODE='fr'
@@ -610,9 +594,9 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         result = self._test_url()
         assert 'latest_unlisted_version' not in result
 
-    def test_hide_latest_unlisted_version_simple_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_hide_latest_unlisted_version_no_unlisted_permission(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -635,22 +619,12 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
-    def test_show_latest_unlisted_version_unlisted_reviewer(self):
+    def test_show_latest_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='author')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.CHANNEL_UNLISTED
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
         )
-        unlisted_version.update(created=self.days_ago(1))
-        result = self._test_url()
-        assert result['latest_unlisted_version']
-        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
-
-    def test_show_latest_unlisted_version_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='author')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -1670,7 +1644,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.CHANNEL_UNLISTED,
         )
         self.minimal_data = {'version': {'upload': upload.uuid}}
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.request()
         assert response.status_code == 201, response.content
@@ -1692,7 +1666,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.CHANNEL_UNLISTED,
         )
         self.minimal_data = {'version': {'upload': upload.uuid}}
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.request(
             data={
@@ -3049,9 +3023,9 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    def test_disabled_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_disabled_version_addons_api_view(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
@@ -3065,7 +3039,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url()
@@ -3083,12 +3057,14 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 403
 
     def test_deleted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.client.login_api(user)
         self.version.delete()
-        response = self.client.get(self.url)
-        assert response.status_code == 404
+        self._test_url()
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -3100,7 +3076,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.delete()
         self._test_url()
@@ -3117,24 +3093,20 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    def test_unlisted_version_reviewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+    def test_unlisted_version_no_unlisted_permission(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_unlisted_version_unlisted_reviewer(self):
+    def test_unlisted_version_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self._test_url()
-
-    def test_unlisted_version_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
@@ -3148,7 +3120,7 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_unlisted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         self._test_url()
@@ -3530,7 +3502,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='all_fenix_versions',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         response = self.request(
             compatibility={
@@ -3554,7 +3530,11 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
 
         # Recommended add-ons for Android don't have that restriction.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='all_fenix_versions',
+            listed_pre_review=True,
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         response = self.request(
             compatibility={'android': {'min': amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID}}
@@ -4670,7 +4650,12 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def test_cannot_disable_if_promoted(self):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='pre_review',
+            name='Recommended',
+            listed_pre_review=True,
+            badged=True,
+            approve_version=True,
         )
 
         response = self.client.patch(self.url, data={'is_disabled': True})
@@ -4807,14 +4792,14 @@ class TestVersionViewSetDelete(TestCase):
         assert response.status_code == 403
         assert not self.version.reload().deleted
 
-        # even if they are a reviewer
-        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_REVIEW))
+        # even if they have the API view permission
+        self.grant_permission(another_user, amo.permissions.ADDONS_API_VIEW)
         response = self.client.delete(self.url)
         assert response.status_code == 403
         assert not self.version.reload().deleted
 
         # or have admin-ish permissions
-        self.grant_permission(another_user, ':'.join(amo.permissions.ADDONS_EDIT))
+        self.grant_permission(another_user, amo.permissions.ADDONS_EDIT)
         response = self.client.delete(self.url)
         assert response.status_code == 403
         assert not self.version.reload().deleted
@@ -4828,7 +4813,12 @@ class TestVersionViewSetDelete(TestCase):
 
     def test_cannot_delete_if_promoted(self):
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            self.addon,
+            api_name='pre_review',
+            name='Recommended',
+            listed_pre_review=True,
+            badged=True,
+            approve_version=True,
         )
         self.client.login_api(self.user)
 
@@ -4998,6 +4988,39 @@ class TestVersionViewSetRollback(TestCase):
         assert response.status_code == 400
         assert response.data == {'new_version_string': ['This field is required.']}
 
+    def test_rollback_no_permission_disabled(self):
+        self.addon.update(status=amo.STATUS_DISABLED)
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+        assert response.data['is_disabled_by_mozilla']
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
+    def test_rollback_no_permission_disallowed(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(self.url)
+        assert (
+            'Please read and accept our Firefox Add-on Distribution Agreement'
+            in response.data['detail']
+        )
+
+    def test_rollback_partial_permission_reviewer(self):
+        # Reviewer can read but cannot rollback.
+        user = user_factory(id=settings.TASK_USER_ID)
+        self.grant_permission(user, 'Addons:ContentReview')
+        self.client.login_api(user)
+
+        response = self.client.post(self.url)
+        assert response.status_code == 403
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+
+        url = reverse_ns('addon-version-list', kwargs={'addon_pk': self.addon.pk})
+        response = self.client.get(url)
+        assert response.status_code == 200
+
     def test_rollback_success(self):
         user_factory(id=settings.TASK_USER_ID)
         assert self.addon.versions.count() == 3
@@ -5150,9 +5173,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         data = json.loads(force_str(response.content))
         assert data == ['Invalid "filter" parameter specified.']
 
-    def test_disabled_version_reviewer(self):
+    def test_disabled_version_addons_api_view(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
@@ -5172,7 +5195,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_disabled_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_url_only_contains_old_version()
@@ -5198,17 +5221,18 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(self.url, data={'filter': 'all_with_deleted'})
         assert response.status_code == 403
 
-    def test_deleted_version_reviewer(self):
+    def test_deleted_version_addons_api_view(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_DELETED),
+        )
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
         self._test_url_only_contains_old_version(filter='all_without_unlisted')
-        response = self.client.get(self.url, data={'filter': 'all_with_deleted'})
-        assert response.status_code == 403
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 403
+
+        self._test_url_contains_all(filter='all_with_deleted')
 
     def test_deleted_version_author(self):
         user = UserProfile.objects.create(username='author')
@@ -5222,7 +5246,7 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_deleted_version_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self.version.delete()
         self._test_url_only_contains_old_version()
@@ -5234,18 +5258,16 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_with_unlisted_admin(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
         self._test_url_contains_all(filter='all_with_unlisted')
 
-    def test_with_unlisted_unlisted_reviewer(self):
+    def test_with_unlisted_addons_api_view_unlisted(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-
-    def test_with_unlisted_unlisted_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
 
         self._test_url_contains_all(filter='all_with_unlisted')
@@ -5259,29 +5281,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_with_unlisted_when_no_unlisted_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        # delete the unlisted version so only the listed versions remain.
-        self.unlisted_version.delete()
-
-        # confirm that we have access to view unlisted versions.
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results']
-        assert len(result['results']) == 2
-        result_version = result['results'][0]
-        assert result_version['id'] == self.version.pk
-        assert result_version['version'] == self.version.version
-
-        # And that without_unlisted doesn't fail when there are no unlisted
-        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
-        assert response.status_code == 200
-
-    def test_all_with_unlisted_when_no_unlisted_versions_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         # delete the unlisted version so only the listed versions remain.
         self.unlisted_version.delete()
@@ -5333,32 +5336,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def test_all_without_unlisted_when_no_listed_versions(self):
         user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.grant_permission(user, 'Addons:ReviewUnlisted')
-        self.client.login_api(user)
-        # delete the listed versions so only the unlisted version remains.
-        self.version.delete()
-        self.old_version.delete()
-
-        # confirm that we have access to view unlisted versions.
-        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results']
-        assert len(result['results']) == 1
-        result_version = result['results'][0]
-        assert result_version['id'] == self.unlisted_version.pk
-        assert result_version['version'] == self.unlisted_version.version
-
-        # And that without_unlisted doesn't fail when there are no unlisted
-        response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
-        assert response.status_code == 200
-        result = json.loads(force_str(response.content))
-        assert result['results'] == []
-
-    def test_all_without_unlisted_when_no_listed_versions_for_viewer(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(
+            user,
+            (amo.permissions.ADDONS_API_VIEW, amo.permissions.ADDONS_API_VIEW_UNLISTED),
+        )
         self.client.login_api(user)
         # delete the listed versions so only the unlisted version remains.
         self.version.delete()
@@ -6123,10 +6104,13 @@ class TestAddonSearchView(ESTestCase):
         addon = addon_factory(
             slug='my-addon',
             name='Featured Addôn',
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         addon_factory(slug='other-addon', name='Other Addôn')
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon.promoted_groups().api_name
         self.reindex(Addon)
 
         data = self.perform_search(self.url, {'featured': 'true'})
@@ -6143,7 +6127,11 @@ class TestAddonSearchView(ESTestCase):
         )
 
         addon = addon_factory(
-            name='Recomménded Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            name='Recomménded Addôn',
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -6151,7 +6139,7 @@ class TestAddonSearchView(ESTestCase):
             min=av_min,
             max=av_max,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon).values_list(
                 'application_id', flat=True
@@ -6166,7 +6154,11 @@ class TestAddonSearchView(ESTestCase):
         ]
 
         addon2 = addon_factory(
-            name='Fírefox Addôn', promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
+            name='Fírefox Addôn',
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            },
         )
         ApplicationsVersions.objects.get_or_create(
             application=amo.ANDROID.id,
@@ -6178,10 +6170,11 @@ class TestAddonSearchView(ESTestCase):
         addon2.promotedaddon.all().delete()
         self.make_addon_promoted(
             addon=addon2,
-            group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.FIREFOX],
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon2.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon2).values_list(
                 'application_id', flat=True
@@ -6210,18 +6203,17 @@ class TestAddonSearchView(ESTestCase):
         )
         self.make_addon_promoted(
             addon4,
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.FIREFOX],
             approve_version=True,
         )
         PromotedAddon.objects.create(
             addon=addon4,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.ANDROID.id,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon4.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon4.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon4).values_list(
                 'application_id', flat=True
@@ -6242,18 +6234,17 @@ class TestAddonSearchView(ESTestCase):
         )
         self.make_addon_promoted(
             addon5,
-            PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
             apps=[amo.ANDROID],
             approve_version=True,
         )
         PromotedAddon.objects.create(
             addon=addon5,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=amo.FIREFOX.id,
         )
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon5.promoted_groups().group_id
+        assert RECOMMENDED_API_NAME in addon5.promoted_groups().api_name
         assert list(
             PromotedAddon.objects.filter(addon=addon5).values_list(
                 'application_id', flat=True
@@ -6266,7 +6257,7 @@ class TestAddonSearchView(ESTestCase):
 
         self.reindex(Addon)
 
-        data = self.perform_search(self.url, {'promoted': 'recommended'})
+        data = self.perform_search(self.url, {'promoted': RECOMMENDED_API_NAME})
         assert data['count'] == 4
         assert len(data['results']) == 4
         assert {res['id'] for res in data['results']} == {
@@ -6278,7 +6269,7 @@ class TestAddonSearchView(ESTestCase):
 
         # And with app filtering too
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'firefox'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'firefox'}
         )
         assert data['count'] == 3
         assert len(data['results']) == 3
@@ -6290,21 +6281,20 @@ class TestAddonSearchView(ESTestCase):
 
         # That will filter out for a different app
         data = self.perform_search(
-            self.url, {'promoted': 'recommended', 'app': 'android'}
+            self.url, {'promoted': RECOMMENDED_API_NAME, 'app': 'android'}
         )
         assert data['count'] == 2
         assert len(data['results']) == 2
         assert {res['id'] for res in data['results']} == {addon.pk, addon5.pk}
 
         # test with other other promotions
-        for group_id, group_name in (
-            (PROMOTED_GROUP_CHOICES.LINE, PROMOTED_GROUP_CHOICES.LINE.api_value),
-            (
-                PROMOTED_GROUP_CHOICES.SPOTLIGHT,
-                PROMOTED_GROUP_CHOICES.SPOTLIGHT.api_value,
-            ),
-        ):
-            self.make_addon_promoted(addon, group_id, approve_version=True)
+        for group_name in ('line', 'spotlight'):
+            self.make_addon_promoted(
+                addon,
+                api_name=group_name,
+                listed_pre_review=True,
+                approve_version=True,
+            )
             self.reindex(Addon)
             data = self.perform_search(
                 self.url, {'promoted': group_name, 'app': 'firefox'}
@@ -6691,7 +6681,11 @@ class TestAddonSearchView(ESTestCase):
             name='My Addôn',
             guid='random@guid',
             popularity=999,
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+                'badged': True,
+            },
         )
         addon_factory()
         self.reindex(Addon)
@@ -6943,10 +6937,18 @@ class TestAddonSearchView(ESTestCase):
 
         # Now made some of the add-ons recommended
         self.make_addon_promoted(
-            addon2, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon2,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
+            search_ranking_bump=5.0,
+            approve_version=True,
         )
         self.make_addon_promoted(
-            addon4, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon4,
+            api_name=RECOMMENDED_API_NAME,
+            listed_pre_review=True,
+            search_ranking_bump=5.0,
+            approve_version=True,
         )
         self.refresh()
 
@@ -7178,7 +7180,10 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         not_promoted = addon_factory(name='not promoted')
         spotlight = addon_factory(name='is promoted')
         self.make_addon_promoted(
-            spotlight, PROMOTED_GROUP_CHOICES.SPOTLIGHT, approve_version=True
+            spotlight,
+            api_name='spotlight',
+            listed_pre_review=True,
+            approve_version=True,
         )
         addon_factory(name='something')
 
@@ -7217,10 +7222,20 @@ class TestAddonFeaturedView(ESTestCase):
         self.refresh()
 
     def test_basic(self):
-        addon1 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        addon2 = addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon1.promoted_groups().group_id
-        assert PROMOTED_GROUP_CHOICES.RECOMMENDED in addon2.promoted_groups().group_id
+        addon1 = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
+        addon2 = addon_factory(
+            promoted_kwargs={
+                'api_name': RECOMMENDED_API_NAME,
+                'listed_pre_review': True,
+            }
+        )
+        assert RECOMMENDED_API_NAME in addon1.promoted_groups().api_name
+        assert RECOMMENDED_API_NAME in addon2.promoted_groups().api_name
         addon_factory()  # not recommended so shouldn't show up
         self.refresh()
 
@@ -7235,7 +7250,12 @@ class TestAddonFeaturedView(ESTestCase):
 
     def test_page_size(self):
         for _ in range(0, 15):
-            addon_factory(promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED)
+            addon_factory(
+                promoted_kwargs={
+                    'api_name': RECOMMENDED_API_NAME,
+                    'listed_pre_review': True,
+                }
+            )
 
         self.refresh()
 
@@ -8367,6 +8387,32 @@ class TestAddonPendingAuthorViewSet(TestCase):
                 'The account needs a display name before it can be added as an author.'
             ]
         }
+
+    def test_sender_validation(self):
+        # cannot send invitation if not an author, even with elevated permissions
+        user = user_factory(email='reviewer@mozilla.com', display_name='reviewer')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.client.login_api(user)
+        response = self.client.post(
+            self.list_url, data={'user_id': user.id, 'role': 'developer'}
+        )
+        assert response.status_code == 403, response.content
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
+        response = self.client.post(
+            self.list_url, data={'user_id': user.id, 'role': 'developer'}
+        )
+        assert response.status_code == 403, response.content
+        assert response.data['detail'] == (
+            'You do not have permission to perform this action.'
+        )
+        # but the author can send, even if they have elevated permissions themselves
+        self.client.login_api(self.user)
+        self.grant_permission(self.user, 'Addons:Review')
+        response = self.client.post(self.list_url, data={'user_id': user.id})
+        assert response.status_code == 201
 
     def test_update_role(self):
         self.client.login_api(self.user)

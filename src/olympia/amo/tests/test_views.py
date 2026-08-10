@@ -370,9 +370,10 @@ class TestOtherStuff(TestCase):
         assert e.text == 'Firefox Add-ons'
 
 
-class TestHeartbeat(TestCase):
+class TestServicesMonitor(TestCase):
     def setUp(self):
         super().setUp()
+        self.url = reverse('amo.services_monitor')
 
         self.mocks = {}
         for check in [
@@ -391,46 +392,34 @@ class TestHeartbeat(TestCase):
             self.mocks[check].return_value = ('', None)
             self.addCleanup(patcher.stop)
 
-    def test_front_heartbeat_success(self):
-        response = self.client.get(reverse('amo.front_heartbeat'))
-        assert response.status_code == 200
-
-    def test_front_heartbeat_failure(self):
+    def test_services_monitor_database_failure(self):
         self.mocks['database'].return_value = ('boom', None)
 
-        response = self.client.get(reverse('amo.front_heartbeat'))
+        response = self.client.get(self.url)
 
         assert response.status_code >= 500
         assert response.json()['database']['status'] == 'boom'
 
-    @override_switch('dummy-monitor-fails', True)
-    def test_front_heartbeat_dummy_monitor_no_failure(self):
-        url = reverse('amo.front_heartbeat')
-        response = self.client.get(url)
-
-        assert response.status_code == 200
-
     def test_services_monitor_success(self):
-        response = self.client.get(reverse('amo.services_monitor'))
+        response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_services_monitor_failure(self):
         self.mocks['rabbitmq'].return_value = ('boom', None)
 
-        response = self.client.get(reverse('amo.services_monitor'))
+        response = self.client.get(self.url)
 
         assert response.status_code >= 500
         assert response.json()['rabbitmq']['status'] == 'boom'
 
     def test_services_monitor_dummy_monitor_failure(self):
-        url = reverse('amo.services_monitor')
-        response = self.client.get(url)
+        response = self.client.get(self.url)
 
         assert response.status_code == 200
         self.assertTrue(response.json()['dummy_monitor']['state'])
 
         with override_switch('dummy-monitor-fails', True):
-            response = self.client.get(url)
+            response = self.client.get(self.url)
 
             assert response.status_code >= 500
             assert response.json()['dummy_monitor']['status'] == 'Dummy monitor failed'
@@ -664,14 +653,27 @@ def test_client_info():
     assert response.status_code == 403
 
     with override_settings(ENV='dev'):
-        response = Client().get(reverse('amo.client_info'))
+        with mock.patch.object(
+            core, 'get_request_metadata'
+        ) as get_request_metadata_mock:
+            get_request_metadata_mock.return_value = {
+                'Asn': '64511',
+                'Client-JA4': 'fakeja4',
+            }
+            response = Client().get(reverse('amo.client_info'))
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': None,
-            'HTTP_X_COUNTRY_CODE': None,
-            'HTTP_X_FORWARDED_FOR': None,
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': None,
+                'HTTP_X_COUNTRY_CODE': None,
+                'HTTP_X_FORWARDED_FOR': None,
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {
+                'Asn': '64511',
+                'Client-JA4': 'fakeja4',
+            },
             'GET': {},
             'POST': {},
         }
@@ -685,11 +687,14 @@ def test_client_info():
         )
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': 'Foo/5.0',
-            'HTTP_X_COUNTRY_CODE': 'FR',
-            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': 'Foo/5.0',
+                'HTTP_X_COUNTRY_CODE': 'FR',
+                'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {},
             'GET': {'foo': 'bar'},
             'POST': {},
         }
@@ -703,11 +708,14 @@ def test_client_info():
         )
         assert response.status_code == 200
         assert response.json() == {
-            'HTTP_USER_AGENT': 'Foo/5.0',
-            'HTTP_X_COUNTRY_CODE': 'FR',
-            'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
-            'REMOTE_ADDR': '127.0.0.1',
-            'SERVER_NAME': 'testserver',
+            'META': {
+                'HTTP_USER_AGENT': 'Foo/5.0',
+                'HTTP_X_COUNTRY_CODE': 'FR',
+                'HTTP_X_FORWARDED_FOR': '192.0.0.2,193.0.0.1',
+                'REMOTE_ADDR': '127.0.0.1',
+                'SERVER_NAME': 'testserver',
+            },
+            'core_request_metadata': {},
             'GET': {},
             'POST': {'foo': 'bar'},
         }

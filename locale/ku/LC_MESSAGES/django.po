@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-04 17:42+0000\n"
+"POT-Creation-Date: 2026-08-06 10:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -591,12 +591,6 @@ msgstr ""
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
-
 #, python-brace-format
 msgid "{addon} was created."
 msgstr ""
@@ -1032,6 +1026,9 @@ msgstr ""
 msgid "Unlisted"
 msgstr ""
 
+msgid "Enterprise"
+msgstr ""
+
 msgid "Signing API"
 msgstr ""
 
@@ -1108,6 +1105,12 @@ msgid "Themes"
 msgstr ""
 
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -1374,10 +1377,6 @@ msgstr ""
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
@@ -1511,6 +1510,11 @@ msgstr ""
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr ""
+
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -2911,6 +2915,12 @@ msgstr ""
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
+msgid "Signed for enterprise."
+msgstr ""
+
+msgid "This is the newest uploaded enterprise version"
+msgstr ""
+
 msgid "Upload New Version"
 msgstr ""
 
@@ -2921,6 +2931,9 @@ msgid "Listed Review Page"
 msgstr ""
 
 msgid "Unlisted Review Page"
+msgstr ""
+
+msgid "Enterprise Review Page"
 msgstr ""
 
 msgid "Admin Manage"
@@ -3470,8 +3483,7 @@ msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of co
 msgstr ""
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -4374,6 +4386,10 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr ""
 
 #. editorial content for the primary hero shelves.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr ""
+
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr ""
 
@@ -4589,6 +4605,10 @@ msgstr ""
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Remove distractions, change viewing options, alter playback speed & more."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr ""
@@ -4602,7 +4622,7 @@ msgid "See all extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5258,16 +5278,64 @@ msgstr ""
 msgid "Review Guide"
 msgstr ""
 
-msgid "Browsers"
+msgid "Download"
 msgstr ""
 
-msgid "Desktop"
+msgid "Download Firefox"
 msgstr ""
 
-msgid "Enterprise"
+msgid "Windows"
 msgstr ""
 
-msgid "Products"
+msgid "macOS"
+msgstr ""
+
+msgid "iOS"
+msgstr ""
+
+msgid "Android"
+msgstr ""
+
+msgid "Linux"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Latest Builds"
+msgstr ""
+
+msgid "Nightly"
+msgstr ""
+
+msgid "Beta"
+msgstr ""
+
+msgid "Firefox for Business"
+msgstr ""
+
+msgid "Community"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Follow"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Bluesky"
+msgstr ""
+
+msgid "Podcast"
 msgstr ""
 
 msgid "Privacy"

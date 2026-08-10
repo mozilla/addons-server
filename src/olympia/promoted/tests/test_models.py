@@ -1,10 +1,11 @@
-from django.core.exceptions import ValidationError
+from unittest import mock
+
 from django.db import IntegrityError, transaction
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.constants import applications
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.promoted.models import (
     PromotedAddon,
     PromotedApproval,
@@ -17,9 +18,7 @@ class TestPromotedGroupManager(TestCase):
         self.addon: Addon = addon_factory()
         self.application_id = applications.FIREFOX.id
 
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.promotion = PromotedAddon.objects.create(
             addon=self.addon,
             promoted_group=self.promoted_group,
@@ -46,9 +45,7 @@ class TestPromotedGroupManager(TestCase):
 
     def test_promoted_group_non_pre_reviewed(self):
         # alternatively, addon has a non-pre-reviewed promoted group
-        strategic_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.STRATEGIC
-        )
+        strategic_group = PromotedGroup.objects.get(api_name='strategic')
         self.promotion.promoted_group = strategic_group
         self.promotion.save()
         assert strategic_group in PromotedGroup.objects.approved_for(self.addon)
@@ -81,16 +78,12 @@ class TestPromotedGroupQuerySet(TestCase):
         self.addon = addon_factory()
         self.promotion1 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.NOTABLE
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name='notable'),
             application_id=applications.FIREFOX.id,
         )
         self.promotion2 = PromotedAddon.objects.create(
             addon=self.addon,
-            promoted_group=PromotedGroup.objects.get(
-                group_id=PROMOTED_GROUP_CHOICES.RECOMMENDED
-            ),
+            promoted_group=PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME),
             application_id=applications.FIREFOX.id,
         )
 
@@ -105,29 +98,79 @@ class TestPromotedGroupQuerySet(TestCase):
 
 
 class TestPromotedGroup(TestCase):
-    def test_deactived_group_ids_raise(self):
-        for group in PROMOTED_GROUP_CHOICES:
-            if group in PROMOTED_GROUP_CHOICES.ACTIVE:
-                continue
-            with self.assertRaises(ValidationError):
-                PromotedGroup.objects.create(
-                    group_id=group.value,
-                    name='Test',
-                    api_name='test',
-                )
-
     def test_str_method(self):
         # Ensure the __str__ method returns the name
         for pg in PromotedGroup.objects.all():
             self.assertEqual(str(pg), pg.name)
 
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_on_create_does_not_trigger_index_addons(self, index_addons_mock):
+        PromotedGroup.objects.create(name='Test Group', api_name='test_create_group')
+        assert index_addons_mock.call_count == 0
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_is_public_change_triggers_index_addons(self, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_public_change', is_public=True
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        index_addons_mock.reset_mock()
+
+        group.is_public = False
+        group.save()
+
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def _test_field_changes_triggers_when_public(self, field, index_addons_mock):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_bump', is_public=False
+        )
+        addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
+        index_addons_mock.reset_mock()
+
+        setattr(group, field, 2.0)
+        group.save()
+
+        # should not trigger index_addons because the group is not public
+        assert index_addons_mock.call_count == 0
+
+        # Now make the group public and save again
+        group.is_public = True
+        group.save()
+        index_addons_mock.reset_mock()  # ignore this index
+
+        setattr(group, field, 3.0)
+        group.save()
+        assert index_addons_mock.call_count == 1
+        assert index_addons_mock.call_args[0] == ([addon.pk],)
+
+    def test_save_api_name_change_triggers_when_public(self):
+        self._test_field_changes_triggers_when_public('api_name')
+
+    def test_save_search_ranking_bump_change_triggers_when_public(self):
+        self._test_field_changes_triggers_when_public('search_ranking_bump')
+
+    @mock.patch('olympia.addons.tasks.index_addons.delay')
+    def test_save_unrelated_change_does_not_trigger_index_addons(
+        self, index_addons_mock
+    ):
+        group = PromotedGroup.objects.create(
+            name='Test Group', api_name='test_group_unrelated', is_public=True
+        )
+        index_addons_mock.reset_mock()
+
+        group.name = 'Test Group Renamed'
+        group.save()
+
+        assert index_addons_mock.call_count == 0
+
 
 class TestPromotedAddon(TestCase):
     def setUp(self):
         self.addon: Addon = addon_factory()
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.application_id = applications.FIREFOX.id
         self.required_fields = {
             'addon': self.addon,
@@ -205,9 +248,7 @@ class TestPromotedAddon(TestCase):
 class TestPromotedApproval(TestCase):
     def setUp(self):
         self.addon = addon_factory()
-        self.promoted_group = PromotedGroup.objects.get(
-            group_id=PROMOTED_GROUP_CHOICES.SPOTLIGHT
-        )
+        self.promoted_group = PromotedGroup.objects.get(api_name='spotlight')
         self.application_id = applications.FIREFOX.id
         self.required_fields = {
             'promoted_group': self.promoted_group,

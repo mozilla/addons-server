@@ -1,6 +1,5 @@
 import hashlib
 import mimetypes
-import os
 from datetime import date
 
 from django.core.files.storage import default_storage as storage
@@ -25,6 +24,7 @@ from olympia.addons.utils import compute_last_updated, remove_icons
 from olympia.amo.celery import task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.utils import (
+    SafeStorage,
     backup_storage_enabled,
     copy_file_to_backup_storage,
     download_file_contents_from_backup_storage,
@@ -474,9 +474,9 @@ def resize_icon(source, addon_id, target_sizes, **kw):
 
         # Keep a copy of the original image. This might not be the right
         # extension as it hasn't been converted into a different format.
+        dest_file = addon.get_icon_path('original')
         if source != dest_file:
-            dest_file = addon.get_icon_path('original')
-            os.rename(source, dest_file)
+            storage.move_stored_file(source, dest_file)
         return {'icon_hash': icon_hash}
     except Exception as e:
         log.error(f'Error saving addon icon ({dest_file}): {e}')
@@ -506,9 +506,9 @@ def resize_preview(src, preview_pk, **kw):
             full_dst,
             amo.ADDON_PREVIEW_SIZES['full'],
         )
-        if not os.path.exists(os.path.dirname(orig_dst)):
-            os.makedirs(os.path.dirname(orig_dst))
-        os.rename(src, orig_dst)
+        if src != orig_dst:
+            tmp_storage = SafeStorage(root_setting='TMP_PATH')
+            storage.move_stored_file(tmp_storage.path(src), orig_dst)
         preview.save()
         return True
     except Exception as e:

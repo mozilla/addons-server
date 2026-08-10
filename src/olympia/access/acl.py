@@ -117,10 +117,7 @@ def check_addon_ownership(
 
 
 def is_listed_addons_reviewer(user, allow_content_reviewers=True):
-    permissions = [
-        amo.permissions.ADDONS_REVIEW,
-        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
-    ]
+    permissions = [amo.permissions.ADDONS_REVIEW]
     if allow_content_reviewers:
         permissions.append(amo.permissions.ADDONS_CONTENT_REVIEW)
     allow_access = any(action_allowed_for(user, perm) for perm in permissions)
@@ -178,7 +175,6 @@ def is_user_any_kind_of_reviewer(user, allow_viewers=False):
         amo.permissions.ADDONS_REVIEW,
         amo.permissions.ADDONS_REVIEW_UNLISTED,
         amo.permissions.ADDONS_CONTENT_REVIEW,
-        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
         amo.permissions.STATIC_THEMES_REVIEW,
     ]
     if allow_viewers:

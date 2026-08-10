@@ -81,7 +81,10 @@ def _build_static_theme_preview_context(theme_manifest, file_):
         for (path, alignment, tiling) in itertools.zip_longest(
             additional_srcs, additional_alignments, additional_tiling
         )
-        if path is not None
+        # Ignore non-string entries such as `{'linear-gradient': '...'}` which
+        # aren't image paths we can extract and would otherwise raise a
+        # TypeError (they're unhashable and not path-like).
+        if isinstance(path, str)
     ]
     context.update(additional_backgrounds=additional_backgrounds)
     return context
@@ -469,15 +472,6 @@ def call_webhooks_on_source_code_uploaded(version_pk, activity_log_id):
         )
 
         version = Version.unfiltered.get(pk=version_pk)
-
-        if not version.license:
-            log.info(
-                'Missing license in call_webhooks_on_source_code_uploaded for '
-                'Version %s (activity_log_id = %s)',
-                version_pk,
-                activity_log_id,
-            )
-            return
 
         activity_log = ActivityLog.objects.get(pk=activity_log_id)
 

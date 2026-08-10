@@ -11,7 +11,7 @@ Add-ons may be reviewed by a person at any time, and a reviewer may ask for chan
 {% endif %}
 {% if version_list %}Approved versions: {{ version_list }}
 {% endif %}
-{% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}.{% endif %}
+{% if manual_reasoning_text %}Comments: {{ manual_reasoning_text }}{% endif %}
 
 {% if has_attachment %}
 A reviewer has attached a file. {% if dev_url %}You can view it or reply by visiting {{ dev_url }}.{% endif %}

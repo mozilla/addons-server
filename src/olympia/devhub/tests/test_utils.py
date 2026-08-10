@@ -66,7 +66,12 @@ class TestAddonsLinterListed(UploadMixin, TestCase):
             tasks.validate_upload.s(self.file_upload.pk),
             tasks.check_for_api_keys_in_file.s(self.file_upload.pk),
             tasks.check_data_collection_permissions.s(self.file_upload.pk),
-            group([tasks.forward_linter_results.s(self.file_upload.pk)]),
+            group(
+                [
+                    tasks.forward_linter_results.s(self.file_upload.pk),
+                    call_webhooks_during_validation.s(self.file_upload.pk),
+                ]
+            ),
             tasks.handle_upload_validation_result.s(self.file_upload.pk, False),
         )
 
@@ -290,7 +295,12 @@ class TestValidator(UploadMixin, TestCase):
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             tasks.check_data_collection_permissions.s(file_upload.pk),
-            group([tasks.forward_linter_results.s(file_upload.pk)]),
+            group(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
+                ]
+            ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
             final_task,
         )
@@ -325,6 +335,7 @@ class TestValidator(UploadMixin, TestCase):
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ]
             ),
@@ -344,7 +355,12 @@ class TestValidator(UploadMixin, TestCase):
             tasks.validate_upload.s(file_upload.pk),
             tasks.check_for_api_keys_in_file.s(file_upload.pk),
             tasks.check_data_collection_permissions.s(file_upload.pk),
-            group([tasks.forward_linter_results.s(file_upload.pk)]),
+            group(
+                [
+                    tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
+                ]
+            ),
             tasks.handle_upload_validation_result.s(file_upload.pk, False),
         )
 
@@ -364,6 +380,7 @@ class TestValidator(UploadMixin, TestCase):
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ]
             ),
@@ -386,6 +403,7 @@ class TestValidator(UploadMixin, TestCase):
             group(
                 [
                     tasks.forward_linter_results.s(file_upload.pk),
+                    call_webhooks_during_validation.s(file_upload.pk),
                     run_yara.s(file_upload.pk),
                 ]
             ),
@@ -419,55 +437,11 @@ class TestValidator(UploadMixin, TestCase):
 
         expected_parallel_tasks = [
             'olympia.devhub.tasks.forward_linter_results',
+            'olympia.scanners.tasks.call_webhooks_during_validation',
             'olympia.scanners.tasks.run_yara',
         ]
         assert len(scanners_group.tasks) == len(expected_parallel_tasks)
         assert expected_parallel_tasks == [task.name for task in scanners_group.tasks]
-
-    @mock.patch('olympia.devhub.utils.chain')
-    def test_calls_webhooks_during_validation(self, mock_chain):
-        self.create_switch('enable-scanner-webhooks', active=True)
-        file_upload = self.get_upload('webextension.xpi', with_validation=False)
-
-        utils.Validator(file_upload)
-
-        mock_chain.assert_called_once_with(
-            tasks.create_initial_validation_results.si(),
-            repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk),
-            tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            tasks.check_data_collection_permissions.s(file_upload.pk),
-            group(
-                [
-                    tasks.forward_linter_results.s(file_upload.pk),
-                    call_webhooks_during_validation.s(file_upload.pk),
-                ]
-            ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, False),
-        )
-
-    @mock.patch('olympia.devhub.utils.chain')
-    def test_does_not_call_webhooks_during_validation_when_switch_is_off(
-        self, mock_chain
-    ):
-        self.create_switch('enable-scanner-webhooks', active=False)
-        file_upload = self.get_upload('webextension.xpi', with_validation=False)
-
-        utils.Validator(file_upload)
-
-        mock_chain.assert_called_once_with(
-            tasks.create_initial_validation_results.si(),
-            repack_fileupload.s(file_upload.pk),
-            tasks.validate_upload.s(file_upload.pk),
-            tasks.check_for_api_keys_in_file.s(file_upload.pk),
-            tasks.check_data_collection_permissions.s(file_upload.pk),
-            group(
-                [
-                    tasks.forward_linter_results.s(file_upload.pk),
-                ]
-            ),
-            tasks.handle_upload_validation_result.s(file_upload.pk, False),
-        )
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):

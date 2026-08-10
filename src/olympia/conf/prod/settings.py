@@ -58,7 +58,6 @@ EXTENSION_WORKSHOP_URL = env(
     'EXTENSION_WORKSHOP_URL', default='https://extensionworkshop.com'
 )
 
-REMOTE_SETTINGS_API_URL = 'https://firefox.settings.services.mozilla.com/v1/'
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.mozilla.org/v1/'
 )

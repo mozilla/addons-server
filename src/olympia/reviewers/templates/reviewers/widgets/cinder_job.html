@@ -1,0 +1,51 @@
+{% load reviewers %}
+<label for="{{ widget.attrs.id }}" data-value="{{ widget.attrs.data_value }}" class="{{ widget.attrs.class }}{% if widget.label.appealed_decisions %} appeal{% endif %}">{% include "django/forms/widgets/input.html" %}
+(&#x25F7; {{ widget.label.created_date|date:'DATETIME_FORMAT' }})
+{% if widget.label.forwarded_date %}[Forwarded on {{ widget.label.forwarded_date|date:'DATETIME_FORMAT' }}] {% endif %}
+{% if widget.label.requeued_date %}[Requeued on {{ widget.label.requeued_date|date:'DATETIME_FORMAT' }}] {% endif %}
+{% if widget.label.is_developer_appeal %}
+[Developer Appeal]
+{% for decision in widget.label.appealed_decisions %}{{ decision.action|decision_action_label }}; {% endfor %}
+<br/>
+<span>
+    {% if widget.label.internal_notes %}Forward/Requeue Reasoning: {{ widget.label.internal_notes|join:'; ' }}{% endif %}
+    {% for decision in widget.label.appealed_decisions %}
+    {% for appeal in decision.appeals.all %}
+        Appeal Justification: {{ appeal.text }}<br>
+    {% endfor %}
+    {% endfor %}
+</span>
+<details>
+    <summary>{{ widget.label.appealed_decisions|length }} decisions affecting {{ widget.label.version_count }} versions</summary>
+    <ul>{% for decision in widget.label.appealed_decisions %}
+        <li>{{ decision.action|decision_action_label }}:
+            <ul>
+                {% for version in decision.target_versions.all %}
+                <li>{{ version }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
+    </ul>
+</details>
+{% else %}
+{% for reason in widget.label.reasons %}"{{ reason }}" {% endfor %}
+<br/>
+<span>
+    {% if widget.label.internal_notes %}Forward/Requeue Reasoning: {{ widget.label.internal_notes|join:'; ' }}{% endif %}
+    {% for decision in widget.label.appealed_decisions %}
+    {% for appeal in decision.appeals.all %}
+        Reporter Appeal Justification: {{ appeal.text }}<br>
+    {% endfor %}
+    {% endfor %}
+  </span>
+  <details>
+    <summary>Show detail on {{ widget.label.reports|length }} reports</summary>
+    <ul>
+        {% for report in widget.label.reports %}
+            <li>{% if report.addon_version %}v[{{ report.addon_version }}]: {% endif %}{{ report.message|default:'&lt;no message&gt;' }}</li>
+        {% endfor %}
+    </ul>
+</details>
+{% endif %}
+</label>

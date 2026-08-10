@@ -29,7 +29,6 @@ from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.api.models import APIKey, APIKeyConfirmation
 from olympia.applications.models import AppVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
 from olympia.tags.models import AddonTag, Tag
@@ -481,7 +480,10 @@ class TestCompatForm(TestCase):
             max=AppVersion.objects.get(application=amo.ANDROID.id, version='*'),
         )
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='all_fenix_versions',
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         del self.addon.publicly_promoted_groups  # Reset property
         data = None
@@ -667,6 +669,29 @@ class TestDistributionChoiceForm(TestCase):
         form = forms.DistributionChoiceForm(addon=addon)
         assert len(form.fields['channel'].choices) == 1
         assert form.fields['channel'].choices[0][0] == 'unlisted'
+
+    @override_switch('enterprise-channel', active=True)
+    def test_choices_addon_enterprise(self):
+        # No add-on passed, all choices are present.
+        form = forms.DistributionChoiceForm()
+        assert len(form.fields['channel'].choices) == 3
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+        assert form.fields['channel'].choices[2][0] == 'enterprise'
+
+        # Themes are not given the enterprise option.
+        form = forms.DistributionChoiceForm(is_theme=True)
+        assert len(form.fields['channel'].choices) == 2
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+
+        # Regular add-on, all choices are present.
+        addon = addon_factory()
+        form = forms.DistributionChoiceForm(addon=addon)
+        assert len(form.fields['channel'].choices) == 3
+        assert form.fields['channel'].choices[0][0] == 'listed'
+        assert form.fields['channel'].choices[1][0] == 'unlisted'
+        assert form.fields['channel'].choices[2][0] == 'enterprise'
 
 
 class TestDescribeForm(TestCase):

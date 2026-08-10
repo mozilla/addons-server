@@ -20,7 +20,7 @@ from olympia.api.throttling import addon_submission_throttles
 from olympia.devhub.permissions import IsSubmissionAllowedFor
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.files.models import FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import check_xpi_info, parse_addon
 from olympia.versions import views as version_views
 from olympia.versions.models import Version
 from olympia.versions.utils import (
@@ -176,6 +176,11 @@ class VersionView(APIView):
                 )
 
             parsed_data['guid'] = guid
+
+            # We have to perform the guid checks that are done at parsing time
+            # again since we've overridden the guid with what was provided.
+            check_xpi_info(parsed_data, addon=addon, user=request.user)
+
         elif not guid and package_guid:
             guid = package_guid
 

@@ -42,13 +42,12 @@ def set_request_metadata(data):
 
 
 def select_request_metadata(headers):
-    """Get the two headers from from request.headers that we currently care about,
-    if present.
+    """Get the special HTTP headers that we currently care about, if present.
     Note this function also normalizes the header names if it's called with
     request.headers (HttpHeaders is case-insensitive)."""
     return {
         key: val
-        for key in ('Client-JA4', 'X-SigSci-Tags')
+        for key in ('Client-JA4', 'X-SigSci-Tags', 'Asn')
         if (val := headers.get(key)) is not None
     }
 

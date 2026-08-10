@@ -19,6 +19,7 @@ from olympia.files.models import FileUpload
 
 from ..models import (
     RESTRICTION_TYPES,
+    AsnUserRestriction,
     EmailUserRestriction,
     FingerprintRestriction,
     IPNetworkUserRestriction,
@@ -51,9 +52,11 @@ def test_email_unsubscribe_code_parse():
 class TestRestrictionChecker(TestCase):
     def setUp(self):
         self.ja4 = 'd1234-5678-0000'
+        self.asn = 64497
         headers = {
             'Client-JA4': self.ja4,
             'X-SigSci-Tags': 'TAG,ANOTHERTAG',
+            'Asn': str(self.asn),
         }
         self.request = RequestFactory(REMOTE_ADDR='10.0.0.1', headers=headers).get('/')
         self.request.is_api = False
@@ -99,6 +102,7 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
@@ -147,6 +151,7 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
@@ -174,6 +179,7 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
@@ -201,6 +207,36 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
+        assert activity.requestfingerprintlog.ja4 == self.ja4
+        assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
+
+    def test_is_submission_allowed_asn_restricted(self, incr_mock):
+        AsnUserRestriction.objects.create(asn=self.asn)
+        checker = RestrictionChecker(request=self.request)
+        assert not checker.is_submission_allowed()
+        assert checker.get_error_message() == (
+            'Multiple submissions violating our policies have been sent '
+            'from your location. The IP address has been blocked.'
+        )
+        assert incr_mock.call_count == 2
+        assert incr_mock.call_args_list[0][0] == (
+            'RestrictionChecker.is_submission_allowed.AsnUserRestriction.failure',
+        )
+        assert incr_mock.call_args_list[1][0] == (
+            'RestrictionChecker.is_submission_allowed.failure',
+        )
+        assert UserRestrictionHistory.objects.count() == 1
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'AsnUserRestriction'
+        assert history.user == self.request.user
+        assert history.last_login_ip == self.request.user.last_login_ip
+        assert history.ip_address == '10.0.0.1'
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.user == self.request.user
+        assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
@@ -235,6 +271,7 @@ class TestRestrictionChecker(TestCase):
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.1')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
@@ -270,6 +307,7 @@ class TestRestrictionChecker(TestCase):
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
             request_metadata={
+                'Asn': self.asn,
                 'Client-JA4': 'd1234-5678-0002',
                 'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
             },
@@ -296,6 +334,7 @@ class TestRestrictionChecker(TestCase):
         # Note that there is no request in this case, the ip_address is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == 'd1234-5678-0002'
         assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
 
@@ -310,6 +349,7 @@ class TestRestrictionChecker(TestCase):
             source=amo.UPLOAD_SOURCE_DEVHUB,
             channel=amo.CHANNEL_LISTED,
             request_metadata={
+                'Asn': self.asn,
                 'Client-JA4': self.ja4,
                 'X-SigSci-Tags': 'TAG2,ANOTHERTAG2',
             },
@@ -336,6 +376,7 @@ class TestRestrictionChecker(TestCase):
         # Note that there is no request in this case, the ip_address is coming
         # from the upload.
         assert activity.iplog.ip_address_binary == IPv4Address('10.0.0.2')
+        assert activity.iplog.asn == self.asn
         assert activity.requestfingerprintlog.ja4 == self.ja4
         assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
 

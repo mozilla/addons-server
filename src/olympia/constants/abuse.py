@@ -15,7 +15,7 @@ class DECISION_ACTIONS(EnumChoicesApiDash):
     # 4 is unused
     AMO_DELETE_RATING = 5, 'Rating delete'
     AMO_DELETE_COLLECTION = 6, 'Collection delete'
-    AMO_APPROVE = 7, 'Approved (no action)'
+    AMO_APPROVE = 7, 'Approved'
     # Rejecting versions is not an available action for moderators in cinder
     # - it is only handled by the reviewer tools by AMO Reviewers.
     # It should not be sent by the cinder webhook, & does not have an action defined
@@ -69,13 +69,24 @@ DECISION_ACTIONS.add_subset(
         'AMO_DELETE_RATING',
         'AMO_DELETE_COLLECTION',
         'AMO_REJECT_VERSION_ADDON',
+        'AMO_REJECT_VERSION_WARNING_ADDON',
         'AMO_BLOCK_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
         'AMO_LEGAL_DISABLE_ADDON',
     ),
 )
 DECISION_ACTIONS.add_subset(
-    'NON_OFFENDING', ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_IGNORE')
+    'NON_OFFENDING',
+    ('AMO_APPROVE', 'AMO_APPROVE_VERSION', 'AMO_IGNORE', 'AMO_CLOSED_NO_ACTION'),
+)
+DECISION_ACTIONS.add_subset(
+    'META',  # These aren't final decisions, but can track movements between queues, etc
+    (
+        'AMO_ESCALATE_ADDON',
+        'AMO_LEGAL_FORWARD',
+        'AMO_CHANGE_PENDING_REJECTION_DATE',
+        'AMO_REQUEUE',
+    ),
 )
 DECISION_ACTIONS.add_subset(
     'SKIP_DECISION',
@@ -119,6 +130,7 @@ DECISION_ACTIONS.add_subset(
         'AMO_REJECT_VERSION_ADDON',
         'AMO_REJECT_LISTING_CONTENT',
         'AMO_DISABLE_ADDON',
+        'AMO_LEGAL_DISABLE_ADDON',
         'AMO_BLOCK_ADDON',
     ),
 )
@@ -369,3 +381,14 @@ class DECISION_SOURCES(StrEnum):
     LEGAL = 'Legal'
     TASKUS = 'TaskUs'
     MANUAL = 'Manual'
+
+
+class POLICY_EXPOSURE(EnumChoices):
+    NONE = 0, 'Not exposed'
+    BOTH = 1, 'All add-ons'
+    EXTENSION = 2, 'Extensions'
+    THEME = 3, 'Themes'
+
+
+POLICY_EXPOSURE.add_subset('FOR_EXTENSIONS', ('BOTH', 'EXTENSION'))
+POLICY_EXPOSURE.add_subset('FOR_THEMES', ('BOTH', 'THEME'))

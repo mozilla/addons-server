@@ -1,5 +1,9 @@
 from rest_framework.exceptions import MethodNotAllowed
-from rest_framework.permissions import SAFE_METHODS, BasePermission
+from rest_framework.permissions import (
+    SAFE_METHODS,
+    BasePermission,
+    OperationHolderMixin,
+)
 
 from olympia import amo
 from olympia.access import acl
@@ -14,7 +18,7 @@ from .utils import is_gate_active
 # more.
 
 
-class GroupPermission(BasePermission):
+class GroupPermission(OperationHolderMixin, BasePermission):
     """
     Allow access depending on the result of action_allowed_for().
     """
@@ -67,36 +71,6 @@ class AnyOf(BasePermission):
         return self
 
 
-class AllOf(BasePermission):
-    """
-    Takes multiple permission objects and succeeds if all of them do.
-    """
-
-    def __init__(self, *perms):
-        # DRF calls the items in permission_classes, might as well do
-        # it here too.
-        self.perms = [p() for p in perms]
-
-    def has_permission(self, request, view):
-        return all(perm.has_permission(request, view) for perm in self.perms)
-
-    def has_object_permission(self, request, view, obj):
-        # This method *must* call `has_permission` for each
-        # sub-permission since the default implementation of
-        # `has_object_permission` returns True unconditionally, and
-        # some permission objects might not override it.
-        return all(
-            (
-                perm.has_permission(request, view)
-                and perm.has_object_permission(request, view, obj)
-            )
-            for perm in self.perms
-        )
-
-    def __call__(self):
-        return self
-
-
 class AllowNone(BasePermission):
     def has_permission(self, request, view):
         return False
@@ -132,7 +106,7 @@ class AllowIfNotMozillaDisabled(BasePermission):
 
     Typically this permission should be used together with AllowAddonAuthor,
     to allow write access to authors unless the add-on was disabled by Mozilla.
-    For public-facing API, see AllowReadOnlyIfPublic."""
+    For public-facing API, see AllowIfPublic."""
 
     def has_permission(self, request, view):
         return True
@@ -178,6 +152,8 @@ class AllowListedViewerOrReviewer(BasePermission):
       'Addons:Review' or 'Addons:ContentReview' permission.
     """
 
+    disallow_unsafe = False
+
     def has_permission(self, request, view):
         return request.user.is_authenticated
 
@@ -186,10 +162,11 @@ class AllowListedViewerOrReviewer(BasePermission):
             request.method in SAFE_METHODS
             and acl.action_allowed_for(request.user, permissions.REVIEWER_TOOLS_VIEW)
         )
-        can_access_because_listed_reviewer = obj.has_listed_versions(
-            include_deleted=True
-        ) and acl.is_reviewer(request.user, obj)
-
+        can_access_because_listed_reviewer = (
+            obj.has_listed_versions(include_deleted=True)
+            and acl.is_reviewer(request.user, obj)
+            and (not self.disallow_unsafe or request.method in SAFE_METHODS)
+        )
         return can_access_because_viewer or can_access_because_listed_reviewer
 
 
@@ -219,7 +196,7 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
         )
         can_access_because_unlisted_reviewer = acl.is_unlisted_addons_reviewer(
             request.user
-        )
+        ) and (not self.disallow_unsafe or request.method in SAFE_METHODS)
         has_unlisted_or_no_listed = obj.has_unlisted_versions(
             include_deleted=True
         ) or not obj.has_listed_versions(include_deleted=True)
@@ -259,17 +236,34 @@ class AllowIfPublic(BasePermission):
     Allow access when the object's is_public() method returns True.
     """
 
-    def has_permission(self, request, view):
-        return True
-
     def has_object_permission(self, request, view, obj):
         return obj.is_public() and self.has_permission(request, view)
 
 
-class AllowReadOnlyIfPublic(AllowIfPublic):
+class AllowHasListedVersions(BasePermission):
     """
-    Allow access when the object's is_public() method returns True and the
-    request HTTP method is GET/OPTIONS/HEAD.
+    Allow access if the add-on has any listed versions"""
+
+    def has_object_permission(self, request, view, obj):
+        return obj.has_listed_versions(include_deleted=True)
+
+
+class AllowForVersionChannel(OperationHolderMixin, BasePermission):
+    """Allow access when the version has the specified channel"""
+
+    def __init__(self, channel):
+        self.channel = channel
+
+    def has_object_permission(self, request, view, obj):
+        return getattr(obj, 'channel', None) == self.channel
+
+    def __call__(self):
+        return self
+
+
+class AllowReadOnly(BasePermission):
+    """
+    Allow if the request HTTP method is GET/OPTIONS/HEAD.
     """
 
     def has_permission(self, request, view):
@@ -325,7 +319,7 @@ class ByHttpMethod(BasePermission):
         return getattr(self, 'message', super.default_detail)
 
 
-class AllowRelatedObjectPermissions(BasePermission):
+class AllowRelatedObjectPermissions(OperationHolderMixin, BasePermission):
     """
     Permission class that tests given permissions against a related object.
 

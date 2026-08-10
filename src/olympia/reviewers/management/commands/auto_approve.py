@@ -4,13 +4,17 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
+from django.utils.functional import cached_property
 
 import waffle
 from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo
+from olympia.abuse.models import CinderPolicy, ContentDecision
+from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.amo.decorators import use_primary_db
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.reviewers import WAIT_ON_SCANNERS_TIMEOUT
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
@@ -38,6 +42,16 @@ class ApprovalNotAvailableError(Exception):
 
 class Command(BaseCommand):
     help = 'Auto-approve add-on versions based on predefined criteria'
+
+    # The comment is not translated on purpose, to behave like
+    # regular human approval does.
+    LISTED_COMMENT = (
+        'This version has been screened and approved for the '
+        'public. Keep in mind that other reviewers may look into '
+        'this version in the future and determine that it '
+        'requires changes or should be taken down.'
+    )
+    UNLISTED_COMMENT = 'automatic validation'
 
     def add_arguments(self, parser):
         """Handle command arguments."""
@@ -106,13 +120,11 @@ class Command(BaseCommand):
                     str(version.version),
                 )
 
-                # We want to execute `run_actions()`/`run_narc()` only once.
-                summary_exists = AutoApprovalSummary.objects.filter(
-                    version=version
-                ).exists()
+                summary = AutoApprovalSummary.objects.filter(version=version).first()
 
                 if waffle.switch_is_active('enable-narc'):
-                    if not summary_exists:
+                    # We want to execute `run_narc()` only once.
+                    if not summary:
                         # NARC scanner rules depend on the Add-on and can't be
                         # run reliably at validation as it might not be
                         # attached to the upload at that point.
@@ -123,20 +135,38 @@ class Command(BaseCommand):
                         # ScannerResult.run_actions() below.
                         run_narc_on_version(version.pk, run_actions_on_match=False)
 
-                if waffle.switch_is_active('run-action-in-auto-approve'):
-                    if summary_exists:
-                        log.info(
-                            'Not running run_actions() because it has '
-                            'already been executed'
-                        )
-                    else:
-                        ScannerResult.run_actions(version)
+                scanner_actions_executed = False
+                # NULL means the summary predates this field, back when
+                # run_actions() was always executed on the first run.
+                already_executed = (
+                    summary is not None
+                    and summary.scanner_actions_executed is not False
+                )
+                if already_executed:
+                    log.info(
+                        'Not running run_actions() on version %s because it '
+                        'has already been executed',
+                        version.pk,
+                    )
+                elif AutoApprovalSummary.check_is_waiting_on_scanners(version):
+                    log.info(
+                        'Not running run_actions() on version %s because it '
+                        'is still waiting on scanners',
+                        version.pk,
+                    )
+                else:
+                    ScannerResult.run_actions(version)
+                    scanner_actions_executed = True
 
                 version.autoapprovalsummary, info = (
                     AutoApprovalSummary.create_summary_for_version(
                         version, dry_run=self.dry_run
                     )
                 )
+                if scanner_actions_executed:
+                    # The summary might not have existed before, so we can only
+                    # record that we have executed the actions now.
+                    version.autoapprovalsummary.update(scanner_actions_executed=True)
                 self.stats.update({k: int(v) for k, v in info.items()})
                 if version.autoapprovalsummary.verdict == self.successful_verdict:
                     if version.autoapprovalsummary.verdict == amo.AUTO_APPROVED:
@@ -189,6 +219,14 @@ class Command(BaseCommand):
 
     @statsd.timer('reviewers.auto_approve.approve')
     def approve(self, version):
+        """Approve a version, either by calling ReviewHelper or by creating a
+        ContentDecision and calling its execute_action() method."""
+        if waffle.switch_is_active('enable-policy-review-selection'):
+            self.approve_with_action_class(version)
+        else:
+            self.approve_with_reviewer_helper(version)
+
+    def approve_with_reviewer_helper(self, version):
         """Do the approval itself, caling ReviewHelper to change the status,
         sign the files, send the e-mail, etc."""
         helper = ReviewHelper(
@@ -201,18 +239,36 @@ class Command(BaseCommand):
         if not approve_action:
             raise ApprovalNotAvailableError
         if version.channel == amo.CHANNEL_LISTED:
-            helper.handler.data = {
-                # The comment is not translated on purpose, to behave like
-                # regular human approval does.
-                'comments': 'This version has been screened and approved for the '
-                'public. Keep in mind that other reviewers may look into '
-                'this version in the future and determine that it '
-                'requires changes or should be taken down.'
-                '\r\n\r\nThank you!'
-            }
+            helper.handler.data = {'comments': self.LISTED_COMMENT}
         else:
             helper.handler.data = {'comments': 'automatic validation'}
         approve_action['method']()
+        statsd.incr('reviewers.auto_approve.approve.success')
+
+    @cached_property
+    def approve_policy(self):
+        return CinderPolicy.objects.filter(
+            enforcement_actions=DECISION_ACTIONS.AMO_APPROVE_VERSION
+        ).first()
+
+    def approve_with_action_class(self, version):
+        """Do the approval itself, caling the report_decision_to_cinder_and_notify,
+        which changes the status, signs the files, sends the e-mail, etc."""
+        decision = ContentDecision.objects.create(
+            addon=version.addon,
+            action=DECISION_ACTIONS.AMO_APPROVE_VERSION,
+            reasoning=(
+                self.LISTED_COMMENT
+                if version.channel == amo.CHANNEL_LISTED
+                else self.UNLISTED_COMMENT
+            ),
+            reviewer_user_id=settings.TASK_USER_ID,
+        )
+        if self.approve_policy:
+            decision.policies.set([self.approve_policy])
+        decision.target_versions.set([version])
+        decision.execute_action()
+        report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
         statsd.incr('reviewers.auto_approve.approve.success')
 
     def disapprove(self, version):

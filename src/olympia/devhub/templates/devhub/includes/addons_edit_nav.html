@@ -8,6 +8,7 @@
 <section class="secondary" role="complementary">
   <div class="addon-status">
     <ul class="addon-details">
+      {% set has_multiple_channels = addon.has_multiple_channels() %}
       {% include "devhub/includes/addon_details.html" %}
     </ul>
     <p class="addon-upload">
@@ -40,6 +41,10 @@
           {{ _('Listed Review Page') }}</a></li>
         <li><a href="{{ url('reviewers.review', 'unlisted', addon.pk) }}">
           {{ _('Unlisted Review Page') }}</a></li>
+          {% if waffle.switch('enterprise-channel') %}
+            <li><a href="{{ url('reviewers.review', 'enterprise', addon.pk) }}">
+            {{ _('Enterprise Review Page') }}</a></li>
+          {% endif %}
       {% endif %}
       {% if action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN) %}
         <li><a href="{{ url('admin:addons_addon_change', addon.id) }}">

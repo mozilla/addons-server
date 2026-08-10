@@ -16,7 +16,7 @@ from olympia.addons.models import Addon, AddonApprovalsCounter
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import to_language
-from olympia.constants.abuse import DECISION_ACTIONS
+from olympia.constants.abuse import DECISION_ACTIONS, POLICY_EXPOSURE
 from olympia.reviewers.models import NeedsHumanReview, UsageTier
 from olympia.users.models import UserProfile
 
@@ -216,7 +216,9 @@ def sync_cinder_policies():
             qs.delete()
 
     def mark_inactive_and_orphaned_policies(orphaned_policies):
-        reviewer_qs = orphaned_policies.filter(expose_in_reviewer_tools=True)
+        reviewer_qs = orphaned_policies.exclude(
+            expose_in_reviewer_tools=POLICY_EXPOSURE.NONE
+        )
         if reviewer_qs.exists():
             log.info(
                 'Marking orphaned Cinder Policy still in use in reviewer tools as '
@@ -225,7 +227,7 @@ def sync_cinder_policies():
             )
             reviewer_qs.update(
                 status_in_cinder=CinderPolicy.POLICY_STATUSES.DELETED_WAS_REVIEWER,
-                expose_in_reviewer_tools=False,
+                expose_in_reviewer_tools=POLICY_EXPOSURE.NONE,
             )
 
         deleted_qs = (
@@ -251,14 +253,14 @@ def sync_cinder_policies():
 
         inactive_qs = CinderPolicy.objects.exclude(
             status_in_cinder=CinderPolicy.POLICY_STATUSES.PUBLISHED
-        ).filter(expose_in_reviewer_tools=True)
+        ).exclude(expose_in_reviewer_tools=POLICY_EXPOSURE.NONE)
         if inactive_qs.exists():
             log.info(
                 'Marking Cinder Policy not published as not exposed in reviewer tools: '
                 '%s',
                 list(inactive_qs.values_list('uuid', flat=True)),
             )
-            inactive_qs.update(expose_in_reviewer_tools=False)
+            inactive_qs.update(expose_in_reviewer_tools=POLICY_EXPOSURE.NONE)
 
     url = f'{settings.CINDER_SERVER_URL}v1/policies'
     headers = {
@@ -300,10 +302,9 @@ def handle_forward_to_legal_action(*, decision_pk):
 
 @task
 @use_primary_db
-def auto_resolve_job(*, job_pk):
+def auto_resolve_job(*, job_pk, force=False):
     job = CinderJob.objects.get(pk=job_pk)
-    if job.should_auto_resolve():
-        # if it should be auto resolved, fire a task to resolve it
+    if force or job.should_auto_resolve():
         log.info(
             'Found job#%s to auto resolve for addon#%s.',
             job.id,
@@ -312,7 +313,11 @@ def auto_resolve_job(*, job_pk):
         entity_helper = CinderJob.get_entity_helper(
             job.target, resolved_in_reviewer_tools=True
         )
-        job.handle_already_moderated(job.abusereport_set.first(), entity_helper)
+        job.handle_already_moderated(
+            job.abusereport_set.first(),
+            entity_helper,
+            metadata={'automation_source': 'auto_resolve_reports command'},
+        )
         job.clear_needs_human_review_flags()
 
 

@@ -192,7 +192,6 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
     listed_perms = [
         amo.permissions.ADDONS_REVIEW,
         amo.permissions.ADDONS_CONTENT_REVIEW,
-        amo.permissions.ADDONS_RECOMMENDED_REVIEW,
         amo.permissions.STATIC_THEMES_REVIEW,
         amo.permissions.REVIEWER_TOOLS_VIEW,
     ]
@@ -239,7 +238,6 @@ class AutoApprovalSummary(ModelBase):
     )
     is_promoted_prereview = models.BooleanField(
         default=False,
-        null=True,  # TODO: remove this once code has deployed to prod.
         help_text='Is in a promoted add-on group that requires pre-review',
     )
     should_be_delayed = models.BooleanField(
@@ -253,6 +251,9 @@ class AutoApprovalSummary(ModelBase):
     )
     is_waiting_on_scanners = models.BooleanField(
         default=False, help_text='Is waiting on scanners'
+    )
+    scanner_actions_executed = models.BooleanField(
+        default=False, null=True, help_text='Scanner actions have been executed'
     )
     verdict = models.PositiveSmallIntegerField(
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES, default=amo.NOT_AUTO_APPROVED
@@ -683,10 +684,6 @@ class AutoApprovalSummary(ModelBase):
         """
         # This switch would only be used in case of an emergency.
         if waffle.switch_is_active('disable-check-is-waiting-on-scanners'):
-            return False
-
-        # This check is only relevant when scanner webhooks are enabled.
-        if not waffle.switch_is_active('enable-scanner-webhooks'):
             return False
 
         webhook_event_ids = ScannerWebhookEvent.objects.filter(

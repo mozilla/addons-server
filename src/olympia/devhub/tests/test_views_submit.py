@@ -32,7 +32,7 @@ from olympia.amo.tests import (
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import LICENSE_CC_COPYRIGHT
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
+from olympia.constants.promoted import NOTABLE_API_NAME
 from olympia.devhub import views
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
@@ -1232,6 +1232,11 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert doc('.confirm-submission-cancel')[0].attrib['formaction'] == reverse(
             'devhub.addons.cancel', args=(self.addon.slug, 'unlisted')
         )
+
+    def test_skip_source_enterprise(self):
+        self.addon.versions.update(channel=amo.CHANNEL_ENTERPRISE)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
 
 class DetailsPageMixin:
@@ -2507,7 +2512,13 @@ class VersionSubmitUploadMixin:
         assert not doc('.notification-box.warning')
 
     def test_submit_notification_warning_pre_review(self):
-        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(
+            addon=self.addon,
+            api_name=NOTABLE_API_NAME,
+            name='Notable',
+            listed_pre_review=True,
+            unlisted_pre_review=True,
+        )
         config = Config.objects.create(
             key='submit_notification_warning_pre_review',
             value='Warning for pre_review and <a href="http://example.com">a link</a>.',
@@ -2519,7 +2530,13 @@ class VersionSubmitUploadMixin:
         assert doc('.notification-box.warning').html().strip() == config.value
 
     def test_submit_notification_warning_pre_review_generic_test_already_present(self):
-        self.make_addon_promoted(self.addon, group_id=PROMOTED_GROUP_CHOICES.NOTABLE)
+        self.make_addon_promoted(
+            addon=self.addon,
+            api_name=NOTABLE_API_NAME,
+            name='Notable',
+            listed_pre_review=True,
+            unlisted_pre_review=True,
+        )
         config = Config.objects.create(
             key='submit_notification_warning',
             value='Warning with <a href="http://example.com">a link</a>.',
@@ -2760,7 +2777,10 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         assert doc(modal_selector)
 
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='all_fenix_versions',
+            can_be_compatible_with_all_fenix_versions=True,
+            approve_version=True,
         )
         response = self.client.get(url)
         doc = pq(response.content)

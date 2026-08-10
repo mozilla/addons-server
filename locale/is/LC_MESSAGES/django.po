@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n%10!=1 || n%100==11);\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:234
+#: src/olympia/abuse/actions.py:275
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla-viðbætur: {} [{}]"
@@ -34,11 +34,11 @@ msgstr "Ástæða áfrýjunar"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr ""
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "Notandasnið"
 
-#: src/olympia/abuse/models.py:1500
+#: src/olympia/abuse/models.py:1542
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" fyrir {}"
@@ -197,15 +197,15 @@ msgstr "Engir tenglar eru leyfðir."
 msgid "This display name cannot be used."
 msgstr "Ekki er hægt að nota þetta birtingarnafn."
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1039
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
 msgid "Images must be either PNG or JPG."
 msgstr "Myndir verða að vera annað hvort PNG eða JPG."
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1045
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
 msgid "Images cannot be animated."
 msgstr "Myndir mega ekki vera með hreyfingu."
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1054
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Notaðu myndir minni en %dMB."
@@ -214,7 +214,7 @@ msgstr "Notaðu myndir minni en %dMB."
 msgid "Need help?"
 msgstr "Þarftu hjálp?"
 
-#: src/olympia/accounts/views.py:773
+#: src/olympia/accounts/views.py:774
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Tilkynningin [%s] er ekki til"
@@ -223,11 +223,11 @@ msgstr "Tilkynningin [%s] er ekki til"
 msgid "Add-ons Review Team"
 msgstr "Umsagnarteymi fyrir viðbætur"
 
-#: src/olympia/activity/models.py:771
+#: src/olympia/activity/models.py:777
 msgid "Review"
 msgstr "Yfirfara"
 
-#: src/olympia/activity/models.py:849 src/olympia/devhub/templates/devhub/versions/list.html:41
+#: src/olympia/activity/models.py:855 src/olympia/devhub/templates/devhub/versions/list.html:47
 #, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -259,7 +259,7 @@ msgstr "Farið er yfir hámarksfjölda flokka á hvert forrit ({MAX_CATEGORIES})
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "Ekki er hægt að sameina flokkinn „annað“ við neinn annan flokk"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1300
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1297
 msgid "Invalid category name."
 msgstr "Ógilt heiti flokks."
 
@@ -268,11 +268,11 @@ msgstr "Ógilt heiti flokks."
 msgid "URL domain must be one of [{domains}]."
 msgstr "Slóð léns verður að vera ein af [{domains}]."
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:312
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:311
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "Vefslóð á GitHub Sponsors verður að innihalda /sponsors/."
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:315
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:314
 msgid "URLs must start with https://."
 msgstr "Vefslóðir verða að byrja á https://."
 
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Óstudd skráartegund, sendu inn safnskrá ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:802 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
 msgid "Invalid or broken archive."
 msgstr "Ógild eða skemmd safnskrá."
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr "Myndir verða að vera minni en %dMB"
 
-#: src/olympia/addons/models.py:2354 src/olympia/addons/models.py:2433 src/olympia/constants/base.py:70
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
 msgid "Listed"
 msgstr "Upptalið"
 
@@ -328,7 +328,7 @@ msgstr "Innsending er ekki gild."
 msgid "File is already disabled."
 msgstr "Skráin er þegar óvirk."
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:771
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:765
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
@@ -337,7 +337,7 @@ msgstr ""
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
+#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:223
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr ""
 
@@ -346,7 +346,7 @@ msgstr ""
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr ""
 
-#: src/olympia/addons/serializers.py:673 src/olympia/devhub/forms.py:956
+#: src/olympia/addons/serializers.py:673 src/olympia/devhub/forms.py:955
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr ""
@@ -363,28 +363,28 @@ msgstr "Viðbætur þurfa að minnsta kosti einn skráðan höfund."
 msgid "Account not found."
 msgstr "Reikningur fannst ekki."
 
-#: src/olympia/addons/serializers.py:982 src/olympia/devhub/forms.py:456 src/olympia/devhub/forms.py:526
+#: src/olympia/addons/serializers.py:982 src/olympia/devhub/forms.py:455 src/olympia/devhub/forms.py:525
 msgid "An author can only be present once."
 msgstr "Höfund má ekki tiltaka nema einu sinni."
 
-#: src/olympia/addons/serializers.py:993 src/olympia/devhub/forms.py:468
+#: src/olympia/addons/serializers.py:993 src/olympia/devhub/forms.py:467
 msgid "The account needs a display name before it can be added as an author."
 msgstr "Reikningurinn þarf birtingarnafn áður en hægt er að bæta honum við sem höfundi."
 
-#: src/olympia/addons/serializers.py:1280
+#: src/olympia/addons/serializers.py:1277
 msgid "This slug cannot be used. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1903
+#: src/olympia/addons/serializers.py:1898
 msgid "There is no rollback available in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1913
+#: src/olympia/addons/serializers.py:1908
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr ""
 
-#: src/olympia/addons/serializers.py:1919
+#: src/olympia/addons/serializers.py:1914
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr ""
 
@@ -484,11 +484,11 @@ msgstr "Senda inn nýja viðbót"
 msgid "Submit a New Theme"
 msgstr "Senda inn nýtt þema"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:88 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Þróunarmiðstöð"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2152
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
 msgid "Manage API Keys"
 msgstr "Sýsla með API-lykla"
 
@@ -520,15 +520,15 @@ msgstr "Settu inn gilt IP4- eða IP6-netkerfi."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:255 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Einhverjir eiginleikar eru tímabundið óvirkir meðan við sinnum viðhaldi á vefsvæðinu. Athugaðu aftur aðeins síðar."
 
-#: src/olympia/amo/utils.py:1216 src/olympia/bandwagon/serializers.py:97
+#: src/olympia/amo/utils.py:1193 src/olympia/bandwagon/serializers.py:97
 msgid "This name cannot be used."
 msgstr "Ekki er hægt að nota þetta nafn."
 
-#: src/olympia/amo/utils.py:1246
+#: src/olympia/amo/utils.py:1223
 msgid "URLs are not allowed."
 msgstr ""
 
@@ -768,14 +768,6 @@ msgstr "Ekki er hægt að nota þessa sérsniðnu slóð."
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
 msgstr "Þessi viðbót tilheyrir nú þegar safninu"
-
-#: src/olympia/blocklist/models.py:195
-msgid "Blocked"
-msgstr ""
-
-#: src/olympia/blocklist/models.py:195
-msgid "Restricted"
-msgstr ""
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -1294,7 +1286,7 @@ msgstr "SeaMonkey"
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: src/olympia/constants/applications.py:95 src/olympia/templates/photon-footer.html:28
+#: src/olympia/constants/applications.py:95
 msgid "Mobile"
 msgstr "Farsími"
 
@@ -1322,117 +1314,129 @@ msgstr ""
 msgid "Disabled by Mozilla"
 msgstr "Gert óvirkt af Mozilla"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1145
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "Eytt"
 
-#: src/olympia/constants/base.py:69
+#: src/olympia/constants/base.py:70
 msgid "Unlisted"
 msgstr "Óskráð"
 
-#: src/olympia/constants/base.py:89
+#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+msgid "Enterprise"
+msgstr "Fyrirtæki"
+
+#: src/olympia/constants/base.py:93
 msgid "Signing API"
 msgstr "Undirritunar-API"
 
-#: src/olympia/constants/base.py:90
+#: src/olympia/constants/base.py:94
 msgid "Add-on API"
 msgstr "API-viðbótar"
 
-#: src/olympia/constants/base.py:91
+#: src/olympia/constants/base.py:95
 msgid "Automatically generated by AMO"
 msgstr "Útbúið sjálfvirkt af AMO"
 
-#: src/olympia/constants/base.py:100
+#: src/olympia/constants/base.py:104
 msgid "Owner"
 msgstr "Eigandi"
 
-#: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Forritari"
 
-#: src/olympia/constants/base.py:109
+#: src/olympia/constants/base.py:113
 msgid "(Deleted)"
 msgstr "(eytt)"
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:137
 msgid "Extension"
 msgstr "Forritsauki"
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:138
 msgid "Deprecated Complete Theme"
 msgstr "Úrelti heilt þema"
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:139
 msgid "Dictionary"
 msgstr "Orðasafn"
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:140
 msgid "Deprecated Search Engine"
 msgstr "Úrelt leitarvél"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:141
 msgid "Language Pack"
 msgstr ""
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:142
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Úreltur tungumálapakki (viðbót)"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Plugin"
 msgstr "Úrelt tengiforrit"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:144
 msgid "Deprecated LWT"
 msgstr "Úrelt LWT"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:145
 msgid "Theme"
 msgstr "Þema"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:146
 msgid "Deprecated Site Permission"
 msgstr ""
 
-#: src/olympia/constants/base.py:147 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Forritsaukar"
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:152
 msgid "Deprecated Complete Themes"
 msgstr "Úrelti heil þemu"
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:153
 msgid "Dictionaries"
 msgstr "Orðasöfn"
 
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:154
 msgid "Deprecated Search Tools"
 msgstr "Úrelt leitarvrkfæri"
 
-#: src/olympia/constants/base.py:151
+#: src/olympia/constants/base.py:155
 msgid "Language Packs"
 msgstr "Tungumálapakkar"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:156
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Úreltir tungumálapakkar (viðbætur)"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Plugins"
 msgstr "Úrelt tengiforrit"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:158
 msgid "Deprecated LWTs"
 msgstr "Úreltir LWT"
 
-#: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Þemu"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:160
 msgid "Deprecated Site Permissions"
 msgstr "Úreltar heimildir á vefsvæði"
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Blocked"
+msgstr ""
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Restricted"
+msgstr ""
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1499,7 +1503,7 @@ msgid "Download Firefox extensions that enhance photo, music and video experienc
 msgstr "Sæktu Firefox-forritsauka sem bæta framsetningu mynda, tónlistar og myndskeiða. Forritsaukar í þessum flokki breyta hljóði og myndskeiðum, gera mögulega leit að upprunamyndum og fleira."
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1123
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1129
 msgid "Privacy & Security"
 msgstr "Persónuvernd og öryggi"
 
@@ -1549,7 +1553,7 @@ msgstr "Vefhönnun"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Sæktu Firefox-forritsauka sem eru með vefþróunarverkfæri. Þessi flokkur inniheldur forritsauka fyrir GitHub, skipti á kennistreng, stýringar á vefkökum og fleira."
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:638 src/olympia/devhub/forms.py:1781
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:637 src/olympia/devhub/forms.py:1768
 msgid "Other"
 msgstr "Annað"
 
@@ -1773,12 +1777,12 @@ msgstr ""
 msgid "The Unlicense"
 msgstr ""
 
-#: src/olympia/devhub/feeds.py:52
+#: src/olympia/devhub/feeds.py:64
 #, python-format
 msgid "Recent Changes for %s"
 msgstr "Nýlegar breytingar á %s"
 
-#: src/olympia/devhub/feeds.py:54
+#: src/olympia/devhub/feeds.py:66
 msgid "Recent Changes for My Add-ons"
 msgstr "Nýlegar breytingar á mínum viðbótum"
 
@@ -1787,273 +1791,274 @@ msgstr "Nýlegar breytingar á mínum viðbótum"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
-
-#: src/olympia/devhub/forms.py:101
+#: src/olympia/devhub/forms.py:99
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:104
+#: src/olympia/devhub/forms.py:102
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr ""
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:220
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "Þú getur aðeins haft {0} flokk."
 msgstr[1] "Þú getur aðeins haft {0} flokka."
 
-#: src/olympia/devhub/forms.py:232
+#: src/olympia/devhub/forms.py:230
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:252 src/olympia/devhub/forms.py:1366
+#: src/olympia/devhub/forms.py:250 src/olympia/devhub/forms.py:1365
 msgid "There was an error uploading your image."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:306
+#: src/olympia/devhub/forms.py:305
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "Slóð léns verður að vera ein af [%s]."
 
-#: src/olympia/devhub/forms.py:322
+#: src/olympia/devhub/forms.py:321
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "Þú ert með {0} merki ofaukið."
 msgstr[1] "Þú ert með {0} of mörg merki."
 
-#: src/olympia/devhub/forms.py:341
+#: src/olympia/devhub/forms.py:340
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:429
+#: src/olympia/devhub/forms.py:428
 msgid "Users can not be added directly"
 msgstr "Ekki er hægt að bæta við notendum beint"
 
-#: src/olympia/devhub/forms.py:503
+#: src/olympia/devhub/forms.py:502
 msgid "Must have at least one owner."
 msgstr "Sía verður að hafa a.m.k. einn höfund."
 
-#: src/olympia/devhub/forms.py:505
+#: src/olympia/devhub/forms.py:504
 msgid "At least one author must be listed."
 msgstr "Að minnsta kosti einn höfund verður að vera tilgreina."
 
-#: src/olympia/devhub/forms.py:553
+#: src/olympia/devhub/forms.py:552
 msgid "Slug incorrect."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:588 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:587 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "Nánar"
 
-#: src/olympia/devhub/forms.py:609
+#: src/olympia/devhub/forms.py:608
 msgid "What is your license's name?"
 msgstr "Hvert er nafn notkunarleyfisins þíns?"
 
-#: src/olympia/devhub/forms.py:611 src/olympia/devhub/forms.py:658
+#: src/olympia/devhub/forms.py:610 src/olympia/devhub/forms.py:657
 msgid "Custom License"
 msgstr "Sérsniðið notkunarleyfi"
 
-#: src/olympia/devhub/forms.py:616
+#: src/olympia/devhub/forms.py:615
 msgid "Provide the text of your license."
 msgstr "Gefðu upp texta notkunarleyfisins."
 
-#: src/olympia/devhub/forms.py:666
+#: src/olympia/devhub/forms.py:665
 msgid "License text is required when choosing Other."
 msgstr "Texta notkunarleyfis er krafist þegar valið er Annað."
 
-#: src/olympia/devhub/forms.py:722
+#: src/olympia/devhub/forms.py:721
 msgid "This add-on has an End-User License Agreement"
 msgstr "Þessi viðbót er með EULA samning um notandaleyfi"
 
-#: src/olympia/devhub/forms.py:727
+#: src/olympia/devhub/forms.py:726
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "Tilgreindu EULA samning um notandaleyfi fyrir viðbótina þína:"
 
-#: src/olympia/devhub/forms.py:730
+#: src/olympia/devhub/forms.py:729
 msgid "This add-on has a Privacy Policy"
 msgstr "Þessi viðbót er með stefnu um meðferð persónuupplýsinga"
 
-#: src/olympia/devhub/forms.py:735
+#: src/olympia/devhub/forms.py:734
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Tilgreindu stefnu vegna meðferðar persónuupplýsinga fyrir viðbótina þína:"
 
-#: src/olympia/devhub/forms.py:770
+#: src/olympia/devhub/forms.py:769
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Óstudd skráartegund, sendu inn safnskrá {extensions}."
 
-#: src/olympia/devhub/forms.py:814
+#: src/olympia/devhub/forms.py:813
 msgid "View current"
 msgstr "Skoða núverandi"
 
-#: src/olympia/devhub/forms.py:937
+#: src/olympia/devhub/forms.py:936
 msgid "Invalid version range."
 msgstr "Ógilt bil útgáfa."
 
-#: src/olympia/devhub/forms.py:1043
+#: src/olympia/devhub/forms.py:1042
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1085 src/olympia/devhub/forms.py:1143
+#: src/olympia/devhub/forms.py:1084 src/olympia/devhub/forms.py:1142
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1090
+#: src/olympia/devhub/forms.py:1089
 msgid "Override failed validation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1100
+#: src/olympia/devhub/forms.py:1099
 msgid "Need to select at least one application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1105
+#: src/olympia/devhub/forms.py:1104
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1154 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1153 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1163 src/olympia/devhub/forms.py:1169 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1162 src/olympia/devhub/forms.py:1168 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "Útgáfa {version} er þegar til."
 
-#: src/olympia/devhub/forms.py:1165
+#: src/olympia/devhub/forms.py:1164
 msgid "Continue with existing upload instead?"
 msgstr "Halda í staðinn áfram með fyrirliggjandi innsendingu?"
 
-#: src/olympia/devhub/forms.py:1203 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1202 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "Já"
 
-#: src/olympia/devhub/forms.py:1203 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1202 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "Nei"
 
-#: src/olympia/devhub/forms.py:1218
+#: src/olympia/devhub/forms.py:1217
 msgid "You have not uploaded a source file."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1221
+#: src/olympia/devhub/forms.py:1220
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1285
+#: src/olympia/devhub/forms.py:1284
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1412
+#: src/olympia/devhub/forms.py:1414
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1419
+#: src/olympia/devhub/forms.py:1421
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1459 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1437
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
+msgstr ""
+
+#: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "Birtingarnafn"
 
-#: src/olympia/devhub/forms.py:1490
+#: src/olympia/devhub/forms.py:1504
 msgid "Confirm email address"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1491
+#: src/olympia/devhub/forms.py:1505
 msgid "Generate new credentials"
 msgstr "Útbúa ný auðkenni"
 
-#: src/olympia/devhub/forms.py:1492
+#: src/olympia/devhub/forms.py:1506
 msgid "Revoke and regenerate credentials"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1507
 msgid "Revoke"
 msgstr "Afturkalla"
 
-#: src/olympia/devhub/forms.py:1494
+#: src/olympia/devhub/forms.py:1508
 msgid "Re-send email confirmation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1551
+#: src/olympia/devhub/forms.py:1565
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1576
+#: src/olympia/devhub/forms.py:1590
 msgid "You don't have any API credentials."
 msgstr "Þú ert ekki með nein API-auðkenni."
 
-#: src/olympia/devhub/forms.py:1587
+#: src/olympia/devhub/forms.py:1601
 msgid "Something went wrong, please contact developer support."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1676
+#: src/olympia/devhub/forms.py:1663
 msgid "No appropriate version available"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1683
+#: src/olympia/devhub/forms.py:1670
 msgid "Choose version"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1679
 msgid "Release notes"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1693
+#: src/olympia/devhub/forms.py:1680
 msgid "Automatic rollback based on version [m.m]."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1768
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1778
+#: src/olympia/devhub/forms.py:1765
 msgid "Choose a category"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1779
+#: src/olympia/devhub/forms.py:1766
 msgid "Technical support for making your add-on compliant"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1780
+#: src/olympia/devhub/forms.py:1767
 msgid "Issue with addons.mozilla.org"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1788 src/olympia/devhub/templates/devhub/verify_email.html:60
+#: src/olympia/devhub/forms.py:1775 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1790
+#: src/olympia/devhub/forms.py:1777
 msgid "Summarize the issue in a few words"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1795
+#: src/olympia/devhub/forms.py:1782
 msgid "Select category"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1800
+#: src/olympia/devhub/forms.py:1787
 msgid "Give us more details about the issue"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:1802
+#: src/olympia/devhub/forms.py:1789
 msgid "Describe the issue"
 msgstr ""
 
@@ -2069,7 +2074,7 @@ msgstr ""
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:689
+#: src/olympia/devhub/tasks.py:692
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -2083,261 +2088,261 @@ msgstr ""
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr ""
 
-#: src/olympia/devhub/views.py:116
+#: src/olympia/devhub/views.py:117
 msgid "Updated"
 msgstr "Uppfært"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:128
 msgid "Name"
 msgstr "Heiti"
 
-#: src/olympia/devhub/templates/devhub/api/key.html:29 src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:126
+#: src/olympia/devhub/templates/devhub/api/key.html:29 src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:127
 msgid "Created"
 msgstr "Búið til"
 
-#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:120 src/olympia/devhub/views.py:129 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "Sótt gögn"
 
-#: src/olympia/devhub/views.py:120 src/olympia/devhub/views.py:129
+#: src/olympia/devhub/views.py:121 src/olympia/devhub/views.py:130
 msgid "Rating"
 msgstr "Einkunn"
 
-#: src/olympia/devhub/views.py:195
+#: src/olympia/devhub/views.py:196
 msgid "All My Add-ons"
 msgstr "Allar viðbæturnar mínar"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "All Activity"
 msgstr "Öll virkni"
 
-#: src/olympia/devhub/views.py:224
+#: src/olympia/devhub/views.py:225
 msgid "Add-on Updates"
 msgstr "Uppfærslur viðbótar"
 
-#: src/olympia/devhub/views.py:225
+#: src/olympia/devhub/views.py:226
 msgid "Add-on Status"
 msgstr "Staða viðbótar"
 
-#: src/olympia/devhub/views.py:226
+#: src/olympia/devhub/views.py:227
 msgid "User Collections"
 msgstr "Söfn notenda"
 
-#: src/olympia/devhub/views.py:227
+#: src/olympia/devhub/views.py:228
 msgid "User Reviews"
 msgstr "Umsagnir notenda"
 
-#: src/olympia/devhub/views.py:375
+#: src/olympia/devhub/views.py:376
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ekki er hægt að viðbótinni. Gerðu hana óvirka í staðinn."
 
-#: src/olympia/devhub/views.py:386
+#: src/olympia/devhub/views.py:387
 msgid "Theme deleted."
 msgstr "Þema eytt."
 
-#: src/olympia/devhub/views.py:386
+#: src/olympia/devhub/views.py:387
 msgid "Add-on deleted."
 msgstr "Viðbót eytt."
 
-#: src/olympia/devhub/views.py:392
+#: src/olympia/devhub/views.py:393
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:394
+#: src/olympia/devhub/views.py:395
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr ""
 
-#: src/olympia/devhub/views.py:436
+#: src/olympia/devhub/views.py:437
 msgid "Request for a new review of listing content acknowledged."
 msgstr ""
 
-#: src/olympia/devhub/views.py:480
+#: src/olympia/devhub/views.py:481
 msgid "Invitation accepted."
 msgstr "Boð samþykkt."
 
-#: src/olympia/devhub/views.py:483
+#: src/olympia/devhub/views.py:484
 msgid "Invitation declined."
 msgstr "Boði hafnað."
 
-#: src/olympia/devhub/views.py:551
+#: src/olympia/devhub/views.py:552
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "Staðfestingartölvupóstur var sendur á {email}"
 
-#: src/olympia/devhub/views.py:568 src/olympia/devhub/views.py:1182
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
 msgid "Changes successfully saved."
 msgstr "Tókst að vista breytingar."
 
-#: src/olympia/devhub/views.py:588
+#: src/olympia/devhub/views.py:589
 msgid "Validate Add-on"
 msgstr "Fullgilda viðbót"
 
-#: src/olympia/devhub/views.py:659
+#: src/olympia/devhub/views.py:660
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1037
+#: src/olympia/devhub/views.py:1039
 msgid "Icons must be either PNG or JPG."
 msgstr "Táknmyndir verða að vera annað hvort PNG eða JPG."
 
-#: src/olympia/devhub/views.py:1043
+#: src/olympia/devhub/views.py:1045
 msgid "Icons cannot be animated."
 msgstr "Táknmyndir mega ekki vera með hreyfingu."
 
-#: src/olympia/devhub/views.py:1069
+#: src/olympia/devhub/views.py:1071
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Mynd verður að vera amk. {0} mynddíla breið og {1} mynddíla há."
 
-#: src/olympia/devhub/views.py:1073
+#: src/olympia/devhub/views.py:1075
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Stærðarhlutföll myndar verða að vera 4:3."
 
-#: src/olympia/devhub/views.py:1081
+#: src/olympia/devhub/views.py:1083
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Táknmynd verður að vera amk. {0} mynddíla breið og há."
 
-#: src/olympia/devhub/views.py:1086
+#: src/olympia/devhub/views.py:1088
 msgid "Icon must be square (same width and height)."
 msgstr "Táknmynd verður að vera ferningslaga (sama breidd og hæð)."
 
-#: src/olympia/devhub/views.py:1092
+#: src/olympia/devhub/views.py:1094
 msgid "There was an error uploading your preview."
 msgstr "Villa kom upp við að senda inn umsögnina þína."
 
-#: src/olympia/devhub/views.py:1238
+#: src/olympia/devhub/views.py:1240
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1245
+#: src/olympia/devhub/views.py:1247
 #, python-format
 msgid "Version %s disabled."
 msgstr "Útgáfa %s óvirk."
 
-#: src/olympia/devhub/views.py:1249
+#: src/olympia/devhub/views.py:1251
 #, python-format
 msgid "Version %s deleted."
 msgstr "Útgáfa %s eydd."
 
-#: src/olympia/devhub/views.py:1260
+#: src/olympia/devhub/views.py:1262
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Útgáfa %s virkjuð aftur."
 
-#: src/olympia/devhub/views.py:1276
+#: src/olympia/devhub/views.py:1278
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1335
+#: src/olympia/devhub/views.py:1337
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1473
+#: src/olympia/devhub/views.py:1477
 msgid "Header area background"
 msgstr "Bakgrunnur fyrirsagnasvæðis"
 
-#: src/olympia/devhub/views.py:1475
+#: src/olympia/devhub/views.py:1479
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1483
+#: src/olympia/devhub/views.py:1487
 msgid "Header area text and icons"
 msgstr "Texti og táknmyndir fyrirsagnasvæðis"
 
-#: src/olympia/devhub/views.py:1485
+#: src/olympia/devhub/views.py:1489
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1492
+#: src/olympia/devhub/views.py:1496
 msgid "Toolbar area background"
 msgstr "Bakgrunnur verkfærastikusvæðis"
 
-#: src/olympia/devhub/views.py:1494
+#: src/olympia/devhub/views.py:1498
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1501
+#: src/olympia/devhub/views.py:1505
 msgid "Toolbar area text and icons"
 msgstr "Texti og táknmyndir verkfærastikusvæðis"
 
-#: src/olympia/devhub/views.py:1503
+#: src/olympia/devhub/views.py:1507
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1510
+#: src/olympia/devhub/views.py:1514
 msgid "Toolbar field area background"
 msgstr "Bakgrunnur reita verkfærastiku"
 
-#: src/olympia/devhub/views.py:1512
+#: src/olympia/devhub/views.py:1516
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1519
+#: src/olympia/devhub/views.py:1523
 msgid "Toolbar field area text"
 msgstr "Bakgrunnur reita textasvæðis"
 
-#: src/olympia/devhub/views.py:1521
+#: src/olympia/devhub/views.py:1525
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1529
+#: src/olympia/devhub/views.py:1533
 msgid "Tab highlight"
 msgstr "Áherslulitun flipa"
 
-#: src/olympia/devhub/views.py:1531
+#: src/olympia/devhub/views.py:1535
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1634
+#: src/olympia/devhub/views.py:1638
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2001
+#: src/olympia/devhub/views.py:2009
 msgid "Review requested."
 msgstr "Beðið um yfirferð."
 
-#: src/olympia/devhub/views.py:2003
+#: src/olympia/devhub/views.py:2011
 msgid "You must provide further details to proceed."
 msgstr "Þú verður að gefa upp nánari upplýsingar til að geta haldið áfram."
 
-#: src/olympia/devhub/views.py:2110
+#: src/olympia/devhub/views.py:2118
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2125
+#: src/olympia/devhub/views.py:2133
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Eldri auðkennin þín voru afturkölluð og eru því ekki lengur gild."
 
-#: src/olympia/devhub/views.py:2136
+#: src/olympia/devhub/views.py:2144
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2164
+#: src/olympia/devhub/views.py:2172
 msgid "New API key created"
 msgstr "Nýr API-lykill búinn til"
 
-#: src/olympia/devhub/views.py:2175
+#: src/olympia/devhub/views.py:2183
 msgid "API key revoked"
 msgstr "API-lykill afturkallaður"
 
-#: src/olympia/devhub/views.py:2235
+#: src/olympia/devhub/views.py:2243
 msgid "Verify email"
 msgstr "Sannreyna tölvupóstfang"
 
-#: src/olympia/devhub/views.py:2237
+#: src/olympia/devhub/views.py:2245
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2270
+#: src/olympia/devhub/views.py:2278
 msgid "Your email has been verified"
 msgstr "Tölvupóstfangið þitt hefur verið staðfest"
 
-#: src/olympia/devhub/views.py:2332
+#: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr ""
 
@@ -2540,8 +2545,8 @@ msgstr "Frá"
 msgid "To"
 msgstr "Til"
 
-#: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:171 src/olympia/devhub/templates/devhub/versions/list.html:189
-#: src/olympia/devhub/templates/devhub/versions/list.html:226
+#: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:178 src/olympia/devhub/templates/devhub/versions/list.html:196
+#: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Status"
 msgstr "Staða"
 
@@ -2688,8 +2693,8 @@ msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:172 src/olympia/devhub/templates/devhub/addons/owner.html:78
-#: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
+#: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "Vista breytingar"
 
@@ -2764,17 +2769,17 @@ msgid ""
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:172
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/devhub/templates/devhub/versions/list.html:290
-#: src/olympia/devhub/templates/devhub/versions/list.html:339 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:297
+#: src/olympia/devhub/templates/devhub/versions/list.html:346 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "eða"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:275
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:175
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
-#: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:290 src/olympia/devhub/templates/devhub/versions/list.html:300
-#: src/olympia/devhub/templates/devhub/versions/list.html:339 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
+#: src/olympia/devhub/templates/devhub/versions/edit.html:138 src/olympia/devhub/templates/devhub/versions/list.html:297 src/olympia/devhub/templates/devhub/versions/list.html:307
+#: src/olympia/devhub/templates/devhub/versions/list.html:346 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -2816,7 +2821,7 @@ msgid "View Listing"
 msgstr "Skoða upptalningu"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:98 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:36
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:37
 msgid "View Product Page"
 msgstr "Skoða vörusíðu"
 
@@ -2997,48 +3002,48 @@ msgstr "Verður notað sem staðall í framt á ítarefnissíðum viðbóta."
 msgid "Upload a Custom Icon..."
 msgstr "Senda inn sérsniðna táknmynd..."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:74
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:75
 msgid "PNG and JPG supported."
 msgstr "PNG og JPG studdar."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:76
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:77
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Táknmyndir verða að vera ferningslaga og að lágmarki 128x128 mynddílar."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:78
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:79
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Táknmyndir verða lagaðar niður í 128x128 mynddíla ef þær eru stærri."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:92
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:93
 msgid "Screenshots"
 msgstr "Skjámyndir"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:98
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:99
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "Settu inn að minnsta kosti eina skjámynd af viðbótinni þinni:"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:124
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:125
 msgid "Please provide a caption for this screenshot:"
 msgstr "Gefðu upp myndatexta fyrir þessa skjámynd:"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:139
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:140
 msgid "Add a Screenshot..."
 msgstr "Bæta við skjámynd..."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:146
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:148
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr "Stuðningur við PNG og JPG, mælt með PNG. Hámarks- og ráðlögð stærð fyrir skjámyndir er 2400x1800 mynddílar."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:151
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Lágmarksstærðin er 1000x750 og krafist er stærðarhlutfallana 4:3."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr "Að hafa skjámyndir á kynningarsíðunni þinni eykur til muna líkurnar á að forritsaukinn verði settur upp."
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:180 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:104
 msgid "Continue"
 msgstr "Halda áfram"
 
@@ -3136,7 +3141,7 @@ msgstr ""
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:246 src/olympia/devhub/templates/devhub/versions/list.html:250
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:253 src/olympia/devhub/templates/devhub/versions/list.html:257
 msgid "Delete Add-on"
 msgstr "Eyða viðbót"
 
@@ -3197,15 +3202,15 @@ msgstr "Meira"
 msgid "Manage Status & Versions"
 msgstr "Sýsla með stöðu og útgáfur"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:65 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:49
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:65 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:54
 msgid "View Recent Changes"
 msgstr "Skoða nýlegar breytingar"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html:9
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html:13
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html:14
 msgid "This add-on doesn't have any versions."
 msgstr ""
 
@@ -3538,23 +3543,23 @@ msgstr ""
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:62
 msgid "Which applications is this version compatible with?"
 msgstr "Við hvaða forrit er þessi útgáfa samhæfð?"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:69
 msgid "Administrative overrides"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "Create a Theme Version"
 msgstr "Búa til útgáfu af þema"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:84
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:90
 msgid "Create a Theme"
 msgstr "Búa til þema"
 
@@ -3790,11 +3795,11 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
-#: src/olympia/devhub/templates/devhub/versions/list.html:26
+#: src/olympia/devhub/templates/devhub/versions/list.html:28
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107 src/olympia/devhub/templates/devhub/includes/addon_details.html:124
 msgid "Latest Version:"
 msgstr "Nýjasta útgáfa:"
 
@@ -3802,27 +3807,39 @@ msgstr "Nýjasta útgáfa:"
 msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
+msgid "Signed for enterprise."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
+msgid "This is the newest uploaded enterprise version"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
 msgstr "Senda inn nýja útgáfu"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:24
 msgid "View All"
 msgstr "Birta allt"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:41
 msgid "Listed Review Page"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Unlisted Review Page"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
+msgid "Enterprise Review Page"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:53
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:58
 msgid "View Statistics Dashboard"
 msgstr "Skoða tölfræðistjórnborð"
 
@@ -3969,7 +3986,7 @@ msgid "Distribution channel"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
-#: src/olympia/devhub/templates/devhub/versions/list.html:225
+#: src/olympia/devhub/templates/devhub/versions/list.html:232
 msgid "Version"
 msgstr "Útgáfa"
 
@@ -4090,7 +4107,7 @@ msgstr "\"Ná í viðbótina\" hnappur"
 msgid "Recommended Extensions program"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33 src/olympia/templates/photon-footer.html:60
 msgid "Contribute"
 msgstr "Taktu þátt"
 
@@ -4130,7 +4147,7 @@ msgstr ""
 msgid "Learn more about the developer community"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:24
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
 
@@ -4252,11 +4269,11 @@ msgstr "Athugasemdir fyrir umsagnaraðila"
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:120
+#: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "Source code"
 msgstr "Grunnkóði"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:121
+#: src/olympia/devhub/templates/devhub/versions/edit.html:122
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr ""
 
@@ -4279,146 +4296,146 @@ msgstr ""
 msgid "Status & Versions"
 msgstr "Staða og útgáfur"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:40
+#: src/olympia/devhub/templates/devhub/versions/list.html:46
 msgid "Edit this version"
 msgstr "Breyta þessari útgáfu"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:67
+#: src/olympia/devhub/templates/devhub/versions/list.html:73
 msgid "Re-enable Version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:73
+#: src/olympia/devhub/templates/devhub/versions/list.html:79
 msgid "Review History"
 msgstr "Ferill yfirferða"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:74
+#: src/olympia/devhub/templates/devhub/versions/list.html:80
 msgid "Close Review History"
 msgstr "Loka yfirferðaferli"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:107
+#: src/olympia/devhub/templates/devhub/versions/list.html:113
 msgid "Request Review"
 msgstr "Biðja um yfirferð"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:118
+#: src/olympia/devhub/templates/devhub/versions/list.html:124
 msgid "Loading Review History..."
 msgstr "Hleð inn yfirferðaferli..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:119
+#: src/olympia/devhub/templates/devhub/versions/list.html:125
 msgid "We had a problem retrieving review notes"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:121
+#: src/olympia/devhub/templates/devhub/versions/list.html:127
 msgid "Load older..."
 msgstr "Hlaða inn eldra..."
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:125 src/olympia/discovery/serializers.py:102
+#: src/olympia/devhub/templates/devhub/versions/list.html:131 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "eftir"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128
+#: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:141
+#: src/olympia/devhub/templates/devhub/versions/list.html:147
 msgid "Leave a reply"
 msgstr "Settu inn svar"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:142
+#: src/olympia/devhub/templates/devhub/versions/list.html:148
 msgid "Reply"
 msgstr "Svara"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:163
+#: src/olympia/devhub/templates/devhub/versions/list.html:170
 msgid "Listed versions"
 msgstr "Skráðar útgáfur"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:170
+#: src/olympia/devhub/templates/devhub/versions/list.html:177
 msgid "Currently on AMO"
 msgstr "Núna á AMO"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:172 src/olympia/devhub/templates/devhub/versions/list.html:190 src/olympia/devhub/templates/devhub/versions/list.html:227
+#: src/olympia/devhub/templates/devhub/versions/list.html:179 src/olympia/devhub/templates/devhub/versions/list.html:197 src/olympia/devhub/templates/devhub/versions/list.html:234
 msgid "Validation"
 msgstr "Fullgilding"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:173 src/olympia/devhub/templates/devhub/versions/list.html:191 src/olympia/devhub/templates/devhub/versions/list.html:228
+#: src/olympia/devhub/templates/devhub/versions/list.html:180 src/olympia/devhub/templates/devhub/versions/list.html:198 src/olympia/devhub/templates/devhub/versions/list.html:235
 msgid "Delete/Disable"
 msgstr "Eyða/Gera óvirkt"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:188
+#: src/olympia/devhub/templates/devhub/versions/list.html:195
 msgid "Next version of this add-on"
 msgstr "Næsta útgáfa þessarar viðbótar"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:199
+#: src/olympia/devhub/templates/devhub/versions/list.html:206
 msgid "Other versions"
 msgstr "Aðrar útgáfur"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:201
+#: src/olympia/devhub/templates/devhub/versions/list.html:208
 msgid "All versions"
 msgstr "Allar útgáfur"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:209
+#: src/olympia/devhub/templates/devhub/versions/list.html:216
 msgid "Rollback to a previous version"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:215
+#: src/olympia/devhub/templates/devhub/versions/list.html:222
 msgid "Upload a New Version"
 msgstr "Senda inn nýja útgáfu"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:265
+#: src/olympia/devhub/templates/devhub/versions/list.html:272
 #, python-brace-format
 msgid "Delete Version {version}"
 msgstr "Eyða útgáfu {version}"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:267
+#: src/olympia/devhub/templates/devhub/versions/list.html:274
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:268
+#: src/olympia/devhub/templates/devhub/versions/list.html:275
 msgid "Deleting this version will permanently delete:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:273
+#: src/olympia/devhub/templates/devhub/versions/list.html:280
 msgid "Important:"
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:274
+#: src/olympia/devhub/templates/devhub/versions/list.html:281
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:281
+#: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Are you sure you wish to delete this version?"
 msgstr "Ertu viss um að þú viljir eyða þessari útgáfu?"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:286
+#: src/olympia/devhub/templates/devhub/versions/list.html:293
 msgid "Delete Version"
 msgstr "Eyða útgáfu"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:288
+#: src/olympia/devhub/templates/devhub/versions/list.html:295
 msgid "Disable Version"
 msgstr "Gera útgáfu óvirka"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:295
+#: src/olympia/devhub/templates/devhub/versions/list.html:302
 #, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:311 src/olympia/devhub/templates/devhub/versions/list.html:337
+#: src/olympia/devhub/templates/devhub/versions/list.html:318 src/olympia/devhub/templates/devhub/versions/list.html:344
 msgid "Hide Add-on"
 msgstr "Fela viðbót"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:314
+#: src/olympia/devhub/templates/devhub/versions/list.html:321
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:321
+#: src/olympia/devhub/templates/devhub/versions/list.html:328
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:328
+#: src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Ertu viss um að vilja fela viðbótina þína?"
 
@@ -4440,55 +4457,55 @@ msgstr[1] "{0} aðvaranir"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:795
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:800
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "Lokaðu á rekjara og njósnaauglýsingar sem fylgjast með ferðum þínum á vefnum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:888
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:893
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "Njóttu fallegrar nýrrar síðu með sérsniðnum bakgrunni, staðbundnum veðurupplýsingum og fleiru."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:798
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:803
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "Áherslulitaðu einhvern texta, hægrismelltu og þýddu samstundis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:882
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:887
 msgid "Perform reverse image searches from an array of engines."
 msgstr "Framkvæmdu leit út frá myndum á fjöldanum öllum af leitarvélum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:843
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:848
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "Útilokun auglýsinga og verndun á friðhelgi einkalífs. Einföld uppsetning gerir þér kleift að stýra hvaða auglýsingar þú sérð og hvernig sé fylgst með þér á internetinu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:846
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:851
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Ertu með heilt tonn af opnum flipum? Sýslaðu með þá á hreinlegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:831
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:836
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "Stöðvaðu njósnir Facebook-rekjaranna. Einangraðu Facebook-auðkennin yfir í sérstakan “gám” til að koma í veg fyrir að Facebook fylgist með þér út um mestallan veraldarvefinn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:885
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:890
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "Einfaldaðu leit mða því að áherslulita texta á hvaða vefsíðu sem er og leita að viðkomandi texta á fjöldanum öllum af leitarvélum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:822
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:827
 msgid "Instant weather updates from around the world."
 msgstr "Fáðu í einni svipan uppfærðar veðurspár úti um allan heim."
 
@@ -4499,13 +4516,13 @@ msgstr "Veldu síðuna sem þú sérð í hvert skipti sem þú opnar nýjan fli
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:801
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:806
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "Sástu áhugaverða mynd á vefnum og vilt vita meira um hana? Prófaðu þetta myndaleitarverkfæri."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:804
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:809
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "Sæktu myndskeið á einfaldan hátt. Virkar með YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope og hundruðum annarra vefsvæða með myndskeiðum."
 
@@ -4521,15 +4538,14 @@ msgstr "Sýsl með lykilorð gert einfalt. Samstilltu allar innskráningarnar þ
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:810
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:815
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "Afkastamikill auglýsingabani sem er léttur í keyrslu. uBlock Origin keyrir í gegn þúsundir af efnissíum án þess að éta upp helling af minni."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:816
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Njóttu úrvals nýrra eiginleika á YouTube, eins og kvikmyndasýningarham, útilokun auglýsinga, stýringum fyrir sjálfvirka afspilun og fleira."
+#: src/olympia/discovery/strings.jinja2:47
+msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -4568,13 +4584,13 @@ msgstr "Komdu í veg fyrir að illgjörn vefsvæði noti tölvuna þína til að
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:744
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:749
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "Fáðu aðstoð við málfræði hvar sem þú skrifar á vefnum - á samfélagsmiðlum, í tölvupósti, í skjölum og víðar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:828
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:833
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "Birta klukkuna eins og hún er núna á ýmsum stöðum í heiminum í stöðustiku Firefox."
 
@@ -4595,7 +4611,7 @@ msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata me
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:939
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:944
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "Dekktu síðuna í kringum myndspilara til að hafa einbeitinguna í lagi."
 
@@ -4612,13 +4628,13 @@ msgstr "Finnst ekki síðan sem þú ert að leita að? Leitaðu í útgáfum he
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:807
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:812
 msgid "Hover over an image to magnify it."
 msgstr "Láttu bendilinn svífa yfir mynd til að stækka hana."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:879
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:884
 msgid "Automatically erase cookies after you close a tab."
 msgstr "Eyddu vefkökum sjálfvirkt eftir að þú lokar flipum."
 
@@ -4629,25 +4645,25 @@ msgstr "Einföld leið til að stilla stærð hvaða texta sem er – eða jafnv
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:840
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:845
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "Stöðvaðu rekjara og fáðu nánari upplýsingar um þá."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:900
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:905
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "Lágmarkaðu stafrænu slóðina þína. Láttu Firefox gleyma vefsíðugögnum eins og vefkökum og gögnum í staðbundinni geymslu, en aðeins fyrir þau lén sem þú velur."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:870
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:875
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "Það er óþarft að skrifa það sama aftur og aftur. Vistaðu texta sem oft er sleginn inn til að líma hvenær sem er."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:837
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:842
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "Fáðu meira skjápláss með því að fjarlægja auglýsingar úr vefpósthólfinu þínu."
 
@@ -4658,26 +4674,26 @@ msgstr "Sýslaðu með opnu flipana þina á hreinlegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:942
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:947
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "Forðastu lúmska rekjara og ýmsar takmarkanir. Dulbúðu flakkið þitt með því að fela auðkenni vafrans þíns og stýrikerfisins."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:834
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:839
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "Endurhlaða flipa sjálfkrafa á grundvelli tímabila sem þú stillir."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:1008
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:1013
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr ""
 "Haltu hinum ýmsu hlutum stafræna lífsins þíns aðskildum með flipum í mismunandi litum og misjöfnum reglum fyrir vefkökur. Nuna er þetta samþætt við Mozilla VPN til að fá aukalag af gagnaleynd."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:819
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:824
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "Fáðu viðbótar-varnarlag gegn njósnum á meðan þú vafrar um netið."
 
@@ -4688,7 +4704,7 @@ msgstr "Lestu ePub-rafbókaskrár beint inni í Firefox - stækkaðu letur, brey
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:936
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:941
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "Spilaðu YouTube myndskeið sjálfgefið í hæstu gæðum, slökktu á athugasemdum og fleira."
 
@@ -4709,7 +4725,7 @@ msgstr "Bættu áhorf þitt með því að stilla hraða myndskeiða og fleira."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:825
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:830
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "Bættu dulkóðuðu öryggi við öll þau vefsvæði sem styðja HTTPS. Vafraðu á öruggan hátt."
 
@@ -4755,13 +4771,13 @@ msgstr "Tilgreindu sérsniðna upphafssíðu fyrir nýju flipana þína."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:867
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:872
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "Umbreyttu öllum opnum flipum þínum í lista til að stýra þeim auðveldlega og flýta fyrir Firefox."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:789
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:794
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "Skoteheld umsýsla niðurhals. Skoðaðu ástand þess sem þú ert að sækja með hjálp stöðustiku, síðu með niðurhalsferli og fleira."
 
@@ -4792,7 +4808,7 @@ msgstr "Gerðu vefinn auðveldari fyrir augun með því að dekkja skjáinn."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:786
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:791
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "Lokaðu sjálfgefið fyrir alla sprettiglugga og ákveddu síðan hverja þeirra þú vilt opna."
 
@@ -4823,7 +4839,7 @@ msgstr "Bættu upplifun þína af lestri. Gerðu textann sem þú ert að lesa s
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:861
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:866
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "Hægrismelltu og dragðu tengla sem þú vilt opna í nýjum flipa."
 
@@ -4864,7 +4880,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:783
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:788
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "Gerðu YouTube að þínu. Spilaðu myndskeið í sprettglugga, horfðu bara á auglýsingar í myndskeiðum sem þú ert í áskrift að, taktu skjámyndir af myndskeiðum, og margt fleira."
 
@@ -4945,7 +4961,7 @@ msgstr "Athugaðu eftirlætis RSS-streymin þín, öll á einni síðu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:780
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:785
 msgid "Enable night mode for a better viewing experience."
 msgstr "Virkjaðu næturham tl að fara betur með sjónina."
 
@@ -5001,13 +5017,13 @@ msgstr "Búðu til almennar og vefsvæða-sértækar athugasemdir til að skoða
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:759
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:764
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "Skrun eins og í síma fyrir skjáborðið þitt. Er með „grípa-og-draga“ stíl músarhreyfingar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:930
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:935
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Hreinsaðu skyndiminni vafrans með einum smelli eða lykli."
 
@@ -5018,13 +5034,13 @@ msgstr "Áherslulita texta á vefsíðum til að vista og lesa síðar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:756
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:761
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "Njóttu tónlistar frá meira en 30.000 netútvarpsstöðvum út um allan heim."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:927
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:932
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "Sparaðu bandbreidd með því að streyma einungis hljóðinu frá YouTube-myndskeiðum."
 
@@ -5035,13 +5051,13 @@ msgstr "Breyttu orðum í fallegar fyrirsagnir og myndatexta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:777
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:782
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "Farðu sjálfkrafa í örugga útgáfu vefsvæðis ef hún er tiltæk."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:858
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:863
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "Eyddu vafurferlinum þínum. Tilgreindu sérsniðinn fjölda daga til að geyma vafurferilinn áður en hann er sjálfkrafa hreinsaður."
 
@@ -5067,7 +5083,7 @@ msgstr "Leitaðu í laumi með bara einum smelli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:891
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:896
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "Hættu að láta ræna flipunum þínum. Komdu í veg fyrir að tenglar sem þú smellir á taki völdin yfir flipanum sem þú ert á og hlaði inn efni sem þú baðst ekki um."
 
@@ -5178,13 +5194,13 @@ msgstr "Vistaðu eftirlætisefnið þitt af vefnum. Klipptu út efni á borð vi
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:894
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:899
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "Leyfðu vefefni einungis að keyra frá vefsvæðum sem þú treystir. Vafraðu öruggt."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:765
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:770
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "Vertu með fulla stjórn á þeim vefkökum sem þú hefur safnað á meðan vafri stendur."
 
@@ -5195,7 +5211,7 @@ msgstr "Eyða vafraferli sjálfkrafa fyrir vefsvæði sem þú velur."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:855
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:860
 msgid "Password-protect your personal bookmarks."
 msgstr "Verðu einkabókamerkin þín með lykilorði."
 
@@ -5221,7 +5237,7 @@ msgstr "Nýttu þér getuna til að hlaða niður myndskeiðum og/eða hljóði 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:750
+#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:755
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "Sjáðu hvar netþjónar vefsvæða eru staðsettir á hnettinum. Vertu upplýst/ur á vafrinu."
 
@@ -5242,13 +5258,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:921
+#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:926
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "Aðlagaðu hjóðstillingar vafrans á einstaklega skýran máta."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:747
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:752
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "Verðu þig gegn laumulegustu rekjurunum."
 
@@ -5274,7 +5290,7 @@ msgstr "Með einum músarsmelli geturðu horft á myndskeið á öllum skjánum 
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:897
+#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:902
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Hættu að eyða dýrmætu minni með óvirkum flipum."
 
@@ -5295,19 +5311,19 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:741
+#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:746
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "Lestu skýrar og auðveldar. Fjarlægðu truflanir í kringum texta á vefsíðum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:738
+#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:743
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "Lokaðu á auglýsingar og fáðu betri varnir gegn spilliforritum og auglýsingarekjurum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:918
+#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:923
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "Nýttu þér stuðning við niðurhal á mörgum örgjörvaþráðum. Greindu sjálfvirkt mismunandi tegundir niðurhals í boði."
 
@@ -5328,19 +5344,19 @@ msgstr "Njóttu kostanna við umsýslu sterkra lykilorða."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:768
+#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:773
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "Sérsníddu ljósa og dökka litatóna til að gera vefsíður þægilegri fyrir augun."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:915
+#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:920
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "Lokaðu fyrir truflandi vefsvæði. Þú skráir einfaldlega þau vefsvæði sem þú vilt að viðbótin loki á. Agi á augnabliki!"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:762
+#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:767
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "Breyttu því hvernig vafrinn þinn lítur út. Útbúðu þín eigin þemu á einfaldan máta til að gera Firefox eins útlítandi og þig lystir."
 
@@ -5361,13 +5377,13 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:735
+#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:740
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "Gerðu vefinn dökkann eða veldu sérsniðið litastef til að klæðskerasauma internetið eins og þú vilt hafa það."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:954
+#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:959
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "Fáðu ítarlegri leitarsíðu í Firefox fyrir Android."
 
@@ -5393,7 +5409,7 @@ msgstr "Eyddu vefkökum, vafurferli og skrám í skyndiminni með einum smelli."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:849
+#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:854
 msgid "Remove tracking elements from web links."
 msgstr "Fjarlægðu rakningareinindi úr veftenglum."
 
@@ -5404,13 +5420,13 @@ msgstr "Fáðu sjálfvirkt útfylltar bókamerkjamöppur fyrir RSS-streymi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:912
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:917
 msgid "Easily organize tons of open tabs."
 msgstr "Skipuleggðu auðveldlega heilt tonn af opnum flipum."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:852
+#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:857
 msgid "Create and customize tab groups."
 msgstr "Búðu til og sérsníddu flipahópa."
 
@@ -5426,13 +5442,13 @@ msgstr "Lokar á allar auglýsingar - myndskeið, sprettglugga, borða og fleira
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:906
+#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:911
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "Horfðu á streymisefni hvar sem er með vinum og fjölskyldu."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:948
+#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:953
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "Slepptu kostuðum hlutum Youtube-myndskeiða."
 
@@ -5443,31 +5459,31 @@ msgstr "Láttu lesa upp af vefsíðum fyrir þig. Fleiri en 40 tungumál studd."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:945
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:950
 msgid "Double-click any word to instantly see its definition."
 msgstr "Tvísmelltu á eitthvað orð til að sjá skilgreiningu þess samstundis."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:987
+#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:992
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "Vista marga flipa sem þægileg bókamerki."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:990
+#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:995
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "Skipuleggðu flipa og bókamerki Firefox á snyrtilegu hliðarspjaldi."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:969
+#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:974
 msgid "Thousands of GIFs at your fingertips."
 msgstr "Þúsundir GIF-hreyfimynda innan seilingar."
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:975
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:980
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "Auðveldasta leiðin til að stjórna YouTube-áskriftum."
 
@@ -5478,7 +5494,7 @@ msgstr "Fáðu þér skrunstikuna sem þú hefur alltaf óskað þér fyrir mús
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:984
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:989
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "Vistaðu og endurheimtu flipa. Inniheldur sjálfvirka vistun og skýjasamstillingu."
 
@@ -5613,564 +5629,574 @@ msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new fe
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:732
+#: src/olympia/discovery/strings.jinja2:737
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "Sum vefsvæði eiga í erfiðleikum með að spila myndskeið á Android. Hér er lausn á því."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:753
+#: src/olympia/discovery/strings.jinja2:758
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:771
+#: src/olympia/discovery/strings.jinja2:776
 msgid "Save images easily — just grab them from your current tab."
 msgstr "Vistaðu myndir auðveldlega - gríptu þær bara af viðkomandi flipa."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:774
+#: src/olympia/discovery/strings.jinja2:779
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:792
+#: src/olympia/discovery/strings.jinja2:797
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "Lestu ePub-rafbókaskrár beint inni í Firefox - stækkaðu letur, breyttu stærð á síðum, auk annars."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:813
+#: src/olympia/discovery/strings.jinja2:818
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "Sérsníddu músarbendingar. Uppgötvaðu nýjar leiðir til að rata með meira en 50 uppsetningum."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:864
+#: src/olympia/discovery/strings.jinja2:821
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Njóttu úrvals nýrra eiginleika á YouTube, eins og kvikmyndasýningarham, útilokun auglýsinga, stýringum fyrir sjálfvirka afspilun og fleira."
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:869
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "Sérsníddu útlit hvaða vefsíðu sem er. Breyttu litum, bakgrunni og fleira."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:873
+#: src/olympia/discovery/strings.jinja2:878
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "Notaðu músarbendingar til að loka flipum, rata um vefsíður og fleira."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:876
+#: src/olympia/discovery/strings.jinja2:881
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "Einföld leið til að stilla stærð hvaða texta sem er – eða jafnvel stækka síðuna sjálfa."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:903
+#: src/olympia/discovery/strings.jinja2:908
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "Sjáðu smámyndir af vefsíðum við hlið leitarniðurstaðna."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:909
+#: src/olympia/discovery/strings.jinja2:914
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "Vistaðu heilar vefsíður – þar á meðal myndir og stíl – sem eina HTML-skrá."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:924
+#: src/olympia/discovery/strings.jinja2:929
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:933
+#: src/olympia/discovery/strings.jinja2:938
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:951
+#: src/olympia/discovery/strings.jinja2:956
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "Lesið upphátt af vefsíðum. Fleiri en 40 tungumál studd."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:957
+#: src/olympia/discovery/strings.jinja2:962
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "Fjarlægir þessar löngu rakningarbreytur úr slóðum í leitarniðurstöðum Google."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:960
+#: src/olympia/discovery/strings.jinja2:965
 msgid "Get weather updates directly from Firefox."
 msgstr "Fáðu veðrið beint úr Firefox."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:963
+#: src/olympia/discovery/strings.jinja2:968
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "Stýrðu tímanum þínum betur með vafraklukku sem skráir tímabil við vinnu."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:966
+#: src/olympia/discovery/strings.jinja2:971
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "Leiðist þér þetta \"Myndskeið í bið. Halda áfram að horfa?\"? Hlustaðu ótruflað á tónlist af YouTube."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:972
+#: src/olympia/discovery/strings.jinja2:977
 msgid "Begone, annoying cookie warnings!"
 msgstr "Farnar, búnar, bless, þessar leiðinda aðvaranir útaf vefkökum!"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:978
+#: src/olympia/discovery/strings.jinja2:983
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "Farðu til baka í einfaldari tíma - þegar mikilvægustu leitarniðurstöðurnar komu fyrir ofan allar auglýsingar (samhæft við Google og Bing leitarvélarnar)."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:981
+#: src/olympia/discovery/strings.jinja2:986
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:993
+#: src/olympia/discovery/strings.jinja2:998
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:996
+#: src/olympia/discovery/strings.jinja2:1001
 msgid "Instantly translate any selected text on web pages."
 msgstr "Þýða í hvelli valinn texta á vefsíðum."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:999
+#: src/olympia/discovery/strings.jinja2:1004
 msgid "Make Firefox change colors based on time of day."
 msgstr "Láttu Firefox breyta um lit eftir tíma dagsins."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1002
+#: src/olympia/discovery/strings.jinja2:1007
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "Útrýmdu truflunum af YouTube. Fjarlægðu tillögur um tengt efni og það sem mælt er með, auk athugasemda og fleira."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1005
+#: src/olympia/discovery/strings.jinja2:1010
 msgid "Take emojis with you everywhere on the web."
 msgstr "Taktu emoji-táknin með þér hvert sem er á vefnum."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1011
+#: src/olympia/discovery/strings.jinja2:1016
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "Settu takmarkanir á vefi sem eru afvegaleiðandi tímaþjófar."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1014
+#: src/olympia/discovery/strings.jinja2:1019
 msgid "Remove clutter from your Twitter."
 msgstr "Fjarlægðu óþarfa úr Twitter."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1017
+#: src/olympia/discovery/strings.jinja2:1022
 msgid "Customize YouTube to taste."
 msgstr "Sérsníddu YouTube að þínum þörfum."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1020
+#: src/olympia/discovery/strings.jinja2:1025
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "Eyddu vafurgögnum beint úr verkfærastiku vafrans."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1023
+#: src/olympia/discovery/strings.jinja2:1028
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "Fáðu sjálfvirkar uppfærslur fyrir RSS-streymi beint í bókamerkjamöppurnar þínar."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1026
+#: src/olympia/discovery/strings.jinja2:1031
 msgid "Effective blocker against all types of ads."
 msgstr "Öflug vörn gegn öllum tegundum auglýsinga."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1029
+#: src/olympia/discovery/strings.jinja2:1034
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "Massa-niðurhalsstýring einfaldar öfgafullt niðurhal."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1032
+#: src/olympia/discovery/strings.jinja2:1037
 msgid "Remove ads & receive better protection against malware."
 msgstr "Lokaðu á auglýsingar og fáðu betri varnir gegn spilliforritum."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
+#: src/olympia/discovery/strings.jinja2:1040
 msgid "Remove formatting from copied Clipboard text."
 msgstr "Eyða sniði af texta sem afritaður er á klippispjald."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1038
+#: src/olympia/discovery/strings.jinja2:1043
 msgid "Fingerprinting privacy protection."
 msgstr "Vörn gegn gerð fingrafara sem geta auðkennt þig."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1041
+#: src/olympia/discovery/strings.jinja2:1046
 msgid "Enhance your gaming experience on Steam."
 msgstr "Bættu upplifun þína af leikjaspilun á Steam."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1049
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1047
+#: src/olympia/discovery/strings.jinja2:1052
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "Þýddu vefsvæði í vafranum þínum án þess að nota skýið."
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1050
+#: src/olympia/discovery/strings.jinja2:1055
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1053
+#: src/olympia/discovery/strings.jinja2:1058
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1056
+#: src/olympia/discovery/strings.jinja2:1061
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1059
+#: src/olympia/discovery/strings.jinja2:1064
 msgid "Automatically handle GDPR consent forms."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1062
+#: src/olympia/discovery/strings.jinja2:1067
 msgid "Block malicious websites from port scanning."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1065
+#: src/olympia/discovery/strings.jinja2:1070
 msgid "Enhance your Twitch experience."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1068
+#: src/olympia/discovery/strings.jinja2:1073
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1071
+#: src/olympia/discovery/strings.jinja2:1076
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1074
+#: src/olympia/discovery/strings.jinja2:1079
 msgid "Change the color of Firefox to match every website you visit."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1077
+#: src/olympia/discovery/strings.jinja2:1082
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1080
+#: src/olympia/discovery/strings.jinja2:1085
 msgid "Pack a powerful thesaurus right inside Firefox."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1083
+#: src/olympia/discovery/strings.jinja2:1088
 msgid "Hover over web images to enlarge their appearance."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1091
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1089
+#: src/olympia/discovery/strings.jinja2:1094
 msgid "Track the time you spend on every website you visit."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1092
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1095
+#: src/olympia/discovery/strings.jinja2:1100
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1098
+#: src/olympia/discovery/strings.jinja2:1103
 msgid "Leave yourself little notes on any web page."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1106
 msgid "Serenity for your Reddit experience."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1104
+#: src/olympia/discovery/strings.jinja2:1109
 msgid "Save and organize anything you find on the web."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1107
+#: src/olympia/discovery/strings.jinja2:1112
 msgid "WebM video controls at your fingertips."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1110
+#: src/olympia/discovery/strings.jinja2:1115
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr ""
 
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1113
-msgid "Extensions are like apps for Firefox."
-msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1115
-msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
-msgstr "Þeir bæta eiginleikum við Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1117
-msgid "See all extensions"
-msgstr "Skoða alla forritsauka"
-
-#. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1119
-msgid "YouTube extensions"
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1118
+msgid "Remove distractions, change viewing options, alter playback speed & more."
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1121
+msgid "Extensions are like apps for Firefox."
+msgstr "Forritsaukar eru eins og smáforrit fyrir Firefox."
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1123
+msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
+msgstr "Þeir bæta eiginleikum við Firefox til að gera vafur hraðara, öruggara eða bara skemmtilegra."
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1125
+msgid "See all extensions"
+msgstr "Skoða alla forritsauka"
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1127
+msgid "Extension Starter Pack"
+msgstr ""
+
+#. editorial content for the secondary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1125 src/olympia/discovery/strings.jinja2:1127 src/olympia/discovery/strings.jinja2:1129
+#: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
 msgid "See staff picks"
 msgstr "Skoðaðu úrval starfsfólks"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1132
+#: src/olympia/discovery/strings.jinja2:1140
 msgid "Recommended extensions"
 msgstr "Forritsaukar sem mælt er með"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1134
+#: src/olympia/discovery/strings.jinja2:1142
 msgid "See more recommended extensions"
 msgstr "Sjá fleiri forritsauka sem mælt er með"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1137
+#: src/olympia/discovery/strings.jinja2:1145
 msgid "Popular themes"
 msgstr "Vinsæl þemu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1139
+#: src/olympia/discovery/strings.jinja2:1147
 msgid "See more popular themes"
 msgstr "Sjá fleiri vinsæl þemu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1142
+#: src/olympia/discovery/strings.jinja2:1150
 msgid "Privacy & security"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1144
+#: src/olympia/discovery/strings.jinja2:1152
 msgid "See more privacy staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1147
+#: src/olympia/discovery/strings.jinja2:1155
 msgid "Popular extensions"
 msgstr "Vinsælir forritsaukar"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1149
+#: src/olympia/discovery/strings.jinja2:1157
 msgid "See more popular extensions"
 msgstr "Sjá fleiri vinsæla forritsauka"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1152
+#: src/olympia/discovery/strings.jinja2:1160
 msgid "Recommended themes"
 msgstr "Þemu sem mælt er með"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1154
+#: src/olympia/discovery/strings.jinja2:1162
 msgid "See more recommended themes"
 msgstr "Sjá fleiri þemu sem mælt er með"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1157
+#: src/olympia/discovery/strings.jinja2:1165
 msgid "Strong password managers"
 msgstr "Stýringar fyrir sterk lykilorð"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1159
+#: src/olympia/discovery/strings.jinja2:1167
 msgid "See more password manager staff picks"
 msgstr "Skoðaðu fleiri lykilorðastjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1162
+#: src/olympia/discovery/strings.jinja2:1170
 msgid "Translation tools"
 msgstr "Þýðingatól"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1164
+#: src/olympia/discovery/strings.jinja2:1172
 msgid "See more translation tool staff picks"
 msgstr "Skoðaðu fleiri þýðingatól sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1167
+#: src/olympia/discovery/strings.jinja2:1175
 msgid "Social streaming"
 msgstr "Samfélagsmiðlastreymi"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1169
+#: src/olympia/discovery/strings.jinja2:1177
 msgid "See more social streaming staff picks"
 msgstr "Skoðaðu fleiri samfélagsmiðlastreymi sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1172
+#: src/olympia/discovery/strings.jinja2:1180
 msgid "Tab managers"
 msgstr "Flipastýringar"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1174
+#: src/olympia/discovery/strings.jinja2:1182
 msgid "See more tab management staff picks"
 msgstr "Skoðaðu fleiri tól til umsýslu flipa sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1177
+#: src/olympia/discovery/strings.jinja2:1185
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "Forritsaukar merktir “{tag}”"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1179
+#: src/olympia/discovery/strings.jinja2:1187
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "Sjá fleiri forritsauka merkta með \"{tag}\""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1182
+#: src/olympia/discovery/strings.jinja2:1190
 msgid "Elite ad blockers"
 msgstr "Auglýsingabanar fyrir elítuna"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1184
+#: src/olympia/discovery/strings.jinja2:1192
 msgid "See more ad blocker staff picks"
 msgstr "Skoðaðu fleiri auglýsingabana sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1187
+#: src/olympia/discovery/strings.jinja2:1195
 msgid "YouTube customization"
 msgstr "Gerðu YouTube að þínu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1189
+#: src/olympia/discovery/strings.jinja2:1197
 msgid "See more YouTube extension staff picks"
 msgstr "Skoðaðu fleiri YouTube-forritsauka sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1192
+#: src/olympia/discovery/strings.jinja2:1200
 msgid "Trending themes"
 msgstr "Þemu í umræðunni"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1194
+#: src/olympia/discovery/strings.jinja2:1202
 msgid "See more trending themes"
 msgstr "Sjá fleiri umrædd þemu"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1197 src/olympia/discovery/strings.jinja2:1242
+#: src/olympia/discovery/strings.jinja2:1205 src/olympia/discovery/strings.jinja2:1250
 msgid "Top rated themes"
 msgstr "Þemu með hæstu einkunn"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1199 src/olympia/discovery/strings.jinja2:1244
+#: src/olympia/discovery/strings.jinja2:1207 src/olympia/discovery/strings.jinja2:1252
 msgid "See more top rated themes"
 msgstr "Sjá fleiri þemu með hæstu einkunn"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1202
+#: src/olympia/discovery/strings.jinja2:1210
 msgid "Trending extensions"
 msgstr "Forritsaukar á uppleið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1204
+#: src/olympia/discovery/strings.jinja2:1212
 msgid "See more trending extensions"
 msgstr "Sjá fleiri forritsauka á uppleið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1207
+#: src/olympia/discovery/strings.jinja2:1215
 msgid "Steam enhancers"
 msgstr "Til að bæta Steam"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1209
+#: src/olympia/discovery/strings.jinja2:1217
 msgid "See more Steam staff picks"
 msgstr "Skoðaðu fleira tengt Steam sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1212
+#: src/olympia/discovery/strings.jinja2:1220
 msgid "Creativity extensions"
 msgstr "Forritsaukar fyrir sköpunargleði"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1214
+#: src/olympia/discovery/strings.jinja2:1222
 msgid "See more creativity staff picks"
 msgstr "Skoðaðu fleiri sköpunartól sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1217
+#: src/olympia/discovery/strings.jinja2:1225
 msgid "Social media extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1219
+#: src/olympia/discovery/strings.jinja2:1227
 msgid "See more social media staff picks"
 msgstr "Skoðaðu fleira samfélagsmiðladót sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1222
+#: src/olympia/discovery/strings.jinja2:1230
 msgid "Top download managers"
 msgstr "Helstu niðurhalsstjórar"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1224
+#: src/olympia/discovery/strings.jinja2:1232
 msgid "See more download manager staff picks"
 msgstr "Skoðaðu fleiri niðurhalsstjóra sem starfsfólk hefur valið"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1227
+#: src/olympia/discovery/strings.jinja2:1235
 msgid "Accessibility extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1229
+#: src/olympia/discovery/strings.jinja2:1237
 msgid "See more accessibility staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1232
+#: src/olympia/discovery/strings.jinja2:1240
 msgid "Extension starter pack"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1234
+#: src/olympia/discovery/strings.jinja2:1242
 msgid "See more starter extension staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1237
+#: src/olympia/discovery/strings.jinja2:1245
 msgid "Twitch extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1239
+#: src/olympia/discovery/strings.jinja2:1247
 msgid "See more Twitch extension staff picks"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1247
+#: src/olympia/discovery/strings.jinja2:1255
 msgid "Gaming & media extensions"
 msgstr ""
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1249
+#: src/olympia/discovery/strings.jinja2:1257
 msgid "See more staff picks"
 msgstr ""
 
@@ -6425,26 +6451,26 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
-#: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
+#: src/olympia/search/filters.py:45 src/olympia/search/filters.py:58 src/olympia/search/filters.py:91 src/olympia/search/filters.py:166 src/olympia/search/filters.py:206
+#: src/olympia/search/filters.py:352 src/olympia/search/filters.py:457
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "Ógild \"%s\" færibreyta."
 
-#: src/olympia/search/filters.py:214 src/olympia/search/filters.py:334
+#: src/olympia/search/filters.py:210 src/olympia/search/filters.py:330
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Ógild samsetning á \"%s\" og \"%s\" færibreytum."
 
-#: src/olympia/search/filters.py:276
+#: src/olympia/search/filters.py:272
 msgid "Return To AMO is currently disabled"
 msgstr ""
 
-#: src/olympia/search/filters.py:285
+#: src/olympia/search/filters.py:281
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:970
+#: src/olympia/search/filters.py:942
 msgid "Maximum query length exceeded."
 msgstr ""
 
@@ -6470,19 +6496,19 @@ msgstr ""
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr ""
 
-#: src/olympia/signing/views.py:187
+#: src/olympia/signing/views.py:192
 msgid "Invalid Add-on ID in URL or package"
 msgstr ""
 
-#: src/olympia/signing/views.py:212
+#: src/olympia/signing/views.py:217
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""
 
-#: src/olympia/signing/views.py:227
+#: src/olympia/signing/views.py:232
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr ""
 
-#: src/olympia/signing/views.py:282
+#: src/olympia/signing/views.py:287
 msgid "No uploaded file for that add-on and version."
 msgstr ""
 
@@ -6777,35 +6803,99 @@ msgstr "Tilkynna villu"
 msgid "Review Guide"
 msgstr "Leiðbeiningar fyrir umsagnir"
 
-#: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
-msgid "Browsers"
-msgstr "Vafrar"
+#: src/olympia/templates/photon-footer.html:24
+msgid "Download"
+msgstr ""
 
 #: src/olympia/templates/photon-footer.html:27
-msgid "Desktop"
-msgstr "Vinnutölvur"
+msgid "Download Firefox"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:28
+msgid "Windows"
+msgstr ""
 
 #: src/olympia/templates/photon-footer.html:29
-msgid "Enterprise"
-msgstr "Fyrirtæki"
+msgid "macOS"
+msgstr ""
 
-#: src/olympia/templates/photon-footer.html:34
-msgid "Products"
-msgstr "Hugbúnaður"
+#: src/olympia/templates/photon-footer.html:30
+msgid "iOS"
+msgstr ""
 
-#: src/olympia/templates/photon-footer.html:52
+#: src/olympia/templates/photon-footer.html:31
+msgid "Android"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:32
+msgid "Linux"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:33
+msgid "All"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:39
+msgid "Latest Builds"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:42
+msgid "Nightly"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:43
+msgid "Beta"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:47
+msgid "Firefox for Business"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:56
+msgid "Community"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:59
+msgid "Connect"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:66
+msgid "Follow"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:69
+msgid "Instagram"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:70
+msgid "YouTube"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:71
+msgid "TikTok"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:72
+msgid "Bluesky"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:73
+msgid "Podcast"
+msgstr ""
+
+#: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
 msgstr "Friðhelgi"
 
-#: src/olympia/templates/photon-footer.html:53
+#: src/olympia/templates/photon-footer.html:79
 msgid "Cookies"
 msgstr "Vefkökur"
 
-#: src/olympia/templates/photon-footer.html:54
+#: src/olympia/templates/photon-footer.html:80
 msgid "Legal"
 msgstr "Lagalegur fyrirvari"
 
-#: src/olympia/templates/photon-footer.html:57
+#: src/olympia/templates/photon-footer.html:83
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
@@ -6886,21 +6976,21 @@ msgstr "Firefox-notandi {id}"
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr ""
 
-#: src/olympia/users/models.py:1066
+#: src/olympia/users/models.py:1104
 msgid "The email address used for your account is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1199
+#: src/olympia/users/models.py:1237
 msgid "The software or device you are using is not allowed for submissions."
 msgstr ""
 
-#: src/olympia/users/models.py:1325
+#: src/olympia/users/models.py:1363
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
 
-#: src/olympia/users/models.py:1339
+#: src/olympia/users/models.py:1377
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr ""
@@ -7004,33 +7094,33 @@ msgid ""
 "Mozilla Add-ons Team"
 msgstr ""
 
-#: src/olympia/versions/models.py:1130
+#: src/olympia/versions/models.py:1140
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "Hafnað eftir töf, áætlað fyrir %s"
 
-#: src/olympia/versions/models.py:1135
+#: src/olympia/versions/models.py:1145
 msgid "Auto-approved, Confirmed"
 msgstr "Samþykkt sjálfvirkt, staðfest"
 
-#: src/olympia/versions/models.py:1137
+#: src/olympia/versions/models.py:1147
 msgid "Auto-approved, not Confirmed"
 msgstr "Samþykkt sjálfvirkt, ekki staðfest"
 
-#: src/olympia/versions/models.py:1140
+#: src/olympia/versions/models.py:1150
 msgid "Approved, Manual"
 msgstr "Samþykkt, handvirkt"
 
-#: src/olympia/versions/models.py:1147
+#: src/olympia/versions/models.py:1157
 msgid "Disabled by Developer"
 msgstr "Gert óvirkt af hönnuðum"
 
-#: src/olympia/versions/models.py:1504
+#: src/olympia/versions/models.py:1516
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} og nýrra"
 
-#: src/olympia/versions/models.py:1631
+#: src/olympia/versions/models.py:1643
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Uppsetning frá staðsetningunni {origin} er ekki leyfileg."

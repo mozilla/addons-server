@@ -16,7 +16,6 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import Block, BlockType, BlockVersion
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.versions.compare import version_int
 from olympia.versions.management.commands.force_min_android_compatibility import (
     Command as ForceMinAndroidCompatibility,
@@ -83,7 +82,10 @@ class TestForceMinAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+                promoted_kwargs={
+                    'api_name': 'all_fenix_versions',
+                    'can_be_compatible_with_all_fenix_versions': True,
+                },
             ),
             addon_factory(
                 name='Line for all',
@@ -92,7 +94,10 @@ class TestForceMinAndroidCompatibility(TestCase):
                     'min_app_version': '48.0',
                     'max_app_version': '*',
                 },
-                promoted_id=PROMOTED_GROUP_CHOICES.LINE,
+                promoted_kwargs={
+                    'api_name': 'line',
+                    'can_be_compatible_with_all_fenix_versions': True,
+                },
             ),
         ]
         addons_to_ignore_not_in_csv = [addon_factory(name='Not in csv')]
@@ -225,7 +230,10 @@ class TestBumpMinAndroidCompatibility(TestCase):
                 'min_app_version': '119.0a1',
                 'max_app_version': '*',
             },
-            promoted_id=PROMOTED_GROUP_CHOICES.RECOMMENDED,
+            promoted_kwargs={
+                'api_name': 'all_fenix_versions',
+                'can_be_compatible_with_all_fenix_versions': True,
+            },
         )
 
         to_bump = [

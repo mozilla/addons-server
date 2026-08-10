@@ -13,7 +13,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "Generated-By: Pontoon\n"
 
-#: src/olympia/abuse/actions.py:234
+#: src/olympia/abuse/actions.py:275
 #, python-brace-format
 msgid "Mozilla Add-ons: {} [{}]"
 msgstr "Mozilla 附加元件站：{} [{}]"
@@ -34,11 +34,11 @@ msgstr "申訴原因"
 msgid "Please explain why you believe that this decision was made in error, and/or does not align with the applicable policy or law."
 msgstr "請說明您認為此決定有誤，或是與審查規則、法律不符的原因。"
 
-#: src/olympia/abuse/models.py:1122
+#: src/olympia/abuse/models.py:1125
 msgid "User profile"
 msgstr "使用者資料"
 
-#: src/olympia/abuse/models.py:1500
+#: src/olympia/abuse/models.py:1542
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" for {}"
@@ -236,15 +236,15 @@ msgstr "不允許加入鏈結。"
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1039
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1045
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
 msgid "Images cannot be animated."
 msgstr "不能使用動畫圖片。"
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1054
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "請使用小於 %dMB 的圖片。"
@@ -253,7 +253,7 @@ msgstr "請使用小於 %dMB 的圖片。"
 msgid "Need help?"
 msgstr "需要幫助嗎？"
 
-#: src/olympia/accounts/views.py:773
+#: src/olympia/accounts/views.py:774
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "通知 [%s] 不存在"
@@ -262,11 +262,11 @@ msgstr "通知 [%s] 不存在"
 msgid "Add-ons Review Team"
 msgstr "附加元件審核團隊"
 
-#: src/olympia/activity/models.py:771
+#: src/olympia/activity/models.py:777
 msgid "Review"
 msgstr "評論"
 
-#: src/olympia/activity/models.py:849 src/olympia/devhub/templates/devhub/versions/list.html:41
+#: src/olympia/activity/models.py:855 src/olympia/devhub/templates/devhub/versions/list.html:47
 #, python-brace-format
 msgid "Version {0}"
 msgid_plural "Versions {0}"
@@ -297,7 +297,7 @@ msgstr "已達單一應用程式的最大分類數量（{MAX_CATEGORIES}）"
 msgid "The \"other\" category cannot be combined with another category"
 msgstr "「其他」分類不能跟其他分類合併選擇"
 
-#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1300
+#: src/olympia/addons/fields.py:76 src/olympia/addons/serializers.py:1297
 msgid "Invalid category name."
 msgstr "分類名稱無效。"
 
@@ -306,11 +306,11 @@ msgstr "分類名稱無效。"
 msgid "URL domain must be one of [{domains}]."
 msgstr "網址當中的網域名稱，必需是 [ {domains} ] 其中的一個。"
 
-#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:312
+#: src/olympia/addons/fields.py:125 src/olympia/devhub/forms.py:311
 msgid "URL path for GitHub Sponsors must contain /sponsors/."
 msgstr "GitHub 贊助者的網址路徑必須包含 /sponsors/。"
 
-#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:315
+#: src/olympia/addons/fields.py:128 src/olympia/devhub/forms.py:314
 msgid "URLs must start with https://."
 msgstr "網址必須以 https:// 開頭。"
 
@@ -324,7 +324,7 @@ msgstr "slug={value} 的授權條款不存在。"
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的壓縮檔。"
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:802 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
 msgid "Invalid or broken archive."
 msgstr "無效或毀損的壓縮檔。"
 
@@ -350,7 +350,7 @@ msgstr "無法覆蓋安裝資訊檔當中，對此應用程式（%s）的相容�
 msgid "Images must be smaller than %dMB"
 msgstr "圖片必須小於 %dMB"
 
-#: src/olympia/addons/models.py:2354 src/olympia/addons/models.py:2433 src/olympia/constants/base.py:70
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
 msgid "Listed"
 msgstr "顯示"
 
@@ -366,7 +366,7 @@ msgstr "上傳無效。"
 msgid "File is already disabled."
 msgstr "已停用檔案。"
 
-#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:771
+#: src/olympia/addons/serializers.py:559 src/olympia/addons/views.py:765
 #, python-format
 msgid "The latest approved version of this %s add-on cannot be deleted because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
@@ -375,7 +375,7 @@ msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦�
 msgid "Listed versions cannot be submitted while add-on is disabled."
 msgstr "停用附加元件時，無法送出上架的版本。"
 
-#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:218
+#: src/olympia/addons/serializers.py:593 src/olympia/signing/views.py:223
 msgid "Listed versions cannot be submitted while add-on listing is rejected."
 msgstr "附加元件上架遭拒後，無法送審已上架的版本。"
 
@@ -384,7 +384,7 @@ msgstr "附加元件上架遭拒後，無法送審已上架的版本。"
 msgid "%(addon_type_plural)s are not supported by %(app_name)s"
 msgstr "%(app_name)s 不支援 %(addon_type_plural)s"
 
-#: src/olympia/addons/serializers.py:673 src/olympia/devhub/forms.py:956
+#: src/olympia/addons/serializers.py:673 src/olympia/devhub/forms.py:955
 #, python-format
 msgid "Invalid version range. For Firefox for Android, you may only pick a range that starts with version %(max)s or higher, or ends with lower than version %(min)s."
 msgstr "版本號碼範圍無效。對 Firefox for Android 來說，您僅能挑選從 %(max)s 或更新版本起，或結束於小於 %(min)s 或更舊的版本。"
@@ -401,28 +401,28 @@ msgstr "附加元件至少要列出一位作者。"
 msgid "Account not found."
 msgstr "找不到帳號。"
 
-#: src/olympia/addons/serializers.py:982 src/olympia/devhub/forms.py:456 src/olympia/devhub/forms.py:526
+#: src/olympia/addons/serializers.py:982 src/olympia/devhub/forms.py:455 src/olympia/devhub/forms.py:525
 msgid "An author can only be present once."
 msgstr "每位作者只可列出一次。"
 
-#: src/olympia/addons/serializers.py:993 src/olympia/devhub/forms.py:468
+#: src/olympia/addons/serializers.py:993 src/olympia/devhub/forms.py:467
 msgid "The account needs a display name before it can be added as an author."
 msgstr "帳號需要先加入顯示名稱，才能被設定為作者。"
 
-#: src/olympia/addons/serializers.py:1280
+#: src/olympia/addons/serializers.py:1277
 msgid "This slug cannot be used. Please choose another."
 msgstr "這個 slug 無法使用，請改用其他的 slug。"
 
-#: src/olympia/addons/serializers.py:1903
+#: src/olympia/addons/serializers.py:1898
 msgid "There is no rollback available in this channel."
 msgstr "此頻道沒有可退回版本。"
 
-#: src/olympia/addons/serializers.py:1913
+#: src/olympia/addons/serializers.py:1908
 #, python-format
 msgid "Rollback is only available for version %s in this channel."
 msgstr "此頻道僅可退回至版本 %s。"
 
-#: src/olympia/addons/serializers.py:1919
+#: src/olympia/addons/serializers.py:1914
 msgid "Only approved versions can be rolled back, except the most recent version."
 msgstr "除了最新的版本外，僅可退回至審核通過的版本。"
 
@@ -522,11 +522,11 @@ msgstr "上架新的附加元件"
 msgid "Submit a New Theme"
 msgstr "上架新的佈景主題"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:88 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "開發者交流中心"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2152
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
 msgid "Manage API Keys"
 msgstr "管理 API 金鑰"
 
@@ -558,15 +558,15 @@ msgstr "請輸入有效的 IPv4 或 IPv6 網段。"
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:255 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "我們正在進行網站維護，部分功能暫時無法使用。我們將盡快完全復原。"
 
-#: src/olympia/amo/utils.py:1216 src/olympia/bandwagon/serializers.py:97
+#: src/olympia/amo/utils.py:1193 src/olympia/bandwagon/serializers.py:97
 msgid "This name cannot be used."
 msgstr "無法使用此名稱。"
 
-#: src/olympia/amo/utils.py:1246
+#: src/olympia/amo/utils.py:1223
 msgid "URLs are not allowed."
 msgstr "不允許使用網址。"
 
@@ -796,14 +796,6 @@ msgstr "無法使用此自訂網址。"
 #: src/olympia/bandwagon/serializers.py:149
 msgid "This add-on already belongs to the collection"
 msgstr "此附加元件已加入收藏集"
-
-#: src/olympia/blocklist/models.py:195
-msgid "Blocked"
-msgstr "封鎖"
-
-#: src/olympia/blocklist/models.py:195
-msgid "Restricted"
-msgstr "受限"
 
 #: src/olympia/constants/activity.py:25
 #, python-brace-format
@@ -1322,7 +1314,7 @@ msgstr "SeaMonkey"
 msgid "Sunbird"
 msgstr "Sunbird"
 
-#: src/olympia/constants/applications.py:95 src/olympia/templates/photon-footer.html:28
+#: src/olympia/constants/applications.py:95
 msgid "Mobile"
 msgstr "Mobile"
 
@@ -1350,117 +1342,129 @@ msgstr "已拒絕上架內容"
 msgid "Disabled by Mozilla"
 msgstr "已被 Mozilla 停用"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1145
+#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "已刪除"
 
-#: src/olympia/constants/base.py:69
+#: src/olympia/constants/base.py:70
 msgid "Unlisted"
 msgstr "未上架"
 
-#: src/olympia/constants/base.py:89
+#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+msgid "Enterprise"
+msgstr "企業版"
+
+#: src/olympia/constants/base.py:93
 msgid "Signing API"
 msgstr "Signing API"
 
-#: src/olympia/constants/base.py:90
+#: src/olympia/constants/base.py:94
 msgid "Add-on API"
 msgstr "Add-on API"
 
-#: src/olympia/constants/base.py:91
+#: src/olympia/constants/base.py:95
 msgid "Automatically generated by AMO"
 msgstr "由 AMO 自動產生"
 
-#: src/olympia/constants/base.py:100
+#: src/olympia/constants/base.py:104
 msgid "Owner"
 msgstr "擁有者"
 
-#: src/olympia/constants/base.py:101 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "開發者"
 
-#: src/olympia/constants/base.py:109
+#: src/olympia/constants/base.py:113
 msgid "(Deleted)"
 msgstr "（已刪除）"
 
-#: src/olympia/constants/base.py:133
+#: src/olympia/constants/base.py:137
 msgid "Extension"
 msgstr "擴充套件"
 
-#: src/olympia/constants/base.py:134
+#: src/olympia/constants/base.py:138
 msgid "Deprecated Complete Theme"
 msgstr "過時的完整佈景主題"
 
-#: src/olympia/constants/base.py:135
+#: src/olympia/constants/base.py:139
 msgid "Dictionary"
 msgstr "字典檔"
 
-#: src/olympia/constants/base.py:136
+#: src/olympia/constants/base.py:140
 msgid "Deprecated Search Engine"
 msgstr "已淘汰的搜尋引擎"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:141
 msgid "Language Pack"
 msgstr "語言套件"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:142
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "已淘汰的語言套件（附加元件）"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Plugin"
 msgstr "已淘汰的外掛程式"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:144
 msgid "Deprecated LWT"
 msgstr "已棄用的 LWT"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:145
 msgid "Theme"
 msgstr "佈景主題"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:146
 msgid "Deprecated Site Permission"
 msgstr "棄用的網站權限"
 
-#: src/olympia/constants/base.py:147 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "擴充套件"
 
-#: src/olympia/constants/base.py:148
+#: src/olympia/constants/base.py:152
 msgid "Deprecated Complete Themes"
 msgstr "過時的完整佈景主題"
 
-#: src/olympia/constants/base.py:149
+#: src/olympia/constants/base.py:153
 msgid "Dictionaries"
 msgstr "字典"
 
-#: src/olympia/constants/base.py:150
+#: src/olympia/constants/base.py:154
 msgid "Deprecated Search Tools"
 msgstr "已淘汰的搜尋工具"
 
-#: src/olympia/constants/base.py:151
+#: src/olympia/constants/base.py:155
 msgid "Language Packs"
 msgstr "語言套件"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:156
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "已淘汰的語言套件（附加元件）"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Plugins"
 msgstr "已淘汰的外掛程式"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:158
 msgid "Deprecated LWTs"
 msgstr "已棄用的 LWTs"
 
-#: src/olympia/constants/base.py:155 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "佈景主題"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:160
 msgid "Deprecated Site Permissions"
 msgstr "棄用的網站權限"
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Blocked"
+msgstr "封鎖"
+
+#: src/olympia/constants/blocklist.py:30
+msgid "Restricted"
+msgstr "受限"
 
 #: src/olympia/constants/categories.py:68
 msgid "Alerts & Updates"
@@ -1527,7 +1531,7 @@ msgid "Download Firefox extensions that enhance photo, music and video experienc
 msgstr "下載能夠加強看照片、欣賞影音體驗的 Firefox 擴充套件。此分類包含能夠修改影音內容、以圖找圖等更多功能的擴充套件。"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1123
+#: src/olympia/constants/categories.py:142 src/olympia/discovery/strings.jinja2:1129
 msgid "Privacy & Security"
 msgstr "隱私權與安全性"
 
@@ -1575,7 +1579,7 @@ msgstr "網頁開發"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "下載包含網頁開發工具的 Firefox 擴充套件。此類別包含 GitHub、用戶代理切換、 Cookie 管理等功能的擴充套件。"
 
-#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:638 src/olympia/devhub/forms.py:1781
+#: src/olympia/constants/categories.py:198 src/olympia/constants/categories.py:290 src/olympia/devhub/forms.py:637 src/olympia/devhub/forms.py:1768
 msgid "Other"
 msgstr "其它"
 
@@ -1799,12 +1803,12 @@ msgstr "Creative Commons 姓名標示-相同方式分享 4.0"
 msgid "The Unlicense"
 msgstr "The Unlicense"
 
-#: src/olympia/devhub/feeds.py:52
+#: src/olympia/devhub/feeds.py:64
 #, python-format
 msgid "Recent Changes for %s"
 msgstr "%s 最近的更改"
 
-#: src/olympia/devhub/feeds.py:54
+#: src/olympia/devhub/feeds.py:66
 msgid "Recent Changes for My Add-ons"
 msgstr "我的附加元件最近的更改"
 
@@ -1813,271 +1817,272 @@ msgstr "我的附加元件最近的更改"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "{blog_link_open}AMO 已不再支援{blog_link_close} Open Search 附加元件。請改成建立{doc_link_open}搜尋引擎擴充套件{doc_link_close}。"
 
-#: src/olympia/devhub/file_validation_annotations.py:105
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr "目前不支援上傳 Manifest v3。{start_href}在此了解支援時間範圍{end_href}。"
-
-#: src/olympia/devhub/forms.py:101
+#: src/olympia/devhub/forms.py:99
 msgid "This slug is already in use. Please choose another."
 msgstr "這個 slug 已經有人使用。請嘗試另一個。"
 
-#: src/olympia/devhub/forms.py:104
+#: src/olympia/devhub/forms.py:102
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr "slug 不能為「%(slug)s」，請改用別的 slug。"
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/devhub/forms.py:222
+#: src/olympia/devhub/forms.py:220
 #, python-brace-format
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] "您僅可選擇 {0} 個分類。"
 
-#: src/olympia/devhub/forms.py:232
+#: src/olympia/devhub/forms.py:230
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "這個雜項類別不能與其他的類別結合。"
 
-#: src/olympia/devhub/forms.py:252 src/olympia/devhub/forms.py:1366
+#: src/olympia/devhub/forms.py:250 src/olympia/devhub/forms.py:1365
 msgid "There was an error uploading your image."
 msgstr "上傳您的圖片時發生錯誤。"
 
-#: src/olympia/devhub/forms.py:306
+#: src/olympia/devhub/forms.py:305
 #, python-format
 msgid "URL domain must be one of [%s]."
 msgstr "網址當中的網域名稱，必需是 [ %s ] 當中其中一個。"
 
-#: src/olympia/devhub/forms.py:322
+#: src/olympia/devhub/forms.py:321
 #, python-brace-format
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] "標籤多出 {0} 個了。"
 
-#: src/olympia/devhub/forms.py:341
+#: src/olympia/devhub/forms.py:340
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱、概要與敘述。您目前沒有填入 %s。"
 
-#: src/olympia/devhub/forms.py:429
+#: src/olympia/devhub/forms.py:428
 msgid "Users can not be added directly"
 msgstr "無法直接新增使用者"
 
-#: src/olympia/devhub/forms.py:503
+#: src/olympia/devhub/forms.py:502
 msgid "Must have at least one owner."
 msgstr "至少需要一位擁有者。"
 
-#: src/olympia/devhub/forms.py:505
+#: src/olympia/devhub/forms.py:504
 msgid "At least one author must be listed."
 msgstr "至少需要列出一位作者。"
 
-#: src/olympia/devhub/forms.py:553
+#: src/olympia/devhub/forms.py:552
 msgid "Slug incorrect."
 msgstr "Slug 不正確。"
 
-#: src/olympia/devhub/forms.py:588 src/olympia/devhub/templates/devhub/versions/edit.html:88
+#: src/olympia/devhub/forms.py:587 src/olympia/devhub/templates/devhub/versions/edit.html:88
 msgid "Details"
 msgstr "詳細資訊"
 
-#: src/olympia/devhub/forms.py:609
+#: src/olympia/devhub/forms.py:608
 msgid "What is your license's name?"
 msgstr "您的授權名稱？"
 
-#: src/olympia/devhub/forms.py:611 src/olympia/devhub/forms.py:658
+#: src/olympia/devhub/forms.py:610 src/olympia/devhub/forms.py:657
 msgid "Custom License"
 msgstr "自訂授權"
 
-#: src/olympia/devhub/forms.py:616
+#: src/olympia/devhub/forms.py:615
 msgid "Provide the text of your license."
 msgstr "敘述您的授權。"
 
-#: src/olympia/devhub/forms.py:666
+#: src/olympia/devhub/forms.py:665
 msgid "License text is required when choosing Other."
 msgstr "選擇其他時必須填寫授權內容。"
 
-#: src/olympia/devhub/forms.py:722
+#: src/olympia/devhub/forms.py:721
 msgid "This add-on has an End-User License Agreement"
 msgstr "此附加元件包含終端使用者授權合約"
 
-#: src/olympia/devhub/forms.py:727
+#: src/olympia/devhub/forms.py:726
 msgid "Please specify your add-on's End-User License Agreement:"
 msgstr "請指定您附加元件的終端使用者授權合約"
 
-#: src/olympia/devhub/forms.py:730
+#: src/olympia/devhub/forms.py:729
 msgid "This add-on has a Privacy Policy"
 msgstr "這個附加元件有隱私權保護政策"
 
-#: src/olympia/devhub/forms.py:735
+#: src/olympia/devhub/forms.py:734
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr "請註明您附加元件的隱私權保護政策："
 
-#: src/olympia/devhub/forms.py:770
+#: src/olympia/devhub/forms.py:769
 #, python-brace-format
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 
-#: src/olympia/devhub/forms.py:814
+#: src/olympia/devhub/forms.py:813
 msgid "View current"
 msgstr "檢視目前檔案"
 
-#: src/olympia/devhub/forms.py:937
+#: src/olympia/devhub/forms.py:936
 msgid "Invalid version range."
 msgstr "無效的版本號碼範圍。"
 
-#: src/olympia/devhub/forms.py:1043
+#: src/olympia/devhub/forms.py:1042
 msgid "Need at least one compatible application."
 msgstr "至少需要一個相容的應用程式。"
 
-#: src/olympia/devhub/forms.py:1085 src/olympia/devhub/forms.py:1143
+#: src/olympia/devhub/forms.py:1084 src/olympia/devhub/forms.py:1142
 msgid "There was an error with your upload. Please try again."
 msgstr "您的上傳過程發生錯誤，請再試一次。"
 
-#: src/olympia/devhub/forms.py:1090
+#: src/olympia/devhub/forms.py:1089
 msgid "Override failed validation"
 msgstr "無視驗證失敗"
 
-#: src/olympia/devhub/forms.py:1100
+#: src/olympia/devhub/forms.py:1099
 msgid "Need to select at least one application."
 msgstr "至少需要一套相容的應用程式。"
 
-#: src/olympia/devhub/forms.py:1105
+#: src/olympia/devhub/forms.py:1104
 msgid "You have submitted too many uploads recently. Please try again after some time."
 msgstr "您最近上傳了太多項目，請稍候再試。"
 
-#: src/olympia/devhub/forms.py:1154 src/olympia/signing/views.py:156
+#: src/olympia/devhub/forms.py:1153 src/olympia/signing/views.py:156
 #, python-brace-format
 msgid "Version {version} was uploaded before and deleted."
 msgstr "版本 {version} 之前已上傳過，且已刪除。"
 
-#: src/olympia/devhub/forms.py:1163 src/olympia/devhub/forms.py:1169 src/olympia/signing/views.py:158
+#: src/olympia/devhub/forms.py:1162 src/olympia/devhub/forms.py:1168 src/olympia/signing/views.py:158
 #, python-brace-format
 msgid "Version {version} already exists."
 msgstr "版本 {version} 已存在。"
 
-#: src/olympia/devhub/forms.py:1165
+#: src/olympia/devhub/forms.py:1164
 msgid "Continue with existing upload instead?"
 msgstr "要繼續使用目前的上傳版本嗎？"
 
-#: src/olympia/devhub/forms.py:1203 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
+#: src/olympia/devhub/forms.py:1202 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
 msgid "Yes"
 msgstr "是"
 
-#: src/olympia/devhub/forms.py:1203 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
+#: src/olympia/devhub/forms.py:1202 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13 src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
 msgid "No"
 msgstr "否"
 
-#: src/olympia/devhub/forms.py:1218
+#: src/olympia/devhub/forms.py:1217
 msgid "You have not uploaded a source file."
 msgstr "尚未上傳原始碼檔案。"
 
-#: src/olympia/devhub/forms.py:1221
+#: src/olympia/devhub/forms.py:1220
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "上傳了原始碼檔案，但您標明無須原始碼。"
 
-#: src/olympia/devhub/forms.py:1285
+#: src/olympia/devhub/forms.py:1284
 #, python-brace-format
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "請確認名稱與描述加總未超過 {limit_value} 個字元（目前有 {show_value} 個字）。"
 
-#: src/olympia/devhub/forms.py:1412
+#: src/olympia/devhub/forms.py:1414
 #, python-brace-format
 msgid "On this site. <span class=\"helptext\">Your submission is publicly listed on {site_domain}.</span>"
 msgstr "在此網站。<span class=\"helptext\">您上架的內容將於 {site_domain} 公開提供使用。</span>"
 
-#: src/olympia/devhub/forms.py:1419
+#: src/olympia/devhub/forms.py:1421
 #, python-brace-format
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr "由您自己託管。<span class=\"helptext\">當您送出的內容由 Mozilla 簽署後，可於開發者交流中心下載 .xpi 檔案，並且自行發布給您的使用者。請確保附加元件中指定了 <a {a_attrs}>update_url</a>，使用者的 Firefox 會定期連線到此網址尋找是否有更新版的附加元件，並自動更新。</span>"
 
-#: src/olympia/devhub/forms.py:1459 src/olympia/devhub/templates/devhub/includes/agreement.html:17
+#: src/olympia/devhub/forms.py:1437
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
+msgstr "企業內部使用的附加元件。<span class=\"helptext\">當 Mozilla 簽署您送審的內容後，就可以到「開發者交流中心」下載 .xpi 檔，依照 Firefox for Enterprise 政策發布給您的使用者使用。</span>"
+
+#: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
 msgstr "顯示名稱"
 
-#: src/olympia/devhub/forms.py:1490
+#: src/olympia/devhub/forms.py:1504
 msgid "Confirm email address"
 msgstr "確認電子郵件地址"
 
-#: src/olympia/devhub/forms.py:1491
+#: src/olympia/devhub/forms.py:1505
 msgid "Generate new credentials"
 msgstr "產生新金鑰"
 
-#: src/olympia/devhub/forms.py:1492
+#: src/olympia/devhub/forms.py:1506
 msgid "Revoke and regenerate credentials"
 msgstr "撤銷並重新產生金鑰"
 
-#: src/olympia/devhub/forms.py:1493
+#: src/olympia/devhub/forms.py:1507
 msgid "Revoke"
 msgstr "撤銷"
 
-#: src/olympia/devhub/forms.py:1494
+#: src/olympia/devhub/forms.py:1508
 msgid "Re-send email confirmation"
 msgstr "重寄確認信"
 
-#: src/olympia/devhub/forms.py:1551
+#: src/olympia/devhub/forms.py:1565
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
 msgstr "請點擊下方的按鈕，為使用者 <strong>{name}</strong> 產生 API 帳號資訊。"
 
-#: src/olympia/devhub/forms.py:1576
+#: src/olympia/devhub/forms.py:1590
 msgid "You don't have any API credentials."
 msgstr "您並沒有任何 API 存取權限。"
 
-#: src/olympia/devhub/forms.py:1587
+#: src/olympia/devhub/forms.py:1601
 msgid "Something went wrong, please contact developer support."
 msgstr "某些東西怪怪的，請聯絡開發者技術支援團隊。"
 
-#: src/olympia/devhub/forms.py:1676
+#: src/olympia/devhub/forms.py:1663
 msgid "No appropriate version available"
 msgstr "無適當版本可以使用"
 
-#: src/olympia/devhub/forms.py:1683
+#: src/olympia/devhub/forms.py:1670
 msgid "Choose version"
 msgstr "選擇版本"
 
-#: src/olympia/devhub/forms.py:1692
+#: src/olympia/devhub/forms.py:1679
 msgid "Release notes"
 msgstr "發行公告"
 
-#: src/olympia/devhub/forms.py:1693
+#: src/olympia/devhub/forms.py:1680
 msgid "Automatic rollback based on version [m.m]."
 msgstr "自動退回版本 [m.m]。"
 
-#: src/olympia/devhub/forms.py:1768
+#: src/olympia/devhub/forms.py:1755
 msgid "You must select a channel and version to rollback to."
 msgstr "您必須選擇要退回到哪個頻道與版本。"
 
-#: src/olympia/devhub/forms.py:1778
+#: src/olympia/devhub/forms.py:1765
 msgid "Choose a category"
 msgstr "選擇分類"
 
-#: src/olympia/devhub/forms.py:1779
+#: src/olympia/devhub/forms.py:1766
 msgid "Technical support for making your add-on compliant"
 msgstr "讓您的附加元件符合規定的技術支援"
 
-#: src/olympia/devhub/forms.py:1780
+#: src/olympia/devhub/forms.py:1767
 msgid "Issue with addons.mozilla.org"
 msgstr "與 addons.mozilla.org 相關的問題"
 
-#: src/olympia/devhub/forms.py:1788 src/olympia/devhub/templates/devhub/verify_email.html:60
+#: src/olympia/devhub/forms.py:1775 src/olympia/devhub/templates/devhub/verify_email.html:60
 msgid "Subject"
 msgstr "主旨"
 
-#: src/olympia/devhub/forms.py:1790
+#: src/olympia/devhub/forms.py:1777
 msgid "Summarize the issue in a few words"
 msgstr "用幾個字摘要問題內容"
 
-#: src/olympia/devhub/forms.py:1795
+#: src/olympia/devhub/forms.py:1782
 msgid "Select category"
 msgstr "選擇分類"
 
-#: src/olympia/devhub/forms.py:1800
+#: src/olympia/devhub/forms.py:1787
 msgid "Give us more details about the issue"
 msgstr "提供有關此問題的詳細資訊"
 
-#: src/olympia/devhub/forms.py:1802
+#: src/olympia/devhub/forms.py:1789
 msgid "Describe the issue"
 msgstr "描述問題"
 
@@ -2093,7 +2098,7 @@ msgstr "在您送出的檔案中發現開發者 API 金鑰。為了確保您的�
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "在您送出的檔案中發現其他共同作者的 API 金鑰。為了保護您的附加元件，將註銷該金鑰。"
 
-#: src/olympia/devhub/tasks.py:689
+#: src/olympia/devhub/tasks.py:692
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
 
@@ -2107,261 +2112,261 @@ msgstr "驗證過程中產生太多錯誤或警告訊息，所以已審略了 %s
 msgid "This add-on is not a theme. Use the <a href=\"{link}\">Submit a New Add-on</a> page to submit extensions."
 msgstr "此附加元件不是佈景主題。請到<a href=\"{link}\">上架新附加元件</a>來送出擴充套件。"
 
-#: src/olympia/devhub/views.py:116
+#: src/olympia/devhub/views.py:117
 msgid "Updated"
 msgstr "更新日期"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38 src/olympia/devhub/templates/devhub/addons/edit/describe.html:75 src/olympia/devhub/templates/devhub/addons/submit/describe.html:35
-#: src/olympia/devhub/views.py:117 src/olympia/devhub/views.py:127
+#: src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:128
 msgid "Name"
 msgstr "名稱"
 
-#: src/olympia/devhub/templates/devhub/api/key.html:29 src/olympia/devhub/views.py:118 src/olympia/devhub/views.py:126
+#: src/olympia/devhub/templates/devhub/api/key.html:29 src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:127
 msgid "Created"
 msgstr "建立日期"
 
-#: src/olympia/devhub/views.py:119 src/olympia/devhub/views.py:128 src/olympia/stats/templates/stats/addon_report_menu.html:8
+#: src/olympia/devhub/views.py:120 src/olympia/devhub/views.py:129 src/olympia/stats/templates/stats/addon_report_menu.html:8
 msgid "Downloads"
 msgstr "下載次數"
 
-#: src/olympia/devhub/views.py:120 src/olympia/devhub/views.py:129
+#: src/olympia/devhub/views.py:121 src/olympia/devhub/views.py:130
 msgid "Rating"
 msgstr "評分"
 
-#: src/olympia/devhub/views.py:195
+#: src/olympia/devhub/views.py:196
 msgid "All My Add-ons"
 msgstr "我所有的附加元件"
 
-#: src/olympia/devhub/views.py:223
+#: src/olympia/devhub/views.py:224
 msgid "All Activity"
 msgstr "所有活動"
 
-#: src/olympia/devhub/views.py:224
+#: src/olympia/devhub/views.py:225
 msgid "Add-on Updates"
 msgstr "附加元件更新"
 
-#: src/olympia/devhub/views.py:225
+#: src/olympia/devhub/views.py:226
 msgid "Add-on Status"
 msgstr "附加元件狀態"
 
-#: src/olympia/devhub/views.py:226
+#: src/olympia/devhub/views.py:227
 msgid "User Collections"
 msgstr "使用者收藏集"
 
-#: src/olympia/devhub/views.py:227
+#: src/olympia/devhub/views.py:228
 msgid "User Reviews"
 msgstr "使用者評論"
 
-#: src/olympia/devhub/views.py:375
+#: src/olympia/devhub/views.py:376
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "無法刪除此附加元件，請停用。"
 
-#: src/olympia/devhub/views.py:386
+#: src/olympia/devhub/views.py:387
 msgid "Theme deleted."
 msgstr "已刪除佈景主題。"
 
-#: src/olympia/devhub/views.py:386
+#: src/olympia/devhub/views.py:387
 msgid "Add-on deleted."
 msgstr "已刪除附加元件。"
 
-#: src/olympia/devhub/views.py:392
+#: src/olympia/devhub/views.py:393
 msgid "URL name was incorrect. Theme was not deleted."
 msgstr "網址不正確，並未刪除佈景主題。"
 
-#: src/olympia/devhub/views.py:394
+#: src/olympia/devhub/views.py:395
 msgid "URL name was incorrect. Add-on was not deleted."
 msgstr "網址不正確，並未刪除附加元件。"
 
-#: src/olympia/devhub/views.py:436
+#: src/olympia/devhub/views.py:437
 msgid "Request for a new review of listing content acknowledged."
 msgstr "已收到對新版本上架內容審核的請求。"
 
-#: src/olympia/devhub/views.py:480
+#: src/olympia/devhub/views.py:481
 msgid "Invitation accepted."
 msgstr "已接受邀請函。"
 
-#: src/olympia/devhub/views.py:483
+#: src/olympia/devhub/views.py:484
 msgid "Invitation declined."
 msgstr "已拒絕邀請函。"
 
-#: src/olympia/devhub/views.py:551
+#: src/olympia/devhub/views.py:552
 #, python-brace-format
 msgid "A confirmation email has been sent to {email}"
 msgstr "已將確認信發送至 {email}"
 
-#: src/olympia/devhub/views.py:568 src/olympia/devhub/views.py:1182
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
 msgid "Changes successfully saved."
 msgstr "已成功儲存變更。"
 
-#: src/olympia/devhub/views.py:588
+#: src/olympia/devhub/views.py:589
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
 
-#: src/olympia/devhub/views.py:659
+#: src/olympia/devhub/views.py:660
 #, python-brace-format
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">請開啟兩階段驗證，才能送審擴充套件。</a>"
 
-#: src/olympia/devhub/views.py:1037
+#: src/olympia/devhub/views.py:1039
 msgid "Icons must be either PNG or JPG."
 msgstr "圖示必須為 PNG 或 JPG。"
 
-#: src/olympia/devhub/views.py:1043
+#: src/olympia/devhub/views.py:1045
 msgid "Icons cannot be animated."
 msgstr "不能使用動畫圖示。"
 
-#: src/olympia/devhub/views.py:1069
+#: src/olympia/devhub/views.py:1071
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "圖檔尺寸必須為至少寬 {0} 像素、高 {1} 像素。"
 
-#: src/olympia/devhub/views.py:1073
+#: src/olympia/devhub/views.py:1075
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "圖片比例必須為 4:3。"
 
-#: src/olympia/devhub/views.py:1081
+#: src/olympia/devhub/views.py:1083
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "圖檔長寬尺寸為必須至少 {0} 像素。"
 
-#: src/olympia/devhub/views.py:1086
+#: src/olympia/devhub/views.py:1088
 msgid "Icon must be square (same width and height)."
 msgstr "圖示必須為正方形（寬度高度相同）。"
 
-#: src/olympia/devhub/views.py:1092
+#: src/olympia/devhub/views.py:1094
 msgid "There was an error uploading your preview."
 msgstr "上傳擷圖的過程中發生錯誤。"
 
-#: src/olympia/devhub/views.py:1238
+#: src/olympia/devhub/views.py:1240
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "%s 這套附加元件的先前版本並未通過審核成為 %s 推薦項目，無法刪除或停用此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
 
-#: src/olympia/devhub/views.py:1245
+#: src/olympia/devhub/views.py:1247
 #, python-format
 msgid "Version %s disabled."
 msgstr "已停用 %s 版本。"
 
-#: src/olympia/devhub/views.py:1249
+#: src/olympia/devhub/views.py:1251
 #, python-format
 msgid "Version %s deleted."
 msgstr "已刪除版本 %s。"
 
-#: src/olympia/devhub/views.py:1260
+#: src/olympia/devhub/views.py:1262
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "已重新啟用版本 %s。"
 
-#: src/olympia/devhub/views.py:1276
+#: src/olympia/devhub/views.py:1278
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本上傳驗證失敗，因此驗證結果可能不完整，請在審核時格加注意。"
 
-#: src/olympia/devhub/views.py:1335
+#: src/olympia/devhub/views.py:1337
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "已送出退版請求，核准後將通知您"
 
-#: src/olympia/devhub/views.py:1473
+#: src/olympia/devhub/views.py:1477
 msgid "Header area background"
 msgstr "標題區背景"
 
-#: src/olympia/devhub/views.py:1475
+#: src/olympia/devhub/views.py:1479
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "標題區的背景色，會在標題圖片未覆蓋或不可見時顯示。安裝資訊欄位: frame。"
 
-#: src/olympia/devhub/views.py:1483
+#: src/olympia/devhub/views.py:1487
 msgid "Header area text and icons"
 msgstr "標題區文字與圖示"
 
-#: src/olympia/devhub/views.py:1485
+#: src/olympia/devhub/views.py:1489
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "標題區文字顏色與圖示，不含使用中的分頁。安裝資訊欄位: tab_background_text。"
 
-#: src/olympia/devhub/views.py:1492
+#: src/olympia/devhub/views.py:1496
 msgid "Toolbar area background"
 msgstr "工具列背景"
 
-#: src/olympia/devhub/views.py:1494
+#: src/olympia/devhub/views.py:1498
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "導航列、書籤列、使用中分頁的背景色。安裝資訊欄位: toolbar。"
 
-#: src/olympia/devhub/views.py:1501
+#: src/olympia/devhub/views.py:1505
 msgid "Toolbar area text and icons"
 msgstr "工具列文字與圖示"
 
-#: src/olympia/devhub/views.py:1503
+#: src/olympia/devhub/views.py:1507
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "工具列中的欄位（例如網址列）與使用中分頁的文字顏色與圖示。安裝資訊欄位: bookmark_text。"
 
-#: src/olympia/devhub/views.py:1510
+#: src/olympia/devhub/views.py:1514
 msgid "Toolbar field area background"
 msgstr "工具列欄位區背景"
 
-#: src/olympia/devhub/views.py:1512
+#: src/olympia/devhub/views.py:1516
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "工具列中的欄位（例如網址列）的背景色。安裝資訊欄位: toolbar_field。"
 
-#: src/olympia/devhub/views.py:1519
+#: src/olympia/devhub/views.py:1523
 msgid "Toolbar field area text"
 msgstr "工具列欄位區文字"
 
-#: src/olympia/devhub/views.py:1521
+#: src/olympia/devhub/views.py:1525
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具列中的欄位（例如網址列）的文字顏色。安裝資訊欄位: toolbar_field_text。"
 
-#: src/olympia/devhub/views.py:1529
+#: src/olympia/devhub/views.py:1533
 msgid "Tab highlight"
 msgstr "分頁標籤強調色"
 
-#: src/olympia/devhub/views.py:1531
+#: src/olympia/devhub/views.py:1535
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "使用中分頁標籤的強調色。在 Firefox 89+ 起的版本是標籤周圍的外框；在舊版 Firefox 當中則是標籤頂部的線條。Manifest 欄位: tab_line。"
 
-#: src/olympia/devhub/views.py:1634
+#: src/olympia/devhub/views.py:1638
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "暫時無法上傳附加元件"
 
-#: src/olympia/devhub/views.py:2001
+#: src/olympia/devhub/views.py:2009
 msgid "Review requested."
 msgstr "已要求審核。"
 
-#: src/olympia/devhub/views.py:2003
+#: src/olympia/devhub/views.py:2011
 msgid "You must provide further details to proceed."
 msgstr "您必須提供更多資訊才能繼續。"
 
-#: src/olympia/devhub/views.py:2110
+#: src/olympia/devhub/views.py:2118
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr "您很快就會收到寄送給您的確認鏈結。"
 
-#: src/olympia/devhub/views.py:2125
+#: src/olympia/devhub/views.py:2133
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "已註銷您的舊存取權限，不再有效。"
 
-#: src/olympia/devhub/views.py:2136
+#: src/olympia/devhub/views.py:2144
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr "已產生新的 API 資訊，並顯示在下方。無法再次取得或顯示 JWT 密鑰，請務必複製保存。"
 
-#: src/olympia/devhub/views.py:2164
+#: src/olympia/devhub/views.py:2172
 msgid "New API key created"
 msgstr "已建立新 API 金鑰"
 
-#: src/olympia/devhub/views.py:2175
+#: src/olympia/devhub/views.py:2183
 msgid "API key revoked"
 msgstr "已撤銷 API 金鑰"
 
-#: src/olympia/devhub/views.py:2235
+#: src/olympia/devhub/views.py:2243
 msgid "Verify email"
 msgstr "驗證信箱"
 
-#: src/olympia/devhub/views.py:2237
+#: src/olympia/devhub/views.py:2245
 msgid "Send another email"
 msgstr "傳送另一封電子郵件"
 
-#: src/olympia/devhub/views.py:2270
+#: src/olympia/devhub/views.py:2278
 msgid "Your email has been verified"
 msgstr "信箱驗證成功"
 
-#: src/olympia/devhub/views.py:2332
+#: src/olympia/devhub/views.py:2340
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr "您的支援請求已送出，我們將盡快與您聯繫。"
 
@@ -2564,8 +2569,8 @@ msgstr "從"
 msgid "To"
 msgstr "至"
 
-#: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:171 src/olympia/devhub/templates/devhub/versions/list.html:189
-#: src/olympia/devhub/templates/devhub/versions/list.html:226
+#: src/olympia/devhub/templates/devhub/verify_email.html:61 src/olympia/devhub/templates/devhub/versions/list.html:178 src/olympia/devhub/templates/devhub/versions/list.html:196
+#: src/olympia/devhub/templates/devhub/versions/list.html:233
 msgid "Status"
 msgstr "狀態"
 
@@ -2710,8 +2715,8 @@ msgid "Authors that have been added to this add-on but haven't confirmed."
 msgstr "已將作者加入此附加元件，但尚未確認。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:172 src/olympia/devhub/templates/devhub/addons/owner.html:78
-#: src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/translations/templates/translations/trans-menu.html:48
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174 src/olympia/devhub/templates/devhub/addons/owner.html:78
+#: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/translations/templates/translations/trans-menu.html:48
 msgid "Save Changes"
 msgstr "儲存變更"
 
@@ -2786,17 +2791,17 @@ msgid ""
 msgstr "若您的附加元件有自己的網站，請在此輸入網址。若您的網站有多國語系版本，亦可在此欄位新增。僅與公開上架的附加元件有關。"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:96 src/olympia/devhub/templates/devhub/addons/edit/describe.html:272
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:172
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:134 src/olympia/devhub/templates/devhub/versions/list.html:290
-#: src/olympia/devhub/templates/devhub/versions/list.html:339 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:84 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:174
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:297
+#: src/olympia/devhub/templates/devhub/versions/list.html:346 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "or"
 msgstr "或"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:99 src/olympia/devhub/templates/devhub/addons/edit/describe.html:275
-#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:175
+#: src/olympia/devhub/templates/devhub/addons/edit/technical.html:87 src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:177
 #: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:32 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:64
-#: src/olympia/devhub/templates/devhub/versions/edit.html:136 src/olympia/devhub/templates/devhub/versions/list.html:290 src/olympia/devhub/templates/devhub/versions/list.html:300
-#: src/olympia/devhub/templates/devhub/versions/list.html:339 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
+#: src/olympia/devhub/templates/devhub/versions/edit.html:138 src/olympia/devhub/templates/devhub/versions/list.html:297 src/olympia/devhub/templates/devhub/versions/list.html:307
+#: src/olympia/devhub/templates/devhub/versions/list.html:346 src/olympia/translations/templates/translations/trans-menu.html:50 src/olympia/translations/templates/translations/trans-menu.html:62
 msgid "Cancel"
 msgstr "取消"
 
@@ -2838,7 +2843,7 @@ msgid "View Listing"
 msgstr "檢視附加元件頁面"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:98 src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:63
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:36
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:37
 msgid "View Product Page"
 msgstr "檢視產品頁面"
 
@@ -3019,48 +3024,48 @@ msgstr "未來將成為附加元件詳細資訊頁面的標準。"
 msgid "Upload a Custom Icon..."
 msgstr "上傳自訂圖示…"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:74
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:75
 msgid "PNG and JPG supported."
 msgstr "支援 PNG 與 JPG 格式。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:76
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:77
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "圖示必須為正方形，最小 128x128 畫素。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:78
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:79
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "圖示若超過 128x128 畫素，將縮小至該尺寸。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:92
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:93
 msgid "Screenshots"
 msgstr "擷圖"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:98
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:99
 msgid "Please provide at least one screen shot of your add-on:"
 msgstr "請提供至少一張您的附加元件的螢幕擷圖:"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:124
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:125
 msgid "Please provide a caption for this screenshot:"
 msgstr "請提供一段有關此擷圖的說明:"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:139
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:140
 msgid "Add a Screenshot..."
 msgstr "新增畫面擷圖…"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:146
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:148
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr "支援 PNG 與 JPG 格式，推薦使用 PNG。最大且推薦的擷圖大小為 2400x1800 畫素。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:151
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "最小尺寸為 1000x750，比例必須為 4:3。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:153
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:155
 msgid "Having screenshots in your product page greatly increases its chances of being installed."
 msgstr "在產品頁面中放入畫面擷圖，可大幅增加安裝機會。"
 
-#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:180 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
-#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:102
+#: src/olympia/devhub/templates/devhub/addons/forms_shared/media.html:182 src/olympia/devhub/templates/devhub/addons/submit/distribute.html:30
+#: src/olympia/devhub/templates/devhub/addons/submit/source.html:85 src/olympia/devhub/templates/devhub/addons/submit/upload.html:104
 msgid "Continue"
 msgstr "繼續"
 
@@ -3158,7 +3163,7 @@ msgstr "所有版本將受限制（被停用且無法再新安裝進任何 Firef
 msgid "The add-on ID cannot be restored and will forever be unusable for submission."
 msgstr "附加元件 ID 無法恢復，也無法再用於新元件上架。"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:246 src/olympia/devhub/templates/devhub/versions/list.html:250
+#: src/olympia/devhub/templates/devhub/addons/listing/delete_form.html:2 src/olympia/devhub/templates/devhub/versions/list.html:253 src/olympia/devhub/templates/devhub/versions/list.html:257
 msgid "Delete Add-on"
 msgstr "刪除附加元件"
 
@@ -3219,15 +3224,15 @@ msgstr "更多"
 msgid "Manage Status & Versions"
 msgstr "管理狀態與版本"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:65 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:49
+#: src/olympia/devhub/templates/devhub/addons/listing/item_actions.html:65 src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:54
 msgid "View Recent Changes"
 msgstr "檢視近期更新"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html:9
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html:10
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "此附加元件缺少某些必要的資訊，尚無法送交上架。"
 
-#: src/olympia/devhub/templates/devhub/addons/listing/items.html:13
+#: src/olympia/devhub/templates/devhub/addons/listing/items.html:14
 msgid "This add-on doesn't have any versions."
 msgstr "此附加元件沒有任何版本。"
 
@@ -3558,23 +3563,23 @@ msgstr "使用下方欄位上傳您的附加元件封包。上傳完成後，將
 msgid "The maximum file size accepted is %(max_size)s. If your add-on is larger than %(max_size)s, it will fail validation."
 msgstr "可接受的最大檔案大小為 %(max_size)s，若您的附加元件超過 %(max_size)s，將不會通過驗證。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:60
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:62
 msgid "Which applications is this version compatible with?"
 msgstr "此版本與哪些應用程式相容？"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:67
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:69
 msgid "Administrative overrides"
 msgstr "管理員覆寫"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:80
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
 msgid "Create a Theme Version"
 msgstr "建立佈景主題版本"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:82
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:84
 msgid "You can upload a finished theme using the upload option above, or you can build it yourself using this tool."
 msgstr "您可以使用上方的上傳選項上傳完成的佈景主題，或使用本工具自行打造一套。"
 
-#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:88
+#: src/olympia/devhub/templates/devhub/addons/submit/upload.html:90
 msgid "Create a Theme"
 msgstr "建立新的佈景主題"
 
@@ -3861,11 +3866,11 @@ msgid "This is the newest uploaded version, however it isn’t live on the site 
 msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
-#: src/olympia/devhub/templates/devhub/versions/list.html:26
+#: src/olympia/devhub/templates/devhub/versions/list.html:28
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr "簽署後讓您自行發布，您需自行處理自動更新事宜。"
 
-#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:107 src/olympia/devhub/templates/devhub/includes/addon_details.html:124
 msgid "Latest Version:"
 msgstr "最新版本："
 
@@ -3873,27 +3878,39 @@ msgstr "最新版本："
 msgid "This is the newest uploaded unlisted version"
 msgstr "這是最新的未上架版本"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:19
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
+msgid "Signed for enterprise."
+msgstr "已簽署企業附加元件。"
+
+#: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
+msgid "This is the newest uploaded enterprise version"
+msgstr "這是最新上傳的企業版本"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
 msgstr "上傳新版本"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:23
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:24
 msgid "View All"
 msgstr "檢視全部"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:40
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:41
 msgid "Listed Review Page"
 msgstr "公開上架元件審核頁面"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:42
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:43
 msgid "Unlisted Review Page"
 msgstr "未上架元件審核頁面"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:46
+msgid "Enterprise Review Page"
+msgstr "企業套件審核頁面"
+
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:51
 msgid "Admin Manage"
 msgstr "管理員管理"
 
-#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:53
+#: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:58
 msgid "View Statistics Dashboard"
 msgstr "檢視統計資訊儀錶板"
 
@@ -4041,7 +4058,7 @@ msgid "Distribution channel"
 msgstr "發行頻道"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
-#: src/olympia/devhub/templates/devhub/versions/list.html:225
+#: src/olympia/devhub/templates/devhub/versions/list.html:232
 msgid "Version"
 msgstr "版本"
 
@@ -4162,7 +4179,7 @@ msgstr "「取得附加元件」按鈕"
 msgid "Recommended Extensions program"
 msgstr "擴充套件推薦計畫"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33
+#: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:33 src/olympia/templates/photon-footer.html:60
 msgid "Contribute"
 msgstr "捐款"
 
@@ -4202,7 +4219,7 @@ msgstr "與幾千位開發者連結起來，探索能貢獻到擴充套件生態
 msgid "Learn more about the developer community"
 msgstr "了解開發者社群的更多資訊"
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:22
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:47 src/olympia/devhub/templates/devhub/versions/list.html:24
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
 
@@ -4324,11 +4341,11 @@ msgstr "給審核者的留言"
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr "可在此輸入任何讓審核者在審核此附加元件時有所幫助的資訊，例如測試帳號資訊等。"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:120
+#: src/olympia/devhub/templates/devhub/versions/edit.html:121
 msgid "Source code"
 msgstr "原始碼"
 
-#: src/olympia/devhub/templates/devhub/versions/edit.html:121
+#: src/olympia/devhub/templates/devhub/versions/edit.html:122
 msgid "If your add-on contains minified, concatenated or otherwise machine-generated code, make the source available here for reviewers."
 msgstr "若您的附加元件含有機器自動產生的程式碼、最小化過、串接過的程式碼，請在此上傳其原始碼交由人工審查。"
 
@@ -4351,146 +4368,146 @@ msgstr "建立於 %(created)s 並修改為 %(status)s"
 msgid "Status & Versions"
 msgstr "狀態 & 版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:40
+#: src/olympia/devhub/templates/devhub/versions/list.html:46
 msgid "Edit this version"
 msgstr "編輯這個版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:67
+#: src/olympia/devhub/templates/devhub/versions/list.html:73
 msgid "Re-enable Version"
 msgstr "重新啟用版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:73
+#: src/olympia/devhub/templates/devhub/versions/list.html:79
 msgid "Review History"
 msgstr "審核歷史"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:74
+#: src/olympia/devhub/templates/devhub/versions/list.html:80
 msgid "Close Review History"
 msgstr "關閉審查歷史"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:107
+#: src/olympia/devhub/templates/devhub/versions/list.html:113
 msgid "Request Review"
 msgstr "要求審核"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:118
+#: src/olympia/devhub/templates/devhub/versions/list.html:124
 msgid "Loading Review History..."
 msgstr "正在載入審查紀錄…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:119
+#: src/olympia/devhub/templates/devhub/versions/list.html:125
 msgid "We had a problem retrieving review notes"
 msgstr "取得審核註記時遇到問題"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:121
+#: src/olympia/devhub/templates/devhub/versions/list.html:127
 msgid "Load older..."
 msgstr "載入更舊的…"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:125 src/olympia/discovery/serializers.py:102
+#: src/olympia/devhub/templates/devhub/versions/list.html:131 src/olympia/discovery/serializers.py:102
 msgid "by"
 msgstr "作者:"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:128
+#: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
 msgstr "其他說明："
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:141
+#: src/olympia/devhub/templates/devhub/versions/list.html:147
 msgid "Leave a reply"
 msgstr "留下回覆"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:142
+#: src/olympia/devhub/templates/devhub/versions/list.html:148
 msgid "Reply"
 msgstr "回覆"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:163
+#: src/olympia/devhub/templates/devhub/versions/list.html:170
 msgid "Listed versions"
 msgstr "已上架的版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:170
+#: src/olympia/devhub/templates/devhub/versions/list.html:177
 msgid "Currently on AMO"
 msgstr "目前於 AMO"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:172 src/olympia/devhub/templates/devhub/versions/list.html:190 src/olympia/devhub/templates/devhub/versions/list.html:227
+#: src/olympia/devhub/templates/devhub/versions/list.html:179 src/olympia/devhub/templates/devhub/versions/list.html:197 src/olympia/devhub/templates/devhub/versions/list.html:234
 msgid "Validation"
 msgstr "驗證"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:173 src/olympia/devhub/templates/devhub/versions/list.html:191 src/olympia/devhub/templates/devhub/versions/list.html:228
+#: src/olympia/devhub/templates/devhub/versions/list.html:180 src/olympia/devhub/templates/devhub/versions/list.html:198 src/olympia/devhub/templates/devhub/versions/list.html:235
 msgid "Delete/Disable"
 msgstr "刪除/停用"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:188
+#: src/olympia/devhub/templates/devhub/versions/list.html:195
 msgid "Next version of this add-on"
 msgstr "此附加元件的下個版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:199
+#: src/olympia/devhub/templates/devhub/versions/list.html:206
 msgid "Other versions"
 msgstr "其他版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:201
+#: src/olympia/devhub/templates/devhub/versions/list.html:208
 msgid "All versions"
 msgstr "所有版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:209
+#: src/olympia/devhub/templates/devhub/versions/list.html:216
 msgid "Rollback to a previous version"
 msgstr "退回到先前版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:215
+#: src/olympia/devhub/templates/devhub/versions/list.html:222
 msgid "Upload a New Version"
 msgstr "上傳新版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:265
+#: src/olympia/devhub/templates/devhub/versions/list.html:272
 #, python-brace-format
 msgid "Delete Version {version}"
 msgstr "刪除版本 {version}"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:267
+#: src/olympia/devhub/templates/devhub/versions/list.html:274
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr "即將刪除目前版本的附加元件，這樣可能會造成您的附加元件狀態有所變更，或如果只有這一版公開的話就會被下架。"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:268
+#: src/olympia/devhub/templates/devhub/versions/list.html:275
 msgid "Deleting this version will permanently delete:"
 msgstr "刪除這個版本會永久刪除:"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:273
+#: src/olympia/devhub/templates/devhub/versions/list.html:280
 msgid "Important:"
 msgstr "重要："
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:274
+#: src/olympia/devhub/templates/devhub/versions/list.html:281
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
 msgstr "刪除版本後，無法再上傳相同版本號的新版本。該版本也將受到限制（被停用且無法再新安裝進任何 Firefox），現有已安裝的使用者仍可決定是否要重新啟用。"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:281
+#: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Are you sure you wish to delete this version?"
 msgstr "您確定要刪除這個版本嗎？"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:286
+#: src/olympia/devhub/templates/devhub/versions/list.html:293
 msgid "Delete Version"
 msgstr "刪除版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:288
+#: src/olympia/devhub/templates/devhub/versions/list.html:295
 msgid "Disable Version"
 msgstr "停用版本"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:295
+#: src/olympia/devhub/templates/devhub/versions/list.html:302
 #, python-format
 msgid ""
 "The latest approved version of this %(promoted_group_name)s add-on cannot be deleted or disabled because the previous version was not approved for %(promoted_group_name)s promotion. Please contact "
 "AMO Admins if you need help with this."
 msgstr "這套 %(promoted_group_name)s 附加元件的先前版本並未通過審核成為 %(promoted_group_name)s 推薦項目，無法刪除或停用此推薦擴充套件最新通過審核的版本。若您需要協助，請聯絡 AMO 管理員。"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:311 src/olympia/devhub/templates/devhub/versions/list.html:337
+#: src/olympia/devhub/templates/devhub/versions/list.html:318 src/olympia/devhub/templates/devhub/versions/list.html:344
 msgid "Hide Add-on"
 msgstr "隱藏附加元件"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:314
+#: src/olympia/devhub/templates/devhub/versions/list.html:321
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr "隱藏您的附加元件將會讓該附加元件消失，使用者並將不再收到自動更新。"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:321
+#: src/olympia/devhub/templates/devhub/versions/list.html:328
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "等待審核中的檔案將被停用，您將需要上傳新版本。"
 
-#: src/olympia/devhub/templates/devhub/versions/list.html:328
+#: src/olympia/devhub/templates/devhub/versions/list.html:335
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "您確定要隱藏附加元件嗎？"
 
@@ -4510,55 +4527,55 @@ msgstr[0] "{0} 個警告"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:795
+#: src/olympia/discovery/strings.jinja2:2 src/olympia/discovery/strings.jinja2:800
 msgid "Block invisible trackers and spying ads that follow you around the web."
 msgstr "封鎖隱藏在黑暗中，同時跟蹤您上網的追蹤器。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:888
+#: src/olympia/discovery/strings.jinja2:5 src/olympia/discovery/strings.jinja2:893
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
 msgstr "享用美麗的新分頁頁面，還可讓您可自訂背景、本地天氣資訊等等。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:798
+#: src/olympia/discovery/strings.jinja2:8 src/olympia/discovery/strings.jinja2:803
 msgid "Highlight any text, right-click, and translate instantly."
 msgstr "反白任何文字，按右鍵便可即時翻譯。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:882
+#: src/olympia/discovery/strings.jinja2:11 src/olympia/discovery/strings.jinja2:887
 msgid "Perform reverse image searches from an array of engines."
 msgstr "使用多組搜尋引擎以圖找圖。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:843
+#: src/olympia/discovery/strings.jinja2:14 src/olympia/discovery/strings.jinja2:848
 msgid "Ad blocking and privacy protection. A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
 msgstr "廣告封鎖與隱私保護。只要簡單安裝後，就能讓您控制要看到的廣告內容，以及您是在網路上如何被追蹤的。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:846
+#: src/olympia/discovery/strings.jinja2:17 src/olympia/discovery/strings.jinja2:851
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "您還開著一大票分頁標籤嗎？用簡潔的側邊欄好好管理。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:831
+#: src/olympia/discovery/strings.jinja2:20 src/olympia/discovery/strings.jinja2:836
 msgid "Stop Facebook tracking. Isolate your Facebook identity into a separate “container” to prevent Facebook from tracking you around the web."
 msgstr "不被 Facebook 追蹤。將您的 Facebook 身分隔離於「容器」分頁中，讓 Facebook 更難追蹤您在網路上的一舉一動。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:885
+#: src/olympia/discovery/strings.jinja2:23 src/olympia/discovery/strings.jinja2:890
 msgid "Simplify search by highlighting text on any web page to search the phrase from an array of engines."
 msgstr "只要反白網頁上的任何文字，即可快速於不同搜尋引擎，輕鬆進行搜尋。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:822
+#: src/olympia/discovery/strings.jinja2:26 src/olympia/discovery/strings.jinja2:827
 msgid "Instant weather updates from around the world."
 msgstr "來自世界各地的即時天氣更新。"
 
@@ -4569,13 +4586,13 @@ msgstr "設定當您每次開啟新分頁時，會看到的頁面。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:801
+#: src/olympia/discovery/strings.jinja2:32 src/olympia/discovery/strings.jinja2:806
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
 msgstr "在網路上看到有趣的圖片，想了解更多資訊嗎？試試這套圖片搜尋工具。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:804
+#: src/olympia/discovery/strings.jinja2:35 src/olympia/discovery/strings.jinja2:809
 msgid "Download videos with ease. Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
 msgstr "輕鬆下載影片。可用於 YouTube、Facebook、Vimeo、Twitch、Dailymotion、Periscope 等數以百計的影片網站。"
 
@@ -4591,15 +4608,14 @@ msgstr "簡化並在不同裝置間同步您所有網站的登入資訊，只要
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:810
+#: src/olympia/discovery/strings.jinja2:44 src/olympia/discovery/strings.jinja2:815
 msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
 msgstr "輕量而有效的廣告封鎖器。uBlock Origin 可套用數以千計的內容過濾條件，而不花費太多記憶體。"
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:47 src/olympia/discovery/strings.jinja2:816
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "享用全新的 YouTube 功能大補包，諸如電影院模式、封鎖廣告、自動播放等功能。"
+#: src/olympia/discovery/strings.jinja2:47
+msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
+msgstr "享用全新功能大補包，諸如電影院模式、封鎖廣告、自動播放等功能。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -4638,13 +4654,13 @@ msgstr "阻止惡意網站使用您的電腦算力挖礦。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:744
+#: src/olympia/discovery/strings.jinja2:71 src/olympia/discovery/strings.jinja2:749
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
 msgstr "不論在社交網路、寄信或寫文件時，協助您檢查文法是否正確。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:828
+#: src/olympia/discovery/strings.jinja2:74 src/olympia/discovery/strings.jinja2:833
 msgid "Display current worldwide times in Firefox's status bar."
 msgstr "在 Firefox 狀態列中顯示目前世界各地的時間。"
 
@@ -4665,7 +4681,7 @@ msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:939
+#: src/olympia/discovery/strings.jinja2:86 src/olympia/discovery/strings.jinja2:944
 msgid "Darken the page around video players for a focused viewing experience."
 msgstr "將頁面中，視訊播放器的附近暗化，加強影片觀賞體驗。"
 
@@ -4682,13 +4698,13 @@ msgstr "您在尋找的頁面無法使用嗎？尋找封存或快取版本。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:807
+#: src/olympia/discovery/strings.jinja2:98 src/olympia/discovery/strings.jinja2:812
 msgid "Hover over an image to magnify it."
 msgstr "將滑鼠游標停留在圖片上即可放大。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:879
+#: src/olympia/discovery/strings.jinja2:101 src/olympia/discovery/strings.jinja2:884
 msgid "Automatically erase cookies after you close a tab."
 msgstr "關閉分頁後自動清除 Cookie。"
 
@@ -4699,25 +4715,25 @@ msgstr "一個輕鬆調整網頁文字大小的方法—或者甚至放大整個
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:840
+#: src/olympia/discovery/strings.jinja2:107 src/olympia/discovery/strings.jinja2:845
 msgid "Stop trackers in their tracks and learn more about them."
 msgstr "阻止追蹤者追蹤並深入了解。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:900
+#: src/olympia/discovery/strings.jinja2:110 src/olympia/discovery/strings.jinja2:905
 msgid "Leave a clean digital trail. Make Firefox forget website data like cookies and local storage, but only for domains you choose."
 msgstr "清除數位軌跡。讓 Firefox 針對您指定的網域，忘記 Cookie、本機儲存空間等網站資料。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:870
+#: src/olympia/discovery/strings.jinja2:113 src/olympia/discovery/strings.jinja2:875
 msgid "No need to write the same thing over and over. Save frequently-entered text to paste anytime."
 msgstr "不需要一直重複輸入同樣的東西。儲存且隨時貼上常用的文字。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:837
+#: src/olympia/discovery/strings.jinja2:116 src/olympia/discovery/strings.jinja2:842
 msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr "移除網頁版收件匣上的廣告來騰出更多螢幕空間。"
 
@@ -4728,25 +4744,25 @@ msgstr "在整潔的側邊欄中管理開啟的分頁標籤。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:942
+#: src/olympia/discovery/strings.jinja2:122 src/olympia/discovery/strings.jinja2:947
 msgid "Avoid sneaky trackers and restrictions. Disguise your navigation by cloaking the identity of your browser and operating system."
 msgstr "避免暗藏的追蹤器和限制。透過隱藏瀏覽器及作業系統的身分來偽裝您的訪問。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:834
+#: src/olympia/discovery/strings.jinja2:125 src/olympia/discovery/strings.jinja2:839
 msgid "Automatically reload tabs based on time intervals you set."
 msgstr "根據設定的時間，自動重新載入分頁。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:1008
+#: src/olympia/discovery/strings.jinja2:128 src/olympia/discovery/strings.jinja2:1013
 msgid "Keep parts of your online life separated into color-coded and cookie separated tabs. Now integrated with Mozilla VPN for an extra layer of privacy."
 msgstr "將您的線上生活的各個部分分成顏色編碼和 cookie 分隔的分頁。現在與 Mozilla VPN 整合後提供更上一層的隱私保護。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:819
+#: src/olympia/discovery/strings.jinja2:131 src/olympia/discovery/strings.jinja2:824
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr "透過追蹤保護功能，為您上網額外增加一層防護。"
 
@@ -4757,7 +4773,7 @@ msgstr "在 Firefox 中直接開啟閱讀 ePub 檔案—有放大文字、頁面
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:936
+#: src/olympia/discovery/strings.jinja2:137 src/olympia/discovery/strings.jinja2:941
 msgid "Play YouTube videos by default in the highest quality, turn off annotations, and more."
 msgstr "預設以高畫質播放，關閉註解等設定播放 YouTube 影片。"
 
@@ -4778,7 +4794,7 @@ msgstr "調整影片播放速度或其他項目來提升你的觀影品質。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:825
+#: src/olympia/discovery/strings.jinja2:149 src/olympia/discovery/strings.jinja2:830
 msgid "Add encrypted security to any site that supports HTTPS. Browse securely."
 msgstr "為所有支援 HTTPS 的網站開啟加密，上網更安全。"
 
@@ -4824,13 +4840,13 @@ msgstr "為新分頁標籤指定自訂首頁。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:867
+#: src/olympia/discovery/strings.jinja2:176 src/olympia/discovery/strings.jinja2:872
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr "把所有已開啟的分頁變成一個清單，輕鬆管理並加快 Firefox 速度。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:789
+#: src/olympia/discovery/strings.jinja2:179 src/olympia/discovery/strings.jinja2:794
 msgid "Robust download management. Check the state of your downloads through a status bar, download history page, and more."
 msgstr "強大的下載管理功能，透過狀態列來確認下載狀態、下載記錄頁面與更多功能。"
 
@@ -4861,7 +4877,7 @@ msgstr "讓網頁顏色變暗，讓上網時眼睛更舒服。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:786
+#: src/olympia/discovery/strings.jinja2:197 src/olympia/discovery/strings.jinja2:791
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr "預設封鎖所有彈出視窗，然後再決定要開啟哪些想要的。"
 
@@ -4892,7 +4908,7 @@ msgstr "加強您的閱讀體驗。移除文字周圍的雜亂元素，讓您閱
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:861
+#: src/olympia/discovery/strings.jinja2:215 src/olympia/discovery/strings.jinja2:866
 msgid "Right-click and drag links you want open in new tabs."
 msgstr "按右鍵，拖曳鏈結在新分頁開啟。"
 
@@ -4933,7 +4949,7 @@ msgstr "追蹤歷史價格、尋找類似商品、了解賣家評分等更多功
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:783
+#: src/olympia/discovery/strings.jinja2:239 src/olympia/discovery/strings.jinja2:788
 msgid "Make it your YouTube. Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
 msgstr "讓 YouTube 有您的風格。在彈出型視窗中播放影片，只看得到已訂閱頻道的廣告、和截取影片的螢幕截圖以及更多。"
 
@@ -5014,7 +5030,7 @@ msgstr "在單一頁面中查看您最愛的 RSS 資訊來源摘要。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:780
+#: src/olympia/discovery/strings.jinja2:287 src/olympia/discovery/strings.jinja2:785
 msgid "Enable night mode for a better viewing experience."
 msgstr "進入夜間模式，讓您有更好的看片體驗。"
 
@@ -5070,13 +5086,13 @@ msgstr "針對特定或所有網站留下筆記，供以後查看。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:759
+#: src/olympia/discovery/strings.jinja2:320 src/olympia/discovery/strings.jinja2:764
 msgid "Phone-like scrolling for your desktop. Features \"grab-n-drag\" style mouse movement."
 msgstr "在桌機上使用類似手機的捲動體驗。使用「抓取並拖曳」風格的滑鼠移動方式。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:930
+#: src/olympia/discovery/strings.jinja2:323 src/olympia/discovery/strings.jinja2:935
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "按一下即可清除網頁快取。"
 
@@ -5087,13 +5103,13 @@ msgstr "強調網頁上的文字，方便儲存下來日後使用。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:756
+#: src/olympia/discovery/strings.jinja2:329 src/olympia/discovery/strings.jinja2:761
 msgid "Enjoy music from 30,000+ radio stations from all over the globe."
 msgstr "聆聽全球超過 30,000 家廣播電台。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:927
+#: src/olympia/discovery/strings.jinja2:332 src/olympia/discovery/strings.jinja2:932
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr "透過只串流 YouTube 片段的聲音部份來節省頻寬。"
 
@@ -5104,13 +5120,13 @@ msgstr "將文字轉化成漂亮的標題與覆蓋在圖片上的文字。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:777
+#: src/olympia/discovery/strings.jinja2:338 src/olympia/discovery/strings.jinja2:782
 msgid "Automatically navigate to the secure version of a website if it's available."
 msgstr "網站有提供的話，就跳轉到安全版。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:858
+#: src/olympia/discovery/strings.jinja2:341 src/olympia/discovery/strings.jinja2:863
 msgid "Delete your navigation history. Specify a custom number of days to retain browser history before it's automatically cleared."
 msgstr "自動清除您的上網紀錄。也可指定要保留上網紀錄幾天，才自動清除。"
 
@@ -5136,7 +5152,7 @@ msgstr "只需滑鼠一點，即可進行隱私搜尋。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:891
+#: src/olympia/discovery/strings.jinja2:359 src/olympia/discovery/strings.jinja2:896
 msgid "Put an end to tab hijacking. Don't let clicked links take control of your current tab and load content you didn't ask for."
 msgstr "不讓點擊的鏈結控制您目前的分頁，並載入您原本沒打算開的內容。"
 
@@ -5247,13 +5263,13 @@ msgstr "儲存您喜歡的網頁內容。剪輯並儲存文章，影片，圖片
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:894
+#: src/olympia/discovery/strings.jinja2:425 src/olympia/discovery/strings.jinja2:899
 msgid "Only allow web content to run from sites you trust. Surf securely."
 msgstr "只允許您信任的網站執行 Web 內容。上網更安全。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:765
+#: src/olympia/discovery/strings.jinja2:428 src/olympia/discovery/strings.jinja2:770
 msgid "Take full control of the cookies you've accumulated while browsing."
 msgstr "完全控制您上網時收集到的 Cookie。"
 
@@ -5264,7 +5280,7 @@ msgstr "自動刪除您選擇的網站的上網記錄。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:855
+#: src/olympia/discovery/strings.jinja2:434 src/olympia/discovery/strings.jinja2:860
 msgid "Password-protect your personal bookmarks."
 msgstr "使用密碼保護您的個人書籤。"
 
@@ -5290,7 +5306,7 @@ msgstr "支援下載多種不同格式的影音內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:750
+#: src/olympia/discovery/strings.jinja2:449 src/olympia/discovery/strings.jinja2:755
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
 msgstr "瞭解任何網站伺服器所在的地理位置，成為資訊充足的上網者。"
 
@@ -5311,13 +5327,13 @@ msgstr "追蹤 Amazon 商品的價格紀錄，當商品價格變動時接收通�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:921
+#: src/olympia/discovery/strings.jinja2:461 src/olympia/discovery/strings.jinja2:926
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr "調整瀏覽器的音效設定，讓您有最清晰的音效。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:747
+#: src/olympia/discovery/strings.jinja2:464 src/olympia/discovery/strings.jinja2:752
 msgid "Defend yourself against the sneakiest trackers."
 msgstr "保護自己，免受最狡猾的追蹤器的追蹤。"
 
@@ -5343,7 +5359,7 @@ msgstr "只要簡單地點擊滑鼠，您就可以全螢幕觀看影片。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:897
+#: src/olympia/discovery/strings.jinja2:482 src/olympia/discovery/strings.jinja2:902
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "不讓未使用的分頁，浪費您寶貴的記憶體空間。"
 
@@ -5364,19 +5380,19 @@ msgstr "在社交網路、寄信或寫文件時協助您檢查文法是否正確
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:741
+#: src/olympia/discovery/strings.jinja2:494 src/olympia/discovery/strings.jinja2:746
 msgid "Read with more clarity and ease. Remove the clutter around text on web pages."
 msgstr "讓閱讀更清楚、更輕鬆。移除網頁文字周圍雜亂的部分。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:738
+#: src/olympia/discovery/strings.jinja2:497 src/olympia/discovery/strings.jinja2:743
 msgid "Block ads and get enhanced protection against malware and ad tracking."
 msgstr "封鎖廣告，並獲得不受惡意軟體與廣告追蹤的加強保護。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:918
+#: src/olympia/discovery/strings.jinja2:500 src/olympia/discovery/strings.jinja2:923
 msgid "Enjoy multi-threading download support. Automatically detect different types of media available for download."
 msgstr "享用多線程下載。自動偵測不同可下載格式的媒體檔案。"
 
@@ -5397,19 +5413,19 @@ msgstr "享受強大的密碼管理器帶來的好處。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:768
+#: src/olympia/discovery/strings.jinja2:512 src/olympia/discovery/strings.jinja2:773
 msgid "Customize shades of light and dark to make web pages more visually pleasing."
 msgstr "自訂亮暗色調，使網頁更具視覺上的美感。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:915
+#: src/olympia/discovery/strings.jinja2:515 src/olympia/discovery/strings.jinja2:920
 msgid "Block distracting websites. Simply list the sites you want the extension to block. Instant discipline!"
 msgstr "封鎖讓人分心的網站。只需列出您想要擴充套件封鎖的網站，立即約束自己！"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:762
+#: src/olympia/discovery/strings.jinja2:518 src/olympia/discovery/strings.jinja2:767
 msgid "Change your browser's appearance. Easily design your own visual themes to make Firefox look as you please."
 msgstr "更改網頁瀏覽器的外觀。輕鬆設計屬於自己的視覺主題，使 Firefox 隨心所欲。"
 
@@ -5430,13 +5446,13 @@ msgstr "在 Amazon、Best Buy、eBay、Home Depot 和 Walmart 追蹤感興趣的
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:735
+#: src/olympia/discovery/strings.jinja2:530 src/olympia/discovery/strings.jinja2:740
 msgid "Turn the web dark or select a custom color scheme to visually tailor the internet to your own taste."
 msgstr "將網頁調暗或選擇自訂配色方案，直觀地根據自己的喜好來調整網路內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:954
+#: src/olympia/discovery/strings.jinja2:533 src/olympia/discovery/strings.jinja2:959
 msgid "Get a more advanced search page on Firefox for Android."
 msgstr "於 Firefox for Android 使用更進階的搜尋頁面。"
 
@@ -5462,7 +5478,7 @@ msgstr "只要輕鬆一點，就可以刪除 Cookie、瀏覽紀錄、快取檔�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:849
+#: src/olympia/discovery/strings.jinja2:549 src/olympia/discovery/strings.jinja2:854
 msgid "Remove tracking elements from web links."
 msgstr "移除網頁鏈結中的追蹤元素。"
 
@@ -5473,13 +5489,13 @@ msgstr "自動產生 RSS 資訊來源與書籤資料夾。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:912
+#: src/olympia/discovery/strings.jinja2:555 src/olympia/discovery/strings.jinja2:917
 msgid "Easily organize tons of open tabs."
 msgstr "輕鬆管理大量開啟的分頁。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:852
+#: src/olympia/discovery/strings.jinja2:558 src/olympia/discovery/strings.jinja2:857
 msgid "Create and customize tab groups."
 msgstr "建立並自訂分頁群組。"
 
@@ -5495,13 +5511,13 @@ msgstr "封鎖所有廣告 — 不論是影片、彈出型視窗，或是其他�
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:906
+#: src/olympia/discovery/strings.jinja2:569 src/olympia/discovery/strings.jinja2:911
 msgid "Watch streaming media with friends and family anywhere."
 msgstr "與朋友和家人在任何地方觀看串流媒體內容。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:948
+#: src/olympia/discovery/strings.jinja2:572 src/olympia/discovery/strings.jinja2:953
 msgid "Skip over sponsored portions of YouTube videos."
 msgstr "跳過 YouTube 影片的廣告贊助部分。"
 
@@ -5512,31 +5528,31 @@ msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:945
+#: src/olympia/discovery/strings.jinja2:578 src/olympia/discovery/strings.jinja2:950
 msgid "Double-click any word to instantly see its definition."
 msgstr "雙擊任何字，馬上看到解釋與定義。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:987
+#: src/olympia/discovery/strings.jinja2:583 src/olympia/discovery/strings.jinja2:992
 msgid "Save batches of tabs as convenient bookmarks."
 msgstr "將分頁標籤批次儲存為簡便書籤。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:990
+#: src/olympia/discovery/strings.jinja2:586 src/olympia/discovery/strings.jinja2:995
 msgid "Tabs and bookmarks neatly organized in a Firefox side view."
 msgstr "將分頁標籤與書籤放在 Firefox 的側邊欄好好整理。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:969
+#: src/olympia/discovery/strings.jinja2:589 src/olympia/discovery/strings.jinja2:974
 msgid "Thousands of GIFs at your fingertips."
 msgstr "快速挑選數以千計的 GIF 動圖。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:975
+#: src/olympia/discovery/strings.jinja2:592 src/olympia/discovery/strings.jinja2:980
 msgid "The easiest way to manage YouTube subscriptions."
 msgstr "最簡單就能管理所有 YouTube 訂閱項目的方式。"
 
@@ -5547,7 +5563,7 @@ msgstr "選擇您想要的滑鼠捲軸樣式 — 自訂寬度和顏色。"
 
 #. editorial content for the discovery pane.
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:984
+#: src/olympia/discovery/strings.jinja2:598 src/olympia/discovery/strings.jinja2:989
 msgid "Save and restore tabs. Includes auto-save and cloud sync features."
 msgstr "儲存與恢復分頁清單，包含自動儲存與雲端同步功能。"
 
@@ -5682,564 +5698,574 @@ msgid "\"Better Twitch TV\" — enhance Twitch and YouTube with a slew of new fe
 msgstr "「更好的 Twitch TV」— 透過一系列新功能來加強 Twitch 與 YouTube。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:732
+#: src/olympia/discovery/strings.jinja2:737
 msgid "Some websites have difficulty playing videos on Android. Here's a fix."
 msgstr "某些網站無法在 Android 上正常播放影片，此套件可修正此問題。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:753
+#: src/olympia/discovery/strings.jinja2:758
 msgid "Find an interesting pic on the web? Use TinEye to discover its origins."
 msgstr "在網路上看到有趣的圖片？使用 TinEye 來尋找圖片來源。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:771
+#: src/olympia/discovery/strings.jinja2:776
 msgid "Save images easily — just grab them from your current tab."
 msgstr "更輕鬆就能儲存照片 — 直接從您目前所在的分頁一次下載下來。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:774
+#: src/olympia/discovery/strings.jinja2:779
 msgid "Enjoy ultimate tab control — close duplicate tabs, merge windows, copy the tab title & more."
 msgstr "享受終極分頁控制功能 — 關閉重複的分頁、合併視窗、複製分頁標題等等。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:792
+#: src/olympia/discovery/strings.jinja2:797
 msgid "Read ePUB files right in Firefox—increase font size, page dimensions & more."
 msgstr "在 Firefox 中直接開啟閱讀 ePUB 檔案—有放大文字、頁面大小等功能。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:813
+#: src/olympia/discovery/strings.jinja2:818
 msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configurations."
 msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:864
+#: src/olympia/discovery/strings.jinja2:821
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "享用全新的 YouTube 功能大補包，諸如電影院模式、封鎖廣告、自動播放等功能。"
+
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:869
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr "改變任何網站的外觀！頁面色彩、頁面背景等等皆可調整。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:873
+#: src/olympia/discovery/strings.jinja2:878
 msgid "Use mouse gestures to close tabs, navigate pages & more."
 msgstr "使用滑鼠手勢關閉分頁、切換頁面與更多功能。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:876
+#: src/olympia/discovery/strings.jinja2:881
 msgid "A simple way to adjust the size of any page's text — or even enlarge the page itself."
 msgstr "一個輕鬆調整網頁文字大小的方法 — 或者甚至放大整個網頁。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:903
+#: src/olympia/discovery/strings.jinja2:908
 msgid "Enjoy thumbnail images of websites alongside your search returns."
 msgstr "在搜尋結果中顯示網站畫面擷圖。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:909
+#: src/olympia/discovery/strings.jinja2:914
 msgid "Save an entire web page — including images and styling — as a single HTML file."
 msgstr "將完整的頁面（包含圖片與樣式）存成單一 HTML 檔案。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:924
+#: src/olympia/discovery/strings.jinja2:929
 msgid "Edit a web page before printing. Remove ads or any unwanted content."
 msgstr "列印前先編輯網頁，清除廣告或不需要的內容。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:933
+#: src/olympia/discovery/strings.jinja2:938
 msgid "Advanced reader for aggregating all of your RSS/Atom/RDF sources."
 msgstr "能整合您所有 RSS/Atom/RDF 資訊來源的進階閱讀器。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:951
+#: src/olympia/discovery/strings.jinja2:956
 msgid "Web pages read aloud. 40+ languages supported."
 msgstr "讓網頁自動朗讀，支援超過 40 種語言。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:957
+#: src/olympia/discovery/strings.jinja2:962
 msgid "Removes those long tracking parameters from Google search result URL's."
 msgstr "移除 Google 搜尋結果網址當中又臭又長的追蹤參數。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:960
+#: src/olympia/discovery/strings.jinja2:965
 msgid "Get weather updates directly from Firefox."
 msgstr "從 Firefox 直接取得世界各地的最新天氣資訊。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:963
+#: src/olympia/discovery/strings.jinja2:968
 msgid "Manage your time better with a browser clock that charts work intervals."
 msgstr "在瀏覽器使用可繪製工作時間的時鐘，讓您更能掌握時間。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:966
+#: src/olympia/discovery/strings.jinja2:971
 msgid "Tired of that \"Video paused. Continue watching?\" message? Listen to your favorite music uninterrupted on YouTube."
 msgstr "是否厭倦了「影片已暫停。要繼續觀看嗎？」的訊息？讓您在 YouTube 上暢聽喜歡的音樂而不受干擾。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:972
+#: src/olympia/discovery/strings.jinja2:977
 msgid "Begone, annoying cookie warnings!"
 msgstr "去去 Cookie 警告走！"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:978
+#: src/olympia/discovery/strings.jinja2:983
 msgid "Return to a simpler time — when your top search results stood above the ads (Google and Bing search engine compatible)."
 msgstr "返樸歸真——讓您的搜尋結果不再充斥著廣告（相容 Google 及 Bing 搜尋引擎）。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:981
+#: src/olympia/discovery/strings.jinja2:986
 msgid "Get the mouse scrollbar you've always wanted — specify width and color."
 msgstr "選擇您想要的滑鼠捲軸樣式 — 自訂寬度和顏色。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:993
+#: src/olympia/discovery/strings.jinja2:998
 msgid "Mask your email to protect your identity & prevent junk mail. New updates make Firefox Relay even easier to use."
 msgstr "隱藏您的電子郵件地址，以保護您的身份並隔絕垃圾郵件。最新的更新使 Firefox Relay 更加簡便易用。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:996
+#: src/olympia/discovery/strings.jinja2:1001
 msgid "Instantly translate any selected text on web pages."
 msgstr "即時翻譯在網頁上選擇的任何文字。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:999
+#: src/olympia/discovery/strings.jinja2:1004
 msgid "Make Firefox change colors based on time of day."
 msgstr "讓 Firefox 根據不同時間改變顏色。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1002
+#: src/olympia/discovery/strings.jinja2:1007
 msgid "Eliminate YouTube distractions. Remove related and recommended video suggestions, comments & more."
 msgstr "消除 YouTube 當中的干擾內容。移除相關與推薦的影片、評論等區塊。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1005
+#: src/olympia/discovery/strings.jinja2:1010
 msgid "Take emojis with you everywhere on the web."
 msgstr "把 emoji 隨身帶著走。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1011
+#: src/olympia/discovery/strings.jinja2:1016
 msgid "Put restrictions on distracting, time-wasting websites."
 msgstr "限制會分散您的注意力、浪費時間的網站。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1014
+#: src/olympia/discovery/strings.jinja2:1019
 msgid "Remove clutter from your Twitter."
 msgstr "清除 Twitter 上的雜亂內容。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1017
+#: src/olympia/discovery/strings.jinja2:1022
 msgid "Customize YouTube to taste."
 msgstr "自訂 YouTube 以符合您的需求。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1020
+#: src/olympia/discovery/strings.jinja2:1025
 msgid "Delete browsing data directly from the browser toolbar."
 msgstr "直接從瀏覽器工具列刪除上網資料。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1023
+#: src/olympia/discovery/strings.jinja2:1028
 msgid "Get RSS feed auto-updates direct to your bookmark folders."
 msgstr "自動更新 RSS 文章內容到書籤資料夾。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1026
+#: src/olympia/discovery/strings.jinja2:1031
 msgid "Effective blocker against all types of ads."
 msgstr "有效封鎖各類型廣告。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1029
+#: src/olympia/discovery/strings.jinja2:1034
 msgid "Mass download manager makes extreme downloading extremely easy."
 msgstr "大量下載管理員讓需要大量下載檔案時變得超級簡單。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1032
+#: src/olympia/discovery/strings.jinja2:1037
 msgid "Remove ads & receive better protection against malware."
 msgstr "刪除廣告，並且對惡意軟體受到更好的保護。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1035
+#: src/olympia/discovery/strings.jinja2:1040
 msgid "Remove formatting from copied Clipboard text."
 msgstr "清除複製到剪貼簿的文字當中的格式化文字。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1038
+#: src/olympia/discovery/strings.jinja2:1043
 msgid "Fingerprinting privacy protection."
 msgstr "數位指紋追蹤保護。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1041
+#: src/olympia/discovery/strings.jinja2:1046
 msgid "Enhance your gaming experience on Steam."
 msgstr "加強您在 Steam 的遊戲體驗。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1044
+#: src/olympia/discovery/strings.jinja2:1049
 msgid "Thumbs-up to bringing back thumbs-down."
 msgstr "按下按讚按紐，即可顯示倒讚按鈕。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1047
+#: src/olympia/discovery/strings.jinja2:1052
 msgid "Translate websites in Firefox — privately — without using the cloud."
 msgstr "不使用雲端服務，直接在 Firefox 有隱私地翻譯網站內容。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1050
+#: src/olympia/discovery/strings.jinja2:1055
 msgid "Block time-wasting websites. Block them completely or just during time frames of your choosing."
 msgstr "封鎖浪費時間的網站。可以完全封鎖，或只在特定時間範圍內封鎖。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1053
+#: src/olympia/discovery/strings.jinja2:1058
 msgid "Easily summarize emails, docs, articles, and video transcripts in English across the web — without sacrificing your privacy."
 msgstr "簡單就能為英文郵件、文件、文章、影片內容做摘要，而無須犧牲個人隱私。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1056
+#: src/olympia/discovery/strings.jinja2:1061
 msgid "You’re in control. Turn off VPN when a website won’t work and set different locations for different websites. Windows only."
 msgstr "由您自行掌控。網站無法正常運作時，可關閉 VPN，或針對不同網站設定不同連線位置。僅支援 Windows。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1059
+#: src/olympia/discovery/strings.jinja2:1064
 msgid "Automatically handle GDPR consent forms."
 msgstr "自動處理 GDPR 同意表單。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1062
+#: src/olympia/discovery/strings.jinja2:1067
 msgid "Block malicious websites from port scanning."
 msgstr "封鎖有害網站掃描通訊埠。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1065
+#: src/olympia/discovery/strings.jinja2:1070
 msgid "Enhance your Twitch experience."
 msgstr "加強您的 Twitch 使用體驗。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1068
+#: src/olympia/discovery/strings.jinja2:1073
 msgid "Re-take control of Twitter/X and customize your experience."
 msgstr "重新搶回 Twitter/X 的控制，並自訂您的使用體驗。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1071
+#: src/olympia/discovery/strings.jinja2:1076
 msgid "Translate text without leaving the page you're on (PDF compatible)."
 msgstr "不用離開頁面就可以翻譯文字（與 PDF 相容）。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1074
+#: src/olympia/discovery/strings.jinja2:1079
 msgid "Change the color of Firefox to match every website you visit."
 msgstr "讓 Firefox 的色彩搭配您開啟的各個網站，自動變換。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1077
+#: src/olympia/discovery/strings.jinja2:1082
 msgid "Learning a new language? Yomitan is the ideal dictionary companion."
 msgstr "正在學習新語言？Yomitan 是您理想的字典好夥伴。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1080
+#: src/olympia/discovery/strings.jinja2:1085
 msgid "Pack a powerful thesaurus right inside Firefox."
 msgstr "在 Firefox 中加入威力強大的同義詞詞庫。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1083
+#: src/olympia/discovery/strings.jinja2:1088
 msgid "Hover over web images to enlarge their appearance."
 msgstr "將滑鼠移到網頁圖片上，即可放大。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1086
+#: src/olympia/discovery/strings.jinja2:1091
 msgid "Feature rich translation tool. Works across the web, eBooks, PDFs, even video subtitles."
 msgstr "功能豐富的翻譯工具。可在網頁、電子書、PDF，甚至是影片字幕使用。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1089
+#: src/olympia/discovery/strings.jinja2:1094
 msgid "Track the time you spend on every website you visit."
 msgstr "追蹤您在造訪的每個網站所花的時間。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1092
+#: src/olympia/discovery/strings.jinja2:1097
 msgid "Manage your Gmail (even multiple accounts) right from a handy pop-up accessible from the Firefox toolbar."
 msgstr "直接從 Firefox 工具列按鈕彈出視窗來管理您的 Gmail（有多個帳號也沒問題）"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1095
+#: src/olympia/discovery/strings.jinja2:1100
 msgid "De-clutter YouTube. Strip away unwanted elements like related videos, shorts & more."
 msgstr "讓 YouTube 變得更整潔。清除相關影片、短片等不想要的元素。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1098
+#: src/olympia/discovery/strings.jinja2:1103
 msgid "Leave yourself little notes on any web page."
 msgstr "讓您在任何網頁上都能留下小筆記給自己。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1101
+#: src/olympia/discovery/strings.jinja2:1106
 msgid "Serenity for your Reddit experience."
 msgstr "為您帶來平靜的 Reddit 使用體驗。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1104
+#: src/olympia/discovery/strings.jinja2:1109
 msgid "Save and organize anything you find on the web."
 msgstr "儲存並管理您在網路上找到的任何東西。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1107
+#: src/olympia/discovery/strings.jinja2:1112
 msgid "WebM video controls at your fingertips."
 msgstr "隨手開啟 WebM 影片控制元件。"
 
 #. editorial content for the primary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1110
+#: src/olympia/discovery/strings.jinja2:1115
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr "將 Firefox 扮裝成 Chrome 瀏覽器，躲避會封鎖 Firefox 的網站。"
 
+#. editorial content for the primary hero shelves.
+#: src/olympia/discovery/strings.jinja2:1118
+msgid "Remove distractions, change viewing options, alter playback speed & more."
+msgstr "移除干擾、更改檢視選項、調整播放速度等功能。"
+
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1113
+#: src/olympia/discovery/strings.jinja2:1121
 msgid "Extensions are like apps for Firefox."
 msgstr "擴充套件就像是在 Firefox 中安裝應用程式。"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1115
+#: src/olympia/discovery/strings.jinja2:1123
 msgid "They add features to Firefox to make browsing faster, safer, or just plain fun."
 msgstr "它們為 Firefox 新增功能，讓上網變得更快、更安全、更好玩。"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1117
+#: src/olympia/discovery/strings.jinja2:1125
 msgid "See all extensions"
 msgstr "瀏覽所有擴充套件"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1119
-msgid "YouTube extensions"
-msgstr "YouTube 擴充套件"
+#: src/olympia/discovery/strings.jinja2:1127
+msgid "Extension Starter Pack"
+msgstr "擴充套件組合包"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1121
+#: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
 msgstr "生產力擴充套件"
 
 #. editorial content for the secondary hero shelves.
-#: src/olympia/discovery/strings.jinja2:1125 src/olympia/discovery/strings.jinja2:1127 src/olympia/discovery/strings.jinja2:1129
+#: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
 msgid "See staff picks"
 msgstr "看看員工精選"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1132
+#: src/olympia/discovery/strings.jinja2:1140
 msgid "Recommended extensions"
 msgstr "推薦的擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1134
+#: src/olympia/discovery/strings.jinja2:1142
 msgid "See more recommended extensions"
 msgstr "看更多推薦的擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1137
+#: src/olympia/discovery/strings.jinja2:1145
 msgid "Popular themes"
 msgstr "熱門佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1139
+#: src/olympia/discovery/strings.jinja2:1147
 msgid "See more popular themes"
 msgstr "看更多熱門佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1142
+#: src/olympia/discovery/strings.jinja2:1150
 msgid "Privacy & security"
 msgstr "隱私權與安全性"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1144
+#: src/olympia/discovery/strings.jinja2:1152
 msgid "See more privacy staff picks"
 msgstr "看更多員工精選的隱私權套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1147
+#: src/olympia/discovery/strings.jinja2:1155
 msgid "Popular extensions"
 msgstr "熱門擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1149
+#: src/olympia/discovery/strings.jinja2:1157
 msgid "See more popular extensions"
 msgstr "看看更多知名擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1152
+#: src/olympia/discovery/strings.jinja2:1160
 msgid "Recommended themes"
 msgstr "推薦的佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1154
+#: src/olympia/discovery/strings.jinja2:1162
 msgid "See more recommended themes"
 msgstr "看更多推薦佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1157
+#: src/olympia/discovery/strings.jinja2:1165
 msgid "Strong password managers"
 msgstr "強大的密碼管理員"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1159
+#: src/olympia/discovery/strings.jinja2:1167
 msgid "See more password manager staff picks"
 msgstr "看更多員工精選的密碼管理套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1162
+#: src/olympia/discovery/strings.jinja2:1170
 msgid "Translation tools"
 msgstr "翻譯工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1164
+#: src/olympia/discovery/strings.jinja2:1172
 msgid "See more translation tool staff picks"
 msgstr "看員工精選的更多翻譯工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1167
+#: src/olympia/discovery/strings.jinja2:1175
 msgid "Social streaming"
 msgstr "社交串流"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1169
+#: src/olympia/discovery/strings.jinja2:1177
 msgid "See more social streaming staff picks"
 msgstr "看更多看員工精選的社交串流套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1172
+#: src/olympia/discovery/strings.jinja2:1180
 msgid "Tab managers"
 msgstr "分頁管理員"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1174
+#: src/olympia/discovery/strings.jinja2:1182
 msgid "See more tab management staff picks"
 msgstr "看更多員工精選的分頁管理套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1177
+#: src/olympia/discovery/strings.jinja2:1185
 #, python-brace-format
 msgid "“{tag}” tagged extensions"
 msgstr "含有「{tag}」標籤的擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1179
+#: src/olympia/discovery/strings.jinja2:1187
 #, python-brace-format
 msgid "See more extensions tagged \"{tag}\""
 msgstr "看看更多含有「{tag}」標籤的擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1182
+#: src/olympia/discovery/strings.jinja2:1190
 msgid "Elite ad blockers"
 msgstr "菁英級廣告封鎖工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1184
+#: src/olympia/discovery/strings.jinja2:1192
 msgid "See more ad blocker staff picks"
 msgstr "看更多員工精選的廣告封鎖工具"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1187
+#: src/olympia/discovery/strings.jinja2:1195
 msgid "YouTube customization"
 msgstr "自訂 YouTube"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1189
+#: src/olympia/discovery/strings.jinja2:1197
 msgid "See more YouTube extension staff picks"
 msgstr "看員工精選的更多 YouTube 擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1192
+#: src/olympia/discovery/strings.jinja2:1200
 msgid "Trending themes"
 msgstr "熱門佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1194
+#: src/olympia/discovery/strings.jinja2:1202
 msgid "See more trending themes"
 msgstr "看更多熱門佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1197 src/olympia/discovery/strings.jinja2:1242
+#: src/olympia/discovery/strings.jinja2:1205 src/olympia/discovery/strings.jinja2:1250
 msgid "Top rated themes"
 msgstr "分數最高的佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1199 src/olympia/discovery/strings.jinja2:1244
+#: src/olympia/discovery/strings.jinja2:1207 src/olympia/discovery/strings.jinja2:1252
 msgid "See more top rated themes"
 msgstr "看更多高分的佈景主題"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1202
+#: src/olympia/discovery/strings.jinja2:1210
 msgid "Trending extensions"
 msgstr "熱門擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1204
+#: src/olympia/discovery/strings.jinja2:1212
 msgid "See more trending extensions"
 msgstr "看更多熱門擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1207
+#: src/olympia/discovery/strings.jinja2:1215
 msgid "Steam enhancers"
 msgstr "Steam 加強包"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1209
+#: src/olympia/discovery/strings.jinja2:1217
 msgid "See more Steam staff picks"
 msgstr "看更多員工精選的 Steam 套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1212
+#: src/olympia/discovery/strings.jinja2:1220
 msgid "Creativity extensions"
 msgstr "創意擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1214
+#: src/olympia/discovery/strings.jinja2:1222
 msgid "See more creativity staff picks"
 msgstr "看員工精選的更多創意套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1217
+#: src/olympia/discovery/strings.jinja2:1225
 msgid "Social media extensions"
 msgstr "社群媒體擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1219
+#: src/olympia/discovery/strings.jinja2:1227
 msgid "See more social media staff picks"
 msgstr "看更多看員工精選的社群媒體套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1222
+#: src/olympia/discovery/strings.jinja2:1230
 msgid "Top download managers"
 msgstr "熱門下載管理員"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1224
+#: src/olympia/discovery/strings.jinja2:1232
 msgid "See more download manager staff picks"
 msgstr "看更多員工精選的下載管理員"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1227
+#: src/olympia/discovery/strings.jinja2:1235
 msgid "Accessibility extensions"
 msgstr "無障礙功能擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1229
+#: src/olympia/discovery/strings.jinja2:1237
 msgid "See more accessibility staff picks"
 msgstr "看員工精選的更多無障礙套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1232
+#: src/olympia/discovery/strings.jinja2:1240
 msgid "Extension starter pack"
 msgstr "擴充套件新手包"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1234
+#: src/olympia/discovery/strings.jinja2:1242
 msgid "See more starter extension staff picks"
 msgstr "看員工精選的更多擴充套件組合包"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1237
+#: src/olympia/discovery/strings.jinja2:1245
 msgid "Twitch extensions"
 msgstr "Twitch 擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1239
+#: src/olympia/discovery/strings.jinja2:1247
 msgid "See more Twitch extension staff picks"
 msgstr "看員工精選的更多 Twitch 擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1247
+#: src/olympia/discovery/strings.jinja2:1255
 msgid "Gaming & media extensions"
 msgstr "遊戲與媒體擴充套件"
 
 #. editorial content for the homepage shelves.
-#: src/olympia/discovery/strings.jinja2:1249
+#: src/olympia/discovery/strings.jinja2:1257
 msgid "See more staff picks"
 msgstr "看更多員工精選"
 
@@ -6492,26 +6518,26 @@ msgstr "顯示全部"
 msgid "Save"
 msgstr "儲存"
 
-#: src/olympia/search/filters.py:49 src/olympia/search/filters.py:62 src/olympia/search/filters.py:95 src/olympia/search/filters.py:170 src/olympia/search/filters.py:210
-#: src/olympia/search/filters.py:356 src/olympia/search/filters.py:467
+#: src/olympia/search/filters.py:45 src/olympia/search/filters.py:58 src/olympia/search/filters.py:91 src/olympia/search/filters.py:166 src/olympia/search/filters.py:206
+#: src/olympia/search/filters.py:352 src/olympia/search/filters.py:457
 #, python-format
 msgid "Invalid \"%s\" parameter."
 msgstr "參數「%s」無效。"
 
-#: src/olympia/search/filters.py:214 src/olympia/search/filters.py:334
+#: src/olympia/search/filters.py:210 src/olympia/search/filters.py:330
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "「%s」和「%s」的參數組合無效。"
 
-#: src/olympia/search/filters.py:276
+#: src/olympia/search/filters.py:272
 msgid "Return To AMO is currently disabled"
 msgstr "目前已停用 Return To AMO 功能"
 
-#: src/olympia/search/filters.py:285
+#: src/olympia/search/filters.py:281
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Return To AMO GUID 無效（base64 網址格式不正確？）"
 
-#: src/olympia/search/filters.py:970
+#: src/olympia/search/filters.py:942
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
 
@@ -6537,19 +6563,19 @@ msgstr "版本號碼與安裝資訊檔不符。"
 msgid "Please specify your Add-on ID in the manifest if it's longer than 64 characters."
 msgstr "若附加元件 ID 超過 64 字元，請在安裝資訊檔中指定。"
 
-#: src/olympia/signing/views.py:187
+#: src/olympia/signing/views.py:192
 msgid "Invalid Add-on ID in URL or package"
 msgstr "網址或封裝中，有無效的附加元件 ID"
 
-#: src/olympia/signing/views.py:212
+#: src/olympia/signing/views.py:217
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr "您無法將公開上架的版本新增到狀態為「隱藏」的附加元件。"
 
-#: src/olympia/signing/views.py:227
+#: src/olympia/signing/views.py:232
 msgid "You cannot add a listed version to this add-on via the API due to missing metadata. Please submit via the website"
 msgstr "由於缺少後設資料，您無法透過 API 為此附加元件新增公開上架的版本。請透過網站送出"
 
-#: src/olympia/signing/views.py:282
+#: src/olympia/signing/views.py:287
 msgid "No uploaded file for that add-on and version."
 msgstr "該附加元件與版本沒有已上傳的檔案。"
 
@@ -6844,35 +6870,99 @@ msgstr "回報 Bug"
 msgid "Review Guide"
 msgstr "評論撰寫指南"
 
-#: src/olympia/templates/photon-footer.html:24 src/olympia/templates/photon-footer.html:37
-msgid "Browsers"
-msgstr "瀏覽器"
+#: src/olympia/templates/photon-footer.html:24
+msgid "Download"
+msgstr "下載"
 
 #: src/olympia/templates/photon-footer.html:27
-msgid "Desktop"
-msgstr "桌面版"
+msgid "Download Firefox"
+msgstr "下載 Firefox"
+
+#: src/olympia/templates/photon-footer.html:28
+msgid "Windows"
+msgstr "Windows"
 
 #: src/olympia/templates/photon-footer.html:29
-msgid "Enterprise"
-msgstr "企業版"
+msgid "macOS"
+msgstr "macOS"
 
-#: src/olympia/templates/photon-footer.html:34
-msgid "Products"
-msgstr "產品"
+#: src/olympia/templates/photon-footer.html:30
+msgid "iOS"
+msgstr "iOS"
 
-#: src/olympia/templates/photon-footer.html:52
+#: src/olympia/templates/photon-footer.html:31
+msgid "Android"
+msgstr "Android"
+
+#: src/olympia/templates/photon-footer.html:32
+msgid "Linux"
+msgstr "Linux"
+
+#: src/olympia/templates/photon-footer.html:33
+msgid "All"
+msgstr "全部"
+
+#: src/olympia/templates/photon-footer.html:39
+msgid "Latest Builds"
+msgstr "最新編譯版本"
+
+#: src/olympia/templates/photon-footer.html:42
+msgid "Nightly"
+msgstr "Nightly"
+
+#: src/olympia/templates/photon-footer.html:43
+msgid "Beta"
+msgstr "Beta 測試版"
+
+#: src/olympia/templates/photon-footer.html:47
+msgid "Firefox for Business"
+msgstr "Firefox for Business"
+
+#: src/olympia/templates/photon-footer.html:56
+msgid "Community"
+msgstr "社群"
+
+#: src/olympia/templates/photon-footer.html:59
+msgid "Connect"
+msgstr "Connect"
+
+#: src/olympia/templates/photon-footer.html:66
+msgid "Follow"
+msgstr "追蹤"
+
+#: src/olympia/templates/photon-footer.html:69
+msgid "Instagram"
+msgstr "Instagram"
+
+#: src/olympia/templates/photon-footer.html:70
+msgid "YouTube"
+msgstr "YouTube"
+
+#: src/olympia/templates/photon-footer.html:71
+msgid "TikTok"
+msgstr "TikTok"
+
+#: src/olympia/templates/photon-footer.html:72
+msgid "Bluesky"
+msgstr "Bluesky"
+
+#: src/olympia/templates/photon-footer.html:73
+msgid "Podcast"
+msgstr "Podcast"
+
+#: src/olympia/templates/photon-footer.html:78
 msgid "Privacy"
 msgstr "隱私權"
 
-#: src/olympia/templates/photon-footer.html:53
+#: src/olympia/templates/photon-footer.html:79
 msgid "Cookies"
 msgstr "Cookie"
 
-#: src/olympia/templates/photon-footer.html:54
+#: src/olympia/templates/photon-footer.html:80
 msgid "Legal"
 msgstr "法律資訊"
 
-#: src/olympia/templates/photon-footer.html:57
+#: src/olympia/templates/photon-footer.html:83
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative "
 "Commons Attribution Share-Alike License v3.0</a> or any later version."
@@ -6951,21 +7041,21 @@ msgstr "Firefox 使用者 {id}"
 msgid "Multiple submissions violating our policies have been sent from your location. The IP address has been blocked."
 msgstr "您的所在位置多次送出違反我們使用政策的附加元件。此 IP 已遭封鎖。"
 
-#: src/olympia/users/models.py:1066
+#: src/olympia/users/models.py:1104
 msgid "The email address used for your account is not allowed for submissions."
 msgstr "您帳號的電子郵件地址不允許用來送出附加元件。"
 
-#: src/olympia/users/models.py:1199
+#: src/olympia/users/models.py:1237
 msgid "The software or device you are using is not allowed for submissions."
 msgstr "您使用的軟體或裝置未被允許送交套件審核。"
 
-#: src/olympia/users/models.py:1325
+#: src/olympia/users/models.py:1363
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr "開始前，請先閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。Firefox 附加元件發行同意書當中亦包含我們的隱私權公告，解釋我們會如何處理您的資訊。"
 
-#: src/olympia/users/models.py:1339
+#: src/olympia/users/models.py:1377
 #, python-brace-format
 msgid "Please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules by visiting {url}"
 msgstr "請先到 {url} 閱讀並接受我們的 Firefox 附加元件發行同意書，以及我們的審核規則與政策。"
@@ -7096,33 +7186,33 @@ msgstr ""
 "\n"
 "Mozilla Add-ons 團隊"
 
-#: src/olympia/versions/models.py:1130
+#: src/olympia/versions/models.py:1140
 #, python-format
 msgid "Delay-rejected, scheduled for %s"
 msgstr "延遲拒絕，排定於 %s"
 
-#: src/olympia/versions/models.py:1135
+#: src/olympia/versions/models.py:1145
 msgid "Auto-approved, Confirmed"
 msgstr "自動通過審核，已確認"
 
-#: src/olympia/versions/models.py:1137
+#: src/olympia/versions/models.py:1147
 msgid "Auto-approved, not Confirmed"
 msgstr "自動通過審核，未確認"
 
-#: src/olympia/versions/models.py:1140
+#: src/olympia/versions/models.py:1150
 msgid "Approved, Manual"
 msgstr "通過審核，手動"
 
-#: src/olympia/versions/models.py:1147
+#: src/olympia/versions/models.py:1157
 msgid "Disabled by Developer"
 msgstr "由開發者關閉"
 
-#: src/olympia/versions/models.py:1504
+#: src/olympia/versions/models.py:1516
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} 及更新版"
 
-#: src/olympia/versions/models.py:1631
+#: src/olympia/versions/models.py:1643
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "不允許使用 {origin} 此安裝來源。"

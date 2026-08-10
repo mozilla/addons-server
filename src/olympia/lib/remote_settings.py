@@ -35,14 +35,20 @@ class RemoteSettings:
 
     def heartbeat(self):
         url = f'{settings.REMOTE_SETTINGS_WRITER_URL}__heartbeat__'
-        response = requests.get(url, headers=self.headers)
+        response = requests.get(
+            url,
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+        )
         response.raise_for_status()
         return response.json()
 
     def authenticated(self):
         # Return True if configured credentials can authenticate.
         response = requests.get(
-            settings.REMOTE_SETTINGS_WRITER_URL, headers=self.headers
+            settings.REMOTE_SETTINGS_WRITER_URL,
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
         )
         return 'id' in response.json().get('user', {})
 
@@ -57,13 +63,23 @@ class RemoteSettings:
         json_data = {'data': data}
         if not legacy_id:
             log.info('Creating record for [%s]' % data.get('guid'))
-            response = requests.post(add_url, json=json_data, headers=self.headers)
+            response = requests.post(
+                add_url,
+                json=json_data,
+                headers=self.headers,
+                timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+            )
         else:
             log.info(
                 'Updating record [{}] for [{}]'.format(legacy_id, data.get('guid'))
             )
             update_url = f'{add_url}/{legacy_id}'
-            response = requests.put(update_url, json=json_data, headers=self.headers)
+            response = requests.put(
+                update_url,
+                json=json_data,
+                headers=self.headers,
+                timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+            )
         if response.status_code not in (200, 201):
             log.error(
                 'Creating record for [%s] failed: %s'
@@ -94,7 +110,11 @@ class RemoteSettings:
         )
         files = [('attachment', attachment)]
         response = requests.post(
-            attach_url, data=json_data, headers=headers, files=files
+            attach_url,
+            data=json_data,
+            headers=headers,
+            files=files,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
         )
         if response.status_code not in (200, 201):
             log.error(
@@ -110,7 +130,11 @@ class RemoteSettings:
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records'
         )
-        response = requests.get(url, headers=self.headers)
+        response = requests.get(
+            url,
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+        )
         return response.json().get('data', [])
 
     def delete_record(self, legacy_id):
@@ -118,7 +142,11 @@ class RemoteSettings:
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records/{legacy_id}'
         )
-        response = requests.delete(url, headers=self.headers)
+        response = requests.delete(
+            url,
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+        )
         if response.status_code not in (200, 201):
             log.error(
                 f'Deleting record [{legacy_id}] failed: {response.content}',
@@ -134,7 +162,11 @@ class RemoteSettings:
             f'{settings.REMOTE_SETTINGS_WRITER_URL}buckets/{self.bucket}/'
             f'collections/{self.collection}/records'
         )
-        requests.delete(url, headers=self.headers)
+        requests.delete(
+            url,
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+        )
         self._changes = True
 
     def complete_session(self):
@@ -145,5 +177,10 @@ class RemoteSettings:
             f'collections/{self.collection}'
         )
         status = 'to-review' if self.sign_off_needed else 'to-sign'
-        requests.patch(url, json={'data': {'status': status}}, headers=self.headers)
+        requests.patch(
+            url,
+            json={'data': {'status': status}},
+            headers=self.headers,
+            timeout=settings.REMOTE_SETTINGS_REQUEST_TIMEOUT_SECONDS,
+        )
         self._changes = False

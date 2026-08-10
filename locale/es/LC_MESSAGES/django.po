@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-06-04 17:42+0000\n"
+"POT-Creation-Date: 2026-08-06 10:30+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -620,12 +620,6 @@ msgstr "No se puede usar esta URL personalizada."
 msgid "This add-on already belongs to the collection"
 msgstr "Este complemento ya pertenece a la colección"
 
-msgid "Blocked"
-msgstr ""
-
-msgid "Restricted"
-msgstr ""
-
 #, python-brace-format
 msgid "{addon} was created."
 msgstr "{addon} ha sido creado."
@@ -1061,6 +1055,9 @@ msgstr "Eliminado"
 msgid "Unlisted"
 msgstr "No listado"
 
+msgid "Enterprise"
+msgstr ""
+
 msgid "Signing API"
 msgstr ""
 
@@ -1142,6 +1139,12 @@ msgid "Themes"
 msgstr "Temas"
 
 msgid "Deprecated Site Permissions"
+msgstr ""
+
+msgid "Blocked"
+msgstr ""
+
+msgid "Restricted"
 msgstr ""
 
 msgid "Alerts & Updates"
@@ -1417,10 +1420,6 @@ msgstr "Cambios recientes en Mis complementos"
 msgid "Open Search add-ons are {blog_link_open}no longer supported on AMO{blog_link_close}. You can create a {doc_link_open}search extension instead{doc_link_close}."
 msgstr "Los complementos de Open Search {blog_link_open}ya no son compatibles con AMO {blog_link_close}. Puedes {doc_link_open}crear una extensión de búsqueda en su lugar {doc_link_close}."
 
-#, python-brace-format
-msgid "Manifest V3 is currently not supported for upload. {start_href}Read more about the support timeline{end_href}."
-msgstr ""
-
 msgid "This slug is already in use. Please choose another."
 msgstr "Este slug se utiliza. Por favor, elige otro."
 
@@ -1554,6 +1553,11 @@ msgstr ""
 msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
+msgstr ""
+
+msgid ""
+"An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
+"Enterprise policy.</span>"
 msgstr ""
 
 msgid "Display Name"
@@ -3045,6 +3049,12 @@ msgstr "Última versión:"
 msgid "This is the newest uploaded unlisted version"
 msgstr "Esta es la última versión disponible no listada"
 
+msgid "Signed for enterprise."
+msgstr ""
+
+msgid "This is the newest uploaded enterprise version"
+msgstr ""
+
 msgid "Upload New Version"
 msgstr "Subir nueva versión"
 
@@ -3056,6 +3066,9 @@ msgstr "Página de revisión listada"
 
 msgid "Unlisted Review Page"
 msgstr "Página de revisión no listada"
+
+msgid "Enterprise Review Page"
+msgstr ""
 
 msgid "Admin Manage"
 msgstr "Gestión del administrador"
@@ -3630,9 +3643,8 @@ msgid "Effective, lightweight ad blocker. uBlock Origin enforces thousands of co
 msgstr "Un bloqueador de publicidad ligero y eficiente. uBlock Origin ejecuta miles de filtros de contenido y apenas ocupa memoria."
 
 #. editorial content for the discovery pane.
-#. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Disfruta de una serie de funciones nuevas de Youtube, como el modo cine, el bloqueo de publicidad, el control de la reproducción automática y mucho más."
+msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -4573,6 +4585,10 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
 
 #. editorial content for the primary hero shelves.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Disfruta de una serie de funciones nuevas de Youtube, como el modo cine, el bloqueo de publicidad, el control de la reproducción automática y mucho más."
+
+#. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."
 msgstr ""
 
@@ -4792,6 +4808,10 @@ msgstr ""
 msgid "Disguise Firefox as the Chrome browser to spoof websites that try to block Firefox."
 msgstr ""
 
+#. editorial content for the primary hero shelves.
+msgid "Remove distractions, change viewing options, alter playback speed & more."
+msgstr ""
+
 #. editorial content for the secondary hero shelves.
 msgid "Extensions are like apps for Firefox."
 msgstr "Las extensiones son como aplicaciones para Firefox."
@@ -4805,7 +4825,7 @@ msgid "See all extensions"
 msgstr "Ver todas las extensiones"
 
 #. editorial content for the secondary hero shelves.
-msgid "YouTube extensions"
+msgid "Extension Starter Pack"
 msgstr ""
 
 #. editorial content for the secondary hero shelves.
@@ -5490,16 +5510,64 @@ msgstr "Informar de un error"
 msgid "Review Guide"
 msgstr ""
 
-msgid "Browsers"
+msgid "Download"
 msgstr ""
 
-msgid "Desktop"
+msgid "Download Firefox"
 msgstr ""
 
-msgid "Enterprise"
+msgid "Windows"
 msgstr ""
 
-msgid "Products"
+msgid "macOS"
+msgstr ""
+
+msgid "iOS"
+msgstr ""
+
+msgid "Android"
+msgstr ""
+
+msgid "Linux"
+msgstr ""
+
+msgid "All"
+msgstr ""
+
+msgid "Latest Builds"
+msgstr ""
+
+msgid "Nightly"
+msgstr ""
+
+msgid "Beta"
+msgstr ""
+
+msgid "Firefox for Business"
+msgstr ""
+
+msgid "Community"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Follow"
+msgstr ""
+
+msgid "Instagram"
+msgstr ""
+
+msgid "YouTube"
+msgstr ""
+
+msgid "TikTok"
+msgstr ""
+
+msgid "Bluesky"
+msgstr ""
+
+msgid "Podcast"
 msgstr ""
 
 msgid "Privacy"

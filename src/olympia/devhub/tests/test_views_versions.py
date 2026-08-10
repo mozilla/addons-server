@@ -29,7 +29,6 @@ from olympia.amo.tests import (
 )
 from olympia.applications.models import AppVersion
 from olympia.blocklist.models import BlockType
-from olympia.constants.promoted import PROMOTED_GROUP_CHOICES
 from olympia.files.models import File
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import Group, UserProfile
@@ -115,6 +114,32 @@ class TestVersion(TestCase):
         self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_doc()
         assert '<strong>Invisible:</strong>' in doc.html()
+
+    def test_enterprise_source_hidden(self):
+        assert self.version.channel == amo.CHANNEL_LISTED
+        url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
+        response = self.client.get(url)
+        assert pq(response.content)('#id_source')
+
+        unlisted_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        url = reverse(
+            'devhub.versions.edit', args=(self.addon.slug, unlisted_version.pk)
+        )
+        response = self.client.get(url)
+        assert pq(response.content)('#id_source')
+
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+        )
+        url = reverse(
+            'devhub.versions.edit', args=(self.addon.slug, enterprise_version.pk)
+        )
+        response = self.client.get(url)
+        assert not pq(response.content)('#id_source')
 
     def test_upload_link_label_in_edit_nav(self):
         url = reverse('devhub.versions.edit', args=(self.addon.slug, self.version.pk))
@@ -220,7 +245,11 @@ class TestVersion(TestCase):
         # If the add-on is recommended you can't disable or delete the current
         # version.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            badged=True,
+            approve_version=True,
         )
         assert self.version == self.addon.current_version
         self.client.post(self.delete_url, self.delete_data)
@@ -244,7 +273,10 @@ class TestVersion(TestCase):
         # If the add-on is recommended you *can* disable or delete the current
         # version if the previous version is approved for recommendation too.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            approve_version=True,
         )
         previous_version = self.version
         self.version = version_factory(addon=self.addon, promotion_approved=True)
@@ -272,16 +304,17 @@ class TestVersion(TestCase):
 
         self.addon.reload()
         assert self.addon.current_version == previous_version
-        # It's still recommended.
-        assert (
-            PROMOTED_GROUP_CHOICES.RECOMMENDED in self.addon.promoted_groups().group_id
-        )
+        # It's still promoted.
+        assert 'pre_review' in self.addon.promoted_groups().api_name
 
     def test_can_still_disable_or_delete_old_version_recommended(self):
         # If the add-on is recommended, you can still disable or delete older
         # versions than the current one.
         self.make_addon_promoted(
-            self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED, approve_version=True
+            addon=self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+            approve_version=True,
         )
         version_factory(addon=self.addon, promotion_approved=True)
         self.addon.reload()
@@ -307,7 +340,11 @@ class TestVersion(TestCase):
     def test_can_still_disable_or_delete_current_version_unapproved(self):
         # If the add-on is in recommended group but hasn't got approval yet,
         # then deleting the current version is fine.
-        self.make_addon_promoted(self.addon, PROMOTED_GROUP_CHOICES.RECOMMENDED)
+        self.make_addon_promoted(
+            addon=self.addon,
+            api_name='pre_review',
+            listed_pre_review=True,
+        )
         assert self.version == self.addon.current_version
 
         self.delete_data['disable_version'] = ''
@@ -816,7 +853,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(42):
+        with self.assertNumQueries(45):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -858,6 +895,7 @@ class TestVersion(TestCase):
             # 38. waffle switch
             # 39-40. promotion group queries
             # 41-42. (not in order) version-rollback waffle check
+            # 43-45. (not in order) enterprise version checks
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -924,7 +962,7 @@ class TestVersion(TestCase):
         )
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        with self.assertNumQueries(46):
+        with self.assertNumQueries(49):
             # see test_pending_activity_count for the query breakdown
             # + 2 more for the 2 extra versions (not good, but the current state)
             # + 2 more for the listed and unlisted rollback queries
@@ -1026,7 +1064,7 @@ class TestVersion(TestCase):
         )
 
         # with both channels available with multiple versions
-        with self.assertNumQueries(48):
+        with self.assertNumQueries(51):
             # see test_pending_activity_count & test_version_rollback_form_not_available
             # for the baseline when there no versions available.  We expect 2 more
             # queries here:

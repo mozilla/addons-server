@@ -96,7 +96,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.31.1@sha256:5aca99593157f4ae539a5dec1092a0ad8762f8e2eb1789085a13a0f5622369f6
+    image: nginx:1.31.3@sha256:5a88c9c45479443d7be2eadc894b4ed0a9801bae03d97a5760ae13b5c2005942
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -114,7 +114,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.4.9@sha256:c36050afdca850f23cef85703f84c7531a5ae155a11b5ee1c60acb09937c4084
+    image: mysql:8.4.10@sha256:d36d39a64cd12a5c1cc9e6aa2bfb5f8d4c81a2f6586e0a04a9ae13939db02209
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -140,7 +140,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: elasticsearch:8.19.16@sha256:832cb4df76ba2a08f0051742d216a67e3e3a7d8a616082793ed0150a95d3c9fe
+    image: elasticsearch:8.19.19@sha256:7901ce73287993e0a774e9d9b75f265c1af4cda895d47a28cbdd07e965fe5574
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -154,7 +154,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2.22@sha256:a3c4a4c39535d402567474dbc40afdcb126db6b248be6e26f29eec43c5974f9f
+    image: redis:6.2.22@sha256:e608fb94319e1aa53cecadbb051faa36d5c495f1142b99ca6673b41c2b428c0a
     volumes:
       - data_redis:/data
 
@@ -178,7 +178,7 @@ services:
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2026.05.28@sha256:990e19d9c2898bc7f701799fbe1655e8ad85bdbe8d8bcea63c7394c2d942d23e
+    image: mozilla/addons-frontend:2026.07.23@sha256:310a6e1eabd380d6106a0d369944574d4fa92a3839b4a477d33fdb9cf68c339a
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the

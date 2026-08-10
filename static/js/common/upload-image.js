@@ -97,7 +97,7 @@ $.fn.imageUploader = function () {
     outstanding_uploads++;
 
     if (
-      $upload_field.attr('data-allowed-types').split('|').indexOf(file.type) < 0
+      $upload_field.attr('data-allowed-types').split(',').indexOf(file.type) < 0
     ) {
       let errors = [gettext('Images must be either PNG or JPG.')];
       if (typeof $upload_field.attr('multiple') !== 'undefined') {
