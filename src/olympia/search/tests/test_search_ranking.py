@@ -1094,7 +1094,7 @@ class TestRankingScenarios(RankingScenarioTestCase):
         self._check_scenario('xyeta', ())
 
 
-class TestSentinelRankingScenarios(RankingScenarioTestCase):
+class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
     # Own corpus: BM25 idf depends on the document count, so adding these to
     # the TestRankingScenarios corpus would shift all of its scores.
     @classmethod
@@ -1110,7 +1110,7 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
             ('Tab Manager', 106),
             ('Tab manager', 194),
             # Dummy data: "Tab Manager" pluralised and equally popular, so it
-            # only matches the literal query below once stemmed.
+            # only matches the query below once stemmed.
             ('Tab Managers', 106),
             # Popular add-ons that mention tabs or managing, but aren't tab
             # managers.
@@ -1133,10 +1133,10 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         cls.refresh()
 
     def test_stemmed_whole_name_match_ranks_above_partial_matches(self):
-        # Before the sentinel, the 3 whole name matches ranked 7th, 10th and
-        # 11th, behind add-ons that merely share a word with the query.
-        # "SleepyTabs" still takes the top spot on the ordinary name clauses:
-        # the sentinel improves this ranking, it doesn't decide it.
+        # Without the analyzed match, these 3 whole name matches ranked 7th,
+        # 10th and 11th, behind add-ons that merely share a word. "SleepyTabs"
+        # still leads on the ordinary name clauses: this improves the ranking,
+        # it doesn't decide it.
         self._check_scenario(
             'tabs manager',
             (
@@ -1155,10 +1155,9 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         )
 
     def test_literal_whole_name_match_outranks_a_stemmed_one(self):
-        # 100.0 and 50.0 are multipliers on a BM25 score, not scores, so which
-        # of the 2 exact match clauses wins needs pinning. "Tab Manager" and
-        # "Tab Managers" are equally popular, so the gap between them here is
-        # only the clause each one matched.
+        # 100.0 and 50.0 are multipliers on BM25, not scores, so which exact
+        # match clause wins needs pinning. "Tab Manager" and "Tab Managers" are
+        # equally popular, so the gap is only the clause each one matched.
         self._check_scenario(
             'tab manager',
             (
@@ -1177,11 +1176,10 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
         )
 
     def test_stop_word_in_query_does_not_span_an_extra_word(self):
-        # The language analyzers drop stop words but keep their position, and a
-        # phrase query matches any word against the hole left behind. Before
-        # NO_STOPWORDS_ANALYZER_SUFFIX, "the tab manager" therefore spanned
-        # "My Tab Manager" end to end and took the whole name boost with it:
-        # 106 and first place, instead of the 25 and 6th place below.
+        # Dropping a stop word leaves an empty slot that a phrase query matches
+        # against any word. Without NO_STOPWORDS_ANALYZER_SUFFIX, "the tab
+        # manager" spanned "My Tab Manager" and took the whole name boost:
+        # first place at 106, instead of the 6th at 25 below.
         self._check_scenario(
             'the tab manager',
             (
