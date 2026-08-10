@@ -42,7 +42,7 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 
 class ContentAction:
-    description = 'Action has been taken'
+    description = 'Action will be taken'
     valid_targets = ()
     # No reporter emails will be sent while the paths are set to None
     reporter_template_path = None
@@ -350,7 +350,7 @@ class AnyOwnerEmailMixin:
 
 
 class ContentActionBanUser(ContentAction):
-    description = 'Account has been banned'
+    description = 'Account will be banned'
     valid_targets = (UserProfile,)
     reporter_template_path = 'abuse/emails/reporter_takedown_user.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
@@ -507,7 +507,7 @@ class ContentActionAddon(ContentAction):
 
 
 class ContentActionDisableAddon(ContentActionAddon):
-    description = 'Add-on has been disabled'
+    description = 'Add-on will be disabled'
     reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
     action = DECISION_ACTIONS.AMO_DISABLE_ADDON
@@ -593,7 +593,7 @@ class ContentActionDisableAddon(ContentActionAddon):
 
 
 class ContentActionRejectVersion(ContentActionDisableAddon):
-    description = 'Add-on version(s) have been rejected'
+    description = 'Add-on version(s) will be rejected'
     stakeholder_template_path = 'abuse/emails/stakeholder_notification.txt'
     stakeholder_acl_group_name = 'Stakeholder-Rejection-Notifications'
     action = DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON
@@ -795,7 +795,6 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
 
 
 class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
-    description = 'Add-on version(s) will be rejected'
     reporter_template_path = 'abuse/emails/reporter_takedown_addon_delayed.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown_delayed.txt'
     action = DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON
@@ -817,6 +816,13 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                 days=self.delayed_rejection_days,
                 hours=1,
             )
+
+    @classproperty
+    def description(cls):
+        return (
+            'Add-on version(s) will be rejected, '
+            f'after {REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT} days'
+        )
 
     def log_action(self, activity_log_action, *extra_args, extra_details=None):
         extra_details = {
@@ -938,7 +944,7 @@ class ContentActionRejectVersionAfterDelay(ContentActionRejectVersion):
 
 
 class ContentActionBlockAddon(ContentActionDisableAddon):
-    description = 'Add-on has been (disabled and) blocked'
+    description = 'Add-on will be (disabled and) blocked'
     block_type = BlockType.SOFT_BLOCKED
     action = DECISION_ACTIONS.AMO_BLOCK_ADDON
 
@@ -1216,7 +1222,7 @@ class ContentActionDelayedLongHardBlockAddon(_ContentActionDelayedBlockAddon):
 
 
 class ContentActionRejectListingContent(ContentActionDisableAddon):
-    description = 'Add-on listing content has been rejected'
+    description = 'Add-on listing content will be rejected'
     action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
 
     @property
@@ -1270,7 +1276,7 @@ class ContentActionForwardToLegal(ContentActionAddon):
 
 
 class ContentActionChangePendingRejectionDate(ContentActionAddon):
-    description = 'Add-on pending rejection date has changed'
+    description = 'Add-on pending rejection date will change'
     action = DECISION_ACTIONS.AMO_CHANGE_PENDING_REJECTION_DATE
 
     def get_owners(self):
@@ -1279,7 +1285,7 @@ class ContentActionChangePendingRejectionDate(ContentActionAddon):
 
 class ContentActionDeleteCollection(ContentAction):
     valid_targets = (Collection,)
-    description = 'Collection has been deleted'
+    description = 'Collection will be deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_collection.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
     action = DECISION_ACTIONS.AMO_DELETE_COLLECTION
@@ -1315,7 +1321,7 @@ class ContentActionDeleteCollection(ContentAction):
 
 class ContentActionDeleteRating(ContentAction):
     valid_targets = (Rating,)
-    description = 'Rating has been deleted'
+    description = 'Rating will be deleted'
     reporter_template_path = 'abuse/emails/reporter_takedown_rating.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
     action = DECISION_ACTIONS.AMO_DELETE_RATING
@@ -1376,7 +1382,9 @@ class ContentActionDeleteRating(ContentAction):
 class ContentActionTargetAppealApprove(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
-    description = 'Reported content is within policy, after appeal'
+    description = (
+        'Previous decision(s) will be reverted because the appeal was approved'
+    )
 
     @property
     def previous_decisions(self):
@@ -1415,7 +1423,7 @@ class ContentActionTargetAppealApprove(
 class ContentActionApproveListingContent(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
-    description = 'Reported content is within policy'
+    description = 'Content will be approved, because it is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
     action = DECISION_ACTIONS.AMO_APPROVE
@@ -1451,9 +1459,7 @@ class ContentActionApproveListingContent(
 
 
 class ContentActionApproveVersion(ContentActionAddon):
-    description = (
-        'Reported content is within policy, initial decision, approving versions'
-    )
+    description = 'Add-on version(s) will be approved, because it is within policy'
     reporter_template_path = 'abuse/emails/reporter_content_approve.txt'
     reporter_appeal_template_path = 'abuse/emails/reporter_appeal_approve.txt'
     action = DECISION_ACTIONS.AMO_APPROVE_VERSION
@@ -1641,7 +1647,10 @@ class ContentActionApproveVersion(ContentActionAddon):
 class ContentActionTargetAppealRemovalAffirmation(
     AnyTargetMixin, AnyOwnerEmailMixin, ContentAction
 ):
-    description = 'Reported content is still offending, after appeal.'
+    description = (
+        'Previous decisions are unchanged despite appeal, because content is still '
+        'offending'
+    )
 
     def process_action(self, release_hold=False):
         previous_decision_actions = (
@@ -1658,21 +1667,23 @@ class ContentActionTargetAppealRemovalAffirmation(
 
 
 class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
-    description = 'Report is invalid, so no action'
+    description = 'No action will be taken, as Report is invalid'
     reporter_template_path = 'abuse/emails/reporter_invalid_ignore.txt'
     # no appeal template because no appeals possible
     action = DECISION_ACTIONS.AMO_IGNORE
 
 
 class ContentActionAlreadyModerated(AnyTargetMixin, NoActionMixin, ContentAction):
-    description = 'Content is already moderated, disabled or deleted, so no action'
+    description = (
+        'No action will be taken, as content is already moderated, disabled or deleted'
+    )
     reporter_template_path = 'abuse/emails/reporter_moderated_ignore.txt'
     # no appeal template because no appeals possible
     action = DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
 
 
 class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
-    description = 'Add-on has been disabled, due to legal action'
+    description = 'Add-on will be disabled, due to legal action'
     legal_takedown_template_path = 'abuse/emails/legal_takedown_notification.txt'
     legal_takedown_group_name = 'Legal-Takedown-Notifications'
     action = DECISION_ACTIONS.AMO_LEGAL_DISABLE_ADDON
