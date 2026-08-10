@@ -302,7 +302,7 @@ class TestQueryFilter(FilterTestsBase):
         should = qs['query']['function_score']['query']['bool']['should']
         assert len(should) == 8
         # Only MatchPhrase(name) is skipped for single-word queries. The
-        # sentinel clause keeps its phrase query, nested inside a bool.
+        # analyzed exact match keeps its phrase query, nested inside a bool.
         for conditions in should:
             assert 'match_phrase' not in conditions
 
@@ -454,8 +454,9 @@ class TestQueryFilter(FilterTestsBase):
 
         assert expected in should
 
-    def test_q_exact_sentinel_no_language_analyzer(self):
-        """Fall back to "name_exact_sentinel" alone. _test_q() covers the rest."""
+    def test_q_analyzed_exact_match_without_language_analyzer(self):
+        """Without an analyzer, only the default-locale field is queried.
+        _test_q() covers the rest."""
         with translation.override('mn'):
             qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
@@ -491,10 +492,10 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-    def test_q_no_letters_or_digits_skips_exact_sentinel(self):
-        """A query with no letters or digits analyzes to the sentinels alone,
-        matching any name that also analyzes to nothing. Underscores count as
-        word characters, but the analyzer drops them just the same."""
+    def test_q_no_letters_or_digits_skips_analyzed_exact_match(self):
+        """Such a query analyzes to nothing, so the clause would match any name
+        that also analyzes to nothing. Underscores are word characters, but the
+        analyzer drops them all the same."""
         for query in ('???', '_'):
             qs = self._filter(data={'q': query})
             should = qs['query']['function_score']['query']['bool']['should']
