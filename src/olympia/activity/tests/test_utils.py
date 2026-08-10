@@ -88,9 +88,11 @@ class TestEmailParser(TestCase):
 @override_switch('activity-email-bouncing', active=True)
 class TestEmailBouncing(TestCase):
     BOUNCE_REPLY = (
-        'Hello,\n\nAn email was received, apparently from you. Unfortunately '
-        "we couldn't process it because of:\n%s\n\nPlease visit %s to leave "
-        'a reply instead.\n--\nMozilla Add-ons\n%s\n'
+        'Hello,\n\nThanks for getting in touch. We received an email that looks '
+        "like it came from you, but unfortunately we weren't able to process it:"
+        "\n%s\n\nYou can still leave your reply directly on our site. Just visit "
+        "%s and we'll make sure it reaches the right place.\n\n\n--\n"
+        'Mozilla Add-ons\n%s\n'
     )
 
     def setUp(self):
@@ -342,16 +344,16 @@ class TestLogAndNotify(TestCase):
             self.addon.name,
             self.version.version,
         )
-        assert ('visit %s' % url) in body
+        assert url in body
         assert ('receiving this email because %s' % reason_text) in body
         assert 'If we do not hear from you within' not in body
         assert self.reviewer.name not in body
         if is_to_developer and not is_from_developer:
-            assert ('%s wrote:' % ADDON_REVIEWER_NAME) in body
+            assert ('%s shared:' % ADDON_REVIEWER_NAME) in body
         else:
             assert ('%s wrote:' % author.name) in body
         if expect_attachment:
-            assert 'An attachment was provided.' in body
+            assert "They've also attached a file" in body
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_developer_reply(self, send_mail_mock):

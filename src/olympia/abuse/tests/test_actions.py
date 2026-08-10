@@ -772,7 +772,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'submitting extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         flags = self.addon.reviewerflags.reload()
         assert flags.auto_approval_disabled
@@ -795,7 +795,7 @@ class TestContentActionDisableAddon(
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'submitting extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 2
         self._test_reporter_appeal_takedown_email(subject)
 
@@ -886,8 +886,8 @@ class TestContentActionDisableAddon(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
-        assert 'in an assessment performed on our own initiative' not in mail_item.body
-        assert 'based on a report we received from a third party' in mail_item.body
+        assert 'on our own initiative, on content submitted' not in mail_item.body
+        assert 'prompted by a report we received from a third party' in mail_item.body
 
     def test_notify_owners_with_for_proactive_decision(self):
         self.cinder_job.delete()
@@ -901,8 +901,8 @@ class TestContentActionDisableAddon(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
-        assert 'in an assessment performed on our own initiative' in mail_item.body
-        assert 'based on a report we received from a third party' not in mail_item.body
+        assert 'on our own initiative, on content submitted' in mail_item.body
+        assert 'prompted by a report we received from a third party' not in mail_item.body
 
     def test_notify_owners_non_public_url(self):
         self.decision.update(action=self.default_decision_action)
@@ -1700,8 +1700,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[1].subject == (
             subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
-        assert 'we will remove' in mail.outbox[0].body
-        assert 'we will remove' in mail.outbox[1].body
+        assert "we'll remove" in mail.outbox[0].body
+        assert "we'll remove" in mail.outbox[1].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[1].body
         assert (
@@ -1764,7 +1764,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].subject == (
             subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
-        assert 'we will remove' in mail.outbox[0].body
+        assert "we'll remove" in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert (
             f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
@@ -3139,7 +3139,7 @@ class TestContentActionApproveVersion(
 class TestContentActionRejectListingContent(TestContentActionDisableAddon):
     ActionClass = ContentActionRejectListingContent
     default_decision_action = DECISION_ACTIONS.AMO_REJECT_LISTING_CONTENT
-    disable_snippet = "until the issue is resolved"
+    disable_snippet = 'until the issue is resolved'
     activity_log_action = amo.LOG.REJECT_LISTING_CONTENT
 
     def test_hold_action_clears_all_nhr(self):
@@ -3212,7 +3212,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'submitting extension {self.addon.name}' in mail.outbox[-1].body
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
         # Content-rejection doesn't affect auto-approval disabled flags.
@@ -3315,7 +3315,7 @@ class TestContentActionRejectListingContent(TestContentActionDisableAddon):
         self._process_action_and_notify()
         subject = f'Mozilla Add-ons: {self.addon.name}'
         self._test_owner_takedown_email(subject, self.disable_snippet)
-        assert f'Your extension {self.addon.name}' in mail.outbox[-1].body
+        assert f'submitting extension {self.addon.name}' in mail.outbox[-1].body
 
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_REJECTED)

@@ -760,7 +760,7 @@ class TestAPIKeyInSubmission(UploadMixin, TestCase):
 
         assert len(mail.outbox) == 1
         assert 'Your AMO API credentials have been revoked' in mail.outbox[0].subject
-        assert 'never share your credentials' in mail.outbox[0].body
+        assert 'keep your credentials secure' in mail.outbox[0].body
         assert mail.outbox[0].to[0] == self.user.email
 
     def test_coauthor_api_key_in_submission_is_found(self):
@@ -790,7 +790,7 @@ class TestAPIKeyInSubmission(UploadMixin, TestCase):
 
         assert len(mail.outbox) == 1
         assert 'Your AMO API credentials have been revoked' in mail.outbox[0].subject
-        assert 'never share your credentials' in mail.outbox[0].body
+        assert 'keep your credentials secure' in mail.outbox[0].body
         # We submit as the coauthor, the leaked key is the one from 'self.user'
         assert mail.outbox[0].to[0] == self.user.email
 

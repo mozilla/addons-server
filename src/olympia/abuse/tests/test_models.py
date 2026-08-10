@@ -1092,7 +1092,7 @@ class TestCinderJob(TestCase):
         assert CinderJob.objects.count() == 1
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['some@email.com']
-        assert 'already assessed' in mail.outbox[0].body
+        assert 'already been handled' in mail.outbox[0].body
         assert ContentDecision.objects.exists()
         decision = ContentDecision.objects.get()
         assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
@@ -1592,7 +1592,7 @@ class TestCinderJob(TestCase):
         assert not NeedsHumanReview.objects.exists()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['some@email.com']
-        assert 'already assessed' in mail.outbox[0].body
+        assert 'already been handled' in mail.outbox[0].body
         assert ContentDecision.objects.exists()
         decision = ContentDecision.objects.get()
         assert decision.action == DECISION_ACTIONS.AMO_CLOSED_NO_ACTION
@@ -3452,7 +3452,7 @@ class TestContentDecision(TestCase):
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_disable_addon_outcome(decision)
-        assert 'An attachment was provided.' in mail.outbox[0].body
+        assert 'A reviewer has attached a file' in mail.outbox[0].body
         assert 'To respond or view the file,' in mail.outbox[0].body
 
     def test_execute_action_disable_addon(self):
@@ -3466,7 +3466,7 @@ class TestContentDecision(TestCase):
         decision.execute_action()
         self._test_execute_action_disable_addon_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
-        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'A reviewer has attached a file' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
 
     def test_execute_action_disable_addon_from_cinder_without_private_notes(self):
@@ -3591,7 +3591,7 @@ class TestContentDecision(TestCase):
 
         decision.execute_action(release_hold=True)
         self._test_execute_action_reject_version_outcome(decision)
-        assert 'An attachment was provided.' in mail.outbox[0].body
+        assert 'A reviewer has attached a file' in mail.outbox[0].body
         assert 'To respond or view the file,' in mail.outbox[0].body
 
     def test_execute_action_reject_version(self):
@@ -3624,7 +3624,7 @@ class TestContentDecision(TestCase):
         self._test_execute_action_reject_version_outcome(decision)
         assert '14 day(s)' not in mail.outbox[0].body
         assert not version.needshumanreview_set.filter(is_active=True).exists()
-        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'A reviewer has attached a file' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
 
     def _execute_action_approve_appeal(self, addon, appealed_decision_action):
@@ -3655,13 +3655,15 @@ class TestContentDecision(TestCase):
         decision.send_notifications()
         mail_item = mail.outbox[0]
         assert 'some review text' in mail_item.body
-        assert 'An attachment was provided.' not in mail_item.body
+        assert 'A reviewer has attached a file' not in mail_item.body
         assert 'To respond or view the file,' not in mail_item.body
         assert (
-            'versions were reinstated: '
+            'versions have been reinstated: '
             f'{older_version.version}, {newer_version.version}' in mail_item.body
         )
-        assert 'versions may be removed again in the future' in mail_item.body
+        assert (
+            'these versions could be reviewed again in the future' in mail_item.body
+        )
 
     def test_execute_action_approve_appeal_on_disable(self):
         addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
@@ -3888,12 +3890,11 @@ class TestContentDecision(TestCase):
         )
         decision.send_notifications()
         assert (
-            'previous correspondence indicated that you would be required '
-            f'to correct the violation(s) by {old_pending_rejection}'
+            f'earlier message asked you to resolve the issue(s) by {old_pending_rejection}'
         ) in mail.outbox[0].body
         assert (
-            'now require you to correct your add-on violations no later '
-            f'than {new_pending_rejection}'
+            'Your new deadline to bring your add-on into compliance is '
+            f'{new_pending_rejection}'
         ) in mail.outbox[0].body
 
     def test_send_notifications_without_notifying_owners(self):
@@ -4176,9 +4177,9 @@ class TestContentDecision(TestCase):
             file=ContentFile('Pseudo File', name='attachment.txt'),
         )
         decision.send_notifications()
-        assert 'An attachment was provided.' not in mail.outbox[0].body
+        assert 'A reviewer has attached a file' not in mail.outbox[0].body
         assert 'To respond or view the file,' not in mail.outbox[0].body
-        assert 'An attachment was provided.' in mail.outbox[1].body
+        assert 'A reviewer has attached a file' in mail.outbox[1].body
         assert 'To respond or view the file,' in mail.outbox[1].body
 
     def _check_requeue_decision(self, requeue, job, decision, user):
