@@ -1132,15 +1132,16 @@ class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
 
         cls.refresh()
 
-    def test_stemmed_whole_name_match_ranks_above_partial_matches(self):
-        # Without the analyzed match, these 3 whole name matches ranked 7th,
-        # 10th and 11th, behind add-ons that merely share a word. "SleepyTabs"
-        # still leads on the ordinary name clauses: this improves the ranking,
-        # it doesn't decide it.
+    def test_stemmed_outranks_partial_matches(self):
         self._check_scenario(
             'tabs manager',
             (
+                # Leads either way: the name analyzer splits it into "Sleepy"
+                # and "Tabs", so it matches the plural token the real tab
+                # managers lack.
                 ['SleepyTabs - Tab Suspender & Manager', 261],
+                # The whole name matches, 7th, 10th and 11th without the
+                # analyzed match, behind add-ons that merely share a word.
                 ['Tab manager', 106],
                 ['Tab Manager', 94],
                 ['Tab Managers', 94],
@@ -1154,15 +1155,17 @@ class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
             ),
         )
 
-    def test_literal_whole_name_match_outranks_a_stemmed_one(self):
+    def test_literal_outranks_stemmed(self):
         # 100.0 and 50.0 are multipliers on BM25, not scores, so which exact
-        # match clause wins needs pinning. "Tab Manager" and "Tab Managers" are
-        # equally popular, so the gap is only the clause each one matched.
+        # match clause wins needs pinning.
         self._check_scenario(
             'tab manager',
             (
+                # Literal matches: the name is the query, so they take the
+                # bigger boost.
                 ['Tab manager', 1471],
                 ['Tab Manager', 1305],
+                # Stemmed version
                 ['Tab Managers', 106],
                 ['Tab Session Manager', 58],
                 ['Tab Manager Plus for Firefox', 39],
@@ -1175,11 +1178,9 @@ class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
             ),
         )
 
-    def test_stop_word_in_query_does_not_span_an_extra_word(self):
+    def test_stop_word_must_be_in_the_name(self):
         # Dropping a stop word leaves an empty slot that a phrase query matches
-        # against any word. Without NO_STOPWORDS_ANALYZER_SUFFIX, "the tab
-        # manager" spanned "My Tab Manager" and took the whole name boost:
-        # first place at 106, instead of the 6th at 25 below.
+        # against any word.
         self._check_scenario(
             'the tab manager',
             (
@@ -1188,6 +1189,8 @@ class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
                 ['Workona Spaces & Tab Manager', 28],
                 ['Tabby - Window & Tab Manager', 27],
                 ['Tab manager', 27],
+                # Without NO_STOPWORDS_ANALYZER_SUFFIX, "My" would fill the slot
+                # left by "the" and this would rank first at 106.
                 ['My Tab Manager', 25],
                 ['Task Manager Tab & Custom Web Search', 24],
                 ['Tab Manager', 24],
