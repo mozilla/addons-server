@@ -1179,7 +1179,7 @@ class TestSentinelRankingScenarios(RankingScenarioTestCase):
     def test_stop_word_in_query_does_not_span_an_extra_word(self):
         # The language analyzers drop stop words but keep their position, and a
         # phrase query matches any word against the hole left behind. Before
-        # NO_STOP_ANALYZER_SUFFIX, "the tab manager" therefore spanned
+        # NO_STOPWORDS_ANALYZER_SUFFIX, "the tab manager" therefore spanned
         # "My Tab Manager" end to end and took the whole name boost with it:
         # 106 and first place, instead of the 25 and 6th place below.
         self._check_scenario(

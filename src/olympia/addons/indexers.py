@@ -88,7 +88,7 @@ class AddonIndexer:
         These mappings are used by the search filtering code if they exist.
 
         `analyzer_suffix` selects a named variant of each analyzer, see
-        NO_STOP_ANALYZER_SUFFIX.
+        NO_STOPWORDS_ANALYZER_SUFFIX.
         """
         for lang, analyzer in SEARCH_LANGUAGE_TO_ANALYZER.items():
             for field in field_names:
@@ -231,7 +231,7 @@ class AddonIndexer:
         'analysis': {
             'analyzer': {
                 # Stop-word-free variant of each language-specific analyzer,
-                # for the "name_exact_sentinel" fields. See NO_STOP_ANALYZER_SUFFIX.
+                # for the "name_exact_sentinel" fields. See NO_STOPWORDS_ANALYZER_SUFFIX.
                 **{
                     f'{analyzer}{NO_STOPWORDS_ANALYZER_SUFFIX}': {
                         'type': analyzer,
@@ -592,7 +592,7 @@ class AddonIndexer:
         cls.attach_language_specific_analyzers(mapping, ('description', 'summary'))
 
         # The sentinel field needs the stemming those analyzers provide, but not
-        # their stop-word removal, see NO_STOP_ANALYZER_SUFFIX.
+        # their stop-word removal, see NO_STOPWORDS_ANALYZER_SUFFIX.
         cls.attach_language_specific_analyzers(
             mapping, ('name_exact_sentinel',), analyzer_suffix=NO_STOPWORDS_ANALYZER_SUFFIX
         )
