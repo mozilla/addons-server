@@ -6,7 +6,7 @@ from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.amo.utils import attach_trans_dict, to_language
 from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.search import (
-    NO_STOP_ANALYZER_SUFFIX,
+    NO_STOPWORDS_ANALYZER_SUFFIX,
     SEARCH_ANALYZER_MAP,
     SEARCH_LANGUAGE_TO_ANALYZER,
     SENTINEL_BEGIN,
@@ -233,7 +233,7 @@ class AddonIndexer:
                 # Stop-word-free variant of each language-specific analyzer,
                 # for the "name_exact_sentinel" fields. See NO_STOP_ANALYZER_SUFFIX.
                 **{
-                    f'{analyzer}{NO_STOP_ANALYZER_SUFFIX}': {
+                    f'{analyzer}{NO_STOPWORDS_ANALYZER_SUFFIX}': {
                         'type': analyzer,
                         'stopwords': '_none_',
                     }
@@ -594,7 +594,7 @@ class AddonIndexer:
         # The sentinel field needs the stemming those analyzers provide, but not
         # their stop-word removal, see NO_STOP_ANALYZER_SUFFIX.
         cls.attach_language_specific_analyzers(
-            mapping, ('name_exact_sentinel',), analyzer_suffix=NO_STOP_ANALYZER_SUFFIX
+            mapping, ('name_exact_sentinel',), analyzer_suffix=NO_STOPWORDS_ANALYZER_SUFFIX
         )
 
         cls.attach_language_specific_analyzers_with_raw_variant(mapping, ('name',))

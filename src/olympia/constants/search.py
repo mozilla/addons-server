@@ -68,4 +68,4 @@ SENTINEL_END = '__SENTINEL_END__'
 # SEARCH_ANALYZER_MAP. The "name_exact_sentinel" fields need it: removing a stop
 # word leaves a hole in the token positions, and a phrase query matches any word
 # against a hole, so "the tab manager" would match "My Tab Manager".
-NO_STOP_ANALYZER_SUFFIX = '_no_stop'
+NO_STOPWORDS_ANALYZER_SUFFIX = '_no_stopwords'
