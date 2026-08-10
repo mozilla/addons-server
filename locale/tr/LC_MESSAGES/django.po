@@ -3949,7 +3949,7 @@ msgstr "Kurumsal kullanım için imzalandı."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Bu sürüm en yeni kurumsal sürümdür"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
