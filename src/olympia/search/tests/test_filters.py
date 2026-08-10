@@ -106,8 +106,8 @@ class TestQueryFilter(FilterTestsBase):
                         }
                     }
                 ],
-                # The exact name clause again, this time as a filter: an add-on
-                # matching the name exactly is scored by should[0] alone.
+                # An add-on that already matches exactly gets should[0]'s
+                # boost only, not both.
                 'must_not': [should[0]],
             }
         }
