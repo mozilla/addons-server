@@ -115,14 +115,18 @@ $(document).ready(function () {
   }
 
   let policySelectionInputs = $('.review-actions-policies-select input[name="cinder_policies"]');
-  policySelectionInputs.change((event) => {
-    let checkbox = event.target;
-    $("#policy-text-" + checkbox.value)[0].hidden = !checkbox.checked;
 
+  function updatePolicyText() {
+    policySelectionInputs.each(function () {
+      $("#policy-text-" + this.value)[0].hidden = !this.checked;
+    });
+  }
+  policySelectionInputs.change(() => {
+    updatePolicyText();
     updatePolicyEnforcementActionsDisplay();
   });
-  policySelectionInputs.trigger("click").trigger("click");
-
+  updatePolicyText();
+  updatePolicyEnforcementActionsDisplay();
 });
 
 function updatePolicyEnforcementActionsDisplay() {
