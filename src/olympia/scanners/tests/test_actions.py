@@ -1435,7 +1435,7 @@ class TestRunAction(TestCase):
         expected_appeal_url = reverse(
             'abuse.appeal_author', kwargs={'decision_cinder_id': decision.cinder_id}
         )
-        assert 'your content doesn\'t adhere to the following Mozilla policies' in body
+        assert 'your content violates the following Mozilla policy or policies' in body
         assert '- My Fancy Polîcy: Just saying.' in body
         assert 'Do not include me!' not in body
         assert expected_appeal_url in body

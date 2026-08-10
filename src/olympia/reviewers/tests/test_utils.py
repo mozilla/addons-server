@@ -1963,7 +1963,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert "that your content doesn't adhere to the following" in message.body
+        assert 'that your content violates the following' in message.body
 
         # AddonApprovalsCounter counter is still at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
