@@ -1,7 +1,7 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
-Thank you for submitting {{ type }} {{ name }} to Mozilla Add-ons. Our team carried out a manual review {% if is_third_party_initiated %}— prompted by a report we received from a third party —{% else %}— on our own initiative, on content submitted to Mozilla Add-ons —{% endif %}and found that some of your listing content doesn't meet our policies.
+Thank you for submitting {{ type }} {{ name }} to Mozilla Add-ons. Our team carried out a manual review {% if is_third_party_initiated %}— prompted by a report we received from a third party —{% else %}— on our own initiative, on content submitted to Mozilla Add-ons —{% endif %}and found that some of your listing content doesn't adhere to Mozilla's policies.
 
-Specifically, your listing content doesn't adhere to the following Mozilla policy or policies:
+Specifically, your listing content doesn't adhere to the following Mozilla policies:
 {% include 'abuse/emails/includes/policies.txt' %}
 
 As a result, your {{ type }} listing has been removed on {{ target_url }}, so your {{ type }} is not available for download from Mozilla Add-ons anywhere in the world until the issue is resolved. Once you've updated the listing, please request a further review and we'll take another look.

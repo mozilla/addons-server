@@ -1,6 +1,6 @@
 Hello,
 
-Your {{ type }} was previously been suspended or removed from Mozilla Add-ons following a review of our policies.
+Your {{ type }} was previously been suspended or removed from Mozilla Add-ons following a review against Mozilla's policies.
 
 {% if is_public %}
   {% if not is_override %}Thank you for appealing. After reviewing your appeal, we've{% else %}We've reviewed your appeal and{% endif %} determined that the earlier decision was incorrect. We've restored your {{ type }}, and it's now available again at {{ target_url }}.

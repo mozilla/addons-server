@@ -1,6 +1,6 @@
 {% extends "abuse/emails/base.txt" %}{% block content %}
 
-We're writing about your {{ type }} {{ name }}, which our team reviewed and found that it doesn't adhere to one or more Mozilla add-on policies.
+We're writing about your {{ type }} {{ name }}, which our team reviewed and found that it doesn't adhere to Mozilla's policies.
 
 Our earlier message asked you to resolve the issue(s) by {{ details.old_deadline }}. After taking another look at the circumstances, including the issue itself, the risks it presents, and the steps needed to resolve it, we've decided a different timeline is appropriate. Your new deadline to bring your add-on into compliance is {{ details.new_deadline }}.
 {% endblock %}

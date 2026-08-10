@@ -5,7 +5,5 @@ You can generate fresh API credentials any time at {{ api_keys_url }}
 
 To help keep your credentials secure moving forward, it's best to keep them private and avoid including them in any public repository, add-on, or other public place. Whenever you have a moment, it's worth reviewing your code repositories and extensions to remove any references to your AMO credentials.
 
-If you have any questions, we're happy to help.
-
 Thank you,
 The Mozilla Add-ons team{% endblocktrans %}
