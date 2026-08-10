@@ -468,10 +468,8 @@ class TestAddonIndexer(TestCase):
         assert extracted['name_exact_sentinel'] == ''
         assert extracted['name_exact_sentinel_l10n_en-us'] == ''
 
-        # A name holding a sentinel of its own gets no value at all: wrapping
-        # it would nest the pairs and let the phrase query match the inner one.
-        # Neither the case nor the position of the sentinel changes that, the
-        # analyzers lowercase and a phrase can match anywhere in the field.
+        # A name containing a marker gets no value at all, whatever the case
+        # or the position of that marker.
         for name in (
             f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}',
             f'{SENTINEL_BEGIN.lower()} Banana Bonkers {SENTINEL_END.lower()}',
