@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-10 14:43+0000\n"
+"POT-Creation-Date: 2026-08-11 14:06+0000\n"
 "Language: cy\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -994,6 +994,13 @@ msgid "{addon} listing content review requested."
 msgstr ""
 
 msgid "Listing review requested"
+msgstr ""
+
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+msgid "Decision made"
 msgstr ""
 
 msgid "Firefox"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-10 14:43+0000\n"
+"POT-Creation-Date: 2026-08-11 14:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgstr ""
 msgid "User profile"
 msgstr ""
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr ""
@@ -1384,6 +1384,15 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1318
 msgid "Listing review requested"
+msgstr ""
+
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
 msgstr ""
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
