@@ -1321,11 +1321,11 @@ msgstr "Beoordeling van vermelding aangevraagd"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Beslissing over {addon} genomen zonder dat nieuwe actie is ondernomen."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Beslissing genomen"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
