@@ -53,7 +53,7 @@ class TestUserAdmin(TestCase):
 
     def test_list(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         banned_date = self.days_ago(1)
         banned_user = user_factory(banned=banned_date)
@@ -70,8 +70,8 @@ class TestUserAdmin(TestCase):
 
     def test_list_has_bulk_ban_link(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
@@ -81,7 +81,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_by_email_simple(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory()
         response = self.client.get(
@@ -96,7 +96,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_by_id_simple(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory()
         response = self.client.get(
@@ -111,7 +111,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_by_email_like(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory(email='someone@notzilla.org')
         response = self.client.get(
@@ -127,7 +127,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_by_email_multiple(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory()
         response = self.client.get(
@@ -143,7 +143,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_by_email_multiple_like(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory(email='someone@notzilla.com')
         response = self.client.get(
@@ -160,7 +160,7 @@ class TestUserAdmin(TestCase):
     def test_search_for_multiple_user_ids(self):
         """Test the optimization when just searching for matching ids."""
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         another_user = user_factory()
         with CaptureQueriesContext(connection) as queries:
@@ -180,7 +180,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_ip_as_int_isnt_considered_an_ip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         self.user.update(last_login_ip='127.0.0.1')
         response = self.client.get(self.list_url, {'q': '2130706433'}, follow=True)
@@ -191,7 +191,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             self.user.update(email='foo@bar.com')
@@ -216,7 +216,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_single_ip_other_ips_are_shown(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             self.user.update(email='foo@bar.com')
@@ -248,7 +248,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_single_ip_multiple_results_for_different_reasons(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
 
         # Extra user that will match but not thanks to their last login ip...
@@ -291,7 +291,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_multiple_ips(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
@@ -313,7 +313,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_ip_range(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
@@ -335,7 +335,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_ip_network(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
@@ -357,7 +357,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_multiple_ips_with_garbage(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.2'):
             ActivityLog.objects.create(amo.LOG.ADD_RATING, user=self.user)
@@ -379,7 +379,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_multiple_ips_with_deduplication(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         # Will match once with the last_login
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
@@ -424,7 +424,7 @@ class TestUserAdmin(TestCase):
 
     def test_search_for_ip_network_with_deduplication(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         # Will match once with the last_login
         with core.override_remote_addr_or_metadata(ip_address='127.0.0.3'):
@@ -470,7 +470,7 @@ class TestUserAdmin(TestCase):
     def test_search_for_mixed_strings(self):
         # IP search is deactivated if the search term don't all look like IPs
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         user_factory(last_login_ip='127.0.0.2')
         self.user.update(email='foo@bar.com', last_login_ip='127.0.0.2')
@@ -481,7 +481,7 @@ class TestUserAdmin(TestCase):
 
     def test_can_not_edit_without_users_edit_permission(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
@@ -495,7 +495,7 @@ class TestUserAdmin(TestCase):
         old_display_name = 'old-foo'
         self.user.update(display_name=old_display_name)
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         core.set_user(user)
         response = self.client.get(self.detail_url, follow=True)
@@ -519,7 +519,7 @@ class TestUserAdmin(TestCase):
     def test_queries_detail(self):
         user = user_factory(email='someone@mozilla.com')
         # We want to see absolutely everything, so make our user a superadmin.
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         with self.assertNumQueries(25 if self.is_django42 else 23):
             # - 4 savepoint/release
@@ -544,7 +544,7 @@ class TestUserAdmin(TestCase):
     @mock.patch.object(UserProfile, '_delete_related_content')
     def test_can_not_delete(self, _delete_related_content_mock):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         assert not user.deleted
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
@@ -563,13 +563,13 @@ class TestUserAdmin(TestCase):
         assert list(user_admin.get_actions(request).keys()) == []
 
         request.user = user_factory()
-        self.grant_permission(request.user, 'Users:Edit')
+        self.grant_permission(request.user, amo.permissions.USERS_EDIT)
         assert list(user_admin.get_actions(request).keys()) == [
             'reset_api_key_action',
             'reset_session_action',
         ]
 
-        self.grant_permission(request.user, 'Users:Ban')
+        self.grant_permission(request.user, amo.permissions.USERS_BAN)
         assert list(user_admin.get_actions(request).keys()) == [
             'ban_action',
             'unban_action',
@@ -636,8 +636,8 @@ class TestUserAdmin(TestCase):
         ban_url = reverse('admin:users_userprofile_ban', args=(self.user.pk,))
         unban_url = reverse('admin:users_userprofile_unban', args=(self.user.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -712,7 +712,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_reset_api_key', args=(self.user.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -723,7 +723,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_reset_session', args=(self.user.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -734,7 +734,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_delete_picture', args=(self.user.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -754,8 +754,8 @@ class TestUserAdmin(TestCase):
         create_signed_url_for_file_backup_mock.return_value = backup_picture_url
 
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Edit')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
 
@@ -777,10 +777,10 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         response = self.client.get(ban_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_ban_url, follow=True)
@@ -812,7 +812,7 @@ class TestUserAdmin(TestCase):
         target2 = user_factory()
         innocent = user_factory()
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         self.client.force_login(user)
         url = reverse('admin:users_userprofile_bulk_ban')
         response = self.client.get(url)
@@ -853,7 +853,7 @@ class TestUserAdmin(TestCase):
 
     def test_bulk_ban_invalid(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         self.client.force_login(user)
         url = reverse('admin:users_userprofile_bulk_ban')
         data = {'user_ids': 'invalid'}
@@ -876,10 +876,10 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.post(unban_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         response = self.client.post(unban_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Ban')
+        self.grant_permission(user, amo.permissions.USERS_BAN)
         response = self.client.get(unban_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_unban_url, follow=True)
@@ -915,7 +915,7 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.post(reset_api_key_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         response = self.client.get(reset_api_key_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_reset_api_key_url, follow=True)
@@ -950,7 +950,7 @@ class TestUserAdmin(TestCase):
         self.client.force_login(user)
         response = self.client.post(reset_session_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         response = self.client.get(reset_session_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_reset_session_url, follow=True)
@@ -981,7 +981,7 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.post(delete_picture_url, follow=True)
         assert response.status_code == 403
-        self.grant_permission(user, 'Users:Edit')
+        self.grant_permission(user, amo.permissions.USERS_EDIT)
         response = self.client.get(delete_picture_url, follow=True)
         assert response.status_code == 405  # Wrong http method.
         response = self.client.post(wrong_delete_picture_url, follow=True)
@@ -1292,7 +1292,7 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_change', args=(lookup_user.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(detail_url_by_email, follow=False)
         self.assert3xx(response, detail_url_final, 302)
@@ -1305,7 +1305,7 @@ class TestUserAdmin(TestCase):
         )
         list_url_with_email = self.list_url + '?email=foo@bar.xyz'
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(detail_url_by_email, follow=False)
         self.assert3xx(response, list_url_with_email, 302)
@@ -1333,7 +1333,7 @@ class TestUserAdmin(TestCase):
 class TestEmailUserRestrictionAdmin(TestCase):
     def setUp(self):
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
 
         self.client.force_login(self.user)
         self.list_url = reverse('admin:users_emailuserrestriction_changelist')
@@ -1347,7 +1347,7 @@ class TestEmailUserRestrictionAdmin(TestCase):
 class TestIPNetworkUserRestrictionAdmin(TestCase):
     def setUp(self):
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
 
         self.client.force_login(self.user)
         self.list_url = reverse('admin:users_ipnetworkuserrestriction_changelist')
@@ -1361,7 +1361,7 @@ class TestIPNetworkUserRestrictionAdmin(TestCase):
 class TestUserRestrictionHistoryAdmin(TestCase):
     def setUp(self):
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
 
         self.client.force_login(self.user)
         self.list_url = reverse('admin:users_userrestrictionhistory_changelist')
@@ -1386,7 +1386,7 @@ class TestUserRestrictionHistoryAdmin(TestCase):
 class TestUserHistoryAdmin(TestCase):
     def setUp(self):
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
 
         self.client.force_login(self.user)
         self.list_url = reverse('admin:users_userhistory_changelist')

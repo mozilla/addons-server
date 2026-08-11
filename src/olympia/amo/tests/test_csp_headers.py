@@ -4,6 +4,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 from django.urls import reverse
 
+from olympia import amo
 from olympia.amo.tests import TestCase, user_factory
 from olympia.lib import settings_base as base_settings
 
@@ -16,7 +17,7 @@ class TestCSPHeaders(TestCase):
     @override_settings(SITE_URL='http://internal-admin-testserver')
     def test_admin_csp(self):
         user = user_factory(email='me@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url, follow=True)
@@ -32,7 +33,7 @@ class TestCSPHeaders(TestCase):
 
     def test_admin_csp_different_locale(self):
         user = user_factory(email='me@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         with self.activate('fr'):
             url = reverse('admin:index')

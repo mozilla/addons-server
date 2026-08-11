@@ -736,7 +736,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         )
 
     def test_match_type_extension_for_webextension_experiments(self):
-        self.grant_permission(self.user, 'Experiments:submit')
+        self.grant_permission(self.user, amo.permissions.EXPERIMENTS_SUBMIT)
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
@@ -748,19 +748,19 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         assert not parsed['is_experiment']
 
     def test_experiment_inside_webextension(self):
-        self.grant_permission(self.user, 'Experiments:submit')
+        self.grant_permission(self.user, amo.permissions.EXPERIMENTS_SUBMIT)
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
 
     def test_theme_experiment_inside_webextension(self):
-        self.grant_permission(self.user, 'Experiments:submit')
+        self.grant_permission(self.user, amo.permissions.EXPERIMENTS_SUBMIT)
         parsed = self.parse(filename='theme_experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_STATICTHEME
         assert parsed['is_experiment']
 
     def test_match_mozilla_signed_extension(self):
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         parsed = self.parse(filename='webextension_signed_already.xpi')
         assert parsed['is_mozilla_signed_extension']
 
@@ -782,7 +782,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
         with self.assertRaises(ValidationError):
             result = self.parse(filename='webextension_langpack.xpi')
 
-        self.grant_permission(self.user, 'LanguagePack:Submit')
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
         result = self.parse(filename='webextension_langpack.xpi')
         assert result['type'] == amo.ADDON_LPAPP
         assert result['strict_compatibility']

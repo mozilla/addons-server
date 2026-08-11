@@ -34,7 +34,7 @@ class TestActivityLogAdmin(TestCase):
         )
 
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'ActivityLog:View')
+        self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
         self.client.force_login(user)
 
         with self.assertNumQueries(11):
@@ -61,7 +61,7 @@ class TestActivityLogAdmin(TestCase):
         )
         activity.log_create(amo.LOG.USER_DISABLE, addon1, user=author)
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'ActivityLog:View')
+        self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
         self.client.force_login(user)
         response = self.client.get(
             self.list_url, {'action': [amo.LOG.CREATE_ADDON.id, amo.LOG.ADD_VERSION.id]}
@@ -77,7 +77,7 @@ class TestActivityLogAdmin(TestCase):
 
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'ActivityLog:View')
+        self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
         self.client.force_login(user)
         user2 = user_factory()
         user3 = user_factory()
@@ -121,7 +121,7 @@ class TestActivityLogAdmin(TestCase):
 
     def test_search_for_ja4(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'ActivityLog:View')
+        self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
         self.client.force_login(user)
         user2 = user_factory()
         user3 = user_factory()
@@ -162,7 +162,7 @@ class TestActivityLogAdmin(TestCase):
         activity.log_create(
             amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
         )
-        self.grant_permission(user, 'ActivityLog:View')
+        self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -187,7 +187,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
 
     def test_can_see_module_in_admin_with_super_access(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -210,7 +210,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
             name='inactive reason', is_active=False, canned_response='.'
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         activity_log = ActivityLog.objects.create(
             action=amo.LOG.APPROVE_VERSION.id, user=user

@@ -2701,7 +2701,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
             'You cannot submit a language pack'
         )
 
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.post(expected_status=302)
 

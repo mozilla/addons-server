@@ -210,8 +210,8 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         self.api_key = APIKey.get_jwt_key(user=self.webhook.service_account)
         self.grant_permission(
             self.webhook.service_account,
-            'Scanners:PushResults',
-            'some access group',
+            amo.permissions.SCANNERS_PUSH_RESULTS,
+            name='some access group',
         )
 
         self.version = version_factory(addon=addon_factory())
@@ -374,8 +374,8 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         self.api_key = APIKey.get_jwt_key(user=other_webhook.service_account)
         self.grant_permission(
             other_webhook.service_account,
-            'Scanners:PushResults',
-            'some access group',
+            amo.permissions.SCANNERS_PUSH_RESULTS,
+            name='some access group',
         )
 
         second = self._push_scanner_result(
@@ -433,10 +433,14 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         super().setUp()
         self.create_api_user()
         self.grant_permission(
-            self.user, 'Admin:ScannersQueryEdit', 'Scanner query editors'
+            self.user,
+            amo.permissions.ADMIN_SCANNERS_QUERY_EDIT,
+            name='Scanner query editors',
         )
         self.grant_permission(
-            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+            self.user,
+            amo.permissions.ADMIN_SCANNERS_QUERY_VIEW,
+            name='Scanner query viewers',
         )
         self.list_url = reverse_ns('scanner-query-rule-list', api_version='v5')
 
@@ -469,7 +473,9 @@ class TestScannerQueryRuleViewSet(APIKeyAuthTestMixin, TestCase):
         self.user.groupuser_set.all().delete()
         # Read-only permission, no write access
         self.grant_permission(
-            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+            self.user,
+            amo.permissions.ADMIN_SCANNERS_QUERY_VIEW,
+            name='Scanner query viewers',
         )
         detail_url = self._detail_url(rule)
         payload = {'scanner': 'yara', 'definition': VALID_YARA_DEFINITION}
@@ -617,7 +623,9 @@ class TestScannerQueryResultViewSet(APIKeyAuthTestMixin, TestCase):
         super().setUp()
         self.create_api_user()
         self.grant_permission(
-            self.user, 'Admin:ScannersQueryView', 'Scanner query viewers'
+            self.user,
+            amo.permissions.ADMIN_SCANNERS_QUERY_VIEW,
+            name='Scanner query viewers',
         )
         self.rule = ScannerQueryRule.objects.create(
             name='some_rule', scanner=YARA, definition=VALID_YARA_DEFINITION

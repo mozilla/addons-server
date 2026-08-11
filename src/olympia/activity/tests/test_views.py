@@ -55,12 +55,14 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         AddonUser.objects.create(user=user, addon=self.addon)
         self.client.login_api(user)
 
-    def _login_reviewer(self, permission='Addons:Review'):
+    def _login_reviewer(self, permission=amo.permissions.ADDONS_REVIEW):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, permission)
         self.client.login_api(user)
 
-    def _login_unlisted_reviewer(self, permission='Addons:ReviewUnlisted'):
+    def _login_unlisted_reviewer(
+        self, permission=amo.permissions.ADDONS_REVIEW_UNLISTED
+    ):
         user = UserProfile.objects.create(username='reviewer-unlisted')
         self.grant_permission(user, permission)
         self.client.login_api(user)
@@ -102,13 +104,13 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_get_not_listed_specific_reviewer(self):
         self.make_addon_unlisted(self.addon)
-        self._login_reviewer(permission='Addons:ReviewUnlisted')
+        self._login_reviewer(permission=amo.permissions.ADDONS_REVIEW_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_not_listed_unlisted_viewer(self):
         self.make_addon_unlisted(self.addon)
-        self._login_reviewer(permission='ReviewerTools:ViewUnlisted')
+        self._login_reviewer(permission=amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -132,7 +134,7 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_get_deleted_admin(self):
         self.addon.delete()
-        self._login_reviewer(permission='*:*')
+        self._login_reviewer(permission=amo.permissions.SUPERPOWERS)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
@@ -168,7 +170,7 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         assert response.status_code == 404
 
     def test_get_version_not_found(self):
-        self._login_reviewer(permission='*:*')
+        self._login_reviewer(permission=amo.permissions.SUPERPOWERS)
         self._set_tested_url(version_pk=self.version.pk + 27)
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -219,7 +221,7 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_user_not_anonymized_for_view_only_reviewer(self):
         user = UserProfile.objects.create(username='view-only-reviewer')
-        self.grant_permission(user, 'ReviewerTools:View')
+        self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_VIEW)
         self.client.login_api(user)
         response = self.client.get(self.url)
         result = json.loads(response.content)
@@ -273,7 +275,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         )
 
     def test_get_note_not_found(self):
-        self._login_reviewer(permission='*:*')
+        self._login_reviewer(permission=amo.permissions.SUPERPOWERS)
         self._set_tested_url(self.note.pk + 42)
         response = self.client.get(self.url)
         assert response.status_code == 404
@@ -529,15 +531,15 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert not self.version.due_date
 
     def test_reviewer_reply_listed(self):
-        self._test_reviewer_reply('Addons:Review')
+        self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW)
 
     def test_reviewer_reply_unlisted(self):
         self.make_addon_unlisted(self.addon)
-        self._test_reviewer_reply('Addons:ReviewUnlisted')
+        self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW_UNLISTED)
 
     def test_reply_to_deleted_addon_is_404(self):
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.addon.delete()
         self.client.login_api(self.user)
         response = self._post_reply()
@@ -554,7 +556,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         assert self.addon.status
 
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
         response = self._post_reply()
         assert response.status_code == 404
@@ -566,7 +568,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         new_version = version_factory(addon=self.addon)
         assert new_version == self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
 
         # First check we can reply to new version
@@ -589,12 +591,12 @@ class TestReviewNotesViewSetCreate(TestCase):
 
     def test_reviewer_can_reply_to_disabled_version_listed(self):
         self.version.file.update(status=amo.STATUS_DISABLED)
-        self._test_reviewer_reply('Addons:Review')
+        self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW)
 
     def test_reviewer_can_reply_to_disabled_version_unlisted(self):
         self.make_addon_unlisted(self.addon)
         self.version.file.update(status=amo.STATUS_DISABLED)
-        self._test_reviewer_reply('Addons:ReviewUnlisted')
+        self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW_UNLISTED)
 
 
 @override_settings(ALLOWED_CLIENTS_EMAIL_API=['10.10.10.10'])
@@ -620,7 +622,7 @@ class TestEmailApi(TestCase):
 
     def test_basic(self):
         user = user_factory()
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         addon = addon_factory()
         version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         req = self.get_request(sample_message_content)
@@ -741,7 +743,9 @@ class TestDownloadAttachment(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 404)
-        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
+        self.grant_permission(
+            self.user, amo.permissions.ADDONS_REVIEW, name='Addon Reviewers'
+        )
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('.txt', response['Content-Disposition'])
@@ -751,7 +755,9 @@ class TestDownloadAttachment(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 404)
-        self.grant_permission(self.user, 'Addons:Review', 'Addon Reviewers')
+        self.grant_permission(
+            self.user, amo.permissions.ADDONS_REVIEW, name='Addon Reviewers'
+        )
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertIn('.txt', response['Content-Disposition'])

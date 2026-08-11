@@ -322,7 +322,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
 
     def test_version_added_is_experiment(self):
-        self.grant_permission(self.user, 'Experiments:submit')
+        self.grant_permission(self.user, amo.permissions.EXPERIMENTS_SUBMIT)
         guid = '@experiment-inside-webextension-guid'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -362,7 +362,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_mozilla_signed_allowed(self):
         guid = '@webextension-guid'
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -398,7 +398,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_restricted_guid_addon_allowed(self):
         guid = 'systemaddon@mozilla.org'
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -942,9 +942,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self._test_throttling_verb_user_daily('PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
-        self.grant_permission(
-            self.user, ':'.join(amo.permissions.API_BYPASS_THROTTLING)
-        )
+        self.grant_permission(self.user, amo.permissions.API_BYPASS_THROTTLING)
         url = self.url(self.guid, '3.0')
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
             for _x in range(0, 60):

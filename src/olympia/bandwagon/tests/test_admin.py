@@ -16,7 +16,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_see_bandwagon_module_in_admin_with_collections_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Collections:Edit')
+        self.grant_permission(user, amo.permissions.COLLECTIONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -26,7 +26,7 @@ class TestCollectionAdmin(TestCase):
 
     def test_can_see_bandwagon_module_in_admin_with_admin_curation(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
@@ -47,7 +47,7 @@ class TestCollectionAdmin(TestCase):
     def test_can_list_with_collections_edit_permission(self):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Collections:Edit')
+        self.grant_permission(user, amo.permissions.COLLECTIONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -56,7 +56,7 @@ class TestCollectionAdmin(TestCase):
     def test_can_list_with_admin_curation_permission(self):
         collection = Collection.objects.create(slug='floob')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -81,7 +81,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Collections:Edit')
+        self.grant_permission(user, amo.permissions.COLLECTIONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -163,7 +163,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
@@ -299,7 +299,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Collections:Edit')
+        self.grant_permission(user, amo.permissions.COLLECTIONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
@@ -313,7 +313,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
@@ -336,7 +336,7 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_delete', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
         assert response.status_code == 200
@@ -364,8 +364,8 @@ class TestCollectionAdmin(TestCase):
             'admin:bandwagon_collection_change', args=(collection.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Admin:Advanced')
-        self.grant_permission(user, 'Collections:Edit')
+        self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
+        self.grant_permission(user, amo.permissions.COLLECTIONS_EDIT)
         self.client.force_login(user)
         post_data = {
             # Django wants the whole form to be submitted, unfortunately.

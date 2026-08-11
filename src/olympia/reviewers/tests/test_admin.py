@@ -8,7 +8,7 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import core
+from olympia import amo, core
 from olympia.abuse.models import CinderPolicy
 from olympia.amo.tests import (
     TestCase,
@@ -43,7 +43,7 @@ class TestNeedsHumanReviewAdmin(TestCase):
         assert v2.due_date
 
         user = user_factory(email='admin@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
@@ -77,7 +77,7 @@ class TestNeedsHumanReviewAdmin(TestCase):
     def test_deactivate_selected_action(self):
         request = RequestFactory().get('/')
         request.user = user_factory(email='admin@mozilla.com')
-        self.grant_permission(request.user, '*:*')
+        self.grant_permission(request.user, amo.permissions.SUPERPOWERS)
         core.set_user(request.user)
         request._messages = default_messages_storage(request)
 
@@ -117,7 +117,7 @@ class TestNeedsHumanReviewAdmin(TestCase):
     def test_activate_selected_action(self):
         request = RequestFactory().get('/')
         request.user = user_factory(email='admin@mozilla.com')
-        self.grant_permission(request.user, '*:*')
+        self.grant_permission(request.user, amo.permissions.SUPERPOWERS)
         core.set_user(request.user)
         request._messages = default_messages_storage(request)
 
@@ -163,7 +163,7 @@ class TestReviewActionReasonAdmin(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = user_factory(email='someone@mozilla.com')
-        grant_permission(cls.user, '*:*', 'Admins')
+        grant_permission(cls.user, amo.permissions.SUPERPOWERS, name='Admins')
 
     def setUp(self):
         self.client.force_login(self.user)
@@ -214,7 +214,7 @@ class TestUsageTierAdmin(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.user = user_factory(email='someone@mozilla.com')
-        grant_permission(cls.user, '*:*', 'Admins')
+        grant_permission(cls.user, amo.permissions.SUPERPOWERS, name='Admins')
 
     def setUp(self):
         self.client.force_login(self.user)

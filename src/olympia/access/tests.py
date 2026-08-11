@@ -199,7 +199,7 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(self.user, self.statictheme)
 
     def test_perm_addons(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         assert is_listed_addons_reviewer(self.user)
         assert not is_unlisted_addons_reviewer(self.user)
         assert not is_unlisted_addons_viewer_or_reviewer(self.user)
@@ -207,7 +207,7 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_unlisted_addons(self):
-        self.grant_permission(self.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         assert not is_listed_addons_reviewer(self.user)
         assert is_unlisted_addons_reviewer(self.user)
         assert is_unlisted_addons_viewer_or_reviewer(self.user)
@@ -215,7 +215,7 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_static_themes(self):
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
         assert not is_listed_addons_reviewer(self.user)
         assert not is_unlisted_addons_reviewer(self.user)
         assert not is_unlisted_addons_viewer_or_reviewer(self.user)
@@ -224,14 +224,14 @@ class TestCheckReviewer(TestCase):
 
     def test_is_reviewer_for_addon_reviewer(self):
         """An addon reviewer is not necessarily a theme reviewer."""
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         assert is_reviewer(self.user, self.addon)
         assert not is_reviewer(self.user, self.statictheme)
         assert is_user_any_kind_of_reviewer(self.user)
         assert is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_is_reviewer_for_static_theme_reviewer(self):
-        self.grant_permission(self.user, 'Addons:ThemeReview')
+        self.grant_permission(self.user, amo.permissions.STATIC_THEMES_REVIEW)
         assert not is_reviewer(self.user, self.addon)
         assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
         assert is_reviewer(self.user, self.statictheme)
@@ -240,7 +240,7 @@ class TestCheckReviewer(TestCase):
         assert is_user_any_kind_of_reviewer(self.user)
 
     def test_perm_content_review(self):
-        self.grant_permission(self.user, 'Addons:ContentReview')
+        self.grant_permission(self.user, amo.permissions.ADDONS_CONTENT_REVIEW)
         assert is_user_any_kind_of_reviewer(self.user)
 
         assert not is_unlisted_addons_reviewer(self.user)
@@ -256,7 +256,7 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_view(self):
-        self.grant_permission(self.user, 'ReviewerTools:View')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_VIEW)
         assert is_user_any_kind_of_reviewer(self.user, allow_viewers=True)
         assert not is_user_any_kind_of_reviewer(self.user)
         assert not is_unlisted_addons_reviewer(self.user)
@@ -269,7 +269,7 @@ class TestCheckReviewer(TestCase):
     def test_perm_reviewertools_unlisted_view(self):
         self.make_addon_unlisted(self.addon)
         self.make_addon_unlisted(self.statictheme)
-        self.grant_permission(self.user, 'ReviewerTools:ViewUnlisted')
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         assert is_user_any_kind_of_reviewer(self.user, allow_viewers=True)
         assert not is_user_any_kind_of_reviewer(self.user)
         assert is_unlisted_addons_viewer_or_reviewer(self.user)

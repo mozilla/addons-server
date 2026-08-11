@@ -4,6 +4,7 @@ from django.test import override_settings
 
 from rest_framework.test import APIRequestFactory
 
+from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating, RatingFlag
@@ -183,7 +184,7 @@ class TestBaseRatingSerializer(TestCase):
         )
         # should include account profile url for admins
         admin = user_factory()
-        self.grant_permission(admin, 'Users:Edit')
+        self.grant_permission(admin, amo.permissions.USERS_EDIT)
         self.request.user = admin
         result = self.serialize()
         assert result['user']['url'] == absolutify(self.user.get_url_path())
