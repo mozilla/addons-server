@@ -1319,11 +1319,11 @@ msgstr "Gjennomgang av oppføring forespurt"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Avgjørelse om {addon} tatt uten at det er iverksatt noen nye tiltak."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Avgjørelse tatt"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
