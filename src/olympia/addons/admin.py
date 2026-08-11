@@ -387,6 +387,9 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
             '_listed_versions_exists': Exists(
                 sub_qs.filter(channel=amo.CHANNEL_LISTED)
             ),
+            '_enterprise_versions_exists': Exists(
+                sub_qs.filter(channel=amo.CHANNEL_ENTERPRISE)
+            ),
         }
         return annotations
 
@@ -465,6 +468,16 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
                         reverse('reviewers.review', args=['unlisted', obj.id]),
                     ),
                     'Review (unlisted)',
+                )
+            )
+        if obj._enterprise_versions_exists:
+            links.append(
+                (
+                    urljoin(
+                        settings.EXTERNAL_SITE_URL,
+                        reverse('reviewers.review', args=['enterprise', obj.id]),
+                    ),
+                    'Review (enterprise)',
                 )
             )
         return format_html(

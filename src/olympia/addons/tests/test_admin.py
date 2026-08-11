@@ -155,16 +155,29 @@ class TestAddonAdmin(TestCase):
         assert b'Review (listed)' not in response.content
         assert b'Review (unlisted)' in response.content
 
-    def test_list_show_link_to_reviewer_tools_with_both_channels(self):
+    def test_list_show_link_to_reviewer_tools_enterprise(self):
+        version_kw = {'channel': amo.CHANNEL_ENTERPRISE}
+        addon_factory(guid='@foo', version_kw=version_kw)
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
+        self.client.force_login(user)
+        response = self.client.get(self.list_url, follow=True)
+        assert b'Review (listed)' not in response.content
+        assert b'Review (unlisted)' not in response.content
+        assert b'Review (enterprise)' in response.content
+
+    def test_list_show_link_to_reviewer_tools_with_all_channels(self):
         addon = addon_factory()
         version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' in response.content
         assert b'Review (unlisted)' in response.content
+        assert b'Review (enterprise)' in response.content
 
     def test_list_queries(self):
         addon_factory(guid='@foo')
