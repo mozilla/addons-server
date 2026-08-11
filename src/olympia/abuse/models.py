@@ -1431,7 +1431,19 @@ class ContentDecision(ModelBase):
                     # decision was created so there is a record in the reviewer tools
                     # history, and we can send out an accurate email with policy text,
                     # etc.
-                    action_helper.log_action(amo.LOG.DECISION_CREATED)
+                    if not self.target_versions.exists() and (
+                        addon_version := getattr(action_helper, 'addon_version', None)
+                    ):
+                        # If there was no action, there is likely no target_versions
+                        # either (unless it was an override), so we provide a version to
+                        # associate it with, so it's visible in the review history.
+                        action_helper.log_action(
+                            amo.LOG.DECISION_CREATED,
+                            addon_version,
+                            extra_details={'versions': [addon_version.version]},
+                        )
+                    else:
+                        action_helper.log_action(amo.LOG.DECISION_CREATED)
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date',))
             else:

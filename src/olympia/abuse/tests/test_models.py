@@ -3541,6 +3541,24 @@ class TestContentDecision(TestCase):
         )
         assert submission.from_followup == followup
 
+    def test_execute_action_disable_addon_already_disabled(self):
+        addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+        )
+        assert decision.action_date is None
+        assert decision.execute_action() is None
+        self.assertCloseToNow(decision.action_date)
+        assert decision.addon.reload().status == amo.STATUS_DISABLED
+        alog = ActivityLog.objects.filter(action=amo.LOG.DECISION_CREATED.id).get()
+        assert alog.contentdecisionlog_set.get().decision == decision
+        assert alog.versionlog_set.get().version == addon.versions.get()
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
+        assert 'appeal' in mail.outbox[0].body
+
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()
         assert 'appeal' in mail.outbox[0].body
