@@ -1321,11 +1321,11 @@ msgstr "Überprüfung des Listeneintrags angefordert"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Entscheidung zu {addon} getroffen, ohne dass weitere Maßnahmen ergriffen wurden."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Entscheidung getroffen"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
