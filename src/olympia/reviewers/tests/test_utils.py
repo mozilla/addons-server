@@ -4092,7 +4092,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     @override_switch('enable-policy-review-selection', active=True)
     def test_review_with_policy_disable_override_to_disable(self):
-        self.grant_permission(self.user, 'Addons:Review')
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.file.update(
             status=amo.STATUS_DISABLED,
             original_status=amo.STATUS_AWAITING_REVIEW,
