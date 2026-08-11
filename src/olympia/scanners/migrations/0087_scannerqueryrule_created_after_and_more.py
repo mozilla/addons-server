@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('abuse', '0070_alter_cinderpolicy_expose_in_reviewer_tools_and_more'),
-        ('scanners', '0085_delete_enable_scanner_webhooks_waffle_switch'),
+        ('scanners', '0086_delete_run_action_in_auto_approve_waffle_switch'),
     ]
 
     operations = [
