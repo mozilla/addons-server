@@ -435,4 +435,5 @@ SURVEY_LINK = {
     DEV_EXP_SURVEY_ALCHEMER_ID: 'https://survey.alchemer.com/s3/7953020/MV3-Developer-Sentiment-2024'
 }
 
+# Date we started to sign add-ons with COSE signature.
 COSE_DATE_CUTOFF = date(2019, 4, 5)
