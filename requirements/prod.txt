@@ -772,9 +772,9 @@ djangorestframework==3.17.1 \
 dockerflow==2026.3.4 \
     --hash=sha256:38fe0ad30a4aedf68e589919695d502fc6f584a761b56a91f56e80cbadfbf61a \
     --hash=sha256:6cc7fcab2a078d06aeca8b02e22fd7f6766dca322fb30aed6910684dbc08690c
-drf-nested-routers==0.95.0 \
-    --hash=sha256:815978f802e578fd7035c74040c104909cbe97615de89a275d77e928f4029891 \
-    --hash=sha256:dd489c33d667aaa81383ffaa8c74781d2b353d8f0795716ae37fc59ee297b7c4
+drf-nested-routers==0.95.3 \
+    --hash=sha256:3d5ffad87b110c9d58ee0c688cf540a7fa4ccbf1080b2d318a5e2cf634322d96 \
+    --hash=sha256:bb02f4fea712f7f0fc649fc1399718e458a06387fdb2fb161cc9aeaad314f4ef
 elasticsearch==8.19.3 \
     --hash=sha256:e84dd618a220cac25b962790085045dd27ac72e01c0a5d81bd29a2d47a71f03f \
     --hash=sha256:fe1db2555811192e8a1be78b01234d0a49d32b185ea7eeeb6f059331dee32838
