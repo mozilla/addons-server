@@ -1321,11 +1321,11 @@ msgstr ""
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Decyzja dotycząca dodatku {addon} została podjęta bez konieczności podejmowania dalszych działań."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Decyzja podjęta"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -2060,12 +2060,12 @@ msgstr "Odwołaj"
 
 #: src/olympia/devhub/forms.py:1508
 msgid "Re-send email confirmation"
-msgstr ""
+msgstr "Wyślij ponownie potwierdzenie e-mailem"
 
 #: src/olympia/devhub/forms.py:1565
 #, python-brace-format
 msgid "Please click the button below to generate API credentials for user <strong>{name}</strong>."
-msgstr ""
+msgstr "Kliknij poniższy przycisk, aby wygenerować dane uwierzytelniające API dla użytkownika <strong>{name}</strong>."
 
 #: src/olympia/devhub/forms.py:1590
 msgid "You don't have any API credentials."
@@ -2379,7 +2379,7 @@ msgstr "Aby kontynuować, należy podać dalsze szczegóły."
 
 #: src/olympia/devhub/views.py:2118
 msgid "A confirmation link will be sent to your email address shortly."
-msgstr ""
+msgstr "Link potwierdzający zostanie wkrótce wysłany na Twój adres e-mail."
 
 #: src/olympia/devhub/views.py:2133
 msgid "Your old credentials were revoked and are no longer valid."
