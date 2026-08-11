@@ -1315,11 +1315,11 @@ msgstr "Požádání o posouzení zařazení doplňku"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr "U doplňku {addon} nebylo učiněno žádné rozhodnutí."
+msgstr "Bylo přijato rozhodnutí ohledně doplňku {addon}, aniž by byly podniknuty nějaké nové kroky."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr "Rozhodnutí učiněno"
+msgstr "Učiněno rozhodnutí"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
