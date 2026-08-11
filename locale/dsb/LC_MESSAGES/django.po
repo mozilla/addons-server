@@ -1320,11 +1320,11 @@ msgstr "Pśeglědowanje lisćinowego zapiska pominane"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Rozsud wó rozšyrjenju {addon} jo se cynił, bźez togo aby se nowa akcija wuwjadła."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Rozsud jo se cynił"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
