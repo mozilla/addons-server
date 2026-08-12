@@ -320,8 +320,10 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert not AutoApprovalSummary.objects.exists()
         call_command('auto_approve')
         self.version.reload()
+        self.version.file.reload()
         summary = AutoApprovalSummary.objects.get(version=self.version)
         assert summary.verdict == amo.AUTO_APPROVED
+        assert self.version.file.status == amo.STATUS_APPROVED
         assert not self.version.needshumanreview_set.filter(is_active=True).exists()
 
     @mock.patch('olympia.reviewers.management.commands.auto_approve.statsd.incr')
@@ -885,6 +887,79 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         call_command('auto_approve')  # Shouldn't matter if it's called twice.
         check_assertions()
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_run_actions_enterprise(self, sign_file_mock):
+        responses.add_callback(
+            responses.POST,
+            f'{settings.CINDER_SERVER_URL}v1/create_decision',
+            callback=lambda r: (201, {}, json.dumps({'uuid': uuid.uuid4().hex})),
+        )
+
+        reject_policy = CinderPolicy.objects.create(
+            enforcement_actions=[DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON.api_value],
+            name='Reject Policy',
+            expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH,
+            uuid=uuid.uuid4().hex,
+        )
+
+        self.create_switch('enable-narc', active=True)
+        rule = ScannerRule.objects.create(
+            is_active=True,
+            name='foo',
+            policy=reject_policy,
+            scanner=NARC,
+            definition='.*',
+        )
+
+        listed_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        )
+        for version in (listed_version, enterprise_version):
+            FileValidation.objects.create(file=version.file, validation='{}')
+            FileManifest.objects.create(
+                file=version.file, manifest_data={'name': 'Foo'}
+            )
+
+        assert not ScannerResult.objects.exists()
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+
+        call_command('auto_approve')
+
+        # Listed version matched a rule, enables flag.
+        listed_version.reload()
+        listed_version.file.reload()
+        listed_result = ScannerResult.objects.get(version=listed_version, scanner=NARC)
+        assert list(listed_result.matched_rules.all()) == [rule]
+        assert listed_version.file.status == amo.STATUS_DISABLED
+        assert listed_version.autoapprovalsummary.verdict == amo.NOT_AUTO_APPROVED
+
+        flags = self.addon.reviewerflags.reload()
+        assert flags.auto_approval_disabled_until_next_approval
+
+        # Enterprise version ignores both rule match and flag.
+        enterprise_version.reload()
+        enterprise_version.file.reload()
+        assert enterprise_version.file.status == amo.STATUS_APPROVED
+        enterprise_summary = AutoApprovalSummary.objects.get(version=enterprise_version)
+        assert enterprise_summary.verdict == amo.AUTO_APPROVED
+        assert enterprise_summary.scanner_actions_executed is False
+
+        # Reviewers can still see the match: only the action was gated.
+        enterprise_result = ScannerResult.objects.get(version=enterprise_version)
+        assert enterprise_result.has_matches
+        assert list(enterprise_result.matched_rules.all()) == [rule]
+
+        # No NHR.
+        assert enterprise_version.due_date is None
+        assert not enterprise_version.needshumanreview_set.exists()
 
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_run_actions_delay_approval_with_run_narc(self, sign_file_mock):

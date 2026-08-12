@@ -155,8 +155,7 @@ class Command(BaseCommand):
                         version.pk,
                     )
                 else:
-                    ScannerResult.run_actions(version)
-                    scanner_actions_executed = True
+                    scanner_actions_executed = ScannerResult.run_actions(version)
 
                 version.autoapprovalsummary, info = (
                     AutoApprovalSummary.create_summary_for_version(
