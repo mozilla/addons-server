@@ -2924,6 +2924,26 @@ class TestVersionSubmitDetails(TestSubmitBase):
             ),
         )
 
+    def test_submit_details_enterprise_should_redirect(self):
+        # Should be redirecting even with an existing listed channel.
+        assert self.version.channel == amo.CHANNEL_LISTED
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+        )
+        url = reverse(
+            'devhub.submit.version.details',
+            args=[self.addon.slug, enterprise_version.pk],
+        )
+        response = self.client.get(url)
+        self.assert3xx(
+            response,
+            reverse(
+                'devhub.submit.version.source',
+                args=[self.addon.slug, enterprise_version.pk],
+            ),
+        )
+
     def test_public_addon_stays_public_even_if_had_missing_metadata(self):
         """Posting details for a new version for a public add-on that somehow
         had missing metadata despite being public shouldn't reset it to

@@ -1853,9 +1853,10 @@ def submit_version_source(request, addon_id, addon, version_id):
 def _submit_details(request, addon, version, next_view):
     static_theme = addon.type == amo.ADDON_STATICTHEME
     if version:
-        skip_details_step = version.channel == amo.CHANNEL_UNLISTED or (
-            static_theme and addon.has_complete_metadata()
-        )
+        skip_details_step = version.channel in (
+            amo.CHANNEL_UNLISTED,
+            amo.CHANNEL_ENTERPRISE,
+        ) or (static_theme and addon.has_complete_metadata())
         if skip_details_step:
             # Nothing to do here.
             return redirect(next_view, addon.slug, version.pk)
