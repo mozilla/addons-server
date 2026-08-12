@@ -1313,7 +1313,7 @@ msgstr "გამოსაქვეყნებლის გადახედ�
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "{addon} – გადაწყვეტილება მიღებულია დამატებითი ზომების გარეშე."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
