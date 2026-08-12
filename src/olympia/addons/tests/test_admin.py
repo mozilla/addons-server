@@ -155,16 +155,29 @@ class TestAddonAdmin(TestCase):
         assert b'Review (listed)' not in response.content
         assert b'Review (unlisted)' in response.content
 
-    def test_list_show_link_to_reviewer_tools_with_both_channels(self):
+    def test_list_show_link_to_reviewer_tools_enterprise(self):
+        version_kw = {'channel': amo.CHANNEL_ENTERPRISE}
+        addon_factory(guid='@foo', version_kw=version_kw)
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
+        self.client.force_login(user)
+        response = self.client.get(self.list_url, follow=True)
+        assert b'Review (listed)' not in response.content
+        assert b'Review (unlisted)' not in response.content
+        assert b'Review (enterprise)' in response.content
+
+    def test_list_show_link_to_reviewer_tools_with_all_channels(self):
         addon = addon_factory()
         version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' in response.content
         assert b'Review (unlisted)' in response.content
+        assert b'Review (enterprise)' in response.content
 
     def test_list_queries(self):
         addon_factory(guid='@foo')
@@ -385,6 +398,7 @@ class TestAddonAdmin(TestCase):
         response = self.client.get(detail_url, follow=True)
         assert b'Reviewer Tools (listed)' in response.content
         assert b'Reviewer Tools (unlisted)' not in response.content
+        assert b'Reviewer Tools (enterprise)' not in response.content
 
     def test_show_link_to_reviewer_tools_unlisted(self):
         version_kw = {'channel': amo.CHANNEL_UNLISTED}
@@ -396,11 +410,25 @@ class TestAddonAdmin(TestCase):
         response = self.client.get(detail_url, follow=True)
         assert b'Reviewer Tools (listed)' not in response.content
         assert b'Reviewer Tools (unlisted)' in response.content
+        assert b'Reviewer Tools (enterprise)' not in response.content
 
-    def test_show_links_to_reviewer_tools_with_both_channels(self):
+    def test_show_link_to_reviewer_tools_enterprise(self):
+        version_kw = {'channel': amo.CHANNEL_ENTERPRISE}
+        addon = addon_factory(guid='@foo', version_kw=version_kw)
+        detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        user = user_factory(email='someone@mozilla.com')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
+        self.client.force_login(user)
+        response = self.client.get(detail_url, follow=True)
+        assert b'Reviewer Tools (listed)' not in response.content
+        assert b'Reviewer Tools (unlisted)' not in response.content
+        assert b'Reviewer Tools (enterprise)' in response.content
+
+    def test_show_links_to_reviewer_tools_with_multiple_channels(self):
         addon = addon_factory(guid='@foo')
         version_factory(addon=addon, version='0.1', channel=amo.CHANNEL_LISTED)
         version_factory(addon=addon, version='0.2', channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, version='0.3', channel=amo.CHANNEL_ENTERPRISE)
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
@@ -418,6 +446,13 @@ class TestAddonAdmin(TestCase):
         assert (
             'http://testserver{}'.format(
                 reverse('reviewers.review', args=('unlisted', addon.pk))
+            )
+            in content
+        )
+        assert 'Reviewer Tools (enterprise)' in content
+        assert (
+            'http://testserver{}'.format(
+                reverse('reviewers.review', args=('enterprise', addon.pk))
             )
             in content
         )
@@ -742,7 +777,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
-        with self.assertNumQueries(20 if self.is_django42 else 18):
+        with self.assertNumQueries(21 if self.is_django42 else 19):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -752,7 +787,7 @@ class TestAddonAdmin(TestCase):
 
         version_factory(addon=addon)
         version_factory(addon=addon)
-        with self.assertNumQueries(20 if self.is_django42 else 18):
+        with self.assertNumQueries(21 if self.is_django42 else 19):
             # Confirm it scales correctly by doing the same number of queries
             # when number of versions increases.
             # FIXME: explain each query

@@ -17,6 +17,14 @@
   </li>
   {% endif %}
 
+  {% if has_enterprise_versions %}
+  <li>
+    <a href="{{ external_site_url }}{% url 'reviewers.review' 'enterprise' object_id %}">
+      Reviewer Tools (enterprise)
+    </a>
+  </li>
+  {% endif %}
+
   {{ block.super }}
 {% endblock %}
 
