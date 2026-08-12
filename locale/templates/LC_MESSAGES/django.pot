@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-11 20:05+0000\n"
+"POT-Creation-Date: 2026-08-12 14:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -571,7 +571,7 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:79
 #: src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20
-#: src/olympia/devhub/views.py:2160
+#: src/olympia/devhub/views.py:2161
 msgid "Manage API Keys"
 msgstr ""
 
@@ -2566,49 +2566,49 @@ msgstr ""
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2010
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2012
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2119
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2134
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2145
 msgid ""
 "New API credentials have been generated and are displayed below. Make sure to"
 " copy the JWT secret, it will never be displayed again."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2173
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2184
 msgid "API key revoked"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2244
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2246
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2279
 msgid "Your email has been verified"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2341
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr ""
 
