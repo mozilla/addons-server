@@ -1271,7 +1271,7 @@ def test_extract_translations_simple():
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
     ).current_version.file
     messages = utils.extract_translations(file_obj)
-    assert list(sorted(messages.keys())) == [
+    assert sorted(messages.keys()) == [
         'de',
         'en-US',
         'ja',

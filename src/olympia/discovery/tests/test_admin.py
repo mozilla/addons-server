@@ -586,7 +586,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             'modules-__prefix__-id': '',
             'modules-__prefix__-shelf': str(item),
         }
-        for index in range(0, len(module_data)):
+        for index in range(len(module_data)):
             out.update(
                 **{
                     f'modules-{index}-icon': str(module_data[index]['icon']),
@@ -655,10 +655,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             detail_url,
             dict(
                 self._get_moduleform(item.id, shelves, initial=3),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )
@@ -737,10 +735,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             add_url,
             dict(
                 self._get_moduleform('', shelves),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )
@@ -826,10 +822,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             add_url,
             dict(
                 self._get_moduleform('', {}),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )

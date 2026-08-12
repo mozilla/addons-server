@@ -462,14 +462,16 @@ class TestBulkAddDisposableEmailDomains(TestCase):
         def always_raise_operational_error(*args, **kwargs):
             raise OperationalError()
 
-        with mock.patch(
-            'olympia.users.tasks.DisposableEmailDomainRestriction.objects.bulk_create',
-            side_effect=always_raise_operational_error,
+        with (
+            mock.patch(
+                'olympia.users.tasks.DisposableEmailDomainRestriction.objects.bulk_create',
+                side_effect=always_raise_operational_error,
+            ),
+            pytest.raises(Retry),
         ):
-            with pytest.raises(Retry):
-                bulk_add_disposable_email_domains.apply(
-                    args=[self.entries, self.batch_size]
-                ).get()
+            bulk_add_disposable_email_domains.apply(
+                args=[self.entries, self.batch_size]
+            ).get()
 
 
 @pytest.mark.django_db

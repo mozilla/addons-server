@@ -474,7 +474,7 @@ class PositiveContentActionMixin:
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
 
-        for idx in range(0, 1):
+        for idx in range(1):
             assert 'were unable to identify a violation' in mail.outbox[idx].body
             assert 'right to appeal' not in mail.outbox[idx].body
             assert 'This is bad thing' in mail.outbox[idx].body  # policy text

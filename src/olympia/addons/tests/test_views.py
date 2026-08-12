@@ -6895,7 +6895,7 @@ class TestAddonSearchView(ESTestCase):
         # contain a string that was causing such breakage before.
         # Populate the index with a few add-ons first (enough to trigger the
         # issue locally).
-        for _i in range(0, 10):
+        for _i in range(10):
             addon_factory()
         self.refresh()
         query = '남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 남포역op남포역유흥≡남포역안마남포역오피 ♠♣'  # noqa: E501
@@ -7126,7 +7126,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         assert len(data['results']) == 0
 
     def test_pagination(self):
-        [addon_factory() for x in range(0, 11)]
+        [addon_factory() for x in range(11)]
         self.refresh()
 
         # page_size should be ignored, we should get 10 results.
@@ -7231,7 +7231,7 @@ class TestAddonFeaturedView(ESTestCase):
         assert ids == {addon1.id, addon2.id}
 
     def test_page_size(self):
-        for _ in range(0, 15):
+        for _ in range(15):
             addon_factory(
                 promoted_kwargs={
                     'api_name': RECOMMENDED_API_NAME,

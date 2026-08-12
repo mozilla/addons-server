@@ -798,7 +798,7 @@ class TestAddonAdmin(TestCase):
     def test_version_pagination(self):
         addon = addon_factory(users=[user_factory()])
         first_file = addon.current_version.file
-        [version_factory(addon=addon, version=str(i)) for i in range(0, 30)]
+        [version_factory(addon=addon, version=str(i)) for i in range(30)]
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)

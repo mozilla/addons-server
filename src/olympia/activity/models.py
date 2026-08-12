@@ -143,7 +143,7 @@ class AddonLog(ModelBase):
             log.info(
                 'unserializing data from addon_log failed: %s' % self.activity_log.id
             )
-            return None
+            return
 
         new_arguments = []
         for item in arguments:

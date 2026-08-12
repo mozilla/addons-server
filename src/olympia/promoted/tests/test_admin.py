@@ -156,7 +156,7 @@ class TestDiscoveryAddonAdmin(TestCase):
             'form-MIN_NUM_FORMS': '0',
             'form-MAX_NUM_FORMS': '0',
         }
-        for index in range(0, len(approvals)):
+        for index in range(len(approvals)):
             out.update(
                 **{
                     f'form-{index}-id': str(approvals[index].id),

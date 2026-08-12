@@ -902,7 +902,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_build_report_payload_only_includes_first_batch_of_relationships(self):
         addon = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             addon.authors.add(user_factory())
         cinder_addon = self.CinderClass(addon)
         message = 'report for lots of relationships'
@@ -980,7 +980,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_report_additional_context(self):
         addon = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             addon.authors.add(user_factory())
         cinder_addon = self.CinderClass(addon)
 
@@ -1084,7 +1084,7 @@ class TestCinderAddon(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_report_additional_context_error(self):
         addon = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             addon.authors.add(user_factory())
         cinder_addon = self.CinderClass(addon)
 
@@ -1945,7 +1945,7 @@ class TestCinderAddonContentReview(TestCinderAddon):
     @mock.patch.object(CinderAddon, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_build_event_payload_only_includes_first_batch_of_relationships(self):
         addon = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             addon.authors.add(user_factory())
         cinder_addon = self.CinderClass(addon)
         data = cinder_addon.build_event_payload()
@@ -2682,7 +2682,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_build_report_payload_only_includes_first_batch_of_relationships(self):
         user = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             user.addons.add(addon_factory())
         cinder_user = self.CinderClass(user)
         message = 'report for lots of relationships'
@@ -2768,7 +2768,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_report_additional_context(self):
         user = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             user.addons.add(addon_factory())
         cinder_user = self.CinderClass(user)
 
@@ -2888,7 +2888,7 @@ class TestCinderUser(BaseTestCinderCase, TestCase):
     @mock.patch.object(CinderUser, 'RELATIONSHIPS_BATCH_SIZE', 2)
     def test_report_additional_context_error(self):
         user = self._create_dummy_target()
-        for _ in range(0, 6):
+        for _ in range(6):
             user.addons.add(addon_factory())
         cinder_user = self.CinderClass(user)
 

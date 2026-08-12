@@ -15,7 +15,7 @@ from olympia.blocklist.models import BlockType
 class TestExportBlocklist(TestCase):
     def test_command(self):
         user = user_factory()
-        for _idx in range(0, 5):
+        for _idx in range(5):
             addon_factory()
         # all versions
         block_factory(

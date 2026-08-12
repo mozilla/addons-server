@@ -11,7 +11,7 @@ from olympia.users.models import (
 
 def _no_action(*, version, rule=None):
     """Do nothing."""
-    pass
+    return
 
 
 def _flag_for_human_review(*, version, rule=None):

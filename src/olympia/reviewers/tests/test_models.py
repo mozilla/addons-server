@@ -315,7 +315,7 @@ class TestAutoApprovalSummary(TestCase):
 
         # Should be capped at 100. We're already at 45, adding 4 more should
         # result in a weight of 100 instead of 105.
-        for _i in range(0, 4):
+        for _i in range(4):
             AbuseReport.objects.create(guid=self.addon.guid)
         weight_info = summary.calculate_weight()
         assert summary.weight == 100
@@ -364,7 +364,7 @@ class TestAutoApprovalSummary(TestCase):
             Rating(
                 user=user_factory(), addon=self.addon, version=self.version, rating=3
             )
-            for i in range(0, 49)
+            for i in range(49)
         ]
         Rating.objects.bulk_create(ratings)
         summary = AutoApprovalSummary(version=self.version)
@@ -391,7 +391,7 @@ class TestAutoApprovalSummary(TestCase):
             Rating(
                 user=user_factory(), addon=self.addon, version=self.version, rating=3
             )
-            for i in range(0, 5000)
+            for i in range(5000)
         ]
         Rating.objects.bulk_create(ratings)
 
@@ -518,7 +518,7 @@ class TestAutoApprovalSummary(TestCase):
         assert weight_info == {'past_rejection_history': 20}
 
         # Should be capped at 100.
-        for i in range(0, 10):
+        for i in range(10):
             version_factory(
                 addon=self.addon,
                 version=str(i),
@@ -1778,9 +1778,8 @@ class TestReviewActionReason(TestCase):
 
         with self.assertRaises(ValidationError):
             reason.full_clean()
-        with atomic():
-            with self.assertRaises(IntegrityError):
-                reason.save()
+        with atomic(), self.assertRaises(IntegrityError):
+            reason.save()
 
         reason.canned_response = 'something'
         reason.full_clean()

@@ -119,7 +119,7 @@ class TestAddonRatingAggregates(TestCase):
 
 def addon_factory_with_ratings(*, ratings_count, **kwargs):
     addon = addon_factory(**kwargs)
-    for _x in range(0, ratings_count):
+    for _x in range(ratings_count):
         Rating.objects.create(addon=addon, user=user_factory())
     return addon
 

@@ -2187,7 +2187,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
     def test_limit_to(self):
         result = ScannerResult.objects.create(pk=42, scanner=YARA)
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
-        for i in range(0, 5):
+        for i in range(5):
             result.add_yara_result(
                 rule=rule.name, meta={'filename': f'somefilename{i}'}
             )
