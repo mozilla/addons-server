@@ -1218,7 +1218,7 @@ class QueueTest(ReviewerTest):
                     channel = []
                 else:
                     channel = ['unlisted']
-                name = f'{str(addon.name)} {expected_version.version}'
+                name = f'{addon.name!s} {expected_version.version}'
             url = reverse('reviewers.review', args=channel + [addon.pk])
             expected.append((name, url))
         doc = pq(response.content)
@@ -3003,7 +3003,7 @@ class TestReview(ReviewBase):
     def test_item_history_pagination(self):
         addon = self.addons['Public']
         addon.current_version.update(created=self.days_ago(366))
-        for i in range(0, 10):
+        for i in range(10):
             # Add versions 1.0 to 1.9
             version_factory(
                 addon=addon, version=f'1.{i}', created=self.days_ago(365 - i)
@@ -3364,7 +3364,7 @@ class TestReview(ReviewBase):
 
     def test_item_history_pending_rejection_other_pages(self):
         self.addon.current_version.update(created=self.days_ago(366))
-        for i in range(0, 10):
+        for i in range(10):
             # Add versions 1.0 to 1.9. Schedule a couple for future rejection
             # (the date doesn't matter).
             version = version_factory(
@@ -3860,7 +3860,7 @@ class TestReview(ReviewBase):
 
     def test_resubmission_buttons_are_displayed_for_deleted_addons_and_denied_guid(
         self,
-    ):  # noqa
+    ):
         self.login_as_admin()
         self.addon.update(status=amo.STATUS_DELETED)
         self.addon.deny_resubmission()
@@ -6285,7 +6285,7 @@ class TestReview(ReviewBase):
         webhook_rule = ScannerRule.objects.create(name='ringo', scanner=WEBHOOK)
         yara_rule = ScannerRule.objects.create(name='star', scanner=YARA)
         now = datetime.now()
-        for i in range(0, 10):
+        for i in range(10):
             # Add versions 1.0 to 1.9. Some of them will have yara matching
             # rules, some of them webhook matching rules, and some also have
             # the needing human review flag.
@@ -6715,7 +6715,7 @@ class TestReview(ReviewBase):
         self.addon.update(status=amo.STATUS_DISABLED)
         # +2 for an unambigious assertion on the number of li items
         version_count = MAX_MOCK + 2
-        for _ in range(0, version_count):
+        for _ in range(version_count):
             version_factory(
                 addon=self.addon,
                 file_kw={

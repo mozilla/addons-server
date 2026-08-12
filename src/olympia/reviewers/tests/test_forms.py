@@ -1555,7 +1555,7 @@ class TestReviewForm(TestCase):
             ),
         )
         AbuseReport.objects.create(
-            **{**abuse_kw},
+            **abuse_kw,
             message='fff',
             cinder_job=CinderJob.objects.create(
                 job_id='already resolved',

@@ -3697,7 +3697,6 @@ class TestContentDecision(TestCase):
                 'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
             },
         )
-        #
         self._execute_action_approve_appeal(addon, DECISION_ACTIONS.AMO_DISABLE_ADDON)
         assert addon.reload().status == amo.STATUS_APPROVED
 

@@ -35,7 +35,7 @@ from ..views import RatingViewSet
 
 
 locmem_cache = settings.CACHES.copy()
-locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
+locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'
 
 
 class TestRatingViewSetGet(TestCase):
@@ -1333,7 +1333,7 @@ class TestRatingViewSetDelete(TestCase):
             assert Rating.objects.count() == 0
 
             # Go over 5 requests and you get throttled though.
-            for _x in range(0, 3):
+            for _x in range(3):
                 response = self.client.delete(
                     reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
                 )
@@ -2901,7 +2901,7 @@ class TestRatingViewSetFlag(TestCase):
             # Both should have been flagged.
             assert RatingFlag.objects.count() == 2
 
-            for _x in range(0, 18):
+            for _x in range(18):
                 # You can keep flagging up to 20 a day.
                 response = self.client.post(
                     url_b, data={'flag': 'review_flag_reason_spam'}

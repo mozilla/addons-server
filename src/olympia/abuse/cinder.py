@@ -213,7 +213,7 @@ class CinderEntity:
         """Callback triggered after a report has been posted to Cinder API and
         a job has been created or fetched for that report. The job is passed as
         a keyword argument."""
-        pass
+        return
 
     def workflow_recreate(self, *, reasoning, job=None, from_2nd_level=False):
         """Recreate a job in a queue."""

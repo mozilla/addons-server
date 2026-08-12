@@ -183,9 +183,8 @@ class TestPromotedAddon(TestCase):
             missing_fields = {
                 k: v for k, v in self.required_fields.items() if k != field
             }
-            with self.assertRaises(IntegrityError):
-                with transaction.atomic():
-                    PromotedAddon.objects.create(**missing_fields)
+            with self.assertRaises(IntegrityError), transaction.atomic():
+                PromotedAddon.objects.create(**missing_fields)
 
         assert PromotedAddon.objects.create(**self.required_fields) is not None
 
@@ -226,7 +225,7 @@ class TestPromotedAddon(TestCase):
         PromotedAddon.objects.create(**self.required_fields)
         assert (
             PromotedAddon.objects.create(
-                **{**self.required_fields, **{'addon': addon_factory()}}
+                **{**self.required_fields, 'addon': addon_factory()}
             )
             is not None
         )
@@ -238,11 +237,11 @@ class TestPromotedAddon(TestCase):
             self.assertRaises(IntegrityError),
             transaction.atomic(),
         ):
-            PromotedAddon.objects.create(**{**self.required_fields})
+            PromotedAddon.objects.create(**self.required_fields)
         # Delete the original instance to test the constraint
         # is lifted when it is deleted.
         original.delete()
-        PromotedAddon.objects.create(**{**self.required_fields})
+        PromotedAddon.objects.create(**self.required_fields)
 
 
 class TestPromotedApproval(TestCase):
@@ -261,9 +260,8 @@ class TestPromotedApproval(TestCase):
             missing_fields = {
                 k: v for k, v in self.required_fields.items() if k != field
             }
-            with self.assertRaises(IntegrityError):
-                with transaction.atomic():
-                    PromotedApproval.objects.create(**missing_fields)
+            with self.assertRaises(IntegrityError), transaction.atomic():
+                PromotedApproval.objects.create(**missing_fields)
 
         assert PromotedApproval.objects.create(**self.required_fields) is not None
 

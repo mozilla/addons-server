@@ -1356,7 +1356,7 @@ class TestAPIKeyPage(TestCase):
             user=self.user, token='old token', confirmed_once=False
         )
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 4):
+            for _x in range(4):
                 self._add_fake_throttling_action(
                     view_class=APIKeyForm,
                     url=self.url,
@@ -2927,7 +2927,7 @@ class TestSupportView(TestCase):
     def test_post_throttled_user(self):
         self.client.force_login(self.user)
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 10):
+            for _x in range(10):
                 self._add_fake_throttling_action(
                     view_class=SupportForm,
                     url=self.url,
@@ -2944,7 +2944,7 @@ class TestSupportView(TestCase):
 
     def test_post_throttled_ip(self):
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 20):
+            for _x in range(20):
                 self._add_fake_throttling_action(
                     view_class=SupportForm,
                     url=self.url,

@@ -251,7 +251,7 @@ class Rating(ModelBase):
             activity.log_create(amo.LOG.UNDELETE_RATING, self, self.addon)
         # We're avoiding triggering post_save signal normally because we don't
         # want to record an edit. We trigger the callback manually instead.
-        rating_post_save(self.__class__, self, False, **{'undeleted': True})
+        rating_post_save(self.__class__, self, False, undeleted=True)
 
     @classmethod
     def get_replies(cls, ratings):

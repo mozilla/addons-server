@@ -223,7 +223,6 @@ def parse_next_path(state_parts, request=None):
             )
         except (TypeError, ValueError):
             log.info(f'Error decoding next_path {encoded_path}')
-            pass
     if not is_safe_url(next_path, request):
         next_path = None
     return next_path

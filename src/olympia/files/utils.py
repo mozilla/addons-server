@@ -61,9 +61,7 @@ def get_filepath(fileorpath):
     """
     from olympia.files.models import File, FileUpload
 
-    if isinstance(fileorpath, str):
-        return fileorpath
-    elif isinstance(fileorpath, DjangoFile):
+    if isinstance(fileorpath, str) or isinstance(fileorpath, DjangoFile):
         return fileorpath
     elif isinstance(fileorpath, File):
         return fileorpath.file
@@ -118,14 +116,10 @@ class InvalidArchiveFile(forms.ValidationError):
     """This error is raised when we attempt to open an invalid file with
     SafeZip/SafeTar."""
 
-    pass
-
 
 class AlreadyUsedUpload(forms.ValidationError):
     """Error raised when trying to use a FileUpload that has already been used
     to make a Version+File, its path will be empty."""
-
-    pass
 
 
 class DuplicateAddonID(forms.ValidationError):
@@ -363,8 +357,7 @@ class ManifestJSONExtractor:
                 amo.DEFAULT_WEBEXT_MAX_VERSION
             )
 
-            if strict_max_version < strict_min_version:
-                strict_max_version = strict_min_version
+            strict_max_version = max(strict_max_version, strict_min_version)
 
             qs = AppVersion.objects.filter(application=app.id)
             try:
@@ -550,13 +543,9 @@ class FSyncMixin:
 class FSyncedZipFile(FSyncMixin, zipfile.ZipFile):
     """Subclass of ZipFile that calls `fsync` for file extractions."""
 
-    pass
-
 
 class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
     """Subclass of TarFile that calls `fsync` for file extractions."""
-
-    pass
 
 
 def archive_member_validator(member, ignore_filename_errors=False):

@@ -62,10 +62,10 @@ class RatingModerationLogForm(forms.Form):
     def clean(self):
         data = self.cleaned_data
         # We want this to be inclusive of the end date.
-        if 'end' in data and data['end']:
+        if data.get('end'):
             data['end'] += timedelta(days=1)
 
-        if 'filter' in data and data['filter']:
+        if data.get('filter'):
             data['filter'] = ACTION_DICT[data['filter']]
         return data
 
@@ -91,7 +91,7 @@ class ReviewLogForm(forms.Form):
     def clean(self):
         data = self.cleaned_data
         # We want this to be inclusive of the end date.
-        if 'end' in data and data['end']:
+        if data.get('end'):
             data['end'] += timedelta(days=1)
 
         return data

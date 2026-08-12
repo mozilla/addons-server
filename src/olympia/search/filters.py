@@ -672,14 +672,12 @@ class SearchQueryFilter(BaseFilterBackend):
             ]
             should.append(
                 query.MultiMatch(
-                    **{
-                        '_name': 'MultiMatch(%s)' % ','.join(fields),
-                        'fields': fields,
-                        'query': search_query,
-                        'boost': 5.0,
-                        'analyzer': analyzer,
-                        'operator': 'and',
-                    }
+                    _name='MultiMatch(%s)' % ','.join(fields),
+                    fields=fields,
+                    query=search_query,
+                    boost=5.0,
+                    analyzer=analyzer,
+                    operator='and',
                 )
             )
 
@@ -690,36 +688,30 @@ class SearchQueryFilter(BaseFilterBackend):
         if ' ' in search_query:
             should.append(
                 query.MatchPhrase(
-                    **{
-                        'name': {
-                            '_name': 'MatchPhrase(name)',
-                            'query': search_query,
-                            'boost': 8.0,
-                            'slop': 1,
-                        },
+                    name={
+                        '_name': 'MatchPhrase(name)',
+                        'query': search_query,
+                        'boost': 8.0,
+                        'slop': 1,
                     }
                 )
             )
         should.extend(
             [
                 query.Match(
-                    **{
-                        'name': {
-                            '_name': 'Match(name)',
-                            'analyzer': 'standard',
-                            'query': search_query,
-                            'boost': 6.0,
-                            'operator': 'and',
-                        },
+                    name={
+                        '_name': 'Match(name)',
+                        'analyzer': 'standard',
+                        'query': search_query,
+                        'boost': 6.0,
+                        'operator': 'and',
                     }
                 ),
                 query.Prefix(
-                    **{
-                        'name': {
-                            '_name': 'Prefix(name)',
-                            'value': search_query,
-                            'boost': 3.0,
-                        },
+                    name={
+                        '_name': 'Prefix(name)',
+                        'value': search_query,
+                        'boost': 3.0,
                     }
                 ),
             ]

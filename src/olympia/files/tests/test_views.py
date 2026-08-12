@@ -208,7 +208,7 @@ class TestFileUploadViewSet(TestCase):
     def test_throttling_ip_burst(self):
         ip = '63.245.208.194'
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _ in range(0, 6):
+            for _ in range(6):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
                     url=self.list_url,
@@ -230,7 +230,7 @@ class TestFileUploadViewSet(TestCase):
     def test_throttling_ip_hourly(self):
         ip = '63.245.208.194'
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _ in range(0, 50):
+            for _ in range(50):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
                     url=self.list_url,
@@ -257,7 +257,7 @@ class TestFileUploadViewSet(TestCase):
 
     def test_throttling_user_burst(self):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _ in range(0, 6):
+            for _ in range(6):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
                     url=self.list_url,
@@ -278,7 +278,7 @@ class TestFileUploadViewSet(TestCase):
 
     def test_throttling_user_hourly(self):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _ in range(0, 20):
+            for _ in range(20):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
                     url=self.list_url,
@@ -304,7 +304,7 @@ class TestFileUploadViewSet(TestCase):
 
     def test_throttling_user_daily(self):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _ in range(0, 48):
+            for _ in range(48):
                 self._add_fake_throttling_action(
                     view_class=FileUploadViewSet,
                     url=self.list_url,

@@ -424,7 +424,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
                     initial['changed_version_ids'] = [int(v) for v in version_ids]
                 except ValueError:
                     pass
-            initial.update(**{'input_guids': guids_data})
+            initial.update(input_guids=guids_data)
             if 'action' in request.POST:
                 initial['action'] = request.POST['action']
             form = MultiBlockForm(initial=initial)
@@ -558,7 +558,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         logs = admin.models.LogEntry.objects.filter(
             object_id=obj.id, content_type=content_type
         )
-        return '\n'.join(f'{log.action_time.date()}: {str(log)}' for log in logs)
+        return '\n'.join(f'{log.action_time.date()}: {log!s}' for log in logs)
 
     def ro_changed_version_ids(self, obj):
         # Annoyingly, we don't have the full context, but we stashed blocks

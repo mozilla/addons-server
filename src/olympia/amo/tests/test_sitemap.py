@@ -700,7 +700,7 @@ def test_get_sitemap_section_pages():
     def items_mock(self):
         return [
             AccountSitemap.item_tuple(datetime.now(), user_id, 7, 8)
-            for user_id in range(0, 401)
+            for user_id in range(401)
         ]
 
     with mock.patch.object(AccountSitemap, 'items', items_mock):

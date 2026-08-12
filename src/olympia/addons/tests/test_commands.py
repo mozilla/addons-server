@@ -92,7 +92,7 @@ def test_process_addons_batch_size(mock_get_pks):
         assert calls[1]['kwargs']['args'] == [addon_ids[100:]]
 
     with count_subtask_calls(process_addons.recreate_previews) as calls:
-        call_command('process_addons', task='recreate_previews', **{'batch_size': 50})
+        call_command('process_addons', task='recreate_previews', batch_size=50)
         assert len(calls) == 3
         assert calls[0]['kwargs']['args'] == [addon_ids[:50]]
         assert calls[1]['kwargs']['args'] == [addon_ids[50:100]]
@@ -323,13 +323,13 @@ class ConstantlyRecalculateWeightTestCase(TestCase):
         )
 
         mod = 'olympia.reviewers.tasks.AutoApprovalSummary.calculate_weight'
-        with mock.patch(mod) as calc_weight_mock:
-            with count_subtask_calls(
-                process_addons.recalculate_post_review_weight
-            ) as calls:
-                call_command(
-                    'process_addons', task='constantly_recalculate_post_review_weight'
-                )
+        with (
+            mock.patch(mod) as calc_weight_mock,
+            count_subtask_calls(process_addons.recalculate_post_review_weight) as calls,
+        ):
+            call_command(
+                'process_addons', task='constantly_recalculate_post_review_weight'
+            )
 
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [

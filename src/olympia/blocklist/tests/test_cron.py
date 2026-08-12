@@ -484,7 +484,7 @@ class TestUploadToRemoteSettings(TestCase):
         """
         If all versions are either blocked or not blocked, don't skip the update.
         """
-        for _ in range(0, 10):
+        for _ in range(10):
             self._block_version(block_type=block_type)
 
         upload_mlbf_to_remote_settings()

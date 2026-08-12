@@ -790,8 +790,9 @@ def json_upload_detail(request, upload, addon_slug=None):
                         'fatal': True,
                     },
                 )
-                if result['validation']['ending_tier'] < 1:
-                    result['validation']['ending_tier'] = 1
+                result['validation']['ending_tier'] = max(
+                    result['validation']['ending_tier'], 1
+                )
                 result['validation']['errors'] += 1
             return json_view.error(result)
         else:

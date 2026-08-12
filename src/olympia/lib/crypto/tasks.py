@@ -41,7 +41,7 @@ Please feel free to reply to this email if you have any questions.
 
 Regards,
 Mozilla Add-ons Team
-"""  # noqa: E501
+"""
 
 
 def get_new_version_number(version):

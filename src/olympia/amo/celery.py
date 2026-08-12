@@ -78,7 +78,7 @@ class AMOTask(Task):
             )
         # We can't return anything meaningful if we're going through the
         # on_commit path, so for consistency return None in all cases.
-        return None
+        return None  # noQA: RET501, PLR1711
 
     def apply(self, args=None, kwargs=None, **options):
         if app.conf.task_always_eager:

@@ -3333,7 +3333,7 @@ class TestAppeal(TestCase):
         )
         self.abuse_report.update(guid=None, user=target)
         with time_machine.travel(datetime.now(), tick=False) as frozen_time:
-            for _x in range(0, 20):
+            for _x in range(20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
                     view_kwargs={'expected_email': 'doesntmatter@example.com'},
@@ -3388,7 +3388,7 @@ class TestAppeal(TestCase):
         )
         self.abuse_report.update(guid=None, user=target)
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 20):
+            for _x in range(20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealEmailForm,
                     view_kwargs={'expected_email': 'doesntmatter@example.com'},
@@ -3419,7 +3419,7 @@ class TestAppeal(TestCase):
         self.addon.authors.add(user)
         self.client.force_login(user)
         with time_machine.travel(datetime.now(), tick=False) as frozen_time:
-            for _x in range(0, 20):
+            for _x in range(20):
                 self._add_fake_throttling_action(
                     view_class=AbuseAppealForm,
                     url=self.author_appeal_url,

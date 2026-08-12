@@ -47,7 +47,7 @@ def test_celery_routes_only_contain_valid_tasks():
 
 
 def test_create_chunked_tasks_signatures():
-    items = list(range(0, 6))
+    items = list(range(6))
     batch = create_chunked_tasks_signatures(fake_task, items, 2)
     assert isinstance(batch, group)
     assert len(batch) == 3

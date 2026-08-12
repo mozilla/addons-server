@@ -127,7 +127,7 @@ class ContentAction:
     def hold_action(self):
         """This method should take no action, but create an activity log instance with
         appropriate details."""
-        pass
+        return
 
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
@@ -136,7 +136,7 @@ class ContentAction:
 
         Returns the activity log entry produced, or None when
         there was nothing to reverse."""
-        return None
+        return
 
     def reverses_previous_action(self):
         """Whether this decision overrides a *different* previous action that
@@ -1103,8 +1103,6 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
             submission.save()
 
-        return None
-
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision=None):
         # Note: when the original primary action was ContentDisableAddon, the versions
@@ -1662,8 +1660,6 @@ class ContentActionTargetAppealRemovalAffirmation(
             and self.target.status == amo.STATUS_REJECTED
         ):
             AddonApprovalsCounter.reject_content_for_addon(self.target)
-
-        return None
 
 
 class ContentActionIgnore(AnyTargetMixin, NoActionMixin, ContentAction):
