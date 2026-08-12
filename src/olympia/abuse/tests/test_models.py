@@ -3750,9 +3750,8 @@ class TestContentDecision(TestCase):
         # and version approval means the owner is notified.
         addon = addon_factory(users=[user_factory()])
         older_version = addon.versions.get()
-        version_factory(
-            addon=addon
-        )  # add a middle version that wasn't rejected or changed
+        # add a middle version that wasn't rejected or changed
+        version_factory(addon=addon)
         older_version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
         )
@@ -3773,12 +3772,16 @@ class TestContentDecision(TestCase):
             override_of=original_decision,
         )
         original_decision.target_versions.set([older_version, newer_version])
+        new_decision.target_versions.set([older_version, newer_version])
         assert new_decision.action_date is None
 
-        new_decision.execute_action()
+        with mock.patch('olympia.abuse.actions.sign_file') as sign_file_mock:
+            new_decision.execute_action()
+            sign_file_mock.assert_called_once_with(newer_version.file)
+
         self.assertCloseToNow(new_decision.reload().action_date)
         assert older_version.file.reload().status == amo.STATUS_APPROVED
-        assert newer_version.file.reload().status == amo.STATUS_AWAITING_REVIEW
+        assert newer_version.file.reload().status == amo.STATUS_APPROVED
 
         new_decision.send_notifications()
         assert len(mail.outbox) == 1
@@ -3833,6 +3836,64 @@ class TestContentDecision(TestCase):
         assert list(decision.target_versions.all()) == list(
             overridden.target_versions.all()
         )
+
+    def test_execute_action_override_to_same_enforcement_different_versions(self):
+        addon = addon_factory(users=[user_factory()])
+        v1 = addon.current_version
+        assert v1.file.status == amo.STATUS_APPROVED
+        v2 = version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+            },
+        )
+        v3 = version_factory(
+            addon=addon,
+            file_kw={
+                'status': amo.STATUS_DISABLED,
+                'original_status': amo.STATUS_APPROVED,
+            },
+        )
+        overridden = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            action_date=datetime.now(),
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        overridden.policies.add(
+            CinderPolicy.objects.create(uuid='1234', name='Bad policy')
+        )
+        overridden.target_versions.set((v2, v3))
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            reasoning='some review text',
+            reviewer_user=self.reviewer_user,
+            override_of=overridden,
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        decision.policies.add(
+            CinderPolicy.objects.create(uuid='12345', name='Other bad policy')
+        )
+        decision.target_versions.set((v1, v2))
+
+        decision.execute_action()
+        assert addon.reload().status == amo.STATUS_APPROVED  # no change
+        assert v1.file.reload().status == amo.STATUS_DISABLED
+        assert v2.file.reload().status == amo.STATUS_DISABLED
+        assert v3.file.reload().status == amo.STATUS_APPROVED
+
+        assert decision.activities.count() == 2
+        assert decision.activities.first().action == amo.LOG.REJECT_VERSION.id
+        assert decision.activities.last().action == amo.LOG.UNREJECT_VERSION.id
+
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [addon.authors.get().email]
+        assert 'versions of your extension have been disabled' in mail.outbox[0].body
+        assert f'Affected versions: {v1.version}, {v2.version}' in mail.outbox[0].body
+        assert 'Other bad policy' in mail.outbox[0].body
 
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()

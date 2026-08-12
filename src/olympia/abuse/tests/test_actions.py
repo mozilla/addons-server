@@ -816,6 +816,28 @@ class TestContentActionDisableAddon(
             action_helper, f'Mozilla Add-ons: {self.addon.name}'
         )
 
+    def test_reverse_action_appeal_sets_target_versions_on_new_decision(self):
+        for version in (self.old_version, self.version):
+            version.file.update(
+                status=amo.STATUS_DISABLED,
+                original_status=amo.STATUS_APPROVED,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+            )
+        self.addon.update(status=amo.STATUS_DISABLED)
+        new_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
+        assert not new_decision.target_versions.exists()
+
+        ContentActionDisableAddon.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=new_decision
+        )
+
+        assert set(new_decision.target_versions.all()) == {
+            self.old_version,
+            self.version,
+        }
+
     def test_target_appeal_decline(self):
         self.addon.update(status=amo.STATUS_DISABLED)
         ActivityLog.objects.all().delete()
@@ -1205,6 +1227,8 @@ class TestContentActionDisableAddon(
 
     def test_approve_appeal_success_but_not_approved(self):
         self.past_negative_decision.update(appeal_job=self.cinder_job)
+        # A successful appeal is an approval, so its decision has no target_versions
+        self.decision.target_versions.clear()
         self._test_approve_appeal_or_override_but_not_approved(
             ContentActionTargetAppealApprove
         )
@@ -1357,6 +1381,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             content_review_status=AddonApprovalsCounter.CONTENT_REVIEW_STATUSES.FAIL,
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
+        # A successful appeal is an approval, so its decision has no target_versions
+        self.decision.target_versions.clear()
         self._test_approve_appeal_or_override(
             ContentActionTargetAppealApprove, fragment='we have re-enabled'
         )
@@ -2094,6 +2120,116 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             fragment='information on its availability',
         )
 
+    def test_reverse_action_override_same_action_excludes_new_target_versions(self):
+        for version in (self.old_version, self.version):
+            version.file.update(
+                status=amo.STATUS_DISABLED,
+                original_status=amo.STATUS_APPROVED,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            )
+        # Only self.version rejected is still rejected in the override decision
+        self.decision.target_versions.set((self.version,))
+
+        alog = ContentActionRejectVersion.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=self.decision
+        )
+
+        assert self.old_version.file.reload().status == amo.STATUS_APPROVED
+        assert self.version.file.reload().status == amo.STATUS_DISABLED
+        assert alog.action == amo.LOG.UNREJECT_VERSION.id
+        assert alog.versionlog_set.get().version == self.old_version
+        assert self.decision.target_versions.get() == self.version
+
+    def test_reverse_action_override_same_action_same_versions_returns_none(self):
+        for version in (self.old_version, self.version):
+            version.file.update(
+                status=amo.STATUS_DISABLED,
+                original_status=amo.STATUS_APPROVED,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            )
+        # both versions are still rejected in the override decision
+        self.decision.target_versions.set((self.version, self.old_version))
+
+        alog = ContentActionRejectVersion.reverse_action(
+            reversed_decision=self.past_negative_decision,
+            new_decision=self.decision,
+        )
+        # no files are re-enabled
+        assert self.old_version.file.reload().status == amo.STATUS_DISABLED
+        assert self.version.file.reload().status == amo.STATUS_DISABLED
+        # and because no unreject has taken place, there is no log
+        assert alog is None
+
+    def test_reverse_action_appeal_sets_target_versions_on_new_decision(self):
+        for version in (self.old_version, self.version):
+            version.file.update(
+                status=amo.STATUS_DISABLED,
+                original_status=amo.STATUS_APPROVED,
+                status_disabled_reason=File.STATUS_DISABLED_REASONS.NONE,
+            )
+        new_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
+        assert not new_decision.target_versions.exists()
+
+        ContentActionRejectVersion.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=new_decision
+        )
+
+        assert set(new_decision.target_versions.all()) == {
+            self.old_version,
+            self.version,
+        }
+
+    def _set_pending_rejections(self):
+        for version in (self.old_version, self.version):
+            VersionReviewerFlags.objects.update_or_create(
+                version=version,
+                defaults={
+                    'pending_rejection': datetime.now(),
+                    'pending_rejection_by': self.task_user,
+                    'pending_content_rejection': False,
+                },
+            )
+
+    def test_reverse_action_delayed_override_same_action_excludes_new_versions(self):
+        # Similarly to immediate rejection
+        self._set_pending_rejections()
+        self.decision.update(action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON)
+        self.decision.target_versions.set((self.version,))
+
+        alog = ContentActionRejectVersionDelayed.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=self.decision
+        )
+
+        assert alog.action == amo.LOG.CLEAR_PENDING_REJECTION.id
+        assert (
+            VersionReviewerFlags.objects.get(version=self.old_version).pending_rejection
+            is None
+        )
+        assert (
+            VersionReviewerFlags.objects.get(version=self.version).pending_rejection
+            is not None
+        )
+        assert alog.versionlog_set.get().version == self.old_version
+        assert set(self.decision.target_versions.all()) == {self.version}
+
+    def test_reverse_action_delayed_appeal_sets_target_versions(self):
+        self._set_pending_rejections()
+        new_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
+        assert not new_decision.target_versions.exists()
+
+        ContentActionRejectVersionDelayed.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=new_decision
+        )
+
+        assert set(new_decision.target_versions.all()) == {
+            self.old_version,
+            self.version,
+        }
+
     def test_description(self):
         assert ContentActionRejectVersion.description == (
             'Add-on version(s) will be rejected'
@@ -2576,6 +2712,27 @@ class TestContentActionDelayedShortSoftBlockAddon(
     def test_email_content_not_escaped(self):
         # TODO: If/when we support emails we should implement this
         pass
+
+    def test_reverse_action_override_same_action_excludes_new_target_versions(self):
+        BlockVersion.objects.create(
+            block=self.existing_block, version=self.version, block_type=self.block_type
+        )
+        new_decision = ContentDecision.objects.create(
+            addon=self.addon, action=self.default_decision_action
+        )
+        # The new decision keeps self.version blocked.
+        new_decision.target_versions.set((self.version,))
+
+        self.ActionClass.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=new_decision
+        )
+
+        assert not BlockVersion.objects.filter(
+            version=self.old_version, block_type=self.block_type
+        ).exists()
+        assert BlockVersion.objects.filter(
+            version=self.version, block_type=self.block_type
+        ).exists()
 
     def test_description(self):
         assert self.ActionClass.description == (

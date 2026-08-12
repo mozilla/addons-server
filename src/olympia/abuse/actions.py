@@ -582,6 +582,7 @@ class ContentActionDisableAddon(ContentActionAddon):
             # empty. These aren't tied to the new decision's target_versions
             # (those belong to the new action being applied)
             target_versions = list(get_target_versions())
+            new_decision.target_versions.set(target_versions)
             target.force_enable(skip_activity_log=True)
             return cls.reverse_action_log_action(
                 new_decision, amo.LOG.FORCE_ENABLE, target_versions
@@ -766,7 +767,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
         target = new_decision.target
         # We only need to un-reject the versions we disabled as part of the
         # rejection (and that haven't been disabled again for another reason).
-        versions = list(
+        versions = (
             reversed_decision.target_versions.all()
             .no_transforms()
             .filter(
@@ -775,8 +776,14 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
             )
             .order_by('-pk')
         )
-        if not versions:
+        # We can also exclude versions we're still going to reject with new_decision.
+        if new_decision.action == cls.action:
+            versions = versions.exclude(
+                id__in=new_decision.target_versions.values_list('id', flat=True)
+            )
+        if not versions.exists():
             return None
+        versions = list(versions)
         for version in versions:
             version.file.update(
                 datestatuschanged=datetime.now(),
@@ -789,6 +796,10 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
                 original_status=amo.STATUS_NULL,
             )
         target.update_status()
+        # For appeals the new (approve) decision has no target_versions of its own,
+        # set it. For overrides the target_versions are already set in reviewer tools.
+        if not new_decision.target_versions.exists():
+            new_decision.target_versions.set(versions)
         return cls.reverse_action_log_action(
             new_decision, amo.LOG.UNREJECT_VERSION, versions
         )
@@ -905,11 +916,17 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
 
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
-        versions = list(
+        versions = (
             reversed_decision.target_versions.all().no_transforms().order_by('-pk')
         )
-        if not versions:
+        # We can also exclude versions we're still going to reject with new_decision.
+        if new_decision.action == cls.action:
+            versions = versions.exclude(
+                id__in=new_decision.target_versions.values_list('id', flat=True)
+            )
+        if not versions.exists():
             return None
+        versions = list(versions)
         for version in versions:
             VersionReviewerFlags.objects.update_or_create(
                 version=version,
@@ -919,6 +936,10 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
                     'pending_content_rejection': None,
                 },
             )
+        # For appeals the new (approve) decision has no target_versions of its own,
+        # set it. For overrides the target_versions are already set in reviewer tools.
+        if not new_decision.target_versions.exists():
+            new_decision.target_versions.set(versions)
         return cls.reverse_action_log_action(
             new_decision, amo.LOG.CLEAR_PENDING_REJECTION, versions
         )
@@ -1106,12 +1127,20 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         return None
 
     @classmethod
-    def reverse_action(cls, *, reversed_decision, new_decision=None):
+    def reverse_action(cls, *, reversed_decision, new_decision):
         # Note: when the original primary action was ContentDisableAddon, the versions
         # blocked may have been more than target_versions, but we're leaving the other
         # versions blocked.
         guid = reversed_decision.target.guid
         versions = reversed_decision.target_versions.all()
+        # We can also exclude versions we're still going to block with new_decision.
+        if new_decision.action == cls.action:
+            versions = versions.exclude(
+                id__in=new_decision.target_versions.values_list('id', flat=True)
+            )
+        if not versions.exists():
+            # if they're the same versions, we can just abort
+            return
         # First unblock any versions that have already been blocked
         already_blocked_version_ids = list(
             versions.filter(blockversion__block_type=cls.block_type).values_list(
@@ -1414,7 +1443,7 @@ class ContentActionTargetAppealApprove(
                 followup_action.action
             ]
             FollowUpActionClass.reverse_action(
-                reversed_decision=followup_action.decision
+                reversed_decision=followup_action.decision, new_decision=self.decision
             )
 
         return log_entry
