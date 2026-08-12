@@ -3733,7 +3733,7 @@ msgstr "API anahtarlarınızı gizli tutun. Bunları Mozilla çalışanları ve 
 
 #: src/olympia/devhub/templates/devhub/api/key.html:31
 msgid "JWT issuer"
-msgstr "JWT düzenleyen"
+msgstr "JWT issuer"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT secret"
