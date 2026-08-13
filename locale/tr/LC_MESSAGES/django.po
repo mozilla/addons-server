@@ -2456,11 +2456,11 @@ msgstr "Uzantı geliştirme"
 
 #: src/olympia/devhub/templates/devhub/nav.html:45 src/olympia/templates/photon-footer.html:15
 msgid "Developer Policies"
-msgstr "Geliştirici Politikaları"
+msgstr "Geliştirici politikaları"
 
 #: src/olympia/devhub/templates/devhub/nav.html:52 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:19
 msgid "Add-on Validator"
-msgstr "Eklenti Doğrulayıcı"
+msgstr "Eklenti doğrulayıcı"
 
 #: src/olympia/devhub/templates/devhub/nav.html:54
 msgid "Development Add-ons"
@@ -2826,7 +2826,7 @@ msgstr "Eklentinizle ilgili bilgiler, dile özel bir çeviriyle geçersiz kılma
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
-msgstr "Ana Sayfa"
+msgstr "Web sitesi"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:74
 msgid ""
@@ -3023,7 +3023,7 @@ msgstr "Eklentinizin UUID’si, manifest dosyasında belirtilir ve benzersiz bir
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
-msgstr "Beyaz Tahta"
+msgstr "Beyaz tahta"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:63
 msgid ""
@@ -3937,7 +3937,7 @@ msgstr "Sonraki listelenmiş sürüm:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Bu en yeni yüklenen sürüm, ancak henüz sitede yayımlanmıyor"
+msgstr "Bu en son gönderilen sürüm, ancak henüz sitede yayımlanmıyor"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:28
@@ -3950,7 +3950,7 @@ msgstr "Son sürüm:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
-msgstr "Bu, yüklenen en yeni listelenmemiş sürüm"
+msgstr "En son gönderilen listelenmemiş sürüm"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
@@ -4486,7 +4486,7 @@ msgstr "Daha eskileri yükle..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:131 src/olympia/discovery/serializers.py:102
 msgid "by"
-msgstr "geliştiren:"
+msgstr "işlemi yapan:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
