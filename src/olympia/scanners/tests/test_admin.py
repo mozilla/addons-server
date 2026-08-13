@@ -211,6 +211,25 @@ class TestScannerResultAdmin(TestCase):
         assert f'Version:</td><td>{version.version}' in formatted_addon
         assert f'Channel:</td><td>{version.get_channel_display()}' in formatted_addon
 
+    def test_formatted_enterprise_addon(self):
+        addon = addon_factory()
+        version = version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+        result = ScannerResult(version=version)
+
+        formatted_addon = self.admin.formatted_addon(result)
+        assert (
+            '<a href="{}">Link to review page</a>'.format(
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('reviewers.review', args=['enterprise', addon.id]),
+                ),
+            )
+            in formatted_addon
+        )
+        assert f'Name:</td><td>{addon.name}' in formatted_addon
+        assert f'Version:</td><td>{version.version}' in formatted_addon
+        assert f'Channel:</td><td>{version.get_channel_display()}' in formatted_addon
+
     def test_formatted_addon_without_version(self):
         result = ScannerResult(version=None)
 
