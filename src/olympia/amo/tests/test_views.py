@@ -618,6 +618,14 @@ class TestSiteStatusAPI(TestCase):
         assert response.data == {
             'read_only': False,
             'notice': None,
+            'submit_notification_warning': None,
+        }
+        set_config('submit_notification_warning', 'Warning!')
+        response = self.client.get(self.url)
+        assert response.data == {
+            'read_only': False,
+            'notice': None,
+            'submit_notification_warning': 'Warning!',
         }
 
         set_config('site_notice', 'THIS is NOT Á TEST!')
@@ -626,6 +634,7 @@ class TestSiteStatusAPI(TestCase):
         assert response.data == {
             'read_only': True,
             'notice': 'THIS is NOT Á TEST!',
+            'submit_notification_warning': 'Warning!',
         }
 
 

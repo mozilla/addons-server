@@ -15,7 +15,7 @@ from olympia.translations.utils import (
     fetch_translations_from_instance,
     get_translation_differences,
 )
-from olympia.zadmin.models import get_config
+from olympia.zadmin.models import Config
 
 
 class AMOModelSerializer(BaseModelSerializerAndFormMixin, serializers.ModelSerializer):
@@ -97,9 +97,21 @@ class BaseESSerializer(AMOModelSerializer):
 
 class SiteStatusSerializer(serializers.BaseSerializer):
     def to_representation(self, obj):
+        notices = {
+            'notice': amo.config_keys.SITE_NOTICE,
+            'submit_notification_warning': amo.config_keys.SUBMIT_NOTIFICATION_WARNING,
+        }
+        configs = dict(
+            Config.objects.filter(
+                key__in=[config_key.key for config_key in notices.values()]
+            ).values_list('key', 'value')
+        )
         return {
             'read_only': settings.READ_ONLY,
-            'notice': get_config(amo.config_keys.SITE_NOTICE),
+            **{
+                field: configs.get(config_key.key, config_key.default)
+                for field, config_key in notices.items()
+            },
         }
 
 
