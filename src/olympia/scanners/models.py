@@ -460,8 +460,15 @@ class ScannerResult(AbstractScannerResult):
 
     @classmethod
     def run_actions(cls, version):
+        if version.channel == amo.CHANNEL_ENTERPRISE:
+            log.info(
+                'Not running actions on version %s as it is an enterprise version',
+                version.pk,
+            )
+            return False
         cls.execute_workflow_action(version)
         cls.execute_policy_enforcement_action(version)
+        return True
 
     @classmethod
     def execute_policy_enforcement_action(cls, version):

@@ -420,6 +420,8 @@ class AbstractScannerResultAdminMixin:
                                 'listed'
                                 if obj.version.channel == amo.CHANNEL_LISTED
                                 else 'unlisted'
+                                if obj.version.channel == amo.CHANNEL_UNLISTED
+                                else 'enterprise'
                             ),
                             obj.version.addon.id,
                         ],

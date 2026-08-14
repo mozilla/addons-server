@@ -1168,6 +1168,24 @@ class TestAutoApprovalSummary(TestCase):
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
 
+    def test_check_has_auto_approval_disabled_enterprise(self):
+        # Enterprise versions should be unaffected by scanner flags.
+        assert self.version.channel == amo.CHANNEL_LISTED
+        enterprise_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_ENTERPRISE
+        )
+        AddonReviewerFlags.objects.create(
+            addon=self.addon,
+            auto_approval_disabled=True,
+        )
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
+        )
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(enterprise_version)
+            is False
+        )
+
     def test_check_is_promoted_prereview(self):
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
