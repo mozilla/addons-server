@@ -281,6 +281,7 @@ See :ref:`maintenance mode <api-overview-maintenance>` for more details of when 
 
     :>json boolean read_only: Whether the site in read-only mode.
     :>json string|null notice: A site-wide notice about any current known difficulties or restrictions.  If this API is being consumed by a tool/frontend it should be displayed to the user.
+    :>json string|null submit_notification_warning: A notice for add-on developers for about submission of new add-ons or versions.  If this API is being consumed by a tool/frontend, and the user is in the process of submitting new add-ons or versions, it should be displayed to the user.
 
 
 ------------
@@ -484,6 +485,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2026-02-19: added the ability to patch a scanner result. https://github.com/mozilla/addons/issues/16004
 * 2026-03-05: removed /scanner/results/ (internal API endpoint). https://github.com/mozilla/addons/issues/16088
 * 2026-04-02: added /scanner/results/ endpoint to allow scanners to push results. https://github.com/mozilla/addons/issues/16115
+* 2026-08-20: added 'submit_notification_warning' to site status endpoint. https://github.com/mozilla/addons-server/pull/25302
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/
