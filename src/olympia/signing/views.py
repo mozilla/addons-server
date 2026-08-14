@@ -204,7 +204,9 @@ class VersionView(APIView):
             created = False
             channel_param = request.POST.get('channel')
             channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
-            if not channel:
+            if (
+                not channel or channel == amo.CHANNEL_ENTERPRISE  # api/v5+ only
+            ):
                 last_version = addon.find_latest_version(None, exclude=())
                 if last_version:
                     channel = last_version.channel

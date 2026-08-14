@@ -1321,6 +1321,7 @@ DRF_API_GATES = {
         'categories-application',
         'minimal-profile-has-all-fields-shim',
         'promoted-groups-shim',
+        'enterprise-channel-shim',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1340,6 +1341,7 @@ DRF_API_GATES = {
         'block-versions-list-shim',
         'promoted-groups-shim',
         'minimal-profile-has-all-fields-shim',
+        'enterprise-channel-shim',
     ),
     'v5': (
         'addons-search-_score-field',

@@ -520,12 +520,12 @@ class TestUploadURLs(TestCase):
             assert resp.status_code == 302
         self.file_upload = FileUpload.objects.get()
 
-    def upload_addon(self, status=amo.STATUS_APPROVED, listed=True):
+    def upload_addon(self, channel, status=amo.STATUS_APPROVED):
         """Update the test add-on with the given flags and send an upload
         request for it."""
-        self.change_channel_for_addon(self.addon, listed=listed)
+        self.change_channel_for_addon(self.addon, channel=channel)
         self.addon.update(status=status)
-        channel_text = 'listed' if listed else 'unlisted'
+        channel_text = amo.CHANNEL_CHOICES_API[channel]
         return self.upload(
             'devhub.upload_for_version', channel=channel_text, addon_id=self.addon.slug
         )
@@ -552,8 +552,8 @@ class TestUploadURLs(TestCase):
         """Test that the add-on update upload URLs result in file uploads
         with the correct flags."""
         for status in amo.VALID_ADDON_STATUSES:
-            self.upload_addon(listed=True, status=status)
+            self.upload_addon(channel=amo.CHANNEL_LISTED, status=status)
             self.expect_validation(channel=amo.CHANNEL_LISTED)
 
-        self.upload_addon(listed=False, status=amo.STATUS_APPROVED)
+        self.upload_addon(channel=amo.CHANNEL_UNLISTED, status=amo.STATUS_APPROVED)
         self.expect_validation(channel=amo.CHANNEL_UNLISTED)

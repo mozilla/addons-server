@@ -172,6 +172,9 @@ class TestFileUploadViewSet(TestCase):
     def test_create_unlisted(self):
         self._test_create(amo.CHANNEL_UNLISTED, 'unlisted')
 
+    def test_create_enterprise(self):
+        self._test_create(amo.CHANNEL_ENTERPRISE, 'enterprise')
+
     def test_list(self):
         response = self.client.get(
             self.list_url,

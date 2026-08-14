@@ -286,6 +286,12 @@ class TestDownloadsUnlistedVersions(TestDownloadsBase):
         assert self.client.get(self.latest_url).status_code == 404
 
 
+class TestDownloadsEnterpriseVersions(TestDownloadsUnlistedVersions):
+    def setUp(self):
+        super().setUp()
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+
+
 class TestDownloadsUnlistedAddonDeleted(TestDownloadsUnlistedVersions):
     # Everything should work the same for unlisted when the addon is deleted
     # except developers can no longer access.
@@ -619,6 +625,28 @@ class TestUnlistedDisabledAndDeletedFileDownloadsSessionAPIAuth(
 class TestUnlistedDisabledAndDeletedFileDownloadsJWTAPIAuth(
     APILoginMixin, TestUnlistedDisabledAndDeletedFileDownloads
 ):
+    client_class = APITestClientJWT
+
+
+class TestEnterpriseFileDownloads(
+    DownloadsNonDisabledMixin, NonPublicFileDownloadsMixin, TestDownloadsBase
+):
+    def setUp(self):
+        super().setUp()
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            amo.permissions.ADDONS_REVIEW_UNLISTED,
+        )
+
+
+class TestEnterpriseFileDownloadsSessionAPIAuth(
+    APILoginMixin, TestEnterpriseFileDownloads
+):
+    client_class = APITestClientSessionID
+
+
+class TestEnterpriseFileDownloadsJWTAPIAuth(APILoginMixin, TestEnterpriseFileDownloads):
     client_class = APITestClientJWT
 
 

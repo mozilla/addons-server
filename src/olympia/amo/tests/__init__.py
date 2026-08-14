@@ -593,13 +593,12 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         return request
 
     def make_addon_unlisted(self, addon):
-        self.change_channel_for_addon(addon, False)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
 
     def make_addon_listed(self, addon):
-        self.change_channel_for_addon(addon, True)
+        self.change_channel_for_addon(addon, amo.CHANNEL_LISTED)
 
-    def change_channel_for_addon(self, addon, listed):
-        channel = amo.CHANNEL_LISTED if listed else amo.CHANNEL_UNLISTED
+    def change_channel_for_addon(self, addon, channel):
         for version in addon.versions(manager='unfiltered_for_relations').all():
             version.update(channel=channel)
 

@@ -197,9 +197,11 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
         can_access_because_unlisted_reviewer = acl.is_unlisted_addons_reviewer(
             request.user
         ) and (not self.disallow_unsafe or request.method in SAFE_METHODS)
-        has_unlisted_or_no_listed = obj.has_unlisted_versions(
-            include_deleted=True
-        ) or not obj.has_listed_versions(include_deleted=True)
+        has_unlisted_or_no_listed = (
+            obj.has_unlisted_versions(include_deleted=True)
+            or obj.has_enterprise_versions(include_deleted=True)
+            or not obj.has_listed_versions(include_deleted=True)
+        )
 
         return has_unlisted_or_no_listed and (
             can_access_because_unlisted_viewer or can_access_because_unlisted_reviewer
