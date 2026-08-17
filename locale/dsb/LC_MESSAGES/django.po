@@ -5852,7 +5852,7 @@ msgstr "Pśiměrśo gesty myški. Namakajśo nowe móžnosći, aby z wěcej ako 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Wótwónoźćo wótchylenja, změńśo swójo pokazkowe dožywjenje, změńśo malsnosć wótgrawanja a wěcej."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
