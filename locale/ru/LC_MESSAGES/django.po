@@ -5849,7 +5849,7 @@ msgstr "Настройте жесты мыши. Откройте для себя
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Уберите отвлекающие факторы, улучшите просмотр, измените скорость воспроизведения и многое другое."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
