@@ -2758,9 +2758,7 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert (
-            "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
-        )
+        assert "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
         assert "it's now available again" in mail.outbox[-1].body
         assert 'more on its availability' not in mail.outbox[-1].body
 
@@ -2815,9 +2813,7 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert (
-            "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
-        )
+        assert "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
         assert "it's now available again" not in mail.outbox[-1].body
         assert 'more on its availability' in mail.outbox[-1].body
 
