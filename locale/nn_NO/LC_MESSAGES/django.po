@@ -5825,7 +5825,7 @@ msgstr "Tilpass muserørsler. Oppdag nye måtar å navigere på med over 50 konf
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Fjern distraksjonar, endre sjåaropplevinga, juster avspelingsfarta, og meir."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
