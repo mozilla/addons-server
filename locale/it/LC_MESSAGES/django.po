@@ -5898,7 +5898,7 @@ msgstr "Personalizza le azioni del mouse. Scopri nuovi modi di navigare con oltr
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Elimina le distrazioni, cambia la tua esperienza di visualizzazione, regola la velocità di riproduzione e molto altro ancora."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
