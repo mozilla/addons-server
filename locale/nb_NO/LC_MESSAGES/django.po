@@ -5827,7 +5827,7 @@ msgstr "Tilpass musebevegelser. Oppdag nye måter å navigere på med over 50 ko
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Fjern distraksjoner, endre seeropplevelsen, juster avspillingshastigheten og mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
