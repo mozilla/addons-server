@@ -1347,6 +1347,50 @@ class TestScannerQueryRuleAdmin(TestCase):
         response = self.client.post(url, {'post': 'yes'})
         assert response.status_code == 403
 
+    def test_run_on_specific_channel(self):
+        rule = ScannerQueryRule.objects.create(
+            scanner=YARA,
+            name='always_true',
+            definition='rule always_true { condition: true }',
+        )
+
+        data = {
+            'definition': rule.definition,
+            'configuration': json.dumps(rule.configuration),
+        }
+        url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+
+        # No toggle.
+        response = self.client.post(url, data)
+        self.assert3xx(response, self.list_url)
+        rule.reload()
+        assert rule.run_on_specific_channel == []
+
+        # Toggled, no channel
+        data.update(toggle_run_on_specific_channel='true', run_on_specific_channel=[])
+        response = self.client.post(url, data)
+        assert response.status_code == 200
+        form = response.context_data['adminform'].form
+        assert form.errors == {
+            'run_on_specific_channel': ['Please select at least one channel.']
+        }
+        rule.reload()
+        assert rule.run_on_specific_channel == []
+
+        # Toggled, with channel
+        data.update(run_on_specific_channel=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED])
+        response = self.client.post(url, data)
+        self.assert3xx(response, self.list_url)
+        rule.reload()
+        assert rule.run_on_specific_channel == [amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
+
+        # Toggle off clears channels.
+        data.pop('toggle_run_on_specific_channel')
+        response = self.client.post(url, data)
+        self.assert3xx(response, self.list_url)
+        rule.reload()
+        assert rule.run_on_specific_channel == []
+
 
 class TestScannerQueryResultAdmin(TestCase):
     def setUp(self):

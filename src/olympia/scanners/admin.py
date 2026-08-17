@@ -5,7 +5,12 @@ from django.contrib import admin, messages
 from django.contrib.admin import SimpleListFilter
 from django.core.paginator import Paginator
 from django.db.models import Count, Prefetch
-from django.forms import ModelForm
+from django.forms import (
+    BooleanField,
+    CheckboxSelectMultiple,
+    ModelForm,
+    TypedMultipleChoiceField,
+)
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
@@ -306,6 +311,37 @@ class ScannerRuleModelForm(ModelForm):
         # #accessing-model-instance-in-callable-schema
         if 'configuration' in self.fields:
             self.fields['configuration'].widget.instance = self.instance
+
+
+class ScannerQueryRuleModelForm(ScannerRuleModelForm):
+    toggle_run_on_specific_channel = BooleanField(
+        required=False,
+        label='Run on specific channels',
+        help_text=('By default, the rule runs on versions in all channels.'),
+    )
+    run_on_specific_channel = TypedMultipleChoiceField(
+        choices=list(amo.CHANNEL_CHOICES.items()),
+        coerce=int,
+        required=False,
+        help_text='Run this rule on versions in the specific channel(s) only.',
+        widget=CheckboxSelectMultiple,
+    )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['toggle_run_on_specific_channel'].initial = bool(
+            self.instance.run_on_specific_channel
+        )
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if not cleaned_data.get('toggle_run_on_specific_channel'):
+            cleaned_data['run_on_specific_channel'] = []
+        elif not cleaned_data.get('run_on_specific_channel'):
+            self.add_error(
+                'run_on_specific_channel', 'Please select at least one channel.'
+            )
+        return cleaned_data
 
 
 class AbstractScannerResultAdminMixin:
@@ -799,11 +835,12 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
 
 @admin.register(ScannerQueryRule)
 class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
+    form = ScannerQueryRuleModelForm
     list_display = (
         '__str__',
         'scanner',
         'run_on_disabled_addons',
-        'run_on_specific_channel',
+        'formatted_run_on_specific_channel',
         'run_on_current_version_only',
         'exclude_promoted_addons',
         'created_after',
@@ -819,6 +856,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
     fields = (
         'scanner',
         'run_on_disabled_addons',
+        'toggle_run_on_specific_channel',
         'run_on_specific_channel',
         'run_on_current_version_only',
         'exclude_promoted_addons',
@@ -984,6 +1022,14 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         protected = []
 
         return (deleted_objects, model_count, perms_needed, protected)
+
+    @admin.display(description='Run on specific channel')
+    def formatted_run_on_specific_channel(self, obj):
+        return ', '.join(
+            str(amo.CHANNEL_CHOICES[channel])
+            for channel in obj.run_on_specific_channel
+            if channel in amo.CHANNEL_CHOICES
+        )
 
 
 class ScannerWebhookEventForm(ModelForm):
