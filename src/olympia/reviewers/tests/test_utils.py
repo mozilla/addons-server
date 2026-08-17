@@ -3414,7 +3414,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert "restored your extension" in message.body
+        assert 'restored your extension' in message.body
 
     @override_switch('enable-content-rejection', active=True)
     def test_reject_listing_content_review(self):
