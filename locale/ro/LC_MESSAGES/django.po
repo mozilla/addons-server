@@ -38,7 +38,7 @@ msgstr "Te rugăm să ne explici de ce crezi că decizia este greșită și/sau 
 msgid "User profile"
 msgstr "Profil utilizator"
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" pentru {}"
@@ -240,15 +240,15 @@ msgstr "Nu se permit linkuri."
 msgid "This display name cannot be used."
 msgstr "Acest nume afișat nu poate fi folosit."
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1042
 msgid "Images must be either PNG or JPG."
 msgstr "Imaginile trebuie să fie PNG sau JPG."
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1048
 msgid "Images cannot be animated."
 msgstr "Imaginile nu pot fi animate."
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1057
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Te rugăm folosește imagini mai mici de %dMB."
@@ -257,7 +257,7 @@ msgstr "Te rugăm folosește imagini mai mici de %dMB."
 msgid "Need help?"
 msgstr "Ai nevoie de ajutor?"
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Notificarea [%s] nu există"
@@ -330,7 +330,7 @@ msgstr "Licența cu slug={value} nu există."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Tip de fișier neacceptat. Încarcă un fișier tip arhivă ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:774
 msgid "Invalid or broken archive."
 msgstr "Arhivă nevalidă sau coruptă."
 
@@ -356,7 +356,7 @@ msgstr "Nu se pot suprascrie informațiile de compatibilitate setate în manifes
 msgid "Images must be smaller than %dMB"
 msgstr "Imaginile trebuie să fie mai mici de %dMB"
 
-#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:72
 msgid "Listed"
 msgstr "Listat"
 
@@ -487,7 +487,7 @@ msgstr "Acest tip de supliment nu permite compatibilitatea personalizată."
 
 #: src/olympia/addons/validators.py:343
 msgid "This endpoint is not valid for Themes."
-msgstr "Acest endpoint nu este valabil pentru Teme."
+msgstr "Acest punct terminal nu este valabil pentru Teme."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
@@ -532,11 +532,11 @@ msgstr "Trimite un supliment nou"
 msgid "Submit a New Theme"
 msgstr "Trimite o temă nouă"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:93 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Centrul dezvoltatorilor"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2162
 msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
@@ -568,7 +568,7 @@ msgstr "Introdu o rețea IP4 sau IP6 validă."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Unele funcționalități sunt dezactivate temporar, cât efectuăm întreținerea pe site. Revenim imediat la capacitate maximă."
 
@@ -901,7 +901,7 @@ msgstr "Fișierul {0} a fost șters din {version} de {addon}."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} aprobat."
 
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:27 src/olympia/constants/base.py:35
 msgid "Approved"
 msgstr "Aprobată"
 
@@ -1320,6 +1320,15 @@ msgstr "S-a solicitat verificarea conținutului listării {addon}."
 msgid "Listing review requested"
 msgstr "S-a solicitat verificarea listării"
 
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr "Decizia privind {addon} a fost luată fără a se lua vreo măsură nouă."
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
+msgstr "Decizie luată"
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1348,135 +1357,135 @@ msgstr "Firefox pentru Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:24
+#: src/olympia/constants/base.py:25
 msgid "Incomplete"
 msgstr "Incompletă"
 
-#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Awaiting Review"
 msgstr "În așteptarea recenziei"
 
-#: src/olympia/constants/base.py:27
+#: src/olympia/constants/base.py:28
 msgid "Listing Content Rejected"
 msgstr "Conținut listare respins"
 
-#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
+#: src/olympia/constants/base.py:29 src/olympia/constants/base.py:36
 msgid "Disabled by Mozilla"
 msgstr "Dezactivat de Mozilla"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
+#: src/olympia/constants/base.py:30 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "Șters"
 
-#: src/olympia/constants/base.py:70
+#: src/olympia/constants/base.py:71
 msgid "Unlisted"
 msgstr "Nelistat"
 
-#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+#: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
 msgstr "Întreprindere"
 
-#: src/olympia/constants/base.py:93
+#: src/olympia/constants/base.py:94
 msgid "Signing API"
 msgstr "API de semnătură"
 
-#: src/olympia/constants/base.py:94
+#: src/olympia/constants/base.py:95
 msgid "Add-on API"
 msgstr "API-uri pentru suplimente"
 
-#: src/olympia/constants/base.py:95
+#: src/olympia/constants/base.py:96
 msgid "Automatically generated by AMO"
 msgstr "Generat automat de AMO"
 
-#: src/olympia/constants/base.py:104
+#: src/olympia/constants/base.py:105
 msgid "Owner"
 msgstr "Proprietar"
 
-#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:106 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Dezvoltator"
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "(Deleted)"
 msgstr "(Șters)"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Extension"
 msgstr "Extensie"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Complete Theme"
 msgstr "Temă completă perimată"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:140
 msgid "Dictionary"
 msgstr "Dicționar"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:141
 msgid "Deprecated Search Engine"
 msgstr "Motor de căutare învechit"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:142
 msgid "Language Pack"
 msgstr "Pachet lingvistic"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Pachet lingvistic învechit (supliment)"
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:144
 msgid "Deprecated Plugin"
 msgstr "Pluginuri învechite"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:145
 msgid "Deprecated LWT"
 msgstr "LWT perimat"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:146
 msgid "Theme"
 msgstr "Temă"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:147
 msgid "Deprecated Site Permission"
 msgstr "Permisiune site perimată"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:152 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Extensii"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Complete Themes"
 msgstr "Teme complete perimate"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:154
 msgid "Dictionaries"
 msgstr "Dicționare"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:155
 msgid "Deprecated Search Tools"
 msgstr "Instrumente de căutare învechite"
 
-#: src/olympia/constants/base.py:155
+#: src/olympia/constants/base.py:156
 msgid "Language Packs"
 msgstr "Pachete lingvistice"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Pachete lingvistice învechite (supliment)"
 
-#: src/olympia/constants/base.py:157
+#: src/olympia/constants/base.py:158
 msgid "Deprecated Plugins"
 msgstr "Pluginuri învechite"
 
-#: src/olympia/constants/base.py:158
+#: src/olympia/constants/base.py:159
 msgid "Deprecated LWTs"
 msgstr "LWT perimate"
 
-#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:160 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Teme"
 
-#: src/olympia/constants/base.py:160
+#: src/olympia/constants/base.py:161
 msgid "Deprecated Site Permissions"
 msgstr "Permisiuni site perimate"
 
@@ -2138,7 +2147,7 @@ msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținând unui coautor. Pentru a-ți proteja suplimentul, cheia va fi revocată."
 
-#: src/olympia/devhub/tasks.py:692
+#: src/olympia/devhub/tasks.py:691
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Notificare de securitate Mozilla: Datele de autentificare pentru API-ul AMO au fost revocate"
 
@@ -2234,7 +2243,7 @@ msgstr "Invitație refuzată."
 msgid "A confirmation email has been sent to {email}"
 msgstr "A fost trimis un mesaj e-mail de confirmare la {email}"
 
-#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1185
 msgid "Changes successfully saved."
 msgstr "Modificări salvate cu succes."
 
@@ -2247,37 +2256,37 @@ msgstr "Validează suplimentul"
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Te rugăm să adaugi autentificarea cu doi factori în cont ca să poți trimite extensii.</a>"
 
-#: src/olympia/devhub/views.py:1039
+#: src/olympia/devhub/views.py:1040
 msgid "Icons must be either PNG or JPG."
 msgstr "Pictogramele trebuie să fie PNG ori JPG."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 msgid "Icons cannot be animated."
 msgstr "Pictogramele nu pot fi animate."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1072
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Imaginea trebuie să fie de cel puțin {0} pixeli lățime și {1} pixeli înălțime."
 
-#: src/olympia/devhub/views.py:1075
+#: src/olympia/devhub/views.py:1076
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Imaginile trebuie să fie la un raport de 4:3."
 
-#: src/olympia/devhub/views.py:1083
+#: src/olympia/devhub/views.py:1084
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Pictograma trebuie să fie de cel puțin {0} pixeli lățime și înălțime."
 
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Icon must be square (same width and height)."
 msgstr "Pictograma trebuie să fie pătrată (aceeași lățime și înălțime)."
 
-#: src/olympia/devhub/views.py:1094
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
 
-#: src/olympia/devhub/views.py:1240
+#: src/olympia/devhub/views.py:1241
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2285,130 +2294,130 @@ msgstr ""
 "Ultima versiune aprobată a acestui supliment %s nu poate fi ștearsă sau dezactivată deoarece versiunea precedentă nu a fost aprobată pentru promovare %s. Te rugăm să contactezi administratorii AMO "
 "dacă ai nevoie de ajutor în acest sens."
 
-#: src/olympia/devhub/views.py:1247
+#: src/olympia/devhub/views.py:1248
 #, python-format
 msgid "Version %s disabled."
 msgstr "Versiune %s dezactivată."
 
-#: src/olympia/devhub/views.py:1251
+#: src/olympia/devhub/views.py:1252
 #, python-format
 msgid "Version %s deleted."
 msgstr "Versiune %s ștearsă."
 
-#: src/olympia/devhub/views.py:1262
+#: src/olympia/devhub/views.py:1263
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Versiune %s reactivată."
 
-#: src/olympia/devhub/views.py:1278
+#: src/olympia/devhub/views.py:1279
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Încărcarea nu a trecut validarea și se poate să nu aibă rezultate complete de validare. Te rugăm să dai dovadă de maximă precauție la recenzie."
 
-#: src/olympia/devhub/views.py:1337
+#: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Revenire trimisă. Vei primi o notificare când va fi aprobată"
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1478
 msgid "Header area background"
 msgstr "Fundalul zonei de antet"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Culoarea fundalului pentru zona antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmpul manifestului:  frame."
 
-#: src/olympia/devhub/views.py:1487
+#: src/olympia/devhub/views.py:1488
 msgid "Header area text and icons"
 msgstr "Text și pictograme în zona antetului"
 
-#: src/olympia/devhub/views.py:1489
+#: src/olympia/devhub/views.py:1490
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmpul manifestului:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1496
+#: src/olympia/devhub/views.py:1497
 msgid "Toolbar area background"
 msgstr "Fundalul zonei barei de instrumente"
 
-#: src/olympia/devhub/views.py:1498
+#: src/olympia/devhub/views.py:1499
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Culoarea fundalului pentru bara de navigare, bara de marcaje și fila activă.  Câmpul manifestului:  toolbar."
 
-#: src/olympia/devhub/views.py:1505
+#: src/olympia/devhub/views.py:1506
 msgid "Toolbar area text and icons"
 msgstr "Text și pictograme pentru zona barei de instrumente"
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Culoarea textului și a pictogramelor din bara de instrumente și fila activă. Câmpul manifestului:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1515
 msgid "Toolbar field area background"
 msgstr "Fundalul câmpurilor pentru zona barei de instrumente"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1517
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Culoarea fundalului pentru câmpurile din bara de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1523
+#: src/olympia/devhub/views.py:1524
 msgid "Toolbar field area text"
 msgstr "Textul zonei câmpului din bara de instrumente"
 
-#: src/olympia/devhub/views.py:1525
+#: src/olympia/devhub/views.py:1526
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Culoarea textului din câmpurile barei de instrumente, cum ar fi bara de adrese. Câmpul manifestului:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1533
+#: src/olympia/devhub/views.py:1534
 msgid "Tab highlight"
 msgstr "Evidențiere filă"
 
-#: src/olympia/devhub/views.py:1535
+#: src/olympia/devhub/views.py:1536
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Culoarea de evidențiere a filei active. Implementată ca un chenar în jurul filei pe Firefox 89+ și o linie deasupra filei pe versiunile Firefox mai vechi. Câmp manifest: tab_line."
 
-#: src/olympia/devhub/views.py:1638
+#: src/olympia/devhub/views.py:1639
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Încărcările de suplimente sunt momentan indisponibile"
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2011
 msgid "Review requested."
 msgstr "Recenzie solicitată."
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2013
 msgid "You must provide further details to proceed."
 msgstr "Trebuie să furnizezi detalii suplimentare pentru a continua."
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2120
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr "În scurt timp, vei primi un link de confirmare pe adresa ta de e-mail."
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2135
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Datele tale vechi de autentificare au fost revocate și nu mai sunt valide."
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr "Au fost generate date de autentificare API noi și sunt afișate mai jos. Asigură-te că ai copiat secretul JWT pentru că nu va mai fi afișat încă o dată."
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2174
 msgid "New API key created"
 msgstr "Cheie API nouă creată"
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2185
 msgid "API key revoked"
 msgstr "Cheie API revocată"
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2245
 msgid "Verify email"
 msgstr "Verifică adresa de e-mail"
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2247
 msgid "Send another email"
 msgstr "Trimite alt mail"
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2280
 msgid "Your email has been verified"
 msgstr "Adresa ta de e-mail a fost verificată"
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr "Cererea de asistență a fost trimisă. Te vom contacta în curând."
 
@@ -5851,8 +5860,8 @@ msgstr "Personalizezi gesturile din mouse. Descoperi noi modalități de navigar
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Bucură-te de o suită de funcționalități YouTube noi, precum modul cinema, blocarea reclamelor, comanda de redare automată și multe altele."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -6400,131 +6409,131 @@ msgstr "Nerevizuit"
 msgid "[status:%s]"
 msgstr "[status:%s]"
 
-#: src/olympia/files/utils.py:86
+#: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
 msgstr "Încărcarea a fost deja trimisă."
 
-#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:196 src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:156 src/olympia/files/utils.py:190 src/olympia/files/utils.py:881
 msgid "Could not parse the manifest file."
 msgstr "Nu s-a reușit analizarea fișierului manifest."
 
-#: src/olympia/files/utils.py:343
+#: src/olympia/files/utils.py:337
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Cea mai mică valoare „strict_min_version\" acceptată este {min_version}."
 
-#: src/olympia/files/utils.py:374
+#: src/olympia/files/utils.py:367
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 
-#: src/olympia/files/utils.py:388
+#: src/olympia/files/utils.py:381
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Valoare „strict_max_version\" necunoscută {appver} pentru {app}"
 
-#: src/olympia/files/utils.py:572
+#: src/olympia/files/utils.py:561
 msgid "Unsupported compression method in archive."
 msgstr "Metodă de compresie neacceptată în arhivă."
 
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:564
 msgid "Unsupported archive type."
 msgstr "Tip de arhivă nesuportat."
 
-#: src/olympia/files/utils.py:584
+#: src/olympia/files/utils.py:573
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Denumire de fișier nevalidă în arhivă. Te rugăm să te asiguri că toate denumirile de fișiere sunt codate în utf-8 sau latin1."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:587
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Denumire de fișier nevalidă în arhiva: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:606
+#: src/olympia/files/utils.py:595
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
-#: src/olympia/files/utils.py:626
+#: src/olympia/files/utils.py:615
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Arhiva conține un fișier special interzis (link simbolic/fizic sau fișier de dispozitiv/bloc)"
 
-#: src/olympia/files/utils.py:661
+#: src/olympia/files/utils.py:650
 msgid "Uncompressed size is too large"
 msgstr "Dimensiunea necomprimată este prea mare"
 
-#: src/olympia/files/utils.py:693
+#: src/olympia/files/utils.py:682
 msgid "Invalid archive."
 msgstr "Arhivă nevalidă."
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:869
 msgid "No manifest.json found"
 msgstr "Niciun manifest.json găsit"
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:874
 msgid "Invalid or corrupted file."
 msgstr "Fișier nevalid sau corupt."
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:914
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID-ul suplimentului din manifest.json (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:922
 msgid "Duplicate add-on ID found."
 msgstr "S-a depistat un ID de supliment duplicat."
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:928
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Numerele versiunilor trebuie să aibă maxim {max_length} caractere."
 
-#: src/olympia/files/utils.py:945
+#: src/olympia/files/utils.py:934
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Numerele de versiune trebuie să conțină numai litere, cifre și aceste semne de punctuație: +*.-_."
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:943
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Mărimea maximă pentru temele WebExtension este {0}."
 
-#: src/olympia/files/utils.py:968
+#: src/olympia/files/utils.py:957
 msgid "You cannot submit this type of add-on"
 msgstr "Nu poți trimite acest tip de supliment"
 
-#: src/olympia/files/utils.py:972
+#: src/olympia/files/utils.py:961
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Nu poți trimite un supliment cu un ID care se termină în acest sufix"
 
-#: src/olympia/files/utils.py:977
+#: src/olympia/files/utils.py:966
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
-#: src/olympia/files/utils.py:981
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit a language pack"
 msgstr "Nu poți trimite un pachet lingvistic"
 
-#: src/olympia/files/utils.py:990
+#: src/olympia/files/utils.py:979
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Limba unui dicționar/pachet lingvistic existent nu poate fi modificată"
 
-#: src/olympia/files/utils.py:1033
+#: src/olympia/files/utils.py:1022
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1031
 msgid "Unexpected error."
 msgstr "Eroare neașteptată."
 
-#: src/olympia/files/utils.py:1047
+#: src/olympia/files/utils.py:1036
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1041
 msgid "Unknown"
 msgstr "Necunoscut"
 
@@ -6663,7 +6672,7 @@ msgstr "Întoarcerea pe AMO este dezactivată acum"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Retur nevalid către GUID AMO (nu este în format base64url?)"
 
-#: src/olympia/search/filters.py:942
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
 
@@ -7336,12 +7345,12 @@ msgstr "Aprobat, manual"
 msgid "Disabled by Developer"
 msgstr "Dezactivat de către dezvoltator"
 
-#: src/olympia/versions/models.py:1516
+#: src/olympia/versions/models.py:1515
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
 
-#: src/olympia/versions/models.py:1643
+#: src/olympia/versions/models.py:1642
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Originea instalării {origin} nu este permisă."

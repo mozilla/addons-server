@@ -43,7 +43,7 @@ from ..tasks import (
 def addon_factory_with_abuse_reports(*, abuse_reports_count, **kwargs):
     abuse_kwargs = kwargs.pop('abuse_reports_kwargs', {})
     addon = addon_factory(**kwargs)
-    for _x in range(0, abuse_reports_count):
+    for _x in range(abuse_reports_count):
         AbuseReport.objects.create(guid=addon.guid, **abuse_kwargs)
     return addon
 

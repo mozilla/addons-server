@@ -465,41 +465,41 @@ msgstr "Cette fonctionnalité est désactivée temporairement pendant la mainten
 msgid "Remove this localization"
 msgstr "Retirer cette localisation"
 
-#: static/js/zamboni/reviewers.js:324
+#: static/js/zamboni/reviewers.js:328
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} visitait cette page en premier."
 
-#: static/js/zamboni/reviewers.js:332
+#: static/js/zamboni/reviewers.js:336
 msgid "Review page polling failed."
 msgstr "Échec de la récupération de la page de révision."
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:653
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} regardait ce module en premier."
 
-#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
+#: static/js/zamboni/reviewers.js:666 static/js/zamboni/reviewers.js:692
 msgid "Loading&hellip;"
 msgstr "Chargement…"
 
-#: static/js/zamboni/reviewers.js:667
+#: static/js/zamboni/reviewers.js:671
 msgid "Version Notes"
 msgstr "Notes de version"
 
-#: static/js/zamboni/reviewers.js:674
+#: static/js/zamboni/reviewers.js:678
 msgid "Notes for Reviewers"
 msgstr "Notes à l’intention des évaluateurs"
 
-#: static/js/zamboni/reviewers.js:681
+#: static/js/zamboni/reviewers.js:685
 msgid "No version notes found"
 msgstr "Pas de notes de version"
 
-#: static/js/zamboni/reviewers.js:693
+#: static/js/zamboni/reviewers.js:697
 msgid "Review Text"
 msgstr "Réviser le texte"
 
-#: static/js/zamboni/reviewers.js:700
+#: static/js/zamboni/reviewers.js:704
 msgid "Review notes found"
 msgstr "Notes de révision trouvées"
 

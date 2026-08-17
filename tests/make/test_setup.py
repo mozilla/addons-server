@@ -223,34 +223,34 @@ class DockerCommitAndBuildMixin:
 
     def test_required_when_building_remote_image(self):
         for target in ['production', 'development']:
-            with self.subTest(target=target):
-                with (
-                    override_env(
-                        DOCKER_TARGET=target,
-                        DOCKER_VERSION='latest',
-                        **{self.key: ''},
-                    ),
-                    self.assertRaises(ValueError),
-                ):
-                    main(build=True)
+            with (
+                self.subTest(target=target),
+                override_env(
+                    DOCKER_TARGET=target,
+                    DOCKER_VERSION='latest',
+                    **{self.key: ''},
+                ),
+                self.assertRaises(ValueError),
+            ):
+                main(build=True)
 
     def test_irrelevant_when_local_image(self):
         for target in ['production', 'development']:
             for build in [True, False]:
-                with self.subTest(target=target, build=build):
-                    with (
-                        override_env(
-                            DOCKER_TARGET=target,
-                            DOCKER_VERSION='local',
-                            **{self.key: ''},
-                        ),
-                    ):
-                        # We cannot build a development image
-                        # so this will fail for a different reason
-                        if build and target == 'development':
-                            continue
-                        else:
-                            main(build=build)
+                with (
+                    self.subTest(target=target, build=build),
+                    override_env(
+                        DOCKER_TARGET=target,
+                        DOCKER_VERSION='local',
+                        **{self.key: ''},
+                    ),
+                ):
+                    # We cannot build a development image
+                    # so this will fail for a different reason
+                    if build and target == 'development':
+                        continue
+                    else:
+                        main(build=build)
 
 
 class TestDockerCommit(BaseTestClass, DockerCommitAndBuildMixin):

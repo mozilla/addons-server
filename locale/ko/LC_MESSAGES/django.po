@@ -38,7 +38,7 @@ msgstr "이 결정이 잘못되었거나 관련 정책이나 법률에 부합하
 msgid "User profile"
 msgstr "사용자 프로필"
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "{}용 \"{}\""
@@ -236,15 +236,15 @@ msgstr "링크는 넣을 수 없습니다."
 msgid "This display name cannot be used."
 msgstr "이 표시 이름은 사용할 수 없습니다."
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1042
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1048
 msgid "Images cannot be animated."
 msgstr "움직이는 이미지는 제대로 작동하지 않습니다."
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1057
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB보다 작은 이미지를 사용해 주세요."
@@ -253,7 +253,7 @@ msgstr "%dMB보다 작은 이미지를 사용해 주세요."
 msgid "Need help?"
 msgstr "도움이 필요하신가요?"
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "[%s] 알림이 없음"
@@ -324,7 +324,7 @@ msgstr "slug={value}인 라이선스가 존재하지 않습니다."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "지원하지 않는 파일 형식입니다. 압축 파일({extensions})을 업로드 해 주십시오."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:774
 msgid "Invalid or broken archive."
 msgstr "올바르지 않거나 손상된 압축 파일입니다."
 
@@ -350,7 +350,7 @@ msgstr "이 애플리케이션의 매니페스트에 설정된 호환성 정보�
 msgid "Images must be smaller than %dMB"
 msgstr "이미지는 %dMB보다 작아야 합니다"
 
-#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:72
 msgid "Listed"
 msgstr "나열됨"
 
@@ -522,11 +522,11 @@ msgstr "새 부가 기능 등록"
 msgid "Submit a New Theme"
 msgstr "새로운 테마 올리기"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:93 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "개발자 허브"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2162
 msgid "Manage API Keys"
 msgstr "API 키 관리"
 
@@ -558,7 +558,7 @@ msgstr "유효한 IP4 또한 IP6 네트워크를 입럭해주세요."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "웹사이트 점검 관계로 일부 기능을 잠시동안 사용할 수 없습니다. 최대한 빨리 사이트를 정상화 하도록 하겠습니다."
 
@@ -884,7 +884,7 @@ msgstr "{addon}의 {version} 버전에서 {0} 파일이 삭제되었습니다."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version}이(가) 승인되었습니다."
 
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:27 src/olympia/constants/base.py:35
 msgid "Approved"
 msgstr "승인됨"
 
@@ -1301,6 +1301,15 @@ msgstr ""
 msgid "Listing review requested"
 msgstr ""
 
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1329,135 +1338,135 @@ msgstr "Firefox 안드로이드"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:24
+#: src/olympia/constants/base.py:25
 msgid "Incomplete"
 msgstr "미완료"
 
-#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Awaiting Review"
 msgstr "검토 대기중"
 
-#: src/olympia/constants/base.py:27
+#: src/olympia/constants/base.py:28
 msgid "Listing Content Rejected"
 msgstr "등록 내용 거부됨"
 
-#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
+#: src/olympia/constants/base.py:29 src/olympia/constants/base.py:36
 msgid "Disabled by Mozilla"
 msgstr "Mozilla에 의해 사용 정지당함"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
+#: src/olympia/constants/base.py:30 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "삭제됨"
 
-#: src/olympia/constants/base.py:70
+#: src/olympia/constants/base.py:71
 msgid "Unlisted"
 msgstr "목록에서 제거됨"
 
-#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+#: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
 msgstr "기업"
 
-#: src/olympia/constants/base.py:93
+#: src/olympia/constants/base.py:94
 msgid "Signing API"
 msgstr "서명 API"
 
-#: src/olympia/constants/base.py:94
+#: src/olympia/constants/base.py:95
 msgid "Add-on API"
 msgstr "부가 기능 API"
 
-#: src/olympia/constants/base.py:95
+#: src/olympia/constants/base.py:96
 msgid "Automatically generated by AMO"
 msgstr "AMO에서 자동 생성"
 
-#: src/olympia/constants/base.py:104
+#: src/olympia/constants/base.py:105
 msgid "Owner"
 msgstr "소유자"
 
-#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:106 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "개발자"
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "(Deleted)"
 msgstr "(삭제됨)"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Extension"
 msgstr "확장 기능"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Complete Theme"
 msgstr "더 이상 사용되지 않는 완전한 테마"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:140
 msgid "Dictionary"
 msgstr "맞춤법 사전"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:141
 msgid "Deprecated Search Engine"
 msgstr "사용되지 않는 검색 엔진"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:142
 msgid "Language Pack"
 msgstr "언어 팩"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "더 이상 사용되지 않는 언어 팩(부가 기능)"
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:144
 msgid "Deprecated Plugin"
 msgstr "더 이상 사용되지 않는 플러그인"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:145
 msgid "Deprecated LWT"
 msgstr "비추천 LWT"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:146
 msgid "Theme"
 msgstr "테마"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:147
 msgid "Deprecated Site Permission"
 msgstr "더 이상 사용되지 않는 사이트 권한"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:152 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "확장 기능"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Complete Themes"
 msgstr "더 이상 사용되지 않는 완전한 테마"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:154
 msgid "Dictionaries"
 msgstr "사전"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:155
 msgid "Deprecated Search Tools"
 msgstr "더 이상 사용되지 않는 검색 도구"
 
-#: src/olympia/constants/base.py:155
+#: src/olympia/constants/base.py:156
 msgid "Language Packs"
 msgstr "언어 팩"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "더 이상 사용되지 않는 언어 팩(부가 기능)"
 
-#: src/olympia/constants/base.py:157
+#: src/olympia/constants/base.py:158
 msgid "Deprecated Plugins"
 msgstr "사용되지 않는 플러그인"
 
-#: src/olympia/constants/base.py:158
+#: src/olympia/constants/base.py:159
 msgid "Deprecated LWTs"
 msgstr "비추천 LWTs"
 
-#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:160 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "테마"
 
-#: src/olympia/constants/base.py:160
+#: src/olympia/constants/base.py:161
 msgid "Deprecated Site Permissions"
 msgstr "더 이상 사용되지 않는 사이트 권한"
 
@@ -2102,7 +2111,7 @@ msgstr "제출한 파일에서 개발자 API 키를 찾았습니다. 계정을 �
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "제출된 파일에서 공동 저자의 개발자 API 키를 찾았습니다. 추가 기능을 보호하기 위해 키가 취소됩니다."
 
-#: src/olympia/devhub/tasks.py:692
+#: src/olympia/devhub/tasks.py:691
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozila 보안 공지: 귀하의 AMO API 자격 증명이 취소되었습니다."
 
@@ -2198,7 +2207,7 @@ msgstr "초대를 거절하였습니다."
 msgid "A confirmation email has been sent to {email}"
 msgstr "인증 메시지가 {email}로 발송 완료"
 
-#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1185
 msgid "Changes successfully saved."
 msgstr "변경 내역이 성공적으로 저장되었습니다."
 
@@ -2211,166 +2220,166 @@ msgstr "부가 기능 검사"
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">확장 기능을 제출하려면 계정에 2단계 인증을 추가하세요.</a>"
 
-#: src/olympia/devhub/views.py:1039
+#: src/olympia/devhub/views.py:1040
 msgid "Icons must be either PNG or JPG."
 msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 msgid "Icons cannot be animated."
 msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1072
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀 이상이어야 합니다."
 
-#: src/olympia/devhub/views.py:1075
+#: src/olympia/devhub/views.py:1076
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "이미지는 4:3 비율이어야 합니다."
 
-#: src/olympia/devhub/views.py:1083
+#: src/olympia/devhub/views.py:1084
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "아이콘은 너비와 높이가 {0} 픽셀 이상이어야 합니다."
 
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Icon must be square (same width and height)."
 msgstr "아이콘은 정사각형 이어야 합니다(동일한 너비와 높이)."
 
-#: src/olympia/devhub/views.py:1094
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
 
-#: src/olympia/devhub/views.py:1240
+#: src/olympia/devhub/views.py:1241
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr "최신 승인된 %s 부기 기능 버전은 이전 버전이 %s 프로모션으로 승인되지 않았기 때문에 삭제하거나 비활성화 할 수 없습니다. 만약 도움이 필요하시면 AMO 관리자에게 연락주시기 바랍니다."
 
-#: src/olympia/devhub/views.py:1247
+#: src/olympia/devhub/views.py:1248
 #, python-format
 msgid "Version %s disabled."
 msgstr "%s 버전이 사용 불가 상태가 되었습니다."
 
-#: src/olympia/devhub/views.py:1251
+#: src/olympia/devhub/views.py:1252
 #, python-format
 msgid "Version %s deleted."
 msgstr "%s 버전이 삭제되었습니다."
 
-#: src/olympia/devhub/views.py:1262
+#: src/olympia/devhub/views.py:1263
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "%s 버전이 다시 활성화되었습니다."
 
-#: src/olympia/devhub/views.py:1278
+#: src/olympia/devhub/views.py:1279
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 검토시 이점에 유의해 주세요."
 
-#: src/olympia/devhub/views.py:1337
+#: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "복구가 제출하였습니다. 완료되면 알림을 받게 됩니다"
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1478
 msgid "Header area background"
 msgstr "헤더 영역 배경"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "헤더 이미지를 통해 가려지거나 보이지 않는 헤더 부분에 표시되는 헤더 영역 배경의 색상입니다. 매니페스트 필드:  frame."
 
-#: src/olympia/devhub/views.py:1487
+#: src/olympia/devhub/views.py:1488
 msgid "Header area text and icons"
 msgstr "헤더 영역 텍스트 및 아이콘"
 
-#: src/olympia/devhub/views.py:1489
+#: src/olympia/devhub/views.py:1490
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "활성 탭을 제외하고 헤더 영역에 표시될 텍스트와 아이콘의 색상입니다. 매니페스트 필드:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1496
+#: src/olympia/devhub/views.py:1497
 msgid "Toolbar area background"
 msgstr "도구 모음 영역 배경"
 
-#: src/olympia/devhub/views.py:1498
+#: src/olympia/devhub/views.py:1499
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "탐색 메뉴와 북마크바, 활성 탭의 배경색입니다.  매니페스트 필드:  도구 모음."
 
-#: src/olympia/devhub/views.py:1505
+#: src/olympia/devhub/views.py:1506
 msgid "Toolbar area text and icons"
 msgstr "도구 모음 영역 텍스트 및 아이콘"
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "도구 모음과 활성 탭에 표시할 텍스트와 아이콘의 색상입니다. 매니페스트 필드:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1515
 msgid "Toolbar field area background"
 msgstr "도구 모음 필드 영역 배경"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1517
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "URL 표시 줄과 같은 도구 모음에 있는 필드의 배경색입니다. 매니페스트 필드:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1523
+#: src/olympia/devhub/views.py:1524
 msgid "Toolbar field area text"
 msgstr "도구 모음 필드 영역 텍스트"
 
-#: src/olympia/devhub/views.py:1525
+#: src/olympia/devhub/views.py:1526
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "URL 표시 줄과 같은 도구 모음의 필드에있는 텍스트 색상입니다. 매니페스트 필드:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1533
+#: src/olympia/devhub/views.py:1534
 msgid "Tab highlight"
 msgstr "탭 강조"
 
-#: src/olympia/devhub/views.py:1535
+#: src/olympia/devhub/views.py:1536
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "활성 탭의 강조 표시 색상입니다. Firefox 89+에서 탭 주변의 테두리로 구현되고, 오래된 Firefox에서는 탭 위의 선으로 구현됩니다. Manifest 필드:  tab_line."
 
-#: src/olympia/devhub/views.py:1638
+#: src/olympia/devhub/views.py:1639
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "부가 기능 업로드가 일시적으로 불가능함"
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2011
 msgid "Review requested."
 msgstr "검토가 요청되었습니다."
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2013
 msgid "You must provide further details to proceed."
 msgstr "계속하려면 추가 세부 사항을 제공해야합니다."
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2120
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2135
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "귀하의 이전 자격 증명이 철회되었으며 더 이상 유효하지 않습니다."
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2174
 msgid "New API key created"
 msgstr "새 API 키가 생성됨"
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2185
 msgid "API key revoked"
 msgstr "API 키 폐기됨"
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2245
 msgid "Verify email"
 msgstr "이메일 확인"
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2247
 msgid "Send another email"
 msgstr "다른 이메일 보내기"
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2280
 msgid "Your email has been verified"
 msgstr "이메일이 확인됨"
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr ""
 
@@ -5702,8 +5711,8 @@ msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "시네마 모드, 광고 차단, 자동 재생 제어 등과 같은 새로운 YouTube 기능 모음을 즐겨보세요."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -6252,132 +6261,132 @@ msgstr ""
 msgid "[status:%s]"
 msgstr "[상태:%s]"
 
-#: src/olympia/files/utils.py:86
+#: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
 msgstr ""
 
-#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:196 src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:156 src/olympia/files/utils.py:190 src/olympia/files/utils.py:881
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:343
+#: src/olympia/files/utils.py:337
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr ""
 
-#: src/olympia/files/utils.py:374
+#: src/olympia/files/utils.py:367
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:388
+#: src/olympia/files/utils.py:381
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr ""
 
-#: src/olympia/files/utils.py:572
+#: src/olympia/files/utils.py:561
 msgid "Unsupported compression method in archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:564
 msgid "Unsupported archive type."
 msgstr "지원되지 않는 아카이브 유형입니다."
 
-#: src/olympia/files/utils.py:584
+#: src/olympia/files/utils.py:573
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:587
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "압축 파일내 잘못된 파일 이름: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:606
+#: src/olympia/files/utils.py:595
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "압축 파일내 파일 용량 제한 초과: {0}"
 
-#: src/olympia/files/utils.py:626
+#: src/olympia/files/utils.py:615
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
-#: src/olympia/files/utils.py:661
+#: src/olympia/files/utils.py:650
 msgid "Uncompressed size is too large"
 msgstr "압축되지 않은 크기가 너무 큽니다."
 
-#: src/olympia/files/utils.py:693
+#: src/olympia/files/utils.py:682
 msgid "Invalid archive."
 msgstr "잘못된 압축 파일입니다."
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:869
 msgid "No manifest.json found"
 msgstr "manifest.json을 찾을 수 없음"
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:874
 msgid "Invalid or corrupted file."
 msgstr "잘못되었거나 손상된 파일."
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:914
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "귀하의 manifest.json (%s)에 있는 부가 기능 ID가 AMO (%s)에 있는 귀하의 부가 기능 ID와 일치하지 않습니다."
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:922
 msgid "Duplicate add-on ID found."
 msgstr "중복된 부가 기능 ID가 발견됨."
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:928
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:945
+#: src/olympia/files/utils.py:934
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:943
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension 테마의 최대 크기는 {0}입니다."
 
-#: src/olympia/files/utils.py:968
+#: src/olympia/files/utils.py:957
 msgid "You cannot submit this type of add-on"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
-#: src/olympia/files/utils.py:972
+#: src/olympia/files/utils.py:961
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr ""
 
-#: src/olympia/files/utils.py:977
+#: src/olympia/files/utils.py:966
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla 서명 확장을 제출할 수 없습니다."
 
-#: src/olympia/files/utils.py:981
+#: src/olympia/files/utils.py:970
 #, fuzzy
 msgid "You cannot submit a language pack"
 msgstr "이런 종류의 부가 기능은 제출할 수 없음"
 
-#: src/olympia/files/utils.py:990
+#: src/olympia/files/utils.py:979
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
-#: src/olympia/files/utils.py:1033
+#: src/olympia/files/utils.py:1022
 #, fuzzy, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "지원하지 않는 파일 형식입니다. {extensions} 압축 파일을 업로드 해 주십시오."
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1031
 msgid "Unexpected error."
 msgstr "예기치 않은 오류입니다."
 
-#: src/olympia/files/utils.py:1047
+#: src/olympia/files/utils.py:1036
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1041
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -6514,7 +6523,7 @@ msgstr ""
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
 
-#: src/olympia/search/filters.py:942
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr ""
 
@@ -7162,12 +7171,12 @@ msgstr ""
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1516
+#: src/olympia/versions/models.py:1515
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} 이상"
 
-#: src/olympia/versions/models.py:1643
+#: src/olympia/versions/models.py:1642
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr ""

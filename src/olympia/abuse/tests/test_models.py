@@ -3376,7 +3376,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_ban_user_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         user = user_factory(email='superstarops@mozilla.com')
         decision = ContentDecision.objects.create(
             user=user,
@@ -3421,7 +3421,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_disable_addon_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()])
         self.make_addon_promoted(
             addon, api_name='high_profile', high_profile=True, approve_version=True
@@ -3541,6 +3541,24 @@ class TestContentDecision(TestCase):
         )
         assert submission.from_followup == followup
 
+    def test_execute_action_disable_addon_already_disabled(self):
+        addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reviewer_user=self.reviewer_user,
+        )
+        assert decision.action_date is None
+        assert decision.execute_action() is None
+        self.assertCloseToNow(decision.action_date)
+        assert decision.addon.reload().status == amo.STATUS_DISABLED
+        alog = ActivityLog.objects.filter(action=amo.LOG.DECISION_CREATED.id).get()
+        assert alog.contentdecisionlog_set.get().decision == decision
+        assert alog.versionlog_set.get().version == addon.versions.get()
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
+        assert 'appeal' in mail.outbox[0].body
+
     def _test_execute_action_reject_version_outcome(self, decision):
         decision.send_notifications()
         assert 'appeal' in mail.outbox[0].body
@@ -3552,7 +3570,7 @@ class TestContentDecision(TestCase):
         assert VersionReviewerFlags.objects.filter(version=version).exists()
 
     def test_execute_action_reject_version_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -3681,7 +3699,6 @@ class TestContentDecision(TestCase):
                 'status_disabled_reason': File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
             },
         )
-        #
         self._execute_action_approve_appeal(addon, DECISION_ACTIONS.AMO_DISABLE_ADDON)
         assert addon.reload().status == amo.STATUS_APPROVED
 
@@ -3774,6 +3791,50 @@ class TestContentDecision(TestCase):
             f'{older_version.version}, {newer_version.version}' in mail_item.body
         )
 
+    def test_execute_action_override_to_same_enforcement(self):
+        addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)
+        addon.versions.get().file.update(
+            status=amo.STATUS_DISABLED,
+            original_status=amo.STATUS_APPROVED,
+            status_disabled_reason=File.STATUS_DISABLED_REASONS.ADDON_DISABLE,
+        )
+        overridden = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            action_date=datetime.now(),
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        overridden.policies.add(
+            CinderPolicy.objects.create(uuid='1234', name='Bad policy')
+        )
+        overridden.target_versions.set(addon.versions.all())
+        decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            reasoning='some review text',
+            reviewer_user=self.reviewer_user,
+            override_of=overridden,
+            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+        )
+        decision.policies.add(
+            CinderPolicy.objects.create(uuid='12345', name='Other bad policy')
+        )
+
+        decision.execute_action()
+        assert addon.reload().status == amo.STATUS_DISABLED  # no change
+
+        decision.send_notifications()
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == [addon.authors.get().email]
+        assert 'has been disabled on' in mail.outbox[0].body
+        assert 'Other bad policy' in mail.outbox[0].body
+
+        assert decision.activities.get().action == amo.LOG.DECISION_CREATED.id
+
+        assert list(decision.target_versions.all()) == list(
+            overridden.target_versions.all()
+        )
+
     def _test_execute_action_reject_version_delayed_outcome(self, decision):
         decision.send_notifications()
         assert 'appeal' not in mail.outbox[0].body
@@ -3820,7 +3881,7 @@ class TestContentDecision(TestCase):
         assert addon.current_version.reviewerflags.pending_rejection == in_fourteen_days
 
     def test_execute_action_reject_version_delayed_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         addon = addon_factory(users=[user_factory()], file_kw={'is_signed': True})
         version = addon.current_version
         self.make_addon_promoted(
@@ -4044,7 +4105,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_collection_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         collection = collection_factory(author=self.task_user)
         decision = ContentDecision.objects.create(
             collection=collection,
@@ -4089,7 +4150,7 @@ class TestContentDecision(TestCase):
         assert 'appeal' in mail.outbox[0].body
 
     def test_execute_action_delete_rating_held(self):
-        self.grant_permission(user_factory(), ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
         user = user_factory()
         addon = addon_factory(users=[user])
         rating = Rating.objects.create(

@@ -150,7 +150,7 @@ class VersionString(str):
             other = self.__class__(other)
         self_part = self.Part('')
         other_part = self.Part('')
-        for idx in range(0, max(len(self.vparts), len(other.vparts))):
+        for idx in range(max(len(self.vparts), len(other.vparts))):
             self_part = seq_get(
                 self.vparts, idx, self_part if self_part.a == ASTERISK else self.Part()
             )
@@ -166,7 +166,7 @@ class VersionString(str):
     def __gt__(self, other):
         if not isinstance(other, self.__class__):
             other = self.__class__(other)
-        for idx in range(0, max(len(self.vparts), len(other.vparts))):
+        for idx in range(max(len(self.vparts), len(other.vparts))):
             self_part = seq_get(self.vparts, idx, self.Part())
             other_part = seq_get(other.vparts, idx, self.Part())
             if self_part != other_part:

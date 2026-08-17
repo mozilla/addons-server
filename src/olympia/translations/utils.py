@@ -122,7 +122,7 @@ def default_locale(obj):
 
 def get_translation_differences(old_, new_):
     out = {}
-    for field in list({*old_, *new_}):
+    for field in {*old_, *new_}:
         removed = list(old_[field] - new_[field])
         added = list(new_[field] - old_[field])
         if removed or added:

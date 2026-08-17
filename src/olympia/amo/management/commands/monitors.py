@@ -2,7 +2,7 @@ import time
 
 from django.core.management.base import CommandError
 
-import olympia.amo.monitors as monitors
+from olympia.amo import monitors
 
 from .. import BaseDataCommand
 

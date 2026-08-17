@@ -244,7 +244,6 @@ class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
         is_method_safe = request.method in ('HEAD', 'GET', 'OPTIONS', 'TRACE')
         if is_method_safe and not transaction.get_connection().in_atomic_block:
             transaction._non_atomic_requests(view_func, using='default')
-        return None
 
 
 class ReadOnlyMiddleware(MiddlewareMixin):

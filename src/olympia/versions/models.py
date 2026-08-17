@@ -1304,7 +1304,7 @@ class VersionPreview(BasePreview, ModelBase):
         """We only don't support defining a caption for previews because
         they're auto-generated.  This is for compatibility with Addon Preview
         objects. (it's a cached_property so it can be set transparently)"""
-        return None
+        return
 
 
 models.signals.post_delete.connect(
@@ -1324,7 +1324,6 @@ def update_status(sender, instance, **kw):
             log.info(
                 'Got ObjectDoesNotExist processing Version change signal', exc_info=True
             )
-            pass
 
 
 def inherit_due_date_if_nominated(sender, instance, **kw):

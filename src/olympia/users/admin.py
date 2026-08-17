@@ -691,7 +691,7 @@ class DeniedNameAdmin(AMOModelAdmin):
                         duplicates += 1
                         continue
                     try:
-                        self.model.objects.create(**{'name': line})
+                        self.model.objects.create(name=line)
                         inserted += 1
                     except IntegrityError:
                         # although unlikely, someone else could have added

@@ -2701,7 +2701,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
             'You cannot submit a language pack'
         )
 
-        self.grant_permission(self.user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(self.user, amo.permissions.LANGPACK_SUBMIT)
 
         response = self.post(expected_status=302)
 
@@ -2921,6 +2921,26 @@ class TestVersionSubmitDetails(TestSubmitBase):
             response,
             reverse(
                 'devhub.submit.version.source', args=[self.addon.slug, self.version.pk]
+            ),
+        )
+
+    def test_submit_details_enterprise_should_redirect(self):
+        # Should be redirecting even with an existing listed channel.
+        assert self.version.channel == amo.CHANNEL_LISTED
+        enterprise_version = version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+        )
+        url = reverse(
+            'devhub.submit.version.details',
+            args=[self.addon.slug, enterprise_version.pk],
+        )
+        response = self.client.get(url)
+        self.assert3xx(
+            response,
+            reverse(
+                'devhub.submit.version.source',
+                args=[self.addon.slug, enterprise_version.pk],
             ),
         )
 

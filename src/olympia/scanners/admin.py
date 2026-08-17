@@ -420,6 +420,8 @@ class AbstractScannerResultAdminMixin:
                                 'listed'
                                 if obj.version.channel == amo.CHANNEL_LISTED
                                 else 'unlisted'
+                                if obj.version.channel == amo.CHANNEL_UNLISTED
+                                else 'enterprise'
                             ),
                             obj.version.addon.id,
                         ],
@@ -804,6 +806,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_specific_channel',
         'run_on_current_version_only',
         'exclude_promoted_addons',
+        'created_after',
         'created',
         'state_with_actions',
         'completion_rate',
@@ -819,6 +822,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'run_on_specific_channel',
         'run_on_current_version_only',
         'exclude_promoted_addons',
+        'created_after',
         'state_with_actions',
         'name',
         'pretty_name',

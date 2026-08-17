@@ -86,14 +86,16 @@ class TestProcessBlocklistSubmission(TransactionTestCase):
         )
 
     def test_state_reset(self):
-        with mock.patch.object(
-            BlocklistSubmission,
-            'save_to_block_objects',
-            side_effect=SuspiciousOperation('Something happened!'),
+        with (
+            mock.patch.object(
+                BlocklistSubmission,
+                'save_to_block_objects',
+                side_effect=SuspiciousOperation('Something happened!'),
+            ),
+            self.assertRaises(SuspiciousOperation),
         ):
-            with self.assertRaises(SuspiciousOperation):
-                # we know it's going to raise, we just want to capture it safely
-                process_blocklistsubmission.delay(self.submission.id)
+            # we know it's going to raise, we just want to capture it safely
+            process_blocklistsubmission.delay(self.submission.id)
         self.submission.reload()
         assert (
             self.submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PENDING

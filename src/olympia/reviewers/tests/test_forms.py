@@ -75,7 +75,7 @@ class TestReviewForm(TestCase):
         return form.helper.get_actions()
 
     def test_actions_reject(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NOMINATED, file_status=amo.STATUS_AWAITING_REVIEW
         )
@@ -85,7 +85,7 @@ class TestReviewForm(TestCase):
     def test_actions_addon_status_null(self):
         # If the add-on is null we only show set needs human review, reply,
         # comment.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
@@ -100,7 +100,7 @@ class TestReviewForm(TestCase):
         # If an admin reviewer we also show unreject_latest_version and clear
         # pending rejection/needs human review (though the versions form would
         # be empty for the last 2 here). And disable addon.
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
             'unreject_latest_version',
@@ -118,8 +118,8 @@ class TestReviewForm(TestCase):
         self.make_addon_unlisted(self.addon)
         self.version.reload()
         self.version.update(human_review_date=datetime.now())
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NULL, file_status=amo.STATUS_DISABLED
         )
@@ -136,7 +136,7 @@ class TestReviewForm(TestCase):
 
         # If an admin reviewer we also show unreject_multiple_versions,
         # clear pending rejections/clear needs human review, disable addon.
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         actions = self.get_form().helper.get_actions()
         assert list(actions.keys()) == [
             'approve_multiple_versions',
@@ -157,7 +157,7 @@ class TestReviewForm(TestCase):
     def test_actions_addon_status_deleted(self):
         # If the add-on is deleted we only show reply, comment and
         # super review.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
@@ -169,7 +169,7 @@ class TestReviewForm(TestCase):
         ]
 
         # Having admin permission gives you some extra actions
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DELETED, file_status=amo.STATUS_DISABLED
         )
@@ -186,7 +186,7 @@ class TestReviewForm(TestCase):
     def test_actions_no_pending_files(self):
         # If the add-on has no pending files we only show
         # reject_multiple_versions, reply, comment and super review.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
         )
@@ -199,7 +199,7 @@ class TestReviewForm(TestCase):
         ]
 
         # admins have extra permssions though
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         actions = self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED
         )
@@ -231,7 +231,7 @@ class TestReviewForm(TestCase):
         ]
 
     def test_policies_required_with_cinder_jobs(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -262,7 +262,7 @@ class TestReviewForm(TestCase):
 
     @override_switch('enable-policy-review-selection', active=True)
     def test_cannot_resolve_jobs_and_override_decision(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -293,7 +293,7 @@ class TestReviewForm(TestCase):
         }
 
     def test_override_decision_queryset(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         # A decision for this add-on that hasn't been overridden: included.
         decision = ContentDecision.objects.create(
             addon=self.addon, action=DECISION_ACTIONS.AMO_DISABLE_ADDON
@@ -320,7 +320,7 @@ class TestReviewForm(TestCase):
         }
 
     def test_policy_values_parsed(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         policy = CinderPolicy.objects.create(
@@ -370,7 +370,7 @@ class TestReviewForm(TestCase):
         }
 
     def test_appeal_action_require_with_appeal_deny(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -398,7 +398,7 @@ class TestReviewForm(TestCase):
         assert not form.errors
 
     def test_policy_actions(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -477,7 +477,7 @@ class TestReviewForm(TestCase):
     def test_policy_actions_multiple_positive(self):
         # Selecting policies that result in multiple positive enforcement
         # actions should raise an error.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -511,7 +511,7 @@ class TestReviewForm(TestCase):
 
     @override_switch('enable-policy-review-selection', active=True)
     def test_policy_actions_with_policy_enforcement(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         job = CinderJob.objects.create(
@@ -608,7 +608,7 @@ class TestReviewForm(TestCase):
 
     @override_switch('enable-policy-review-selection', active=True)
     def test_versions_required_when_enforcement_is_on_versions(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         disable_policy = CinderPolicy.objects.create(
@@ -672,7 +672,7 @@ class TestReviewForm(TestCase):
         assert form.errors == {'versions': ['This field is required.']}
 
     def test_cinder_jobs_filtered_for_resolve_reports_job_and_appeal_deny(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         appeal_job = CinderJob.objects.create(
@@ -724,7 +724,7 @@ class TestReviewForm(TestCase):
         assert form.cleaned_data['cinder_jobs_to_resolve'] == [report_job]
 
     def test_cinder_jobs_filtered_for_reject_or_reject_multiple_versions(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         developer_appeal_job = CinderJob.objects.create(
@@ -822,7 +822,7 @@ class TestReviewForm(TestCase):
         ]
 
     def test_boilerplate(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         self.addon.update(status=amo.STATUS_NOMINATED)
         self.version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         form = self.get_form()
@@ -834,7 +834,7 @@ class TestReviewForm(TestCase):
         assert doc('input')[4].attrib.get('data-value') is None
 
     def test_action_required_by_default(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         form = self.get_form()
         assert not form.is_bound
         form = self.get_form(
@@ -857,7 +857,7 @@ class TestReviewForm(TestCase):
         assert form.errors == {'action': ['This field is required.']}
 
     def test_versions_queryset(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         # Add a bunch of extra data that shouldn't be picked up.
         addon_factory()
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
@@ -884,7 +884,7 @@ class TestReviewForm(TestCase):
         # We hide some of the versions using JavaScript + some data attributes on each
         # <option>.
         # The queryset should contain both pending, rejected, and approved versions.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         addon_factory()  # Extra add-on, shouldn't be included.
         pending_version = version_factory(
             addon=self.addon,
@@ -982,7 +982,7 @@ class TestReviewForm(TestCase):
         assert option4.attrib.get('value') == str(blocked_version.pk)
 
     def test_versions_queryset_contains_pending_files_for_listed_admin_reviewer(self):
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         # No change
         self.test_versions_queryset_contains_pending_files_for_listed(
             expected_select_data_value=[
@@ -1050,7 +1050,7 @@ class TestReviewForm(TestCase):
 
         # With Addons:ReviewUnlisted permission, the reject_multiple_versions
         # action will be available, resetting the queryset of allowed choices.
-        self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         form = self.get_form()
         assert not form.is_bound
         assert form.fields['versions'].required is False
@@ -1134,7 +1134,7 @@ class TestReviewForm(TestCase):
         assert option5.attrib.get('value') == str(deleted_version.pk)
 
     def test_set_needs_human_review_presence(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         deleted_but_signed = version_factory(
             addon=self.addon,
             file_kw={
@@ -1211,7 +1211,7 @@ class TestReviewForm(TestCase):
             ).split(' '), version
 
     def test_versions_queryset_contains_pending_files_for_unlisted_admin_reviewer(self):
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         self.test_versions_queryset_contains_pending_files_for_unlisted(
             expected_select_data_value=[
                 'approve_multiple_versions',
@@ -1231,7 +1231,7 @@ class TestReviewForm(TestCase):
             AutoApprovalSummary.objects.create(
                 version=version, verdict=amo.AUTO_APPROVED
             )
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         form = self.get_form(
             data={
                 'action': 'reject_multiple_versions',
@@ -1257,7 +1257,7 @@ class TestReviewForm(TestCase):
     @time_machine.travel('2025-02-10 12:09', tick=False)
     def test_delayed_rejection_date_is_readonly_for_regular_reviewers(self):
         # Regular reviewers can't customize the delayed rejection period.
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         form = self.get_form()
         assert 'delayed_rejection_date' in form.fields
         assert 'delayed_rejection' in form.fields
@@ -1292,8 +1292,8 @@ class TestReviewForm(TestCase):
     @time_machine.travel('2025-01-23 12:52', tick=False)
     def test_delayed_rejection_days_shows_up_for_admin_reviewers(self):
         # Admin reviewers can customize the delayed rejection period.
-        self.grant_permission(self.request.user, 'Addons:Review')
-        self.grant_permission(self.request.user, 'Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         form = self.get_form()
         assert 'delayed_rejection_date' in form.fields
         assert 'delayed_rejection' in form.fields
@@ -1326,7 +1326,8 @@ class TestReviewForm(TestCase):
 
     @time_machine.travel('2025-01-23 12:52', tick=False)
     def test_delayed_rejection_days_value_not_in_the_future(self):
-        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         data = {
             'action': 'reject_multiple_versions',
             'comments': 'foo!',
@@ -1355,7 +1356,8 @@ class TestReviewForm(TestCase):
         assert form.is_valid(), form.errors
 
     def test_delayable_action_missing_fields(self):
-        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         data = {
             'action': 'reject_multiple_versions',
             'comments': 'foo!',
@@ -1391,7 +1393,8 @@ class TestReviewForm(TestCase):
         assert form.errors['delayed_rejection_date'] == ['This field is required.']
 
     def test_change_pending_rejection_multiple_versions_different_dates(self):
-        self.grant_permission(self.request.user, 'Addons:Review,Reviews:Admin')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
+        self.grant_permission(self.request.user, amo.permissions.REVIEWS_ADMIN)
         in_the_future = datetime.now() + timedelta(days=15)
         in_the_future2 = datetime.now() + timedelta(days=55)
         VersionReviewerFlags.objects.create(
@@ -1425,7 +1428,7 @@ class TestReviewForm(TestCase):
         }
 
     def test_version_pk(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         data = {'action': 'comment', 'comments': 'lol'}
         form = self.get_form(data=data)
         assert form.is_valid(), form.errors
@@ -1552,7 +1555,7 @@ class TestReviewForm(TestCase):
             ),
         )
         AbuseReport.objects.create(
-            **{**abuse_kw},
+            **abuse_kw,
             message='fff',
             cinder_job=CinderJob.objects.create(
                 job_id='already resolved',
@@ -1669,7 +1672,7 @@ class TestReviewForm(TestCase):
         ]
 
     def test_upload_attachment(self):
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         attachment = ContentFile('Pseudo File', name='attachment.txt')
         data = {
             'action': 'reply',
@@ -1718,7 +1721,7 @@ class TestReviewForm(TestCase):
             enforcement_actions=[DECISION_ACTIONS.AMO_APPROVE.api_value],
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         form = self.get_form()
 
         content = str(form['cinder_policies'])
@@ -1732,6 +1735,7 @@ class TestReviewForm(TestCase):
         assert label_0.attr['data-enforcement-primary-actions'] == '[]'
         assert label_0.attr['data-enforcement-followup-actions'] == '[]'
         assert label_0.attr['data-enforcement-actions-order'] == ''
+        assert label_0('input')[0].type == 'checkbox'
 
         assert label_1.attr['class'] == 'data-toggle'
         assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
@@ -1744,6 +1748,7 @@ class TestReviewForm(TestCase):
             f'{DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.value}]'
         )
         assert label_1.attr['data-enforcement-actions-order'] == '090500'
+        assert label_1('input')[0].type == 'checkbox'
 
         assert label_2.attr['class'] == 'data-toggle'
         assert label_2.attr['data-value'] == 'public'
@@ -1753,6 +1758,7 @@ class TestReviewForm(TestCase):
         )
         assert label_2.attr['data-enforcement-followup-actions'] == '[]'
         assert label_2.attr['data-enforcement-actions-order'] == ''
+        assert label_2('input')[0].type == 'radio'
 
     def test_policy_values_fields(self):
         policy_0 = CinderPolicy.objects.create(
@@ -1773,7 +1779,7 @@ class TestReviewForm(TestCase):
             text='No placeholders here',
         )
         self.file.update(status=amo.STATUS_AWAITING_REVIEW)
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         form = self.get_form()
 
         content = str(form['policy_values'])
@@ -1794,7 +1800,7 @@ class TestReviewForm(TestCase):
 
     def test_version_option_label_original_status(self):
         """Disabled version options have '<- was {original_status}' in their label."""
-        self.grant_permission(self.request.user, 'Addons:Review')
+        self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         for version in Version.unfiltered.all():
             AutoApprovalSummary.objects.create(
                 version=version, verdict=amo.AUTO_APPROVED

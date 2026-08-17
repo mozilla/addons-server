@@ -664,6 +664,8 @@ def run_scanner_query_rule(query_rule_pk):
         qs = qs.filter(channel=rule.run_on_specific_channel)
     if rule.run_on_current_version_only:
         qs = qs.filter(pk=F('addon___current_version'))
+    if rule.created_after:
+        qs = qs.filter(created__gte=rule.created_after)
     if rule.exclude_promoted_addons:
         qs = qs.exclude(addon__promotedaddon__isnull=False)
     qs = qs.values_list('id', flat=True).order_by('-pk')

@@ -69,8 +69,8 @@ class TestScannerResultAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
-        self.grant_permission(self.user, 'Admin:ScannersResultsView')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_RESULTS_VIEW)
         self.client.force_login(self.user)
         self.list_url = reverse('admin:scanners_scannerresult_changelist')
 
@@ -97,19 +97,19 @@ class TestScannerResultAdmin(TestCase):
         request.user = user_factory()
         assert list(scanner_result_admin.get_actions(request).keys()) == []
 
-        self.grant_permission(request.user, 'Users:Edit')
+        self.grant_permission(request.user, amo.permissions.USERS_EDIT)
         assert list(scanner_result_admin.get_actions(request).keys()) == [
             'search_for_authors_action',
         ]
 
-        self.grant_permission(request.user, 'Blocklist:Create')
+        self.grant_permission(request.user, amo.permissions.BLOCKLIST_CREATE)
         assert list(scanner_result_admin.get_actions(request).keys()) == [
             'block_addons_action',
             'search_for_authors_action',
         ]
 
     def test_block_addons_action(self):
-        self.grant_permission(self.user, 'Blocklist:Create')
+        self.grant_permission(self.user, amo.permissions.BLOCKLIST_CREATE)
         rule = ScannerRule.objects.create(name='my_rule', scanner=WEBHOOK)
         addon1 = addon_factory()
         version_factory(addon=addon1)
@@ -131,7 +131,7 @@ class TestScannerResultAdmin(TestCase):
         assert response['location'] == submission_url + query_string
 
     def test_search_for_authors_action(self):
-        self.grant_permission(self.user, 'Users:Edit')
+        self.grant_permission(self.user, amo.permissions.USERS_EDIT)
         rule = ScannerRule.objects.create(name='my_rule', scanner=WEBHOOK)
         user1_1 = user_factory()
         user1_2 = user_factory()
@@ -159,7 +159,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_list_view_is_restricted(self):
         user = user_factory(email='curator@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
@@ -203,6 +203,25 @@ class TestScannerResultAdmin(TestCase):
                 urljoin(
                     settings.EXTERNAL_SITE_URL,
                     reverse('reviewers.review', args=['unlisted', addon.id]),
+                ),
+            )
+            in formatted_addon
+        )
+        assert f'Name:</td><td>{addon.name}' in formatted_addon
+        assert f'Version:</td><td>{version.version}' in formatted_addon
+        assert f'Channel:</td><td>{version.get_channel_display()}' in formatted_addon
+
+    def test_formatted_enterprise_addon(self):
+        addon = addon_factory()
+        version = version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+        result = ScannerResult(version=version)
+
+        formatted_addon = self.admin.formatted_addon(result)
+        assert (
+            '<a href="{}">Link to review page</a>'.format(
+                urljoin(
+                    settings.EXTERNAL_SITE_URL,
+                    reverse('reviewers.review', args=['enterprise', addon.id]),
                 ),
             )
             in formatted_addon
@@ -823,7 +842,7 @@ class TestScannerRuleAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:*')
+        self.grant_permission(self.user, amo.permissions.AclPermission('Admin', '*'))
         self.client.force_login(self.user)
         self.list_url = reverse('admin:scanners_scannerrule_changelist')
         self.admin = ScannerRuleAdmin(model=ScannerRule, admin_site=AdminSite())
@@ -835,7 +854,7 @@ class TestScannerRuleAdmin(TestCase):
 
     def test_list_view_is_restricted(self):
         user = user_factory(email='curator@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
@@ -895,7 +914,7 @@ class TestScannerRuleAdmin(TestCase):
 
     def test_get_fields_for_non_admins(self):
         user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersRulesView')
+        self.grant_permission(user, amo.permissions.ADMIN_SCANNERS_RULES_VIEW)
         request = RequestFactory().get('/')
         request.user = user
         assert 'definition' not in self.admin.get_fields(request=request)
@@ -954,7 +973,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersQueryEdit')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
         self.client.force_login(self.user)
         self.list_url = reverse('admin:scanners_scannerqueryrule_changelist')
 
@@ -973,7 +992,7 @@ class TestScannerQueryRuleAdmin(TestCase):
 
     def test_list_view_viewer(self):
         self.user.groupuser_set.all().delete()
-        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         ScannerQueryRule.objects.create(name='bar', scanner=YARA)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
@@ -989,7 +1008,7 @@ class TestScannerQueryRuleAdmin(TestCase):
 
     def test_list_view_is_restricted(self):
         user = user_factory(email='curator@mozilla.com')
-        self.grant_permission(user, 'Admin:Curation')
+        self.grant_permission(user, amo.permissions.ADMIN_CURATION)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
@@ -1034,7 +1053,7 @@ class TestScannerQueryRuleAdmin(TestCase):
 
     def test_change_view_viewer(self):
         self.user.groupuser_set.all().delete()
-        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA)
         url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
         response = self.client.get(url)
@@ -1202,7 +1221,7 @@ class TestScannerQueryRuleAdmin(TestCase):
 
     def test_run_actions_no_permission(self):
         user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersQueryView')
+        self.grant_permission(user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         self.client.force_login(user)
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=NEW)
         response = self.client.post(
@@ -1253,7 +1272,7 @@ class TestScannerQueryRuleAdmin(TestCase):
 
     def test_abort_action_no_permission(self):
         user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(user, 'Admin:ScannersQueryView')
+        self.grant_permission(user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         self.client.force_login(user)
         rule = ScannerQueryRule.objects.create(name='bar', scanner=YARA, state=RUNNING)
         response = self.client.post(
@@ -1322,7 +1341,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         response = self.client.post(url, {'post': 'yes'})
         assert response.status_code == 403
 
-        self.grant_permission(user, 'Admin:ScannersQueryView')
+        self.grant_permission(user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         response = self.client.get(url)
         assert response.status_code == 403
         response = self.client.post(url, {'post': 'yes'})
@@ -1334,7 +1353,7 @@ class TestScannerQueryResultAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersQueryEdit')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
         self.client.force_login(self.user)
         self.list_url = reverse('admin:scanners_scannerqueryresult_changelist')
 
@@ -1431,19 +1450,19 @@ class TestScannerQueryResultAdmin(TestCase):
         request.user = user_factory()
         assert list(scanner_query_result_admin.get_actions(request).keys()) == []
 
-        self.grant_permission(request.user, 'Users:Edit')
+        self.grant_permission(request.user, amo.permissions.USERS_EDIT)
         assert list(scanner_query_result_admin.get_actions(request).keys()) == [
             'search_for_authors_action',
         ]
 
-        self.grant_permission(request.user, 'Blocklist:Create')
+        self.grant_permission(request.user, amo.permissions.BLOCKLIST_CREATE)
         assert list(scanner_query_result_admin.get_actions(request).keys()) == [
             'block_addons_action',
             'search_for_authors_action',
         ]
 
     def test_block_addons_action(self):
-        self.grant_permission(self.user, 'Blocklist:Create')
+        self.grant_permission(self.user, amo.permissions.BLOCKLIST_CREATE)
         addon1 = addon_factory()
         version_factory(addon=addon1)
         addon2 = addon_factory()
@@ -1464,7 +1483,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert response['location'] == submission_url + query_string
 
     def test_search_for_authors_action(self):
-        self.grant_permission(self.user, 'Users:Edit')
+        self.grant_permission(self.user, amo.permissions.USERS_EDIT)
         user1_1 = user_factory()
         user1_2 = user_factory()
         addon1 = addon_factory(users=[user1_1, user1_2])
@@ -1537,14 +1556,14 @@ class TestScannerQueryResultAdmin(TestCase):
         self.user = user_factory(email='somebodyelse@mozilla.com')
         # Give the user permission to edit ScannersResults, but not
         # ScannerQueryResults.
-        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         self.client.force_login(self.user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
     def test_list_view_query_view_permission(self):
         self.user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         self.client.force_login(self.user)
         self.test_list_view()
 
@@ -2087,7 +2106,7 @@ class TestScannerQueryResultAdmin(TestCase):
         self.user = user_factory(email='somebodyelse@mozilla.com')
         # Give the user permission to edit ScannersResults, but not
         # ScannerQueryResults.
-        self.grant_permission(self.user, 'Admin:ScannersResultsEdit')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_RESULTS_EDIT)
         self.client.force_login(self.user)
         result = self.scanner_query_result_factory(
             version=addon_factory().current_version
@@ -2098,7 +2117,7 @@ class TestScannerQueryResultAdmin(TestCase):
 
     def test_change_view_query_view_permission(self):
         self.user = user_factory(email='somebodyelse@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersQueryView')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)
         self.client.force_login(self.user)
         self.test_change_page()
 
@@ -2187,7 +2206,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
     def test_limit_to(self):
         result = ScannerResult.objects.create(pk=42, scanner=YARA)
         rule = ScannerRule.objects.create(name='bar', scanner=YARA)
-        for i in range(0, 5):
+        for i in range(5):
             result.add_yara_result(
                 rule=rule.name, meta={'filename': f'somefilename{i}'}
             )
@@ -2212,8 +2231,8 @@ class TestScannerWebhookAdmin(TestCase):
         super().setUp()
 
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:ScannersWebhooksView')
-        self.grant_permission(self.user, 'Admin:ScannersWebhooksEdit')
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_WEBHOOKS_VIEW)
+        self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_WEBHOOKS_EDIT)
         self.client.force_login(self.user)
         self.add_url = reverse('admin:scanners_scannerwebhook_add')
         self.list_url = reverse('admin:scanners_scannerwebhook_changelist')

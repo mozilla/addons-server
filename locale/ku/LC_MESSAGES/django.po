@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-06 10:30+0000\n"
+"POT-Creation-Date: 2026-08-17 08:51+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -985,6 +985,13 @@ msgid "{addon} listing content review requested."
 msgstr ""
 
 msgid "Listing review requested"
+msgstr ""
+
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+msgid "Decision made"
 msgstr ""
 
 msgid "Firefox"
@@ -4386,7 +4393,7 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
 msgstr ""
 
 #. editorial content for the primary hero shelves.

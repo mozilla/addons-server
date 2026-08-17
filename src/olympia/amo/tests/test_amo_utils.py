@@ -68,11 +68,10 @@ def test_resize_image_from_svg():
     tmp_file_name = get_temp_filename()
     try:
         resize_image(src, tmp_file_name, (720, 92), format='jpg', quality=35)
-        with open(tmp_file_name, 'rb') as dfh:
-            with open(expected, 'rb') as efh:
-                dd = dfh.read()
-                ee = efh.read()
-                assert len(dd) == len(ee) and dd == ee
+        with open(tmp_file_name, 'rb') as dfh, open(expected, 'rb') as efh:
+            dd = dfh.read()
+            ee = efh.read()
+            assert len(dd) == len(ee) and dd == ee
     finally:
         if os.path.exists(tmp_file_name):
             os.remove(tmp_file_name)
@@ -87,9 +86,8 @@ def test_resize_transparency():
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32))
-        with open(dest, 'rb') as dfh:
-            with open(expected, 'rb') as efh:
-                assert dfh.read() == efh.read()
+        with open(dest, 'rb') as dfh, open(expected, 'rb') as efh:
+            assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
             os.remove(dest)
@@ -108,9 +106,8 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32))
-        with open(dest, 'rb') as dfh:
-            with open(expected, 'rb') as efh:
-                assert dfh.read() == efh.read()
+        with open(dest, 'rb') as dfh, open(expected, 'rb') as efh:
+            assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
             os.remove(dest)
@@ -125,9 +122,8 @@ def test_resize_transparency_to_jpeg_has_white_background():
     expected = src.replace('.png', '-expected.jpg')
     try:
         resize_image(src, dest, (32, 32), format='jpg')
-        with open(dest, 'rb') as dfh:
-            with open(expected, 'rb') as efh:
-                assert dfh.read() == efh.read()
+        with open(dest, 'rb') as dfh, open(expected, 'rb') as efh:
+            assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
             os.remove(dest)
@@ -142,9 +138,8 @@ def test_resize_small_png_rgb():
     expected = src.replace('.png', '-expected.jpg')
     try:
         resize_image(src, dest, (533, 400), format='jpg')
-        with open(dest, 'rb') as dfh:
-            with open(expected, 'rb') as efh:
-                assert dfh.read() == efh.read()
+        with open(dest, 'rb') as dfh, open(expected, 'rb') as efh:
+            assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
             os.remove(dest)

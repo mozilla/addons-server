@@ -37,8 +37,67 @@ exclude = [
 line-length = 88
 
 [tool.ruff.lint]
-ignore = []
-select = [
+ignore = [
+    # The following rules fail currently, and should probably eventually be addressed
+    "DTZ",  # flake8-datetimez (except DTZ003)
+    "UP",  # pyupgrade
+    # They are in most-error-occuring order
+    "RUF012",  # mutable-class-default
+    "ISC004",  # implicit-string-concatenation-in-collection-literal
+    "SIM115",  # open-file-with-context-handler
+    "BLE001",  # blind-except
+    "RUF059",  # unused-unpacked-variable
+    "SIM102",  # collapsible-if
+    "FLY002",  # static-join-to-f-string
+    "RUF015",  # unnecessary-iterable-allocation-for-first-element
+    "SIM117",  # multiple-with-statements
+    "SIM118",  # in-dict-keys
+    "TRY201",  # verbose-raise
+    "TRY002",  # raise-vanilla-class
+    "INT003",  # printf-in-get-text-func-call
+    "C408",    # unnecessary-collection-call
+    "PLC0206", # dict-index-missing-items
+    "SIM201",  # negate-equal-op
+    "INT002",  # format-in-get-text-func-call
+    "C400",    # unnecessary-generator-list
+    "C405",    # unnecessary-literal-set
+    "C401",    # unnecessary-generator-set
+    "LOG015",  # root-logger-call
+    "PLE0101", # return-in-init
+    "PLW1508", # invalid-envvar-default
+    "RUF046",  # unnecessary-cast-to-int
+    "S110",    # try-except-pass
+    "TRY004",  # type-check-without-type-error
+    "TRY401",  # verbose-log-message
+    "C419",    # unnecessary-comprehension-in-call
+    "G202",    # logging-redundant-exc-info
+    "PIE794",  # duplicate-class-field-definition
+    "C406",    # unnecessary-literal-dict
+    "EXE002",  # shebang-missing-executable-file
+    "PIE804",  # unnecessary-dict-kwargs
+    "PLW0127", # self-assigning-variable
+    "PLW0129", # assert-on-string-literal
+    "PLW0642", # self-or-cls-assignment
+    "PT014",   # pytest-duplicate-parametrize-test-cases
+    "RUF013",  # implicit-optional
+    "C414",    # unnecessary-double-cast-or-process
+    "C417",    # unnecessary-map
+    "EXE001",  # shebang-not-executable
+    "G201",    # logging-exc-info
+    "INT001",  # f-string-in-get-text-func-cal
+    "PERF102", # incorrect-dict-iterator
+    "PLC3002", # unnecessary-direct-lambda-call
+    "PLE0704", # misplaced-bare-raise
+    "PLR0206", # property-with-parameters
+    "PLR1722", # sys-exit-alias
+    "PLW0128", # redeclared-assigned-name
+    "PLW0211", # bad-staticmethod-argument
+    "PLW1510", # subprocess-run-without-check
+    "S102",    # exec-builtin
+    "SIM101",  # duplicate-isinstance-call
+    "TRY203",  # useless-try-except
+]
+extend-select = [
     "B",  # flake8-bugbear
     "E",  # pycodestyle errors
     "F",  # pyflakes

@@ -1822,9 +1822,9 @@ class ReplacementAddonSerializer(AMOModelSerializer):
         try:
             get_args = {'slug': collection_slug, 'listed': True}
             if isinstance(user_id, str) and not user_id.isdigit():
-                get_args.update(**{'author__username': user_id})
+                get_args.update(author__username=user_id)
             else:
-                get_args.update(**{'author': user_id})
+                get_args.update(author=user_id)
             collection = Collection.objects.get(**get_args)
         except Collection.DoesNotExist:
             return []

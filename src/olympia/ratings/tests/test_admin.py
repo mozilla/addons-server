@@ -2,7 +2,7 @@ from django.urls import reverse
 
 from pyquery import PyQuery as pq
 
-from olympia import core
+from olympia import amo, core
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 from olympia.ratings.models import Rating
@@ -43,7 +43,7 @@ class TestRatingAdmin(TestCase):
             addon=addon, user=self.user, body='Réply', reply_to=self.rating
         )
 
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(self.user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -91,7 +91,7 @@ class TestRatingAdmin(TestCase):
             'created__range__gte': even_more_time_ago.isoformat(),
             'created__range__lte': some_time_ago.isoformat(),
         }
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -120,7 +120,7 @@ class TestRatingAdmin(TestCase):
 
     def test_search_tooltip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
@@ -139,8 +139,8 @@ class TestRatingAdmin(TestCase):
 
     def test_search_by_ip(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Moderate')
-        self.grant_permission(user, 'Ratings:Delete')
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
+        self.grant_permission(user, amo.permissions.RATINGS_DELETE)
         self.client.force_login(user)
 
         addon = Addon.objects.get(pk=3615)
@@ -290,8 +290,8 @@ class TestRatingAdmin(TestCase):
                 body='Lôrem Ipsûm',
             )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Delete')
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_DELETE)
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
         # Find link to sort by IP
         response = self.client.post(self.list_url, {'addon': self.addon.pk})
@@ -330,7 +330,7 @@ class TestRatingAdmin(TestCase):
         data = {
             'created__range__gte': not_long_ago.isoformat(),
         }
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -370,7 +370,7 @@ class TestRatingAdmin(TestCase):
         data = {
             'created__range__lte': some_time_ago.isoformat(),
         }
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
@@ -412,7 +412,7 @@ class TestRatingAdmin(TestCase):
             addon=addon, user=self.user, body='Réply', reply_to=self.rating
         )
 
-        self.grant_permission(self.user, 'Ratings:Moderate')
+        self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(self.user)
         with self.assertNumQueries(9):
             # - 2 Savepoint/release
@@ -430,7 +430,7 @@ class TestRatingAdmin(TestCase):
 
     def test_can_not_access_detail_without_ratings_moderate_permission(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Addons:Edit')
+        self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
@@ -438,7 +438,7 @@ class TestRatingAdmin(TestCase):
     def test_can_not_delete_without_ratings_delete_permission(self):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Moderate')  # Not enough!
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)  # Not enough!
         self.client.force_login(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
@@ -451,8 +451,8 @@ class TestRatingAdmin(TestCase):
     def test_can_delete_with_ratings_delete_permission(self):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Delete')
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_DELETE)
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
 
         response = self.client.get(self.list_url, follow=True)
@@ -470,8 +470,8 @@ class TestRatingAdmin(TestCase):
 
     def test_can_not_change_detail(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Ratings:Delete')
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_DELETE)
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
 
         response = self.client.get(self.detail_url, follow=True)
@@ -480,8 +480,8 @@ class TestRatingAdmin(TestCase):
 
     def test_detail(self):
         user = UserProfile.objects.get(pk=999)
-        self.grant_permission(user, 'Ratings:Delete')
-        self.grant_permission(user, 'Ratings:Moderate')
+        self.grant_permission(user, amo.permissions.RATINGS_DELETE)
+        self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.client.force_login(user)
 
         response = self.client.get(self.detail_url, follow=True)

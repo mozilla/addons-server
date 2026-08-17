@@ -584,7 +584,11 @@ class AutoApprovalSummary(ModelBase):
         - Delayed until a future date
 
         Those flags are set by scanners or reviewers for a specific channel.
+        They are ignored for enterprise versions, which should not have their
+        auto-approval disabled or delayed.
         """
+        if version.channel == amo.CHANNEL_ENTERPRISE:
+            return False
         addon = version.addon
         flag_suffix = '_unlisted' if version.channel == amo.CHANNEL_UNLISTED else ''
         auto_approval_disabled = bool(

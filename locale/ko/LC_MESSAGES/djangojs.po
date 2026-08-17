@@ -452,41 +452,41 @@ msgstr "이 기능은 웹사이트 점검으로 인해 잠시 사용할 수 없�
 msgid "Remove this localization"
 msgstr "이 번역 삭제"
 
-#: static/js/zamboni/reviewers.js:324
+#: static/js/zamboni/reviewers.js:328
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name}님이 먼저 이 페이지를 살펴보셨습니다."
 
-#: static/js/zamboni/reviewers.js:332
+#: static/js/zamboni/reviewers.js:336
 msgid "Review page polling failed."
 msgstr "리뷰 페이지 폴링에 실패했습니다."
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:653
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name}님이 먼저 이 부가 기능을 조회하셨습니다."
 
-#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
+#: static/js/zamboni/reviewers.js:666 static/js/zamboni/reviewers.js:692
 msgid "Loading&hellip;"
 msgstr "불러오는 중&hellip;"
 
-#: static/js/zamboni/reviewers.js:667
+#: static/js/zamboni/reviewers.js:671
 msgid "Version Notes"
 msgstr "버전 정보"
 
-#: static/js/zamboni/reviewers.js:674
+#: static/js/zamboni/reviewers.js:678
 msgid "Notes for Reviewers"
 msgstr "검토자 메모"
 
-#: static/js/zamboni/reviewers.js:681
+#: static/js/zamboni/reviewers.js:685
 msgid "No version notes found"
 msgstr "버전 정보를 찾을 수 없습니다."
 
-#: static/js/zamboni/reviewers.js:693
+#: static/js/zamboni/reviewers.js:697
 msgid "Review Text"
 msgstr "검토 내용"
 
-#: static/js/zamboni/reviewers.js:700
+#: static/js/zamboni/reviewers.js:704
 msgid "Review notes found"
 msgstr "검토 메모가 발견됨"
 

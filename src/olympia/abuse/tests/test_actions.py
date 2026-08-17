@@ -378,7 +378,7 @@ class NegativeContentActionMixin:
         assert len(mail.outbox) == 0
 
         user = user_factory()
-        self.grant_permission(user, ':'.join(ADDONS_HIGH_IMPACT_APPROVE))
+        self.grant_permission(user, ADDONS_HIGH_IMPACT_APPROVE)
         self.ActionClass(self.decision).notify_2nd_level_approvers()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -476,7 +476,7 @@ class PositiveContentActionMixin:
         assert f'[ref:ab89/{self.abuse_report_no_auth.id}]' in mail.outbox[0].body
         assert f'[ref:ab89/{self.abuse_report_auth.id}]' in mail.outbox[1].body
 
-        for idx in range(0, 1):
+        for idx in range(1):
             assert (
                 "weren't able to identify content that doesn't adhere to"
                 in mail.outbox[idx].body
@@ -636,7 +636,7 @@ class TestContentActionBanUser(
         self.user.update(email='foo@baa')
         assert action_helper.should_hold_action() is False
         del self.user.groups_list
-        self.grant_permission(self.user, 'this:thing')
+        self.grant_permission(self.user, amo.permissions.NONE)
         assert action_helper.should_hold_action() is True
 
         self.user.groups_list = []
@@ -2101,6 +2101,14 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             action_helper,
             f'Mozilla Add-ons: {self.addon.name}',
             fragment='more on its availability',
+        )
+
+    def test_description(self):
+        assert ContentActionRejectVersion.description == (
+            'Add-on version(s) will be rejected'
+        )
+        assert ContentActionRejectVersionDelayed.description == (
+            'Add-on version(s) will be rejected, after 30 days'
         )
 
 

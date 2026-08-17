@@ -1356,7 +1356,7 @@ class TestAPIKeyPage(TestCase):
             user=self.user, token='old token', confirmed_once=False
         )
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 4):
+            for _x in range(4):
                 self._add_fake_throttling_action(
                     view_class=APIKeyForm,
                     url=self.url,
@@ -1833,7 +1833,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_experiment_xpi_allowed(self, run_addons_linter_mock):
         user = UserProfile.objects.get(email='regular@mozilla.com')
-        self.grant_permission(user, 'Experiments:submit')
+        self.grant_permission(user, amo.permissions.EXPERIMENTS_SUBMIT)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(
             '../../../files/fixtures/files/experiment_inside_webextension.xpi'
@@ -1867,7 +1867,7 @@ class TestUploadDetail(UploadMixin, TestCase):
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_restricted_guid_addon_allowed(self, run_addons_linter_mock):
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         run_addons_linter_mock.return_value = self.validation_ok()
         self.upload_file(self.file_fixture_path('mozilla_guid.xpi'))
         upload = FileUpload.objects.get()
@@ -1900,7 +1900,7 @@ class TestUploadDetail(UploadMixin, TestCase):
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, get_signer_mock, run_addons_linter_mock):
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         run_addons_linter_mock.return_value = self.validation_ok()
         get_signer_mock.return_value = 'Mozilla Extensions'
         self.upload_file(self.file_fixture_path('webextension_signed_already.xpi'))
@@ -2927,7 +2927,7 @@ class TestSupportView(TestCase):
     def test_post_throttled_user(self):
         self.client.force_login(self.user)
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 10):
+            for _x in range(10):
                 self._add_fake_throttling_action(
                     view_class=SupportForm,
                     url=self.url,
@@ -2944,7 +2944,7 @@ class TestSupportView(TestCase):
 
     def test_post_throttled_ip(self):
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(0, 20):
+            for _x in range(20):
                 self._add_fake_throttling_action(
                     view_class=SupportForm,
                     url=self.url,

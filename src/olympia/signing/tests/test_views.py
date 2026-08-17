@@ -322,7 +322,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         )
 
     def test_version_added_is_experiment(self):
-        self.grant_permission(self.user, 'Experiments:submit')
+        self.grant_permission(self.user, amo.permissions.EXPERIMENTS_SUBMIT)
         guid = '@experiment-inside-webextension-guid'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
@@ -362,7 +362,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_mozilla_signed_allowed(self):
         guid = '@webextension-guid'
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -398,7 +398,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_restricted_guid_addon_allowed(self):
         guid = 'systemaddon@mozilla.org'
-        self.grant_permission(self.user, 'SystemAddon:Submit')
+        self.grant_permission(self.user, amo.permissions.SYSTEM_ADDON_SUBMIT)
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
@@ -643,7 +643,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         # different every time, so that we test IP throttling specifically.
         users = [
             UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
-            for i in range(0, 6)
+            for i in range(6)
         ]
         UserProfile.objects.bulk_create(users)
         users = UserProfile.objects.filter(email__startswith='bulk')
@@ -688,7 +688,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         # different every time, so that we test IP throttling specifically.
         users = [
             UserProfile(username='bûlk%d' % i, email='bulk%d@example.com' % i)
-            for i in range(0, 50)
+            for i in range(50)
         ]
         UserProfile.objects.bulk_create(users)
         users = UserProfile.objects.filter(email__startswith='bulk')
@@ -746,7 +746,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _x in range(0, 6):
+            for _x in range(6):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -786,7 +786,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
     def _test_throttling_verb_user_hourly(self, verb, url, expected_status=201):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
             # 21 is above the hourly limit but below the daily one.
-            for _x in range(0, 21):
+            for _x in range(21):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -838,7 +838,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def _test_throttling_verb_user_daily(self, verb, url, expected_status=201):
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _x in range(0, 50):
+            for _x in range(50):
                 # Make the IP different every time so that we test the user
                 # throttling.
                 self._add_fake_throttling_action(
@@ -942,12 +942,10 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self._test_throttling_verb_user_daily('PUT', url, expected_status=202)
 
     def test_throttling_ignored_for_special_users(self):
-        self.grant_permission(
-            self.user, ':'.join(amo.permissions.API_BYPASS_THROTTLING)
-        )
+        self.grant_permission(self.user, amo.permissions.API_BYPASS_THROTTLING)
         url = self.url(self.guid, '3.0')
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
-            for _x in range(0, 60):
+            for _x in range(60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(
@@ -1316,7 +1314,7 @@ class TestTestUploadVersionWebextensionTransactions(
     def test_activity_log_saved_on_throttling(self):
         url = reverse_ns('signing.version', api_version='v4')
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
-            for _x in range(0, 3):
+            for _x in range(3):
                 self._add_fake_throttling_action(
                     view_class=self.view_class,
                     url=url,
@@ -1505,7 +1503,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         url = self.url(self.guid, '3.0')
 
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False):
-            for _x in range(0, 60):
+            for _x in range(60):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(

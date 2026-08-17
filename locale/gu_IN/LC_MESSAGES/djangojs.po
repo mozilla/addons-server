@@ -464,41 +464,41 @@ msgstr "અમે વેબસાઇટ જાળવણી કરતી વખ�
 msgid "Remove this localization"
 msgstr "આ સ્થાનિકીકરણ દૂર કરો"
 
-#: static/js/zamboni/reviewers.js:324
+#: static/js/zamboni/reviewers.js:328
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:332
+#: static/js/zamboni/reviewers.js:336
 msgid "Review page polling failed."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:653
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
+#: static/js/zamboni/reviewers.js:666 static/js/zamboni/reviewers.js:692
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:667
+#: static/js/zamboni/reviewers.js:671
 msgid "Version Notes"
 msgstr "આવૃત્તિની નોંધો"
 
-#: static/js/zamboni/reviewers.js:674
+#: static/js/zamboni/reviewers.js:678
 msgid "Notes for Reviewers"
 msgstr "સમીક્ષકો માટે નોંધો"
 
-#: static/js/zamboni/reviewers.js:681
+#: static/js/zamboni/reviewers.js:685
 msgid "No version notes found"
 msgstr "કોઈ આવૃત્તિની નોંધો મળી નથી"
 
-#: static/js/zamboni/reviewers.js:693
+#: static/js/zamboni/reviewers.js:697
 msgid "Review Text"
 msgstr "લખાણની સમીક્ષા કરો"
 
-#: static/js/zamboni/reviewers.js:700
+#: static/js/zamboni/reviewers.js:704
 msgid "Review notes found"
 msgstr "સમીક્ષાની નોંધો મળી"
 

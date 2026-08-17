@@ -38,7 +38,7 @@ msgstr ""
 msgid "User profile"
 msgstr "ਵਰਤੋਂਕਾਰ ਪਰੋਫਾਇਲ"
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "{} ਲਈ \"{}\""
@@ -197,15 +197,15 @@ msgstr "ਕਿਸੇ ਲਿੰਕ ਦੀ ਇਜ਼ਾਜਤ ਨਹੀਂ।"
 msgid "This display name cannot be used."
 msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1042
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1048
 msgid "Images cannot be animated."
 msgstr "ਤਸਵੀਰ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦੀ।"
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1057
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "%dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ।"
@@ -214,7 +214,7 @@ msgstr "%dMB ਤੋਂ ਛੋਟੀਆਂ ਤਸਵੀਰਾਂ ਵਰਤੋਂ�
 msgid "Need help?"
 msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "ਸੂਚਨਾ [%s] ਮੌਜੂਦ ਨਹੀਂ ਹੈ"
@@ -286,7 +286,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr ""
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:774
 msgid "Invalid or broken archive."
 msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
 
@@ -312,7 +312,7 @@ msgstr ""
 msgid "Images must be smaller than %dMB"
 msgstr ""
 
-#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:72
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
 
@@ -484,11 +484,11 @@ msgstr "ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
 msgid "Submit a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਭੇਜੋ"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:93 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "ਡਿਵੈਲਪਰ ਸੱਥ"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2162
 msgid "Manage API Keys"
 msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਬੰਦੋਬਸਤ ਕਰੋ"
 
@@ -520,7 +520,7 @@ msgstr "ਵੈਧ IP4 ਜਾਂ IP6 ਨੈੱਟਵਰਕ ਦਾਖਲ ਕਰੋ
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
 
@@ -851,7 +851,7 @@ msgstr "{addon}ਦੇ {version} ਤੋਂ File {0} ਹਟਾਈ।"
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} ਮਨਜ਼ੂਰ ਹੋਇਆ।"
 
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:27 src/olympia/constants/base.py:35
 msgid "Approved"
 msgstr "ਮਨਜ਼ੂਰ ਹੈ"
 
@@ -1271,6 +1271,15 @@ msgstr ""
 msgid "Listing review requested"
 msgstr ""
 
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1299,137 +1308,137 @@ msgstr "Android ਲਈ Firefox"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:24
+#: src/olympia/constants/base.py:25
 msgid "Incomplete"
 msgstr "ਅਧੂਰਾ"
 
-#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Awaiting Review"
 msgstr "ਪੜਤਾਲ ਦੀ ਉਡੀਕ"
 
-#: src/olympia/constants/base.py:27
+#: src/olympia/constants/base.py:28
 msgid "Listing Content Rejected"
 msgstr ""
 
-#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
+#: src/olympia/constants/base.py:29 src/olympia/constants/base.py:36
 msgid "Disabled by Mozilla"
 msgstr "Mozilla ਵਲੋਂ ਅਸਮਰੱਥ ਕੀਤਾ"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
+#: src/olympia/constants/base.py:30 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "ਹਟਾਇਆ"
 
-#: src/olympia/constants/base.py:70
+#: src/olympia/constants/base.py:71
 msgid "Unlisted"
 msgstr "ਸੂਚੀ ਤੋਂ ਹਟਾਏ"
 
-#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+#: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
 msgstr "ਇੰਟਰਪ੍ਰਾਈਜ਼"
 
-#: src/olympia/constants/base.py:93
+#: src/olympia/constants/base.py:94
 msgid "Signing API"
 msgstr ""
 
-#: src/olympia/constants/base.py:94
+#: src/olympia/constants/base.py:95
 msgid "Add-on API"
 msgstr ""
 
-#: src/olympia/constants/base.py:95
+#: src/olympia/constants/base.py:96
 msgid "Automatically generated by AMO"
 msgstr ""
 
-#: src/olympia/constants/base.py:104
+#: src/olympia/constants/base.py:105
 msgid "Owner"
 msgstr "ਮਾਲਕ"
 
-#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:106 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "ਵਿਕਾਸਕਾਰ"
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "(Deleted)"
 msgstr "(ਹਟਾਇਆ)"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Extension"
 msgstr "ਇਕਸਟੈਨਸ਼ਨ"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 #, fuzzy
 msgid "Deprecated Complete Theme"
 msgstr "ਮੁਕੰਮਲ ਥੀਮ ਦੀ ਨਵਿਆਈ ਸਮੀਖਿਆ"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:140
 msgid "Dictionary"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:141
 msgid "Deprecated Search Engine"
 msgstr ""
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:142
 msgid "Language Pack"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "ਬਰਤਰਫ਼ ਕੀਤਾ ਭਾਸ਼ਾ ਪੈਕ (ਐਡ-ਆਨ)"
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:144
 msgid "Deprecated Plugin"
 msgstr ""
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:145
 msgid "Deprecated LWT"
 msgstr "ਛੱਡੇ ਗਏ LWT"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:146
 msgid "Theme"
 msgstr "ਥੀਮ"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:147
 msgid "Deprecated Site Permission"
 msgstr ""
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:152 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "ਇਕਸਟੈਨਸ਼ਨਾਂ"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:153
 #, fuzzy
 msgid "Deprecated Complete Themes"
 msgstr "ਮੁਕਮੰਲ ਥੀਮ"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:154
 msgid "Dictionaries"
 msgstr "ਸ਼ਬਦਕੋਸ"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:155
 msgid "Deprecated Search Tools"
 msgstr ""
 
-#: src/olympia/constants/base.py:155
+#: src/olympia/constants/base.py:156
 msgid "Language Packs"
 msgstr "ਭਾਸ਼ਾ ਪੈਕ"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Language Packs (Add-on)"
 msgstr ""
 
-#: src/olympia/constants/base.py:157
+#: src/olympia/constants/base.py:158
 msgid "Deprecated Plugins"
 msgstr ""
 
-#: src/olympia/constants/base.py:158
+#: src/olympia/constants/base.py:159
 msgid "Deprecated LWTs"
 msgstr "ਛੱਡੇ ਗਏ LWT"
 
-#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:160 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "ਥੀਮ"
 
-#: src/olympia/constants/base.py:160
+#: src/olympia/constants/base.py:161
 msgid "Deprecated Site Permissions"
 msgstr ""
 
@@ -2081,7 +2090,7 @@ msgstr "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਦਰਜ �
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "ਕੋਆਪਟਰ ਦੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਜਮ੍ਹਾ ਹੋਈ ਫਾਈਲ ਵਿੱਚ ਲੱਭੀ ਗਈ ਸੀ। ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਸੁਰੱਖਿਆ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
-#: src/olympia/devhub/tasks.py:692
+#: src/olympia/devhub/tasks.py:691
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "ਮੋਜ਼ੀਲਾ ਸੁਰੱਖਿਆ ਸੂਚਨਾ: ਤੁਹਾਡੇ AMO API ਪ੍ਰਮਾਣ-ਪੱਤਰਾਂ ਨੂੰ ਰੱਦ ਕੀਤਾ ਗਿਆ ਹੈ"
 
@@ -2177,7 +2186,7 @@ msgstr "ਸੱਦਾ ਨਾਮਨਜ਼ੂਰ ਕਰ ਦਿੱਤਾ।"
 msgid "A confirmation email has been sent to {email}"
 msgstr "ਤਸਦੀਕੀ ਈਮੇਲ {email} ਨੂੰ ਭੇਜੀ ਗਈ ਹੈ"
 
-#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1185
 msgid "Changes successfully saved."
 msgstr "ਬਦਲਾਅ ਕਾਮਯਾਬੀ ਨਾਲ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
@@ -2190,167 +2199,167 @@ msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1039
+#: src/olympia/devhub/views.py:1040
 msgid "Icons must be either PNG or JPG."
 msgstr "ਆਈਕਾਨ PNG ਜਾਂ JPG ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 msgid "Icons cannot be animated."
 msgstr "ਆਈਕਾਨ ਐਨੀਮੇਟ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1072
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "ਚਿੱਤਰ ਘੱਟੋ ਘੱਟ {0} ਪਿਕਸਲ ਚੌੜਾ ਅਤੇ {1} ਲੰਬਾ ਪਿਕਸਲ ਲੰਬਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈੈ।"
 
-#: src/olympia/devhub/views.py:1075
+#: src/olympia/devhub/views.py:1076
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "ਚਿੱਤਰ ਦੇ ਮਾਪ ਅਨੁਪਾਤ 4:3 ਵਿੱਚ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#: src/olympia/devhub/views.py:1083
+#: src/olympia/devhub/views.py:1084
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "ਆਈਕਾਨ ਘੱਟੋ ਘੱਟ {0} ਪਿਕਸਲ ਚੌੜਾ ਅਤੇ ਲੰਬਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈੈ।"
 
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Icon must be square (same width and height)."
 msgstr "ਆਈਕਨ ਵਰਗ (ਇੱਕੋ ਚੌੜਾਈ ਅਤੇ ਉਚਾਈ)ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
-#: src/olympia/devhub/views.py:1094
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
 
-#: src/olympia/devhub/views.py:1240
+#: src/olympia/devhub/views.py:1241
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1247
+#: src/olympia/devhub/views.py:1248
 #, python-format
 msgid "Version %s disabled."
 msgstr "ਵਰਜ਼ਨ %s ਅਸਮਰੱਥ ਹੈ।"
 
-#: src/olympia/devhub/views.py:1251
+#: src/olympia/devhub/views.py:1252
 #, python-format
 msgid "Version %s deleted."
 msgstr "ਵਰਜ਼ਨ %s ਹਟਾਇਆ ਗਿਆ।"
 
-#: src/olympia/devhub/views.py:1262
+#: src/olympia/devhub/views.py:1263
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "ਵਰਜ਼ਨ %s ਮੁੜ-ਸਮਰੱਥ ਕੀਤਾ।"
 
-#: src/olympia/devhub/views.py:1278
+#: src/olympia/devhub/views.py:1279
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "ਇਸ ਅੱਪਲੋਡ ਦੀ ਪ੍ਰਮਾਣਿਕਤਾ ਫ਼ੇਲ੍ਹ ਹੋਈ ਅਤੇ ਹੋ ਸਕਦਾ ਮੁਕੰਮਲ ਪ੍ਰਮਾਣਿਕਤਾ ਨਤੀਜਿਆਂ ਦੀ ਘਾਟ ਹੋਵੇ। ਕਿਰਪਾ ਕਰਕੇ ਪੂਰਾ ਧਿਆਨ ਦੇਵੋ ਜਦੋਂ ਇਸ ਦੀ ਸਮੀਖਿਆ ਕਰ ਰਹੇ ਹੋਵੋ।"
 
-#: src/olympia/devhub/views.py:1337
+#: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1478
 msgid "Header area background"
 msgstr "ਸਿਰਲੇਖ ਇਲਾਕੇ ਦੇ ਪਿਛਲਾ ਪਰਦਾ"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਊਂਡ ਦਾ ਰੰਗ, ਸਿਰਲੇਖ ਦੇ ਭਾਗ ਵਿੱਚ ਪ੍ਰਦਰਸ਼ਿਤ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ ਜੋ ਸਿਰਲੇਖ ਚਿੱਤਰ ਦੁਆਰਾ ਕਵਰ ਕੀਤਾ ਜਾਂ ਵਿਖਾਈ ਦੇ ਰਿਹਾ ਹੈ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਫਰੇਮ।"
 
-#: src/olympia/devhub/views.py:1487
+#: src/olympia/devhub/views.py:1488
 msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
-#: src/olympia/devhub/views.py:1489
+#: src/olympia/devhub/views.py:1490
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "ਐਕਟਿਵ ਟੈਬ ਨੂੰ ਛੱਡ ਕੇ ਸਿਰਲੇਖ ਦੇ ਖੇਤਰ ਵਿਚ ਟੈਕਸਟ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  tab_background_text।"
 
-#: src/olympia/devhub/views.py:1496
+#: src/olympia/devhub/views.py:1497
 msgid "Toolbar area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
 
-#: src/olympia/devhub/views.py:1498
+#: src/olympia/devhub/views.py:1499
 #, fuzzy
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "ਨੇਵੀਗੇਸ਼ਨ ਪੱਟੀ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ, ਬੁੱਕਮਾਰਕਸ ਬਾਰ ਅਤੇ ਚੁਣੇ ਟੈਬ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ: ਟੂਲਬਾਰ।  "
 
-#: src/olympia/devhub/views.py:1505
+#: src/olympia/devhub/views.py:1506
 msgid "Toolbar area text and icons"
 msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "ਟੂਲਬਾਰ ਅਤੇ ਐਕਟਿਵ ਟੈਬ ਵਿੱਚ ਟੈਕਸਟ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਬੁੱਕਮਾਰਕ_ਟੇਸਟ।"
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1515
 msgid "Toolbar field area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1517
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "ਸੰਦ ਪੱਟੀ ਵਿੱਚ ਖੇਤਰਾਂ ਲਈ ਬੈਕਗਰਾਊਂਡ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਪੱਟੀ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਟੂਲਬਾਰ_ਫੀਲਡ।"
 
-#: src/olympia/devhub/views.py:1523
+#: src/olympia/devhub/views.py:1524
 msgid "Toolbar field area text"
 msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 
-#: src/olympia/devhub/views.py:1525
+#: src/olympia/devhub/views.py:1526
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰਾਂ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਬਾਰ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  toolbar_field_text।"
 
-#: src/olympia/devhub/views.py:1533
+#: src/olympia/devhub/views.py:1534
 msgid "Tab highlight"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1535
+#: src/olympia/devhub/views.py:1536
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1638
+#: src/olympia/devhub/views.py:1639
 msgid "Add-on uploads are temporarily unavailable"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2011
 msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2013
 msgid "You must provide further details to proceed."
 msgstr "ਅੱਗੇ ਵਧਣ ਲਈ ਤੁਹਾਨੂੰ ਹੋਰ ਵੇਰਵੇ ਦੇਣੇ ਜਰੂਰੀ ਹਨ।"
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2120
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2135
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "ਤੁਹਾਡੇ ਪੁਰਾਣੇ ਸਰਟੀਫਿਕੇਟਸ ਰੱਦ ਕੀਤੇ ਗਏ ਸਨ ਅਤੇ ਹੁਣ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਹਨ।"
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr ""
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2174
 msgid "New API key created"
 msgstr "ਨਵੀਂ API ਕੁੰਜੀ ਬਣਾਈ ਗਈ"
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2185
 msgid "API key revoked"
 msgstr "API ਕੁੰਜੀ ਰੱਦ ਕੀਤੀ ਗਈ"
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2245
 msgid "Verify email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2247
 msgid "Send another email"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2280
 msgid "Your email has been verified"
 msgstr ""
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr ""
 
@@ -5763,8 +5772,8 @@ msgstr "50+ ਮਦਦਗਾਰ ਮਾਊਸ ਸੰਕੇਤਾਂ ਦੇ ਨਾ�
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "ਨਵੇਂ YouTube ਫ਼ੀਚਰਾਂ, ਜਿਵੇਂ ਕਿ ਸਿਨੇਮਾ ਮੋਡ, ਇਸ਼ਤਿਹਾਰ ਨੂੰ ਰੋਕਣਾ, ਆਟੋ-ਪਲੇ ਕੰਟਰੋਲ, ਅਤੇ ਹੋਰ ਬਹੁਤਿਆਂ ਦੇ ਸਮੂਹ ਦਾ ਆਨੰਦ ਲਵੋ।"
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -6319,132 +6328,132 @@ msgstr "ਗ਼ੈਰ-ਸਮੀਖਿਆ ਕੀਤੇ"
 msgid "[status:%s]"
 msgstr "[ਸਥਿਤੀ:%s]"
 
-#: src/olympia/files/utils.py:86
+#: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
 msgstr "ਇਹ ਅੱਪਲੋਡ ਨੂੰ ਪਹਿਲਾਂ ਹੀ ਭੇਜਿਆ ਜਾ ਚੁੱਕਾ ਹੈ।"
 
-#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:196 src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:156 src/olympia/files/utils.py:190 src/olympia/files/utils.py:881
 msgid "Could not parse the manifest file."
 msgstr "ਮੈਨੀਫੈਸਟ ਫਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
-#: src/olympia/files/utils.py:343
+#: src/olympia/files/utils.py:337
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr ""
 
-#: src/olympia/files/utils.py:374
+#: src/olympia/files/utils.py:367
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{app} ਲਈ ਅਣਜਾਣ \"strict_min_version\" {appver}"
 
-#: src/olympia/files/utils.py:388
+#: src/olympia/files/utils.py:381
 #, fuzzy, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} ਲਈ ਅਣਜਾਣ \"strict_min_version\" {appver}"
 
-#: src/olympia/files/utils.py:572
+#: src/olympia/files/utils.py:561
 msgid "Unsupported compression method in archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:564
 msgid "Unsupported archive type."
 msgstr "ਅਸਮਰਥਿਤ ਅਕਾਇਵ ਪ੍ਰਕਾਰ।"
 
-#: src/olympia/files/utils.py:584
+#: src/olympia/files/utils.py:573
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "ਅਕਾਇਵ ਵਿੱਚ ਗਲਤ ਫਾਇਲ ਨਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਸਾਰੇ ਫਾਈਲਾਂ ਦੇ ਨਾਂ utf-8 ਜਾਂ latin1 ਏਨਕੋਡ ਕੀਤੇ ਗਏ ਹੋਣ।"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:587
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਗਲਤ ਫ਼ਾਇਲ ਨਾਂ:{0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:606
+#: src/olympia/files/utils.py:595
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "ਅਕਾਈਵ ਵਿੱਚ ਫ਼ਾਇਲ ਨੇ ਅਕਾਰ ਹੱਦ ਪੂਰੀ ਕੀਤੀ: {0}"
 
-#: src/olympia/files/utils.py:626
+#: src/olympia/files/utils.py:615
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr ""
 
-#: src/olympia/files/utils.py:661
+#: src/olympia/files/utils.py:650
 msgid "Uncompressed size is too large"
 msgstr "ਬੇਮਿਸਾਲ ਆਕਾਰ ਬਹੁਤ ਵੱਡਾ ਹੈ"
 
-#: src/olympia/files/utils.py:693
+#: src/olympia/files/utils.py:682
 msgid "Invalid archive."
 msgstr "ਗਲਤ ਅਕਾਈਵ।"
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:869
 msgid "No manifest.json found"
 msgstr ""
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:874
 msgid "Invalid or corrupted file."
 msgstr ""
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:914
 #, fuzzy, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ਤੁਹਾਡੇ manifest. Json ਜਾਂ install.rdf (%s) ਵਿੱਚ ਐਡਆਨ ਆਈਡੀ AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡਆਨ ਦੇ ID ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:922
 msgid "Duplicate add-on ID found."
 msgstr "ਡੁਪਲੀਕੇਟ ਐਡ-ਔਨ ਆਈਡੀ ਪਾਇਆ ਗਿਆ।"
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:928
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:945
+#: src/olympia/files/utils.py:934
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:943
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension ਥੀਮ ਲਈ ਅਧਿਕਤਮ ਆਕਾਰ {0}ਹੈ।"
 
-#: src/olympia/files/utils.py:968
+#: src/olympia/files/utils.py:957
 msgid "You cannot submit this type of add-on"
 msgstr "ਤੁਸੀਂ ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#: src/olympia/files/utils.py:972
+#: src/olympia/files/utils.py:961
 #, fuzzy
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#: src/olympia/files/utils.py:977
+#: src/olympia/files/utils.py:966
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#: src/olympia/files/utils.py:981
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit a language pack"
 msgstr "ਤੁਸੀਂ ਭਾਸ਼ਾ ਪੈਕ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
-#: src/olympia/files/utils.py:990
+#: src/olympia/files/utils.py:979
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr ""
 
-#: src/olympia/files/utils.py:1033
+#: src/olympia/files/utils.py:1022
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਗ਼ੈਰਸਮਰਥਿਤ ਫਾਈਲ ਕਿਸਮ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਸਮਰਥਿਤ ਫਾਈਲ {extensions} ਅਪਲੋਡ ਕਰੋੋ।"
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1031
 msgid "Unexpected error."
 msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
-#: src/olympia/files/utils.py:1047
+#: src/olympia/files/utils.py:1036
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "ਕਿਸਮ (%s) AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1041
 msgid "Unknown"
 msgstr "ਅਣਪਛਾਤੇ"
 
@@ -6581,7 +6590,7 @@ msgstr "AMO ਤੇ ਵਾਪਸ ਇਸ ਸਮੇਂ ਅਯੋਗ ਹੈ"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "AMO guid ਲਈ ਅਯੋਗ ਵਾਪਸੀ (base64url ਫਾਰਮੈਟ ਵਿੱਚ ਨਹੀਂ?)"
 
-#: src/olympia/search/filters.py:942
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr "ਵੱਧ ਤੋਂ ਵੱਧ ਪੁੱਛਗਿੱਛ ਲੰਬਾਈ ਵੱਧ ਗਈ।"
 
@@ -7233,12 +7242,12 @@ msgstr ""
 msgid "Disabled by Developer"
 msgstr ""
 
-#: src/olympia/versions/models.py:1516
+#: src/olympia/versions/models.py:1515
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} and ਬਾਅਦ"
 
-#: src/olympia/versions/models.py:1643
+#: src/olympia/versions/models.py:1642
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "ਇੰਸਟਾਲ ਕਰਨ ਦੇ ਮੂਲ {origin} ਦੀ ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।"

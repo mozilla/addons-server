@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-06 10:30+0000\n"
+"POT-Creation-Date: 2026-08-17 08:51+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1014,6 +1014,13 @@ msgid "{addon} listing content review requested."
 msgstr ""
 
 msgid "Listing review requested"
+msgstr ""
+
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+msgid "Decision made"
 msgstr ""
 
 msgid "Firefox"
@@ -4585,8 +4592,8 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr "Personaliza los gestos del ratón. Descubre una nueva forma de navegar con más de 50 gestos de ratón."
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Disfruta de una serie de funciones nuevas de Youtube, como el modo cine, el bloqueo de publicidad, el control de la reproducción automática y mucho más."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 msgid "Customize the look of any website. Shift colors, page backgrounds & more."

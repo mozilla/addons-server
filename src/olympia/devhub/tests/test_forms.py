@@ -221,7 +221,7 @@ class TestNewUploadForm(TestCase):
         request.user = user
         request.META['REMOTE_ADDR'] = '5.6.7.8'
         with time_machine.travel('2019-04-08 15:16:23.42', tick=False) as frozen_time:
-            for _x in range(0, 6):
+            for _x in range(6):
                 self._add_fake_throttling_action(
                     view_class=AddonViewSet,
                     url='/',
@@ -1207,7 +1207,7 @@ class TestAdditionalDetailsForm(TestCase):
         ]
 
     def test_tags_limit(self):
-        for x in range(0, amo.MAX_TAGS + 2):
+        for x in range(amo.MAX_TAGS + 2):
             Tag.objects.create(tag_text=f'tag{x}')
 
         extra = Tag.objects.count() - amo.MAX_TAGS

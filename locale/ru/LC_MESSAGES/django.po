@@ -38,7 +38,7 @@ msgstr "Объясните, почему вы считаете, что это р
 msgid "User profile"
 msgstr "Профиль пользователя"
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "«{}» для {}"
@@ -238,15 +238,15 @@ msgstr "Ссылки не разрешены."
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1042
 msgid "Images must be either PNG or JPG."
 msgstr "Изображения могут быть либо в PNG либо в JPG."
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1048
 msgid "Images cannot be animated."
 msgstr "Изображения не могут быть анимированы."
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1057
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Пожалуйста, используйте изображения менее %d МБ."
@@ -255,7 +255,7 @@ msgstr "Пожалуйста, используйте изображения ме
 msgid "Need help?"
 msgstr "Нужна помощь?"
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Уведомление [%s] не существует"
@@ -328,7 +328,7 @@ msgstr "Лицензии со slug={value} не существует."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите архивный файл ({extensions})."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:774
 msgid "Invalid or broken archive."
 msgstr "Некорректный или повреждённый архив."
 
@@ -354,7 +354,7 @@ msgstr "Невозможно переопределить информацию �
 msgid "Images must be smaller than %dMB"
 msgstr "Размер файла изображения не должен превышать %dМБ"
 
-#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:72
 msgid "Listed"
 msgstr "Опубликованное"
 
@@ -528,11 +528,11 @@ msgstr "Отправить новое дополнение"
 msgid "Submit a New Theme"
 msgstr "Представить новую тему"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:93 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Центр разработки"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2162
 msgid "Manage API Keys"
 msgstr "Управление API-ключами"
 
@@ -564,7 +564,7 @@ msgstr "Введите корректную IPv4 или IPv6 подсеть."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Некоторые функции временно отключены, пока мы проводим техническое обслуживание сайта. Мы вернемся на полную мощность в ближайшее время."
 
@@ -894,7 +894,7 @@ msgstr "{version} — файл {0} удалён из «{addon}»."
 msgid "{addon} {version} approved."
 msgstr "{version} «{addon}» одобрена."
 
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:27 src/olympia/constants/base.py:35
 msgid "Approved"
 msgstr "Одобрено"
 
@@ -1311,6 +1311,15 @@ msgstr "Запрошена проверка листинга содержимо�
 msgid "Listing review requested"
 msgstr "Запрошена проверка листинга"
 
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr "Решение по {addon} принято, новых действий не предпринято."
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
+msgstr "Решение принято"
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1339,135 +1348,135 @@ msgstr "Firefox для Android"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:24
+#: src/olympia/constants/base.py:25
 msgid "Incomplete"
 msgstr "Неполный"
 
-#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Awaiting Review"
 msgstr "Ожидает проверки"
 
-#: src/olympia/constants/base.py:27
+#: src/olympia/constants/base.py:28
 msgid "Listing Content Rejected"
 msgstr "Содержимое листинга отклонено"
 
-#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
+#: src/olympia/constants/base.py:29 src/olympia/constants/base.py:36
 msgid "Disabled by Mozilla"
 msgstr "Отключено Mozilla"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
+#: src/olympia/constants/base.py:30 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "Удалено"
 
-#: src/olympia/constants/base.py:70
+#: src/olympia/constants/base.py:71
 msgid "Unlisted"
 msgstr "Скрытое"
 
-#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+#: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
 msgstr "Предприятие"
 
-#: src/olympia/constants/base.py:93
+#: src/olympia/constants/base.py:94
 msgid "Signing API"
 msgstr "API подписи"
 
-#: src/olympia/constants/base.py:94
+#: src/olympia/constants/base.py:95
 msgid "Add-on API"
 msgstr "API дополнения"
 
-#: src/olympia/constants/base.py:95
+#: src/olympia/constants/base.py:96
 msgid "Automatically generated by AMO"
 msgstr "Автоматически сгенерировано AMO"
 
-#: src/olympia/constants/base.py:104
+#: src/olympia/constants/base.py:105
 msgid "Owner"
 msgstr "Владелец"
 
-#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:106 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Разработчик"
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "(Deleted)"
 msgstr "(удалено)"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Extension"
 msgstr "Расширение"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Complete Theme"
 msgstr "Устаревшая полная тема"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:140
 msgid "Dictionary"
 msgstr "Словарь"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:141
 msgid "Deprecated Search Engine"
 msgstr "Устаревшая поисковая система"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:142
 msgid "Language Pack"
 msgstr "Языковой пакет"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Устаревший языковой пакет (дополнение)"
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:144
 msgid "Deprecated Plugin"
 msgstr "Устаревший плагин"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:145
 msgid "Deprecated LWT"
 msgstr "Устаревшая лёгкая тема"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:146
 msgid "Theme"
 msgstr "Тема"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:147
 msgid "Deprecated Site Permission"
 msgstr "Неактуальное разрешение для сайта"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:152 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Расширения"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Complete Themes"
 msgstr "Устаревшие полные темы"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:154
 msgid "Dictionaries"
 msgstr "Словари"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:155
 msgid "Deprecated Search Tools"
 msgstr "Устаревшие инструменты поиска"
 
-#: src/olympia/constants/base.py:155
+#: src/olympia/constants/base.py:156
 msgid "Language Packs"
 msgstr "Пакеты локализаций"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Устаревшие языковые пакеты (дополнение)"
 
-#: src/olympia/constants/base.py:157
+#: src/olympia/constants/base.py:158
 msgid "Deprecated Plugins"
 msgstr "Устаревшие плагины"
 
-#: src/olympia/constants/base.py:158
+#: src/olympia/constants/base.py:159
 msgid "Deprecated LWTs"
 msgstr "Устаревшие лёгкие темы"
 
-#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:160 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Темы"
 
-#: src/olympia/constants/base.py:160
+#: src/olympia/constants/base.py:161
 msgid "Deprecated Site Permissions"
 msgstr "Неактуальные разрешение для сайта"
 
@@ -2128,7 +2137,7 @@ msgstr "В загруженном файле найден ваш API-ключ р
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "В загруженном файле найден API-ключ соавтора разработчика. Чтобы защитить ваше дополнение, ключ будет отозван."
 
-#: src/olympia/devhub/tasks.py:692
+#: src/olympia/devhub/tasks.py:691
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Оповещение безопасности Mozilla: Ваши полномочия API AMO были отозваны"
 
@@ -2224,7 +2233,7 @@ msgstr "Приглашение отклонено."
 msgid "A confirmation email has been sent to {email}"
 msgstr "Письмо для подтверждения было отправлено на {email}"
 
-#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1185
 msgid "Changes successfully saved."
 msgstr "Изменения успешно сохранены."
 
@@ -2237,37 +2246,37 @@ msgstr "Валидировать дополнение"
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Чтобы отправлять расширения, добавьте в свой аккаунт двухфакторную аутентификацию.</a>"
 
-#: src/olympia/devhub/views.py:1039
+#: src/olympia/devhub/views.py:1040
 msgid "Icons must be either PNG or JPG."
 msgstr "Значки могут быть либо в PNG либо в JPG."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 msgid "Icons cannot be animated."
 msgstr "Значки не могут быть анимированы."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1072
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Изображение должно быть как минимум {0} пикселей в ширину и {1} пикселей в высоту."
 
-#: src/olympia/devhub/views.py:1075
+#: src/olympia/devhub/views.py:1076
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Соотношение сторон изображения должно быть 4:3."
 
-#: src/olympia/devhub/views.py:1083
+#: src/olympia/devhub/views.py:1084
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Значок должен быть как минимум {0} пикселей в ширину и в высоту."
 
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Icon must be square (same width and height)."
 msgstr "Значок должен быть квадратным (одинаковой ширины и высоты)."
 
-#: src/olympia/devhub/views.py:1094
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
 
-#: src/olympia/devhub/views.py:1240
+#: src/olympia/devhub/views.py:1241
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2275,130 +2284,130 @@ msgstr ""
 "Последняя одобренная версия этого дополнения %s не может быть удалена или отключена, поскольку предыдущая версия не была одобрена для продвижения %s. Пожалуйста, свяжитесь с администраторами AMO, "
 "если вам нужна помощь."
 
-#: src/olympia/devhub/views.py:1247
+#: src/olympia/devhub/views.py:1248
 #, python-format
 msgid "Version %s disabled."
 msgstr "Версия %s отключена."
 
-#: src/olympia/devhub/views.py:1251
+#: src/olympia/devhub/views.py:1252
 #, python-format
 msgid "Version %s deleted."
 msgstr "Версия %s удалена."
 
-#: src/olympia/devhub/views.py:1262
+#: src/olympia/devhub/views.py:1263
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Версия %s включена снова."
 
-#: src/olympia/devhub/views.py:1278
+#: src/olympia/devhub/views.py:1279
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Это загрузка не прошла валидацию и в ней могут отсутствовать результаты полной валидации. Пожалуйста, будьте внимательны при его проверке."
 
-#: src/olympia/devhub/views.py:1337
+#: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Откат отправлен. Вы получите уведомление, когда он будет одобрен"
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1478
 msgid "Header area background"
 msgstr "Фон области заголовка"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Цвет фона зоны заголовка, отображаемый в тех областях заголовка, где отсутствует фоновое изображение. Поле манифеста:  frame."
 
-#: src/olympia/devhub/views.py:1487
+#: src/olympia/devhub/views.py:1488
 msgid "Header area text and icons"
 msgstr "Текст и значки в зоне заголовка"
 
-#: src/olympia/devhub/views.py:1489
+#: src/olympia/devhub/views.py:1490
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Цвет текста и значков в зоне заголовка, кроме активной вкладки. Поле манифеста:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1496
+#: src/olympia/devhub/views.py:1497
 msgid "Toolbar area background"
 msgstr "Фон панели инструментов"
 
-#: src/olympia/devhub/views.py:1498
+#: src/olympia/devhub/views.py:1499
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Цвет фона для панели навигации, панели закладок и активной вкладки.  Поле манифеста:  toolbar."
 
-#: src/olympia/devhub/views.py:1505
+#: src/olympia/devhub/views.py:1506
 msgid "Toolbar area text and icons"
 msgstr "Текст и значки в зоне панели инструментов"
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Цвет текста и значков в зоне панели инструментов и активной вкладки. Поле манифеста:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1515
 msgid "Toolbar field area background"
 msgstr "Фон зоны поля панели инструментов"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1517
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Цвет фона полей в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1523
+#: src/olympia/devhub/views.py:1524
 msgid "Toolbar field area text"
 msgstr "Текст зоны поля панели инструментов"
 
-#: src/olympia/devhub/views.py:1525
+#: src/olympia/devhub/views.py:1526
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Цвет текста в полях в панели инструментов, таких как адресная строка. Поле манифеста:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1533
+#: src/olympia/devhub/views.py:1534
 msgid "Tab highlight"
 msgstr "Выделение вкладки"
 
-#: src/olympia/devhub/views.py:1535
+#: src/olympia/devhub/views.py:1536
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Выделяет цветом активную вкладку. Реализовано как рамка вокруг вкладки в Firefox 89+ и линия над вкладкой в старых версиях Firefox. Поле манифеста: tab_line."
 
-#: src/olympia/devhub/views.py:1638
+#: src/olympia/devhub/views.py:1639
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Загрузка дополнений временно недоступна"
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2011
 msgid "Review requested."
 msgstr "Запрошена проверка."
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2013
 msgid "You must provide further details to proceed."
 msgstr "Предоставьте дополнительную информацию для продолжения."
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2120
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr "Ссылка для подтверждения будет отправлена на ваш адрес электронной почты в ближайшее время."
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2135
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Ваши старые учётные данные были отозваны и более недействительны."
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr "Были сгенерированы новые учетные данные API, которые отображаются ниже. Убедитесь, что скопировали секрет JWT, он больше не будет отображаться."
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2174
 msgid "New API key created"
 msgstr "Создан новый API-ключ"
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2185
 msgid "API key revoked"
 msgstr "API-ключ отозван"
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2245
 msgid "Verify email"
 msgstr "Подтвердить почту"
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2247
 msgid "Send another email"
 msgstr "Отправить другое письмо"
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2280
 msgid "Your email has been verified"
 msgstr "Ваша почта подтверждена"
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr "Ваш запрос в службу поддержки отправлен. Мы свяжемся с вами в ближайшее время."
 
@@ -5839,8 +5848,8 @@ msgstr "Настройте жесты мыши. Откройте для себя
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Наслаждайтесь набором новых возможностей YouTube — режимом кино, блокировкой рекламы, автовоспроизведением и многим другим."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -6388,131 +6397,131 @@ msgstr "Неотрецензировано"
 msgid "[status:%s]"
 msgstr "[статус:%s]"
 
-#: src/olympia/files/utils.py:86
+#: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
 msgstr "Эта выгрузка уже отправлена."
 
-#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:196 src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:156 src/olympia/files/utils.py:190 src/olympia/files/utils.py:881
 msgid "Could not parse the manifest file."
 msgstr "Не удалось распарсить файл манифеста."
 
-#: src/olympia/files/utils.py:343
+#: src/olympia/files/utils.py:337
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Минимальная поддерживаемая «strict_min_version» — {min_version}."
 
-#: src/olympia/files/utils.py:374
+#: src/olympia/files/utils.py:367
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "Неизвестная \"strict_min_version\" {appver} для {app}"
 
-#: src/olympia/files/utils.py:388
+#: src/olympia/files/utils.py:381
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "Неизвестная \"strict_max_version\" {appver} для {app}"
 
-#: src/olympia/files/utils.py:572
+#: src/olympia/files/utils.py:561
 msgid "Unsupported compression method in archive."
 msgstr "Неподдерживаемый метод сжатия в архиве."
 
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:564
 msgid "Unsupported archive type."
 msgstr "Неподдерживаемый тип архива."
 
-#: src/olympia/files/utils.py:584
+#: src/olympia/files/utils.py:573
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Недопустимое имя файла в архиве. Пожалуйста, убедитесь, что все имена файлов в кодировке utf-8 или latin1."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:587
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Недопустимое имя файла в архиве: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:606
+#: src/olympia/files/utils.py:595
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Размер файла в архиве превышает лимит: {0}"
 
-#: src/olympia/files/utils.py:626
+#: src/olympia/files/utils.py:615
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Этот архив содержит запрещённый специальный файл (символическую ссылку / жёсткую ссылку или устройство / блок-файл)"
 
-#: src/olympia/files/utils.py:661
+#: src/olympia/files/utils.py:650
 msgid "Uncompressed size is too large"
 msgstr "Несжатый размер слишком велик"
 
-#: src/olympia/files/utils.py:693
+#: src/olympia/files/utils.py:682
 msgid "Invalid archive."
 msgstr "Некорректный архив."
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:869
 msgid "No manifest.json found"
 msgstr "Не найден manifest.json"
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:874
 msgid "Invalid or corrupted file."
 msgstr "Некорректный или повреждённый файл."
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:914
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "ID дополнения в вашем manifest.json (%s) не соответствует ID вашего дополнения на AMO (%s)"
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:922
 msgid "Duplicate add-on ID found."
 msgstr "Найден дублирующийся ID дополнения."
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:928
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Номера версий должны содержать не более {max_length} символов."
 
-#: src/olympia/files/utils.py:945
+#: src/olympia/files/utils.py:934
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Номера версий могут состоять только из букв, цифр и следующих знаков препинания: +*.-_."
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:943
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Максимальный размер для WebExtension тем — {0}."
 
-#: src/olympia/files/utils.py:968
+#: src/olympia/files/utils.py:957
 msgid "You cannot submit this type of add-on"
 msgstr "Вы не можете загрузить этот тип дополнения"
 
-#: src/olympia/files/utils.py:972
+#: src/olympia/files/utils.py:961
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Вы не можете отправить дополнение, используя идентификатор, заканчивающийся этим суффиксом."
 
-#: src/olympia/files/utils.py:977
+#: src/olympia/files/utils.py:966
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Вы не можете отправить расширение, подписанное Mozilla"
 
-#: src/olympia/files/utils.py:981
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit a language pack"
 msgstr "Вы не можете представить языковой пакет"
 
-#: src/olympia/files/utils.py:990
+#: src/olympia/files/utils.py:979
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Язык существующего словаря/языкового пакета изменить нельзя"
 
-#: src/olympia/files/utils.py:1033
+#: src/olympia/files/utils.py:1022
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите файл поддерживаемого типа {extensions}."
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1031
 msgid "Unexpected error."
 msgstr "Неожиданная ошибка."
 
-#: src/olympia/files/utils.py:1047
+#: src/olympia/files/utils.py:1036
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Тип (%s) не соответствует типу вашего дополнения на AMO (%s)"
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1041
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -6651,7 +6660,7 @@ msgstr "Возврат к AMO в настоящее время отключён"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Неверное возвращение к AMO guid (не в формате base64url?)"
 
-#: src/olympia/search/filters.py:942
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr "Превышена максимальная длина запроса."
 
@@ -7324,12 +7333,12 @@ msgstr "Одобрено вручную"
 msgid "Disabled by Developer"
 msgstr "Отключено разработчиком"
 
-#: src/olympia/versions/models.py:1516
+#: src/olympia/versions/models.py:1515
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} и выше"
 
-#: src/olympia/versions/models.py:1643
+#: src/olympia/versions/models.py:1642
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "Источник установки {origin} не разрешён."

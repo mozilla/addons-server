@@ -454,41 +454,41 @@ msgstr "คุณสมบัตินี้ถูกปิดใช้งาน
 msgid "Remove this localization"
 msgstr "เอาการแปลนี้ออก"
 
-#: static/js/zamboni/reviewers.js:324
+#: static/js/zamboni/reviewers.js:328
 #, python-brace-format
 msgid "{name} was viewing this page first."
 msgstr "{name} ดูหน้านี้เป็นคนแรก"
 
-#: static/js/zamboni/reviewers.js:332
+#: static/js/zamboni/reviewers.js:336
 msgid "Review page polling failed."
 msgstr "การโพลล์หน้าตรวจทานล้มเหลว"
 
-#: static/js/zamboni/reviewers.js:649
+#: static/js/zamboni/reviewers.js:653
 #, python-brace-format
 msgid "{name} was viewing this add-on first."
 msgstr "{name} ดูส่วนเสริมนี้เป็นคนแรก"
 
-#: static/js/zamboni/reviewers.js:662 static/js/zamboni/reviewers.js:688
+#: static/js/zamboni/reviewers.js:666 static/js/zamboni/reviewers.js:692
 msgid "Loading&hellip;"
 msgstr "กำลังโหลด&hellip;"
 
-#: static/js/zamboni/reviewers.js:667
+#: static/js/zamboni/reviewers.js:671
 msgid "Version Notes"
 msgstr "บันทึกประจำรุ่น"
 
-#: static/js/zamboni/reviewers.js:674
+#: static/js/zamboni/reviewers.js:678
 msgid "Notes for Reviewers"
 msgstr "หมายเหตุสำหรับนักวิจารณ์"
 
-#: static/js/zamboni/reviewers.js:681
+#: static/js/zamboni/reviewers.js:685
 msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
-#: static/js/zamboni/reviewers.js:693
+#: static/js/zamboni/reviewers.js:697
 msgid "Review Text"
 msgstr "ข้อความการตรวจทาน"
 
-#: static/js/zamboni/reviewers.js:700
+#: static/js/zamboni/reviewers.js:704
 msgid "Review notes found"
 msgstr "พบบันทึกการตรวจทาน"
 

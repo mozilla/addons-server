@@ -6,10 +6,10 @@ import pytest
 import time_machine
 
 from olympia import amo
+from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
 from olympia.amo.tests import (
     addon_factory,
-    grant_permission,
     user_factory,
     version_factory,
 )
@@ -56,8 +56,11 @@ class TestReviewReports:
             self.reviewer3 = user_factory(display_name=None)
             self.reviewer4 = user_factory(display_name='Staff Content D')
             self.reviewer5 = user_factory(display_name='Deleted')
-            grant_permission(self.reviewer2, '', name='No Reviewer Incentives')
-            grant_permission(self.reviewer4, '', name='No Reviewer Incentives')
+            no_incentives_group = Group.objects.create(
+                name='No Reviewer Incentives', rules=''
+            )
+            GroupUser.objects.create(group=no_incentives_group, user=self.reviewer2)
+            GroupUser.objects.create(group=no_incentives_group, user=self.reviewer4)
 
             data = [
                 (self.reviewer1, 178, amo.AUTO_APPROVED, False),

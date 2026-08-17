@@ -466,7 +466,6 @@ def revoke_api_key(key_id):
             'User %s has already revoked the key, nothing to be done.'
             % original_key.user
         )
-        pass
 
 
 def run_addons_linter(path, channel):

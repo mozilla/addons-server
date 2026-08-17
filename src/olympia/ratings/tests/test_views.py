@@ -35,7 +35,7 @@ from ..views import RatingViewSet
 
 
 locmem_cache = settings.CACHES.copy()
-locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
+locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'
 
 
 class TestRatingViewSetGet(TestCase):
@@ -897,7 +897,7 @@ class TestRatingViewSetGet(TestCase):
 
     def test_detail_show_deleted_admin(self):
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Edit')
+        self.grant_permission(self.user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.user)
         review = Rating.objects.create(
             addon=self.addon, body='review', user=user_factory()
@@ -1018,7 +1018,7 @@ class TestRatingViewSetGet(TestCase):
 
     def test_list_by_admin_does_not_show_deleted_by_default(self):
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Edit')
+        self.grant_permission(self.user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.user)
         review1 = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory()
@@ -1066,7 +1066,7 @@ class TestRatingViewSetGet(TestCase):
 
     def test_list_admin_show_deleted_if_requested(self):
         self.user = user_factory()
-        self.grant_permission(self.user, 'Addons:Edit')
+        self.grant_permission(self.user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.user)
         review1 = Rating.objects.create(
             addon=self.addon, body='review 1', user=user_factory()
@@ -1241,7 +1241,7 @@ class TestRatingViewSetDelete(TestCase):
 
     def test_delete_admin(self):
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Addons:Edit')
+        self.grant_permission(admin_user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 204
@@ -1251,7 +1251,7 @@ class TestRatingViewSetDelete(TestCase):
     def test_delete_moderator_flagged(self):
         self.rating.update(editorreview=True)
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Ratings:Moderate')
+        self.grant_permission(admin_user, amo.permissions.RATINGS_MODERATE)
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 204
@@ -1260,7 +1260,7 @@ class TestRatingViewSetDelete(TestCase):
 
     def test_delete_moderator_not_flagged(self):
         admin_user = user_factory()
-        self.grant_permission(admin_user, 'Ratings:Moderate')
+        self.grant_permission(admin_user, amo.permissions.RATINGS_MODERATE)
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 403
@@ -1269,7 +1269,7 @@ class TestRatingViewSetDelete(TestCase):
     def test_delete_moderator_but_addon_author(self):
         admin_user = user_factory()
         self.addon.addonuser_set.create(user=admin_user)
-        self.grant_permission(admin_user, 'Ratings:Moderate')
+        self.grant_permission(admin_user, amo.permissions.RATINGS_MODERATE)
         self.client.login_api(admin_user)
         response = self.client.delete(self.url)
         assert response.status_code == 403
@@ -1333,7 +1333,7 @@ class TestRatingViewSetDelete(TestCase):
             assert Rating.objects.count() == 0
 
             # Go over 5 requests and you get throttled though.
-            for _x in range(0, 3):
+            for _x in range(3):
                 response = self.client.delete(
                     reverse_ns(self.detail_url_name, kwargs={'pk': rating_b.pk})
                 )
@@ -1402,7 +1402,7 @@ class TestRatingViewSetEdit(TestCase):
     def test_edit_no_rights_even_reviewer(self):
         # Only admins can edit a review they didn't write themselves.
         reviewer_user = user_factory()
-        self.grant_permission(reviewer_user, 'Addons:Review')
+        self.grant_permission(reviewer_user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(reviewer_user)
         response = self.client.patch(self.url, {'body': 'løl!'})
         assert response.status_code == 403
@@ -1460,7 +1460,7 @@ class TestRatingViewSetEdit(TestCase):
     def test_edit_admin(self):
         original_review_user = self.rating.user
         admin_user = user_factory(username='mylittleadmin')
-        self.grant_permission(admin_user, 'Addons:Edit')
+        self.grant_permission(admin_user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(admin_user)
         response = self.client.patch(self.url, {'body': 'løl!'})
         assert response.status_code == 200
@@ -1568,7 +1568,7 @@ class TestRatingViewSetEdit(TestCase):
             assert self.rating.rating == 5
 
             # Now with the permission we should be ok.
-            self.grant_permission(self.user, 'API:BypassThrottling')
+            self.grant_permission(self.user, amo.permissions.API_BYPASS_THROTTLING)
             response = self.client.patch(
                 self.url,
                 {'score': 1, 'body': 'Eheheh'},
@@ -2901,7 +2901,7 @@ class TestRatingViewSetFlag(TestCase):
             # Both should have been flagged.
             assert RatingFlag.objects.count() == 2
 
-            for _x in range(0, 18):
+            for _x in range(18):
                 # You can keep flagging up to 20 a day.
                 response = self.client.post(
                     url_b, data={'flag': 'review_flag_reason_spam'}
@@ -2980,7 +2980,7 @@ class TestRatingViewSetReply(TestCase):
         ActivityLog.objects.all().delete()
         mail.outbox = []
         self.admin_user = user_factory()
-        self.grant_permission(self.admin_user, 'Addons:Edit')
+        self.grant_permission(self.admin_user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.admin_user)
         response = self.client.post(
             self.url,

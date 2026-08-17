@@ -109,7 +109,7 @@ class TestEmailBouncing(TestCase):
         addon = addon_factory()
         version = addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         user = user_factory()
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         ActivityLogToken.objects.create(
             user=user, version=version, uuid='5a0b8a83d501412589cc5d562334b46b'
         )
@@ -252,7 +252,7 @@ class TestAddEmailToActivityLog(TestCase):
         assert self.version.reload().due_date == expected_due_date
 
     def test_reviewer_comment(self):
-        self.grant_permission(self.profile, 'Addons:Review')
+        self.grant_permission(self.profile, amo.permissions.ADDONS_REVIEW)
         note = add_email_to_activity_log(self.parser)
         assert note.log == amo.LOG.REVIEWER_REPLY_VERSION
         self.token.refresh_from_db()
@@ -298,7 +298,9 @@ class TestLogAndNotify(TestCase):
         self.developer = user_factory()
         self.developer2 = user_factory()
         self.reviewer = user_factory()
-        self.grant_permission(self.reviewer, 'Addons:Review', 'Addon Reviewers')
+        self.grant_permission(
+            self.reviewer, amo.permissions.ADDONS_REVIEW, name='Addon Reviewers'
+        )
 
         self.addon = addon_factory()
         self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
@@ -457,7 +459,9 @@ class TestLogAndNotify(TestCase):
 
     @mock.patch('olympia.activity.utils.send_mail')
     def test_staff_cc_group_get_mail(self, send_mail_mock):
-        self.grant_permission(self.reviewer, 'None:None', ACTIVITY_MAIL_GROUP)
+        self.grant_permission(
+            self.reviewer, amo.permissions.NONE, name=ACTIVITY_MAIL_GROUP
+        )
         action = amo.LOG.DEVELOPER_REPLY_VERSION
         comments = 'Thïs is á reply'
         log_and_notify(action, comments, self.developer, self.version)
@@ -535,7 +539,11 @@ class TestLogAndNotify(TestCase):
     @mock.patch('olympia.activity.utils.send_mail')
     def test_review_url_unlisted(self, send_mail_mock):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
-        self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted', 'Addon Reviewers')
+        self.grant_permission(
+            self.reviewer,
+            amo.permissions.ADDONS_REVIEW_UNLISTED,
+            name='Addon Reviewers',
+        )
 
         # One from the reviewer.
         self._create(amo.LOG.REVIEWER_PRIVATE_COMMENT, self.reviewer)

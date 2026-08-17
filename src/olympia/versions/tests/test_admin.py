@@ -20,7 +20,7 @@ class TestVersionAdmin(TestCase):
         )
         self.list_url = reverse('admin:versions_version_changelist')
         self.user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(self.user, 'Admin:Advanced')
+        self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(self.user)
         user_factory(pk=settings.TASK_USER_ID)
 
@@ -192,7 +192,7 @@ class TestInstallOriginAdmin(TestCase):
         )
         list_url = reverse('admin:versions_installorigin_changelist')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         with self.assertNumQueries(6):
             # - 2 SAVEPOINTs
@@ -235,7 +235,7 @@ class TestInstallOriginAdmin(TestCase):
     def test_add_disabled(self):
         add_url = reverse('admin:versions_installorigin_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
@@ -250,7 +250,7 @@ class TestInstallOriginAdmin(TestCase):
             'admin:versions_installorigin_delete', args=(install_origin.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 403
@@ -265,7 +265,7 @@ class TestInstallOriginAdmin(TestCase):
             'admin:versions_installorigin_change', args=(install_origin.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, '*:*')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200

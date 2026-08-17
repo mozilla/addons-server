@@ -884,7 +884,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
             utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
 
         # Shouldn't raise for users with proper permissions
-        self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(user, amo.permissions.LANGPACK_SUBMIT)
 
         utils.check_xpi_info(parsed_data, xpi_file=mock.Mock(), user=user)
 
@@ -912,7 +912,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
 
     def test_cant_change_locale_for_langpack(self):
         user = user_factory()
-        self.grant_permission(user, ':'.join(amo.permissions.LANGPACK_SUBMIT))
+        self.grant_permission(user, amo.permissions.LANGPACK_SUBMIT)
         self.create_appversion('firefox', '60.0')
         self.create_appversion('firefox', '60.*')
 
@@ -1271,7 +1271,7 @@ def test_extract_translations_simple():
         file_kw={'filename': 'notify-link-clicks-i18n.xpi'}
     ).current_version.file
     messages = utils.extract_translations(file_obj)
-    assert list(sorted(messages.keys())) == [
+    assert sorted(messages.keys()) == [
         'de',
         'en-US',
         'ja',

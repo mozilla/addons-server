@@ -38,7 +38,7 @@ msgstr "Lütfen bu kararın neden hatalı olduğunu ve/veya geçerli politika ve
 msgid "User profile"
 msgstr "Kullanıcı profili"
 
-#: src/olympia/abuse/models.py:1542
+#: src/olympia/abuse/models.py:1562
 #, python-brace-format
 msgid "\"{}\" for {}"
 msgstr "\"{}\" için {}"
@@ -238,15 +238,15 @@ msgstr "Bağlantılara izin verilmez."
 msgid "This display name cannot be used."
 msgstr "Bu görünen ad kullanılamaz."
 
-#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1041
+#: src/olympia/accounts/serializers.py:182 src/olympia/addons/fields.py:366 src/olympia/devhub/views.py:1042
 msgid "Images must be either PNG or JPG."
 msgstr "Resimler PNG veya JPG olmalıdır."
 
-#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1047
+#: src/olympia/accounts/serializers.py:186 src/olympia/addons/fields.py:371 src/olympia/devhub/views.py:1048
 msgid "Images cannot be animated."
 msgstr "Resimler hareketli olamaz."
 
-#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1056
+#: src/olympia/accounts/serializers.py:191 src/olympia/devhub/views.py:1057
 #, python-format
 msgid "Please use images smaller than %dMB."
 msgstr "Lütfen %d MB'den küçük resimler kullanın."
@@ -255,7 +255,7 @@ msgstr "Lütfen %d MB'den küçük resimler kullanın."
 msgid "Need help?"
 msgstr "Yardım mı lazım?"
 
-#: src/olympia/accounts/views.py:774
+#: src/olympia/accounts/views.py:773
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "Bildirim [%s] mevcut değil"
@@ -327,7 +327,7 @@ msgstr "slug={value} lisansı mevcut değil."
 msgid "Unsupported file type, please upload an archive file ({extensions})."
 msgstr "Desteklenmeyen dosya türü. Lütfen bir arşiv dosyası ({extensions}) yükleyin."
 
-#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:785
+#: src/olympia/addons/fields.py:233 src/olympia/devhub/forms.py:801 src/olympia/files/utils.py:774
 msgid "Invalid or broken archive."
 msgstr "Geçersiz veya bozuk arşiv."
 
@@ -353,7 +353,7 @@ msgstr "Bu uygulama (%s) için manifest’te ayarlanan uyumluluk bilgileri geçe
 msgid "Images must be smaller than %dMB"
 msgstr "Resimler %d MB'den küçük olmalıdır"
 
-#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:71
+#: src/olympia/addons/models.py:2359 src/olympia/addons/models.py:2438 src/olympia/constants/base.py:72
 msgid "Listed"
 msgstr "Listelenen"
 
@@ -525,11 +525,11 @@ msgstr "Yeni eklenti gönder"
 msgid "Submit a New Theme"
 msgstr "Yeni tema gönder"
 
-#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:92 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
+#: src/olympia/amo/context_processors.py:76 src/olympia/constants/base.py:93 src/olympia/devhub/templatetags/jinja_helpers.py:33 src/olympia/templates/photon-footer.html:14
 msgid "Developer Hub"
 msgstr "Geliştirici Merkezi"
 
-#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2160
+#: src/olympia/amo/context_processors.py:79 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:20 src/olympia/devhub/views.py:2162
 msgid "Manage API Keys"
 msgstr "API Anahtarlarını Yönet"
 
@@ -561,7 +561,7 @@ msgstr "Geçerli bir IP4 veya IP6 ağı girin."
 msgid "CIDR"
 msgstr "CIDR"
 
-#: src/olympia/amo/middleware.py:258 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
+#: src/olympia/amo/middleware.py:257 src/olympia/devhub/templates/devhub/index.html:56 src/olympia/templates/base.html:64
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Web sitemizde bakım çalışması yapıldığından bazı özellikler geçici olarak devre dışı bırakılmıştır. Kısa süre içinde normal işleyişimize döneceğiz."
 
@@ -894,7 +894,7 @@ msgstr "{addon} {version} sürümünden {0} dosyası silindi."
 msgid "{addon} {version} approved."
 msgstr "{addon} {version} onaylandı."
 
-#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
+#: src/olympia/constants/activity.py:150 src/olympia/constants/base.py:27 src/olympia/constants/base.py:35
 msgid "Approved"
 msgstr "Onaylandı"
 
@@ -1311,6 +1311,15 @@ msgstr "{addon} listeleme içeriği incelemesi talep edildi."
 msgid "Listing review requested"
 msgstr "Listeleme incelemesi talep edildi"
 
+#: src/olympia/constants/activity.py:1334
+#, python-brace-format
+msgid "Decision on {addon} made with no new action taken."
+msgstr ""
+
+#: src/olympia/constants/activity.py:1335
+msgid "Decision made"
+msgstr ""
+
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
 msgstr "Firefox"
@@ -1339,135 +1348,135 @@ msgstr "Android İçin Firefox"
 msgid "Mozilla"
 msgstr "Mozilla"
 
-#: src/olympia/constants/base.py:24
+#: src/olympia/constants/base.py:25
 msgid "Incomplete"
 msgstr "Tamamlanmamış"
 
-#: src/olympia/constants/base.py:25 src/olympia/constants/base.py:33
+#: src/olympia/constants/base.py:26 src/olympia/constants/base.py:34
 msgid "Awaiting Review"
 msgstr "İnceleme Bekliyor"
 
-#: src/olympia/constants/base.py:27
+#: src/olympia/constants/base.py:28
 msgid "Listing Content Rejected"
 msgstr "Sayfa içeriği reddedildi"
 
-#: src/olympia/constants/base.py:28 src/olympia/constants/base.py:35
+#: src/olympia/constants/base.py:29 src/olympia/constants/base.py:36
 msgid "Disabled by Mozilla"
 msgstr "Mozilla tarafından devre dışı bırakıldı"
 
-#: src/olympia/constants/base.py:29 src/olympia/versions/models.py:1155
+#: src/olympia/constants/base.py:30 src/olympia/versions/models.py:1155
 msgid "Deleted"
 msgstr "Silindi"
 
-#: src/olympia/constants/base.py:70
+#: src/olympia/constants/base.py:71
 msgid "Unlisted"
 msgstr "Listelenmemiş"
 
-#: src/olympia/constants/base.py:72 src/olympia/templates/photon-footer.html:50
+#: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
 msgstr "Kurumsal"
 
-#: src/olympia/constants/base.py:93
+#: src/olympia/constants/base.py:94
 msgid "Signing API"
 msgstr "İmzalama API'si"
 
-#: src/olympia/constants/base.py:94
+#: src/olympia/constants/base.py:95
 msgid "Add-on API"
 msgstr "Eklenti API'si"
 
-#: src/olympia/constants/base.py:95
+#: src/olympia/constants/base.py:96
 msgid "Automatically generated by AMO"
 msgstr "AMO tarafından otomatik olarak oluşturuldu"
 
-#: src/olympia/constants/base.py:104
+#: src/olympia/constants/base.py:105
 msgid "Owner"
 msgstr "Sahibi"
 
-#: src/olympia/constants/base.py:105 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
+#: src/olympia/constants/base.py:106 src/olympia/templates/photon-footer.html:61 src/olympia/users/notifications.py:105
 msgid "Developer"
 msgstr "Geliştirici"
 
-#: src/olympia/constants/base.py:113
+#: src/olympia/constants/base.py:114
 msgid "(Deleted)"
 msgstr "(Silindi)"
 
-#: src/olympia/constants/base.py:137
+#: src/olympia/constants/base.py:138
 msgid "Extension"
 msgstr "Uzantı"
 
-#: src/olympia/constants/base.py:138
+#: src/olympia/constants/base.py:139
 msgid "Deprecated Complete Theme"
 msgstr "Kullanımdan Kaldırılmış Tam Tema"
 
-#: src/olympia/constants/base.py:139
+#: src/olympia/constants/base.py:140
 msgid "Dictionary"
 msgstr "Sözlükler"
 
-#: src/olympia/constants/base.py:140
+#: src/olympia/constants/base.py:141
 msgid "Deprecated Search Engine"
 msgstr "Kullanımdan kaldırılan arama motoru"
 
-#: src/olympia/constants/base.py:141
+#: src/olympia/constants/base.py:142
 msgid "Language Pack"
 msgstr "Dil Paketi"
 
-#: src/olympia/constants/base.py:142
+#: src/olympia/constants/base.py:143
 msgid "Deprecated Language Pack (Add-on)"
 msgstr "Kullanımdan kaldırılan dil paketi (Uzantı)"
 
-#: src/olympia/constants/base.py:143
+#: src/olympia/constants/base.py:144
 msgid "Deprecated Plugin"
 msgstr "Kullanımdan kaldırılan yan uygulama"
 
-#: src/olympia/constants/base.py:144
+#: src/olympia/constants/base.py:145
 msgid "Deprecated LWT"
 msgstr "Kullanımdan kaldırılan LWT"
 
-#: src/olympia/constants/base.py:145
+#: src/olympia/constants/base.py:146
 msgid "Theme"
 msgstr "Tema"
 
-#: src/olympia/constants/base.py:146
+#: src/olympia/constants/base.py:147
 msgid "Deprecated Site Permission"
 msgstr "Kullanımdan Kaldırılan Site İzni"
 
-#: src/olympia/constants/base.py:151 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
+#: src/olympia/constants/base.py:152 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:10
 msgid "Extensions"
 msgstr "Uzantılar"
 
-#: src/olympia/constants/base.py:152
+#: src/olympia/constants/base.py:153
 msgid "Deprecated Complete Themes"
 msgstr "Kullanımdan Kaldırılmış Tam Temalar"
 
-#: src/olympia/constants/base.py:153
+#: src/olympia/constants/base.py:154
 msgid "Dictionaries"
 msgstr "Sözlükler"
 
-#: src/olympia/constants/base.py:154
+#: src/olympia/constants/base.py:155
 msgid "Deprecated Search Tools"
 msgstr "Kullanımdan kaldırılan arama araçları"
 
-#: src/olympia/constants/base.py:155
+#: src/olympia/constants/base.py:156
 msgid "Language Packs"
 msgstr "Dil Paketleri"
 
-#: src/olympia/constants/base.py:156
+#: src/olympia/constants/base.py:157
 msgid "Deprecated Language Packs (Add-on)"
 msgstr "Kullanımdan kaldırılan dil paketleri (Eklenti)"
 
-#: src/olympia/constants/base.py:157
+#: src/olympia/constants/base.py:158
 msgid "Deprecated Plugins"
 msgstr "Kullanımdan kaldırılan yan uygulamalar"
 
-#: src/olympia/constants/base.py:158
+#: src/olympia/constants/base.py:159
 msgid "Deprecated LWTs"
 msgstr "Kullanımdan kaldırılan LWT'ler"
 
-#: src/olympia/constants/base.py:159 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
+#: src/olympia/constants/base.py:160 src/olympia/devhub/templates/devhub/nav.html:43 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:11
 msgid "Themes"
 msgstr "Temalar"
 
-#: src/olympia/constants/base.py:160
+#: src/olympia/constants/base.py:161
 msgid "Deprecated Site Permissions"
 msgstr "Kullanımdan Kaldırılan Site İzinleri"
 
@@ -2123,7 +2132,7 @@ msgstr "Yüklenen dosyada geliştirici API anahtarınız tespit edildi. Hesabın
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Gönderilen dosyada bir ortak yazarın geliştirici API anahtarı bulundu. Eklentinizi korumak için bu anahtar iptal edilecektir."
 
-#: src/olympia/devhub/tasks.py:692
+#: src/olympia/devhub/tasks.py:691
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla Güvenlik Bildirimi: AMO API kimlik bilgileriniz iptal edildi"
 
@@ -2219,7 +2228,7 @@ msgstr "Davet reddedildi."
 msgid "A confirmation email has been sent to {email}"
 msgstr "{email} adresine onay e-postası gönderildi"
 
-#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1184
+#: src/olympia/devhub/views.py:569 src/olympia/devhub/views.py:1185
 msgid "Changes successfully saved."
 msgstr "Değişiklikler başarıyla kaydedildi."
 
@@ -2232,37 +2241,37 @@ msgstr "Eklentiyi doğrula"
 msgid "<a href=\"{link}\">Please add two-factor authentication to your account to submit extensions.</a>"
 msgstr "<a href=\"{link}\">Uzantı gönderebilmek için lütfen hesabınıza iki aşamalı kimlik doğrulama ekleyin.</a>"
 
-#: src/olympia/devhub/views.py:1039
+#: src/olympia/devhub/views.py:1040
 msgid "Icons must be either PNG or JPG."
 msgstr "Simgeler PNG veya JPG olmalıdır."
 
-#: src/olympia/devhub/views.py:1045
+#: src/olympia/devhub/views.py:1046
 msgid "Icons cannot be animated."
 msgstr "Simgeler hareketli olamaz."
 
-#: src/olympia/devhub/views.py:1071
+#: src/olympia/devhub/views.py:1072
 #, python-brace-format
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Resim en az {0} piksel eninde ve {1} piksel boyunda olmalıdır."
 
-#: src/olympia/devhub/views.py:1075
+#: src/olympia/devhub/views.py:1076
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Görüntü boyutları 4:3 oranında olmalıdır."
 
-#: src/olympia/devhub/views.py:1083
+#: src/olympia/devhub/views.py:1084
 #, python-brace-format
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Simge en az {0} piksel eninde ve boyunda olmalıdır."
 
-#: src/olympia/devhub/views.py:1088
+#: src/olympia/devhub/views.py:1089
 msgid "Icon must be square (same width and height)."
 msgstr "Simge kare olmalıdır (aynı genişlik ve yükseklik)."
 
-#: src/olympia/devhub/views.py:1094
+#: src/olympia/devhub/views.py:1095
 msgid "There was an error uploading your preview."
 msgstr "Ön izlemenizi yüklerken bir hata oluştu."
 
-#: src/olympia/devhub/views.py:1240
+#: src/olympia/devhub/views.py:1241
 #, python-format
 msgid ""
 "The latest approved version of this %s add-on cannot be deleted or disabled because the previous version was not approved for %s promotion. Please contact AMO Admins if you need help with this."
@@ -2270,130 +2279,130 @@ msgstr ""
 "Bu %s eklentisinin en son onaylanmış sürümü silinemez veya devre dışı bırakılamaz çünkü önceki sürüm %s tanıtımı için onaylanmamış. Bu konuda yardıma ihtiyacınız varsa lütfen AMO yöneticileri ile "
 "iletişime geçin."
 
-#: src/olympia/devhub/views.py:1247
+#: src/olympia/devhub/views.py:1248
 #, python-format
 msgid "Version %s disabled."
 msgstr "%s sürümü devre dışı bırakıldı."
 
-#: src/olympia/devhub/views.py:1251
+#: src/olympia/devhub/views.py:1252
 #, python-format
 msgid "Version %s deleted."
 msgstr "%s sürümü silindi."
 
-#: src/olympia/devhub/views.py:1262
+#: src/olympia/devhub/views.py:1263
 #, python-format
 msgid "Version %s re-enabled."
 msgstr "Sürüm %s yeniden etkinleştirildi."
 
-#: src/olympia/devhub/views.py:1278
+#: src/olympia/devhub/views.py:1279
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Bu yükleme doğrulamadan geçemedi. Tam doğrulama sonuçları eksik olabilir. Lütfen gözden geçirirken dikkatli olun."
 
-#: src/olympia/devhub/views.py:1337
+#: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
 msgstr "Geri döndürme gönderildi. Onaylandığında bilgilendirileceksiniz"
 
-#: src/olympia/devhub/views.py:1477
+#: src/olympia/devhub/views.py:1478
 msgid "Header area background"
 msgstr "Başlık alanı arka planı"
 
-#: src/olympia/devhub/views.py:1479
+#: src/olympia/devhub/views.py:1480
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Header alanının arka plan rengi. Header'ın örtülmeyen kısmında veya header görselinin arka planında görünür. Manifest alanı:  frame."
 
-#: src/olympia/devhub/views.py:1487
+#: src/olympia/devhub/views.py:1488
 msgid "Header area text and icons"
 msgstr "Başlık alanı metin ve simgeleri"
 
-#: src/olympia/devhub/views.py:1489
+#: src/olympia/devhub/views.py:1490
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Üst bilgi alanındaki metin ve simgelerin rengi (etkin sekme hariç). Manifest alanı:  tab_background_text."
 
-#: src/olympia/devhub/views.py:1496
+#: src/olympia/devhub/views.py:1497
 msgid "Toolbar area background"
 msgstr "Araç çubuğu alanı arka planı"
 
-#: src/olympia/devhub/views.py:1498
+#: src/olympia/devhub/views.py:1499
 msgid "The background color for the navigation bar, the bookmarks bar, and the active tab.  Manifest field:  toolbar."
 msgstr "Gezinme çubuğunun, yer imleri çubuğunun ve seçili sekmenin arka plan rengi.  Manifest alanı:  araç çubuğu."
 
-#: src/olympia/devhub/views.py:1505
+#: src/olympia/devhub/views.py:1506
 msgid "Toolbar area text and icons"
 msgstr "Araç çubuğu alanı metni ve simgeleri"
 
-#: src/olympia/devhub/views.py:1507
+#: src/olympia/devhub/views.py:1508
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Araç çubuğundaki ve etkin sekmedeki metnin ve simgelerin rengi. Manifest alanı:  bookmark_text."
 
-#: src/olympia/devhub/views.py:1514
+#: src/olympia/devhub/views.py:1515
 msgid "Toolbar field area background"
 msgstr "Araç çubuğu alanı arka planı"
 
-#: src/olympia/devhub/views.py:1516
+#: src/olympia/devhub/views.py:1517
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr "Araç çubuğundaki alanlar (örn. adres çubuğu) için arka plan rengi. Manifest alanı:  toolbar_field."
 
-#: src/olympia/devhub/views.py:1523
+#: src/olympia/devhub/views.py:1524
 msgid "Toolbar field area text"
 msgstr "Araç çubuğu alan metni"
 
-#: src/olympia/devhub/views.py:1525
+#: src/olympia/devhub/views.py:1526
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Araç çubuğundaki alanlar (örn. adres çubuğu) için metin rengi. Manifest alanı:  toolbar_field_text."
 
-#: src/olympia/devhub/views.py:1533
+#: src/olympia/devhub/views.py:1534
 msgid "Tab highlight"
 msgstr "Sekme vurgulama"
 
-#: src/olympia/devhub/views.py:1535
+#: src/olympia/devhub/views.py:1536
 msgid "The highlight color of the active tab. Implemented as a border around the tab on Firefox 89+ and a line above the tab on older Firefoxes. Manifest field:  tab_line."
 msgstr "Etkin sekmenin vurgu rengi. Firefox 89+'da sekmenin etrafında bir kenarlık ve eski Firefox'larda sekmenin üzerinde bir çizgi olarak uygulanır. Manifest alanı:  tab_line."
 
-#: src/olympia/devhub/views.py:1638
+#: src/olympia/devhub/views.py:1639
 msgid "Add-on uploads are temporarily unavailable"
 msgstr "Eklenti gönderme geçici olarak kullanılamıyor"
 
-#: src/olympia/devhub/views.py:2009
+#: src/olympia/devhub/views.py:2011
 msgid "Review requested."
 msgstr "İnceleme talep edildi."
 
-#: src/olympia/devhub/views.py:2011
+#: src/olympia/devhub/views.py:2013
 msgid "You must provide further details to proceed."
 msgstr "Devam etmek için daha fazla ayrıntı vermelisiniz."
 
-#: src/olympia/devhub/views.py:2118
+#: src/olympia/devhub/views.py:2120
 msgid "A confirmation link will be sent to your email address shortly."
 msgstr "Kısa süre içinde e-posta adresinize bir onay bağlantısı gönderilecektir."
 
-#: src/olympia/devhub/views.py:2133
+#: src/olympia/devhub/views.py:2135
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Eski kimlik bilgileriniz iptal edildi ve artık geçerli değil."
 
-#: src/olympia/devhub/views.py:2144
+#: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
 msgstr "Yeni API kimlik bilgileri oluşturuldu ve aşağıda gösterilmektedir. JWT gizli anahtarını kopyalamayı unutmayın. Bu anahtar bir daha asla gösterilmeyecektir."
 
-#: src/olympia/devhub/views.py:2172
+#: src/olympia/devhub/views.py:2174
 msgid "New API key created"
 msgstr "Yeni API anahtarı oluşturuldu"
 
-#: src/olympia/devhub/views.py:2183
+#: src/olympia/devhub/views.py:2185
 msgid "API key revoked"
 msgstr "API anahtarı iptal edildi"
 
-#: src/olympia/devhub/views.py:2243
+#: src/olympia/devhub/views.py:2245
 msgid "Verify email"
 msgstr "E-postayı doğrula"
 
-#: src/olympia/devhub/views.py:2245
+#: src/olympia/devhub/views.py:2247
 msgid "Send another email"
 msgstr "Başka bir e-posta gönder"
 
-#: src/olympia/devhub/views.py:2278
+#: src/olympia/devhub/views.py:2280
 msgid "Your email has been verified"
 msgstr "E-postanız doğrulandı"
 
-#: src/olympia/devhub/views.py:2340
+#: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
 msgstr "Destek isteğiniz iletilmiştir. Yakında sizinle iletişime geçeceğiz."
 
@@ -2447,11 +2456,11 @@ msgstr "Uzantı geliştirme"
 
 #: src/olympia/devhub/templates/devhub/nav.html:45 src/olympia/templates/photon-footer.html:15
 msgid "Developer Policies"
-msgstr "Geliştirici Politikaları"
+msgstr "Geliştirici politikaları"
 
 #: src/olympia/devhub/templates/devhub/nav.html:52 src/olympia/devhub/templates/devhub/new-landing/components/dev_footer.html:19
 msgid "Add-on Validator"
-msgstr "Eklenti Doğrulayıcı"
+msgstr "Eklenti doğrulayıcı"
 
 #: src/olympia/devhub/templates/devhub/nav.html:54
 msgid "Development Add-ons"
@@ -2796,7 +2805,7 @@ msgstr "{0} etiketlerini sınırla."
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:39
 msgid "Contributions URL"
-msgstr "Katkıda bulunanlar adresi"
+msgstr "Bağış adresi"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:40
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
@@ -2817,7 +2826,7 @@ msgstr "Eklentinizle ilgili bilgiler, dile özel bir çeviriyle geçersiz kılma
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:72
 msgid "Homepage"
-msgstr "Ana Sayfa"
+msgstr "Web sitesi"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/additional_details.html:74
 msgid ""
@@ -3014,7 +3023,7 @@ msgstr "Eklentinizin UUID’si, manifest dosyasında belirtilir ve benzersiz bir
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:60 src/olympia/devhub/templates/devhub/addons/edit/technical.html:61
 msgid "Whiteboard"
-msgstr "Beyaz Tahta"
+msgstr "Beyaz tahta"
 
 #: src/olympia/devhub/templates/devhub/addons/edit/technical.html:63
 msgid ""
@@ -3724,7 +3733,7 @@ msgstr "API anahtarlarınızı gizli tutun. Bunları Mozilla çalışanları ve 
 
 #: src/olympia/devhub/templates/devhub/api/key.html:31
 msgid "JWT issuer"
-msgstr "JWT düzenleyen"
+msgstr "JWT issuer"
 
 #: src/olympia/devhub/templates/devhub/api/key.html:33
 msgid "JWT secret"
@@ -3928,7 +3937,7 @@ msgstr "Sonraki listelenmiş sürüm:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:83
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Bu en yeni yüklenen sürüm, ancak henüz sitede yayımlanmıyor"
+msgstr "Bu en son gönderilen sürüm, ancak henüz sitede yayımlanmıyor"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:101 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:66
 #: src/olympia/devhub/templates/devhub/versions/list.html:28
@@ -3941,7 +3950,7 @@ msgstr "Son sürüm:"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:109
 msgid "This is the newest uploaded unlisted version"
-msgstr "Bu, yüklenen en yeni listelenmemiş sürüm"
+msgstr "En son gönderilen listelenmemiş sürüm"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:118 src/olympia/devhub/templates/devhub/versions/list.html:32
 msgid "Signed for enterprise."
@@ -3949,7 +3958,7 @@ msgstr "Kurumsal kullanım için imzalandı."
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:126
 msgid "This is the newest uploaded enterprise version"
-msgstr ""
+msgstr "Bu sürüm en yeni kurumsal sürümdür"
 
 #: src/olympia/devhub/templates/devhub/includes/addons_edit_nav.html:20
 msgid "Upload New Version"
@@ -4477,7 +4486,7 @@ msgstr "Daha eskileri yükle..."
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:131 src/olympia/discovery/serializers.py:102
 msgid "by"
-msgstr "geliştiren:"
+msgstr "işlemi yapan:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
@@ -5810,8 +5819,8 @@ msgstr "Fare hareketlerini özelleştirin. 50'den fazla fare hareketiyle gezinme
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Sinema modu, reklam engelleme, otomatik oynatma kontrolü ve daha fazlası gibi yeni YouTube özelliklerinden yararlanın."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
+msgstr ""
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -6359,131 +6368,131 @@ msgstr "İncelenmemiş"
 msgid "[status:%s]"
 msgstr "[durum:%s]"
 
-#: src/olympia/files/utils.py:86
+#: src/olympia/files/utils.py:84
 msgid "This upload has already been submitted."
 msgstr "Bu yükleme zaten gönderilmiş."
 
-#: src/olympia/files/utils.py:162 src/olympia/files/utils.py:196 src/olympia/files/utils.py:892
+#: src/olympia/files/utils.py:156 src/olympia/files/utils.py:190 src/olympia/files/utils.py:881
 msgid "Could not parse the manifest file."
 msgstr "Manifest dosyası ayrıştırılamadı."
 
-#: src/olympia/files/utils.py:343
+#: src/olympia/files/utils.py:337
 #, python-brace-format
 msgid "Lowest supported \"strict_min_version\" is {min_version}."
 msgstr "Desteklenen en düşük \"strict_min_version\": {min_version}."
 
-#: src/olympia/files/utils.py:374
+#: src/olympia/files/utils.py:367
 #, python-brace-format
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
 msgstr "{app} için bilinmeyen \"strict_min_version\" {appver}"
 
-#: src/olympia/files/utils.py:388
+#: src/olympia/files/utils.py:381
 #, python-brace-format
 msgid "Unknown \"strict_max_version\" {appver} for {app}"
 msgstr "{app} için bilinmeyen \"strict_max_version\" {appver}"
 
-#: src/olympia/files/utils.py:572
+#: src/olympia/files/utils.py:561
 msgid "Unsupported compression method in archive."
 msgstr "Arşivde desteklenmeyen sıkıştırma yöntemi."
 
-#: src/olympia/files/utils.py:575
+#: src/olympia/files/utils.py:564
 msgid "Unsupported archive type."
 msgstr "Desteklenmeyen arşiv türü."
 
-#: src/olympia/files/utils.py:584
+#: src/olympia/files/utils.py:573
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Arşivde geçersiz dosya adı. Lütfen tüm dosya adlarının utf-8 veya latin1 olarak kodlanmış olduğundan emin olun."
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:598
+#: src/olympia/files/utils.py:587
 #, python-brace-format
 msgid "Invalid file name in archive: {0}"
 msgstr "Arşivdeki geçersiz dosya adı: {0}"
 
 #. L10n: {0} is the name of the invalid file.
-#: src/olympia/files/utils.py:606
+#: src/olympia/files/utils.py:595
 #, python-brace-format
 msgid "File exceeding size limit in archive: {0}"
 msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
-#: src/olympia/files/utils.py:626
+#: src/olympia/files/utils.py:615
 msgid "This archive contains a forbidden special file (symbolic / hard link or device / block file)"
 msgstr "Bu arşiv yasaklı bir özel dosya içeriyor (sembolik/sabit bağlantı veya cihaz/blok dosyası)"
 
-#: src/olympia/files/utils.py:661
+#: src/olympia/files/utils.py:650
 msgid "Uncompressed size is too large"
 msgstr "Sıkıştırılmamış boyut çok büyük"
 
-#: src/olympia/files/utils.py:693
+#: src/olympia/files/utils.py:682
 msgid "Invalid archive."
 msgstr "Geçersiz arşiv."
 
-#: src/olympia/files/utils.py:880
+#: src/olympia/files/utils.py:869
 msgid "No manifest.json found"
 msgstr "manifest.json bulunamadı"
 
-#: src/olympia/files/utils.py:885
+#: src/olympia/files/utils.py:874
 msgid "Invalid or corrupted file."
 msgstr "Geçersiz veya bozulmuş dosya."
 
-#: src/olympia/files/utils.py:925
+#: src/olympia/files/utils.py:914
 #, python-format
 msgid "The add-on ID in your manifest.json (%s) does not match the ID of your add-on on AMO (%s)"
 msgstr "manifest.json dosyanızdaki eklenti kimliği (%s), AMO'daki eklentinizin kimliğiyle (%s) eşleşmiyor"
 
-#: src/olympia/files/utils.py:933
+#: src/olympia/files/utils.py:922
 msgid "Duplicate add-on ID found."
 msgstr "Mükerrer eklenti kimliği tespit edildi."
 
-#: src/olympia/files/utils.py:939
+#: src/olympia/files/utils.py:928
 #, python-brace-format
 msgid "Version numbers should have at most {max_length} characters."
 msgstr "Sürüm numaraları en fazla {max_length} karakterden oluşmalıdır."
 
-#: src/olympia/files/utils.py:945
+#: src/olympia/files/utils.py:934
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Sürüm numaralarında sadece harfler, numaralar ve bu noktalama işaretleri olmalı: +*.-_."
 
-#: src/olympia/files/utils.py:954
+#: src/olympia/files/utils.py:943
 #, python-brace-format
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension temaları için maksimum boyut {0}."
 
-#: src/olympia/files/utils.py:968
+#: src/olympia/files/utils.py:957
 msgid "You cannot submit this type of add-on"
 msgstr "Bu türden eklenti gönderemezsiniz"
 
-#: src/olympia/files/utils.py:972
+#: src/olympia/files/utils.py:961
 msgid "You cannot submit an add-on using an ID ending with this suffix"
 msgstr "Bu son ek ile biten bir ID ile eklenti gönderemezsiniz"
 
-#: src/olympia/files/utils.py:977
+#: src/olympia/files/utils.py:966
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla imzalı bir uzantı gönderemezsiniz"
 
-#: src/olympia/files/utils.py:981
+#: src/olympia/files/utils.py:970
 msgid "You cannot submit a language pack"
 msgstr "Dil paketi gönderemezsiniz"
 
-#: src/olympia/files/utils.py:990
+#: src/olympia/files/utils.py:979
 msgid "The locale of an existing dictionary/language pack cannot be changed"
 msgstr "Mevcut bir sözlüğün/dil paketinin dili değiştirilemez"
 
-#: src/olympia/files/utils.py:1033
+#: src/olympia/files/utils.py:1022
 #, python-brace-format
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Desteklenmeyen dosya türü. Lütfen desteklenen bir {extensions} dosyası yükleyin."
 
-#: src/olympia/files/utils.py:1042
+#: src/olympia/files/utils.py:1031
 msgid "Unexpected error."
 msgstr "Beklenmeyen hata."
 
-#: src/olympia/files/utils.py:1047
+#: src/olympia/files/utils.py:1036
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Bu tür (%s), AMO'daki eklentinizin türüyle (%s) eşleşmiyor"
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1041
 msgid "Unknown"
 msgstr "Bilinmeyen"
 
@@ -6620,7 +6629,7 @@ msgstr "AMO’ya dönüş şu an devre dışı"
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Geçersiz AMO’ya dönüş guid değeri (base64url biçiminde olmayabilir)"
 
-#: src/olympia/search/filters.py:942
+#: src/olympia/search/filters.py:934
 msgid "Maximum query length exceeded."
 msgstr "Maksimum sorgu uzunluğu aşıldı."
 
@@ -7293,12 +7302,12 @@ msgstr "Onaylandı, manuel"
 msgid "Disabled by Developer"
 msgstr "Geliştirici tarafından devre dışı bırakıldı"
 
-#: src/olympia/versions/models.py:1516
+#: src/olympia/versions/models.py:1515
 #, python-brace-format
 msgid "{app} {min} and later"
 msgstr "{app} {min} ve sonrası"
 
-#: src/olympia/versions/models.py:1643
+#: src/olympia/versions/models.py:1642
 #, python-brace-format
 msgid "The install origin {origin} is not permitted."
 msgstr "{origin} yükleme kaynağına izin verilmiyor."

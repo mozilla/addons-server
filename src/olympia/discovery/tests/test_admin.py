@@ -23,7 +23,7 @@ class TestDiscoveryAdmin(TestCase):
 
     def test_can_see_discovery_module_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
@@ -37,7 +37,7 @@ class TestDiscoveryAdmin(TestCase):
     def test_can_list_with_discovery_edit_permission(self):
         DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -47,7 +47,7 @@ class TestDiscoveryAdmin(TestCase):
         DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr'), position=1)
         DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url + '?position=yes', follow=True)
         assert response.status_code == 200
@@ -60,7 +60,7 @@ class TestDiscoveryAdmin(TestCase):
         )
         DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'), position=1)
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url + '?position=no', follow=True)
         assert response.status_code == 200
@@ -73,7 +73,7 @@ class TestDiscoveryAdmin(TestCase):
         )
         DiscoveryItem.objects.create(addon=addon_factory(name='Âbsent'))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url + '?position_china=yes', follow=True)
         assert response.status_code == 200
@@ -86,7 +86,7 @@ class TestDiscoveryAdmin(TestCase):
             addon=addon_factory(name='Âbsent'), position_china=1
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url + '?position_china=no', follow=True)
         assert response.status_code == 200
@@ -100,7 +100,7 @@ class TestDiscoveryAdmin(TestCase):
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -129,7 +129,7 @@ class TestDiscoveryAdmin(TestCase):
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -156,7 +156,7 @@ class TestDiscoveryAdmin(TestCase):
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -188,7 +188,7 @@ class TestDiscoveryAdmin(TestCase):
             'admin:discovery_discoveryitem_change', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
 
         # Try changing using an unknown slug.
@@ -228,7 +228,7 @@ class TestDiscoveryAdmin(TestCase):
             'admin:discovery_discoveryitem_delete', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(self.delete_url, follow=True)
@@ -244,7 +244,7 @@ class TestDiscoveryAdmin(TestCase):
         addon = addon_factory(name='BarFöo')
         self.add_url = reverse('admin:discovery_discoveryitem_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 200
@@ -325,7 +325,7 @@ class TestDiscoveryAdmin(TestCase):
         DiscoveryItem.objects.create(addon=addon_factory(name='FooBâr 6'))
 
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
 
         # 1. select current user
@@ -357,7 +357,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
 
     def test_can_see_primary_hero_image_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
@@ -374,7 +374,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         uploaded_photo = get_uploaded_file('transparent.png')
         PrimaryHeroImage.objects.create(custom_image=uploaded_photo)
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -387,7 +387,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
             'admin:discovery_primaryheroimageupload_change', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -435,7 +435,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
             'admin:discovery_primaryheroimageupload_delete', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
@@ -466,7 +466,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
     def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_primaryheroimageupload_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
@@ -586,7 +586,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             'modules-__prefix__-id': '',
             'modules-__prefix__-shelf': str(item),
         }
-        for index in range(0, len(module_data)):
+        for index in range(len(module_data)):
             out.update(
                 **{
                     f'modules-{index}-icon': str(module_data[index]['icon']),
@@ -601,7 +601,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
 
     def test_can_see_secondary_hero_module_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
@@ -615,7 +615,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
     def test_can_list_with_discovery_edit_permission(self):
         SecondaryHero.objects.create(headline='FooBâr')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -630,7 +630,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
         ]
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -655,10 +655,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             detail_url,
             dict(
                 self._get_moduleform(item.id, shelves, initial=3),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )
@@ -681,7 +679,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             'admin:discovery_secondaryheroshelf_delete', args=(item.pk,)
         )
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
@@ -716,7 +714,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
     def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_secondaryheroshelf_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
@@ -737,10 +735,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             add_url,
             dict(
                 self._get_moduleform('', shelves),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )
@@ -817,7 +813,7 @@ class TestSecondaryHeroShelfAdmin(TestCase):
     def test_need_3_modules(self):
         add_url = reverse('admin:discovery_secondaryheroshelf_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200
@@ -826,10 +822,8 @@ class TestSecondaryHeroShelfAdmin(TestCase):
             add_url,
             dict(
                 self._get_moduleform('', {}),
-                **{
-                    'headline': 'This headline is ... something.',
-                    'description': 'This description is as well!',
-                },
+                headline='This headline is ... something.',
+                description='This description is as well!',
             ),
             follow=True,
         )
@@ -856,7 +850,7 @@ class TestShelfAdmin(TestCase):
 
     def test_can_see_shelf_module_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         url = reverse('admin:index')
         response = self.client.get(url)
@@ -870,7 +864,7 @@ class TestShelfAdmin(TestCase):
     def test_can_list_with_discovery_edit_permission(self):
         Shelf.objects.create(title='FooBâr')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -887,7 +881,7 @@ class TestShelfAdmin(TestCase):
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
@@ -930,7 +924,7 @@ class TestShelfAdmin(TestCase):
         )
         detail_url = reverse(self.detail_url_name, args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         data = {
             'title': 'Recommended extensions',
@@ -977,7 +971,7 @@ class TestShelfAdmin(TestCase):
         )
         delete_url = reverse('admin:discovery_homepageshelves_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         # Can access delete confirmation page.
         response = self.client.get(delete_url, follow=True)
@@ -992,7 +986,7 @@ class TestShelfAdmin(TestCase):
     def test_can_add_with_discovery_edit_permission(self):
         add_url = reverse('admin:discovery_homepageshelves_add')
         user = user_factory(email='someone@mozilla.com')
-        self.grant_permission(user, 'Discovery:Edit')
+        self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
         self.client.force_login(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 200

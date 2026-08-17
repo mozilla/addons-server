@@ -1393,6 +1393,9 @@ class ContentDecision(ModelBase):
             log_entry = OverriddenActionClass.reverse_action(
                 reversed_decision=overridden, new_decision=self
             )
+        else:
+            self.target_versions.set(overridden.target_versions.all())
+            log_entry = None
 
         # Reverse any follow-up actions (e.g. delayed blocks) of the overridden
         # decision too.
@@ -1422,6 +1425,25 @@ class ContentDecision(ModelBase):
                 # action first, then apply the new action below.
                 self.reverse_overridden_action()
                 log_entry = action_helper.process_action(release_hold=release_hold)
+                if not log_entry and not self.activities.exists():
+                    # If there was no action taken (e.g. the content was already
+                    # removed, so the action was a no-op) we still need to log that the
+                    # decision was created so there is a record in the reviewer tools
+                    # history, and we can send out an accurate email with policy text,
+                    # etc.
+                    if not self.target_versions.exists() and (
+                        addon_version := getattr(action_helper, 'addon_version', None)
+                    ):
+                        # If there was no action, there is likely no target_versions
+                        # either (unless it was an override), so we provide a version to
+                        # associate it with, so it's visible in the review history.
+                        action_helper.log_action(
+                            amo.LOG.DECISION_CREATED,
+                            addon_version,
+                            extra_details={'versions': [addon_version.version]},
+                        )
+                    else:
+                        action_helper.log_action(amo.LOG.DECISION_CREATED)
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date',))
             else:
@@ -1431,8 +1453,6 @@ class ContentDecision(ModelBase):
         if self.action_date:
             for followup in self.followup_actions.filter(action_date__isnull=True):
                 followup.execute_action()
-
-        log_entry = log_entry or self.activities.first()
 
         if self.cinder_job and self.addon_id:
             if self.action_date:
