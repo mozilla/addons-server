@@ -886,8 +886,8 @@ class TestContentActionDisableAddon(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
-        assert 'on our own initiative, on content submitted' not in mail_item.body
-        assert 'prompted by a report we received from a third party' in mail_item.body
+        assert 'own initiative' not in mail_item.body
+        assert 'a report we received from a third party' in mail_item.body
 
     def test_notify_owners_with_for_proactive_decision(self):
         self.cinder_job.delete()
@@ -901,8 +901,8 @@ class TestContentActionDisableAddon(
             mail_item, f'Mozilla Add-ons: {self.addon.name}', self.disable_snippet
         )
         assert 'right to appeal' in mail_item.body
-        assert 'on our own initiative, on content submitted' in mail_item.body
-        assert 'prompted by a report we received from a third party' not in mail_item.body
+        assert 'own initiative' in mail_item.body
+        assert 'a report we received from a third party' not in mail_item.body
 
     def test_notify_owners_non_public_url(self):
         self.decision.update(action=self.default_decision_action)

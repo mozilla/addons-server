@@ -292,7 +292,7 @@ class TestRatingModel(TestCase):
         )
         assert email.subject == 'Mozilla Add-on Developer Reply: my addon name'
         assert 'a developer has replied to your review' in email.body
-        assert 'add-on my addon name' in email.body
+        assert 'review of my addon name' in email.body
         assert reply_url in email.body
         assert email.to == ['arya@example.com']
         assert email.from_email == 'Mozilla Add-ons <nobody@mozilla.org>'

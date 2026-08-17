@@ -1769,7 +1769,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'has passed our automated screening and is tentatively approved' in message.body
+        assert (
+            'has passed our automated screening and is tentatively approved'
+            in message.body
+        )
 
     def test_nomination_but_listing_rejected_to_public_not_human(self):
         self.setup_data(amo.STATUS_REJECTED, human_review=False)
@@ -1807,7 +1810,8 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         self.check_subject(message)
         assert (
-            'has passed our automated screening and is tentatively approved' not in message.body
+            'has passed our automated screening and is tentatively approved'
+            not in message.body
         )
         assert 'will stay unavailable' in message.body
 
