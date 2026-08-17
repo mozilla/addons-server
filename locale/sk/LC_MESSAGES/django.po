@@ -5828,7 +5828,7 @@ msgstr "Prispôsobte si gestá myši. Objavte nové spôsoby navigácie s viac a
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Odstráňte rušivé elementy, zmeňte zážitok zo sledovania, upravte rýchlosť prehrávania a mnoho ďalšieho."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
