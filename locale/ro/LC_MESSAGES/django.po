@@ -487,7 +487,7 @@ msgstr "Acest tip de supliment nu permite compatibilitatea personalizată."
 
 #: src/olympia/addons/validators.py:343
 msgid "This endpoint is not valid for Themes."
-msgstr "Acest endpoint nu este valabil pentru Teme."
+msgstr "Acest punct terminal nu este valabil pentru Teme."
 
 #: src/olympia/addons/templates/addons/includes/dashboard_tabs.html:4 src/olympia/devhub/templates/devhub/nav.html:15 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:19
 #: src/olympia/devhub/templates/devhub/new-landing/components/navigation.html:16
