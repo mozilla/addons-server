@@ -5857,7 +5857,7 @@ msgstr "Anpassbare Mausgesten. Entdecken Sie mit über 50 hilfreichen Einstellun
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Ablenkungen ausblenden, das Seherlebnis anpassen, die Wiedergabegeschwindigkeit ändern und vieles mehr."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869

@@ -5832,7 +5832,7 @@ msgstr "Personalize gestos do mouse. Descubra novas formas de navegar, com mais 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Remova distrações, mude sua experiência de visualização, altere a velocidade de reprodução e muito."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
