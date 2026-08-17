@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-server 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-12 17:55+0000\n"
+"POT-Creation-Date: 2026-08-17 08:51+0000\n"
 "Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -4484,7 +4484,7 @@ msgid "Customize mouse gestures. Discover new ways to navigate with 50+ configur
 msgstr ""
 
 #. editorial content for the primary hero shelves.
-msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
 msgstr ""
 
 #. editorial content for the primary hero shelves.
