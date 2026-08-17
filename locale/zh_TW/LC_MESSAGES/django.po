@@ -5739,7 +5739,7 @@ msgstr "自訂滑鼠手勢。嘗試使用超過 50 種設定來瀏覽頁面。"
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "移除干擾、更改觀賞體驗、調整播放速度與更多功能。"
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
