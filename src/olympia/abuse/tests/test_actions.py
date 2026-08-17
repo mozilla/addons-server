@@ -1160,9 +1160,7 @@ class TestContentActionDisableAddon(
         self._test_approve_appeal_or_override_but_listing_rejected(
             ContentActionTargetAppealApprove
         )
-        assert (
-            'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
-        )
+        assert 'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
         assert self.addon.reload().status == amo.STATUS_REJECTED
 
     def test_approve_override_success_but_listing_rejected(self):
@@ -1368,9 +1366,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
             ContentActionTargetAppealApprove, fragment="we've re-enabled"
         )
         assert self.addon.reload().status == amo.STATUS_REJECTED
-        assert (
-            'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
-        )
+        assert 'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
 
     def test_approve_override_success_but_listing_rejected(self):
         self.addon.update(status=amo.STATUS_REJECTED)

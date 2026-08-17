@@ -3884,8 +3884,7 @@ class TestReviewHelper(TestReviewHelperBase):
             f'Our earlier message asked you to resolve the issue(s) by {old_deadline}.'
         ) in mail.outbox[0].body
         assert (
-            'Your new deadline to bring your add-on into compliance is '
-            f'{new_deadline}'
+            f'Your new deadline to bring your add-on into compliance is {new_deadline}'
         ) in mail.outbox[0].body
 
         self.review_version.reload()

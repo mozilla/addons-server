@@ -3679,9 +3679,7 @@ class TestContentDecision(TestCase):
             'versions have been reinstated: '
             f'{older_version.version}, {newer_version.version}' in mail_item.body
         )
-        assert (
-            'these versions could be reviewed again in the future' in mail_item.body
-        )
+        assert 'these versions could be reviewed again in the future' in mail_item.body
 
     def test_execute_action_approve_appeal_on_disable(self):
         addon = addon_factory(users=[user_factory()], status=amo.STATUS_DISABLED)

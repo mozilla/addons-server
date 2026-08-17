@@ -90,7 +90,7 @@ class TestEmailBouncing(TestCase):
     BOUNCE_REPLY = (
         'Hello,\n\nThanks for getting in touch. We received an email that looks '
         "like it came from you, but unfortunately we weren't able to process it:"
-        "\n%s\n\nYou can still leave your reply directly on our site. Just visit "
+        '\n%s\n\nYou can still leave your reply directly on our site. Just visit '
         "%s and we'll make sure it reaches the right place.\n\n\n--\n"
         'Mozilla Add-ons\n%s\n'
     )
