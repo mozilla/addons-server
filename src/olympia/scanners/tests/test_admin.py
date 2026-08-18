@@ -1360,27 +1360,26 @@ class TestScannerQueryRuleAdmin(TestCase):
         }
         url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
 
-        # No toggle.
-        response = self.client.post(url, data)
-        self.assert3xx(response, self.list_url)
-        rule.reload()
-        assert rule.run_on_specific_channels == []
+        # The form is prefilled with every channel.
+        response = self.client.get(reverse('admin:scanners_scannerqueryrule_add'))
+        assert response.status_code == 200
+        form = response.context_data['adminform'].form
+        assert form['run_on_specific_channels'].value() == list(amo.CHANNEL_CHOICES)
 
-        # Toggled, no channel
-        data.update(toggle_run_on_specific_channels='true', run_on_specific_channels=[])
+        # No channel selected errors.
+        data['run_on_specific_channels'] = []
         response = self.client.post(url, data)
         assert response.status_code == 200
         form = response.context_data['adminform'].form
-        assert form.errors == {
-            'run_on_specific_channels': ['Please select at least one channel.']
-        }
+        assert form.errors == {'run_on_specific_channels': ['This field is required.']}
         rule.reload()
         assert rule.run_on_specific_channels == []
 
-        # Toggled, with channel
-        data.update(
-            run_on_specific_channels=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
-        )
+        # Subset of channels.
+        data['run_on_specific_channels'] = [
+            amo.CHANNEL_ENTERPRISE,
+            amo.CHANNEL_UNLISTED,
+        ]
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
@@ -1389,12 +1388,12 @@ class TestScannerQueryRuleAdmin(TestCase):
             amo.CHANNEL_UNLISTED,
         ]
 
-        # Toggle off clears channels.
-        data.pop('toggle_run_on_specific_channels')
+        # Every channel.
+        data['run_on_specific_channels'] = list(amo.CHANNEL_CHOICES)
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
-        assert rule.run_on_specific_channels == []
+        assert rule.run_on_specific_channels == list(amo.CHANNEL_CHOICES)
 
 
 class TestScannerQueryResultAdmin(TestCase):

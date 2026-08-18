@@ -6,7 +6,6 @@ from django.contrib.admin import SimpleListFilter
 from django.core.paginator import Paginator
 from django.db.models import Count, Prefetch
 from django.forms import (
-    BooleanField,
     CheckboxSelectMultiple,
     ModelForm,
     TypedMultipleChoiceField,
@@ -314,34 +313,13 @@ class ScannerRuleModelForm(ModelForm):
 
 
 class ScannerQueryRuleModelForm(ScannerRuleModelForm):
-    toggle_run_on_specific_channels = BooleanField(
-        required=False,
-        label='Run on specific channels',
-        help_text=('By default, the rule runs on versions in all channels.'),
-    )
     run_on_specific_channels = TypedMultipleChoiceField(
         choices=list(amo.CHANNEL_CHOICES.items()),
+        initial=list(amo.CHANNEL_CHOICES),
         coerce=int,
-        required=False,
         help_text='Run this rule on versions in the specific channel(s) only.',
         widget=CheckboxSelectMultiple,
     )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields['toggle_run_on_specific_channels'].initial = bool(
-            self.instance.run_on_specific_channels
-        )
-
-    def clean(self):
-        cleaned_data = super().clean()
-        if not cleaned_data.get('toggle_run_on_specific_channels'):
-            cleaned_data['run_on_specific_channels'] = []
-        elif not cleaned_data.get('run_on_specific_channels'):
-            self.add_error(
-                'run_on_specific_channels', 'Please select at least one channel.'
-            )
-        return cleaned_data
 
 
 class AbstractScannerResultAdminMixin:
@@ -856,7 +834,6 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
     fields = (
         'scanner',
         'run_on_disabled_addons',
-        'toggle_run_on_specific_channels',
         'run_on_specific_channels',
         'run_on_current_version_only',
         'exclude_promoted_addons',
@@ -879,6 +856,17 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'matched_results_link',
         'state_with_actions',
     )
+
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj)
+        if not self.has_change_permission(request, obj):
+            fields = [
+                'formatted_run_on_specific_channels'
+                if field == 'run_on_specific_channels'
+                else field
+                for field in fields
+            ]
+        return fields
 
     def change_view(self, request, *args, **kwargs):
         kwargs['extra_context'] = kwargs.get('extra_context') or {}
@@ -1023,7 +1011,7 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
 
         return (deleted_objects, model_count, perms_needed, protected)
 
-    @admin.display(description='Run on specific channel')
+    @admin.display(description='Run on specific channels')
     def formatted_run_on_specific_channels(self, obj):
         return ', '.join(
             str(amo.CHANNEL_CHOICES[channel])

@@ -484,7 +484,7 @@ class TestScannerQueryRuleSerializer(TestCase):
         data = ScannerQueryRuleSerializer(rule).data
         assert data['run_on_specific_channels'] == ['listed', 'enterprise']
 
-    def test_run_on_specific_channels_defaults_to_empty_list(self):
+    def test_run_on_specific_channels_defaults_to_all_channels(self):
         serializer = ScannerQueryRuleSerializer(
             data={
                 'name': 'some_rule',
@@ -494,9 +494,11 @@ class TestScannerQueryRuleSerializer(TestCase):
         )
         assert serializer.is_valid(), serializer.errors
         rule = serializer.save()
-        assert rule.run_on_specific_channels == []
+        assert rule.run_on_specific_channels == list(amo.CHANNEL_CHOICES)
         data = ScannerQueryRuleSerializer(rule).data
-        assert data['run_on_specific_channels'] == []
+        assert data['run_on_specific_channels'] == list(
+            amo.CHANNEL_CHOICES_API.values()
+        )
 
     def test_run_on_specific_channels_invalid_channel(self):
         serializer = ScannerQueryRuleSerializer(

@@ -9,11 +9,6 @@
     visibility: hidden;
 }
 
-.form-row.field-toggle_run_on_specific_channels:not(:has(input:checked))
-    + .form-row.field-run_on_specific_channels {
-    display: none;
-}
-
 .field-formatted_definition .readonly pre {
     overflow-wrap: anywhere;
     white-space: pre-wrap;

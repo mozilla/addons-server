@@ -652,7 +652,6 @@ class ScannerQueryRule(AbstractScannerRule):
     )
     run_on_specific_channels = models.JSONField(
         default=list,
-        blank=True,
     )
     created_after = models.DateField(
         db_default=None, default=COSE_DATE_CUTOFF, null=True, blank=True
