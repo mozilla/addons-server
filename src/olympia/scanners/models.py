@@ -650,7 +650,7 @@ class ScannerQueryRule(AbstractScannerRule):
             'each add-on only.'
         ),
     )
-    run_on_specific_channel = models.JSONField(
+    run_on_specific_channels = models.JSONField(
         default=list,
         blank=True,
     )

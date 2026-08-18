@@ -466,26 +466,25 @@ class TestScannerQueryRuleSerializer(TestCase):
         assert not serializer.is_valid()
         assert 'configuration' in serializer.errors
 
-    def test_run_on_specific_channel_uses_string_constants(self):
+    def test_run_on_specific_channels_uses_string_constants(self):
         serializer = ScannerQueryRuleSerializer(
             data={
                 'name': 'some_rule',
                 'scanner': 'yara',
                 'definition': VALID_YARA_DEFINITION,
-                'run_on_specific_channel': ['listed', 'unlisted', 'enterprise'],
+                'run_on_specific_channels': ['listed', 'enterprise'],
             }
         )
         assert serializer.is_valid(), serializer.errors
         rule = serializer.save()
-        assert rule.run_on_specific_channel == [
+        assert rule.run_on_specific_channels == [
             amo.CHANNEL_LISTED,
-            amo.CHANNEL_UNLISTED,
             amo.CHANNEL_ENTERPRISE,
         ]
         data = ScannerQueryRuleSerializer(rule).data
-        assert data['run_on_specific_channel'] == ['listed', 'unlisted', 'enterprise']
+        assert data['run_on_specific_channels'] == ['listed', 'enterprise']
 
-    def test_run_on_specific_channel_defaults_to_empty_list(self):
+    def test_run_on_specific_channels_defaults_to_empty_list(self):
         serializer = ScannerQueryRuleSerializer(
             data={
                 'name': 'some_rule',
@@ -495,21 +494,21 @@ class TestScannerQueryRuleSerializer(TestCase):
         )
         assert serializer.is_valid(), serializer.errors
         rule = serializer.save()
-        assert rule.run_on_specific_channel == []
+        assert rule.run_on_specific_channels == []
         data = ScannerQueryRuleSerializer(rule).data
-        assert data['run_on_specific_channel'] == []
+        assert data['run_on_specific_channels'] == []
 
-    def test_run_on_specific_channel_invalid_channel(self):
+    def test_run_on_specific_channels_invalid_channel(self):
         serializer = ScannerQueryRuleSerializer(
             data={
                 'name': 'some_rule',
                 'scanner': 'yara',
                 'definition': VALID_YARA_DEFINITION,
-                'run_on_specific_channel': ['no'],
+                'run_on_specific_channels': ['no'],
             }
         )
         assert not serializer.is_valid()
-        assert 'run_on_specific_channel' in serializer.errors
+        assert 'run_on_specific_channels' in serializer.errors
 
 
 class TestScannerQueryResultSerializer(TestCase):

@@ -9,8 +9,8 @@
     visibility: hidden;
 }
 
-.form-row.field-toggle_run_on_specific_channel:not(:has(input:checked))
-    + .form-row.field-run_on_specific_channel {
+.form-row.field-toggle_run_on_specific_channels:not(:has(input:checked))
+    + .form-row.field-run_on_specific_channels {
     display: none;
 }
 

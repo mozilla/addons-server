@@ -1347,7 +1347,7 @@ class TestScannerQueryRuleAdmin(TestCase):
         response = self.client.post(url, {'post': 'yes'})
         assert response.status_code == 403
 
-    def test_run_on_specific_channel(self):
+    def test_run_on_specific_channels(self):
         rule = ScannerQueryRule.objects.create(
             scanner=YARA,
             name='always_true',
@@ -1364,37 +1364,37 @@ class TestScannerQueryRuleAdmin(TestCase):
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
-        assert rule.run_on_specific_channel == []
+        assert rule.run_on_specific_channels == []
 
         # Toggled, no channel
-        data.update(toggle_run_on_specific_channel='true', run_on_specific_channel=[])
+        data.update(toggle_run_on_specific_channels='true', run_on_specific_channels=[])
         response = self.client.post(url, data)
         assert response.status_code == 200
         form = response.context_data['adminform'].form
         assert form.errors == {
-            'run_on_specific_channel': ['Please select at least one channel.']
+            'run_on_specific_channels': ['Please select at least one channel.']
         }
         rule.reload()
-        assert rule.run_on_specific_channel == []
+        assert rule.run_on_specific_channels == []
 
         # Toggled, with channel
         data.update(
-            run_on_specific_channel=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
+            run_on_specific_channels=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
         )
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
-        assert rule.run_on_specific_channel == [
+        assert rule.run_on_specific_channels == [
             amo.CHANNEL_ENTERPRISE,
             amo.CHANNEL_UNLISTED,
         ]
 
         # Toggle off clears channels.
-        data.pop('toggle_run_on_specific_channel')
+        data.pop('toggle_run_on_specific_channels')
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
-        assert rule.run_on_specific_channel == []
+        assert rule.run_on_specific_channels == []
 
 
 class TestScannerQueryResultAdmin(TestCase):

@@ -660,8 +660,8 @@ def run_scanner_query_rule(query_rule_pk):
     ).exclude(file__file='')
     if not rule.run_on_disabled_addons:
         qs = qs.exclude(addon__status=amo.STATUS_DISABLED)
-    if rule.run_on_specific_channel:
-        qs = qs.filter(channel__in=rule.run_on_specific_channel)
+    if rule.run_on_specific_channels:
+        qs = qs.filter(channel__in=rule.run_on_specific_channels)
     if rule.run_on_current_version_only:
         qs = qs.filter(pk=F('addon___current_version'))
     if rule.created_after:

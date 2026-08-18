@@ -2071,7 +2071,7 @@ class TestRunQueryRuleMixin:
         # just make sure the id was set to something.
         assert self.rule.celery_group_result_id is not None
 
-    def test_run_on_specific_channel(self):
+    def test_run_on_specific_channels(self):
 
         # Similar to test_run_on_chunk() except it needs to find the versions
         # by itself.
@@ -2113,7 +2113,7 @@ class TestRunQueryRuleMixin:
 
         def run_on_channels(channels):
             ScannerQueryResult.objects.all().delete()
-            self.rule.update(state=SCHEDULED, run_on_specific_channel=channels)
+            self.rule.update(state=SCHEDULED, run_on_specific_channels=channels)
             run_scanner_query_rule.delay(self.rule.pk)
 
             self.rule.reload()

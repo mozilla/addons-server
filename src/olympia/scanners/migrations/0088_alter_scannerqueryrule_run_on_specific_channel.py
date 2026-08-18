@@ -6,18 +6,17 @@ def channel_to_channel_list(apps, schema_editor):
     ScannerQueryRule = apps.get_model('scanners', 'ScannerQueryRule')
     for query_rule in ScannerQueryRule.objects.all():
         channel = query_rule.run_on_specific_channel
-        query_rule.update(
-            run_on_specific_channel=[channel] if channel else []
-        )
+        query_rule.run_on_specific_channels = [channel] if channel else []
+        query_rule.save()
 
 
 def channel_list_to_channel(apps, schema_editor):
     ScannerQueryRule = apps.get_model('scanners', 'ScannerQueryRule')
     for query_rule in ScannerQueryRule.objects.all():
-        channel = query_rule.run_on_specific_channel
-        query_rule.update(
-            run_on_specific_channel=channel[0] if channel else None
-        )
+        channels = query_rule.run_on_specific_channels
+        query_rule.run_on_specific_channel = channels[0] if channels else None
+        query_rule.save()
+
 
 class Migration(migrations.Migration):
     dependencies = [
@@ -25,13 +24,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterField(
+        migrations.AddField(
             model_name='scannerqueryrule',
-            name='run_on_specific_channel',
-            field=models.JSONField(
-                default=list,
-                blank=True,
-            ),
+            name='run_on_specific_channels',
+            field=models.JSONField(blank=True, default=list),
         ),
         migrations.RunPython(channel_to_channel_list, channel_list_to_channel),
+        migrations.RemoveField(
+            model_name='scannerqueryrule',
+            name='run_on_specific_channel',
+        ),
     ]

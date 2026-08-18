@@ -182,7 +182,7 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
     state = ReverseChoiceField(
         choices=list(QUERY_RULE_STATES_CHOICES_API.items()), read_only=True
     )
-    run_on_specific_channel = serializers.ListField(
+    run_on_specific_channels = serializers.ListField(
         child=ReverseChoiceField(choices=list(amo.CHANNEL_CHOICES_API.items())),
         required=False,
     )
@@ -201,7 +201,7 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
             'configuration',
             'run_on_disabled_addons',
             'run_on_current_version_only',
-            'run_on_specific_channel',
+            'run_on_specific_channels',
             'exclude_promoted_addons',
             'state',
             'task_count',
