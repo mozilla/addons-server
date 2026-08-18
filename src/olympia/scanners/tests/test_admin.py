@@ -1378,11 +1378,16 @@ class TestScannerQueryRuleAdmin(TestCase):
         assert rule.run_on_specific_channel == []
 
         # Toggled, with channel
-        data.update(run_on_specific_channel=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED])
+        data.update(
+            run_on_specific_channel=[amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
+        )
         response = self.client.post(url, data)
         self.assert3xx(response, self.list_url)
         rule.reload()
-        assert rule.run_on_specific_channel == [amo.CHANNEL_ENTERPRISE, amo.CHANNEL_UNLISTED]
+        assert rule.run_on_specific_channel == [
+            amo.CHANNEL_ENTERPRISE,
+            amo.CHANNEL_UNLISTED,
+        ]
 
         # Toggle off clears channels.
         data.pop('toggle_run_on_specific_channel')
