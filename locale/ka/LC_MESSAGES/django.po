@@ -5837,7 +5837,7 @@ msgstr "მოირგეთ თაგვის ჟესტები. აღ�
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "მოაცილეთ ყურადღების გამფანტავი შიგთავსი, მოირგეთ ჩვენების პარამეტრები, ცვალეთ დაკვრის სიჩქარე და ბევრი სხვა რამ."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
