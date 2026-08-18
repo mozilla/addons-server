@@ -299,7 +299,7 @@ class NegativeContentActionMixin:
         self._check_owner_email(
             mail_item,
             subject,
-            "adheres to Mozilla's policies. We've",
+            "adheres to Mozilla's policies. We have",
         )
         assert 'right to appeal' not in mail_item.body
         assert self.decision.reasoning in mail_item.body
@@ -478,7 +478,7 @@ class PositiveContentActionMixin:
 
         for idx in range(1):
             assert (
-                "weren't able to identify content that doesn't adhere to"
+                'were not able to identify content that does not adhere to'
                 in mail.outbox[idx].body
             )
             assert 'right to appeal' not in mail.outbox[idx].body
