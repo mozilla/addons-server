@@ -5839,7 +5839,7 @@ msgstr "Personalisa le gestos del mus. Discoperi nove manieras pro navigar con p
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Remove le distractiones, cambia tu experientia de visualisation, modifica le velocitate de reproduction e tanto plus."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
