@@ -1386,7 +1386,8 @@ class ContentDecision(ModelBase):
         if not overridden:
             return None
 
-        if overridden.action != self.action:
+        version_specific = self.action in DECISION_ACTIONS.VERSION_SPECIFIC
+        if overridden.action != self.action or version_specific:
             OverriddenActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[
                 overridden.action
             ]
@@ -1399,16 +1400,20 @@ class ContentDecision(ModelBase):
 
         # Reverse any follow-up actions (e.g. delayed blocks) of the overridden
         # decision too.
-        new_followup_actions = list(
-            self.followup_actions.values_list('action', flat=True)
+        reversing_followup_actions = overridden.followup_actions.filter(
+            action_date__isnull=False
         )
-        for followup in overridden.followup_actions.filter(action_date__isnull=False):
-            if followup.action in new_followup_actions:
-                # If the follow-up action is the same as the new action, we don't need
-                # to reverse it.
-                continue
+        # If the action is not version specific, and the follow-up action is the same as
+        # the new action, we don't need to reverse it.
+        if not version_specific:
+            reversing_followup_actions = reversing_followup_actions.exclude(
+                action__in=self.followup_actions.values_list('action', flat=True)
+            )
+        for followup in reversing_followup_actions:
             FollowUpActionClass = CONTENT_ACTION_FROM_DECISION_ACTION[followup.action]
-            FollowUpActionClass.reverse_action(reversed_decision=followup.decision)
+            FollowUpActionClass.reverse_action(
+                reversed_decision=followup.decision, new_decision=self
+            )
         return log_entry
 
     def execute_action(self, *, release_hold=False):
@@ -1520,11 +1525,9 @@ class ContentDecision(ModelBase):
                 self.action == DECISION_ACTIONS.AMO_APPROVE_VERSION
                 and not details.get('human_review', True)
             )
-            version_numbers = (
-                log_entry.versionlog_set.values_list('version__version', flat=True)
-                if log_entry
-                else []
-            )
+            version_numbers = self.target_versions.values_list(
+                'version', flat=True
+            ).order_by('pk')
             is_addon_enabled = not (
                 details.get('is_addon_being_disabled') or self.addon.is_disabled
             )
@@ -1537,7 +1540,7 @@ class ContentDecision(ModelBase):
                 'details': details,
                 'is_addon_being_blocked': details.get('is_addon_being_blocked'),
                 'is_addon_enabled': is_addon_enabled,
-                'version_list': ', '.join(ver_str for ver_str in version_numbers),
+                'version_list': ', '.join(version_numbers),
                 'has_attachment': has_attachment,
                 'dev_url': absolutify(self.target.get_dev_url('versions')),
                 # If we expanded the reason/policy text into notes in the reviewer tools
