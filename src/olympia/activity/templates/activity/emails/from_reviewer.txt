@@ -1,18 +1,18 @@
 Hello,
 
-Thanks for your work on {{ name }}. A reviewer from the addons.mozilla.org team has taken a look at version {{ number }} and would like to share some feedback with you. You're receiving this email because {{ email_reason }}.
+Thanks for your work on {{ name }}. A reviewer from the addons.mozilla.org team has taken a look at version {{ number }} and would like to share some feedback with you. You are receiving this email because {{ email_reason }}.
 
-Here's what {{ author }} shared:
+Here is what {{ author }} shared:
 
 {{ comments|safe }}
 
 {% if has_attachment %}
-They've also attached a file. You can review it and reply by visiting {{ url }}.
+They have also attached a file. You can review it and reply by visiting {{ url }}.
 {% else %}
-When you're ready, simply reply to this email or visit {{ url }} to respond.
+When you are ready, simply reply to this email or visit {{ url }} to respond.
 {% endif %}
 
-We're grateful for the time and care you put into your add-on, and we're here to help if anything is unclear.
+We are grateful for the time and care you put into your add-on, and we are here to help if anything is unclear.
 
 -- 
 Mozilla Add-ons

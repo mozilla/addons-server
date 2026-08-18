@@ -1437,7 +1437,7 @@ class TestCinderWebhook(TestCase):
         process_mock.assert_called()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == [author.email]
-        assert "We've restored your extension" in mail.outbox[0].body
+        assert 'We have restored your extension' in mail.outbox[0].body
 
     def test_create_and_execute_decision_triggers_emails_for_reporter_appeal_disable(
         self,
@@ -1507,7 +1507,7 @@ class TestCinderWebhook(TestCase):
         process_mock.assert_called()
         assert len(mail.outbox) == 1
         assert mail.outbox[0].to == ['reporter@email.com']
-        assert "won't be taking action" in mail.outbox[0].body
+        assert 'will not be taking action' in mail.outbox[0].body
 
     def test_queue_does_not_matter_non_reviewer_case(self):
         data = self.get_data()

@@ -1,12 +1,12 @@
 Hello,
 
-There's a new reply in the review conversation for version {{ number }} of your add-on, {{ name }}.
+There is a new reply in the review conversation for version {{ number }} of your add-on, {{ name }}.
 
 {{ author }} wrote:
 
 {{ comments|safe }}
 
-We'd love to hear back from you, simply reply to this email or visit {{ url }} to continue the conversation.
+We would love to hear back from you, simply reply to this email or visit {{ url }} to continue the conversation.
 
 You are receiving this email because {{ email_reason }}.
 --

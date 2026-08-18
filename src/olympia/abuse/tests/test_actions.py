@@ -280,7 +280,7 @@ class NegativeContentActionMixin:
         else:
             assert 'If you submit a new version' not in mail_item.body
 
-    def _test_owner_restore_email(self, subject, *, fragment="We've restored"):
+    def _test_owner_restore_email(self, subject, *, fragment='We have restored'):
         mail_item = mail.outbox[0]
         assert len(mail.outbox) == 1
         self._check_owner_email(mail_item, subject, fragment)
@@ -306,7 +306,7 @@ class NegativeContentActionMixin:
         assert self.decision.private_notes not in mail_item.body
 
     def _notify_owners_after_reversal(
-        self, action_helper, subject, *, fragment="We've restored"
+        self, action_helper, subject, *, fragment='We have restored'
     ):
         # After an appeal/override reverses a negative action, notify the target
         # owners and check the resulting email. An appeal sends the dedicated
@@ -1319,7 +1319,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         return subject
 
     def _test_approve_appeal_or_override(
-        self, ActionClass, *, fragment="We've restored"
+        self, ActionClass, *, fragment='We have restored'
     ):
         self.old_version.file.update(
             status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
@@ -1363,7 +1363,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         )
         self.past_negative_decision.update(appeal_job=self.cinder_job)
         self._test_approve_appeal_or_override(
-            ContentActionTargetAppealApprove, fragment="we've re-enabled"
+            ContentActionTargetAppealApprove, fragment='we have re-enabled'
         )
         assert self.addon.reload().status == amo.STATUS_REJECTED
         assert 'listing on Mozilla Add-ons will stay unavailable' in mail.outbox[0].body
@@ -1696,8 +1696,8 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[1].subject == (
             subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
-        assert "we'll remove" in mail.outbox[0].body
-        assert "we'll remove" in mail.outbox[1].body
+        assert 'we will remove' in mail.outbox[0].body
+        assert 'we will remove' in mail.outbox[1].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[1].body
         assert (
@@ -1760,7 +1760,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert mail.outbox[0].subject == (
             subject + f' [ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
         )
-        assert "we'll remove" in mail.outbox[0].body
+        assert 'we will remove' in mail.outbox[0].body
         assert 'right to appeal' not in mail.outbox[0].body
         assert (
             f'[ref:{self.decision.cinder_id}/{self.abuse_report_auth.id}]'
@@ -2758,8 +2758,8 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
-        assert "it's now available again" in mail.outbox[-1].body
+        assert "adheres to Mozilla's policies. We have" in mail.outbox[-1].body
+        assert 'it is now available again' in mail.outbox[-1].body
         assert 'more on its availability' not in mail.outbox[-1].body
 
     def test_content_approve_rejected_listing_content_but_awaiting_approval(self):
@@ -2813,8 +2813,8 @@ class TestContentActionApproveListingContent(
 
         assert len(mail.outbox) == 3
         self._test_reporter_content_approve_email(subject)
-        assert "adheres to Mozilla's policies. We've" in mail.outbox[-1].body
-        assert "it's now available again" not in mail.outbox[-1].body
+        assert "adheres to Mozilla's policies. We have" in mail.outbox[-1].body
+        assert 'it is now available again' not in mail.outbox[-1].body
         assert 'more on its availability' in mail.outbox[-1].body
 
     def test_email_content_not_escaped(self):

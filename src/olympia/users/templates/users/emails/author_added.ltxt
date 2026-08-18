@@ -4,7 +4,7 @@ A new author has been added to your add-on {{ addon_name }} ( {{ addon_url }} ):
 
 {{ author_name }} ( {{ author_url }} ): {{ author_role }}
 
-If you weren't expecting this change, please review your add-on's author settings on the page above.
+If you were not expecting this change, please review your add-on's author settings on the page above.
 
 Thanks for building for Firefox,
 The Mozilla Add-ons Team{% endblocktrans %}
