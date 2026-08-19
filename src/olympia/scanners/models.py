@@ -650,12 +650,8 @@ class ScannerQueryRule(AbstractScannerRule):
             'each add-on only.'
         ),
     )
-    run_on_specific_channel = models.PositiveSmallIntegerField(
-        default=None,
-        null=True,
-        blank=True,
-        help_text='Run this rule on versions in the specific channel only.',
-        choices=[(None, '')] + list(amo.CHANNEL_CHOICES.items()),
+    run_on_specific_channels = models.JSONField(
+        default=list,
     )
     created_after = models.DateField(
         db_default=None, default=COSE_DATE_CUTOFF, null=True, blank=True

@@ -2071,32 +2071,31 @@ class TestRunQueryRuleMixin:
         # just make sure the id was set to something.
         assert self.rule.celery_group_result_id is not None
 
-    def test_run_on_specific_channel(self):
-        # Pretend we went through the admin, run on unlisted channel only.
-        self.rule.update(state=SCHEDULED, run_on_specific_channel=amo.CHANNEL_UNLISTED)
+    def test_run_on_specific_channels(self):
 
         # Similar to test_run_on_chunk() except it needs to find the versions
         # by itself.
+        unlisted_addon = addon_factory(
+            disabled_by_user=True,  # Doesn't matter.
+            version_kw={'channel': amo.CHANNEL_UNLISTED},
+            file_kw={'filename': 'webextension.xpi'},
+        )
         other_addon = addon_factory(
             version_kw={'created': self.days_ago(1)},
             file_kw={'filename': 'webextension.xpi'},
         )
-        included_versions = [
-            # Only unlisted webextension version of this add-on.
-            addon_factory(
-                disabled_by_user=True,  # Doesn't matter.
-                version_kw={'channel': amo.CHANNEL_UNLISTED},
-                file_kw={'filename': 'webextension.xpi'},
-            ).versions.get(),
-            # Only unlisted webextension version of an add-on that has multiple
-            # versions.
-            version_factory(
-                addon=other_addon,
-                created=self.days_ago(42),
-                channel=amo.CHANNEL_UNLISTED,
-                file_kw={'filename': 'webextension.xpi'},
-            ),
-        ]
+        other_addon_unlisted_version = version_factory(
+            addon=other_addon,
+            created=self.days_ago(42),
+            channel=amo.CHANNEL_UNLISTED,
+            file_kw={'filename': 'webextension.xpi'},
+        )
+        other_addon_enterprise_version = version_factory(
+            addon=other_addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+            file_kw={'filename': 'webextension.xpi'},
+        )
+
         # Ignored versions:
         # Listed Webextension version belonging to mozilla disabled add-on.
         addon_factory(file_kw={'filename': 'webextension.xpi'})
@@ -2112,19 +2111,39 @@ class TestRunQueryRuleMixin:
             ),
         )
 
-        # Run the task.
-        run_scanner_query_rule.delay(self.rule.pk)
+        def run_on_channels(channels):
+            ScannerQueryResult.objects.all().delete()
+            self.rule.update(state=SCHEDULED, run_on_specific_channels=channels)
+            run_scanner_query_rule.delay(self.rule.pk)
 
-        assert ScannerQueryResult.objects.count() == len(included_versions)
-        assert sorted(
-            ScannerQueryResult.objects.values_list('version_id', flat=True)
-        ) == sorted(v.pk for v in included_versions)
-        self.rule.reload()
-        assert self.rule.state == COMPLETED
-        assert self.rule.task_count == 1
-        # We run tests in eager mode, so we can't retrieve the result for real,
-        # just make sure the id was set to something.
-        assert self.rule.celery_group_result_id is not None
+            self.rule.reload()
+            assert self.rule.state == COMPLETED
+            assert self.rule.task_count == 1
+            # We run tests in eager mode, so we can't retrieve the result for
+            # real, just make sure the id was set to something.
+            assert self.rule.celery_group_result_id is not None
+            return sorted(
+                ScannerQueryResult.objects.values_list('version_id', flat=True)
+            )
+
+        assert run_on_channels([amo.CHANNEL_UNLISTED]) == sorted(
+            version.pk
+            for version in (
+                unlisted_addon.versions.get(),
+                other_addon_unlisted_version,
+            )
+        )
+
+        assert run_on_channels(
+            [amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE]
+        ) == sorted(
+            version.pk
+            for version in (
+                unlisted_addon.versions.get(),
+                other_addon_unlisted_version,
+                other_addon_enterprise_version,
+            )
+        )
 
     def test_run_created_after(self):
         # Pretend we went through the admin, run after a specific date

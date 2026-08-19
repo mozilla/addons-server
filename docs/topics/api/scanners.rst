@@ -132,7 +132,7 @@ List / create rules
     :<json object configuration: Scanner-specific configuration (optional, see above).
     :<json boolean run_on_disabled_addons: Run on force-disabled add-ons too (optional).
     :<json boolean run_on_current_version_only: Run on the current listed version only (optional).
-    :<json string run_on_specific_channel: Restrict to a channel, ``unlisted`` or ``listed`` (optional).
+    :<json array run_on_specific_channels: Restrict to specific channel(s): ``unlisted``, ``listed`` and/or ``enterprise``. (optional).
     :<json boolean exclude_promoted_addons: Exclude promoted add-ons (optional).
     :>json int id: The primary key of the created rule.
     :>json string scanner: The scanner (``yara`` or ``narc``).
