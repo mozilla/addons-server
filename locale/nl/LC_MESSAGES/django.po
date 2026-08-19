@@ -6975,7 +6975,7 @@ msgstr "Forum"
 
 #: src/olympia/templates/photon-footer.html:18
 msgid "Report a bug"
-msgstr "Een bug melden"
+msgstr "Een bug rapporteren"
 
 #: src/olympia/templates/photon-footer.html:19
 msgid "Review Guide"
