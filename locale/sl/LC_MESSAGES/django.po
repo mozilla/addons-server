@@ -7188,7 +7188,7 @@ msgid ""
 "\n"
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
-msgstr "Pozdravljeni, v vaš dodatek je bil dodan nov avtor Če spremenite dodatek, si oglejte avtorske nastavitve na zgornji strani.  Hvala za razvoj za Firefox, ekipa dodatkov Mozilla"
+msgstr ""
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
