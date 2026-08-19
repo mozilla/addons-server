@@ -109,6 +109,9 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po skrbnem pregledu vaše pritožbe smo ugotovili, da je prejšnja odločitev – da "
+"je ta vsebina v skladu z Mozillinimi pravilniki (%(policy_document_url)s) – pravilna. Zato zoper ta račun ali vsebino ne bomo ukrepali. %(manual_reasoning_text)s. Še enkrat se vam zahvaljujemo, ker "
+"nam pomagate ohranjati dodatke Mozilla varne. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +121,8 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, "
+"da je ta vsebina skladna z Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Vsebino smo odstranili in o tem obvestili uporabnika. Hvala, ker nam pomagate to odpraviti. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +132,8 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za več informacij o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, da je ta vsebina skladna z"
+" Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Razvijalca smo prosili za spremembe. Če vsebine ne posodobijo, jo bomo odstranili. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,6 +143,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+" Hvala, ker ste si vzeli čas za prijavo %(name)s na %(target_url)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da je v skladu z Mozillinimi pravilniki (%(policy_document_url)s), "
+"zato ne bo predmet moderiranja. Cenimo pa, da ga označite namesto nas. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +152,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Če menite, da vsebina ni v skladu z Mozillinimi pravilniki, imate pravico do pritožbe na to odločitev v 6 mesecih od datuma tega e-poštnega sporočila. Za podrobnosti o pritožbenem postopku, vključno"
+" z vložitvijo pritožbe zoper to odločitev, si oglejte %(appeal_url)s."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -152,6 +163,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki"
+" (%(policy_document_url)s). Zaradi tega smo vsebino odstranili. Cenimo vašo pomoč pri ohranjanju varnosti dodatkov Mozille. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -161,6 +174,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki"
+" (%(policy_document_url)s). Od razvijalca smo zahtevali spremembe, in če ne bodo odpravile težave, bomo vsebino odstranili. Hvala, ker pomagate ohranjati dodatke Mozilla varne. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3735,6 +3750,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, hvala za gradnjo za Firefox! To sporočilo ste prejeli, ker ste zahtevali nove ključe API za razvijalce za %(domain)s. Da dokončate nastavitev, kliknite spodnjo povezavo: "
+"%(api_key_confirmation_link)s Če teh ključev niste zahtevali, lahko to e-poštno sporočilo prezrete in ne bo ustvarjen.   Ekipa za dodatke Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3754,6 +3771,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, v vaš račun je bil pravkar dodan nov ključ API: %(key)s Če ste to bili vi, ne morete storiti več. Če menite, da je ta ključ ustvarjen po pomoti, lahko ključ odstranite in onemogočite "
+"dostop tukaj: %(url)s Hvala za gradnjo za Firefox, ekipa Mozillinih dodatkov"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -3773,6 +3792,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, naslednji ključ API je bil preklican iz vašega računa in ga ne morete več uporabiti: %(key)s Če ste to pričakovali, vam ni potrebno ukrepanje.  Če menite, da je ta ključ preklican po "
+"pomoti, lahko ustvarite novega tukaj: %(url)s Tu smo, da vam pomagamo, če kaj ne zgleda napačno, Ekipa Dodatkov Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3787,6 +3808,10 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Spoštovani razvijalec dodatkov, Takoj smo vas želeli obvestiti: opazili smo, da so vaše tajne poverilnice AMO API vključene v dodatek, poslan na addons.mozilla.org. Da bi vaš račun in dodatki ostali"
+" varni, smo zadevne poverilnice razveljavili. Z vaše strani ni nič narobe – to se včasih zgodi, mi pa smo tu, da vam pomagamo priti nazaj na pravo pot. Sveže poverilnice API lahko kadarkoli "
+"ustvarite na %(api_keys_url)s. Da svoje poverilnice še naprej ohranjate varne, jih je najbolje ohraniti zasebne in se jim izogniti v kakršnihkoli javnih shrambah, v dodatkih ali na drugih javnih "
+"mestih. Kadarkoli imate trenutek, je vredno pregledati repozitorije kod in razširitev, da odstranijo vse sklice na vaše poverilnice AMO.  Hvala, ekipa Dodatkov Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
@@ -3796,7 +3821,7 @@ msgid ""
 "\n"
 "\n"
 "The Mozilla Add-ons Team"
-msgstr ""
+msgstr "Pozdravljeni, Vaš e-poštni naslov je bil preverjen, vse je pripravljeno. Hvala za gradnjo za Firefox!   Ekipa za dodatke Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3812,6 +3837,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, hvala za gradnjo za Firefox! To sporočilo ste prejeli, ker ste zahtevali potrditev svojega e-poštnega naslova. Za dokončanje kliknite spodnjo povezavo: %(confirmation_link)s Če tega "
+"niste zahtevali vi, lahko to e-pošto prezrete.   Ekipa za dodatke Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7161,7 +7188,7 @@ msgid ""
 "\n"
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
-msgstr ""
+msgstr "Pozdravljeni, v vaš dodatek je bil dodan nov avtor Če spremenite dodatek, si oglejte avtorske nastavitve na zgornji strani.  Hvala za razvoj za Firefox, ekipa dodatkov Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7179,6 +7206,9 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, %(author_name)s, Odlična novica! povabljeni ste, da postanete avtor dodatka %(addon_name)s na %(domain)s. S sprejemom boste lahko urejali dodatek, vaše ime pa se bo morda pojavilo na "
+"seznamu avtorjev na spletni strani.  Če želite sprejeti povabilo, kliknite spodnjo povezavo: %(author_confirmation_link)s Če tega povabila niste pričakovali, lahko to e-poštno sporočilo prezrete.  "
+"Veseli nas, da lahko gradite za Firefox, ekipa dodatkov Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7215,6 +7245,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Pozdravljeni, To sporočilo ste prejeli, da vas obveščamo, da je bil vaš uporabniški račun %(name)s na %(site_url)s izbrisan. Če ste pred kratkim izbrisali svoj račun Mozilla, se je to morda zgodilo "
+"samodejno.  Hvala, ker ste bili del skupnosti dodatkov za Firefox. Če menite, da je šlo za napako ali če imate kakršnokoli vprašanje, se obrnite na nas.  Lep pozdrav, ekipa Dodatkov Mozilla"
 
 #: src/olympia/versions/models.py:1140
 #, python-format

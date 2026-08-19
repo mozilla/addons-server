@@ -109,6 +109,9 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Obrigado por relatar sobre %(name)s nas extensões da Mozilla e por dispor de tempo para compartilhar mais sobre suas preocupações. Após analisarmos cuidadosamente o seu recurso, descobrimos que a "
+"decisão anterior — de que este conteúdo adere às políticas da Mozilla (%(policy_document_url)s) — estava correta. Por esse motivo, não tomaremos medidas contra a conta ou o conteúdo. "
+"%(manual_reasoning_text)s. Obrigado novamente por nos ajudar a manter o Mozilla Add-ons seguro. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +121,8 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+" Obrigado por relatar sobre %(name)s nas extensões da Mozilla e por dispor de tempo para compartilhar mais sobre suas preocupações. Após analisar seu recurso, descobrimos que nossa decisão anterior,"
+" de que este conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Removemos o conteúdo e notificamos o usuário. Obrigado por nos ajudar a fazer isso direito. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +132,8 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+" Obrigado por relatar sobre %(name)s nas extensões da Mozilla, e por fornecer mais informações sobre suas preocupações. Após analisar seu recurso, descobrimos que nossa decisão anterior, de que este"
+" conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Pedimos ao desenvolvedor para fazer alterações e, se ele não atualizar seu conteúdo, nós o removeremos. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,6 +143,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+" Obrigado por utilizar seu tempo para denunciar %(name)s, em %(target_url)s. Analisamos seu relatório e o conteúdo em questão e descobrimos que ele adere às políticas da Mozilla "
+"(%(policy_document_url)s), portanto não será sujeito a nenhuma ação de moderação. No entanto, agradecemos por você denunciar isso para nós. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -143,6 +152,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Se você acredita que o conteúdo não adere às políticas da Mozilla, você tem o direito de recorrer da decisão dentro de 6 meses a partir da data deste e-mail. Consulte %(appeal_url)s para detalhes "
+"sobre o processo de recurso, incluindo como apresentar um recurso para esta decisão específica."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -152,6 +163,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Obrigado por utilizar seu tempo para denunciar a seguinte extensão no Mozilla Add-ons: %(name)s. Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele não adere às políticas da "
+"Mozilla (%(policy_document_url)s). Como resultado, removemos o conteúdo. Agradecemos por ajudar a manter o Mozilla Add-ons seguro. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -161,6 +174,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Obrigado por utilizar seu tempo para denunciar a seguinte extensão no Mozilla Add-ons: %(name)s. Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele não adere às políticas da "
+"Mozilla (%(policy_document_url)s). Solicitamos ao desenvolvedor que faça alterações e, se não resolverem o problema, removeremos o conteúdo. Obrigado por ajudar a manter as extensões da Mozilla "
+"seguras. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3736,6 +3752,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, obrigado por construir o Firefox! Você recebeu esta mensagem porque solicitou novas chaves de API do desenvolvedor para %(domain)s. Para concluir a configuração, basta clicar no link abaixo: "
+"%(api_key_confirmation_link)s Se você não solicitou estas chaves, pode ignorar com segurança este e-mail e nenhuma chave será criada.   A equipe de Complementos da Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3755,6 +3773,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, Uma nova chave de API foi adicionada à sua conta: %(key)s Se foi você, não há mais nada a fazer. Se acredita que esta chave foi criada por engano, você pode remover a chave e desativar o acesso"
+" aqui: %(url)s Obrigado por construir o Firefox, O time de extensões da Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -3774,6 +3794,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, A seguinte chave de API foi revogada da sua conta e não pode mais ser usada: %(key)s Se você esperava isso, nenhuma ação é necessária.  Se acredita que esta chave foi revogada por engano, você "
+"pode criar uma nova aqui: %(url)s Estamos aqui para ajudar se algo parecer errado, a equipe Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3788,6 +3810,11 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Caro desenvolvedor de extensões, Nós queremos que você saiba agora mesmo: notamos que suas credenciais secretas da API do AMO foram incluídas em uma extensão submetida para addons.mozilla.org. Para "
+"manter sua conta e suas extensões seguras, revogamos as credenciais afetadas. Não há nada de errado do seu jeito — isso só acontece às vezes, e estamos aqui para te ajudar a voltar ao caminho certo."
+" Você pode gerar novas credenciais da API a qualquer momento em %(api_keys_url)s Para ajudar a manter suas credenciais seguras, é melhor mantê-las privadas e evitar incluí-las em qualquer "
+"repositório público, extensão ou outro local público. Sempre que tiver um momento, vale a pena revisar seus repositórios de código e extensões para remover quaisquer referências às suas credenciais "
+"do AMO.  Obrigado, equipe do Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
@@ -3797,7 +3824,7 @@ msgid ""
 "\n"
 "\n"
 "The Mozilla Add-ons Team"
-msgstr ""
+msgstr "Olá, seu endereço de email foi verificado, está tudo pronto. Obrigado por construir para o Firefox!   A equipe de Complementos da Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3813,6 +3840,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, obrigado por construir o Firefox! Você recebeu esta mensagem porque solicitou que o seu endereço de email fosse verificado. Para concluir, basta clicar no link abaixo: %(confirmation_link)s Se "
+"você não solicitou isso, pode ignorar este email com segurança.   A equipe de Complementos da Mozilla"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7160,6 +7189,8 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, Um novo autor foi adicionado à sua extensão %(addon_name)s ( %(addon_url)s ): %(author_name)s ( %(author_url)s ): %(author_role)s Se você não estava esperando por isso Para qualquer alteração, "
+"por favor, revise as configurações de autor da sua extensão na página acima.  Obrigado por construir para o Firefox, O time de extensões da Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7177,6 +7208,9 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá %(author_name)s, Uma ótima notícia! Você foi convidado a se tornar um autor de %(addon_name)s em %(domain)s. Ao aceitar, você poderá editar a extensão e seu nome poderá aparecer na lista de "
+"autores no site.  Se deseja aceitar o convite, basta clicar no link abaixo: %(author_confirmation_link)s Se não estava à espera deste convite, pode ignorar este e-mail com segurança.  Estamos "
+"felizes em ter você criando para o Firefox, o time de extensões da Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7213,6 +7247,9 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Olá, você recebeu esta mensagem para informar que sua conta de usuário %(name)s em %(site_url)s foi excluída. Se você excluiu recentemente sua conta Mozilla, isso pode ter acontecido automaticamente"
+" como parte desse processo.  Obrigado por fazer parte da comunidade de extensões do Firefox. Se você acredita que isso foi um erro ou tem alguma dúvida, entre em contato conosco.  Atenciosamente, a "
+"equipe do Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1140
 #, python-format

@@ -111,6 +111,9 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het nemen van de tijd om meer over uw zorgen te delen. Na zorgvuldige beoordeling van uw beroep, hebben we vastgesteld dat de "
+"eerdere beslissing – dat deze inhoud voldoet aan de beleidsregels van Mozilla (%(policy_document_url)s) – juist was. Om die reden ondernemen we geen actie tegen de account of de inhoud. "
+"%(manual_reasoning_text)s. Nogmaals bedankt voor uw hulp bij het veilig houden van Mozilla Add-ons. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +123,8 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+" Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het nemen van de tijd om meer over uw zorgen te delen. Na beoordeling van uw beroep, ontdekten we dat onze eerdere beslissing, dat "
+"deze inhoud voldeed aan Mozilla’s beleid (%(policy_document_url)s), onjuist was. We hebben de inhoud nu verwijderd en de gebruiker op de hoogte gebracht. Bedankt dat u ons helpt dit goed te doen. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +134,9 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+" Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het geven van meer informatie over uw zorgen. Na beoordeling van uw beroep, ontdekten we dat onze eerdere beslissing, dat deze "
+"inhoud voldeed aan Mozilla’s beleid (%(policy_document_url)s), onjuist was. We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als ze de inhoud niet bijwerken, zullen we deze "
+"verwijderen. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +146,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+" Bedankt voor het melden van %(name)s, op %(target_url)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat het voldoet aan de beleidsregels van Mozilla "
+"(%(policy_document_url)s), dus er is geen beheeractie nodig. We waarderen het echter dat u het voor ons markeert. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -145,6 +155,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Als u van mening bent dat de inhoud niet in overeenstemming is met het beleid van Mozilla, hebt u het recht om binnen 6 maanden na de datum van dit e-mailbericht tegen deze beslissing in beroep te "
+"gaan. Zie %(appeal_url)s voor details over de beroepsprocedure, waaronder hoe u een beroep aantekent tegen deze specifieke beslissing."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -154,6 +166,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van "
+"Mozilla (%(policy_document_url)s). Daarom hebben we de inhoud verwijderd. We waarderen het dat u helpt Mozilla Add-ons veilig te houden. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -163,6 +177,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van "
+"Mozilla (%(policy_document_url)s). We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als deze het probleem niet oplossen, zullen we de inhoud verwijderen. Bedankt voor uw hulp bij"
+" het veilig houden van Mozilla Add-ons. "
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3740,6 +3757,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, bedankt voor het bouwen voor Firefox! U ontvangt dit bericht omdat u nieuwe ontwikkelaars-API-sleutels hebt opgevraagd voor %(domain)s. Klik op de onderstaande koppeling om het instellen te "
+"voltooien: %(api_key_confirmation_link)s Als u deze sleutels niet hebt opgevraagd, kunt u dit e-mailbericht negeren en worden er geen sleutels aangemaakt.   Het Mozilla-add-onsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3759,6 +3778,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, er is zojuist een nieuwe API-sleutel aan uw account toegevoegd: %(key)s Als u dit hebt gedaan, hoeft u niets meer te doen. Als u denkt dat deze sleutel ten onrechte is gemaakt, dan kunt u de "
+"sleutel hier verwijderen en toegang uitschakelen: %(url)s Bedankt voor het bouwen voor Firefox, Het Mozilla-add-onsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -3778,6 +3799,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, de volgende API-sleutel is ingetrokken voor uw account en kan niet meer worden gebruikt: %(key)s Als u dit verwachtte, hoeft u niets te doen.  Als u denkt dat deze sleutel ten onrechte is "
+"ingetrokken, dan kunt u hier een nieuwe aanmaken: %(url)s Het Mozilla-add-onsteam is er om te helpen als er iets niet goed uitziet"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3792,6 +3815,11 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Beste add-on-ontwikkelaar, We wilden u meteen laten weten: we hebben gemerkt dat uw geheime AMO-API-referenties waren opgenomen in een add-on die is ingediend op addons.mozilla.org. Om uw account en"
+" uw add-on(s) veilig te houden, zijn we gegaan en hebben we de betreffende aanmeldgegevens ingetrokken. Er is niets mis aan uw kant – dit gebeurt soms, en we zijn er om u te helpen weer op het goede"
+" spoor te komen. U kunt op elk moment nieuwe API-referenties aanmaken op %(api_keys_url)s. Om uw referenties in de toekomst veilig te houden, kunt u ze het beste privé houden en opname in een "
+"publieke repository, add-on of andere publieke plaats vermijden. Wanneer u een momentje hebt, is het de moeite waard om uw codeopslagplaatsen en -extensies te bekijken en verwijzingen naar uw AMO-"
+"referenties te verwijderen.  Bedankt, team van Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
@@ -3801,7 +3829,7 @@ msgid ""
 "\n"
 "\n"
 "The Mozilla Add-ons Team"
-msgstr ""
+msgstr "Hallo, uw e-mailadres is geverifieerd, u bent klaar. Bedankt voor het bouwen voor Firefox!   Het Mozilla-add-onsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3817,6 +3845,8 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, bedankt voor het bouwen voor Firefox! U ontvangt dit bericht omdat u om verificatie van uw e-mailadres hebt gevraagd. Klik om af te ronden op onderstaande koppeling: %(confirmation_link)s Als"
+" u hier niet om hebt gevraagd, kunt u dit e-mailbericht veilig negeren.   Het Mozilla-add-onsteam"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -7167,6 +7197,8 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, er is een nieuwe schrijver toegevoegd aan uw add-on %(addon_name)s ( %(addon_url)s ): %(author_name)s (%(author_url)s ): %(author_role)s Als u dit niet verwachtte wijzigingen, controleer dan "
+"de schrijverinstellingen van uw add-on op de bovenstaande pagina.  Bedankt voor het bouwen voor Firefox, het Mozilla-add-onsteam"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7184,6 +7216,9 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo %(author_name)s, Geweldig nieuws, u bent uitgenodigd om een schrijver van %(addon_name)s te worden op %(domain)s. Door deze te accepteren kunt u de add-on bewerken, en uw naam kan verschijnen "
+"in de schrijverslijst op de website.  Als u de uitnodiging wilt accepteren, klik dan op de onderstaande koppeling: %(author_confirmation_link)s Als u deze uitnodiging niet verwachtte, kunt u dit "
+"e-mailbericht negeren.  We zijn blij dat u voor Firefox bouwt, The Mozilla Add-ons Team"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7220,6 +7255,9 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo, U ontvangt dit bericht om u te laten weten dat uw gebruikersaccount %(name)s op %(site_url)s is verwijderd. Als u onlangs uw Mozilla-account hebt verwijderd, is dit mogelijk automatisch "
+"gebeurd als onderdeel van dat proces.  Bedankt dat u deel uitmaakte van de Firefox-add-onsgemeenschap. Als u denkt dat dit een vergissing was of als u vragen hebt, neem dan contact met ons op.  "
+"Vriendelijke groeten, het Mozilla-add-onsteam"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
