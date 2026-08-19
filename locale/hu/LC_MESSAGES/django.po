@@ -5845,7 +5845,7 @@ msgstr "Szabja testre az egérgesztusokat. Fedezze fel a navigáció új módjai
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Távolítsa el a zavaró tényezőket, módosítsa a megtekintési élményét, módosítsa a lejátszási sebességet és még sok mást."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
