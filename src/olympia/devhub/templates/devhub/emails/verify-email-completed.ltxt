@@ -1,7 +1,6 @@
 {% load i18n %}{# L10n: This is an email. Whitespace matters #}{% blocktrans %}Hello,
 
-Your email was successfully verified.
+Your email address has been verified, you are all set. Thanks for building for Firefox!
 
-Regards,
 
 The Mozilla Add-ons Team{% endblocktrans %}

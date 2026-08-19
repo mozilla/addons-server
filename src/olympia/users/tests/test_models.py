@@ -180,7 +180,7 @@ class TestUserProfile(TestCase):
         assert len(mail.outbox) == 1
         email = mail.outbox[0]
         assert email.to == [user.email]
-        assert f'message because your user account {name}' in email.body
+        assert f'your user account {name}' in email.body
         self.assertCloseToNow(user.modified)
 
     def test_should_send_delete_email(self):

@@ -2513,7 +2513,7 @@ class TestVerifyEmail(TestCase):
         response = self.client.get(url)
 
         assert len(mail.outbox) == 1
-        assert 'Your email was successfully verified.' in mail.outbox[0].body
+        assert 'Your email address has been verified' in mail.outbox[0].body
         self.assert3xx(response, reverse('devhub.email_verification'))
 
     @mock.patch('olympia.devhub.views.check_suppressed_email_confirmation')
@@ -2533,7 +2533,7 @@ class TestVerifyEmail(TestCase):
             response = self.client.get(url)
 
             assert len(mail.outbox) == 1
-            assert 'Your email was successfully verified.' in mail.outbox[0].body
+            assert 'Your email address has been verified' in mail.outbox[0].body
             self.assert3xx(response, reverse('devhub.email_verification'))
 
     def test_get_email_verified(self):

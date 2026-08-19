@@ -1713,7 +1713,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'remains unavailable ' in message.body
+        assert 'will stay unavailable' in message.body
 
         # AddonApprovalsCounter counter is now at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
@@ -1769,7 +1769,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'been automatically screened and tentatively approved' in message.body
+        assert (
+            'has passed our automated screening and is tentatively approved'
+            in message.body
+        )
 
     def test_nomination_but_listing_rejected_to_public_not_human(self):
         self.setup_data(amo.STATUS_REJECTED, human_review=False)
@@ -1807,9 +1810,10 @@ class TestReviewHelper(TestReviewHelperBase):
         message = mail.outbox[0]
         self.check_subject(message)
         assert (
-            'been automatically screened and tentatively approved' not in message.body
+            'has passed our automated screening and is tentatively approved'
+            not in message.body
         )
-        assert 'remains unavailable' in message.body
+        assert 'will stay unavailable' in message.body
 
     def test_nomination_to_public_not_human_langpack(self):
         self.setup_data(amo.STATUS_NOMINATED, human_review=False, type=amo.ADDON_LPAPP)
@@ -1963,7 +1967,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'that your content violates the following' in message.body
+        assert 'that your content does not adhere to the following' in message.body
 
         # AddonApprovalsCounter counter is still at 1 for this addon.
         approval_counter = AddonApprovalsCounter.objects.get(addon=self.addon)
@@ -2446,7 +2450,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         self.check_subject(message)
-        assert 'your content violates' in message.body
+        assert 'your content does not adhere' in message.body
 
         # AddonApprovalsCounter was not touched since we didn't approve.
         assert not AddonApprovalsCounter.objects.filter(addon=self.addon).exists()
@@ -3410,7 +3414,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert 'have restored your extension' in message.body
+        assert 'restored your extension' in message.body
 
     @override_switch('enable-content-rejection', active=True)
     def test_reject_listing_content_review(self):
@@ -3466,10 +3470,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert len(mail.outbox) == 1
         message = mail.outbox[0]
         assert message.to == [self.addon.authors.all()[0].email]
-        assert (
-            'until you address the violations and request a further review'
-            in message.body
-        )
+        assert 'until the issue is resolved' in message.body
 
     def test_nominated_to_approved_pre_review(self):
         self.make_addon_promoted(
@@ -3880,12 +3881,10 @@ class TestReviewHelper(TestReviewHelperBase):
         assert activity.details['new_deadline'] == new_deadline
         assert len(mail.outbox) == 1
         assert (
-            'Our previous correspondence indicated that you would be required '
-            f'to correct the violation(s) by {old_deadline}.'
+            f'Our earlier message asked you to resolve the issue(s) by {old_deadline}.'
         ) in mail.outbox[0].body
         assert (
-            'will now require you to correct your add-on violations no later '
-            f'than {new_deadline}'
+            f'Your new deadline to bring your add-on into compliance is {new_deadline}'
         ) in mail.outbox[0].body
 
         self.review_version.reload()
