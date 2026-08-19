@@ -111,6 +111,12 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"Vielen Dank für Ihren Bericht zu %(name)s auf Mozilla Add-ons und dafür, dass Sie sich die Zeit genommen haben, Ihre Bedenken näher zu erläutern.\n"
+"\n"
+"Nach sorgfältiger Prüfung Ihres Einspruchs sind wir zu dem Ergebnis gekommen, dass die ursprüngliche Entscheidung – dass dieser Inhalt den Mozilla-Richtlinien (%(policy_document_url)s) entspricht – korrekt war. Daher werden wir weder gegen das Konto noch gegen den Inhalt Maßnahmen ergreifen.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Nochmals vielen Dank, dass Sie uns dabei helfen, Mozilla Add-ons sicher zu halten.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Vielen Dank für Ihren Bericht über %(name)s auf Mozilla-Add-ons und dass Sie sich die Zeit genommen haben, Ihre Bedenken näher auszuführen.\n"
+"\n"
+"Nach der Überprüfung Ihres Einspruchs hatten wir festgestellt, dass unsere Entscheidung, dass dieser Inhalt den Richtlinien von Mozilla (%(policy_document_url)s) entspricht, falsch war. Wir haben den Inhalt jetzt entfernt und den Nutzer informiert. Vielen Dank, dass Sie uns dabei helfen, dies zu korrigieren.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Vielen Dank für Ihren Bericht über %(name)s auf Mozilla Add-ons und für weitere Informationen zu Ihren Bedenken.\n"
+"\n"
+"Nach der Überprüfung Ihres Einspruchs hatten wir festgestellt, dass unsere Entscheidung, dass dieser Inhalt den Richtlinien von Mozilla (%(policy_document_url)s) entspricht, falsch war. Wir haben den Entwickler gebeten, Änderungen vorzunehmen, und wenn er seine Inhalte nicht aktualisiert, werden wir diese entfernen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Danke, dass Sie sich die Zeit genommen haben, %(name)s unter %(target_url)s zu melden.\n"
+"\n"
+"Wir haben Ihre Meldung und den fraglichen Inhalt überprüft und festgestellt, dass er den Richtlinien von Mozilla (%(policy_document_url)s) entspricht, sodass keine weiteren Maßnahmen getroffen werden. Wir danken Ihnen jedoch, dass Sie ihn für uns gemeldet haben.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -145,6 +163,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Wenn Sie der Meinung sind, dass der Inhalt nicht den Richtlinien von Mozilla entspricht, haben Sie das Recht, diese Entscheidung innerhalb von 6 Monaten ab dem Datum dieser E-Mail anzufechten. "
+"Details zum Beschwerdeverfahren finden Sie unter %(appeal_url)s, sowie die Information, wie Sie gegen diese Entscheidung Einspruch einlegen können."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -154,6 +174,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"Vielen Dank, dass Sie sich die Zeit genommen haben, das folgende Add-on auf Mozilla Add-ons zu melden: %(name)s.\n"
+"\n"
+"Wir haben Ihren Bericht und den betreffenden Inhalt geprüft und festgestellt, dass dieser nicht den Richtlinien von Mozilla (%(policy_document_url)s) entspricht. Daher haben wir den Inhalt entfernt. Vielen Dank, dass Sie dazu beitragen, Mozilla Add-ons sicherer zu machen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -163,6 +186,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"Vielen Dank, dass Sie sich die Zeit genommen haben, das folgende Add-on auf Mozilla Add-ons zu melden: %(name)s.\n"
+"\n"
+"Wir haben Ihre Meldung sowie den betreffenden Inhalt geprüft und festgestellt, dass dieser nicht den Richtlinien von Mozilla (%(policy_document_url)s) entspricht. Wir haben den Entwickler aufgefordert, Änderungen vorzunehmen. Sollte das Problem dadurch nicht behoben werden, entfernen wir den Inhalt. Vielen Dank, dass Sie dazu beitragen, Mozilla Add-ons sicherer zu machen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3762,6 +3788,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"danke, dass Sie Inhalte für Firefox entwickeln! Sie erhalten diese Nachricht, weil Sie neue Entwickler-API-Schlüssel für %(domain)s angefordert haben. Um die Einrichtung abzuschließen, klicken Sie einfach auf den folgenden Link:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Wenn Sie diese Schlüssel nicht angefordert haben, können Sie diese E-Mail ignorieren und es werden keine Schlüssel erstellt.\n"
+"\n"
+"\n"
+"Das Mozilla-Add-ons-Team"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3781,6 +3817,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Ihrem Konto wurde gerade ein neuer API-Schlüssel hinzugefügt:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Wenn Sie das waren, gibt es nichts mehr zu tun.\n"
+"Wenn Sie glauben, dass dieser Schlüssel irrtümlich erstellt wurde, können Sie den Schlüssel entfernen und den Zugriff hier deaktivieren:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Danke, dass Sie Inhalte für Firefox entwickeln.\n"
+"\n"
+"Das Mozilla-Add-ons-Team"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -3800,6 +3850,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Der folgende API-Schlüssel wurde von Ihrem Konto widerrufen und kann nicht mehr verwendet werden:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Wenn Sie dies erwartet haben, ist keine Aktion erforderlich. \n"
+"Wenn Sie glauben, dass dieser Schlüssel fälschlicherweise widerrufen wurde, können Sie hier einen neuen erstellen:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Wir helfen gern weiter, wenn etwas schief geht.\n"
+"\n"
+"Das Mozilla-Add-ons-Team"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3814,6 +3878,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Lieber Add-on-Entwickler,\n"
+"\n"
+"wir möchten Sie umgehend informieren: Wir haben festgestellt, dass Ihre geheimen AMO-API-Zugangsdaten in einem bei addons.mozilla.org eingereichten Add-on enthalten waren. Zum Schutz Ihres Kontos und Ihrer Add-ons haben wir die betroffenen Zugangsdaten vorsorglich widerrufen. Sie haben nichts falsch gemacht – so etwas kann gelegentlich passieren, und wir helfen Ihnen gerne dabei, alles wieder in Ordnung zu bringen.\n"
+"Unter %(api_keys_url)s können Sie jederzeit neue API-Zugangsdaten erstellen\n"
+"\n"
+"Damit Ihre Zugangsdaten künftig geschützt bleiben, sollten Sie sie vertraulich behandeln und nicht in öffentlichen Repositorys, Add-ons oder an anderen öffentlich zugänglichen Stellen hinterlegen. Bitte prüfen Sie bei Gelegenheit Ihre Code-Repositorys und Erweiterungen und entfernen Sie alle Verweise auf Ihre AMO-Zugangsdaten.\n"
+"\n"
+"Vielen Dank,\n"
+"das Mozilla-Add-ons-Team"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
