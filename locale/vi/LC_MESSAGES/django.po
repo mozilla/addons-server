@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích Mozilla và đã dành thời gian chia sẻ thêm về những lo ngại của bạn.\n"
+"\n"
+"Sau khi xem xét kỹ lưỡng đơn kháng cáo của bạn, chúng tôi nhận thấy quyết định trước đó — rằng nội dung này tuân thủ các chính sách của Mozilla (%(policy_document_url)s) — là chính xác. Vì lý do đó, chúng tôi sẽ không thực hiện bất kỳ hành động nào đối với tài khoản hoặc nội dung này.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Cảm ơn bạn một lần nữa vì đã giúp chúng tôi bảo vệ các tiện ích mở rộng Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích Mozilla và đã dành thời gian chia sẻ thêm về những lo ngại của bạn.\n"
+"\n"
+"Sau khi xem xét khiếu nại của bạn, chúng tôi nhận thấy quyết định trước đó của chúng tôi, rằng nội dung này tuân thủ các chính sách của Mozilla (%(policy_document_url)s), là không chính xác. Chúng tôi đã gỡ bỏ nội dung và thông báo cho người dùng. Cảm ơn bạn đã giúp chúng tôi khắc phục vấn đề này.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã báo cáo về %(name)s trên Tiện ích Mozilla và đã cung cấp thêm thông tin về những lo ngại của bạn.\n"
+"\n"
+"Sau khi xem xét đơn kháng nghị của bạn, chúng tôi nhận thấy quyết định trước đó của chúng tôi, rằng nội dung này tuân thủ các chính sách của Mozilla (%(policy_document_url)s), là không chính xác. Chúng tôi đã yêu cầu nhà phát triển thực hiện các thay đổi, và nếu họ không cập nhật nội dung, chúng tôi sẽ xóa nó.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã dành thời gian báo cáo %(name)s, tại %(target_url)s.\n"
+"\n"
+"Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng nó tuân thủ các chính sách của Mozilla (%(policy_document_url)s), vì vậy nó sẽ không phải chịu bất kỳ hành động kiểm duyệt nào. Tuy nhiên, chúng tôi đánh giá cao việc bạn đã báo cáo cho chúng tôi.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -145,6 +164,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Nếu bạn cho rằng nội dung này không tuân thủ các chính sách của Mozilla, bạn có quyền kháng cáo quyết định này trong vòng 6 tháng kể từ ngày gửi email này. Xem %(appeal_url)s để biết chi tiết về quy"
+" trình kháng cáo, bao gồm cả cách nộp đơn kháng cáo đối với quyết định cụ thể này."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -154,6 +175,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã dành thời gian báo cáo tiện ích mở rộng sau trên Mozilla Add-ons: %(name)s.\n"
+"\n"
+"Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng nó không tuân thủ các chính sách của Mozilla (%(policy_document_url)s). Do đó, chúng tôi đã xóa nội dung đó. Chúng tôi đánh giá cao sự giúp đỡ của bạn trong việc giữ an toàn cho tiện ích mở rộng Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -163,6 +188,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Cảm ơn bạn đã dành thời gian báo cáo tiện ích mở rộng sau trên Tiện ích Mozilla: %(name)s.\n"
+"\n"
+"Chúng tôi đã xem xét báo cáo của bạn và nội dung được đề cập và nhận thấy rằng nó không tuân thủ các chính sách của Mozilla (%(policy_document_url)s). Chúng tôi đã yêu cầu nhà phát triển thực hiện các thay đổi, và nếu họ không giải quyết được vấn đề, chúng tôi sẽ xóa nội dung đó. Cảm ơn bạn đã giúp giữ an toàn cho tiện ích mở rộng Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -5816,7 +5845,7 @@ msgstr "Tùy chỉnh cử chỉ chuột. Khám phá những cách mới để đ
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Loại bỏ những yếu tố gây xao nhãng, thay đổi trải nghiệm xem, điều chỉnh tốc độ phát lại và nhiều hơn nữa."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
@@ -7216,6 +7245,16 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Một tác giả mới đã được thêm vào tiện ích mở rộng của bạn %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"\n"
+"Nếu bạn không nhận ra thay đổi này, vui lòng xem lại cài đặt tác giả của tiện ích mở rộng trên trang ở trên.\n"
+"\n"
+"Cảm ơn bạn đã phát triển và xây dựng cùng Firefox,\n"
+"Nhóm Tiện ích mở rộng của Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7233,6 +7272,18 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào %(author_name)s,\n"
+"\n"
+"Tin vui, bạn đã được mời trở thành tác giả của %(addon_name)s trên %(domain)s. Chấp nhận lời mời sẽ cho phép bạn chỉnh sửa tiện ích mở rộng, và tên của bạn có thể xuất hiện trong danh sách tác giả trên trang web.\n"
+"\n"
+"Nếu bạn muốn chấp nhận lời mời, chỉ cần nhấp vào liên kết bên dưới:\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Nếu bạn không nhận ra lời mời này, bạn có thể bỏ qua email này.\n"
+"\n"
+"Chúng tôi rất vui mừng khi bạn đang phát triển và xây dựng cùng Firefox,\n"
+"Nhóm Tiện ích mở rộng của Mozilla"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7269,6 +7320,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Xin chào,\n"
+"\n"
+"Bạn nhận được thông báo này để thông báo rằng tài khoản người dùng %(name)s trên %(site_url)s đã bị xóa. Nếu bạn vừa xóa tài khoản Mozilla của mình, việc này có thể đã diễn ra tự động như một phần của quá trình đó.\n"
+"\n"
+"Cảm ơn bạn vì đã là một phần của cộng đồng tiện ích mở rộng Firefox. Nếu bạn cho rằng đây là sai sót hoặc có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi.\n"
+"\n"
+"Trân trọng,\n"
+"\n"
+"Nhóm Tiện ích mở rộng của Mozilla"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
