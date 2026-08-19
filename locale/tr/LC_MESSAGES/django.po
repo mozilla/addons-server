@@ -2001,6 +2001,8 @@ msgid ""
 "An enterprise add-on. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience via a Firefox for "
 "Enterprise policy.</span>"
 msgstr ""
+"Kurumsal bir eklenti. <span class=\"helptext\">Gönderiniz Mozilla tarafından imzalandıktan sonra .xpi dosyasını Geliştirici Merkezi'nden indirebilir ve Firefox for Enterprise ilkesi aracılığıyla "
+"hedef kitlenize dağıtabilirsiniz.</span>"
 
 #: src/olympia/devhub/forms.py:1473 src/olympia/devhub/templates/devhub/includes/agreement.html:17
 msgid "Display Name"
