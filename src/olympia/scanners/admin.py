@@ -319,6 +319,7 @@ class ScannerQueryRuleModelForm(ScannerRuleModelForm):
         coerce=int,
         help_text='Run this rule on versions in the specific channel(s) only.',
         widget=CheckboxSelectMultiple,
+        required=True,
     )
 
 

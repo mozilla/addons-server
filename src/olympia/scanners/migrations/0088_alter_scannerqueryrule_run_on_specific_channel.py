@@ -31,8 +31,4 @@ class Migration(migrations.Migration):
             field=models.JSONField(default=list),
         ),
         migrations.RunPython(channel_to_channel_list, channel_list_to_channel),
-        migrations.RemoveField(
-            model_name='scannerqueryrule',
-            name='run_on_specific_channel',
-        ),
     ]

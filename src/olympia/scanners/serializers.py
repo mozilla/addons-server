@@ -185,6 +185,7 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
     run_on_specific_channels = serializers.ListField(
         child=ReverseChoiceField(choices=list(amo.CHANNEL_CHOICES_API.items())),
         required=False,
+        allow_empty=False,
         default=list(amo.CHANNEL_CHOICES),
     )
     completion_rate = serializers.SerializerMethodField()
