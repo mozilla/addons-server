@@ -111,9 +111,10 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het nemen van de tijd om meer over uw zorgen te delen. Na zorgvuldige beoordeling van uw beroep, hebben we vastgesteld dat de "
 "eerdere beslissing – dat deze inhoud voldoet aan de beleidsregels van Mozilla (%(policy_document_url)s) – juist was. Om die reden ondernemen we geen actie tegen de account of de inhoud. "
-"%(manual_reasoning_text)s. Nogmaals bedankt voor uw hulp bij het veilig houden van Mozilla Add-ons. "
+"%(manual_reasoning_text)s. Nogmaals bedankt voor uw hulp bij het veilig houden van Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -123,8 +124,9 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
 " Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het nemen van de tijd om meer over uw zorgen te delen. Na beoordeling van uw beroep, ontdekten we dat onze eerdere beslissing, dat "
-"deze inhoud voldeed aan Mozilla’s beleid (%(policy_document_url)s), onjuist was. We hebben de inhoud nu verwijderd en de gebruiker op de hoogte gebracht. Bedankt dat u ons helpt dit goed te doen. "
+"deze inhoud voldeed aan Mozilla’s beleid (%(policy_document_url)s), onjuist was. We hebben de inhoud nu verwijderd en de gebruiker op de hoogte gebracht. Bedankt dat u ons helpt dit goed te doen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -134,9 +136,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
 " Bedankt voor uw melding over %(name)s op Mozilla Add-ons, en voor het geven van meer informatie over uw zorgen. Na beoordeling van uw beroep, ontdekten we dat onze eerdere beslissing, dat deze "
 "inhoud voldeed aan Mozilla’s beleid (%(policy_document_url)s), onjuist was. We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als ze de inhoud niet bijwerken, zullen we deze "
-"verwijderen. "
+"verwijderen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -146,8 +149,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
 " Bedankt voor het melden van %(name)s, op %(target_url)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat het voldoet aan de beleidsregels van Mozilla "
-"(%(policy_document_url)s), dus er is geen beheeractie nodig. We waarderen het echter dat u het voor ons markeert. "
+"(%(policy_document_url)s), dus er is geen beheeractie nodig. We waarderen het echter dat u het voor ons markeert.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -166,8 +170,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van "
-"Mozilla (%(policy_document_url)s). Daarom hebben we de inhoud verwijderd. We waarderen het dat u helpt Mozilla Add-ons veilig te houden. "
+"Mozilla (%(policy_document_url)s). Daarom hebben we de inhoud verwijderd. We waarderen het dat u helpt Mozilla Add-ons veilig te houden.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -177,9 +182,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van "
 "Mozilla (%(policy_document_url)s). We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als deze het probleem niet oplossen, zullen we de inhoud verwijderen. Bedankt voor uw hulp bij"
-" het veilig houden van Mozilla Add-ons. "
+" het veilig houden van Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
