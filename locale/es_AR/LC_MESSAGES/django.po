@@ -127,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Gracias por tu informe sobre %(name)s en complementos de Mozilla y por tomarte el tiempo para compartir más sobre tus inquietudes.\n"
+"\n"
+"Después de revisar tu apelación, encontramos que nuestra decisión anterior, de que este contenido se adhería a las políticas de Mozilla (%(policy_document_url)s), era incorrecta. Ya eliminamos el contenido y notificamos al usuario. Gracias por ayudarnos a hacer esto bien.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -136,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Gracias por tu informe sobre %(name)s en complementos de Mozilla y por brindarnos más información sobre tus inquietudes.\n"
+"\n"
+"Después de revisar tu apelación, encontramos que nuestra decisión anterior, de que este contenido se adhería a las políticas de Mozilla (%(policy_document_url)s), era incorrecta. Le hemos pedido al desarrollador que realice cambios y, si no actualiza el contenido, lo eliminaremos.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -145,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Gracias por tomarte el tiempo de informar sobre %(name)s en %(target_url)s.\n"
+"\n"
+"Revisamos tu informe y el contenido en cuestión y encontramos que se adhiere a las políticas de Mozilla (%(policy_document_url)s), por lo que no estará sujeto a ninguna acción de moderación. Sin embargo, te agradecemos que nos lo hayas marcado.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -152,6 +164,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Si creés que el contenido no se adhiere a las políticas de Mozilla, tenés derecho a apelar esta decisión dentro de los 6 meses posteriores a la fecha de este correo electrónico. Mirá %(appeal_url)s "
+"para más detalles sobre el proceso de apelación, incluyendo cómo presentar una apelación para esta decisión específica."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -161,6 +175,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Gracias por tomarte el tiempo de informar sobre el siguiente complemento en complementos de Mozilla: %(name)s.\n"
+"\n"
+"Revisamos tu informe y el contenido en cuestión y encontramos que no se adhiere a las políticas de Mozilla (%(policy_document_url)s). Como resultado, hemos eliminado el contenido. Agradecemos tu ayuda para mantener seguros los complementos de Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -170,6 +188,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Gracias por tomarte el tiempo de informar sobre el siguiente complemento en complementos de Mozilla: %(name)s.\n"
+"\n"
+"Revisamos tu informe y el contenido en cuestión y encontramos que no se adhiere a las políticas de Mozilla (%(policy_document_url)s). Hemos pedido al desarrollador que haga cambios y, si no resuelven el problema, eliminaremos el contenido. Gracias por ayudar a mantener seguros los complementos de Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3783,6 +3805,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"Se acaba de agregar una nueva clave de API a tu cuenta:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si fuiste vos, no hay nada más que hacer.\n"
+"Si creés que esta clave se creó por error, podés eliminarla y deshabilitar el acceso acá:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Gracias por desarrollar para Firefox,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -3802,6 +3838,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hola,\n"
+"\n"
+"La siguiente clave de API fue revocada de tu cuenta y ya no se puede usar:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Si esperabas esto, no es necesario hacer nada. \n"
+"Si creés que esta clave fue revocada por error, podés crear una nueva acá:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Estamos acá para ayudarte si algo parece raro,\n"
+"\n"
+"El equipo de complementos de Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
