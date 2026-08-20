@@ -151,6 +151,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Wulki dźak, zo sće sej čas brał, %(name)s na %(target_url)s zdźělić.\n"
+"\n"
+"Smy wašu rozprawu a wotpowědny wobsah přepruwowali, a zwěsćili, zo prawidłam Mozilla (%(policy_document_url)s) wotpowěduje, tak zo so žane dalše naprawy činja. Hódnoćimy wšak, zo sće nam to zdźělił.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
