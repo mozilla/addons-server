@@ -115,7 +115,7 @@ msgstr ""
 "თქვენი საჩივრის ყურადღებით განხილვისას აღმოვაჩინეთ, რომ ადრინდელი გადაწყვეტილება, რომლის მიხედვითაც ეს მასალა იცავდა Mozilla-ს დებულებებს (%(policy_document_url)s) — იყო მართებული. აღნიშნულის გამო აღარ მივიღებთ ზომებს მოცემული ანგარიშისა თუ მასალის წინააღმდეგ.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
-"გმადლობთ კიდევ ერთხელ, რომ გვეხმარებით Mozilla-ს დამატებების საიტის უსაფრთხოების უზრუნველყოფაში.\n"
+"გმადლობთ კიდევ ერთხელ, რომ გვეხმარებით Mozilla-ს დამატებების საიტის უსაფრთხოების შენარჩუნებაში.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -151,6 +151,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ მოგვახსენეთ %(name)s მისამართზე %(target_url)s.\n"
+"\n"
+"განვიხილეთ თქვენი მოხსენება საეჭვო მასალით და აღმოჩნდა, რომ იცავს Mozilla-ს დებულებებს (%(policy_document_url)s), შესაბამისად, არ ექვემდებარება საზედამხედველო ჩარევას. მიუხედავად ამისა, მოხარულნი ვართ, რომ გვაცნობეთ ამის შესახებ.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -158,6 +162,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"თუ მიგაჩნიათ, რომ ეს მასალა არ იცავს Mozilla-ს დებულებებს, უფლება გაქვთ, გაასაჩივროთ გადაწყვეტილება 6 თვის ვადაში ამ ელფოსტის მიღებიდან. ვრცლად იხილეთ %(appeal_url)s, თუ როგორ უნდა წარიმართოს "
+"გასაჩივრება, მათ შორის ის, თუ როგორ უნდა გასაჩივრდეს უშუალოდ ამდაგვარი გადაწყვეტილება."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -167,6 +173,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ გამონახეთ დრო, მოგეხსენებინათ Mozilla-ს დამატებების საიტზე მოცემული დამატების შესახებ: %(name)s.\n"
+"\n"
+"ჩვენ განვიხილეთ თქვენი მოხსენება საეჭვო მასალით და აღმოჩნდა, რომ არ იცავს Mozilla-ს დებულებებს (%(policy_document_url)s). შედეგად, მოცილებულია ეს მასალა. მოხარულნი ვართ, რომ გვეხმარებით Mozilla-ს დამატებების საიტის უსაფრთხოების შენარჩუნებაში.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format

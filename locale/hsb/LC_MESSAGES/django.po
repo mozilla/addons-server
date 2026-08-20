@@ -143,6 +143,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Jeli sej mysliće, zo wobsah prawidłam Mozilla njewotpowěduje, maće prawo, tutón rozsud w běhu 6 měsacow wot datuma tuteje mejlki wotprěć. Hlejće %(appeal_url)s za podrobnosće wo procesu wotprěća, "
+"mjez druhim, kak móžeće wotprěće za wotpowědny rozsud zapodać."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
