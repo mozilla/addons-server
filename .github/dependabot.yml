@@ -56,7 +56,9 @@ updates:
     versions:
     - "< 7"
 - package-ecosystem: "github-actions"
-  directory: "/"
+  directories: 
+    - "/"
+    - "/.github/actions/*"       
   schedule:
     interval: daily
   groups:
