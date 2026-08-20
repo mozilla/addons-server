@@ -3906,7 +3906,7 @@ class TestContentDecision(TestCase):
 
     def test_execute_action_reject_version_delayed(self):
         addon = addon_factory(users=[user_factory()])
-        in_fourteen_days = datetime.now() + timedelta(days=14, minutes=3)
+        in_fourteen_days = datetime.now() + timedelta(days=14, minutes=1)
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
@@ -3938,6 +3938,43 @@ class TestContentDecision(TestCase):
         assert 'some review text' in mail.outbox[0].body
         assert '14 day(s)' in mail.outbox[0].body
         assert addon.current_version.reviewerflags.pending_rejection == in_fourteen_days
+
+    def test_execute_action_override_with_delayed_reject_notifies_from_new_action(self):
+        addon = addon_factory(users=[user_factory()])
+        version = addon.current_version
+        # Simulate the version already being rejected by the original decision.
+        version.file.update(
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED
+        )
+        original_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_ADDON,
+            reasoning='initial rejection text',
+            action_date=datetime.now() - timedelta(days=1),
+        )
+        original_decision.target_versions.set([version])
+
+        in_fourteen_days = datetime.now() + timedelta(days=14, minutes=3)
+        new_decision = ContentDecision.objects.create(
+            addon=addon,
+            action=DECISION_ACTIONS.AMO_REJECT_VERSION_WARNING_ADDON,
+            reasoning='delayed rejection text',
+            reviewer_user=self.reviewer_user,
+            override_of=original_decision,
+            metadata={'delayed_rejection_date': in_fourteen_days.isoformat()},
+        )
+        new_decision.target_versions.set([version])
+
+        new_decision.execute_action()
+
+        # the first activity is the reversal
+        assert new_decision.activities.last().action == amo.LOG.UNREJECT_VERSION.id
+        # but action_activity correctly points at this decision's action instead
+        assert new_decision.action_activity.action == amo.LOG.REJECT_VERSION_DELAYED.id
+        new_decision.send_notifications()
+        assert len(mail.outbox) == 1
+        assert 'delayed rejection text' in mail.outbox[0].body
+        assert '14 day(s)' in mail.outbox[0].body
 
     def test_execute_action_reject_version_delayed_held(self):
         self.grant_permission(user_factory(), ADDONS_HIGH_IMPACT_APPROVE)
