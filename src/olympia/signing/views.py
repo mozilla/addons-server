@@ -204,6 +204,11 @@ class VersionView(APIView):
             created = False
             channel_param = request.POST.get('channel')
             channel = amo.CHANNEL_CHOICES_LOOKUP.get(channel_param)
+
+            if channel == amo.CHANNEL_ENTERPRISE:
+                msg = gettext('Only API v5+ supports enterprise channels.')
+                raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
+
             if not channel:
                 last_version = addon.find_latest_version(None, exclude=())
                 if last_version:

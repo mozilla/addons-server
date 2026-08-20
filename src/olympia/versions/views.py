@@ -69,10 +69,10 @@ def download_file(request, file_id, download_type=None, **kwargs):
     """
     Download the file identified by `file_id` parameter.
 
-    If the file is disabled or belongs to an unlisted version, requires an
-    add-on developer, an appropriate reviewer for the channel or a user with a
-    special permission. If the file is deleted or belongs to a deleted version
-    or add-on, reviewers can still access but developers can't.
+    If the file is disabled or belongs to an unlisted or enterprise version,
+    requires an add-on developer, an appropriate reviewer for the channel or a
+    user with a special permission. If the file is deleted or belongs to a
+    deleted version or add-on, reviewers can still access but developers can't.
     """
 
     def is_appropriate_reviewer(addon, channel):
@@ -106,10 +106,10 @@ def download_file(request, file_id, download_type=None, **kwargs):
     elif (
         addon.is_disabled
         or file_.status == amo.STATUS_DISABLED
-        or channel == amo.CHANNEL_UNLISTED
+        or channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
     ):
         # Only the appropriate reviewer or developers of the add-on can see
-        # disabled or unlisted things.
+        # disabled, unlisted or enterprise things.
         require_permission = True
         has_permission = is_appropriate_reviewer(
             addon, channel

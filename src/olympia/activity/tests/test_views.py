@@ -120,6 +120,30 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
+    def test_get_enterprise_simple_reviewer(self):
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self._login_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_get_enterprise_specific_reviewer(self):
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self._login_reviewer(permission=amo.permissions.ADDONS_REVIEW_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_enterprise_unlisted_viewer(self):
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self._login_reviewer(permission=amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_enterprise_author(self):
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self._login_developer()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
     def test_get_deleted(self):
         self.addon.delete()
         self._login_developer()

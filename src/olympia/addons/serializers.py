@@ -1908,7 +1908,10 @@ class VersionRollbackSerializer(DeveloperVersionSerializer):
                 gettext('Rollback is only available for version %s in this channel.')
                 % first.version
             )
-        elif existing.channel == amo.CHANNEL_UNLISTED and existing not in available:
+        elif (
+            existing.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
+            and existing not in available
+        ):
             raise exceptions.ValidationError(
                 gettext(
                     'Only approved versions can be rolled back, except the most recent '
