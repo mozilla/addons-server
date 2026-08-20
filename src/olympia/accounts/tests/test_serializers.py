@@ -250,6 +250,7 @@ class TestSelfUserProfileSerializer(
         assert data['site_status'] == {
             'read_only': False,
             'notice': None,
+            'submit_notification_warning': None,
         }
 
         set_config('site_notice', 'THIS is NOT Á TEST!')
@@ -257,6 +258,7 @@ class TestSelfUserProfileSerializer(
         assert data['site_status'] == {
             'read_only': False,
             'notice': 'THIS is NOT Á TEST!',
+            'submit_notification_warning': None,
         }
 
         with override_settings(READ_ONLY=True):
@@ -264,14 +266,17 @@ class TestSelfUserProfileSerializer(
         assert data['site_status'] == {
             'read_only': True,
             'notice': 'THIS is NOT Á TEST!',
+            'submit_notification_warning': None,
         }
 
         Config.objects.get(key='site_notice').delete()
+        set_config('submit_notification_warning', 'Warning!')
         with override_settings(READ_ONLY=True):
             data = super().test_basic()
         assert data['site_status'] == {
             'read_only': True,
             'notice': None,
+            'submit_notification_warning': 'Warning!',
         }
 
 
