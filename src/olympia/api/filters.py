@@ -9,15 +9,16 @@ class OrderingAliasFilter(OrderingFilter):
     your view."""
 
     def remove_invalid_fields(self, queryset, fields, view, request):
+        def neg(string):
+            return string[1:] if string.startswith('-') else f'-{string}'
+
         aliases = getattr(view, 'ordering_field_aliases', {})
         # Add to view.ordering_fields
         view.ordering_fields = getattr(view, 'ordering_fields', ()) + tuple(
             aliases.values()
         )
         # Account for desc and asc sorting
-        aliases.update(
-            {'-%s' % alias: '-%s' % field for (alias, field) in aliases.items()}
-        )
+        aliases.update({neg(alias): neg(field) for (alias, field) in aliases.items()})
         # Replace field aliases with their actual field names.
         fields = [aliases.get(field, field) for field in fields]
         out = super().remove_invalid_fields(queryset, fields, view, request)

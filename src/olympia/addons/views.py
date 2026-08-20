@@ -1,7 +1,7 @@
 from collections import OrderedDict
 
 from django import http
-from django.db.models import F, Max, Prefetch
+from django.db.models import F, Max, Prefetch, Q as djangoQ
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
@@ -10,7 +10,7 @@ from django.utils.translation import gettext
 
 import waffle
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from elasticsearch.dsl import Q, Search, query
+from elasticsearch.dsl import Q as dslQ, Search, query
 from rest_framework import exceptions, serializers, status
 from rest_framework.decorators import action
 from rest_framework.generics import ListAPIView
@@ -34,6 +34,7 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.amo.utils import StopWatch
 from olympia.api.authentication import JWTKeyAuthentication, SessionIDAuthentication
 from olympia.api.exceptions import UnavailableForLegalReasons
+from olympia.api.filters import OrderingAliasFilter
 from olympia.api.pagination import ESPageNumberPagination, LargePageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor,
@@ -75,6 +76,7 @@ from olympia.versions.models import Version
 from olympia.versions.tasks import duplicate_addon_version_for_rollback
 
 from .decorators import addon_view_factory, require_submissions_enabled
+from .filters import AddonTypeFilter
 from .indexers import AddonIndexer
 from .models import (
     Addon,
@@ -228,6 +230,7 @@ def find_replacement_addon(request):
     )
 )
 class AddonViewSet(
+    ListModelMixin,
     CreateModelMixin,
     RetrieveModelMixin,
     UpdateModelMixin,
@@ -270,6 +273,20 @@ class AddonViewSet(
     serializer_class_for_developers = DeveloperAddonSerializer
     lookup_value_regex = r'[^/]+'  # Allow '.' for email-like guids.
     throttle_classes = addon_submission_throttles
+    filter_backends = [OrderingAliasFilter, AddonTypeFilter]
+    ordering_fields = (
+        'average_daily_users',
+        'bayesian_rating',
+        'created',
+        'hotness',
+        'id',
+        'last_updated',
+        'weekly_downloads',
+    )
+    ordering_field_aliases = {
+        'ratings.bayesian_average': 'bayesian_rating',
+    }
+    ordering = ('id',)
 
     def get_queryset(self):
         """Return queryset to be used for the view."""
@@ -300,7 +317,7 @@ class AddonViewSet(
         obj = getattr(self, 'instance', None)
         request = self.request
         if request.user.is_authenticated and (
-            self.action in ('create', 'update', 'partial_update')
+            self.action in ('list', 'create', 'update', 'partial_update')
             or GroupPermission(
                 amo.permissions.ADDONS_API_VIEW_UNLISTED
             ).has_object_permission(request, self, obj)
@@ -436,6 +453,20 @@ class AddonViewSet(
     )
     def listingcontentreview(self, request, pk=None):
         return self.retrieve(request)
+
+    def filter_queryset(self, queryset):
+        # List is limited to a users own add-ons
+        if self.action == 'list':
+            # Anonymous users get no results - we could return an error here instead.
+            if self.request.user.is_anonymous:
+                return queryset.none()
+            else:
+                # filter to only the user's addons; but filter our deleted role.
+                queryset = queryset.filter(
+                    djangoQ(addonuser__user=self.request.user.id)
+                    & ~djangoQ(addonuser__role=amo.AUTHOR_ROLE_DELETED)
+                )
+        return super().filter_queryset(queryset)
 
     @listingcontentreview.mapping.patch
     def update_listingcontentreview(self, request, pk=None):
@@ -1060,7 +1091,7 @@ class AddonFeaturedView(AddonSearchView):
 
     def filter_queryset(self, qs):
         qs = super().filter_queryset(qs)
-        qs = qs.query(query.Bool(filter=[Q('term', is_recommended=True)]))
+        qs = qs.query(query.Bool(filter=[dslQ('term', is_recommended=True)]))
         return qs.query('function_score', functions=[query.SF('random_score')]).sort(
             '_score'
         )
@@ -1298,7 +1329,7 @@ class AddonRecommendationView(AddonSearchView):
         if not guid_param or not amo.ADDON_GUID_PATTERN.match(guid_param):
             raise exceptions.ParseError('Invalid guid parameter')
         guids = get_addon_recommendations(guid_param)
-        recommended_qs = qs.query(query.Bool(must=[Q('terms', guid=guids)]))
+        recommended_qs = qs.query(query.Bool(must=[dslQ('terms', guid=guids)]))
         return recommended_qs.execute()
 
     def paginate_queryset(self, queryset):
