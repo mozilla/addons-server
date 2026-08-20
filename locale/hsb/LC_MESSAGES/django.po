@@ -173,6 +173,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Wulki dźak, zo sće sej čas brał, slědowacy přidatk na Mozilla Add-ons zdźělić: %(name)s.\n"
+"\n"
+"Smy wašu rozprawu a wotpowědny wobsah přepruwowali, a zwěsćili, zo prawidłam Mozilla (%(policy_document_url)s) njewotpowěduje. Smy tohodla wobsah wotstronili. Hódnoćimy, zo dale pomhaće, Mozilla Add-ons wěste dźeržeć.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -182,6 +186,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Wulki dźak, zo sće sej čas brał, slědowacy přidatk na Mozilla Add-ons zdźělić: %(name)s.\n"
+"\n"
+"Smy wašu rozprawu a wotpowědny wobsah přepruwowali, a zwěsćili, zo prawidłam Mozilla (%(policy_document_url)s) njewotpowěduje. Smy wuwiwarja prosyli, změny přewjesć a jeli problem njerozrisuje, budźemy wobsah wotstronjeć. Wulki dźak, zo dale pomhaće, Mozilla Add-ons wěste dźeržeć.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
