@@ -3825,6 +3825,7 @@ msgstr ""
 "\n"
 "vaš e-poštni naslov je potrjen in vse je urejeno. Hvala, ker ustvarjate za Firefox!\n"
 "\n"
+"\n"
 "Ekipa Dodatkov Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
@@ -4456,7 +4457,7 @@ msgstr "-"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
-msgstr "Dodatni komentarji:"
+msgstr "Dodatne pripombe:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:147
 msgid "Leave a reply"
