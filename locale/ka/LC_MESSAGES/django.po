@@ -109,6 +109,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ %(name)s და გამოგეთქვათ საკუთარი მოსაზრებები.\n"
+"\n"
+"თქვენი საჩივრის ყურადღებით განხილვისას აღმოვაჩინეთ, რომ ადრინდელი გადაწყვეტილება, რომლის მიხედვითაც ეს მასალა იცავდა Mozilla-ს დებულებებს (%(policy_document_url)s) — იყო მართებული. აღნიშნულის გამო აღარ მივიღებთ ზომებს მოცემული ანგარიშისა თუ მასალის წინააღმდეგ.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"გმადლობთ კიდევ ერთხელ, რომ გვეხმარებით Mozilla-ს დამატებების საიტის უსაფრთხოების უზრუნველყოფაში.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ %(name)s და გამოგეთქვათ საკუთარი მოსაზრებები.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ გამოვარკვიეთ, რომ ადრინდელი გადაწყვეტილება, რომლის მიხედვითაც ეს მასალა იცავდა Mozilla-ს დებულებებს (%(policy_document_url)s), იყო მცდარი. აღნიშნული მასალა უკვე მოვაცილეთ და ვაცნობეთ მომხმარებელს ამის შესახებ. გმადლობთ, რომ დაგვეხმარეთ სწორი გადაწყვეტილების მიღებაში.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +138,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"გმადლობთ, რომ დრო გამონახეთ, Mozilla-ს დამატებების საიტზე მოგეხსენებინათ %(name)s და გამოგეთქვათ საკუთარი მოსაზრებები.\n"
+"\n"
+"თქვენი საჩივრის განხილვის შემდგომ გამოვარკვიეთ, რომ წინა გადაწყვეტილება, რომლის მიხედვითაც ეს მასალა იცავდა Mozilla-ს დებულებებს (%(policy_document_url)s), იყო მცდარი. მოვთხოვეთ მის შემმუშავებელს, შეეტანა ცვლილებები და, თუ არ განაახლებენ მასალას, მაშინ საიტიდან მოვაცილებთ.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
