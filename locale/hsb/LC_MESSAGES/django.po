@@ -6719,7 +6719,7 @@ msgstr "Njepłaćiwy přidatkowy ID w URL abo pakeće"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Jenož API v5+ předewzaćelske kanale podpěruje."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."

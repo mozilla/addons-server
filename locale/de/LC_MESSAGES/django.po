@@ -6723,7 +6723,7 @@ msgstr "Ungültige Add-on-ID in URL oder Paket"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Unternehmens-Kanäle werden erst ab API v5 unterstützt."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
