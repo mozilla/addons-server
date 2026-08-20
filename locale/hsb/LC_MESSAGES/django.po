@@ -7307,6 +7307,18 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajće %(author_name)s,\n"
+"\n"
+"su wulkotne nowinki, sće přeprošeny, so z awtorom %(addon_name)s na %(domain)s stać. Hdyž akceptujeće, móžeće přidatk wobdźěłać a waše mjeno móže so w lisćinje awtorow na websydle jewić.\n"
+"\n"
+"Jeli chceće přeprošenje přiwzać, klikńće prosće na slědowacy wotkaz:\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Jeli njejsće tute přeprošenje wočakował, móžeće tutu mejlku wěsće ignorować.\n"
+"\n"
+"Wjeselimy so, zo za Firefox wuwiwaće,\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
