@@ -125,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Dźakujemy so za wašu rozprawu wo %(name)s na Mozilla Add-ons a zo sće sej čas brał, wjace wo swojich wobmyslenjach dźělić.\n"
+"\n"
+"Po přepruwowanju wašeho spřećiwjenja, měnimy, zo naš předchadny rozsud, zo tutón wobsah prawidłam Mozilla (%(policy_document_url)s) wotpowěduje, je wopačny był. Smy nětko wobsah wotstronili a wužiwarja zdźělili. Wulki dźak, zo nam pomhaće, to porjedźić.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
