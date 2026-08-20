@@ -109,9 +109,10 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Obrigado por relatar sobre %(name)s nas extensões da Mozilla e por dispor de tempo para compartilhar mais sobre suas preocupações. Após analisarmos cuidadosamente o seu recurso, descobrimos que a "
 "decisão anterior — de que este conteúdo adere às políticas da Mozilla (%(policy_document_url)s) — estava correta. Por esse motivo, não tomaremos medidas contra a conta ou o conteúdo. "
-"%(manual_reasoning_text)s. Obrigado novamente por nos ajudar a manter o Mozilla Add-ons seguro. "
+"%(manual_reasoning_text)s. Obrigado novamente por nos ajudar a manter o Mozilla Add-ons seguro. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -121,8 +122,9 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
 " Obrigado por relatar sobre %(name)s nas extensões da Mozilla e por dispor de tempo para compartilhar mais sobre suas preocupações. Após analisar seu recurso, descobrimos que nossa decisão anterior,"
-" de que este conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Removemos o conteúdo e notificamos o usuário. Obrigado por nos ajudar a fazer isso direito. "
+" de que este conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Removemos o conteúdo e notificamos o usuário. Obrigado por nos ajudar a fazer isso direito. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -132,8 +134,9 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
 " Obrigado por relatar sobre %(name)s nas extensões da Mozilla, e por fornecer mais informações sobre suas preocupações. Após analisar seu recurso, descobrimos que nossa decisão anterior, de que este"
-" conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Pedimos ao desenvolvedor para fazer alterações e, se ele não atualizar seu conteúdo, nós o removeremos. "
+" conteúdo aderia às políticas da Mozilla (%(policy_document_url)s), estava incorreta. Pedimos ao desenvolvedor para fazer alterações e, se ele não atualizar seu conteúdo, nós o removeremos. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -143,8 +146,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
 " Obrigado por utilizar seu tempo para denunciar %(name)s, em %(target_url)s. Analisamos seu relatório e o conteúdo em questão e descobrimos que ele adere às políticas da Mozilla "
-"(%(policy_document_url)s), portanto não será sujeito a nenhuma ação de moderação. No entanto, agradecemos por você denunciar isso para nós. "
+"(%(policy_document_url)s), portanto não será sujeito a nenhuma ação de moderação. No entanto, agradecemos por você denunciar isso para nós. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -163,8 +167,9 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Obrigado por utilizar seu tempo para denunciar a seguinte extensão no Mozilla Add-ons: %(name)s. Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele não adere às políticas da "
-"Mozilla (%(policy_document_url)s). Como resultado, removemos o conteúdo. Agradecemos por ajudar a manter o Mozilla Add-ons seguro. "
+"Mozilla (%(policy_document_url)s). Como resultado, removemos o conteúdo. Agradecemos por ajudar a manter o Mozilla Add-ons seguro. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -174,9 +179,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
 " Obrigado por utilizar seu tempo para denunciar a seguinte extensão no Mozilla Add-ons: %(name)s. Analisamos sua denúncia e o conteúdo em questão e descobrimos que ele não adere às políticas da "
 "Mozilla (%(policy_document_url)s). Solicitamos ao desenvolvedor que faça alterações e, se não resolverem o problema, removeremos o conteúdo. Obrigado por ajudar a manter as extensões da Mozilla "
-"seguras. "
+"seguras. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
