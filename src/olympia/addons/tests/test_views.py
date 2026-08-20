@@ -5463,14 +5463,14 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_enterprise_only_not_available_in_old_api_versions(self):
         current_api_version = settings.REST_FRAMEWORK['DEFAULT_VERSION']
         assert (
-            'enterprise-channel-shim' not in settings.DRF_API_GATES[current_api_version]
+            'no-enterprise-channel' not in settings.DRF_API_GATES[current_api_version]
         )
         user = UserProfile.objects.create(username='admin')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
         self.client.login_api(user)
 
         for api_version in ('v3', 'v4'):
-            assert 'enterprise-channel-shim' in settings.DRF_API_GATES[api_version]
+            assert 'no-enterprise-channel' in settings.DRF_API_GATES[api_version]
             url = reverse_ns(
                 'addon-version-list',
                 api_version=api_version,
@@ -5480,6 +5480,37 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             assert response.status_code == 400
             data = json.loads(force_str(response.content))
             assert data == ['Invalid "filter" parameter specified.']
+
+    def test_enterprise_versions_filtered_in_old_api_versions(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.client.login_api(user)
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 4
+        assert 'enterprise' in [result['results'][x]['channel'] for x in range(4)]
+
+        # Only listed & unlisted in v3/v4.
+        for api_version in ('v3', 'v4'):
+            assert 'no-enterprise-channel' in settings.DRF_API_GATES[api_version]
+            url = reverse_ns(
+                'addon-version-list',
+                api_version=api_version,
+                kwargs={'addon_pk': self.addon.pk},
+            )
+            response = self.client.get(url, data={'filter': 'all_with_unlisted'})
+            assert response.status_code == 200
+            result = json.loads(force_str(response.content))
+            assert result['results']
+            assert len(result['results']) == 3
+            assert 'enterprise' not in [
+                result['results'][x]['channel'] for x in range(3)
+            ]
 
     def test_deleted_version_anonymous(self):
         self.version.delete()

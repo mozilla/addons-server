@@ -492,9 +492,10 @@ This endpoint allows you to list all versions belonging to a specific add-on.
     all_without_unlisted  Show all listed versions attached to this add-on.
                           Requires either reviewer permissions or a user
                           account listed as a developer of the add-on.
-       all_with_unlisted  Show all versions (including unlisted) attached to
-                          this add-on. Requires either reviewer permissions or
-                          a user account listed as a developer of the add-on.
+       all_with_unlisted  Show all versions (including unlisted and enterprise 
+                          versions) attached to this add-on. Requires either 
+                          reviewer permissions or a user account listed as a
+                          developer of the add-on.
         all_with_deleted  Show all versions attached to this add-on, including
                           deleted ones. Requires admin permissions.
         enterprise_only   Show all enterprise versions attached to this add-on.

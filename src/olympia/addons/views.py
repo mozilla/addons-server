@@ -625,7 +625,7 @@ class AddonVersionViewSet(
             'all_without_unlisted',
         ]
 
-        if not is_gate_active(self.request, 'enterprise-channel-shim'):
+        if not is_gate_active(self.request, 'no-enterprise-channel'):
             valid_filters.append('enterprise_only')
 
         if requested is not None:
@@ -659,6 +659,12 @@ class AddonVersionViewSet(
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED
             )
+
+        if is_gate_active(self.request, 'no-enterprise-channel'):
+            queryset = queryset.filter(
+                channel__in=[amo.CHANNEL_LISTED, amo.CHANNEL_UNLISTED]
+            )
+
         queryset = queryset.select_related('file___webext_permissions')
         if (
             self.action == 'list'
