@@ -6574,7 +6574,7 @@ msgstr "Maksimal spørrelengde overskredet."
 #: src/olympia/signing/views.py:54
 #, python-brace-format
 msgid "Could not find Add-on with ID \"{}\"."
-msgstr "Finner ikke tillegget med ID-en «{}»."
+msgstr "Fant ikke tillegget med ID-en «{}»."
 
 #: src/olympia/signing/views.py:73
 msgid "You do not own this add-on."
