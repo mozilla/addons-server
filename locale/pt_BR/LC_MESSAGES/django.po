@@ -6630,7 +6630,7 @@ msgstr "ID de extensão inválido na URL ou pacote"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Apenas a API v5+ suporta canais empresariais."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."

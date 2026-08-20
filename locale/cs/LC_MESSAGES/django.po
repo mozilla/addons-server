@@ -6628,7 +6628,7 @@ msgstr "Neplatné ID doplňku v adrese URL nebo balíčku"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Pouze API v5+ podporuje podnikové kanály."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
