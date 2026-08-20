@@ -109,6 +109,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"感謝您回報 Mozilla 附加元件站上的 %(name)s 的問題，並且花時間讓我們知道您的意見。\n"
+"\n"
+"經過審視您的申訴內容後，我們認為過去認定此內容並未違反 Mozilla 的相關政策（%(policy_document_url)s）的決定是正確的。依照該認定結果，不會對此帳號或內容採取任何行動。\n"
+"%(manual_reasoning_text)s。\n"
+"\n"
+"再次感謝您協助保持 Mozilla 附加元件站的安全。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"感謝您回報 Mozilla 附加元件站上的 %(name)s 的問題，並且花時間讓我們知道您的意見。\n"
+"\n"
+"經過審視您的申訴內容後，我們認為過去認定此內容並未違反 Mozilla 的相關政策（%(policy_document_url)s）的決定不正確。依照該認定結果，我們已下架該內容並通知使用者。感謝您協助我們導正這個錯誤。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -127,6 +138,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"感謝您回報 Mozilla 附加元件站上的 %(name)s 的問題，並提供有關您所提出問題的更多資訊。\n"
+"\n"
+"經過審視您的申訴內容後，我們認為過去認定此內容並未違反 Mozilla 的相關政策（%(policy_document_url)s）的做法是錯誤的。依照該認定結果，我們已要求開發者修改內容。若該開發者並未配合修改，我們將移除該內容。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -136,13 +151,17 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"感謝您回報位於 %(target_url)s 的 %(name)s。\n"
+"\n"
+"經過審查您的回報內容後，我們認為此內容並未違反 Mozilla 的政策（%(policy_document_url)s），將不會要求做出任何調整或修改。然而我們仍非常感謝您提供相關資訊讓我們知道。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
 msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
-msgstr ""
+msgstr "若您認為該內容不符合 Mozilla 的政策，您有權在此電子郵件寄出的 6 個月內提出申訴。若想了解申訴程序，以及如何對此決定提出申訴的方式，請參考 %(appeal_url)s。"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
