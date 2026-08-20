@@ -144,6 +144,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Jolic se mysliśo, až wopśimjeśe pšawidłam Mozilla njewótpowědujo, maśo pšawo, toś ten rozsud w běgu 6 mjasecow wót datuma toś teje mejlki wóteprěś. Glejśo %(appeal_url)s za drobnostki wó procesu "
+"pśeśiwjenja, mjazy drugim, kak móžośo pśeśiwjenje za wótpowědny rozsud zapódaś."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -3815,6 +3817,12 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajśo,\n"
+"\n"
+"Waša e-mailowa adresa jo se wobkšuśiła, sćo gótowy za start. Wjeliki źěk, až za Firefox wuwijaśo!\n"
+"\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -6627,7 +6635,7 @@ msgstr "Njepłaśiwy dodankowy ID w URL abo pakeśe"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Jano API v5+ pśedewześowe kanale pódpěra."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
