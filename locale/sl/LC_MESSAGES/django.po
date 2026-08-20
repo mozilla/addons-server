@@ -110,9 +110,7 @@ msgid ""
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
 "\n"
-" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po skrbnem pregledu vaše pritožbe smo ugotovili, da je prejšnja odločitev – da "
-"je ta vsebina v skladu z Mozillinimi pravilniki (%(policy_document_url)s) – pravilna. Zato zoper ta račun ali vsebino ne bomo ukrepali. %(manual_reasoning_text)s. Še enkrat se vam zahvaljujemo, ker "
-"nam pomagate ohranjati dodatke Mozilla varne. \n"
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po skrbnem pregledu vaše pritožbe smo ugotovili, da je prejšnja odločitev – da je ta vsebina v skladu z Mozillinimi pravilniki (%(policy_document_url)s) – pravilna. Zato zoper ta račun ali vsebino ne bomo ukrepali. %(manual_reasoning_text)s. Še enkrat se vam zahvaljujemo, ker nam pomagate ohranjati dodatke Mozilla varne. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -123,8 +121,7 @@ msgid ""
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
 "\n"
-" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, "
-"da je ta vsebina skladna z Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Vsebino smo odstranili in o tem obvestili uporabnika. Hvala, ker nam pomagate to odpraviti. \n"
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za to, da ste si vzeli čas in povedali več o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, da je ta vsebina skladna z Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Vsebino smo odstranili in o tem obvestili uporabnika. Hvala, ker nam pomagate to odpraviti. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -135,8 +132,7 @@ msgid ""
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
 "\n"
-" Hvala za poročilo o %(name)s za Mozilline dodatke in za več informacij o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, da je ta vsebina skladna z"
-" Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Razvijalca smo prosili za spremembe. Če vsebine ne posodobijo, jo bomo odstranili. \n"
+" Hvala za poročilo o %(name)s za Mozilline dodatke in za več informacij o svojih pomislekih. Po pregledu vašega razloga smo ugotovili, da je bila naša predhodna odločitev, da je ta vsebina skladna z Mozillinimi pravilniki (%(policy_document_url)s), nepravilna. Razvijalca smo prosili za spremembe. Če vsebine ne posodobijo, jo bomo odstranili. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -147,8 +143,7 @@ msgid ""
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
 "\n"
-" Hvala, ker ste si vzeli čas za prijavo %(name)s na %(target_url)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da je v skladu z Mozillinimi pravilniki (%(policy_document_url)s), "
-"zato ne bo predmet moderiranja. Cenimo pa, da ga označite namesto nas. \n"
+" Hvala, ker ste si vzeli čas za prijavo %(name)s na %(target_url)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da je v skladu z Mozillinimi pravilniki (%(policy_document_url)s), zato ne bo predmet moderiranja. Cenimo pa, da ga označite namesto nas. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -168,8 +163,7 @@ msgid ""
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
 "\n"
-" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki"
-" (%(policy_document_url)s). Zaradi tega smo vsebino odstranili. Cenimo vašo pomoč pri ohranjanju varnosti dodatkov Mozille. \n"
+" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki (%(policy_document_url)s). Zaradi tega smo vsebino odstranili. Cenimo vašo pomoč pri ohranjanju varnosti dodatkov Mozille. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -180,8 +174,7 @@ msgid ""
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
 "\n"
-" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki"
-" (%(policy_document_url)s). Od razvijalca smo zahtevali spremembe, in če ne bodo odpravile težave, bomo vsebino odstranili. Hvala, ker pomagate ohranjati dodatke Mozilla varne. \n"
+" Hvala, ker ste si vzeli čas in prijavili naslednji dodatek o Mozillinih dodatkih: %(name)s. Pregledali smo vaše poročilo in zadevno vsebino ter ugotovili, da nista v skladu z Mozillinimi pravilniki (%(policy_document_url)s). Od razvijalca smo zahtevali spremembe, in če ne bodo odpravile težave, bomo vsebino odstranili. Hvala, ker pomagate ohranjati dodatke Mozilla varne. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3827,7 +3820,12 @@ msgid ""
 "\n"
 "\n"
 "The Mozilla Add-ons Team"
-msgstr "Pozdravljeni, Vaš e-poštni naslov je bil preverjen, vse je pripravljeno. Hvala za gradnjo za Firefox!   Ekipa za dodatke Mozilla"
+msgstr ""
+"Pozdravljeni,\n"
+"\n"
+"vaš e-poštni naslov je potrjen in vse je urejeno. Hvala, ker ustvarjate za Firefox!\n"
+"\n"
+"Ekipa Dodatkov Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
