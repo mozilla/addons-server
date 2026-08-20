@@ -3782,6 +3782,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajće,\n"
+"\n"
+"wulki dźak, zo za Firefox wuwiwaće! Dóstawaće tutu powěsć, dokelž sće nowe wuwiwarske API-kluče za %(domain)s požadał. Zo jich konfiguraciju dokónčił, klikńće prosće na slědowacy wotkaz:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Jeli njejsće tute kluče požadał, móžeće tutu mejlku wěsće ignorować a kluče so njewutworja.\n"
+"\n"
+"\n"
+"Team přidatkow Mozilla"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
