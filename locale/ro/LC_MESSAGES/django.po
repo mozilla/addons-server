@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Îți mulțumim pentru raportarea despre %(name)s din suplimente Mozilla și pentru că ți-ai luat din timp ca să ne spui mai multe despre îngrijorările tale.\n"
+"\n"
+"După analiza atentă a recursului tău, am constatat că decizia anterioară — cum că acest conținut aderă la politicile Mozilla (%(policy_document_url)s) — a fost corectă. Pentru aceasta, nu vom lua măsuri împotriva contului sau a conținutului.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Îți mulțumim din nou că ne ajuți să menținem siguranța în suplimente Mozilla.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Îți mulțumim pentru raportarea despre %(name)s din suplimente Mozilla și pentru că ți-ai luat din timp ca să ne spui mai multe despre îngrijorările tale.\n"
+"\n"
+"După analiza recursului tău, am constatat că decizia anterioară, cum că acest conținut aderă la politicile Mozilla (%(policy_document_url)s), a fost incorectă. Am eliminat conținutul și am notificat utilizatorul. Îți mulțumim că ne-ai ajutat să remediem situația.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Îți mulțumim pentru raportarea despre %(name)s din suplimente Mozilla și pentru că ne-ai dat mai multe informații despre îngrijorările tale.\n"
+"\n"
+"După analiza recursului tău, am constatat că decizia anterioară, cum că acest conținut aderă la politicile Mozilla (%(policy_document_url)s), a fost incorectă. Am cerut dezvoltatorului să facă modificări și, dacă nu își actualizează conținutul, îl vom elimina.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Îți mulțumim că ți-ai luat din timp ca să raportezi %(name)s la %(target_url)s.\n"
+"\n"
+"Am analizat raportul tău și conținutul respectiv și am constatat că aderă la politicile Mozilla (%(policy_document_url)s), așa că nu va face obiectul niciunei acțiuni de moderare, însă apreciem faptul că ne-ai semnalat situația.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
