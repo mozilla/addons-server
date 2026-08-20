@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-19 14:03+0000\n"
+"POT-Creation-Date: 2026-08-20 18:24+0000\n"
 "PO-Revision-Date: 2024-01-15 13:27+0000\n"
 "Last-Translator: Bund10z <abu.avila@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -5268,6 +5268,9 @@ msgstr "Si tiene más de 64 caracteres, especifica el GUID de tu complemento en 
 #, fuzzy
 msgid "Invalid Add-on ID in URL or package"
 msgstr "GUID inválido en la URL"
+
+msgid "Only API v5+ supports enterprise channels."
+msgstr ""
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
 msgstr ""

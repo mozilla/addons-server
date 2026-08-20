@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-08-19 14:03+0000\n"
+"POT-Creation-Date: 2026-08-20 18:24+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -5246,6 +5246,9 @@ msgid "Please specify your Add-on ID in the manifest if it's longer than 64 char
 msgstr ""
 
 msgid "Invalid Add-on ID in URL or package"
+msgstr ""
+
+msgid "Only API v5+ supports enterprise channels."
 msgstr ""
 
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
