@@ -3838,6 +3838,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Följande API-nyckel har återkallats från ditt konto och kan inte längre användas:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om du förväntade dig detta behöver du inte göra något.\n"
+"Om du tror att nyckeln har återkallats av misstag kan du skapa en ny här:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Vi finns här för att hjälpa dig om något ser fel ut,\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/submission_api_key_revocation.txt:9
 #, python-format
@@ -3852,6 +3866,15 @@ msgid ""
 "Thank you,\n"
 "The Mozilla Add-ons team"
 msgstr ""
+"Bästa tilläggsutvecklare,\n"
+"\n"
+"Vi ville informera dig omedelbart: vi har märkt att dina hemliga AMO API-inloggningsuppgifter inkluderades i ett tillägg som skickats till addons.mozilla.org. För att skydda ditt konto och dina tillägg har vi återkallat de berörda inloggningsuppgifterna. Det är inget fel på din sida – det här händer bara ibland, och vi är här för att hjälpa dig att komma tillbaka på rätt spår.\n"
+"Du kan generera nya API-inloggningsuppgifter när som helst på %(api_keys_url)s\n"
+"\n"
+"För att skydda dina inloggningsuppgifter framöver är det bäst att hålla dem privata och undvika att inkludera dem i offentliga arkiv, tillägg eller andra offentliga platser. När du har en stund är det värt att granska dina kodarkiv och tillägg för att ta bort eventuella referenser till dina AMO-inloggningsuppgifter.\n"
+"\n"
+"Tack,\n"
+"Mozilla-teamet"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
@@ -3862,6 +3885,12 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Din e-postadress har verifierats, du är redo. Tack för att du skapade för Firefox!\n"
+"\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3877,6 +3906,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Tack för att du skapat för Firefox! Du får det här meddelandet eftersom du begärde att verifiera din e-postadress. För att slutföra, klicka bara på länken nedan:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Om du inte begärde detta kan du lugnt ignorera det här e-postmeddelandet.\n"
+"\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -4710,7 +4749,7 @@ msgstr "Effektiv, lätt annonsblockerare. uBlock Origin använder tusentals inne
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "Njut av en rad nya funktioner, som bioläge, annonsblockering, automatisk uppspelning och mer."
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -5825,7 +5864,7 @@ msgstr "Anpassa musgester. Upptäck ett nytt sätt att navigera med över 50 kon
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:821
 msgid "Remove distractions, change your viewing experience, alter playback speed & so much."
-msgstr ""
+msgstr "Ta bort distraktioner, förändra din tittarupplevelse, justera uppspelningshastigheten och så mycket mer."
 
 #. editorial content for the primary hero shelves.
 #: src/olympia/discovery/strings.jinja2:869
