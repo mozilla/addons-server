@@ -109,6 +109,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Mozilla Add-ons 上の %(name)s に関する報告と懸念事項について、詳細な情報をご提供いただき、ありがとうございます。\n"
+"\n"
+"ご意見を慎重に検討した結果、このコンテンツは Mozilla のポリシー (%(policy_document_url)s) に準拠しているという以前の判断は正しかったと判断いたしました。そのため、当該アカウントおよびコンテンツに対する措置は講じません。\n"
+"%(manual_reasoning_text)s\n"
+"\n"
+"Mozilla Add-ons の安全性維持にご協力いただき、重ねて感謝申し上げます。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +125,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Mozilla Add-ons 上の %(name)s に関する報告と懸念事項について、詳細な情報をご提供いただき、ありがとうございます。\n"
+"\n"
+"ご意見を慎重に検討した結果、このコンテンツは Mozilla のポリシー (%(policy_document_url)s) に準拠しているという以前の判断は誤りであると判断いたしました。この判断に基づき、当該コンテンツを削除し、ユーザーにその旨を通知しました。ご協力いただき、誠にありがとうございました。\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -1337,7 +1348,7 @@ msgstr "リスト掲載中止"
 
 #: src/olympia/constants/base.py:73 src/olympia/templates/photon-footer.html:50
 msgid "Enterprise"
-msgstr ""
+msgstr "企業向け"
 
 #: src/olympia/constants/base.py:94
 msgid "Signing API"
