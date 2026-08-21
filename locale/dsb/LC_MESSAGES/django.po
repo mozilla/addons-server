@@ -3880,7 +3880,7 @@ msgstr ""
 "Aby waše pśizjawjeńske daty w pśichoźe wěste wóstali, źaržćo je nejlěpjej dowěrliwe a njezapołožćo je w zjawnem repozitoriju, dodanku abo na zjawnem městnje. Gažkuli maśo wokognuśe chyle, dejał wy swóje kodowe repozitorije a rozšyrjenja pśeglědowaś, aby wy wótkaze na swóje pśizjawjeńske AMO wótwónoźeł.\n"
 "\n"
 "Wjeliki źěk,\n"
-"Team Mozilla"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-completed.ltxt:6
 msgid ""
