@@ -139,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Gratias pro tu reporto re %(name)s sur Mozilla Add-ons, e pro fornir altere informationes circa tu problemas.\n"
+"\n"
+"Post le revision de tu appello, nos trovava que nostre precedente decision, que iste contento adhereva al directivas de Mozilla (%(policy_document_url)s), era errate. Nos ha demandate al disveloppator de apportar cambiamentos, e si ille non actualisa su contento, nos lo removera.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
