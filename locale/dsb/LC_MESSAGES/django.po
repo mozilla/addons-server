@@ -7355,6 +7355,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajśo,\n"
+"\n"
+"dostawaśo toś tu powěsć, aby zgónił, až wašo wužywaŕske konto %(name)s na %(site_url)s jo se wulašowało. Jolic sćo njedawno wulašował swójo konto Mozilla, móžo se to awtomatiski ako źěl togo procesa staś.\n"
+"\n"
+"Wjeliki źěk, až sćo źěl zgromaźeństwa dodankow Firefox. Jolic se mysliśo, až to jo zmólka było abo jolic pšašenja maśo, stajśo se z nami do zwiska.\n"
+"\n"
+"Wutšobne póstrowy,\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
