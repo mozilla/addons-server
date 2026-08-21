@@ -152,6 +152,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Wjeliki źěk, až sćo se cas brał, %(name)s na %(target_url)s k wěsći daś.\n"
+"\n"
+"Smy wašu rozpšawu a wótpowědne wopśimjeśe pśeglědowali, a zwěsćili, až pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo, tak až se žedne dalšne napšawy cynje. Gódnośimy pak, až sćo nam to k wěsći dał.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -170,6 +174,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Wjeliki źěk, až sćo se cas brał, slědujucy dodank na Mozilla Add-ons k wěsći daś: %(name)s.\n"
+"\n"
+"Smy pśeglědowali wašu rozpšawu a wótpowědne wopśimjeśe, a zwěsćili, až pšawidłam Mozilla (%(policy_document_url)s) njewótpowědujo. Smy togodla wopśimjeśe wótwónoźeli. Gódnośimy, až dalej pomagaśo, Mozilla Add-ons wěste źaržaś.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
