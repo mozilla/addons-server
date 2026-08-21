@@ -187,6 +187,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Wjeliki źěk, až sćo se cas brał, slědujucy dodank na Mozilla Add-ons k wěsći daś: %(name)s.\n"
+"\n"
+"Smy pśeglědowali wašu rozpšawu a wótpowědne wopśimjeśe, a zwěsćili, až pšawidłam Mozilla (%(policy_document_url)s) njewótpowědujo. Smy wuwijarja pšosyli, změny pśewjasć a jolic problem njerozwězujo, buźomy wopśimjeśe wótwónoźowaś. Wjeliki źěk, až dalej pomagaśo, Mozilla Add-ons wěste źaržaś.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3778,6 +3782,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajśo,\n"
+"\n"
+"wjeliki źěk, až za Firefox wuwijaśo! Dostawaśo toś tu powěsć, dokulaž sćo pšosył wó nowe wuwijaŕske API-kluce za %(domain)s. Aby jich konfiguraciju dokóńcył, klikniśo jadnorje na slědujucy wótkaz:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Jolic njejsćo pšosył wó toś te kluce, móžośo toś tu mejlku wěsće ignorěrowaś a kluce se njenapóraju.\n"
+"\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3797,6 +3811,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Witajśo,\n"
+"\n"
+"nowy kluc API jo se rowno pśidał wašomu kontoju:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Jolic wy sćo to był, njetrjebaśo nic dalej cyniś.\n"
+"Jolic se mysliśo, až jo se toś ten kluc zamólnje napórał, móžośo kluc wótwónoźeś a pśistup how znjemóžniś:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Wjeliki źěk, až za Firefox wuwijaśo,\n"
+"\n"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
