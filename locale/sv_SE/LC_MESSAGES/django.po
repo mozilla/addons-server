@@ -6071,7 +6071,7 @@ msgstr "Startpaket för tillägg"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "Produktivitetstillägg"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
@@ -6612,7 +6612,7 @@ msgstr "Ogiltigt tilläggs-ID i URL eller paket"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Endast API v5+ stöder företagskanaler."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
@@ -7173,6 +7173,16 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"En ny författare har lagts till i ditt tillägg %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"\n"
+"Om du inte förväntade dig den här ändringen, vänligen granska ditt tilläggs författarinställningar på sidan ovan.\n"
+"\n"
+"Tack för att du skapade för Firefox,\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7190,6 +7200,18 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej %(author_name)s,\n"
+"\n"
+"Goda nyheter! Du har blivit inbjuden att bli författare till %(addon_name)s på %(domain)s. Om du accepterar inbjudan kan du redigera tillägget, och ditt namn kan visas i författarlistan på webbplatsen.\n"
+"\n"
+"Om du vill acceptera inbjudan klickar du bara på länken nedan:\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Om du inte förväntade dig den här inbjudan kan du lugnt ignorera det här e-postmeddelandet.\n"
+"\n"
+"Vi är glada att du bygger för Firefox,\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
