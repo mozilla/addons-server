@@ -113,7 +113,7 @@ msgstr ""
 "\n"
 "Źěkujomy se za wašu rozpšawu wó %(name)s na Mozilla Add-ons a až sćo se cas brał, wěcej wó swójich wobmyslenjach źěliś.\n"
 "\n"
-"Pó kradosćiwem pśeglědowanjuwašogo pśeśiwjenja, myslimy se, až pjerwjejšny rozsud – až toś to wopśimjeśe pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo – jo było korektne. Togodla njebuźomy nic pśeśiwo kontoju abo wopśimjeśeju cyniś.\n"
+"Pó kradosćiwem pśeglědowanjuwašogo pśeśiwjenja, myslimy se, až pjerwjejšny rozsud – až toś to wopśimjeśe pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo – jo był korektny. Togodla njebuźomy nic pśeśiwo kontoju abo wopśimjeśeju cyniś.\n"
 "%(manual_reasoning_text)s.\n"
 "\n"
 "Hyšći raz wjeliki źěk za to, až pomagaśo, Mozilla Add-ons wěste źaržaś.\n"
@@ -126,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Źěkujomy se za wašu rozpšawu wó %(name)s na Mozilla Add-ons a až sćo se cas brał, wěcej wó swójich wobmyslenjach źěliś.\n"
+"\n"
+"Pó pśeglědowanju wašogo pśeśiwjenja, myslimy se, až naš pjerwjejšny rozsud, až toś to wopśimjeśe pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo, jo był wopacny. Smy něnto wótwónoźeli wopśimjeśe a wužywarja k wěsći dali. Wjeliki źěk, až nam pomagaśo, to pórěźiś.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -135,6 +139,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Źěkujomy se za wašu rozpšawu wó %(name)s na Mozilla Add-ons a až sćo dalšne informacije wó swójich wobmyslenjach źělił.\n"
+"\n"
+"Pó pśeglědowanju wašogo pśeśiwjenja, myslimy se, až naš pjerwjejšny rozsud, až toś to wopśimjeśe pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo, jo był wopacny. Smy wuwijarja pšosyli, změny pśewjasć, a jolic jogo wopśimjeśe njeaktualizěrujo, buźomy jen wótwónoźeś.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
