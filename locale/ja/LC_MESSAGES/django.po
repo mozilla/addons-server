@@ -1986,6 +1986,8 @@ msgid ""
 "On your own. <span class=\"helptext\">After your submission is signed by Mozilla, you can download the .xpi file from the Developer Hub and distribute it to your audience. Please make sure the add-"
 "on manifest’s <a {a_attrs}>update_url</a> is provided, as this is the URL where Firefox finds updates for automatic deployment to your users.</span>"
 msgstr ""
+"ご自身で行ってください。<span class=\"helptext\">Mozilla による署名が完了した後、Developer Hub から .xpi ファイルをダウンロードしてユーザーに配布してください。アドオンのマニフェストの <a {a_attrs}>update_url</a> が指定されていることを確認してください。これは、Firefox "
+"が更新を見つけてユーザーに自動展開のための URL です。</span>"
 
 #: src/olympia/devhub/forms.py:1437
 msgid ""
@@ -2260,7 +2262,7 @@ msgstr "今回のアップロードは検証に失敗したため、完全な検
 
 #: src/olympia/devhub/views.py:1338
 msgid "Rollback submitted. You'll be notified when it's approved"
-msgstr ""
+msgstr "ロールバックが送信されました。承認され次第通知されます"
 
 #: src/olympia/devhub/views.py:1478
 msgid "Header area background"
@@ -2340,7 +2342,7 @@ msgstr "あなたの古い認証情報は取り消されているため正当で
 
 #: src/olympia/devhub/views.py:2146
 msgid "New API credentials have been generated and are displayed below. Make sure to copy the JWT secret, it will never be displayed again."
-msgstr ""
+msgstr "新しい API 認証情報が生成され、以下に表示されています。JWT シークレットは二度と表示されないため、必ずコピーしてください。"
 
 #: src/olympia/devhub/views.py:2174
 msgid "New API key created"
@@ -2364,7 +2366,7 @@ msgstr "メールアドレスが確認されました"
 
 #: src/olympia/devhub/views.py:2342
 msgid "Your support request has been submitted. We will be in touch soon."
-msgstr ""
+msgstr "サポートリクエストが送信されました。後ほど担当者よりご連絡いたします。"
 
 #: src/olympia/devhub/widgets.py:81
 msgid "My add-on doesn't fit into any of the categories"
@@ -4011,7 +4013,7 @@ msgstr ""
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:19
 msgid "Distribution channel"
-msgstr ""
+msgstr "配布チャンネル"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:31 src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:40
 #: src/olympia/devhub/templates/devhub/versions/list.html:232
@@ -4020,7 +4022,7 @@ msgstr "バージョン"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:48
 msgid "New version number"
-msgstr ""
+msgstr "新しいバージョン番号"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:54
 msgid "Release Notes"
@@ -4028,7 +4030,7 @@ msgstr "リリースノート"
 
 #: src/olympia/devhub/templates/devhub/includes/modal_rollback_version.html:63
 msgid "Roll back"
-msgstr ""
+msgstr "ロールバック"
 
 #: src/olympia/devhub/templates/devhub/includes/policy_form.html:3
 msgid "End-User License Agreement"
@@ -4362,7 +4364,7 @@ msgstr "作者:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:134
 msgid "Additional comments:"
-msgstr ""
+msgstr "追加コメント:"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:147
 msgid "Leave a reply"
@@ -4402,7 +4404,7 @@ msgstr "すべてのバージョン"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:216
 msgid "Rollback to a previous version"
-msgstr ""
+msgstr "以前のバージョンに戻す"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:222
 msgid "Upload a New Version"
@@ -4430,7 +4432,7 @@ msgstr "重要:"
 msgid ""
 "Once a version has been deleted, you may not upload a new version with the same version number. The version will also be Restricted, which will disable and prevent any further installation in "
 "Firefox. Existing users can choose to re-enable the add-on."
-msgstr ""
+msgstr "一度削除されたバージョンと同じ番号の新しいバージョンをアップロードすることはできません。また、そのバージョンが制限されるため、Firefox へのインストールが無効化され、それ以上のインストールができなくなります。既存のユーザーは、アドオンを再度有効にすることができます。"
 
 #: src/olympia/devhub/templates/devhub/versions/list.html:288
 msgid "Are you sure you wish to delete this version?"
@@ -4571,7 +4573,7 @@ msgstr "効果的で軽量な広告ブロッカー。 uBlock Origin は、大量
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:47
 msgid "Enjoy a suite of new features, like cinema mode, ad blocking, auto-play control & more."
-msgstr ""
+msgstr "シネマモードや広告ブロック、自動再生コントロールなどの新機能をお楽しみください。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:50
@@ -4767,7 +4769,7 @@ msgstr "Reddit サーフィンを進化させるタグなどの機能。"
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:158
 msgid "Screenshot webpages, make edits & share."
-msgstr ""
+msgstr "ウェブページをスクリーンショット撮影、編集、共有。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:161
@@ -5050,9 +5052,8 @@ msgstr "クリックした検索結果を検索エンジンに知られるのを
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:311
-#, fuzzy
 msgid "Download YouTube videos and/or audio."
-msgstr "動画や音声をダウンロード。"
+msgstr "YouTube の動画や音声をダウンロード。"
 
 #. editorial content for the discovery pane.
 #: src/olympia/discovery/strings.jinja2:314
@@ -6028,12 +6029,12 @@ msgstr "すべての拡張機能を見る"
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1127
 msgid "Extension Starter Pack"
-msgstr ""
+msgstr "拡張機能スターターパック"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1131
 msgid "Productivity extensions"
-msgstr ""
+msgstr "仕事効率化の拡張機能"
 
 #. editorial content for the secondary hero shelves.
 #: src/olympia/discovery/strings.jinja2:1133 src/olympia/discovery/strings.jinja2:1135 src/olympia/discovery/strings.jinja2:1137
@@ -6063,12 +6064,12 @@ msgstr "人気のテーマをもっと見る"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1150
 msgid "Privacy & security"
-msgstr ""
+msgstr "プライバシーとセキュリティ"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1152
 msgid "See more privacy staff picks"
-msgstr ""
+msgstr "プライバシーに関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1155
@@ -6092,15 +6093,13 @@ msgstr "おすすめのテーマをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1165
-#, fuzzy
 msgid "Strong password managers"
-msgstr "おすすめのパスワードマネージャー"
+msgstr "強力なパスワードマネージャー"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1167
-#, fuzzy
 msgid "See more password manager staff picks"
-msgstr "おすすめの拡張機能をもっと見る"
+msgstr "パスワードマネージャーに関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1170
@@ -6109,21 +6108,18 @@ msgstr "翻訳ツール"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1172
-#, fuzzy
 msgid "See more translation tool staff picks"
-msgstr "翻訳ツールをもっと見る"
+msgstr "翻訳ツールに関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1175
-#, fuzzy
 msgid "Social streaming"
-msgstr "ソーシャルネットワーキング"
+msgstr "ソーシャルストリーミング"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1177
-#, fuzzy
 msgid "See more social streaming staff picks"
-msgstr "人気の拡張機能をもっと見る"
+msgstr "ソーシャルストリーミングに関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1180
@@ -6132,9 +6128,8 @@ msgstr "タブ管理"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1182
-#, fuzzy
 msgid "See more tab management staff picks"
-msgstr "おすすめの拡張機能をもっと見る"
+msgstr "タブ管理に関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1185
@@ -6151,24 +6146,22 @@ msgstr "“{tag}” のタグが付いた拡張機能をもっと見る"
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1190
 msgid "Elite ad blockers"
-msgstr ""
+msgstr "優秀な広告ブロッカー"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1192
-#, fuzzy
 msgid "See more ad blocker staff picks"
-msgstr "おすすめの拡張機能をもっと見る"
+msgstr "広告ブロッカーに関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1195
 msgid "YouTube customization"
-msgstr ""
+msgstr "YouTube のカスタマイズ"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1197
-#, fuzzy
 msgid "See more YouTube extension staff picks"
-msgstr "翻訳ツールをもっと見る"
+msgstr "YouTube 拡張機能に関するスタッフのおすすめをもっと見る"
 
 #. editorial content for the homepage shelves.
 #: src/olympia/discovery/strings.jinja2:1200
