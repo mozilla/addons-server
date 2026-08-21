@@ -111,6 +111,14 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Tack för din rapport om %(name)s gällande Mozilla-tillägg och för att du tog dig tid att dela mer om dina funderingar.\n"
+"\n"
+"Efter att noggrant ha granskat ditt överklagande fann vi att det tidigare beslutet – att detta innehåll följer Mozillas policyer (%(policy_document_url)s) – var korrekt. Av den anledningen kommer vi inte att vidta några åtgärder mot kontot eller innehållet.\n"
+"\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Tack igen för att du hjälper oss att hålla Mozilla-tillägg säkra.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +128,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Tack för din rapport om %(name)s på Mozilla-tillägg och för att du tog dig tid att dela mer om dina funderingar.\n"
+"\n"
+"Efter att ha granskat ditt överklagande fann vi att vårt tidigare beslut, att detta innehåll följde Mozillas policyer (%(policy_document_url)s), var felaktigt. Vi har nu tagit bort innehållet och meddelat användaren. Tack för att du hjälpte oss att rätta till detta.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +141,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Tack för din rapport om %(name)s på Mozilla-tillägg och för att du ger oss mer information om dina problem.\n"
+"\n"
+"Efter att ha granskat ditt överklagande fann vi att vårt tidigare beslut, att detta innehåll följde Mozillas policyer (%(policy_document_url)s), var felaktigt. Vi har bett utvecklaren att göra ändringar, och om de inte uppdaterar sitt innehåll kommer vi att ta bort det.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +154,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Tack för att du tog dig tid att rapportera %(name)s, på %(target_url)s.\n"
+"\n"
+"Vi granskade din rapport och innehållet i fråga och fann att den följer Mozillas policyer (%(policy_document_url)s), så den kommer inte att bli föremål för några modereringsåtgärder. Vi uppskattar dock att du flaggar den åt oss.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -145,6 +165,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Om du anser att innehållet inte följer Mozillas policyer har du rätt att överklaga beslutet inom 6 månader från datumet för detta e-postmeddelande. Se %(appeal_url)s för information om "
+"överklagandeprocessen, inklusive hur du överklagar just detta beslut."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -154,6 +176,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Tack för att du tog dig tid att rapportera följande tillägg på Mozilla-tillägg: %(name)s.\n"
+"\n"
+"Vi granskade din rapport och innehållet i fråga och fann att det inte följer Mozillas policyer (%(policy_document_url)s). Därför har vi tagit bort innehållet. Vi uppskattar att du hjälper till att hålla Mozilla-tillägg säkra.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -163,6 +189,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Tack för att du tog dig tid att rapportera följande tillägg på Mozilla-tillägg: %(name)s.\n"
+"\n"
+"Vi granskade din rapport och innehållet i fråga och fann att det inte följer Mozillas policyer (%(policy_document_url)s). Vi har begärt att utvecklaren gör ändringar, och om de inte löser problemet kommer vi att ta bort innehållet. Tack för att du hjälper till att hålla Mozilla-tillägg säkra.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -1286,11 +1316,11 @@ msgstr "Granskning av listning begärd"
 #: src/olympia/constants/activity.py:1334
 #, python-brace-format
 msgid "Decision on {addon} made with no new action taken."
-msgstr ""
+msgstr "Beslut om {addon} fattat utan någon ny åtgärd."
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Beslut fattat"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -3746,6 +3776,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Tack för att du skapar för Firefox! Du får det här meddelandet eftersom du har begärt nya API-nycklar för utvecklare för %(domain)s. För att slutföra konfigurationen av dem, klicka bara på länken nedan:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Om du inte begärde dessa nycklar kan du ignorera det här e-postmeddelandet, inga nycklar kommer att skapas.\n"
+"\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3765,6 +3805,20 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"En ny API-nyckel har just lagts till i ditt konto:\n"
+"\n"
+"%(key)s\n"
+"\n"
+"Om det var du finns det inget mer att göra.\n"
+"Om du tror att den här nyckeln skapades av misstag kan du ta bort nyckeln och inaktivera åtkomst här:\n"
+"\n"
+"%(url)s\n"
+"\n"
+"Tack för att du skapade för Firefox,\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/devhub/templates/devhub/emails/revoked-key-email.ltxt:14
 #, python-format
@@ -7248,6 +7302,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hej,\n"
+"\n"
+"Du får detta meddelande för att informera dig om att ditt användarkonto %(name)s på %(site_url)s har tagits bort. Om du nyligen raderade ditt Mozilla-konto kan detta ha skett automatiskt som en del av den processen.\n"
+"\n"
+"Tack för att du har varit en del av Firefox-tilläggscommunity. Om du tror att detta var ett misstag eller har några frågor, vänligen kontakta oss.\n"
+"\n"
+"Med vänliga hälsningar,\n"
+"\n"
+"Mozillas tilläggsteam"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
