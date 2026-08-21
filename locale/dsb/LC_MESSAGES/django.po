@@ -110,6 +110,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Źěkujomy se za wašu rozpšawu wó %(name)s na Mozilla Add-ons a až sćo se cas brał, wěcej wó swójich wobmyslenjach źěliś.\n"
+"\n"
+"Pó kradosćiwem pśeglědowanjuwašogo pśeśiwjenja, myslimy se, až pjerwjejšny rozsud – až toś to wopśimjeśe pšawidłam Mozilla (%(policy_document_url)s) wótpowědujo – jo było korektne. Togodla njebuźomy nic pśeśiwo kontoju abo wopśimjeśeju cyniś.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Hyšći raz wjeliki źěk za to, až pomagaśo, Mozilla Add-ons wěste źaržaś.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
