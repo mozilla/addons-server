@@ -109,6 +109,8 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+" Tank foar jo melding oer %(name)s op Mozilla Add-ons, en foar it nimmen fan de tiid om mear oer jo soargen te dielen. Nei soarchfâldige beoardieling fan jo berop, hawwe wy fêststeld dat de eardere beslissing – dat dizze ynhâld foldocht oan de beliedsrigels fan Mozilla (%(policy_document_url)s) – korrekt wie. Om dy reden ûndernimme wy gjin aksje tsjin de account of de ynhâld. %(manual_reasoning_text)s. Nochris tank foar jo help by it feilich hâlden fan Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -118,6 +120,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Tank foar jo rapport oer %(name)s op Mozilla Add-ons, en foar it jaan fan mear ynformaasje oer jo soargen.\n"
+"\n"
+"Nei it besjen fan jo berop hawwe wy bepaald dat it foarige beslút, dat dizze ynhâld net yn striid is mei it belied fan Mozilla (%(policy_document_url)s), net korrekt wie. Op grûn fan dy fêststelling hawwe wy de ynhâld fuortsmiten en de brûker op de hichte brocht fan ús aksje. Tank foar jo help dit goed te krijen.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
