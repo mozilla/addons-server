@@ -8,7 +8,7 @@ from olympia.amo.tests import APITestClientSessionID, ESTestCase, reverse_ns
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
 
 
-class TestRankingScenarios(ESTestCase):
+class RankingScenarioTestCase(ESTestCase):
     client_class = APITestClientSessionID
 
     def _check_scenario(self, query, expected, **kwargs):
@@ -79,6 +79,8 @@ class TestRankingScenarios(ESTestCase):
 
         return results
 
+
+class TestRankingScenarios(RankingScenarioTestCase):
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
@@ -1090,3 +1092,110 @@ class TestRankingScenarios(ESTestCase):
         # rounded down is 1, so we would only need one matching trigram to
         # return a result...
         self._check_scenario('xyeta', ())
+
+
+class TestAnalyzedExactNameRankingScenarios(RankingScenarioTestCase):
+    # Own corpus: BM25 idf depends on the document count, so adding these to
+    # the TestRankingScenarios corpus would shift all of its scores.
+    @classmethod
+    def setUpTestData(cls):
+        super().setUpTestData()
+
+        cls.empty_index('default')
+
+        # This data was taken from a production search for "tab manager" to
+        # test the exact name scenarios below. (2026-08-01)
+        names_and_users = (
+            # The 2 genuine tab managers, both with few users.
+            ('Tab Manager', 106),
+            ('Tab manager', 194),
+            # Dummy data: "Tab Manager" pluralised and equally popular, so it
+            # only matches the query below once stemmed.
+            ('Tab Managers', 106),
+            # Popular add-ons that mention tabs or managing, but aren't tab
+            # managers.
+            ('Task Manager Tab & Custom Web Search', 28072),
+            ('SleepyTabs - Tab Suspender & Manager', 1781),
+            ('Tab Session Manager', 150325),
+            ('Tabby - Window & Tab Manager', 13032),
+            ('Workona Spaces & Tab Manager', 1851),
+            ('Tab Manager Plus for Firefox', 4030),
+            ('Tab Mute Manager', 258),
+            # Dummy data: a whole name match plus exactly one word, the shape
+            # the stop word test below needs.
+            ('My Tab Manager', 200),
+        )
+        for name, users in names_and_users:
+            amo.tests.addon_factory(
+                name=name, average_daily_users=users, description=None
+            )
+
+        cls.refresh()
+
+    def test_stemmed_outranks_partial_matches(self):
+        self._check_scenario(
+            'tabs manager',
+            (
+                # Leads either way: the name analyzer splits it into "Sleepy"
+                # and "Tabs", so it matches the plural token the real tab
+                # managers lack.
+                ['SleepyTabs - Tab Suspender & Manager', 261],
+                # The whole name matches, 7th, 10th and 11th without the
+                # analyzed match, behind add-ons that merely share a word.
+                ['Tab manager', 106],
+                ['Tab Manager', 94],
+                ['Tab Managers', 94],
+                ['Tab Session Manager', 36],
+                ['Tabby - Window & Tab Manager', 27],
+                ['Task Manager Tab & Custom Web Search', 24],
+                ['Tab Manager Plus for Firefox', 22],
+                ['Workona Spaces & Tab Manager', 20],
+                ['My Tab Manager', 18],
+                ['Tab Mute Manager', 18],
+            ),
+        )
+
+    def test_literal_outranks_stemmed(self):
+        # 100.0 and 50.0 are multipliers on BM25, not scores, so which exact
+        # match clause wins needs pinning.
+        self._check_scenario(
+            'tab manager',
+            (
+                # Literal matches: the name is the query, so they take the
+                # bigger boost.
+                ['Tab manager', 1471],
+                ['Tab Manager', 1305],
+                # Stemmed version
+                ['Tab Managers', 106],
+                ['Tab Session Manager', 58],
+                ['Tab Manager Plus for Firefox', 39],
+                ['Tabby - Window & Tab Manager', 36],
+                ['Workona Spaces & Tab Manager', 35],
+                ['Task Manager Tab & Custom Web Search', 31],
+                ['My Tab Manager', 30],
+                ['Tab Mute Manager', 28],
+                ['SleepyTabs - Tab Suspender & Manager', 25],
+            ),
+        )
+
+    def test_stop_word_must_be_in_the_name(self):
+        # Dropping a stop word leaves an empty slot that a phrase query matches
+        # against any word.
+        self._check_scenario(
+            'the tab manager',
+            (
+                ['Tab Session Manager', 46],
+                ['Tab Manager Plus for Firefox', 32],
+                ['Workona Spaces & Tab Manager', 28],
+                ['Tabby - Window & Tab Manager', 27],
+                ['Tab manager', 27],
+                # Without NO_STOPWORDS_ANALYZER_SUFFIX, "My" would fill the slot
+                # left by "the" and this would rank first at 106.
+                ['My Tab Manager', 25],
+                ['Task Manager Tab & Custom Web Search', 24],
+                ['Tab Manager', 24],
+                ['Tab Managers', 23],
+                ['Tab Mute Manager', 23],
+                ['SleepyTabs - Tab Suspender & Manager', 18],
+            ),
+        )
