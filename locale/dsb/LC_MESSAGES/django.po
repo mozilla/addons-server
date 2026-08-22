@@ -97,7 +97,7 @@ msgstr "Witajśo,"
 
 #: src/olympia/abuse/templates/abuse/emails/base_reporter.txt:7
 msgid "Mozilla Add-ons Team"
-msgstr "Team Dodanki Mozilla"
+msgstr "Team Mozilla Add-ons"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_approve.txt:8
 #, python-format
