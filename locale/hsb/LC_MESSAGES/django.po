@@ -3791,7 +3791,7 @@ msgstr ""
 "Jeli njejsće tute kluče požadał, móžeće tutu mejlku wěsće ignorować a kluče so njewutworja.\n"
 "\n"
 "\n"
-"Team přidatkow Mozilla"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
@@ -3896,7 +3896,7 @@ msgstr ""
 "Waša e-mejlowa adresa je so wobkrućiła, sće hotowy za start. Wulki dźak, zo za Firefox wuwiwaće!\n"
 "\n"
 "\n"
-"Team přidatkow Mozilla"
+"Team Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
