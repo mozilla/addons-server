@@ -1289,7 +1289,7 @@ msgstr ""
 
 #: src/olympia/constants/activity.py:1335
 msgid "Decision made"
-msgstr ""
+msgstr "Karar verildi"
 
 #: src/olympia/constants/applications.py:28 src/olympia/constants/categories.py:244
 msgid "Firefox"
@@ -6593,7 +6593,7 @@ msgstr "URL'de veya pakette geçersiz eklenti kimliği"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Kurumsal kanallar yalnızca API v5 ve üzeri sürümlerde desteklenir."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
