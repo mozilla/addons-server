@@ -529,27 +529,27 @@ msgstr "Тексеруші"
 
 #: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
-msgstr ""
+msgstr "Қалып-күйі"
 
 #: static/js/zamboni/validator.js:89
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Барлық сынақтар сәтті өтті."
 
 #: static/js/zamboni/validator.js:92 static/js/zamboni/validator.js:388
 msgid "These tests were not run."
-msgstr ""
+msgstr "Бұл сынақтар орындалмады."
 
 #: static/js/zamboni/validator.js:155 static/js/zamboni/validator.js:177
 msgid "Tests"
-msgstr ""
+msgstr "Сынақтар"
 
 #: static/js/zamboni/validator.js:259 static/js/zamboni/validator.js:492 static/js/zamboni/validator.js:516
 msgid "Error"
-msgstr ""
+msgstr "Қате"
 
 #: static/js/zamboni/validator.js:259
 msgid "Warning"
-msgstr ""
+msgstr "Ескерту"
 
 #: static/js/zamboni/validator.js:332
 #, python-brace-format
