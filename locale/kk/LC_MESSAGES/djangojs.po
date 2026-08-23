@@ -188,15 +188,15 @@ msgstr[0] ""
 
 #: static/js/stats/chart.js:362 static/js/stats/csv_keys.js:3 static/js/stats/csv_keys.js:9
 msgid "Downloads"
-msgstr ""
+msgstr "Жүктемелер"
 
 #: static/js/stats/chart.js:374 static/js/stats/csv_keys.js:6 static/js/stats/csv_keys.js:10
 msgid "Daily Users"
-msgstr ""
+msgstr "Күнделікті пайдаланушылар"
 
 #: static/js/stats/chart.js:409
 msgid "More Info..."
-msgstr ""
+msgstr "Көбірек ақпарат..."
 
 #. L10n: {0} is an ISO-formatted date.
 #: static/js/stats/chart.js:415
@@ -450,7 +450,7 @@ msgstr ""
 
 #: static/js/zamboni/l10n.js:164
 msgid "Remove this localization"
-msgstr ""
+msgstr "Бұл локализацияны өшіру"
 
 #: static/js/zamboni/reviewers.js:328
 #, python-brace-format
@@ -472,15 +472,15 @@ msgstr ""
 
 #: static/js/zamboni/reviewers.js:671
 msgid "Version Notes"
-msgstr ""
+msgstr "Нұсқа ескертпелері"
 
 #: static/js/zamboni/reviewers.js:678
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Тексерушілерге арналған ескертпелер"
 
 #: static/js/zamboni/reviewers.js:685
 msgid "No version notes found"
-msgstr ""
+msgstr "Нұсқа ескертпелері табылмады"
 
 #: static/js/zamboni/reviewers.js:697
 msgid "Review Text"
@@ -517,15 +517,15 @@ msgstr ""
 
 #: static/js/zamboni/themes_review.js:492
 msgid "No results found"
-msgstr ""
+msgstr "Нәтижелер табылмады"
 
 #: static/js/zamboni/themes_review_templates.js:43
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: static/js/zamboni/themes_review_templates.js:45
 msgid "Reviewer"
-msgstr ""
+msgstr "Тексеруші"
 
 #: static/js/zamboni/themes_review_templates.js:47
 msgid "Status"
