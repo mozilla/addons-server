@@ -7251,6 +7251,16 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Hallo,\n"
+"\n"
+"Der is in nije skriuwer tafoege oan jo add-on %(addon_name)s ( %(addon_url)s ):\n"
+"\n"
+"%(author_name)s ( %(author_url)s ): %(author_role)s\n"
+"\n"
+"As jo dizze wiziging net ferwacht hiene, kontrolearje dan de skriuwersynstellingen fan jo add-on op boppesteande side.\n"
+"\n"
+"Tank foar it bouwen foar Firefox,\n"
+"It Mozilla-add-onsteam"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
