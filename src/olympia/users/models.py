@@ -13,6 +13,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -1430,6 +1432,27 @@ class UserRestrictionHistory(ModelBase):
     )
     ip_address = models.CharField(default='', max_length=45)
     last_login_ip = models.CharField(default='', max_length=45)
+    # The action that was being checked when the restriction fired. Null on
+    # records created before we started recording it.
+    restriction_type = models.PositiveSmallIntegerField(
+        null=True, choices=RESTRICTION_TYPES.choices
+    )
+    # Set by RestrictionChecker when it was given an upload (auto-approval),
+    # null on the request-based paths where there is no upload.
+    upload = models.ForeignKey(
+        'files.FileUpload',
+        related_name='restriction_history',
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    # Backfilled by Version.from_upload(): the checker runs before the version
+    # exists, so it can't set this itself.
+    version = models.ForeignKey(
+        'versions.Version',
+        related_name='restriction_history',
+        on_delete=models.SET_NULL,
+        null=True,
+    )
 
     class Meta:
         verbose_name_plural = 'User Restriction History'
@@ -1443,6 +1466,34 @@ class UserRestrictionHistory(ModelBase):
                 name='users_userrestrictionhistory_last_login_ip_d58d95ff',
             ),
         ]
+
+
+class UserRestrictionHistoryMatch(ModelBase):
+    """A specific restriction instance that matched during a failed check.
+
+    A single failed check can match more than one restriction (unlike the
+    boolean path, which stops at the first match), so these hang off
+    UserRestrictionHistory rather than being fields on it. A failure with no
+    matches at all is legitimate: several restriction classes aren't backed by
+    the database, and the database-backed ones can deny structurally, without
+    any row being involved.
+    """
+
+    history = models.ForeignKey(
+        UserRestrictionHistory, related_name='matches', on_delete=models.CASCADE
+    )
+    # The matched restriction can belong to any of the database-backed
+    # restriction models, hence a generic foreign key rather than a plain one.
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    restriction = GenericForeignKey('content_type', 'object_id')
+    # str() of the restriction as it was when it matched. Restrictions get
+    # edited and bulk-deleted, so the foreign key above will eventually dangle
+    # or point at something that has since changed; this keeps history honest.
+    snapshot = models.CharField(max_length=255)
+
+    class Meta:
+        verbose_name_plural = 'User Restriction History Matches'
 
 
 class UserHistory(ModelBase):
