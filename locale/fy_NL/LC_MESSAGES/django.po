@@ -146,6 +146,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+" Tank foar it melden fan %(name)s, op %(target_url)s. Wy hawwe jo rapport en de ynhâld yn kwestje beoardiele en fêststeld dat it foldocht oan de beliedsrigels fan Mozilla (%(policy_document_url)s), dus der is gjin behearaksje nedich. Wy wurdearje it wol dat jo it foar ús opmerke.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -153,6 +155,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"As jo fan miening binne dat de ynhâld net yn oerienstimming is mei it belied fan Mozilla, hawwe it rjocht om binnen 6 moannen nei de datum fan dit e-mailberjocht tsjin dit beslút yn berop te gean. "
+"Sjoch %(appeal_url)s foar details oer de beswierproseduere, wêrûnder hoe’t jo in berop oantekenje tsjin dizze spesifike beslissing."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -162,6 +166,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+" Tank foar it melden fan de folgjende add-on op Mozilla Add-ons: %(name)s. Wy hawwe jo rapport en de ynhâld yn kwestje beoardiele en fêststeld dat dizze net foldocht oan de beliedsrigels fan Mozilla (%(policy_document_url)s). Dêrom hawwe wy de ynhâld fuortsmiten. Wy wurdearje it dat jo helpe Mozilla Add-ons feilich te hâlden.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -171,6 +177,8 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+" Tank foar it melden fan de folgjende add-on op Mozilla Add-ons: %(name)s. Wy hawwe jo rapport en de ynhâld yn kwestje beoardiele en fêststeld dat dizze net foldocht oan de beliedsrigels fan Mozilla (%(policy_document_url)s). Wy hawwe de ûntwikkeler frege om wizigingen oan te bringen, en as dizze it probleem net oplost, sille wy de ynhâld fuortsmite. Tank foar jo help by it feilich hâlden fan Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format

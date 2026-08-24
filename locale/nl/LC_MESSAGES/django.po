@@ -165,7 +165,7 @@ msgid ""
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
 "\n"
-" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van Mozilla (%(policy_document_url)s). Daarom hebben we de inhoud verwijderd. We waarderen het dat u helpt Mozilla Add-ons veilig te houden.\n"
+" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoet aan de beleidsregels van Mozilla (%(policy_document_url)s). Daarom hebben we de inhoud verwijderd. We waarderen het dat u helpt Mozilla Add-ons veilig te houden.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -176,7 +176,7 @@ msgid ""
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
 "\n"
-" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoen aan de beleidsregels van Mozilla (%(policy_document_url)s). We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als deze het probleem niet oplossen, zullen we de inhoud verwijderen. Bedankt voor uw hulp bij het veilig houden van Mozilla Add-ons.\n"
+" Bedankt voor het melden van de volgende add-on op Mozilla Add-ons: %(name)s. We hebben uw rapport en de inhoud in kwestie beoordeeld en vastgesteld dat deze niet voldoet aan de beleidsregels van Mozilla (%(policy_document_url)s). We hebben de ontwikkelaar gevraagd om wijzigingen aan te brengen, en als deze het probleem niet oplost, zullen we de inhoud verwijderen. Bedankt voor uw hulp bij het veilig houden van Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
