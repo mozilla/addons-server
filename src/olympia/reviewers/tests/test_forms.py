@@ -115,7 +115,7 @@ class TestReviewForm(TestCase):
         ]
 
     def test_actions_addon_status_null_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.version.reload()
         self.version.update(human_review_date=datetime.now())
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)

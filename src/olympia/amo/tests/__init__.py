@@ -592,12 +592,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
         request.session.save()
         return request
 
-    def make_addon_unlisted(self, addon):
-        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
-
-    def make_addon_listed(self, addon):
-        self.change_channel_for_addon(addon, amo.CHANNEL_LISTED)
-
     def change_channel_for_addon(self, addon, channel):
         for version in addon.versions(manager='unfiltered_for_relations').all():
             version.update(channel=channel)

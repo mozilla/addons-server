@@ -38,7 +38,7 @@ class TestAddonRatingAggregates(TestCase):
         # Add a purely unlisted add-on. It should not be considered when
         # calculating bayesian rating for the other add-ons.
         addon3 = addon_factory(total_ratings=3, average_rating=4)
-        self.make_addon_unlisted(addon3)
+        self.change_channel_for_addon(addon3, amo.CHANNEL_UNLISTED)
 
         # Create a few ratings with various scores.
         user = user_factory()

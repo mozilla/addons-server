@@ -1000,7 +1000,7 @@ class TestVersion(TestCase):
     def test_version_rollback_form_unlisted_only(self):
         first_version = self.addon.current_version
         second_version = version_factory(addon=self.addon)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
         response = self.client.get(self.url)
         doc = pq(response.content)

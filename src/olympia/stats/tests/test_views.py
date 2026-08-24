@@ -121,7 +121,7 @@ class TestUnlistedAddons(StatsTestCase):
             'start': '20090601',
             'end': '20090930',
         }
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
     def test_no_public_stats_for_unlisted_addon(self):
         """All the views for the stats return 404 for unlisted addons."""
@@ -1171,7 +1171,7 @@ class TestStatsWithBigQuery(TestCase):
         )
 
     def test_no_download_stats_for_purely_unlisted_addons(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert not self.addon.has_listed_versions()
 
         url = reverse('stats.overview', args=[self.addon.slug])

@@ -319,7 +319,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_mozilla'] is True
 
     def test_get_not_listed(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 401
         data = json.loads(force_str(response.content))
@@ -341,7 +341,7 @@ class AddonAndVersionViewSetDetailMixin:
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -365,7 +365,7 @@ class AddonAndVersionViewSetDetailMixin:
     def test_get_unlisted_addons_api_view(self):
         user = UserProfile.objects.create(username='user')
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -378,7 +378,7 @@ class AddonAndVersionViewSetDetailMixin:
         user = UserProfile.objects.create(username='user')
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -386,7 +386,7 @@ class AddonAndVersionViewSetDetailMixin:
     def test_get_not_listed_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2550,7 +2550,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
     @patch('olympia.addons.serializers.fetch_translations_from_instance')
     def test_metadata_content_review_unlisted(self, fetch_mock):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         old_content_review = AddonApprovalsCounter.objects.get(
             addon=self.addon
@@ -2648,7 +2648,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._test_metadata_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
@@ -5008,7 +5008,7 @@ class TestVersionViewSetRollback(TestCase):
             ]
         }
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
         assert response.status_code == 400
         assert response.data == {
@@ -5067,7 +5067,7 @@ class TestVersionViewSetRollback(TestCase):
         }
 
         # There are no restrictions on greater/less than for unlisted though.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         with patch(
             'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
         ) as mock_rollback_task:

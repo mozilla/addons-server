@@ -884,7 +884,7 @@ class TestVersion(AMOPaths, TestCase):
         assert list(Version.objects.approved()) == [self.version]
 
     def test_unlisted_addon_get_url_path(self):
-        self.make_addon_unlisted(self.version.addon)
+        self.change_channel_for_addon(self.version.addon, amo.CHANNEL_UNLISTED)
         self.version.reload()
         assert self.version.get_url_path() == ''
 
@@ -1255,7 +1255,7 @@ class TestVersion(AMOPaths, TestCase):
 
     def test_should_have_due_date_unlisted(self):
         addon = Addon.objects.get(id=3615)
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         version = addon.versions.first()
 
         assert not version.should_have_due_date
@@ -2441,7 +2441,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_dont_inherit_needs_human_review_from_different_channel(self):
         old_version = self.addon.current_version
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         NeedsHumanReview.objects.create(version=old_version)
         assert old_version.due_date
 
@@ -2934,7 +2934,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
     def test_second_unlisted_version(self):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         Version.from_upload(
             self.upload,
             self.addon,
@@ -2949,7 +2949,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
         version = self.addon.current_version
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version.delete()
         Version.from_upload(
             self.upload,
