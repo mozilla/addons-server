@@ -6653,7 +6653,7 @@ msgstr "ID-ul nevalid al suplimentului în URL sau pachet"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Doar API v5+ acceptă canalele pentru întreprinderi."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
