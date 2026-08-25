@@ -1407,6 +1407,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
+        assert b'Review Enterprise' not in response.content
         assert b'Edit Block' not in response.content
         assert not pq(response.content)('.existing_block')
 
@@ -1417,6 +1418,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' not in response.content
+        assert b'Review Enterprise' not in response.content
         assert pq(response.content)('.existing_block a').attr('href') == (
             reverse('admin:blocklist_block_change', args=(existing_block.pk,))
         )
@@ -1427,6 +1429,18 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
+        assert b'Review Enterprise' not in response.content
+        assert pq(response.content)('.existing_block a').attr('href') == (
+            reverse('admin:blocklist_block_change', args=(existing_block.pk,))
+        )
+        assert pq(response.content)('.existing_block').text() == ('[Edit Block]')
+
+        # And enterprise.
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE, version='0.3')
+        response = self.client.post(**post_kwargs)
+        assert b'Review Listed' in response.content
+        assert b'Review Unlisted' in response.content
+        assert b'Review Enterprise' in response.content
         assert pq(response.content)('.existing_block a').attr('href') == (
             reverse('admin:blocklist_block_change', args=(existing_block.pk,))
         )
@@ -1437,6 +1451,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         response = self.client.post(**post_kwargs)
         assert b'Review Listed' in response.content
         assert b'Review Unlisted' in response.content
+        assert b'Review Enterprise' in response.content
         assert b'Edit Block' not in response.content
         assert not pq(response.content)('.existing_block')
 
