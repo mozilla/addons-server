@@ -13,6 +13,8 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.core import validators
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -1430,6 +1432,27 @@ class UserRestrictionHistory(ModelBase):
     )
     ip_address = models.CharField(default='', max_length=45)
     last_login_ip = models.CharField(default='', max_length=45)
+    # The specific restriction row that matched, e.g. an EmailUserRestriction
+    # or IPNetworkUserRestriction instance. A generic foreign key because the
+    # restriction classes live in different tables. NULL on rows recorded
+    # before these fields existed, and always NULL for restrictions that
+    # aren't backed by the database (developer agreement, reputation).
+    restriction_content_type = models.ForeignKey(
+        ContentType, null=True, on_delete=models.SET_NULL
+    )
+    restriction_object_id = models.PositiveIntegerField(null=True)
+    restriction_instance = GenericForeignKey(
+        'restriction_content_type', 'restriction_object_id'
+    )
+    # The version whose auto-approval was being checked. NULL on rows recorded
+    # before this field existed, and always NULL for checks other than
+    # auto-approval, which aren't tied to a version.
+    version = models.ForeignKey(
+        'versions.Version',
+        related_name='restriction_history',
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     class Meta:
         verbose_name_plural = 'User Restriction History'
@@ -1441,6 +1464,10 @@ class UserRestrictionHistory(ModelBase):
             LongNameIndex(
                 fields=('last_login_ip',),
                 name='users_userrestrictionhistory_last_login_ip_d58d95ff',
+            ),
+            LongNameIndex(
+                fields=('restriction_content_type', 'restriction_object_id'),
+                name='users_userrestrictionhistory_restriction_content_type_object_id',
             ),
         ]
 
