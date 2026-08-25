@@ -114,7 +114,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: mozilla-l10n/addons-server-l10n
-          token: ${{ secrets.L10N_GITHUB_TOKEN }}
           persist-credentials: false
           path: locale
 
@@ -203,7 +202,7 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: mozilla-l10n/addons-server-l10n
-          token: ${{ secrets.L10N_GITHUB_TOKEN }}
+          token: ${{ secrets.L10N_GITHUB_TOKEN || github.token }}
           persist-credentials: ${{ needs.context.outputs.is_default_branch }}
           path: locale
 
@@ -277,7 +276,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: mozilla-l10n/addons-server-l10n
-          token: ${{ secrets.L10N_GITHUB_TOKEN }}
           persist-credentials: false
           path: locale
 
@@ -321,7 +319,6 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: mozilla-l10n/addons-server-l10n
-          token: ${{ secrets.L10N_GITHUB_TOKEN }}
           persist-credentials: false
           path: locale
 
