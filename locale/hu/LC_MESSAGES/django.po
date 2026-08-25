@@ -110,6 +110,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Köszönjük a bejelentését a következőről a Mozilla kiegészítők weboldalán: %(name)s, és hogy időt szánt az aggályai megosztására.\n"
+"\n"
+"A fellebbezésének vizsgálata után megállapítottuk, hogy a korábbi döntésünk helyes, miszerint a tartalom nem sérti a Mozilla irányelveit (%(policy_document_url)s). Ezek alapján a fellebbezést elutasítottuk, és nem teszünk semmit a fiókkal vagy a tartalommal szemben.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Köszönjük, hogy segít biztonságosan tartani a Mozilla kiegészítőket.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -119,6 +126,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Köszönjük a bejelentését a következőről a Mozilla kiegészítők weboldalán: %(name)s, és hogy időt szánt az aggályai megosztására.\n"
+"\n"
+"A fellebbezésének vizsgálata után megállapítottuk, hogy a korábbi döntésünk, miszerint a tartalom nem sérti a Mozilla irányelveit (%(policy_document_url)s), helytelen volt. Így a tartalmat eltávolítottuk, és értesítettük a felhasználót. Köszönjük, hogy segített.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -3810,6 +3821,12 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük!\n"
+"\n"
+"Az e-mail-címét ellenőriztük, mindennel készen is van. Köszönjük, hogy a Firefoxra épít!\n"
+"\n"
+"\n"
+"A Mozilla kiegészítők csapata"
 
 #: src/olympia/devhub/templates/devhub/emails/verify-email-requested.ltxt:10
 #, python-format
@@ -3825,6 +3842,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük!\n"
+"\n"
+"Köszönjük, hogy a Firefoxra épít! Ezt az üzenetet azért kapta, mert az e-mail-címe ellenőrzését kérte. A befejezéshez csak kattintson az alábbi hivatkozásra:\n"
+"\n"
+"%(confirmation_link)s\n"
+"\n"
+"Ha nem Ön kérte ezt, akkor nyugodtan figyelmen kívül hagyhatja ezt az e-mailt.\n"
+"\n"
+"\n"
+"A Mozilla kiegészítők csapata"
 
 #: src/olympia/devhub/templates/devhub/includes/addon_details.html:6 src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:4
 msgid "Invisible"
@@ -6618,7 +6645,7 @@ msgstr "Érvénytelen kiegészítőazonosító a webcímben vagy csomagban"
 
 #: src/olympia/signing/views.py:209
 msgid "Only API v5+ supports enterprise channels."
-msgstr ""
+msgstr "Csak az API v5+ támogatja a vállalati csatornákat."
 
 #: src/olympia/signing/views.py:222
 msgid "You cannot add listed versions to an add-on set to \"Invisible\" state."
@@ -7179,6 +7206,16 @@ msgid ""
 "Thanks for building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük!\n"
+"\n"
+"Új szerzőként lett hozzáadva a(z) %(addon_name)s (%(addon_url)s) kiegészítőnél:\n"
+"\n"
+"%(author_name)s (%(author_url)s): %(author_role)s\n"
+"\n"
+"Ha nem várta ezt a változást, akkor ellenőrizze a kiegészítő szerzői beállításait a fenti oldalon.\n"
+"\n"
+"Köszönjük, hogy a Firefoxra épít,\n"
+"A Mozilla kiegészítők csapata"
 
 #: src/olympia/users/templates/users/emails/author_added_confirmation.ltxt:12
 #, python-format
@@ -7196,6 +7233,18 @@ msgid ""
 "We are glad to have you building for Firefox,\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük %(author_name)s!\n"
+"\n"
+"Jó hír, meghívták, hogy a(z) %(addon_name)s szerzője legyen a(z) %(domain)s oldalon. Az elfogadás lehetővé teszi a kiegészítő szerkesztését, és a neve megjelenhet a szerzők listájában a weboldalon.\n"
+"\n"
+"Ha szeretné elfogadni a meghívást, kattintson az alábbi hivatkozásra:\n"
+"\n"
+"%(author_confirmation_link)s\n"
+"\n"
+"Ha nem várta ezt a meghívót, akkor nyugodtan figyelmen kívül hagyhatja ezt az e-mailt.\n"
+"\n"
+"Örülünk, hogy a Firefoxra épít,\n"
+"A Mozilla kiegészítők csapata"
 
 #: src/olympia/users/templates/users/emails/author_changed.ltxt:3
 #, python-format
@@ -7232,6 +7281,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Üdvözöljük!\n"
+"\n"
+"Ezt az üzenetet azért kapja, met a(z) %(name)s felhasználói fiókját a(z) %(site_url)s oldalon törölték. Ha nemrég törölte Mozilla-fiókját, akkor ez automatikusan történhetett, a folyamat részeként.\n"
+"\n"
+"Köszönjük, hogy része volt a Firefox kiegészítők közösségének. Ha úgy gondolja, hogy ez hiba volt, vagy kérdése van, lépjen velünk kapcsolatba.\n"
+"\n"
+"Üdvözlettel,\n"
+"\n"
+"A Mozilla kiegészítők csapata"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
