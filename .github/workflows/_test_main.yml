@@ -107,6 +107,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          token: ${{ secrets.L10N_GITHUB_TOKEN }}
+          persist-credentials: false
+          path: locale
+
       - name: Create empty environment
         run: |
           touch .env
@@ -143,6 +150,13 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          token: ${{ secrets.L10N_GITHUB_TOKEN }}
+          persist-credentials: false
+          path: locale
+
       - name: Test
         uses: ./.github/actions/run-docker-minimal
         with:
@@ -159,6 +173,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          token: ${{ secrets.L10N_GITHUB_TOKEN }}
+          persist-credentials: false
+          path: locale
 
       - name: Create empty environment
         run: |
@@ -184,6 +205,13 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          token: ${{ secrets.L10N_GITHUB_TOKEN }}
+          persist-credentials: false
+          path: locale
 
       - name: Create empty environment
         run: |

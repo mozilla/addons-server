@@ -13,9 +13,17 @@ These lists should always be kept in sync with `addons-frontend`. See the docume
 
 Dev shows the full language list defined by `ALL_LANGUAGES`. Stage and production only show locales explicitly enabled by `PROD_LANGUAGES`. Locales are enabled when their completion rate for both [AMO](https://pontoon.mozilla.org/projects/amo/) and [AMO Frontend](https://pontoon.mozilla.org/projects/amo-frontend/) projects on [Pontoon](https://pontoon.mozilla.org/) are high enough.
 
+## Using locales in a local environment
+
+Locale files are stored in an external repository that you need to clone into the locale/ directory inside your addons-server clone in order to build the files needed for those locales to work.
+
+git clone https://github.com/mozilla-l10n/addons-server-l10n.git locale/
+
+You should also update that clone whenever you want to test fresh translations locally. CI automatically pulls the latest version when building a new image for dev/stage/prod environments and when running tests.
+
 ## Locale Management
 
-Locale management involves compiling and managing translation files. The **addons-server** project uses a structured approach to handle localization files efficiently.
+Locale management involves compiling and updating translation files. The **addons-server** project uses a structured approach to handle localization files efficiently.
 
 1. **Compiling Locales**:
    - The Makefile provides commands to compile locale files, ensuring that translations are up-to-date.
@@ -25,9 +33,11 @@ Locale management involves compiling and managing translation files. The **addon
      make compile_locales
      ```
 
-2. **Managing Locale Files**:
-   - Locale files are typically stored in the `locale` directory within the project.
-   - The project structure ensures that all locale files are organized and easily accessible for updates and maintenance.
+2. **Updating Locale Files**:
+
+   Locales are updated automatically as a part of our CI. On every push to master `make extract_locales` and `make push_locales` are run which extracts locale strings from our codebase, merges any changes to the source language files, commits the changes to a branch on https://github.com/mozilla-l10n/addons-server-l10n and creates a pull request from that branch.
+
+   That PR can then be reviewed and approved by a manager from the l10n team, and Pontoon automatically imports the resulting `.po` files and commits back to that dedicated l10n repo.
 
 ## Adding New Translations
 
