@@ -7398,6 +7398,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Ciao,\n"
+"\n"
+"ti informiamo che il tuo account utente %(name)s su %(site_url)s è stato eliminato. Se hai eliminato di recente il tuo account Mozilla, l’eliminazione potrebbe essere avvenuta automaticamente nell’ambito di tale procedura.\n"
+"\n"
+"Grazie per aver fatto parte della comunità degli sviluppatori di componenti aggiuntivi per Firefox. Se ritieni che si sia trattato di un errore o hai domande, contattaci.\n"
+"\n"
+"Cordiali saluti,\n"
+"\n"
+"il team di Mozilla Add-ons"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
