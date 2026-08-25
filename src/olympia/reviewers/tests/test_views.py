@@ -1762,7 +1762,7 @@ class TestExtensionQueue(QueueTest):
             auto_approve_disabled=True,
         )
         self.expected_versions = self.get_expected_versions(self.expected_addons)
-        for _, version in self.expected_versions.items():
+        for version in self.expected_versions.values():
             NeedsHumanReview.objects.create(
                 version=version, reason=NeedsHumanReview.REASONS.ABUSE_ADDON_VIOLATION
             )

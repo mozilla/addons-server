@@ -1130,5 +1130,5 @@ class ScannerWebhookAdmin(AMOModelAdmin):
                         api_key.secret,
                     ),
                 )
-            except Exception:
+            except Exception:  # noqa: S110 (best-effort display of one-time JWT keys)
                 pass

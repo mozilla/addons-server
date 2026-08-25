@@ -191,7 +191,6 @@ admin.site.register(UsageTier, UsageTierAdmin)
 
 class NeedsHumanReviewAdmin(AMOModelAdmin):
     list_display = ('addon_guid', 'version', 'created', 'reason', 'is_active')
-    list_filter = ('is_active',)
     raw_id_fields = ('version',)
     view_on_site = False
     list_select_related = ('version', 'version__addon')

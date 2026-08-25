@@ -89,7 +89,7 @@ def repack_fileupload(results, upload_pk):
                                 manifest.read_bytes()
                             ).data
                             manifest.write_text(json.dumps(json_data, indent=2))
-                    except Exception:
+                    except Exception:  # noqa: S110
                         # If we cannot normalize the manifest file, we skip
                         # this step and let the linter catch the exact
                         # cause in order to return a more appropriate error

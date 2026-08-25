@@ -16,7 +16,6 @@ from .models import AppVersion
 
 class AppVersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
-    permission_classes = []
     permission_classes = [
         ByHttpMethod(
             {

@@ -1907,7 +1907,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your extension have been disabled'
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):

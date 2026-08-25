@@ -35,7 +35,7 @@ class ESPaginator(Paginator):
 
         # Make sure we never return a page beyond max_result_window
         hits = min(self.max_result_window, max(1, self.count - self.orphans))
-        return int(ceil(hits / float(self.per_page)))
+        return ceil(hits / float(self.per_page))
 
     def validate_number(self, number):
         """

@@ -2157,7 +2157,7 @@ class TestDocs(TestCase):
     def test_doc_urls(self):
         assert '/en-US/developers/docs/' == reverse('devhub.docs', args=[])
         assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
-        assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
+        assert '/en-US/developers/docs/te/st' == reverse('devhub.docs', args=['te/st'])
 
         self.client.force_login_with_2fa(user_factory(read_dev_agreement=None))
         response = self.client.get(reverse('devhub.submit.agreement'))

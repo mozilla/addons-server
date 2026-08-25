@@ -46,7 +46,7 @@ def sentry_before_send(event, hint):
 
     try:
         event = _scrub_sensitive_data_recursively(event)
-    except Exception:
+    except Exception:  # noqa: S110 (best-effort scrubbing; must not break Sentry reporting)
         pass
     if 'ip_address' in event.get('user', {}):
         event['user'].pop('ip_address')
@@ -77,7 +77,7 @@ def sentry_before_breadcrumb(crumb, hint):
             crumb['data']['url'] = urllib.parse.urlunsplit(
                 splitted._replace(path='/...redacted...')
             )
-    except Exception:
+    except Exception:  # noqa: S110 (best-effort scrubbing; must not break Sentry reporting)
         pass
 
     return crumb

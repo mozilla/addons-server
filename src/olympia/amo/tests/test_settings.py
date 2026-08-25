@@ -67,9 +67,9 @@ def test_sentry_data_scrubbing():
     event['breadcrumbs']['values'] = list(
         filter(
             None,
-            map(
-                lambda crumb: before_breadcrumb(crumb, None),
-                event['breadcrumbs']['values'],
+            (
+                before_breadcrumb(crumb, None)
+                for crumb in event['breadcrumbs']['values']
             ),
         )
     )

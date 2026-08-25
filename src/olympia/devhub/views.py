@@ -560,7 +560,7 @@ def ownership(request, addon_id, addon):
             send_addon_author_remove_mail(addon_user, existing_authors_emails)
             addon_user.delete()
 
-    if request.method == 'POST' and all([form.is_valid() for form in fs]):
+    if request.method == 'POST' and all(form.is_valid() for form in fs):
         if license_form in fs:
             license_form.save()
         if policy_form and policy_form in fs:
@@ -1139,7 +1139,7 @@ def version_edit(request, addon_id, addon, version_id):
         )
         data['compat_form'] = compat_form
 
-    if request.method == 'POST' and all([form.is_valid() for form in data.values()]):
+    if request.method == 'POST' and all(form.is_valid() for form in data.values()):
         if has_source:
             log.info(
                 'version_edit, form validated, addon.slug: %s, version.id: %s',

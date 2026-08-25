@@ -31,7 +31,7 @@ def uwsgi_check(app_configs, **kwargs):
     as part of verifying the docker image in CI)."""
     errors = []
     command = ['uwsgi', '--version']
-    result = subprocess.run(command, capture_output=True)
+    result = subprocess.run(command, capture_output=True, check=False)
     if result.returncode != 0:
         errors.append(
             Error(

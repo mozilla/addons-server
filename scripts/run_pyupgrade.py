@@ -1,5 +1,6 @@
 import argparse
 import os
+import sys
 
 from pyupgrade._main import _fix_file
 
@@ -38,4 +39,4 @@ if __name__ == '__main__':
                 ret |= _fix_file(filename, args)
         else:
             ret |= _fix_file(target, args)
-    exit(ret)
+    sys.exit(ret)

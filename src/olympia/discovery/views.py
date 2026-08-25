@@ -70,10 +70,8 @@ class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
         qs = super().filter_queryset(qs)
         if self.request.query_params.get('recommended', False) == 'true':
             qs = qs.filter(
-                **{
-                    'addon__promotedaddon__promoted_group__api_name': RECOMMENDED_API_NAME,  # noqa
-                    'addon___current_version__promoted_versions__promoted_group__api_name': RECOMMENDED_API_NAME,  # noqa
-                }
+                addon__promotedaddon__promoted_group__api_name=RECOMMENDED_API_NAME,
+                addon___current_version__promoted_versions__promoted_group__api_name=RECOMMENDED_API_NAME,
             ).distinct()
         return qs
 

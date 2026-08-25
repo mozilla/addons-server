@@ -286,12 +286,8 @@ def dashboard(request):
     return TemplateResponse(
         request,
         'reviewers/dashboard.html',
-        context=context(
-            **{
-                # base_context includes motd.
-                'sections': sections
-            }
-        ),
+        # base_context includes motd.
+        context=context(sections=sections),
     )
 
 
