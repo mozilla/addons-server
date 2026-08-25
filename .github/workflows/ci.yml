@@ -145,10 +145,10 @@ jobs:
           persist-credentials: false
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-          with:
-            repository: mozilla-l10n/addons-server-l10n
-            persist-credentials: false
-            path: locale
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          persist-credentials: false
+          path: locale
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
