@@ -9,12 +9,12 @@
         <p class="incomplete">
           {{ _('This add-on is missing some required information before it can be submitted for publication.') }}
         </p>
-      {% elif addon.status == amo.STATUS_NULL and not addon.has_unlisted_versions() and not addon.has_listed_versions() and not addon.has_enterprise_versions() %}
+      {% elif addon.status == amo.STATUS_NULL and addon.version_channels()|length == 0 %}
         <p class="incomplete">
           {{ _("This add-on doesn't have any versions.")}}
         </p>
       {% else %}
-        {% if addon.status != amo.STATUS_NULL or addon.has_listed_versions() %}
+        {% if addon.status != amo.STATUS_NULL or addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
           <div class="item-info">
             {{ dev_item_info(addon, amo) }}
           </div>

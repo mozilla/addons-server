@@ -2438,42 +2438,46 @@ class TestHasListedAndUnlistedVersions(TestCase):
         assert self.addon.versions.count() == 0
 
     def test_no_versions(self):
-        assert not self.addon.has_listed_versions()
-        assert not self.addon.has_unlisted_versions()
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_UNLISTED)
 
     def test_listed_version(self):
         version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
-        assert self.addon.has_listed_versions()
-        assert not self.addon.has_unlisted_versions()
+        assert self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_UNLISTED)
 
     def test_unlisted_version(self):
         version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
-        assert not self.addon.has_listed_versions()
-        assert self.addon.has_unlisted_versions()
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
+        assert self.addon.has_version_in_channel(amo.CHANNEL_UNLISTED)
 
     def test_unlisted_and_listed_versions(self):
         version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
         version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
-        assert self.addon.has_listed_versions()
-        assert self.addon.has_unlisted_versions()
+        assert self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
+        assert self.addon.has_version_in_channel(amo.CHANNEL_UNLISTED)
 
     def test_has_listed_versions_current_version_shortcut(self):
         # We shouldn't even do a exists() query if the add-on has a
         # current_version.
         self.addon._current_version_id = 123
-        assert self.addon.has_listed_versions()
+        assert self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
 
     def test_has_listed_versions_soft_delete(self):
         version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon, deleted=True)
         version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon)
-        assert not self.addon.has_listed_versions()
-        assert self.addon.has_listed_versions(include_deleted=True)
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
+        assert self.addon.has_version_in_channel(
+            amo.CHANNEL_LISTED, include_deleted=True
+        )
 
     def test_has_unlisted_versions_soft_delete(self):
         version_factory(channel=amo.CHANNEL_UNLISTED, addon=self.addon, deleted=True)
         version_factory(channel=amo.CHANNEL_LISTED, addon=self.addon)
-        assert not self.addon.has_unlisted_versions()
-        assert self.addon.has_unlisted_versions(include_deleted=True)
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_UNLISTED)
+        assert self.addon.has_version_in_channel(
+            amo.CHANNEL_UNLISTED, include_deleted=True
+        )
 
 
 class TestAddonDueDate(TestCase):

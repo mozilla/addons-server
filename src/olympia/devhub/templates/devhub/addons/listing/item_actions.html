@@ -1,6 +1,6 @@
 <h5>{{ _('Actions') }}</h5>
 <ul>
-{% set show_listed=addon.has_listed_versions() %}
+{% set show_listed=addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
 {% if not addon.has_complete_metadata() and addon.status == amo.STATUS_NULL and addon.can_request_review() %}
   {% if check_addon_ownership(request.user, addon, allow_developer=True) %}
     <li>

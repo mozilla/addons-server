@@ -1172,7 +1172,7 @@ class TestStatsWithBigQuery(TestCase):
 
     def test_no_download_stats_for_purely_unlisted_addons(self):
         self.make_addon_unlisted(self.addon)
-        assert not self.addon.has_listed_versions()
+        assert not self.addon.has_version_in_channel(amo.CHANNEL_LISTED)
 
         url = reverse('stats.overview', args=[self.addon.slug])
         response = self.client.get(url)

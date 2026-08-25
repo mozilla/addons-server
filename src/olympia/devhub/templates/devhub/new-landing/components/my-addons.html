@@ -39,10 +39,10 @@
               </a>
 
               <div class="DevHub-MyAddons-item-versions">
-                {% if addon.has_listed_versions() %}
+                {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
                   {% if addon.current_version %}
                     <div class="DevHub-MyAddons-item-version-details">
-                      {% if addon.has_unlisted_versions() %}
+                      {% if addon.has_version_in_channel(amo.CHANNEL_UNLISTED) %}
                         <span class="DevHub-MyAddons-item-channel-listed tooltip"
                               title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
                         >AMO</span>
@@ -61,7 +61,7 @@
 
                 {% if latest_unlisted_version %}
                   <div class="DevHub-MyAddons-item-version-details">
-                    {% if addon.has_listed_versions() %}
+                    {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
                       <span class="DevHub-MyAddons-item-channel-unlisted tooltip"
                             title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
                       >Self</span>

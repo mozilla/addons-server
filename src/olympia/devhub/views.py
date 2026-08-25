@@ -357,7 +357,7 @@ def edit(request, addon_id, addon):
         'addon': addon,
         'whiteboard': whiteboard,
         'editable': False,
-        'show_listed_fields': addon.has_listed_versions(),
+        'show_listed_fields': addon.has_version_in_channel(amo.CHANNEL_LISTED),
         'valid_slug': addon.slug,
         'tags': addon.tags.values_list('tag_text', flat=True),
         'previews': previews,
@@ -854,7 +854,7 @@ def upload_detail(request, uuid, format='html'):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-    show_listed = addon.has_listed_versions()
+    show_listed = addon.has_version_in_channel(amo.CHANNEL_LISTED)
     static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {}
     content_waffle = waffle.switch_is_active('content-optimization')

@@ -310,7 +310,7 @@
   <p><strong>More Actions</strong></p>
   <div class="more-actions-inner">
     <ul>
-      {% if not addon.is_deleted and not addon.has_enterprise_versions()  %}
+      {% if not addon.is_deleted and not addon.has_version_in_channel(amo.CHANNEL_ENTERPRISE)  %}
         {% if acl_is_reviewer or action_allowed_for(request.user, amo.permissions.REVIEWER_TOOLS_VIEW) %}
         <li>
           <input type="checkbox" id="notify_new_listed_versions"
@@ -448,11 +448,11 @@
 
   <strong>Actions</strong>
   <ul id="actions-addon">
-    {% if not addon.is_deleted and addon.has_listed_versions() %}
+    {% if not addon.is_deleted and addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
       <li><a href="{{ addon.get_url_path() }}">View Product Page</a></li>
     {% endif %}
     {# If we are on the unlisted or content review page, show the link to the listed review page #}
-    {% if addon.has_listed_versions(include_deleted=True) %}
+    {% if addon.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True) %}
       {% if channel != amo.CHANNEL_LISTED or content_review %}
         <li><a href="{{ url('reviewers.review', addon.id) }}">Listed Review Page</a></li>
       {% endif %}
@@ -461,10 +461,10 @@
       {% endif %}
     {% endif %}
     {# If not on the unlisted review page, show link to unlisted version review if necessary and allowed #}
-    {% if channel != amo.CHANNEL_UNLISTED and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_unlisted_versions(include_deleted=True) %}
+    {% if channel != amo.CHANNEL_UNLISTED and acl_is_unlisted_addons_viewer_or_reviewer and addon.has_version_in_channel(amo.CHANNEL_UNLISTED, include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', 'unlisted', addon.id) }}">Unlisted Review Page</a></li>
     {% endif %}
-    {% if waffle.switch('enterprise-channel') and channel != amo.CHANNEL_ENTERPRISE and addon.has_enterprise_versions(include_deleted=True) %}
+    {% if waffle.switch('enterprise-channel') and channel != amo.CHANNEL_ENTERPRISE and addon.has_version_in_channel(amo.CHANNEL_ENTERPRISE, include_deleted=True) %}
       <li><a href="{{ url('reviewers.review', 'enterprise', addon.id) }}">Enterprise Review Page</a></li>
     {% endif %}
 

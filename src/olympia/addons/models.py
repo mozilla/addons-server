@@ -1545,10 +1545,11 @@ class Addon(OnChangeMixin, ModelBase):
         current (required) metadata (truthy values if present) for this Addon.
 
         If has_listed_versions is specified then the method will act as if
-        Addon.has_listed_versions() returns that value. Used to predict if the
-        addon will require extra metadata before a version is created."""
+        Addon.has_version_in_channel(amo.CHANNEL_LISTED) returns that value.
+        Used to predict if the addon will require extra metadata before a
+        version is created."""
         if has_listed_versions is None:
-            has_listed_versions = self.has_listed_versions()
+            has_listed_versions = self.has_version_in_channel(amo.CHANNEL_LISTED)
         if not has_listed_versions:
             # Add-ons with only unlisted versions have no required metadata.
             return []
@@ -1581,17 +1582,6 @@ class Addon(OnChangeMixin, ModelBase):
         else:
             return self.versions
 
-    def has_listed_versions(self, include_deleted=False):
-        return self._current_version_id or amo.CHANNEL_LISTED in self.version_channels(
-            include_deleted
-        )
-
-    def has_unlisted_versions(self, include_deleted=False):
-        return amo.CHANNEL_UNLISTED in self.version_channels(include_deleted)
-
-    def has_enterprise_versions(self, include_deleted=False):
-        return amo.CHANNEL_ENTERPRISE in self.version_channels(include_deleted)
-
     def version_channels(self, include_deleted=False):
         if not hasattr(self, '_version_channels'):
             self._version_channels = {}
@@ -1601,6 +1591,11 @@ class Addon(OnChangeMixin, ModelBase):
                 manager.values_list('channel', flat=True).order_by().distinct()
             )
         return self._version_channels[include_deleted]
+
+    def has_version_in_channel(self, channel, include_deleted=False):
+        return (
+            channel == amo.CHANNEL_LISTED and self._current_version_id
+        ) or channel in self.version_channels(include_deleted)
 
     def has_multiple_channels(self, include_deleted=False):
         return len(self.version_channels(include_deleted)) > 1

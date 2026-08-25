@@ -492,14 +492,18 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
         context.update(
             {
                 'external_site_url': settings.EXTERNAL_SITE_URL,
-                'has_listed_versions': obj.has_listed_versions(include_deleted=True)
+                'has_listed_versions': obj.has_version_in_channel(
+                    amo.CHANNEL_LISTED, include_deleted=True
+                )
                 if obj
                 else False,
-                'has_unlisted_versions': obj.has_unlisted_versions(include_deleted=True)
+                'has_unlisted_versions': obj.has_version_in_channel(
+                    amo.CHANNEL_UNLISTED, include_deleted=True
+                )
                 if obj
                 else False,
-                'has_enterprise_versions': obj.has_enterprise_versions(
-                    include_deleted=True
+                'has_enterprise_versions': obj.has_version_in_channel(
+                    amo.CHANNEL_ENTERPRISE, include_deleted=True
                 )
                 if obj
                 else False,

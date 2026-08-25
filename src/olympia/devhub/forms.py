@@ -143,7 +143,9 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
         return name
 
     def save(self, *args, **kwargs):
-        metadata_content_review = self.instance and self.instance.has_listed_versions()
+        metadata_content_review = (
+            self.instance and self.instance.has_version_in_channel(amo.CHANNEL_LISTED)
+        )
         existing_data = (
             fetch_translations_from_instance(
                 self.instance, self.fields_to_trigger_content_review

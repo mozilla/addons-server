@@ -456,7 +456,7 @@ def review(request, addon, channel=None):
     unlisted_only = (
         channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)
         or channel == amo.CHANNEL_LISTED
-        and not addon.has_listed_versions(include_deleted=True)
+        and not addon.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True)
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -915,7 +915,7 @@ def whiteboard(request, addon, channel):
     unlisted_only = (
         channel == amo.CHANNEL_UNLISTED
         or channel == amo.CHANNEL_LISTED
-        and not addon.has_listed_versions(include_deleted=True)
+        and not addon.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True)
     )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
@@ -936,7 +936,9 @@ def whiteboard(request, addon, channel):
 
 
 def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
-    unlisted_only = not addon.has_listed_versions(include_deleted=True)
+    unlisted_only = not addon.has_version_in_channel(
+        amo.CHANNEL_LISTED, include_deleted=True
+    )
     if unlisted_only and not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         raise PermissionDenied
 
