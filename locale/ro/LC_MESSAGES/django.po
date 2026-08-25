@@ -164,6 +164,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Dacă tu crezi că conținutul nu aderă la politicile Mozilla, ai drept de apel pentru contestarea deciziei timp de 6 luni de la data prezentului mesaj pe e-mail. Vezi %(appeal_url)s pentru detalii "
+"despre procedura de contestare, inclusiv cum să depui o contestație pentru această decizie specifică."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
