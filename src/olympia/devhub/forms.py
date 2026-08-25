@@ -1644,30 +1644,31 @@ class RollbackVersionForm(forms.Form):
     Form to rollback a version to a previous one.
     """
 
+    LISTED_LABEL = '<span class="distribution-tag-listed">AMO</span>'
+    UNLISTED_LABEL = '<span class="distribution-tag-unlisted">Self</span>'
+    ENTERPRISE_LABEL = '<span class="distribution-tag-enterprise">Enterprise</span>'
+
     channel = forms.TypedChoiceField(
-        choices=(
-            (
-                amo.CHANNEL_LISTED,
-                mark_safe('<span class="distribution-tag-listed">AMO</span>'),
-            ),
-            (
-                amo.CHANNEL_UNLISTED,
-                mark_safe('<span class="distribution-tag-unlisted">Self</span>'),
-            ),
-        ),
+        choices=[],
         coerce=int,
         widget=forms.RadioSelect(),
     )
     listed_version = LimitedModelChoiceField(
         queryset=Version.objects.none(),
-        empty_label=_('No appropriate version available'),
+        empty_label=None,
         required=False,
         # We currently only allow rolling back to a single listed version.
         limit_choice_count=1,
     )
     unlisted_version = LimitedModelChoiceField(
         queryset=Version.objects.none(),
-        empty_label=_('Choose version'),
+        empty_label=None,
+        required=False,
+        limit_choice_count=25,
+    )
+    enterprise_version = LimitedModelChoiceField(
+        queryset=Version.objects.none(),
+        empty_label=None,
         required=False,
         limit_choice_count=25,
     )
@@ -1683,38 +1684,46 @@ class RollbackVersionForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.addon = kwargs.pop('addon')
         super().__init__(*args, **kwargs)
-        listed = self.fields['listed_version']
-        unlisted = self.fields['unlisted_version']
         channel = self.fields['channel']
 
-        listed_empty_label = listed.empty_label
-        listed.empty_label = None
-        listed.queryset = self.addon.rollbackable_versions_qs(
-            amo.CHANNEL_LISTED
-        ).no_transforms()
-        self.has_listed = bool(len(listed.choices))  # No empty_label atm
+        self.rollback_channels = []
+        choices = []
 
-        if not self.has_listed:
-            # add empty label back
-            listed.empty_label = listed_empty_label
-            listed.choices = [('', listed_empty_label)]
+        for channel_key, field, label in (
+            (amo.CHANNEL_LISTED, self.fields['listed_version'], self.LISTED_LABEL),
+            (
+                amo.CHANNEL_UNLISTED,
+                self.fields['unlisted_version'],
+                self.UNLISTED_LABEL,
+            ),
+            (
+                amo.CHANNEL_ENTERPRISE,
+                self.fields['enterprise_version'],
+                self.ENTERPRISE_LABEL,
+            ),
+        ):
+            field.queryset = self.addon.rollbackable_versions_qs(
+                channel_key
+            ).no_transforms()
+            if field.choices:
+                choices.append((channel_key, mark_safe(label)))
+                self.rollback_channels.append(channel_key)
 
-        unlisted.queryset = self.addon.rollbackable_versions_qs(
-            amo.CHANNEL_UNLISTED
-        ).no_transforms()
-        self.has_unlisted = bool(len(unlisted.choices) - 1)  # Skip empty_label
+        self.has_listed = amo.CHANNEL_LISTED in self.rollback_channels
+        self.has_unlisted = amo.CHANNEL_UNLISTED in self.rollback_channels
+        self.has_enterprise = amo.CHANNEL_ENTERPRISE in self.rollback_channels
+        channel.choices = choices
 
-        if not self.has_listed and self.has_unlisted:
-            # if there is no listed option, we default to unlisted
-            channel.initial = amo.CHANNEL_UNLISTED
+        # If only one channel is available, default to that channel and disable.
+        if len(self.rollback_channels) == 1:
+            channel.initial = self.rollback_channels[0]
             channel.disabled = True
-        elif not self.has_unlisted and self.has_listed:
-            # if there is a listed option, we default to that channel
-            channel.initial = amo.CHANNEL_LISTED
-            channel.disabled = True
-        elif self.has_listed or self.has_unlisted:
-            # otherwise we default to the most recently used channel
-            channel.initial = self.addon.versions.values_list('channel', flat=True)[0]
+        elif len(self.rollback_channels) > 1:
+            # otherwise we default to the most recently used valid channel
+            for ch in self.addon.versions.values_list('channel', flat=True):
+                if ch in self.rollback_channels:
+                    channel.initial = ch
+                    break
         # Also, in the template, we hide the selector if there is only one channel,
         # using a hidden input
 
@@ -1748,6 +1757,8 @@ class RollbackVersionForm(forms.Form):
             if data.get('channel') == amo.CHANNEL_LISTED
             else data.get('unlisted_version')
             if data.get('channel') == amo.CHANNEL_UNLISTED
+            else data.get('enterprise_version')
+            if data.get('channel') == amo.CHANNEL_ENTERPRISE
             else None
         )
         if not data['version']:
@@ -1757,7 +1768,7 @@ class RollbackVersionForm(forms.Form):
         return data
 
     def can_rollback(self):
-        return self.has_listed or self.has_unlisted
+        return self.has_listed or self.has_unlisted or self.has_enterprise
 
 
 class SupportForm(CheckThrottlesFormMixin, forms.Form):

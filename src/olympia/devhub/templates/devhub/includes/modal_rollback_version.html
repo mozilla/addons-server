@@ -14,7 +14,7 @@
                 colspan="3"
             >&nbsp;</td>
         </tr>
-        {% if has_listed_versions and has_unlisted_versions %}
+        {% if has_multiple_channels %}
         <tr>
         <td><label for="id_channel">{{ _('Distribution channel') }}</label></td>
         <td>
@@ -41,6 +41,15 @@
         <td data-current-version="{{ latest_approved_unlisted_version_number }}">
             {{ rollback_form.unlisted_version }}
             {{ rollback_form.unlisted_version.errors }}
+        </td>
+        </tr>
+        {% endif %}
+        {% if has_enterprise_versions %}
+        <tr id="enterprise-version-row">
+        <td><label for="id_enterprise_version">{{ _('Version') }}</label></td>
+        <td data-current-version="{{ latest_approved_enterprise_version_number }}">
+            {{ rollback_form.enterprise_version }}
+            {{ rollback_form.enterprise_version.errors }}
         </td>
         </tr>
         {% endif %}

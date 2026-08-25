@@ -777,7 +777,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
         self.client.force_login(user)
-        with self.assertNumQueries(21 if self.is_django42 else 19):
+        with self.assertNumQueries(20 if self.is_django42 else 18):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
             # FIXME: explain each query
@@ -787,7 +787,7 @@ class TestAddonAdmin(TestCase):
 
         version_factory(addon=addon)
         version_factory(addon=addon)
-        with self.assertNumQueries(21 if self.is_django42 else 19):
+        with self.assertNumQueries(20 if self.is_django42 else 18):
             # Confirm it scales correctly by doing the same number of queries
             # when number of versions increases.
             # FIXME: explain each query

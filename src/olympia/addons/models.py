@@ -1582,26 +1582,28 @@ class Addon(OnChangeMixin, ModelBase):
             return self.versions
 
     def has_listed_versions(self, include_deleted=False):
-        manager = self._get_version_manager(include_deleted)
-        return (
-            self._current_version_id
-            or manager.filter(channel=amo.CHANNEL_LISTED).exists()
+        return self._current_version_id or amo.CHANNEL_LISTED in self.version_channels(
+            include_deleted
         )
 
     def has_unlisted_versions(self, include_deleted=False):
-        manager = self._get_version_manager(include_deleted)
-        return manager.filter(channel=amo.CHANNEL_UNLISTED).exists()
+        return amo.CHANNEL_UNLISTED in self.version_channels(include_deleted)
 
     def has_enterprise_versions(self, include_deleted=False):
-        manager = self._get_version_manager(include_deleted)
-        return manager.filter(channel=amo.CHANNEL_ENTERPRISE).exists()
+        return amo.CHANNEL_ENTERPRISE in self.version_channels(include_deleted)
+
+    def version_channels(self, include_deleted=False):
+        if not hasattr(self, '_version_channels'):
+            self._version_channels = {}
+        if include_deleted not in self._version_channels:
+            manager = self._get_version_manager(include_deleted)
+            self._version_channels[include_deleted] = (
+                manager.values_list('channel', flat=True).order_by().distinct()
+            )
+        return self._version_channels[include_deleted]
 
     def has_multiple_channels(self, include_deleted=False):
-        manager = self._get_version_manager(include_deleted)
-        num_channels = (
-            manager.values_list('channel', flat=True).order_by('channel').distinct()
-        )
-        return len(num_channels) > 1
+        return len(self.version_channels(include_deleted)) > 1
 
     def _is_recommended_theme(self):
         from olympia.bandwagon.models import CollectionAddon

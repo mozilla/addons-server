@@ -1503,9 +1503,9 @@ class TestAPIKeyForm(TestCase):
 
 @override_switch('version-rollback', active=True)
 class TestRollbackVersionForm(TestCase):
-    def test_no_listed_version_choices(self):
-        """No listed version choices should default the channel to unlisted, and make
-        listed version choices not required."""
+    def test_only_unlisted_version_choices(self):
+        """Should default the channel to unlisted, and disable
+        the option to switch."""
         addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
         v1 = addon.versions.get()
         v2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
@@ -1513,17 +1513,17 @@ class TestRollbackVersionForm(TestCase):
         form = forms.RollbackVersionForm(addon=addon)
         assert form.fields['channel'].initial == amo.CHANNEL_UNLISTED
         assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
-            'Choose version',
             v2.version,
             v1.version,
         ]
-        assert form.fields['listed_version'].choices == [
-            ('', 'No appropriate version available')
-        ]
+        assert form.fields['listed_version'].choices == []
+        assert form.fields['enterprise_version'].choices == []
+        assert form.fields['channel'].initial == amo.CHANNEL_UNLISTED
+        assert form.fields['channel'].disabled
 
-    def test_no_unlisted_version_choices(self):
-        """No listed version choices should default the channel to unlisted, and make
-        listed version choices not required."""
+    def test_only_listed_version_choices(self):
+        """Should default the channel to listed, and disable
+        the option to switch."""
         addon = addon_factory()
         v2 = version_factory(addon=addon)
         version_factory(addon=addon)
@@ -1532,6 +1532,66 @@ class TestRollbackVersionForm(TestCase):
         assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
             v2.version,
         ]
+        assert form.fields['unlisted_version'].choices == []
+        assert form.fields['enterprise_version'].choices == []
+        assert form.fields['channel'].initial == amo.CHANNEL_LISTED
+        assert form.fields['channel'].disabled
+
+    def test_only_enterprise_version_choices(self):
+        """Should default the channel to enterprise, and disable
+        the option to switch."""
+        addon = addon_factory(version_kw={'channel': amo.CHANNEL_ENTERPRISE})
+        v1 = addon.versions.get()
+        v2 = version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert form.fields['channel'].initial == amo.CHANNEL_ENTERPRISE
+        assert [str(lab) for _, lab in form.fields['enterprise_version'].choices] == [
+            v2.version,
+            v1.version,
+        ]
+        assert form.fields['listed_version'].choices == []
+        assert form.fields['unlisted_version'].choices == []
+        assert form.fields['channel'].initial == amo.CHANNEL_ENTERPRISE
+        assert form.fields['channel'].disabled
+
+    def test_all_version_choices(self):
+        addon = addon_factory()
+        lv2 = version_factory(addon=addon)
+        version_factory(addon=addon)
+        uv1 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        uv2 = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        # Notably, only one enterprise version.
+        ev1 = version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+
+        form = forms.RollbackVersionForm(addon=addon)
+        assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
+            lv2.version,
+        ]
+        assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
+            uv2.version,
+            uv1.version,
+        ]
+        # Only one enterprise version, so no option to rollback.
+        assert form.fields['enterprise_version'].choices == []
+        # Defaults to last used channel that is a valid option (i.e not enterprise)
+        assert form.fields['channel'].initial is amo.CHANNEL_UNLISTED
+
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
+        form = forms.RollbackVersionForm(addon=addon)
+        assert [str(lab) for _, lab in form.fields['listed_version'].choices] == [
+            lv2.version,
+        ]
+        assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
+            uv2.version,
+            uv1.version,
+        ]
+        assert [str(lab) for _, lab in form.fields['enterprise_version'].choices] == [
+            ev1.version,
+        ]
+        # Enterprise is now the last used channel and a valid option.
+        assert form.fields['channel'].initial is amo.CHANNEL_ENTERPRISE
 
     def test_listed_and_unlisted_version_choices(self):
         """Both listed and unlisted version choices should be available."""
@@ -1547,7 +1607,6 @@ class TestRollbackVersionForm(TestCase):
             lv2.version,
         ]
         assert [str(lab) for _, lab in form.fields['unlisted_version'].choices] == [
-            'Choose version',
             uv2.version,
             uv1.version,
         ]
@@ -1651,6 +1710,7 @@ class TestRollbackVersionForm(TestCase):
             'new_version_string': '111111',
             'unlisted_version': uv1,
             'listed_version': lv1,
+            'enterprise_version': None,
             'version': lv1,
             'release_notes': {'en-us': None},
         }
@@ -1675,6 +1735,7 @@ class TestRollbackVersionForm(TestCase):
             'new_version_string': '111111',
             'unlisted_version': uv1,
             'listed_version': lv1,
+            'enterprise_version': None,
             'version': uv1,
             'release_notes': {'en-us': None},
         }
