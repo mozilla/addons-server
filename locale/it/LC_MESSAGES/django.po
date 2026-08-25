@@ -111,6 +111,13 @@ msgid ""
 "\n"
 "Thank you again for helping us keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato %(name)s su Mozilla Add-ons e per aver dedicato del tempo a fornirci maggiori dettagli sui tuoi dubbi.\n"
+"\n"
+"Dopo aver esaminato attentamente il tuo ricorso, abbiamo confermato la correttezza della decisione precedente, secondo cui questo contenuto rispetta le norme di Mozilla (%(policy_document_url)s). Pertanto, non adotteremo alcun provvedimento nei confronti dell’account o del contenuto.\n"
+"%(manual_reasoning_text)s.\n"
+"\n"
+"Grazie ancora per il tuo contributo alla sicurezza di Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown.txt:5
 #, python-format
@@ -120,6 +127,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have now removed the content and notified the user. Thank you for helping us get this right.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato %(name)s su Mozilla Add-ons e per aver dedicato del tempo a fornirci maggiori dettagli sui tuoi dubbi.\n"
+"\n"
+"Dopo aver esaminato il tuo ricorso, abbiamo stabilito che la nostra precedente decisione, secondo cui questo contenuto rispettava le norme di Mozilla (%(policy_document_url)s), era errata. Abbiamo quindi rimosso i contenuti e informato l’utente. Grazie per averci aiutato a prendere la decisione giusta. \n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_appeal_takedown_delayed.txt:5
 #, python-format
@@ -129,6 +140,10 @@ msgid ""
 "\n"
 "After reviewing your appeal, we found that our earlier decision, that this content adhered to Mozilla's policies (%(policy_document_url)s), was incorrect. We have asked the developer to make changes, and if they do not update their content, we will remove it.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato %(name)s su Mozilla Add-ons e per aver dedicato del tempo a fornirci maggiori dettagli sui tuoi dubbi.\n"
+"\n"
+"Dopo aver esaminato il tuo ricorso, abbiamo stabilito che la nostra precedente decisione, secondo cui questo contenuto rispettava le norme di Mozilla (%(policy_document_url)s), era errata. Abbiamo chiesto allo sviluppatore di apportare le modifiche necessarie. Se non aggiornerà il contenuto, provvederemo a rimuoverlo.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:5
 #, python-format
@@ -138,6 +153,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it adheres to Mozilla's policies (%(policy_document_url)s), so it will not be subject to any moderation action. However, we appreciate you flagging it for us.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato %(name)s all’indirizzo %(target_url)s.\n"
+"\n"
+"Abbiamo esaminato la tua segnalazione e il contenuto in questione, riscontrando che quest’ultimo rispetta le politiche di Mozilla (%(policy_document_url)s) e pertanto non sarà soggetto ad alcuna azione di moderazione. Ti ringraziamo comunque per avercelo segnalato.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_content_approve.txt:7
 #, python-format
@@ -145,6 +164,8 @@ msgid ""
 "If you believe the content does not adhere to Mozilla's policies, you have the right to appeal this decision within 6 months from the date of this email. See %(appeal_url)s for details on the appeal"
 " process, including how to file an appeal for this specific decision."
 msgstr ""
+"Se ritieni che il contenuto non rispetti le norme di Mozilla, hai il diritto di fare ricorso contro questa decisione entro 6 mesi dalla data di questa email. Consulta %(appeal_url)s per i dettagli "
+"sulla procedura, incluso come presentare ricorso contro questa specifica decisione."
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon.txt:5
 #, python-format
@@ -154,6 +175,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). As a result we have removed the content. We appreciate you helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato il seguente componente aggiuntivo su Mozilla Add-ons: %(name)s.\n"
+"\n"
+"Abbiamo esaminato la tua segnalazione e il contenuto in questione, riscontrando che quest’ultimo non rispetta le politiche di Mozilla (%(policy_document_url)s). Di conseguenza, abbiamo rimosso il contenuto. Grazie per il tuo contributo alla sicurezza di Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_addon_delayed.txt:5
 #, python-format
@@ -163,6 +188,10 @@ msgid ""
 "\n"
 "We reviewed your report and the content in question and found that it does not adhere to Mozilla's policies (%(policy_document_url)s). We have requested from the developer to make changes, and if they do not resolve the issue, we will remove the content. Thank you for helping keep Mozilla Add-ons safe.\n"
 msgstr ""
+"\n"
+"Grazie per aver segnalato il seguente componente aggiuntivo su Mozilla Add-ons: %(name)s.\n"
+"\n"
+"Abbiamo esaminato la tua segnalazione e il contenuto in questione, riscontrando che quest’ultimo non rispetta le politiche di Mozilla (%(policy_document_url)s). Abbiamo chiesto allo sviluppatore di apportare le modifiche necessarie. Se il problema non verrà risolto, provvederemo a rimuovere il contenuto. Grazie per il tuo contributo alla sicurezza di Mozilla Add-ons.\n"
 
 #: src/olympia/abuse/templates/abuse/emails/reporter_takedown_collection.txt:5
 #, python-format
@@ -3792,6 +3821,16 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
+"Ciao,\n"
+"\n"
+"grazie per aver scelto di sviluppare per Firefox! Ricevi questo messaggio perché hai richiesto nuove chiavi API per %(domain)s. Per completare la configurazione, fai clic sul link di seguito:\n"
+"\n"
+"%(api_key_confirmation_link)s\n"
+"\n"
+"Se non hai fatto questa richiesta, puoi ignorare questa email: non verrà creata alcuna chiave.\n"
+"\n"
+"\n"
+"Il team di Mozilla Add-ons"
 
 #: src/olympia/devhub/templates/devhub/emails/new-key-email.ltxt:14
 #, python-format
