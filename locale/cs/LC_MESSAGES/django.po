@@ -7314,8 +7314,15 @@ msgid ""
 "\n"
 "The Mozilla Add-ons Team"
 msgstr ""
-"Dobrý den, touto zprávou vás informujeme, že váš uživatelský účet %(name)s na %(site_url)s byl smazán. Pokud jste nedávno smazali svůj účet Mozilla, mohlo k tomu dojít automaticky v rámci tohoto "
-"procesu.  Děkujeme, že jste součástí komunity doplňků pro Firefox. Pokud si myslíte, že jde o omyl, nebo máte nějaké otázky, kontaktujte nás.  S pozdravem, tým serveru Doplňky Mozilly"
+"Dobrý den,\n"
+"\n"
+"tuto zprávu jste obdrželi, abychom vás informovali, že váš uživatelský účet %(name)s na %(site_url)s byl smazán. Pokud jste nedávno smazali svůj účet Mozilla, mohlo k tomu dojít automaticky v rámci tohoto procesu.\n"
+"\n"
+"Děkujeme, že jste byli součástí komunity doplňků pro Firefox. Pokud se domníváte, že se jedná o omyl, nebo máte nějaké dotazy, kontaktujte nás prosím.\n"
+"\n"
+"S pozdravem,\n"
+"\n"
+"Tým Doplňky Mozilla"
 
 #: src/olympia/versions/models.py:1140
 #, python-format
