@@ -71,7 +71,8 @@
 }
 
 .DevHub-MyAddons-item-channel-listed,
-.DevHub-MyAddons-item-channel-unlisted {
+.DevHub-MyAddons-item-channel-unlisted,
+.DevHub-MyAddons-item-channel-enterprise {
   border-radius: 4px;
   padding: 2px 5px;
   font-size: 13px;
@@ -88,6 +89,10 @@
   background-color: @color-publish-channel-unlisted;
 }
 
+.DevHub-MyAddons-item-channel-enterprise {
+  background-color: @color-publish-channel-enterprise;
+}
+
 .DevHub-MyAddons-item-icon {
   max-width: 128px;
   height: 64px;
@@ -101,12 +106,12 @@
 
 .DevHub-MyAddons-item-versions {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .DevHub-MyAddons-item-version-details {
   display: flex;
-  width: 320px;
   align-items: baseline;
 }
 
