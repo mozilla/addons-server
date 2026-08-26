@@ -160,6 +160,7 @@ class ReviewerSubscription(ModelBase):
             'name': self.addon.name,
             'url': listing_url,
             'number': version.version,
+            'channel': amo.CHANNEL_CHOICES_API[version.channel],
             'review': absolutify(
                 reverse(
                     'reviewers.review',
@@ -209,15 +210,18 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
             and instance.channel == amo.CHANNEL_LISTED
             and any(acl.action_allowed_for(user, perm) for perm in listed_perms)
         )
+        action_allowed_unlisted = any(
+            acl.action_allowed_for(user, perm) for perm in unlisted_perms
+        )
         is_unlisted_reviewer_and_unlisted_submission = (
             subscriber.channel == amo.CHANNEL_UNLISTED
             and instance.channel == amo.CHANNEL_UNLISTED
-            and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
+            and action_allowed_unlisted
         )
         is_unlisted_reviewer_and_enterprise_submission = (
             subscriber.channel == amo.CHANNEL_ENTERPRISE
             and instance.channel == amo.CHANNEL_ENTERPRISE
-            and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
+            and action_allowed_unlisted
         )
         if is_active_user and (
             is_reviewer_and_listed_submission
