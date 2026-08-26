@@ -310,7 +310,7 @@
   <p><strong>More Actions</strong></p>
   <div class="more-actions-inner">
     <ul>
-      {% if not addon.is_deleted and not addon.has_version_in_channel(amo.CHANNEL_ENTERPRISE)  %}
+      {% if not addon.is_deleted  %}
         {% if acl_is_reviewer or action_allowed_for(request.user, amo.permissions.REVIEWER_TOOLS_VIEW) %}
         <li>
           <input type="checkbox" id="notify_new_listed_versions"
@@ -327,6 +327,15 @@
             data-api-url-unsubscribe-unlisted="{{ drf_url('reviewers-addon-unsubscribe-unlisted', addon.pk) }}"
             {% if subscribed_unlisted %}checked="checked"{% endif %} autocomplete="off" />
             <label for="notify_new_unlisted_versions">Notify me about new unlisted versions</label>
+        </li>
+        {% endif %}
+        {% if acl_is_unlisted_addons_viewer_or_reviewer and waffle.switch('enterprise-channel') %}
+        <li>
+          <input type="checkbox" id="notify_new_enterprise_versions"
+            data-api-url-subscribe-enterprise="{{ drf_url('reviewers-addon-subscribe-enterprise', addon.pk) }}"
+            data-api-url-unsubscribe-enterprise="{{ drf_url('reviewers-addon-unsubscribe-enterprise', addon.pk) }}"
+            {% if subscribed_enterprise %}checked="checked"{% endif %} autocomplete="off" />
+            <label for="notify_new_enterprise_versions">Notify me about new enterprise versions</label>
         </li>
         {% endif %}
       {% endif %}

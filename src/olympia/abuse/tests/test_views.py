@@ -1407,6 +1407,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(
             ContentActionTargetAppealRemovalAffirmation, 'process_action'
         ) as process_mock:
+            process_mock.return_value = None
             cinder_webhook(req)
         process_mock.assert_called()
         assert len(mail.outbox) == 1
@@ -1433,6 +1434,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(
             ContentActionTargetAppealApprove, 'process_action'
         ) as process_mock:
+            process_mock.return_value = None
             cinder_webhook(req)
         process_mock.assert_called()
         assert len(mail.outbox) == 1
@@ -1467,6 +1469,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(
             ContentActionDisableAddon, 'process_action'
         ) as process_mock:
+            process_mock.return_value = None
             cinder_webhook(req)
         process_mock.assert_called()
         assert len(mail.outbox) == 2
@@ -1503,6 +1506,7 @@ class TestCinderWebhook(TestCase):
         with mock.patch.object(
             ContentActionApproveListingContent, 'process_action'
         ) as process_mock:
+            process_mock.return_value = None
             cinder_webhook(req)
         process_mock.assert_called()
         assert len(mail.outbox) == 1
