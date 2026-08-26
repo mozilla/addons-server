@@ -54,7 +54,7 @@ from olympia.translations.fields import (
     TranslatedField,
     save_signal,
 )
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 from olympia.users.utils import RestrictionChecker, get_task_user
 from olympia.versions.compare import version_int
 from olympia.zadmin.models import get_config
@@ -571,13 +571,22 @@ class Version(OnChangeMixin, ModelBase):
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
         # Check if the approval should be restricted
-        if not RestrictionChecker(upload=upload).is_auto_approval_allowed():
+        checker = RestrictionChecker(upload=upload)
+        if not checker.is_auto_approval_allowed():
             flag = (
                 'auto_approval_disabled'
                 if channel == amo.CHANNEL_LISTED
                 else 'auto_approval_disabled_unlisted'
             )
             reviewer_flags_defaults[flag] = True
+            failed_names = [cls.__name__ for cls in checker.failed_restrictions]
+            history_ids = [entry.pk for entry in checker.history_entries]
+            # The checker ran before the version existed, so it could not
+            # record it on the history rows itself; backfill it now.
+            if history_ids:
+                UserRestrictionHistory.objects.filter(pk__in=history_ids).update(
+                    version=version
+                )
             activity.log_create(
                 amo.LOG.DISABLE_AUTO_APPROVAL,
                 addon,
@@ -586,7 +595,10 @@ class Version(OnChangeMixin, ModelBase):
                     'comments': (
                         f'{version.get_channel_display()} auto-approval automatically '
                         'disabled because of a restriction'
+                        f' ({", ".join(failed_names)})'
                     ),
+                    'restrictions': failed_names,
+                    'restriction_history_ids': history_ids,
                 },
                 user=get_task_user(),
             )
