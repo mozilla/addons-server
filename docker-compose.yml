@@ -178,7 +178,7 @@ services:
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2026.08.06@sha256:31c821b1fffddb62df106a60bda338da13750c7ccaf8f843709f85810385a96a
+    image: mozilla/addons-frontend:2026.08.20@sha256:0188973de62869d5fd11df0091e50afd9ce7b080622283d3633cf3d89a813293
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the
