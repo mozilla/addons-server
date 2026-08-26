@@ -1022,6 +1022,50 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
         return True
 
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed in order to record which restriction(s) matched:
+        unlike the fast path it does not stop at the first match. Returns an
+        empty list when the input needed for matching is missing or invalid.
+        """
+        # Mirrors the extraction in allow_auto_approval()/allow_request().
+        if restriction_type == RESTRICTION_TYPES.ADDON_APPROVAL:
+            upload = argument
+            if not upload.user or not upload.ip_address:
+                return []
+            try:
+                remote_addr = ipaddress.ip_address(upload.ip_address)
+                user_last_login_ip = ipaddress.ip_address(upload.user.last_login_ip)
+            except ValueError:
+                return []
+        else:
+            request = argument
+            try:
+                remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+                # Unlike allow_request(), also guard on is_authenticated:
+                # AnonymousUser is truthy but has no last_login_ip.
+                user_last_login_ip = (
+                    ipaddress.ip_address(request.user.last_login_ip)
+                    if request.user and request.user.is_authenticated
+                    else None
+                )
+            except ValueError:
+                return []
+        return [
+            restriction
+            for restriction in cls.objects.filter(restriction_type=restriction_type)
+            if remote_addr in restriction.network
+            or (
+                user_last_login_ip is not None
+                and user_last_login_ip in restriction.network
+            )
+        ]
+
 
 class AsnUserRestriction(RestrictionAbstractBaseModel):
     asn = models.PositiveIntegerField(db_index=True)
@@ -1059,6 +1103,25 @@ class AsnUserRestriction(RestrictionAbstractBaseModel):
         ):
             return True
         return cls.allow_asn(asn, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL)
+
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed in order to record which restriction(s) matched.
+        Returns an empty list when the input needed for matching is missing.
+        """
+        # Mirrors the extraction in allow_auto_approval()/allow_request().
+        if restriction_type == RESTRICTION_TYPES.ADDON_APPROVAL:
+            asn = (argument.request_metadata or {}).get('Asn')
+        else:
+            asn = argument.headers.get('Asn')
+        if not asn:
+            return []
+        return list(cls.objects.filter(asn=asn, restriction_type=restriction_type))
 
 
 class NormalizeEmailMixin:
@@ -1180,6 +1243,40 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 
         return True
 
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed in order to record which restriction(s) matched.
+        Returns an empty list when the input needed for matching is missing.
+        """
+        # request.user is an AnonymousUser when not authenticated, while
+        # upload.user is a UserProfile; either guard means there is no email
+        # to match against, mirroring allow_request()/allow_auto_approval().
+        user = argument.user
+        if not user or not user.is_authenticated:
+            return []
+        email = cls.normalize_email(user.email)
+        base_qs = cls.objects.filter(restriction_type=restriction_type)
+        # Unlike allow_email(), which returns as soon as it finds a single
+        # match, collect the exact pattern match and every wildcard pattern
+        # matching: they all contributed to the failure.
+        matches = list(base_qs.filter(email_pattern=email))
+        complex_restrictions = base_qs.filter(
+            Q(email_pattern__contains='?')
+            | Q(email_pattern__contains='*')
+            | Q(email_pattern__contains='[')
+        ).exclude(email_pattern=email)
+        matches.extend(
+            restriction
+            for restriction in complex_restrictions
+            if fnmatchcase(email, restriction.email_pattern)
+        )
+        return matches
+
 
 class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
     domain = models.CharField(
@@ -1231,6 +1328,26 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
             domain=email_domain, restriction_type=restriction_type
         ).exists()
 
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed in order to record which restriction(s) matched.
+        Returns an empty list when the input needed for matching is missing.
+        """
+        user = argument.user
+        if not user or not user.is_authenticated:
+            return []
+        # Same domain extraction as allow_email() - the raw email, not the
+        # normalized one.
+        email_domain = user.email.rsplit('@', maxsplit=1)[-1]
+        return list(
+            cls.objects.filter(domain=email_domain, restriction_type=restriction_type)
+        )
+
 
 class FingerprintRestriction(RestrictionAbstractBaseModel):
     ja4 = models.CharField(max_length=36, db_index=True)
@@ -1270,6 +1387,25 @@ class FingerprintRestriction(RestrictionAbstractBaseModel):
         ):
             return True
         return cls.allow_ja4(ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL)
+
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed in order to record which restriction(s) matched.
+        Returns an empty list when the input needed for matching is missing.
+        """
+        # Mirrors the extraction in allow_auto_approval()/allow_request().
+        if restriction_type == RESTRICTION_TYPES.ADDON_APPROVAL:
+            ja4 = (argument.request_metadata or {}).get('Client-JA4')
+        else:
+            ja4 = argument.headers.get('Client-JA4')
+        if not ja4:
+            return []
+        return list(cls.objects.filter(ja4=ja4, restriction_type=restriction_type))
 
 
 class ReputationRestrictionMixin:

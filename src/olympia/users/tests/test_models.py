@@ -1501,6 +1501,79 @@ class TestIPNetworkUserRestriction(TestCase):
         with self.assertRaises(ValueError):
             IPNetworkUserRestriction.network_from_ip('')
 
+    def test_get_matching_restrictions_single_match(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.0.0.1')
+        restriction = IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        IPNetworkUserRestriction.objects.create(network='172.16.0.0/24')
+        assert IPNetworkUserRestriction.get_matching_restrictions(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ) == [restriction]
+
+    def test_get_matching_restrictions_multiple_matches(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.0.0.1')
+        exact = IPNetworkUserRestriction.objects.create(network='192.168.0.1/32')
+        subnet = IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
+        last_login = IPNetworkUserRestriction.objects.create(network='10.0.0.0/28')
+        IPNetworkUserRestriction.objects.create(network='172.16.0.0/24')
+        assert set(
+            IPNetworkUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+        ) == {exact, subnet, last_login}
+
+    def test_get_matching_restrictions_auto_approval_last_login_ip(self):
+        upload = FileUpload.objects.create(
+            ip_address='192.168.1.2',
+            user=user_factory(last_login_ip='192.168.0.1'),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        restriction = IPNetworkUserRestriction.objects.create(
+            network='192.168.0.0/28',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        assert IPNetworkUserRestriction.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ) == [restriction]
+
+    def test_get_matching_restrictions_no_matches(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        request.user = user_factory(last_login_ip='10.0.0.1')
+        IPNetworkUserRestriction.objects.create(network='172.16.0.0/24')
+        # Matching network, but for another restriction_type.
+        IPNetworkUserRestriction.objects.create(
+            network='192.168.0.0/28',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        assert (
+            IPNetworkUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
+    def test_get_matching_restrictions_unparseable_ip(self):
+        # last_login_ip is empty, so the same structural denial as in
+        # allow_auto_approval() applies: no specific restriction matched.
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(last_login_ip=''),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        IPNetworkUserRestriction.objects.create(
+            network='192.168.0.0/28',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        assert (
+            IPNetworkUserRestriction.get_matching_restrictions(
+                upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+            )
+            == []
+        )
+
 
 class TestDisposableEmailDomainRestriction(TestCase):
     def test_email_allowed(self):
@@ -1551,6 +1624,57 @@ class TestDisposableEmailDomainRestriction(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         assert DisposableEmailDomainRestriction.allow_auto_approval(upload)
+
+    def test_get_matching_restrictions_match(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        restriction = DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        DisposableEmailDomainRestriction.objects.create(domain='other.com')
+        # (domain, restriction_type) is unique, so a given email can match at
+        # most one row.
+        assert DisposableEmailDomainRestriction.get_matching_restrictions(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ) == [restriction]
+
+    def test_get_matching_restrictions_auto_approval(self):
+        restriction = DisposableEmailDomainRestriction.objects.create(
+            domain='bar.com', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(email='foo@bar.com'),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert DisposableEmailDomainRestriction.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ) == [restriction]
+
+    def test_get_matching_restrictions_no_matches(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        DisposableEmailDomainRestriction.objects.create(domain='other.com')
+        # Matching domain, but for another restriction_type.
+        DisposableEmailDomainRestriction.objects.create(
+            domain='bar.com', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        assert (
+            DisposableEmailDomainRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
+    def test_get_matching_restrictions_not_authenticated(self):
+        DisposableEmailDomainRestriction.objects.create(domain='bar.com')
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert (
+            DisposableEmailDomainRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
 
 
 class TestEmailUserRestriction(TestCase):
@@ -1705,6 +1829,74 @@ class TestEmailUserRestriction(TestCase):
         )
         assert EmailUserRestriction.allow_auto_approval(upload)
 
+    def test_get_matching_restrictions_single_match(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        restriction = EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
+        EmailUserRestriction.objects.create(email_pattern='someone@else.com')
+        assert EmailUserRestriction.get_matching_restrictions(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ) == [restriction]
+
+    def test_get_matching_restrictions_multiple_matches(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='f.oo+tag@faz.mail.com')
+        exact = EmailUserRestriction.objects.create(email_pattern='foo@faz.mail.com')
+        wildcard = EmailUserRestriction.objects.create(email_pattern='*.mail.com')
+        other_wildcard = EmailUserRestriction.objects.create(
+            email_pattern='foo@*.mail.com'
+        )
+        EmailUserRestriction.objects.create(email_pattern='*@gmail.com')
+        # The email is normalized before matching, and unlike allow_email(),
+        # which stops at the exact match, every matching pattern is returned.
+        assert set(
+            EmailUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+        ) == {exact, wildcard, other_wildcard}
+
+    def test_get_matching_restrictions_auto_approval(self):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern='*.mail.com',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(email='foo@faz.mail.com'),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert EmailUserRestriction.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ) == [restriction]
+
+    def test_get_matching_restrictions_no_matches(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory(email='foo@bar.com')
+        EmailUserRestriction.objects.create(email_pattern='someone@else.com')
+        # Matching pattern, but for another restriction_type.
+        EmailUserRestriction.objects.create(
+            email_pattern='foo@bar.com',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        assert (
+            EmailUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
+    def test_get_matching_restrictions_not_authenticated(self):
+        EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
+        request = RequestFactory().get('/')
+        request.user = AnonymousUser()
+        assert (
+            EmailUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
 
 class TestFingerprintRestriction(TestCase):
     def test_str(self):
@@ -1775,6 +1967,69 @@ class TestFingerprintRestriction(TestCase):
         request = RequestFactory().get('/', headers={'Client-JA4': 'another_ja4'})
         assert FingerprintRestriction.allow_submission(request)
 
+    def test_get_matching_restrictions_match(self):
+        restricted_ja4 = 'some_fake_ja4'
+        restriction = FingerprintRestriction.objects.create(ja4=restricted_ja4)
+        FingerprintRestriction.objects.create(ja4='another_ja4')
+        request = RequestFactory().get('/', headers={'Client-JA4': restricted_ja4})
+        # (ja4, restriction_type) is unique, so a given fingerprint can match
+        # at most one row.
+        assert FingerprintRestriction.get_matching_restrictions(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ) == [restriction]
+
+    def test_get_matching_restrictions_auto_approval(self):
+        restricted_ja4 = 'some_fake_ja4'
+        restriction = FingerprintRestriction.objects.create(
+            ja4=restricted_ja4, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={'Client-JA4': restricted_ja4},
+        )
+        assert FingerprintRestriction.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ) == [restriction]
+
+    def test_get_matching_restrictions_no_matches(self):
+        FingerprintRestriction.objects.create(ja4='some_fake_ja4')
+        # Matching ja4, but for another restriction_type.
+        FingerprintRestriction.objects.create(
+            ja4='another_ja4', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        request = RequestFactory().get('/', headers={'Client-JA4': 'another_ja4'})
+        assert (
+            FingerprintRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
+    def test_get_matching_restrictions_no_ja4(self):
+        FingerprintRestriction.objects.create(ja4='some_fake_ja4')
+        request = RequestFactory().get('/')
+        assert (
+            FingerprintRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert (
+            FingerprintRestriction.get_matching_restrictions(
+                upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+            )
+            == []
+        )
+
 
 class TestAsnRestriction(TestCase):
     def test_str(self):
@@ -1840,6 +2095,69 @@ class TestAsnRestriction(TestCase):
         AsnUserRestriction.objects.create(asn=restricted_asn)
         request = RequestFactory().get('/', headers={'Asn': '64499'})
         assert AsnUserRestriction.allow_submission(request)
+
+    def test_get_matching_restrictions_match(self):
+        restricted_asn = 64498
+        restriction = AsnUserRestriction.objects.create(asn=restricted_asn)
+        AsnUserRestriction.objects.create(asn=64499)
+        request = RequestFactory().get('/', headers={'Asn': restricted_asn})
+        # (asn, restriction_type) is unique, so a given asn can match at most
+        # one row.
+        assert AsnUserRestriction.get_matching_restrictions(
+            request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+        ) == [restriction]
+
+    def test_get_matching_restrictions_auto_approval(self):
+        restricted_asn = 64498
+        restriction = AsnUserRestriction.objects.create(
+            asn=restricted_asn, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+            request_metadata={'Asn': restricted_asn},
+        )
+        assert AsnUserRestriction.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ) == [restriction]
+
+    def test_get_matching_restrictions_no_matches(self):
+        AsnUserRestriction.objects.create(asn=64498)
+        # Matching asn, but for another restriction_type.
+        AsnUserRestriction.objects.create(
+            asn=64499, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        request = RequestFactory().get('/', headers={'Asn': '64499'})
+        assert (
+            AsnUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+
+    def test_get_matching_restrictions_no_asn(self):
+        AsnUserRestriction.objects.create(asn=64498)
+        request = RequestFactory().get('/')
+        assert (
+            AsnUserRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+            == []
+        )
+        upload = FileUpload.objects.create(
+            ip_address='192.168.0.1',
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert (
+            AsnUserRestriction.get_matching_restrictions(
+                upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+            )
+            == []
+        )
 
 
 @override_settings(
