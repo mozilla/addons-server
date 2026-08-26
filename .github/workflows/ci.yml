@@ -111,6 +111,12 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          persist-credentials: false
+          path: locale
+
       - name: Login to Dockerhub
         if: needs.context.outputs.is_fork == 'false'
         id: docker_hub
@@ -137,6 +143,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          persist-credentials: false
+          path: locale
 
       - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
@@ -189,10 +201,16 @@ jobs:
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          persist-credentials: ${{ needs.context.outputs.is_default_branch }}
-          fetch-depth: 0
+          persist-credentials: false
           ref: ${{ github.event.pull_request.head.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name }}
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          token: ${{ secrets.L10N_GITHUB_TOKEN || github.token }}
+          persist-credentials: ${{ needs.context.outputs.is_default_branch }}
+          path: locale
 
       - name: Extract Locales
         uses: ./.github/actions/run-docker
@@ -261,6 +279,12 @@ jobs:
         with:
           persist-credentials: false
 
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          persist-credentials: false
+          path: locale
+
       - name: Login to Dockerhub
         id: docker_hub
         uses: mozilla/addons/.github/actions/login-docker@f748fdc2c8057ad7b574521a60c182939f2ee687
@@ -297,6 +321,12 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: mozilla-l10n/addons-server-l10n
+          persist-credentials: false
+          path: locale
 
       - name: Login to GAR
         id: docker_gar
