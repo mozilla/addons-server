@@ -155,10 +155,26 @@ class RestrictionChecker:
         else:
             raise ImproperlyConfigured('RestrictionChecker needs a request or upload')
         self.failed_restrictions = []
+        # UserRestrictionHistory instances created by the checks, exposed so
+        # that callers can annotate them further (Version.from_upload() sets
+        # version on them after the version has been created).
+        self.history_entries = []
 
     def _is_action_allowed(self, action_type, *, restriction_choices=None):
-        from olympia.users.models import UserRestrictionHistory
+        from olympia.users.models import RESTRICTION_TYPES, UserRestrictionHistory
 
+        # Maps the action to the restriction_type its allow_*() method checks
+        # against - allow_submission(), allow_auto_approval(), allow_rating()
+        # and allow_rating_without_moderation() respectively. Keep in sync
+        # with those methods. 'rating_without_moderation' deliberately maps
+        # to RATING_MODERATE: the action is phrased as an allow-check, but
+        # the restrictions it consults are the flag-for-moderation ones.
+        restriction_type = {
+            'submission': RESTRICTION_TYPES.ADDON_SUBMISSION,
+            'auto_approval': RESTRICTION_TYPES.ADDON_APPROVAL,
+            'rating': RESTRICTION_TYPES.RATING,
+            'rating_without_moderation': RESTRICTION_TYPES.RATING_MODERATE,
+        }[action_type]
         if restriction_choices is None:
             # We use UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES because it
             # currently matches the order we want to check things. If that ever
@@ -181,20 +197,54 @@ class RestrictionChecker:
                     f'RestrictionChecker.is_{action_type}_allowed.{name}.failure'
                 )
                 if self.user and self.user.is_authenticated:
+                    # Slow path: enumerate which restriction(s) matched, so
+                    # that each match gets its own history row pointing at
+                    # the instance. Only for authenticated users - nothing
+                    # is recorded otherwise. Stateless classes have no
+                    # get_matching_restrictions().
+                    is_db_backed = hasattr(cls, 'get_matching_restrictions')
+                    matched = (
+                        cls.get_matching_restrictions(
+                            argument, restriction_type=restriction_type
+                        )
+                        if is_db_backed
+                        else []
+                    )
+                    if is_db_backed and not matched:
+                        # Either the fast and slow predicates disagree, or
+                        # the denial was structural (e.g. an unparseable IP)
+                        # and there is no instance to record.
+                        log.warning(
+                            'No matching restrictions found for failed %s check on %s',
+                            action_type,
+                            name,
+                        )
                     with core.override_remote_addr_or_metadata(
                         ip_address=self.ip_address, metadata=self.request_metadata
                     ):
                         activity.log_create(
                             amo.LOG.RESTRICTED,
                             user=self.user,
-                            details={'restriction': str(cls.__name__)},
+                            details={
+                                'restriction': str(cls.__name__),
+                                'restriction_ids': [
+                                    restriction.pk for restriction in matched
+                                ],
+                            },
                         )
-                    UserRestrictionHistory.objects.create(
-                        user=self.user,
-                        ip_address=self.ip_address,
-                        last_login_ip=self.user.last_login_ip or '',
-                        restriction=restriction_number,
-                    )
+                    # A failure with nothing enumerable still gets a single
+                    # row, with the instance fields left NULL - today's
+                    # behaviour.
+                    for matched_instance in matched or [None]:
+                        self.history_entries.append(
+                            UserRestrictionHistory.objects.create(
+                                user=self.user,
+                                ip_address=self.ip_address,
+                                last_login_ip=self.user.last_login_ip or '',
+                                restriction=restriction_number,
+                                restriction_instance=matched_instance,
+                            )
+                        )
         suffix = 'success' if not self.failed_restrictions else 'failure'
         statsd.incr(f'RestrictionChecker.is_{action_type}_allowed.%s' % suffix)
         return not self.failed_restrictions
