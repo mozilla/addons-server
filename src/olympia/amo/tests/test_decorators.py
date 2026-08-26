@@ -215,7 +215,7 @@ class TestApiAuthentication(TestCase):
         super().setUp()
         self.f = mock.Mock()
         self.f.__name__ = 'function'
-        self.request = mock.Mock()
+        self.request = RequestFactory().get('/')
         self.request.user = mock.Mock()
         self.request.user.is_anonymous = True
         self.function = decorators.api_authentication(self.f)
