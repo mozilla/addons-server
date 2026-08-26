@@ -3717,6 +3717,19 @@ class TestReview(ReviewBase):
         ]
         check_links(expected, doc('#actions-addon a'))
 
+    def test_enterprise_subscription_when_waffle_disabled(self):
+        self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        self.login_as_reviewer()
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        subscribe_listed_input = doc('#notify_new_listed_versions')[0]
+        assert 'checked' not in subscribe_listed_input.attrib
+        subscribe_unlisted_input = doc('#notify_new_unlisted_versions')[0]
+        assert 'checked' not in subscribe_unlisted_input.attrib
+        assert not doc('#notify_new_enterprise_versions')
+
+    @override_switch('enterprise-channel', active=True)
     def test_extra_actions_subscribe_checked_state(self):
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
@@ -3727,6 +3740,8 @@ class TestReview(ReviewBase):
         assert 'checked' not in subscribe_listed_input.attrib
         subscribe_unlisted_input = doc('#notify_new_unlisted_versions')[0]
         assert 'checked' not in subscribe_unlisted_input.attrib
+        subscribe_enterprise_input = doc('#notify_new_enterprise_versions')[0]
+        assert 'checked' not in subscribe_enterprise_input.attrib
 
         ReviewerSubscription.objects.create(
             addon=self.addon, user=self.reviewer, channel=amo.CHANNEL_LISTED
@@ -3744,6 +3759,15 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         subscribe_input = doc('#notify_new_unlisted_versions')[0]
+        assert subscribe_input.attrib['checked'] == 'checked'
+
+        ReviewerSubscription.objects.create(
+            addon=self.addon, user=self.reviewer, channel=amo.CHANNEL_ENTERPRISE
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        subscribe_input = doc('#notify_new_enterprise_versions')[0]
         assert subscribe_input.attrib['checked'] == 'checked'
 
     def test_extra_actions_token(self):
@@ -7659,6 +7683,12 @@ class TestAddonReviewerViewSet(TestCase):
         self.unsubscribe_url_unlisted = reverse_ns(
             'reviewers-addon-unsubscribe-unlisted', kwargs={'pk': self.addon.pk}
         )
+        self.subscribe_url_enterprise = reverse_ns(
+            'reviewers-addon-subscribe-enterprise', kwargs={'pk': self.addon.pk}
+        )
+        self.unsubscribe_url_enterprise = reverse_ns(
+            'reviewers-addon-unsubscribe-enterprise', kwargs={'pk': self.addon.pk}
+        )
         self.flags_url = reverse_ns(
             'reviewers-addon-flags', kwargs={'pk': self.addon.pk}
         )
@@ -7764,6 +7794,20 @@ class TestAddonReviewerViewSet(TestCase):
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 1
 
+    def test_subscribe_enterprise(self):
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_enterprise)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
+    def test_subscribe_enterprise_viewer(self):
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+        self.client.login_api(self.user)
+        response = self.client.post(self.subscribe_url_enterprise)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 1
+
     def test_unsubscribe_not_logged_in(self):
         response = self.client.post(self.unsubscribe_url_listed)
         assert response.status_code == 401
@@ -7845,6 +7889,26 @@ class TestAddonReviewerViewSet(TestCase):
         self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
         response = self.client.post(self.unsubscribe_url_unlisted)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_enterprise(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_ENTERPRISE
+        )
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_enterprise)
+        assert response.status_code == 202
+        assert ReviewerSubscription.objects.count() == 0
+
+    def test_unsubscribe_enterprise_viewer(self):
+        ReviewerSubscription.objects.create(
+            user=self.user, addon=self.addon, channel=amo.CHANNEL_ENTERPRISE
+        )
+        self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
+        self.client.login_api(self.user)
+        response = self.client.post(self.unsubscribe_url_enterprise)
         assert response.status_code == 202
         assert ReviewerSubscription.objects.count() == 0
 

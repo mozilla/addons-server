@@ -153,8 +153,8 @@ class ReviewerSubscription(ModelBase):
                 reverse('addons.detail', args=[self.addon.pk], add_prefix=False)
             )
         else:
-            # If the submission went to the unlisted channel,
-            # do not link to the listing.
+            # If the submission went to the unlisted or enterprise
+            # channels, do not link to the listing.
             listing_url = None
         context = {
             'name': self.addon.name,
@@ -214,9 +214,15 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
             and instance.channel == amo.CHANNEL_UNLISTED
             and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
         )
+        is_unlisted_reviewer_and_enterprise_submission = (
+            subscriber.channel == amo.CHANNEL_ENTERPRISE
+            and instance.channel == amo.CHANNEL_ENTERPRISE
+            and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
+        )
         if is_active_user and (
             is_reviewer_and_listed_submission
             or is_unlisted_reviewer_and_unlisted_submission
+            or is_unlisted_reviewer_and_enterprise_submission
         ):
             subscriber.send_notification(instance)
 
