@@ -171,10 +171,10 @@ class Command(ProcessObjectsCommand):
             action='store',
             dest='channel',
             type=str,
-            choices=('listed', 'unlisted'),
+            choices=amo.CHANNEL_CHOICES_API.values(),
             help=(
-                'Only select add-ons who have either listed or unlisted '
-                'versions. Add-ons that have both will be returned too.'
+                'Only select add-ons who have versions in a specific channel. '
+                'Add-ons that have multiple will be returned too.'
             ),
         )
 
