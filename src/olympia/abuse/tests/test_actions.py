@@ -43,7 +43,7 @@ from olympia.core import set_user
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
-from olympia.versions.models import VersionReviewerFlags
+from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
     ContentAction,
@@ -2451,6 +2451,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
     ActionClass = ContentActionDelayedShortSoftBlockAddon
     default_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
     block_type = BlockType.SOFT_BLOCKED
+    activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED
 
     def setUp(self):
         super().setUp()
@@ -2484,7 +2485,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
         assert not BlocklistSubmission.objects.exists()
         action_helper = self.ActionClass(self.decision, followup_action)
         assert action_helper.action == self.default_decision_action
-        action_helper.process_action()
+        alog = action_helper.process_action()
         assert BlocklistSubmission.objects.count() == 1
         submission = BlocklistSubmission.objects.get()
         assert submission.input_guids == self.addon.guid
@@ -2511,6 +2512,16 @@ class TestContentActionDelayedShortSoftBlockAddon(
             now=datetime.now() + timedelta(days=self.ActionClass.delay_days),
         )
         assert submission.from_followup == followup_action
+
+        assert alog.log == self.activity_log_action
+        assert alog.arguments == [
+            self.addon,
+            self.decision,
+            *Version.objects.filter(id__in=version_ids),
+            self.ActionClass.delay_days,
+        ]
+
+        assert str(alog).endswith(f'locklist after {self.ActionClass.delay_days} days.')
 
         action_helper.notify_owners()
         if followup_action:
@@ -2751,6 +2762,7 @@ class TestContentActionDelayedMidHardBlockAddon(
     ActionClass = ContentActionDelayedMidHardBlockAddon
     default_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
     block_type = BlockType.BLOCKED
+    activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCKED
 
     def setUp(self):
         super().setUp()

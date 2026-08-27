@@ -21,10 +21,10 @@ from olympia.addons.models import Addon, AddonApprovalsCounter, AddonReviewerFla
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
 from olympia.bandwagon.models import Collection
-from olympia.blocklist.models import Block, BlocklistSubmission, BlockType
+from olympia.blocklist.models import Block, BlocklistSubmission
 from olympia.blocklist.utils import delete_versions_from_blocks, save_versions_to_blocks
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.blocklist import BlockReason
+from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
 from olympia.files.models import File
@@ -1123,6 +1123,26 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
                 updated_by_id=self.updated_by_user_id,
             )
             submission.save()
+
+            return log_create(
+                amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCKED
+                if self.block_type == BlockType.BLOCKED
+                else amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED,
+                self.target,
+                self.decision,
+                *versions,
+                self.delay_days,
+                **(
+                    {'user': self.decision.reviewer_user}
+                    if self.decision.reviewer_user
+                    else {}
+                ),
+                details={
+                    'human_review': self.is_human_reviewer(),
+                    'delayed_until': delayed_until.isoformat(),
+                    'versions': [ver.version for ver in versions],
+                },
+            )
 
     @classmethod
     def reverse_action(cls, *, reversed_decision, new_decision):
