@@ -227,9 +227,10 @@ class TestReviewLog(ReviewerTest):
         rows = doc('tbody tr')
         assert rows.filter(':not(.hide)').length == 2
         assert rows.filter('.hide').eq(0).text() == 'youwin'
-        # Should have none showing if the addons are unlisted.
+        # Should have none showing if the addons are unlisted or enterprise.
         for addon in Addon.objects.all():
             self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
+        addon.find_latest_version(channel=None).update(channel=amo.CHANNEL_ENTERPRISE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -482,6 +483,24 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
             '<a href="/en-US/reviewers/review-unlisted/3615">Delicious Bookmarks</a> '
+            'Versions 3.0, 2.1.072 auto-approval confirmed.'
+        )
+
+    def test_enterprise_review_log_link(self):
+        addon = Addon.objects.get(pk=3615)
+        self.change_channel_for_addon(addon, amo.CHANNEL_ENTERPRISE)
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE, version='3.0')
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            addon,
+            *list(addon.versions.all()),
+            user=self.user,
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-enterprise/3615">Delicious Bookmarks</a> '
             'Versions 3.0, 2.1.072 auto-approval confirmed.'
         )
 

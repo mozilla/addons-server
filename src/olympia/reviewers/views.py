@@ -872,7 +872,12 @@ def reviewlog(request):
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        qs = qs.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
+        qs = qs.exclude(
+            versionlog__version__channel__in=(
+                amo.CHANNEL_UNLISTED,
+                amo.CHANNEL_ENTERPRISE,
+            )
+        )
     if not acl.is_listed_addons_reviewer(request.user):
         qs = qs.exclude(versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
     if not acl.is_static_theme_reviewer(request.user):

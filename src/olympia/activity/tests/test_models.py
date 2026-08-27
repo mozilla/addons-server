@@ -288,6 +288,17 @@ class TestActivityLog(TestCase):
         assert len(entries) == 1
         assert url_path not in str(entries[0])
 
+    def test_addon_log_enterprise_addon(self):
+        addon = Addon.objects.get()
+        url_path = addon.get_url_path()
+        self.change_channel_for_addon(addon, amo.CHANNEL_ENTERPRISE)
+        # Delete the status change log entry from making versions enterprise.
+        ActivityLog.objects.for_addons(addon).delete()
+        ActivityLog.objects.create(amo.LOG.CREATE_ADDON, (Addon, addon.id))
+        entries = ActivityLog.objects.for_addons(addon)
+        assert len(entries) == 1
+        assert url_path not in str(entries[0])
+
     def test_fancy_rendering(self):
         """HTML for Rating, and Collection."""
         user = UserProfile.objects.create()
@@ -560,6 +571,17 @@ class TestActivityLog(TestCase):
         # Get the url before the addon is changed to unlisted.
         url_path = version.get_url_path()
         self.change_channel_for_addon(version.addon, amo.CHANNEL_UNLISTED)
+        ActivityLog.objects.create(
+            amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
+        )
+        entries = ActivityLog.objects.for_versions(version)
+        assert len(entries) == 1
+        assert url_path not in str(entries[0])
+
+    def test_version_log_enterprise_addon(self):
+        version = Version.objects.all()[0]
+        url_path = version.get_url_path()
+        self.change_channel_for_addon(version.addon, amo.CHANNEL_ENTERPRISE)
         ActivityLog.objects.create(
             amo.LOG.REJECT_VERSION, version.addon, version, user=self.request.user
         )
