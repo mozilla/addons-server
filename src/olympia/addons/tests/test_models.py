@@ -4113,7 +4113,7 @@ class TestExtensionsQueues(TestCase):
                 addon=version_factory(
                     addon=(
                         addon_mixed_with_both_awaiting_review := addon_factory(
-                            name='Mixed with both channel awaiting review',
+                            name='Mixed channels awaiting review',
                             reviewer_flags={
                                 'auto_approval_disabled_unlisted': True,
                                 'auto_approval_disabled': True,
