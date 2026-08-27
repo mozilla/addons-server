@@ -863,6 +863,11 @@ class TestVersion(AMOPaths, TestCase):
     def test_get_url_path(self):
         assert self.version.get_url_path() == ('/en-US/firefox/addon/a3615/versions/')
 
+    def test_get_url_path_non_listed_channels(self):
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.version.update(channel=channel)
+            assert self.version.get_url_path() == ''
+
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)
         additional_version = version_factory(

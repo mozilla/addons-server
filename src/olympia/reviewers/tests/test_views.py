@@ -2171,15 +2171,16 @@ class TestModeratedQueue(QueueTest):
         assert doc('.no-results').length == 1
 
     def test_do_not_show_reviews_for_unlisted_addons(self):
-        for addon in Addon.objects.all():
-            self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            for addon in Addon.objects.all():
+                self.change_channel_for_addon(addon, channel)
 
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)('#reviews-flagged')
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response.content)('#reviews-flagged')
 
-        # There should be no results since all add-ons are unlisted.
-        assert doc('.no-results').length == 1
+            # There should be no results since no add-on is listed.
+            assert doc('.no-results').length == 1
 
 
 class TestContentReviewQueue(QueueTest):
@@ -8092,14 +8093,16 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
     def test_unlisted_reviewer_can_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
-        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
-        assert self.client.get(self.url).status_code == 200
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code == 200
 
     def test_unlisted_viewer_can_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
-        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
-        assert self.client.get(self.url).status_code == 200
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code == 200
 
     def test_non_reviewer_cannot_see_json_results(self):
         self.client.login_api(self.user)
@@ -8120,11 +8123,12 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
     def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
-        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
-        assert self.client.get(self.url).status_code in [
-            401,
-            403,
-        ]  # JWT auth is a 401; web auth is 403
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code in [
+                401,
+                403,
+            ]  # JWT auth is a 401; web auth is 403
 
 
 class TestAddonReviewerViewSetJsonValidationJWT(TestAddonReviewerViewSetJsonValidation):

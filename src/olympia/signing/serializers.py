@@ -102,4 +102,4 @@ class SigningFileUploadSerializer(AMOModelSerializer):
         return self.get_active(instance)
 
     def get_automated_signing(self, instance):
-        return instance.channel == amo.CHANNEL_UNLISTED
+        return instance.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE)

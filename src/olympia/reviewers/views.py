@@ -1151,7 +1151,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def json_file_validation(self, request, **kwargs):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
-        if file.version.channel == amo.CHANNEL_UNLISTED:
+        if file.version.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
             if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
                 raise PermissionDenied
         elif not acl.is_reviewer(request.user, addon):
