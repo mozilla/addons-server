@@ -107,6 +107,14 @@ def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
     exclude_flags_by_channel = {
+        amo.CHANNEL_ENTERPRISE: (
+            'auto_approval_disabled',
+            'auto_approval_delayed_temporarily',
+            'auto_approval_delayed_indefinitely',
+            'auto_approval_disabled_unlisted',
+            'auto_approval_delayed_temporarily_unlisted',
+            'auto_approval_delayed_indefinitely_unlisted',
+        ),
         amo.CHANNEL_UNLISTED: (
             'auto_approval_disabled',
             'auto_approval_delayed_temporarily',
