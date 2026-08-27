@@ -1011,6 +1011,9 @@ def developer_profile(request, user_id):
         '_listed_versions_exists': Exists(
             sub_versions_qs.filter(channel=amo.CHANNEL_LISTED)
         ),
+        '_enterprise_versions_exists': Exists(
+            sub_versions_qs.filter(channel=amo.CHANNEL_ENTERPRISE)
+        ),
     }
     qs = (
         Addon.unfiltered.filter(authors=developer)
