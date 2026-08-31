@@ -755,6 +755,9 @@ def review(request, addon, channel=None):
         subscribed_unlisted=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).exists(),
+        subscribed_enterprise=ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon, channel=amo.CHANNEL_ENTERPRISE
+        ).exists(),
         user_ratings=user_ratings,
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
@@ -1051,28 +1054,36 @@ class AddonReviewerViewSet(GenericViewSet):
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
-    def subscribe_listed(self, request, **kwargs):
+    def unsubscribe(self, request, **kwargs):
+        return self.unsubscribe_listed(request, **kwargs)
+
+    def _subscribe_to_channel(self, request, channel, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
+            user=request.user, addon=addon, channel=channel
         )
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    def _unsubscribe_from_channel(self, request, channel, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon, channel=channel
+        ).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
-    def unsubscribe(self, request, **kwargs):
-        return self.unsubscribe_listed(request, **kwargs)
+    def subscribe_listed(self, request, **kwargs):
+        return self._subscribe_to_channel(request, channel=amo.CHANNEL_LISTED, **kwargs)
 
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
     def unsubscribe_listed(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
-        ).delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_LISTED, **kwargs
+        )
 
     @drf_action(
         detail=True,
@@ -1080,11 +1091,9 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def subscribe_unlisted(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
+        return self._subscribe_to_channel(
+            request, channel=amo.CHANNEL_UNLISTED, **kwargs
         )
-        return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
         detail=True,
@@ -1092,11 +1101,29 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def unsubscribe_unlisted(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
-        ).delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_UNLISTED, **kwargs
+        )
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
+    )
+    def subscribe_enterprise(self, request, **kwargs):
+        return self._subscribe_to_channel(
+            request, channel=amo.CHANNEL_ENTERPRISE, **kwargs
+        )
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
+    )
+    def unsubscribe_enterprise(self, request, **kwargs):
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_ENTERPRISE, **kwargs
+        )
 
     @drf_action(
         detail=True,
