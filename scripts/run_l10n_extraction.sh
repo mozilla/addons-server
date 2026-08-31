@@ -15,7 +15,7 @@ set -u
 DJANGO_SETTINGS_MODULE=settings
 
 # gettext flags
-CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
+CLEAN_FLAGS="--no-obsolete --width=200"
 MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
 UNIQ_FLAGS="--width=200"
 LOCALE_TEMPLATE_DIR="locale/templates/LC_MESSAGES"
