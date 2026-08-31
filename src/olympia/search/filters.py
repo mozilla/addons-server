@@ -606,7 +606,7 @@ class SearchQueryFilter(BaseFilterBackend):
         - In the second one, we did store a translation in that language...
           potentially. We don't know in advance if there is a translation for
           each add-on! We need to do a query against both `name.raw` and
-          `name_l10n_<analyzer>.raw`, applying the boost only once if both
+          `name_l10n_<lang>.raw`, applying the boost only once if both
           match. This is where the DisMax comes in, it's what MultiMatch
           would do, except that it works with Term queries.
         """
@@ -642,6 +642,57 @@ class SearchQueryFilter(BaseFilterBackend):
             )
         return clause
 
+    def generate_analyzed_exact_name_match_query(self, search_query, lang):
+        """
+        Return the exact name match query, applied after analysis.
+
+        Same as generate_exact_name_match_query() but against analyzed fields,
+        so a name that matches once stemmed still counts ("tabs manager"
+        finding "Tab Manager"). Sentinel tokens wrap both sides, so the phrase
+        can only match a whole name, never one that merely contains it.
+
+        The must_not makes it a strict fallback: an add-on that already matches
+        literally keeps the score it had. Like the literal match, it has 2
+        modes depending on whether the language has an analyzer.
+        """
+        sentinel_query = f'{amo.SENTINEL_BEGIN} {search_query} {amo.SENTINEL_END}'
+        analyzer = self.get_locale_analyzer(lang)
+        if analyzer is None:
+            clause = query.MatchPhrase(
+                **{
+                    'name_exact_sentinel': {
+                        '_name': 'MatchPhrase(name_exact_sentinel)',
+                        'query': sentinel_query,
+                        'boost': 50.0,
+                    }
+                }
+            )
+        else:
+            queries = [
+                {'match_phrase': {'name_exact_sentinel': sentinel_query}},
+            ]
+            fields = [
+                f'name_exact_sentinel_l10n_{lang}'
+                for lang in amo.SEARCH_ANALYZER_MAP[analyzer]
+            ]
+            queries.extend(
+                [{'match_phrase': {field: sentinel_query}} for field in fields]
+            )
+            match_phrase_fields = ', '.join(f'MatchPhrase({field})' for field in fields)
+            clause = query.DisMax(
+                _name=(
+                    f'DisMax(MatchPhrase(name_exact_sentinel), {match_phrase_fields})'
+                ),
+                boost=50.0,
+                queries=queries,
+            )
+        return query.Bool(
+            _name='Bool(AnalyzedExactName, !ExactName)',
+            must=[clause],
+            # must_not is a filter context: this clause only excludes documents.
+            must_not=[self.generate_exact_name_match_query(search_query, lang)],
+        )
+
     def primary_should_rules(self, search_query, lang):
         """Return "primary" should rules for the query.
 
@@ -651,7 +702,8 @@ class SearchQueryFilter(BaseFilterBackend):
         Applied rules:
 
         * Exact match on the name, using the right translation if possible
-          (boost=100.0)
+          (boost=100.0); if that didn't match, an analyzed (stemmed) exact
+          match on the name as a fallback (boost=50.0)
         * Then text matches, using a language specific analyzer if possible
           (boost=5.0)
         * Phrase matches that allows swapped terms (boost=8.0)
@@ -659,6 +711,13 @@ class SearchQueryFilter(BaseFilterBackend):
         * Then look for the query as a prefix of a name (boost=3.0)
         """
         should = [self.generate_exact_name_match_query(search_query, lang)]
+
+        # A query with no letters or digits analyzes to just the two sentinels,
+        # which would match every name that also analyzes to nothing.
+        if re.search(r'[^\W_]', search_query):
+            should.append(
+                self.generate_analyzed_exact_name_match_query(search_query, lang)
+            )
 
         # If we are searching with a language that we support, we also try to
         # do a match against the translated field. If not, we'll do a match
