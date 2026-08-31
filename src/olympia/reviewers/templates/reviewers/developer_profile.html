@@ -43,6 +43,11 @@
               <a href="{{ url('reviewers.review', 'unlisted', addon.id)}}">Unlisted Review</a>
             {% endif %}
           </td>
+          <td>
+            {% if addon._enterprise_versions_exists %}
+              <a href="{{ url('reviewers.review', 'enterprise', addon.id)}}">Enterprise Review</a>
+            {% endif %}
+          </td>
           {% endwith %}
         </tr>
         {% endfor %}

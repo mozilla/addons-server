@@ -1764,7 +1764,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         ).exists()
 
     def test_unlisted_version(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         call_command('auto_reject')
 
         # Version stays unlisted, is disabled (even if that doesn't make much

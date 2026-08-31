@@ -526,10 +526,13 @@ class TestAbuseReport(TestCase):
         )
         assert report.is_individually_actionable is True
 
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         assert report.is_individually_actionable is False
 
-        self.make_addon_listed(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_ENTERPRISE)
+        assert report.is_individually_actionable is False
+
+        self.change_channel_for_addon(addon, amo.CHANNEL_LISTED)
         Version.objects.get(version=report.addon_version).delete()
         assert report.is_individually_actionable is True
 
@@ -4389,7 +4392,7 @@ class TestContentDecision(TestCase):
 
     def test_requeue_held_action_existing_job_unlisted(self):
         addon = addon_factory()
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         user = user_factory()
         job = CinderJob.objects.create(target_addon=addon)
         decision = ContentDecision.objects.create(

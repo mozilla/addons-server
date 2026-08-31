@@ -1046,6 +1046,10 @@ class TestAutoApprovalSummary(TestCase):
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
 
     def test_check_has_auto_approval_disabled_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -1065,6 +1069,11 @@ class TestAutoApprovalSummary(TestCase):
 
         # The auto_approval_disabled_unlisted flag only applies to unlisted.
         self.version.update(channel=amo.CHANNEL_LISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+        # ...and doesn't affect enterprise.
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1089,6 +1098,10 @@ class TestAutoApprovalSummary(TestCase):
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
 
     def test_check_has_auto_approval_disabled_until_next_approval_unlisted(self):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
@@ -1107,6 +1120,11 @@ class TestAutoApprovalSummary(TestCase):
         )
         # That flag only applies to unlisted.
         self.version.update(channel=amo.CHANNEL_LISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+        # ...and doesn't affect enterprise.
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1135,6 +1153,10 @@ class TestAutoApprovalSummary(TestCase):
 
         # That flag only applies to listed.
         self.version.update(channel=amo.CHANNEL_UNLISTED)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
@@ -1167,6 +1189,11 @@ class TestAutoApprovalSummary(TestCase):
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
         )
+        # ...and doesn't affect enterprise.
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
 
     def test_check_has_auto_approval_disabled_enterprise(self):
         # Enterprise versions should be unaffected by scanner flags.
@@ -1177,7 +1204,9 @@ class TestAutoApprovalSummary(TestCase):
         AddonReviewerFlags.objects.create(
             addon=self.addon,
             auto_approval_disabled=True,
+            auto_approval_disabled_unlisted=True,
         )
+        assert get_flags(self.addon, enterprise_version) == []
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is True
         )
@@ -1208,7 +1237,10 @@ class TestAutoApprovalSummary(TestCase):
         )  # line is though
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is True
 
-        self.version.update(channel=amo.CHANNEL_UNLISTED)  # not for unlisted though
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)  # not for enterprise
+        assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
+
+        self.version.update(channel=amo.CHANNEL_UNLISTED)  # nor unlisted
         assert AutoApprovalSummary.check_is_promoted_prereview(self.version) is False
 
         PromotedAddon.objects.filter(addon=self.addon).delete()
@@ -1243,6 +1275,15 @@ class TestAutoApprovalSummary(TestCase):
         self.version.update(
             created=datetime.now() - timedelta(hours=22),
             channel=amo.CHANNEL_UNLISTED,
+        )
+        assert (
+            AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False
+        )
+
+        # Neither should enterprise.
+        self.version.update(
+            created=datetime.now() - timedelta(hours=22),
+            channel=amo.CHANNEL_ENTERPRISE,
         )
         assert (
             AutoApprovalSummary.check_has_auto_approval_disabled(self.version) is False

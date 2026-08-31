@@ -1222,7 +1222,7 @@ class TestUserProfile(TestCase):
         AddonUser.objects.create(addon=extra_addon, user=user, listed=True)
         extra_addon2 = addon_factory()
         AddonUser.objects.create(addon=extra_addon2, user=user, listed=True)
-        self.make_addon_unlisted(extra_addon2)
+        self.change_channel_for_addon(extra_addon2, amo.CHANNEL_UNLISTED)
         assert user.num_addons_listed == 1
 
         AddonUser.objects.filter(addon=addon, user=user).update(listed=False)
@@ -1317,9 +1317,11 @@ class TestUserProfile(TestCase):
         assert user.has_full_profile
 
         # The add-on needs to be public.
-        self.make_addon_unlisted(addon)  # Easy way to toggle status
+        self.change_channel_for_addon(
+            addon, amo.CHANNEL_UNLISTED
+        )  # Easy way to toggle status
         assert not user.reload().has_full_profile
-        self.make_addon_listed(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_LISTED)
         addon.update(status=amo.STATUS_APPROVED)
         assert user.reload().has_full_profile
 
@@ -2085,7 +2087,9 @@ class TestOnChangeName(TestCase):
 
         # Add some extra add-ons that are going to be ignored.
         addon_factory(name='Force disabled', users=[user]).force_disable()
-        self.make_addon_unlisted(addon_factory(name='Pure unlisted', users=[user]))
+        self.change_channel_for_addon(
+            addon_factory(name='Pure unlisted', users=[user]), amo.CHANNEL_UNLISTED
+        )
 
         user.update(display_name='Flôp')
 

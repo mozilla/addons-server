@@ -42,7 +42,7 @@
                 {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
                   {% if addon.current_version %}
                     <div class="DevHub-MyAddons-item-version-details">
-                      {% if addon.has_version_in_channel(amo.CHANNEL_UNLISTED) %}
+                      {% if addon.has_multiple_channels() %}
                         <span class="DevHub-MyAddons-item-channel-listed tooltip"
                               title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
                         >AMO</span>
@@ -56,12 +56,12 @@
                     </div>
                   {% endif %}
                 {% endif %}
-
+                
                 {% set latest_unlisted_version=addon.find_latest_version(channel=amo.CHANNEL_UNLISTED) %}
 
                 {% if latest_unlisted_version %}
                   <div class="DevHub-MyAddons-item-version-details">
-                    {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
+                    {% if addon.has_multiple_channels() %}
                       <span class="DevHub-MyAddons-item-channel-unlisted tooltip"
                             title="{{ _('Signed for self-distribution. Updates are handled by you.') }}"
                       >Self</span>
@@ -72,6 +72,22 @@
                     </span>
                   </div>
                 {% endif %}
+
+                {% set latest_enterprise_version=addon.find_latest_version(channel=amo.CHANNEL_ENTERPRISE) %}
+
+                {% if latest_enterprise_version and waffle.switch('enterprise-channel') %}
+                  <div class="DevHub-MyAddons-item-version-details">
+                    {% if addon.has_multiple_channels() %}
+                      <span class="DevHub-MyAddons-item-channel-enterprise tooltip"
+                            title="{{ _('Signed for enterprise.') }}"
+                      >Enterprise</span>
+                    {% endif %}
+                    <span class="DevHub-MyAddons-item-version">
+                      {{ latest_enterprise_version.version }}
+                    </span>
+                  </div>
+                {% endif %}
+
               </div>
             </div>
             <span class="DevHub-MyAddons-item-modified">

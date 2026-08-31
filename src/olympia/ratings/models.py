@@ -29,11 +29,11 @@ class RatingQuerySet(BaseQuerySet):
 
         Ratings attached lacking an addon or attached to an addon that is no
         longer nominated or public are ignored, as well as ratings attached to
-        unlisted versions.
+        unlisted or enterprise versions.
         """
         return self.exclude(
             Q(addon__isnull=True)
-            | Q(version__channel=amo.CHANNEL_UNLISTED)
+            | Q(version__channel__in=(amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE))
             | Q(ratingflag__isnull=True)
         ).filter(editorreview=True, addon__status__in=amo.VALID_ADDON_STATUSES)
 

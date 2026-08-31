@@ -260,12 +260,12 @@ class TestAddonManager(TestCase):
         assert self.addon not in Addon.unfiltered.not_disabled_by_mozilla()
 
     def test_managers_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.addon in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
 
     def test_managers_unlisted_deleted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.addon.update(status=amo.STATUS_DELETED)
         assert self.addon not in Addon.objects.all()
         assert self.addon in Addon.unfiltered.all()
@@ -296,7 +296,7 @@ class TestAddonManager(TestCase):
         # Addon shouldn't be listed in collection.addons if it's deleted.
 
         # Unlisted.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.get() == self.addon
 
@@ -306,7 +306,7 @@ class TestAddonManager(TestCase):
         assert collection.addons.count() == 0
 
         # Only deleted.
-        self.make_addon_listed(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_LISTED)
         collection = Collection.objects.get(pk=collection.pk)
         assert collection.addons.count() == 0
 
@@ -318,7 +318,7 @@ class TestAddonManager(TestCase):
         # Deleted or unlisted, version.addon should still work.
 
         # Unlisted.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
         assert version.addon == self.addon
 
@@ -328,7 +328,7 @@ class TestAddonManager(TestCase):
         assert version.addon == self.addon
 
         # Only deleted.
-        self.make_addon_listed(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_LISTED)
         version = Version.objects.get(pk=version.pk)  # Reload from db.
         assert version.addon == self.addon
 
@@ -1481,7 +1481,7 @@ class TestAddonModels(TestCase):
 
     def test_unlisted_has_complete_metadata(self):
         addon = Addon.objects.get(id=3615)
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         assert addon.has_complete_metadata()  # Confirm complete already.
 
         # Clear everything
@@ -2161,7 +2161,7 @@ class TestAddonModels(TestCase):
         assert get_rvs(amo.CHANNEL_LISTED) == []
         assert get_rvs(amo.CHANNEL_UNLISTED) == []
 
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         File.objects.filter(version__addon=addon).update(status=amo.STATUS_APPROVED)
         assert addon.reload().current_version is None
         assert get_rvs(amo.CHANNEL_LISTED) == []
@@ -2367,7 +2367,7 @@ class TestAddonUser(TestCase):
     def test_dont_run_narc_no_listed_version(self, run_narc_on_version_mock):
         self.create_switch('enable-narc', active=True)
         addon = addon_factory(users=[user_factory()])
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         addon.addonuser_set.create(user=user_factory())
         assert run_narc_on_version_mock.delay.call_count == 0
 
@@ -3133,7 +3133,7 @@ class TestGetVersion(TestCase):
         assert self.addon.find_latest_non_rejected_listed_version() is None
 
     def test_find_latest_non_rejected_listed_version_no_listed(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.addon.find_latest_non_rejected_listed_version() is None
 
 
@@ -4117,7 +4117,7 @@ class TestExtensionsQueues(TestCase):
                 addon=version_factory(
                     addon=(
                         addon_mixed_with_both_awaiting_review := addon_factory(
-                            name='Mixed with both channel awaiting review',
+                            name='Mixed channels awaiting review',
                             reviewer_flags={
                                 'auto_approval_disabled_unlisted': True,
                                 'auto_approval_disabled': True,

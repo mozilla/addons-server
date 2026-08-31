@@ -1022,13 +1022,13 @@ class TestVersion(TestCase):
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        # with both channels available, but no appropriate listed version
+        # with several channels available, but no appropriate listed version
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('a.button.version-rollback').length == 1
         modal = doc('#modal-rollback-version')
         assert modal.length == 1
-        # this time we show the channel selector, because there are both channels
+        # this time we show the channel selector, because there are several channels
         channel_selector = 'input[name="channel"]'
         assert modal(channel_selector).attr('type') == 'radio'
         # but default to unlisted, because there are no listed versions to rollback to
@@ -1070,7 +1070,7 @@ class TestVersion(TestCase):
         assert doc('a.button.version-rollback').length == 1
         modal = doc('#modal-rollback-version')
         assert modal.length == 1
-        # this time we show the channel selector, because there are both channels
+        # this time we show the channel selector, because there are several channels
         channel_selector = 'input[name="channel"]'
         assert modal(channel_selector).attr('type') == 'radio'
         # and preselect unlisted because it's the most recent channel for a version
