@@ -97,25 +97,25 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
         assert response.status_code == 200
 
     def test_get_not_listed_simple_reviewer(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._login_reviewer()
         response = self.client.get(self.url)
         assert response.status_code == 403
 
     def test_get_not_listed_specific_reviewer(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._login_reviewer(permission=amo.permissions.ADDONS_REVIEW_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_not_listed_unlisted_viewer(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._login_reviewer(permission=amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         response = self.client.get(self.url)
         assert response.status_code == 200
 
     def test_get_not_listed_author(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._login_developer()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -511,7 +511,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         )
 
     def test_developer_reply_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._test_developer_reply()
         self.assertCloseToNow(
             self.version.due_date,
@@ -558,7 +558,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW)
 
     def test_reviewer_reply_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW_UNLISTED)
 
     def test_reply_to_deleted_addon_is_404(self):
@@ -618,7 +618,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW)
 
     def test_reviewer_can_reply_to_disabled_version_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.version.file.update(status=amo.STATUS_DISABLED)
         self._test_reviewer_reply(amo.permissions.ADDONS_REVIEW_UNLISTED)
 

@@ -571,7 +571,7 @@ class AddonAbuseViewSetTestBase:
     def test_reportable_reason_does_not_call_if_version_unlisted(self, task_mock):
         addon = addon_factory(guid='@badman')
         version = addon.current_version
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         self._setup_reportable_reason(
             'hateful_violent_deceptive',
             addon=addon,

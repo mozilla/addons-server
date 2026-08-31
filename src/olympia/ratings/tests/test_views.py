@@ -2853,7 +2853,7 @@ class TestRatingViewSetFlag(TestCase):
         assert self.rating.reload().editorreview is True
 
     def test_flag_logged_in_addon_denied(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.post(self.url, data={'flag': 'review_flag_reason_spam'})

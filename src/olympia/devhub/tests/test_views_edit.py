@@ -55,12 +55,12 @@ class BaseTestEdit(TestCase):
         for t in self.tags:
             Tag.objects.get_or_create(tag_text=t)[0].add_tag(addon)
         if self.listed:
-            self.make_addon_listed(addon)
+            self.change_channel_for_addon(addon, amo.CHANNEL_LISTED)
             ac = AddonCategory.objects.filter(addon=addon, category_id=22)[0]
             ac.save()
             AddonCategory.objects.filter(addon=addon, category_id__in=[1, 71]).delete()
         else:
-            self.make_addon_unlisted(addon)
+            self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
             addon.save()
 
         self.user = UserProfile.objects.get(pk=55021)

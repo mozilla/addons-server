@@ -164,7 +164,7 @@ class TestEditLicense(TestOwnership):
         assert license_form.errors == {'builtin': ['This field is required.']}
 
     def test_no_license_required_for_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         data = self.build_form_data({'builtin': ''})
         response = self.client.post(self.url, data)
         assert response.status_code == 302
@@ -1067,6 +1067,6 @@ class TestAuthorInvitation(TestCase):
         ).exists()
 
     def test_invitation_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_invited()
         self.test_post_accept()

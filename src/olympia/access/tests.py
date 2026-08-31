@@ -267,8 +267,8 @@ class TestCheckReviewer(TestCase):
         assert not is_reviewer(self.user, self.addon, allow_content_reviewers=False)
 
     def test_perm_reviewertools_unlisted_view(self):
-        self.make_addon_unlisted(self.addon)
-        self.make_addon_unlisted(self.statictheme)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
+        self.change_channel_for_addon(self.statictheme, amo.CHANNEL_UNLISTED)
         self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         assert is_user_any_kind_of_reviewer(self.user, allow_viewers=True)
         assert not is_user_any_kind_of_reviewer(self.user)

@@ -527,22 +527,22 @@ def run_addons_linter(path, channel):
     parsed_data = json.loads(force_str(output))
 
     results = fix_addons_linter_output(parsed_data, channel)
-    track_validation_stats(results)
+    track_validation_stats(results, channel)
 
     return results
 
 
-def track_validation_stats(results):
+def track_validation_stats(results, channel):
     """
     Given a dict of validator results, log some stats.
     """
     result_kind = 'success' if results['errors'] == 0 else 'failure'
     statsd.incr(f'devhub.linter.results.all.{result_kind}')
 
-    listed_tag = 'listed' if results['metadata']['listed'] else 'unlisted'
+    tag = amo.CHANNEL_CHOICES_API[channel]
 
     # Track listed/unlisted success/fail.
-    statsd.incr(f'devhub.linter.results.{listed_tag}.{result_kind}')
+    statsd.incr(f'devhub.linter.results.{tag}.{result_kind}')
 
 
 def _recreate_images_for_preview(preview):
