@@ -23,7 +23,8 @@
 {% set status_tips = {
     amo.STATUS_NULL: _('Please complete your add-on by adding a version or missing metadata.'),
     amo.STATUS_NOMINATED: _("You will receive an email when the review is complete. Until "
-                            "then, this version is not publicly available."),
+                            "then, your add-on is not publicly available. You, the "
+                            "authenticated author, can access its details page."),
     amo.STATUS_APPROVED: _("Your add-on is displayed in our gallery and users are "
                            "receiving automatic updates."),
     amo.STATUS_DISABLED: _("Your add-on was disabled by a site administrator and is no "
