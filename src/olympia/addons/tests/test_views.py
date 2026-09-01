@@ -882,6 +882,149 @@ class AddonViewSetCreateUpdateMixin(RequestMixin):
         }
 
 
+class TestAddonViewSetList(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.url = reverse_ns('addon-list', api_version='v5')
+
+    def _get_results(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200, response.content
+        return response.json()
+
+    def test_anonymous_sees_nothing(self):
+        # There are add-ons in the database, but an anonymous user shouldn't
+        # see any of them through the list endpoint.
+        addon_factory(users=[self.user])
+        addon_factory()
+
+        data = self._get_results()
+        assert data['count'] == 0
+        assert data['results'] == []
+
+    def test_authenticated_only_sees_own_addons(self):
+        other_user = user_factory()
+        my_addon = addon_factory(users=[self.user])
+        # An add-on the user co-authors should also be returned.
+        shared_addon = addon_factory(users=[self.user, other_user])
+        # Owned by someone else - should not be returned.
+        addon_factory(users=[other_user])
+        # Nobody owns this one - should not be returned.
+        addon_factory()
+        # This add-on _used_ to be owned, but the user's ownership has been deleted
+        ex_addon = addon_factory(users=[self.user])
+        AddonUser.objects.filter(addon=ex_addon, user=self.user).delete()
+
+        self.client.login_api(self.user)
+        data = self._get_results()
+        assert data['count'] == 2
+        assert [result['id'] for result in data['results']] == [
+            my_addon.pk,
+            shared_addon.pk,
+        ]
+
+    def test_uses_developer_serializer(self):
+        addon = addon_factory(users=[self.user])
+        unlisted_version = version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED)
+        self.client.login_api(self.user)
+
+        data = self._get_results()
+        assert data['count'] == 1
+        result = data['results'][0]
+        # 'latest_unlisted_version' is only serialized by DeveloperAddonSerializer
+        assert result['latest_unlisted_version']
+        assert result['latest_unlisted_version']['id'] == unlisted_version.pk
+
+    def test_all_statuses_returned_except_deleted(self):
+        approved = addon_factory(users=[self.user], status=amo.STATUS_APPROVED)
+        nominated = addon_factory(users=[self.user], status=amo.STATUS_NOMINATED)
+        incomplete = addon_factory(users=[self.user], status=amo.STATUS_NULL)
+        disabled = addon_factory(users=[self.user], status=amo.STATUS_DISABLED)
+        # Deleted add-ons must never be returned, even to their author.
+        deleted = addon_factory(users=[self.user])
+        deleted.delete()
+        assert deleted.reload().status == amo.STATUS_DELETED
+
+        self.client.login_api(self.user)
+        data = self._get_results()
+        assert data['count'] == 4
+        assert {result['id'] for result in data['results']} == {
+            approved.pk,
+            nominated.pk,
+            incomplete.pk,
+            disabled.pk,
+        }
+
+    def test_sort_by_created(self):
+        older = addon_factory(users=[self.user], created=self.days_ago(10))
+        newer = addon_factory(users=[self.user], created=self.days_ago(1))
+        self.client.login_api(self.user)
+
+        url = self.url
+        self.url = url + '?sort=created'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [older.pk, newer.pk]
+
+        self.url = url + '?sort=-created'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [newer.pk, older.pk]
+
+    def test_sort_by_ratings_alias(self):
+        # 'ratings.bayesian_rating' is an alias for 'bayesian_rating'.
+        popular = addon_factory(users=[self.user], bayesian_rating=4.9)
+        unpopular = addon_factory(users=[self.user], bayesian_rating=2.1)
+        self.client.login_api(self.user)
+
+        url = self.url
+        self.url = url + '?sort=ratings.bayesian_average'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [
+            unpopular.pk,
+            popular.pk,
+        ]
+
+        self.url = url + '?sort=-ratings.bayesian_average'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [
+            popular.pk,
+            unpopular.pk,
+        ]
+
+    def test_default_sort_is_oldest_id_first(self):
+        first = addon_factory(users=[self.user])
+        second = addon_factory(users=[self.user])
+        self.client.login_api(self.user)
+
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [first.pk, second.pk]
+
+    def test_filter_by_type(self):
+        extension = addon_factory(users=[self.user], type=amo.ADDON_EXTENSION)
+        theme = addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+        self.client.login_api(self.user)
+
+        self.url = reverse_ns('addon-list', api_version='v5') + '?type=extension'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [extension.pk]
+
+        self.url = reverse_ns('addon-list', api_version='v5') + '?type=statictheme'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [theme.pk]
+
+    def test_filter_by_invalid_type(self):
+        addon_factory(users=[self.user], type=amo.ADDON_EXTENSION)
+        self.client.login_api(self.user)
+
+        self.url = self.url + '?type=notatype'
+        response = self.client.get(self.url)
+        # An invalid ?type value should be rejected with a 400, not a 500.
+        assert response.status_code == 400, response.content
+        assert response.json() == ['Invalid "type" parameter.']
+
+
 class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
     client_request_verb = 'post'
