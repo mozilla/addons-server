@@ -443,6 +443,10 @@ def call_webhooks_on_version_created(version_pk):
 
         version = Version.unfiltered.get(pk=version_pk)
 
+        if version.addon.type == amo.ADDON_LPAPP:
+            log.info('Skipping webhooks on langpack %s', version_pk)
+            return
+
         payload = {
             'addon': WebhookAddonSerializer(version.addon).data,
             'version': WebhookVersionSerializer(version).data,

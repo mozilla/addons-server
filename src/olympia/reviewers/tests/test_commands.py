@@ -1095,6 +1095,18 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         assert not run_actions_mock.called
 
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_langpack_does_not_wait_on_scanners(self, run_actions_mock):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve')
+
+        assert run_actions_mock.called
+        assert self.version.autoapprovalsummary.scanner_actions_executed
+
     def test_run_disapprove(self):
         def check_assertions():
             # Hasn't been approved, a NHR was created.
