@@ -501,9 +501,7 @@ class ReviewHelper:
         )
         version_is_unreviewed = self.version and self.version.is_unreviewed
         version_was_rejected = bool(
-            self.version
-            and self.version.file.status == amo.STATUS_DISABLED
-            and self.version.human_review_date
+            self.version and self.version.file.status == amo.STATUS_DISABLED
         )
         addon_is_valid = self.addon.is_public() or self.addon.is_unreviewed()
         addon_is_valid_and_version_is_listed = addon_is_valid and version_is_listed
