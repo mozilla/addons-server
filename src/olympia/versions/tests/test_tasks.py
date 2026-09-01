@@ -1051,6 +1051,15 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         )
 
     @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_skip_webhooks_on_langpack_created(self, call_webhooks_mock):
+        addon = addon_factory(type=amo.ADDON_LPAPP)
+        version = version_factory(addon=addon)
+        addon.reload()
+
+        call_webhooks_on_version_created(version.pk)
+        call_webhooks_mock.assert_not_called()
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):
         addon = addon_factory()
         version = version_factory(addon=addon)

@@ -708,6 +708,10 @@ class AutoApprovalSummary(ModelBase):
         if waffle.switch_is_active('disable-check-is-waiting-on-scanners'):
             return False
 
+        # Prevent langpacks from getting stuck on waiting
+        if version.addon.type == amo.ADDON_LPAPP:
+            return False
+
         webhook_event_ids = ScannerWebhookEvent.objects.filter(
             # We want to find the active events to wait for...
             event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
