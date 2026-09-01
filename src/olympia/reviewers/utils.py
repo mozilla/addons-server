@@ -95,8 +95,11 @@ class AddonQueueTable(tables.Table):
 
     def _get_addon_name_url(self, record):
         args = [record.id]
-        if self.get_version(record).channel == amo.CHANNEL_UNLISTED:
-            args.insert(0, 'unlisted')
+        if (channel := self.get_version(record).channel) in (
+            amo.CHANNEL_UNLISTED,
+            amo.CHANNEL_ENTERPRISE,
+        ):
+            args.insert(0, amo.CHANNEL_CHOICES_API[channel])
         return reverse('reviewers.review', args=args)
 
     def render_addon_name(self, record):

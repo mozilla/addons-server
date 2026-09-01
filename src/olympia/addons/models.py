@@ -1139,7 +1139,7 @@ class Addon(OnChangeMixin, ModelBase):
     ):
         """Retrieve the latest version of an add-on for the specified channel.
 
-        If channel is None either channel is returned.
+        If channel is None, any channel is returned.
 
         Keyword arguments:
         exclude -- exclude versions for which all files have one of those statuses
@@ -1491,7 +1491,7 @@ class Addon(OnChangeMixin, ModelBase):
         return addon_dict
 
     @property
-    def contribution_url(self, lang=settings.LANGUAGE_CODE, app=settings.DEFAULT_APP):
+    def contribution_url(self):
         return reverse('addons.contribute', args=[self.slug])
 
     def can_request_review(self):
@@ -2431,7 +2431,7 @@ models.signals.post_delete.connect(
 class AddonUserPendingConfirmation(OnChangeMixin, SaveUpdateMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    user = user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     role = models.SmallIntegerField(
         default=amo.AUTHOR_ROLE_OWNER, choices=amo.AUTHOR_CHOICES
     )

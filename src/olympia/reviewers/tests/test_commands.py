@@ -1095,6 +1095,18 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
 
         assert not run_actions_mock.called
 
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_langpack_does_not_wait_on_scanners(self, run_actions_mock):
+        self.addon.update(type=amo.ADDON_LPAPP)
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve')
+
+        assert run_actions_mock.called
+        assert self.version.autoapprovalsummary.scanner_actions_executed
+
     def test_run_disapprove(self):
         def check_assertions():
             # Hasn't been approved, a NHR was created.
@@ -1764,7 +1776,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         ).exists()
 
     def test_unlisted_version(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         call_command('auto_reject')
 
         # Version stays unlisted, is disabled (even if that doesn't make much
@@ -1907,7 +1919,7 @@ class TestAutoReject(AutoRejectTestsMixin, TestCase):
         # We notify the addon developer (only) while resolving abuse reports
         assert len(mail.outbox) == 1
         assert 'Some cômments' in mail.outbox[0].body
-        assert 'your extension have been disabled'
+        assert 'your extension have been disabled' in mail.outbox[0].body
         assert 'right to appeal' in mail.outbox[0].body
 
     def test_reject_versions_with_resolved_cinder_job_no_third_party(self):

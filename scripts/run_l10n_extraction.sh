@@ -15,7 +15,7 @@ set -u
 DJANGO_SETTINGS_MODULE=settings
 
 # gettext flags
-CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
+CLEAN_FLAGS="--no-obsolete --width=200"
 MERGE_FLAGS="--update --width=200 --backup=none --no-fuzzy-matching"
 UNIQ_FLAGS="--width=200"
 LOCALE_TEMPLATE_DIR="locale/templates/LC_MESSAGES"
@@ -38,6 +38,17 @@ DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} pybabel extract -F babeljs.cfg 
 
 pushd locale > /dev/null
 
+# Bail early if no changes to the template files.
+DIFF_WITH_ONE_LINE_CHANGE="2 files changed, 2 insertions(+), 2 deletions(-)"
+git_diff_stat=$(git diff --shortstat templates/LC_MESSAGES)
+info "git_diff_stat: $git_diff_stat"
+
+if [[ -z "$git_diff_stat" ]] || [[ "$git_diff_stat" == *"$DIFF_WITH_ONE_LINE_CHANGE"* ]]; then
+  info """
+    No substantial changes to l10n strings found. Exiting the process.
+  """
+  exit 0
+fi
 
 info "Merging any new keys from templates/LC_MESSAGES/django.pot"
 for i in `find . -name "django.po" | grep -v "en_US"`; do

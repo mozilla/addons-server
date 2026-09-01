@@ -104,7 +104,7 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time: str, actions: List[str] = None):
+def upload_filter(generation_time: str, actions: List[str] | None = None):
     # Deserialize the actions from the string list
     # We have to do this because celery does not support enum arguments
     actions = [BlockListAction[action] for action in actions]

@@ -302,9 +302,7 @@ def run_narc_on_version(version_pk, *, run_actions_on_match=True):
             ScannerResult.run_actions(version)
     except Exception as exc:
         statsd.incr('devhub.narc.failure')
-        log.exception(
-            'Error in scanner "narc" task for Version %s.', version_pk, exc_info=True
-        )
+        log.exception('Error in scanner "narc" task for Version %s.', version_pk)
         # Not part of the submission process, so we can always raise.
         raise exc
     else:
@@ -508,9 +506,7 @@ def _run_yara(results, upload_pk):
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
     except Exception as exc:
         statsd.incr('devhub.yara.failure')
-        log.exception(
-            'Error in scanner "yara" task for FileUpload %s.', upload_pk, exc_info=True
-        )
+        log.exception('Error in scanner "yara" task for FileUpload %s.', upload_pk)
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
             raise exc
 

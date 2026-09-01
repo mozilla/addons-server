@@ -464,6 +464,23 @@ function initExtraReviewActions() {
     }),
   );
 
+  $('#notify_new_enterprise_versions').click(
+    _pd(function () {
+      let $input = $(this).prop('disabled', true); // Prevent double-send.
+      let checked = !$input.prop('checked'); // It's already changed.
+      let apiUrl;
+      if (checked) {
+        apiUrl = $input.data('api-url-unsubscribe-enterprise');
+      } else {
+        apiUrl = $input.data('api-url-subscribe-enterprise');
+      }
+      callReviewersAPI(apiUrl, 'post', null, function () {
+        $input.prop('disabled', false);
+        $input.prop('checked', !checked);
+      });
+    }),
+  );
+
   $('#due_date_update').on(
     'change',
     _pd(function () {

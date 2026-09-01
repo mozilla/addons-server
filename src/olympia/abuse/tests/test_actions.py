@@ -1574,7 +1574,7 @@ class TestContentActionRejectVersion(TestContentActionDisableAddon):
         assert len(mail.outbox) == 3
         self._test_reporter_takedown_email(subject)
 
-    def test_execute_action_both_channels(self):
+    def test_execute_action_listed_unlisted(self):
         # Only make one of the two versions targeted unlisted.
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         subject = self._test_reject_version(content_review=False)
@@ -3188,7 +3188,7 @@ class TestContentActionApproveVersion(
 
     def test_execute_action_unlisted(self):
         # testing the case of: unlisted versions; human review
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.addon.status == amo.STATUS_NULL
         ActivityLog.objects.all().delete()
         for version in (self.version, self.old_version):

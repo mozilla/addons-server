@@ -4,7 +4,7 @@
 {{ dev_page_title(_('Theme generate'), addon) }}
 {% endblock %}
 
-{% set channel_param = 'listed' if channel == amo.CHANNEL_LISTED else 'unlisted' %}
+{% set channel_param = amo.CHANNEL_CHOICES_API[channel] %}
 
 {% block primary %}
   <h3>{{ _('Theme generator') }}</h3>

@@ -243,7 +243,7 @@ class TestDashboard(HubTest):
         )
 
     def test_purely_unlisted_addon_are_not_shown_as_incomplete(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.addon.has_complete_metadata()
 
         response = self.client.get(self.url)
@@ -257,7 +257,7 @@ class TestDashboard(HubTest):
         assert doc('.item-details')
 
     def test_mixed_versions_addon_with_incomplete_metadata(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version = version_factory(addon=self.addon, channel=amo.CHANNEL_LISTED)
         version.update(license=None)
         self.addon.update(status=amo.STATUS_NULL)
@@ -695,7 +695,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_dashboard(self):
         """Unlisted addons are displayed in the feed on the dashboard page."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.addons'))
         doc = pq(res.content)
@@ -703,7 +703,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed_sidebar(self):
         """Unlisted addons are displayed in the left side in the feed page."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -712,7 +712,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed(self):
         """Unlisted addons are displayed in the feed page."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed_all'))
         doc = pq(res.content)
@@ -720,7 +720,7 @@ class TestActivityFeed(TestCase):
 
     def test_unlisted_addons_feed_filter(self):
         """Feed page can be filtered on unlisted addon."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.add_log()
         res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
@@ -2157,7 +2157,7 @@ class TestDocs(TestCase):
     def test_doc_urls(self):
         assert '/en-US/developers/docs/' == reverse('devhub.docs', args=[])
         assert '/en-US/developers/docs/te' == reverse('devhub.docs', args=['te'])
-        assert '/en-US/developers/docs/te/st', reverse('devhub.docs', args=['te/st'])
+        assert '/en-US/developers/docs/te/st' == reverse('devhub.docs', args=['te/st'])
 
         self.client.force_login_with_2fa(user_factory(read_dev_agreement=None))
         response = self.client.get(reverse('devhub.submit.agreement'))
@@ -2392,7 +2392,7 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
         )
 
     def test_link_to_stats_for_unlisted_addon(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
         response = self.client.get(self.url)
 
@@ -2403,7 +2403,7 @@ class TestStatsLinksInManageMySubmissionsPage(TestCase):
     def test_no_link_for_addon_disabled_by_mozilla(self):
         self.addon.update(status=amo.STATUS_DISABLED)
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
         response = self.client.get(self.url)
 

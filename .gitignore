@@ -34,6 +34,7 @@ docs/_build
 docs/_gh-pages
 docs/api/_build
 docs/topics/models
+locale/
 local_settings.py
 MANIFEST
 node_modules
@@ -50,8 +51,6 @@ static/css/node_lib/*
 static/js/node_lib/*
 storage/*
 tmp/*
-
-# End of .gitignore. Please keep this in sync with the top section of .dockerignore
 
 # do not ignore the following files
 !docker-compose.private.yml

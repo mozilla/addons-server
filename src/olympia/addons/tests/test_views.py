@@ -66,6 +66,7 @@ from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
     License,
+    VersionCreateError,
     VersionPreview,
     VersionProvenance,
     VersionReviewerFlags,
@@ -318,7 +319,7 @@ class AddonAndVersionViewSetDetailMixin:
         assert data['is_disabled_by_mozilla'] is True
 
     def test_get_not_listed(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 401
         data = json.loads(force_str(response.content))
@@ -340,7 +341,7 @@ class AddonAndVersionViewSetDetailMixin:
 
     def test_get_not_listed_no_rights(self):
         user = UserProfile.objects.create(username='simpleuser')
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -364,7 +365,7 @@ class AddonAndVersionViewSetDetailMixin:
     def test_get_unlisted_addons_api_view(self):
         user = UserProfile.objects.create(username='user')
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 403
@@ -377,7 +378,7 @@ class AddonAndVersionViewSetDetailMixin:
         user = UserProfile.objects.create(username='user')
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -385,7 +386,33 @@ class AddonAndVersionViewSetDetailMixin:
     def test_get_not_listed_author(self):
         user = UserProfile.objects.create(username='author')
         AddonUser.objects.create(user=user, addon=self.addon)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_enterprise_no_rights(self):
+        user = UserProfile.objects.create(username='user')
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+        data = json.loads(force_str(response.content))
+        assert data['detail'] == ('You do not have permission to perform this action.')
+
+    def test_get_enterprise_addons_api_view_unlisted(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_get_enterprise_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_ENTERPRISE)
         self.client.login_api(user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -2666,7 +2693,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
 
     @patch('olympia.addons.serializers.fetch_translations_from_instance')
     def test_metadata_content_review_unlisted(self, fetch_mock):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         AddonApprovalsCounter.approve_content_for_addon(addon=self.addon)
         old_content_review = AddonApprovalsCounter.objects.get(
             addon=self.addon
@@ -2764,7 +2791,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self, run_narc_on_version_mock
     ):
         self.create_switch('enable-narc', active=True)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self._test_metadata_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
@@ -3269,6 +3296,43 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.version.update(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
+
+    def test_enterprise_version_no_unlisted_permission(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.client.login_api(user)
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_enterprise_version_addons_api_view_unlisted(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.client.login_api(user)
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        self._test_url()
+
+    def test_enterprise_version_not_author(self):
+        user = UserProfile.objects.create(username='user')
+        self.client.login_api(user)
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_enterprise_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        self._test_url()
+
+    def test_enterprise_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
+        self.client.login_api(user)
+        self.version.update(channel=amo.CHANNEL_ENTERPRISE)
+        self._test_url()
 
     def test_developer_version_serializer_used_for_authors(self):
         self.version.update(source='src.zip')
@@ -3831,6 +3895,46 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert provenance.version == version
         assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
         assert provenance.client_info == 'web-ext/12.34'
+
+    @override_switch('enterprise-channel', active=True)
+    def test_basic_enterprise(self):
+        self.upload.update(channel=amo.CHANNEL_ENTERPRISE)
+        response = self.client.post(
+            self.url,
+            data=self.minimal_data,
+            HTTP_USER_AGENT='web-ext/12.34',
+        )
+        assert response.status_code == 201, response.content
+        data = response.data
+        assert data['license'] is None
+        assert data['compatibility'] == {
+            'firefox': {'max': '*', 'min': amo.DEFAULT_WEBEXT_MIN_VERSION},
+        }
+        self.addon.reload()
+        assert self.addon.versions.count() == 2
+        version = self.addon.find_latest_version(channel=None)
+        request = APIRequestFactory().get('/')
+        request.version = 'v5'
+        request.user = self.user
+        assert data == DeveloperVersionSerializer(
+            context={'request': request}
+        ).to_representation(version)
+        assert version.channel == amo.CHANNEL_ENTERPRISE
+        self.statsd_incr_mock.assert_any_call('addons.submission.version.enterprise')
+        self.statsd_incr_mock.assert_any_call('addons.submission.webext_version.12_34')
+        provenance = VersionProvenance.objects.get()
+        assert provenance.version == version
+        assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
+        assert provenance.client_info == 'web-ext/12.34'
+
+    def test_enterprise_switch_off(self):
+        self.upload.update(channel=amo.CHANNEL_ENTERPRISE)
+        with self.assertRaises(VersionCreateError):
+            self.client.post(
+                self.url,
+                data=self.minimal_data,
+            )
+        assert self.addon.reload().versions.count() == 1
 
     @patch('olympia.addons.views.log')
     def test_does_not_log_without_source(self, log_mock):
@@ -5047,7 +5151,7 @@ class TestVersionViewSetRollback(TestCase):
             ]
         }
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         response = self.client.post(self.url, data={'new_version_string': '0.0.0.994'})
         assert response.status_code == 400
         assert response.data == {
@@ -5106,7 +5210,7 @@ class TestVersionViewSetRollback(TestCase):
         }
 
         # There are no restrictions on greater/less than for unlisted though.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         with patch(
             'olympia.addons.views.duplicate_addon_version_for_rollback.delay'
         ) as mock_rollback_task:
@@ -5190,12 +5294,12 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.old_version = self.addon.current_version
-        self.old_version.update(created=self.days_ago(2))
+        self.old_version.update(created=self.days_ago(3))
 
         # Don't use addon.current_version, changing its state as we do in
         # the tests might render the add-on itself inaccessible.
         self.version = version_factory(addon=self.addon, version='1.0.1')
-        self.version.update(created=self.days_ago(1))
+        self.version.update(created=self.days_ago(2))
 
         # This version is unlisted and should be hidden by default, only
         # shown when requesting to see unlisted stuff explicitly, with the
@@ -5204,6 +5308,16 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             addon=self.addon,
             version=amo.DEFAULT_WEBEXT_MIN_VERSION,
             channel=amo.CHANNEL_UNLISTED,
+        )
+        self.unlisted_version.update(created=self.days_ago(1))
+
+        # This version is enterprise and should be hidden by default, only
+        # shown when requesting to see enterprise explicitly, with the
+        # right permissions.
+        self.enterprise_version = version_factory(
+            addon=self.addon,
+            version='5.0',
+            channel=amo.CHANNEL_ENTERPRISE,
         )
 
         self._set_tested_url(self.addon.pk)
@@ -5230,14 +5344,17 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         assert response.status_code == 200
         result = json.loads(force_str(response.content))
         assert result['results']
-        assert len(result['results']) == 3
+        assert len(result['results']) == 4
         result_version = result['results'][0]
+        assert result_version['id'] == self.enterprise_version.pk
+        assert result_version['version'] == self.enterprise_version.version
+        result_version = result['results'][1]
         assert result_version['id'] == self.unlisted_version.pk
         assert result_version['version'] == self.unlisted_version.version
-        result_version = result['results'][1]
+        result_version = result['results'][2]
         assert result_version['id'] == self.version.pk
         assert result_version['version'] == self.version.version
-        result_version = result['results'][2]
+        result_version = result['results'][3]
         assert result_version['id'] == self.old_version.pk
         assert result_version['version'] == self.old_version.version
 
@@ -5250,6 +5367,17 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         result_version = result['results'][0]
         assert result_version['id'] == self.old_version.pk
         assert result_version['version'] == self.old_version.version
+
+    def _test_url_only_contains_enterprise_version(self, **kwargs):
+        response = self.client.get(self.url, data=kwargs)
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 1
+        result_version = result['results'][0]
+        assert result_version['id'] == self.enterprise_version.pk
+        assert result_version['version'] == self.enterprise_version.version
+        assert result_version['channel'] == 'enterprise'
 
     def _set_tested_url(self, param):
         self.url = reverse_ns('addon-version-list', kwargs={'addon_pk': param})
@@ -5413,8 +5541,9 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
-        # delete the unlisted version so only the listed versions remain.
+        # delete the unlisted versions so only the listed versions remain.
         self.unlisted_version.delete()
+        self.enterprise_version.delete()
 
         # confirm that we have access to view unlisted versions.
         response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
@@ -5429,6 +5558,102 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         # And that without_unlisted doesn't fail when there are no unlisted
         response = self.client.get(self.url, data={'filter': 'all_without_unlisted'})
         assert response.status_code == 200
+
+    def test_with_enterprise_addons_api_view_unlisted(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.client.login_api(user)
+        self._test_url_only_contains_enterprise_version(filter='enterprise_only')
+
+    def test_enterprise_only_when_no_enterprise_versions(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.client.login_api(user)
+        # delete the unlisted version so only the listed versions remain.
+        self.enterprise_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'enterprise_only'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert len(result['results']) == 0
+
+    def test_enterprise_only_logout(self):
+        response = self.client.get(self.url, data={'filter': 'enterprise_only'})
+        assert response.status_code == 401
+
+    def test_enterprise_only_not_author(self):
+        user = UserProfile.objects.create(username='user')
+        self.client.login_api(user)
+        response = self.client.get(self.url, data={'filter': 'enterprise_only'})
+        assert response.status_code == 403
+
+    def test_enterprise_only_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        user.update(read_dev_agreement=None)
+        self.client.login_api(user)
+        self._test_url_only_contains_enterprise_version(filter='enterprise_only')
+
+    def test_enterprise_only_with_superpowers(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
+        self.client.login_api(user)
+        self._test_url_only_contains_enterprise_version(filter='enterprise_only')
+
+    def test_enterprise_only_not_available_in_old_api_versions(self):
+        current_api_version = settings.REST_FRAMEWORK['DEFAULT_VERSION']
+        assert (
+            'no-enterprise-channel' not in settings.DRF_API_GATES[current_api_version]
+        )
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, amo.permissions.SUPERPOWERS)
+        self.client.login_api(user)
+
+        for api_version in ('v3', 'v4'):
+            assert 'no-enterprise-channel' in settings.DRF_API_GATES[api_version]
+            url = reverse_ns(
+                'addon-version-list',
+                api_version=api_version,
+                kwargs={'addon_pk': self.addon.pk},
+            )
+            response = self.client.get(url, data={'filter': 'enterprise_only'})
+            assert response.status_code == 400
+            data = json.loads(force_str(response.content))
+            assert data == ['Invalid "filter" parameter specified.']
+
+    def test_enterprise_versions_filtered_in_old_api_versions(self):
+        user = UserProfile.objects.create(username='user')
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
+        self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
+        self.client.login_api(user)
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['results']
+        assert len(result['results']) == 4
+        assert 'enterprise' in [result['results'][x]['channel'] for x in range(4)]
+
+        # Only listed & unlisted in v3/v4.
+        for api_version in ('v3', 'v4'):
+            assert 'no-enterprise-channel' in settings.DRF_API_GATES[api_version]
+            url = reverse_ns(
+                'addon-version-list',
+                api_version=api_version,
+                kwargs={'addon_pk': self.addon.pk},
+            )
+            response = self.client.get(url, data={'filter': 'all_with_unlisted'})
+            assert response.status_code == 200
+            result = json.loads(force_str(response.content))
+            assert result['results']
+            assert len(result['results']) == 3
+            assert 'enterprise' not in [
+                result['results'][x]['channel'] for x in range(3)
+            ]
 
     def test_deleted_version_anonymous(self):
         self.version.delete()
@@ -5466,9 +5691,10 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW)
         self.grant_permission(user, amo.permissions.ADDONS_API_VIEW_UNLISTED)
         self.client.login_api(user)
-        # delete the listed versions so only the unlisted version remains.
+        # delete the other versions so only the unlisted version remains.
         self.version.delete()
         self.old_version.delete()
+        self.enterprise_version.delete()
 
         # confirm that we have access to view unlisted versions.
         response = self.client.get(self.url, data={'filter': 'all_with_unlisted'})

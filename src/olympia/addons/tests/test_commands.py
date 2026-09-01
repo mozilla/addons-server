@@ -99,6 +99,32 @@ def test_process_addons_batch_size(mock_get_pks):
         assert calls[2]['kwargs']['args'] == [addon_ids[100:]]
 
 
+@pytest.mark.django_db
+def test_process_addons_channel_arg():
+    listed_addon = addon_factory()
+    unlisted_addon = addon_factory(version_kw={'channel': amo.CHANNEL_UNLISTED})
+    enterprise_addon = addon_factory(version_kw={'channel': amo.CHANNEL_ENTERPRISE})
+
+    with count_subtask_calls(process_addons.addon_rating_aggregates) as calls:
+        call_command(
+            'process_addons', task='update_rating_aggregates', channel='listed'
+        )
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [[listed_addon.pk]]
+
+        call_command(
+            'process_addons', task='update_rating_aggregates', channel='unlisted'
+        )
+        assert len(calls) == 2
+        assert calls[1]['kwargs']['args'] == [[unlisted_addon.pk]]
+
+        call_command(
+            'process_addons', task='update_rating_aggregates', channel='enterprise'
+        )
+        assert len(calls) == 3
+        assert calls[2]['kwargs']['args'] == [[enterprise_addon.pk]]
+
+
 class RecalculateWeightTestCase(TestCase):
     def test_only_affects_auto_approved_and_unconfirmed(self):
         # Non auto-approved add-on, should not be considered.

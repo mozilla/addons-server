@@ -550,7 +550,10 @@ class AddonVersionViewSet(
                     & GroupPermission(amo.permissions.ADDONS_API_VIEW)
                 )
                 | (
-                    AllowForVersionChannel(amo.CHANNEL_UNLISTED)
+                    (
+                        AllowForVersionChannel(amo.CHANNEL_UNLISTED)
+                        | AllowForVersionChannel(amo.CHANNEL_ENTERPRISE)
+                    )
                     & GroupPermission(amo.permissions.ADDONS_API_VIEW)
                     & GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
                 )
@@ -609,7 +612,7 @@ class AddonVersionViewSet(
             permission_classes = [
                 GroupPermission(amo.permissions.ADDONS_API_VIEW_DELETED)
             ]
-        elif requested == 'all_with_unlisted':
+        elif requested in ('all_with_unlisted', 'enterprise_only'):
             # To see unlisted versions, you need to be add-on author or have
             # Addons:ApiView and Addons:ApiViewUnlisted.
             permission_classes = [
@@ -647,11 +650,15 @@ class AddonVersionViewSet(
     def get_queryset(self):
         """Return the right base queryset depending on the situation."""
         requested = self.request.GET.get('filter')
-        valid_filters = (
+        valid_filters = [
             'all_with_deleted',
             'all_with_unlisted',
             'all_without_unlisted',
-        )
+        ]
+
+        if not is_gate_active(self.request, 'no-enterprise-channel'):
+            valid_filters.append('enterprise_only')
+
         if requested is not None:
             if self.action != 'list':
                 raise serializers.ValidationError(
@@ -677,10 +684,18 @@ class AddonVersionViewSet(
             queryset = addon.versions.all()
         elif requested == 'all_without_unlisted':
             queryset = addon.versions.filter(channel=amo.CHANNEL_LISTED)
+        elif requested == 'enterprise_only':
+            queryset = addon.versions.filter(channel=amo.CHANNEL_ENTERPRISE)
         else:
             queryset = addon.versions.filter(
                 file__status=amo.STATUS_APPROVED, channel=amo.CHANNEL_LISTED
             )
+
+        if is_gate_active(self.request, 'no-enterprise-channel'):
+            queryset = queryset.filter(
+                channel__in=[amo.CHANNEL_LISTED, amo.CHANNEL_UNLISTED]
+            )
+
         queryset = queryset.select_related('file___webext_permissions')
         if (
             self.action == 'list'

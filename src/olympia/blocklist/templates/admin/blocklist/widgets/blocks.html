@@ -15,6 +15,8 @@
 
       {{ block_obj.review_listed_link }}
       {{ block_obj.review_unlisted_link }}
+      {{ block_obj.review_enterprise_link }}
+
       {{ block_obj.all_authors_link }}
       {% if block_obj.id %}
         <span class="existing_block">[<a href="{% url 'admin:blocklist_block_change' block_obj.id %}">Edit Block</a>]</span>

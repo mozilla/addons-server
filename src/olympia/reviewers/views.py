@@ -286,12 +286,8 @@ def dashboard(request):
     return TemplateResponse(
         request,
         'reviewers/dashboard.html',
-        context=context(
-            **{
-                # base_context includes motd.
-                'sections': sections
-            }
-        ),
+        # base_context includes motd.
+        context=context(sections=sections),
     )
 
 
@@ -755,6 +751,9 @@ def review(request, addon, channel=None):
         subscribed_unlisted=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
         ).exists(),
+        subscribed_enterprise=ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon, channel=amo.CHANNEL_ENTERPRISE
+        ).exists(),
         user_ratings=user_ratings,
         version=version,
         VERSION_ADU_LIMIT=VERSION_ADU_LIMIT,
@@ -872,7 +871,12 @@ def reviewlog(request):
     if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
         # Only display logs related to unlisted versions to users with the
         # right permission.
-        qs = qs.exclude(versionlog__version__channel=amo.CHANNEL_UNLISTED)
+        qs = qs.exclude(
+            versionlog__version__channel__in=(
+                amo.CHANNEL_UNLISTED,
+                amo.CHANNEL_ENTERPRISE,
+            )
+        )
     if not acl.is_listed_addons_reviewer(request.user):
         qs = qs.exclude(versionlog__version__addon__type__in=amo.GROUP_TYPE_ADDON)
     if not acl.is_static_theme_reviewer(request.user):
@@ -1006,6 +1010,9 @@ def developer_profile(request, user_id):
         '_listed_versions_exists': Exists(
             sub_versions_qs.filter(channel=amo.CHANNEL_LISTED)
         ),
+        '_enterprise_versions_exists': Exists(
+            sub_versions_qs.filter(channel=amo.CHANNEL_ENTERPRISE)
+        ),
     }
     qs = (
         Addon.unfiltered.filter(authors=developer)
@@ -1043,28 +1050,36 @@ class AddonReviewerViewSet(GenericViewSet):
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
-    def subscribe_listed(self, request, **kwargs):
+    def unsubscribe(self, request, **kwargs):
+        return self.unsubscribe_listed(request, **kwargs)
+
+    def _subscribe_to_channel(self, request, channel, **kwargs):
         addon = get_object_or_404(Addon, pk=kwargs['pk'])
         ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
+            user=request.user, addon=addon, channel=channel
         )
+        return Response(status=status.HTTP_202_ACCEPTED)
+
+    def _unsubscribe_from_channel(self, request, channel, **kwargs):
+        addon = get_object_or_404(Addon, pk=kwargs['pk'])
+        ReviewerSubscription.objects.filter(
+            user=request.user, addon=addon, channel=channel
+        ).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
-    def unsubscribe(self, request, **kwargs):
-        return self.unsubscribe_listed(request, **kwargs)
+    def subscribe_listed(self, request, **kwargs):
+        return self._subscribe_to_channel(request, channel=amo.CHANNEL_LISTED, **kwargs)
 
     @drf_action(
         detail=True, methods=['post'], permission_classes=[AllowAnyKindOfReviewer]
     )
     def unsubscribe_listed(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
-        ).delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_LISTED, **kwargs
+        )
 
     @drf_action(
         detail=True,
@@ -1072,11 +1087,9 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def subscribe_unlisted(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.get_or_create(
-            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
+        return self._subscribe_to_channel(
+            request, channel=amo.CHANNEL_UNLISTED, **kwargs
         )
-        return Response(status=status.HTTP_202_ACCEPTED)
 
     @drf_action(
         detail=True,
@@ -1084,11 +1097,29 @@ class AddonReviewerViewSet(GenericViewSet):
         permission_classes=[AllowUnlistedViewerOrReviewer],
     )
     def unsubscribe_unlisted(self, request, **kwargs):
-        addon = get_object_or_404(Addon, pk=kwargs['pk'])
-        ReviewerSubscription.objects.filter(
-            user=request.user, addon=addon, channel=amo.CHANNEL_UNLISTED
-        ).delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_UNLISTED, **kwargs
+        )
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
+    )
+    def subscribe_enterprise(self, request, **kwargs):
+        return self._subscribe_to_channel(
+            request, channel=amo.CHANNEL_ENTERPRISE, **kwargs
+        )
+
+    @drf_action(
+        detail=True,
+        methods=['post'],
+        permission_classes=[AllowUnlistedViewerOrReviewer],
+    )
+    def unsubscribe_enterprise(self, request, **kwargs):
+        return self._unsubscribe_from_channel(
+            request, channel=amo.CHANNEL_ENTERPRISE, **kwargs
+        )
 
     @drf_action(
         detail=True,
@@ -1146,7 +1177,7 @@ class AddonReviewerViewSet(GenericViewSet):
     def json_file_validation(self, request, **kwargs):
         addon = get_object_or_404(Addon.unfiltered.id_or_slug(kwargs['pk']))
         file = get_object_or_404(File, version__addon=addon, id=kwargs['file_id'])
-        if file.version.channel == amo.CHANNEL_UNLISTED:
+        if file.version.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
             if not acl.is_unlisted_addons_viewer_or_reviewer(request.user):
                 raise PermissionDenied
         elif not acl.is_reviewer(request.user, addon):

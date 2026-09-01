@@ -3,6 +3,7 @@ from urllib.parse import quote
 
 from django import http
 
+from olympia import amo
 from olympia.addons import decorators as dec
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
@@ -152,7 +153,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
     )
     def test_unlisted_addon(self):
         """Return a 404 for non authorized access."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         with self.assertRaises(http.Http404):
             self.view(self.request, self.addon.slug)
 
@@ -164,7 +165,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
     )
     def test_unlisted_addon_owner(self):
         """Addon owners have access."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
         request, addon = self.func.call_args[0]
         assert addon == self.addon
@@ -177,7 +178,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
     )
     def test_unlisted_addon_unlisted_admin(self):
         """Unlisted addon reviewers have access."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
         request, addon = self.func.call_args[0]
         assert addon == self.addon

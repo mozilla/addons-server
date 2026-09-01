@@ -154,7 +154,7 @@ class AddonThresholdQueryParam(AddonQueryParam):
                 original_value = self.query_data.get(self.query_param, '')
                 value = self.convert_value(original_value)
                 if not isinstance(value, self.valid_types):
-                    raise ValueError()
+                    raise ValueError()  # noqa: TRY004 (caught locally as control flow below)
                 return (
                     {'lte': value, 'gte': value}
                     if query_op == 'eq'
@@ -360,7 +360,7 @@ class AddonCategoryQueryParam(AddonQueryParam):
         if isinstance(value, int):
             return value in self.valid_values
         else:
-            return all([_value in self.valid_values for _value in value])
+            return all(_value in self.valid_values for _value in value)
 
 
 class AddonTagQueryParam(AddonQueryMultiParam):

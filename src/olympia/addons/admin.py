@@ -377,8 +377,8 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     )
 
     def get_queryset_annotations(self):
-        # Add annotation for _unlisted_versions_exists/_listed_versions_exists
-        # to avoid repeating those queries for each add-on in the list.
+        # Add annotation for _{channel}_versions_exists to avoid repeating
+        # those queries for each add-on in the list.
         sub_qs = Version.unfiltered.filter(addon=OuterRef('pk')).values_list('id')
         annotations = {
             '_unlisted_versions_exists': Exists(
@@ -448,8 +448,8 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
 
     def reviewer_links(self, obj):
         links = []
-        # _has_listed_versions_exists and _has_unlisted_versions_exists are
-        # provided by annotations made in get_queryset()
+        # _has_{channel}_versions_exists is provided by annotations
+        # made in get_queryset()
         if obj._listed_versions_exists:
             links.append(
                 (

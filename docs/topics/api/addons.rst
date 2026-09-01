@@ -534,18 +534,22 @@ This endpoint allows you to list all versions belonging to a specific add-on.
    query parameter, which may require authentication and specific permissions
    depending on the value:
 
-    ====================  =====================================================
+    ====================  ======================================================
                    Value  Description
-    ====================  =====================================================
+    ====================  ======================================================
     all_without_unlisted  Show all listed versions attached to this add-on.
                           Requires either reviewer permissions or a user
-                          account listed as an author (developer) of the add-on.
-       all_with_unlisted  Show all versions (including unlisted) attached to
-                          this add-on. Requires either reviewer permissions or
-                          a user account listed as an author (developer) of the add-on.
+                          account listed as a developer of the add-on.
+       all_with_unlisted  Show all versions (including unlisted and enterprise
+                          versions) attached to this add-on. Requires either
+                          reviewer permissions or a user account listed as an
+                          author (developer) of the add-on.
         all_with_deleted  Show all versions attached to this add-on, including
                           deleted ones. Requires admin permissions.
-    ====================  =====================================================
+        enterprise_only   Show all enterprise versions attached to this add-on.
+                          Requires either reviewer permissions or a user
+                          account listed as an author (developer) of the add-on.
+    ====================  ======================================================
 
 --------------
 Version Detail
@@ -565,7 +569,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
     :>json int id: The version id.
     :>json string approval_notes: Information for Mozilla reviewers, for when the add-on is reviewed.  These notes are only visible to Mozilla, and this field is only present if the user has reviewer permissions, or is listed as an author (developer) of the add-on.
-    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted``, ``listed``, or ``enterprise``.
     :>json object compatibility:
         Object detailing which :ref:`applications <addon-detail-application>` the version is compatible with.
         The exact min/max version numbers in the object correspond to the :ref:`supported versions<applications-version-list>`.
@@ -902,7 +906,7 @@ This endpoint is for uploading an addon file, to then be submitted to create a n
     .. _upload-create-request:
 
     :form upload: The add-on file being uploaded.
-    :form channel: The channel this version should be uploaded to, which determines its visibility on the site. It can be either ``unlisted`` or ``listed``.
+    :form channel: The channel this version should be uploaded to, which determines its visibility on the site. It can be either ``unlisted``, ``listed``, or ``enterprise``.
     :reqheader Content-Type: multipart/form-data
 
 
@@ -949,7 +953,7 @@ This endpoint is for fetching a single previous upload by uuid.
     .. _upload-detail-object:
 
     :>json string uuid: The upload id.
-    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted``, ``listed``, or ``enterprise``.
     :>json boolean processed: If the version has been processed by the validator.
     :>json boolean submitted: If this upload has been submitted as a new add-on or version already. An upload can only be submitted once.
     :>json string url: URL to check the status of this upload.

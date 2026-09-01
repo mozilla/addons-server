@@ -131,6 +131,19 @@ class Block(ModelBase):
             return format_html('· <a href="{}">{}</a>', url, 'Review Unlisted')
         return ''
 
+    def review_enterprise_link(self):
+        has_enterprise = any(
+            True
+            for version in self.addon_versions
+            if version.channel == amo.CHANNEL_ENTERPRISE
+        )
+        if has_enterprise:
+            url = absolutify(
+                reverse('reviewers.review', args=('enterprise', self.addon.pk))
+            )
+            return format_html('· <a href="{}">{}</a>', url, 'Review Enterprise')
+        return ''
+
     def all_authors_link(self):
         if self.addon and self.addon.all_authors:
             parameter = '?q=' + ','.join(
@@ -346,10 +359,7 @@ class BlocklistSubmission(ModelBase):
     def all_adu_safe(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
 
-        return all(
-            (lambda du: du <= threshold)(block['average_daily_users'])
-            for block in self.to_block
-        )
+        return all(block['average_daily_users'] <= threshold for block in self.to_block)
 
     def has_version_changes(self):
         return bool(self.changed_version_ids)

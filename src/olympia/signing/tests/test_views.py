@@ -611,6 +611,28 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'processed' in response.data
         assert addon.versions.latest().channel == amo.CHANNEL_LISTED
 
+    def test_enterprise_channel_errors_for_existing_addons_listed(self):
+        response = self.request('PUT', self.url(self.guid, '3.0'), channel='enterprise')
+        assert response.status_code == 400
+        error_msg = 'Only API v5+ supports enterprise channels.'
+        assert error_msg in response.data['error']
+
+    def test_enterprise_channel_errors_for_existing_addons_unlisted(self):
+        addon = Addon.objects.get(guid=self.guid)
+        addon.versions.latest().update(channel=amo.CHANNEL_UNLISTED)
+        response = self.request('PUT', self.url(self.guid, '3.0'), channel='enterprise')
+        assert response.status_code == 400
+        error_msg = 'Only API v5+ supports enterprise channels.'
+        assert error_msg in response.data['error']
+
+    def test_enterprise_channel_ignored_for_new_addon(self):
+        response = self.request(
+            'PUT', guid='@create-version', version='1.0', channel='enterprise'
+        )
+        assert response.status_code == 201, response.data
+        addon = Addon.objects.get(guid='@create-version')
+        assert addon.versions.latest().channel == amo.CHANNEL_UNLISTED
+
     def test_listed_channel_fails_for_incomplete_addon(self):
         addon = Addon.objects.get(guid=self.guid)
         assert addon.status == amo.STATUS_APPROVED

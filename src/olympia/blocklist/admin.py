@@ -608,6 +608,7 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         'users',
         'review_listed_link',
         'review_unlisted_link',
+        'review_enterprise_link',
         'block_history',
         'url_link',
         'blocked_versions',
@@ -683,7 +684,11 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
                     'addon_name',
                     'addon_updated',
                     'users',
-                    ('review_listed_link', 'review_unlisted_link'),
+                    (
+                        'review_listed_link',
+                        'review_unlisted_link',
+                        'review_enterprise_link',
+                    ),
                 )
             },
         )

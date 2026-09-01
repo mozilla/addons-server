@@ -431,13 +431,7 @@ class AbstractScannerResultAdminMixin:
                     reverse(
                         'reviewers.review',
                         args=[
-                            (
-                                'listed'
-                                if obj.version.channel == amo.CHANNEL_LISTED
-                                else 'unlisted'
-                                if obj.version.channel == amo.CHANNEL_UNLISTED
-                                else 'enterprise'
-                            ),
+                            amo.CHANNEL_CHOICES_API[obj.version.channel],
                             obj.version.addon.id,
                         ],
                     ),
@@ -727,11 +721,7 @@ class ScannerQueryResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
                     reverse(
                         'reviewers.review',
                         args=[
-                            (
-                                'listed'
-                                if obj.version.channel == amo.CHANNEL_LISTED
-                                else 'unlisted'
-                            ),
+                            (amo.CHANNEL_CHOICES_API[obj.version.channel]),
                             obj.version.addon.id,
                         ],
                     ),
@@ -1130,5 +1120,5 @@ class ScannerWebhookAdmin(AMOModelAdmin):
                         api_key.secret,
                     ),
                 )
-            except Exception:
+            except Exception:  # noqa: S110 (best-effort display of one-time JWT keys)
                 pass

@@ -251,7 +251,7 @@ class Validator:
                 tasks.handle_file_validation_result.s(file_.pk),
             ]
         else:
-            raise ValueError
+            raise TypeError
 
         if final_task:
             validation_tasks.append(final_task)

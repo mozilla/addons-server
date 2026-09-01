@@ -197,7 +197,7 @@ def duplicate_addon_version(old_version, new_version_number, user):
                 addon.approve_for_version(new_version, carryover_groups)
 
     except Exception:
-        log.exception(f'Failed re-signing file {old_file_obj.pk}', exc_info=True)
+        log.exception(f'Failed re-signing file {old_file_obj.pk}')
         # Next loop iteration will clear the task queue.
         return
     return new_version

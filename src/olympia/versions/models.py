@@ -663,7 +663,7 @@ class Version(OnChangeMixin, ModelBase):
         return version
 
     def get_url_path(self):
-        if self.channel == amo.CHANNEL_UNLISTED:
+        if self.channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
             return ''
         return reverse('addons.versions', args=[self.addon.slug])
 
