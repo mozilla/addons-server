@@ -777,7 +777,6 @@ class TestReviewHelper(TestReviewHelperBase):
         ]
 
         self.file.update(status=amo.STATUS_DISABLED)
-        self.file.version.update(human_review_date=datetime.now())
         self.addon.update(status=amo.STATUS_NULL)
         actions = list(self.get_helper().actions.keys())
         assert expected == actions
