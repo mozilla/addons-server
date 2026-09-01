@@ -868,8 +868,8 @@ class ActivityLog(ModelBase):
                 amo.LOG.REJECT_LISTING_CONTENT.id,
             ):
                 reverse_args.insert(0, 'content')
-            elif channel and channel == amo.CHANNEL_UNLISTED:
-                reverse_args.insert(0, 'unlisted')
+            elif channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+                reverse_args.insert(0, amo.CHANNEL_CHOICES_API[channel])
             addon = format_html(
                 '<a href="{0}">{1}</a>',
                 reverse('reviewers.review', args=reverse_args),

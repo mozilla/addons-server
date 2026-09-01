@@ -227,9 +227,10 @@ class TestReviewLog(ReviewerTest):
         rows = doc('tbody tr')
         assert rows.filter(':not(.hide)').length == 2
         assert rows.filter('.hide').eq(0).text() == 'youwin'
-        # Should have none showing if the addons are unlisted.
+        # Should have none showing if the addons are unlisted or enterprise.
         for addon in Addon.objects.all():
-            self.make_addon_unlisted(addon)
+            self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
+        addon.find_latest_version(channel=None).update(channel=amo.CHANNEL_ENTERPRISE)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -468,7 +469,7 @@ class TestReviewLog(ReviewerTest):
 
     def test_approval_multiple_versions(self):
         addon = Addon.objects.get(pk=3615)
-        self.make_addon_unlisted(addon)
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         version_factory(addon=addon, channel=amo.CHANNEL_UNLISTED, version='3.0')
         ActivityLog.objects.create(
@@ -482,6 +483,24 @@ class TestReviewLog(ReviewerTest):
         assert response.status_code == 200
         assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
             '<a href="/en-US/reviewers/review-unlisted/3615">Delicious Bookmarks</a> '
+            'Versions 3.0, 2.1.072 auto-approval confirmed.'
+        )
+
+    def test_enterprise_review_log_link(self):
+        addon = Addon.objects.get(pk=3615)
+        self.change_channel_for_addon(addon, amo.CHANNEL_ENTERPRISE)
+        self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
+        version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE, version='3.0')
+        ActivityLog.objects.create(
+            amo.LOG.CONFIRM_AUTO_APPROVED,
+            addon,
+            *list(addon.versions.all()),
+            user=self.user,
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('#log-listing tbody td').eq(1).html().strip() == (
+            '<a href="/en-US/reviewers/review-enterprise/3615">Delicious Bookmarks</a> '
             'Versions 3.0, 2.1.072 auto-approval confirmed.'
         )
 
@@ -2152,15 +2171,16 @@ class TestModeratedQueue(QueueTest):
         assert doc('.no-results').length == 1
 
     def test_do_not_show_reviews_for_unlisted_addons(self):
-        for addon in Addon.objects.all():
-            self.make_addon_unlisted(addon)
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            for addon in Addon.objects.all():
+                self.change_channel_for_addon(addon, channel)
 
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)('#reviews-flagged')
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response.content)('#reviews-flagged')
 
-        # There should be no results since all add-ons are unlisted.
-        assert doc('.no-results').length == 1
+            # There should be no results since no add-on is listed.
+            assert doc('.no-results').length == 1
 
 
 class TestContentReviewQueue(QueueTest):
@@ -2463,7 +2483,7 @@ class TestReview(ReviewBase):
         assert self.client.head(self.url).status_code == 302
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -2475,7 +2495,7 @@ class TestReview(ReviewBase):
         assert self.client.get(self.url).status_code == 200
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review_viewer(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3503,7 +3523,7 @@ class TestReview(ReviewBase):
     def test_unlisted_addon_action_links_as_admin(self):
         """No "View Product Page" link for unlisted addons, "edit"/"manage" links
         for the admins."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.login_as_admin()
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3525,7 +3545,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3558,7 +3578,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_on_unlisted_review(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3589,7 +3609,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_on_content_review(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3620,7 +3640,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_deleted_addon(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3653,7 +3673,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_admin_unlisted_deleted_addon(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -3683,7 +3703,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'))
 
     def test_mixed_channels_action_links_as_regular_reviewer(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_LISTED,
@@ -4171,7 +4191,7 @@ class TestReview(ReviewBase):
         self.assertContains(response, eula_url + '"')
 
         # The url should pass on the channel param so the backlink works
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.login_as_admin()
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
@@ -4193,7 +4213,7 @@ class TestReview(ReviewBase):
         privacy_url = reverse('reviewers.privacy', args=(self.addon.pk,))
         self.assertContains(response, privacy_url + '"')
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.login_as_admin()
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
         response = self.client.get(unlisted_url)
@@ -4460,7 +4480,7 @@ class TestReview(ReviewBase):
         self.make_addon_promoted(
             self.addon, api_name='notable', unlisted_pre_review=True
         )
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         unlisted_url = reverse('reviewers.review', args=['unlisted', self.addon.pk])
@@ -5183,7 +5203,7 @@ class TestReview(ReviewBase):
         self.version = version_factory(
             addon=self.addon, version='3.0', file_kw={'status': amo.STATUS_DISABLED}
         )
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         GroupUser.objects.filter(user=self.reviewer).all().delete()
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW)
         self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
@@ -5210,7 +5230,7 @@ class TestReview(ReviewBase):
         old_version = self.version
         NeedsHumanReview.objects.create(version=old_version)
         self.version = version_factory(addon=self.addon, version='3.0')
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.grant_permission(self.reviewer, amo.permissions.REVIEWS_ADMIN)
         self.grant_permission(self.reviewer, amo.permissions.BLOCKLIST_CREATE)
@@ -5777,14 +5797,14 @@ class TestReview(ReviewBase):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_abuse_reports()
 
     def test_abuse_reports_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_abuse_reports()
 
     def test_abuse_reports_developers(self):
@@ -5818,14 +5838,14 @@ class TestReview(ReviewBase):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_abuse_reports_developers()
 
     def test_abuse_reports_developers_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_abuse_reports_developers()
 
     def test_user_ratings(self):
@@ -5898,14 +5918,14 @@ class TestReview(ReviewBase):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_user_ratings()
 
     def test_user_ratings_unlisted_addon_viewer(self):
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.login_as_reviewer()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.test_user_ratings()
 
     def test_data_value_attributes(self):
@@ -6277,7 +6297,7 @@ class TestReview(ReviewBase):
         assert doc('.addon-original-guid td').text() == self.addon.addonguid.guid
 
         # Test unlisted review pages link to unlisted review pages.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.login_as_admin()
         response = self.client.get(
             reverse('reviewers.review', args=['unlisted', self.addon.pk])
@@ -6433,7 +6453,7 @@ class TestReview(ReviewBase):
     def test_redirect_after_review_unlisted(self):
         self.url = reverse('reviewers.review', args=('unlisted', self.addon.pk))
         self.version = version_factory(addon=self.addon, version='3.0')
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.grant_permission(self.reviewer, amo.permissions.ADDONS_REVIEW_UNLISTED)
 
         response = self.client.post(
@@ -7299,7 +7319,7 @@ class TestWhiteboard(ReviewBase):
         assert whiteboard.private == private_whiteboard_info
 
     def test_whiteboard_addition_unlisted_addon(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         public_whiteboard_info = 'Public whiteboard info unlisted.'
         private_whiteboard_info = 'Private whiteboard info unlisted.'
         url = reverse('reviewers.whiteboard', args=['unlisted', self.addon.pk])
@@ -7443,7 +7463,7 @@ class TestPolicyView(ReviewerTest):
         self.assertContains(response, str(self.review_url))
 
     def test_eula_with_channel(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         unlisted_review_url = reverse(
             'reviewers.review',
             args=(
@@ -7481,7 +7501,7 @@ class TestPolicyView(ReviewerTest):
         self.assertContains(response, str(self.review_url))
 
     def test_privacy_with_channel(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         unlisted_review_url = reverse(
             'reviewers.review',
             args=(
@@ -7539,7 +7559,7 @@ class TestDeveloperProfile(ReviewerTest):
         self.assertContains(response, self.addon.average_daily_users)
 
     def test_link_unlisted_review_page(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         unlisted_review_url = reverse(
             'reviewers.review', args=('unlisted', self.addon.id)
         )
@@ -7563,7 +7583,7 @@ class TestDeveloperProfile(ReviewerTest):
     def test_queries(self):
         addon_factory(users=(self.developer,))
         unlisted_addon = addon_factory(users=(self.developer,))
-        self.make_addon_unlisted(unlisted_addon)
+        self.change_channel_for_addon(unlisted_addon, amo.CHANNEL_UNLISTED)
         with self.assertNumQueries(10):
             # 2 savepoints (tests)
             # - site notice config
@@ -8137,14 +8157,16 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
     def test_unlisted_reviewer_can_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.client.login_api(self.user)
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url).status_code == 200
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code == 200
 
     def test_unlisted_viewer_can_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         self.client.login_api(self.user)
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url).status_code == 200
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code == 200
 
     def test_non_reviewer_cannot_see_json_results(self):
         self.client.login_api(self.user)
@@ -8165,11 +8187,12 @@ class TestAddonReviewerViewSetJsonValidation(TestCase):
     def test_non_unlisted_reviewer_cannot_see_results_for_unlisted(self):
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.client.login_api(self.user)
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url).status_code in [
-            401,
-            403,
-        ]  # JWT auth is a 401; web auth is 403
+        for channel in (amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE):
+            self.change_channel_for_addon(self.addon, channel)
+            assert self.client.get(self.url).status_code in [
+                401,
+                403,
+            ]  # JWT auth is a 401; web auth is 403
 
 
 class TestAddonReviewerViewSetJsonValidationJWT(TestAddonReviewerViewSetJsonValidation):

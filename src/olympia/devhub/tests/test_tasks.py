@@ -217,20 +217,24 @@ class TestTrackValidatorStats(TestCase):
         return result
 
     def test_count_all_successes(self):
-        tasks.track_validation_stats(self.result(errors=0))
+        tasks.track_validation_stats(self.result(errors=0), channel=amo.CHANNEL_LISTED)
         self.mock_incr.assert_any_call('devhub.linter.results.all.success')
 
     def test_count_all_errors(self):
-        tasks.track_validation_stats(self.result(errors=1))
+        tasks.track_validation_stats(self.result(errors=1), channel=amo.CHANNEL_LISTED)
         self.mock_incr.assert_any_call('devhub.linter.results.all.failure')
 
     def test_count_listed_results(self):
-        tasks.track_validation_stats(self.result(metadata={'listed': True}))
+        tasks.track_validation_stats(self.result(), channel=amo.CHANNEL_LISTED)
         self.mock_incr.assert_any_call('devhub.linter.results.listed.success')
 
     def test_count_unlisted_results(self):
-        tasks.track_validation_stats(self.result(metadata={'listed': False}))
+        tasks.track_validation_stats(self.result(), channel=amo.CHANNEL_UNLISTED)
         self.mock_incr.assert_any_call('devhub.linter.results.unlisted.success')
+
+    def test_count_enterprise_results(self):
+        tasks.track_validation_stats(self.result(), channel=amo.CHANNEL_ENTERPRISE)
+        self.mock_incr.assert_any_call('devhub.linter.results.enterprise.success')
 
 
 class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):

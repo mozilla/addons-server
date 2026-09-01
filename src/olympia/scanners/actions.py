@@ -37,9 +37,9 @@ def _flag_for_human_review(*, version, rule=None):
 
 
 def _delay_auto_approval(*, version, rule=None):
-    """Delay auto-approval for both channels on the whole add-on for 24 hours.
+    """Delay auto-approval for all channels on the whole add-on for 24 hours.
 
-    If delay was already set for either channel, only override it if the new
+    If delay was already set for a channel, only override it if the new
     delay is further in the future."""
     # Always try to flag for human review. If that returns False it means we
     # already flagged before so we don't want to repeat the rest.
