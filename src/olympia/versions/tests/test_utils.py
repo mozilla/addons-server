@@ -22,6 +22,7 @@ from ..utils import (
     encode_header,
     get_review_due_date,
     get_staggered_review_due_date_generator,
+    parse_gradient_background,
     process_color_value,
     validate_version_number_is_gt_latest_signed_listed_version,
     write_svg_to_png,
@@ -133,6 +134,113 @@ def test_additional_background(
     assert background.pattern_height == pattern_height
     assert background.pattern_x == pattern_x
     assert background.pattern_y == pattern_y
+
+
+@pytest.mark.parametrize(
+    'entry',
+    (
+        # Not a dict / not a gradient.
+        'weta_for_tiling.png',
+        ['linear-gradient', 'red, blue'],
+        {'foo': 'bar'},
+        # Unknown / non-gradient CSS function.
+        {'url': 'https://example.com/foo.png'},
+        # More than one key.
+        {'linear-gradient': 'red, blue', 'radial-gradient': 'red, blue'},
+        # Non-string key/value.
+        {'linear-gradient': ['red', 'blue']},
+        {42: 'red, blue'},
+        # Only a single color stop.
+        {'linear-gradient': 'red'},
+        {'linear-gradient': 'to bottom, red'},
+        # Invalid CSS / attempts to smuggle in extra tokens.
+        {'linear-gradient': 'red)) ; drop table'},
+        {'linear-gradient': 'not a color, also not a color'},
+        {'linear-gradient': ''},
+        # Invalid direction: rejected rather than silently defaulting.
+        {'linear-gradient': 'gibberish, red, blue'},
+        # A single invalid color stop invalidates the whole gradient.
+        {'linear-gradient': 'to right, red, notacolor, blue'},
+        {'linear-gradient': 'red, blue 20%, '},
+        # Absolute-length stop positions can't be mapped to the preview.
+        {'linear-gradient': 'red 50px, blue 60px'},
+        # Non-axis-aligned linear gradients would be skewed by the preview's
+        # aspect ratio, so they're rejected.
+        {'linear-gradient': '45deg, red, blue'},
+        {'linear-gradient': 'to top left, red, blue'},
+    ),
+)
+def test_parse_gradient_background_invalid(entry):
+    assert parse_gradient_background(entry) is None
+
+
+def test_parse_gradient_background_linear():
+    gradient = parse_gradient_background(
+        {'linear-gradient': 'to bottom, #FF6BBA -18.096%, #FFC999 50%'}
+    )
+    assert gradient is not None
+    assert gradient.is_gradient is True
+    assert gradient.is_radial is False
+    # `to bottom` is a top-to-bottom gradient line.
+    assert (gradient.x1, gradient.y1, gradient.x2, gradient.y2) == (0.5, 0.0, 0.5, 1.0)
+    # The negative first stop position is clamped to 0.
+    assert gradient.stops == [
+        {'color': '#FF6BBA', 'offset': 0.0},
+        {'color': '#FFC999', 'offset': 0.5},
+    ]
+
+
+def test_parse_gradient_background_axis_aligned_angle():
+    # Axis-aligned angles (multiples of 90deg) render faithfully and are kept.
+    gradient = parse_gradient_background({'linear-gradient': '90deg, red, blue'})
+    assert gradient is not None
+    # 90deg points to the right (left-to-right gradient line).
+    assert (gradient.x1, gradient.y1, gradient.x2, gradient.y2) == (0.0, 0.5, 1.0, 0.5)
+    # Missing positions are distributed across the gradient line.
+    assert gradient.stops == [
+        {'color': 'red', 'offset': 0.0},
+        {'color': 'blue', 'offset': 1.0},
+    ]
+
+
+def test_parse_gradient_background_double_position():
+    # CSS4 double-position stops are expanded into two stops, so a hard color
+    # band renders as a band rather than a smooth blend.
+    gradient = parse_gradient_background(
+        {'linear-gradient': 'to right, red 0% 50%, blue 50% 100%'}
+    )
+    assert gradient is not None
+    assert gradient.stops == [
+        {'color': 'red', 'offset': 0.0},
+        {'color': 'red', 'offset': 0.5},
+        {'color': 'blue', 'offset': 0.5},
+        {'color': 'blue', 'offset': 1.0},
+    ]
+
+
+def test_parse_gradient_background_default_direction():
+    # Without a direction, CSS defaults to `to bottom`.
+    gradient = parse_gradient_background({'linear-gradient': 'red, green, blue'})
+    assert gradient is not None
+    assert (gradient.x1, gradient.y1, gradient.x2, gradient.y2) == (0.5, 0.0, 0.5, 1.0)
+    assert gradient.stops == [
+        {'color': 'red', 'offset': 0.0},
+        {'color': 'green', 'offset': 0.5},
+        {'color': 'blue', 'offset': 1.0},
+    ]
+
+
+def test_parse_gradient_background_radial():
+    # The leading shape/position segment is ignored; the stops are still parsed.
+    gradient = parse_gradient_background(
+        {'radial-gradient': 'circle at center, #fff, #000'}
+    )
+    assert gradient is not None
+    assert gradient.is_radial is True
+    assert gradient.stops == [
+        {'color': '#fff', 'offset': 0.0},
+        {'color': '#000', 'offset': 1.0},
+    ]
 
 
 @pytest.mark.parametrize(

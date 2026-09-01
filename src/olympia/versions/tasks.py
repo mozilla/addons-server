@@ -38,6 +38,7 @@ from .utils import (
     AdditionalBackground,
     convert_svg_to_png,
     encode_header,
+    parse_gradient_background,
     process_color_value,
     write_svg_to_png,
 )
@@ -76,16 +77,24 @@ def _build_static_theme_preview_context(theme_manifest, file_):
     additional_tiling = theme_manifest.get('properties', {}).get(
         'additional_backgrounds_tiling', []
     )
-    additional_backgrounds = [
-        AdditionalBackground(path, alignment, tiling, backgrounds.get(path))
-        for (path, alignment, tiling) in itertools.zip_longest(
-            additional_srcs, additional_alignments, additional_tiling
-        )
-        # Ignore non-string entries such as `{'linear-gradient': '...'}` which
-        # aren't image paths we can extract and would otherwise raise a
-        # TypeError (they're unhashable and not path-like).
-        if isinstance(path, str)
-    ]
+    additional_backgrounds = []
+    for path, alignment, tiling in itertools.zip_longest(
+        additional_srcs, additional_alignments, additional_tiling
+    ):
+        if isinstance(path, str):
+            additional_backgrounds.append(
+                AdditionalBackground(path, alignment, tiling, backgrounds.get(path))
+            )
+        else:
+            # Non-string entries are CSS gradients rather than image paths, e.g.
+            # `{'linear-gradient': 'to bottom, #FF6BBA 0%, #FFC999 50%'}`. Parse
+            # and validate them with tinycss2 and render them as SVG gradients;
+            # anything that isn't a valid gradient is ignored. The positional
+            # alignment/tiling values don't apply to gradients (they fill the
+            # whole preview area), so they're intentionally not passed along.
+            gradient = parse_gradient_background(path)
+            if gradient is not None:
+                additional_backgrounds.append(gradient)
     context.update(additional_backgrounds=additional_backgrounds)
     return context
 

@@ -1656,4 +1656,9 @@ psutil==7.2.2 \
 justhtml==2.2.0 \
     --hash=sha256:219f163245e456060ad472cd70c33b4fe544521bb7d9947d85fa59cdf65a87d9 \
     --hash=sha256:41227bf28cb7bedc6d00bf69d0e06fc72d224f4ea5fa1623c2eb52da5e4d4b81
+# tinycss2 is used to validate CSS gradients in static theme previews.
+# It requires webencodings (already listed above).
+tinycss2==1.5.1 \
+    --hash=sha256:3415ba0f5839c062696996998176c4a3751d18b7edaaeeb658c9ce21ec150661 \
+    --hash=sha256:d339d2b616ba90ccce58da8495a78f46e55d4d25f9fd71dfd526f07e7d53f957
 -r yara-x.txt
