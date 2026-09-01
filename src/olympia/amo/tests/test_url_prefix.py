@@ -360,7 +360,6 @@ def test_outgoing_url_javascript_scheme():
         ('fr-FR', 'fr'),
         # Go for something more specific.
         ('es', 'es-ES'),
-        ('es-ES', 'es-ES'),
         # With multiple zh-XX choices, choose the first alphabetically.
         ('zh', 'zh-CN'),
         # Default to en-us.

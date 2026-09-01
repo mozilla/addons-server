@@ -440,7 +440,7 @@ def activate_locale(locale=None, app=None):
 
 def grant_permission(user_obj, permission, name):
     if not isinstance(permission, amo.permissions.AclPermission):
-        raise ValueError('Invalid rules provided to grant_permission')
+        raise TypeError('Invalid rules provided to grant_permission')
 
     group = Group.objects.create(name=name, rules=str(permission))
     GroupUser.objects.create(group=group, user=user_obj)
@@ -1247,7 +1247,7 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     """
     locals_ = locals_ or {}
     try:
-        exec(force_str(string), globals_ or globals(), locals_)
+        exec(force_str(string), globals_ or globals(), locals_)  # noqa: S102
     except Exception as exc:
         if value:
             raise AssertionError(

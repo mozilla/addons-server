@@ -359,10 +359,7 @@ class BlocklistSubmission(ModelBase):
     def all_adu_safe(self):
         threshold = settings.DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD
 
-        return all(
-            (lambda du: du <= threshold)(block['average_daily_users'])
-            for block in self.to_block
-        )
+        return all(block['average_daily_users'] <= threshold for block in self.to_block)
 
     def has_version_changes(self):
         return bool(self.changed_version_ids)

@@ -53,8 +53,6 @@ def test_write_svg_to_png(filename):
         svg_png_img = Image.open(svg_png)
         svg_out_img = Image.open(out)
         image_diff = ImageChops.difference(svg_png_img, svg_out_img)
-    except Exception as e:
-        raise e
     finally:
         shutil.rmtree(out_dir)
     sum_of_squares = sum(

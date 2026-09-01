@@ -180,7 +180,9 @@ def validation_task(fn):
             )
             return results
         except Exception as exc:
-            log.exception('Unhandled error during validation: %r' % exc)
+            log.exception(
+                'Unhandled error during validation', extra={'error': repr(exc)}
+            )
             results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
             return results
         finally:
@@ -578,7 +580,7 @@ def _recreate_images_for_preview(preview):
         preview.save()
         return True
     except Exception as e:
-        log.exception('Error saving preview: %s' % e)
+        log.exception('Error saving preview', extra={'error': str(e)})
 
 
 @task

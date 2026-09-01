@@ -283,11 +283,11 @@ class TransField(_TransField, forms.CharField):
     """
 
     @staticmethod
-    def adapt(cls, opts=None):
-        """Get a new TransField that subclasses cls instead of CharField."""
+    def adapt(field_class, opts=None):
+        """Get a new TransField that subclasses field_class instead of CharField."""
         if opts is None:
             opts = {}
-        return type('Trans%s' % cls.__name__, (_TransField, cls), opts)
+        return type('Trans%s' % field_class.__name__, (_TransField, field_class), opts)
 
 
 def save_signal(sender, instance, **kw):
