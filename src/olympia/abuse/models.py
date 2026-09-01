@@ -1045,6 +1045,13 @@ class ContentDecision(ModelBase):
     activities = models.ManyToManyField(
         to='activity.ActivityLog', through='activity.ContentDecisionLog'
     )
+    # The activity_log for the decision's primary action.
+    action_activity = models.ForeignKey(
+        'activity.ActivityLog',
+        null=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
     # Any additional metadata we need to attach to this decision that doesn't warrant a
     # dedicated field
     metadata = models.JSONField(default=dict)
@@ -1429,7 +1436,9 @@ class ContentDecision(ModelBase):
                 # If this decision overrides a previous one, reverse the previous
                 # action first, then apply the new action below.
                 self.reverse_overridden_action()
-                log_entry = action_helper.process_action(release_hold=release_hold)
+                log_entry = self.action_activity = action_helper.process_action(
+                    release_hold=release_hold
+                )
                 if not log_entry and not self.activities.exists():
                     # If there was no action taken (e.g. the content was already
                     # removed, so the action was a no-op) we still need to log that the
@@ -1442,15 +1451,17 @@ class ContentDecision(ModelBase):
                         # If there was no action, there is likely no target_versions
                         # either (unless it was an override), so we provide a version to
                         # associate it with, so it's visible in the review history.
-                        action_helper.log_action(
+                        self.action_activity = action_helper.log_action(
                             amo.LOG.DECISION_CREATED,
                             addon_version,
                             extra_details={'versions': [addon_version.version]},
                         )
                     else:
-                        action_helper.log_action(amo.LOG.DECISION_CREATED)
+                        self.action_activity = action_helper.log_action(
+                            amo.LOG.DECISION_CREATED
+                        )
                 # But only save it afterwards in case process_action failed
-                self.save(update_fields=('action_date',))
+                self.save(update_fields=('action_date', 'action_activity'))
             else:
                 log_entry = action_helper.hold_action()
                 action_helper.notify_2nd_level_approvers()
@@ -1516,9 +1527,15 @@ class ContentDecision(ModelBase):
         if not notify_owners:
             return
 
-        log_entry = self.activities.exclude(
-            action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
-        ).last()
+        log_entry = (
+            # if there was a log for the primary action, use that.
+            self.action_activity
+            # otherwise fallback to any activity to send the email
+            # (e.g. an override that reverted content, but nothing else)
+            or self.activities.exclude(
+                action=amo.LOG.REVIEWER_PRIVATE_COMMENT.id
+            ).last()  # oldest
+        )
         if self.addon_id:
             details = (log_entry and log_entry.details) or {}
             is_auto_approval = (

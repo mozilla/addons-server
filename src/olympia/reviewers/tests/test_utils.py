@@ -110,7 +110,7 @@ class TestReviewHelperBase(TestCase):
         mail.outbox = []
         self.file.update(status=file_status)
         if channel == amo.CHANNEL_UNLISTED:
-            self.make_addon_unlisted(self.addon)
+            self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
             if self.review_version:
                 self.review_version.reload()
             self.file.reload()
@@ -988,14 +988,14 @@ class TestReviewHelper(TestReviewHelperBase):
         )
         assert expected == actions
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.review_version.reload()
 
     def test_actions_auto_approval_disabled_unlisted(self):
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW)
         self.grant_permission(self.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         self.grant_permission(self.user, amo.permissions.REVIEWS_ADMIN)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.review_version.reload()
 
         # This doesn't affect unlisted.
@@ -2524,7 +2524,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert not File.objects.get(pk=self.file.pk).approval_date
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.review_version.reload()
         version_factory(
             addon=self.addon,
@@ -3031,7 +3031,7 @@ class TestReviewHelper(TestReviewHelperBase):
         assert self.check_log_count(amo.LOG.UNREJECT_VERSION.id) == 1
 
     def _approve_multiple_versions_unlisted(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         old_version = self.review_version.reload()
         version_pending_rejection = version_factory(
             addon=self.addon,
@@ -3146,7 +3146,7 @@ class TestReviewHelper(TestReviewHelperBase):
 
     def test_reject_multiple_versions_unlisted(self):
         old_version = self.review_version
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.review_version = version_factory(
             addon=self.addon,
             version='3.0',

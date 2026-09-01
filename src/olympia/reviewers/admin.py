@@ -244,9 +244,7 @@ class ReviewQueueHistoryAdmin(AMOModelAdmin):
                 reverse(
                     'reviewers.review',
                     args=[
-                        'unlisted'
-                        if version.channel == amo.CHANNEL_UNLISTED
-                        else 'listed',
+                        amo.CHANNEL_CHOICES_API[version.channel],
                         version.addon_id,
                     ],
                 ),

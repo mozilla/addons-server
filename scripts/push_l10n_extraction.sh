@@ -32,8 +32,15 @@ DATE=$(date -u +%Y-%m-%d)
 REV=$(git rev-parse --short HEAD)
 MESSAGE="Extracted l10n messages from $DATE at $REV"
 DIFF_WITH_ONE_LINE_CHANGE="2 files changed, 2 insertions(+), 2 deletions(-)"
+BRANCH_NAME="merge-locales-$REV-$RANDOM"
 
-git_diff_stat=$(git diff --shortstat locale/templates/LC_MESSAGES)
+# Go in the locale dir, which should be a clone of the addons-server-l10n repo
+cd locale/
+
+# Create a branch with a unique name to create the PR from.
+git checkout -B $BRANCH_NAME
+
+git_diff_stat=$(git diff --shortstat templates/LC_MESSAGES)
 
 info "git_diff_stat: $git_diff_stat"
 
@@ -68,4 +75,8 @@ if [[ "$@" =~ '--dry-run' ]]; then
   exit 0
 fi
 
-git push "$@"
+git push "$@" -f origin $BRANCH_NAME
+
+gh pr create --fill --head $BRANCH_NAME
+
+cd -

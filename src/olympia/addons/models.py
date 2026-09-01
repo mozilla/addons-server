@@ -1139,7 +1139,7 @@ class Addon(OnChangeMixin, ModelBase):
     ):
         """Retrieve the latest version of an add-on for the specified channel.
 
-        If channel is None either channel is returned.
+        If channel is None, any channel is returned.
 
         Keyword arguments:
         exclude -- exclude versions for which all files have one of those statuses

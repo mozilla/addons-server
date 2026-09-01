@@ -209,7 +209,7 @@ class TestDownloadsBase(TestCase):
 class TestDownloadsUnlistedVersions(TestDownloadsBase):
     def setUp(self):
         super().setUp()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
     @mock.patch.object(acl, 'is_listed_addons_viewer_or_reviewer', lambda user: False)
     @mock.patch.object(acl, 'is_unlisted_addons_viewer_or_reviewer', lambda user: False)
@@ -577,7 +577,7 @@ class TestUnlistedFileDownloads(
 ):
     def setUp(self):
         super().setUp()
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         self.grant_permission(
             UserProfile.objects.get(email='reviewer@mozilla.com'),
             amo.permissions.ADDONS_REVIEW_UNLISTED,
@@ -903,7 +903,7 @@ class TestDownloadSource(TestCase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: False)
     def test_download_for_unlisted_addon_returns_404(self):
         """File downloading isn't allowed for unlisted addons."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 404
 
     @mock.patch.object(acl, 'is_listed_addons_viewer_or_reviewer', lambda user: False)
@@ -911,7 +911,7 @@ class TestDownloadSource(TestCase):
     @mock.patch.object(acl, 'check_addon_ownership', lambda *args, **kwargs: True)
     def test_download_for_unlisted_addon_owner(self):
         """File downloading is allowed for addon owners."""
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 200
 
     @mock.patch.object(acl, 'is_listed_addons_viewer_or_reviewer', lambda user: False)
@@ -920,7 +920,7 @@ class TestDownloadSource(TestCase):
     def test_download_for_addon_owner_deleted(self):
         self.addon.delete()
         assert self.client.get(self.url).status_code == 404
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 404
 
     @mock.patch.object(acl, 'is_listed_addons_viewer_or_reviewer', lambda user: True)
@@ -931,7 +931,7 @@ class TestDownloadSource(TestCase):
         admin."""
         assert self.client.get(self.url).status_code == 404
 
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 404
 
     def test_download_for_source_download_permission(self):
@@ -942,7 +942,7 @@ class TestDownloadSource(TestCase):
         assert self.client.get(self.url).status_code == 200
 
         # Even unlisted.
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.client.get(self.url).status_code == 200
 
         # Even disabled.

@@ -1930,7 +1930,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[3].attrib['href'] == reverse('devhub.addons')
 
     def test_finish_submitting_unlisted_addon(self):
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
         self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)
@@ -1990,7 +1990,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        self.make_addon_unlisted(self.addon)
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
 
         self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
         response = self.client.get(self.url)

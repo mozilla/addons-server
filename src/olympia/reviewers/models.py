@@ -107,6 +107,14 @@ def get_flags(addon, version):
     """Return a list of tuples (indicating which flags should be displayed for
     a particular add-on."""
     exclude_flags_by_channel = {
+        amo.CHANNEL_ENTERPRISE: (
+            'auto_approval_disabled',
+            'auto_approval_delayed_temporarily',
+            'auto_approval_delayed_indefinitely',
+            'auto_approval_disabled_unlisted',
+            'auto_approval_delayed_temporarily_unlisted',
+            'auto_approval_delayed_indefinitely_unlisted',
+        ),
         amo.CHANNEL_UNLISTED: (
             'auto_approval_disabled',
             'auto_approval_delayed_temporarily',
@@ -153,13 +161,14 @@ class ReviewerSubscription(ModelBase):
                 reverse('addons.detail', args=[self.addon.pk], add_prefix=False)
             )
         else:
-            # If the submission went to the unlisted channel,
-            # do not link to the listing.
+            # If the submission went to the unlisted or enterprise
+            # channels, do not link to the listing.
             listing_url = None
         context = {
             'name': self.addon.name,
             'url': listing_url,
             'number': version.version,
+            'channel': amo.CHANNEL_CHOICES_API[version.channel],
             'review': absolutify(
                 reverse(
                     'reviewers.review',
@@ -209,14 +218,23 @@ def send_notifications(sender=None, instance=None, signal=None, **kw):
             and instance.channel == amo.CHANNEL_LISTED
             and any(acl.action_allowed_for(user, perm) for perm in listed_perms)
         )
+        action_allowed_unlisted = any(
+            acl.action_allowed_for(user, perm) for perm in unlisted_perms
+        )
         is_unlisted_reviewer_and_unlisted_submission = (
             subscriber.channel == amo.CHANNEL_UNLISTED
             and instance.channel == amo.CHANNEL_UNLISTED
-            and any(acl.action_allowed_for(user, perm) for perm in unlisted_perms)
+            and action_allowed_unlisted
+        )
+        is_unlisted_reviewer_and_enterprise_submission = (
+            subscriber.channel == amo.CHANNEL_ENTERPRISE
+            and instance.channel == amo.CHANNEL_ENTERPRISE
+            and action_allowed_unlisted
         )
         if is_active_user and (
             is_reviewer_and_listed_submission
             or is_unlisted_reviewer_and_unlisted_submission
+            or is_unlisted_reviewer_and_enterprise_submission
         ):
             subscriber.send_notification(instance)
 
