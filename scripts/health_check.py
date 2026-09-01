@@ -30,7 +30,7 @@ class Fetcher:
         verbose: bool = False,
         retries: int = 5,
         backoff_factor: float = 0.1,
-        status_forcelist: list[int] = None,
+        status_forcelist: list[int] | None = None,
     ):
         self.environment = ENV_ENUM[env]
         self.verbose = verbose

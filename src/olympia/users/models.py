@@ -1573,7 +1573,7 @@ class BannedUserContent(ModelBase):
         except Exception as e:
             # If something wrong happens here, we won't restore the picture
             # but we want to be able to continue.
-            log.exception(e)
+            log.exception('Failed to restore user picture', extra={'error': str(e)})
 
         activity.log_create(amo.LOG.ADMIN_USER_CONTENT_RESTORED, self.user)
         self.delete()  # Should delete the ManyToMany relationships

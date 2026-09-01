@@ -51,7 +51,7 @@ def send_email(
         statsd.incr('amo.tasks.send_email.success')
         return True
     except Exception as e:
-        log.exception('send_mail() failed with error: %s, retrying' % e)
+        log.exception('send_mail() failed, retrying', extra={'error': str(e)})
         statsd.incr('amo.tasks.send_email.failure')
         return send_email.retry(exc=e, max_retries=max_retries)
 

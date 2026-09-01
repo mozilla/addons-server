@@ -38,7 +38,7 @@ def custom_exception_handler(exc, context=None):
     """
     # If propagate is true, bail early.
     if settings.DEBUG_PROPAGATE_EXCEPTIONS:
-        raise
+        raise exc
 
     if isinstance(exc, Http404):
         exc = exceptions.NotFound()

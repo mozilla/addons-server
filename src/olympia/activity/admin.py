@@ -61,7 +61,6 @@ class ActivityLogAdmin(AMOModelAdmin):
         'ja4',
         'signals',
     )
-    raw_id_fields = ('user',)
     view_on_site = False
     list_select_related = ('requestfingerprintlog', 'iplog')
     search_fields = ('=requestfingerprintlog__ja4',)

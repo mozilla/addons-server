@@ -39,7 +39,7 @@ class TestSendMail(TestCase):
 
     def test_send_string(self):
         to = 'f@f.com'
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             send_mail('subj', 'body', recipient_list=to)
 
     def test_deny(self):

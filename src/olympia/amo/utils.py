@@ -203,7 +203,7 @@ def send_mail(
         return True
 
     if isinstance(recipient_list, str):
-        raise ValueError('recipient_list should be a list, not a string.')
+        raise TypeError('recipient_list should be a list, not a string.')
 
     # Check against user notification settings
     if perm_setting:
@@ -745,8 +745,8 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
         if scale <= 1:
             im = im.resize(
                 (
-                    int(round(source_width * scale)),
-                    int(round(source_height * scale)),
+                    round(source_width * scale),
+                    round(source_height * scale),
                 ),
                 # Antialias is deprecated and renamed to Lanczos in PIL
                 resample=Image.Resampling.LANCZOS,
@@ -785,7 +785,7 @@ class ImageCheck:
                 self.img.verify()
                 self._is_image = True
             except Exception:
-                log.error('Error decoding image', exc_info=True)
+                log.exception('Error decoding image')
                 self._is_image = False
         return self._is_image
 
@@ -1049,7 +1049,7 @@ def attach_trans_dict(model, objs, *, field_names=None):
     else:
         qs = []
     all_translations = {
-        field_id: sorted(list(translations), key=lambda t: t.locale)
+        field_id: sorted(translations, key=lambda t: t.locale)
         for field_id, translations in sorted_groupby(qs, lambda t: t.id)
     }
 

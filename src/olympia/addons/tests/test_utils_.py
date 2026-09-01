@@ -66,7 +66,6 @@ def test_validate_addon_name_allowed(name):
         'ꮇozi𝈪𝈪a',
         'Moziꙇꙇa',
         'Firefox awesome for Mozilla',
-        'Firefox awesome for Mozilla',
         'ƒireføx',
         'ϝirefox',
         'FIRꭼfox',

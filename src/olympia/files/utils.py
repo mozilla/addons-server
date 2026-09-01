@@ -61,7 +61,7 @@ def get_filepath(fileorpath):
     """
     from olympia.files.models import File, FileUpload
 
-    if isinstance(fileorpath, str) or isinstance(fileorpath, DjangoFile):
+    if isinstance(fileorpath, (str, DjangoFile)):
         return fileorpath
     elif isinstance(fileorpath, File):
         return fileorpath.file
@@ -600,10 +600,10 @@ class SafeTar:
     @classmethod
     def open(cls, *args, **kwargs):
         if kwargs.pop('force_fsync', False):
-            cls = FSyncedTarFile
+            tar_class = FSyncedTarFile
         else:
-            cls = tarfile.TarFile
-        archive = cls.open(*args, **kwargs)
+            tar_class = tarfile.TarFile
+        archive = tar_class.open(*args, **kwargs)
         for member in archive.getmembers():
             archive_member_validator(member)
             # In addition to the generic archive member validator, tar files
