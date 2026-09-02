@@ -28,7 +28,7 @@ from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.scanners.models import ScannerResult
-from olympia.scanners.tasks import call_webhooks
+from olympia.scanners.tasks import build_webhook_payload, call_webhooks
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -436,24 +436,15 @@ def call_webhooks_on_version_created(version_pk):
     log.info('Calling webhooks for new Version %s', version_pk)
 
     try:
-        from olympia.scanners.serializers import (
-            WebhookAddonSerializer,
-            WebhookVersionSerializer,
-        )
-
         version = Version.unfiltered.get(pk=version_pk)
 
         if version.addon.type == amo.ADDON_LPAPP:
             log.info('Skipping webhooks on langpack %s', version_pk)
             return
 
-        payload = {
-            'addon': WebhookAddonSerializer(version.addon).data,
-            'version': WebhookVersionSerializer(version).data,
-        }
         call_webhooks(
             event_id=WEBHOOK_ON_VERSION_CREATED,
-            payload=payload,
+            payload=build_webhook_payload(WEBHOOK_ON_VERSION_CREATED, version=version),
             version=version,
         )
     except Exception:
