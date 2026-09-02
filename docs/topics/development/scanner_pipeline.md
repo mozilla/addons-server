@@ -108,12 +108,54 @@ field:
 The `results` field should contain the same data structure as a synchronous
 response would return.
 
+(skipping-an-event)=
 #### Skipping an event
 
 Scanners can use the `204 No Content` HTTP status code to indicate that they
 intentionally skipped the event (e.g., the event is not relevant for this
 scanner). No results will be stored for the scanner result associated with this
 event.
+
+(scanner-delivery-retries)=
+### Delivery retries
+
+Some events block auto-approval: a version submitted while a scanner is
+subscribed to `during_validation` or `on_version_created` is not auto-approved
+until that scanner is done with it. A [scanner result](#scanner-results) counts
+as done when the scanner [skipped the event](#skipping-an-event) or sent its
+`matchedRules`, [synchronously](#synchronous-response) or
+[asynchronously](#asynchronous-scanning).
+
+A scanner can fail to send its results back, e.g., because of an outage. Rather
+than waiting forever, AMO delivers the webhook again, with a delay that doubles
+after each attempt:
+
+| Delivery | Sent                                    |
+| -------- | --------------------------------------- |
+| 1        | when the event occurs                   |
+| 2        | 1 hour after the previous delivery      |
+| 3        | 2 hours after the previous delivery     |
+| 4        | 4 hours after the previous delivery     |
+| 5        | 8 hours after the previous delivery     |
+
+That is `WEBHOOK_MAX_DELIVERY_ATTEMPTS` deliveries over 15 hours, the initial
+call included. The first delay is configurable in seconds through the
+`scanner-webhook-retry-initial-delay` config key. Retries are scheduled by the
+`auto_approve` command (except in `--dry-run` mode) and performed by the
+`retry_webhook_deliveries_on_version` task.
+
+A retry sends the same payload as the initial call, to the same
+`scanner_result_url`, so a scanner that eventually answers a retry does not need
+to do anything differently. Every delivery increments `delivery_attempts` on the
+scanner result, which is visible in the admin; the counter is incremented before
+the call, so failed calls count too.
+
+AMO gives up on a scanner for a given version when the attempts are exhausted,
+when the payload can no longer be rebuilt (e.g., the uploaded file a
+`during_validation` payload points to is gone), or when no scanner result was
+ever created for the event. The version is then flagged for human review with
+the `WAITING_ON_SCANNERS` reason, so it leaves auto-approval and reaches the
+reviewer queue instead of remaining stuck.
 
 (scanner-annotations)=
 ### Annotations

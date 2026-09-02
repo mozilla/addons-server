@@ -830,6 +830,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_webhooks_during_validation': {'queue': 'devhub'},
+    'olympia.scanners.tasks.retry_webhook_deliveries_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_source_code_uploaded': {'queue': 'devhub'},
