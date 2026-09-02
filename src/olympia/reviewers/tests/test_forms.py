@@ -1637,16 +1637,16 @@ class TestReviewForm(TestCase):
 
     def test_cinder_policies_choices(self):
         both_policy_exposed = CinderPolicy.objects.create(
-            uuid='1', name='foo', expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
+            uuid='1', name='both', expose_in_reviewer_tools=POLICY_EXPOSURE.BOTH
         )
         ext_policy_exposed = CinderPolicy.objects.create(
-            uuid='2', name='foo', expose_in_reviewer_tools=POLICY_EXPOSURE.EXTENSION
+            uuid='2', name='extn', expose_in_reviewer_tools=POLICY_EXPOSURE.EXTENSION
         )
         CinderPolicy.objects.create(
-            uuid='3', name='baa', expose_in_reviewer_tools=POLICY_EXPOSURE.NONE
+            uuid='3', name='none', expose_in_reviewer_tools=POLICY_EXPOSURE.NONE
         )
         thm_policy_exposed = CinderPolicy.objects.create(
-            uuid='4', name='baa', expose_in_reviewer_tools=POLICY_EXPOSURE.THEME
+            uuid='4', name='theme', expose_in_reviewer_tools=POLICY_EXPOSURE.THEME
         )
 
         form = self.get_form()
@@ -1726,39 +1726,39 @@ class TestReviewForm(TestCase):
 
         content = str(form['cinder_policies'])
         doc = pq(content)
-        label_0 = doc('#id_cinder_policies_0')
-        label_1 = doc('#id_cinder_policies_1')
-        label_2 = doc('#id_cinder_policies_2')
+        label_approve = doc('#id_cinder_policies_0')
+        label_reject = doc('#id_cinder_policies_1')
+        label_empty = doc('#id_cinder_policies_2')
 
-        assert label_0.attr['class'] == 'data-toggle'
-        assert label_0.attr['data-value'] == ''
-        assert label_0.attr['data-enforcement-primary-actions'] == '[]'
-        assert label_0.attr['data-enforcement-followup-actions'] == '[]'
-        assert label_0.attr['data-enforcement-actions-order'] == ''
-        assert label_0('input')[0].type == 'checkbox'
+        assert label_empty.attr['class'] == 'data-toggle'
+        assert label_empty.attr['data-value'] == ''
+        assert label_empty.attr['data-enforcement-primary-actions'] == '[]'
+        assert label_empty.attr['data-enforcement-followup-actions'] == '[]'
+        assert label_empty.attr['data-enforcement-actions-order'] == ''
+        assert label_empty('input')[0].type == 'checkbox'
 
-        assert label_1.attr['class'] == 'data-toggle'
-        assert label_1.attr['data-value'] == 'reject reject_multiple_versions'
+        assert label_reject.attr['class'] == 'data-toggle'
+        assert label_reject.attr['data-value'] == 'reject reject_multiple_versions'
         assert (
-            label_1.attr['data-enforcement-primary-actions']
+            label_reject.attr['data-enforcement-primary-actions']
             == f'[{DECISION_ACTIONS.AMO_DISABLE_ADDON.value}]'
         )
-        assert label_1.attr['data-enforcement-followup-actions'] == (
+        assert label_reject.attr['data-enforcement-followup-actions'] == (
             f'[{DECISION_ACTIONS.AMO_FU_DELAY_LONG_SOFT_BLOCK_ADDON.value}, '
             f'{DECISION_ACTIONS.AMO_FU_DELAY_SHORT_HARD_BLOCK_ADDON.value}]'
         )
-        assert label_1.attr['data-enforcement-actions-order'] == '090500'
-        assert label_1('input')[0].type == 'checkbox'
+        assert label_reject.attr['data-enforcement-actions-order'] == '090500'
+        assert label_reject('input')[0].type == 'checkbox'
 
-        assert label_2.attr['class'] == 'data-toggle'
-        assert label_2.attr['data-value'] == 'public'
+        assert label_approve.attr['class'] == 'data-toggle'
+        assert label_approve.attr['data-value'] == 'public'
         assert (
-            label_2.attr['data-enforcement-primary-actions']
+            label_approve.attr['data-enforcement-primary-actions']
             == f'[{DECISION_ACTIONS.AMO_APPROVE.value}]'
         )
-        assert label_2.attr['data-enforcement-followup-actions'] == '[]'
-        assert label_2.attr['data-enforcement-actions-order'] == ''
-        assert label_2('input')[0].type == 'radio'
+        assert label_approve.attr['data-enforcement-followup-actions'] == '[]'
+        assert label_approve.attr['data-enforcement-actions-order'] == ''
+        assert label_approve('input')[0].type == 'radio'
 
     def test_policy_values_fields(self):
         policy_0 = CinderPolicy.objects.create(
