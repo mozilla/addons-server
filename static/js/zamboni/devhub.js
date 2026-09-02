@@ -637,7 +637,8 @@ function initVersions() {
 
   if ($('#modal-rollback-version').length) {
     const CHANNEL_UNLISTED = '1',
-          CHANNEL_LISTED = '2';
+          CHANNEL_LISTED = '2',
+          CHANNEL_ENTERPRISE = '3';
     let $modalRollback = $('#modal-rollback-version').modal('.version-rollback', {
       width: 600
     });
@@ -649,8 +650,10 @@ function initVersions() {
         $hiddenChannelInput = $('input[name="channel"][type="hidden"]'),
         $listedVersionRow = $('#listed-version-row'),
         $unlistedVersionRow = $('#unlisted-version-row'),
+        $enterpriseVersionRow = $('#enterprise-version-row'),
         $listedVersionSelect = $('#id_listed_version'),
-        $unlistedVersionSelect = $('#id_unlisted_version');
+        $unlistedVersionSelect = $('#id_unlisted_version'),
+        $enterpriseVersionSelect = $('#id_enterprise_version');
 
     const explainerAndReleaseNotesUpdate = function (event) {
       const $explainer = $('#rollback-explainer-row'),
@@ -675,10 +678,12 @@ function initVersions() {
 
     $listedVersionSelect.on('change', explainerAndReleaseNotesUpdate);
     $unlistedVersionSelect.on('change', explainerAndReleaseNotesUpdate);
+    $enterpriseVersionSelect.on('change', explainerAndReleaseNotesUpdate);
 
     $channelInputs.on('change', function () {
       $listedVersionRow.hide();
       $unlistedVersionRow.hide();
+      $enterpriseVersionRow.hide();
       $channelInputs.each(function (index, element) {
         const $radio = $(element);
         if ($radio.val() == CHANNEL_LISTED && $radio.prop('checked')) {
@@ -689,6 +694,10 @@ function initVersions() {
           $unlistedVersionRow.show();
           $unlistedVersionSelect.trigger('change');
         }
+        if ($radio.val() == CHANNEL_ENTERPRISE && $radio.prop('checked')) {
+          $enterpriseVersionRow.show();
+          $enterpriseVersionSelect.trigger('change');
+        }
       });
     })
     .trigger('change');
@@ -698,6 +707,8 @@ function initVersions() {
         $unlistedVersionSelect.trigger('change');
       } else if ($hiddenChannelInput.val() == CHANNEL_LISTED) {
         $listedVersionSelect.trigger('change');
+      } else if ($hiddenChannelInput.val() == CHANNEL_ENTERPRISE) {
+        $enterpriseVersionSelect.trigger('change');
       }
     }
   }

@@ -49,6 +49,10 @@ def myview(*args, **kwargs):
     pass
 
 
+def mock_has_version_in_channel(*channels):
+    return lambda channel, include_deleted=False: channel in channels
+
+
 class TestGroupPermissionOnView(WithDynamicEndpoints):
     client_class = APITestClientSessionID
 
@@ -269,7 +273,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         request.user = AnonymousUser()
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         assert not self.permission.has_permission(request, myview)
         assert not self.permission.has_object_permission(request, myview, obj)
@@ -279,7 +283,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         request.user = user_factory()
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
         assert self.permission.has_permission(request, myview)
         assert not self.permission.has_object_permission(request, myview, obj)
 
@@ -292,7 +296,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
             request.user = user
             obj = Mock(spec=[])
             obj.type = amo.ADDON_EXTENSION
-            obj.has_listed_versions = lambda include_deleted=False: True
+            obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
             assert self.permission.has_permission(request, myview)
             assert self.permission.has_object_permission(request, myview, obj)
 
@@ -301,7 +305,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_VIEW)
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -323,7 +327,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         self.grant_permission(user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW)
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -344,7 +348,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_REVIEW)
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         for method in self.safe_methods + self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -367,7 +371,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         self.grant_permission(user, amo.permissions.STATIC_THEMES_REVIEW)
         obj = Mock(spec=[])
         obj.type = amo.ADDON_STATICTHEME
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         for method in self.safe_methods + self.unsafe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -390,7 +394,7 @@ class TestAllowListedViewerOrReviewer(TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_REVIEW)
         obj = Mock(spec=[])
         obj.type = amo.ADDON_EXTENSION
-        obj.has_listed_versions = lambda include_deleted=False: False
+        obj.has_version_in_channel = mock_has_version_in_channel()
 
         for method in self.safe_methods:
             request = getattr(self.request_factory, method)('/')
@@ -457,7 +461,7 @@ class TestAllowAnyKindOfReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -468,7 +472,7 @@ class TestAllowAnyKindOfReviewer(TestCase):
             self.request.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
         )
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         # self.request is a POST, viewers should not have access to that.
         assert not self.permission.has_permission(self.request, myview)
@@ -491,14 +495,14 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
     def test_user_cannot_be_anonymous(self):
         self.request.user = AnonymousUser()
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
 
     def test_authenticated_but_not_reviewer(self):
         self.request.user = user_factory()
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
 
@@ -506,7 +510,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.SUPERPOWERS)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -515,7 +519,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         assert not self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
@@ -524,7 +528,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -535,7 +539,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
             self.request.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
         )
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_UNLISTED)
 
         assert self.permission.has_permission(self.request, myview)
 
@@ -550,9 +554,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: True
-
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_ENTERPRISE)
         # Enterprise is restricted in similar manner to unlisted.
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -563,9 +565,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
             self.request.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
         )
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: True
-
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_ENTERPRISE)
         # Enterprise is restricted in similar manner to unlisted.
         assert self.permission.has_permission(self.request, myview)
 
@@ -580,9 +580,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: False
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         assert self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
@@ -593,9 +591,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
             self.request.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
         )
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: False
-        obj.has_listed_versions = lambda include_deleted=False: True
+        obj.has_version_in_channel = mock_has_version_in_channel(amo.CHANNEL_LISTED)
 
         assert self.permission.has_permission(self.request, myview)
         assert not self.permission.has_object_permission(self.request, myview, obj)
@@ -604,9 +600,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
         self.request.user = user_factory()
         self.grant_permission(self.request.user, amo.permissions.ADDONS_REVIEW_UNLISTED)
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: False
-        obj.has_listed_versions = lambda include_deleted=False: False
+        obj.has_version_in_channel = mock_has_version_in_channel()
 
         assert self.permission.has_permission(self.request, myview)
         assert self.permission.has_object_permission(self.request, myview, obj)
@@ -617,9 +611,7 @@ class TestAllowUnlistedViewerOrReviewer(TestCase):
             self.request.user, amo.permissions.REVIEWER_TOOLS_UNLISTED_VIEW
         )
         obj = Mock(spec=[])
-        obj.has_unlisted_versions = lambda include_deleted=False: False
-        obj.has_enterprise_versions = lambda include_deleted=False: False
-        obj.has_listed_versions = lambda include_deleted=False: False
+        obj.has_version_in_channel = mock_has_version_in_channel()
 
         assert self.permission.has_permission(self.request, myview)
 
@@ -687,12 +679,12 @@ class TestAllowHasListedVersions(TestCase):
         assert self.permission.has_permission(self.request, myview)
 
     def test_has_object_permission(self):
-        obj = Mock(spec=['has_listed_versions'])
+        obj = Mock(spec=['has_version_in_channel'])
 
-        obj.has_listed_versions.return_value = True
+        obj.has_version_in_channel.return_value = True
         assert self.permission.has_object_permission(self.request, myview, obj)
 
-        obj.has_listed_versions.return_value = False
+        obj.has_version_in_channel.return_value = False
         assert not self.permission.has_object_permission(self.request, myview, obj)
 
 

@@ -163,7 +163,7 @@ class AllowListedViewerOrReviewer(BasePermission):
             and acl.action_allowed_for(request.user, permissions.REVIEWER_TOOLS_VIEW)
         )
         can_access_because_listed_reviewer = (
-            obj.has_listed_versions(include_deleted=True)
+            obj.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True)
             and acl.is_reviewer(request.user, obj)
             and (not self.disallow_unsafe or request.method in SAFE_METHODS)
         )
@@ -198,9 +198,9 @@ class AllowUnlistedViewerOrReviewer(AllowListedViewerOrReviewer):
             request.user
         ) and (not self.disallow_unsafe or request.method in SAFE_METHODS)
         has_unlisted_or_no_listed = (
-            obj.has_unlisted_versions(include_deleted=True)
-            or obj.has_enterprise_versions(include_deleted=True)
-            or not obj.has_listed_versions(include_deleted=True)
+            obj.has_version_in_channel(amo.CHANNEL_UNLISTED, include_deleted=True)
+            or obj.has_version_in_channel(amo.CHANNEL_ENTERPRISE, include_deleted=True)
+            or not obj.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True)
         )
 
         return has_unlisted_or_no_listed and (
@@ -247,7 +247,7 @@ class AllowHasListedVersions(BasePermission):
     Allow access if the add-on has any listed versions"""
 
     def has_object_permission(self, request, view, obj):
-        return obj.has_listed_versions(include_deleted=True)
+        return obj.has_version_in_channel(amo.CHANNEL_LISTED, include_deleted=True)
 
 
 class AllowForVersionChannel(OperationHolderMixin, BasePermission):

@@ -39,7 +39,7 @@
               </a>
 
               <div class="DevHub-MyAddons-item-versions">
-                {% if addon.has_listed_versions() %}
+                {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
                   {% if addon.current_version %}
                     <div class="DevHub-MyAddons-item-version-details">
                       {% if addon.has_multiple_channels() %}

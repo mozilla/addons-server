@@ -90,7 +90,7 @@
               </td>
             </tr>
           {% endif %}
-          {% if addon.has_listed_versions() %}
+          {% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
           <tr>
             <th>Visibility</th>
             <td>

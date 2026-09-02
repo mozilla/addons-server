@@ -14,7 +14,7 @@
 {% if latest_unlisted_version_including_disabled %}
   {% set has_unlisted_versions = True %}
 {% endif %}
-{% set has_enterprise_versions = addon.has_enterprise_versions() %}
+{% set has_enterprise_versions = addon.has_version_in_channel(amo.CHANNEL_ENTERPRISE) %}
 {% set has_multiple_channels = addon.has_multiple_channels() %}
 
 {% if has_multiple_channels %}

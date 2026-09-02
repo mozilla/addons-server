@@ -357,7 +357,7 @@ def edit(request, addon_id, addon):
         'addon': addon,
         'whiteboard': whiteboard,
         'editable': False,
-        'show_listed_fields': addon.has_listed_versions(),
+        'show_listed_fields': addon.has_version_in_channel(amo.CHANNEL_LISTED),
         'valid_slug': addon.slug,
         'tags': addon.tags.values_list('tag_text', flat=True),
         'previews': previews,
@@ -854,7 +854,7 @@ def upload_detail(request, uuid, format='html'):
 
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
-    show_listed = addon.has_listed_versions()
+    show_listed = addon.has_version_in_channel(amo.CHANNEL_LISTED)
     static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {}
     content_waffle = waffle.switch_is_active('content-optimization')
@@ -1341,6 +1341,14 @@ def version_list(request, addon_id, addon):
         # success to go to the list proper, so append `#` to clear the fragment.
         return redirect(addon.get_dev_url('versions') + '#')
 
+    version_qs = addon.versions.filter(
+        channel__in=(amo.CHANNEL_UNLISTED, amo.CHANNEL_ENTERPRISE),
+        file__status=amo.STATUS_APPROVED,
+    ).values_list('channel', 'version')
+
+    def get_version(channel):
+        return next((v for c, v in version_qs if c == channel), None)
+
     data = {
         'addon': addon,
         'can_request_review': addon.can_request_review(),
@@ -1348,11 +1356,9 @@ def version_list(request, addon_id, addon):
         'can_submit': addon.status != amo.STATUS_DISABLED,
         'comments_maxlength': CommentLog._meta.get_field('comments').max_length,
         'latest_approved_unlisted_version_number': rollback_form.can_rollback()
-        and addon.versions.filter(
-            channel=amo.CHANNEL_UNLISTED, file__status=amo.STATUS_APPROVED
-        )
-        .values_list('version', flat=True)
-        .first(),
+        and get_version(amo.CHANNEL_UNLISTED),
+        'latest_approved_enterprise_version_number': rollback_form.can_rollback()
+        and get_version(amo.CHANNEL_ENTERPRISE),
         'is_admin': is_admin,
         'rollback_form': rollback_form,
         'session_id': request.session.session_key,

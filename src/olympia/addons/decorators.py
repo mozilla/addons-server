@@ -9,6 +9,7 @@ import waffle
 from rest_framework import status
 from rest_framework.response import Response
 
+from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 
@@ -40,8 +41,8 @@ def addon_view(f, qs=Addon.objects.all, include_deleted_when_checking_versions=F
 
         # If the addon has no listed versions it needs either an author
         # (owner/viewer/dev/support) or an unlisted addon reviewer.
-        has_listed_versions = addon.has_listed_versions(
-            include_deleted=include_deleted_when_checking_versions
+        has_listed_versions = addon.has_version_in_channel(
+            amo.CHANNEL_LISTED, include_deleted=include_deleted_when_checking_versions
         )
         if not (
             has_listed_versions

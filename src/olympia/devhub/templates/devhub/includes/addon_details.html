@@ -51,7 +51,7 @@
   </li>
 {% endif %}
 
-{% if addon.has_listed_versions() %}
+{% if addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
     {% if has_multiple_channels %}
       <li class="distribution-tag-listed">
         <span class="distribution-tag-listed tooltip"
@@ -85,7 +85,7 @@
     {% endif %}
 {% endif %}
 
-{% if addon.status == amo.STATUS_DISABLED and not addon.has_listed_versions() %}
+{% if addon.status == amo.STATUS_DISABLED and not addon.has_version_in_channel(amo.CHANNEL_LISTED) %}
     <li>
         <strong>
           {{ _('Status:') }} {{ status_and_tip(addon) }}

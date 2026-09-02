@@ -1259,7 +1259,7 @@ class AddonSerializer(AMOModelSerializer):
         # We want name and summary to be required fields so they're not cleared, but
         # *only* if this is an existing add-on with listed versions.
         # - see AddonMetadataValidator for new add-ons/versions.
-        if self.instance and self.instance.has_listed_versions():
+        if self.instance and self.instance.has_version_in_channel(amo.CHANNEL_LISTED):
             for field in ('name', 'summary', 'categories'):
                 if field in data:
                     self.fields[field].required = True
@@ -1386,7 +1386,7 @@ class AddonSerializer(AMOModelSerializer):
         fields_to_review = ('name', 'summary')
         old_metadata = (
             fetch_translations_from_instance(instance, fields_to_review)
-            if instance.has_listed_versions()
+            if instance.has_version_in_channel(amo.CHANNEL_LISTED)
             else None
         )
         changes = {}

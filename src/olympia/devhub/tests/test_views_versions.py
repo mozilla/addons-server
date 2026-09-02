@@ -853,7 +853,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(45):
+        with self.assertNumQueries(43):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -889,13 +889,12 @@ class TestVersion(TestCase):
             # 32. check on user being an owner
             # 33. versions in unlisted channel
             # 34. translations for those versions
-            # 35. latest non-disabled version in unlisted channel
+            # 35. latest non-disabled version in unlisted and enterprise channels
             # 36. check on user being an author (dupe)
             # 37. enable-devhub-support-form waffle switch check
             # 38. waffle switch
             # 39-40. promotion group queries
             # 41-42. (not in order) version-rollback waffle check
-            # 43-45. (not in order) enterprise version checks
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -962,10 +961,10 @@ class TestVersion(TestCase):
         )
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        with self.assertNumQueries(49):
+        with self.assertNumQueries(48):
             # see test_pending_activity_count for the query breakdown
             # + 2 more for the 2 extra versions (not good, but the current state)
-            # + 2 more for the listed and unlisted rollback queries
+            # + 3 more for the channel rollback queries
             response = self.client.get(self.url)
         # no versions available for rollback, so the button and form isn't available
         doc = pq(response.content)
@@ -989,8 +988,6 @@ class TestVersion(TestCase):
         assert modal('input[name="channel"]').attr('value') == str(amo.CHANNEL_LISTED)
         assert modal('select option').length == 1
         assert modal('select option')[0].text == first_version.version
-        # and the select for unlisted versions is not present
-        assert 'Choose version' not in modal.html()
 
         assert modal(
             f'tr#listed-version-row td[data-current-version="{second_version.version}"]'
@@ -1012,10 +1009,8 @@ class TestVersion(TestCase):
         assert channel_input.attr('type') == 'hidden'
         assert channel_input.attr('value') == str(amo.CHANNEL_UNLISTED)
         assert modal('#id_listed_version').length == 0
-        assert 'Choose version' in modal.html()
-        assert modal('select option').length == 2
-        assert modal('select option')[0].text == 'Choose version'
-        assert modal('select option')[1].text == first_version.version
+        assert modal('select option').length == 1
+        assert modal('select option')[0].text == first_version.version
 
         assert modal(
             'tr#unlisted-version-row '
@@ -1044,32 +1039,32 @@ class TestVersion(TestCase):
             'checked'
         )
         # and disable it
-        assert modal(f'{channel_selector}[disabled]').length == 2
-        assert modal(channel_selector).length == 2
-        assert modal('#id_listed_version option').length == 1
-        assert (
-            modal('#id_listed_version option').text()
-            == 'No appropriate version available'
-        )
-        assert 'Choose version' in modal.html()
-        assert modal('#id_unlisted_version option').length == 2
+        assert modal(f'{channel_selector}[disabled]').length == 1
+        assert modal(channel_selector).length == 1
+        assert modal('#id_listed_version option').length == 0
+        assert modal('#id_unlisted_version option').length == 1
 
     @override_switch('version-rollback', active=True)
-    def test_version_rollback_form_both_channels(self):
+    def test_version_rollback_form_all_channels(self):
         listed_version = self.addon.current_version
         second_listed_version = version_factory(addon=self.addon)
+        version_factory(addon=self.addon, channel=amo.CHANNEL_ENTERPRISE)
+        second_enterprise_version = version_factory(
+            addon=self.addon, channel=amo.CHANNEL_ENTERPRISE
+        )
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         second_unlisted_version = version_factory(
             addon=self.addon, channel=amo.CHANNEL_UNLISTED
         )
 
-        # with several channels available with multiple versions
-        with self.assertNumQueries(51):
+        # with both channels available with multiple versions
+        with self.assertNumQueries(52):
             # see test_pending_activity_count & test_version_rollback_form_not_available
-            # for the baseline when there no versions available.  We expect 2 more
+            # for the baseline when there no versions available.  We expect 3 more
             # queries here:
             # - one to fetch the channel for the latest version created.
             # - one for the latest unlisted version.
+            # - one for the latest enterprise version.
             response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('a.button.version-rollback').length == 1
@@ -1082,16 +1077,18 @@ class TestVersion(TestCase):
         assert modal(f'{channel_selector}[value="{amo.CHANNEL_UNLISTED}"]').attr(
             'checked'
         )
+        assert not modal(f'{channel_selector}[value="{amo.CHANNEL_ENTERPRISE}"]').attr(
+            'checked'
+        )
         assert not modal(f'{channel_selector}[value="{amo.CHANNEL_LISTED}"]').attr(
             'checked'
         )
         # and they're enabled
         assert modal(f'{channel_selector}[disabled]').length == 0
-        assert modal(channel_selector).length == 2
+        assert modal(channel_selector).length == 3
         assert modal('#id_listed_version option').length == 1
         assert modal('#id_listed_version option').text() == listed_version.version
-        assert 'Choose version' in modal.html()
-        assert modal('#id_unlisted_version option').length == 2
+        assert modal('#id_unlisted_version option').length == 1
 
         assert modal(
             'tr#listed-version-row '
@@ -1100,6 +1097,10 @@ class TestVersion(TestCase):
         assert modal(
             'tr#unlisted-version-row '
             f'td[data-current-version="{second_unlisted_version.version}"]'
+        )
+        assert modal(
+            'tr#enterprise-version-row '
+            f'td[data-current-version="{second_enterprise_version.version}"]'
         )
 
         assert (
