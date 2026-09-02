@@ -440,6 +440,10 @@ class ScannerResult(AbstractScannerResult):
         'ScannerRule', through='ScannerMatch', related_name='results'
     )
     has_matches = models.BooleanField(null=True)
+    delivery_attempts = models.PositiveSmallIntegerField(
+        default=0,
+        help_text='Number of times the webhook has been called for this result',
+    )
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'
@@ -460,6 +464,12 @@ class ScannerResult(AbstractScannerResult):
     @property
     def webhook(self):
         return self.webhook_event.webhook if self.webhook_event else None
+
+    @property
+    def is_complete(self):
+        """Whether the scanner is done with this result: `results` is None
+        (event skipped) or has `matchedRules`."""
+        return self.results is None or 'matchedRules' in self.results
 
     def get_rules_queryset(self):
         # See: https://github.com/mozilla/addons-server/issues/13143

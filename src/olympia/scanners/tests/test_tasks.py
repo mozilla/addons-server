@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime, timedelta
 from unittest import mock
 
 from django.conf import settings
@@ -17,6 +18,7 @@ from olympia.amo.tests import (
     block_factory,
     user_factory,
     version_factory,
+    version_review_flags_factory,
 )
 from olympia.constants.promoted import NOTABLE_API_NAME
 from olympia.constants.scanners import (
@@ -29,11 +31,14 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_MAX_DELIVERY_ATTEMPTS,
+    WEBHOOK_ON_VERSION_CREATED,
     YARA,
 )
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadMixin
 from olympia.files.utils import parse_addon
+from olympia.reviewers.models import NeedsHumanReview
 from olympia.scanners.models import (
     ScannerQueryResult,
     ScannerQueryRule,
@@ -48,6 +53,7 @@ from olympia.scanners.tasks import (
     call_webhooks,
     call_webhooks_during_validation,
     mark_scanner_query_rule_as_completed_or_aborted,
+    retry_webhook_deliveries_on_version,
     run_narc_on_version,
     run_scanner,
     run_scanner_query_rule,
@@ -55,6 +61,7 @@ from olympia.scanners.tasks import (
     run_yara,
 )
 from olympia.versions.models import Version
+from olympia.zadmin.models import set_config
 
 
 class TestRunScanner(UploadMixin, TestCase):
@@ -2559,6 +2566,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
         for result in results:
             assert result.scanner == WEBHOOK
             assert result.results == returned_data
+            assert result.delivery_attempts == 1
         assert results[0].webhook_event == event_1
         assert results[1].webhook_event == event_3
 
@@ -2908,3 +2916,343 @@ class TestCallWebhooksDuringValidation(UploadMixin, TestCase):
         results = call_webhooks_during_validation(self.results, self.upload.pk)
 
         assert self.results == results
+
+
+@mock.patch('olympia.scanners.tasks._call_webhook')
+class TestRetryWebhookDeliveriesOnVersion(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        user_factory(id=settings.TASK_USER_ID)
+        self.addon = addon_factory(file_kw={'status': amo.STATUS_AWAITING_REVIEW})
+        self.version = self.addon.versions.get()
+        self.webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+        )
+        self.webhook.update(modified=self.days_ago(42))
+        self.event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=self.webhook
+        )
+
+    def create_result(self, **kwargs):
+        kwargs.setdefault('results', {'ok': True})
+        kwargs.setdefault('delivery_attempts', 1)
+        return ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            webhook_event=self.event,
+            version=self.version,
+            **kwargs,
+        )
+
+    def age_last_attempt(self, scanner_result, **kwargs):
+        """Pretend the last delivery attempt was made a while ago."""
+        scanner_result.update(modified=datetime.now() - timedelta(**kwargs))
+
+    def age_version(self, **kwargs):
+        Version.objects.filter(pk=self.version.pk).update(
+            created=datetime.now() - timedelta(**kwargs)
+        )
+        self.version = self.version.reload()
+
+    def test_before_initial_delay(self, _call_webhook_mock):
+        result = self.create_result()
+        self.age_last_attempt(result, minutes=30)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+        assert result.reload().delivery_attempts == 1
+
+    def test_retries_after_initial_delay(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        _call_webhook_mock.assert_called_with(
+            webhook=self.webhook,
+            payload={
+                'addon': mock.ANY,
+                'version': mock.ANY,
+                'event': 'on_version_created',
+                'scanner_result_url': (
+                    f'http://testserver/api/v5/scanner/results/{result.pk}/'
+                ),
+            },
+        )
+        result = result.reload()
+        assert result.delivery_attempts == 2
+        assert result.results == {'ack': True}
+
+    def test_backoff(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        # Each attempt doubles the delay since the previous one.
+        for attempts, hours in ((1, 1), (2, 2), (3, 4), (4, 8)):
+            result = self.create_result(delivery_attempts=attempts)
+
+            self.age_last_attempt(result, minutes=hours * 60 - 1)
+            retry_webhook_deliveries_on_version(self.version.pk)
+            assert not _call_webhook_mock.called, attempts
+
+            self.age_last_attempt(result, hours=hours)
+            retry_webhook_deliveries_on_version(self.version.pk)
+            assert _call_webhook_mock.call_count == 1, attempts
+            assert result.reload().delivery_attempts == attempts + 1
+
+            _call_webhook_mock.reset_mock()
+            result.delete()
+
+    def test_records_each_attempt(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result(delivery_attempts=0, results={})
+
+        # No more than WEBHOOK_MAX_DELIVERY_ATTEMPTS deliveries, however
+        # many times the task runs.
+        for _ in range(WEBHOOK_MAX_DELIVERY_ATTEMPTS * 2):
+            self.age_last_attempt(result, days=1)
+            retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert _call_webhook_mock.call_count == WEBHOOK_MAX_DELIVERY_ATTEMPTS
+        assert result.reload().delivery_attempts == WEBHOOK_MAX_DELIVERY_ATTEMPTS
+
+    def test_honors_initial_delay_config(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        set_config(amo.config_keys.SCANNER_WEBHOOK_RETRY_INITIAL_DELAY, 60)
+        result = self.create_result()
+        self.age_last_attempt(result, minutes=30)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert _call_webhook_mock.called
+
+    def test_no_more_attempt_left(self, _call_webhook_mock):
+        result = self.create_result(delivery_attempts=WEBHOOK_MAX_DELIVERY_ATTEMPTS)
+        self.age_last_attempt(result, days=1)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+        assert result.reload().delivery_attempts == WEBHOOK_MAX_DELIVERY_ATTEMPTS
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_last_attempt_is_exhausted(self, statsd_incr_mock, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result(delivery_attempts=WEBHOOK_MAX_DELIVERY_ATTEMPTS - 1)
+        self.age_last_attempt(result, days=1)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert _call_webhook_mock.called
+        statsd_incr_mock.assert_has_calls(
+            [
+                mock.call('devhub.webhook.some-scanner.on_version_created.success'),
+                mock.call('devhub.webhook.some-scanner.on_version_created.gave_up'),
+            ]
+        )
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.WAITING_ON_SCANNERS
+        assert nhr.is_active
+
+    def test_no_needs_human_review_before_the_last_attempt(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert _call_webhook_mock.called
+        assert not self.version.needshumanreview_set.exists()
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_flags_version_again_after_flag_was_cleared(
+        self, statsd_incr_mock, _call_webhook_mock
+    ):
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result(delivery_attempts=WEBHOOK_MAX_DELIVERY_ATTEMPTS - 1)
+        self.age_last_attempt(result, days=1)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert self.version.needshumanreview_set.count() == 1
+        # The version should not be flagged twice while it is in the queue...
+        retry_webhook_deliveries_on_version(self.version.pk)
+        assert self.version.needshumanreview_set.count() == 1
+
+        # ...but it should be flagged again once a reviewer has cleared it,
+        # since we are still waiting on the scanner.
+        self.version.needshumanreview_set.update(is_active=False)
+        statsd_incr_mock.reset_mock()
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert self.version.needshumanreview_set.filter(is_active=True).count() == 1
+        # We only give up (and say so) once.
+        assert _call_webhook_mock.call_count == 1
+        assert not statsd_incr_mock.called
+
+    def test_does_not_flag_version_pending_rejection(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        version_review_flags_factory(
+            version=self.version,
+            pending_rejection=datetime.now() + timedelta(days=1),
+            pending_rejection_by=user_factory(),
+            pending_content_rejection=False,
+        )
+        result = self.create_result(delivery_attempts=WEBHOOK_MAX_DELIVERY_ATTEMPTS - 1)
+        self.age_last_attempt(result, days=1)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not self.version.needshumanreview_set.exists()
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_delivery_failure_is_counted(self, statsd_incr_mock, _call_webhook_mock):
+        _call_webhook_mock.side_effect = ValueError('oops')
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        result = result.reload()
+        assert result.delivery_attempts == 2
+        # The next attempt should not be due immediately.
+        assert result.modified > datetime.now() - timedelta(minutes=1)
+        statsd_incr_mock.assert_called_with(
+            'devhub.webhook.some-scanner.on_version_created.failure'
+        )
+
+    @mock.patch('olympia.scanners.tasks.statsd.timer')
+    def test_calls_statsd_timer(self, timer_mock, _call_webhook_mock):
+        # A retry is timed under the same name as the initial delivery, so that
+        # `TestCallWebhooks.test_statsd_success` and this test agree.
+        _call_webhook_mock.return_value = {'ack': True}
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        timer_mock.assert_called_once_with(
+            'devhub.webhook.some-scanner.on_version_created'
+        )
+
+    def test_does_not_overwrite_results_sent_while_calling(self, _call_webhook_mock):
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        def send_results(*args, **kwargs):
+            # The scanner patches the result while we are calling it.
+            ScannerResult.objects.get(pk=result.pk).update(
+                results={'matchedRules': ['some-rule']}
+            )
+            return {'ack': True}
+
+        _call_webhook_mock.side_effect = send_results
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert result.reload().results == {'matchedRules': ['some-rule']}
+
+    def test_skips_completed_results(self, _call_webhook_mock):
+        for results in (None, {'matchedRules': []}, {'matchedRules': ['some-rule']}):
+            result = self.create_result(results=results)
+            self.age_last_attempt(result, days=1)
+
+            retry_webhook_deliveries_on_version(self.version.pk)
+
+            assert not _call_webhook_mock.called, results
+            result.delete()
+
+    def test_skips_inactive_webhook(self, _call_webhook_mock):
+        self.webhook.update(is_active=False)
+        result = self.create_result()
+        self.age_last_attempt(result, days=1)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+
+    def test_gives_up_on_missing_result(self, _call_webhook_mock):
+        # The result is our only reference to what we should send, so there is
+        # nothing to retry when it is missing, whatever the event.
+        for event_id in (WEBHOOK_ON_VERSION_CREATED, WEBHOOK_DURING_VALIDATION):
+            self.event.update(event=event_id)
+            self.age_version(hours=2)
+
+            retry_webhook_deliveries_on_version(self.version.pk)
+
+            assert not _call_webhook_mock.called, event_id
+            assert not ScannerResult.objects.exists(), event_id
+            nhr = self.version.needshumanreview_set.get()
+            assert nhr.reason == NeedsHumanReview.REASONS.WAITING_ON_SCANNERS
+            nhr.delete()
+
+    def test_does_not_give_up_on_missing_result_too_early(self, _call_webhook_mock):
+        self.age_version(minutes=30)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+        assert not ScannerResult.objects.exists()
+        assert not self.version.needshumanreview_set.exists()
+
+    @mock.patch('olympia.scanners.tasks.statsd.incr')
+    def test_only_gives_up_on_missing_result_once(
+        self, statsd_incr_mock, _call_webhook_mock
+    ):
+        self.age_version(hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert self.version.needshumanreview_set.count() == 1
+        statsd_incr_mock.assert_called_once_with(
+            'devhub.webhook.some-scanner.on_version_created.gave_up'
+        )
+
+    def test_retries_during_validation(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'ack': True}
+        self.event.update(event=WEBHOOK_DURING_VALIDATION)
+        upload = self.get_upload('webextension.xpi')
+        result = self.create_result(upload=upload)
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        _call_webhook_mock.assert_called_with(
+            webhook=self.webhook,
+            payload={
+                'download_url': upload.get_authenticated_download_url(),
+                'event': 'during_validation',
+                'scanner_result_url': (
+                    f'http://testserver/api/v5/scanner/results/{result.pk}/'
+                ),
+            },
+        )
+
+    def test_flags_version_when_delivery_cannot_be_retried(self, _call_webhook_mock):
+        # There is nothing left to try when we cannot rebuild the payload.
+        self.event.update(event=WEBHOOK_DURING_VALIDATION)
+        result = self.create_result()
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+        assert result.reload().delivery_attempts == WEBHOOK_MAX_DELIVERY_ATTEMPTS
+        nhr = self.version.needshumanreview_set.get()
+        assert nhr.reason == NeedsHumanReview.REASONS.WAITING_ON_SCANNERS
+
+    def test_does_not_retry_during_validation_without_file(self, _call_webhook_mock):
+        self.event.update(event=WEBHOOK_DURING_VALIDATION)
+        upload = self.get_upload('webextension.xpi')
+        upload.update(path='/not-a-file')
+        result = self.create_result(upload=upload)
+        self.age_last_attempt(result, hours=2)
+
+        retry_webhook_deliveries_on_version(self.version.pk)
+
+        assert not _call_webhook_mock.called
+        assert result.reload().delivery_attempts == WEBHOOK_MAX_DELIVERY_ATTEMPTS

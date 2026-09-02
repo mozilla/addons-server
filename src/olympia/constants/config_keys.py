@@ -60,6 +60,11 @@ LAST_DEV_AGREEMENT_CHANGE_DATE = ConfigKey('last_dev_agreement_change_date')
 
 REVIEWERS_MOTD = ConfigKey('reviewers_review_motd')
 
+# Delay in seconds before the first webhook retry, doubled at each attempt.
+SCANNER_WEBHOOK_RETRY_INITIAL_DELAY = IntConfigKey(
+    'scanner-webhook-retry-initial-delay', 60 * 60
+)
+
 SITE_NOTICE = ConfigKey('site_notice')
 
 SUBMIT_NOTIFICATION_WARNING = ConfigKey('submit_notification_warning')

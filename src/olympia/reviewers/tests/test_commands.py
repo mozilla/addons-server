@@ -615,23 +615,14 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert nhr.reason == NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
         assert nhr.is_active
 
-    def test_disapproves_is_waiting_on_scanners_after_grace_period(self):
-        summary = AutoApprovalSummary(is_waiting_on_scanners=True)
-        summary.created = datetime.now() - timedelta(hours=3)
-        self.version.autoapprovalsummary = summary
+    def test_does_not_disapprove_is_waiting_on_scanners(self):
+        # We only flag the version once we have given up, in the scanners task.
+        self.version.autoapprovalsummary = AutoApprovalSummary(
+            is_waiting_on_scanners=True
+        )
         command = auto_approve.Command()
         command.disapprove(self.version)
-        nhr = self.version.needshumanreview_set.get()
-        assert nhr.reason == NeedsHumanReview.REASONS.WAITING_ON_SCANNERS
-        assert nhr.is_active
-
-    def test_disapproves_is_waiting_on_scanners_within_grace_period(self):
-        summary = AutoApprovalSummary(is_waiting_on_scanners=True)
-        summary.created = datetime.now() - timedelta(hours=1)
-        self.version.autoapprovalsummary = summary
-        command = auto_approve.Command()
-        command.disapprove(self.version)
-        assert not self.version.needshumanreview_set.filter(is_active=True).exists()
+        assert not self.version.needshumanreview_set.exists()
 
     def test_disapproves_is_promoted_but_decision_waiting_for_2nd_level_exists(self):
         self.version.autoapprovalsummary = AutoApprovalSummary(
@@ -1094,6 +1085,40 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         call_command('auto_approve')
 
         assert not run_actions_mock.called
+
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.'
+        'retry_webhook_deliveries_on_version'
+    )
+    def test_retries_webhook_deliveries(self, retry_mock):
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        scanner_result = self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve')
+
+        retry_mock.delay.assert_called_with(self.version.pk)
+
+        # Nothing to retry once the scanner has sent its results.
+        retry_mock.reset_mock()
+        scanner_result.update(results={'matchedRules': []})
+
+        call_command('auto_approve')
+
+        assert not retry_mock.delay.called
+
+    @mock.patch(
+        'olympia.reviewers.management.commands.auto_approve.'
+        'retry_webhook_deliveries_on_version'
+    )
+    def test_does_not_retry_webhook_deliveries_in_dry_run(self, retry_mock):
+        # Keep the version out of auto-approval so that it remains a candidate.
+        AddonReviewerFlags.objects.create(addon=self.addon, auto_approval_disabled=True)
+        self.create_pending_webhook_scanner_result()
+
+        call_command('auto_approve', '--dry-run')
+
+        assert not retry_mock.delay.called
 
     @mock.patch.object(ScannerResult, 'run_actions')
     def test_langpack_does_not_wait_on_scanners(self, run_actions_mock):

@@ -605,6 +605,7 @@ class ScannerResultAdmin(AbstractScannerResultAdminMixin, AMOModelAdmin):
         'guid',
         'formatted_scanner',
         'created',
+        'delivery_attempts',
         formatted_matched_rules_with_files_and_data,
         'formatted_results',
         'activity_log',
