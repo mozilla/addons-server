@@ -88,6 +88,12 @@ WEBHOOK_EVENTS = {
     WEBHOOK_PUSH: 'push',
 }
 
+# Events we wait on before auto-approving a version.
+WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
+    WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_VERSION_CREATED,
+]
+
 # Special rule name used as fallback when a scanner has no better rule to
 # associate with an annotation.
 ANNOTATIONS_RULE_NAME = 'ANNOTATIONS'

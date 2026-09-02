@@ -48,6 +48,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_EVENTS,
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -396,6 +397,21 @@ class ScannerWebhookEvent(ModelBase):
     class Meta:
         db_table = 'scanners_webhook_events'
         unique_together = ('webhook', 'event')
+
+    @classmethod
+    def blocking_auto_approval_for(cls, version):
+        """Return the events we wait on before auto-approving the version."""
+        return cls.objects.filter(
+            # We want to find the active events to wait for...
+            event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            is_active=True,
+            # ...but only for scanners that are active...
+            webhook__is_active=True,
+            # ...and only if the scanner hasn't been modified after the version
+            # was created, in order to avoid waiting indefinitely on scanners
+            # that were enabled *after*.
+            webhook__modified__lte=version.created,
+        )
 
     def __str__(self):
         return f'{self.webhook} ({WEBHOOK_EVENTS.get(self.event)})'

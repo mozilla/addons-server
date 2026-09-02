@@ -23,10 +23,6 @@ from olympia.amo.enum import EnumChoices
 from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import send_mail
-from olympia.constants.scanners import (
-    WEBHOOK_DURING_VALIDATION,
-    WEBHOOK_ON_VERSION_CREATED,
-)
 from olympia.files.models import File, FileValidation
 from olympia.ratings.models import Rating
 from olympia.scanners.models import ScannerResult, ScannerWebhookEvent
@@ -76,11 +72,6 @@ VIEW_QUEUE_FLAGS = (
         'Unlisted Auto-approval delayed indefinitely',
     ),
 )
-
-WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
-    WEBHOOK_DURING_VALIDATION,
-    WEBHOOK_ON_VERSION_CREATED,
-]
 
 
 def get_reviewing_cache_key(addon_id):
@@ -712,16 +703,8 @@ class AutoApprovalSummary(ModelBase):
         if version.addon.type == amo.ADDON_LPAPP:
             return False
 
-        webhook_event_ids = ScannerWebhookEvent.objects.filter(
-            # We want to find the active events to wait for...
-            event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
-            is_active=True,
-            # ...but only for scanners that are active...
-            webhook__is_active=True,
-            # ...and only if the scanner hasn't been modified after the version
-            # was created, in order to avoid waiting indefinitely on scanners
-            # that were enabled *after*.
-            webhook__modified__lte=version.created,
+        webhook_event_ids = ScannerWebhookEvent.blocking_auto_approval_for(
+            version
         ).values_list('pk', flat=True)
 
         # If there is no event, that means no active scanner is listening to
