@@ -1417,6 +1417,7 @@ FXA_SUPPORT_HOST = 'https://api.accounts.firefox.com/v1'
 FXA_SUPPORT_BRAND_ID = 47184764139412  # Zendesk brand: "Firefox Add-on Support"
 FXA_SUPPORT_PRODUCT_NAME = 'Firefox Add-ons'
 FXA_SUPPORT_SECRET = env('FXA_SUPPORT_SECRET', default='')
+FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT = 15 * 60  # 15 minutes in seconds
 
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True

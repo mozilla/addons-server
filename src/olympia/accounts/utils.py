@@ -64,6 +64,14 @@ def fxa_login_url(
         elif login_hint:
             query['prompt'] = 'none'
             query['login_hint'] = login_hint
+        else:
+            # If we're enforcing 2FA without a login/id_token hint, the user
+            # was likely logged in with 2FA already but we want to re-prompt
+            # them for the 2FA. In that case, set max_age to 0 to force FxA to
+            # request it again, even if they had a valid session.
+            # https://mozilla.github.io/ecosystem-platform/api
+            # #tag/OAuth-Server-API-Overview/operation/postAuthorization
+            query['max_age'] = 0
     if use_fake_fxa(config):
         base_url = reverse('fake-fxa-authorization')
     else:
