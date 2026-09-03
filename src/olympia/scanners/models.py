@@ -475,19 +475,35 @@ class ScannerResult(AbstractScannerResult):
             self.matched_rules.add(scanner_rule)
 
     @classmethod
-    def run_actions(cls, version):
+    def get_matched_rules_for_version(cls, version, *, rules=None):
+        """Active rules matched by the results of `version`, optionally narrowed
+        down to `rules`, a list of pks or a queryset of rules (e.g. the rules of
+        a single pushed result)."""
+        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
+
+        qs = cls.rule_model.objects.filter(
+            **{f'{result_query_name}__version': version, 'is_active': True}
+        )
+        if rules is not None:
+            qs = qs.filter(pk__in=rules)
+        if version.addon.is_promoted:
+            qs = qs.exclude(exclude_promoted_addons=True)
+        return qs
+
+    @classmethod
+    def run_actions(cls, version, *, rules=None):
         if version.channel == amo.CHANNEL_ENTERPRISE:
             log.info(
                 'Not running actions on version %s as it is an enterprise version',
                 version.pk,
             )
             return False
-        cls.execute_workflow_action(version)
-        cls.execute_policy_enforcement_action(version)
+        cls.execute_workflow_action(version, rules=rules)
+        cls.execute_policy_enforcement_action(version, rules=rules)
         return True
 
     @classmethod
-    def execute_policy_enforcement_action(cls, version):
+    def execute_policy_enforcement_action(cls, version, *, rules=None):
         from olympia.abuse.models import (
             CinderPolicy,
             ContentDecision,
@@ -506,17 +522,9 @@ class ScannerResult(AbstractScannerResult):
             )
             return
 
-        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
-
-        matching_rules = cls.rule_model.objects.filter(
-            **{
-                f'{result_query_name}__version': version,
-                'is_active': True,
-                'policy__isnull': False,
-            }
+        matching_rules = cls.get_matched_rules_for_version(version, rules=rules).filter(
+            policy__isnull=False
         )
-        if addon.is_promoted:
-            matching_rules = matching_rules.exclude(exclude_promoted_addons=True)
 
         policies = CinderPolicy.objects.filter(
             pk__in=matching_rules.values_list('policy', flat=True).distinct(),
@@ -568,7 +576,7 @@ class ScannerResult(AbstractScannerResult):
         )
 
     @classmethod
-    def execute_workflow_action(cls, version):
+    def execute_workflow_action(cls, version, *, rules=None):
         """Try to find and execute a "workflow action" for a given version,
         based on the scanner results and associated rules.
 
@@ -585,17 +593,14 @@ class ScannerResult(AbstractScannerResult):
             )
             return
 
-        result_query_name = cls._meta.get_field('matched_rules').related_query_name()
-
-        rule_qs = cls.rule_model.objects.filter(
-            **{f'{result_query_name}__version': version, 'is_active': True}
+        rule = (
+            cls.get_matched_rules_for_version(version, rules=rules)
+            .order_by(
+                # The `-` sign means descending order.
+                '-action'
+            )
+            .first()
         )
-        if version.addon.is_promoted:
-            rule_qs = rule_qs.exclude(exclude_promoted_addons=True)
-        rule = rule_qs.order_by(
-            # The `-` sign means descending order.
-            '-action'
-        ).first()
 
         if not rule:
             log.info('No workflow action to execute for version %s.', version.pk)
