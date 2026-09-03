@@ -934,9 +934,11 @@ class ReviewForm(forms.Form):
             if self.helper.addon.type == amo.ADDON_STATICTHEME
             else POLICY_EXPOSURE.FOR_EXTENSIONS
         )
-        self.fields['cinder_policies'].queryset = CinderPolicy.objects.filter(
-            expose_in_reviewer_tools__in=policy_choices
-        ).select_related('parent')
+        self.fields['cinder_policies'].queryset = (
+            CinderPolicy.objects.filter(expose_in_reviewer_tools__in=policy_choices)
+            .select_related('parent')
+            .order_by('parent__name', 'name')
+        )
 
         # Pass on the reviewer tools actions so we can set the show/hide on policies
         self.fields['cinder_policies'].widget.helper_actions = self.helper.actions
