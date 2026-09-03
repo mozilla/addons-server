@@ -154,7 +154,7 @@ This endpoint allows you to list all add-ons you are the author of. It does not 
                    Parameter  Description
     ========================  ================================================================
          average_daily_users  Average number of daily users.
-             bayesian_rating  Alias of ratings.bayesian_average.
+             bayesian_rating  Alias of ``ratings.bayesian_average``.
                      created  Creation date.
                      hotness  Hotness (average number of users progression from week to week).
                           id  Numeric add-on id on AMO.
@@ -244,7 +244,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int ratings.text_count: The number of user ratings with review text for the add-on.
     :>json string ratings_url: The URL to the user ratings list page for the add-on.
     :>json float ratings.average: The average user star rating for the add-on.
-    :>json float ratings.bayesian_average: The `bayesian average<https://en.wikipedia.org/wiki/Bayesian_average>`_ user star rating for the add-on. This is used when sorting add-ons by rating.  
+    :>json float ratings.bayesian_average: The `bayesian average <https://en.wikipedia.org/wiki/Bayesian_average>`_ user star rating for the add-on. This is used when sorting add-ons by rating.
     :>json object ratings.grouped_counts: Object with aggregate counts for ratings.  Only included when ``show_grouped_ratings`` is present in the request.
     :>json int ratings.grouped_counts.1: the count of ratings with 1 star.
     :>json int ratings.grouped_counts.2: the count of ratings with 2 stars.
