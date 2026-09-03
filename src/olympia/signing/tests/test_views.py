@@ -7,6 +7,7 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
+from django.urls import reverse
 from django.utils import translation
 
 import responses
@@ -25,11 +26,13 @@ from olympia.amo.tests import (
     developer_factory,
     get_random_ip,
     reverse_ns,
+    user_factory,
 )
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import get_sha256
 from olympia.users.models import (
+    RESTRICTION_TYPES,
     EmailUserRestriction,
     IPNetworkUserRestriction,
     UserProfile,
@@ -262,6 +265,58 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert provenance.version == version
         assert provenance.source == amo.UPLOAD_SOURCE_SIGNING_API
         assert provenance.client_info == 'web-ext/12.34'
+
+    def test_restriction_instance_recorded_on_auto_approval_denial(self):
+        # End to end: a restriction denying auto-approval during a real API
+        # submission is recorded with the specific matching instance, linked
+        # to the version that was created.
+        user_factory(pk=settings.TASK_USER_ID)  # DISABLE_AUTO_APPROVAL author.
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 202
+
+        version = Version.objects.get(addon__guid=self.guid, version='3.0')
+        history = UserRestrictionHistory.objects.get(user=self.user)
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.version == version
+        activity_log = ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_AUTO_APPROVAL.id
+        ).get()
+        assert activity_log.details['restrictions'] == ['EmailUserRestriction']
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert activity_log.details['comments'] == (
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)'
+        )
+        assert version.addon.auto_approval_disabled
+
+    def test_restriction_shown_in_reviewer_tools_after_denial(self):
+        # End to end: after a restriction denies auto-approval during a real
+        # API submission, a reviewer opening the review page sees which
+        # restriction fired.
+        user_factory(pk=settings.TASK_USER_ID)  # DISABLE_AUTO_APPROVAL author.
+        EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        response = self.request('PUT', self.url(self.guid, '3.0'))
+        assert response.status_code == 202
+
+        reviewer = user_factory()
+        self.grant_permission(reviewer, amo.permissions.ADDONS_REVIEW)
+        self.client.force_login(reviewer)
+        response = self.client.get(
+            reverse('reviewers.review', args=[Addon.objects.get(guid=self.guid).pk])
+        )
+        self.assertContains(
+            response,
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)',
+        )
 
     def test_version_already_uploaded(self):
         response = self.request('PUT', self.url(self.guid, '3.0'))
