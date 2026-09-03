@@ -25,6 +25,15 @@ from django.views.decorators.csrf import csrf_exempt
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
+from rest_framework import status
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+    throttle_classes,
+)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 import olympia.core.logger
 from olympia import amo
@@ -58,6 +67,11 @@ from olympia.amo.utils import (
     send_mail,
     send_mail_jinja,
 )
+from olympia.api.authentication import (
+    JWTKeyAuthentication,
+    SessionIDAuthentication,
+)
+from olympia.api.throttling import contact_support_throttles
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
@@ -91,6 +105,7 @@ from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
 from . import feeds, forms, tasks
+from .serializers import SupportSerializer
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -2318,6 +2333,20 @@ def email_verification(request):
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
 
 
+def send_support_ticket(*, user, category, summary, body):
+    payload = {
+        'productName': settings.FXA_SUPPORT_PRODUCT_NAME,
+        'topic': category,
+        'subject': summary,
+        'message': body,
+        'email': user.email,
+    }
+    if settings.FXA_SUPPORT_BRAND_ID is not None:
+        payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
+
+    tasks.create_support_ticket.delay(payload)
+
+
 @login_required
 def support(request):
     if (
@@ -2331,17 +2360,7 @@ def support(request):
         request=request,
     )
     if request.method == 'POST' and form.is_valid():
-        payload = {
-            'productName': settings.FXA_SUPPORT_PRODUCT_NAME,
-            'topic': form.cleaned_data['category'],
-            'subject': form.cleaned_data['summary'],
-            'message': form.cleaned_data['body'],
-        }
-        if settings.FXA_SUPPORT_BRAND_ID is not None:
-            payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
-        payload['email'] = request.user.email
-
-        tasks.create_support_ticket.delay(payload)
+        send_support_ticket(user=request.user, **form.cleaned_data)
         messages.success(
             request,
             gettext(
@@ -2364,3 +2383,19 @@ def survey_response(request, survey_id):
     except IntegrityError:
         return http.HttpResponse(status=500)
     return http.HttpResponse(status=201)
+
+
+@api_view(['POST'])
+@authentication_classes((SessionIDAuthentication, JWTKeyAuthentication))
+@permission_classes((IsAuthenticated,))
+@throttle_classes(contact_support_throttles)
+def developer_support(request):
+    if (
+        not waffle.switch_is_active('enable-devhub-support-form')
+        or not settings.FXA_SUPPORT_SECRET
+    ):
+        raise http.Http404
+    serializer = SupportSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    send_support_ticket(user=request.user, **serializer.validated_data)
+    return Response(serializer.validated_data, status=status.HTTP_202_ACCEPTED)

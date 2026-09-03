@@ -32,9 +32,11 @@ from olympia.amo.templatetags.jinja_helpers import (
     urlparams,
 )
 from olympia.amo.tests import (
+    APITestClientSessionID,
     TestCase,
     addon_factory,
     get_random_ip,
+    reverse_ns,
     user_factory,
     version_factory,
 )
@@ -2968,3 +2970,108 @@ class TestSupportView(TestCase):
             'You have submitted this form too many times recently. '
             'Please try again after some time.'
         ]
+
+
+@override_switch('enable-devhub-support-form', active=True)
+@override_settings(FXA_SUPPORT_SECRET='mysecret')
+class TestSupportAPI(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.api_url = reverse_ns('developer-support')
+
+        self.payload = {
+            'summary': 'Something is broken',
+            'category': 'technical',
+            'body': 'Please help me fix this issue.',
+        }
+
+    def _post(self, data=None):
+        if data is None:
+            data = self.payload
+        return self.client.post(
+            self.api_url,
+            data=json.dumps(data),
+            content_type='application/json',
+        )
+
+    @override_switch('enable-devhub-support-form', active=False)
+    def test_api_switch_inactive_returns_404(self):
+        self.client.login_api(self.user)
+        response = self._post()
+        assert response.status_code == 404
+
+    @override_settings(FXA_SUPPORT_SECRET='')
+    def test_api_no_secret_returns_404(self):
+        self.client.login_api(self.user)
+        response = self._post()
+        assert response.status_code == 404
+
+    def test_api_post_anonymous_returns_401(self):
+        response = self._post()
+        assert response.status_code == 401
+
+    def test_api_post_invalid_missing_fields(self):
+        self.client.login_api(self.user)
+        response = self._post({'summary': '', 'category': '', 'body': ''})
+        assert response.status_code == 400
+        data = response.json()
+        assert 'may not be blank' in data['summary'][0]
+        assert 'may not be blank' in data['body'][0]
+        assert 'is not a valid choice' in data['category'][0]
+
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
+    def test_api_post_success(self, mock_task):
+        self.client.login_api(self.user)
+        with self.settings(FXA_SUPPORT_BRAND_ID=None):
+            response = self._post()
+        assert response.status_code == 202
+        mock_task.assert_called_once()
+        (payload,) = mock_task.call_args[0]
+        assert payload['topic'] == 'technical'
+        assert payload['subject'] == 'Something is broken'
+        assert payload['email'] == self.user.email
+        assert 'brand_id' not in payload
+
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
+    def test_api_post_success_with_brand_id(self, mock_task):
+        self.client.login_api(self.user)
+        with self.settings(FXA_SUPPORT_BRAND_ID=12345):
+            response = self._post()
+        assert response.status_code == 202
+        (payload,) = mock_task.call_args[0]
+        assert payload['brand_id'] == 12345
+
+    def test_api_post_throttled_user(self):
+        self.client.login_api(self.user)
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(10):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.api_url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
+            response = self._post()
+        assert response.status_code == 429
+
+    def test_api_post_throttled_ip(self):
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(20):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.api_url,
+                    user=user_factory(),
+                    remote_addr='5.6.7.8',
+                )
+            self.client.login_api(self.user)
+            response = self.client.post(
+                self.api_url,
+                data=json.dumps(self.payload),
+                content_type='application/json',
+                REMOTE_ADDR='5.6.7.8',
+                HTTP_X_FORWARDED_FOR=f'5.6.7.8, {get_random_ip()}',
+            )
+        assert response.status_code == 429

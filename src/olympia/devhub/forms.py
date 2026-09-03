@@ -53,6 +53,7 @@ from olympia.api.throttling import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.devhub.serializers import SUPPORT_CATEGORY_CHOICES
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
@@ -1774,13 +1775,6 @@ class RollbackVersionForm(forms.Form):
 
 
 class SupportForm(CheckThrottlesFormMixin, forms.Form):
-    CATEGORY_CHOICES = [
-        ('', _('Choose a category')),
-        ('policy', _('Technical support for making your add-on compliant')),
-        ('technical', _('Issue with addons.mozilla.org')),
-        ('other', _('Other')),
-    ]
-
     throttle_classes = contact_support_throttles
 
     summary = forms.CharField(
@@ -1791,7 +1785,7 @@ class SupportForm(CheckThrottlesFormMixin, forms.Form):
         ),
     )
     category = forms.ChoiceField(
-        choices=CATEGORY_CHOICES,
+        choices=[('', _('Choose a category')), *SUPPORT_CATEGORY_CHOICES],
         label=_('Select category'),
     )
     body = forms.CharField(
