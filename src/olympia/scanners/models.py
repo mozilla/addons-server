@@ -345,7 +345,7 @@ class ScannerRule(AbstractScannerRule):
 
 
 class ScannerWebhook(ModelBase):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     url = models.URLField(max_length=255)
     api_key = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
