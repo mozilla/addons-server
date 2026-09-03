@@ -49,6 +49,7 @@ from olympia.users.models import (
     FingerprintRestriction,
     IPNetworkUserRestriction,
     IPReputationRestriction,
+    RestrictionAbstractBaseModel,
     SuppressedEmail,
     SuppressedEmailVerification,
     UserEmailField,
@@ -2181,6 +2182,23 @@ class TestUserRestrictionHistory(TestCase):
         # structural denials).
         UserRestrictionHistory.objects.create(user=user)
         assert UserRestrictionHistory.objects.count() == 2
+
+
+class TestRestrictionAbstractBaseModel(TestCase):
+    def test_get_matching_restrictions_raises_if_not_implemented(self):
+        with self.assertRaises(NotImplementedError):
+            RestrictionAbstractBaseModel.get_matching_restrictions(
+                None, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+
+    def test_get_matching_restrictions_implemented_by_all_children(self):
+        # Every database-backed restriction class must override the slow-path
+        # enumeration, not fall back to the base implementation.
+        for _, cls in UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES:
+            if issubclass(cls, RestrictionAbstractBaseModel):
+                assert 'get_matching_restrictions' in cls.__dict__, (
+                    f'{cls.__name__} must implement get_matching_restrictions()'
+                )
 
 
 @override_settings(

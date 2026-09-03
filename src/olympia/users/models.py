@@ -922,6 +922,18 @@ class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
     class Meta:
         abstract = True
 
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        """
+        Return a list of the restrictions matching the given request or
+        upload (which one depends on the restriction_type being checked).
+
+        Slow path, meant to be called after the corresponding allow_*() check
+        has already failed, in order to record which restriction(s) matched.
+        """
+        # Should be implemented by child classes.
+        raise NotImplementedError
+
 
 class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
     id = PositiveAutoField(primary_key=True)
