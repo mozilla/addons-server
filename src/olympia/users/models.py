@@ -1601,9 +1601,9 @@ class UserRestrictionHistory(ModelBase):
                 fields=('last_login_ip',),
                 name='users_userrestrictionhistory_last_login_ip_d58d95ff',
             ),
-            LongNameIndex(
+            models.Index(
                 fields=('restriction_content_type', 'restriction_object_id'),
-                name='users_userrestrictionhistory_restriction_content_type_object_id',
+                name='urh_restriction_instance_idx',
             ),
         ]
 
