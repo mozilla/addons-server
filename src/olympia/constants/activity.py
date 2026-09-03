@@ -1339,7 +1339,7 @@ class DECISION_CREATED(_LOG):
 
 
 class BLOCKLIST_VERSION_DELAY_BLOCKED(_LOG):
-    # takes add-on, decision version(s), int (number of days delay). {1} is the days
+    # takes add-on, decision, version(s), int (number of days delay). {1} is the days
 
     id = 217
     keep = True
@@ -1350,7 +1350,7 @@ class BLOCKLIST_VERSION_DELAY_BLOCKED(_LOG):
 
 
 class BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED(_LOG):
-    # takes add-on, decision version(s), int (number of days delay). {1} is the days
+    # takes add-on, decision, version(s), int (number of days delay). {1} is the days
 
     id = 218
     keep = True
@@ -1358,6 +1358,28 @@ class BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED(_LOG):
     hide_developer = True
     format = '{addon} {version} will be added to Soft Blocklist after {1} days.'
     short = 'Version Delayed Soft Blocked'
+
+
+class BLOCKLIST_VERSION_DELAY_BLOCK_CANCELLED(_LOG):
+    # takes add-on, decision, version(s)
+
+    id = 219
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = '{addon} {version} delayed Blocklist addition cancelled.'
+    short = 'Version Delayed Block Cancelled'
+
+
+class BLOCKLIST_VERSION_DELAY_SOFT_BLOCK_CANCELLED(_LOG):
+    # takes add-on, decision, version(s)
+
+    id = 220
+    keep = True
+    action_class = 'delete'
+    hide_developer = True
+    format = '{addon} {version} delayed Soft Blocklist addition cancelled.'
+    short = 'Version Delayed Soft Block Cancelled'
 
 
 LOGS = [x for x in vars().values() if isclass(x) and issubclass(x, _LOG) and x != _LOG]

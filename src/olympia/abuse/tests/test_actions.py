@@ -2452,6 +2452,7 @@ class TestContentActionDelayedShortSoftBlockAddon(
     default_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_SHORT_SOFT_BLOCK_ADDON
     block_type = BlockType.SOFT_BLOCKED
     activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED
+    reverse_activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCK_CANCELLED
 
     def setUp(self):
         super().setUp()
@@ -2479,6 +2480,23 @@ class TestContentActionDelayedShortSoftBlockAddon(
         )
         self.past_negative_decision.target_versions.set(
             (self.version, self.old_version)
+        )
+
+    def test_log_action_saves_policy_texts(self):
+        # We don't actually save policy text with delayed actions, so testing that.
+        self.policy.update(text='This is {JUDGEMENT} thing')
+        self.decision.update(
+            metadata={
+                ContentDecision.POLICY_DYNAMIC_VALUES: {
+                    self.policy.uuid: {'JUDGEMENT': 'a Térrible'}
+                }
+            }
+        )
+        assert (
+            'policy_texts'
+            not in self.ActionClass(self.decision)
+            .log_action(self.activity_log_action)
+            .details
         )
 
     def _test_process_action(self, version_ids, followup_action):
@@ -2521,7 +2539,9 @@ class TestContentActionDelayedShortSoftBlockAddon(
             self.ActionClass.delay_days,
         ]
 
-        assert str(alog).endswith(f'locklist after {self.ActionClass.delay_days} days.')
+        assert str(alog).endswith(
+            f'Blocklist after {self.ActionClass.delay_days} days.'
+        )
 
         action_helper.notify_owners()
         if followup_action:
@@ -2666,6 +2686,18 @@ class TestContentActionDelayedShortSoftBlockAddon(
         assert BlocklistSubmission.objects.get().changed_version_ids == [
             yet_another_version.id
         ]
+        assert (
+            ActivityLog.objects.filter(
+                action=self.reverse_activity_log_action.id
+            ).count()
+            == 1
+        )
+        alog = ActivityLog.objects.get(action=self.reverse_activity_log_action.id)
+        assert alog.arguments == [
+            self.addon,
+            self.decision,
+            self.another_version,
+        ]
 
     def test_approve_appeal_success(self):
         self.past_negative_decision.update(
@@ -2763,6 +2795,7 @@ class TestContentActionDelayedMidHardBlockAddon(
     default_decision_action = DECISION_ACTIONS.AMO_FU_DELAY_MID_HARD_BLOCK_ADDON
     block_type = BlockType.BLOCKED
     activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCKED
+    reverse_activity_log_action = amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCK_CANCELLED
 
     def setUp(self):
         super().setUp()

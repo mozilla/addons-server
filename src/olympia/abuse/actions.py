@@ -1095,6 +1095,28 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
         return decision._existing_blocks
 
+    def log_action(
+        self,
+        activity_log_action,
+        *extra_args,
+        extra_details=None,
+        skip_private_notes=False,
+    ):
+        # Note: we're calling log_create directly, skipping the policies in
+        # ContentActionAddon.log_action
+        return log_create(
+            activity_log_action,
+            self.target,
+            self.decision,
+            *extra_args,
+            **(
+                {'user': self.decision.reviewer_user}
+                if self.decision.reviewer_user
+                else {}
+            ),
+            details={'human_review': self.is_human_reviewer(), **(extra_details or {})},
+        )
+
     def process_action(self, release_hold=False):
         versions_qs = self.versions_block_will_affect
         # if this is a followup action, and the primary action is rejecting specific
@@ -1124,21 +1146,17 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             )
             submission.save()
 
-            return log_create(
+            return self.log_action(
                 amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCKED
                 if self.block_type == BlockType.BLOCKED
                 else amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCKED,
-                self.target,
-                self.decision,
                 *versions,
                 self.delay_days,
-                **(
-                    {'user': self.decision.reviewer_user}
-                    if self.decision.reviewer_user
-                    else {}
-                ),
-                details={
-                    'human_review': self.is_human_reviewer(),
+                extra_details={
+                    'comments': (
+                        f'Add-on versions will be {self.block_type.label}, '
+                        f'after {self.delay_days} days, on {delayed_until.isoformat()}'
+                    ),
                     'delayed_until': delayed_until.isoformat(),
                     'versions': [ver.version for ver in versions],
                 },
@@ -1187,16 +1205,26 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         ).exclude(signoff_state=BlocklistSubmission.SIGNOFF_STATES.PUBLISHED)
         for submission in upcoming_submissions:
             submission_version_ids = set(submission.changed_version_ids)
-            if not_blocked_version_ids == submission_version_ids:
+            still_block_version_ids = submission_version_ids - not_blocked_version_ids
+            to_not_block_version_ids = submission_version_ids & not_blocked_version_ids
+
+            if not to_not_block_version_ids:
+                # if there's no crossover, ignore and continue
+                continue
+
+            if not still_block_version_ids:
                 # all versions are in the submission, so we can just delete it.
                 submission.delete()
-            elif not_blocked_version_ids & submission_version_ids:
-                # otherwise, there's some crossover so remove offending versions.
-                submission.update(
-                    changed_version_ids=list(
-                        submission_version_ids - not_blocked_version_ids
-                    )
-                )
+            else:
+                # otherwise, remove offending versions but keep the submission.
+                submission.update(changed_version_ids=list(still_block_version_ids))
+
+            cls(new_decision).log_action(
+                amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCK_CANCELLED
+                if cls.block_type == BlockType.BLOCKED
+                else amo.LOG.BLOCKLIST_VERSION_DELAY_SOFT_BLOCK_CANCELLED,
+                *((Version, v_id) for v_id in to_not_block_version_ids),
+            )
 
     @classmethod
     def should_be_skipped_by_automation(cls, **kwargs):
