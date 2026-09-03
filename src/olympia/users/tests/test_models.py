@@ -53,6 +53,7 @@ from olympia.users.models import (
     SuppressedEmailVerification,
     UserEmailField,
     UserProfile,
+    UserRestrictionHistory,
     generate_auth_id,
     get_anonymized_username,
 )
@@ -2158,6 +2159,28 @@ class TestAsnRestriction(TestCase):
             )
             == []
         )
+
+
+class TestUserRestrictionHistory(TestCase):
+    def test_restriction_instance_must_be_a_restriction(self):
+        user = user_factory()
+        # Anything that isn't a database-backed restriction is refused.
+        with self.assertRaises(ValueError):
+            UserRestrictionHistory.objects.create(
+                user=user, restriction_instance=user_factory()
+            )
+        assert not UserRestrictionHistory.objects.exists()
+
+    def test_restriction_instance_restriction_or_nothing_is_fine(self):
+        user = user_factory()
+        restriction = EmailUserRestriction.objects.create(email_pattern='foo@bar.com')
+        UserRestrictionHistory.objects.create(
+            user=user, restriction_instance=restriction
+        )
+        # No instance at all is a legitimate state (stateless restrictions,
+        # structural denials).
+        UserRestrictionHistory.objects.create(user=user)
+        assert UserRestrictionHistory.objects.count() == 2
 
 
 @override_settings(

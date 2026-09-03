@@ -1607,6 +1607,21 @@ class UserRestrictionHistory(ModelBase):
             ),
         ]
 
+    def save(self, *args, **kwargs):
+        # There is no database-level way to constrain a generic foreign key
+        # to specific models (content type ids aren't stable across
+        # environments), so enforce it here: the matched instance must be one
+        # of the database-backed restriction models. Deliberately dynamic -
+        # any future subclass of RestrictionAbstractBaseModel is allowed
+        # without changes here.
+        if self.restriction_content_type is not None:
+            model = self.restriction_content_type.model_class()
+            if model is None or not issubclass(model, RestrictionAbstractBaseModel):
+                raise ValueError(
+                    'restriction_instance must point at a database-backed restriction'
+                )
+        super().save(*args, **kwargs)
+
 
 class UserHistory(ModelBase):
     id = PositiveAutoField(primary_key=True)
