@@ -47,16 +47,17 @@ This endpoint allows you to search through public add-ons.
 
     Available sorting parameters:
 
-    ==============  ==========================================================
+    ==============  ===================================================================
          Parameter  Description
-    ==============  ==========================================================
+    ==============  ===================================================================
            created  Creation date, descending.
          downloads  Number of weekly downloads, descending.
-           hotness  Hotness (average number of users progression), descending.
+           hotness  Hotness (average number of users progression from week to week),
+                    descending.
             random  Random ordering. Only available when no search query is
                     passed and when filtering to only return promoted add-ons.
            ratings  Bayesian rating, descending.
-            rating  Bayesian rating, descending (deprecated, backwards-compatibility only).
+            rating  Alias of ``ratings`` (deprecated, backwards-compatibility only).
        recommended  Promoted addons in the recommended category above
                     non-recommended add-ons. Only available combined with
                     another sort - ignored on its own.
@@ -66,7 +67,7 @@ This endpoint allows you to search through public add-ons.
                     query.
            updated  Last updated date, descending.
              users  Average number of daily users, descending.
-    ==============  ==========================================================
+    ==============  ===================================================================
 
     The default behavior is to sort by relevance if a search query (``q``)
     is present; otherwise place recommended add-ons first, then non recommended
@@ -149,18 +150,18 @@ This endpoint allows you to list all add-ons you are the author of. It does not 
 
     Available sorting parameters:
 
-    ========================  ====================================================
+    ========================  ================================================================
                    Parameter  Description
-    ========================  ====================================================
+    ========================  ================================================================
          average_daily_users  Average number of daily users.
-             bayesian_rating  Bayesian rating.
+             bayesian_rating  Alias of ratings.bayesian_average.
                      created  Creation date.
-                     hotness  Hotness (average number of users progression).
+                     hotness  Hotness (average number of users progression from week to week).
                           id  Numeric add-on id on AMO.
                 last_updated  Last updated date.
-    ratings.bayesian_average  Alias of bayesian_rating, to match detail structure.
+    ratings.bayesian_average  Bayesian average of star ratings.
             weekly_downloads  Number of weekly downloads.
-    ========================  ====================================================
+    ========================  ================================================================
 
 All sort parameters default to ascending order but can be reversed, e.g. ``?sort=-created`` for descending dates.
 The default behavior is to sort by ``id``.
@@ -242,14 +243,14 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int ratings.count: The total number of user ratings for the add-on.
     :>json int ratings.text_count: The number of user ratings with review text for the add-on.
     :>json string ratings_url: The URL to the user ratings list page for the add-on.
-    :>json float ratings.average: The average user rating for the add-on.
-    :>json float ratings.bayesian_average: The bayesian average user rating for the add-on.
+    :>json float ratings.average: The average user star rating for the add-on.
+    :>json float ratings.bayesian_average: The `bayesian average<https://en.wikipedia.org/wiki/Bayesian_average>`_ user star rating for the add-on. This is used when sorting add-ons by rating.  
     :>json object ratings.grouped_counts: Object with aggregate counts for ratings.  Only included when ``show_grouped_ratings`` is present in the request.
-    :>json int ratings.grouped_counts.1: the count of ratings with a score of 1.
-    :>json int ratings.grouped_counts.2: the count of ratings with a score of 2.
-    :>json int ratings.grouped_counts.3: the count of ratings with a score of 3.
-    :>json int ratings.grouped_counts.4: the count of ratings with a score of 4.
-    :>json int ratings.grouped_counts.5: the count of ratings with a score of 5.
+    :>json int ratings.grouped_counts.1: the count of ratings with 1 star.
+    :>json int ratings.grouped_counts.2: the count of ratings with 2 stars.
+    :>json int ratings.grouped_counts.3: the count of ratings with 3 stars.
+    :>json int ratings.grouped_counts.4: the count of ratings with 4 stars.
+    :>json int ratings.grouped_counts.5: the count of ratings with 5 stars.
     :>json boolean requires_payment: Does the add-on require payment, non-free services or software, or additional hardware.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
