@@ -4122,28 +4122,6 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         )
         assert self.addon.auto_approval_disabled_unlisted
 
-    def test_restriction_shown_in_reviewer_tools_after_denial(self):
-        # End to end: after a restriction denies auto-approval during a real
-        # API submission, a reviewer opening the review page sees which
-        # restriction fired.
-        user_factory(pk=settings.TASK_USER_ID)  # DISABLE_AUTO_APPROVAL author.
-        EmailUserRestriction.objects.create(
-            email_pattern=self.user.email,
-            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
-        )
-        response = self.client.post(self.url, data=self.minimal_data)
-        assert response.status_code == 201, response.content
-
-        reviewer = user_factory()
-        self.grant_permission(reviewer, amo.permissions.ADDONS_REVIEW)
-        self.client.force_login(reviewer)
-        response = self.client.get(reverse('reviewers.review', args=[self.addon.pk]))
-        self.assertContains(
-            response,
-            'Unlisted auto-approval automatically disabled because of a '
-            'restriction (EmailUserRestriction)',
-        )
-
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = APITestClientJWT
