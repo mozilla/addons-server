@@ -930,6 +930,10 @@ class RestrictionAbstractBaseModel(ModelBase, RestrictionAbstractBase):
 
         Slow path, meant to be called after the corresponding allow_*() check
         has already failed, in order to record which restriction(s) matched.
+
+        Returns None when the input needed for matching was missing or
+        invalid - a structural denial, there was nothing to search for. An
+        empty list means the search ran and nothing matched.
         """
         # Should be implemented by child classes.
         raise NotImplementedError
@@ -1042,19 +1046,20 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
         Slow path, meant to be called after the corresponding allow_*() check
         has already failed in order to record which restriction(s) matched:
-        unlike the fast path it does not stop at the first match. Returns an
-        empty list when the input needed for matching is missing or invalid.
+        unlike the fast path it does not stop at the first match. Returns
+        None when the input needed for matching is missing or invalid, the
+        same condition allow_*() denies on structurally.
         """
         # Mirrors the extraction in allow_auto_approval()/allow_request().
         if restriction_type == RESTRICTION_TYPES.ADDON_APPROVAL:
             upload = argument
             if not upload.user or not upload.ip_address:
-                return []
+                return None
             try:
                 remote_addr = ipaddress.ip_address(upload.ip_address)
                 user_last_login_ip = ipaddress.ip_address(upload.user.last_login_ip)
             except ValueError:
-                return []
+                return None
         else:
             request = argument
             try:
@@ -1067,7 +1072,7 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
                     else None
                 )
             except ValueError:
-                return []
+                return None
         return [
             restriction
             for restriction in cls.objects.filter(restriction_type=restriction_type)

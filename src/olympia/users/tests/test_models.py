@@ -1573,7 +1573,7 @@ class TestIPNetworkUserRestriction(TestCase):
             IPNetworkUserRestriction.get_matching_restrictions(
                 upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
             )
-            == []
+            is None
         )
 
 

@@ -591,7 +591,8 @@ class TestRestrictionChecker(TestCase):
         with mock.patch('olympia.users.utils.log.warning') as warning_mock:
             assert not checker.is_auto_approval_allowed()
         warning_mock.assert_called_once_with(
-            'No matching restrictions found for failed %s check on %s',
+            'Failed %s check on %s denied structurally: '
+            'input missing or invalid, no instance to record',
             'auto_approval',
             'IPNetworkUserRestriction',
         )
@@ -601,6 +602,41 @@ class TestRestrictionChecker(TestCase):
         assert history.restriction_content_type is None
         assert history.restriction_object_id is None
         assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_error_logged_when_enumeration_finds_nothing(self, incr_mock):
+        # A database-backed class denying while enumeration can't reproduce
+        # any match should be impossible - the predicates have drifted
+        # apart, or the restriction was deleted in between - and is logged
+        # as an error.
+        checker = RestrictionChecker(request=self.request)
+        with ExitStack() as stack:
+            for _, cls in UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES:
+                stack.enter_context(
+                    mock.patch.object(
+                        cls,
+                        'allow_submission',
+                        return_value=cls is not IPNetworkUserRestriction,
+                    )
+                )
+            stack.enter_context(
+                mock.patch.object(
+                    IPNetworkUserRestriction,
+                    'get_matching_restrictions',
+                    return_value=[],
+                )
+            )
+            error_mock = stack.enter_context(
+                mock.patch('olympia.users.utils.log.error')
+            )
+            assert not checker.is_submission_allowed()
+        error_mock.assert_called_once_with(
+            'No matching restrictions found for failed %s check on %s',
+            'submission',
+            'IPNetworkUserRestriction',
+        )
+        history = UserRestrictionHistory.objects.get()
+        assert history.restriction_instance is None
         assert checker.history_entries == [history]
 
     def test_no_enumeration_or_recording_for_unauthenticated_failure(self, incr_mock):

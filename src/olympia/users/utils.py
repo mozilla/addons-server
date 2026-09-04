@@ -210,11 +210,24 @@ class RestrictionChecker:
                         if is_db_backed
                         else []
                     )
-                    if is_db_backed and not matched:
-                        # Either the fast and slow predicates disagree, or
-                        # the denial was structural (e.g. an unparseable IP)
-                        # and there is no instance to record.
+                    if is_db_backed and matched is None:
+                        # Structural denial: the input needed for matching
+                        # was missing or invalid (e.g. an unparseable IP),
+                        # so the user was blocked on data quality rather
+                        # than a specific rule. Expected, but worth
+                        # visibility.
                         log.warning(
+                            'Failed %s check on %s denied structurally: '
+                            'input missing or invalid, no instance to record',
+                            action_type,
+                            name,
+                        )
+                    elif is_db_backed and not matched:
+                        # Should be impossible: the fast path found a match
+                        # that enumeration can't reproduce. Either the two
+                        # predicates have drifted apart, or the restriction
+                        # was deleted in between.
+                        log.error(
                             'No matching restrictions found for failed %s check on %s',
                             action_type,
                             name,
@@ -228,7 +241,7 @@ class RestrictionChecker:
                             details={
                                 'restriction': str(cls.__name__),
                                 'restriction_ids': [
-                                    restriction.pk for restriction in matched
+                                    restriction.pk for restriction in matched or []
                                 ],
                             },
                         )
