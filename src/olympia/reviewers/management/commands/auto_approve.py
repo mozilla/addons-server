@@ -1,5 +1,4 @@
 from collections import Counter
-from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -15,7 +14,6 @@ from olympia.abuse.models import CinderPolicy, ContentDecision
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import WAIT_ON_SCANNERS_TIMEOUT
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
@@ -27,7 +25,10 @@ from olympia.reviewers.models import (
 )
 from olympia.reviewers.utils import ReviewHelper
 from olympia.scanners.models import ScannerResult
-from olympia.scanners.tasks import run_narc_on_version
+from olympia.scanners.tasks import (
+    retry_webhook_deliveries_on_version,
+    run_narc_on_version,
+)
 from olympia.versions.models import Version
 
 
@@ -142,13 +143,20 @@ class Command(BaseCommand):
                     summary is not None
                     and summary.scanner_actions_executed is not False
                 )
+                is_waiting_on_scanners = (
+                    AutoApprovalSummary.check_is_waiting_on_scanners(version)
+                )
+                if is_waiting_on_scanners and not self.dry_run:
+                    # In case a scanner never sent its results back.
+                    retry_webhook_deliveries_on_version.delay(version.pk)
+
                 if already_executed:
                     log.info(
                         'Not running run_actions() on version %s because it '
                         'has already been executed',
                         version.pk,
                     )
-                elif AutoApprovalSummary.check_is_waiting_on_scanners(version):
+                elif is_waiting_on_scanners:
                     log.info(
                         'Not running run_actions() on version %s because it '
                         'is still waiting on scanners',
@@ -281,7 +289,6 @@ class Command(BaseCommand):
             'has_auto_approval_disabled': (
                 NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
             ),
-            'is_waiting_on_scanners': NeedsHumanReview.REASONS.WAITING_ON_SCANNERS,
         }
         # For the specific reasons that cause an add-on to be added to the
         # (human) review queue, we add the corresponding NeedsHumanReview flag
@@ -297,18 +304,6 @@ class Command(BaseCommand):
             has_decision_waiting_for_2nd_level_approval = (
                 version.contentdecision_set.awaiting_action().exists()
             )
-            # AutoApprovalSummary is created on the very first `auto_approve`
-            # run. When we're still waiting on scanners after a long time, it
-            # might mean a scanner has had an issue and will likely never send
-            # its results. That's why we should NHR the version.
-            should_still_wait_on_scanners = (
-                version.autoapprovalsummary.is_waiting_on_scanners
-                and datetime.now()
-                <= (
-                    version.autoapprovalsummary.created
-                    + timedelta(seconds=WAIT_ON_SCANNERS_TIMEOUT)
-                )
-            )
             already_has_same_active_nhr = version.needshumanreview_set.filter(
                 reason=reason, is_active=True
             ).exists()
@@ -317,7 +312,6 @@ class Command(BaseCommand):
                 and not version.pending_rejection
                 and not has_decision_waiting_for_2nd_level_approval
                 and not already_has_same_active_nhr
-                and not should_still_wait_on_scanners
             ):
                 NeedsHumanReview.objects.create(version=version, reason=reason)
 
