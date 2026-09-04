@@ -1432,9 +1432,7 @@ class TestScannerQueryResultAdmin(TestCase):
         assert html('.field-addon_adi').text() == '999'
         authors = html('.field-authors a')
         assert authors.length == 3
-        authors_links = list(
-            (a.text, a.attrib['href']) for a in html('.field-authors a')
-        )
+        authors_links = [(a.text, a.attrib['href']) for a in html('.field-authors a')]
         # Last link should point to the addons model.
         link_to_addons = authors_links.pop()
         result = sorted(authors_links)

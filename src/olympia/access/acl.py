@@ -50,7 +50,7 @@ def langpack_submission_allowed(user, parsed_addon_data):
     See https://github.com/mozilla/addons-server/issues/11788 and
     https://github.com/mozilla/addons-server/issues/11793
     """
-    return not parsed_addon_data.get('type') == amo.ADDON_LPAPP or action_allowed_for(
+    return parsed_addon_data.get('type') != amo.ADDON_LPAPP or action_allowed_for(
         user, amo.permissions.LANGPACK_SUBMIT
     )
 

@@ -5,6 +5,7 @@ import os
 import socket
 from datetime import datetime
 
+from django.core.exceptions import ImproperlyConfigured
 from django.utils.functional import lazy
 
 import environ
@@ -1039,7 +1040,7 @@ def read_only_mode(env):
 
     # Replace the default (master) db with a slave connection.
     if not env.get('REPLICA_DATABASES'):
-        raise Exception('We need at least one slave database.')
+        raise ImproperlyConfigured('We need at least one slave database.')
     slave = env['REPLICA_DATABASES'][0]
     env['DATABASES']['default'] = env['DATABASES'][slave]
 

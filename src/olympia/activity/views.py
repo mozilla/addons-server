@@ -142,7 +142,7 @@ def inbound_email(request):
     def check_secret_key(request):
         data = request.data
         secret_key = data.get('SecretKey', '')
-        if not secret_key == settings.INBOUND_EMAIL_SECRET_KEY:
+        if secret_key != settings.INBOUND_EMAIL_SECRET_KEY:
             log.info(f'Invalid secret key [{secret_key}] provided; [{data=}]')
             raise exceptions.PermissionDenied()
 

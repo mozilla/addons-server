@@ -181,7 +181,7 @@ class BaseDataCommand(BaseCommand):
     data_backup_db_filename = 'db.sql'
     data_backup_storage_filename = 'storage.tar'
 
-    logger = logging
+    logger = logging.getLogger('z.amo.commands')
 
     def backup_dir_path(self, name):
         return os.path.abspath(os.path.join(self.data_backup_dirname, name))
@@ -198,7 +198,7 @@ class BaseDataCommand(BaseCommand):
 
     def clean_dir(self, name: str) -> None:
         path = self.backup_dir_path(name)
-        logging.info(f'Clearing {path}')
+        self.logger.info(f'Clearing {path}')
         shutil.rmtree(path, ignore_errors=True)
 
     def make_dir(self, name: str, force: bool = False) -> None:

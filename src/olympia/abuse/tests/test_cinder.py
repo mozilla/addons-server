@@ -2025,7 +2025,7 @@ class TestCinderContentChange(BaseTestCinderCase, TestCase):
 
     class CinderClass(CinderContentChange):
         def __init__(self, target):
-            return super().__init__(target, 'tags', {'added': [], 'removed': []})
+            super().__init__(target, 'tags', {'added': [], 'removed': []})
 
     def _create_dummy_target(self, **kwargs):
         return addon_factory(**kwargs)

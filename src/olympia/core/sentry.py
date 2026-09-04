@@ -21,7 +21,7 @@ def get_sentry_release():
     version = version_json.get('version') or version_json.get('commit')
 
     # sentry is loaded before django so we have to read the env directly
-    ensure_version = os.environ.get('REQUIRE_SENTRY_VERSION', False)
+    ensure_version = os.environ.get('REQUIRE_SENTRY_VERSION')
 
     if not version and ensure_version:
         raise ValueError('Could not determine version for Sentry release tracking')

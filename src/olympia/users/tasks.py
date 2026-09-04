@@ -182,7 +182,7 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     ).first()
 
     if not verification:
-        raise Exception(f'invalid id: {suppressed_email_verification_id}')
+        raise ValueError(f'invalid id: {suppressed_email_verification_id}')
 
     email = verification.suppressed_email.email
 

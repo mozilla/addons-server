@@ -175,7 +175,7 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
         help_text='The add-on reported for abuse.'
     )
     app = ReverseChoiceField(
-        choices=list((v.id, k) for k, v in amo.APPS.items()),
+        choices=[(v.id, k) for k, v in amo.APPS.items()],
         required=False,
         source='application',
     )

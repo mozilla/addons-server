@@ -305,16 +305,15 @@ class TestUserProfile(TestCase):
                 submission.signoff_state == BlocklistSubmission.SIGNOFF_STATES.PUBLISHED
             )
             assert submission.input_guids
-            assert set(submission.input_guids.split()) == set(
-                (addon_sole.guid, other_addon_sole.guid)
-            )
+            assert set(submission.input_guids.split()) == {
+                addon_sole.guid,
+                other_addon_sole.guid,
+            }
             assert submission.changed_version_ids
-            assert set(submission.changed_version_ids) == set(
-                (
-                    *addon_sole.versions.all().values_list('id', flat=True),
-                    *other_addon_sole.versions.all().values_list('id', flat=True),
-                )
-            )
+            assert set(submission.changed_version_ids) == {
+                *addon_sole.versions.all().values_list('id', flat=True),
+                *other_addon_sole.versions.all().values_list('id', flat=True),
+            }
             assert not submission.disable_addon
             assert submission.block_type == BlockType.BLOCKED
             assert submission.updated_by == core.get_user()

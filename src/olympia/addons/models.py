@@ -2055,7 +2055,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def rollbackable_versions_qs(self, channel):
         # Needs to be an extension
-        if not self.type == amo.ADDON_EXTENSION or not waffle.switch_is_active(
+        if self.type != amo.ADDON_EXTENSION or not waffle.switch_is_active(
             'version-rollback'
         ):
             return Version.objects.none()

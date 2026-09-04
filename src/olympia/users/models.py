@@ -577,11 +577,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     @property
     def all_group_rules(self):
         return sorted(
-            set(
+            {
                 rule.strip()
                 for group in self.groups_list
                 for rule in group.rules.split(',')
-            )
+            }
         )
 
     def get_addons_listed(self):

@@ -47,7 +47,7 @@ ACTION_FILTERS = (
     ('deleted', 'Deleted reviews'),
 )
 
-ACTION_DICT = dict(approved=amo.LOG.APPROVE_RATING, deleted=amo.LOG.DELETE_RATING)
+ACTION_DICT = {'approved': amo.LOG.APPROVE_RATING, 'deleted': amo.LOG.DELETE_RATING}
 
 VALID_ATTACHMENT_EXTENSIONS = ('.txt', '.zip')
 
@@ -724,7 +724,7 @@ class ReviewForm(forms.Form):
                         selected_actions
                     )
                 ]
-            all_primary_actions = set(
+            all_primary_actions = {
                 filtered.primary
                 for policy in policies
                 if (
@@ -732,7 +732,7 @@ class ReviewForm(forms.Form):
                         policy.split_enforcement_actions, Addon
                     )
                 )
-            )
+            }
             if len(all_primary_actions) == 0:
                 self.add_error(
                     'cinder_policies',

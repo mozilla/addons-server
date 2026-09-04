@@ -76,13 +76,13 @@ def all_locales(addon, field_name, nl2br=False, prettify_empty=False):
     if not addon or field is None:
         return
     trans = field.__class__.objects.filter(id=field.id, localized_string__isnull=False)
-    ctx = dict(
-        addon=addon,
-        field=field,
-        field_name=field_name,
-        translations=trans,
-        nl2br=nl2br,
-        prettify_empty=prettify_empty,
-    )
+    ctx = {
+        'addon': addon,
+        'field': field,
+        'field_name': field_name,
+        'translations': trans,
+        'nl2br': nl2br,
+        'prettify_empty': prettify_empty,
+    }
     t = loader.get_template('translations/all-locales.html')
     return markupsafe.Markup(t.render(ctx))

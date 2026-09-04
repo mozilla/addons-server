@@ -648,7 +648,7 @@ class AccountSuperCreate(APIView):
                 'username': user.username,
                 'email': user.email,
                 'display_name': user.display_name,
-                'groups': list((g.pk, g.name, g.rules) for g in user.groups.all()),
+                'groups': [(g.pk, g.name, g.rules) for g in user.groups.all()],
                 'fxa_id': user.fxa_id,
                 'session_cookie': cookie,
             },

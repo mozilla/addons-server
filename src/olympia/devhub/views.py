@@ -164,14 +164,14 @@ def index(request):
 def dashboard(request, theme=False):
     addon_items = _get_items(None, request.user.addons.all())[:4]
 
-    data = dict(
-        rss=_get_rss_feed(request),
-        blog_posts=_get_posts(),
-        timestamp=int(time.time()),
-        addon_tab=not theme,
-        theme=theme,
-        addon_items=addon_items,
-    )
+    data = {
+        'rss': _get_rss_feed(request),
+        'blog_posts': _get_posts(),
+        'timestamp': int(time.time()),
+        'addon_tab': not theme,
+        'theme': theme,
+        'addon_items': addon_items,
+    }
     if data['addon_tab']:
         addons, data['filter'] = addon_listing(request)
         data['addons'] = amo_utils.paginate(request, addons, per_page=10)
@@ -2309,7 +2309,7 @@ def email_verification(request):
         data['state'] = VERIFY_EMAIL_STATE['email_verified']
 
     if data['state'] is None:
-        raise Exception('Invalid view must result in assigned state')
+        raise RuntimeError('Invalid view must result in assigned state')
 
     if data['state'] in RENDER_BUTTON_STATES:
         data['render_button'] = True

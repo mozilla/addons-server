@@ -57,11 +57,11 @@ def get_docker_image_meta(build=False):
 
     # DOCKER_DIGEST or DOCKER_VERSION can override the extracted version or digest
     # Note: it will inherit the image from the provided DOCKER_TAG if also provided
-    if bool(os.environ.get('DOCKER_DIGEST', False)):
+    if bool(os.environ.get('DOCKER_DIGEST')):
         digest = os.environ['DOCKER_DIGEST']
         tag = f'{image}@{digest}'
         version = None
-    elif bool(os.environ.get('DOCKER_VERSION', False)):
+    elif bool(os.environ.get('DOCKER_VERSION')):
         version = os.environ['DOCKER_VERSION']
         tag = f'{image}:{version}'
 

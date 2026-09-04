@@ -396,7 +396,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
 
         updated_photo = get_uploaded_file('preview_4x3.jpg')
         response = self.client.post(
-            self.detail_url, dict(custom_image=updated_photo), follow=True
+            self.detail_url, {'custom_image': updated_photo}, follow=True
         )
         assert response.status_code == 200
         item.reload()
@@ -472,7 +472,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 0
         photo = get_uploaded_file('transparent.png')
-        response = self.client.post(add_url, dict(custom_image=photo), follow=True)
+        response = self.client.post(add_url, {'custom_image': photo}, follow=True)
         assert response.status_code == 200
         assert PrimaryHeroImage.objects.count() == 1
         item = PrimaryHeroImage.objects.get()
@@ -503,7 +503,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
         photo = get_uploaded_file('transparent.png')
-        response = self.client.post(add_url, dict(custom_image=photo), follow=True)
+        response = self.client.post(add_url, {'custom_image': photo}, follow=True)
         assert response.status_code == 403
         assert PrimaryHeroImage.objects.count() == 0
 
@@ -520,7 +520,7 @@ class TestPrimaryHeroImageAdmin(TestCase):
         updated_photo = get_uploaded_file('non-animated.png')
 
         response = self.client.post(
-            detail_url, dict(custom_image=updated_photo), follow=True
+            detail_url, {'custom_image': updated_photo}, follow=True
         )
         assert response.status_code == 403
         item.reload()

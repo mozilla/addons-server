@@ -605,7 +605,7 @@ class ScannerResult(AbstractScannerResult):
         action_name = ACTIONS.get(action_id, None)
 
         if not action_name:
-            raise Exception('invalid action %s' % action_id)
+            raise ValueError('invalid action %s' % action_id)
 
         ACTION_FUNCTIONS = {
             NO_ACTION: _no_action,
@@ -624,7 +624,9 @@ class ScannerResult(AbstractScannerResult):
         action_function = ACTION_FUNCTIONS.get(action_id, None)
 
         if not action_function:
-            raise Exception('no implementation for workflow action %s' % action_id)
+            raise NotImplementedError(
+                'no implementation for workflow action %s' % action_id
+            )
 
         # We have a valid action to execute, so let's do it!
         log.info(

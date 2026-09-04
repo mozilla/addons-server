@@ -201,12 +201,12 @@ class Rating(ModelBase):
             amo.LOG.APPROVE_RATING,
             self.addon,
             self,
-            details=dict(
-                body=str(self.body),
-                addon_id=self.addon.pk,
-                addon_title=str(self.addon.name),
-                is_flagged=self.ratingflag_set.exists(),
-            ),
+            details={
+                'body': str(self.body),
+                'addon_id': self.addon.pk,
+                'addon_title': str(self.addon.name),
+                'is_flagged': self.ratingflag_set.exists(),
+            },
         )
         for flag in self.ratingflag_set.all():
             flag.delete()

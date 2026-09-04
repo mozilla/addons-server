@@ -216,7 +216,7 @@ def download_source(request, version_id):
 
     if (
         addon.status != amo.STATUS_DISABLED
-        and not version.file.status == amo.STATUS_DISABLED
+        and version.file.status != amo.STATUS_DISABLED
         and not version.deleted
         and not addon.is_deleted
     ):

@@ -109,12 +109,10 @@ class TestActivityLogAdmin(TestCase):
         doc = pq(response.content.decode('utf-8'))
         assert len(doc('#result_list tbody tr')) == 2
         # Make sure it's the right records.
-        assert set(
-            (
-                doc('.field-user_link')[0].text_content(),
-                doc('.field-user_link')[1].text_content(),
-            )
-        ) == {str(user2), str(user3)}
+        assert {
+            doc('.field-user_link')[0].text_content(),
+            doc('.field-user_link')[1].text_content(),
+        } == {str(user2), str(user3)}
         # Make sure ip address is displayed, and has the right value.
         # (twice since 2 rows are matching)
         assert doc('.field-ip_address').text() == '127.0.0.2 127.0.0.2'

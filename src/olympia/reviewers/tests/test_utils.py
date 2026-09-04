@@ -1433,10 +1433,10 @@ class TestReviewHelper(TestReviewHelperBase):
             .filter(action=amo.LOG.REVIEWER_REPLY_VERSION.id)
             .get()
         )
-        assert [new_version, new_version2] == list(
+        assert [new_version, new_version2] == [
             vlog.version
             for vlog in activity.versionlog_set.all().order_by('version__pk')
-        )
+        ]
 
         # ... but 2 emails, because we're sending them version per version.
         assert len(mail.outbox) == 2

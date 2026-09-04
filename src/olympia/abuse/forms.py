@@ -38,7 +38,7 @@ class AbuseAppealEmailForm(CheckThrottlesFormMixin, forms.Form):
             raise ImproperlyConfigured(
                 'AbuseAppealEmailForm called without an expected_email'
             )
-        return super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean_email(self):
         if (email := self.cleaned_data['email']) != self.expected_email:
@@ -54,7 +54,7 @@ class AbuseAppealForm(CheckThrottlesFormMixin, forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')
-        return super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     reason = forms.CharField(
         widget=forms.Textarea(),

@@ -422,14 +422,14 @@ class TestBaseDataCommand(BaseTestDataCommand):
         )
 
     @mock.patch('olympia.amo.management.shutil.rmtree')
-    @mock.patch('olympia.amo.management.logging')
-    def test_clean_dir(self, mock_logging, mock_rmtree):
+    @mock.patch('olympia.amo.management.BaseDataCommand.logger')
+    def test_clean_dir(self, mock_logger, mock_rmtree):
         name = 'cleanup_test'
         backup_path = self.base_data_command.backup_dir_path(name)
 
         self.base_data_command.clean_dir(name)
 
-        mock_logging.info.assert_called_with(f'Clearing {backup_path}')
+        mock_logger.info.assert_called_with(f'Clearing {backup_path}')
         mock_rmtree.assert_called_with(backup_path, ignore_errors=True)
 
     @mock.patch('olympia.amo.management.os.path.exists')

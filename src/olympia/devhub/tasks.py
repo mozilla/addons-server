@@ -145,7 +145,7 @@ def validation_task(fn):
         try:
             # All validation tasks should receive `results`.
             if not results:
-                raise Exception(
+                raise RuntimeError(
                     'Unexpected call to a validation task without `results`'
                 )
 
@@ -635,11 +635,11 @@ def failed_validation(*messages):
 def check_content_type(response, content_type, no_ct_message, wrong_ct_message):
     if not response.headers.get('Content-Type', '').startswith(content_type):
         if 'Content-Type' in response.headers:
-            raise Exception(
+            raise ValueError(
                 wrong_ct_message % (content_type, response.headers['Content-Type'])
             )
         else:
-            raise Exception(no_ct_message % content_type)
+            raise ValueError(no_ct_message % content_type)
 
 
 def get_content_and_check_size(response, max_size, error_message):
@@ -647,7 +647,7 @@ def get_content_and_check_size(response, max_size, error_message):
     # downloading huge files.
     content = response.read(max_size + 1)
     if len(content) > max_size:
-        raise Exception(error_message % max_size)
+        raise ValueError(error_message % max_size)
     return content
 
 
