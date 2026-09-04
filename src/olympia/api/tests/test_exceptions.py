@@ -19,7 +19,7 @@ class DummyViewSet(GenericViewSet):
     """Dummy test viewset that raises an exception when calling list()."""
 
     def list(self, *args, **kwargs):
-        raise Exception('something went wrong')
+        raise Exception('something went wrong')  # noqa: TRY002 (tests generic handler)
 
 
 class DummyWriteViewSet(GenericViewSet):
@@ -27,7 +27,7 @@ class DummyWriteViewSet(GenericViewSet):
 
     def create(self, *args, **kwargs):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='99999.0')
-        raise Exception('something went wrong')
+        raise Exception('something went wrong')  # noqa: TRY002 (tests generic handler)
 
 
 test_exception = SimpleRouter()
@@ -138,7 +138,7 @@ class TestExceptionHandler(TestCase):
 
         with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
             try:
-                raise Exception()
+                raise Exception()  # noqa: TRY002 (tests generic handler)
             except Exception as exc:
                 response = exception_handler(exc, {})
                 assert isinstance(response, Response)

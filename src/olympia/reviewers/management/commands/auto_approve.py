@@ -289,8 +289,7 @@ class Command(BaseCommand):
         # already in the queue and there is no need to do it again.
         # Note that we are checking for an active one, because a given version
         # could leave the review queue and re-enter it multiple times.
-        for key in verdicts_to_reasons:
-            reason = verdicts_to_reasons[key]
+        for key, reason in verdicts_to_reasons.items():
             was_not_auto_approved_because_of_that_reason = getattr(
                 version.autoapprovalsummary, key
             )

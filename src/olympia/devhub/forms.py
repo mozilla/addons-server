@@ -741,9 +741,10 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
         if not self.addon:
             raise ValueError('addon keyword arg cannot be None')
         kw['instance'] = self.addon
-        kw['initial'] = dict(
-            has_priv=self._has_field('privacy_policy'), has_eula=self._has_field('eula')
-        )
+        kw['initial'] = {
+            'has_priv': self._has_field('privacy_policy'),
+            'has_eula': self._has_field('eula'),
+        }
         super().__init__(*args, **kw)
 
     def _has_field(self, name):

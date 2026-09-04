@@ -1,5 +1,3 @@
-import logging
-
 from django.conf import settings
 from django.core.management import call_command
 
@@ -35,14 +33,14 @@ class Command(BaseDataCommand):
         try:
             return UserProfile.objects.filter(email=settings.LOCAL_ADMIN_EMAIL).exists()
         except Exception as e:
-            logging.error(f'Error checking if local admin exists: {e}')
+            self.logger.error(f'Error checking if local admin exists: {e}')
             return False
 
     def handle(self, *args, **options):
         """
         Create the database.
         """
-        logging.info(f'options: {options}')
+        self.logger.info(f'options: {options}')
         # Always ensure "olympia" database exists and is accessible.
         call_command('monitors', services=['olympia_database', 'elastic'])
 
@@ -57,7 +55,7 @@ class Command(BaseDataCommand):
         else:
             load = options.get('load')
             # We always migrate the DB.
-            logging.info('Migrating...')
+            self.logger.info('Migrating...')
             call_command('migrate', '--noinput')
 
             # If we specify a specific backup, simply load that.

@@ -30,7 +30,7 @@ INSTALLED_APPS += ('olympia.landfill',)
 DBBACKUP_CONNECTOR_MAPPING = {
     'olympia.core.db.mysql': 'dbbackup.db.mysql.MysqlDumpConnector',
 }
-SKIP_DATA_SEED = os.environ.get('SKIP_DATA_SEED', False)
+SKIP_DATA_SEED = os.environ.get('SKIP_DATA_SEED')
 
 # Override logging config to enable DEBUG logs for (almost) everything.
 LOGGING['root']['level'] = logging.DEBUG

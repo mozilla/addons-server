@@ -342,8 +342,8 @@ CATEGORIES = {
     ADDON_LPAPP: {'general': StaticCategory(id=98, name=_('General'))},
 }
 
-for type_ in CATEGORIES:
-    for slug, cat in CATEGORIES[type_].items():
+for type_, categories in CATEGORIES.items():
+    for slug, cat in categories.items():
         # Flatten some values and set them, avoiding immutability
         # of `StaticCategory` by calling `object.__setattr__` directly.
         object.__setattr__(cat, 'slug', slug)
@@ -353,6 +353,6 @@ for type_ in CATEGORIES:
 
 CATEGORIES_BY_ID = {}
 
-for type_ in CATEGORIES:
-    for cat in CATEGORIES[type_].values():
+for categories in CATEGORIES.values():
+    for cat in categories.values():
         CATEGORIES_BY_ID[cat.id] = cat

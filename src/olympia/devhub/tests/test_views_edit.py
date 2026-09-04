@@ -147,7 +147,7 @@ class BaseTestEditDescribe(BaseTestEdit):
             div('button.rejected-review-request').attr('data-url')
             == request_content_review_url
         )
-        assert not div('a.button').text() == 'Edit Product Page'
+        assert div('a.button').text() != 'Edit Product Page'
 
         aac.update(
             content_review_status=(
@@ -888,8 +888,8 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.client.post(self.describe_edit_url, self.get_dict(**data))
         addon = self.get_addon()
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
     def test_edit_support_optional_url(self):
         data = {'support_email': 'sjobs@apple.com', 'support_url': ''}
@@ -897,8 +897,8 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.client.post(self.describe_edit_url, self.get_dict(**data))
         addon = self.get_addon()
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
     def test_edit_support_optional_email(self):
         data = {'support_email': '', 'support_url': 'http://apple.com/'}
@@ -906,8 +906,8 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         self.client.post(self.describe_edit_url, self.get_dict(**data))
         addon = self.get_addon()
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
     @override_switch('content-optimization', active=True)
     def test_description_not_optional(self):
@@ -1039,8 +1039,8 @@ class TestEditMedia(BaseTestEdit):
             == 'http://testserver/static/img/addon-icons/default-64.png'
         )
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
     def test_edit_media_shows_proper_labels(self):
         """Regression test for
@@ -1628,8 +1628,8 @@ class BaseTestEditAdditionalDetails(BaseTestEdit):
         assert response.context['main_form'].errors == {}
         addon = self.get_addon()
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
     def test_edit_homepage_optional(self):
         data = {'default_locale': 'en-US', 'homepage': ''}
@@ -1639,8 +1639,8 @@ class BaseTestEditAdditionalDetails(BaseTestEdit):
         assert response.context['main_form'].errors == {}
         addon = self.get_addon()
 
-        for k in data:
-            assert str(getattr(addon, k)) == data[k]
+        for k, v in data.items():
+            assert str(getattr(addon, k)) == v
 
 
 class TestEditAdditionalDetailsListed(
@@ -1743,13 +1743,13 @@ class TestEditTechnical(BaseTestEdit):
         assert response.context['main_form'].errors == {}
 
         addon = self.get_addon()
-        for k in data:
+        for k, v in data.items():
             if k == 'developer_comments':
-                assert str(getattr(addon, k)) == str(data[k])
+                assert str(getattr(addon, k)) == str(v)
             elif k == 'whiteboard-public':
-                assert str(addon.whiteboard.public) == str(data[k])
+                assert str(addon.whiteboard.public) == str(v)
             else:
-                assert getattr(addon, k) == (data[k] == 'on')
+                assert getattr(addon, k) == (v == 'on')
 
     def test_whiteboard_too_long(self):
         data = {

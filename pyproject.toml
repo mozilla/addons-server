@@ -53,18 +53,8 @@ ignore = [
     "SIM117",  # multiple-with-statements
     "SIM118",  # in-dict-keys
     "TRY201",  # verbose-raise
-    "TRY002",  # raise-vanilla-class
     "INT003",  # printf-in-get-text-func-call
-    "C408",    # unnecessary-collection-call
-    "PLC0206", # dict-index-missing-items
-    "SIM201",  # negate-equal-op
     "INT002",  # format-in-get-text-func-call
-    "C400",    # unnecessary-generator-list
-    "C405",    # unnecessary-literal-set
-    "C401",    # unnecessary-generator-set
-    "LOG015",  # root-logger-call
-    "PLE0101", # return-in-init
-    "PLW1508", # invalid-envvar-default
     "INT001",  # f-string-in-get-text-func-cal
 ]
 extend-select = [

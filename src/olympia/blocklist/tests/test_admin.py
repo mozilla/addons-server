@@ -1081,7 +1081,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         # confirm properties *were not* updated.
         assert existing_and_full.reason != 'some reason'
         assert existing_and_full.url != 'dfd'
-        assert not existing_and_full.average_daily_users_snapshot == (
+        assert existing_and_full.average_daily_users_snapshot != (
             existing_and_full.current_adu
         )
         assert not ActivityLog.objects.for_addons(existing_and_full.addon).exists()
@@ -2641,14 +2641,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert partial_addon.status != amo.STATUS_DISABLED
         assert partial_addon_version.file.status == (amo.STATUS_DISABLED)
 
-        assert not new_addon_version.blockversion.block_type == BlockType.SOFT_BLOCKED
-        assert (
-            not partial_addon_version.blockversion.block_type == BlockType.SOFT_BLOCKED
-        )
-        assert (
-            not already_blocked_version.blockversion.block_type
-            == BlockType.SOFT_BLOCKED
-        )
+        assert new_addon_version.blockversion.block_type != BlockType.SOFT_BLOCKED
+        assert partial_addon_version.blockversion.block_type != BlockType.SOFT_BLOCKED
+        assert already_blocked_version.blockversion.block_type != BlockType.SOFT_BLOCKED
 
     def test_soft_block(self):
         user = user_factory(email='someone@mozilla.com')

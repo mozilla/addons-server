@@ -297,13 +297,13 @@ def upload_picture(user, picture):
 
 def assert_socket_labs_settings_defined():
     if not settings.SOCKET_LABS_TOKEN:
-        raise Exception('SOCKET_LABS_TOKEN is not defined')
+        raise ImproperlyConfigured('SOCKET_LABS_TOKEN is not defined')
 
     if not settings.SOCKET_LABS_HOST:
-        raise Exception('SOCKET_LABS_HOST is not defined')
+        raise ImproperlyConfigured('SOCKET_LABS_HOST is not defined')
 
     if not settings.SOCKET_LABS_SERVER_ID:
-        raise Exception('SOCKET_LABS_SERVER_ID is not defined')
+        raise ImproperlyConfigured('SOCKET_LABS_SERVER_ID is not defined')
 
 
 utils_log = olympia.core.logger.getLogger('z.users')

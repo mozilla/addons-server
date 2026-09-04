@@ -18,7 +18,7 @@ def clean_dir(dir_path, filter):
 
 def main(targets):
     # Constants
-    ALLOWED_NPM_TARGETS = set(['prod', 'dev'])
+    ALLOWED_NPM_TARGETS = {'prod', 'dev'}
     DOCKER_TAG = os.environ.get('DOCKER_TAG', 'local')
     OLYMPIA_DEPS = os.environ.get('OLYMPIA_DEPS', '')
     DEPS_DIR = os.environ.get('DEPS_DIR')

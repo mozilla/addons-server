@@ -226,9 +226,7 @@ class BlocklistSubmissionForm(AMOModelForm):
                 # preselect all the options
                 self.initial['changed_version_ids'] = self.changed_version_ids_choices
         else:
-            field.choices = list(
-                (v_id, v_id) for v_id in self.instance.changed_version_ids
-            )
+            field.choices = [(v_id, v_id) for v_id in self.instance.changed_version_ids]
             self.changed_version_ids_choices = self.instance.changed_version_ids
         field.widget.choices = self.changed_version_ids_choices
         field.widget.blocks = self.blocks

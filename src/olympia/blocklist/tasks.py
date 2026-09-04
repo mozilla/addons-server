@@ -110,7 +110,7 @@ def upload_filter(generation_time: str, actions: List[str] | None = None):
     actions = [BlockListAction[action] for action in actions]
 
     filters_to_upload = []
-    base_filter_ids = dict()
+    base_filter_ids = {}
     bucket = settings.REMOTE_SETTINGS_WRITER_BUCKET
     server = RemoteSettings(
         bucket, REMOTE_SETTINGS_COLLECTION_MLBF, sign_off_needed=False

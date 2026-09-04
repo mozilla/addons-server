@@ -240,9 +240,7 @@ class TestWriteSitemaps(TestCase):
         write_sitemaps()
         sitemaps = get_sitemaps()
         # Root should contain all sections dirs + index.
-        assert (
-            len(os.listdir(sitemaps_dir)) == len(set(item[0] for item in sitemaps)) + 1
-        )
+        assert len(os.listdir(sitemaps_dir)) == len({item[0] for item in sitemaps}) + 1
 
         with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
             contents = sitemap.read()
