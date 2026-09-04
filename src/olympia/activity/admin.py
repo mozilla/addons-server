@@ -158,7 +158,7 @@ class ReviewActionReasonLogAdmin(AMOModelAdmin):
         return False
 
     def get_form(self, request, obj=None, **kwargs):
-        form = super(ReviewActionReasonLogAdmin, self).get_form(request, obj, **kwargs)
+        form = super().get_form(request, obj, **kwargs)
         form.base_fields['reason'].widget.can_add_related = False
         form.base_fields['reason'].widget.can_change_related = False
         form.base_fields['reason'].empty_label = None

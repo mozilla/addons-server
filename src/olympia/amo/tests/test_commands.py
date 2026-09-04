@@ -119,10 +119,8 @@ class TestGenerateJsSwaggerFiles(TestCase):
 
         with (
             mock.patch(
-                (
-                    'olympia.amo.management.commands.generate_js_swagger_files.'
-                    'serve_swagger_ui_js'
-                )
+                'olympia.amo.management.commands.generate_js_swagger_files.'
+                'serve_swagger_ui_js'
             ) as mock_view,
             pytest.raises(CommandError) as error_info,
         ):

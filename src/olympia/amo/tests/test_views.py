@@ -596,10 +596,7 @@ class TestVersion(TestCase):
         assert result.get('Content-Type') == 'application/json'
         assert result.get('Access-Control-Allow-Origin') == '*'
         content = result.json()
-        assert content['python'] == '{}.{}'.format(
-            sys.version_info.major,
-            sys.version_info.minor,
-        )
+        assert content['python'] == f'{sys.version_info.major}.{sys.version_info.minor}'
         assert content['django'] == f'{django.VERSION[0]}.{django.VERSION[1]}'
         assert 'addons-linter' in content
         assert '.' in content['addons-linter']

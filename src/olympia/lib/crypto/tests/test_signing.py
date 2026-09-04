@@ -637,7 +637,7 @@ class TestTasks(TestCase):
             assert len(mail.outbox) == 0
 
     def test_dont_sign_dont_bump_sign_error(self, mock_sign_file):
-        mock_sign_file.side_effect = IOError()
+        mock_sign_file.side_effect = OSError()
 
         # IOError should be caught, this shouldn't raise.
         tasks.bump_and_resign_addons([self.addon.pk])

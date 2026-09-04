@@ -80,7 +80,7 @@ def mock_basket(settings):
     )
     responses.add(
         responses.POST,
-        settings.BASKET_URL + '/news/unsubscribe/{}/'.format(USER_TOKEN),
+        settings.BASKET_URL + f'/news/unsubscribe/{USER_TOKEN}/',
         json={'status': 'ok', 'token': USER_TOKEN},
     )
 
@@ -165,7 +165,7 @@ def test_pre_setup(request, tmpdir, settings):
     # Randomize the cache key prefix to keep
     # tests isolated from each other.
     prefix = uuid.uuid4().hex
-    settings.CACHES['default']['KEY_PREFIX'] = 'amo:{0}:'.format(prefix)
+    settings.CACHES['default']['KEY_PREFIX'] = f'amo:{prefix}:'
 
     # Reset global django-waffle cache instance to make sure it's properly
     # using our new key prefix

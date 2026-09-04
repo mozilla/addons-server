@@ -12,12 +12,10 @@ class TestAssayUrl(TestCase):
 
     def test_create_an_assay_url(self):
         assert assay.assay_url(self.addon_guid, self.version_string) == (
-            '{}/{}/{}'.format(self.assay_url, self.addon_guid, self.version_string)
+            f'{self.assay_url}/{self.addon_guid}/{self.version_string}'
         )
 
     def test_create_an_assay_url_with_file(self):
         assert assay.assay_url(self.addon_guid, self.version_string, self.filepath) == (
-            '{}/{}/{}?path={}'.format(
-                self.assay_url, self.addon_guid, self.version_string, self.filepath
-            )
+            f'{self.assay_url}/{self.addon_guid}/{self.version_string}?path={self.filepath}'
         )

@@ -82,7 +82,7 @@ def test_format_scanners_data_complex():
         {'extensionId': '@welp'},
     ]
     expected_url = 'http://testserver/en-US/reviewers/review/@welp'
-    expected = """<ul>
+    expected = f"""<ul>
 <li><dl>
 <dt>THIS IS:</dt><dd><ul>
 <li>Sparta</li>
@@ -98,5 +98,5 @@ def test_format_scanners_data_complex():
 <li><dl>
 <dt>extensionId:</dt><dd><a href="{expected_url}">@welp</a></dd>
 </dl></li>
-</ul>""".format(expected_url=expected_url)
+</ul>"""
     assert format_scanners_data(data) == expected

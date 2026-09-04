@@ -68,8 +68,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
             )
         except Exception as e:
             log.info(
-                'There was a problem creating the user: {}.'
-                ' Returning user from database'.format(e)
+                f'There was a problem creating the user: {e}.'
+                ' Returning user from database'
             )
             return UserProfile.objects.get(username='uitest')
 

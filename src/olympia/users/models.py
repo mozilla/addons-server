@@ -832,11 +832,7 @@ class UserNotification(ModelBase):
         return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
-        return '{user}, {notification}, enabled={enabled}'.format(
-            user=self.user.name,
-            notification=self.notification.short,
-            enabled=self.enabled,
-        )
+        return f'{self.user.name}, {self.notification.short}, enabled={self.enabled}'
 
 
 class DeniedName(ModelBase):

@@ -15,7 +15,7 @@ from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 
 def get_versioned_api_routes(version, url_patterns):
-    route_pattern = r'^{}/'.format(version)
+    route_pattern = rf'^{version}/'
     url_name = 'schema'
 
     routes = url_patterns

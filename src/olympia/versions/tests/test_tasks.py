@@ -86,10 +86,7 @@ def check_render(
     if valid_img:
         with root_storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
             header_blob = header_file.read()
-            base_64_uri = 'data:{};base64,{}'.format(
-                mimetype,
-                force_str(b64encode(header_blob)),
-            )
+            base_64_uri = f'data:{mimetype};base64,{force_str(b64encode(header_blob))}'
     else:
         base_64_uri = ''
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content, svg_content

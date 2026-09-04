@@ -95,9 +95,7 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
             == 'max-age=0, no-cache, no-store, must-revalidate, private'
         )
         url = urlparse(response['location'])
-        redirect = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path
-        )
+        redirect = f'{url.scheme}://{url.netloc}{url.path}'
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
         assert parse_qs(url.query) == {
             'access_type': ['offline'],
@@ -606,9 +604,7 @@ class TestWithUser(TestCase):
         # as prompt=none to avoid the need for the user to re-authenticate.
         assert response.status_code == 302
         url = urlparse(response['Location'])
-        base = '{scheme}://{netloc}{path}'.format(
-            scheme=url.scheme, netloc=url.netloc, path=url.path
-        )
+        base = f'{url.scheme}://{url.netloc}{url.path}'
         fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
         assert base == '{host}{path}'.format(
             host=settings.FXA_OAUTH_HOST, path='/authorization'
@@ -2416,9 +2412,9 @@ class TestAccountNotificationViewSetUpdate(TestCase):
                 'sync': 'Y',
                 'optin': 'Y',
                 'source_url': (
-                    'http://testserver/api/{api_version}/accounts/account/'
-                    '{id}/notifications/'
-                ).format(id=self.user.id, api_version=api_settings.DEFAULT_VERSION),
+                    f'http://testserver/api/{api_settings.DEFAULT_VERSION}/accounts/account/'
+                    f'{self.user.id}/notifications/'
+                ),
                 'email': self.user.email,
             },
             headers={'x-api-key': 'testkey'},
