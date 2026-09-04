@@ -246,8 +246,7 @@ class RestrictionChecker:
                             },
                         )
                     # A failure with nothing enumerable still gets a single
-                    # row, with the instance fields left NULL - today's
-                    # behaviour.
+                    # row, with the instance fields left NULL.
                     for matched_instance in matched or [None]:
                         self.history_entries.append(
                             UserRestrictionHistory.objects.create(
