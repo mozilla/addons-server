@@ -1824,3 +1824,66 @@ class TestRunAction(TestCase):
 
         # Nothing for human reviewers to do.
         assert not self.version.needshumanreview_set.exists()
+
+    def _create_additional_matched_rule(self, **kwargs):
+        other_rule = ScannerRule.objects.create(
+            name='rule-2', scanner=self.scanner, **kwargs
+        )
+        other_result = ScannerResult.objects.create(
+            version=self.version, scanner=self.scanner
+        )
+        other_result.matched_rules.add(other_rule)
+        return other_rule
+
+    @mock.patch('olympia.scanners.models._flag_for_human_review')
+    @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
+    def test_execute_workflow_action_limited_to_rules(
+        self, _delay_auto_approval_indefinitely_mock, _flag_for_human_review_mock
+    ):
+        self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
+        # More severe, but it's not part of the rules we pass.
+        self._create_additional_matched_rule(action=DELAY_AUTO_APPROVAL_INDEFINITELY)
+
+        ScannerResult.run_actions(
+            self.version, rules=self.scanner_result.matched_rules.all()
+        )
+
+        assert not _delay_auto_approval_indefinitely_mock.called
+        _flag_for_human_review_mock.assert_called_with(
+            version=self.version, rule=self.scanner_rule
+        )
+
+    @mock.patch('olympia.scanners.models._delay_auto_approval_indefinitely')
+    def test_execute_workflow_action_without_rules_considers_all(
+        self, _delay_auto_approval_indefinitely_mock
+    ):
+        self.scanner_rule.update(action=FLAG_FOR_HUMAN_REVIEW)
+        other_rule = self._create_additional_matched_rule(
+            action=DELAY_AUTO_APPROVAL_INDEFINITELY
+        )
+
+        ScannerResult.run_actions(self.version)
+
+        _delay_auto_approval_indefinitely_mock.assert_called_with(
+            version=self.version, rule=other_rule
+        )
+
+    def test_execute_policy_enforcement_action_limited_to_rules(self):
+        policy = CinderPolicy.objects.create(
+            uuid=uuid.uuid4().hex,
+            name='some policy name',
+            text='some policy text',
+            enforcement_actions=[DECISION_ACTIONS.AMO_DISABLE_ADDON.api_value],
+        )
+        # This policy was already enforced through another result: passing
+        # `rules` is what prevents us from enforcing it a second time.
+        self._create_additional_matched_rule(policy=policy)
+
+        ScannerResult.run_actions(
+            self.version, rules=self.scanner_result.matched_rules.all()
+        )
+
+        self.addon.reload()
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert not ContentDecision.objects.exists()
+        assert len(responses.calls) == 0

@@ -29,6 +29,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_PUSH,
     YARA,
 )
 from olympia.files.models import File
@@ -48,6 +49,7 @@ from olympia.scanners.tasks import (
     call_webhooks,
     call_webhooks_during_validation,
     mark_scanner_query_rule_as_completed_or_aborted,
+    run_actions_for_scanner_result,
     run_narc_on_version,
     run_scanner,
     run_scanner_query_rule,
@@ -55,6 +57,56 @@ from olympia.scanners.tasks import (
     run_yara,
 )
 from olympia.versions.models import Version
+
+
+class TestRunActionsForScannerResult(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        self.webhook = ScannerWebhook.objects.create(
+            name='test-webhook',
+            url='https://example.com/webhook',
+            api_key='secret',
+        )
+        self.event = ScannerWebhookEvent.objects.create(
+            webhook=self.webhook, event=WEBHOOK_PUSH
+        )
+        self.rule = ScannerRule.objects.create(name='rule-a', scanner=WEBHOOK)
+
+    def create_result(self, matched_rules):
+        return ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            version=self.version,
+            webhook_event=self.event,
+            results={'version': '1.0.0', 'matchedRules': matched_rules},
+        )
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions(self, run_actions_mock):
+        scanner_result = self.create_result(['rule-a'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        assert run_actions_mock.call_count == 1
+        assert run_actions_mock.call_args[0] == (self.version,)
+        assert run_actions_mock.call_args[1]['rules'] == [self.rule.pk]
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_no_run_actions_without_matched_rules(self, run_actions_mock):
+        scanner_result = self.create_result([])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        assert run_actions_mock.call_count == 0
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_no_run_actions_for_unknown_rule(self, run_actions_mock):
+        scanner_result = self.create_result(['unknown-rule'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        assert run_actions_mock.call_count == 0
 
 
 class TestRunScanner(UploadMixin, TestCase):
