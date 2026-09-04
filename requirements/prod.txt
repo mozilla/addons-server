@@ -958,9 +958,9 @@ mohawk==1.1.0 \
 basket-client==1.2.0 \
     --hash=sha256:09a79dc788ab6799bcbeacd03c604ed64abe080a981515781dc3a100524cdef6 \
     --hash=sha256:11210fc13ec7fd177c656405d18b5b0daf50c9cf48ea972e1088db51867fb8c8
-webencodings==0.5.1 \
-    --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
-    --hash=sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923
+webencodings==0.6.1 \
+    --hash=sha256:565f9ad031c702dae404e27a099e3e09186a3ab1b9520f06d215502b651fd910 \
+    --hash=sha256:7fab6269c8bf237c657876b52058ccb182e861518d1c695c1a9aaa8c1c105d5b
 # sqlparse is required by django2.2+
 sqlparse==0.6.0 \
     --hash=sha256:113c35c75365ab9cc9c7231d68c6428fb11c085fc8e9eb1ad659b7ddbf6cd2b9 \
