@@ -42,6 +42,7 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
+    WEBHOOK_ON_VERSION_CREATED,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -84,7 +85,7 @@ def call_webhooks_during_validation(results, upload_pk):
 
         call_webhooks(
             event_id=WEBHOOK_DURING_VALIDATION,
-            payload={'download_url': upload.get_authenticated_download_url()},
+            payload=build_webhook_payload(WEBHOOK_DURING_VALIDATION, upload=upload),
             upload=upload,
         )
 
@@ -141,6 +142,27 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
             statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
             raise exc
+
+
+def build_webhook_payload(event_id, *, upload=None, version=None):
+    """Return the payload for the given event.
+
+    Only supports the events we might have to deliver more than once."""
+    from olympia.scanners.serializers import (
+        WebhookAddonSerializer,
+        WebhookVersionSerializer,
+    )
+
+    if event_id == WEBHOOK_DURING_VALIDATION:
+        return {'download_url': upload.get_authenticated_download_url()}
+
+    if event_id == WEBHOOK_ON_VERSION_CREATED:
+        return {
+            'addon': WebhookAddonSerializer(version.addon).data,
+            'version': WebhookVersionSerializer(version).data,
+        }
+
+    raise ValueError(f'No payload for webhook event {event_id}')
 
 
 def _call_webhook(webhook, payload):
