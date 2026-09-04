@@ -227,12 +227,11 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        with self.assertNumQueries(7):
-            # 7 queries:
+        with self.assertNumQueries(6):
+            # 6 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
-            # - One for the ratings count (pagination)
-            # - One for the ratings themselves
+            # - One for the ratings
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
             # - One for the addon
@@ -293,11 +292,10 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        with self.assertNumQueries(7):
-            # 7 queries:
+        with self.assertNumQueries(6):
+            # 6 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
-            # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
             # - One for the addon
@@ -1021,16 +1019,22 @@ class TestRatingViewSetGet(TestCase):
         self.grant_permission(self.user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.user)
         review1 = Rating.objects.create(
-            addon=self.addon, body='review 1', user=user_factory()
+            addon=self.addon,
+            body='review 1',
+            user=user_factory(),
+            rating=1,
         )
         review2 = Rating.objects.create(
-            addon=self.addon, body='review 2', user=user_factory()
+            addon=self.addon,
+            body='review 2',
+            user=user_factory(),
+            rating=2,
         )
         review1.update(created=self.days_ago(1))
         # Add a review belonging to a different add-on, a reply and a deleted
         # review. They should not be present in the list.
         review_deleted = Rating.objects.create(
-            addon=self.addon, body='review deleted', user=review1.user
+            addon=self.addon, body='review deleted', user=review1.user, rating=3
         )
         review_deleted.delete()
         Rating.objects.create(
@@ -1040,7 +1044,10 @@ class TestRatingViewSetGet(TestCase):
             user=user_factory(),
         )
         Rating.objects.create(
-            addon=addon_factory(), body='review other addon', user=review1.user
+            addon=addon_factory(),
+            body='review other addon',
+            user=review1.user,
+            rating=4,
         )
         # Also add a deleted reply to the first review, it should not be shown.
         deleted_reply = Rating.objects.create(
