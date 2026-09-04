@@ -344,7 +344,7 @@ class TestSendSuppressedEmailConfirmation(TestCase):
         try:
             send_suppressed_email_confirmation.apply([verification.id])
         except Exception as err:
-            pytest.fail('Unexpected exception: {0}'.format(err))
+            pytest.fail(f'Unexpected exception: {err}')
 
     def test_socket_labs_returns_5xx(self):
         verification = SuppressedEmailVerification.objects.create(

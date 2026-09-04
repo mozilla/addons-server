@@ -255,7 +255,7 @@ class AccountSuperCreateSerializer(serializers.Serializer):
             if count != 1:
                 log.info(
                     'Super creation: looking for group with '
-                    'permissions {} {} (count: {})'.format(group, rule, count)
+                    f'permissions {group} {rule} (count: {count})'
                 )
                 raise serializers.ValidationError(
                     'Could not find a permissions group with the exact rules needed.'

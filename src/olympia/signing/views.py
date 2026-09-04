@@ -272,21 +272,14 @@ class VersionView(APIView):
             if uuid is None:
                 file_upload = file_upload_qs.latest()
                 log.info(
-                    'getting latest upload for {addon} {version}: '
-                    '{file_upload.uuid}'.format(
-                        addon=addon, version=version_string, file_upload=file_upload
-                    )
+                    f'getting latest upload for {addon} {version_string}: '
+                    f'{file_upload.uuid}'
                 )
             else:
                 file_upload = file_upload_qs.get(uuid=uuid)
                 log.info(
-                    'getting specific upload for {addon} {version} '
-                    '{uuid}: {file_upload.uuid}'.format(
-                        addon=addon,
-                        version=version_string,
-                        uuid=uuid,
-                        file_upload=file_upload,
-                    )
+                    f'getting specific upload for {addon} {version_string} '
+                    f'{uuid}: {file_upload.uuid}'
                 )
         except FileUpload.DoesNotExist:
             msg = gettext('No uploaded file for that add-on and version.')

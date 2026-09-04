@@ -92,11 +92,7 @@ def submit_file(*, addon_pk, upload_pk, client_info):
             addon=addon, upload=upload, channel=upload.channel, client_info=client_info
         )
     else:
-        log.info(
-            'Skipping version creation for {upload_uuid} that failed validation'.format(
-                upload_uuid=upload.uuid
-            )
-        )
+        log.info(f'Skipping version creation for {upload.uuid} that failed validation')
 
 
 @task
@@ -295,9 +291,7 @@ def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
         # TODO: actually fix this so we can get stats. It seems that
         # the file maybe gets moved but it needs more investigation.
         log.warning(
-            'Scaled upload stats were not tracked. File is missing: {}'.format(
-                upload.file_path
-            )
+            f'Scaled upload stats were not tracked. File is missing: {upload.file_path}'
         )
         return
 
@@ -321,16 +315,9 @@ def handle_upload_validation_result(results, upload_pk, is_mozilla_signed):
 
     log.info(
         'Time to process and save upload validation; '
-        'upload.pk={upload}; processing_time={delta}; '
-        'scaled_per_mb={scaled}; upload_size_in_mb={size_in_mb}; '
-        'created={created}; now={now}'.format(
-            delta=delta,
-            upload=upload.pk,
-            created=upload.created,
-            now=now,
-            scaled=scaled_delta,
-            size_in_mb=size_in_mb,
-        )
+        f'upload.pk={upload.pk}; processing_time={delta}; '
+        f'scaled_per_mb={scaled_delta}; upload_size_in_mb={size_in_mb}; '
+        f'created={upload.created}; now={now}'
     )
 
 

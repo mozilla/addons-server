@@ -690,7 +690,7 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         self.addCleanup(patcher2.stop)
         self.download_file_contents_from_backup_storage_mock = patcher2.start()
         self.download_file_contents_from_backup_storage_mock.side_effect = lambda nme: (
-            f'Content for {nme}'.encode('utf-8')
+            f'Content for {nme}'.encode()
         )
         patcher3 = mock.patch('olympia.addons.tasks.backup_storage_enabled')
         self.addCleanup(patcher3.stop)

@@ -3,7 +3,7 @@ import os
 import secrets
 from collections import defaultdict
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import Optional
 
 from django.utils.functional import cached_property
 
@@ -27,8 +27,8 @@ def get_base_replace_threshold():
 
 
 def ordered_diff_lists(
-    previous: List[str], current: List[str]
-) -> Tuple[List[str], List[str], int]:
+    previous: list[str], current: list[str]
+) -> tuple[list[str], list[str], int]:
     current_set = set(current)
     previous_set = set(previous)
     # Use lists instead of sets to maintain order
@@ -97,7 +97,7 @@ class BaseMLBFLoader:
         """
         return {self.data_type_key(key): self[key] for key in MLBFDataType}
 
-    def __getitem__(self, key: MLBFDataType) -> List[str]:
+    def __getitem__(self, key: MLBFDataType) -> list[str]:
         return getattr(self, f'{self.data_type_key(key)}_items')
 
     @cached_property
@@ -105,15 +105,15 @@ class BaseMLBFLoader:
         return self.storage.path('cache.json')
 
     @cached_property
-    def blocked_items(self) -> List[str]:
+    def blocked_items(self) -> list[str]:
         raise NotImplementedError
 
     @cached_property
-    def soft_blocked_items(self) -> List[str]:
+    def soft_blocked_items(self) -> list[str]:
         raise NotImplementedError
 
     @cached_property
-    def not_blocked_items(self) -> List[str]:
+    def not_blocked_items(self) -> list[str]:
         raise NotImplementedError
 
 
@@ -124,15 +124,15 @@ class MLBFStorageLoader(BaseMLBFLoader):
             self._data = json.load(f)
 
     @cached_property
-    def blocked_items(self) -> List[str]:
+    def blocked_items(self) -> list[str]:
         return self._data.get(self.data_type_key(MLBFDataType.BLOCKED), [])
 
     @cached_property
-    def soft_blocked_items(self) -> List[str]:
+    def soft_blocked_items(self) -> list[str]:
         return self._data.get(self.data_type_key(MLBFDataType.SOFT_BLOCKED), [])
 
     @cached_property
-    def not_blocked_items(self) -> List[str]:
+    def not_blocked_items(self) -> list[str]:
         return self._data.get(self.data_type_key(MLBFDataType.NOT_BLOCKED), [])
 
 
@@ -157,7 +157,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
             )
         )
 
-    def _format_blocks(self, versions: List[Tuple[str, str]]) -> List[str]:
+    def _format_blocks(self, versions: list[tuple[str, str]]) -> list[str]:
         unique_versions = set()
         deduped_versions = []
 
@@ -169,7 +169,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
         return MLBF.hash_filter_inputs(deduped_versions)
 
     @cached_property
-    def blocked_items(self) -> List[str]:
+    def blocked_items(self) -> list[str]:
         return self._format_blocks(
             [
                 (version.block__guid, version.version__version)
@@ -179,7 +179,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
         )
 
     @cached_property
-    def soft_blocked_items(self) -> List[str]:
+    def soft_blocked_items(self) -> list[str]:
         return self._format_blocks(
             [
                 (version.block__guid, version.version__version)
@@ -189,7 +189,7 @@ class MLBFDataBaseLoader(BaseMLBFLoader):
         )
 
     @cached_property
-    def not_blocked_items(self) -> List[str]:
+    def not_blocked_items(self) -> list[str]:
         all_blocks_ids = [version.version_id for version in self._all_blocks]
         not_blocked_items = self._format_blocks(
             Version.unfiltered.exclude(id__in=all_blocks_ids)
@@ -295,7 +295,7 @@ class MLBF:
 
     def generate_diffs(
         self, previous_mlbf: 'MLBF' = None
-    ) -> Dict[BlockType, Tuple[List[str], List[str], int]]:
+    ) -> dict[BlockType, tuple[list[str], list[str], int]]:
         return {
             block_type: ordered_diff_lists(
                 [] if previous_mlbf is None else previous_mlbf.data[block_type],

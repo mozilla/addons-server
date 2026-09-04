@@ -20,8 +20,7 @@ def _user_link(user, max_text_length=None):
     else:
         name = user.name
 
-    return '<a href="{}" title="{}">{}</a>'.format(
-        user.get_absolute_url(),
-        markupsafe.escape(user.name),
-        markupsafe.escape(force_str(name)),
+    return (
+        f'<a href="{user.get_absolute_url()}" title="{markupsafe.escape(user.name)}">'
+        f'{markupsafe.escape(force_str(name))}</a>'
     )

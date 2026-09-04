@@ -771,11 +771,7 @@ class Whiteboard(ModelBase):
         db_table = 'review_whiteboard'
 
     def __str__(self):
-        return '[{}] private: |{}| public: |{}|'.format(
-            self.addon.name,
-            self.private,
-            self.public,
-        )
+        return f'[{self.addon.name}] private: |{self.private}| public: |{self.public}|'
 
 
 class ReviewActionReason(ModelBase):

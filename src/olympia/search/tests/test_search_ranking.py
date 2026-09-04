@@ -51,10 +51,9 @@ class TestRankingScenarios(ESTestCase):
             found_score = int(results[idx]['_score'])
 
             assert found_name == expected_name, (
-                'Expected "{}" to be on position {} with score {} but '
-                '"{}" was found instead with score {} for query {}'.format(
-                    expected_name, idx, expected_score, found_name, found_score, query
-                )
+                f'Expected "{expected_name}" to be on position {idx} with score '
+                f'{expected_score} but "{found_name}" was found instead with score '
+                f'{found_score} for query {query}'
             )
 
             # Quick and dirty way to generate a script to change the expected
@@ -71,10 +70,9 @@ class TestRankingScenarios(ESTestCase):
             #         )
             #     continue
             assert found_score == expected_score, (
-                'Expected "{}" to be on position {} with score {} but '
-                '"{}" was found instead with score {} for query {}'.format(
-                    expected_name, idx, expected_score, found_name, found_score, query
-                )
+                f'Expected "{expected_name}" to be on position {idx} with score '
+                f'{expected_score} but "{found_name}" was found instead with score '
+                f'{found_score} for query {query}'
             )
 
         return results

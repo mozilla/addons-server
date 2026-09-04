@@ -5245,10 +5245,9 @@ class TestReview(ReviewBase):
             follow=True,
         )
 
-        new_block_url = reverse(
-            'admin:blocklist_blocklistsubmission_add'
-        ) + '?guids={}&v={}&v={}'.format(
-            self.addon.guid, old_version.pk, self.version.pk
+        new_block_url = (
+            reverse('admin:blocklist_blocklistsubmission_add')
+            + f'?guids={self.addon.guid}&v={old_version.pk}&v={self.version.pk}'
         )
         self.assertRedirects(response, new_block_url)
 

@@ -569,9 +569,7 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
         from olympia.discovery.admin import DiscoveryAddon
 
         url = reverse(
-            'admin:{}_{}_change'.format(
-                DiscoveryAddon._meta.app_label, DiscoveryAddon._meta.model_name
-            ),
+            f'admin:{DiscoveryAddon._meta.app_label}_{DiscoveryAddon._meta.model_name}_change',
             args=[obj.pk],
         )
         return format_html('<a href="{}">Discovery Addon</a>', url)

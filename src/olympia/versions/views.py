@@ -135,10 +135,8 @@ def download_file(request, file_id, download_type=None, **kwargs):
     attachment = download_type == 'attachment'
     if not has_permission:
         log.debug(
-            'download file {file_id}: addon/version/file not public and '
-            'user {user_id} does not have relevant permissions.'.format(
-                file_id=file_id, user_id=request.user.pk
-            )
+            f'download file {file_id}: addon/version/file not public and '
+            f'user {request.user.pk} does not have relevant permissions.'
         )
         response = http.HttpResponseNotFound()
     elif (

@@ -707,7 +707,7 @@ class TestUserProfile(TestCase):
         self, download_file_contents_from_backup_storage_mock
     ):
         download_file_contents_from_backup_storage_mock.side_effect = (
-            lambda remote_path: f'Fake content from {remote_path}'.encode('utf-8')
+            lambda remote_path: f'Fake content from {remote_path}'.encode()
         )
         user_factory(pk=settings.TASK_USER_ID)
         fake_admin = user_factory(display_name='Fake Admin')

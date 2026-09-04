@@ -128,9 +128,7 @@ def duplicate_addon_version(old_version, new_version_number, user):
     # We only sign files that have been reviewed
     if old_file_obj.status not in amo.APPROVED_STATUSES:
         log.info(
-            'Not signing addon {}, version {} (no files)'.format(
-                old_version.addon, old_version
-            )
+            f'Not signing addon {old_version.addon}, version {old_version} (no files)'
         )
         return
 
