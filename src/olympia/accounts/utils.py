@@ -43,34 +43,35 @@ def fxa_login_url(
         # Specifying AAL2 will require the token to have an authentication
         # assurance level >= 2 which corresponds to requiring 2FA.
         query['acr_values'] = 'AAL2'
+        # There are 3 different use cases for enforcing 2FA:
+        # 1) The user just logged in through FxA without 2FA, was redirected
+        # back to AMO where we noticed they are a developer and are requiring
+        # 2FA for their account. We have the token from the log in process,
+        # so pass that with prompt=none so that they don't have to see the
+        # sign-in flow again and instead see the inline 2FA setup flow.
         # https://mozilla.github.io/ecosystem-platform/reference/oauth-details
         # #promptnone-support
-        # Requesting 'prompt=none' during authorization allows the user to not
-        # have to re-authenticate with FxA if they still have a valid session.
-        # We have 2 use cases for this:
-        # - The user just logged in through FxA without 2FA, was redirected
-        #   back to AMO where we noticed they are a developer and are requiring
-        #   2FA for their account. We have id_token_hint in that case that we
-        #   pass down.
-        # - The user was already logged in but we enforced 2FA on a specific
-        #   view they tried to access. We don't have id_token_hint in that case
-        #   but our clients are explicitly allowed to pass login_hint instead
-        #   (See https://mozilla-hub.atlassian.net/browse/SVCSE-1358).
-        # In both cases, the user should then see the 2FA enrollment flow when
-        # they get redirected back to FxA.
         if id_token_hint:
             query['prompt'] = 'none'
             query['id_token_hint'] = id_token_hint
+        # 2) The user was already logged in without 2FA but we enforced 2FA on
+        # a specific view they tried to access. We don't have id_token_hint in
+        # that case but our clients are explicitly allowed to pass login_hint
+        # instead (See https://mozilla-hub.atlassian.net/browse/SVCSE-1358) so
+        # we can offer a similar flow.
         elif login_hint:
             query['prompt'] = 'none'
             query['login_hint'] = login_hint
+        # 3) The user was already logged in with 2FA set, but we want to
+        # ask them for their 2FA again because they are performing a sensitive
+        # action. In that case, set max_age to 0 to force FxA to request
+        # authentication again, even if they had a valid session, and don't set
+        # prompt=none because the user might have authenticated with FxA a
+        # while ago, so it's likely safer to let them see the account they are
+        # authenticating with.
+        # https://mozilla.github.io/ecosystem-platform/api
+        # #tag/OAuth-Server-API-Overview/operation/postAuthorization
         else:
-            # If we're enforcing 2FA without a login/id_token hint, the user
-            # was likely logged in with 2FA already but we want to re-prompt
-            # them for the 2FA. In that case, set max_age to 0 to force FxA to
-            # request it again, even if they had a valid session.
-            # https://mozilla.github.io/ecosystem-platform/api
-            # #tag/OAuth-Server-API-Overview/operation/postAuthorization
             query['max_age'] = 0
     if use_fake_fxa(config):
         base_url = reverse('fake-fxa-authorization')
