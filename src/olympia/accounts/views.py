@@ -193,6 +193,8 @@ def login_user(sender, request, user, identity, token_data=None):
         'twoFactorAuthentication'
     )
     if token_data:
+        # auth_at is a UTC timestamp
+        request.session['fxa_auth_at'] = token_data.get('auth_at')
         request.session['fxa_access_token'] = token_data['access_token']
         request.session['fxa_access_token_expiry'] = token_data['access_token_expiry']
         request.session['fxa_refresh_token'] = token_data['refresh_token']

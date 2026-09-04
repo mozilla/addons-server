@@ -70,6 +70,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
+        'max_age': ['0'],
     }
 
 
@@ -132,6 +133,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_request():
         'scope': ['profile openid'],
         'state': [f'myfxastate:{force_str(next_path)}'],
         'access_type': ['offline'],
+        'max_age': ['0'],
     }
 
 

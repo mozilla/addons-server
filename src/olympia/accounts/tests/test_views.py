@@ -270,7 +270,7 @@ class TestLoginUserAndRegisterUser(TestCase):
         token_data = {
             'access_token': 'someaccess_token',
             'refresh_token': 'somerefresh_token',
-            'access_token_expiry': time.time() + 12345,
+            'access_token_expiry': int(time.time() + 12345),
             'config_name': 'someconfigname',
         }
         views.login_user(
@@ -284,6 +284,29 @@ class TestLoginUserAndRegisterUser(TestCase):
         )
         assert self.request.session['fxa_refresh_token'] == token_data['refresh_token']
         assert self.request.session['fxa_config_name'] == token_data['config_name']
+        # auth_at wasn't present in token data, we handle that gracefully.
+        assert self.request.session['fxa_auth_at'] is None
+
+    def test_login_with_token_data_with_auth_at_present(self):
+        token_data = {
+            'access_token': 'someaccess_token',
+            'refresh_token': 'somerefresh_token',
+            'access_token_expiry': int(time.time() + 12345),
+            'auth_at': int(time.time()),
+            'config_name': 'someconfigname',
+        }
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity, token_data
+        )
+        self.login_mock.assert_called_with(self.request, self.user)
+        assert self.request.session['fxa_access_token'] == token_data['access_token']
+        assert (
+            self.request.session['fxa_access_token_expiry']
+            == token_data['access_token_expiry']
+        )
+        assert self.request.session['fxa_refresh_token'] == token_data['refresh_token']
+        assert self.request.session['fxa_config_name'] == token_data['config_name']
+        assert self.request.session['fxa_auth_at'] == token_data['auth_at']
 
 
 class TestFindUser(TestCase):

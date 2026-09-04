@@ -296,6 +296,7 @@ class TestClient(Client):
         # property is accessed)
         session = self.session
         session['has_two_factor_authentication'] = True
+        session['fxa_auth_at'] = int(time.time())
         session.save()
 
     def force_login(self, user, backend=None):
