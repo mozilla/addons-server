@@ -39,6 +39,7 @@ from olympia.users.models import (
     EmailUserRestriction,
     IPNetworkUserRestriction,
     UserProfile,
+    UserRestrictionHistory,
 )
 from olympia.users.utils import get_task_user
 from olympia.zadmin.models import set_config
@@ -2540,12 +2541,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         )
 
     def test_auto_approval_disabled_if_restricted_by_email(self):
-        EmailUserRestriction.objects.create(
+        restriction = EmailUserRestriction.objects.create(
             email_pattern=self.upload.user.email,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        Version.from_upload(
+        version = Version.from_upload(
             self.upload,
             self.addon,
             amo.CHANNEL_LISTED,
@@ -2565,19 +2566,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             .get()
         )
         assert activity_log.details['channel'] == amo.CHANNEL_LISTED
-        assert (
-            activity_log.details['comments']
-            == 'Listed auto-approval automatically disabled because of a restriction'
+        assert activity_log.details['comments'] == (
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)'
         )
+        assert activity_log.details['restrictions'] == ['EmailUserRestriction']
         assert activity_log.user == get_task_user()
+        history = UserRestrictionHistory.objects.get()
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert history.restriction_instance == restriction
+        assert history.version == version
 
     def test_auto_approval_disabled_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
-        IPNetworkUserRestriction.objects.create(
+        restriction = IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        Version.from_upload(
+        version = Version.from_upload(
             self.upload,
             self.addon,
             amo.CHANNEL_LISTED,
@@ -2597,19 +2603,24 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             .get()
         )
         assert activity_log.details['channel'] == amo.CHANNEL_LISTED
-        assert (
-            activity_log.details['comments']
-            == 'Listed auto-approval automatically disabled because of a restriction'
+        assert activity_log.details['comments'] == (
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (IPNetworkUserRestriction)'
         )
+        assert activity_log.details['restrictions'] == ['IPNetworkUserRestriction']
         assert activity_log.user == get_task_user()
+        history = UserRestrictionHistory.objects.get()
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert history.restriction_instance == restriction
+        assert history.version == version
 
     def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
         self.upload.user.update(last_login_ip='10.0.0.42')
-        IPNetworkUserRestriction.objects.create(
+        restriction = IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
-        Version.from_upload(
+        version = Version.from_upload(
             self.upload,
             self.addon,
             amo.CHANNEL_UNLISTED,
@@ -2629,11 +2640,61 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             .get()
         )
         assert activity_log.details['channel'] == amo.CHANNEL_UNLISTED
-        assert (
-            activity_log.details['comments']
-            == 'Unlisted auto-approval automatically disabled because of a restriction'
+        assert activity_log.details['comments'] == (
+            'Unlisted auto-approval automatically disabled because of a '
+            'restriction (IPNetworkUserRestriction)'
         )
+        assert activity_log.details['restrictions'] == ['IPNetworkUserRestriction']
         assert activity_log.user == get_task_user()
+        history = UserRestrictionHistory.objects.get()
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert history.restriction_instance == restriction
+        assert history.version == version
+
+    def test_auto_approval_disabled_if_restricted_by_email_and_ip(self):
+        # The IP restriction matches through last_login_ip, deliberately, so
+        # that it records an instance rather than denying structurally.
+        self.upload.user.update(last_login_ip='10.0.0.42')
+        email_restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.upload.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        ip_restriction = IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        version = Version.from_upload(
+            self.upload,
+            self.addon,
+            amo.CHANNEL_LISTED,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert self.addon.auto_approval_disabled
+        activity_log = (
+            ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .get()
+        )
+        # Class names appear in checker order.
+        assert activity_log.details['comments'] == (
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction, IPNetworkUserRestriction)'
+        )
+        assert activity_log.details['restrictions'] == [
+            'EmailUserRestriction',
+            'IPNetworkUserRestriction',
+        ]
+        entries = UserRestrictionHistory.objects.filter(user=self.upload.user)
+        assert entries.count() == 2
+        assert sorted(activity_log.details['restriction_history_ids']) == sorted(
+            entry.pk for entry in entries
+        )
+        assert {entry.restriction_instance for entry in entries} == {
+            email_restriction,
+            ip_restriction,
+        }
+        for entry in entries:
+            assert entry.version == version
 
     def test_dont_record_install_origins_when_waffle_switch_is_off(self):
         # Switch should be off by default.

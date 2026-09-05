@@ -5,6 +5,7 @@ from unittest import mock
 from urllib.parse import parse_qs, urlparse
 
 from django.conf import settings
+from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ImproperlyConfigured
 from django.test.client import RequestFactory
 
@@ -127,7 +128,7 @@ class TestRestrictionChecker(TestCase):
         assert incr_mock.call_count == 0
 
     def test_is_submission_allowed_ip_restricted(self, incr_mock):
-        IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        restriction = IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
@@ -147,6 +148,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -156,7 +159,9 @@ class TestRestrictionChecker(TestCase):
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_email_restricted(self, incr_mock):
-        EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email
+        )
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
@@ -175,6 +180,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -184,7 +191,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_ja4_restricted(self, incr_mock):
-        FingerprintRestriction.objects.create(ja4=self.ja4)
+        restriction = FingerprintRestriction.objects.create(ja4=self.ja4)
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
@@ -203,6 +210,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -212,7 +221,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.requestfingerprintlog.signals == ['TAG', 'ANOTHERTAG']
 
     def test_is_submission_allowed_asn_restricted(self, incr_mock):
-        AsnUserRestriction.objects.create(asn=self.asn)
+        restriction = AsnUserRestriction.objects.create(asn=self.asn)
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed()
         assert checker.get_error_message() == (
@@ -232,6 +241,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -248,7 +259,9 @@ class TestRestrictionChecker(TestCase):
         # this time, we're restricted by email while bypassing the read dev
         # agreement check. This ensures even when bypassing that check, we
         # still record everything properly when restricting.
-        EmailUserRestriction.objects.create(email_pattern=self.request.user.email)
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email
+        )
         checker = RestrictionChecker(request=self.request)
         assert not checker.is_submission_allowed(check_dev_agreement=False)
         assert checker.get_error_message() == (
@@ -267,6 +280,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.1'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -297,7 +312,7 @@ class TestRestrictionChecker(TestCase):
         )
 
     def test_is_auto_approval_allowed_email_restricted(self, incr_mock):
-        EmailUserRestriction.objects.create(
+        restriction = EmailUserRestriction.objects.create(
             email_pattern=self.request.user.email,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
@@ -328,6 +343,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.2'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -339,7 +356,7 @@ class TestRestrictionChecker(TestCase):
         assert activity.requestfingerprintlog.signals == ['TAG2', 'ANOTHERTAG2']
 
     def test_is_auto_approval_allowed_ja4_restricted(self, incr_mock):
-        FingerprintRestriction.objects.create(
+        restriction = FingerprintRestriction.objects.create(
             ja4=self.ja4,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
@@ -370,6 +387,8 @@ class TestRestrictionChecker(TestCase):
         assert history.user == self.request.user
         assert history.last_login_ip == self.request.user.last_login_ip
         assert history.ip_address == '10.0.0.2'
+        assert history.restriction_instance == restriction
+        assert history.version is None
         assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
         activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
         assert activity.user == self.request.user
@@ -437,6 +456,215 @@ class TestRestrictionChecker(TestCase):
             assert restriction_mock.call_count == 0
         for restriction_mock in allow_auto_approval_mocks:
             assert restriction_mock.call_count == 1
+
+    def test_history_records_matched_instance_on_submission(self, incr_mock):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email
+        )
+        checker = RestrictionChecker(request=self.request)
+        assert not checker.is_submission_allowed()
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.restriction_content_type == ContentType.objects.get_for_model(
+            EmailUserRestriction
+        )
+        assert history.restriction_object_id == restriction.pk
+        assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_history_one_row_per_matched_instance(self, incr_mock):
+        exact = IPNetworkUserRestriction.objects.create(network='10.0.0.1/32')
+        subnet = IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
+        checker = RestrictionChecker(request=self.request)
+        assert not checker.is_submission_allowed()
+        entries = UserRestrictionHistory.objects.filter(user=self.request.user)
+        assert entries.count() == 2
+        assert {entry.restriction_instance for entry in entries} == {exact, subnet}
+        for entry in entries:
+            assert entry.get_restriction_display() == 'IPNetworkUserRestriction'
+            assert entry.ip_address == '10.0.0.1'
+            assert entry.last_login_ip == self.request.user.last_login_ip
+            assert entry.version is None
+        assert set(checker.history_entries) == set(entries)
+        # Still a single failed class: one activity log entry and one failure
+        # statsd increment for the class, plus the overall failure increment.
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        assert incr_mock.call_count == 2
+
+    def test_history_instance_fields_null_when_nothing_matched(self, incr_mock):
+        self.request.user.update(read_dev_agreement=None)
+        checker = RestrictionChecker(request=self.request)
+        assert not checker.is_submission_allowed()
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'DeveloperAgreementRestriction'
+        assert history.restriction_instance is None
+        assert history.restriction_content_type is None
+        assert history.restriction_object_id is None
+        assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_history_records_matched_instance_on_auto_approval(self, incr_mock):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        upload = FileUpload.objects.create(
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        checker = RestrictionChecker(upload=upload)
+        assert not checker.is_auto_approval_allowed()
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_history_records_matched_instance_on_rating_moderation(self, incr_mock):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email,
+            restriction_type=RESTRICTION_TYPES.RATING_MODERATE,
+        )
+        checker = RestrictionChecker(request=self.request)
+        assert checker.should_moderate_rating()
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_history_entries_empty_on_success(self, incr_mock):
+        checker = RestrictionChecker(request=self.request)
+        assert checker.is_submission_allowed()
+        assert checker.history_entries == []
+
+    def test_history_two_matching_email_restrictions_on_auto_approval(self, incr_mock):
+        exact = EmailUserRestriction.objects.create(
+            email_pattern=self.request.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        wildcard = EmailUserRestriction.objects.create(
+            email_pattern='*@%s' % self.request.user.email.rsplit('@', maxsplit=1)[-1],
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        upload = FileUpload.objects.create(
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        checker = RestrictionChecker(upload=upload)
+        assert not checker.is_auto_approval_allowed()
+        entries = UserRestrictionHistory.objects.filter(user=self.request.user)
+        assert entries.count() == 2
+        assert {entry.restriction_instance for entry in entries} == {exact, wildcard}
+        for entry in entries:
+            assert entry.get_restriction_display() == 'EmailUserRestriction'
+            assert entry.version is None
+        assert set(checker.history_entries) == set(entries)
+        # A single failed class: one activity log entry, carrying both
+        # matched instance pks in its details.
+        assert ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).count() == 1
+        activity = ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).get()
+        assert activity.details['restriction'] == 'EmailUserRestriction'
+        assert set(activity.details['restriction_ids']) == {exact.pk, wildcard.pk}
+
+    def test_history_instance_fields_null_on_structural_ip_denial(self, incr_mock):
+        # An unparseable last_login_ip makes IPNetworkUserRestriction deny
+        # auto-approval structurally: the check fails, but no specific
+        # restriction instance matched, and a warning is logged.
+        self.request.user.update(last_login_ip='not.an.ip.address')
+        IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        upload = FileUpload.objects.create(
+            user=self.request.user,
+            ip_address='10.0.0.2',
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        checker = RestrictionChecker(upload=upload)
+        with mock.patch('olympia.users.utils.log.warning') as warning_mock:
+            assert not checker.is_auto_approval_allowed()
+        warning_mock.assert_called_once_with(
+            'Failed %s check on %s denied structurally: '
+            'input missing or invalid, no instance to record',
+            'auto_approval',
+            'IPNetworkUserRestriction',
+        )
+        history = UserRestrictionHistory.objects.get()
+        assert history.get_restriction_display() == 'IPNetworkUserRestriction'
+        assert history.restriction_instance is None
+        assert history.restriction_content_type is None
+        assert history.restriction_object_id is None
+        assert history.version is None
+        assert checker.history_entries == [history]
+
+    def test_error_logged_when_enumeration_finds_nothing(self, incr_mock):
+        # A database-backed class denying while enumeration can't reproduce
+        # any match should be impossible - the predicates have drifted
+        # apart, or the restriction was deleted in between - and is logged
+        # as an error.
+        checker = RestrictionChecker(request=self.request)
+        with ExitStack() as stack:
+            for _, cls in UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES:
+                stack.enter_context(
+                    mock.patch.object(
+                        cls,
+                        'allow_submission',
+                        return_value=cls is not IPNetworkUserRestriction,
+                    )
+                )
+            stack.enter_context(
+                mock.patch.object(
+                    IPNetworkUserRestriction,
+                    'get_matching_restrictions',
+                    return_value=[],
+                )
+            )
+            error_mock = stack.enter_context(
+                mock.patch('olympia.users.utils.log.error')
+            )
+            assert not checker.is_submission_allowed()
+        error_mock.assert_called_once_with(
+            'No matching restrictions found for failed %s check on %s',
+            'submission',
+            'IPNetworkUserRestriction',
+        )
+        history = UserRestrictionHistory.objects.get()
+        assert history.restriction_instance is None
+        assert checker.history_entries == [history]
+
+    def test_no_enumeration_or_recording_for_unauthenticated_failure(self, incr_mock):
+        # The full stack never runs the checker unauthenticated (several
+        # allow_*() fast paths assume an authenticated user), so patch the
+        # fast paths like test_is_submission_allowed_with_mocks() does and
+        # prove the guard directly: an unauthenticated failure enumerates
+        # nothing and records nothing.
+        self.request.user = None
+        checker = RestrictionChecker(request=self.request)
+        with ExitStack() as stack:
+            for _, cls in UserRestrictionHistory.RESTRICTION_CLASSES_CHOICES:
+                stack.enter_context(
+                    mock.patch.object(
+                        cls,
+                        'allow_submission',
+                        return_value=cls is not IPNetworkUserRestriction,
+                    )
+                )
+            enumeration_mock = stack.enter_context(
+                mock.patch.object(IPNetworkUserRestriction, 'get_matching_restrictions')
+            )
+            assert not checker.is_submission_allowed()
+        enumeration_mock.assert_not_called()
+        assert checker.failed_restrictions == [IPNetworkUserRestriction]
+        assert checker.history_entries == []
+        assert not UserRestrictionHistory.objects.exists()
+        assert not ActivityLog.objects.filter(action=amo.LOG.RESTRICTED.id).exists()
 
 
 class TestCheckSuppressedEmailConfirmation(TestCase):
