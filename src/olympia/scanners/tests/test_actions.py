@@ -1719,10 +1719,13 @@ class TestRunAction(TestCase):
         assert submission.changed_version_ids == [self.version.pk]
         assert submission.delayed_until
 
-        assert ActivityLog.objects.count() == 1
-        activity = ActivityLog.objects.latest('pk')
-        assert activity.action == amo.LOG.REJECT_VERSION.id
-        assert activity.arguments == [self.addon, decision, policy, self.version]
+        assert ActivityLog.objects.count() == 2
+        reject_log = ActivityLog.objects.earliest('pk')
+        assert reject_log.action == amo.LOG.REJECT_VERSION.id
+        assert reject_log.arguments == [self.addon, decision, policy, self.version]
+        submission_log = ActivityLog.objects.latest('pk')
+        assert submission_log.action == amo.LOG.BLOCKLIST_VERSION_DELAY_BLOCKED.id
+        assert submission_log.arguments == [self.addon, decision, self.version, 14]
 
         assert len(mail.outbox) == 1
         body = mail.outbox[0].body
