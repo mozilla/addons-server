@@ -3,6 +3,7 @@ from datetime import datetime
 from unittest import mock
 
 from django.core.exceptions import ValidationError
+from django.db.utils import IntegrityError
 
 import pytest
 import time_machine
@@ -849,3 +850,13 @@ class TestScannerWebhook(TestCase):
 
         assert webhook.service_account == original_account
         assert UserProfile.objects.count() == expected_count
+
+    def test_name_is_unique(self):
+        ScannerWebhook.objects.create(
+            name='some-name', url='https://example.com', api_key='secret'
+        )
+
+        with pytest.raises(IntegrityError):
+            ScannerWebhook.objects.create(
+                name='some-name', url='https://example.org', api_key='other-secret'
+            )
