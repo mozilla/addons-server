@@ -210,23 +210,13 @@ class RestrictionChecker:
                         if is_db_backed
                         else []
                     )
-                    if is_db_backed and matched is None:
-                        # Structural denial: the input needed for matching
-                        # was missing or invalid (e.g. an unparseable IP),
-                        # so the user was blocked on data quality rather
-                        # than a specific rule. Expected, but worth
-                        # visibility.
-                        log.warning(
-                            'Failed %s check on %s denied structurally: '
-                            'input missing or invalid, no instance to record',
-                            action_type,
-                            name,
-                        )
-                    elif is_db_backed and not matched:
-                        # Should be impossible: the fast path found a match
-                        # that enumeration can't reproduce. Either the two
-                        # predicates have drifted apart, or the restriction
-                        # was deleted in between.
+                    if is_db_backed and not matched:
+                        # Should never happen: either the fast and slow
+                        # predicates have drifted apart, the restriction was
+                        # deleted between the two checks, or the denial was
+                        # structural (input missing or invalid, e.g. an
+                        # unparseable IP, which the fast path fail-closes
+                        # on). All are worth investigating.
                         log.error(
                             'No matching restrictions found for failed %s check on %s',
                             action_type,
@@ -241,7 +231,7 @@ class RestrictionChecker:
                             details={
                                 'restriction': str(cls.__name__),
                                 'restriction_ids': [
-                                    restriction.pk for restriction in matched or []
+                                    restriction.pk for restriction in matched
                                 ],
                             },
                         )

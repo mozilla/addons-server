@@ -575,7 +575,7 @@ class TestRestrictionChecker(TestCase):
     def test_history_instance_fields_null_on_structural_ip_denial(self, incr_mock):
         # An unparseable last_login_ip makes IPNetworkUserRestriction deny
         # auto-approval structurally: the check fails, but no specific
-        # restriction instance matched, and a warning is logged.
+        # restriction instance matched, and an error is logged.
         self.request.user.update(last_login_ip='not.an.ip.address')
         IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24',
@@ -588,11 +588,10 @@ class TestRestrictionChecker(TestCase):
             channel=amo.CHANNEL_LISTED,
         )
         checker = RestrictionChecker(upload=upload)
-        with mock.patch('olympia.users.utils.log.warning') as warning_mock:
+        with mock.patch('olympia.users.utils.log.error') as error_mock:
             assert not checker.is_auto_approval_allowed()
-        warning_mock.assert_called_once_with(
-            'Failed %s check on %s denied structurally: '
-            'input missing or invalid, no instance to record',
+        error_mock.assert_called_once_with(
+            'No matching restrictions found for failed %s check on %s',
             'auto_approval',
             'IPNetworkUserRestriction',
         )
