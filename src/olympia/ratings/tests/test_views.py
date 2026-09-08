@@ -399,8 +399,6 @@ class TestRatingViewSetGet(TestCase):
         review2 = Rating.objects.create(
             addon=self.addon, body='review 2', user=self.user
         )
-        review1.update(created=self.days_ago(1))
-        review2.update(created=self.days_ago(2))
         # Add a review belonging to a different user, a reply and a deleted
         # review. The reply should show up since it's made by the right user,
         # but the rest should be ignored.
@@ -439,8 +437,8 @@ class TestRatingViewSetGet(TestCase):
         assert data['results']
         assert len(data['results']) == 3
         assert data['results'][0]['id'] == reply.pk
-        assert data['results'][1]['id'] == review1.pk
-        assert data['results'][2]['id'] == review2.pk
+        assert data['results'][1]['id'] == review2.pk
+        assert data['results'][2]['id'] == review1.pk
         assert 'can_reply' not in data  # Not enough information to show this.
         return data
 
@@ -1081,13 +1079,11 @@ class TestRatingViewSetGet(TestCase):
         review2 = Rating.objects.create(
             addon=self.addon, body='review 2', user=user_factory()
         )
-        review1.update(created=self.days_ago(1))
         # Add a review belonging to a different add-on, a reply and a deleted
         # review. The deleted review should be present, not the rest.
         review_deleted = Rating.objects.create(
             addon=self.addon, body='review deleted', user=review1.user
         )
-        review_deleted.update(created=self.days_ago(2))
         review_deleted.delete()
         Rating.objects.create(
             addon=self.addon,
@@ -1118,12 +1114,12 @@ class TestRatingViewSetGet(TestCase):
         assert data['count'] == 3
         assert data['results']
         assert len(data['results']) == 3
-        assert data['results'][0]['id'] == review2.pk
-        assert data['results'][0]['reply'] is not None
-        assert data['results'][1]['id'] == review1.pk
+        assert data['results'][0]['id'] == review_deleted.pk
+        assert data['results'][1]['id'] == review2.pk
         assert data['results'][1]['reply'] is not None
-        assert data['results'][1]['reply']['id'] == deleted_reply.pk
-        assert data['results'][2]['id'] == review_deleted.pk
+        assert data['results'][2]['id'] == review1.pk
+        assert data['results'][2]['reply'] is not None
+        assert data['results'][2]['reply']['id'] == deleted_reply.pk
 
     def test_list_weird_parameters(self):
         self.addon.update(slug='my-slûg')
