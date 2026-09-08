@@ -630,10 +630,10 @@ class AccountSuperCreate(APIView):
         request.session.save()
 
         log.info(
-            'API user {api_user} created and logged in a user from '
-            'the super-create API: user_id: {user.pk}; '
-            'user_name: {user.username}; fxa_id: {user.fxa_id}; '
-            'group: {group}'.format(user=user, api_user=request.user, group=group)
+            f'API user {request.user} created and logged in a user from '
+            f'the super-create API: user_id: {user.pk}; '
+            f'user_name: {user.username}; fxa_id: {user.fxa_id}; '
+            f'group: {group}'
         )
 
         cookie = {

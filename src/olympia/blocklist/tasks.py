@@ -3,7 +3,6 @@ import json
 import os
 import re
 from datetime import datetime, timedelta
-from typing import List
 
 from django.conf import settings
 from django.contrib.admin.models import CHANGE, LogEntry
@@ -104,7 +103,7 @@ def monitor_remote_settings():
 
 
 @task
-def upload_filter(generation_time: str, actions: List[str] | None = None):
+def upload_filter(generation_time: str, actions: list[str] | None = None):
     # Deserialize the actions from the string list
     # We have to do this because celery does not support enum arguments
     actions = [BlockListAction[action] for action in actions]

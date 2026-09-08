@@ -484,9 +484,8 @@ class TranslationTestCase(TestCase):
         env = jinja2.Environment()
         t = env.from_string('{{ m.purified }}=={{ m.linkified }}')
         s = t.render({'m': m})
-        assert s == '{}=={}'.format(
-            m.purified.localized_string_clean,
-            m.linkified.localized_string_clean,
+        assert s == (
+            f'{m.purified.localized_string_clean}=={m.linkified.localized_string_clean}'
         )
 
     def test_outgoing_url(self):

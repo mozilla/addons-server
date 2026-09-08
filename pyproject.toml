@@ -38,12 +38,12 @@ line-length = 88
 
 [tool.ruff.lint]
 ignore = [
+    "DTZ",     # flake8-datetimez (except DTZ003) - we only run in UTC so unnecessary
+    "ISC004",  # implicit-string-concatenation-in-collection-literal - too many false positives
     # The following rules fail currently, and should probably eventually be addressed
-    "DTZ",  # flake8-datetimez (except DTZ003)
-    "UP",  # pyupgrade
-    # They are in most-error-occuring order
+    # They are in most-error-occuring order, descending
+    "UP031",   # printf-string-formatting
     "RUF012",  # mutable-class-default
-    "ISC004",  # implicit-string-concatenation-in-collection-literal
     "SIM115",  # open-file-with-context-handler
     "BLE001",  # blind-except
     "RUF059",  # unused-unpacked-variable
@@ -54,6 +54,7 @@ ignore = [
     "SIM118",  # in-dict-keys
     "TRY201",  # verbose-raise
     "INT003",  # printf-in-get-text-func-call
+    "UP030",   # format-literals
     "INT002",  # format-in-get-text-func-call
     "INT001",  # f-string-in-get-text-func-cal
 ]

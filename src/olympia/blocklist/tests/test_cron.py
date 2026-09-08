@@ -1,7 +1,6 @@
 import json
 import uuid
 from datetime import datetime, timedelta
-from typing import List
 from unittest import mock
 
 from django.conf import settings
@@ -315,7 +314,7 @@ class TestUploadToRemoteSettings(TestCase):
 
     def _test_upload_stash_and_filter(
         self,
-        expected_actions: List[BlockListAction],
+        expected_actions: list[BlockListAction],
     ):
         set_config(amo.config_keys.BLOCKLIST_BASE_REPLACE_THRESHOLD, 1)
         upload_mlbf_to_remote_settings()

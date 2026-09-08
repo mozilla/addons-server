@@ -319,9 +319,7 @@ class TestSessionIDAuthentication(TestCase):
     def test_wrong_header_too_many_spaces(self):
         request = self.factory.post(
             '/api/v4/whatever/',
-            HTTP_AUTHORIZATION='{} foo bar'.format(
-                SessionIDAuthentication.auth_header_prefix
-            ),
+            HTTP_AUTHORIZATION=f'{SessionIDAuthentication.auth_header_prefix} foo bar',
         )
         with self.assertRaises(AuthenticationFailed) as exp:
             self.auth.authenticate(request)

@@ -100,14 +100,12 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     except jwt.MissingRequiredClaimError as exc:
         log.info(
             'Missing required claim during JWT authentication: '
-            '{e.__class__.__name__}: {e}'.format(e=exc)
+            f'{exc.__class__.__name__}: {exc}'
         )
         raise exceptions.AuthenticationFailed(detail=f'Invalid JWT: {exc}.') from exc
     except (jwt.exceptions.ImmatureSignatureError, jwt.InvalidIssuedAtError) as exc:
         log.info(
-            'Invalid iat during JWT authentication: {e.__class__.__name__}: {e}'.format(
-                e=exc
-            )
+            f'Invalid iat during JWT authentication: {exc.__class__.__name__}: {exc}'
         )
         raise exceptions.AuthenticationFailed(
             detail='JWT iat (issued at time) is invalid. Make sure your '
@@ -116,7 +114,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
     except Exception as exc:
         log.warning(
             'Unhandled exception during JWT authentication: '
-            '{e.__class__.__name__}: {e}'.format(e=exc)
+            f'{exc.__class__.__name__}: {exc}'
         )
         raise
 

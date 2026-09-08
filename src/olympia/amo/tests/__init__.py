@@ -1266,7 +1266,7 @@ def prefix_indexes(config):
     Note that this is a pytest helper that is primarily used in conftest.
     """
     if hasattr(config, 'slaveinput'):
-        prefix = 'test_{[slaveid]}'.format(config.slaveinput)
+        prefix = f'test_{config.slaveinput["slaveid"]}'
     else:
         prefix = 'test'
 
@@ -1277,9 +1277,7 @@ def prefix_indexes(config):
     # unittest-based setup.
     for key, index in settings.ES_INDEXES.items():
         if not index.startswith(prefix):
-            settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
-                prefix=prefix, index=index
-            )
+            settings.ES_INDEXES[key] = f'{prefix}_amo_{index}'
 
 
 def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):

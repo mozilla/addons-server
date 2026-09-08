@@ -17,20 +17,18 @@ def test_user_link_xss():
         username='jconnor', display_name='<script>alert(1)</script>', pk=1
     )
     html = '&lt;script&gt;alert(1)&lt;/script&gt;'
-    assert user_link(user) == '<a href="{}" title="{}">{}</a>'.format(
-        user.get_absolute_url(),
-        html,
-        html,
+    assert (
+        user_link(user)
+        == f'<a href="{user.get_absolute_url()}" title="{html}">{html}</a>'
     )
 
     user = UserProfile(
         username='jconnor', display_name="""xss"'><iframe onload=alert(3)>""", pk=1
     )
     html = 'xss&#34;&#39;&gt;&lt;iframe onload=alert(3)&gt;'
-    assert user_link(user) == '<a href="{}" title="{}">{}</a>'.format(
-        user.get_absolute_url(),
-        html,
-        html,
+    assert (
+        user_link(user)
+        == f'<a href="{user.get_absolute_url()}" title="{html}">{html}</a>'
     )
 
 

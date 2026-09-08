@@ -123,9 +123,8 @@ def process_failure_signal(
 def start_task_timer(task_id, task, **kw):
     timer = TaskTimer()
     log.info(
-        'starting task timer; id={id}; name={name}; current_dt={current_dt}'.format(
-            id=task_id, name=task.name, current_dt=timer.current_datetime
-        )
+        f'starting task timer; id={task_id}; name={task.name}; '
+        f'current_dt={timer.current_datetime}'
     )
 
     # Cache start time for one hour. This will allow us to catch crazy long
@@ -141,21 +140,14 @@ def track_task_run_time(task_id, task, **kw):
     start_time = cache.get(timer.cache_key(task_id))
     if start_time is None:
         log.info(
-            'could not track task run time; id={id}; name={name}; '
-            'current_dt={current_dt}'.format(
-                id=task_id, name=task.name, current_dt=timer.current_datetime
-            )
+            f'could not track task run time; id={task_id}; name={task.name}; '
+            f'current_dt={timer.current_datetime}'
         )
     else:
         run_time = timer.current_epoch_ms - start_time
         log.info(
-            'tracking task run time; id={id}; name={name}; '
-            'run_time={run_time}; current_dt={current_dt}'.format(
-                id=task_id,
-                name=task.name,
-                current_dt=timer.current_datetime,
-                run_time=run_time,
-            )
+            f'tracking task run time; id={task_id}; name={task.name}; '
+            f'run_time={run_time}; current_dt={timer.current_datetime}'
         )
         statsd.timing(f'tasks.{task.name}', run_time)
         cache.delete(timer.cache_key(task_id))

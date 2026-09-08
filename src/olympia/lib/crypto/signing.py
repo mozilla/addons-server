@@ -181,18 +181,16 @@ def sign_file(file_obj):
         # though we didn't sign, it's not an error - we just don't need to do
         # anything in this case.
         log.info(
-            'Not signing file {}: mozilla signed extension is already signed'.format(
-                file_obj.pk
-            )
+            f'Not signing file {file_obj.pk}: mozilla signed extension is already '
+            'signed'
         )
         return file_obj
 
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         raise SigningError(
-            'Not signing version {}: not for a Firefox version we support'.format(
-                file_obj.version.pk
-            )
+            f'Not signing version {file_obj.version.pk}: not for a Firefox version we '
+            'support'
         )
 
     # Get the path before modifying it... We'll delete it after if signing was

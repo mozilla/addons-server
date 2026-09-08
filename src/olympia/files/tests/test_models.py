@@ -1266,9 +1266,7 @@ class TestFileUpload(UploadMixin, TestCase):
         relative_url = reverse(
             'files.serve_file_upload', kwargs={'uuid': upload.uuid.hex}
         )
-        expected_url = '{}?access_token={}'.format(
-            site_url + relative_url, access_token
-        )
+        expected_url = f'{site_url + relative_url}?access_token={access_token}'
         with override_settings(EXTERNAL_SITE_URL=site_url):
             assert upload.get_authenticated_download_url() == expected_url
 

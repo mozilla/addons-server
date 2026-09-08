@@ -292,10 +292,7 @@ def notify_about_activity_log(
 
     # Not being localised because we don't know the recipients locale.
     with translation.override('en-US'):
-        subject = reviewer_subject = 'Mozilla Add-ons: {} {}'.format(
-            addon.name,
-            version.version,
-        )
+        subject = reviewer_subject = f'Mozilla Add-ons: {addon.name} {version.version}'
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
     from_email = formataddr((sender_name, settings.ADDONS_EMAIL))
@@ -353,12 +350,8 @@ def send_activity_mail(
     subject, message, version, recipients, from_email, unique_id, perm_setting=None
 ):
     thread_id = f'{version.addon.id}/{version.id}'
-    reference_header = '<{thread}@{site}>'.format(
-        thread=thread_id, site=settings.INBOUND_EMAIL_DOMAIN
-    )
-    message_id = '<{thread}/{message}@{site}>'.format(
-        thread=thread_id, message=unique_id, site=settings.INBOUND_EMAIL_DOMAIN
-    )
+    reference_header = f'<{thread_id}@{settings.INBOUND_EMAIL_DOMAIN}>'
+    message_id = f'<{thread_id}/{unique_id}@{settings.INBOUND_EMAIL_DOMAIN}>'
     headers = {
         'In-Reply-To': reference_header,
         'References': reference_header,
@@ -373,11 +366,7 @@ def send_activity_mail(
             token.update(use_count=0)
         else:
             log.info(f'Created token with UUID {token.uuid} for user: {recipient.id}.')
-        reply_to = '{}{}@{}'.format(
-            REPLY_TO_PREFIX,
-            token.uuid.hex,
-            settings.INBOUND_EMAIL_DOMAIN,
-        )
+        reply_to = f'{REPLY_TO_PREFIX}{token.uuid.hex}@{settings.INBOUND_EMAIL_DOMAIN}'
         log.info(
             'Sending activity email to %s for %s version %s'
             % (recipient, version.addon.pk, version.pk)

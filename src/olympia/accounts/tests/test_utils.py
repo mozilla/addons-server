@@ -30,9 +30,7 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
     )
 
     url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
+    base = f'{url.scheme}://{url.netloc}{url.path}'
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -58,9 +56,7 @@ def test_fxa_login_url_requiring_two_factor_auth():
     )
 
     url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
+    base = f'{url.scheme}://{url.netloc}{url.path}'
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -89,9 +85,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_token():
     )
 
     url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
+    base = f'{url.scheme}://{url.netloc}{url.path}'
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -121,9 +115,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_request():
     )
 
     url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
+    base = f'{url.scheme}://{url.netloc}{url.path}'
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')
@@ -153,9 +145,7 @@ def test_fxa_login_url_requiring_two_factor_auth_passing_login_hint():
     )
 
     url = urlparse(raw_url)
-    base = '{scheme}://{netloc}{path}'.format(
-        scheme=url.scheme, netloc=url.netloc, path=url.path
-    )
+    base = f'{url.scheme}://{url.netloc}{url.path}'
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path.encode('utf-8')).rstrip(b'=')

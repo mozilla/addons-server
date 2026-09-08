@@ -67,10 +67,7 @@ def encode_header(header_blob, file_ext):
             with Image.open(io.BytesIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
-        src = 'data:image/{};base64,{}'.format(
-            img_format,
-            force_str(b64encode(header_blob)),
-        )
+        src = f'data:image/{img_format};base64,{force_str(b64encode(header_blob))}'
     except (OSError, ValueError, TypeError, AttributeError) as err:
         log.info(err)
         return (None, 0, 0)

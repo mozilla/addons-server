@@ -223,11 +223,7 @@ class Validator:
                 )
                 raise
             except ValidationError as form_error:
-                log.info(
-                    'could not parse addon for upload {}: {}'.format(
-                        file_.pk, form_error
-                    )
-                )
+                log.info(f'could not parse addon for upload {file_.pk}: {form_error}')
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
@@ -333,16 +329,12 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
     ).exists()
     if fileupload_exists or version_exists:
         log.info(
-            'Skipping Version creation for {upload_uuid} that would '
-            ' cause duplicate version'.format(upload_uuid=upload.uuid)
+            f'Skipping Version creation for {upload.uuid} that would '
+            ' cause duplicate version'
         )
         return None
     else:
-        log.info(
-            'Creating version for {upload_uuid} that passed validation'.format(
-                upload_uuid=upload.uuid
-            )
-        )
+        log.info(f'Creating version for {upload.uuid} that passed validation')
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.

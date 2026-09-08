@@ -46,9 +46,7 @@ class SessionIDAuthentication(BaseAuthentication):
         header in a `401 Unauthenticated` response, or `None` if the
         authentication scheme should return `403 Permission Denied` responses.
         """
-        return '{} realm="{}"'.format(
-            self.auth_header_prefix, self.www_authenticate_realm
-        )
+        return f'{self.auth_header_prefix} realm="{self.www_authenticate_realm}"'
 
     def get_token_value(self, request):
         auth_header = get_authorization_header(request).split()
@@ -163,9 +161,7 @@ class JWTKeyAuthentication(BaseAuthentication):
         header in a `401 Unauthenticated` response, or `None` if the
         authentication scheme should return `403 Permission Denied` responses.
         """
-        return '{} realm="{}"'.format(
-            self.auth_header_prefix, self.www_authenticate_realm
-        )
+        return f'{self.auth_header_prefix} realm="{self.www_authenticate_realm}"'
 
     def authenticate(self, request):
         """

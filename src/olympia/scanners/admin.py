@@ -564,9 +564,7 @@ class AbstractScannerRuleAdminMixin:
         )
         ResultModel = obj.results.model
         url = reverse(
-            'admin:{}_{}_changelist'.format(
-                ResultModel._meta.app_label, ResultModel._meta.model_name
-            )
+            f'admin:{ResultModel._meta.app_label}_{ResultModel._meta.model_name}_changelist'
         )
         # The parameter name is called matched_rule or matched_rules depending
         # on the model, because one of them is a many to many and the other a
@@ -896,17 +894,15 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
             messages.add_message(
                 request,
                 messages.INFO,
-                'Scanner Query Rule {} has been successfully queued for '
-                'execution.'.format(rule.pk),
+                f'Scanner Query Rule {rule.pk} has been successfully queued for '
+                'execution.',
             )
         except ImproperScannerQueryRuleStateError:
             messages.add_message(
                 request,
                 messages.ERROR,
-                'Scanner Query Rule {} could not be queued for execution '
-                'because it was in "{}"" state.'.format(
-                    rule.pk, rule.get_state_display()
-                ),
+                f'Scanner Query Rule {rule.pk} could not be queued for execution '
+                f'because it was in "{rule.get_state_display()}"" state.',
             )
 
         return redirect('admin:scanners_scannerqueryrule_changelist')
@@ -934,8 +930,8 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
             messages.add_message(
                 request,
                 messages.ERROR,
-                'Scanner Query Rule {} could not be aborted because it was '
-                'in "{}" state'.format(rule.pk, rule.get_state_display()),
+                f'Scanner Query Rule {rule.pk} could not be aborted because it was '
+                f'in "{rule.get_state_display()}" state',
             )
 
         return redirect('admin:scanners_scannerqueryrule_changelist')

@@ -106,7 +106,7 @@ class UsageTierAdmin(AMOModelAdmin):
         # have to do it ourselves. For our purposes, just surrounding strings
         # by double-quotes is enough here.
         sql = sql_with_params[0] % tuple(
-            '"{}"'.format(p) if isinstance(p, (str,)) else p for p in sql_with_params[1]
+            f'"{p}"' if isinstance(p, (str,)) else p for p in sql_with_params[1]
         )
         # Similarly we have no way to directly print a COUNT(*) query without
         # executing it, but we know we're only dealing with addons and we know
@@ -174,8 +174,9 @@ class UsageTierAdmin(AMOModelAdmin):
                 'growth_threshold_before_flagging': (
                     'Actual growth threshold above which we would flag add-ons in that '
                     'tier, as computed using the percentage defined above and the '
-                    'current average growth of add-ons (currently {}) in that tier.'
-                ).format(obj.average_growth),
+                    'current average growth of add-ons '
+                    f'(currently {obj.average_growth}) in that tier.'
+                ),
                 'number_of_addons_that_would_be_flagged_for_growth': (
                     'Number of add-ons that would be flagged for growth using the '
                     'percentage defined above, if the task ran now with the current '
