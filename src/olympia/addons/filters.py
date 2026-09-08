@@ -16,7 +16,7 @@ class ModelFieldFilter(BaseFilterBackend):
         def parse_value(value):
             if value not in self.reverse_dict:
                 raise serializers.ValidationError(
-                    gettext('Invalid "%s" parameter.' % self.query_param)
+                    gettext('Invalid "{}" parameter.').format(self.query_param)
                 )
             return self.reverse_dict[value]
 

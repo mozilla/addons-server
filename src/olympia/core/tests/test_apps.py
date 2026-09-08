@@ -125,13 +125,15 @@ class SystemCheckIntegrationTest(TestCase):
             json.dump(manifest_content, f)
             manifest_path = f.name
 
-        with override_settings(STATIC_BUILD_MANIFEST_PATH=manifest_path):
-            with self.assertRaisesMessage(
+        with (
+            override_settings(STATIC_BUILD_MANIFEST_PATH=manifest_path),
+            self.assertRaisesMessage(
                 SystemCheckError,
                 'Static asset app.js does not exist at expected path: '
                 '/static/root/app.123abc.js',
-            ):
-                call_command('check')
+            ),
+        ):
+            call_command('check')
 
         os.unlink(manifest_path)
 
@@ -193,12 +195,14 @@ class SystemCheckIntegrationTest(TestCase):
     def test_nginx_raises_missing_directory(self):
         self.mock_get_version_json.return_value['target'] = 'development'
         fake_media_root = '/fake/not/real'
-        with override_settings(MEDIA_ROOT=fake_media_root):
-            with self.assertRaisesMessage(
+        with (
+            override_settings(MEDIA_ROOT=fake_media_root),
+            self.assertRaisesMessage(
                 SystemCheckError,
                 f'{fake_media_root} does not exist',
-            ):
-                call_command('check')
+            ),
+        ):
+            call_command('check')
 
     def _test_nginx_response(self, status_code=200, body='', served_by='nginx'):
         self.mock_get_version_json.return_value['target'] = 'development'
@@ -218,12 +222,14 @@ class SystemCheckIntegrationTest(TestCase):
             (served_by, 'nginx'),
         )
 
-        with override_settings(MEDIA_ROOT=self.media_root):
-            with self.assertRaisesMessage(
+        with (
+            override_settings(MEDIA_ROOT=self.media_root),
+            self.assertRaisesMessage(
                 SystemCheckError,
                 f'Failed to access {url}. {expected_config}',
-            ):
-                call_command('check')
+            ),
+        ):
+            call_command('check')
 
     def test_nginx_raises_non_200_status_code(self):
         """Test that files return a 200 status code."""

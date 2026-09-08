@@ -1609,7 +1609,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         )
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        apps = [app.id for app in self.get_version().compatible_apps]
         assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
@@ -1643,7 +1643,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         data[0]['DELETE'] = True
         response = self.client.post(self.url, self.formset(*data, initial_count=2))
         assert response.status_code == 302
-        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        apps = [app.id for app in self.get_version().compatible_apps]
         assert apps == [amo.ANDROID.id]
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')

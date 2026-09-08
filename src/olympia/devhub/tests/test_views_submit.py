@@ -159,7 +159,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
             'review_policy': ['This field is required.'],
         }
         doc = pq(response.content)
-        for id_ in form.errors.keys():
+        for id_ in form.errors:
             selector = 'li input#id_%s + a + .errorlist' % id_
             assert doc(selector).text() == 'This field is required.'
 

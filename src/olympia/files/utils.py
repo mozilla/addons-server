@@ -363,10 +363,8 @@ class ManifestJSONExtractor:
             try:
                 min_appver = qs.get(version=strict_min_version)
             except AppVersion.DoesNotExist as exc:
-                msg = gettext(
-                    'Unknown "strict_min_version" {appver} for {app}'.format(
-                        app=app.pretty, appver=strict_min_version
-                    )
+                msg = gettext('Unknown "strict_min_version" {appver} for {app}').format(
+                    app=app.pretty, appver=strict_min_version
                 )
                 raise forms.ValidationError(msg) from exc
 
@@ -377,10 +375,8 @@ class ManifestJSONExtractor:
                 # error: we used to use '*' instead but this caused more
                 # problems, especially with langpacks that are really specific
                 # to a given Firefox version.
-                msg = gettext(
-                    'Unknown "strict_max_version" {appver} for {app}'.format(
-                        app=app.pretty, appver=strict_max_version
-                    )
+                msg = gettext('Unknown "strict_max_version" {appver} for {app}').format(
+                    app=app.pretty, appver=strict_max_version
                 )
                 raise forms.ValidationError(msg) from exc
 
@@ -1019,9 +1015,8 @@ def parse_addon(pkg, *, addon=None, user=None, minimal=False, bypass_name_checks
         valid_extensions_string = '(%s)' % ', '.join(amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
             gettext(
-                'Unsupported file type, please upload a supported '
-                'file {extensions}.'.format(extensions=valid_extensions_string)
-            )
+                'Unsupported file type, please upload a supported file {extensions}.'
+            ).format(extensions=valid_extensions_string)
         )
 
     if not minimal:

@@ -56,9 +56,9 @@ class TestIndexCommand(ESTestCaseMixin, PatchMixin, TransactionTestCase):
         super().tearDownClass()
         try:
             assert not Addon.objects.exists(), Addon.objects.values('id', 'slug')
-        except AssertionError as ae:
+        except AssertionError:
             Addon.objects.all().delete()
-            raise ae
+            raise
 
     def check_settings(self, new_indices):
         """Make sure the indices settings are properly set."""
