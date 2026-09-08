@@ -74,7 +74,13 @@ from olympia.reviewers.templatetags.jinja_helpers import to_dom_id
 from olympia.reviewers.views import queue
 from olympia.scanners.models import ScannerResult, ScannerRule
 from olympia.stats.utils import VERSION_ADU_LIMIT
-from olympia.users.models import UserProfile
+from olympia.users.models import (
+    RESTRICTION_TYPES,
+    EmailUserRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
+from olympia.users.utils import get_task_user
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -5401,6 +5407,43 @@ class TestReview(ReviewBase):
         assert change_text.startswith('Auto-Approval enabled (Listed)')
         change_text = doc('#important-changes-history .activity tr:nth-child(8)').text()
         assert change_text.startswith('Auto-Approval disabled (Unlisted)')
+
+    def test_important_changes_shows_restriction_that_disabled_auto_approval(self):
+        # State created exactly as Version.from_upload() records it when a
+        # restriction denies auto-approval: the matched instance on a
+        # UserRestrictionHistory row linked to the version, and the
+        # DISABLE_AUTO_APPROVAL entry naming the class.
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.addon_author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=2,  # EmailUserRestriction
+            restriction_instance=restriction,
+            version=self.version,
+        )
+        core.set_user(get_task_user())
+        ActivityLog.objects.create(
+            amo.LOG.DISABLE_AUTO_APPROVAL,
+            self.addon,
+            details={
+                'channel': amo.CHANNEL_LISTED,
+                'comments': (
+                    'Listed auto-approval automatically disabled because of a '
+                    'restriction (EmailUserRestriction)'
+                ),
+                'restrictions': ['EmailUserRestriction'],
+                'restriction_history_ids': [history.pk],
+            },
+        )
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(
+            response,
+            'Listed auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)',
+        )
 
     def test_important_changes_log_with_versions_attached(self):
         version1 = self.addon.versions.get()

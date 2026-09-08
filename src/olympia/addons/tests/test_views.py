@@ -61,7 +61,12 @@ from olympia.reviewers.models import AutoApprovalSummary
 from olympia.search.utils import get_es
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.users.models import EmailUserRestriction, UserProfile
+from olympia.users.models import (
+    RESTRICTION_TYPES,
+    EmailUserRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -4334,6 +4339,35 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             assert response.status_code == 400
             version = None
         return response, version
+
+    def test_restriction_instance_recorded_on_auto_approval_denial(self):
+        # End to end: a restriction denying auto-approval during a real API
+        # submission is recorded with the specific matching instance, linked
+        # to the version that was created.
+        user_factory(pk=settings.TASK_USER_ID)  # DISABLE_AUTO_APPROVAL author.
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        response = self.client.post(self.url, data=self.minimal_data)
+        assert response.status_code == 201, response.content
+
+        self.addon.reload()
+        version = self.addon.find_latest_version(channel=None)
+        history = UserRestrictionHistory.objects.get(user=self.user)
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.version == version
+        activity_log = ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_AUTO_APPROVAL.id
+        ).get()
+        assert activity_log.details['restrictions'] == ['EmailUserRestriction']
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert activity_log.details['comments'] == (
+            'Unlisted auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)'
+        )
+        assert self.addon.auto_approval_disabled_unlisted
 
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
