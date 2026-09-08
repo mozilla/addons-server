@@ -100,6 +100,7 @@ v5_api_urls = [
     re_path(r'^', include(amo_api_patterns)),
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
     re_path(r'^shelves/', include('olympia.shelves.urls')),
+    re_path(r'^developers/', include('olympia.devhub.api_urls')),
 ]
 
 
