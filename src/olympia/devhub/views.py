@@ -68,7 +68,6 @@ from olympia.amo.utils import (
     send_mail_jinja,
 )
 from olympia.api.authentication import (
-    JWTKeyAuthentication,
     SessionIDAuthentication,
 )
 from olympia.api.throttling import contact_support_throttles
@@ -2386,7 +2385,7 @@ def survey_response(request, survey_id):
 
 
 @api_view(['POST'])
-@authentication_classes((SessionIDAuthentication, JWTKeyAuthentication))
+@authentication_classes([SessionIDAuthentication])
 @permission_classes((IsAuthenticated,))
 @throttle_classes(contact_support_throttles)
 def developer_support(request):
