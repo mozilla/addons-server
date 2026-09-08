@@ -13,6 +13,7 @@ import stat
 import struct
 import tarfile
 import tempfile
+import unicodedata
 import zipfile
 from collections.abc import Mapping
 from types import MappingProxyType
@@ -581,6 +582,7 @@ def archive_member_validator(member, ignore_filename_errors=False):
             or '../' in filename
             or '..' == filename
             or filename.startswith('/')
+            or any(unicodedata.category(c)[0] == 'C' for c in filename)
         ):
             log.warning('Extraction error, invalid file name: %s', filename)
             # L10n: {0} is the name of the invalid file.
