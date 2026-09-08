@@ -1893,7 +1893,10 @@ class TestVersionFromUpload(UploadMixin, TestCase):
 
     def setUp(self):
         super().setUp()
-        self.upload = self.get_upload(self.filename)
+        self.upload_listed = self.get_upload(self.filename)
+        self.upload_unlisted = self.get_upload(
+            self.filename, channel=amo.CHANNEL_UNLISTED
+        )
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='@webextension-guid')
         self.selected_app = amo.FIREFOX.id
@@ -1910,10 +1913,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_upload_already_attached_to_different_addon(self):
         # The exception isn't necessarily caught, but it's fine to 500 and go
         # to Sentry in this case - this isn't supposed to happen.
-        self.upload.update(addon=addon_factory())
+        self.upload_listed.update(addon=addon_factory())
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -1926,7 +1929,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.addon.update(status=amo.STATUS_DISABLED)
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -1938,7 +1941,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         with self.assertRaises(VersionCreateError) as e:
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_ENTERPRISE,
                 selected_apps=[self.selected_app],
@@ -1948,8 +1951,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_enterprise_addon_disabled_waffle_switch(self):
         with self.assertRaises(VersionCreateError) as e:
+            upload_enterprise = self.get_upload(
+                self.filename, channel=amo.CHANNEL_ENTERPRISE
+            )
             Version.from_upload(
-                self.upload,
+                upload_enterprise,
                 self.addon,
                 amo.CHANNEL_ENTERPRISE,
                 selected_apps=[self.selected_app],
@@ -1959,8 +1965,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('enterprise-channel', active=True)
     def test_enterprise_addon_enabled_waffle_switch(self):
+        upload_enterprise = self.get_upload(
+            self.filename, channel=amo.CHANNEL_ENTERPRISE
+        )
         version = Version.from_upload(
-            self.upload,
+            upload_enterprise,
             self.addon,
             amo.CHANNEL_ENTERPRISE,
             selected_apps=[self.selected_app],
@@ -1970,23 +1979,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.channel == amo.CHANNEL_ENTERPRISE
 
     def test_addon_is_attached_to_upload_if_it_wasnt(self):
-        assert self.upload.addon is None
+        assert self.upload_listed.addon is None
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
             parsed_data=self.dummy_parsed_data,
         )
         assert version
-        self.upload.reload()
-        assert self.upload.addon == self.addon
+        self.upload_listed.reload()
+        assert self.upload_listed.addon == self.addon
 
     def test_from_upload_no_user(self):
-        self.upload.user = None
+        self.upload_listed.user = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -1994,10 +2003,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_ip_address(self):
-        self.upload.ip_address = None
+        self.upload_listed.ip_address = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -2005,10 +2014,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_channel_mismatch(self):
-        self.upload.channel = amo.CHANNEL_UNLISTED
+        self.upload_listed.channel = amo.CHANNEL_UNLISTED
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -2016,10 +2025,10 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
 
     def test_from_upload_no_source(self):
-        self.upload.source = None
+        self.upload_listed.source = None
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -2029,7 +2038,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def _test_logging(self, source):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         user.update(last_login_ip='1.2.3.4')
-        self.upload.update(
+        self.upload_listed.update(
             user=user,
             ip_address='5.6.7.8',
             request_metadata={
@@ -2044,7 +2053,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             self.assertLogs(logger='z.versions', level='INFO') as logs,
         ):
             version = Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -2052,12 +2061,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             )
         assert len(logs.records) == 2
         assert logs.records[0].message == (
-            f'New version: {version!r} ({version.pk}) from {self.upload!r}'
+            f'New version: {version!r} ({version.pk}) from {self.upload_listed!r}'
         )
         expected_extra = {
             'email': user.email,
             'guid': self.addon.guid,
-            'upload': self.upload.uuid.hex,
+            'upload': self.upload_listed.uuid.hex,
             'user_id': user.pk,
             'from_api': True,
         }
@@ -2073,7 +2082,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert activities[1].action == amo.LOG.ADD_VERSION.id
         assert activities[1].arguments == [version, self.addon]
         assert activities[1].user == user
-        assert activities[1].iplog._ip_address == self.upload.ip_address
+        assert activities[1].iplog._ip_address == self.upload_listed.ip_address
         assert activities[1].iplog.asn == 64509
         assert activities[1].requestfingerprintlog.ja4 == 'd123-456'
         assert activities[1].requestfingerprintlog.signals == ['TAG1', 'TAG2']
@@ -2086,7 +2095,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_carry_over_old_license(self):
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2097,7 +2106,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_mozilla_signed_extension(self):
         self.dummy_parsed_data['is_mozilla_signed_extension'] = True
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2111,7 +2120,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_carry_over_license_no_version(self):
         self.addon.versions.all().delete()
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2120,9 +2129,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.license_id is None
 
     def test_app_versions(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2134,9 +2145,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '*'
 
     def test_compatibility_just_app(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             compatibility={
@@ -2150,9 +2163,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '*'
 
     def test_compatibility_min_max_too(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             compatibility={
@@ -2174,7 +2189,9 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert app.max.version == '67'
 
     def test_compatible_apps_is_pre_generated(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         # We mock File.from_upload() to prevent it from accessing
         # version.compatible_apps early - we want to test that the cache has
         # been generated regardless.
@@ -2184,7 +2201,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
         with mock.patch('olympia.files.models.File.from_upload', side_effect=fake_file):
             version = Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
@@ -2221,9 +2238,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             max_app_version='*',
         )
 
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         new_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             compatibility=existing_version.compatible_apps,
@@ -2250,9 +2269,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert ApplicationsVersions.objects.count() == 3
 
     def test_version_number(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2261,9 +2282,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.version == '0.0.1'
 
     def test_filename(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2274,7 +2297,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
         # would be in the microsecond range.
-        self.upload.update(created=datetime.now() - timedelta(days=1))
+        self.upload_listed.update(created=datetime.now() - timedelta(days=1))
 
         mock_path = 'olympia.versions.models.statsd.'
         with (
@@ -2283,14 +2306,14 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             mock.patch(f'{mock_path}incr') as mock_incr,
         ):
             Version.from_upload(
-                self.upload,
+                self.upload_listed,
                 self.addon,
                 amo.CHANNEL_LISTED,
                 selected_apps=[self.selected_app],
                 parsed_data=self.dummy_parsed_data,
             )
 
-            upload_start = utc_millesecs_from_epoch(self.upload.created)
+            upload_start = utc_millesecs_from_epoch(self.upload_listed.created)
             now = utc_millesecs_from_epoch()
             rough_delta = now - upload_start
             actual_delta = mock_timing.call_args[0][1]
@@ -2314,7 +2337,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         pending_version.needshumanreview_set.create()
         assert pending_version.due_date
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2351,7 +2374,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert pending_version2.due_date > pending_version.due_date
         oldest_due_date = pending_version2.due_date
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2368,7 +2391,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         extra_addon = addon_factory()
         NeedsHumanReview.objects.create(version=extra_addon.current_version)
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2389,7 +2412,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         NeedsHumanReview.objects.create(version=self.addon.current_version)
         self.addon.current_version.update(due_date=due_date)
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2421,7 +2444,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         NeedsHumanReview.objects.create(version=self.addon.current_version)
         self.addon.current_version.update(due_date=due_date)
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2463,7 +2486,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert old_version.due_date
 
         upload_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2487,7 +2510,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert old_version.due_date
         old_version.update(due_date=self.days_ago(1))
         new_version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2518,11 +2541,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_set_version_to_yara_scanners_result(self):
         self.create_switch('enable-yara', active=True)
-        scanners_result = ScannerResult.objects.create(upload=self.upload, scanner=YARA)
+        scanners_result = ScannerResult.objects.create(
+            upload=self.upload_listed, scanner=YARA
+        )
         assert scanners_result.version is None
 
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2533,12 +2558,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert scanners_result.version == version
 
     def test_auto_approval_not_disabled_if_not_restricted(self):
-        self.upload.user.update(last_login_ip='10.0.0.42')
+        self.upload_listed.user.update(last_login_ip='10.0.0.42')
         # Set a submission time restriction: it shouldn't matter.
         IPNetworkUserRestriction.objects.create(network='10.0.0.0/24')
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2553,12 +2578,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     def test_auto_approval_disabled_if_restricted_by_email(self):
         restriction = EmailUserRestriction.objects.create(
-            email_pattern=self.upload.user.email,
+            email_pattern=self.upload_listed.user.email,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2589,13 +2614,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert history.version == version
 
     def test_auto_approval_disabled_if_restricted_by_ip(self):
-        self.upload.user.update(last_login_ip='10.0.0.42')
+        self.upload_listed.user.update(last_login_ip='10.0.0.42')
         restriction = IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2626,13 +2651,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert history.version == version
 
     def test_auto_approval_disabled_for_unlisted_if_restricted_by_ip(self):
-        self.upload.user.update(last_login_ip='10.0.0.42')
+        self.upload_unlisted.user.update(last_login_ip='10.0.0.42')
         restriction = IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2665,16 +2690,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_auto_approval_disabled_if_restricted_by_email_and_ip(self):
         # The IP restriction matches through last_login_ip, deliberately, so
         # that it records an instance rather than denying structurally.
-        self.upload.user.update(last_login_ip='10.0.0.42')
+        self.upload_listed.user.update(last_login_ip='10.0.0.42')
         email_restriction = EmailUserRestriction.objects.create(
-            email_pattern=self.upload.user.email,
+            email_pattern=self.upload_listed.user.email,
             restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
         )
         ip_restriction = IPNetworkUserRestriction.objects.create(
             network='10.0.0.0/24', restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
         )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2695,7 +2720,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             'EmailUserRestriction',
             'IPNetworkUserRestriction',
         ]
-        entries = UserRestrictionHistory.objects.filter(user=self.upload.user)
+        entries = UserRestrictionHistory.objects.filter(user=self.upload_listed.user)
         assert entries.count() == 2
         assert sorted(activity_log.details['restriction_history_ids']) == sorted(
             entry.pk for entry in entries
@@ -2710,10 +2735,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
     def test_dont_record_install_origins_when_waffle_switch_is_off(self):
         # Switch should be off by default.
         assert waffle.switch_is_active('record-install-origins') is False
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2723,10 +2750,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         parsed_data['install_origins'] = ['https://foo.com', 'https://bar.com']
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2740,14 +2769,16 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_base_domain(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         parsed_data['install_origins'] = [
             'https://foô.com',
             'https://foo.bar.co.uk',
             'https://foo.bar.栃木.jp',
         ]
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2764,11 +2795,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
 
     @override_switch('record-install-origins', active=True)
     def test_record_install_origins_error(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         parsed_data['install_origins'] = None  # Invalid
         with self.assertRaises(VersionCreateError):
             Version.from_upload(
-                self.upload,
+                self.upload_unlisted,
                 self.addon,
                 amo.CHANNEL_UNLISTED,
                 selected_apps=[self.selected_app],
@@ -2780,9 +2813,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2791,7 +2826,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.pk
         assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 1
         assert send_initial_submission_acknowledgement_email_mock.delay.call_args == [
-            (3615, amo.CHANNEL_LISTED, self.upload.user.email)
+            (3615, amo.CHANNEL_LISTED, self.upload_listed.user.email)
         ]
 
     @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
@@ -2799,9 +2834,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete(hard=True)
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2810,16 +2847,18 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version.pk
         assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 1
         assert send_initial_submission_acknowledgement_email_mock.delay.call_args == [
-            (3615, amo.CHANNEL_UNLISTED, self.upload.user.email)
+            (3615, amo.CHANNEL_UNLISTED, self.upload_unlisted.user.email)
         ]
 
     @mock.patch('olympia.devhub.tasks.send_initial_submission_acknowledgement_email')
     def test_dont_send_initial_submission_acknowledgement_email_second_version(
         self, send_initial_submission_acknowledgement_email_mock
     ):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2833,9 +2872,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         self, send_initial_submission_acknowledgement_email_mock
     ):
         self.addon.current_version.delete()
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2845,9 +2886,11 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert send_initial_submission_acknowledgement_email_mock.delay.call_count == 0
 
     def test_version_provenance(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2858,14 +2901,14 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert VersionProvenance.objects.filter(version=version).exists()
         provenance = VersionProvenance.objects.get(version=version)
         assert provenance.client_info == 'Something/42.0'
-        assert provenance.source == self.upload.source
+        assert provenance.source == self.upload_listed.source
 
     @mock.patch('olympia.versions.tasks.call_webhooks_on_version_created.delay')
     def test_call_webhooks_on_version_created(
         self, call_webhooks_on_version_created_mock
     ):
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2879,7 +2922,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
 
     def test_no_config(self):
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2891,7 +2934,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
     def test_config_no_int(self):
         set_config('INITIAL_DELAY_FOR_UNLISTED', 'blah')
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2903,7 +2946,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
     def test_config_zero(self):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '0')
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2916,7 +2959,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=3601))
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2934,7 +2977,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             + timedelta(seconds=86400),
         )
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2950,7 +2993,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
         Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -2965,7 +3008,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             type=amo.ADDON_STATICTHEME, created=datetime.now() - timedelta(seconds=600)
         )
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2980,7 +3023,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             type=amo.ADDON_LPAPP, created=datetime.now() - timedelta(seconds=600)
         )
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -2996,7 +3039,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
             addon=self.addon, auto_approval_delayed_until_unlisted=datetime.now()
         )
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -3013,7 +3056,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
         self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -3029,7 +3072,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         version.delete()
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -3042,7 +3085,7 @@ class TestExtensionVersionFromUploadUnlistedDelay(TestVersionFromUpload):
         set_config('INITIAL_DELAY_FOR_UNLISTED', '3600')
         self.addon.update(created=datetime.now() - timedelta(seconds=600))
         Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -3065,7 +3108,7 @@ class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
     def test_disable_old_files_waiting_review(self):
         self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -3078,7 +3121,7 @@ class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
         self.old_version.update(channel=amo.CHANNEL_UNLISTED)
         self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[self.selected_app],
@@ -3091,7 +3134,7 @@ class TestDisableOldFilesInFromUpload(TestVersionFromUpload):
         self.old_version.addon.update(type=amo.ADDON_LPAPP)
         self.old_version.file.update(status=amo.STATUS_AWAITING_REVIEW)
         version = Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[self.selected_app],
@@ -3110,9 +3153,11 @@ class TestPermissionsFromUpload(TestVersionFromUpload):
         self.current = self.addon.current_version
 
     def test_permissions_includes_devtools(self):
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.fake_user)
+        parsed_data = parse_addon(
+            self.upload_listed, addon=self.addon, user=self.fake_user
+        )
         version = Version.from_upload(
-            self.upload,
+            self.upload_unlisted,
             self.addon,
             amo.CHANNEL_UNLISTED,
             selected_apps=[amo.FIREFOX.id],
@@ -3143,8 +3188,13 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'
         self.user = user_factory()
-        self.upload = self.get_upload(
+        self.upload_listed = self.get_upload(
             abspath=os.path.join(settings.ROOT, path), user=self.user
+        )
+        self.upload_unlisted = self.get_upload(
+            abspath=os.path.join(settings.ROOT, path),
+            user=self.user,
+            channel=amo.CHANNEL_UNLISTED,
         )
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
@@ -3154,9 +3204,9 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
             status=amo.STATUS_NOMINATED,
             file_kw={'status': amo.STATUS_AWAITING_REVIEW},
         )
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload_listed, addon=self.addon, user=self.user)
         Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[],
@@ -3167,9 +3217,9 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(self, generate_static_theme_preview_mock):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload_listed, addon=self.addon, user=self.user)
         Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[],
@@ -3183,12 +3233,12 @@ class TestStaticThemeFromUpload(UploadMixin, TestCase):
     ):
         self.addon = addon_factory(type=amo.ADDON_STATICTHEME)
         path = 'src/olympia/devhub/tests/addons/static_theme_tiled.zip'
-        self.upload = self.get_upload(
+        self.upload_listed = self.get_upload(
             abspath=os.path.join(settings.ROOT, path), user=self.user
         )
-        parsed_data = parse_addon(self.upload, addon=self.addon, user=self.user)
+        parsed_data = parse_addon(self.upload_listed, addon=self.addon, user=self.user)
         Version.from_upload(
-            self.upload,
+            self.upload_listed,
             self.addon,
             amo.CHANNEL_LISTED,
             selected_apps=[],

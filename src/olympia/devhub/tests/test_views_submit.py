@@ -519,7 +519,10 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         self.user = UserProfile.objects.get(email='regular@mozilla.com')
         self.client.force_login_with_2fa(self.user)
         self.user.update(last_login_ip='192.0.2.1')
-        self.upload = self.get_upload('webextension_no_id.xpi', user=self.user)
+        self.upload_listed = self.get_upload('webextension_no_id.xpi', user=self.user)
+        self.upload_unlisted = self.get_upload(
+            'webextension_no_id.xpi', user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
     def post(
@@ -534,8 +537,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
     ):
         if compatible_apps is None:
             compatible_apps = [amo.FIREFOX, amo.ANDROID]
+        upload = self.upload_listed if listed else self.upload_unlisted
         data = {
-            'upload': self.upload.uuid.hex,
+            'upload': upload.uuid.hex,
             'compatible_apps': [p.id for p in compatible_apps],
         }
         urlname = 'devhub.submit.upload' if not theme else 'devhub.submit.theme.upload'
@@ -660,8 +664,11 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload(
-            'webextension.xpi', validation=json.dumps(result), user=self.user
+        self.upload_unlisted = self.get_upload(
+            'webextension.xpi',
+            validation=json.dumps(result),
+            user=self.user,
+            channel=amo.CHANNEL_UNLISTED,
         )
         response = self.post(listed=False)
         addon = Addon.objects.get()
@@ -681,7 +688,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
 
     def test_missing_compatible_apps(self):
         url = reverse('devhub.submit.upload', args=['listed'])
-        response = self.client.post(url, {'upload': self.upload.uuid.hex})
+        response = self.client.post(url, {'upload': self.upload_listed.uuid.hex})
         assert response.status_code == 200
         assert response.context['new_addon_form'].errors.as_text() == (
             '* compatible_apps\n  * Need to select at least one application.'
@@ -695,12 +702,14 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         # Only specifying firefox compatibility for an add-on that has explicit
         # gecko_android compatibility in manifest is accepted, but we
         # automatically add Android compatibility.
-        self.upload = self.get_upload('webextension_gecko_android.xpi', user=self.user)
+        self.upload_listed = self.get_upload(
+            'webextension_gecko_android.xpi', user=self.user
+        )
         url = reverse('devhub.submit.upload', args=['listed'])
         response = self.client.post(
             url,
             {
-                'upload': self.upload.uuid.hex,
+                'upload': self.upload_listed.uuid.hex,
                 'compatible_apps': [amo.FIREFOX.id],
             },
         )
@@ -769,7 +778,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_listed = self.get_upload(abspath=path, user=self.user)
         response = self.post(theme=True)
         addon = Addon.objects.get()
         self.assert3xx(response, reverse('devhub.submit.details', args=[addon.slug]))
@@ -787,7 +796,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_unlisted = self.get_upload(
+            abspath=path, user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         response = self.post(listed=False, theme=True)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
@@ -815,7 +826,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_listed = self.get_upload(abspath=path, user=self.user)
         response = self.post(url=url)
         addon = Addon.objects.get()
         # Next step is same as non-wizard flow too.
@@ -845,7 +856,9 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_unlisted = self.get_upload(
+            abspath=path, user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
@@ -934,7 +947,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
             url,
             {
                 'g-recaptcha-response': 'test',
-                'upload': self.upload.uuid.hex,
+                'upload': self.upload_listed.uuid.hex,
                 'compatible_apps': [amo.FIREFOX.id],
             },
         )
@@ -949,7 +962,7 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         response = self.client.post(
             url,
             {
-                'upload': self.upload.uuid.hex,
+                'upload': self.upload_listed.uuid.hex,
                 'compatible_apps': [amo.FIREFOX.id],
             },
         )
@@ -2256,7 +2269,10 @@ class VersionSubmitUploadMixin:
         )
         assert self.addon.has_complete_metadata()
         self.version.save()
-        self.upload = self.get_upload('webextension.xpi', user=self.user)
+        self.upload_listed = self.get_upload('webextension.xpi', user=self.user)
+        self.upload_unlisted = self.get_upload(
+            'webextension.xpi', user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         self.statsd_incr_mock = self.patch('olympia.devhub.views.statsd.incr')
 
     def post(
@@ -2269,8 +2285,13 @@ class VersionSubmitUploadMixin:
     ):
         if compatible_apps is None:
             compatible_apps = [amo.FIREFOX]
+        upload = (
+            self.upload_listed
+            if self.channel == amo.CHANNEL_LISTED
+            else self.upload_unlisted
+        )
         data = {
-            'upload': self.upload.uuid.hex,
+            'upload': upload.uuid.hex,
             'compatible_apps': [p.id for p in compatible_apps],
             'admin_override_validation': override_validation,
         }
@@ -2286,7 +2307,7 @@ class VersionSubmitUploadMixin:
         )
 
     def test_missing_compatibility_apps(self):
-        response = self.client.post(self.url, {'upload': self.upload.uuid.hex})
+        response = self.client.post(self.url, {'upload': self.upload_listed.uuid.hex})
         assert response.status_code == 200
         assert response.context['new_addon_form'].errors.as_text() == (
             '* compatible_apps\n  * Need to select at least one application.'
@@ -2413,7 +2434,10 @@ class VersionSubmitUploadMixin:
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_listed = self.get_upload(abspath=path, user=self.user)
+        self.upload_unlisted = self.get_upload(
+            abspath=path, user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         response = self.post()
 
         version = self.addon.find_latest_version(channel=self.channel)
@@ -2473,7 +2497,10 @@ class VersionSubmitUploadMixin:
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip'
         )
-        self.upload = self.get_upload(abspath=path, user=self.user)
+        self.upload_listed = self.get_upload(abspath=path, user=self.user)
+        self.upload_unlisted = self.get_upload(
+            abspath=path, user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
         response = self.post()
 
         version = self.addon.find_latest_version(channel=self.channel)
@@ -2594,7 +2621,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
         assert logs_qs.count() == 1
         log = logs_qs.get()
-        assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
+        assert log.iplog.ip_address_binary == IPv4Address(self.upload_listed.ip_address)
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
         provenance = VersionProvenance.objects.get()
         assert provenance.version == version
@@ -2612,7 +2639,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
         assert logs_qs.count() == 1
         log = logs_qs.get()
-        assert log.iplog.ip_address_binary == IPv4Address(self.upload.ip_address)
+        assert log.iplog.ip_address_binary == IPv4Address(self.upload_listed.ip_address)
         self.statsd_incr_mock.assert_any_call('devhub.submission.version.listed')
         provenance = VersionProvenance.objects.get()
         assert provenance.version == version
@@ -2620,7 +2647,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         assert provenance.client_info == 'Whatever/1.2.3.4'
 
     def test_experiment_inside_webext_upload_without_permission(self):
-        self.upload = self.get_upload(
+        self.upload_listed = self.get_upload(
             'experiment_inside_webextension.xpi',
             validation=json.dumps(
                 {
@@ -2643,7 +2670,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
         )
 
     def test_theme_experiment_inside_webext_upload_without_permission(self):
-        self.upload = self.get_upload(
+        self.upload_listed = self.get_upload(
             'theme_experiment_inside_webextension.xpi',
             validation=json.dumps(
                 {
@@ -2680,7 +2707,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadMixin, TestC
     def test_langpack_requires_permission(self):
         self.addon.update(guid='langpack-de@firefox.mozilla.org')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='66.0a1')
-        self.upload = self.get_upload(
+        self.upload_listed = self.get_upload(
             'webextension_langpack.xpi',
             validation=json.dumps(
                 {
@@ -2804,10 +2831,11 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadMixin, Tes
             'metadata': {},
             'messages': [],
         }
-        self.upload = self.get_upload(
+        self.upload_unlisted = self.get_upload(
             'webextension.xpi',
             validation=json.dumps(result),
             user=self.user,
+            channel=amo.CHANNEL_UNLISTED,
         )
         response = self.post()
         version = self.addon.find_latest_version(channel=amo.CHANNEL_UNLISTED)
