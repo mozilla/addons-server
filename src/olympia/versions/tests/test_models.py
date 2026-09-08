@@ -2004,6 +2004,17 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                 parsed_data=self.dummy_parsed_data,
             )
 
+    def test_from_upload_channel_mismatch(self):
+        self.upload.channel = amo.CHANNEL_UNLISTED
+        with self.assertRaises(VersionCreateError):
+            Version.from_upload(
+                self.upload,
+                self.addon,
+                amo.CHANNEL_LISTED,
+                selected_apps=[self.selected_app],
+                parsed_data=self.dummy_parsed_data,
+            )
+
     def test_from_upload_no_source(self):
         self.upload.source = None
         with self.assertRaises(VersionCreateError):
