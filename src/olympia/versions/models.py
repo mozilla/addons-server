@@ -579,38 +579,37 @@ class Version(OnChangeMixin, ModelBase):
         # exempt: their auto-approval can never be disabled (see
         # AutoApprovalSummary.check_has_auto_approval_disabled()), so the flag
         # is not set and nothing is recorded for them.
-        if channel != amo.CHANNEL_ENTERPRISE:
-            checker = RestrictionChecker(upload=upload)
-            if not checker.is_auto_approval_allowed():
-                flag = (
-                    'auto_approval_disabled'
-                    if channel == amo.CHANNEL_LISTED
-                    else 'auto_approval_disabled_unlisted'
+        checker = RestrictionChecker(upload=upload)
+        if channel != amo.CHANNEL_ENTERPRISE and not checker.is_auto_approval_allowed():
+            flag = (
+                'auto_approval_disabled'
+                if channel == amo.CHANNEL_LISTED
+                else 'auto_approval_disabled_unlisted'
+            )
+            reviewer_flags_defaults[flag] = True
+            failed_names = [cls.__name__ for cls in checker.failed_restrictions]
+            history_ids = [entry.pk for entry in checker.history_entries]
+            # The checker ran before the version existed, so it could not
+            # record it on the history rows itself; backfill it now.
+            if history_ids:
+                UserRestrictionHistory.objects.filter(pk__in=history_ids).update(
+                    version=version
                 )
-                reviewer_flags_defaults[flag] = True
-                failed_names = [cls.__name__ for cls in checker.failed_restrictions]
-                history_ids = [entry.pk for entry in checker.history_entries]
-                # The checker ran before the version existed, so it could not
-                # record it on the history rows itself; backfill it now.
-                if history_ids:
-                    UserRestrictionHistory.objects.filter(pk__in=history_ids).update(
-                        version=version
-                    )
-                activity.log_create(
-                    amo.LOG.DISABLE_AUTO_APPROVAL,
-                    addon,
-                    details={
-                        'channel': version.channel,
-                        'comments': (
-                            f'{version.get_channel_display()} auto-approval '
-                            'automatically disabled because of a restriction'
-                            f' ({", ".join(failed_names)})'
-                        ),
-                        'restrictions': failed_names,
-                        'restriction_history_ids': history_ids,
-                    },
-                    user=get_task_user(),
-                )
+            activity.log_create(
+                amo.LOG.DISABLE_AUTO_APPROVAL,
+                addon,
+                details={
+                    'channel': version.channel,
+                    'comments': (
+                        f'{version.get_channel_display()} auto-approval automatically '
+                        'disabled because of a restriction'
+                        f' ({", ".join(failed_names)})'
+                    ),
+                    'restrictions': failed_names,
+                    'restriction_history_ids': history_ids,
+                },
+                user=get_task_user(),
+            )
 
         if reviewer_flags_defaults:
             AddonReviewerFlags.objects.update_or_create(
