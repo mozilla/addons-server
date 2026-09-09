@@ -1746,6 +1746,22 @@ class TestArchiveMemberValidatorZip(TestCase):
                 self._fake_archive_member('path\\to\\file.txt', 123)
             )
 
+    def test_raises_when_filename_contains_control_character(self):
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\rfile.txt', 123)
+            )
+
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\nfile.txt', 123)
+            )
+
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\tfile.txt', 123)
+            )
+
     def test_raises_when_filename_is_dot_dot(self):
         with pytest.raises(utils.InvalidArchiveFile):
             utils.archive_member_validator(self._fake_archive_member('..', 123))
