@@ -235,6 +235,7 @@ class AbstractScannerRule(ModelBase):
         yara rule automatically and their default values.
         """
         return {
+            'filename': '',
             'is_json_file': False,
             'is_manifest_file': False,
             'is_locale_file': False,
