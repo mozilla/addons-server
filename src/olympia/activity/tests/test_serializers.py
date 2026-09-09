@@ -5,8 +5,16 @@ from rest_framework.test import APIRequestFactory
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, AttachmentLog
-from olympia.activity.serializers import ActivityLogSerializer
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.activity.serializers import (
+    ActivityLogSerializer,
+    FeedActivityLogSerializer,
+)
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    user_factory,
+    version_factory,
+)
 
 
 class LogMixin:
@@ -160,3 +168,60 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         )
         result = self.serialize()
         assert result['attachment_size'] == filesizeformat(attachment.file.size)
+
+
+class TestFeedActivityLogSerializer(TestCase, LogMixin):
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+        self.version = self.addon.current_version
+        self.now = self.days_ago(0)
+
+    def serialize(self, log):
+        return FeedActivityLogSerializer().to_representation(log)
+
+    def test_basic(self):
+        log = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        result = self.serialize(log)
+
+        assert result['id'] == log.pk
+        assert result['date'] == self.now.isoformat() + 'Z'
+        assert result['title'] == log.to_string()
+        assert result['comments'] == 'foobar'
+        assert result['version'] == [
+            {
+                'version_id': self.version.pk,
+                'version': self.version.version,
+                'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
+                'status': self.version.get_review_status_display(),
+                'addon': {
+                    'id': self.version.addon.pk,
+                    'slug': self.version.addon.slug,
+                    'name': str(self.version.addon.name),
+                    'disabled_by_user': self.version.addon.disabled_by_user,
+                },
+            }
+        ]
+
+    def test_no_versionlog(self):
+        log = ActivityLog.objects.create(
+            amo.LOG.USER_DISABLE, self.addon, user=self.user
+        )
+        assert log.versionlog_set.count() == 0
+        assert self.serialize(log)['version'] == []
+
+    def test_multiple_versionlogs(self):
+        ul_version = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        log = ActivityLog.objects.create(
+            amo.LOG.APPROVE_VERSION,
+            self.addon,
+            self.version,
+            ul_version,
+            user=self.user,
+        )
+        result = self.serialize(log)
+        assert len(result['version']) == 2
+        assert {item['version_id'] for item in result['version']} == {
+            self.version.pk,
+            ul_version.pk,
+        }

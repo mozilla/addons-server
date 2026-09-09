@@ -12,6 +12,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
@@ -358,3 +359,40 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
         # invalid. Addon.update_status will set the status to NOMINATATED.
         addon.update_status()
         return version
+
+
+def get_activity_feed(action, addons):
+    if not isinstance(addons, (list, tuple)):
+        # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
+        # double # subquery the ActivityLog.objects.for_addons(addons) below
+        # would generate if addons is not transformed into a list first. Since
+        # some people have a lot of add-ons, we only take the last 100.
+        addons = list(
+            addons.all().order_by('-modified').values_list('pk', flat=True)[:100]
+        )
+
+    filters = {
+        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
+        'status': (
+            amo.LOG.USER_DISABLE,
+            amo.LOG.USER_ENABLE,
+            amo.LOG.CHANGE_STATUS,
+            amo.LOG.APPROVE_VERSION,
+        ),
+        'collections': (
+            amo.LOG.ADD_TO_COLLECTION,
+            amo.LOG.REMOVE_FROM_COLLECTION,
+        ),
+        'reviews': (amo.LOG.ADD_RATING,),
+    }
+
+    filter_ = filters.get(action)
+    items = (
+        ActivityLog.objects.for_addons(addons)
+        .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
+        .transform(ActivityLog.transformer_anonymize_user_for_developer)
+    )
+    if filter_:
+        items = items.filter(action__in=[i.id for i in filter_])
+
+    return items

@@ -136,3 +136,20 @@ Any other content or invalid emails will be discarded.
     :<json string Message.TextBody: The plain text body of the email.
     :<json array To: Array of To email addresses.  All will be parsed, and the first matching the correct format used.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
+
+
+-----------------------
+Activity Feed End-point
+-----------------------
+
+.. _activity:
+
+This endpoint returns a list of activities relevant to the user.
+
+.. http:get:: /api/v5/activity/
+
+    .. note::
+        This endpoint exclusively uses session IDs.
+
+    :<json string addon: The add-on id or slug to filter on (optional).
+    :<json string version: The version ID to filter on (optional).

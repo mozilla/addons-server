@@ -792,3 +792,101 @@ class TestDownloadAttachment(TestCase):
         self.addon.authors.add(self.user)
         response = self.client.get(self.url, follow=True)
         self.assertEqual(response.status_code, 404)
+
+
+class TestActivityView(LogMixin, TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        self.user = user_factory()
+        self.addon = addon_factory(users=[self.user])
+        self.version = self.addon.current_version
+        self.url = reverse_ns('developer-activity')
+
+    def log(self, addon, action, version=None, user=None, comments=None):
+        version = version or addon.current_version
+        return ActivityLog.objects.create(
+            action or amo.LOG.APPROVE_VERSION,
+            addon,
+            version,
+            user=user or self.user,
+            details={
+                'comments': comments or 'Looks good',
+                'version': version.version,
+            },
+        )
+
+    def test_no_auth(self):
+        self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_basic(self):
+        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+        result = response.data['results'][0]
+        assert result['title'] == log.to_string()
+        assert result['comments'] == 'Looks good'
+        assert result['version'] == [
+            {
+                'version_id': self.version.pk,
+                'version': self.version.version,
+                'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
+                'status': self.version.get_review_status_display(),
+                'addon': {
+                    'id': self.version.addon.pk,
+                    'slug': self.version.addon.slug,
+                    'name': str(self.version.addon.name),
+                    'disabled_by_user': self.version.addon.disabled_by_user,
+                },
+            }
+        ]
+
+    def test_authored_addons(self):
+        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        other_addon = addon_factory(users=[user_factory()])
+        self.log(other_addon, amo.LOG.APPROVE_VERSION, user=other_addon.authors.get())
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+
+    def test_excludes_actions_hidden_from_developers(self):
+        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        self.log(
+            self.addon, amo.LOG_BY_ID[amo.LOG_HIDE_DEVELOPER[0]], comments='hidden'
+        )
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+
+    def test_filter_by_addon(self):
+        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        other_addon = addon_factory(users=[self.user])
+        self.log(other_addon, amo.LOG.APPROVE_VERSION)
+        self.client.login_api(self.user)
+
+        response = self.client.get(self.url, {'addon': self.addon.pk})
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+
+        response = self.client.get(self.url, {'addon': self.addon.slug})
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+
+    def test_filter_by_version(self):
+        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+        ul_version = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        self.log(self.addon, amo.LOG.APPROVE_VERSION, version=ul_version)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'version': self.version.pk})
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+
+        response = self.client.get(self.url, {'version': 'foo'})
+        assert response.status_code == 400
+        assert response.data['detail'] == 'version parameter should be an integer.'

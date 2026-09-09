@@ -3,6 +3,7 @@ from django.utils.translation import gettext
 
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
@@ -91,3 +92,44 @@ class ActivityLogSerializerForComments(serializers.Serializer):
     comments = serializers.CharField(
         required=True, max_length=CommentLog._meta.get_field('comments').max_length
     )
+
+
+class FeedActivityLogSerializer(AMOModelSerializer):
+    title = serializers.SerializerMethodField()
+    date = serializers.DateTimeField(source='created')
+    version = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ActivityLog
+        fields = (
+            'id',
+            'version',
+            'title',
+            'comments',
+            'date',
+        )
+
+    def get_title(self, obj):
+        return obj.to_string()
+
+    def get_comments(self, obj):
+        comments = obj.details['comments'] if obj.details else ''
+        return getattr(obj.log(), 'sanitize', comments)
+
+    def get_version(self, obj):
+        return [
+            {
+                'version_id': version_log.version.id,
+                'version': version_log.version.version,
+                'channel': amo.CHANNEL_CHOICES_API[version_log.version.channel],
+                'status': version_log.version.get_review_status_display(),
+                'addon': {
+                    'id': version_log.version.addon.id,
+                    'slug': version_log.version.addon.slug,
+                    'name': str(version_log.version.addon.name),
+                    'disabled_by_user': version_log.version.addon.disabled_by_user,
+                },
+            }
+            for version_log in obj.versionlog_set.all()
+        ]
