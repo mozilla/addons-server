@@ -421,6 +421,11 @@ class Version(OnChangeMixin, ModelBase):
                 'Addon is Mozilla Disabled; no new versions are allowed.'
             )
 
+        if upload.channel and upload.channel != channel:
+            raise VersionCreateError(
+                'The FileUpload channel and upload channel must match.'
+            )
+
         if upload.addon and upload.addon != addon:
             raise VersionCreateError('FileUpload was made for a different Addon')
 
