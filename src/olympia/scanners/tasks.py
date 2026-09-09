@@ -589,6 +589,7 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                 file_content = zip_file.read(zip_info)
                 filename = zip_info.filename
                 # Fill externals variable for this file.
+                externals['filename'] = filename
                 externals['is_json_file'] = filename.endswith('.json')
                 externals['is_manifest_file'] = filename == 'manifest.json'
                 externals['is_locale_file'] = filename.startswith(
