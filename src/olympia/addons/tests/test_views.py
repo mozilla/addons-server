@@ -6225,6 +6225,7 @@ class TestAddonSearchView(ESTestCase):
             '*.raw',
             'colors',
             'hotness',
+            'name_exact_sentinel*',
             'name',
             'description',
             'name_l10n_*',
@@ -6247,6 +6248,8 @@ class TestAddonSearchView(ESTestCase):
                 'summary',
             )
         )
+
+        assert not any(key.startswith('name_exact_sentinel') for key in source_keys)
 
         assert not any(key.startswith('name_l10n_') for key in source_keys)
 

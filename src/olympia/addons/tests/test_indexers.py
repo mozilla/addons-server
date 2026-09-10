@@ -15,7 +15,11 @@ from olympia.bandwagon.models import Collection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
+from olympia.constants.search import (
+    SEARCH_LANGUAGE_TO_ANALYZER,
+    SENTINEL_BEGIN,
+    SENTINEL_END,
+)
 from olympia.files.models import WebextPermission
 from olympia.promoted.models import PromotedApproval
 from olympia.versions.compare import version_int
@@ -79,6 +83,7 @@ class TestAddonIndexer(TestCase):
             'is_recommended',
             'listed_authors',
             'name',
+            'name_exact_sentinel',
             'previews',
             'promoted',
             'ranking_bump',
@@ -93,7 +98,12 @@ class TestAddonIndexer(TestCase):
 
         # For each translated field that needs to be indexed, we store one
         # version for each language we have an analyzer for.
-        _indexed_translated_fields = ('name', 'description', 'summary')
+        _indexed_translated_fields = (
+            'name',
+            'name_exact_sentinel',
+            'description',
+            'summary',
+        )
         analyzer_fields = list(
             chain.from_iterable(
                 [
@@ -396,6 +406,16 @@ class TestAddonIndexer(TestCase):
         # need to always contain a string.
         assert extracted['name'] == 'Name in ënglish'
         assert extracted['summary'] == ''
+        # The sentinel fields wrap their non-sentinel counterpart.
+        assert (
+            extracted['name_exact_sentinel']
+            == f'{SENTINEL_BEGIN} Name in ënglish {SENTINEL_END}'
+        )
+        assert (
+            extracted['name_exact_sentinel_l10n_es-es']
+            == f'{SENTINEL_BEGIN} {translations_name["es-ES"]} {SENTINEL_END}'
+        )
+        assert extracted['name_exact_sentinel_l10n_it'] == ''
 
     def test_extract_translations_engb_default(self):
         """Make sure we do correctly extract things for en-GB default locale"""
@@ -437,6 +457,31 @@ class TestAddonIndexer(TestCase):
             extracted['description_l10n_es-es']
             == 'Deje que su navegador coma sus plátanos'
         )
+
+    def test_extract_name_exact_sentinel_degenerate_names(self):
+        """Names that could produce lone or nested sentinels."""
+        self.addon.name = ''
+        self.addon.save()
+
+        extracted = self._extract()
+
+        assert extracted['name_exact_sentinel'] == ''
+        assert extracted['name_exact_sentinel_l10n_en-us'] == ''
+
+        # A name containing a marker gets no value at all, whatever the case
+        # or the position of that marker.
+        for name in (
+            f'{SENTINEL_BEGIN} Banana Bonkers {SENTINEL_END}',
+            f'{SENTINEL_BEGIN.lower()} Banana Bonkers {SENTINEL_END.lower()}',
+            f'Banana {SENTINEL_END} Bonkers',
+        ):
+            self.addon.name = name
+            self.addon.save()
+
+            extracted = self._extract()
+
+            assert extracted['name_exact_sentinel'] == '', name
+            assert extracted['name_exact_sentinel_l10n_en-us'] == '', name
 
     def test_extract_previews(self):
         second_preview = Preview.objects.create(
