@@ -10,6 +10,24 @@ server {
         alias /srv/storage/;
     }
 
+    # Pinguino (Lit DevHub rebuild), proxied to its own Vite dev server. nginx
+    # matches the longest location prefix, so this stays ahead of the `location /`
+    # catch-all and /pinguino/ coexists with the classic devhub at /developers/.
+    location /pinguino/ {
+        proxy_pass http://pinguino;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_http_version 1.1;
+        proxy_cache_bypass $http_upgrade;
+        proxy_buffering off;
+
+        add_header X-Served-By "pinguino-vite" always;
+    }
+
     location ^~ ${STATIC_URL_PREFIX}bundle/ {
         proxy_pass http://static;
 
@@ -119,4 +137,8 @@ upstream addons-frontend {
 
 upstream static {
     server static:5173;
+}
+
+upstream pinguino {
+    server pinguino:5273;
 }

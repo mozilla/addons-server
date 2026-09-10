@@ -1,0 +1,23 @@
+{
+  "name": "@addons-server/pinguino",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pinguino; Lit rebuild of the AMO Developer Hub. Self-contained frontend, isolated from the legacy addons-server pipeline.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lit-labs/router": "^0.1.4",
+    "@mozilla/acorn-web-components": "^0.0.0-alpha.1",
+    "lit": "^3.3.3",
+    "urlpattern-polyfill": "^10.1.0"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.2.2"
+  }
+}
