@@ -71,7 +71,7 @@ from olympia.stats.utils import (
     VERSION_ADU_LIMIT,
     get_average_daily_users_per_version_from_bigquery,
 )
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 from src.olympia.abuse.actions import CONTENT_ACTION_FROM_DECISION_ACTION
@@ -670,6 +670,33 @@ def review(request, addon, channel=None):
         addonlog__addon=addon,
     ).order_by('id')
 
+    # Resolve the restriction instances recorded on DISABLE_AUTO_APPROVAL
+    # entries, so the template can show which restriction(s) matched - as a
+    # link to the admin for users that can access it.
+    restriction_history_ids = [
+        pk
+        for record in important_changes_log
+        if record.details
+        for pk in record.details.get('restriction_history_ids', ())
+    ]
+    restriction_history_by_id = {}
+    if restriction_history_ids:
+        restriction_history_entries = (
+            UserRestrictionHistory.objects.filter(pk__in=restriction_history_ids)
+            .select_related('restriction_content_type')
+            .prefetch_related('restriction_instance')
+        )
+        for entry in restriction_history_entries:
+            entry.admin_url = (
+                reverse(
+                    f'admin:users_{entry.restriction_content_type.model}_change',
+                    args=(entry.restriction_object_id,),
+                )
+                if entry.restriction_content_type_id and entry.restriction_object_id
+                else None
+            )
+            restriction_history_by_id[entry.pk] = entry
+
     name_translations = (
         addon.name.__class__.objects.filter(
             id=addon.name.id, localized_string__isnull=False
@@ -728,6 +755,9 @@ def review(request, addon, channel=None):
         .exists(),
         important_changes_log=important_changes_log,
         is_admin=is_admin,
+        is_advanced_admin=acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_ADVANCED
+        ),
         is_user_admin=acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT),
         language_dict=dict(settings.LANGUAGES),
         latest_not_disabled_version=latest_not_disabled_version,
@@ -744,6 +774,7 @@ def review(request, addon, channel=None):
         num_pages=num_pages,
         pager=pager,
         reports=reports,
+        restriction_history_by_id=restriction_history_by_id,
         session_id=request.session.session_key,
         subscribed_listed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
