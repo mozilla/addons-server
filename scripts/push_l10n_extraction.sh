@@ -77,6 +77,7 @@ fi
 
 git push "$@" -f origin $BRANCH_NAME
 
-gh pr create --fill --head $BRANCH_NAME
+PR_REF=$(gh pr create --fill --head $BRANCH_NAME)
+gh pr merge --auto --squash $PR_REF
 
 cd -
