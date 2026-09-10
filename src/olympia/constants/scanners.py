@@ -94,6 +94,9 @@ WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
     WEBHOOK_ON_VERSION_CREATED,
 ]
 
+# Max number of webhook deliveries for a single scanner result.
+WEBHOOK_MAX_DELIVERY_ATTEMPTS = 5
+
 # Special rule name used as fallback when a scanner has no better rule to
 # associate with an annotation.
 ANNOTATIONS_RULE_NAME = 'ANNOTATIONS'
