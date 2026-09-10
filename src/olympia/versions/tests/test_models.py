@@ -1978,6 +1978,35 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         assert version
         assert version.channel == amo.CHANNEL_ENTERPRISE
 
+    @override_switch('enterprise-channel', active=True)
+    def test_auto_approval_not_restricted_for_enterprise(self):
+        # Enterprise versions are exempt from auto-approval restrictions:
+        # the disabled flag is ignored for them (see
+        # AutoApprovalSummary.check_has_auto_approval_disabled()), so the
+        # check is skipped entirely - no flag, no history, no activity log.
+        upload_enterprise = self.get_upload(
+            self.filename, channel=amo.CHANNEL_ENTERPRISE
+        )
+        EmailUserRestriction.objects.create(
+            email_pattern=upload_enterprise.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        version = Version.from_upload(
+            upload_enterprise,
+            self.addon,
+            amo.CHANNEL_ENTERPRISE,
+            selected_apps=[self.selected_app],
+            parsed_data=self.dummy_parsed_data,
+        )
+        assert version
+        assert not AddonReviewerFlags.objects.filter(addon=self.addon).exists()
+        assert not UserRestrictionHistory.objects.exists()
+        assert (
+            not ActivityLog.objects.for_addons(self.addon)
+            .filter(action=amo.LOG.DISABLE_AUTO_APPROVAL.id)
+            .exists()
+        )
+
     def test_addon_is_attached_to_upload_if_it_wasnt(self):
         assert self.upload_listed.addon is None
         version = Version.from_upload(
