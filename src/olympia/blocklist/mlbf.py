@@ -411,7 +411,7 @@ class MLBF:
         for item, data_types in store.items():
             # We expect each item to only occur in one data type
             if len(data_types) > 1:
-                formatted_data_types = ', '.join(key.name for key in data_types.keys())
+                formatted_data_types = ', '.join(key.name for key in data_types)
                 raise ValueError(
                     f'Item {item} found in multiple data types: {formatted_data_types}'
                 )

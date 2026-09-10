@@ -106,7 +106,7 @@ def process_failure_signal(
 
     exc_info = (type(exception), exception, traceback)
     log.error(
-        'Celery TASK exception: {0.__name__}: {1}'.format(*exc_info),
+        'Celery TASK exception: {.__name__}: {}'.format(*exc_info),
         exc_info=exc_info,
         extra={
             'data': {

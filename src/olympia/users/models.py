@@ -1522,8 +1522,8 @@ class DeveloperAgreementRestriction(RestrictionAbstractBase):
             return _(
                 'Please read and accept our Firefox Add-on Distribution '
                 'Agreement as well as our Review Policies and Rules '
-                'by visiting {url}'.format(url=url)
-            )
+                'by visiting {url}'
+            ).format(url=url)
         else:
             return cls.error_message
 

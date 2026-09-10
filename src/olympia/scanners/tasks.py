@@ -90,10 +90,10 @@ def call_webhooks_during_validation(results, upload_pk):
         )
 
         log.info('All webhooks have been called for FileUpload %s.', upload_pk)
-    except Exception as exc:
+    except Exception:
         log.exception('Error while calling webhooks for FileUpload %s.', upload_pk)
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 
@@ -138,10 +138,10 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
             scanner_result.save()
 
             statsd.incr(f'{statsd_name}.success')
-        except Exception as exc:
+        except Exception:
             statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
-            raise exc
+            raise
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):
@@ -244,13 +244,13 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
         statsd.incr(f'devhub.{scanner_name}.success')
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
-    except Exception as exc:
+    except Exception:
         statsd.incr(f'devhub.{scanner_name}.failure')
         log.exception(
             'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
         )
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 
@@ -322,11 +322,11 @@ def run_narc_on_version(version_pk, *, run_actions_on_match=True):
 
         if run_actions_on_match and has_new_matches:
             ScannerResult.run_actions(version)
-    except Exception as exc:
+    except Exception:
         statsd.incr('devhub.narc.failure')
         log.exception('Error in scanner "narc" task for Version %s.', version_pk)
         # Not part of the submission process, so we can always raise.
-        raise exc
+        raise
     else:
         statsd.incr('devhub.narc.success')
     log.info('Ending scanner "narc" task for Version %s.', version_pk)
@@ -526,11 +526,11 @@ def _run_yara(results, upload_pk):
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
-    except Exception as exc:
+    except Exception:
         statsd.incr('devhub.yara.failure')
         log.exception('Error in scanner "yara" task for FileUpload %s.', upload_pk)
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 

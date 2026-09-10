@@ -179,7 +179,7 @@ class TestPromotedAddon(TestCase):
         }
 
     def test_required_fields(self):
-        for field in self.required_fields.keys():
+        for field in self.required_fields:
             missing_fields = {
                 k: v for k, v in self.required_fields.items() if k != field
             }
@@ -256,7 +256,7 @@ class TestPromotedApproval(TestCase):
         }
 
     def test_required_fields(self):
-        for field in self.required_fields.keys():
+        for field in self.required_fields:
             missing_fields = {
                 k: v for k, v in self.required_fields.items() if k != field
             }

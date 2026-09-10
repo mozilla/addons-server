@@ -146,9 +146,11 @@ class TestSigning(TestCase):
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
-        with zipfile.ZipFile(self.file_.file.path, mode='r') as zf:
-            with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
-                assert mozillasf.read().endswith(b'\n\n')
+        with (
+            zipfile.ZipFile(self.file_.file.path, mode='r') as zf,
+            zf.open('META-INF/mozilla.sf', 'r') as mozillasf,
+        ):
+            assert mozillasf.read().endswith(b'\n\n')
 
     def test_sign_file_non_ascii_filename(self):
         # Pretend file on filesystem contains non-ascii characters. The
@@ -169,10 +171,12 @@ class TestSigning(TestCase):
             signing.sign_file(self.file_)
             self.assert_signed()
 
-            with zipfile.ZipFile(self.file_.file.path, mode='r') as zf:
-                with zf.open('META-INF/manifest.mf', 'r') as manifest_mf:
-                    manifest_contents = manifest_mf.read().decode('utf-8')
-                    assert '\u1109\u1161\u11a9' in manifest_contents
+            with (
+                zipfile.ZipFile(self.file_.file.path, mode='r') as zf,
+                zf.open('META-INF/manifest.mf', 'r') as manifest_mf,
+            ):
+                manifest_contents = manifest_mf.read().decode('utf-8')
+                assert '\u1109\u1161\u11a9' in manifest_contents
 
     def test_no_sign_missing_file(self):
         os.unlink(self.file_.file.path)

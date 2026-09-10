@@ -77,7 +77,7 @@ def process_blocklistsubmission(multi_block_submit_id, **kw):
             action_flag=CHANGE,
             change_message=message,
         )
-        raise exc
+        raise
 
 
 # We rarely care about task results and ignore them by default

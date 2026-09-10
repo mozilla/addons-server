@@ -770,7 +770,7 @@ class WithSourceMixin:
     def get_invalid_source_file_type_message(self):
         valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
         return gettext(
-            'Unsupported file type, please upload an archive file {extensions}.'.format(
+            'Unsupported file type, please upload an archive file {extensions}.'.format(  # noqa: INT002
                 extensions=valid_extensions_string
             )
         )

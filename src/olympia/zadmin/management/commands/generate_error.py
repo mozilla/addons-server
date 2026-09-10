@@ -58,4 +58,4 @@ class Command(BaseCommand):
                             'Capturing exception as a log', exc_info=exception
                         )
                     else:
-                        raise exception
+                        raise
