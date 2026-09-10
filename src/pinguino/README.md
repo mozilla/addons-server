@@ -10,6 +10,7 @@ This is a self-contained frontend project. It does not use addons-server's root 
 src/pinguino/
 ├── package.json / package-lock.json    # own deps: lit, @lit-labs/router, @mozilla/acorn-web-components
 ├── tsconfig.json                       # Lit-recommended TS (legacy decorators)
+├── biome.json                          # lint + format (Biome, matches acorn)
 ├── vite.config.ts                      # base '/pinguino/', dev server on :5273
 ├── .npmrc                              # @mozilla scope -> GitHub Packages (token via env)
 ├── index.html                          # SPA shell
@@ -59,6 +60,13 @@ docker compose up -d --force-recreate pinguino
 ```
 
 Making changes to configuration files like `package.json`, `vite.config.ts` or `tsconfig.json` requires restarting the development server to take effect.
+
+## Checks
+
+- `npm run lint` runs Biome (lint + format check), configured in `biome.json` to match acorn's setup. `npm run format` applies its fixes.
+- `npm run typecheck` and `npm run build` cover types and the production bundle.
+
+The `_test_pinguino` GitHub Action runs all three on pull requests that touch `src/pinguino/`.
 
 ## Staging / production
 

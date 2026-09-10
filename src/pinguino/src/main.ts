@@ -2,9 +2,9 @@
 // the polyfill is a no-op where it's native. Must load before the Router is built.
 import 'urlpattern-polyfill';
 
+import { Router } from '@lit-labs/router';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import { Router } from '@lit-labs/router';
 
 import './foundations/acorn';
 import './foundations/layout';

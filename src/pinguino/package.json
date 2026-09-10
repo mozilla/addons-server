@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check",
+    "format": "biome check --write"
   },
   "dependencies": {
     "@lit-labs/router": "^0.1.4",
@@ -17,6 +19,7 @@
     "urlpattern-polyfill": "^10.1.0"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.5.13",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
   }
