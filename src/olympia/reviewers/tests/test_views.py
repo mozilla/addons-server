@@ -77,6 +77,7 @@ from olympia.stats.utils import VERSION_ADU_LIMIT
 from olympia.users.models import (
     RESTRICTION_TYPES,
     EmailUserRestriction,
+    IPNetworkUserRestriction,
     UserProfile,
     UserRestrictionHistory,
 )
@@ -5443,6 +5444,146 @@ class TestReview(ReviewBase):
             'Listed auto-approval automatically disabled because of a '
             'restriction (EmailUserRestriction)',
         )
+
+    def _create_restriction_disable_activity(self, *histories):
+        core.set_user(get_task_user())
+        return ActivityLog.objects.create(
+            amo.LOG.DISABLE_AUTO_APPROVAL,
+            self.addon,
+            details={
+                'channel': amo.CHANNEL_LISTED,
+                'comments': (
+                    'Listed auto-approval automatically disabled because of a '
+                    'restriction'
+                ),
+                'restrictions': [
+                    history.get_restriction_display() for history in histories
+                ],
+                'restriction_history_ids': [history.pk for history in histories],
+            },
+        )
+
+    def test_important_changes_restriction_admin_link_for_advanced_admin(self):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.addon_author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=2,  # EmailUserRestriction
+            restriction_instance=restriction,
+            version=self.version,
+        )
+        self._create_restriction_disable_activity(history)
+        self.grant_permission(self.reviewer, amo.permissions.ADMIN_ADVANCED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        link = reverse(
+            'admin:users_emailuserrestriction_change', args=(restriction.pk,)
+        )
+        self.assertContains(
+            response,
+            f'<a href="{link}">{restriction.email_pattern}</a>',
+            html=True,
+        )
+        self.assertContains(response, 'EmailUserRestriction:')
+
+    def test_important_changes_restriction_no_admin_link_without_permission(self):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.addon_author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=2,  # EmailUserRestriction
+            restriction_instance=restriction,
+            version=self.version,
+        )
+        self._create_restriction_disable_activity(history)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # The value is shown, but not linked to the admin.
+        self.assertContains(response, restriction.email_pattern)
+        link = reverse(
+            'admin:users_emailuserrestriction_change', args=(restriction.pk,)
+        )
+        self.assertNotContains(response, link)
+
+    def test_important_changes_multiple_restrictions_linked(self):
+        email_restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.addon_author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        ip_restriction = IPNetworkUserRestriction.objects.create(
+            network='10.0.0.0/24',
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        email_history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=2,  # EmailUserRestriction
+            restriction_instance=email_restriction,
+            version=self.version,
+        )
+        ip_history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=3,  # IPNetworkUserRestriction
+            restriction_instance=ip_restriction,
+            version=self.version,
+        )
+        self._create_restriction_disable_activity(email_history, ip_history)
+        self.grant_permission(self.reviewer, amo.permissions.ADMIN_ADVANCED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        email_link = reverse(
+            'admin:users_emailuserrestriction_change', args=(email_restriction.pk,)
+        )
+        ip_link = reverse(
+            'admin:users_ipnetworkuserrestriction_change', args=(ip_restriction.pk,)
+        )
+        self.assertContains(
+            response,
+            f'<a href="{email_link}">{email_restriction.email_pattern}</a>',
+            html=True,
+        )
+        self.assertContains(
+            response,
+            f'<a href="{ip_link}">{ip_restriction.network}</a>',
+            html=True,
+        )
+
+    def test_important_changes_restriction_since_removed(self):
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.addon_author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=2,  # EmailUserRestriction
+            restriction_instance=restriction,
+            version=self.version,
+        )
+        self._create_restriction_disable_activity(history)
+        link = reverse(
+            'admin:users_emailuserrestriction_change', args=(restriction.pk,)
+        )
+        restriction.delete()
+        self.grant_permission(self.reviewer, amo.permissions.ADMIN_ADVANCED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(response, 'restriction since removed')
+        self.assertNotContains(response, link)
+
+    def test_important_changes_restriction_no_instance(self):
+        # A structural denial records a history row with no instance.
+        history = UserRestrictionHistory.objects.create(
+            user=self.addon_author,
+            restriction=3,  # IPNetworkUserRestriction
+            version=self.version,
+        )
+        self._create_restriction_disable_activity(history)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertContains(response, 'no specific restriction matched')
 
     def test_important_changes_log_with_versions_attached(self):
         version1 = self.addon.versions.get()

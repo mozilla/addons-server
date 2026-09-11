@@ -34,6 +34,29 @@
             {# <pre> rather than <div> so that white space is preserved on copy #}
             <pre class="light history-comment">{{ record.details.comments }}</pre>
           {% endif %}
+          {% if restriction_history_by_id is defined and record.details.restriction_history_ids %}
+            <ul class="restriction-matches">
+              {% for history_id in record.details.restriction_history_ids %}
+                {% set entry = restriction_history_by_id.get(history_id) %}
+                {% if entry %}
+                  <li class="light history-comment">
+                    {{ entry.get_restriction_display() }}:
+                    {% if entry.restriction_instance %}
+                      {% if entry.admin_url and is_advanced_admin %}
+                        <a href="{{ entry.admin_url }}">{{ entry.restriction_instance }}</a>
+                      {% else %}
+                        {{ entry.restriction_instance }}
+                      {% endif %}
+                    {% elif entry.restriction_object_id %}
+                      (restriction since removed)
+                    {% else %}
+                      (no specific restriction matched)
+                    {% endif %}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          {% endif %}
           {% if record.details.reason %}
             <pre class="light history-comment">Reason: {{ record.details.reason }}</pre>
           {% endif %}
