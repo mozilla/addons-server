@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.db import transaction
@@ -23,6 +24,7 @@ from olympia.scanners.tasks import (
 )
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
+from olympia.zadmin.models import get_config
 
 from . import tasks
 
@@ -358,3 +360,16 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
         # invalid. Addon.update_status will set the status to NOMINATATED.
         addon.update_status()
         return version
+
+
+def get_dev_agreement_change_date():
+    try:
+        # See: UserProfile's has_read_developer_agreement()
+        change_date = datetime.strptime(
+            get_config(amo.config_keys.LAST_DEV_AGREEMENT_CHANGE_DATE), '%Y-%m-%d %H:%M'
+        )
+        if change_date > datetime.now():
+            return settings.DEV_AGREEMENT_CHANGE_FALLBACK
+    except (ValueError, TypeError):
+        return settings.DEV_AGREEMENT_CHANGE_FALLBACK
+    return change_date

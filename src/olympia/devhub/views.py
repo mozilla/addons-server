@@ -67,10 +67,8 @@ from olympia.amo.utils import (
     send_mail,
     send_mail_jinja,
 )
-from olympia.api.authentication import (
-    SessionIDAuthentication,
-)
-from olympia.api.throttling import contact_support_throttles
+from olympia.api.authentication import SessionIDAuthentication
+from olympia.api.throttling import contact_support_throttles, dev_agreement_throttles
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
@@ -80,6 +78,7 @@ from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
+    get_dev_agreement_change_date,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload
@@ -104,7 +103,7 @@ from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
 from . import feeds, forms, tasks
-from .serializers import SupportSerializer
+from .serializers import DeveloperAgreementSerializer, SupportSerializer
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -2398,3 +2397,37 @@ def developer_support(request):
     serializer.is_valid(raise_exception=True)
     send_support_ticket(user=request.user, **serializer.validated_data)
     return Response(serializer.validated_data, status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionIDAuthentication])
+@permission_classes((IsAuthenticated,))
+@throttle_classes(dev_agreement_throttles)
+def developer_agreement_api(request):
+    if request.method == 'GET':
+        return Response(
+            {
+                'display_name': request.user.display_name,
+                'has_read_developer_agreement': (
+                    request.user.has_read_developer_agreement()
+                ),
+                'last_developer_agreement_change': get_dev_agreement_change_date(),
+            },
+            status=status.HTTP_200_OK,
+        )
+    else:
+        if (
+            not RestrictionChecker(request=request).is_submission_allowed()
+            or request.user.has_read_developer_agreement()
+        ):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = DeveloperAgreementSerializer(
+            data=request.data, context={'request': request}
+        )
+        serializer.is_valid(raise_exception=True)
+        data = {'read_dev_agreement': datetime.datetime.now()}
+        if 'display_name' in serializer.validated_data:
+            data['display_name'] = serializer.validated_data['display_name']
+        request.user.update(**data)
+        return Response(status=status.HTTP_202_ACCEPTED)
