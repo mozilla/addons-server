@@ -3,10 +3,13 @@ from django.utils.translation import gettext
 
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.addons.models import Addon
 from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.versions.models import Version
 
 
 class ActivityLogSerializer(AMOModelSerializer):
@@ -91,3 +94,56 @@ class ActivityLogSerializerForComments(serializers.Serializer):
     comments = serializers.CharField(
         required=True, max_length=CommentLog._meta.get_field('comments').max_length
     )
+
+
+class FeedActivityLogSerializer(AMOModelSerializer):
+    title = serializers.SerializerMethodField()
+    date = serializers.DateTimeField(source='created')
+    addon = serializers.SerializerMethodField()
+    versions = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
+
+    class Meta:
+        model = ActivityLog
+        fields = ('id', 'addon', 'versions', 'title', 'comments', 'date', 'user')
+
+    def get_title(self, obj):
+        return obj.to_string()
+
+    def get_comments(self, obj):
+        comments = obj.details['comments'] if obj.details else ''
+        return getattr(obj.log(), 'sanitize', comments)
+
+    def get_user(self, obj):
+        return {
+            'name': obj.user.name,
+        }
+
+    def get_addon(self, obj):
+        return next(
+            (
+                {
+                    'id': addon.id,
+                    'slug': addon.slug,
+                    'name': str(addon.name),
+                    'disabled_by_user': addon.disabled_by_user,
+                }
+                for addon in obj.arguments
+                if isinstance(addon, Addon)
+            ),
+            None,
+        )
+
+    def get_versions(self, obj):
+        return [
+            {
+                'version_id': version.id,
+                'version': version.version,
+                'channel': amo.CHANNEL_CHOICES_API[version.channel],
+                'status': version.get_review_status_display(),
+                'addon_id': version.addon.id,
+            }
+            for version in obj.arguments
+            if isinstance(version, Version)
+        ]
