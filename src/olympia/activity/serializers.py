@@ -5,9 +5,11 @@ from rest_framework import serializers
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.addons.models import Addon
 from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.versions.models import Version
 
 
 class ActivityLogSerializer(AMOModelSerializer):
@@ -97,18 +99,14 @@ class ActivityLogSerializerForComments(serializers.Serializer):
 class FeedActivityLogSerializer(AMOModelSerializer):
     title = serializers.SerializerMethodField()
     date = serializers.DateTimeField(source='created')
-    version = serializers.SerializerMethodField()
+    addon = serializers.SerializerMethodField()
+    versions = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
+    user = serializers.SerializerMethodField()
 
     class Meta:
         model = ActivityLog
-        fields = (
-            'id',
-            'version',
-            'title',
-            'comments',
-            'date',
-        )
+        fields = ('id', 'addon', 'versions', 'title', 'comments', 'date', 'user')
 
     def get_title(self, obj):
         return obj.to_string()
@@ -117,19 +115,35 @@ class FeedActivityLogSerializer(AMOModelSerializer):
         comments = obj.details['comments'] if obj.details else ''
         return getattr(obj.log(), 'sanitize', comments)
 
-    def get_version(self, obj):
+    def get_user(self, obj):
+        return {
+            'name': obj.user.name,
+        }
+
+    def get_addon(self, obj):
+        return next(
+            (
+                {
+                    'id': addon.id,
+                    'slug': addon.slug,
+                    'name': str(addon.name),
+                    'disabled_by_user': addon.disabled_by_user,
+                }
+                for addon in obj.arguments
+                if isinstance(addon, Addon)
+            ),
+            None,
+        )
+
+    def get_versions(self, obj):
         return [
             {
-                'version_id': version_log.version.id,
-                'version': version_log.version.version,
-                'channel': amo.CHANNEL_CHOICES_API[version_log.version.channel],
-                'status': version_log.version.get_review_status_display(),
-                'addon': {
-                    'id': version_log.version.addon.id,
-                    'slug': version_log.version.addon.slug,
-                    'name': str(version_log.version.addon.name),
-                    'disabled_by_user': version_log.version.addon.disabled_by_user,
-                },
+                'version_id': version.id,
+                'version': version.version,
+                'channel': amo.CHANNEL_CHOICES_API[version.channel],
+                'status': version.get_review_status_display(),
+                'addon_id': version.addon.id,
             }
-            for version_log in obj.versionlog_set.all()
+            for version in obj.arguments
+            if isinstance(version, Version)
         ]

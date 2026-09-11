@@ -803,16 +803,15 @@ class TestActivityView(LogMixin, TestCase):
         self.version = self.addon.current_version
         self.url = reverse_ns('developer-activity')
 
-    def log(self, addon, action, version=None, user=None, comments=None):
-        version = version or addon.current_version
+    def log(self, addon, action, versions=None, user=None, comments=None):
+        versions = versions or (addon.current_version,)
         return ActivityLog.objects.create(
             action or amo.LOG.APPROVE_VERSION,
             addon,
-            version,
+            *versions,
             user=user or self.user,
             details={
                 'comments': comments or 'Looks good',
-                'version': version.version,
             },
         )
 
@@ -830,18 +829,20 @@ class TestActivityView(LogMixin, TestCase):
         result = response.data['results'][0]
         assert result['title'] == log.to_string()
         assert result['comments'] == 'Looks good'
-        assert result['version'] == [
+        assert result['user']['name'] == GENERIC_USER_NAME
+        assert result['addon'] == {
+            'id': self.version.addon.pk,
+            'slug': self.version.addon.slug,
+            'name': str(self.version.addon.name),
+            'disabled_by_user': self.version.addon.disabled_by_user,
+        }
+        assert result['versions'] == [
             {
                 'version_id': self.version.pk,
                 'version': self.version.version,
                 'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
                 'status': self.version.get_review_status_display(),
-                'addon': {
-                    'id': self.version.addon.pk,
-                    'slug': self.version.addon.slug,
-                    'name': str(self.version.addon.name),
-                    'disabled_by_user': self.version.addon.disabled_by_user,
-                },
+                'addon_id': self.version.addon.pk,
             }
         ]
 
@@ -854,15 +855,50 @@ class TestActivityView(LogMixin, TestCase):
         assert response.status_code == 200
         assert [item['id'] for item in response.data['results']] == [log.pk]
 
-    def test_excludes_actions_hidden_from_developers(self):
-        log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
+    def test_multiple_versions(self):
+        version1 = version_factory(addon=self.addon)
+        version2 = version_factory(addon=self.addon)
+
+        log = self.log(
+            self.addon, amo.LOG.APPROVE_VERSION, versions=[version1, version2]
+        )
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert [item['id'] for item in response.data['results']] == [log.pk]
+        assert response.data['results'][0]['versions'] == [
+            {
+                'version_id': version.pk,
+                'version': version.version,
+                'channel': amo.CHANNEL_CHOICES_API[version.channel],
+                'status': version.get_review_status_display(),
+                'addon_id': self.addon.pk,
+            }
+            for version in (version1, version2)
+        ]
+
+    def test_excludes_and_anonymizes_actions_from_developers(self):
+        public_log = self.log(
+            self.addon,
+            amo.LOG.DEVELOPER_REPLY_VERSION,
+            user=user_factory(display_name='foo'),
+            comments='shown',
+        )
+        anon_log = self.log(self.addon, amo.LOG.FORCE_DISABLE, comments='anonymized')
         self.log(
             self.addon, amo.LOG_BY_ID[amo.LOG_HIDE_DEVELOPER[0]], comments='hidden'
         )
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert [item['id'] for item in response.data['results']] == [log.pk]
+        assert [item['id'] for item in response.data['results']] == [
+            anon_log.pk,
+            public_log.pk,
+        ]
+        assert [item['user']['name'] for item in response.data['results']] == [
+            GENERIC_USER_NAME,
+            'foo',
+        ]
 
     def test_filter_by_addon(self):
         log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
@@ -881,7 +917,7 @@ class TestActivityView(LogMixin, TestCase):
     def test_filter_by_version(self):
         log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
         ul_version = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
-        self.log(self.addon, amo.LOG.APPROVE_VERSION, version=ul_version)
+        self.log(self.addon, amo.LOG.APPROVE_VERSION, versions=[ul_version])
         self.client.login_api(self.user)
         response = self.client.get(self.url, {'version': self.version.pk})
         assert response.status_code == 200

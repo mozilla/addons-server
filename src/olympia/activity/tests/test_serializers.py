@@ -188,29 +188,30 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         assert result['date'] == self.now.isoformat() + 'Z'
         assert result['title'] == log.to_string()
         assert result['comments'] == 'foobar'
-        assert result['version'] == [
+        assert result['addon'] == {
+            'id': self.version.addon.pk,
+            'slug': self.version.addon.slug,
+            'name': str(self.version.addon.name),
+            'disabled_by_user': self.version.addon.disabled_by_user,
+        }
+        assert result['versions'] == [
             {
                 'version_id': self.version.pk,
                 'version': self.version.version,
                 'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
                 'status': self.version.get_review_status_display(),
-                'addon': {
-                    'id': self.version.addon.pk,
-                    'slug': self.version.addon.slug,
-                    'name': str(self.version.addon.name),
-                    'disabled_by_user': self.version.addon.disabled_by_user,
-                },
+                'addon_id': self.version.addon.pk,
             }
         ]
 
-    def test_no_versionlog(self):
+    def test_no_versions(self):
         log = ActivityLog.objects.create(
             amo.LOG.USER_DISABLE, self.addon, user=self.user
         )
         assert log.versionlog_set.count() == 0
-        assert self.serialize(log)['version'] == []
+        assert self.serialize(log)['versions'] == []
 
-    def test_multiple_versionlogs(self):
+    def test_multiple_versions(self):
         ul_version = version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
         log = ActivityLog.objects.create(
             amo.LOG.APPROVE_VERSION,
@@ -220,8 +221,8 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
             user=self.user,
         )
         result = self.serialize(log)
-        assert len(result['version']) == 2
-        assert {item['version_id'] for item in result['version']} == {
+        assert len(result['versions']) == 2
+        assert {item['version_id'] for item in result['versions']} == {
             self.version.pk,
             ul_version.pk,
         }

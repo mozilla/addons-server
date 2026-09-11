@@ -125,8 +125,7 @@ class ActivityView(ListAPIView):
     serializer_class = FeedActivityLogSerializer
 
     def get_queryset(self):
-        feed = get_activity_feed(None, self.request.user.addons.all())
-        return feed.prefetch_related('versionlog_set__version')
+        return get_activity_feed(None, self.request.user.addons.all())
 
     def filter_queryset(self, qs):
         if addon_id := self.request.GET.get('addon'):
