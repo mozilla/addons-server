@@ -31,7 +31,7 @@ from .serializers import (
     ScannerQueryResultSerializer,
     ScannerQueryRuleSerializer,
 )
-from .tasks import run_scanner_query_rule
+from .tasks import run_actions_for_scanner_result, run_scanner_query_rule
 
 
 log = olympia.core.logger.getLogger('z.scanners.views')
@@ -81,6 +81,9 @@ def push_scanner_result(request):
     log.info(
         'Pushed new scanner result %s for version %s', scanner_result.pk, version_id
     )
+
+    if scanner_result.has_matches:
+        run_actions_for_scanner_result.delay(scanner_result.pk)
 
     return Response({'id': scanner_result.pk}, status=status.HTTP_201_CREATED)
 

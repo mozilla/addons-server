@@ -291,6 +291,26 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
 
 @task
 @use_primary_db
+def run_actions_for_scanner_result(scanner_result_pk):
+    """Execute the scanner actions for the rules matched by a single scanner
+    result."""
+    log.info('Starting run actions task for ScannerResult %s.', scanner_result_pk)
+    scanner_result = ScannerResult.objects.get(pk=scanner_result_pk)
+    rule_pks = list(scanner_result.matched_rules.values_list('pk', flat=True))
+
+    if not rule_pks:
+        log.info(
+            'No matched rule for ScannerResult %s, not running any action.',
+            scanner_result_pk,
+        )
+        return
+
+    ScannerResult.run_actions(scanner_result.version, rules=rule_pks)
+    log.info('Ending run actions task for ScannerResult %s.', scanner_result_pk)
+
+
+@task
+@use_primary_db
 def run_narc_on_version(version_pk, *, run_actions_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
