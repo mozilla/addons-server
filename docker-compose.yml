@@ -109,6 +109,7 @@ services:
           - olympia.test
     depends_on:
       - web
+      - pinguino
 
   memcached:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
@@ -193,12 +194,34 @@ services:
       - 7011:7011
     command: yarn amo:olympia
 
+  # Pinguino (Lit DevHub rebuild). Runs as its own service so its Node and Vite
+  # toolchain stays separate from the olympia image and the legacy frontend pipeline.
+  pinguino:
+    image: node:24-slim@sha256:ba849c60be29959425b8734d57b8b4b7d56f98edd9504c9af091d5281095a71e
+    platform: linux/amd64
+    working_dir: /app
+    # The browser reaches Vite through nginx on :80, so the HMR socket must
+    # target that port rather than the unpublished dev-server port.
+    # NODE_AUTH_TOKEN (from .env) lets npm ci pull @mozilla/acorn-web-components
+    # from GitHub Packages; the .npmrc references it.
+    environment:
+      - VITE_HMR_CLIENT_PORT=80
+      - NODE_AUTH_TOKEN=${NODE_AUTH_TOKEN:-}
+    volumes:
+      - ./src/pinguino:/app
+      # Keep deps inside the container so they never mix with the host or olympia.
+      - pinguino_node_modules:/app/node_modules
+    command: sh -c "npm ci || npm install; npm run dev"
+    expose:
+      - "5273"
+
 networks:
   default:
     driver: bridge
     enable_ipv6: false
 
 volumes:
+  pinguino_node_modules:
   # Volume for rabbitmq/redis to avoid anonymous volumes
   data_rabbitmq:
   data_redis:

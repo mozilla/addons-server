@@ -1,0 +1,64 @@
+# CI for the pinguino frontend subproject (src/pinguino), which is self-contained
+# and not part of the olympia image — so it runs on its own Node toolchain rather
+# than through the image-based _test_* workflows. Path-filtered to only run when
+# pinguino changes.
+name: Test Pinguino
+
+on:
+  pull_request:
+    paths:
+      - 'src/pinguino/**'
+      - '.github/workflows/_test_pinguino.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/pinguino/**'
+      - '.github/workflows/_test_pinguino.yml'
+  workflow_dispatch:
+
+# @mozilla/acorn-web-components installs from GitHub Packages; npm ci needs a
+# read:packages token, which the automatic GITHUB_TOKEN provides.
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: test-pinguino-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Fork PRs can't read the org's GitHub Packages, so skip them (they'd 401 on
+    # install). Same-repo branches, pushes and manual runs still run.
+    if: >-
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    defaults:
+      run:
+        working-directory: src/pinguino
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: src/pinguino/package-lock.json
+
+      - name: Install
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Lint (Biome)
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
