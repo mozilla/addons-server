@@ -357,6 +357,19 @@ def test_generate_static_theme_preview(
                 'bookmark_text': 'rgb(0,0,0)',
             },
         ),
+        (  # chrome colors with an alpha channel
+            {'theme_frame': 'transparent.gif'},
+            {
+                'frame': [123, 45, 67, 0.5],
+                'tab_background_text': [9, 87, 65, 1],
+                'bookmark_text': [0, 0, 0, 0],
+            },
+            {
+                'frame': 'rgba(123,45,67,0.5)',
+                'tab_background_text': 'rgba(9,87,65,1)',
+                'bookmark_text': 'rgba(0,0,0,0)',
+            },
+        ),
     ),
 )
 def test_generate_static_theme_preview_with_alternative_properties(

@@ -138,6 +138,9 @@ def test_additional_background(
     (
         ('bookmark_text', [2, 3, 4], 'bookmark_text', 'rgb(2,3,4)'),
         ('frame', [12, 13, 14], 'frame', 'rgb(12,13,14)'),
+        ('bookmark_text', [2, 3, 4, 0.5], 'bookmark_text', 'rgba(2,3,4,0.5)'),
+        ('frame', [12, 13, 14, 1], 'frame', 'rgba(12,13,14,1)'),
+        ('accentcolor', [22, 23, 24, 0], 'frame', 'rgba(22,23,24,0)'),
         ('textcolor', 'rgb(32,33,34)', 'tab_background_text', 'rgb(32,33,34)'),
         ('accentcolor', 'rgb(42, 43, 44)', 'frame', 'rgb(42,43,44)'),
         ('toolbar_text', 'rgb(42,43,44)', 'bookmark_text', 'rgb(42,43,44)'),
