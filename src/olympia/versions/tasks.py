@@ -21,6 +21,7 @@ from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_i
 from olympia.constants.scanners import (
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_RETRY_INITIAL_DELAY,
 )
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
@@ -28,7 +29,11 @@ from olympia.files.utils import get_background_images
 from olympia.lib.crypto.tasks import duplicate_addon_version
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.scanners.models import ScannerResult
-from olympia.scanners.tasks import build_webhook_payload, call_webhooks
+from olympia.scanners.tasks import (
+    build_webhook_payload,
+    call_webhooks,
+    wait_for_scanner_results,
+)
 from olympia.users.models import UserProfile
 from olympia.users.utils import get_task_user
 from olympia.versions.compare import VersionString
@@ -449,6 +454,12 @@ def call_webhooks_on_version_created(version_pk):
         )
     except Exception:
         log.exception('Error while calling webhooks for Version %s', version_pk)
+
+    # Even when a webhook call failed, we still want to wait for the results of
+    # every scanner blocking the auto-approval of this version.
+    wait_for_scanner_results.apply_async(
+        kwargs={'version_pk': version_pk}, countdown=WEBHOOK_RETRY_INITIAL_DELAY
+    )
 
 
 @task

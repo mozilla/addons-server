@@ -1,13 +1,16 @@
 import json
 import os
+from datetime import datetime
 from unittest import mock
 
 from django.conf import settings
 from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
 
+import pytest
 import requests
 import waffle
+from celery.exceptions import Retry
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -26,10 +29,14 @@ from olympia.constants.scanners import (
     NARC,
     NEW,
     RUNNING,
+    SCANNER_RESULTS_MISSING_RULE_NAME,
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_MAX_RETRIES,
+    WEBHOOK_ON_VERSION_CREATED,
     WEBHOOK_PUSH,
+    WEBHOOK_RETRY_INITIAL_DELAY,
     YARA,
 )
 from olympia.files.models import File
@@ -43,6 +50,10 @@ from olympia.scanners.models import (
     ScannerWebhook,
     ScannerWebhookEvent,
 )
+from olympia.scanners.serializers import (
+    WebhookAddonSerializer,
+    WebhookVersionSerializer,
+)
 from olympia.scanners.tasks import (
     _call_webhook,
     _run_yara,
@@ -55,6 +66,7 @@ from olympia.scanners.tasks import (
     run_scanner_query_rule,
     run_scanner_query_rule_on_versions_chunk,
     run_yara,
+    wait_for_scanner_results,
 )
 from olympia.versions.models import Version
 
@@ -2994,3 +3006,224 @@ class TestCallWebhooksDuringValidation(UploadMixin, TestCase):
         results = call_webhooks_during_validation(self.results, self.upload.pk)
 
         assert self.results == results
+
+
+class TestWaitForScannerResults(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        self.webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        # The webhook has to predate the version, otherwise we don't wait on it.
+        self.webhook.update(modified=self.version.created)
+        self.event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=self.webhook
+        )
+
+    def _create_result(self, **kwargs):
+        # Without any results by default, i.e. the scanner still owes us some.
+        kwargs.setdefault('webhook_event', self.event)
+        kwargs.setdefault('version', self.version)
+        return ScannerResult.objects.create(scanner=WEBHOOK, **kwargs)
+
+    def _run_task(self, retries=0):
+        return wait_for_scanner_results.apply(args=(self.version.pk,), retries=retries)
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_nothing_to_do_when_results_are_complete(self, _call_webhook_mock):
+        self._create_result(results={'matchedRules': []})
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_nothing_to_do_when_event_was_skipped(self, _call_webhook_mock):
+        # A scanner that returned a 204 has `results` set to None.
+        self._create_result(results=None)
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_nothing_to_do_when_no_event_blocks_auto_approval(self, _call_webhook_mock):
+        self.event.update(is_active=False)
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_nothing_to_do_when_webhook_was_enabled_after_the_version(
+        self, _call_webhook_mock
+    ):
+        self.webhook.update(modified=datetime.now())
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_calls_webhook_again_and_retries(self, _call_webhook_mock):
+        # The webhook accepts the call but does not return any results.
+        _call_webhook_mock.return_value = {}
+        scanner_result = self._create_result()
+
+        with pytest.raises(Retry) as exc_info:
+            self._run_task()
+
+        assert exc_info.value.when == WEBHOOK_RETRY_INITIAL_DELAY
+        assert _call_webhook_mock.call_count == 1
+        assert _call_webhook_mock.call_args == mock.call(
+            webhook=self.webhook,
+            payload={
+                'addon': WebhookAddonSerializer(self.version.addon).data,
+                'version': WebhookVersionSerializer(self.version).data,
+                'event': 'on_version_created',
+                'scanner_result_url': (
+                    f'http://testserver/api/v5/scanner/results/{scanner_result.pk}/'
+                ),
+            },
+        )
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_retry_delay_doubles(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {}
+        self._create_result()
+
+        for retries in range(WEBHOOK_MAX_RETRIES):
+            with pytest.raises(Retry) as exc_info:
+                self._run_task(retries=retries)
+            assert exc_info.value.when == WEBHOOK_RETRY_INITIAL_DELAY * 2**retries
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_does_not_retry_when_the_scanner_answers(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {'matchedRules': []}
+        scanner_result = self._create_result()
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_count == 1
+        assert scanner_result.reload().results == {'matchedRules': []}
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_only_calls_the_webhooks_that_owe_us_results(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {}
+        other_webhook = ScannerWebhook.objects.create(
+            name='some-other-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        other_webhook.update(modified=self.version.created)
+        other_event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=other_webhook
+        )
+        self._create_result(results={'matchedRules': []})
+        self._create_result(
+            webhook_event=other_event, upload=self.get_upload('webextension.xpi')
+        )
+
+        with pytest.raises(Retry):
+            self._run_task()
+
+        assert _call_webhook_mock.call_count == 1
+        assert _call_webhook_mock.call_args[1]['webhook'] == other_webhook
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_keeps_the_results_sent_while_calling_the_webhook(self, _call_webhook_mock):
+        scanner_result = self._create_result()
+        sent_while_calling = {'matchedRules': ['some-rule']}
+
+        def patch_results_then_answer(*args, **kwargs):
+            ScannerResult.objects.filter(pk=scanner_result.pk).update(
+                results=sent_while_calling
+            )
+            return {}
+
+        _call_webhook_mock.side_effect = patch_results_then_answer
+
+        self._run_task()
+
+        assert scanner_result.reload().results == sent_while_calling
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_does_not_stop_on_a_webhook_error(self, _call_webhook_mock):
+        _call_webhook_mock.side_effect = ValueError('scanner is down')
+        scanner_result = self._create_result()
+
+        with pytest.raises(Retry):
+            self._run_task()
+
+        assert _call_webhook_mock.call_count == 1
+        assert scanner_result.reload().results == []
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_records_missing_results_when_out_of_retries(self, _call_webhook_mock):
+        rule = ScannerRule.objects.get(
+            name=SCANNER_RESULTS_MISSING_RULE_NAME, scanner=WEBHOOK
+        )
+        scanner_result = self._create_result()
+
+        self._run_task(retries=WEBHOOK_MAX_RETRIES)
+
+        _call_webhook_mock.assert_not_called()
+        scanner_result.reload()
+        assert scanner_result.results == {
+            'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]
+        }
+        assert scanner_result.is_complete
+        assert scanner_result.has_matches is True
+        assert list(scanner_result.matched_rules.all()) == [rule]
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_records_missing_results_when_the_upload_is_gone(self, _call_webhook_mock):
+        self.event.update(event=WEBHOOK_DURING_VALIDATION)
+        upload = self.get_upload('webextension.xpi')
+        upload.update(path='/not-a-file')
+        scanner_result = self._create_result(upload=upload)
+
+        self._run_task()
+
+        # There is nothing we could send again, so we don't even try.
+        _call_webhook_mock.assert_not_called()
+        assert scanner_result.reload().results == {
+            'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]
+        }
+
+    @mock.patch('olympia.scanners.tasks._build_payload_for_result')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_retries_when_the_payload_cannot_be_built(
+        self, _call_webhook_mock, _build_payload_mock
+    ):
+        _build_payload_mock.side_effect = ValueError('nope')
+        scanner_result = self._create_result()
+
+        with pytest.raises(Retry):
+            self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+        # We don't know whether this is transient, so we don't record missing
+        # results until we are out of retries.
+        assert scanner_result.reload().results == []
+
+    @mock.patch('olympia.scanners.tasks._build_payload_for_result')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_records_missing_results_when_out_of_retries_and_no_payload(
+        self, _call_webhook_mock, _build_payload_mock
+    ):
+        _build_payload_mock.side_effect = ValueError('nope')
+        scanner_result = self._create_result()
+
+        self._run_task(retries=WEBHOOK_MAX_RETRIES)
+
+        _build_payload_mock.assert_not_called()
+        assert scanner_result.reload().results == {
+            'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]
+        }

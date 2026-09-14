@@ -28,6 +28,7 @@ from olympia.constants.blocklist import BlockReason
 from olympia.constants.scanners import (
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_RETRY_INITIAL_DELAY,
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.scanners.models import WEBHOOK, ScannerResult, ScannerRule
@@ -1047,14 +1048,42 @@ class TestCallWebhooksOnVersionCreated(TestCase):
             version=version,
         )
 
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
     @mock.patch('olympia.versions.tasks.call_webhooks')
-    def test_skip_webhooks_on_langpack_created(self, call_webhooks_mock):
+    def test_schedules_wait_for_scanner_results(self, _, apply_async_mock):
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        apply_async_mock.assert_called_with(
+            kwargs={'version_pk': version.pk},
+            countdown=WEBHOOK_RETRY_INITIAL_DELAY,
+        )
+
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_schedules_wait_for_scanner_results_even_when_a_call_failed(
+        self, call_webhooks_mock, apply_async_mock
+    ):
+        call_webhooks_mock.side_effect = ValueError('scanner is down')
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        assert apply_async_mock.called
+
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_skip_webhooks_on_langpack_created(
+        self, call_webhooks_mock, apply_async_mock
+    ):
         addon = addon_factory(type=amo.ADDON_LPAPP)
         version = version_factory(addon=addon)
         addon.reload()
 
         call_webhooks_on_version_created(version.pk)
         call_webhooks_mock.assert_not_called()
+        apply_async_mock.assert_not_called()
 
     @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):

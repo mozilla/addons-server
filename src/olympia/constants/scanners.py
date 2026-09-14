@@ -94,9 +94,20 @@ WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
     WEBHOOK_ON_VERSION_CREATED,
 ]
 
+# Delay before we first check that we have all the results for a version, and
+# backoff factor for the retries after that (the delay doubles each time).
+WEBHOOK_RETRY_INITIAL_DELAY = 60 * 60
+# Number of retries before we give up on the scanners for a version.
+WEBHOOK_MAX_RETRIES = 5
+# Longest delay between two retries, i.e. the one before the last retry.
+WEBHOOK_RETRY_BACKOFF_MAX = WEBHOOK_RETRY_INITIAL_DELAY * 2 ** (WEBHOOK_MAX_RETRIES - 1)
+
 # Special rule name used as fallback when a scanner has no better rule to
 # associate with an annotation.
 ANNOTATIONS_RULE_NAME = 'ANNOTATIONS'
+
+# Special rule name used when a scanner never sent its results for a version.
+SCANNER_RESULTS_MISSING_RULE_NAME = 'SCANNER_RESULTS_MISSING'
 
 # Special empty configuration schema to use when the rule is being created
 EMPTY_RULE_CONFIGURATION_SCHEMA = {
