@@ -38,11 +38,15 @@ from olympia.constants.scanners import (
     COMPLETED,
     NARC,
     RUNNING,
+    SCANNER_RESULTS_MISSING_RULE_NAME,
     SCANNERS,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
+    WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_RETRY_BACKOFF_MAX,
+    WEBHOOK_RETRY_INITIAL_DELAY,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -61,6 +65,10 @@ from .models import (
 
 
 log = olympia.core.logger.getLogger('z.scanners.task')
+
+
+class ScannerResultsMissingError(Exception):
+    """Raised to make Celery retry when some scanners owe us results."""
 
 
 def make_adapter_with_retry():
@@ -105,8 +113,7 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
         webhook__is_active=True,
     ).all():
         log.info('Calling webhook "%s".', event.webhook.name)
-        event_name = WEBHOOK_EVENTS.get(event_id, event_id)
-        statsd_name = f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
+        statsd_name = _get_webhook_statsd_name(event)
 
         try:
             scanner_result = ScannerResult.objects.create(
@@ -117,31 +124,50 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
                 activity_log=activity_log,
             )
 
-            with statsd.timer(statsd_name):
-                data = _call_webhook(
-                    webhook=event.webhook,
-                    payload={
-                        **payload,
-                        'event': event_name,
-                        'scanner_result_url': absolutify(
-                            reverse(
-                                'v5:scanner-result-patch',
-                                args=[scanner_result.pk],
-                            )
-                        ),
-                    },
-                )
-
-            scanner_result.results = data
-            # We don't pass `update_fields` because the `save()` method
-            # also updates other fields (e.g. has_matches, matched_rules).
-            scanner_result.save()
+            _deliver_webhook(scanner_result, payload)
 
             statsd.incr(f'{statsd_name}.success')
         except Exception:
             statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
             raise
+
+
+def _get_webhook_statsd_name(event):
+    event_name = WEBHOOK_EVENTS.get(event.event, event.event)
+    return f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
+
+
+def _deliver_webhook(scanner_result, payload):
+    """Call the webhook for an existing ScannerResult and store what it
+    returned. Exceptions are left to the caller."""
+    event = scanner_result.webhook_event
+    previous_results = scanner_result.results
+
+    with statsd.timer(_get_webhook_statsd_name(event)):
+        data = _call_webhook(
+            webhook=event.webhook,
+            payload={
+                **payload,
+                'event': WEBHOOK_EVENTS.get(event.event, event.event),
+                'scanner_result_url': absolutify(
+                    reverse(
+                        'v5:scanner-result-patch',
+                        args=[scanner_result.pk],
+                    )
+                ),
+            },
+        )
+
+    scanner_result.reload()
+    if scanner_result.results != previous_results:
+        # The scanner sent its results while we were calling it.
+        return
+
+    scanner_result.results = data
+    # We don't pass `update_fields` because the `save()` method
+    # also updates other fields (e.g. has_matches, matched_rules).
+    scanner_result.save()
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):
@@ -163,6 +189,112 @@ def build_webhook_payload(event_id, *, upload=None, version=None):
         }
 
     raise ValueError(f'No payload for webhook event {event_id}')
+
+
+def _build_payload_for_result(scanner_result):
+    """Return the payload to send again for an existing scanner result, or None
+    when it cannot be rebuilt."""
+    event_id = scanner_result.webhook_event.event
+
+    if event_id == WEBHOOK_DURING_VALIDATION:
+        upload = scanner_result.upload
+        if not upload or not os.path.exists(upload.file_path):
+            log.error(
+                'Cannot call the webhook again for scanner result %s because '
+                'its file upload is gone.',
+                scanner_result.pk,
+            )
+            return None
+        return build_webhook_payload(event_id, upload=upload)
+
+    return build_webhook_payload(event_id, version=scanner_result.version)
+
+
+def _record_missing_results(scanner_result):
+    """Store artificial results for a scanner that never sent us any, so that
+    the version stops waiting on it."""
+    event = scanner_result.webhook_event
+    scanner_result.results = {'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]}
+    scanner_result.save()
+
+    statsd.incr(f'{_get_webhook_statsd_name(event)}.missing_results')
+    log.error(
+        'Giving up on webhook "%s" for version %s, recording missing results '
+        'on scanner result %s.',
+        event.webhook.name,
+        scanner_result.version_id,
+        scanner_result.pk,
+    )
+
+
+@task(
+    bind=True,
+    autoretry_for=(ScannerResultsMissingError,),
+    max_retries=WEBHOOK_MAX_RETRIES,
+    retry_backoff=WEBHOOK_RETRY_INITIAL_DELAY,
+    retry_backoff_max=WEBHOOK_RETRY_BACKOFF_MAX,
+    retry_jitter=False,
+)
+@use_primary_db
+def wait_for_scanner_results(self, version_pk):
+    """Call the webhooks that still owe us results again, retrying with an
+    increasing delay until they answer, then record artificial results matching
+    the SCANNER_RESULTS_MISSING rule to stop waiting."""
+    version = Version.unfiltered.get(pk=version_pk)
+    events = ScannerWebhookEvent.blocking_auto_approval_for(version)
+    pending = [
+        scanner_result
+        for scanner_result in ScannerResult.objects.filter(
+            version=version, webhook_event__in=events
+        ).select_related('webhook_event__webhook')
+        if not scanner_result.is_complete
+    ]
+
+    if not pending:
+        log.info('All scanners have sent their results for version %s.', version_pk)
+        return
+
+    give_up = self.request.retries >= WEBHOOK_MAX_RETRIES
+    still_pending = False
+
+    for scanner_result in pending:
+        if give_up:
+            _record_missing_results(scanner_result)
+            continue
+
+        event = scanner_result.webhook_event
+        statsd_name = _get_webhook_statsd_name(event)
+        try:
+            payload = _build_payload_for_result(scanner_result)
+            if payload is None:
+                # There is nothing we could send again, so no point waiting.
+                _record_missing_results(scanner_result)
+                continue
+
+            log.info(
+                'Calling webhook "%s" again for version %s (retry %s/%s).',
+                event.webhook.name,
+                version_pk,
+                self.request.retries + 1,
+                WEBHOOK_MAX_RETRIES,
+            )
+            _deliver_webhook(scanner_result, payload)
+            statsd.incr(f'{statsd_name}.success')
+        except Exception:
+            statsd.incr(f'{statsd_name}.failure')
+            log.exception(
+                'Error while calling webhook "%s" again for version %s.',
+                event.webhook.name,
+                version_pk,
+            )
+
+        if not scanner_result.is_complete:
+            still_pending = True
+
+    if still_pending:
+        raise ScannerResultsMissingError(
+            f'Still waiting on scanner results for version {version_pk}.'
+        )
 
 
 def _call_webhook(webhook, payload):
