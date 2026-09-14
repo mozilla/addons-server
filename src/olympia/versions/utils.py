@@ -134,8 +134,11 @@ DEPRECATED_COLOR_TO_CSS = {
 
 def process_color_value(prop, value):
     prop = DEPRECATED_COLOR_TO_CSS.get(prop, prop)
-    if isinstance(value, list) and len(value) == 3:
-        return prop, 'rgb(%s,%s,%s)' % tuple(value)
+    if isinstance(value, list):
+        if len(value) == 3:
+            return prop, 'rgb(%s,%s,%s)' % tuple(value)
+        if len(value) == 4:
+            return prop, 'rgba(%s,%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
     return prop, str(value).replace(' ', '')
 
