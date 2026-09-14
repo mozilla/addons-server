@@ -462,6 +462,10 @@ class ScannerResult(AbstractScannerResult):
     def webhook(self):
         return self.webhook_event.webhook if self.webhook_event else None
 
+    @property
+    def is_complete(self):
+        return self.results is None or 'matchedRules' in self.results
+
     def get_rules_queryset(self):
         # See: https://github.com/mozilla/addons-server/issues/13143
         return super().get_rules_queryset().filter(is_active=True)
