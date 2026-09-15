@@ -136,3 +136,58 @@ Any other content or invalid emails will be discarded.
     :<json string Message.TextBody: The plain text body of the email.
     :<json array To: Array of To email addresses.  All will be parsed, and the first matching the correct format used.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
+
+
+-------------
+Activity Feed
+-------------
+
+.. _activity:
+
+This endpoint returns a list of activities relevant to the user.
+
+.. http:get:: /api/v5/activity/
+
+    .. note::
+        This endpoint exclusively uses :ref:`internal authentication <api-auth-internal>`.
+
+    **Request:**
+
+    :query string addon: The add-on id or slug to filter on (optional).
+    :query string version: The version ID to filter on (optional).
+
+    **Response:**
+
+    .. sourcecode:: json
+
+        {
+            "id": 2,
+            "title": "Add-on version 3.0 has been approved.",
+            "comments": "lorum ipsum",
+            "date": "2026-09-11T00:00:00Z",
+            "user": {
+                "name": "username"
+            },
+            "addon": {
+                "id": 85,
+                "slug": "my-addon",
+                "name": {
+                    "en-US": "My Addon"
+                },
+                "disabled_by_user": false
+            },
+            "versions": [
+                {
+                    "id": 10,
+                    "version": "3.0",
+                    "channel": "unlisted",
+                    "public_status": "Approved",
+                    "addon_id": 85
+                }
+            ]
+        }
+
+    :statuscode 200: Success.
+    :statuscode 400: Invalid request parameters.
+    :statuscode 401: Authentication failed.
+

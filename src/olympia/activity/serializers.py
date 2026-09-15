@@ -3,10 +3,15 @@ from django.utils.translation import gettext
 
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog
+from olympia.addons.models import Addon
+from olympia.addons.serializers import MinimalVersionSerializer, SimpleAddonSerializer
 from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.users.models import UserProfile
+from olympia.versions.models import Version
 
 
 class ActivityLogSerializer(AMOModelSerializer):
@@ -91,3 +96,65 @@ class ActivityLogSerializerForComments(serializers.Serializer):
     comments = serializers.CharField(
         required=True, max_length=CommentLog._meta.get_field('comments').max_length
     )
+
+
+class FeedActivityLogVersionsListSerializer(serializers.ListSerializer):
+    def get_attribute(self, obj):
+        return [argument for argument in obj.arguments if isinstance(argument, Version)]
+
+
+class FeedActivityLogVersionSerializer(MinimalVersionSerializer):
+    channel = serializers.SerializerMethodField()
+    public_status = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Version
+        fields = ('id', 'version', 'channel', 'public_status', 'addon_id')
+        list_serializer_class = FeedActivityLogVersionsListSerializer
+
+    def get_channel(self, obj):
+        return amo.CHANNEL_CHOICES_API[obj.channel]
+
+    def get_public_status(self, obj):
+        return obj.file.get_status_display()
+
+    def get_addon_id(self, obj):
+        return obj.addon.id
+
+
+class FeedActivityLogAddonSerializer(SimpleAddonSerializer):
+    class Meta:
+        model = Addon
+        fields = ('id', 'slug', 'name', 'disabled_by_user')
+
+    def get_attribute(self, obj):
+        return next(
+            (argument for argument in obj.arguments if isinstance(argument, Addon)),
+            None,
+        )
+
+
+class FeedActivityLogUserSerializer(AMOModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('name',)
+
+
+class FeedActivityLogSerializer(AMOModelSerializer):
+    title = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField()
+    date = serializers.DateTimeField(source='created')
+    user = FeedActivityLogUserSerializer(read_only=True)
+    addon = FeedActivityLogAddonSerializer(read_only=True)
+    versions = FeedActivityLogVersionSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = ActivityLog
+        fields = ('id', 'addon', 'versions', 'title', 'comments', 'date', 'user')
+
+    def get_title(self, obj):
+        return obj.to_string()
+
+    def get_comments(self, obj):
+        comments = obj.details['comments'] if obj.details else ''
+        return getattr(obj.log(), 'sanitize', comments)
