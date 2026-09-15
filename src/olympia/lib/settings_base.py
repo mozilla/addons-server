@@ -762,6 +762,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.recreate_previews': {'queue': 'adhoc'},
     'olympia.files.tasks.extract_host_permissions': {'queue': 'adhoc'},
     'olympia.lib.crypto.tasks.bump_and_resign_addons': {'queue': 'adhoc'},
+    'olympia.scanners.tasks.wait_for_scanner_results': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.create_new_index': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.delete_indexes': {'queue': 'adhoc'},
     'olympia.search.management.commands.reindex.flag_database': {'queue': 'adhoc'},
@@ -1462,6 +1463,10 @@ EXTENSION_WORKSHOP_URL = env(
 
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds
+# Delay before we first check that we have all the webhook results for a
+# version, and backoff factor for the retries after that (the delay doubles
+# each time).
+SCANNER_WEBHOOK_RETRY_INITIAL_DELAY = 60 * 60  # seconds
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

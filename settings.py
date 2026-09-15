@@ -171,3 +171,8 @@ GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
 )
 
 CINDER_SERVER_URL = 'https://mozilla-staging.cinderapp.com/api/'
+
+# This makes retries faster on local dev, and that should make rabbitmq happy
+# w.r.t. the `consumer_timeout` value. See:
+# https://www.rabbitmq.com/docs/consumers#per-node-configuration
+SCANNER_WEBHOOK_RETRY_INITIAL_DELAY = 60  # seconds
