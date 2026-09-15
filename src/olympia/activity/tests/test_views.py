@@ -804,7 +804,8 @@ class TestActivityView(LogMixin, TestCase):
         self.url = reverse_ns('developer-activity')
 
     def log(self, addon, action, versions=None, user=None, comments=None):
-        versions = versions or (addon.current_version,)
+        if versions is None:
+            versions = (addon.current_version,)
         return ActivityLog.objects.create(
             action or amo.LOG.APPROVE_VERSION,
             addon,
@@ -823,7 +824,8 @@ class TestActivityView(LogMixin, TestCase):
     def test_basic(self):
         log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
         self.client.login_api(self.user)
-        response = self.client.get(self.url)
+        with self.assertNumQueries(12):
+            response = self.client.get(self.url)
         assert response.status_code == 200
         assert [item['id'] for item in response.data['results']] == [log.pk]
         result = response.data['results'][0]
@@ -833,15 +835,15 @@ class TestActivityView(LogMixin, TestCase):
         assert result['addon'] == {
             'id': self.version.addon.pk,
             'slug': self.version.addon.slug,
-            'name': str(self.version.addon.name),
+            'name': {'en-US': str(self.version.addon.name)},
             'disabled_by_user': self.version.addon.disabled_by_user,
         }
         assert result['versions'] == [
             {
-                'version_id': self.version.pk,
+                'id': self.version.pk,
                 'version': self.version.version,
                 'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
-                'status': self.version.get_review_status_display(),
+                'public_status': self.version.file.get_status_display(),
                 'addon_id': self.version.addon.pk,
             }
         ]
@@ -863,15 +865,16 @@ class TestActivityView(LogMixin, TestCase):
             self.addon, amo.LOG.APPROVE_VERSION, versions=[version1, version2]
         )
         self.client.login_api(self.user)
-        response = self.client.get(self.url)
+        with self.assertNumQueries(12):
+            response = self.client.get(self.url)
         assert response.status_code == 200
         assert [item['id'] for item in response.data['results']] == [log.pk]
         assert response.data['results'][0]['versions'] == [
             {
-                'version_id': version.pk,
+                'id': version.pk,
                 'version': version.version,
                 'channel': amo.CHANNEL_CHOICES_API[version.channel],
-                'status': version.get_review_status_display(),
+                'public_status': version.file.get_status_display(),
                 'addon_id': self.addon.pk,
             }
             for version in (version1, version2)

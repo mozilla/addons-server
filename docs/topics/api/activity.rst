@@ -138,9 +138,9 @@ Any other content or invalid emails will be discarded.
     :<json string To[].EmailAddress: An email address in the format `reviewreply+randomuuidstring@addons.mozilla.org`.
 
 
------------------------
-Activity Feed End-point
------------------------
+-------------
+Activity Feed
+-------------
 
 .. _activity:
 
@@ -171,15 +171,17 @@ This endpoint returns a list of activities relevant to the user.
             "addon": {
                 "id": 85,
                 "slug": "my-addon",
-                "name": "My Addon",
+                "name": {
+                    "en-US": "My Addon"
+                },
                 "disabled_by_user": false
             },
             "versions": [
                 {
-                    "version_id": 10,
+                    "id": 10,
                     "version": "3.0",
                     "channel": "unlisted",
-                    "status": "Approved",
+                    "public_status": "Approved",
                     "addon_id": 85
                 }
             ]

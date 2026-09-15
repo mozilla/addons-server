@@ -6,9 +6,11 @@ from rest_framework import serializers
 from olympia import amo
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import Addon
+from olympia.addons.serializers import MinimalVersionSerializer, SimpleAddonSerializer
 from olympia.amo.reverse import reverse
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -96,13 +98,55 @@ class ActivityLogSerializerForComments(serializers.Serializer):
     )
 
 
+class FeedActivityLogVersionsListSerializer(serializers.ListSerializer):
+    def get_attribute(self, obj):
+        return [argument for argument in obj.arguments if isinstance(argument, Version)]
+
+
+class FeedActivityLogVersionSerializer(MinimalVersionSerializer):
+    channel = serializers.SerializerMethodField()
+    public_status = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Version
+        fields = ('id', 'version', 'channel', 'public_status', 'addon_id')
+        list_serializer_class = FeedActivityLogVersionsListSerializer
+
+    def get_channel(self, obj):
+        return amo.CHANNEL_CHOICES_API[obj.channel]
+
+    def get_public_status(self, obj):
+        return obj.file.get_status_display()
+
+    def get_addon_id(self, obj):
+        return obj.addon.id
+
+
+class FeedActivityLogAddonSerializer(SimpleAddonSerializer):
+    class Meta:
+        model = Addon
+        fields = ('id', 'slug', 'name', 'disabled_by_user')
+
+    def get_attribute(self, obj):
+        return next(
+            (argument for argument in obj.arguments if isinstance(argument, Addon)),
+            None,
+        )
+
+
+class FeedActivityLogUserSerializer(AMOModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = ('name',)
+
+
 class FeedActivityLogSerializer(AMOModelSerializer):
     title = serializers.SerializerMethodField()
-    date = serializers.DateTimeField(source='created')
-    addon = serializers.SerializerMethodField()
-    versions = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
-    user = serializers.SerializerMethodField()
+    date = serializers.DateTimeField(source='created')
+    user = FeedActivityLogUserSerializer(read_only=True)
+    addon = FeedActivityLogAddonSerializer(read_only=True)
+    versions = FeedActivityLogVersionSerializer(read_only=True, many=True)
 
     class Meta:
         model = ActivityLog
@@ -114,36 +158,3 @@ class FeedActivityLogSerializer(AMOModelSerializer):
     def get_comments(self, obj):
         comments = obj.details['comments'] if obj.details else ''
         return getattr(obj.log(), 'sanitize', comments)
-
-    def get_user(self, obj):
-        return {
-            'name': obj.user.name,
-        }
-
-    def get_addon(self, obj):
-        return next(
-            (
-                {
-                    'id': addon.id,
-                    'slug': addon.slug,
-                    'name': str(addon.name),
-                    'disabled_by_user': addon.disabled_by_user,
-                }
-                for addon in obj.arguments
-                if isinstance(addon, Addon)
-            ),
-            None,
-        )
-
-    def get_versions(self, obj):
-        return [
-            {
-                'version_id': version.id,
-                'version': version.version,
-                'channel': amo.CHANNEL_CHOICES_API[version.channel],
-                'status': version.get_review_status_display(),
-                'addon_id': version.addon.id,
-            }
-            for version in obj.arguments
-            if isinstance(version, Version)
-        ]

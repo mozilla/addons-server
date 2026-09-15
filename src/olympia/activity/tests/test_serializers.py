@@ -191,15 +191,15 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         assert result['addon'] == {
             'id': self.version.addon.pk,
             'slug': self.version.addon.slug,
-            'name': str(self.version.addon.name),
+            'name': {'en-US': str(self.version.addon.name)},
             'disabled_by_user': self.version.addon.disabled_by_user,
         }
         assert result['versions'] == [
             {
-                'version_id': self.version.pk,
+                'id': self.version.pk,
                 'version': self.version.version,
                 'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
-                'status': self.version.get_review_status_display(),
+                'public_status': self.version.file.get_status_display(),
                 'addon_id': self.version.addon.pk,
             }
         ]
@@ -222,7 +222,7 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         )
         result = self.serialize(log)
         assert len(result['versions']) == 2
-        assert {item['version_id'] for item in result['versions']} == {
+        assert {item['id'] for item in result['versions']} == {
             self.version.pk,
             ul_version.pk,
         }
