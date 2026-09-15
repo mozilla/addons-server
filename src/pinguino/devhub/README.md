@@ -7,20 +7,23 @@ A ground-up rebuild of the AMO Developer Hub as a Lit app, and the intended home
 This is a self-contained frontend project. It does not use addons-server's root `package.json`, shared `vite.config.ts`, or any of the legacy jQuery/less pipeline, and there is no Django app in front of it - it's a pure SPA.
 
 ```
-src/pinguino/
-├── package.json / package-lock.json    # own deps: lit, @lit-labs/router, @mozilla/acorn-web-components
-├── tsconfig.json                       # Lit-recommended TS (legacy decorators)
-├── biome.json                          # lint + format (Biome, matches acorn)
-├── vite.config.ts                      # base '/pinguino/', dev server on :5273
-├── .npmrc                              # @mozilla scope -> GitHub Packages (token via env)
-├── index.html                          # SPA shell
-└── src/
-    ├── main.ts                         # <pinguino-app> shell + client router
-    ├── foundations/                    # shared foundations for the whole system
-    │   └── acorn.ts                    # registers the acorn (moz-*) components + tokens
-    └── devhub/                         # first product area
-        ├── devhub-home.ts              # home page, built from moz-* components
-        └── devhub-addon.ts             # detail page (:slug route param)
+src/pinguino/                           # umbrella for pinguino projects
+└── devhub/                             # this project (more sit alongside it)
+    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @mozilla/acorn-web-components
+    ├── tsconfig.json                   # Lit-recommended TS (legacy decorators)
+    ├── biome.json                      # lint + format (Biome, matches acorn)
+    ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
+    ├── .npmrc                          # @mozilla scope -> GitHub Packages (token via env)
+    ├── index.html                      # SPA shell
+    └── src/
+        ├── main.ts                     # <pinguino-app> shell + client router
+        ├── app.css                     # document-level styles
+        ├── foundations/                # acorn registration + layout primitives
+        │   ├── acorn.ts                # registers acorn (moz-*) components + tokens
+        │   └── layout/                 # layout primitives (app-grid/container/stack)
+        ├── data.ts                     # mock data (until the AMO API)
+        ├── components/                 # UI: header, cards, updates feed
+        └── pages/                      # route views: home, addon detail
 ```
 
 ## Routing

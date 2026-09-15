@@ -10,6 +10,9 @@ export class AppContainer extends LitElement {
       max-width: 1280px;
       margin-inline: auto;
       padding-inline: var(--space-xlarge);
+      /* Breathing room at the bottom once content grows past the shell's 100vh
+       * floor. The floor lives on moz-provider, so this adds no always-on scroll. */
+      padding-block-end: var(--size-layout-xsmall);
     }
     :host([size='small']) {
       max-width: 640px;

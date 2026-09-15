@@ -11,8 +11,10 @@ import './foundations/layout';
 // After foundations/acorn so it overrides acorn's base.css :root color-scheme.
 import './app.css';
 
-import './devhub/devhub-home';
-import './devhub/devhub-addon';
+import './pages/devhub-home';
+import './pages/devhub-addon';
+
+import './components/devhub-header';
 
 // The SPA is mounted under /pinguino/, so routes match against that prefix.
 const BASE = '/pinguino';
@@ -47,7 +49,7 @@ export class PinguinoApp extends LitElement {
     {
       fallback: {
         render: () =>
-          html`<p>Not found. <a href="${BASE}/">Back to home</a></p>`,
+          html`<p>Not found. <a href="${BASE}">Back to home</a></p>`,
       },
     },
   );
@@ -55,6 +57,8 @@ export class PinguinoApp extends LitElement {
   render() {
     return html`
       <moz-provider>
+        <!-- TODO: impliment proper page header/navigation -->
+        <devhub-header></devhub-header>
         <app-container>${this._router.outlet()}</app-container>
       </moz-provider>
     `;
