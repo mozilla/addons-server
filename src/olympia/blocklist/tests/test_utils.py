@@ -81,22 +81,22 @@ class TestSaveVersionsToBlocks(TestCase):
 
         save_versions_to_blocks([addon.guid], submission)
 
-        assert ActivityLog.objects.count() == 4
+        assert ActivityLog.objects.count() == 3
         assert list(
             ActivityLog.objects.order_by('pk').values_list('action', flat=True)
         ) == [
             amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
             amo.LOG.BLOCKLIST_VERSION_BLOCKED.id,
-            amo.LOG.CHANGE_STATUS.id,
-            amo.LOG.REJECT_VERSION.id,
+            amo.LOG.FORCE_DISABLE.id,
         ]
 
         activity = ActivityLog.objects.latest('pk')
-        assert activity.action == amo.LOG.REJECT_VERSION.id
+        assert activity.action == amo.LOG.FORCE_DISABLE.id
         assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
+        assert activity.addonlog_set.all()[0].addon == addon
         assert activity.versionlog_set.all()[0].version == version
 
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
@@ -139,22 +139,22 @@ class TestSaveVersionsToBlocks(TestCase):
 
         save_versions_to_blocks([addon.guid], submission)
 
-        assert ActivityLog.objects.count() == 4
+        assert ActivityLog.objects.count() == 3
         assert list(
             ActivityLog.objects.order_by('pk').values_list('action', flat=True)
         ) == [
             amo.LOG.BLOCKLIST_BLOCK_ADDED.id,
             amo.LOG.BLOCKLIST_VERSION_SOFT_BLOCKED.id,
-            amo.LOG.CHANGE_STATUS.id,
-            amo.LOG.REJECT_VERSION.id,
+            amo.LOG.FORCE_DISABLE.id,
         ]
 
         activity = ActivityLog.objects.latest('pk')
-        assert activity.action == amo.LOG.REJECT_VERSION.id
+        assert activity.action == amo.LOG.FORCE_DISABLE.id
         assert activity.user == user_new
         assert activity.details['comments'] == 'some reason'
         assert activity.details['is_addon_being_blocked']
         assert activity.details['is_addon_being_disabled']
+        assert activity.addonlog_set.all()[0].addon == addon
         assert activity.versionlog_set.all()[0].version == version
 
         activity = ActivityLog.objects.get(action=amo.LOG.BLOCKLIST_BLOCK_ADDED.id)
