@@ -39,7 +39,7 @@
               {% for history_id in record.details.restriction_history_ids %}
                 {% set entry = restriction_history_by_id.get(history_id) %}
                 {% if entry %}
-                  <li class="light history-comment">
+                  <li class="light">
                     {{ entry.get_restriction_display() }}:
                     {% if entry.restriction_instance %}
                       {% if entry.admin_url and is_advanced_admin %}
