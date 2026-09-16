@@ -158,34 +158,21 @@ This endpoint returns a list of activities relevant to the user.
 
     **Response:**
 
-    .. sourcecode:: json
-
-        {
-            "id": 2,
-            "title": "Add-on version 3.0 has been approved.",
-            "comments": "lorum ipsum",
-            "date": "2026-09-11T00:00:00Z",
-            "user": {
-                "name": "username"
-            },
-            "addon": {
-                "id": 85,
-                "slug": "my-addon",
-                "name": {
-                    "en-US": "My Addon"
-                },
-                "disabled_by_user": false
-            },
-            "versions": [
-                {
-                    "id": 10,
-                    "version": "3.0",
-                    "channel": "unlisted",
-                    "public_status": "Approved",
-                    "addon_id": 85
-                }
-            ]
-        }
+    :>json int count: The number of activities.
+    :>json string next: The URL of the next page of results.
+    :>json string previous: The URL of the previous page of results.
+    :>json array results: An array of activities.
+    :>json int results[].id: The id of the activity.
+    :>json string results[].title: The title summary of the activity.
+    :>json string results[].comments: The text content of the activity.
+    :>json string results[].date: The date the activity was created.
+    :>json string results[].user.name: The name of the reviewer or author.
+    :>json object|null results[].addon: The affected add-on, if any.
+    :>json boolean results[].addon.disabled_by_user: Whether the add-on has been disabled by its developer.
+    :>json array results[].versions: The affected versions, if any.
+    :>json string results[].versions[].channel: The channel of the version - either ``listed``, ``unlisted``, or ``enterprise``.
+    :>json object results[].versions[].file: The version file.
+    :>json object results[].versions[].addon: The add-on the version belongs to.
 
     :statuscode 200: Success.
     :statuscode 400: Invalid request parameters.
