@@ -4,13 +4,18 @@ from django.utils.translation import gettext
 from rest_framework import serializers
 
 from olympia import amo
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog, CommentLog
 from olympia.addons.models import Addon
-from olympia.addons.serializers import MinimalVersionSerializer, SimpleAddonSerializer
+from olympia.addons.serializers import (
+    MinimalFileSerializer,
+    MinimalVersionSerializer,
+    SimpleAddonSerializer,
+)
 from olympia.amo.reverse import reverse
+from olympia.api.fields import ReverseChoiceField
 from olympia.api.serializers import AMOModelSerializer
 from olympia.api.utils import is_gate_active
-from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 
@@ -104,28 +109,22 @@ class FeedActivityLogVersionsListSerializer(serializers.ListSerializer):
 
 
 class FeedActivityLogVersionSerializer(MinimalVersionSerializer):
-    channel = serializers.SerializerMethodField()
-    public_status = serializers.SerializerMethodField()
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
+    )
+    addon = SimpleAddonSerializer()
+    file = MinimalFileSerializer()
 
     class Meta:
         model = Version
-        fields = ('id', 'version', 'channel', 'public_status', 'addon_id')
+        fields = ('id', 'version', 'channel', 'file', 'addon')
         list_serializer_class = FeedActivityLogVersionsListSerializer
-
-    def get_channel(self, obj):
-        return amo.CHANNEL_CHOICES_API[obj.channel]
-
-    def get_public_status(self, obj):
-        return obj.file.get_status_display()
-
-    def get_addon_id(self, obj):
-        return obj.addon.id
 
 
 class FeedActivityLogAddonSerializer(SimpleAddonSerializer):
     class Meta:
         model = Addon
-        fields = ('id', 'slug', 'name', 'disabled_by_user')
+        fields = SimpleAddonSerializer.Meta.fields + ('disabled_by_user',)
 
     def get_attribute(self, obj):
         return next(
@@ -134,9 +133,8 @@ class FeedActivityLogAddonSerializer(SimpleAddonSerializer):
         )
 
 
-class FeedActivityLogUserSerializer(AMOModelSerializer):
-    class Meta:
-        model = UserProfile
+class FeedActivityLogUserSerializer(BaseUserSerializer):
+    class Meta(BaseUserSerializer.Meta):
         fields = ('name',)
 
 

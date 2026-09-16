@@ -33,8 +33,9 @@ from olympia.activity.utils import (
     action_from_user,
     log_and_notify,
 )
+from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
-from olympia.amo.utils import HttpResponseXSendFile
+from olympia.amo.utils import HttpResponseXSendFile, attach_trans_dict
 from olympia.api.authentication import SessionIDAuthentication
 from olympia.api.permissions import (
     AllowAddonAuthor,
@@ -124,8 +125,19 @@ class ActivityView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = FeedActivityLogSerializer
 
+    @classmethod
+    def _locales_transformer(cls, logs):
+        addons = {
+            argument
+            for log in logs
+            for argument in log.arguments
+            if isinstance(argument, Addon)
+        }
+        attach_trans_dict(Addon, list(addons))
+
     def get_queryset(self):
-        return get_activity_feed(None, self.request.user.addons.all())
+        qs = get_activity_feed(None, self.request.user.addons.all())
+        return qs.transform(self._locales_transformer)
 
     def filter_queryset(self, qs):
         if addon_id := self.request.GET.get('addon'):

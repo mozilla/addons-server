@@ -192,17 +192,17 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
             'id': self.version.addon.pk,
             'slug': self.version.addon.slug,
             'name': {'en-US': str(self.version.addon.name)},
+            'icon_url': 'http://testserver/static/img/addon-icons/default-64.png',
             'disabled_by_user': self.version.addon.disabled_by_user,
         }
-        assert result['versions'] == [
-            {
-                'id': self.version.pk,
-                'version': self.version.version,
-                'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
-                'public_status': self.version.file.get_status_display(),
-                'addon_id': self.version.addon.pk,
-            }
-        ]
+
+        assert len(result['versions']) == 1
+        version = result['versions'][0]
+        assert version['id'] == self.version.pk
+        assert version['version'] == self.version.version
+        assert version['channel'] == amo.CHANNEL_CHOICES_API[self.version.channel]
+        assert version['file']['status'] == 'public'
+        assert version['addon']['id'] == self.version.addon.pk
 
     def test_no_versions(self):
         log = ActivityLog.objects.create(

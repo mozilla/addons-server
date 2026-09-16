@@ -832,21 +832,15 @@ class TestActivityView(LogMixin, TestCase):
         assert result['title'] == log.to_string()
         assert result['comments'] == 'Looks good'
         assert result['user']['name'] == GENERIC_USER_NAME
-        assert result['addon'] == {
-            'id': self.version.addon.pk,
-            'slug': self.version.addon.slug,
-            'name': {'en-US': str(self.version.addon.name)},
-            'disabled_by_user': self.version.addon.disabled_by_user,
-        }
-        assert result['versions'] == [
-            {
-                'id': self.version.pk,
-                'version': self.version.version,
-                'channel': amo.CHANNEL_CHOICES_API[self.version.channel],
-                'public_status': self.version.file.get_status_display(),
-                'addon_id': self.version.addon.pk,
-            }
-        ]
+        assert result['addon']['id'] == self.version.addon.pk
+        assert len(result['versions']) == 1
+
+        version = result['versions'][0]
+        assert version['id'] == self.version.pk
+        assert version['version'] == self.version.version
+        assert version['channel'] == amo.CHANNEL_CHOICES_API[self.version.channel]
+        assert version['file']['status'] == 'public'
+        assert version['addon']['id'] == self.version.addon.pk
 
     def test_authored_addons(self):
         log = self.log(self.addon, amo.LOG.APPROVE_VERSION)
@@ -860,25 +854,24 @@ class TestActivityView(LogMixin, TestCase):
     def test_multiple_versions(self):
         version1 = version_factory(addon=self.addon)
         version2 = version_factory(addon=self.addon)
+        version3 = version_factory(addon=self.addon)
 
         log = self.log(
-            self.addon, amo.LOG.APPROVE_VERSION, versions=[version1, version2]
+            self.addon, amo.LOG.APPROVE_VERSION, versions=[version1, version2, version3]
         )
         self.client.login_api(self.user)
         with self.assertNumQueries(12):
             response = self.client.get(self.url)
         assert response.status_code == 200
         assert [item['id'] for item in response.data['results']] == [log.pk]
-        assert response.data['results'][0]['versions'] == [
-            {
-                'id': version.pk,
-                'version': version.version,
-                'channel': amo.CHANNEL_CHOICES_API[version.channel],
-                'public_status': version.file.get_status_display(),
-                'addon_id': self.addon.pk,
-            }
-            for version in (version1, version2)
-        ]
+
+        result = response.data['results'][0]
+        assert len(result['versions']) == 3
+        assert {item['id'] for item in result['versions']} == {
+            version1.pk,
+            version2.pk,
+            version3.pk,
+        }
 
     def test_excludes_and_anonymizes_actions_from_developers(self):
         public_log = self.log(
