@@ -295,7 +295,16 @@ def with_user(f):
                         'fake_two_factor_authentication'
                     ),
                 }
-                id_token, token_data = identity['email'], {}
+                id_token, token_data = (
+                    identity['email'],
+                    {
+                        'auth_at': int(time.time()),
+                        'access_token': 'fake_access_token',
+                        'access_token_expiry': 0,
+                        'refresh_token': 'fake_refresh_token',
+                        'config_name': get_fxa_config_name(request),
+                    },
+                )
             else:
                 identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config

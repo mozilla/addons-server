@@ -705,6 +705,8 @@ class TestWithUser(TestCase):
         assert kwargs['identity']['uid'] == self.user.fxa_id
         assert kwargs['identity']['twoFactorAuthentication'] is None
         assert kwargs['next_path'] == '/a/path/?'
+        assert kwargs['token_data']
+        self.assertCloseToNow(datetime.fromtimestamp(kwargs['token_data']['auth_at']))
         assert self.fxa_identify.call_count == 0
 
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
@@ -732,6 +734,8 @@ class TestWithUser(TestCase):
         assert len(kwargs['identity']['uid']) == 44  # 32 random chars + prefix
         assert kwargs['identity']['twoFactorAuthentication'] is None
         assert kwargs['next_path'] == '/a/path/?'
+        assert kwargs['token_data']
+        self.assertCloseToNow(datetime.fromtimestamp(kwargs['token_data']['auth_at']))
         assert self.fxa_identify.call_count == 0
 
     @override_settings(FXA_CONFIG={'default': {'client_id': ''}})
@@ -752,6 +756,8 @@ class TestWithUser(TestCase):
         assert kwargs['identity']['uid'] == self.user.fxa_id
         assert kwargs['identity']['twoFactorAuthentication'] == 'true'
         assert kwargs['next_path'] == '/a/path/?'
+        assert kwargs['token_data']
+        self.assertCloseToNow(datetime.fromtimestamp(kwargs['token_data']['auth_at']))
         assert self.fxa_identify.call_count == 0
 
 
