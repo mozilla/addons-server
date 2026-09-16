@@ -236,6 +236,13 @@ def wait_for_scanner_results(self, version_pk):
     """Call the webhooks that still owe us results again, retrying at a fixed
     interval until they answer, then record artificial results matching the
     SCANNER_RESULTS_MISSING rule to stop waiting."""
+    if waffle.switch_is_active('disable-wait-for-scanner-results'):
+        log.info(
+            'Not waiting for scanner results for version %s, switch is active.',
+            version_pk,
+        )
+        return
+
     version = Version.unfiltered.get(pk=version_pk)
     events = ScannerWebhookEvent.blocking_auto_approval_for(version)
     pending = [

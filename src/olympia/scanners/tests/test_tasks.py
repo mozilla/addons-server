@@ -3069,6 +3069,15 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
         _call_webhook_mock.assert_not_called()
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_nothing_to_do_when_disabled_with_waffle_switch(self, _call_webhook_mock):
+        self.create_switch('disable-wait-for-scanner-results', active=True)
+        self._create_result()
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
     def test_calls_webhook_again_and_retries(self, _call_webhook_mock):
         # The webhook accepts the call but does not return any results.
         _call_webhook_mock.return_value = {}
