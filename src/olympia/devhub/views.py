@@ -80,6 +80,7 @@ from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
+    get_activity_feed,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload
@@ -176,7 +177,7 @@ def index(request):
 
 @login_required
 def dashboard(request, theme=False):
-    addon_items = _get_items(None, request.user.addons.all())[:4]
+    addon_items = get_activity_feed(None, request.user.addons.all())[:4]
 
     data = {
         'rss': _get_rss_feed(request),
@@ -252,43 +253,6 @@ def _get_activities(request, action):
     return items
 
 
-def _get_items(action, addons):
-    if not isinstance(addons, (list, tuple)):
-        # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
-        # double # subquery the ActivityLog.objects.for_addons(addons) below
-        # would generate if addons is not transformed into a list first. Since
-        # some people have a lot of add-ons, we only take the last 100.
-        addons = list(
-            addons.all().order_by('-modified').values_list('pk', flat=True)[:100]
-        )
-
-    filters = {
-        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-        'status': (
-            amo.LOG.USER_DISABLE,
-            amo.LOG.USER_ENABLE,
-            amo.LOG.CHANGE_STATUS,
-            amo.LOG.APPROVE_VERSION,
-        ),
-        'collections': (
-            amo.LOG.ADD_TO_COLLECTION,
-            amo.LOG.REMOVE_FROM_COLLECTION,
-        ),
-        'reviews': (amo.LOG.ADD_RATING,),
-    }
-
-    filter_ = filters.get(action)
-    items = (
-        ActivityLog.objects.for_addons(addons)
-        .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
-        .transform(ActivityLog.transformer_anonymize_user_for_developer)
-    )
-    if filter_:
-        items = items.filter(action__in=[i.id for i in filter_])
-
-    return items
-
-
 def _get_rss_feed(request):
     key, _ = RssKey.objects.get_or_create(user=request.user)
     return urlparams(reverse('devhub.feed_all'), privaterss=key.key.hex)
@@ -333,7 +297,7 @@ def feed(request, addon_id=None):
 
     action = request.GET.get('action')
 
-    items = _get_items(action, addons)
+    items = get_activity_feed(action, addons)
 
     activities = _get_activities(request, action)
     addon_items = _get_addons(request, addons_all, addon_selected, action)

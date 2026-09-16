@@ -12,7 +12,10 @@ from rest_framework.decorators import (
     authentication_classes,
     permission_classes,
 )
+from rest_framework.exceptions import ParseError
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -23,14 +26,17 @@ from olympia.activity.models import ActivityLog, AddonLog
 from olympia.activity.serializers import (
     ActivityLogSerializer,
     ActivityLogSerializerForComments,
+    FeedActivityLogSerializer,
 )
 from olympia.activity.tasks import process_email
 from olympia.activity.utils import (
     action_from_user,
     log_and_notify,
 )
+from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
-from olympia.amo.utils import HttpResponseXSendFile
+from olympia.amo.utils import HttpResponseXSendFile, attach_trans_dict
+from olympia.api.authentication import SessionIDAuthentication
 from olympia.api.permissions import (
     AllowAddonAuthor,
     AllowListedViewerOrReviewer,
@@ -38,6 +44,7 @@ from olympia.api.permissions import (
     AnyOf,
     GroupPermission,
 )
+from olympia.devhub.utils import get_activity_feed
 
 
 class VersionReviewNotesViewSet(
@@ -111,6 +118,41 @@ class VersionReviewNotesViewSet(
         )
         serializer = self.get_serializer(activity_object)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class ActivityView(ListAPIView):
+    authentication_classes = [SessionIDAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = FeedActivityLogSerializer
+
+    @classmethod
+    def _locales_transformer(cls, logs):
+        addons = {
+            argument
+            for log in logs
+            for argument in log.arguments
+            if isinstance(argument, Addon)
+        }
+        attach_trans_dict(Addon, list(addons))
+
+    def get_queryset(self):
+        qs = get_activity_feed(None, self.request.user.addons.all())
+        return qs.transform(self._locales_transformer)
+
+    def filter_queryset(self, qs):
+        if addon_id := self.request.GET.get('addon'):
+            if addon_id.isdigit():
+                qs = qs.filter(addonlog__addon=addon_id)
+            else:
+                qs = qs.filter(addonlog__addon__slug=addon_id)
+        if version_id := self.request.GET.get('version'):
+            try:
+                version_id = int(version_id)
+            except ValueError as exc:
+                raise ParseError('version parameter should be an integer.') from exc
+            qs = qs.filter(versionlog__version=version_id)
+
+        return super().filter_queryset(qs)
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')
