@@ -2341,6 +2341,7 @@ class TestScannerWebhookAdmin(TestCase):
         assert b'Please note the JWT keys' in response.content
         assert api_key.key.encode() in response.content
         assert api_key.secret.encode() in response.content
+        assert b'service account sheet' in response.content
 
         response = self.client.post(
             reverse('admin:scanners_scannerwebhook_change', args=(webhook.pk,)),
