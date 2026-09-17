@@ -1423,7 +1423,7 @@ class ContentDecision(ModelBase):
             )
         return log_entry
 
-    def execute_action(self, *, release_hold=False):
+    def execute_action(self, *, release_hold=False, extra_details=None):
         """Execute the action for the decision, if not already carried out.
         The action may be held for 2nd level approval.
         If the action has been carried out, notify interested parties"""
@@ -1437,7 +1437,7 @@ class ContentDecision(ModelBase):
                 # action first, then apply the new action below.
                 self.reverse_overridden_action()
                 log_entry = self.action_activity = action_helper.process_action(
-                    release_hold=release_hold
+                    release_hold=release_hold, extra_details=extra_details
                 )
                 if not log_entry and not self.activities.exists():
                     # If there was no action taken (e.g. the content was already
@@ -1451,14 +1451,16 @@ class ContentDecision(ModelBase):
                         # If there was no action, there is likely no target_versions
                         # either (unless it was an override), so we provide a version to
                         # associate it with, so it's visible in the review history.
+                        extra_details = extra_details or {}
                         self.action_activity = action_helper.log_action(
                             amo.LOG.DECISION_CREATED,
                             addon_version,
-                            extra_details={'versions': [addon_version.version]},
+                            extra_details=extra_details
+                            | {'versions': [addon_version.version]},
                         )
                     else:
                         self.action_activity = action_helper.log_action(
-                            amo.LOG.DECISION_CREATED
+                            amo.LOG.DECISION_CREATED, extra_details=extra_details
                         )
                 # But only save it afterwards in case process_action failed
                 self.save(update_fields=('action_date', 'action_activity'))

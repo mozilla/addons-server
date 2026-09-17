@@ -119,7 +119,7 @@ class ContentAction:
         """Return True if the action should be skipped by automation for any reason."""
         return False
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         """This method should return an activity log instance for the action,
         if available."""
         raise NotImplementedError
@@ -332,7 +332,7 @@ class AnyTargetMixin:
 
 
 class NoActionMixin:
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         return None
 
 
@@ -370,7 +370,7 @@ class ContentActionBanUser(ContentAction):
             )
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.target.banned:
             UserProfile.objects.filter(
                 pk=self.target.pk
@@ -539,14 +539,14 @@ class ContentActionDisableAddon(ContentActionAddon):
             },
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         self.prevent_auto_approval()
         if self.target.status != amo.STATUS_DISABLED:
             # Set target_versions before executing the action, since the
             # queryset depends on the file statuses.
             self.decision.target_versions.set(self.versions_force_disable_will_affect)
             self.target.force_disable(skip_activity_log=True)
-            return self.log_action(amo.LOG.FORCE_DISABLE)
+            return self.log_action(amo.LOG.FORCE_DISABLE, extra_details=extra_details)
         return None
 
     def hold_action(self):
@@ -709,7 +709,7 @@ class ContentActionRejectVersion(ContentActionDisableAddon):
     def get_activity_action(self):
         return amo.LOG.REJECT_CONTENT if self.content_review else amo.LOG.REJECT_VERSION
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
@@ -853,7 +853,7 @@ class ContentActionRejectVersionDelayed(ContentActionRejectVersion):
             else amo.LOG.REJECT_VERSION_DELAYED
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
@@ -1012,7 +1012,7 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             qs = qs.exclude(blockversion__block_type=self.block_type)
         return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
             # For now this action should only be used automatically by scanners and
             # monitoring tasks, not cinder webhook
@@ -1117,7 +1117,7 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             details={'human_review': self.is_human_reviewer(), **(extra_details or {})},
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         versions_qs = self.versions_block_will_affect
         # if this is a followup action, and the primary action is rejecting specific
         # versions, we want to limit the blocking to those versions.
@@ -1316,7 +1316,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
             and any(self.target.promoted_groups(currently_approved=False).high_profile)
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if self.target.status != amo.STATUS_DISABLED:
             self.target.update(status=amo.STATUS_REJECTED)
             AddonApprovalsCounter.reject_content_for_addon(self.target)
@@ -1343,7 +1343,7 @@ class ContentActionRejectListingContent(ContentActionDisableAddon):
 class ContentActionForwardToLegal(ContentActionAddon):
     action = DECISION_ACTIONS.AMO_LEGAL_FORWARD
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         from olympia.abuse.tasks import handle_forward_to_legal_action
 
         handle_forward_to_legal_action.delay(decision_pk=self.decision.id)
@@ -1371,7 +1371,7 @@ class ContentActionDeleteCollection(ContentAction):
             not self.target.deleted and self.target.author_id == settings.TASK_USER_ID
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.target.deleted:
             self.target.delete(clear_slug=False)
             return self.log_action(amo.LOG.COLLECTION_DELETED)
@@ -1413,7 +1413,7 @@ class ContentActionDeleteRating(ContentAction):
             )
         )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.target.deleted:
             self.target.delete(skip_activity_log=True, clear_flags=False)
             return self.log_action(
@@ -1466,7 +1466,7 @@ class ContentActionTargetAppealApprove(
         """Queryset with previous decisions made that this action would revert."""
         return self.decision.cinder_job.appealed_decisions.all()
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         from olympia.abuse.models import ContentDecisionFollowupAction
 
         log_entry = None
@@ -1518,7 +1518,7 @@ class ContentActionApproveListingContent(
             return super().get_owners()
         return ()
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if isinstance(self.target, Addon):
             AddonApprovalsCounter.approve_content_for_addon(self.target)
             if self.status == amo.STATUS_REJECTED:
@@ -1638,7 +1638,7 @@ class ContentActionApproveVersion(ContentActionAddon):
             )
         return already_approved
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
             # This action should only be used by reviewer tools, not cinder webhook
             raise NotImplementedError
@@ -1727,7 +1727,7 @@ class ContentActionTargetAppealRemovalAffirmation(
         'offending'
     )
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         previous_decision_actions = (
             self.decision.cinder_job.appealed_decisions.values_list('action', flat=True)
         )
@@ -1788,9 +1788,9 @@ class ContentActionLegalTakedownDisableAddon(ContentActionDisableAddon):
             message = template.render(context_dict)
             send_mail(subject, message, recipient_list=recipients)
 
-    def process_action(self, release_hold=False):
+    def process_action(self, *, release_hold=False, extra_details=None):
         self.notify_legal()
-        return super().process_action(release_hold)
+        return super().process_action(release_hold=release_hold)
 
     def hold_action(self):
         self.notify_legal(is_held=True)
