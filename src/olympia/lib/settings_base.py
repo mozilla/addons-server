@@ -834,6 +834,7 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.run_actions_for_scanner_result': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
+    'olympia.scanners.tasks.wait_for_scanner_results': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_source_code_uploaded': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_version_created': {'queue': 'devhub'},
     'olympia.versions.tasks.duplicate_addon_version_for_rollback': {'queue': 'devhub'},
@@ -1462,6 +1463,8 @@ EXTENSION_WORKSHOP_URL = env(
 
 # Sectools
 SCANNER_TIMEOUT = 60  # seconds
+# Delay between two checks that we have all the webhook results for a version.
+SCANNER_WEBHOOK_RETRY_DELAY = 2 * 60 * 60  # seconds
 
 # Addon.average_daily_user count that forces dual sign-off for Blocklist Blocks
 DUAL_SIGNOFF_AVERAGE_DAILY_USERS_THRESHOLD = 100_000

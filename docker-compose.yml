@@ -167,6 +167,8 @@ services:
       - RABBITMQ_DEFAULT_USER=olympia
       - RABBITMQ_DEFAULT_PASS=olympia
       - RABBITMQ_DEFAULT_VHOST=olympia
+      # 2h like it is set on CloudAMQP instances
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit consumer_timeout 7200000
     volumes:
       - data_rabbitmq:/var/lib/rabbitmq
 
