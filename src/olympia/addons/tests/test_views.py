@@ -4369,6 +4369,25 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         )
         assert self.addon.auto_approval_disabled_unlisted
 
+    def test_filters_permissions_only_for_list_action(self):
+        reviewer = user_factory(read_dev_agreement=self.days_ago(0))
+        self.grant_permission(reviewer, amo.permissions.ADDONS_API_VIEW)
+        self.client.login_api(reviewer)
+        response = self.client.post(self.url, data={**self.minimal_data})
+        assert response.status_code == 403
+
+        response = self.client.post(
+            f'{self.url}?filter=all_without_unlisted', data={**self.minimal_data}
+        )
+        assert response.status_code == 403
+
+        # No problem for author.
+        self.client.login_api(self.user)
+        response = self.client.post(
+            f'{self.url}?filter=all_without_unlisted', data={**self.minimal_data}
+        )
+        assert response.status_code == 201
+
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
     client_class = APITestClientJWT
