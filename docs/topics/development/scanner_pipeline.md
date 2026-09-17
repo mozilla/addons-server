@@ -108,12 +108,39 @@ field:
 The `results` field should contain the same data structure as a synchronous
 response would return.
 
+(skipping-an-event)=
 #### Skipping an event
 
 Scanners can use the `204 No Content` HTTP status code to indicate that they
 intentionally skipped the event (e.g., the event is not relevant for this
 scanner). No results will be stored for the scanner result associated with this
 event.
+
+(scanner-delivery-retries)=
+### Delivery retries
+
+A version is not auto-approved until every scanner blocking its auto-approval
+is done with it, i.e. it [skipped the event](#skipping-an-event) or sent its
+`matchedRules`.
+
+When some results are still missing two hours after the version was created,
+the `wait_for_scanner_results` task calls the corresponding webhooks again with
+the same payload, and keeps doing so every two hours, up to 12 times. The last
+retry therefore happens 24 hours after the version was created.
+
+Once the retries are exhausted, or when the payload can no longer be rebuilt
+(e.g., the uploaded file a `during_validation` payload points to is gone), AMO
+records artificial results matching the special `SCANNER_RESULTS_MISSING`
+[rule](#scanner-rules):
+
+```json
+{
+  "matchedRules": ["SCANNER_RESULTS_MISSING"]
+}
+```
+
+The version then stops waiting on that scanner, and whichever
+[action](#scanner-actions) is configured on that rule applies.
 
 (scanner-annotations)=
 ### Annotations
