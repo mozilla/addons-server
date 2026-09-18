@@ -78,8 +78,8 @@ from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
-    get_dev_agreement_change_date,
     get_activity_feed,
+    get_dev_agreement_change_date,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload

@@ -386,6 +386,8 @@ def get_dev_agreement_change_date():
             last_agreement_change_config,
         )
         return settings.DEV_AGREEMENT_CHANGE_FALLBACK
+
+
 def get_activity_feed(action, addons):
     if not isinstance(addons, (list, tuple)):
         # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
