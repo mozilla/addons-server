@@ -553,9 +553,12 @@ def review(request, addon, channel=None):
     # cached validation, since reviewers will almost certainly need to access
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
-    if version and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
-        if not version.file.has_been_validated:
-            devhub_tasks.validate(version.file)
+    if (
+        version
+        and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False)
+        and not version.file.has_been_validated
+    ):
+        devhub_tasks.validate(version.file)
 
     actions = form.helper.actions.items()
 
@@ -945,7 +948,7 @@ def abuse_reports(request, addon):
 @reviewer_addon_view_factory
 def whiteboard(request, addon, channel):
     channel_as_text = channel
-    channel, content_review = determine_channel(channel)
+    channel, _content_review = determine_channel(channel)
 
     unlisted_only = (
         channel == amo.CHANNEL_UNLISTED
@@ -980,7 +983,7 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
-    channel, content_review = determine_channel(channel_text)
+    _channel, _content_review = determine_channel(channel_text)
 
     review_url = reverse(
         'reviewers.review',

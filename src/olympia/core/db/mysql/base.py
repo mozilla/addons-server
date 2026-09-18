@@ -4,10 +4,12 @@ from django.db.backends.mysql import base as mysql_base
 class DatabaseIntrospection(mysql_base.DatabaseIntrospection):
     def get_field_type(self, data_type, description):
         field_type = super().get_field_type(data_type, description)
-        if 'auto_increment' in description.extra:
-            if field_type == 'IntegerField':
-                if description.is_unsigned:
-                    return 'PositiveAutoField'
+        if (
+            'auto_increment' in description.extra
+            and field_type == 'IntegerField'
+            and description.is_unsigned
+        ):
+            return 'PositiveAutoField'
         return field_type
 
 

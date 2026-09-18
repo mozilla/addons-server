@@ -120,18 +120,18 @@ class Command(BaseCommand):
 
                 summary = AutoApprovalSummary.objects.filter(version=version).first()
 
-                if waffle.switch_is_active('enable-narc'):
-                    # We want to execute `run_narc()` only once.
-                    if not summary:
-                        # NARC scanner rules depend on the Add-on and can't be
-                        # run reliably at validation as it might not be
-                        # attached to the upload at that point.
-                        # This needs to be run before run_actions() and before
-                        # auto-approval is attempted, and has to be triggered
-                        # synchronously (no .delay()). In this case we pass
-                        # run_actions_on_match=False since we're going to call
-                        # ScannerResult.run_actions() below.
-                        run_narc_on_version(version.pk, run_actions_on_match=False)
+                # We want to execute `run_narc()` only once (when there is no
+                # summary yet).
+                # NARC scanner rules depend on the Add-on and can't be
+                # run reliably at validation as it might not be
+                # attached to the upload at that point.
+                # This needs to be run before run_actions() and before
+                # auto-approval is attempted, and has to be triggered
+                # synchronously (no .delay()). In this case we pass
+                # run_actions_on_match=False since we're going to call
+                # ScannerResult.run_actions() below.
+                if waffle.switch_is_active('enable-narc') and not summary:
+                    run_narc_on_version(version.pk, run_actions_on_match=False)
 
                 scanner_actions_executed = False
                 # NULL means the summary predates this field, back when

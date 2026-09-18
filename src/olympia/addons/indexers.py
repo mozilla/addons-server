@@ -643,9 +643,8 @@ class AddonIndexer:
 
         data['colors'] = None
         # Extract dominant colors from static themes.
-        if obj.type == amo.ADDON_STATICTHEME:
-            if obj.current_previews:
-                data['colors'] = obj.current_previews[0].colors
+        if obj.type == amo.ADDON_STATICTHEME and obj.current_previews:
+            data['colors'] = obj.current_previews[0].colors
 
         data['app'] = [app.id for app in obj.compatible_apps]
         # We can use all_categories because the indexing code goes through the

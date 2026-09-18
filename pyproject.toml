@@ -41,15 +41,11 @@ ignore = [
     "DTZ",     # flake8-datetimez (except DTZ003) - we only run in UTC so unnecessary
     "ISC004",  # implicit-string-concatenation-in-collection-literal - too many false positives
     "RUF015",  # unnecessary-iterable-allocation-for-first-element - makes code unnecessarily complex
+    "BLE001",  # blind-except - the majority of matches are intentional (health checks, best-effort tasks)
     # The following rules fail currently, and should probably eventually be addressed
     # They are in most-error-occuring order, descending
     "UP031",   # printf-string-formatting
     "RUF012",  # mutable-class-default
-    "SIM115",  # open-file-with-context-handler
-    "BLE001",  # blind-except
-    "RUF059",  # unused-unpacked-variable
-    "SIM102",  # collapsible-if
-    "FLY002",  # static-join-to-f-string
 ]
 extend-select = [
     "B",  # flake8-bugbear

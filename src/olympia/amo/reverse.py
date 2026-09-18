@@ -54,7 +54,7 @@ def resolve(path, urlconf=None):
     """Wraps django's resolve to remove the locale and app from the path."""
     from olympia.amo.urlresolvers import Prefixer
 
-    _lang, application, path_fragment = Prefixer.split_path(path)
+    _lang, _application, path_fragment = Prefixer.split_path(path)
     return django_resolve(f'/{path_fragment}', urlconf)
 
 

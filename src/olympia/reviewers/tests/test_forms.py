@@ -1619,18 +1619,13 @@ class TestReviewForm(TestCase):
         assert label_forward.attr['class'] == 'data-toggle-hide'
         assert label_forward.attr['data-value'] == 'appeal_deny appeal_override'
         assert label_rep_appeal.attr['class'] == 'data-toggle-hide appeal'
-        assert label_rep_appeal.attr['data-value'] == ' '.join(
-            ('appeal_override', 'resolve_reports_job')
+        assert (
+            label_rep_appeal.attr['data-value'] == 'appeal_override resolve_reports_job'
         )
         assert label_dev_appeal.attr['class'] == 'data-toggle-hide appeal'
-        assert label_dev_appeal.attr['data-value'] == ' '.join(
-            (
-                'review_with_policy_approve',
-                'review_with_policy',
-                'reject',
-                'reject_multiple_versions',
-                'resolve_reports_job',
-            )
+        assert label_dev_appeal.attr['data-value'] == (
+            'review_with_policy_approve review_with_policy reject '
+            'reject_multiple_versions resolve_reports_job'
         )
         assert label_two_reports.attr['class'] == 'data-toggle-hide'
         assert label_two_reports.attr['data-value'] == 'appeal_deny appeal_override'

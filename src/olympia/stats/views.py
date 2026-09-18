@@ -278,7 +278,7 @@ def flatten_applications(series):
                 # str() to decode the gettext proxy.
                 appname = str(app.pretty)
                 for ver, count in versions.items():
-                    key = ' '.join([appname, ver])
+                    key = f'{appname} {ver}'
                     new[key] = count
             row['data'] = new
         yield row

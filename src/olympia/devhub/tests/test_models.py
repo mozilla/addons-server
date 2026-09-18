@@ -45,7 +45,7 @@ class TestVersion(TestCase):
         assert Addon.objects.get(pk=3615).status == amo.STATUS_NULL
 
     def test_file_delete_status_null_multiple(self):
-        version_two, file_two = self._extra_version_and_file(amo.STATUS_NULL)
+        _version_two, file_two = self._extra_version_and_file(amo.STATUS_NULL)
         self.file.delete()
         assert self.addon.status == amo.STATUS_APPROVED
         file_two.delete()

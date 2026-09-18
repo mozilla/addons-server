@@ -841,7 +841,7 @@ class TestVersion(TestCase):
         v1 = self.addon.current_version
         v1.update(created=self.days_ago(1))
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        v3, _ = self._extra_version_and_file(amo.STATUS_APPROVED)
+        self._extra_version_and_file(amo.STATUS_APPROVED)
         # Add some activity log messages
         ActivityLog.objects.create(
             amo.LOG.REVIEWER_REPLY_VERSION, v1.addon, v1, user=self.user

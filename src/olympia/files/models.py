@@ -453,9 +453,8 @@ class FileUpload(ModelBase):
         return str(self.uuid.hex)
 
     def save(self, *args, **kw):
-        if self.validation:
-            if self.load_validation()['errors'] == 0:
-                self.valid = True
+        if self.validation and self.load_validation()['errors'] == 0:
+            self.valid = True
         if not self.access_token:
             self.access_token = self.generate_access_token()
         super().save(*args, **kw)

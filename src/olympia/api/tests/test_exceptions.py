@@ -104,7 +104,7 @@ class TestExceptionHandler(TestCase):
         with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
             try:
                 raise APIException()
-            except Exception as exc:
+            except APIException as exc:
                 response = exception_handler(exc, {})
                 assert isinstance(response, Response)
                 assert response.status_code == 500
@@ -115,7 +115,7 @@ class TestExceptionHandler(TestCase):
         with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
             try:
                 raise Http404()
-            except Exception as exc:
+            except Http404 as exc:
                 response = exception_handler(exc, {})
                 assert isinstance(response, Response)
                 assert response.status_code == 404
@@ -126,7 +126,7 @@ class TestExceptionHandler(TestCase):
         with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
             try:
                 raise PermissionDenied()
-            except Exception as exc:
+            except PermissionDenied as exc:
                 response = exception_handler(exc, {})
                 assert isinstance(response, Response)
                 assert response.status_code == 403
@@ -138,8 +138,10 @@ class TestExceptionHandler(TestCase):
 
         with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
             try:
-                raise Exception()  # noqa: TRY002 (tests generic handler)
-            except Exception as exc:
+                # Any non-DRF exception (here KeyError) should still produce a
+                # Response rather than propagating.
+                raise KeyError()
+            except KeyError as exc:
                 response = exception_handler(exc, {})
                 assert isinstance(response, Response)
                 assert response.status_code == 500
@@ -153,7 +155,7 @@ class TestExceptionHandler(TestCase):
         ):
             try:
                 raise APIException()
-            except Exception as exc:
+            except APIException as exc:
                 exception_handler(exc, {})
 
     def test_exception_handler_404_with_propagation(self):
@@ -165,7 +167,7 @@ class TestExceptionHandler(TestCase):
         ):
             try:
                 raise Http404()
-            except Exception as exc:
+            except Http404 as exc:
                 exception_handler(exc, {})
 
     def test_exception_handler_403_with_propagation(self):
@@ -177,7 +179,7 @@ class TestExceptionHandler(TestCase):
         ):
             try:
                 raise PermissionDenied()
-            except Exception as exc:
+            except PermissionDenied as exc:
                 exception_handler(exc, {})
 
     def test_non_api_exception_handler_with_propagation(self):
@@ -191,5 +193,5 @@ class TestExceptionHandler(TestCase):
         ):
             try:
                 raise KeyError()
-            except Exception as exc:
+            except KeyError as exc:
                 exception_handler(exc, {})

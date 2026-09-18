@@ -162,10 +162,10 @@ class TestDeletePhoto(TestCase):
 def test_resize_photo():
     somepic = get_image_path('sunbird-small.png')
 
-    src = tempfile.NamedTemporaryFile(
+    src = tempfile.NamedTemporaryFile(  # noqa: SIM115 (temp file used across the test (delete=False))
         mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH
     )
-    dest = tempfile.NamedTemporaryFile(mode='r+b', suffix='.png', dir=settings.TMP_PATH)
+    dest = tempfile.NamedTemporaryFile(mode='r+b', suffix='.png', dir=settings.TMP_PATH)  # noqa: SIM115 (temp file used across the test)
 
     shutil.copyfile(somepic, src.name)
 
@@ -181,7 +181,7 @@ def test_resize_photo():
 def test_resize_photo_poorly():
     """If we attempt to set the src/dst, we do nothing."""
     somepic = get_image_path('mozilla.png')
-    src = tempfile.NamedTemporaryFile(
+    src = tempfile.NamedTemporaryFile(  # noqa: SIM115 (temp file used across the test (delete=False))
         mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH
     )
     shutil.copyfile(somepic, src.name)
@@ -341,10 +341,8 @@ class TestSendSuppressedEmailConfirmation(TestCase):
             status=404,
         )
 
-        try:
-            send_suppressed_email_confirmation.apply([verification.id])
-        except Exception as err:
-            pytest.fail(f'Unexpected exception: {err}')
+        # Should not raise.
+        send_suppressed_email_confirmation.apply([verification.id])
 
     def test_socket_labs_returns_5xx(self):
         verification = SuppressedEmailVerification.objects.create(

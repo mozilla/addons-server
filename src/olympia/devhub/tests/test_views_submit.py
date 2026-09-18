@@ -546,10 +546,13 @@ class TestAddonSubmitUpload(UploadMixin, TestCase):
         url = url or reverse(urlname, args=['listed' if listed else 'unlisted'])
         response = self.client.post(url, data, follow=True, **(extra_kwargs or {}))
         assert response.status_code == status_code
-        if not expect_errors:
-            # Show any unexpected form errors.
-            if response.context and 'new_addon_form' in response.context:
-                assert response.context['new_addon_form'].errors.as_text() == ''
+        # Show any unexpected form errors.
+        if (
+            not expect_errors
+            and response.context
+            and 'new_addon_form' in response.context
+        ):
+            assert response.context['new_addon_form'].errors.as_text() == ''
         return response
 
     def test_redirect_back_to_agreement_if_restricted(self):
@@ -989,10 +992,9 @@ class TestAddonSubmitSource(TestSubmitBase):
             data['source'] = source
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == status_code
-        if not expect_errors:
-            # Show any unexpected form errors.
-            if response.context and 'source_form' in response.context:
-                assert response.context['source_form'].errors == {}
+        # Show any unexpected form errors.
+        if not expect_errors and response.context and 'source_form' in response.context:
+            assert response.context['source_form'].errors == {}
         return response
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)

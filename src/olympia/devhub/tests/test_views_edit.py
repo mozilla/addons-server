@@ -1072,11 +1072,9 @@ class TestEditMedia(BaseTestEdit):
 
     def test_edit_media_uploadedicon(self):
         img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
-
-        data = {'upload_image': src_image}
-
-        response = self.client.post(self.icon_upload, data)
+        with open(img, 'rb') as src_image:
+            data = {'upload_image': src_image}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(force_str(response.content))
         addon = self.get_addon()
 
@@ -1118,11 +1116,9 @@ class TestEditMedia(BaseTestEdit):
 
     def test_edit_media_uploadedicon_noresize(self):
         img = 'static/img/notifications/error.png'
-        src_image = open(img, 'rb')
-
-        data = {'upload_image': src_image}
-
-        response = self.client.post(self.icon_upload, data)
+        with open(img, 'rb') as src_image:
+            data = {'upload_image': src_image}
+            response = self.client.post(self.icon_upload, data)
         response_json = json.loads(force_str(response.content))
         addon = self.get_addon()
 
@@ -1160,9 +1156,8 @@ class TestEditMedia(BaseTestEdit):
 
     def check_image_type(self, url, msg):
         img = 'static/js/zamboni/devhub.js'
-        src_image = open(img, 'rb')
-
-        res = self.client.post(url, {'upload_image': src_image})
+        with open(img, 'rb') as src_image:
+            res = self.client.post(url, {'upload_image': src_image})
         response_json = json.loads(force_str(res.content))
         assert response_json['errors'][0] == msg
 
@@ -1174,10 +1169,11 @@ class TestEditMedia(BaseTestEdit):
 
     @override_settings(MAX_IMAGE_UPLOAD_SIZE=10 * 1024)
     def test_image_too_big(self):
-        response = self.client.post(
-            self.preview_upload,
-            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla-small.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.preview_upload,
+                {'upload_image': upload_image},
+            )
         data = json.loads(force_str(response.content))
         assert data == {
             'errors': ['Please use images smaller than 0MB.'],
@@ -1186,10 +1182,11 @@ class TestEditMedia(BaseTestEdit):
 
     @override_settings(MAX_ICON_UPLOAD_SIZE=10 * 1024)
     def test_icon_too_big(self):
-        response = self.client.post(
-            self.icon_upload,
-            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla-small.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.icon_upload,
+                {'upload_image': upload_image},
+            )
         data = json.loads(force_str(response.content))
         assert data == {
             'errors': ['Please use images smaller than 0MB.'],
@@ -1245,9 +1242,8 @@ class TestEditMedia(BaseTestEdit):
         assert not result['previews']
 
     def check_image_animated(self, url, msg):
-        filehandle = open(get_image_path('animated.png'), 'rb')
-
-        res = self.client.post(url, {'upload_image': filehandle})
+        with open(get_image_path('animated.png'), 'rb') as filehandle:
+            res = self.client.post(url, {'upload_image': filehandle})
         response_json = json.loads(force_str(res.content))
         assert response_json['errors'][0] == msg
 
@@ -1263,43 +1259,47 @@ class TestEditMedia(BaseTestEdit):
         ratio_msg = 'Icon must be square (same width and height).'
 
         # mozilla-snall.png is too small and not square
-        response = self.client.post(
-            self.icon_upload,
-            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla-small.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.icon_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [
             size_msg,
             ratio_msg,
         ]
 
         # icon64.png is the right ratio, but only 64x64
-        response = self.client.post(
-            self.icon_upload, {'upload_image': open(get_image_path('icon64.png'), 'rb')}
-        )
+        with open(get_image_path('icon64.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.icon_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [size_msg]
 
         # mozilla.png is big enough but still not square
-        response = self.client.post(
-            self.icon_upload,
-            {'upload_image': open(get_image_path('mozilla.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.icon_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [ratio_msg]
 
         # and mozilla-sq is the right ratio and big enough
-        response = self.client.post(
-            self.icon_upload,
-            {'upload_image': open(get_image_path('mozilla-sq.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla-sq.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.icon_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == []
         assert json.loads(force_str(response.content))['upload_hash']
 
     def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
-        src_image = open(get_image_path(image_name), 'rb')
-
-        data = {'upload_image': src_image}
-        data_formset = self.formset_media(**data)
-        url = self.preview_upload
-        response = self.client.post(url, data_formset)
+        with open(get_image_path(image_name), 'rb') as src_image:
+            data = {'upload_image': src_image}
+            data_formset = self.formset_media(**data)
+            url = self.preview_upload
+            response = self.client.post(url, data_formset)
 
         details = json.loads(force_str(response.content))
         upload_hash = details['upload_hash']
@@ -1332,34 +1332,38 @@ class TestEditMedia(BaseTestEdit):
         ratio_msg = 'Image dimensions must be in the ratio 4:3.'
 
         # mozilla.png is too small and the wrong ratio now
-        response = self.client.post(
-            self.preview_upload,
-            {'upload_image': open(get_image_path('mozilla.png'), 'rb')},
-        )
+        with open(get_image_path('mozilla.png'), 'rb') as upload_image:
+            response = self.client.post(
+                self.preview_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [
             size_msg,
             ratio_msg,
         ]
 
         # preview_landscape.jpg is the right ratio-ish, but too small
-        response = self.client.post(
-            self.preview_upload,
-            {'upload_image': open(get_image_path('preview_landscape.jpg'), 'rb')},
-        )
+        with open(get_image_path('preview_landscape.jpg'), 'rb') as upload_image:
+            response = self.client.post(
+                self.preview_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [size_msg]
 
         # teamaddons.jpg is big enough but still wrong ratio.
-        response = self.client.post(
-            self.preview_upload,
-            {'upload_image': open(get_image_path('teamaddons.jpg'), 'rb')},
-        )
+        with open(get_image_path('teamaddons.jpg'), 'rb') as upload_image:
+            response = self.client.post(
+                self.preview_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == [ratio_msg]
 
         # and preview_4x3.jpg is the right ratio and big enough
-        response = self.client.post(
-            self.preview_upload,
-            {'upload_image': open(get_image_path('preview_4x3.jpg'), 'rb')},
-        )
+        with open(get_image_path('preview_4x3.jpg'), 'rb') as upload_image:
+            response = self.client.post(
+                self.preview_upload,
+                {'upload_image': upload_image},
+            )
         assert json.loads(force_str(response.content))['errors'] == []
         assert json.loads(force_str(response.content))['upload_hash']
 

@@ -3363,7 +3363,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         raise NotImplementedError
 
     def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2**21), mode=None):
-        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)  # noqa: SIM115 (temp file returned to caller)
         if mode is None:
             mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
@@ -3377,7 +3377,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
     def _generate_source_zip(
         self, suffix='.zip', data='z' * (2**21), compression=zipfile.ZIP_DEFLATED
     ):
-        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)  # noqa: SIM115 (temp file returned to caller)
         with zipfile.ZipFile(source, 'w', compression=compression) as zip_file:
             zip_file.writestr('foo', data)
         source.seek(0)
@@ -4323,11 +4323,12 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
-        src = SimpleUploadedFile(
-            filename,
-            open(filepath, 'rb').read(),
-            content_type=mimetypes.guess_type(filename)[0],
-        )
+        with open(filepath, 'rb') as source_file:
+            src = SimpleUploadedFile(
+                filename,
+                source_file.read(),
+                content_type=mimetypes.guess_type(filename)[0],
+            )
         response = self.client.post(
             self.url, data={**self.minimal_data, 'source': src}, format='multipart'
         )
@@ -4801,11 +4802,12 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
-        src = SimpleUploadedFile(
-            filename,
-            open(filepath, 'rb').read(),
-            content_type=mimetypes.guess_type(filename)[0],
-        )
+        with open(filepath, 'rb') as source_file:
+            src = SimpleUploadedFile(
+                filename,
+                source_file.read(),
+                content_type=mimetypes.guess_type(filename)[0],
+            )
         response = self.client.patch(self.url, data={'source': src}, format='multipart')
         if not error:
             assert response.status_code == 200, response.content
@@ -4882,7 +4884,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
         )
-        response, self.version = self._submit_source(new_source)
+        _response, self.version = self._submit_source(new_source)
         self.addon.reload()
         assert self.version.source
         assert self.version.needshumanreview_set.filter(is_active=True).exists()
@@ -7242,7 +7244,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon2 and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': ','.join((addon2.slug, addon3.slug))}
+            self.url, {'exclude_addons': f'{addon2.slug},{addon3.slug}'}
         )
 
         assert len(data['results']) == 1
