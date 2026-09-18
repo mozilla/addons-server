@@ -41,7 +41,7 @@ def test_translated_field_supports_migration():
 
 def test_user_foreign_key_field_deconstruct():
     field = TranslatedField(require_locale=False)
-    name, path, args, kwargs = field.deconstruct()
+    _name, _path, _args, kwargs = field.deconstruct()
     new_field_instance = TranslatedField(require_locale=False)
 
     assert kwargs['require_locale'] == new_field_instance.require_locale

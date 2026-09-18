@@ -881,9 +881,7 @@ class TestMLBF(_MLBFBase):
             file_kw={'is_signed': True}, block_type=BlockType.BLOCKED
         )
         hard_block = block.blockversion_set.first()
-        (hard_block_hash,) = MLBF.hash_filter_inputs(
-            [(block.guid, hard_block.version.version)]
-        )
+        MLBF.hash_filter_inputs([(block.guid, hard_block.version.version)])
         soft_blocks = [
             self._block_version(
                 block, self._version(addon), block_type=BlockType.SOFT_BLOCKED

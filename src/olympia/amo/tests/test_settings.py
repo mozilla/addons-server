@@ -43,9 +43,10 @@ def test_sentry_data_scrubbing():
     assert before_send
     assert before_breadcrumb
     assert sentry_client.options.get('send_default_pii') is True
-    event_raw = open(
+    with open(
         os.path.join(settings.ROOT, 'src/olympia/amo/fixtures/sentry_event.json')
-    ).read()
+    ) as f:
+        event_raw = f.read()
     event = json.loads(event_raw)
     assert '@bar.com' in event_raw
     assert '172.18.0.1' in event_raw

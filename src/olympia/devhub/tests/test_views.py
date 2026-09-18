@@ -1394,11 +1394,12 @@ class TestUpload(UploadMixin, TestCase):
         self.xpi_path = self.file_path('webextension_no_id.xpi')
 
     def post(self, theme_specific=False, **kwargs):
-        data = {
-            'upload': open(self.xpi_path, 'rb'),
-            'theme_specific': 'True' if theme_specific else 'False',
-        }
-        return self.client.post(self.url, data, **kwargs)
+        with open(self.xpi_path, 'rb') as upload:
+            data = {
+                'upload': upload,
+                'theme_specific': 'True' if theme_specific else 'False',
+            }
+            return self.client.post(self.url, data, **kwargs)
 
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)

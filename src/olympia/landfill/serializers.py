@@ -4,6 +4,7 @@ import uuid
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.db import IntegrityError
 from django.test.client import RequestFactory
 from django.utils.translation import activate
 
@@ -66,7 +67,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 display_name='uitest',
                 last_login_ip='127.0.0.1',
             )
-        except Exception as e:
+        except IntegrityError as e:
             log.info(
                 f'There was a problem creating the user: {e}.'
                 ' Returning user from database'
@@ -123,7 +124,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 username=author, email=f'{author}@email.com'
             )
             user.update(id=settings.TASK_USER_ID)
-        except Exception:  # django.db.utils.IntegrityError
+        except IntegrityError:
             # If the user is already made, use that same user,
             # if not use created user
             addon = addon_factory(
@@ -358,7 +359,8 @@ class GenerateAddonsSerializer(serializers.Serializer):
         # temporary one to avoid the files get moved somewhere else and
         # deleted from source tree
         with copy_file_to_temp(file_path) as temporary_path:
-            data = open(temporary_path, 'rb').read()
+            with open(temporary_path, 'rb') as temporary_file:
+                data = temporary_file.read()
             filedata = SimpleUploadedFile(
                 file_to_upload,
                 data,

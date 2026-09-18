@@ -274,12 +274,9 @@ class TestUserAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         # Make sure it's the right users.
-        assert doc('.field-email').text() == ' '.join(
-            [
-                extra_extra_user.email,
-                extra_user.email,
-                self.user.email,
-            ]
+        assert (
+            doc('.field-email').text()
+            == f'{extra_extra_user.email} {extra_user.email} {self.user.email}'
         )
         # Make sure IPs displayed, and has the right values. The first and
         # third users only have the one we're looking for, the one in the
@@ -410,12 +407,9 @@ class TestUserAdmin(TestCase):
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 3
         # Make sure it's the right users.
-        assert doc('.field-email').text() == ' '.join(
-            [
-                extra_extra_user.email,
-                extra_user.email,
-                self.user.email,
-            ]
+        assert (
+            doc('.field-email').text()
+            == f'{extra_extra_user.email} {extra_user.email} {self.user.email}'
         )
         # Make sure each IP only appears once for each row.
         assert doc('.field-known_ip_addresses').text() == (
@@ -455,12 +449,9 @@ class TestUserAdmin(TestCase):
         doc = pq(response.content)
         assert len(doc('#result_list tbody tr')) == 3
         # Make sure it's the right users.
-        assert doc('.field-email').text() == ' '.join(
-            [
-                extra_extra_user.email,
-                extra_user.email,
-                self.user.email,
-            ]
+        assert (
+            doc('.field-email').text()
+            == f'{extra_extra_user.email} {extra_user.email} {self.user.email}'
         )
         # Make sure each IP only appears once for each row.
         assert doc('.field-known_ip_addresses').text() == (

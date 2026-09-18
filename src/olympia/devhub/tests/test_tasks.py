@@ -34,18 +34,33 @@ def test_recreate_previews(pngcrush_image_mock):
     addon = addon_factory()
     # Set up the preview so it has files in the right places.
     preview_no_original = Preview.objects.create(addon=addon)
-    with root_storage.open(preview_no_original.image_path, 'wb') as dest:
-        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with root_storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
-        shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
+    with (
+        root_storage.open(preview_no_original.image_path, 'wb') as dest,
+        open(get_image_path('preview_landscape.jpg'), 'rb') as copy_src,
+    ):
+        shutil.copyfileobj(copy_src, dest)
+    with (
+        root_storage.open(preview_no_original.thumbnail_path, 'wb') as dest,
+        open(get_image_path('mozilla.png'), 'rb') as copy_src,
+    ):
+        shutil.copyfileobj(copy_src, dest)
     # And again but this time with an "original" image.
     preview_has_original = Preview.objects.create(addon=addon)
-    with root_storage.open(preview_has_original.image_path, 'wb') as dest:
-        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'), dest)
-    with root_storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
-        shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
-    with root_storage.open(preview_has_original.original_path, 'wb') as dest:
-        shutil.copyfileobj(open(get_image_path('teamaddons.jpg'), 'rb'), dest)
+    with (
+        root_storage.open(preview_has_original.image_path, 'wb') as dest,
+        open(get_image_path('preview_landscape.jpg'), 'rb') as copy_src,
+    ):
+        shutil.copyfileobj(copy_src, dest)
+    with (
+        root_storage.open(preview_has_original.thumbnail_path, 'wb') as dest,
+        open(get_image_path('mozilla.png'), 'rb') as copy_src,
+    ):
+        shutil.copyfileobj(copy_src, dest)
+    with (
+        root_storage.open(preview_has_original.original_path, 'wb') as dest,
+        open(get_image_path('teamaddons.jpg'), 'rb') as copy_src,
+    ):
+        shutil.copyfileobj(copy_src, dest)
 
     tasks.recreate_previews([addon.id])
 

@@ -707,13 +707,12 @@ class LicenseForm(AMOModelForm):
             # database.
             license = super().save(*args, **kw)
 
-        if self.version:
-            if (changed and is_other) or license != self.version.license:
-                self.version.update(license=license)
-                if log:
-                    ActivityLog.objects.create(
-                        amo.LOG.CHANGE_LICENSE, license, self.version.addon
-                    )
+        if self.version and ((changed and is_other) or license != self.version.license):
+            self.version.update(license=license)
+            if log:
+                ActivityLog.objects.create(
+                    amo.LOG.CHANGE_LICENSE, license, self.version.addon
+                )
         return license
 
 
@@ -1183,13 +1182,13 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
 
             if self.addon:
                 self.check_for_existing_versions(parsed_data.get('version'))
-                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
-                    if error_message := (
-                        validate_version_number_is_gt_latest_signed_listed_version(
-                            self.addon, parsed_data.get('version')
-                        )
-                    ):
-                        raise forms.ValidationError(error_message)
+                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED and (
+                    error_message
+                    := validate_version_number_is_gt_latest_signed_listed_version(
+                        self.addon, parsed_data.get('version')
+                    )
+                ):
+                    raise forms.ValidationError(error_message)
 
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data

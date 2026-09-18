@@ -835,11 +835,13 @@ class ReviewForm(forms.Form):
         return self.cleaned_data
 
     def clean_delayed_rejection_date(self):
-        if self.cleaned_data.get('delayed_rejection_date'):
-            if self.cleaned_data['delayed_rejection_date'] < self.min_rejection_date:
-                raise ValidationError(
-                    'Delayed rejection date should be at least one day in the future'
-                )
+        if (
+            self.cleaned_data.get('delayed_rejection_date')
+            and self.cleaned_data['delayed_rejection_date'] < self.min_rejection_date
+        ):
+            raise ValidationError(
+                'Delayed rejection date should be at least one day in the future'
+            )
         return self.cleaned_data.get('delayed_rejection_date')
 
     def clean_version_pk(self):

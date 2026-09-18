@@ -103,7 +103,7 @@ class AddonFilterForIPSearch(MultipleRelatedListFilter):
         if (
             search_term := model_admin.get_search_query(request)
         ) and model_admin.ip_addresses_and_networks_from_query(search_term):
-            qs, search_use_distinct = model_admin.get_search_results(
+            qs, _search_use_distinct = model_admin.get_search_results(
                 request, model_admin.get_queryset(request), search_term
             )
             lookups_from_queryset = dict(

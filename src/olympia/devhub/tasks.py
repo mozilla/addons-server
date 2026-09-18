@@ -487,9 +487,11 @@ def run_addons_linter(path, channel):
     if not os.path.exists(path):
         raise ValueError(f'Path "{path}" is not a file or directory or does not exist.')
 
-    stdout, stderr = (tempfile.TemporaryFile(), tempfile.TemporaryFile())
-
-    with statsd.timer('devhub.linter'):
+    with (
+        tempfile.TemporaryFile() as stdout,
+        tempfile.TemporaryFile() as stderr,
+        statsd.timer('devhub.linter'),
+    ):
         process = subprocess.Popen(
             args,
             stdout=stdout,
@@ -504,11 +506,6 @@ def run_addons_linter(path, channel):
         stderr.seek(0)
 
         output, error = stdout.read(), stderr.read()
-
-        # Make sure we close all descriptors, otherwise they'll hang around
-        # and could cause a nasty exception.
-        stdout.close()
-        stderr.close()
 
     if error:
         raise ValueError(error)

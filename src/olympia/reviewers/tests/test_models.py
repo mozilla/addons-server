@@ -1597,7 +1597,7 @@ class TestAutoApprovalSummary(TestCase):
                 }
             )
         )
-        summary, info = AutoApprovalSummary.create_summary_for_version(
+        summary, _info = AutoApprovalSummary.create_summary_for_version(
             self.version,
         )
         assert summary.verdict == amo.AUTO_APPROVED

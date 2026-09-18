@@ -232,10 +232,9 @@ def send_mail(
     if not from_email:
         from_email = settings.DEFAULT_FROM_EMAIL
 
-    if cc:
-        # If not str, assume it is already a list.
-        if isinstance(cc, str):
-            cc = [cc]
+    # If not str, assume it is already a list.
+    if cc and isinstance(cc, str):
+        cc = [cc]
 
     if not headers:
         headers = {}
@@ -629,11 +628,10 @@ def clean_nl(string):
                 tree.tail = tree.tail[1:]
 
         for child in tree:  # Recurse down the tree.
-            if tree.tag in html_blocks:
-                # Strip new lines directly inside block level elements: remove
-                # the last new lines from the children's tails.
-                if child.tail:
-                    child.tail = child.tail.rstrip('\n')
+            # Strip new lines directly inside block level elements: remove
+            # the last new lines from the children's tails.
+            if tree.tag in html_blocks and child.tail:
+                child.tail = child.tail.rstrip('\n')
             parse_html(child)
         return tree
 
@@ -675,7 +673,7 @@ def pngcrush_image(src, **kw):
         # for our docker container).
         cmd = [settings.PNGCRUSH_BIN, '-q', '-reduce', '-ow', src, tmp_path]
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        stdout, stderr = process.communicate()
+        _stdout, stderr = process.communicate()
 
         if process.returncode != 0:
             log.error(f'Error optimizing image: {src}; {stderr.strip()}')

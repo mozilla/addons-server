@@ -572,18 +572,17 @@ def archive_member_validator(member, ignore_filename_errors=False):
         )
         raise InvalidArchiveFile(msg) from exc
 
-    if not ignore_filename_errors:
-        if (
-            '\\' in filename
-            or '../' in filename
-            or '..' == filename
-            or filename.startswith('/')
-            or any(unicodedata.category(c)[0] == 'C' for c in filename)
-        ):
-            log.warning('Extraction error, invalid file name: %s', filename)
-            # L10n: {0} is the name of the invalid file.
-            msg = gettext('Invalid file name in archive: {0}')
-            raise InvalidArchiveFile(msg.format(filename))
+    if not ignore_filename_errors and (
+        '\\' in filename
+        or '../' in filename
+        or '..' == filename
+        or filename.startswith('/')
+        or any(unicodedata.category(c)[0] == 'C' for c in filename)
+    ):
+        log.warning('Extraction error, invalid file name: %s', filename)
+        # L10n: {0} is the name of the invalid file.
+        msg = gettext('Invalid file name in archive: {0}')
+        raise InvalidArchiveFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.warning(

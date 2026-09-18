@@ -141,20 +141,21 @@ def restore_all_addon_media_from_backup(id, **kwargs):
     if disabled_addon_content:
         log.info('Found some disable content to restore for addon %s', addon.pk)
         if backup_storage_enabled():
-            if disabled_addon_content.icon_backup_name:
-                if icon_contents := download_file_contents_from_backup_storage(
+            if disabled_addon_content.icon_backup_name and (
+                icon_contents := download_file_contents_from_backup_storage(
                     disabled_addon_content.icon_backup_name
-                ):
-                    icon_path = addon.get_icon_path('original')
-                    log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
-                    with storage.open(icon_path, 'wb') as original_file:
-                        original_file.write(icon_contents)
-                    resize_icon.delay(
-                        icon_path,
-                        addon.pk,
-                        amo.ADDON_ICON_SIZES,
-                        set_modified_on=addon.serializable_reference(),
-                    )
+                )
+            ):
+                icon_path = addon.get_icon_path('original')
+                log.info('Restoring icon %s for addon %s', icon_path, addon.pk)
+                with storage.open(icon_path, 'wb') as original_file:
+                    original_file.write(icon_contents)
+                resize_icon.delay(
+                    icon_path,
+                    addon.pk,
+                    amo.ADDON_ICON_SIZES,
+                    set_modified_on=addon.serializable_reference(),
+                )
             for deleted_preview in disabled_addon_content.deletedpreviewfile_set.all():
                 preview = deleted_preview.preview
                 if preview_contents := download_file_contents_from_backup_storage(

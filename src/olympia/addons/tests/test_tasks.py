@@ -541,7 +541,7 @@ class TestResizeIcon(TestCase):
         img = get_image_path('mozilla.png')
         original_size = (339, 128)
 
-        src = tempfile.NamedTemporaryFile(
+        src = tempfile.NamedTemporaryFile(  # noqa: SIM115 (temp file used across the test (delete=False))
             mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH
         )
 
