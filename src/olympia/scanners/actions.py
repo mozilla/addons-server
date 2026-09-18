@@ -165,7 +165,7 @@ def _disable_and_block(*, version, rule=None):
         _restrict_future_approvals(
             version=version,
             rule=rule,
-            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
         reject_and_block_addons(
             [addon], reject_reason=f'scanner rule "{str(rule)[:150]}"'
