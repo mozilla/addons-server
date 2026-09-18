@@ -71,24 +71,6 @@ class Prefixer:
             else:
                 return '', '', path
 
-    def get_app(self):
-        """
-        Return a valid application string based on the `app` query parameter or
-        the User Agent. Falls back to settings.DEFAULT_APP.
-        """
-        if 'app' in self.request.GET:
-            app = self.request.GET['app'].lower()
-            if app in amo.APPS:
-                return app
-
-        ua = self.request.META.get('HTTP_USER_AGENT')
-        if ua:
-            for app in amo.APP_DETECT:
-                if app.matches_user_agent(ua):
-                    return app.short
-
-        return settings.DEFAULT_APP
-
     def get_language(self):
         """
         Return a locale code that we support on the site using `lang` from GET,
@@ -115,7 +97,7 @@ class Prefixer:
                 url_parts.append(self.locale or self.get_language())
 
             if path.partition('/')[0] not in settings.SUPPORTED_NONAPPS:
-                url_parts.append(self.app or self.get_app())
+                url_parts.append(self.app or settings.DEFAULT_APP)
 
         url_parts.append(path)
         return '/'.join(url_parts)

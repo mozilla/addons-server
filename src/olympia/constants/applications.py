@@ -2,8 +2,6 @@ import re
 
 from django.utils.translation import gettext_lazy as _
 
-from olympia.versions.compare import version_int as vint
-
 from .base import (
     ADDON_DICT,
     ADDON_EXTENSION,
@@ -15,9 +13,7 @@ from .base import (
 
 
 class App:
-    @classmethod
-    def matches_user_agent(cls, user_agent):
-        return cls.user_agent_string in user_agent
+    pass
 
 
 # Applications
@@ -33,13 +29,6 @@ class FIREFOX(App):
     # These versions were relabeled and should not be displayed.
     exclude_versions = (3.1, 3.7, 4.2)
     user_agent_string = 'Firefox'
-
-    @classmethod
-    def matches_user_agent(cls, user_agent):
-        matches = cls.user_agent_string in user_agent
-        if 'Android' in user_agent or 'Mobile' in user_agent or 'Tablet' in user_agent:
-            matches = False
-        return matches
 
 
 class THUNDERBIRD(App):
@@ -122,14 +111,6 @@ class ANDROID(App):
     ]
     latest_version = None
 
-    @classmethod
-    def matches_user_agent(cls, user_agent):
-        for user_agent_re in cls.user_agent_re:
-            match = user_agent_re.search(user_agent)
-            if match:
-                v = match.groups()[0]
-                return vint(cls.min_display_version) <= vint(v)
-
 
 class MOZILLA(App):
     """Mozilla exists for completeness and historical purposes.
@@ -148,7 +129,6 @@ class MOZILLA(App):
 
 
 # UAs will attempt to match in this order.
-APP_DETECT = (ANDROID, FIREFOX)
 APP_USAGE = (FIREFOX, ANDROID)
 APPS = {app.short: app for app in APP_USAGE}
 APP_OBSOLETE = (MOZILLA, SUNBIRD, MOBILE, THUNDERBIRD, SEAMONKEY)
