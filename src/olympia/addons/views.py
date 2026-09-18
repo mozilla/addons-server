@@ -380,7 +380,7 @@ class AddonViewSet(
                 'is_disabled_by_developer': obj.disabled_by_user,
                 'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
             }
-            raise exc
+            raise
 
     def get_georestrictions(self):
         return [perm() for perm in self.georestriction_classes]

@@ -165,7 +165,7 @@ class TestMLBFStorageLoader(_MLBFBase):
         assert loader._raw == self._data
 
     def test_fallback_to_empty_list_for_missing_key(self):
-        for key in self._data.keys():
+        for key in self._data:
             new_data = self._data.copy()
             new_data.pop(key)
             # Generate a corrupted `cache.json` file

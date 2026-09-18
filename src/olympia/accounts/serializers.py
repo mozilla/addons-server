@@ -187,9 +187,8 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
-                gettext(
-                    'Please use images smaller than %dMB.'
-                    % (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
+                gettext('Please use images smaller than {}MB.').format(
+                    int(settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
                 )
             )
         return value

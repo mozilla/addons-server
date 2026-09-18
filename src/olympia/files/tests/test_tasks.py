@@ -107,24 +107,30 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.file_path) as z:
-            with z.open('manifest.json') as manifest:
-                assert manifest.read().decode() == manifest_with_comments
+        with (
+            zipfile.ZipFile(upload.file_path) as z,
+            z.open('manifest.json') as manifest,
+        ):
+            assert manifest.read().decode() == manifest_with_comments
 
     @override_switch('enable-manifest-normalization', active=True)
     def test_does_not_normalize_manifest_json_when_addon_is_signed(self):
         upload = self.get_upload('webextension_signed_already.xpi')
         fake_results = {'errors': 0}
-        with zipfile.ZipFile(upload.file_path, 'r') as z:
-            with z.open('manifest.json') as manifest:
-                original_manifest = manifest.read().decode()
+        with (
+            zipfile.ZipFile(upload.file_path, 'r') as z,
+            z.open('manifest.json') as manifest,
+        ):
+            original_manifest = manifest.read().decode()
 
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.file_path) as z:
-            with z.open('manifest.json') as manifest:
-                assert manifest.read().decode() == original_manifest
+        with (
+            zipfile.ZipFile(upload.file_path) as z,
+            z.open('manifest.json') as manifest,
+        ):
+            assert manifest.read().decode() == original_manifest
 
     @override_switch('enable-manifest-normalization', active=True)
     def test_normalize_manifest_json_with_bom(self):
@@ -137,19 +143,21 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.file_path) as z:
-            with z.open('manifest.json') as manifest:
-                # Make sure it is valid JSON
-                assert json.loads(manifest.read())
-                manifest.seek(0)
-                assert manifest.read().decode() == '\n'.join(
-                    [
-                        '{',
-                        '  "manifest_version": 2,',
-                        '  "name": "..."',
-                        '}',
-                    ]
-                )
+        with (
+            zipfile.ZipFile(upload.file_path) as z,
+            z.open('manifest.json') as manifest,
+        ):
+            # Make sure it is valid JSON
+            assert json.loads(manifest.read())
+            manifest.seek(0)
+            assert manifest.read().decode() == '\n'.join(
+                [
+                    '{',
+                    '  "manifest_version": 2,',
+                    '  "name": "..."',
+                    '}',
+                ]
+            )
 
     @override_switch('enable-manifest-normalization', active=True)
     def test_normalize_manifest_json_with_missing_manifest(self):
@@ -198,20 +206,22 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
         repack_fileupload(fake_results, upload.pk)
         upload.reload()
 
-        with zipfile.ZipFile(upload.file_path) as z:
-            with z.open('manifest.json') as manifest:
-                # Make sure it is valid JSON
-                assert json.loads(manifest.read())
-                # Read the content again to make sure comments have been
-                # removed with a string comparison.
-                manifest.seek(0)
-                assert manifest.read().decode() == '\n'.join(
-                    [
-                        '{',
-                        '  "manifest_version": 2,',
-                        '  "name": "My Extension",',
-                        '  "version": "versionString",',
-                        '  "description": "haupt_stra\\u00dfe"',
-                        '}',
-                    ]
-                )
+        with (
+            zipfile.ZipFile(upload.file_path) as z,
+            z.open('manifest.json') as manifest,
+        ):
+            # Make sure it is valid JSON
+            assert json.loads(manifest.read())
+            # Read the content again to make sure comments have been
+            # removed with a string comparison.
+            manifest.seek(0)
+            assert manifest.read().decode() == '\n'.join(
+                [
+                    '{',
+                    '  "manifest_version": 2,',
+                    '  "name": "My Extension",',
+                    '  "version": "versionString",',
+                    '  "description": "haupt_stra\\u00dfe"',
+                    '}',
+                ]
+            )

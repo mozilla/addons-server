@@ -220,7 +220,7 @@ def send_suppressed_email_confirmation(suppressed_email_verification_id):
     )
 
     send_mail_jinja(
-        gettext(f'Verify your email ({code_snippet})'),
+        gettext('Verify your email ({})').format(code_snippet),
         'devhub/emails/verify-email-requested.ltxt',
         {
             'confirmation_link': confirmation_link,

@@ -984,14 +984,16 @@ class SafeStorage(FileSystemStorage):
         """
         if src_path == dest_path:
             return
-        with self.open(src_path, 'rb') as src:
-            with self.open(dest_path, 'wb') as dest:
-                while True:
-                    chunk = src.read(chunk_size)
-                    if chunk:
-                        dest.write(chunk)
-                    else:
-                        break
+        with (
+            self.open(src_path, 'rb') as src,
+            self.open(dest_path, 'wb') as dest,
+        ):
+            while True:
+                chunk = src.read(chunk_size)
+                if chunk:
+                    dest.write(chunk)
+                else:
+                    break
 
     def move_stored_file(self, src_path, dest_path, chunk_size=DEFAULT_CHUNK_SIZE):
         """

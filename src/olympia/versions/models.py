@@ -575,9 +575,12 @@ class Version(OnChangeMixin, ModelBase):
         if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
-        # Check if the approval should be restricted
+        # Check if the approval should be restricted. Enterprise versions are
+        # exempt: their auto-approval can never be disabled (see
+        # AutoApprovalSummary.check_has_auto_approval_disabled()), so the flag
+        # is not set and nothing is recorded for them.
         checker = RestrictionChecker(upload=upload)
-        if not checker.is_auto_approval_allowed():
+        if channel != amo.CHANNEL_ENTERPRISE and not checker.is_auto_approval_allowed():
             flag = (
                 'auto_approval_disabled'
                 if channel == amo.CHANNEL_LISTED

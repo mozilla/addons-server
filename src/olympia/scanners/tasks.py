@@ -38,10 +38,12 @@ from olympia.constants.scanners import (
     COMPLETED,
     NARC,
     RUNNING,
+    SCANNER_RESULTS_MISSING_RULE_NAME,
     SCANNERS,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
+    WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
     YARA,
 )
@@ -61,6 +63,10 @@ from .models import (
 
 
 log = olympia.core.logger.getLogger('z.scanners.task')
+
+
+class ScannerResultsMissingError(Exception):
+    """Raised to make Celery retry when some scanners owe us results."""
 
 
 def make_adapter_with_retry():
@@ -90,10 +96,10 @@ def call_webhooks_during_validation(results, upload_pk):
         )
 
         log.info('All webhooks have been called for FileUpload %s.', upload_pk)
-    except Exception as exc:
+    except Exception:
         log.exception('Error while calling webhooks for FileUpload %s.', upload_pk)
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 
@@ -105,8 +111,7 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
         webhook__is_active=True,
     ).all():
         log.info('Calling webhook "%s".', event.webhook.name)
-        event_name = WEBHOOK_EVENTS.get(event_id, event_id)
-        statsd_name = f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
+        statsd_name = _get_webhook_statsd_name(event)
 
         try:
             scanner_result = ScannerResult.objects.create(
@@ -117,31 +122,50 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
                 activity_log=activity_log,
             )
 
-            with statsd.timer(statsd_name):
-                data = _call_webhook(
-                    webhook=event.webhook,
-                    payload={
-                        **payload,
-                        'event': event_name,
-                        'scanner_result_url': absolutify(
-                            reverse(
-                                'v5:scanner-result-patch',
-                                args=[scanner_result.pk],
-                            )
-                        ),
-                    },
-                )
-
-            scanner_result.results = data
-            # We don't pass `update_fields` because the `save()` method
-            # also updates other fields (e.g. has_matches, matched_rules).
-            scanner_result.save()
+            _deliver_webhook(scanner_result, payload)
 
             statsd.incr(f'{statsd_name}.success')
-        except Exception as exc:
+        except Exception:
             statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
-            raise exc
+            raise
+
+
+def _get_webhook_statsd_name(event):
+    event_name = WEBHOOK_EVENTS.get(event.event, event.event)
+    return f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
+
+
+def _deliver_webhook(scanner_result, payload):
+    """Call the webhook for an existing ScannerResult and store what it
+    returned. Exceptions are left to the caller."""
+    event = scanner_result.webhook_event
+    previous_results = scanner_result.results
+
+    with statsd.timer(_get_webhook_statsd_name(event)):
+        data = _call_webhook(
+            webhook=event.webhook,
+            payload={
+                **payload,
+                'event': WEBHOOK_EVENTS.get(event.event, event.event),
+                'scanner_result_url': absolutify(
+                    reverse(
+                        'v5:scanner-result-patch',
+                        args=[scanner_result.pk],
+                    )
+                ),
+            },
+        )
+
+    scanner_result.reload()
+    if scanner_result.results != previous_results:
+        # The scanner sent its results while we were calling it.
+        return
+
+    scanner_result.results = data
+    # We don't pass `update_fields` because the `save()` method
+    # also updates other fields (e.g. has_matches, matched_rules).
+    scanner_result.save()
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):
@@ -163,6 +187,117 @@ def build_webhook_payload(event_id, *, upload=None, version=None):
         }
 
     raise ValueError(f'No payload for webhook event {event_id}')
+
+
+def _build_payload_for_result(scanner_result):
+    """Return the payload to send again for an existing scanner result, or None
+    when it cannot be rebuilt."""
+    event_id = scanner_result.webhook_event.event
+
+    if event_id == WEBHOOK_DURING_VALIDATION:
+        upload = scanner_result.upload
+        if not upload or not os.path.exists(upload.file_path):
+            log.error(
+                'Cannot call the webhook again for scanner result %s because '
+                'its file upload is gone.',
+                scanner_result.pk,
+            )
+            return None
+        return build_webhook_payload(event_id, upload=upload)
+
+    return build_webhook_payload(event_id, version=scanner_result.version)
+
+
+def _record_missing_results(scanner_result):
+    """Store artificial results for a scanner that never sent us any, so that
+    the version stops waiting on it."""
+    event = scanner_result.webhook_event
+    scanner_result.results = {'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]}
+    scanner_result.save()
+
+    statsd.incr(f'{_get_webhook_statsd_name(event)}.missing_results')
+    log.error(
+        'Giving up on webhook "%s" for version %s, recording missing results '
+        'on scanner result %s.',
+        event.webhook.name,
+        scanner_result.version_id,
+        scanner_result.pk,
+    )
+
+
+@task(
+    bind=True,
+    autoretry_for=(ScannerResultsMissingError,),
+    max_retries=WEBHOOK_MAX_RETRIES,
+    default_retry_delay=settings.SCANNER_WEBHOOK_RETRY_DELAY,
+)
+@use_primary_db
+def wait_for_scanner_results(self, version_pk):
+    """Call the webhooks that still owe us results again, retrying at a fixed
+    interval until they answer, then record artificial results matching the
+    SCANNER_RESULTS_MISSING rule to stop waiting."""
+    if waffle.switch_is_active('disable-wait-for-scanner-results'):
+        log.info(
+            'Not waiting for scanner results for version %s, switch is active.',
+            version_pk,
+        )
+        return
+
+    version = Version.unfiltered.get(pk=version_pk)
+    events = ScannerWebhookEvent.blocking_auto_approval_for(version)
+    pending = [
+        scanner_result
+        for scanner_result in ScannerResult.objects.filter(
+            version=version, webhook_event__in=events
+        ).select_related('webhook_event__webhook')
+        if not scanner_result.is_complete
+    ]
+
+    if not pending:
+        log.info('All scanners have sent their results for version %s.', version_pk)
+        return
+
+    give_up = self.request.retries >= WEBHOOK_MAX_RETRIES
+    still_pending = False
+
+    for scanner_result in pending:
+        if give_up:
+            _record_missing_results(scanner_result)
+            continue
+
+        event = scanner_result.webhook_event
+        statsd_name = _get_webhook_statsd_name(event)
+        try:
+            payload = _build_payload_for_result(scanner_result)
+            if payload is None:
+                # There is nothing we could send again, so no point waiting.
+                _record_missing_results(scanner_result)
+                continue
+
+            log.info(
+                'Calling webhook "%s" again for version %s (retry %s/%s).',
+                event.webhook.name,
+                version_pk,
+                self.request.retries + 1,
+                WEBHOOK_MAX_RETRIES,
+            )
+            _deliver_webhook(scanner_result, payload)
+            statsd.incr(f'{statsd_name}.success')
+        except Exception:
+            statsd.incr(f'{statsd_name}.failure')
+            log.exception(
+                'Error while calling webhook "%s" again for version %s.',
+                event.webhook.name,
+                version_pk,
+            )
+
+        if not scanner_result.is_complete:
+            still_pending = True
+
+    if still_pending:
+        raise ScannerResultsMissingError(
+            f'Still waiting on scanner results for version {version_pk}.'
+        )
 
 
 def _call_webhook(webhook, payload):
@@ -244,13 +379,13 @@ def run_scanner(results, upload_pk, scanner, api_url, api_key):
 
         statsd.incr(f'devhub.{scanner_name}.success')
         log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
-    except Exception as exc:
+    except Exception:
         statsd.incr(f'devhub.{scanner_name}.failure')
         log.exception(
             'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
         )
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 
@@ -291,6 +426,26 @@ def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
 
 @task
 @use_primary_db
+def run_actions_for_scanner_result(scanner_result_pk):
+    """Execute the scanner actions for the rules matched by a single scanner
+    result."""
+    log.info('Starting run actions task for ScannerResult %s.', scanner_result_pk)
+    scanner_result = ScannerResult.objects.get(pk=scanner_result_pk)
+    rule_pks = list(scanner_result.matched_rules.values_list('pk', flat=True))
+
+    if not rule_pks:
+        log.info(
+            'No matched rule for ScannerResult %s, not running any action.',
+            scanner_result_pk,
+        )
+        return
+
+    ScannerResult.run_actions(scanner_result.version, rules=rule_pks)
+    log.info('Ending run actions task for ScannerResult %s.', scanner_result_pk)
+
+
+@task
+@use_primary_db
 def run_narc_on_version(version_pk, *, run_actions_on_match=True):
     log.info('Starting narc task for Version %s.', version_pk)
     try:
@@ -322,11 +477,11 @@ def run_narc_on_version(version_pk, *, run_actions_on_match=True):
 
         if run_actions_on_match and has_new_matches:
             ScannerResult.run_actions(version)
-    except Exception as exc:
+    except Exception:
         statsd.incr('devhub.narc.failure')
         log.exception('Error in scanner "narc" task for Version %s.', version_pk)
         # Not part of the submission process, so we can always raise.
-        raise exc
+        raise
     else:
         statsd.incr('devhub.narc.success')
     log.info('Ending scanner "narc" task for Version %s.', version_pk)
@@ -526,11 +681,11 @@ def _run_yara(results, upload_pk):
 
         statsd.incr('devhub.yara.success')
         log.info('Ending scanner "yara" task for FileUpload %s.', upload_pk)
-    except Exception as exc:
+    except Exception:
         statsd.incr('devhub.yara.failure')
         log.exception('Error in scanner "yara" task for FileUpload %s.', upload_pk)
         if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise exc
+            raise
 
     return results
 

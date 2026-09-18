@@ -134,7 +134,7 @@ class VersionView(APIView):
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = gettext(
-                'You cannot add versions to an add-on that has status: %s.'
+                'You cannot add versions to an add-on that has status: %s.'  # noqa: INT003
                 % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
             )
             raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)

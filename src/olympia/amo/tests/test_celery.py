@@ -38,12 +38,12 @@ def test_celery_routes_only_contain_valid_tasks():
 
     # Make sure all tasks in CELERY_TASK_ROUTES are known.
     known_tasks = app.tasks.keys()
-    for task_name in settings.CELERY_TASK_ROUTES.keys():
+    for task_name in settings.CELERY_TASK_ROUTES:
         assert task_name in known_tasks
 
     # Make sure all known tasks have an explicit route set.
     for task_name in known_tasks:
-        assert task_name in settings.CELERY_TASK_ROUTES.keys()
+        assert task_name in settings.CELERY_TASK_ROUTES
 
 
 def test_create_chunked_tasks_signatures():

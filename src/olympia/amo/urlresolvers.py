@@ -78,7 +78,7 @@ class Prefixer:
         """
         if 'app' in self.request.GET:
             app = self.request.GET['app'].lower()
-            if app in amo.APPS.keys():
+            if app in amo.APPS:
                 return app
 
         ua = self.request.META.get('HTTP_USER_AGENT')
@@ -156,7 +156,7 @@ def get_outgoing_url(url):
 
 def linkify_bounce_url_callback(node):
     """Linkify callback that uses get_outgoing_url."""
-    if 'href' in node.attrs.keys():
+    if 'href' in node.attrs:
         node.attrs['href'] = get_outgoing_url(node.attrs['href'])
 
 

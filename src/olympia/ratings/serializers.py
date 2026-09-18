@@ -313,10 +313,8 @@ class RatingFlagSerializer(AMOModelSerializer):
         flags = dict(RatingFlag.USER_FLAGS)
         if flag not in flags:
             raise serializers.ValidationError(
-                gettext(
-                    'Invalid flag [{}] - must be one of [{}]'.format(
-                        flag, ','.join(flags)
-                    )
+                gettext('Invalid flag [{flag}] - must be one of [{flags}]').format(
+                    flag=flag, flags=','.join(flags)
                 )
             )
         return flag

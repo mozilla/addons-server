@@ -357,6 +357,19 @@ def test_generate_static_theme_preview(
                 'bookmark_text': 'rgb(0,0,0)',
             },
         ),
+        (  # chrome colors with an alpha channel
+            {'theme_frame': 'transparent.gif'},
+            {
+                'frame': [123, 45, 67, 0.5],
+                'tab_background_text': [9, 87, 65, 1],
+                'bookmark_text': [0, 0, 0, 0],
+            },
+            {
+                'frame': 'rgba(123,45,67,0.5)',
+                'tab_background_text': 'rgba(9,87,65,1)',
+                'bookmark_text': 'rgba(0,0,0,0)',
+            },
+        ),
     ),
 )
 def test_generate_static_theme_preview_with_alternative_properties(
@@ -1047,14 +1060,42 @@ class TestCallWebhooksOnVersionCreated(TestCase):
             version=version,
         )
 
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
     @mock.patch('olympia.versions.tasks.call_webhooks')
-    def test_skip_webhooks_on_langpack_created(self, call_webhooks_mock):
+    def test_schedules_wait_for_scanner_results(self, _, apply_async_mock):
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        apply_async_mock.assert_called_with(
+            kwargs={'version_pk': version.pk},
+            countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
+        )
+
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_schedules_wait_for_scanner_results_even_when_a_call_failed(
+        self, call_webhooks_mock, apply_async_mock
+    ):
+        call_webhooks_mock.side_effect = ValueError('scanner is down')
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        assert apply_async_mock.called
+
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_skip_webhooks_on_langpack_created(
+        self, call_webhooks_mock, apply_async_mock
+    ):
         addon = addon_factory(type=amo.ADDON_LPAPP)
         version = version_factory(addon=addon)
         addon.reload()
 
         call_webhooks_on_version_created(version.pk)
         call_webhooks_mock.assert_not_called()
+        apply_async_mock.assert_not_called()
 
     @mock.patch('olympia.versions.tasks.call_webhooks')
     def test_call_with_mock_and_deleted_version(self, call_webhooks_mock):

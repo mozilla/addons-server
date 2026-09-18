@@ -147,41 +147,49 @@ class TestExceptionHandler(TestCase):
     def test_api_exception_handler_with_propagation(self):
         exception_handler = api_settings.EXCEPTION_HANDLER
 
-        with self.assertRaises(APIException):
-            with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True):
-                try:
-                    raise APIException()
-                except Exception as exc:
-                    exception_handler(exc, {})
+        with (
+            self.assertRaises(APIException),
+            self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True),
+        ):
+            try:
+                raise APIException()
+            except Exception as exc:
+                exception_handler(exc, {})
 
     def test_exception_handler_404_with_propagation(self):
         exception_handler = api_settings.EXCEPTION_HANDLER
 
-        with self.assertRaises(Http404):
-            with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True):
-                try:
-                    raise Http404()
-                except Exception as exc:
-                    exception_handler(exc, {})
+        with (
+            self.assertRaises(Http404),
+            self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True),
+        ):
+            try:
+                raise Http404()
+            except Exception as exc:
+                exception_handler(exc, {})
 
     def test_exception_handler_403_with_propagation(self):
         exception_handler = api_settings.EXCEPTION_HANDLER
 
-        with self.assertRaises(PermissionDenied):
-            with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True):
-                try:
-                    raise PermissionDenied()
-                except Exception as exc:
-                    exception_handler(exc, {})
+        with (
+            self.assertRaises(PermissionDenied),
+            self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True),
+        ):
+            try:
+                raise PermissionDenied()
+            except Exception as exc:
+                exception_handler(exc, {})
 
     def test_non_api_exception_handler_with_propagation(self):
         # Regular DRF exception handler does not return a Response for non-api
         # exceptions, but we do.
         exception_handler = api_settings.EXCEPTION_HANDLER
 
-        with self.assertRaises(KeyError):
-            with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True):
-                try:
-                    raise KeyError()
-                except Exception as exc:
-                    exception_handler(exc, {})
+        with (
+            self.assertRaises(KeyError),
+            self.settings(DEBUG_PROPAGATE_EXCEPTIONS=True),
+        ):
+            try:
+                raise KeyError()
+            except Exception as exc:
+                exception_handler(exc, {})

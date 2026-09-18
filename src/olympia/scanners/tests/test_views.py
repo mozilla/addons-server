@@ -424,6 +424,68 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 400
         assert response.json() == {'results': ['This field is required.']}
 
+    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    def test_runs_actions_for_matched_rules(self, run_actions_mock):
+        response = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+
+        assert response.status_code == 201
+        scanner_result = ScannerResult.objects.get()
+        assert scanner_result.has_matches
+        run_actions_mock.delay.assert_called_once_with(scanner_result.pk)
+
+    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    def test_does_not_run_actions_without_matched_rules(self, run_actions_mock):
+        response = self._push_scanner_result()
+
+        assert response.status_code == 201
+        assert not ScannerResult.objects.get().has_matches
+        run_actions_mock.delay.assert_not_called()
+
+    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    def test_does_not_run_actions_for_unknown_rule(self, run_actions_mock):
+        response = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['unknown-rule']},
+            }
+        )
+
+        assert response.status_code == 201
+        assert not ScannerResult.objects.get().has_matches
+        run_actions_mock.delay.assert_not_called()
+
+    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    def test_does_not_run_actions_for_inactive_rule(self, run_actions_mock):
+        ScannerRule.objects.filter(name='rule-a').update(is_active=False)
+
+        response = self._push_scanner_result(
+            data={
+                'version_id': self.version.pk,
+                'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+            }
+        )
+
+        assert response.status_code == 201
+        assert not ScannerResult.objects.get().has_matches
+        run_actions_mock.delay.assert_not_called()
+
+    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    def test_does_not_run_actions_on_duplicate_rule(self, run_actions_mock):
+        data = {
+            'version_id': self.version.pk,
+            'results': {'version': '1.0.0', 'matchedRules': ['rule-a']},
+        }
+        assert self._push_scanner_result(data=data).status_code == 201
+        run_actions_mock.delay.reset_mock()
+
+        assert self._push_scanner_result(data=data).status_code == 409
+        run_actions_mock.delay.assert_not_called()
+
 
 VALID_YARA_DEFINITION = 'rule some_rule { condition: true }'
 

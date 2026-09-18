@@ -959,8 +959,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .order_by('pk')
         )
         add_log = logs[0]
-        change_status_log = logs[1]
-        reject_log = logs[2]
+        force_disable_log = logs[1]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [new_addon, new_addon.guid, new_block]
         assert add_log.details['blocked_versions'] == [
@@ -983,29 +982,28 @@ class TestBlocklistSubmissionAdmin(TestCase):
         version_reject_log, version_block_log = tuple(
             ActivityLog.objects.for_versions(new_addon.current_version)
         )
-        if version_reject_log != reject_log:
+        if version_reject_log != force_disable_log:
             version_reject_log, version_block_log = (
                 version_block_log,
                 version_reject_log,
             )
-        assert version_reject_log == reject_log
+        assert version_reject_log == force_disable_log
         assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
         assert version_block_log.arguments == [new_addon.current_version, new_block]
 
-        assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [
+        assert force_disable_log.action == amo.LOG.FORCE_DISABLE.id
+        assert force_disable_log.arguments == [
             new_addon,
-            new_addon.current_version,
             new_addon_decision,
+            new_addon.current_version,
         ]
-        assert reject_log.user == new_block.updated_by
+        assert force_disable_log.user == new_block.updated_by
         assert (
-            reject_log
+            force_disable_log
             == ActivityLog.objects.for_versions(new_addon.current_version).order_by(
                 'pk'
             )[1]
         )
-        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         existing_and_partial = existing_and_partial.reload()
         assert all_blocks[1] == existing_and_partial
@@ -1023,7 +1021,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
             .order_by('pk')
         )
         edit_log = logs[0]
-        reject_log = logs[1]
+        force_disable_log = logs[1]
         assert edit_log.action == amo.LOG.BLOCKLIST_BLOCK_EDITED.id
         assert edit_log.arguments == [
             partial_addon,
@@ -1055,26 +1053,26 @@ class TestBlocklistSubmissionAdmin(TestCase):
         version_reject_log, version_block_log = tuple(
             ActivityLog.objects.for_versions(partial_addon.current_version)
         )
-        if version_reject_log != reject_log:
+        if version_reject_log != force_disable_log:
             version_reject_log, version_block_log = (
                 version_block_log,
                 version_reject_log,
             )
-        assert version_reject_log == reject_log
+        assert version_reject_log == force_disable_log
         assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
         assert version_block_log.arguments == [
             partial_addon.current_version,
             existing_and_partial,
         ]
 
-        assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [
+        assert force_disable_log.action == amo.LOG.FORCE_DISABLE.id
+        assert force_disable_log.arguments == [
             partial_addon,
-            partial_addon.current_version,
             partial_addon_decision,
+            partial_addon.current_version,
+            partial_addon.versions.exclude(pk=partial_addon.current_version.pk).get(),
         ]
-        assert reject_log.user == new_block.updated_by
-        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
+        assert force_disable_log.user == new_block.updated_by
 
         existing_and_full = existing_and_full.reload()
         assert all_blocks[0] == existing_and_full
@@ -1868,10 +1866,9 @@ class TestBlocklistSubmissionAdmin(TestCase):
         decision = ContentDecision.objects.get()
         assert decision.addon == addon
         logs = ActivityLog.objects.for_addons(addon)
-        change_status_log = logs[0]
-        reject_log = logs[1]
-        signoff_log = logs[2]
-        add_log = logs[3]
+        force_disable_log = logs[0]
+        signoff_log = logs[1]
+        add_log = logs[2]
         assert add_log.action == amo.LOG.BLOCKLIST_BLOCK_ADDED.id
         assert add_log.arguments == [addon, addon.guid, new_block]
         assert add_log.details['blocked_versions'] == [addon.current_version.version]
@@ -1889,7 +1886,7 @@ class TestBlocklistSubmissionAdmin(TestCase):
         version_reject_log, version_block_log = tuple(
             ActivityLog.objects.for_versions(addon.current_version)
         )
-        assert version_reject_log == reject_log
+        assert version_reject_log == force_disable_log
         assert version_block_log.action == amo.LOG.BLOCKLIST_VERSION_BLOCKED.id
         assert version_block_log.arguments == [addon.current_version, new_block]
 
@@ -1897,15 +1894,13 @@ class TestBlocklistSubmissionAdmin(TestCase):
         assert signoff_log.arguments == [addon, addon.guid, 'add', new_block]
         assert signoff_log.user == user
 
-        assert reject_log.action == amo.LOG.REJECT_VERSION.id
-        assert reject_log.arguments == [addon, version, decision]
-        assert reject_log.user == new_block.updated_by
+        assert force_disable_log.action == amo.LOG.FORCE_DISABLE.id
+        assert force_disable_log.arguments == [addon, decision, version]
+        assert force_disable_log.user == new_block.updated_by
         assert (
-            reject_log
+            force_disable_log
             == ActivityLog.objects.for_versions(addon.current_version).first()
         )
-
-        assert change_status_log.action == amo.LOG.CHANGE_STATUS.id
 
         assert mbs.to_block == [
             {
