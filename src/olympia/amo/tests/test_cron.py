@@ -12,7 +12,6 @@ from olympia.amo.models import FakeEmail
 from olympia.amo.sitemap import get_sitemaps
 from olympia.amo.tests import TestCase, addon_factory, user_factory, version_factory
 from olympia.constants.activity import RETENTION_DAYS
-from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.constants.scanners import YARA
 from olympia.files.models import FileUpload
 from olympia.scanners.models import ScannerResult
@@ -226,13 +225,8 @@ class TestGC(TestCase):
 
 class TestWriteSitemaps(TestCase):
     def setUp(self):
-        addon_factory()
-        TestCase.make_addon_promoted(
-            addon_factory(version_kw={'application': amo.ANDROID.id}),
-            api_name=RECOMMENDED_API_NAME,
-            listed_pre_review=True,
-            approve_version=True,
-        )
+        addon_factory(version_kw={'application': amo.FIREFOX.id})
+        (addon_factory(version_kw={'application': amo.ANDROID.id}),)
         assert len(os.listdir(settings.SITEMAP_STORAGE_PATH)) == 0
 
     def test_basic(self):
@@ -240,41 +234,29 @@ class TestWriteSitemaps(TestCase):
         write_sitemaps()
         sitemaps = get_sitemaps()
         # Root should contain all sections dirs + index.
-        assert len(os.listdir(sitemaps_dir)) == len({item[0] for item in sitemaps}) + 1
+        assert len(os.listdir(sitemaps_dir)) == len(sitemaps) + 1
 
         with open(os.path.join(sitemaps_dir, 'sitemap.xml')) as sitemap:
             contents = sitemap.read()
             entry = (
                 '<sitemap><loc>http://testserver/sitemap.xml?{params}</loc></sitemap>'
             )
-            for section, app in sitemaps:
-                if not app:
-                    assert entry.format(params=f'section={section}') in contents
-                else:
-                    assert (
-                        entry.format(
-                            params=f'section={section}&amp;app_name={app.short}'
-                        )
-                        in contents
-                    )
+            for section in sitemaps:
+                assert entry.format(params=f'section={section}') in contents
             assert (
                 '<sitemap><loc>http://testserver/blog/sitemap.xml</loc></sitemap>'
                 in contents
             )
 
-        with open(os.path.join(sitemaps_dir, 'amo/sitemap.xml')) as sitemap:
+        with open(os.path.join(sitemaps_dir, 'amo/1/01/1.xml')) as sitemap:
             contents = sitemap.read()
             assert '<url><loc>http://testserver/en-US/about</loc>' in contents
 
-        with open(os.path.join(sitemaps_dir, 'addons/firefox/1/01/1.xml')) as sitemap:
+        with open(os.path.join(sitemaps_dir, 'addons/1/01/1.xml')) as sitemap:
             contents = sitemap.read()
             assert '<url><loc>http://testserver/en-US/firefox/' in contents
 
-        with open(os.path.join(sitemaps_dir, 'addons/android/1/01/1.xml')) as sitemap:
-            contents = sitemap.read()
-            assert '<url><loc>http://testserver/en-US/android/' in contents
-
-        xml_path = os.path.join(sitemaps_dir, 'collections/firefox/1/01/1.xml')
+        xml_path = os.path.join(sitemaps_dir, 'collections/1/01/1.xml')
         with open(xml_path) as sitemap:
             contents = sitemap.read()
             assert (
@@ -291,25 +273,9 @@ class TestWriteSitemaps(TestCase):
         os.remove(os.path.join(sitemaps_dir, 'sitemap.xml'))
         write_sitemaps(section='amo')
         assert len(os.listdir(sitemaps_dir)) == 1
-        assert os.path.exists(os.path.join(sitemaps_dir, 'amo/sitemap.xml'))
+        assert os.path.exists(os.path.join(sitemaps_dir, 'amo/1/01/1.xml'))
 
-        os.remove(os.path.join(sitemaps_dir, 'amo/sitemap.xml'))
+        os.remove(os.path.join(sitemaps_dir, 'amo/1/01/1.xml'))
         write_sitemaps(section='addons')
         assert len(os.listdir(sitemaps_dir)) == 2
-        assert os.path.exists(os.path.join(sitemaps_dir, 'addons/firefox/1/01/1.xml'))
-        assert os.path.exists(os.path.join(sitemaps_dir, 'addons/android/1/01/1.xml'))
-
-    def test_with_args_app_name(self):
-        sitemaps_dir = settings.SITEMAP_STORAGE_PATH
-        # typically app_name would be used in combination with a section
-        write_sitemaps(section='addons', app_name='firefox')
-        assert len(os.listdir(sitemaps_dir)) == 1
-        assert os.path.exists(os.path.join(sitemaps_dir, 'addons/firefox/1/01/1.xml'))
-        os.remove(os.path.join(sitemaps_dir, 'addons/firefox/1/01/1.xml'))
-
-        # but it does work on its own, to generate all relevant sitemaps
-        write_sitemaps(app_name='android')
-        assert len(os.listdir(sitemaps_dir)) == 3
-        assert os.path.exists(os.path.join(sitemaps_dir, 'addons/android/1/01/1.xml'))
-        assert os.path.exists(os.path.join(sitemaps_dir, 'users/android/1/01/1.xml'))
-        assert os.path.exists(os.path.join(sitemaps_dir, 'tags/android/1/01/1.xml'))
+        assert os.path.exists(os.path.join(sitemaps_dir, 'addons/1/01/1.xml'))

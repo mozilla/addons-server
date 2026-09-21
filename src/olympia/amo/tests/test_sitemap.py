@@ -11,7 +11,6 @@ import pytest
 
 from olympia import amo
 from olympia.addons.models import AddonCategory, AddonListingInfo
-from olympia.amo.reverse import override_url_prefix
 from olympia.amo.sitemap import (
     AccountSitemap,
     AddonSitemap,
@@ -30,7 +29,6 @@ from olympia.amo.tests import (
     addon_factory,
     collection_factory,
     user_factory,
-    version_factory,
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED_API_NAME
@@ -60,11 +58,11 @@ class TestAddonSitemap(TestCase):
         self.addon_c = addon_c = addon_factory(slug='addon-c', created=self.days_ago(1))
         AddonListingInfo.objects.create(addon=addon_c, noindex_until=self.days_ago(2))
         addon_factory(status=amo.STATUS_NOMINATED)  # shouldn't show up
-        self.android_addon = addon_factory(
+        self.android_addon = android = addon_factory(
             version_kw={'application': amo.ANDROID.id}
-        )  # shouldn't show up in expected
+        )
         self.make_addon_promoted(
-            self.android_addon,
+            android,
             api_name=RECOMMENDED_API_NAME,
             listed_pre_review=True,
             approve_version=True,
@@ -73,9 +71,15 @@ class TestAddonSitemap(TestCase):
         addon_d = addon_factory(slug='addon-d', created=self.days_ago(1))
         AddonListingInfo.maybe_mark_as_noindexed(addon_d)
         self.expected = [
+            it(android.last_updated, reverse('addons.detail', args=[android.slug]), 1),
             it(addon_c.last_updated, reverse('addons.detail', args=[addon_c.slug]), 1),
             it(addon_a.last_updated, reverse('addons.detail', args=[addon_a.slug]), 1),
             it(addon_b.last_updated, reverse('addons.detail', args=[addon_b.slug]), 1),
+            it(
+                android.last_updated,
+                reverse('addons.ratings.list', args=[android.slug]),
+                1,
+            ),
             it(
                 addon_c.last_updated,
                 reverse('addons.ratings.list', args=[addon_c.slug]),
@@ -127,66 +131,12 @@ class TestAddonSitemap(TestCase):
         assert sitemap.location(item).endswith('/reviews/?page=2')
         assert sitemap.lastmod(item) == item.last_updated
 
-    def test_android(self):
-        it = AddonSitemap.item_tuple
-        android_addon = self.android_addon
-        with override_url_prefix(app_name='android'):
-            assert list(AddonSitemap().items()) == [
-                it(
-                    android_addon.last_updated,
-                    reverse('addons.detail', args=[android_addon.slug]),
-                    1,
-                ),
-                it(
-                    android_addon.last_updated,
-                    reverse('addons.ratings.list', args=[android_addon.slug]),
-                    1,
-                ),
-            ]
-            # make some of the Firefox add-ons be Android compatible
-            version_factory(addon=self.addon_a, application=amo.ANDROID.id)
-            self.make_addon_promoted(
-                self.addon_a,
-                api_name=RECOMMENDED_API_NAME,
-                listed_pre_review=True,
-                approve_version=True,
-            )
-            self.addon_a.reload()
-            version_factory(addon=self.addon_b, application=amo.ANDROID.id)
-            # don't make b recommended - should be ignored even though it's compatible
-            assert list(AddonSitemap().items()) == [
-                it(
-                    self.addon_a.last_updated,
-                    reverse('addons.detail', args=[self.addon_a.slug]),
-                    1,
-                ),
-                it(
-                    android_addon.last_updated,
-                    reverse('addons.detail', args=[android_addon.slug]),
-                    1,
-                ),
-                it(
-                    self.addon_a.last_updated,
-                    reverse('addons.ratings.list', args=[self.addon_a.slug]),
-                    1,
-                ),
-                it(
-                    android_addon.last_updated,
-                    reverse('addons.ratings.list', args=[android_addon.slug]),
-                    1,
-                ),
-            ]
-
 
 def test_amo_sitemap():
     sitemap = AMOSitemap()
     for item in sitemap.items():
-        urlname, app = item
+        urlname = item
         assert sitemap.location(item).endswith(reverse(urlname, add_prefix=False))
-        if app:
-            assert sitemap.location(item).endswith(
-                f'/{app.short}{reverse(urlname, add_prefix=False)}'
-            )
 
 
 @pytest.mark.django_db
@@ -204,17 +154,16 @@ def test_categories_sitemap():
         addon=addon_factory(category=bookmarks_category), category=shopping_category
     )
     AddonCategory.objects.create(
-        addon=addon_factory(category=shopping_category), category=bookmarks_category
+        addon=addon_factory(
+            category=shopping_category, version_kw={'application': amo.ANDROID.id}
+        ),
+        category=bookmarks_category,
     )
     addon_factory(category=bookmarks_category)
     addon_factory(category=bookmarks_category)
     addon_factory(category=bookmarks_category)
     addon_factory(category=shopping_category, status=amo.STATUS_NOMINATED)
-    addon_factory(
-        category=shopping_category, version_kw={'application': amo.ANDROID.id}
-    )
-    # should be 4 addons in shopping (one not public, one not compatible with Firefox,
-    # so 2 public), and 5 in bookmarks
+    # should be 3 addons in shopping (one not public, so 2 public), and 5 in bookmarks
 
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
@@ -486,138 +435,6 @@ class TestAccountSitemap(TestCase):
             ),
         ]
 
-    @mock.patch('olympia.amo.sitemap.EXTENSIONS_BY_AUTHORS_PAGE_SIZE', 2)
-    @mock.patch('olympia.amo.sitemap.THEMES_BY_AUTHORS_PAGE_SIZE', 1)
-    def test_android(self):
-        # users with just themes on Android won't be included
-        user_with_themes = user_factory()
-        user_with_extensions = user_factory()
-        user_with_both = user_factory()
-        user_factory(has_full_profile=True)  # marked as developer, but no addons.
-        extension = addon_factory(
-            users=(user_with_extensions, user_with_both),
-            version_kw={'application': amo.ANDROID.id},
-        )
-        self.make_addon_promoted(
-            extension,
-            api_name=RECOMMENDED_API_NAME,
-            listed_pre_review=True,
-            approve_version=True,
-        )
-        extra_extension_a = addon_factory(
-            users=(user_with_extensions, user_with_both),
-            version_kw={'application': amo.ANDROID.id},
-        )
-        self.make_addon_promoted(
-            extra_extension_a,
-            api_name=RECOMMENDED_API_NAME,
-            listed_pre_review=True,
-            approve_version=True,
-        )
-        extra_extension_b = addon_factory(
-            users=(user_with_extensions, user_with_both),
-            version_kw={'application': amo.ANDROID.id},
-        )
-
-        # and some addons that should be ignored
-        addon_factory(
-            type=amo.ADDON_STATICTHEME,
-            users=(user_with_themes, user_with_both),
-            version_kw={'application': amo.ANDROID.id},
-        )
-        addon_factory(
-            type=amo.ADDON_STATICTHEME,
-            users=(user_with_themes, user_with_both),
-            version_kw={'application': amo.ANDROID.id},
-        )
-        firefox_addon = addon_factory(
-            type=amo.ADDON_EXTENSION,
-            users=(user_with_extensions, user_with_both),
-            version_kw={'application': amo.FIREFOX.id},
-        )
-        self.make_addon_promoted(
-            firefox_addon,
-            api_name=RECOMMENDED_API_NAME,
-            listed_pre_review=True,
-            approve_version=True,
-        )
-
-        # there would be 3 addons but one of them isn't promoted
-        with override_url_prefix(app_name='android'):
-            assert list(AccountSitemap().items()) == [
-                (
-                    extra_extension_a.last_updated,
-                    reverse('users.profile', args=[user_with_both.id]),
-                    1,
-                    1,
-                ),
-                (
-                    extra_extension_a.last_updated,
-                    reverse('users.profile', args=[user_with_extensions.id]),
-                    1,
-                    1,
-                ),
-            ]
-
-        self.make_addon_promoted(
-            extra_extension_b,
-            api_name=RECOMMENDED_API_NAME,
-            listed_pre_review=True,
-            approve_version=True,
-        )
-        with override_url_prefix(app_name='android'):
-            assert list(AccountSitemap().items()) == [
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_both.id]),
-                    1,
-                    1,
-                ),
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_both.id]),
-                    2,
-                    1,
-                ),
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_extensions.id]),
-                    1,
-                    1,
-                ),
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_extensions.id]),
-                    2,
-                    1,
-                ),
-            ]
-        # delete user_with_both from extra_extension_b
-        user_with_both.addonuser_set.filter(addon=extra_extension_b).update(
-            role=amo.AUTHOR_ROLE_DELETED
-        )
-        with override_url_prefix(app_name='android'):
-            assert list(AccountSitemap().items()) == [
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_extensions.id]),
-                    1,
-                    1,
-                ),
-                (
-                    extra_extension_b.last_updated,
-                    reverse('users.profile', args=[user_with_extensions.id]),
-                    2,
-                    1,
-                ),
-                (
-                    extra_extension_a.last_updated,
-                    reverse('users.profile', args=[user_with_both.id]),
-                    1,
-                    1,
-                ),
-            ]
-
 
 @pytest.mark.django_db
 def test_tag_pages_sitemap():
@@ -628,8 +445,7 @@ def test_tag_pages_sitemap():
     zoom_tag = Tag.objects.get(tag_text='zoom')
     shopping_tag = Tag.objects.get(tag_text='shopping')
     addon_factory(tags=(zoom_tag.tag_text, shopping_tag.tag_text))
-    addon_factory(tags=(zoom_tag.tag_text, shopping_tag.tag_text))
-
+    addon_factory(tags=(zoom_tag.tag_text,))
     addon_factory(tags=(zoom_tag.tag_text,))
     addon_factory(tags=(zoom_tag.tag_text,))
     addon_factory(tags=(zoom_tag.tag_text,))
@@ -637,8 +453,7 @@ def test_tag_pages_sitemap():
     addon_factory(
         tags=(shopping_tag.tag_text,), version_kw={'application': amo.ANDROID.id}
     )
-    # should be 4 addons tagged with shopping (one not public, one not compatible with
-    # Firefox, so 2 public), and 5 tagged with zoom
+    # should be 3 addons tagged with shopping (one not public so 2) & 5 tagged with zoom
 
     patched_drf_setting = dict(settings.REST_FRAMEWORK)
     patched_drf_setting['PAGE_SIZE'] = 2
@@ -667,32 +482,26 @@ def test_get_sitemap_section_pages():
     sitemaps = get_sitemaps()
     pages = get_sitemap_section_pages(sitemaps)
     assert pages == [
-        ('amo', None, 1),
-        ('addons', 'firefox', 1),
-        ('addons', 'android', 1),
-        ('categories', 'firefox', 1),
-        ('collections', 'firefox', 1),
-        ('users', 'firefox', 1),
-        ('users', 'android', 1),
-        ('tags', 'firefox', 1),
-        ('tags', 'android', 1),
+        ('amo', 1),
+        ('addons', 1),
+        ('categories', 1),
+        ('collections', 1),
+        ('users', 1),
+        ('tags', 1),
     ]
     with mock.patch.object(AddonSitemap, 'limit', 25):
         pages = get_sitemap_section_pages(sitemaps)
         # 2 pages per addon * 3 addons * 10 locales = 60 urls for addons; 3 pages @ 25pp
-        assert len(sitemaps.get(('addons', amo.FIREFOX))._items()) == 60
+        assert len(sitemaps.get('addons')._items()) == 60
         assert pages == [
-            ('amo', None, 1),
-            ('addons', 'firefox', 1),
-            ('addons', 'firefox', 2),
-            ('addons', 'firefox', 3),
-            ('addons', 'android', 1),
-            ('categories', 'firefox', 1),
-            ('collections', 'firefox', 1),
-            ('users', 'firefox', 1),
-            ('users', 'android', 1),
-            ('tags', 'firefox', 1),
-            ('tags', 'android', 1),
+            ('amo', 1),
+            ('addons', 1),
+            ('addons', 2),
+            ('addons', 3),
+            ('categories', 1),
+            ('collections', 1),
+            ('users', 1),
+            ('tags', 1),
         ]
 
     # test the default pagination limit
@@ -707,30 +516,23 @@ def test_get_sitemap_section_pages():
         # 401 mock user pages * 10 locales = 4010 urls for addons; 3 pages @ 2000pp
         pages = get_sitemap_section_pages(sitemaps)
         assert pages == [
-            ('amo', None, 1),
-            ('addons', 'firefox', 1),
-            ('addons', 'android', 1),
-            ('categories', 'firefox', 1),
-            ('collections', 'firefox', 1),
-            ('users', 'firefox', 1),
-            ('users', 'firefox', 2),
-            ('users', 'firefox', 3),
-            ('users', 'android', 1),
-            ('users', 'android', 2),
-            ('users', 'android', 3),
-            ('tags', 'firefox', 1),
-            ('tags', 'android', 1),
+            ('amo', 1),
+            ('addons', 1),
+            ('categories', 1),
+            ('collections', 1),
+            ('users', 1),
+            ('users', 2),
+            ('users', 3),
+            ('tags', 1),
         ]
 
 
 def test_render_index_xml():
     with mock.patch('olympia.amo.sitemap.get_sitemap_section_pages') as pages_mock:
         pages_mock.return_value = [
-            ('amo', None, 1),
-            ('addons', 'firefox', 1),
-            ('addons', 'firefox', 2),
-            ('addons', 'android', 1),
-            ('addons', 'android', 2),
+            ('amo', 1),
+            ('addons', 1),
+            ('addons', 2),
         ]
         built = render_index_xml(sitemaps={})
 
@@ -770,58 +572,27 @@ def test_sitemap_render():
         ]
 
     with mock.patch.object(AddonSitemap, 'items', items_mock):
-        firefox_built = AddonSitemap().render('firefox', 1)
-
-        firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-firefox.xml')
+        firefox_built = AddonSitemap().render(1)
+        firefox_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons.xml')
         with open(firefox_file) as sitemap:
             assert firefox_built == sitemap.read()
-
-        android_built = AddonSitemap().render('android', 1)
-        android_file = os.path.join(TEST_SITEMAPS_DIR, 'sitemap-addons-android.xml')
-        with open(android_file) as sitemap:
-            assert android_built == sitemap.read()
 
 
 class TestGetSitemapPath(TestCase):
     def test_success(self):
         basepath = settings.SITEMAP_STORAGE_PATH
-        assert get_sitemap_path(None, None) == f'{basepath}/sitemap.xml'
-        assert get_sitemap_path('amo', None) == f'{basepath}/amo/sitemap.xml'
-        assert (
-            get_sitemap_path('addons', 'firefox')
-            == f'{basepath}/addons/firefox/1/01/1.xml'
-        )
-        assert get_sitemap_path('amo', None, 1) == f'{basepath}/amo/sitemap.xml'
-        assert get_sitemap_path('amo', None, 2) == f'{basepath}/amo/2.xml'
-        assert get_sitemap_path('amo', None, 89) == f'{basepath}/amo/89.xml'
-        assert get_sitemap_path('amo', None, 4321) == f'{basepath}/amo/4321.xml'
-        assert (
-            get_sitemap_path('addons', 'firefox', 1)
-            == f'{basepath}/addons/firefox/1/01/1.xml'
-        )
-        assert (
-            get_sitemap_path('addons', 'android', 2)
-            == f'{basepath}/addons/android/2/02/2.xml'
-        )
-        assert (
-            get_sitemap_path('addons', 'android', 89)
-            == f'{basepath}/addons/android/9/89/89.xml'
-        )
-        assert (
-            get_sitemap_path('addons', 'firefox', 4321)
-            == f'{basepath}/addons/firefox/1/21/4321.xml'
-        )
+        assert get_sitemap_path(None) == f'{basepath}/sitemap.xml'
+        assert get_sitemap_path('amo') == f'{basepath}/amo/1/01/1.xml'
+        assert get_sitemap_path('amo', 1) == f'{basepath}/amo/1/01/1.xml'
+        assert get_sitemap_path('amo', 4321) == f'{basepath}/amo/1/21/4321.xml'
+        assert get_sitemap_path('addons', 1) == f'{basepath}/addons/1/01/1.xml'
+        assert get_sitemap_path('addons', 2) == f'{basepath}/addons/2/02/2.xml'
+        assert get_sitemap_path('addons', 4321) == f'{basepath}/addons/1/21/4321.xml'
 
     def test_errors(self):
         with self.assertRaises(InvalidSection):
             # completely invalid section
-            get_sitemap_path('foo', None)
-        with self.assertRaises(InvalidSection):
-            # an invalid section+app combination
-            get_sitemap_path('addons', None)
+            get_sitemap_path('foo')
         with self.assertRaises(PageNotAnInteger):
             # invalid page with a section and an app
-            get_sitemap_path('addons', 'firefox', 'a')
-        with self.assertRaises(PageNotAnInteger):
-            # invalid page with a section but no app
-            get_sitemap_path('amo', None, 'a')
+            get_sitemap_path('addons', 'a')
