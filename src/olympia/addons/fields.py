@@ -183,7 +183,7 @@ class ESLicenseNameSerializerField(
 
 
 class LicenseSlugSerializerField(serializers.RelatedField):
-    default_error_messages = {
+    default_error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
         'does_not_exist': _('License with slug={value} does not exist.'),
     }
 

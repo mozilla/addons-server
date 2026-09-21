@@ -21,7 +21,7 @@ from olympia.users.models import UserProfile
 
 
 class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -187,7 +187,7 @@ class TestUploadErrors(UploadMixin, TestCase):
 
 
 class TestFileValidation(TestCase):
-    fixtures = ['base/users', 'devhub/addon-validation-1']
+    fixtures = ('base/users', 'devhub/addon-validation-1')
 
     def setUp(self):
         super().setUp()
@@ -386,7 +386,7 @@ class TestFileValidation(TestCase):
 
 
 class TestValidateAddon(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()

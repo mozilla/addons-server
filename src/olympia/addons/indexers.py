@@ -180,7 +180,7 @@ class AddonIndexer:
         'summary_l10n_*',
     )
 
-    index_settings = {
+    index_settings = {  # noqa: RUF012 (in py315 update to frozendict)
         'analysis': {
             'analyzer': {
                 'standard_with_word_split': {

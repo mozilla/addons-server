@@ -45,13 +45,13 @@ class DatabaseSchemaEditor(mysql_base.DatabaseSchemaEditor):
 
 
 class DatabaseOperations(mysql_base.DatabaseOperations):
-    integer_field_ranges = {
+    integer_field_ranges = {  # noqa: RUF012 (in py315 update to frozendict)
         **mysql_base.DatabaseOperations.integer_field_ranges,
         'PositiveAutoField': mysql_base.DatabaseOperations.integer_field_ranges[
             'PositiveIntegerField'
         ],
     }
-    cast_data_types = {
+    cast_data_types = {  # noqa: RUF012 (in py315 update to frozendict)
         **mysql_base.DatabaseOperations.cast_data_types,
         'PositiveAutoField': 'unsigned integer',
     }
@@ -62,7 +62,7 @@ class DatabaseWrapper(mysql_base.DatabaseWrapper):
     SchemaEditorClass = DatabaseSchemaEditor
     ops_class = DatabaseOperations
 
-    data_types = {
+    data_types = {  # noqa: RUF012 (in py315 update to frozendict)
         # in django52 the class property is _data_types instead.
         # TODO: this overwrite's django52's special handling for mariadb! Make it work.
         **getattr(

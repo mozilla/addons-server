@@ -38,11 +38,11 @@ from olympia.versions.models import VersionPreview
 
 
 class BaseTestEdit(TestCase):
-    fixtures = [
+    fixtures = (
         'base/users',
         'base/addon_3615',
         'base/addon_5579',
-    ]
+    )
     listed = True
     __test__ = False  # this is an abstract test case
 
@@ -1714,13 +1714,13 @@ class TestEditAdditionalDetailsUnlisted(TagTestsMixin, BaseTestEditAdditionalDet
 
 class TestEditTechnical(BaseTestEdit):
     __test__ = True
-    fixtures = BaseTestEdit.fixtures + [
+    fixtures = BaseTestEdit.fixtures + (
         'base/addon_40',
         'base/addon_1833_yoono',
         'base/addon_4664_twitterbar.json',
         'base/addon_5299_gcal',
         'base/addon_6113',
-    ]
+    )
 
     def setUp(self):
         super().setUp()

@@ -59,15 +59,15 @@ def serve_file_upload(request, uuid):
 class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
     queryset = FileUpload.objects.all()
     serializer_class = FileUploadSerializer
-    permission_classes = [
+    permission_classes = (
         APIGatePermission('addon-submission-api'),
         AllowOwner,
         IsSubmissionAllowedFor,
-    ]
-    authentication_classes = [
+    )
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
+    )
     lookup_field = 'uuid'
     throttle_classes = file_upload_throttles
 

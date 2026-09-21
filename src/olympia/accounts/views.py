@@ -420,14 +420,14 @@ def logout_user(request, response):
 # This view is not covered by the CORS middleware, see:
 # https://github.com/mozilla/addons-server/issues/11100
 class SessionView(APIView):
-    permission_classes = [
+    permission_classes = (
         ByHttpMethod(
             {
                 'options': AllowAny,  # Needed for CORS.
                 'delete': IsAuthenticated,
             }
         ),
-    ]
+    )
 
     def options(self, request, *args, **kwargs):
         response = Response()
@@ -470,8 +470,8 @@ class AllowSelf(BasePermission):
 class AccountViewSet(
     RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, GenericViewSet
 ):
-    authentication_classes = [JWTKeyAuthentication, SessionIDAuthentication]
-    permission_classes = [
+    authentication_classes = (JWTKeyAuthentication, SessionIDAuthentication)
+    permission_classes = (
         ByHttpMethod(
             {
                 'get': AllowAny,
@@ -482,7 +482,7 @@ class AccountViewSet(
                 'delete': AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT)),
             }
         ),
-    ]
+    )
     # Periods are not allowed in username, but we still have some in the
     # database so relax the lookup regexp to allow them to load their profile.
     lookup_value_regex = '[^/]+'
@@ -584,11 +584,11 @@ class AccountViewSet(
 
 
 class ProfileView(APIView):
-    authentication_classes = [
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
-    permission_classes = [IsAuthenticated]
+    )
+    permission_classes = (IsAuthenticated,)
 
     def get(self, request):
         account_viewset = AccountViewSet(
@@ -601,11 +601,11 @@ class ProfileView(APIView):
 
 
 class AccountSuperCreate(APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [
+    authentication_classes = (JWTKeyAuthentication,)
+    permission_classes = (
         IsAuthenticated,
         GroupPermission(amo.permissions.ACCOUNTS_SUPER_CREATE),
-    ]
+    )
 
     @waffle_switch('super-create-accounts')
     def post(self, request):
@@ -724,11 +724,11 @@ class AccountNotificationViewSet(
     If not already set by the user, defaults will be returned.
     """
 
-    permission_classes = [IsAuthenticated]
+    permission_classes = (IsAuthenticated,)
     # We're pushing the primary permission checking to AccountViewSet for ease.
-    account_permission_classes = [
-        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))
-    ]
+    account_permission_classes = (
+        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT)),
+    )
     serializer_class = UserNotificationSerializer
     paginator = None
 
@@ -786,8 +786,8 @@ class AccountNotificationUnsubscribeView(AccountNotificationMixin, GenericAPIVie
 
 
 class FxaNotificationView(APIView):
-    authentication_classes = []
-    permission_classes = []
+    authentication_classes = ()
+    permission_classes = ()
 
     FXA_PROFILE_CHANGE_EVENT = (
         'https://schemas.accounts.firefox.com/event/profile-change'

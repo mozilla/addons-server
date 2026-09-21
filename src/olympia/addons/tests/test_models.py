@@ -231,7 +231,7 @@ class TestCleanSlug(TestCase):
 
 
 class TestAddonManager(TestCase):
-    fixtures = [
+    fixtures = (
         'base/appversion',
         'base/users',
         'base/addon_3615',
@@ -239,7 +239,7 @@ class TestAddonManager(TestCase):
         'base/collections',
         'base/featured',
         'base/addon_5299_gcal',
-    ]
+    )
 
     def setUp(self):
         super().setUp()
@@ -334,7 +334,7 @@ class TestAddonManager(TestCase):
 
 
 class TestAddonModels(TestCase):
-    fixtures = [
+    fixtures = (
         'base/appversion',
         'base/collections',
         'base/users',
@@ -343,7 +343,7 @@ class TestAddonModels(TestCase):
         'base/addon_3723_listed',
         'base/addon_4664_twitterbar',
         'addons/denied',
-    ]
+    )
 
     def setUp(self):
         super().setUp()
@@ -2381,7 +2381,7 @@ class TestAddonUser(TestCase):
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def test_no_versions_doesnt_redirect(self):
         addon = Addon.objects.get(id=3615)
@@ -2481,7 +2481,7 @@ class TestHasListedAndUnlistedVersions(TestCase):
 
 
 class TestAddonDueDate(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         user_factory(pk=settings.TASK_USER_ID)
@@ -3073,9 +3073,7 @@ class TestUpdateStatus(TestCase):
 
 
 class TestGetVersion(TestCase):
-    fixtures = [
-        'base/addon_3615',
-    ]
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -3148,7 +3146,7 @@ class TestAddonGetURLPath(TestCase):
 
 
 class TestBackupVersion(TestCase):
-    fixtures = ['addons/update', 'base/appversion']
+    fixtures = ('addons/update', 'base/appversion')
 
     def setUp(self):
         super().setUp()
@@ -3193,7 +3191,7 @@ class TestBackupVersion(TestCase):
 
 
 class TestPreviewModel(BasePreviewMixin, TestCase):
-    fixtures = ['base/previews']
+    fixtures = ('base/previews',)
 
     def get_object(self):
         return Preview.objects.get(pk=24)
@@ -3223,14 +3221,14 @@ class TestPreviewModel(BasePreviewMixin, TestCase):
 
 
 class TestListedAddonTwoVersions(TestCase):
-    fixtures = ['addons/listed-two-versions']
+    fixtures = ('addons/listed-two-versions',)
 
     def test_listed_two_versions(self):
         Addon.objects.get(id=2795)  # bug 563967
 
 
 class TestAddonFromUpload(UploadMixin, TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     @classmethod
     def setUpTestData(self):

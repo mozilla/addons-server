@@ -504,7 +504,7 @@ class SlugField(models.SlugField):
     keeps the old behaviour of not checking contents.
     """
 
-    default_validators = []
+    default_validators = ()
 
 
 class FakeEmail(ModelBase):

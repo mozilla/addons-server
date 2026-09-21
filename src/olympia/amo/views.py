@@ -244,8 +244,8 @@ def fake_fxa_authorization(request):
 
 
 class SiteStatusView(APIView):
-    authentication_classes = []
-    permission_classes = []
+    authentication_classes = ()
+    permission_classes = ()
 
     @classmethod
     def as_view(cls, **initkwargs):

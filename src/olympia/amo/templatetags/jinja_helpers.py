@@ -230,7 +230,7 @@ def class_selected(a, b):
 
 
 class Spaceless(Extension):
-    tags = {'spaceless'}
+    tags = frozenset({'spaceless'})
 
     def parse(self, parser):
         lineno = next(parser.stream).lineno

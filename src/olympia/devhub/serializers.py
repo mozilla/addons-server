@@ -26,7 +26,7 @@ class DeveloperAgreementSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UserProfile
-        fields = ['display_name', 'last_developer_agreement_change']
+        fields = ('display_name', 'last_developer_agreement_change')
 
     def validate_display_name(self, value):
         request = self.context['request']

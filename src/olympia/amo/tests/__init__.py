@@ -1140,10 +1140,10 @@ class ESTestCase(ESTestCaseMixin, TestCase):
 
 
 class TestXss(TestCase):
-    fixtures = [
+    fixtures = (
         'base/addon_3615',
         'users/test_backends',
-    ]
+    )
 
     def setUp(self):
         super().setUp()

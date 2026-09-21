@@ -115,7 +115,9 @@ class BannedUserContentInline(admin.TabularInline):
 @admin.register(UserProfile)
 class UserAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-user.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-user.less'),)
+        }
 
     list_filter = ('banned',)
     list_display = (
@@ -236,12 +238,12 @@ class UserAdmin(AMOModelAdmin):
         ),
     )
 
-    actions = [
+    actions = (
         'ban_action',
         'unban_action',
         'reset_api_key_action',
         'reset_session_action',
-    ]
+    )
 
     def get_urls(self):
         def wrap(view):
@@ -722,53 +724,53 @@ class DeniedNameAdmin(AMOModelAdmin):
 
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     list_display = ('network', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('=network',)
     form = forms.IPNetworkUserRestrictionForm
-    formfield_overrides = {
+    formfield_overrides = {  # noqa: RUF012 (in py315 update to frozendict)
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
 
 
 @admin.register(EmailUserRestriction)
 class EmailUserRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     list_display = ('email_pattern', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^email_pattern',)
     form = forms.EmailUserRestrictionAdminForm
-    formfield_overrides = {
+    formfield_overrides = {  # noqa: RUF012 (in py315 update to frozendict)
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
 
 
 @admin.register(DisposableEmailDomainRestriction)
 class DisposableEmailDomainRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     list_display = ('domain', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^domain',)
-    formfield_overrides = {
+    formfield_overrides = {  # noqa: RUF012 (in py315 update to frozendict)
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
 
 
 @admin.register(FingerprintRestriction)
 class FingerprintRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     list_display = ('ja4', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^ja4',)
-    formfield_overrides = {
+    formfield_overrides = {  # noqa: RUF012 (in py315 update to frozendict)
         models.CharField: {'widget': TextInput(attrs={'size': '125'})},
     }
 
 
 @admin.register(AsnUserRestriction)
 class AsnUserRestrictionAdmin(AMOModelAdmin):
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     list_display = ('asn', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^asn',)

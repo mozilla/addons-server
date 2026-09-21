@@ -81,7 +81,7 @@ def test_json_view_response_status():
 
 
 class TestLoginRequired(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -155,7 +155,7 @@ class TestLoginRequired(TestCase):
 
 
 class TestSetModifiedOn(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     @decorators.set_modified_on
     def some_method(self, worked):

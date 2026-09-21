@@ -171,7 +171,7 @@ class TestUpdateInfoLegacyRedirect(UpdateInfoMixin, TestCase):
 
 
 class TestDownloadsBase(TestCase):
-    fixtures = ['base/addon_5299_gcal', 'base/users']
+    fixtures = ('base/addon_5299_gcal', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -821,7 +821,7 @@ class TestDownloadsLatest(TestDownloadsBase):
 
 
 class TestDownloadSource(TestCase):
-    fixtures = ['base/addon_3615', 'base/admin']
+    fixtures = ('base/addon_3615', 'base/admin')
 
     def setUp(self):
         super().setUp()

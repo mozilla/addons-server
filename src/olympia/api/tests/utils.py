@@ -62,7 +62,7 @@ class APIKeyAuthTestMixin(JWTAuthKeyTester):
         Tests that the JWT Auth class is on the class, without having
         to do a full request response cycle.
         """
-        assert cls.authentication_classes == [JWTKeyAuthentication]
+        assert cls.authentication_classes == (JWTKeyAuthentication,)
 
     def verbs_allowed(self, cls, verbs):
         """

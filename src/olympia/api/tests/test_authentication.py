@@ -40,8 +40,8 @@ class JWTKeyAuthTestView(APIView):
     JWTKeyAuthentication, used in TestJWTKeyAuthProtectedView below.
     """
 
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [JWTKeyAuthentication]
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (JWTKeyAuthentication,)
 
     def get(self, request):
         return Response('some get response')

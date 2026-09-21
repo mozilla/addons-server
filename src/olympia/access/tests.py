@@ -84,7 +84,7 @@ def test_admin_login_anon():
 
 
 class TestCheckAddonOwnership(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -180,7 +180,7 @@ class TestCheckAddonOwnership(TestCase):
 
 
 class TestCheckReviewer(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

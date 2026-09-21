@@ -92,9 +92,9 @@ class ActivityLogToken(ModelBase):
 
     class Meta:
         db_table = 'log_activity_tokens'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(fields=('version', 'user'), name='version_id'),
-        ]
+        )
 
     def is_expired(self):
         return self.use_count >= MAX_TOKEN_USE_COUNT
@@ -264,7 +264,7 @@ class IPLog(ModelBase):
     class Meta:
         db_table = 'log_activity_ip'
         ordering = ('-created',)
-        indexes = [
+        indexes = (
             LongNameIndex(
                 fields=('_ip_address',),
                 name='log_activity_ip_ip_address_ba36172a',
@@ -273,7 +273,7 @@ class IPLog(ModelBase):
                 fields=('ip_address_binary',),
                 name='log_activity_ip_ip_address_binary_209777a9',
             ),
-        ]
+        )
 
     def __str__(self):
         return str(self.ip_address_binary)
@@ -572,10 +572,10 @@ class ActivityLog(ModelBase):
     class Meta:
         db_table = 'log_activity'
         ordering = ('-created',)
-        indexes = [
+        indexes = (
             models.Index(fields=('action',), name='log_activity_1bd4707b'),
             models.Index(fields=('created',), name='log_activity_created_idx'),
-        ]
+        )
 
     @classmethod
     def transformer_anonymize_user_for_developer(cls, logs):

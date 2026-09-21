@@ -26,7 +26,7 @@ ATTACHMENTS_DIR = os.path.join(TESTS_DIR, 'attachments')
 
 
 class TestSendMail(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()

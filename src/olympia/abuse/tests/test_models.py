@@ -75,7 +75,7 @@ from ..models import (
 
 
 class TestAbuseReport(TestCase):
-    fixtures = ['base/addon_3615', 'base/user_999']
+    fixtures = ('base/addon_3615', 'base/user_999')
 
     def test_choices(self):
         assert AbuseReport.ADDON_SIGNATURES.choices == [

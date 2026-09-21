@@ -114,7 +114,11 @@ class VersionLicenseValidator:
 
 class AddonMetadataValidator:
     requires_context = True
-    fields = {'name': 'name', 'summary': 'summary', 'all_categories': 'categories'}
+    fields = {  # noqa: RUF012 (in py315 update to frozendict)
+        'name': 'name',
+        'summary': 'summary',
+        'all_categories': 'categories',
+    }
 
     def has_metadata(self, data, addon, field):
         data_value = data.get(field)

@@ -445,7 +445,7 @@ class TestValidator(UploadMixin, TestCase):
 
 
 class TestCreateVersionForUpload(UploadMixin, TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

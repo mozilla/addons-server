@@ -168,7 +168,7 @@ class Rating(ModelBase):
         # description
         base_manager_name = 'unfiltered'
         ordering = ('-created',)
-        indexes = [
+        indexes = (
             models.Index(fields=('version',), name='version_id'),
             models.Index(fields=('user',), name='reviews_ibfk_2'),
             models.Index(fields=('addon',), name='reviews_addon_idx'),
@@ -177,13 +177,13 @@ class Rating(ModelBase):
                 name='latest_reviews_per_addon',
             ),
             models.Index(fields=('ip_address',), name='reviews_ip_address_057fddfa'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(
                 fields=('version', 'user', 'reply_to', 'deleted'),
                 name='one_review_per_user',
             ),
-        ]
+        )
 
     def __str__(self):
         return truncate(str(self.body), 10)
@@ -382,14 +382,16 @@ class RatingFlag(ModelBase):
 
     class Meta:
         db_table = 'reviews_moderation_flags'
-        indexes = [
+        indexes = (
             models.Index(fields=('user',), name='index_user'),
             models.Index(fields=('rating',), name='index_review'),
             models.Index(fields=('modified',), name='index_modified'),
-        ]
-        constraints = [
-            models.UniqueConstraint(fields=('rating', 'user'), name='index_review_user')
-        ]
+        )
+        constraints = (
+            models.UniqueConstraint(
+                fields=('rating', 'user'), name='index_review_user'
+            ),
+        )
 
 
 class RatingAggregate(ModelBase):

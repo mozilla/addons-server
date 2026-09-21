@@ -21,7 +21,7 @@ class TestAppVersion(TestCase):
 
 
 class TestViews(TestCase):
-    fixtures = ['base/appversion']
+    fixtures = ('base/appversion',)
 
     def test_appversions(self):
         response = self.client.get('/en-US/firefox/pages/appversions/')
@@ -347,7 +347,7 @@ class TestAppVersionsAPIPut(APIKeyAuthTestMixin, TestCase):
 
 
 class TestCommands(TestCase):
-    fixtures = ['base/appversion']
+    fixtures = ('base/appversion',)
 
     def test_addnewversion(self):
         new_version = '123.456'

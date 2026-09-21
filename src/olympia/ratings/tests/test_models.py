@@ -18,7 +18,7 @@ from ..models import DeniedRatingWord, Rating, RatingFlag
 
 
 class TestRatingModel(TestCase):
-    fixtures = ['ratings/test_models']
+    fixtures = ('ratings/test_models',)
 
     def test_soft_delete(self):
         addon = Addon.objects.get()
@@ -363,7 +363,7 @@ class TestRatingModel(TestCase):
 
 
 class TestRefreshTest(ESTestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()

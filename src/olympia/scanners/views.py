@@ -141,7 +141,7 @@ class ScannerQueryRuleViewSet(ModelViewSet):
     serializer) and a new rule should be created to iterate.
     """
 
-    authentication_classes = [JWTKeyAuthentication]
+    authentication_classes = (JWTKeyAuthentication,)
     queryset = ScannerQueryRule.objects.all().order_by('-pk')
     serializer_class = ScannerQueryRuleSerializer
 
@@ -204,25 +204,25 @@ class ScannerQueryResultViewSet(ReadOnlyModelViewSet):
     ``ordering_field_aliases``).
     """
 
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [GroupPermission(amo.permissions.ADMIN_SCANNERS_QUERY_VIEW)]
+    authentication_classes = (JWTKeyAuthentication,)
+    permission_classes = (GroupPermission(amo.permissions.ADMIN_SCANNERS_QUERY_VIEW),)
     serializer_class = ScannerQueryResultSerializer
-    filter_backends = [OrderingAliasFilter]
+    filter_backends = (OrderingAliasFilter,)
     ordering_fields = ('id',)
     # `?sort= names`` mapping to the underlying (related) fields.
-    ordering_field_aliases = {
+    ordering_field_aliases = {  # noqa: RUF012 (in py315 update to frozendict)
         'addon_adu': 'version__addon__average_daily_users',
         'version_created': 'version__created',
     }
     ordering = ('-id',)
 
-    boolean_filters = {
+    boolean_filters = {  # noqa: RUF012 (in py315 update to frozendict)
         'was_blocked': 'was_blocked',
         'was_promoted': 'was_promoted',
         'was_signed': 'version__file__is_signed',
         'addon_disabled_by_user': 'version__addon__disabled_by_user',
     }
-    choice_filters = {
+    choice_filters = {  # noqa: RUF012 (in py315 update to frozendict)
         'channel': ('version__channel', amo.CHANNEL_CHOICES_LOOKUP),
         'addon_status': ('version__addon__status', amo.STATUS_CHOICES_API_LOOKUP),
         'file_status': ('version__file__status', amo.STATUS_CHOICES_API_LOOKUP),

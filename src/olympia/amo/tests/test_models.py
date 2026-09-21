@@ -39,7 +39,7 @@ def test_use_primary_db():
 
 
 class TestModelBase(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

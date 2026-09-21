@@ -35,9 +35,9 @@ class GroupUser(models.Model):
 
     class Meta:
         db_table = 'groups_users'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(fields=('group', 'user'), name='group_id'),
-        ]
+        )
 
     def invalidate_groups_list(self):
         """Callback to invalidate user.groups_list when creating/deleting GroupUser

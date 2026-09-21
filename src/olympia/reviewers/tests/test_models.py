@@ -50,7 +50,7 @@ from olympia.zadmin.models import set_config
 
 
 class TestReviewerSubscription(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()

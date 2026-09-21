@@ -23,12 +23,12 @@ from olympia.versions.models import License, VersionPreview
 
 
 class TestAddonIndexer(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     # The base list of fields we expect to see in the mapping/extraction.
     # This only contains the fields for which we use the value directly,
     # see expected_fields() for the rest.
-    simple_fields = [
+    simple_fields = (
         'average_daily_users',
         'bayesian_rating',
         'contributions',
@@ -48,7 +48,7 @@ class TestAddonIndexer(TestCase):
         'status',
         'type',
         'weekly_downloads',
-    ]
+    )
 
     def setUp(self):
         super().setUp()
@@ -129,10 +129,13 @@ class TestAddonIndexer(TestCase):
 
         # Return a list with the base fields and the dynamic ones added.
         fields = (
-            cls.simple_fields + complex_fields + analyzer_fields + raw_translated_fields
+            *cls.simple_fields,
+            *complex_fields,
+            *analyzer_fields,
+            *raw_translated_fields,
         )
         if include_nullable:
-            fields += nullable_fields
+            fields += tuple(nullable_fields)
         return fields
 
     def test_mapping(self):
@@ -627,7 +630,7 @@ class TestAddonIndexer(TestCase):
 
 
 class TestAddonIndexerWithES(ESTestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def test_mapping(self):
         """Compare actual mapping in ES with the one the indexer returns, once

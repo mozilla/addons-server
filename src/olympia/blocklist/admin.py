@@ -184,7 +184,7 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
         'modified',
     )
     list_filter = (BlocklistSubmissionStateFilter,)
-    ordering = ['-created']
+    ordering = ('-created',)
     view_on_site = False
     list_select_related = ('updated_by', 'signoff_by')
     change_form_template = 'admin/blocklist/blocklistsubmission_change_form.html'
@@ -192,7 +192,9 @@ class BlocklistSubmissionAdmin(AMOModelAdmin):
     form = BlocklistSubmissionForm
 
     class Media:
-        css = {'all': (vite_asset('css/admin-blocklist_blocklistsubmission.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-blocklist_blocklistsubmission.less'),)
+        }
         js = ('js/i18n/en-US.js',)
 
     def state(self, obj):
@@ -613,14 +615,16 @@ class BlockAdmin(BlockAdminAddMixin, AMOModelAdmin):
         'url_link',
         'blocked_versions',
     )
-    ordering = ['-modified']
+    ordering = ('-modified',)
     view_on_site = False
     list_select_related = ('updated_by',)
     change_list_template = 'admin/blocklist/block_change_list.html'
     change_form_template = 'admin/blocklist/block_change_form.html'
 
     class Media:
-        css = {'all': (vite_asset('css/admin-blocklist_block.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-blocklist_block.less'),)
+        }
         js = ('js/i18n/en-US.js',)
 
     def addon_guid(self, obj):

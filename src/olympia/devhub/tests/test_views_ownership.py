@@ -24,7 +24,7 @@ from olympia.versions.models import License, Version
 
 
 class TestOwnership(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()

@@ -187,7 +187,9 @@ class AMOModelAdminChangeList(ChangeList):
 class AMOModelAdmin(admin.ModelAdmin):
     class Media:
         js = (vite_hmr_client(), vite_asset('js/admin.js'))
-        css = {'all': (vite_asset('css/admin.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin.less'),)
+        }
 
     # Classes that want to implement search by ip can override these if needed.
     search_by_ip_actions = ()  # Deactivated by default.
@@ -548,7 +550,7 @@ class FakeEmailAdmin(admin.ModelAdmin):
         'created',
         'message',
     )
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     view_on_site = False
 
     def has_add_permission(self, request):

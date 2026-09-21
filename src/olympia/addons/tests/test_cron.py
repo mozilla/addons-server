@@ -14,7 +14,7 @@ from olympia.files.models import File
 
 
 class TestLastUpdated(TestCase):
-    fixtures = ['base/addon_3615', 'addons/listed']
+    fixtures = ('base/addon_3615', 'addons/listed')
 
     def test_catchall(self):
         """Make sure the catch-all last_updated is stable and accurate."""
@@ -36,7 +36,7 @@ class TestLastUpdated(TestCase):
 
 
 class TestAvgDailyUserCountTestCase(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

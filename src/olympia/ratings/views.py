@@ -109,7 +109,7 @@ class RatingFlagThrottle(GranularUserRateThrottle):
 
 class RatingViewSet(AddonChildMixin, ModelViewSet):
     serializer_class = RatingSerializer
-    permission_classes = [
+    permission_classes = (
         ByHttpMethod(
             {
                 'get': AllowAny,
@@ -128,15 +128,15 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 # So only PATCH is allowed for editing.
             }
         ),
-    ]
-    reply_permission_classes = [
+    )
+    reply_permission_classes = (
         AnyOf(
             GroupPermission(amo.permissions.ADDONS_EDIT),
             AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
-        )
-    ]
+        ),
+    )
     reply_serializer_class = RatingSerializerReply
-    flag_permission_classes = [AllowNotOwner]
+    flag_permission_classes = (AllowNotOwner,)
     throttle_classes = (
         RatingBurstUserThrottle,
         RatingBurstIPThrottle,

@@ -310,7 +310,7 @@ class TestCollectionViewSetDetail(TestCase):
 
 class CollectionViewSetDataMixin:
     client_class = APITestClientSessionID
-    data = {
+    data = {  # noqa: RUF012 (in py315 update to frozendict)
         'name': {'fr': 'lé $túff', 'en-US': '$tuff'},
         'description': {'fr': 'Un dis une dát', 'en-US': 'dis n dat'},
         'slug': 'Stuff',

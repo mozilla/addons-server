@@ -93,7 +93,7 @@ class AbuseTargetMixin:
 
 
 class AddonAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
-    permission_classes = []
+    permission_classes = ()
     serializer_class = AddonAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = AddonViewSet
@@ -140,7 +140,7 @@ class AddonAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
 
 
 class UserAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
-    permission_classes = []
+    permission_classes = ()
     serializer_class = UserAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = AccountViewSet
@@ -148,7 +148,7 @@ class UserAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
 
 
 class RatingAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
-    permission_classes = []
+    permission_classes = ()
     serializer_class = RatingAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = RatingViewSet
@@ -156,7 +156,7 @@ class RatingAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
 
 
 class CollectionAbuseViewSet(AbuseTargetMixin, CreateModelMixin, GenericViewSet):
-    permission_classes = []
+    permission_classes = ()
     serializer_class = CollectionAbuseReportSerializer
     throttle_classes = (AbuseUserThrottle, AbuseIPThrottle)
     target_viewset_class = CollectionViewSet

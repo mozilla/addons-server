@@ -76,7 +76,7 @@ class HttpHttpsOnlyURLField(fields.URLField):
 
 class ReCaptchaField(UpstreamReCaptchaField):
     # Sub-class so we can translate the strings.
-    default_error_messages = {
+    default_error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
         'captcha_invalid': _('Incorrect, please try again.'),
         'captcha_error': _('Error verifying input, please try again.'),
     }
@@ -94,7 +94,9 @@ def validate_cidr(value):
 class CIDRField(models.Field):
     empty_strings_allowed = False
     description = _('CIDR')
-    default_error_messages = {'invalid': _('Enter a valid IP4 or IP6 network.')}
+    default_error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
+        'invalid': _('Enter a valid IP4 or IP6 network.')
+    }
 
     def __init__(self, verbose_name=None, name=None, *args, **kwargs):
         self.validators = [validate_cidr]

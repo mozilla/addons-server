@@ -50,8 +50,8 @@ class SurveyResponse(ModelBase):
     date_responded = models.DateTimeField(default=datetime.now)
 
     class Meta:
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=['survey_id', 'user'], name='unique_survey_user'
-            )
-        ]
+            ),
+        )

@@ -7,7 +7,7 @@ from olympia.users.models import UserProfile
 
 
 class TestCommand(TestCase):
-    fixtures = ['zadmin/group_admin', 'zadmin/users']
+    fixtures = ('zadmin/group_admin', 'zadmin/users')
 
     def test_group_management(self):
         user = UserProfile.objects.get(pk=10968)

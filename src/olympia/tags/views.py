@@ -8,7 +8,7 @@ from .models import Tag
 
 
 class TagListView(APIView):
-    authentication_classes = []
+    authentication_classes = ()
 
     def get(self, request, *args, **kwargs):
         return Response(list(Tag.objects.values_list('tag_text', flat=True)))

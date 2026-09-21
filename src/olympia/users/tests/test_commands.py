@@ -41,7 +41,7 @@ def test_createsuperuser_email_validation(input):
 
 
 class TestCreateSuperUser(TestCase):
-    fixtures = ['users/test_backends']
+    fixtures = ('users/test_backends',)
 
     @patch('olympia.users.management.commands.createsuperuser.input')
     def test_creates_user(self, input):

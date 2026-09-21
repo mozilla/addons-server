@@ -70,7 +70,7 @@ yesterday = datetime.today() - timedelta(days=1)
 class TestReviewHelperBase(TestCase):
     __test__ = False
 
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()

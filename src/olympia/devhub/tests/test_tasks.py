@@ -253,7 +253,7 @@ class TestTrackValidatorStats(TestCase):
 
 
 class TestRunAddonsLinter(UploadMixin, ValidatorTestCase):
-    mock_sign_addon_warning = {
+    mock_sign_addon_warning = {  # noqa: RUF012 (in py315 update to frozendict)
         'warnings': 1,
         'errors': 0,
         'messages': [
@@ -670,7 +670,7 @@ class TestInitialSubmissionAcknoledgementEmail(TestCase):
 
 
 class TestSubmitFile(UploadMixin, TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

@@ -36,7 +36,7 @@ class CollectionViewSet(ModelViewSet):
     # causing the has_object_permission() method of these permissions to be
     # called. It will do so without setting an action however, bypassing the
     # PreventActionPermission() parts.
-    permission_classes = [
+    permission_classes = (
         AnyOf(
             # Collection authors can do everything.
             AllowCollectionAuthor,
@@ -58,7 +58,7 @@ class CollectionViewSet(ModelViewSet):
             # Everyone else can do read-only stuff, except list.
             (AllowReadOnly & AllowIfPublic & PreventActionPermission('list')),
         ),
-    ]
+    )
     lookup_field = 'slug'
 
     def get_account_viewset(self):
@@ -119,12 +119,12 @@ class TranslationAwareOrderingAliasFilter(OrderingAliasFilter):
 
 
 class CollectionAddonViewSet(ModelViewSet):
-    permission_classes = []  # We don't need extra permissions.
+    permission_classes = ()  # We don't need extra permissions.
     serializer_class = CollectionAddonSerializer
     lookup_field = 'addon'
     filter_backends = (TranslationAwareOrderingAliasFilter,)
     ordering_fields = ()
-    ordering_field_aliases = {
+    ordering_field_aliases = {  # noqa: RUF012 (in py315 update to frozendict)
         'popularity': 'addon__weekly_downloads',
         'name': 'name',
         'added': 'created',

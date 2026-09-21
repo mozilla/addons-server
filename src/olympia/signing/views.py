@@ -80,8 +80,8 @@ def with_addon(allow_missing=False):
 
 
 class VersionView(APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated, IsSubmissionAllowedFor]
+    authentication_classes = (JWTKeyAuthentication,)
+    permission_classes = (IsAuthenticated, IsSubmissionAllowedFor)
     throttle_classes = addon_submission_throttles
 
     @method_decorator(require_submissions_enabled)
@@ -296,8 +296,8 @@ class VersionView(APIView):
 
 
 class SignedFile(APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = (JWTKeyAuthentication,)
+    permission_classes = (IsAuthenticated,)
 
     @use_primary_db
     def get(self, request, file_id, filename=None):

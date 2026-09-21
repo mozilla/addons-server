@@ -27,7 +27,7 @@ log = olympia.core.logger.getLogger('z.abuse')
 
 
 class BaseAbuseReportSerializer(AMOModelSerializer):
-    error_messages = {
+    error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
         'max_length': _(
             'Please ensure this field has no more than {max_length} characters.'
         )

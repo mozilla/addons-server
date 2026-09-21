@@ -324,7 +324,7 @@ class ScannerQueryRuleModelForm(ScannerRuleModelForm):
 
 
 class AbstractScannerResultAdminMixin:
-    actions = ['block_addons_action', 'search_for_authors_action']
+    actions = ('block_addons_action', 'search_for_authors_action')
     view_on_site = False
     list_select_related = ('version',)
     raw_id_fields = ('version',)
@@ -332,7 +332,9 @@ class AbstractScannerResultAdminMixin:
     paginator = ScannerResultsPaginator
 
     class Media(AMOModelAdmin.Media):
-        css = {'all': (vite_asset('css/admin-scanner-results.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-scanner-results.less'),)
+        }
 
     def get_queryset(self, request):
         # We already set list_select_related() so we don't need to repeat that.
@@ -539,7 +541,9 @@ class AbstractScannerRuleAdminMixin:
         return super().formfield_for_choice_field(db_field, request, **kwargs)
 
     class Media(AMOModelAdmin.Media):
-        css = {'all': (vite_asset('css/admin-scanner-rule.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-scanner-rule.less'),)
+        }
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
@@ -1033,7 +1037,7 @@ class ScannerWebhookEventInline(admin.StackedInline):
 class ScannerWebhookAdmin(AMOModelAdmin):
     view_on_site = False
 
-    inlines = [ScannerWebhookEventInline]
+    inlines = (ScannerWebhookEventInline,)
 
     list_display = (
         'name',

@@ -102,9 +102,9 @@ class CinderJob(ModelBase):
     objects = CinderJobManager()
 
     class Meta:
-        constraints = [
-            models.CheckConstraint(name='no_empty_job_id', condition=~Q(job_id=''))
-        ]
+        constraints = (
+            models.CheckConstraint(name='no_empty_job_id', condition=~Q(job_id='')),
+        )
 
     @property
     def final_decision(self):
@@ -788,11 +788,11 @@ class AbuseReport(ModelBase):
 
     class Meta:
         db_table = 'abuse_reports'
-        indexes = [
+        indexes = (
             models.Index(fields=('created',), name='abuse_reports_created_idx'),
             models.Index(fields=('guid',), name='guid_idx'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.CheckConstraint(
                 name='just_one_of_guid_user_rating_collection_must_be_set',
                 condition=(
@@ -828,7 +828,7 @@ class AbuseReport(ModelBase):
                     )
                 ),
             ),
-        ]
+        )
 
     @property
     def type(self):
@@ -1062,7 +1062,7 @@ class ContentDecision(ModelBase):
 
     class Meta:
         db_table = 'abuse_cinderdecision'
-        constraints = [
+        constraints = (
             models.CheckConstraint(
                 name='just_one_of_addon_user_rating_collection_must_be_set',
                 # Decision is against...
@@ -1095,7 +1095,7 @@ class ContentDecision(ModelBase):
                     collection__isnull=False,
                 ),
             ),
-        ]
+        )
 
     def get_reference_id(self, short=True):
         if short and self.cinder_id:

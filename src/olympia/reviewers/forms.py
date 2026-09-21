@@ -114,7 +114,7 @@ class VersionsChoiceWidget(forms.SelectMultiple):
     list of versions used by review page for some actions.
     """
 
-    actions_filters = {
+    actions_filters = {  # noqa: RUF012 (in py315 update to frozendict)
         amo.CHANNEL_UNLISTED: {
             amo.STATUS_APPROVED: [
                 'review_with_policy_approve',
@@ -959,23 +959,28 @@ class MOTDForm(forms.Form):
 class WhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
-        fields = ['private', 'public']
-        labels = {'private': 'Private Whiteboard', 'public': 'Whiteboard'}
+        fields = ('private', 'public')
+        labels = {  # noqa: RUF012 (in py315 update to frozendict)
+            'private': 'Private Whiteboard',
+            'public': 'Whiteboard',
+        }
 
 
 class PublicWhiteboardForm(AMOModelForm):
     class Meta:
         model = Whiteboard
-        fields = ['public']
-        labels = {'public': 'Whiteboard'}
+        fields = ('public',)
+        labels = {  # noqa: RUF012 (in py315 update to frozendict)
+            'public': 'Whiteboard'
+        }
 
 
 class ModerateRatingFlagForm(AMOModelForm):
-    action_choices = [
+    action_choices = (
         (ratings.REVIEW_MODERATE_KEEP, 'Keep review; remove flags'),
         (ratings.REVIEW_MODERATE_SKIP, 'Skip for now'),
         (ratings.REVIEW_MODERATE_DELETE, 'Delete review'),
-    ]
+    )
     action = forms.ChoiceField(
         choices=action_choices, required=False, initial=0, widget=forms.RadioSelect()
     )

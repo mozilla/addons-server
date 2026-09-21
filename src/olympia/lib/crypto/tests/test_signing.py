@@ -518,7 +518,7 @@ class TestSigning(TestCase):
 
 @mock.patch('olympia.lib.crypto.tasks.sign_file')
 class TestTasks(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     @classmethod
     def setUpTestData(cls):

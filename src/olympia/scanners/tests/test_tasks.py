@@ -122,7 +122,9 @@ class TestRunActionsForScannerResult(TestCase):
 
 class TestRunScanner(UploadMixin, TestCase):
     FAKE_SCANNER = 1
-    MOCK_SCANNERS = {FAKE_SCANNER: 'fake-scanner'}
+    MOCK_SCANNERS = {  # noqa: RUF012 (in py315 update to frozendict)
+        FAKE_SCANNER: 'fake-scanner'
+    }
     API_URL = 'http://scanner.example.org'
     API_KEY = 'api-key'
 

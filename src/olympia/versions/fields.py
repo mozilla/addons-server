@@ -18,7 +18,7 @@ class VersionStringFieldDescriptor:
 
 
 class VersionStringField(models.CharField):
-    empty_values = [None, '']
+    empty_values = (None, '')
 
     def __init__(self, *args, **kwargs):
         if (default := kwargs.get('default')) and not isinstance(

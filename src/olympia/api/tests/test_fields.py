@@ -730,10 +730,10 @@ class SampleFlatTranslationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Version
-        fields = [
+        fields = (
             'gettext',
             'db',
-        ]
+        )
 
 
 class TestFlatTranslationSerializerFields(TestCase):
@@ -807,9 +807,7 @@ class SampleFallbackFieldSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Addon
-        fields = [
-            'name',
-        ]
+        fields = ('name',)
 
 
 class TestFallbackField(TestCase):

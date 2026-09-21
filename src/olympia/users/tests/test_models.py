@@ -2350,7 +2350,7 @@ class TestEmailReputationRestriction(TestIPReputationRestriction):
 
 
 class TestUserEmailField(TestCase):
-    fixtures = ['base/user_2519']
+    fixtures = ('base/user_2519',)
 
     def test_success(self):
         user = UserProfile.objects.get(pk=2519)

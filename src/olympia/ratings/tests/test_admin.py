@@ -10,7 +10,7 @@ from olympia.users.models import UserProfile
 
 
 class TestRatingAdmin(TestCase):
-    fixtures = ['base/addon_3615', 'base/user_999']
+    fixtures = ('base/addon_3615', 'base/user_999')
 
     def setUp(self):
         self.addon = Addon.objects.get(pk=3615)

@@ -237,18 +237,18 @@ class AddonViewSet(
     DestroyModelMixin,
     GenericViewSet,
 ):
-    write_permission_classes = [
+    write_permission_classes = (
         APIGatePermission('addon-submission-api'),
         AllowAddonAuthor,
         AllowIfNotMozillaDisabled,
         IsSubmissionAllowedFor,
-    ]
-    delete_permission_classes = [
+    )
+    delete_permission_classes = (
         APIGatePermission('addon-submission-api'),
         AllowAddonOwner,
         AllowIfNotMozillaDisabled,
-    ]
-    permission_classes = [
+    )
+    permission_classes = (
         AllowAddonAuthor
         | (
             AllowReadOnly
@@ -260,20 +260,20 @@ class AddonViewSet(
                 )
                 | GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
             )
-        )
-    ]
-    authentication_classes = [
+        ),
+    )
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
-    georestriction_classes = [
-        RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT)
-    ]
+    )
+    georestriction_classes = (
+        RegionalRestriction | GroupPermission(amo.permissions.ADDONS_EDIT),
+    )
     serializer_class = AddonSerializer
     serializer_class_for_developers = DeveloperAddonSerializer
     lookup_value_regex = r'[^/]+'  # Allow '.' for email-like guids.
     throttle_classes = addon_submission_throttles
-    filter_backends = [OrderingAliasFilter, AddonTypeFilter]
+    filter_backends = (OrderingAliasFilter, AddonTypeFilter)
     ordering_fields = (
         'average_daily_users',
         'bayesian_rating',
@@ -283,7 +283,7 @@ class AddonViewSet(
         'last_updated',
         'weekly_downloads',
     )
-    ordering_field_aliases = {
+    ordering_field_aliases = {  # noqa: RUF012 (in py315 update to frozendict)
         'ratings.bayesian_average': 'bayesian_rating',
     }
     ordering = ('id',)
@@ -539,7 +539,7 @@ class AddonVersionViewSet(
 ):
     # Permissions are also checked against the parent add-on in get_addon_object()
     # using AddonViewSet's permissions in check_permissions()
-    permission_classes = [
+    permission_classes = (
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor])
         | (
             AllowReadOnly
@@ -558,12 +558,12 @@ class AddonVersionViewSet(
                     & GroupPermission(amo.permissions.ADDONS_API_VIEW_UNLISTED)
                 )
             )
-        )
-    ]
-    authentication_classes = [
+        ),
+    )
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
+    )
     throttle_classes = addon_submission_throttles
 
     lookup_value_regex = r'[^/]+'  # Allow '.' for version number lookups.
@@ -850,11 +850,11 @@ class AddonPreviewViewSet(
     # Permissions are always checked against the parent add-on in
     # get_addon_object() using AddonViewSet's permissions so we don't need
     # to set any here.
-    permission_classes = []
-    authentication_classes = [
+    permission_classes = ()
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
+    )
     throttle_classes = addon_submission_throttles
     serializer_class = PreviewSerializer
 
@@ -896,11 +896,11 @@ class AddonAuthorViewSet(
     # for list and get - see check_permissions and check_object_permissions. Permissions
     # are also always checked against the parent add-on in get_addon_object() using
     # AddonViewSet's permissions.
-    permission_classes = [APIGatePermission('addon-submission-api'), IsAuthenticated]
-    authentication_classes = [
+    permission_classes = (APIGatePermission('addon-submission-api'), IsAuthenticated)
+    authentication_classes = (
         JWTKeyAuthentication,
         SessionIDAuthentication,
-    ]
+    )
     throttle_classes = addon_submission_throttles
     serializer_class = AddonAuthorSerializer
     lookup_field = 'user__id'
@@ -1002,15 +1002,15 @@ class AddonPendingAuthorViewSet(CreateModelMixin, AddonAuthorViewSet):
 
 
 class AddonSearchView(ListAPIView):
-    authentication_classes = []
-    filter_backends = [
+    authentication_classes = ()
+    filter_backends = (
         ReviewedContentFilter,
         SearchQueryFilter,
         SearchParameterFilter,
         SortingFilter,
-    ]
+    )
     pagination_class = ESPageNumberPagination
-    permission_classes = []
+    permission_classes = ()
     serializer_class = ESAddonSerializer
 
     def get_queryset(self):
@@ -1044,12 +1044,12 @@ class AddonSearchView(ListAPIView):
 class AddonAutoCompleteSearchView(AddonSearchView):
     pagination_class = None
     serializer_class = ESAddonAutoCompleteSerializer
-    filter_backends = [
+    filter_backends = (
         ReviewedContentFilter,
         SearchQueryFilter,
         SearchParameterFilter,
         AutoCompleteSortFilter,
-    ]
+    )
 
     def get_queryset(self):
         # Minimal set of fields from ES that we need to build our results.
@@ -1091,10 +1091,10 @@ class AddonFeaturedView(AddonSearchView):
     # this endpoint since the order is random.
     pagination_class = None
 
-    filter_backends = [
+    filter_backends = (
         ReviewedContentFilter,
         SearchParameterFilter,
-    ]
+    )
 
     def get(self, request, *args, **kwargs):
         try:
@@ -1116,9 +1116,9 @@ class AddonFeaturedView(AddonSearchView):
 
 
 class StaticCategoryView(ListAPIView):
-    authentication_classes = []
+    authentication_classes = ()
     pagination_class = None
-    permission_classes = []
+    permission_classes = ()
     serializer_class = StaticCategorySerializer
 
     def get_queryset(self):
@@ -1136,9 +1136,9 @@ class StaticCategoryView(ListAPIView):
 
 
 class LanguageToolsView(ListAPIView):
-    authentication_classes = []
+    authentication_classes = ()
     pagination_class = None
-    permission_classes = []
+    permission_classes = ()
     serializer_class = LanguageToolsSerializer
 
     @classmethod
@@ -1300,7 +1300,7 @@ class LanguageToolsView(ListAPIView):
 
 
 class ReplacementAddonView(ListAPIView):
-    authentication_classes = []
+    authentication_classes = ()
     queryset = ReplacementAddon.objects.all()
     serializer_class = ReplacementAddonSerializer
 
@@ -1319,7 +1319,7 @@ class CompatOverrideView(APIView):
 
 
 class AddonRecommendationView(AddonSearchView):
-    filter_backends = [ReviewedContentFilter]
+    filter_backends = (ReviewedContentFilter,)
     ab_outcome = None
     fallback_reason = None
     pagination_class = None
@@ -1356,7 +1356,7 @@ class AddonRecommendationView(AddonSearchView):
 
 
 class AddonBrowserMappingView(ListAPIView):
-    authentication_classes = []
+    authentication_classes = ()
     serializer_class = AddonBrowserMappingSerializer
     pagination_class = LargePageNumberPagination
 

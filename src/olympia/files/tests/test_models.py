@@ -150,7 +150,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     Tests the methods of the File model.
     """
 
-    fixtures = ['base/addon_3615', 'base/addon_5579']
+    fixtures = ('base/addon_3615', 'base/addon_5579')
 
     def test_get_absolute_url(self):
         file_ = File.objects.get(id=67442)
@@ -822,7 +822,7 @@ class TestParseXpi(amo.tests.AMOPaths, TestCase):
 
 
 class TestFileUpload(UploadMixin, TestCase):
-    fixtures = ['base/appversion', 'base/addon_3615']
+    fixtures = ('base/appversion', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -1291,7 +1291,9 @@ def test_file_upload_passed_all_validations_invalid():
 
 
 class TestFileFromUpload(UploadMixin, TestCase):
-    parsed_data = {'manifest_version': 2}
+    parsed_data = {  # noqa: RUF012 (in py315 update to frozendict)
+        'manifest_version': 2
+    }
 
     @classmethod
     def setUpTestData(cls):

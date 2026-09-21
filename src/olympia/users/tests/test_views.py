@@ -11,7 +11,7 @@ from olympia.users.models import UserProfile
 
 
 class UserViewBase(TestCase):
-    fixtures = ['users/test_backends']
+    fixtures = ('users/test_backends',)
 
     def setUp(self):
         super().setUp()
@@ -24,7 +24,7 @@ class UserViewBase(TestCase):
 
 
 class TestLogin(UserViewBase):
-    fixtures = ['users/test_backends']
+    fixtures = ('users/test_backends',)
 
     def test_client_login(self):
         """

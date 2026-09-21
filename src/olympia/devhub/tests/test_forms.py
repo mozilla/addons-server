@@ -277,7 +277,7 @@ class TestNewUploadForm(TestCase):
 
 
 class TestCompatForm(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -522,7 +522,7 @@ class TestCompatForm(TestCase):
 
 
 class TestPreviewForm(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -1165,7 +1165,7 @@ class TestDescribeForm(TestCase):
 
 
 class TestAdditionalDetailsForm(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -1265,7 +1265,7 @@ class TestAdditionalDetailsForm(TestCase):
 
 
 class TestIconForm(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

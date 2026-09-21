@@ -68,7 +68,7 @@ class CollectionSerializer(PropertyUpdatedMixin, AMOModelSerializer):
             'default_locale',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
-        validators = [
+        validators = (
             UniqueTogetherValidator(
                 queryset=Collection.objects.all(),
                 message=_(
@@ -77,7 +77,7 @@ class CollectionSerializer(PropertyUpdatedMixin, AMOModelSerializer):
                 ),
                 fields=('slug', 'author'),
             ),
-        ]
+        )
 
     def get_url(self, obj):
         return absolutify(obj.get_url_path())
@@ -143,13 +143,13 @@ class CollectionAddonSerializer(AMOModelSerializer):
     class Meta:
         model = CollectionAddon
         fields = ('addon', 'notes', 'collection')
-        validators = [
+        validators = (
             UniqueTogetherValidator(
                 queryset=CollectionAddon.objects.all(),
                 message=_('This add-on already belongs to the collection'),
                 fields=('addon', 'collection'),
             ),
-        ]
+        )
         writeable_fields = (
             # addon is technically writeable but we ignore updates in
             # validate() below.

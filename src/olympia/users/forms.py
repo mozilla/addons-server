@@ -19,7 +19,7 @@ class DeniedNameAddForm(forms.Form):
 
 class EmailUserRestrictionAdminForm(AMOModelForm):
     class Meta:
-        help_texts = {
+        help_texts = {  # noqa: RUF012 (in py315 update to frozendict)
             'email_pattern': (
                 'Enter full email that should be blocked or use unix-style wildcards, '
                 'e.g. "*@example.com". If you need to block a domain incl subdomains, '

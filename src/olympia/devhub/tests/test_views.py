@@ -64,7 +64,7 @@ from olympia.zadmin.models import set_config
 
 
 class HubTest(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -286,7 +286,7 @@ class TestDashboard(HubTest):
 
 
 class TestDevRequired(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -362,7 +362,7 @@ class TestDevRequired(TestCase):
 
 
 class TestVersionStats(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -389,7 +389,7 @@ class TestVersionStats(TestCase):
 
 
 class TestDelete(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -454,7 +454,7 @@ class TestDelete(TestCase):
 
 
 class TestHome(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -754,7 +754,7 @@ class TestActivityFeed(TestCase):
 
 
 class TestDeveloperAgreement(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+    fixtures = ('base/addon_3615', 'base/addon_5579', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -924,7 +924,7 @@ class TestDeveloperAgreement(TestCase):
 
 @override_switch('developer-submit-addon-captcha', active=True)
 class TestAPIKeyPage(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -1384,7 +1384,7 @@ class TestAPIKeyPage(TestCase):
 
 
 class TestUpload(UploadMixin, TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -1581,7 +1581,7 @@ class TestUpload(UploadMixin, TestCase):
 
 
 class TestUploadDetail(UploadMixin, TestCase):
-    fixtures = ['base/appversion', 'base/users']
+    fixtures = ('base/appversion', 'base/users')
 
     @classmethod
     def setUpTestData(cls):
@@ -1983,7 +1983,7 @@ def assert_json_field(request, field, msg):
 
 
 class TestVersionXSS(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -2002,7 +2002,7 @@ class TestVersionXSS(TestCase):
 
 
 class TestDeleteAddon(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -2026,7 +2026,7 @@ class TestDeleteAddon(TestCase):
 
 
 class TestRequestReview(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -2071,7 +2071,7 @@ class TestRequestReview(TestCase):
 
 
 class TestRedirects(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -2109,7 +2109,7 @@ class TestHasCompleteMetadataRedirects(TestCase):
     """Make sure Addons that are not complete in some way are correctly
     redirected to the right view (and don't end up in a redirect loop)."""
 
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -2199,7 +2199,7 @@ class TestDocs(TestCase):
 
 
 class TestRemoveLocale(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super().setUp()
@@ -2723,7 +2723,7 @@ class TestSurvey(TestCase):
 
 
 class TestRequestContentReview(TestCase):
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         self.client.force_login(UserProfile.objects.get(email='del@icio.us'))

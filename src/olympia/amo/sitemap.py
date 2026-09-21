@@ -84,7 +84,7 @@ class Sitemap(DjangoSitemap):
     languages = FRONTEND_LANGUAGES
     alternates = True
     # x_default = False  # TODO: enable this when we can validate it works well
-    _cached_items = []
+    _cached_items = ()
     protocol = urlparse(settings.EXTERNAL_SITE_URL).scheme
 
     def _location(self, item, force_lang_code=None):
@@ -199,7 +199,7 @@ class AddonSitemap(Sitemap):
 class AMOSitemap(Sitemap):
     lastmod = datetime.datetime.now()
 
-    _cached_items = [
+    _cached_items = (
         # frontend pages
         ('home', amo.FIREFOX),
         ('home', amo.ANDROID),
@@ -210,7 +210,7 @@ class AMOSitemap(Sitemap):
         ('browse.language-tools', amo.FIREFOX),
         # server pages
         ('devhub.index', None),
-    ]
+    )
 
     def location(self, item):
         urlname, app = item

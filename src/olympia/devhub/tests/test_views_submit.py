@@ -63,7 +63,7 @@ def _parse_addon_theme_permission_wrapper(*args, **kwargs):
 
 
 class TestSubmitBase(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5579', 'base/users']
+    fixtures = ('base/addon_3615', 'base/addon_5579', 'base/users')
 
     def setUp(self):
         super().setUp()
@@ -398,7 +398,7 @@ class TestAddonSubmitAgreement(TestSubmitBase):
 
 
 class TestAddonSubmitDistribution(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -508,7 +508,7 @@ class TestAddonSubmitDistribution(TestCase):
 @override_switch('developer-submit-addon-captcha', active=False)
 @override_settings(REPUTATION_SERVICE_URL=None)
 class TestAddonSubmitUpload(UploadMixin, TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     @classmethod
     def setUpTestData(cls):
@@ -2250,7 +2250,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
 
 class VersionSubmitUploadMixin:
     channel = None
-    fixtures = ['base/users', 'base/addon_3615']
+    fixtures = ('base/users', 'base/addon_3615')
 
     @classmethod
     def setUpTestData(cls):

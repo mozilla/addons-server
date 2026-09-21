@@ -20,7 +20,7 @@ EDITION_ALIASES = {
 
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
-    permission_classes = []
+    permission_classes = ()
     serializer_class = DiscoverySerializer
 
     def get_edition(self):
@@ -62,7 +62,7 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
 class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
-    permission_classes = []
+    permission_classes = ()
     queryset = DiscoveryItem.objects.all().select_related('addon').order_by('pk')
     serializer_class = DiscoveryEditorialContentSerializer
 

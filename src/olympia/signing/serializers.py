@@ -29,7 +29,7 @@ class SigningFileUploadSerializer(AMOModelSerializer):
 
     class Meta:
         model = FileUpload
-        fields = [
+        fields = (
             'guid',
             'active',
             'automated_signing',
@@ -43,7 +43,7 @@ class SigningFileUploadSerializer(AMOModelSerializer):
             'validation_results',
             'validation_url',
             'version',
-        ]
+        )
 
     def __init__(self, *args, **kwargs):
         self.version = kwargs.pop('version', None)

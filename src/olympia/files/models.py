@@ -139,13 +139,13 @@ class File(OnChangeMixin, ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'files'
-        indexes = [
+        indexes = (
             models.Index(fields=('created', 'version'), name='created_idx'),
             models.Index(
                 fields=('datestatuschanged', 'version'), name='statuschanged_idx'
             ),
             models.Index(fields=('status',), name='status'),
-        ]
+        )
 
     def __str__(self):
         return str(self.id)
@@ -445,9 +445,7 @@ class FileUpload(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
-        constraints = [
-            models.UniqueConstraint(fields=('uuid',), name='uuid'),
-        ]
+        constraints = (models.UniqueConstraint(fields=('uuid',), name='uuid'),)
 
     def __str__(self):
         return str(self.uuid.hex)

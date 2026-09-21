@@ -87,7 +87,7 @@ class TranslationSerializerField(fields.CharField):
       `field_name` on `obj`, with languages as the keys.
     """
 
-    default_error_messages = {
+    default_error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
         'unknown_locale': _('The language code "{lang_code}" is invalid.'),
         'no_dict': _('You must provide an object of {{lang-code:value}}.'),
         'default_locale_required': _(

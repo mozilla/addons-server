@@ -46,7 +46,7 @@ def test_locale_switcher(client, locale_pair):
 
 
 class Test403(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()

@@ -89,14 +89,14 @@ class Collection(ModelBase):
         # This is very important: please read the lengthy comment in Addon.Meta
         # description
         base_manager_name = 'unfiltered'
-        indexes = [
+        indexes = (
             models.Index(fields=('created',), name='collections_created_idx'),
             models.Index(fields=('listed',), name='collections_listed_idx'),
             models.Index(fields=('slug',), name='collections_slug_idx'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(fields=('author', 'slug'), name='author_id'),
-        ]
+        )
 
     def __str__(self):
         return f'{self.name} ({self.addon_count})'
@@ -208,17 +208,17 @@ class CollectionAddon(ModelBase):
 
     class Meta(ModelBase.Meta):
         db_table = 'addons_collections'
-        indexes = [
+        indexes = (
             models.Index(
                 fields=('collection', 'created'), name='addons_collections_created_idx'
             ),
             models.Index(fields=('addon',), name='addons_collections_addon_idx'),
             models.Index(fields=('collection',), name='collection_id'),
             models.Index(fields=('user',), name='addons_collections_user_id'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(fields=('addon', 'collection'), name='addon_id_2'),
-        ]
+        )
 
     @staticmethod
     def post_save(sender, instance, **kwargs):

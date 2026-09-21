@@ -603,7 +603,7 @@ class TestVersionManager(TestCase):
 
 
 class TestVersion(AMOPaths, TestCase):
-    fixtures = ['base/addon_3615', 'base/admin']
+    fixtures = ('base/addon_3615', 'base/admin')
 
     def setUp(self):
         super().setUp()
@@ -1873,7 +1873,7 @@ def test_version_get_review_status_for_auto_approval_and_delay_reject(
 
 
 class TestVersionFromUpload(UploadMixin, TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     @classmethod
     def setUpTestData(cls):

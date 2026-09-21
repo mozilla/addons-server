@@ -16,17 +16,17 @@ class AppVersion(ModelBase):
 
     class Meta:
         db_table = 'appversions'
-        ordering = ['-version_int']
-        indexes = [
+        ordering = ('-version_int',)
+        indexes = (
             models.Index(fields=('application',), name='application_id'),
             models.Index(fields=('version',), name='version'),
             models.Index(fields=('version_int',), name='version_int_idx'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(
                 fields=('application', 'version'), name='application_id_2'
             ),
-        ]
+        )
 
     def save(self, *args, **kw):
         if not self.version_int:

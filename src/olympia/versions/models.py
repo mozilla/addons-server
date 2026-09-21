@@ -346,18 +346,18 @@ class Version(OnChangeMixin, ModelBase):
         # This is very important: please read the lengthy comment in Addon.Meta
         # description
         base_manager_name = 'unfiltered'
-        ordering = ['-created', '-modified']
-        indexes = [
+        ordering = ('-created', '-modified')
+        indexes = (
             models.Index(fields=('addon',), name='addon_id'),
             models.Index(fields=('license',), name='license_id'),
             models.Index(fields=('due_date',), name='versions_due_date_b9c73ed7'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(
                 fields=('addon', 'version'),
                 name='versions_addon_id_version_5a2e75b6_uniq',
             ),
-        ]
+        )
 
     def __str__(self):
         return markupsafe.escape(self.version)
@@ -1205,7 +1205,7 @@ class VersionReviewerFlags(ModelBase):
     )
 
     class Meta:
-        constraints = [
+        constraints = (
             models.CheckConstraint(
                 name='pending_rejection_all_none',
                 condition=(
@@ -1221,7 +1221,7 @@ class VersionReviewerFlags(ModelBase):
                     )
                 ),
             ),
-        ]
+        )
 
 
 class VersionProvenance(models.Model):
@@ -1307,7 +1307,7 @@ class VersionPreview(BasePreview, ModelBase):
     class Meta:
         db_table = 'version_previews'
         ordering = ('position', 'created')
-        indexes = [
+        indexes = (
             LongNameIndex(
                 fields=('version',), name='version_previews_version_id_fk_versions_id'
             ),
@@ -1315,7 +1315,7 @@ class VersionPreview(BasePreview, ModelBase):
                 fields=('version', 'position', 'created'),
                 name='version_position_created_idx',
             ),
-        ]
+        )
 
     @cached_property
     def caption(self):
@@ -1404,7 +1404,7 @@ class License(ModelBase):
 
     class Meta:
         db_table = 'licenses'
-        indexes = [models.Index(fields=('builtin',), name='builtin_idx')]
+        indexes = (models.Index(fields=('builtin',), name='builtin_idx'),)
 
     def __str__(self):
         license = self._constant or self
@@ -1486,11 +1486,11 @@ class ApplicationsVersions(models.Model):
 
     class Meta:
         db_table = 'applications_versions'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('application', 'version'), name='application_id'
             ),
-        ]
+        )
 
     def get_application_display(self):
         return str(amo.APPS_ALL[self.application].pretty)

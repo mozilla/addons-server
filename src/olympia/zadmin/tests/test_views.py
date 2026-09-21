@@ -11,7 +11,7 @@ from olympia.users.models import UserProfile
 
 
 class TestHomeAndIndex(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -105,7 +105,7 @@ class TestHomeAndIndex(TestCase):
 
 
 class TestPerms(TestCase):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     FILE_ID = '1234567890abcdef1234567890abcdef'
 

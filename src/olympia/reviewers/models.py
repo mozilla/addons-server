@@ -794,14 +794,14 @@ class ReviewActionReason(ModelBase):
 
     class Meta:
         ordering = ('name',)
-        constraints = [
+        constraints = (
             models.CheckConstraint(
                 name='either_canned_response_or_canned_block_reason_must_be_set',
                 condition=(
                     ~models.Q(canned_response='') | ~models.Q(canned_block_reason='')
                 ),
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.name)
@@ -1163,11 +1163,11 @@ class QueueCount(models.Model):
     value = models.IntegerField()
 
     class Meta:
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('name', 'date'), name='queue_count_unique_name_date'
             ),
-        ]
+        )
 
     def __str__(self):
         return f'{self.name} for {self.date}: {self.value}'

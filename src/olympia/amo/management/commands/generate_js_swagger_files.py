@@ -10,7 +10,7 @@ from olympia.api.views import serve_swagger_ui_js
 
 class Command(BaseCommand):
     help = 'Generate static swagger files'
-    requires_system_checks = []  # Can be ran without the database up yet.
+    requires_system_checks = ()  # Can be ran without the database up yet.
 
     def add_arguments(self, parser):
         parser.add_argument(

@@ -76,7 +76,9 @@ class LicenseAdmin(AMOModelAdmin):
 
 class VersionAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-versions.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-versions.less'),)
+        }
         js = (vite_asset('js/admin-versions.js'),)
 
     view_on_site = False

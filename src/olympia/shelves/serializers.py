@@ -85,14 +85,14 @@ class ShelfSerializer(AMOModelSerializer):
 
     class Meta:
         model = Shelf
-        fields = [
+        fields = (
             'title',
             'url',
             'endpoint',
             'addon_type',
             'footer',
             'addons',
-        ]
+        )
 
     def to_representation(self, obj):
         data = super().to_representation(obj)
@@ -164,7 +164,7 @@ class ShelfEditorialSerializer(AMOModelSerializer):
 
     class Meta:
         model = Shelf
-        fields = [
+        fields = (
             'title',
             'footer_text',
-        ]
+        )

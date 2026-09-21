@@ -14,7 +14,7 @@ from . import JWTAuthKeyTester
 
 
 class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

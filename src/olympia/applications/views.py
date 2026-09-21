@@ -15,8 +15,8 @@ from .models import AppVersion
 
 
 class AppVersionView(APIView):
-    authentication_classes = [JWTKeyAuthentication]
-    permission_classes = [
+    authentication_classes = (JWTKeyAuthentication,)
+    permission_classes = (
         ByHttpMethod(
             {
                 'get': AllowAny,
@@ -24,7 +24,7 @@ class AppVersionView(APIView):
                 'put': GroupPermission(amo.permissions.APPVERSIONS_CREATE),
             }
         ),
-    ]
+    )
 
     def get(self, request, *args, **kwargs):
         application = amo.APPS.get(kwargs.get('application'))

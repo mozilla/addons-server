@@ -14,7 +14,7 @@ class Command(BaseDataCommand):
     # We don't want to run system checks here, because this command
     # can run before everything is ready.
     # we run them at the end of the command.
-    requires_system_checks = []
+    requires_system_checks = ()
 
     help = 'Creates, seeds, and indexes the database.'
 

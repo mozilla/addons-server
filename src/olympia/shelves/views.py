@@ -12,7 +12,7 @@ from .serializers import ShelfEditorialSerializer, ShelfSerializer
 
 class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Shelf.objects.filter(enabled=True).order_by('position')
-    permission_classes = []
+    permission_classes = ()
     serializer_class = ShelfSerializer
     pagination_class = None
 
@@ -38,7 +38,7 @@ class ShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
 
 class EditorialShelfViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Shelf.objects
-    permission_classes = []
+    permission_classes = ()
     serializer_class = ShelfEditorialSerializer
     pagination_class = None
 

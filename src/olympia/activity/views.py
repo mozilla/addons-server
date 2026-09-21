@@ -50,11 +50,11 @@ from olympia.devhub.utils import get_activity_feed
 class VersionReviewNotesViewSet(
     AddonChildMixin, ListModelMixin, RetrieveModelMixin, GenericViewSet
 ):
-    permission_classes = [
+    permission_classes = (
         AnyOf(
             AllowAddonAuthor, AllowListedViewerOrReviewer, AllowUnlistedViewerOrReviewer
         ),
-    ]
+    )
     serializer_class = ActivityLogSerializer
 
     def get_queryset(self):
@@ -121,8 +121,8 @@ class VersionReviewNotesViewSet(
 
 
 class ActivityView(ListAPIView):
-    authentication_classes = [SessionIDAuthentication]
-    permission_classes = [IsAuthenticated]
+    authentication_classes = (SessionIDAuthentication,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = FeedActivityLogSerializer
 
     @classmethod

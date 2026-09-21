@@ -45,7 +45,7 @@ class FilterTestsBase(SimpleTestCase):
 
 
 class TestQueryFilter(FilterTestsBase):
-    filter_classes = [SearchQueryFilter]
+    filter_classes = (SearchQueryFilter,)
 
     def _test_q(self, qs, query):
         should = qs['query']['function_score']['query']['bool']['should']
@@ -409,7 +409,7 @@ class TestQueryFilter(FilterTestsBase):
 
 
 class TestReviewedContentFilter(FilterTestsBase):
-    filter_classes = [ReviewedContentFilter]
+    filter_classes = (ReviewedContentFilter,)
 
     def test_status(self):
         qs = self._filter()
@@ -422,7 +422,7 @@ class TestReviewedContentFilter(FilterTestsBase):
 
 
 class TestSortingFilter(FilterTestsBase):
-    filter_classes = [SortingFilter]
+    filter_classes = (SortingFilter,)
 
     def _reformat_order(self, key):
         # elasticsearch-dsl transforms '-something' for us, so we have to
@@ -624,7 +624,7 @@ class TestSortingFilter(FilterTestsBase):
 
 
 class TestSearchParameterFilter(FilterTestsBase):
-    filter_classes = [SearchParameterFilter]
+    filter_classes = (SearchParameterFilter,)
 
     def test_search_by_type_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -1465,7 +1465,7 @@ class TestCombinedFilter(FilterTestsBase):
 
     """
 
-    filter_classes = [SearchQueryFilter, ReviewedContentFilter, SortingFilter]
+    filter_classes = (SearchQueryFilter, ReviewedContentFilter, SortingFilter)
 
     def test_combined(self):
         qs = self._filter(data={'q': 'test'})

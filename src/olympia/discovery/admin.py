@@ -91,7 +91,9 @@ class PositionChinaFilter(PositionFilter):
 
 class DiscoveryItemAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-discovery.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-discovery.less'),)
+        }
 
     list_display = (
         '__str__',
@@ -239,14 +241,14 @@ DISCOVERY_ADDON_FIELDS = ['__str__', 'guid', 'addon', 'is_promoted']
 
 class DiscoveryAddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     model = DiscoveryAddon
-    inlines = [
+    inlines = (
         PromotedAddonAdminInline,
         PromotedApprovalInline,
         PrimaryHeroInline,
-    ]
+    )
     fields = DISCOVERY_ADDON_FIELDS
     readonly_fields = DISCOVERY_ADDON_FIELDS
-    list_display = [field for field in DISCOVERY_ADDON_FIELDS if field != 'addon']
+    list_display = tuple(field for field in DISCOVERY_ADDON_FIELDS if field != 'addon')
     search_fields = (
         'slug__startswith',
         'guid__startswith',

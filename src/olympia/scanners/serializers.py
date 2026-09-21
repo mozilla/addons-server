@@ -85,7 +85,7 @@ class WebhookVersionSerializer(VersionSerializer):
 
 
 class ScannerResultsValidationMixin:
-    RESULTS_SCHEMA = {
+    RESULTS_SCHEMA = {  # noqa: RUF012 (in py315 update to frozendict)
         'type': 'object',
         'required': ['version', 'matchedRules'],
         'properties': {
@@ -225,12 +225,14 @@ class ScannerQueryRuleSerializer(serializers.ModelSerializer):
         )
         # Not required at the field level: for yara it is derived from the
         # definition, for narc it is enforced in validate().
-        extra_kwargs = {'name': {'required': False}}
+        extra_kwargs = {  # noqa: RUF012 (in py315 update to frozendict)
+            'name': {'required': False}
+        }
         # Drop the auto (name, scanner) UniqueTogetherValidator: it runs before
         # validate() and would require `name` up-front, before we get a chance
         # to derive it from the definition for yara. Uniqueness is enforced via
         # instance.validate_unique() in validate() instead.
-        validators = []
+        validators = ()
 
     def get_fields(self):
         fields = super().get_fields()

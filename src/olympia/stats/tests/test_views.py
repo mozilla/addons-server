@@ -25,13 +25,13 @@ from olympia.users.models import UserProfile
 
 
 class StatsTestCase(TestCase):
-    fixtures = [
+    fixtures = (
         # Create two configured users:
         #
         #   - admin: jbalogh@mozilla.com
         #   - simple user: nobodyspecial@mozilla.com
         'stats/users.json',
-    ]
+    )
 
     def setUp(self):
         super().setUp()

@@ -24,7 +24,9 @@ class ImageChoiceField(forms.ModelChoiceField):
 
 class PrimaryHeroInline(admin.StackedInline):
     class Media:
-        css = {'all': (vite_asset('css/admin-discovery.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-discovery.less'),)
+        }
 
     model = PrimaryHero
     fields = (
@@ -57,10 +59,12 @@ class PrimaryHeroInline(admin.StackedInline):
 
 class PrimaryHeroImageAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-discovery.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-discovery.less'),)
+        }
 
     list_display = ('preview_image', 'custom_image')
-    actions = ['delete_selected']
+    actions = ('delete_selected',)
     readonly_fields = ('preview_image',)
 
     def save_model(self, request, obj, form, change):
@@ -100,10 +104,12 @@ class SecondaryHeroModuleInline(admin.StackedInline):
 
 class SecondaryHeroAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-discovery.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-discovery.less'),)
+        }
 
     list_display = ('headline', 'description', 'enabled')
-    inlines = [SecondaryHeroModuleInline]
+    inlines = (SecondaryHeroModuleInline,)
     view_on_site = False
 
     def has_delete_permission(self, request, obj=None):

@@ -224,7 +224,7 @@ class TestActivityLogManager(TestCase):
 
 
 class TestActivityLog(TestCase):
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()

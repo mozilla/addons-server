@@ -172,7 +172,7 @@ class TestToken(TestCase):
 
 
 class TestIdentify(TestCase):
-    CONFIG = {'foo': 'bar'}
+    CONFIG = {'foo': 'bar'}  # noqa: RUF012 (in py315 update to frozendict)
 
     def setUp(self):
         patcher = mock.patch('olympia.accounts.verify.get_fxa_token')

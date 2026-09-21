@@ -48,7 +48,7 @@ class TestBaseUserSerializer(TestCase, BaseTestUserMixin):
 
 class TestFullUserProfileSerializer(TestCase):
     serializer = FullUserProfileSerializer
-    user_kwargs = {
+    user_kwargs = {  # noqa: RUF012 (in py315 update to frozendict)
         'username': 'amo',
         'biography': 'stuff',
         'homepage': 'http://mozilla.org/',
@@ -118,7 +118,9 @@ class TestFullUserProfileSerializer(TestCase):
 
 class TestMinimalUserProfileSerializer(TestFullUserProfileSerializer):
     serializer = MinimalUserProfileSerializer
-    gates = {None: ('minimal-profile-has-all-fields-shim',)}
+    gates = {  # noqa: RUF012 (in py315 update to frozendict)
+        None: ('minimal-profile-has-all-fields-shim',)
+    }
 
     def test_picture(self):
         self.user.update(picture_type='image/jpeg')

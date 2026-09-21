@@ -12,7 +12,7 @@ from olympia.users.models import (
 
 
 class UserFormBase(TestCase):
-    fixtures = ['users/test_backends']
+    fixtures = ('users/test_backends',)
 
     def setUp(self):
         super().setUp()

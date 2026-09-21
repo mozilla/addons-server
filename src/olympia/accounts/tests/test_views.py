@@ -370,7 +370,7 @@ class TestFindUser(TestCase):
 
 
 class TestWithUser(TestCase):
-    token_data = {
+    token_data = {  # noqa: RUF012 (in py315 update to frozendict)
         'id_token': 'someopenidtoken',
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
@@ -775,7 +775,7 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
     view_name = 'accounts.authenticate'
     client_class = APIClient
     api_version = 'auth'
-    token_data = {
+    token_data = {  # noqa: RUF012 (in py315 update to frozendict)
         'id_token': 'someopenidtoken',
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
@@ -1520,7 +1520,7 @@ class TestAccountRetrieveWithJWT(APIKeyAuthTestMixin, TestCase):
 
 class TestAccountViewSetUpdate(TestCase):
     client_class = APITestClientSessionID
-    update_data = {
+    update_data = {  # noqa: RUF012 (in py315 update to frozendict)
         'display_name': 'Bob Loblaw',
         'biography': 'You don`t need double talk; you need Bob Loblaw',
         'homepage': 'http://bob-loblaw-law-web.blog',
@@ -2045,7 +2045,7 @@ class TestParseNextPath(TestCase):
 
 class TestSessionView(TestCase):
     api_version = 'auth'
-    token_data = {
+    token_data = {  # noqa: RUF012 (in py315 update to frozendict)
         'id_token': 'someopenidtoken',
         'access_token': 'someaccesstoken',
         'refresh_token': 'somerefresh_token',
@@ -2537,7 +2537,7 @@ class TestAccountNotificationUnsubscribe(TestCase):
 
 class TestFxaNotificationView(TestCase):
     FXA_ID = 'ABCDEF012345689'
-    FXA_EVENT = {
+    FXA_EVENT = {  # noqa: RUF012 (in py315 update to frozendict)
         'iss': 'https://accounts.firefox.com/',
         'sub': FXA_ID,
         'aud': 'REMOTE_SYSTEM',
@@ -2549,7 +2549,7 @@ class TestFxaNotificationView(TestCase):
             }
         },
     }
-    JWKS_RESPONSE = {
+    JWKS_RESPONSE = {  # noqa: RUF012 (in py315 update to frozendict)
         'keys': [
             {
                 'kty': 'RSA',

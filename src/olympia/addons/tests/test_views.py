@@ -120,7 +120,7 @@ def _get_upload(filename):
 
 class TestStatus(TestCase):
     client_class = APITestClientSessionID
-    fixtures = ['base/addon_3615']
+    fixtures = ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -6216,7 +6216,7 @@ class TestAddonListingContentReview(TestCase):
 class TestAddonSearchView(ESTestCase):
     client_class = APITestClientSessionID
 
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -7410,7 +7410,7 @@ class TestAddonSearchView(ESTestCase):
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClientSessionID
 
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -7615,7 +7615,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 class TestAddonFeaturedView(ESTestCase):
     client_class = APITestClientSessionID
 
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -8156,7 +8156,7 @@ class TestCompatOverrideView(TestCase):
 class TestAddonRecommendationView(ESTestCase):
     client_class = APITestClientSessionID
 
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()

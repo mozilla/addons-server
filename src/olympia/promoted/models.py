@@ -183,12 +183,12 @@ class PromotedAddon(ModelBase):
 
     class Meta:
         db_table = 'promoted_promotedaddonpromotion'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('addon', 'promoted_group', 'application_id'),
                 name='unique_addon_promotion_application',
             ),
-        ]
+        )
 
     def __str__(self):
         return f'{self.promoted_group.name} - {self.addon} - {self.application.short}'
@@ -274,12 +274,12 @@ class PromotedApproval(ModelBase):
 
     class Meta:
         db_table = 'promoted_promotedaddonversion'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('promoted_group', 'application_id', 'version'),
                 name='unique_promoted_addon_version',
             ),
-        ]
+        )
 
     def __str__(self):
         return f'{self.promoted_group.name} - {self.version} - {self.application.short}'

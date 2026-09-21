@@ -8,7 +8,7 @@ from olympia.amo import ADDON_TYPE_CHOICES_API
 
 class ModelFieldFilter(BaseFilterBackend):
     # These properties should be defined by subclasses
-    reverse_dict = {}
+    reverse_dict = {}  # noqa: RUF012 (in py315 update to frozendict)
     query_param = None
     model_field = None
 
@@ -33,6 +33,8 @@ class ModelFieldFilter(BaseFilterBackend):
 
 
 class AddonTypeFilter(ModelFieldFilter):
-    reverse_dict = {v: k for k, v in ADDON_TYPE_CHOICES_API.items()}
+    reverse_dict = {  # noqa: RUF012 (in py315 update to frozendict)
+        v: k for k, v in ADDON_TYPE_CHOICES_API.items()
+    }
     query_param = 'type'
     model_field = 'type'

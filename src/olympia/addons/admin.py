@@ -220,7 +220,9 @@ class AddonAdminByGuidOrSlugMixin:
 
 class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-addon.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-addon.less'),)
+        }
         js = (
             # TODO: This is probably a redundant dependency
             'admin/js/jquery.init.js',

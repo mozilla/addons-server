@@ -93,7 +93,9 @@ class MinimumReportsCountFilter(FakeChoicesMixin, admin.SimpleListFilter):
 
 class AbuseReportAdmin(AMOModelAdmin):
     class Media:
-        css = {'all': (vite_asset('css/admin-abuse-report.less'),)}
+        css = {  # noqa: RUF012 (in py315 update to frozendict)
+            'all': (vite_asset('css/admin-abuse-report.less'),)
+        }
 
     date_hierarchy = 'modified'
     list_display = (
@@ -186,7 +188,7 @@ class AbuseReportAdmin(AMOModelAdmin):
     # The first fieldset is going to be dynamically added through
     # get_fieldsets() depending on the target (add-on, user, rating, collection,
     # or unknown add-on), using the fields below:
-    dynamic_fieldset_fields = {
+    dynamic_fieldset_fields = {  # noqa: RUF012 (in py315 update to frozendict)
         # User
         'user': (('User', {'fields': ('user',)}),),
         # Collection
@@ -389,7 +391,7 @@ class CinderPolicyAdmin(AMOModelAdmin):
     )
     readonly_fields = tuple(set(fields) - {'expose_in_reviewer_tools'})
     ordering = ('parent__name', 'name')
-    list_filter = ['status_in_cinder', 'expose_in_reviewer_tools']
+    list_filter = ('status_in_cinder', 'expose_in_reviewer_tools')
     list_editable = ('expose_in_reviewer_tools',)
 
     list_select_related = ('parent',)

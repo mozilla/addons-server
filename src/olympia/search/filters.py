@@ -132,7 +132,7 @@ class AddonThresholdQueryParam(AddonQueryParam):
     """
 
     operator = 'range'
-    VALID_QUERY_OPERATORS = {
+    VALID_QUERY_OPERATORS = {  # noqa: RUF012 (in py315 update to frozendict)
         '__lt': 'lt',
         '__lte': 'lte',
         '__gt': 'gt',
@@ -402,8 +402,8 @@ class AddonExcludeAddonsQueryParam(AddonQueryMultiParam):
 
 class AddonFeaturedQueryParam(AddonQueryParam):
     query_param = 'featured'
-    reverse_dict = {'true': True}
-    valid_values = [True]
+    reverse_dict = {'true': True}  # noqa: RUF012 (in py315 update to frozendict)
+    valid_values = (True,)
     es_field = 'is_recommended'
 
 
@@ -951,7 +951,7 @@ class SearchParameterFilter(BaseFilterBackend):
     color...
     """
 
-    available_clauses = [
+    available_clauses = (
         AddonAppQueryParam,
         AddonAppVersionQueryParam,
         AddonAuthorQueryParam,
@@ -967,7 +967,7 @@ class SearchParameterFilter(BaseFilterBackend):
         *AddonUsersQueryParam.get_classes(),
         *AddonCreatedQueryParam.get_classes(),
         *AddonUpdatedQueryParam.get_classes(),
-    ]
+    )
 
     def get_applicable_clauses(self, request):
         clauses = []
@@ -1013,7 +1013,7 @@ class SortingFilter(BaseFilterBackend):
     according to the request.
     """
 
-    SORTING_PARAMS = {
+    SORTING_PARAMS = {  # noqa: RUF012 (in py315 update to frozendict)
         'created': '-created',
         'downloads': '-weekly_downloads',
         'hotness': '-hotness',

@@ -19,7 +19,7 @@ class FileUploadSerializer(AMOModelSerializer):
 
     class Meta:
         model = FileUpload
-        fields = [
+        fields = (
             'uuid',
             'channel',
             'processed',
@@ -28,7 +28,7 @@ class FileUploadSerializer(AMOModelSerializer):
             'valid',
             'validation',
             'version',
-        ]
+        )
 
     def get_validation(self, instance):
         return instance.load_validation() if instance.validation else None

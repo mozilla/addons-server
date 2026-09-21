@@ -112,7 +112,7 @@ class TestRedirectsOldPaths(TestCase):
 
 
 class ReviewerTest(TestCase):
-    fixtures = ['base/users', 'base/approvals']
+    fixtures = ('base/users', 'base/approvals')
 
     def login_as_admin(self):
         self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
@@ -188,7 +188,7 @@ class TestRatingsModerationLog(ReviewerTest):
 
 
 class TestReviewLog(ReviewerTest):
-    fixtures = ReviewerTest.fixtures + ['base/addon_3615']
+    fixtures = ReviewerTest.fixtures + ('base/addon_3615',)
 
     def setUp(self):
         super().setUp()
@@ -1042,7 +1042,7 @@ class TestDashboard(TestCase):
 
 
 class QueueTest(ReviewerTest):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
     listed = True
 
     def setUp(self):
@@ -1984,7 +1984,7 @@ class TestThemeQueue(QueueTest):
 
 
 class TestModeratedQueue(QueueTest):
-    fixtures = ['base/users', 'ratings/dev-reply']
+    fixtures = ('base/users', 'ratings/dev-reply')
 
     def setUp(self):
         super().setUp()
@@ -2374,7 +2374,7 @@ class TestContentReviewQueue(QueueTest):
 
 
 class TestPendingRejectionReviewQueue(QueueTest):
-    fixtures = ['base/users']
+    fixtures = ('base/users',)
 
     def setUp(self):
         super().setUp()
@@ -8312,7 +8312,7 @@ class TestAddonReviewerViewSet(TestCase):
 
 class TestAddonReviewerViewSetJsonValidation(TestCase):
     client_class = APITestClientSessionID
-    fixtures = ['devhub/addon-validation-1']
+    fixtures = ('devhub/addon-validation-1',)
 
     def setUp(self):
         super().setUp()

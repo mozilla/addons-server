@@ -18,7 +18,7 @@ class Tag(ModelBase):
     class Meta:
         db_table = 'tags'
         ordering = ('tag_text',)
-        constraints = [models.UniqueConstraint(fields=('tag_text',), name='tag_text')]
+        constraints = (models.UniqueConstraint(fields=('tag_text',), name='tag_text'),)
 
     def __str__(self):
         return self.tag_text
@@ -56,13 +56,13 @@ class AddonTag(ModelBase):
 
     class Meta:
         db_table = 'users_tags_addons'
-        indexes = [
+        indexes = (
             models.Index(fields=('tag',), name='tag_id'),
             models.Index(fields=('addon',), name='users_tags_addons_addon_idx'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(fields=('tag', 'addon'), name='tag_id_2'),
-        ]
+        )
 
 
 def update_tag_stat_signal(sender, instance, **kw):

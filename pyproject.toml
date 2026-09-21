@@ -46,7 +46,6 @@ ignore = [
     # The following rules fail currently, and should probably eventually be addressed
     # They are in most-error-occuring order, descending
     "UP031",   # printf-string-formatting
-    "RUF012",  # mutable-class-default
 ]
 extend-select = [
     "B",  # flake8-bugbear

@@ -10,7 +10,7 @@ from ..models import SYMMETRIC_JWT_TYPE, APIKey, APIKeyConfirmation
 
 
 class TestAPIKey(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
+    fixtures = ('base/addon_3615', 'base/users')
 
     def setUp(self):
         super().setUp()

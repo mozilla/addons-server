@@ -269,11 +269,11 @@ class SecondaryHero(CTACheckMixin, ModelBase):
     enabled = models.BooleanField(null=False, default=False)
 
     class Meta(ModelBase.Meta):
-        indexes = [
+        indexes = (
             LongNameIndex(
                 fields=('enabled',), name='hero_secondaryhero_enabled_1a9ea03c'
             ),
-        ]
+        )
 
     def __str__(self):
         return str(self.headline)

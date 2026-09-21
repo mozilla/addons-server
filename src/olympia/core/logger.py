@@ -39,7 +39,7 @@ class AMOMozlogFormatter(dockerflow.logging.MozlogFormatter):
     severity field at the root of the output for stackdriver."""
 
     # Map from Python logging levels to Stackdriver severity levels
-    STACKDRIVER_LEVEL_MAP = {
+    STACKDRIVER_LEVEL_MAP = {  # noqa: RUF012 (in py315 update to frozendict)
         # 800 is EMERGENCY but Python doesn't have that
         # 700 is ALERT but Python doesn't have that
         logging.CRITICAL: 600,

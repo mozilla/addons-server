@@ -104,7 +104,7 @@ class PromotedAddonAdminInline(admin.TabularInline):
 
 class PromotedGroupAdmin(AMOModelAdmin):
     model = PromotedGroup
-    list_display = [
+    list_display = (
         'name',
         'listed_pre_review',
         'unlisted_pre_review',
@@ -116,7 +116,7 @@ class PromotedGroupAdmin(AMOModelAdmin):
         'high_profile',
         'high_profile_rating',
         'search_ranking_bump',
-    ]
+    )
     list_filter = list_display
     search_fields = ('name',)
     readonly_fields = ('badged',)

@@ -4,7 +4,7 @@ from olympia.tags.models import AddonTag, Tag
 
 
 class TestCount(TestCase):
-    fixtures = ['base/addon_3615', 'base/addon_5369', 'tags/tags.json']
+    fixtures = ('base/addon_3615', 'base/addon_5369', 'tags/tags.json')
     exempt_from_fixture_bundling = True
 
     def setUp(self):

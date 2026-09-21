@@ -52,12 +52,10 @@ class APIKey(ModelBase):
 
     class Meta:
         db_table = 'api_key'
-        indexes = [
-            models.Index(fields=('user',), name='api_key_user_id'),
-        ]
-        constraints = [
+        indexes = (models.Index(fields=('user',), name='api_key_user_id'),)
+        constraints = (
             models.UniqueConstraint(fields=('user', 'is_active'), name='user_id'),
-        ]
+        )
 
     def __str__(self):
         return (

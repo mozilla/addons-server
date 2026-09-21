@@ -89,7 +89,9 @@ class UserEmailField(forms.ModelChoiceField):
     Displays disabled state as readonly thanks to UserEmailBoundField.
     """
 
-    default_error_messages = {'invalid_choice': gettext('No user with that email.')}
+    default_error_messages = {  # noqa: RUF012 (in py315 update to frozendict)
+        'invalid_choice': gettext('No user with that email.')
+    }
     widget = forms.EmailInput
 
     def __init__(self, *args, **kwargs):
@@ -384,7 +386,7 @@ class UserManager(BaseUserManager, ManagerBase):
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email']
+    REQUIRED_FIELDS = ('email',)
     # These are the fields that will be cleared on UserProfile.delete()
     # last_login_ip is kept, to be deleted later, in line with our data
     # retention policies: https://github.com/mozilla/addons-server/issues/14494
@@ -457,14 +459,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     class Meta:
         db_table = 'users'
-        indexes = [
+        indexes = (
             models.Index(fields=('created',), name='created'),
             models.Index(fields=('email',), name='email'),
             models.Index(fields=('fxa_id',), name='users_fxa_id_index'),
             LongNameIndex(
                 fields=('last_login_ip',), name='users_last_login_ip_2cfbbfbd'
             ),
-        ]
+        )
 
     def __init__(self, *args, **kw):
         super().__init__(*args, **kw)
@@ -805,9 +807,7 @@ class UserNotification(ModelBase):
 
     class Meta:
         db_table = 'users_notifications'
-        indexes = [
-            models.Index(fields=('user',), name='user_id'),
-        ]
+        indexes = (models.Index(fields=('user',), name='user_id'),)
 
     @property
     def notification(self):
@@ -926,12 +926,12 @@ class IPNetworkUserRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_user_network_restriction'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('network', 'restriction_type'),
                 name='network_restriction_type_uniq',
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.network)
@@ -1062,12 +1062,12 @@ class AsnUserRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_asn_restriction'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('asn', 'restriction_type'),
                 name='asn_restriction_type_uniq',
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.asn)
@@ -1161,12 +1161,12 @@ class EmailUserRestriction(RestrictionAbstractBaseModel, NormalizeEmailMixin):
 
     class Meta:
         db_table = 'users_user_email_restriction'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('email_pattern', 'restriction_type'),
                 name='email_pattern_restriction_type_uniq',
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.email_pattern)
@@ -1281,12 +1281,12 @@ class DisposableEmailDomainRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_disposable_email_domain_restriction'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('domain', 'restriction_type'),
                 name='domain_restriction_type_uniq',
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.domain)
@@ -1346,12 +1346,12 @@ class FingerprintRestriction(RestrictionAbstractBaseModel):
 
     class Meta:
         db_table = 'users_fingerprint_restriction'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('ja4', 'restriction_type'),
                 name='ja4_restriction_type_uniq',
-            )
-        ]
+            ),
+        )
 
     def __str__(self):
         return str(self.ja4)
@@ -1580,7 +1580,7 @@ class UserRestrictionHistory(ModelBase):
 
     class Meta:
         verbose_name_plural = 'User Restriction History'
-        indexes = [
+        indexes = (
             LongNameIndex(
                 fields=('ip_address',),
                 name='users_userrestrictionhistory_ip_address_4376df32',
@@ -1593,7 +1593,7 @@ class UserRestrictionHistory(ModelBase):
                 fields=('restriction_content_type', 'restriction_object_id'),
                 name='urh_restriction_instance_idx',
             ),
-        ]
+        )
 
     def save(self, *args, **kwargs):
         # There is no database-level way to constrain a generic foreign key
@@ -1621,10 +1621,10 @@ class UserHistory(ModelBase):
     class Meta:
         db_table = 'users_history'
         ordering = ('-created',)
-        indexes = [
+        indexes = (
             models.Index(fields=('email',), name='users_history_email'),
             models.Index(fields=('user',), name='users_history_user_idx'),
-        ]
+        )
 
     def __str__(self):
         return f'{self.user_id}: {self.email}'

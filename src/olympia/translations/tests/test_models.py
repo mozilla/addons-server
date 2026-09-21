@@ -84,7 +84,7 @@ class TranslationSequenceTestCase(TestCase):
 
 
 class TranslationTestCase(TestCase):
-    fixtures = ['testapp/test_models.json']
+    fixtures = ('testapp/test_models.json',)
 
     def setUp(self):
         super().setUp()
@@ -569,9 +569,9 @@ class TranslationTestCase(TestCase):
 
 
 class TranslationMultiDbTests(TransactionTestCase):
-    fixtures = ['testapp/test_models.json']
+    fixtures = ('testapp/test_models.json',)
     patch_property = 'settings'
-    databases = {'default', 'slave-1', 'slave-2'}
+    databases = frozenset({'default', 'slave-1', 'slave-2'})
 
     @classmethod
     def _build_mocked_dbs(cls):

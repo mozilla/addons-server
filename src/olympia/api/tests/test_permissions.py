@@ -39,7 +39,7 @@ from olympia.api.permissions import (
 
 
 class ProtectedView(APIView):
-    permission_classes = [GroupPermission(amo.permissions.NONE)]
+    permission_classes = (GroupPermission(amo.permissions.NONE),)
 
     def get(self, request):
         return Response('ok')

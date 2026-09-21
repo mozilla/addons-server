@@ -569,7 +569,7 @@ class Addon(OnChangeMixin, ModelBase):
         # include_deleted to False by default, so filtering is enabled by
         # default.
         base_manager_name = 'unfiltered'
-        indexes = [
+        indexes = (
             models.Index(fields=('bayesian_rating',), name='bayesianrating'),
             models.Index(fields=('created',), name='addons_created_idx'),
             models.Index(fields=('_current_version',), name='current_version'),
@@ -598,7 +598,7 @@ class Addon(OnChangeMixin, ModelBase):
                 name='visible_idx',
             ),
             models.Index(fields=('name', 'status', 'type'), name='name_2'),
-        ]
+        )
 
     def __str__(self):
         return f'{self.id}: {self.name}'
@@ -2263,7 +2263,7 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 
     class Meta:
         db_table = 'migrated_personas'
-        indexes = [
+        indexes = (
             LongNameIndex(
                 fields=('static_theme',),
                 name='migrated_personas_static_theme_id_fk_addons_id',
@@ -2271,7 +2271,7 @@ class MigratedLWT(OnChangeMixin, ModelBase):
             LongNameIndex(
                 fields=('getpersonas_id',), name='migrated_personas_getpersonas_id'
             ),
-        ]
+        )
 
 
 class AddonCategory(models.Model):
@@ -2281,15 +2281,15 @@ class AddonCategory(models.Model):
 
     class Meta:
         db_table = 'addons_categories'
-        indexes = [
+        indexes = (
             models.Index(fields=('category_id', 'addon'), name='category_addon_idx'),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(
                 fields=('addon', 'category_id'),
                 name='addons_categories_addon_category_id',
             ),
-        ]
+        )
 
     def __init__(self, *args, **kwargs):
         if 'category' in kwargs:
@@ -2364,7 +2364,7 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
         # see Addon.Meta for details of why this base_manager_name is important
         base_manager_name = 'unfiltered'
         db_table = 'addons_users'
-        indexes = [
+        indexes = (
             models.Index(fields=('listed',), name='addons_users_listed_idx'),
             LongNameIndex(
                 fields=('addon', 'user', 'listed'),
@@ -2373,12 +2373,12 @@ class AddonUser(OnChangeMixin, SaveUpdateMixin, models.Model):
             models.Index(
                 fields=('addon', 'listed'), name='addons_users_addon_listed_idx'
             ),
-        ]
-        constraints = [
+        )
+        constraints = (
             models.UniqueConstraint(
                 fields=('addon', 'user'), name='addons_users_addon_user'
             ),
-        ]
+        )
 
     def delete(self):
         # soft-delete
@@ -2441,12 +2441,12 @@ class AddonUserPendingConfirmation(OnChangeMixin, SaveUpdateMixin, models.Model)
 
     class Meta:
         db_table = 'addons_users_pending_confirmation'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('addon', 'user'),
                 name='addons_users_pending_confirmation_addon_id_user_id_38e3bb32_uniq',
             ),
-        ]
+        )
 
 
 class AddonApprovalsCounter(ModelBase):
@@ -2621,13 +2621,13 @@ class Preview(BasePreview, ModelBase):
     class Meta:
         db_table = 'previews'
         ordering = ('position', 'created')
-        indexes = [
+        indexes = (
             models.Index(fields=('addon',), name='previews_addon_idx'),
             models.Index(
                 fields=('addon', 'position', 'created'),
                 name='addon_position_created_idx',
             ),
-        ]
+        )
 
     def get_format(self, for_size):
         return self.sizes.get(

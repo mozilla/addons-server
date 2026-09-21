@@ -444,15 +444,13 @@ class ScannerResult(AbstractScannerResult):
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_results'
-        constraints = [
+        constraints = (
             models.UniqueConstraint(
                 fields=('upload', 'webhook_event', 'scanner', 'version'),
                 name='upload_webhook_event_scanner_version_uniq',
-            )
-        ]
-        indexes = [
-            models.Index(fields=('has_matches',)),
-        ]
+            ),
+        )
+        indexes = (models.Index(fields=('has_matches',)),)
 
     @classproperty
     def rule_model(self):
@@ -750,10 +748,10 @@ class ScannerQueryResult(AbstractScannerResult):
 
     class Meta(AbstractScannerResult.Meta):
         db_table = 'scanners_query_results'
-        indexes = [
+        indexes = (
             models.Index(fields=('was_blocked',)),
             models.Index(fields=('was_promoted',)),
-        ]
+        )
 
     @classproperty
     def rule_model(cls):
