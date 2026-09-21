@@ -82,13 +82,10 @@ export class DevhubHome extends LitElement {
   #feed() {
     return html`
       <app-stack gap="medium" class="section">
-        <!-- TODO: Build search input component in acorn-web-components, use here -->
-        <moz-input-text
-          icon-start="search"
+        <moz-input-search
           placeholder="Search updates to find the information"
           full-width
-          type="text"
-        ></moz-input-text>
+        ></moz-input-search>
         ${
           updates.length > 0
             ? updates.map((u) => html`<update-card .item=${u}></update-card>`)

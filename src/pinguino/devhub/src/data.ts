@@ -1,6 +1,8 @@
 // Mock data for the signed-in DevHub landing. Stand-in until the AMO API is wired.
 
 export type AddonKind = 'extension' | 'theme';
+export type AddonVisibility = 'live' | 'hidden';
+export type AddonDistribution = 'amo' | 'self' | 'enterprise';
 
 export interface Addon {
   slug: string;
@@ -9,7 +11,8 @@ export interface Addon {
   icon: string;
   statusLabel: string;
   version: string;
-  tags: string[];
+  visibility: AddonVisibility;
+  distribution: AddonDistribution;
   // Themes render a colour bar instead of an icon.
   gradient?: string;
 }
@@ -35,7 +38,8 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
-    tags: ['Live', 'Enterprise'],
+    visibility: 'live',
+    distribution: 'enterprise',
   },
   {
     slug: 'ad-blocker',
@@ -44,7 +48,8 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
-    tags: ['Live', 'Enterprise'],
+    visibility: 'live',
+    distribution: 'amo',
   },
   {
     slug: 'grammarly',
@@ -53,7 +58,8 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
-    tags: ['Live'],
+    visibility: 'hidden',
+    distribution: 'self',
   },
   {
     slug: 'bright-sunshine-pink',
@@ -62,7 +68,8 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
-    tags: ['Live'],
+    visibility: 'live',
+    distribution: 'amo',
     gradient: 'linear-gradient(90deg, #ffd1e8, #ffe9a8)',
   },
   {
@@ -72,7 +79,8 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
-    tags: ['Live'],
+    visibility: 'live',
+    distribution: 'self',
     gradient: 'linear-gradient(90deg, #ffb98a, #ffe27a)',
   },
   {
@@ -82,7 +90,8 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
-    tags: ['Live'],
+    visibility: 'hidden',
+    distribution: 'amo',
     gradient: 'linear-gradient(90deg, #8ad4ff, #c9f3ff)',
   },
 ];

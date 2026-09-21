@@ -32,17 +32,6 @@ export class UpdateCard extends LitElement {
       gap: var(--space-xsmall);
       font-weight: 600;
     }
-    .dot {
-      width: 0.6rem;
-      height: 0.6rem;
-      border-radius: 999px;
-    }
-    .dot.ok {
-      background: var(--color-green-50, #2ac3a2);
-    }
-    .dot.flagged {
-      background: var(--color-orange-50, #e49c49);
-    }
     .message {
       margin: 0;
       font-size: 0.85rem;
@@ -64,8 +53,10 @@ export class UpdateCard extends LitElement {
       <div class="card">
         <div class="head">
           <span class="title">
-            <!-- TODO: use status-dot component -->
-            <span class="dot ${u.approved ? 'ok' : 'flagged'}"></span>
+            <moz-status-dot
+              icon
+              type=${u.approved ? 'success' : 'warning'}
+            ></moz-status-dot>
             ${u.title}
           </span>
           <moz-button size="small">View</moz-button>
@@ -73,10 +64,9 @@ export class UpdateCard extends LitElement {
         <p class="message">${u.message}</p>
         <div class="foot">
           <span>Version ${u.version}</span>
-          <!-- TODO: switch to a status-badge component -->
-          <moz-badge type=${u.approved ? 'success' : 'warning'}>
+          <moz-status-badge type=${u.approved ? 'success' : 'warning'}>
             ${u.versionStatus}
-          </moz-badge>
+          </moz-status-badge>
           ${u.tags.map((t) => html`<span>${t}</span>`)}
           <span>${u.date}</span>
         </div>
