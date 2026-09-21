@@ -522,31 +522,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         )
 
     def has_read_developer_agreement(self):
-        from olympia.zadmin.models import get_config
+        from olympia.devhub.utils import get_dev_agreement_change_date
 
         if self.read_dev_agreement is None:
             return False
-        last_agreement_change_config = None
-        try:
-            last_agreement_change_config = get_config(
-                amo.config_keys.LAST_DEV_AGREEMENT_CHANGE_DATE
-            )
-            change_config_date = datetime.strptime(
-                last_agreement_change_config, '%Y-%m-%d %H:%M'
-            )
-
-            # If the config date is in the future, instead check against the
-            # fallback date
-            if change_config_date > datetime.now():
-                return self.read_dev_agreement > settings.DEV_AGREEMENT_CHANGE_FALLBACK
-
-            return self.read_dev_agreement > change_config_date
-        except (ValueError, TypeError):
-            log.exception(
-                'last_developer_agreement_change misconfigured, "%s" is not a datetime',
-                last_agreement_change_config,
-            )
-            return self.read_dev_agreement > settings.DEV_AGREEMENT_CHANGE_FALLBACK
+        return self.read_dev_agreement > get_dev_agreement_change_date()
 
     def get_session_auth_hash(self):
         """Return a hash used to invalidate sessions of users when necessary.
