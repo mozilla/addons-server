@@ -363,7 +363,11 @@ class APITestClientJWT(JWTAuthKeyTester, APIClient):
         pass
 
     def login_api(self, user):
-        self.api_key = self.create_api_key(user, str(user.pk) + ':f')
+        from olympia.api.models import APIKey
+
+        self.api_key = APIKey.objects.filter(user=user).first() or self.create_api_key(
+            user, str(user.pk) + ':f'
+        )
 
     def logout_api(self):
         self.api_key = None
