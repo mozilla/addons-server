@@ -105,6 +105,8 @@ def call_webhooks_during_validation(results, upload_pk):
 
 
 def call_webhooks(event_id, payload, upload=None, version=None, activity_log=None):
+    errors = []
+
     for event in ScannerWebhookEvent.objects.filter(
         event=event_id,
         is_active=True,
@@ -125,10 +127,16 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
             _deliver_webhook(scanner_result, payload)
 
             statsd.incr(f'{statsd_name}.success')
-        except Exception:
+        except Exception as exc:
             statsd.incr(f'{statsd_name}.failure')
             log.exception('Error while calling webhook "%s".', event.webhook.name)
-            raise
+            # Keep going because a missing scanner result blocks auto-approval
+            # forever otherwise.
+            errors.append(exc)
+
+    if errors:
+        event_name = WEBHOOK_EVENTS.get(event_id, event_id)
+        raise ExceptionGroup(f'Error while calling "{event_name}" webhooks', errors)
 
 
 def _get_webhook_statsd_name(event):

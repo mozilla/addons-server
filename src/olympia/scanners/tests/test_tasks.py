@@ -2747,8 +2747,65 @@ class TestCallWebhooks(UploadMixin, TestCase):
 
         payload = {'some': 'payload to send to the scanners for that event'}
 
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises(ExceptionGroup) as context:
             call_webhooks(WEBHOOK_DURING_VALIDATION, payload)
+
+        assert isinstance(context.exception.exceptions[0], RuntimeError)
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_calls_every_webhook_when_one_fails(self, _call_webhook_mock):
+        webhook_1 = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        webhook_2 = ScannerWebhook.objects.create(
+            name='some-other-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        event_1 = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_1
+        )
+        event_2 = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_2
+        )
+        returned_data = {'matchedRules': []}
+        _call_webhook_mock.side_effect = [RuntimeError(), returned_data]
+
+        with self.assertRaises(ExceptionGroup):
+            call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        assert _call_webhook_mock.call_count == 2
+        # The webhook that failed still has a result, just not a complete one.
+        assert ScannerResult.objects.get(webhook_event=event_1).results == []
+        assert ScannerResult.objects.get(webhook_event=event_2).results == returned_data
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks_raises_every_error(self, _call_webhook_mock):
+        for name in ('some-scanner', 'some-other-scanner'):
+            ScannerWebhookEvent.objects.create(
+                event=WEBHOOK_DURING_VALIDATION,
+                webhook=ScannerWebhook.objects.create(
+                    name=name,
+                    url='https://example.org/webhook',
+                    api_key='some-api-key',
+                    is_active=True,
+                ),
+            )
+        _call_webhook_mock.side_effect = [RuntimeError('first'), ValueError('second')]
+
+        with self.assertRaises(ExceptionGroup) as context:
+            call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
+
+        assert str(context.exception) == (
+            'Error while calling "during_validation" webhooks (2 sub-exceptions)'
+        )
+        assert [str(exc) for exc in context.exception.exceptions] == ['first', 'second']
+        assert _call_webhook_mock.call_count == 2
+        assert ScannerResult.objects.count() == 2
 
     @mock.patch('olympia.scanners.tasks.statsd.incr')
     @mock.patch('olympia.scanners.tasks.statsd.timer')
@@ -2785,7 +2842,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
         )
         _call_webhook_mock.side_effect = RuntimeError()
 
-        with self.assertRaises(RuntimeError):
+        with self.assertRaises(ExceptionGroup):
             call_webhooks(WEBHOOK_DURING_VALIDATION, payload={})
 
         expected_name = 'devhub.webhook.some-fancy-scanner.during_validation'
