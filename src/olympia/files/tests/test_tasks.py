@@ -150,13 +150,9 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
             # Make sure it is valid JSON
             assert json.loads(manifest.read())
             manifest.seek(0)
-            assert manifest.read().decode() == '\n'.join(
-                [
-                    '{',
-                    '  "manifest_version": 2,',
-                    '  "name": "..."',
-                    '}',
-                ]
+            assert (
+                manifest.read().decode()
+                == '{\n  "manifest_version": 2,\n  "name": "..."\n}'
             )
 
     @override_switch('enable-manifest-normalization', active=True)
@@ -215,13 +211,11 @@ class TestRepackFileUpload(AppVersionsMixin, UploadMixin, TestCase):
             # Read the content again to make sure comments have been
             # removed with a string comparison.
             manifest.seek(0)
-            assert manifest.read().decode() == '\n'.join(
-                [
-                    '{',
-                    '  "manifest_version": 2,',
-                    '  "name": "My Extension",',
-                    '  "version": "versionString",',
-                    '  "description": "haupt_stra\\u00dfe"',
-                    '}',
-                ]
+            assert manifest.read().decode() == (
+                '{\n'
+                '  "manifest_version": 2,\n'
+                '  "name": "My Extension",\n'
+                '  "version": "versionString",\n'
+                '  "description": "haupt_stra\\u00dfe"\n'
+                '}'
             )

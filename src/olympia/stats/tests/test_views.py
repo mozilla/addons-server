@@ -1262,4 +1262,4 @@ class TestRenderCSV(TestCase):
             fields=fields,
         )
 
-        assert '\r\n'.join([',a', '1,2', '0,4']) in force_str(response.content)
+        assert ',a\r\n1,2\r\n0,4' in force_str(response.content)

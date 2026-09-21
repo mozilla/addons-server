@@ -783,25 +783,15 @@ class TestCheckLocalesCompletionRate(TestCase):
         expected_below = (
             'The following locales are below threshold of 80% or completely '
             'absent in one of our projects in Pontoon:\n- '
-            + '\n- '.join(
-                (
-                    'Norwegian (Nynorsk) [nn-NO]',
-                    'Portuguese (Brazilian) [pt-BR]',
-                    'Romanian [ro]',
-                )
-            )
+            'Norwegian (Nynorsk) [nn-NO]\n- '
+            'Portuguese (Brazilian) [pt-BR]\n- '
+            'Romanian [ro]'
         )
         assert expected_below in mail.outbox[0].body
 
         expected_above = (
             'The following locales are above threshold and not yet enabled:\n- '
-            + '\n- '.join(
-                (
-                    'Bulgarian [bg]',
-                    'Danish [da]',
-                    'Indonesian [id]',
-                )
-            )
+            + 'Bulgarian [bg]\n- Danish [da]\n- Indonesian [id]'
         )
         assert expected_above in mail.outbox[0].body
 

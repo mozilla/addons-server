@@ -194,16 +194,16 @@ class TestPrefixer(TestCase):
 
     def test_resolve(self):
         # 'home' is now a frontend view
-        func, args, kwargs = resolve('/')
+        func, _args, _kwargs = resolve('/')
         assert func.__name__ == 'frontend_view'
 
         # a django view works too
-        func, args, kwargs = resolve('/developers/')
+        func, _args, _kwargs = resolve('/developers/')
         assert func.__name__ == 'index'
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
-        func, args, kwargs = resolve('/en-US/firefox/addon/foo/statistics/')
+        func, _args, _kwargs = resolve('/en-US/firefox/addon/foo/statistics/')
         assert func.__name__ == 'stats_report'
 
     def test_script_name(self):

@@ -318,7 +318,8 @@ def get_image_path(name):
 
 
 def get_uploaded_file(name):
-    data = open(get_image_path(name), mode='rb').read()
+    with open(get_image_path(name), mode='rb') as f:
+        data = f.read()
     return SimpleUploadedFile(name, data, content_type=mimetypes.guess_type(name)[0])
 
 
@@ -328,21 +329,20 @@ def get_addon_file(name):
 
 class TestAnimatedImages(TestCase):
     def test_animated_images(self):
-        img = ImageCheck(open(get_image_path('animated.png'), mode='rb'))
-        assert img.is_animated()
-        img = ImageCheck(open(get_image_path('non-animated.png'), mode='rb'))
-        assert not img.is_animated()
-
-        img = ImageCheck(open(get_image_path('animated.gif'), mode='rb'))
-        assert img.is_animated()
-        img = ImageCheck(open(get_image_path('non-animated.gif'), mode='rb'))
-        assert not img.is_animated()
+        with open(get_image_path('animated.png'), mode='rb') as f:
+            assert ImageCheck(f).is_animated()
+        with open(get_image_path('non-animated.png'), mode='rb') as f:
+            assert not ImageCheck(f).is_animated()
+        with open(get_image_path('animated.gif'), mode='rb') as f:
+            assert ImageCheck(f).is_animated()
+        with open(get_image_path('non-animated.gif'), mode='rb') as f:
+            assert not ImageCheck(f).is_animated()
 
     def test_junk(self):
-        img = ImageCheck(open(__file__, 'rb'))
-        assert not img.is_image()
-        img = ImageCheck(open(get_image_path('non-animated.gif'), mode='rb'))
-        assert img.is_image()
+        with open(__file__, 'rb') as f:
+            assert not ImageCheck(f).is_image()
+        with open(get_image_path('non-animated.gif'), mode='rb') as f:
+            assert ImageCheck(f).is_image()
 
 
 def test_jinja_trans_monkeypatch():

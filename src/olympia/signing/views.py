@@ -184,14 +184,13 @@ class VersionView(APIView):
         elif not guid and package_guid:
             guid = package_guid
 
-        if guid:
-            # If we did get a guid, regardless of its source, validate it now
-            # before creating anything.
-            if not amo.ADDON_GUID_PATTERN.match(guid):
-                raise forms.ValidationError(
-                    gettext('Invalid Add-on ID in URL or package'),
-                    status.HTTP_400_BAD_REQUEST,
-                )
+        # If we did get a guid, regardless of its source, validate it now
+        # before creating anything.
+        if guid and not amo.ADDON_GUID_PATTERN.match(guid):
+            raise forms.ValidationError(
+                gettext('Invalid Add-on ID in URL or package'),
+                status.HTTP_400_BAD_REQUEST,
+            )
 
         # channel will be ignored for new addons.
         if addon is None:

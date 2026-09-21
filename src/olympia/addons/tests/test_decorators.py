@@ -105,7 +105,7 @@ class TestAddonView(TestCase):
         addon.update(slug=str(addon.id))
         r = self.view(self.request, addon.slug)
         assert r == mock.sentinel.OK
-        request, addon_ = self.func.call_args[0]
+        addon_ = self.func.call_args[0][1]
         assert addon_ == addon
 
     @mock.patch(
@@ -167,7 +167,7 @@ class TestAddonViewWithUnlisted(TestAddonView):
         """Addon owners have access."""
         self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
-        request, addon = self.func.call_args[0]
+        addon = self.func.call_args[0][1]
         assert addon == self.addon
 
     @mock.patch(
@@ -180,5 +180,5 @@ class TestAddonViewWithUnlisted(TestAddonView):
         """Unlisted addon reviewers have access."""
         self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
         assert self.view(self.request, self.addon.slug) == mock.sentinel.OK
-        request, addon = self.func.call_args[0]
+        addon = self.func.call_args[0][1]
         assert addon == self.addon

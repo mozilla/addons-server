@@ -100,7 +100,7 @@ def repack_fileupload(results, upload_pk):
             log.info('Zip from upload %s extracted, repackaging', upload_pk)
             # We'll move the file to its final location below with move_stored_file(),
             # so don't let tempfile delete it.
-            file_ = tempfile.NamedTemporaryFile(
+            file_ = tempfile.NamedTemporaryFile(  # noqa: SIM115 (moved after the block, so cannot use a context manager)
                 dir=settings.TMP_PATH, suffix='.zip', delete=False
             )
             shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)

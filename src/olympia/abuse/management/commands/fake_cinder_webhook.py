@@ -26,7 +26,8 @@ class Command(BaseCommand):
         if settings.ENV != 'local':
             raise CommandError('Only works in local environments')
         try:
-            body = open(options['payload_filename'], 'rb').read()
+            with open(options['payload_filename'], 'rb') as payload_file:
+                body = payload_file.read()
         except FileNotFoundError as exc:
             raise CommandError(
                 'Cannot find payload file. Try using --payload=<path>.'

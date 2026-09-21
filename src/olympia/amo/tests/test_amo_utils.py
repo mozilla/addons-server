@@ -26,7 +26,7 @@ u = 'Ελληνικά'
 
 def test_slug_validator():
     assert slug_validator(u.lower()) is None
-    assert slug_validator('-'.join([u.lower(), u.lower()])) is None
+    assert slug_validator(f'{u.lower()}-{u.lower()}') is None
     pytest.raises(ValidationError, slug_validator, '234.add')
     pytest.raises(ValidationError, slug_validator, 'a a a')
     pytest.raises(ValidationError, slug_validator, 'tags/')
@@ -38,8 +38,8 @@ def test_slug_validator():
         ('xx x  - "#$@ x', 'xx-x-x'),
         ('Bän...g (bang)', 'bäng-bang'),
         (u, u.lower()),
-        ('-'.join([u, u]), '-'.join([u, u]).lower()),
-        (' - '.join([u, u]), '-'.join([u, u]).lower()),
+        (f'{u}-{u}', f'{u}-{u}'.lower()),
+        (f'{u} - {u}', f'{u}-{u}'.lower()),
         ('    a ', 'a'),
         ('tags/', 'tags'),
         ('holy_wars', 'holy_wars'),

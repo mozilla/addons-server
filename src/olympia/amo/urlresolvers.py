@@ -41,7 +41,7 @@ class Prefixer:
         second, _, rest = first_rest.partition('/')
 
         first_lower = first.lower()
-        lang, dash, territory = first_lower.partition('-')
+        lang, dash, _territory = first_lower.partition('-')
 
         # First test shorter languages shortcuts.
         if not dash and first in settings.SHORTER_LANGUAGES:
