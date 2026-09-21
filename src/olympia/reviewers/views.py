@@ -983,7 +983,6 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
-    _channel, _content_review = determine_channel(channel_text)
 
     review_url = reverse(
         'reviewers.review',
