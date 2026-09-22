@@ -2670,6 +2670,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                         'event': 'during_validation',
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[0].pk}/',
                     },
+                    request_id=mock.ANY,
                 ),
                 mock.call(
                     webhook=webhook_3,
@@ -2678,6 +2679,7 @@ class TestCallWebhooks(UploadMixin, TestCase):
                         'event': 'during_validation',
                         'scanner_result_url': f'http://testserver/api/v5/scanner/results/{results[1].pk}/',
                     },
+                    request_id=mock.ANY,
                 ),
             ]
         )
@@ -2904,7 +2906,11 @@ class TestCallWebhook(TestCase):
         response_data = {'some': 'data'}
         requests_mock.return_value = self.create_response(data=response_data)
 
-        returned_value = _call_webhook(webhook, payload)
+        returned_value = _call_webhook(
+            webhook=webhook,
+            payload=payload,
+            request_id='some-request-id',
+        )
 
         assert requests_mock.called
         expected_digest = (
@@ -2919,7 +2925,7 @@ class TestCallWebhook(TestCase):
         assert (
             call_kwargs['headers']['Authorization'] == f'HMAC-SHA256 {expected_digest}'
         )
-        assert call_kwargs['headers']['X-AMO-Request-ID']
+        assert call_kwargs['headers']['X-AMO-Request-ID'] == 'some-request-id'
         assert returned_value == response_data
 
     @override_settings(SCANNER_TIMEOUT=123)
@@ -2936,7 +2942,11 @@ class TestCallWebhook(TestCase):
             status_code=201, data=response_data
         )
 
-        returned_value = _call_webhook(webhook, payload={})
+        returned_value = _call_webhook(
+            webhook=webhook,
+            payload={},
+            request_id='some-request-id',
+        )
 
         assert requests_mock.called
         assert returned_value == response_data
@@ -2955,7 +2965,11 @@ class TestCallWebhook(TestCase):
             status_code=202, data=response_data
         )
 
-        returned_value = _call_webhook(webhook, payload={})
+        returned_value = _call_webhook(
+            webhook=webhook,
+            payload={},
+            request_id='some-request-id',
+        )
 
         assert requests_mock.called
         assert returned_value == response_data
@@ -2971,7 +2985,11 @@ class TestCallWebhook(TestCase):
         )
         requests_mock.return_value = self.create_response(status_code=204)
 
-        returned_value = _call_webhook(webhook, payload={})
+        returned_value = _call_webhook(
+            webhook=webhook,
+            payload={},
+            request_id='some-request-id',
+        )
 
         assert requests_mock.called
         assert returned_value is None
@@ -2991,7 +3009,11 @@ class TestCallWebhook(TestCase):
         requests_mock.return_value = self.create_response(data=response_data)
 
         with self.assertRaises(ValueError) as exc:
-            _call_webhook(webhook, payload)
+            _call_webhook(
+                webhook=webhook,
+                payload=payload,
+                request_id='some-request-id',
+            )
 
         assert requests_mock.called
         assert exc.exception.args[0] == response_data
@@ -3013,7 +3035,11 @@ class TestCallWebhook(TestCase):
         )
 
         with self.assertRaises(ValueError) as exc:
-            _call_webhook(webhook, payload)
+            _call_webhook(
+                webhook=webhook,
+                payload=payload,
+                request_id='some-request-id',
+            )
 
         assert requests_mock.called
         assert exc.exception.args[0] == response_data
@@ -3155,6 +3181,7 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
                     f'http://testserver/api/v5/scanner/results/{scanner_result.pk}/'
                 ),
             },
+            request_id=mock.ANY,
         )
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
