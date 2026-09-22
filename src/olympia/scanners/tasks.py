@@ -112,7 +112,8 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
         is_active=True,
         webhook__is_active=True,
     ).all():
-        log.info('Calling webhook "%s".', event.webhook.name)
+        request_id = uuid.uuid4().hex
+        log.info('Calling webhook "%s" request_id=%s.', event.webhook.name, request_id)
         statsd_name = _get_webhook_statsd_name(event)
 
         try:
@@ -124,7 +125,11 @@ def call_webhooks(event_id, payload, upload=None, version=None, activity_log=Non
                 activity_log=activity_log,
             )
 
-            _deliver_webhook(scanner_result, payload)
+            _deliver_webhook(
+                scanner_result=scanner_result,
+                payload=payload,
+                request_id=request_id,
+            )
 
             statsd.incr(f'{statsd_name}.success')
         except Exception as exc:
@@ -144,7 +149,7 @@ def _get_webhook_statsd_name(event):
     return f'devhub.webhook.{slugify(event.webhook.name)}.{event_name}'
 
 
-def _deliver_webhook(scanner_result, payload):
+def _deliver_webhook(*, scanner_result, payload, request_id):
     """Call the webhook for an existing ScannerResult and store what it
     returned. Exceptions are left to the caller."""
     event = scanner_result.webhook_event
@@ -163,6 +168,7 @@ def _deliver_webhook(scanner_result, payload):
                     )
                 ),
             },
+            request_id=request_id,
         )
 
     scanner_result.reload()
@@ -282,14 +288,20 @@ def wait_for_scanner_results(self, version_pk):
                 _record_missing_results(scanner_result)
                 continue
 
+            request_id = uuid.uuid4().hex
             log.info(
-                'Calling webhook "%s" again for version %s (retry %s/%s).',
+                'Calling webhook "%s" again for version %s retry=%s/%s request_id=%s.',
                 event.webhook.name,
                 version_pk,
                 self.request.retries + 1,
                 WEBHOOK_MAX_RETRIES,
+                request_id,
             )
-            _deliver_webhook(scanner_result, payload)
+            _deliver_webhook(
+                scanner_result=scanner_result,
+                payload=payload,
+                request_id=request_id,
+            )
             statsd.incr(f'{statsd_name}.success')
         except Exception:
             statsd.incr(f'{statsd_name}.failure')
@@ -308,7 +320,7 @@ def wait_for_scanner_results(self, version_pk):
         )
 
 
-def _call_webhook(webhook, payload):
+def _call_webhook(*, webhook, payload, request_id):
     with requests.Session() as http:
         adapter = make_adapter_with_retry()
         http.mount('http://', adapter)
@@ -328,7 +340,7 @@ def _call_webhook(webhook, payload):
             headers={
                 'Content-Type': 'application/json',
                 'Authorization': f'HMAC-SHA256 {digest}',
-                REQUEST_ID_HEADER: uuid.uuid4().hex,
+                REQUEST_ID_HEADER: request_id,
             },
         )
 
