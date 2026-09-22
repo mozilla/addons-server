@@ -256,13 +256,13 @@
                 "name": "Persian"
             },
             "total_strings": 1610,
-            "approved_strings": 194,
+            "approved_strings": 1610,
             "pretranslated_strings": 0,
             "strings_with_warnings": 0,
             "strings_with_errors": 0,
-            "missing_strings": 1416,
-            "unreviewed_strings": 355,
-            "complete": false
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
         },
         {
             "locale": {

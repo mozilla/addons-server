@@ -382,13 +382,13 @@
                 "name": "Persian"
             },
             "total_strings": 807,
-            "approved_strings": 189,
+            "approved_strings": 807,
             "pretranslated_strings": 0,
             "strings_with_warnings": 0,
             "strings_with_errors": 0,
-            "missing_strings": 618,
-            "unreviewed_strings": 18,
-            "complete": false
+            "missing_strings": 0,
+            "unreviewed_strings": 0,
+            "complete": true
         },
         {
             "locale": {
