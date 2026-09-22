@@ -15,13 +15,10 @@ from django.utils.functional import cached_property
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory
-from olympia.amo.reverse import get_url_prefix, override_url_prefix
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import id_to_path
 from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES
-from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.promoted.models import PromotedAddon
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 
@@ -115,30 +112,13 @@ class Sitemap(DjangoSitemap):
             return self.domain
         return super().get_domain(site=site)
 
-    def get_urls(self, page=1, site=None, protocol=None, *, app_name=None):
-        with override_url_prefix(app_name=app_name):
-            return super().get_urls(page=page, site=site, protocol=protocol)
-
     @cached_property
     def template(self):
         return loader.get_template('sitemap.xml')
 
-    def render(self, app_name, page):
-        context = {'urlset': self.get_urls(page=page, app_name=app_name)}
+    def render(self, page):
+        context = {'urlset': self.get_urls(page=page)}
         return self.template.render(context)
-
-    @property
-    def _current_app(self):
-        return amo.APPS[get_url_prefix().app]
-
-
-def get_android_promoted_addons():
-    return PromotedAddon.objects.filter(
-        Q(application_id=amo.ANDROID.id) | Q(application_id__isnull=True),
-        promoted_group__api_name=RECOMMENDED_API_NAME,
-        addon___current_version__promoted_versions__application_id=(amo.ANDROID.id),
-        addon___current_version__promoted_versions__promoted_group__api_name=RECOMMENDED_API_NAME,
-    ).values_list('addon_id', flat=True)
 
 
 class AddonSitemap(Sitemap):
@@ -146,18 +126,11 @@ class AddonSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
-        current_app = self._current_app
         addons_qs = Addon.objects.public().filter(
             Q(addonlistinginfo__noindex_until__isnull=True)
             | Q(addonlistinginfo__noindex_until__lte=datetime.datetime.now()),
-            _current_version__apps__application=current_app.id,
         )
 
-        # android is currently limited to a small number of recommended addons, so get
-        # the list of those and filter further
-        if current_app == amo.ANDROID:
-            promoted_addon_ids = get_android_promoted_addons()
-            addons_qs = addons_qs.filter(id__in=promoted_addon_ids)
         addons = list(
             addons_qs.order_by('-last_updated')
             .values_list(
@@ -201,24 +174,18 @@ class AMOSitemap(Sitemap):
 
     _cached_items = [
         # frontend pages
-        ('home', amo.FIREFOX),
-        ('home', amo.ANDROID),
-        ('pages.about', None),
-        ('pages.review_guide', None),
-        ('browse.extensions', amo.FIREFOX),
-        ('browse.themes', amo.FIREFOX),
-        ('browse.language-tools', amo.FIREFOX),
+        'home',
+        'pages.about',
+        'pages.review_guide',
+        'browse.extensions',
+        'browse.themes',
+        'browse.language-tools',
         # server pages
-        ('devhub.index', None),
+        'devhub.index',
     ]
 
     def location(self, item):
-        urlname, app = item
-        if app:
-            with override_url_prefix(app_name=app.short):
-                return reverse(urlname)
-        else:
-            return reverse(urlname)
+        return reverse(item)
 
 
 class CategoriesSitemap(Sitemap):
@@ -241,11 +208,9 @@ class CategoriesSitemap(Sitemap):
                     items.append((category, page))
             return items
 
-        current_app = self._current_app
         counts_qs = (
             AddonCategory.objects.filter(
                 addon___current_version__isnull=False,
-                addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
                 addon__status__in=amo.APPROVED_STATUSES,
             )
@@ -255,8 +220,7 @@ class CategoriesSitemap(Sitemap):
         addon_counts = {cat['category_id']: cat['count'] for cat in counts_qs}
 
         items = additems(amo.ADDON_EXTENSION)
-        if current_app == amo.FIREFOX:
-            items.extend(additems(amo.ADDON_STATICTHEME))
+        items.extend(additems(amo.ADDON_STATICTHEME))
         return items
 
     def location(self, item):
@@ -290,20 +254,13 @@ class AccountSitemap(Sitemap):
 
     @cached_property
     def _cached_items(self):
-        current_app = self._current_app
         addon_q = Q(
             addons___current_version__isnull=False,
-            addons___current_version__apps__application=current_app.id,
             addons__disabled_by_user=False,
             addons__status__in=amo.APPROVED_STATUSES,
             addonuser__listed=True,
             addonuser__role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER),
         )
-        # android is currently limited to a small number of recommended addons, so get
-        # the list of those and filter further
-        if current_app == amo.ANDROID:
-            promoted_addon_ids = get_android_promoted_addons()
-            addon_q = addon_q & Q(addons__id__in=promoted_addon_ids)
 
         users = (
             UserProfile.objects.filter(has_full_profile=True, deleted=False)
@@ -375,11 +332,9 @@ class TagPagesSitemap(Sitemap):
         page_size = settings.REST_FRAMEWORK['PAGE_SIZE']
         page_count_max = settings.ES_MAX_RESULT_WINDOW // page_size
 
-        current_app = self._current_app
         counts_qs = (
             AddonTag.objects.filter(
                 addon___current_version__isnull=False,
-                addon___current_version__apps__application=current_app.id,
                 addon__disabled_by_user=False,
                 addon__status__in=amo.APPROVED_STATUSES,
             )
@@ -406,18 +361,12 @@ class TagPagesSitemap(Sitemap):
 
 def get_sitemaps():
     return {
-        # because some urls are app-less, we specify per item, so don't specify an app
-        ('amo', None): AMOSitemap(),
-        ('addons', amo.FIREFOX): AddonSitemap(),
-        ('addons', amo.ANDROID): AddonSitemap(),
-        # category pages aren't supported on android, so firefox only
-        ('categories', amo.FIREFOX): CategoriesSitemap(),
-        # we don't expose collections on android, so firefox only
-        ('collections', amo.FIREFOX): CollectionSitemap(),
-        ('users', amo.FIREFOX): AccountSitemap(),
-        ('users', amo.ANDROID): AccountSitemap(),
-        ('tags', amo.FIREFOX): TagPagesSitemap(),
-        ('tags', amo.ANDROID): TagPagesSitemap(),
+        'amo': AMOSitemap(),
+        'addons': AddonSitemap(),
+        'categories': CategoriesSitemap(),
+        'collections': CollectionSitemap(),
+        'users': AccountSitemap(),
+        'tags': TagPagesSitemap(),
     }
 
 
@@ -427,26 +376,19 @@ OTHER_SITEMAPS = [
 
 
 def get_sitemap_section_pages(sitemaps):
-    pages = []
-    for (section, app), site in sitemaps.items():
-        if not app:
-            pages.extend((section, None, page) for page in site.paginator.page_range)
-            continue
-        with override_url_prefix(app_name=app.short):
-            # Add all pages of the sitemap section.
-            pages.extend(
-                (section, app.short, page) for page in site.paginator.page_range
-            )
+    pages = [
+        (section, page)
+        for section, site in sitemaps.items()
+        for page in site.paginator.page_range
+    ]
     return pages
 
 
 def render_index_xml(sitemaps):
     sitemap_url = reverse('amo.sitemap')
     server_urls = (
-        f'{sitemap_url}?section={section}'
-        + (f'&app_name={app_name}' if app_name else '')
-        + (f'&p={page}' if page != 1 else '')
-        for section, app_name, page in get_sitemap_section_pages(sitemaps)
+        f'{sitemap_url}?section={section}' + (f'&p={page}' if page != 1 else '')
+        for section, page in get_sitemap_section_pages(sitemaps)
     )
     urls = list(server_urls) + OTHER_SITEMAPS
 
@@ -456,24 +398,16 @@ def render_index_xml(sitemaps):
     )
 
 
-def get_sitemap_path(section, app, page=1):
+def get_sitemap_path(section, page=1):
     if section is None:
         sitemap_path = 'sitemap.xml'
     else:
-        if (section, amo.APPS.get(app, '') if app else app) not in get_sitemaps():
+        if section not in get_sitemaps():
             raise InvalidSection
         try:
             page = int(page)
         except ValueError as exc:
             raise PageNotAnInteger from exc
-        if app is None:
-            # If we don't have a section or app, we don't need a complex directory
-            # structure and we can call the first page 'sitemap' for convenience
-            # (it's likely going to be the only page).
-            sitemap_path = os.path.join(
-                section, f'{"sitemap" if page == 1 else page}.xml'
-            )
-        else:
-            sitemap_path = os.path.join(section, app, f'{id_to_path(page)}.xml')
+        sitemap_path = os.path.join(section, f'{id_to_path(page)}.xml')
 
     return os.path.join(settings.SITEMAP_STORAGE_PATH, sitemap_path)
