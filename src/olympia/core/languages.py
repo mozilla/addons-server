@@ -184,6 +184,7 @@ PROD_LANGUAGES = [
     'es-CL',
     'es-ES',
     'es-MX',
+    'fa',
     'fi',
     'fr',
     'fur',
