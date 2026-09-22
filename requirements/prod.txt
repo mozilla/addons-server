@@ -1619,9 +1619,9 @@ pyuwsgi==2.0.30.post1 \
     --hash=sha256:f360d2eb1a4b3f175adf79558ab1399090cb2b2d8b7ca964d717e3e34c7abdf4 \
     --hash=sha256:f9c33746954ed355d6d6c36bbf5d75294523db2b7f97d58ea1509592a182d423 \
     --hash=sha256:fa519bff9f0bafff80060ae9126d644d47c16e2b73c1d982bd54ac59c52caef5
-django-vite==3.1.0 \
-    --hash=sha256:4e46572bd6b1ce70784be129205dc2ffcbc7a3c19fea50bebfb72b327bbde5fc \
-    --hash=sha256:8b4ffe4a9fa81ff568bfb195e74dde8694aaf13fd4b656ae60bf59cce08b85e8
+django-vite==3.2.0 \
+    --hash=sha256:0e3a6a36674b2a27d94d5ace469d871cab1c1da0d69067daca4f4ab4aa44cc04 \
+    --hash=sha256:fdb96b3f4307466d1edd1c19a79cf7dbfabb1a7827c5cb2991d9a6aae528c9db
 drf-spectacular==0.30.0 \
     --hash=sha256:006cf5921ebe20a9bd24f7c846261ebbf78780be5961b0d6e87afaa82afd62ff \
     --hash=sha256:53e79e7ba00e240441b63c32273754a5368e4c2ab44a19f2595277cc1cd559c9
