@@ -226,7 +226,7 @@ class TestGC(TestCase):
 class TestWriteSitemaps(TestCase):
     def setUp(self):
         addon_factory(version_kw={'application': amo.FIREFOX.id})
-        (addon_factory(version_kw={'application': amo.ANDROID.id}),)
+        addon_factory(version_kw={'application': amo.ANDROID.id})
         assert len(os.listdir(settings.SITEMAP_STORAGE_PATH)) == 0
 
     def test_basic(self):
