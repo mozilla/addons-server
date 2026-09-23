@@ -192,6 +192,9 @@ def login_user(sender, request, user, identity, token_data=None):
     request.session['has_two_factor_authentication'] = identity.get(
         'twoFactorAuthentication'
     )
+    if user.groups_list:
+        # Users with permissions get shorter session expiry when logging in.
+        request.session.set_expiry(settings.SESSION_EXPIRY_PRIVILEGED_USER)
     if token_data:
         # auth_at is a UTC timestamp
         request.session['fxa_auth_at'] = token_data.get('auth_at')

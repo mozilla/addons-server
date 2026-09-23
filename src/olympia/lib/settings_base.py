@@ -642,11 +642,10 @@ REDIRECT_SECRET_KEY = env('REDIRECT_SECRET_KEY', default='')
 REDIRECT_URL_ALLOW_LIST = ['addons.mozilla.org']
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
-# See: https://github.com/mozilla/addons-server/issues/1789
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
-# This value must be kept in sync with authTokenValidFor from addons-frontend:
-# https://github.com/mozilla/addons-frontend/blob/2f480b474fe13a676237fe76a1b2a057e4a2aac7/config/default-amo.js#L111
-SESSION_COOKIE_AGE = 2592000  # 30 days
+SESSION_EXPIRY = 60 * 60 * 24 * 14  # expires after 14 days of inactivity
+SESSION_EXPIRY_PRIVILEGED_USER = 60 * 60 * 24  # expires after 1 day of inactivity
+SESSION_COOKIE_AGE = SESSION_EXPIRY
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_DOMAIN = '.%s' % DOMAIN  # bug 608797
