@@ -1270,12 +1270,13 @@ class AddonSerializer(AMOModelSerializer):
     def validate_slug(self, value):
         slug_validator(value)
 
-        if not self.instance or value != self.instance.slug:
-            # DeniedSlug.blocked checks for all numeric slugs as well as being denied.
-            if DeniedSlug.blocked(value):
-                raise exceptions.ValidationError(
-                    gettext('This slug cannot be used. Please choose another.')
-                )
+        # DeniedSlug.blocked checks for all numeric slugs as well as being denied.
+        if (not self.instance or value != self.instance.slug) and DeniedSlug.blocked(
+            value
+        ):
+            raise exceptions.ValidationError(
+                gettext('This slug cannot be used. Please choose another.')
+            )
 
         return value
 

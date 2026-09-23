@@ -41,6 +41,7 @@ using the API.
    blocklist
    categories
    collections
+   developers
    discovery
    licenses
    ratings

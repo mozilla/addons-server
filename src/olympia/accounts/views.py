@@ -295,7 +295,16 @@ def with_user(f):
                         'fake_two_factor_authentication'
                     ),
                 }
-                id_token, token_data = identity['email'], {}
+                id_token, token_data = (
+                    identity['email'],
+                    {
+                        'auth_at': int(time.time()),
+                        'access_token': 'fake_access_token',
+                        'access_token_expiry': 0,
+                        'refresh_token': 'fake_refresh_token',
+                        'config_name': get_fxa_config_name(request),
+                    },
+                )
             else:
                 identity, token_data = verify.fxa_identify(
                     data['code'], config=fxa_config
@@ -384,11 +393,10 @@ class AuthenticateView(APIView):
             # on, we extract that information from the next_path if present
             # and set locale/app on the prefixer instance that reverse() will
             # use automatically.
-            if next_path:
-                if prefixer := get_url_prefix():
-                    splitted = prefixer.split_path(next_path)
-                    prefixer.locale = splitted[0]
-                    prefixer.app = splitted[1]
+            if next_path and (prefixer := get_url_prefix()):
+                splitted = prefixer.split_path(next_path)
+                prefixer.locale = splitted[0]
+                prefixer.app = splitted[1]
             edit_page = reverse('users.edit')
             if next_path:
                 next_path = f'{edit_page}?to={quote_plus(next_path)}'
@@ -630,10 +638,10 @@ class AccountSuperCreate(APIView):
         request.session.save()
 
         log.info(
-            'API user {api_user} created and logged in a user from '
-            'the super-create API: user_id: {user.pk}; '
-            'user_name: {user.username}; fxa_id: {user.fxa_id}; '
-            'group: {group}'.format(user=user, api_user=request.user, group=group)
+            f'API user {request.user} created and logged in a user from '
+            f'the super-create API: user_id: {user.pk}; '
+            f'user_name: {user.username}; fxa_id: {user.fxa_id}; '
+            f'group: {group}'
         )
 
         cookie = {

@@ -1,5 +1,4 @@
 from collections import Counter
-from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -15,7 +14,6 @@ from olympia.abuse.models import CinderPolicy, ContentDecision
 from olympia.abuse.tasks import report_decision_to_cinder_and_notify
 from olympia.amo.decorators import use_primary_db
 from olympia.constants.abuse import DECISION_ACTIONS
-from olympia.constants.reviewers import WAIT_ON_SCANNERS_TIMEOUT
 from olympia.files.utils import lock
 from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
@@ -122,18 +120,18 @@ class Command(BaseCommand):
 
                 summary = AutoApprovalSummary.objects.filter(version=version).first()
 
-                if waffle.switch_is_active('enable-narc'):
-                    # We want to execute `run_narc()` only once.
-                    if not summary:
-                        # NARC scanner rules depend on the Add-on and can't be
-                        # run reliably at validation as it might not be
-                        # attached to the upload at that point.
-                        # This needs to be run before run_actions() and before
-                        # auto-approval is attempted, and has to be triggered
-                        # synchronously (no .delay()). In this case we pass
-                        # run_actions_on_match=False since we're going to call
-                        # ScannerResult.run_actions() below.
-                        run_narc_on_version(version.pk, run_actions_on_match=False)
+                # We want to execute `run_narc()` only once (when there is no
+                # summary yet).
+                # NARC scanner rules depend on the Add-on and can't be
+                # run reliably at validation as it might not be
+                # attached to the upload at that point.
+                # This needs to be run before run_actions() and before
+                # auto-approval is attempted, and has to be triggered
+                # synchronously (no .delay()). In this case we pass
+                # run_actions_on_match=False since we're going to call
+                # ScannerResult.run_actions() below.
+                if waffle.switch_is_active('enable-narc') and not summary:
+                    run_narc_on_version(version.pk, run_actions_on_match=False)
 
                 scanner_actions_executed = False
                 # NULL means the summary predates this field, back when
@@ -281,7 +279,6 @@ class Command(BaseCommand):
             'has_auto_approval_disabled': (
                 NeedsHumanReview.REASONS.AUTO_APPROVAL_DISABLED
             ),
-            'is_waiting_on_scanners': NeedsHumanReview.REASONS.WAITING_ON_SCANNERS,
         }
         # For the specific reasons that cause an add-on to be added to the
         # (human) review queue, we add the corresponding NeedsHumanReview flag
@@ -296,18 +293,6 @@ class Command(BaseCommand):
             has_decision_waiting_for_2nd_level_approval = (
                 version.contentdecision_set.awaiting_action().exists()
             )
-            # AutoApprovalSummary is created on the very first `auto_approve`
-            # run. When we're still waiting on scanners after a long time, it
-            # might mean a scanner has had an issue and will likely never send
-            # its results. That's why we should NHR the version.
-            should_still_wait_on_scanners = (
-                version.autoapprovalsummary.is_waiting_on_scanners
-                and datetime.now()
-                <= (
-                    version.autoapprovalsummary.created
-                    + timedelta(seconds=WAIT_ON_SCANNERS_TIMEOUT)
-                )
-            )
             already_has_same_active_nhr = version.needshumanreview_set.filter(
                 reason=reason, is_active=True
             ).exists()
@@ -316,7 +301,6 @@ class Command(BaseCommand):
                 and not version.pending_rejection
                 and not has_decision_waiting_for_2nd_level_approval
                 and not already_has_same_active_nhr
-                and not should_still_wait_on_scanners
             ):
                 NeedsHumanReview.objects.create(version=version, reason=reason)
 

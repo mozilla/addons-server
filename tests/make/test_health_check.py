@@ -117,7 +117,7 @@ class TestHealthCheck(TestCase):
                 ('__version__', 200, {'version': '1.0.0'}),
             ]
         ):
-            results, has_failures = main('container')
+            _results, has_failures = main('container')
             self.assertTrue(has_failures)
 
     def test_request_retries(self):

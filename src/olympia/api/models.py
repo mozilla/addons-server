@@ -60,8 +60,9 @@ class APIKey(ModelBase):
         ]
 
     def __str__(self):
-        return '<{cls} user={user}, type={type}, key={key} secret=...>'.format(
-            cls=self.__class__.__name__, key=self.key, type=self.type, user=self.user
+        return (
+            f'<{self.__class__.__name__} user={self.user}, type={self.type}, '
+            f'key={self.key} secret=...>'
         )
 
     @classmethod
@@ -116,9 +117,7 @@ class APIKey(ModelBase):
         """
         if byte_length < 32:  # at least 256 bit
             raise ValueError(
-                '{} is too short; secrets must be longer than 32 bytes'.format(
-                    byte_length
-                )
+                f'{byte_length} is too short; secrets must be longer than 32 bytes'
             )
         return force_str(binascii.b2a_hex(os.urandom(byte_length)))
 

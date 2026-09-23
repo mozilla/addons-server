@@ -65,10 +65,7 @@ def url(viewname, *args, **kwargs):
     """Helper for Django's ``reverse`` in templates."""
     add_prefix = kwargs.pop('add_prefix', True)
     host = kwargs.pop('host', '')
-    url = '{}{}'.format(
-        host,
-        reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix),
-    )
+    url = f'{host}{reverse(viewname, args=args, kwargs=kwargs, add_prefix=add_prefix)}'
     return url
 
 

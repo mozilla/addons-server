@@ -134,7 +134,7 @@ class VersionView(APIView):
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:
             msg = gettext(
-                'You cannot add versions to an add-on that has status: %s.'
+                'You cannot add versions to an add-on that has status: %s.'  # noqa: INT003
                 % amo.STATUS_CHOICES_ADDON[amo.STATUS_DISABLED]
             )
             raise forms.ValidationError(msg, status.HTTP_400_BAD_REQUEST)
@@ -184,14 +184,13 @@ class VersionView(APIView):
         elif not guid and package_guid:
             guid = package_guid
 
-        if guid:
-            # If we did get a guid, regardless of its source, validate it now
-            # before creating anything.
-            if not amo.ADDON_GUID_PATTERN.match(guid):
-                raise forms.ValidationError(
-                    gettext('Invalid Add-on ID in URL or package'),
-                    status.HTTP_400_BAD_REQUEST,
-                )
+        # If we did get a guid, regardless of its source, validate it now
+        # before creating anything.
+        if guid and not amo.ADDON_GUID_PATTERN.match(guid):
+            raise forms.ValidationError(
+                gettext('Invalid Add-on ID in URL or package'),
+                status.HTTP_400_BAD_REQUEST,
+            )
 
         # channel will be ignored for new addons.
         if addon is None:
@@ -272,21 +271,14 @@ class VersionView(APIView):
             if uuid is None:
                 file_upload = file_upload_qs.latest()
                 log.info(
-                    'getting latest upload for {addon} {version}: '
-                    '{file_upload.uuid}'.format(
-                        addon=addon, version=version_string, file_upload=file_upload
-                    )
+                    f'getting latest upload for {addon} {version_string}: '
+                    f'{file_upload.uuid}'
                 )
             else:
                 file_upload = file_upload_qs.get(uuid=uuid)
                 log.info(
-                    'getting specific upload for {addon} {version} '
-                    '{uuid}: {file_upload.uuid}'.format(
-                        addon=addon,
-                        version=version_string,
-                        uuid=uuid,
-                        file_upload=file_upload,
-                    )
+                    f'getting specific upload for {addon} {version_string} '
+                    f'{uuid}: {file_upload.uuid}'
                 )
         except FileUpload.DoesNotExist:
             msg = gettext('No uploaded file for that add-on and version.')

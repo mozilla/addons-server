@@ -43,6 +43,6 @@ class Command(BaseDataCommand):
                 interactive=False,
                 compress=True,
             )
-        except Exception as e:
+        except Exception:
             self.clean_dir(dump_path)
-            raise e
+            raise

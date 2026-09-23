@@ -1626,7 +1626,7 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert ActivityLog.objects.count() == 0
 
     def test_post_queue_move_with_multiple_reports_including_one_with_no_versions(self):
-        cinder_instance, cinder_job, listed_version, unlisted_version = (
+        cinder_instance, cinder_job, listed_version, _unlisted_version = (
             self._setup_post_queue_move_test()
         )
         other_version = version_factory(

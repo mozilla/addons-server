@@ -139,7 +139,7 @@ class AddonLog(ModelBase):
             # arguments is a structure:
             # ``arguments = [{'addons.addon':12}, {'addons.addon':1}, ... ]``
             arguments = json.loads(self.activity_log._arguments)
-        except Exception:
+        except (TypeError, json.JSONDecodeError):
             log.info(
                 'unserializing data from addon_log failed: %s' % self.activity_log.id
             )
@@ -614,7 +614,7 @@ class ActivityLog(ModelBase):
                 # `arguments_data` will be a list of dicts like:
                 # `[{'addons.addon':12}, {'addons.addon':1}, ... ]`
                 activity.arguments_data = json.loads(activity._arguments)
-            except Exception as e:
+            except (TypeError, json.JSONDecodeError) as e:
                 log.info('unserializing data from activity_log failed: %s', activity.id)
                 log.info(e)
                 activity.arguments_data = []

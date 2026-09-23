@@ -18,4 +18,4 @@ def celery_error(*, capture_and_log=False, **kw):
         if capture_and_log:
             log.exception('Capturing celery exception as a log', exc_info=exception)
         else:
-            raise exception
+            raise

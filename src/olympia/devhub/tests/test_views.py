@@ -32,9 +32,11 @@ from olympia.amo.templatetags.jinja_helpers import (
     urlparams,
 )
 from olympia.amo.tests import (
+    APITestClientSessionID,
     TestCase,
     addon_factory,
     get_random_ip,
+    reverse_ns,
     user_factory,
     version_factory,
 )
@@ -45,7 +47,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
 from olympia.devhub.tasks import validate
-from olympia.devhub.views import get_next_version_number
+from olympia.devhub.views import developer_agreement_api, get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
@@ -1392,11 +1394,12 @@ class TestUpload(UploadMixin, TestCase):
         self.xpi_path = self.file_path('webextension_no_id.xpi')
 
     def post(self, theme_specific=False, **kwargs):
-        data = {
-            'upload': open(self.xpi_path, 'rb'),
-            'theme_specific': 'True' if theme_specific else 'False',
-        }
-        return self.client.post(self.url, data, **kwargs)
+        with open(self.xpi_path, 'rb') as upload:
+            data = {
+                'upload': upload,
+                'theme_specific': 'True' if theme_specific else 'False',
+            }
+            return self.client.post(self.url, data, **kwargs)
 
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
@@ -2968,3 +2971,271 @@ class TestSupportView(TestCase):
             'You have submitted this form too many times recently. '
             'Please try again after some time.'
         ]
+
+
+@override_switch('enable-devhub-support-form', active=True)
+@override_settings(FXA_SUPPORT_SECRET='mysecret')
+class TestSupportAPI(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.user = user_factory()
+        self.api_url = reverse_ns('developer-support')
+
+        self.payload = {
+            'summary': 'Something is broken',
+            'category': 'technical',
+            'body': 'Please help me fix this issue.',
+        }
+
+    def _post(self, data=None):
+        if data is None:
+            data = self.payload
+        return self.client.post(
+            self.api_url,
+            data=json.dumps(data),
+            content_type='application/json',
+        )
+
+    @override_switch('enable-devhub-support-form', active=False)
+    def test_api_switch_inactive_returns_404(self):
+        self.client.login_api(self.user)
+        response = self._post()
+        assert response.status_code == 404
+
+    @override_settings(FXA_SUPPORT_SECRET='')
+    def test_api_no_secret_returns_404(self):
+        self.client.login_api(self.user)
+        response = self._post()
+        assert response.status_code == 404
+
+    def test_api_post_anonymous_returns_401(self):
+        response = self._post()
+        assert response.status_code == 401
+
+    def test_api_post_invalid_missing_fields(self):
+        self.client.login_api(self.user)
+        response = self._post({'summary': '', 'category': '', 'body': ''})
+        assert response.status_code == 400
+        data = response.json()
+        assert 'may not be blank' in data['summary'][0]
+        assert 'may not be blank' in data['body'][0]
+        assert 'is not a valid choice' in data['category'][0]
+
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
+    def test_api_post_success(self, mock_task):
+        self.client.login_api(self.user)
+        with self.settings(FXA_SUPPORT_BRAND_ID=None):
+            response = self._post()
+        assert response.status_code == 202
+        mock_task.assert_called_once()
+        (payload,) = mock_task.call_args[0]
+        assert payload['topic'] == 'technical'
+        assert payload['subject'] == 'Something is broken'
+        assert payload['email'] == self.user.email
+        assert 'brand_id' not in payload
+
+    @mock.patch('olympia.devhub.tasks.create_support_ticket.delay')
+    def test_api_post_success_with_brand_id(self, mock_task):
+        self.client.login_api(self.user)
+        with self.settings(FXA_SUPPORT_BRAND_ID=12345):
+            response = self._post()
+        assert response.status_code == 202
+        (payload,) = mock_task.call_args[0]
+        assert payload['brand_id'] == 12345
+
+    def test_api_post_throttled_user(self):
+        self.client.login_api(self.user)
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(10):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.api_url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
+            response = self._post()
+        assert response.status_code == 429
+
+    def test_api_post_throttled_ip(self):
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(20):
+                self._add_fake_throttling_action(
+                    view_class=SupportForm,
+                    url=self.api_url,
+                    user=user_factory(),
+                    remote_addr='5.6.7.8',
+                )
+            self.client.login_api(self.user)
+            response = self.client.post(
+                self.api_url,
+                data=json.dumps(self.payload),
+                content_type='application/json',
+                REMOTE_ADDR='5.6.7.8',
+                HTTP_X_FORWARDED_FOR=f'5.6.7.8, {get_random_ip()}',
+            )
+        assert response.status_code == 429
+
+
+class TestDeveloperAgreementAPI(TestCase):
+    client_class = APITestClientSessionID
+
+    def setUp(self):
+        super().setUp()
+        self.api_url = reverse_ns('developer-agreement')
+        self.change_date = datetime(2020, 1, 1, 0, 0)
+        self.fallback = datetime.strftime(
+            settings.DEV_AGREEMENT_CHANGE_FALLBACK, '%Y-%m-%d %H:%M'
+        )
+        set_config(
+            'last_dev_agreement_change_date',
+            self.change_date.strftime('%Y-%m-%d %H:%M'),
+        )
+        self.data = {'last_developer_agreement_change': self.change_date.isoformat()}
+
+    def _post(self, **kwargs):
+        return self.client.post(
+            self.api_url,
+            data=json.dumps(self.data),
+            content_type='application/json',
+            **kwargs,
+        )
+
+    def test_anon_returns_forbidden(self):
+        response = self._post()
+        assert response.status_code == 401
+
+        response = self.client.get(self.api_url)
+        assert response.status_code == 401
+
+    @mock.patch('olympia.users.utils.RestrictionChecker.is_submission_allowed')
+    def test_submission_not_allowed(self, is_submission_allowed_mock):
+        is_submission_allowed_mock.return_value = False
+        user = user_factory(read_dev_agreement=None)
+        self.client.login_api(user)
+
+        # Cannot accept if submission is not allowed.
+        response = self._post()
+        assert response.status_code == 400
+        user.reload()
+        assert not user.read_dev_agreement
+
+        # ...but can still get
+        response = self.client.get(self.api_url)
+        assert response.status_code == 200
+
+    @mock.patch('olympia.users.utils.RestrictionChecker.is_submission_allowed')
+    def test_already_accepted_agreement(self, is_submission_allowed_mock):
+        is_submission_allowed_mock.return_value = True
+        user = user_factory(read_dev_agreement=self.days_ago(1))
+        self.client.login_api(user)
+
+        # Post returns 400 if already accepted the newest agreement.
+        response = self._post()
+        assert response.status_code == 400
+        user.reload()
+        self.assertCloseToNow(user.read_dev_agreement, now=self.days_ago(1))
+
+        # ...but can still get
+        response = self.client.get(self.api_url)
+        assert response.status_code == 200
+
+    @mock.patch('olympia.users.utils.RestrictionChecker.is_submission_allowed')
+    def test_basic(self, is_submission_allowed_mock):
+        is_submission_allowed_mock.return_value = True
+        user = user_factory(display_name=None, read_dev_agreement=None)
+        self.client.login_api(user)
+
+        # First get.
+        response = self.client.get(self.api_url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'display_name': None,
+            'has_read_developer_agreement': False,
+            'last_developer_agreement_change': self.change_date.isoformat(),
+        }
+
+        # Rejects with no display name.
+        response = self._post()
+        assert response.status_code == 400
+
+        # Can accept with display name.
+        self.data['display_name'] = 'myuser'
+        response = self._post()
+        assert response.status_code == 202
+
+        # Reflected in get
+        response = self.client.get(self.api_url)
+        assert response.status_code == 200
+        assert response.json() == {
+            'display_name': 'myuser',
+            'has_read_developer_agreement': True,
+            'last_developer_agreement_change': self.change_date.isoformat(),
+        }
+
+        # If the dev agreement is updated, get reflects this
+        # (i.e user has not accepted newest agreement).
+        with time_machine.travel(datetime.now() + timedelta(5), tick=False):
+            update_day = datetime.now().replace(second=0, microsecond=0)
+            set_config(
+                'last_dev_agreement_change_date', update_day.strftime('%Y-%m-%d %H:%M')
+            )
+            response = self.client.get(self.api_url)
+            assert response.status_code == 200
+            assert response.json() == {
+                'display_name': 'myuser',
+                'has_read_developer_agreement': False,
+                'last_developer_agreement_change': update_day.isoformat(),
+            }
+
+            # Cannot accept with display name, since it exists
+            response = self._post()
+            assert response.status_code == 400
+
+            # Can accept.
+            self.data.pop('display_name')
+            self.data['last_developer_agreement_change'] = update_day.isoformat()
+            response = self._post()
+            assert response.status_code == 202
+
+            response = self.client.get(self.api_url)
+            assert response.status_code == 200
+            assert response.json() == {
+                'display_name': 'myuser',
+                'has_read_developer_agreement': True,
+                'last_developer_agreement_change': update_day.isoformat(),
+            }
+
+    def test_throttled_user(self):
+        user = user_factory(read_dev_agreement=None)
+        self.client.login_api(user)
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(4):
+                self._add_fake_throttling_action(
+                    view_class=developer_agreement_api.cls,
+                    url=self.api_url,
+                    user=user,
+                    remote_addr='1.2.3.4',
+                )
+            response = self._post()
+        assert response.status_code == 429
+        assert user.has_anonymous_display_name
+
+    def test_throttled_ip(self):
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(8):
+                self._add_fake_throttling_action(
+                    view_class=developer_agreement_api.cls,
+                    url=self.api_url,
+                    user=user_factory(),
+                    remote_addr='5.6.7.8',
+                )
+            user = user_factory(read_dev_agreement=None)
+            self.client.login_api(user)
+            response = self._post(
+                REMOTE_ADDR='5.6.7.8',
+                HTTP_X_FORWARDED_FOR=f'5.6.7.8, {get_random_ip()}',
+            )
+        assert response.status_code == 429
+        assert user.has_anonymous_display_name

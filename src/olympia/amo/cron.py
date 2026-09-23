@@ -54,9 +54,7 @@ def gc(test_result=True):
     stale_uploads = FileUpload.objects.filter(created__lte=two_weeks_ago).order_by('id')
     for file_upload in stale_uploads:
         log.info(
-            '[FileUpload:{uuid}] Removing file: {path}'.format(
-                uuid=file_upload.uuid, path=file_upload.file_path
-            )
+            f'[FileUpload:{file_upload.uuid}] Removing file: {file_upload.file_path}'
         )
         if file_upload.file_path:
             try:
@@ -72,23 +70,23 @@ def gc(test_result=True):
     FakeEmail.objects.filter(created__lte=days_ago(90)).delete()
 
 
-def write_sitemaps(section=None, app_name=None):
-    index_filename = get_sitemap_path(None, None)
+def write_sitemaps(section=None):
+    index_filename = get_sitemap_path(None)
     sitemaps = get_sitemaps()
-    if (not section or section == 'index') and not app_name:
+    if not section or section == 'index':
         with storage.open(index_filename, 'w') as index_file:
             log.info('Writing sitemap index')
             index_file.write(render_index_xml(sitemaps))
-    for _section, _app_name, _page in get_sitemap_section_pages(sitemaps):
-        if (section and section != _section) or (app_name and app_name != _app_name):
+    for _section, _page in get_sitemap_section_pages(sitemaps):
+        if section and section != _section:
             continue
         if _page % 1000 == 1:
-            # log an info message every 1000 pages in a _section, _app_name
-            log.info(f'Writing sitemap file for {_section}, {_app_name}, {_page}')
-        filename = get_sitemap_path(_section, _app_name, _page)
+            # log an info message every 1000 pages in a _section
+            log.info(f'Writing sitemap file for {_section}, {_page}')
+        filename = get_sitemap_path(_section, _page)
         with storage.open(filename, 'w') as sitemap_file:
-            sitemap_object = sitemaps.get((_section, amo.APPS.get(_app_name)))
+            sitemap_object = sitemaps.get(_section)
             if not sitemap_object:
                 continue
-            content = sitemap_object.render(app_name=_app_name, page=_page)
+            content = sitemap_object.render(page=_page)
             sitemap_file.write(content)

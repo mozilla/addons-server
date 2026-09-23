@@ -61,7 +61,12 @@ from olympia.reviewers.models import AutoApprovalSummary
 from olympia.search.utils import get_es
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
-from olympia.users.models import EmailUserRestriction, UserProfile
+from olympia.users.models import (
+    RESTRICTION_TYPES,
+    EmailUserRestriction,
+    UserProfile,
+    UserRestrictionHistory,
+)
 from olympia.versions.models import (
     ApplicationsVersions,
     AppVersion,
@@ -3358,7 +3363,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
         raise NotImplementedError
 
     def _generate_source_tar(self, suffix='.tar.gz', data=b't' * (2**21), mode=None):
-        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)  # noqa: SIM115 (temp file returned to caller)
         if mode is None:
             mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
@@ -3372,7 +3377,7 @@ class VersionViewSetCreateUpdateMixin(RequestMixin):
     def _generate_source_zip(
         self, suffix='.zip', data='z' * (2**21), compression=zipfile.ZIP_DEFLATED
     ):
-        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)
+        source = tempfile.NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH)  # noqa: SIM115 (temp file returned to caller)
         with zipfile.ZipFile(source, 'w', compression=compression) as zip_file:
             zip_file.writestr('foo', data)
         source.seek(0)
@@ -4318,11 +4323,12 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
-        src = SimpleUploadedFile(
-            filename,
-            open(filepath, 'rb').read(),
-            content_type=mimetypes.guess_type(filename)[0],
-        )
+        with open(filepath, 'rb') as source_file:
+            src = SimpleUploadedFile(
+                filename,
+                source_file.read(),
+                content_type=mimetypes.guess_type(filename)[0],
+            )
         response = self.client.post(
             self.url, data={**self.minimal_data, 'source': src}, format='multipart'
         )
@@ -4334,6 +4340,54 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             assert response.status_code == 400
             version = None
         return response, version
+
+    def test_restriction_instance_recorded_on_auto_approval_denial(self):
+        # End to end: a restriction denying auto-approval during a real API
+        # submission is recorded with the specific matching instance, linked
+        # to the version that was created.
+        user_factory(pk=settings.TASK_USER_ID)  # DISABLE_AUTO_APPROVAL author.
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=self.user.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+        )
+        response = self.client.post(self.url, data=self.minimal_data)
+        assert response.status_code == 201, response.content
+
+        self.addon.reload()
+        version = self.addon.find_latest_version(channel=None)
+        history = UserRestrictionHistory.objects.get(user=self.user)
+        assert history.get_restriction_display() == 'EmailUserRestriction'
+        assert history.restriction_instance == restriction
+        assert history.version == version
+        activity_log = ActivityLog.objects.filter(
+            action=amo.LOG.DISABLE_AUTO_APPROVAL.id
+        ).get()
+        assert activity_log.details['restrictions'] == ['EmailUserRestriction']
+        assert activity_log.details['restriction_history_ids'] == [history.pk]
+        assert activity_log.details['comments'] == (
+            'Unlisted auto-approval automatically disabled because of a '
+            'restriction (EmailUserRestriction)'
+        )
+        assert self.addon.auto_approval_disabled_unlisted
+
+    def test_filters_permissions_only_for_list_action(self):
+        reviewer = user_factory(read_dev_agreement=self.days_ago(0))
+        self.grant_permission(reviewer, amo.permissions.ADDONS_API_VIEW)
+        self.client.login_api(reviewer)
+        response = self.client.post(self.url, data={**self.minimal_data})
+        assert response.status_code == 403
+
+        response = self.client.post(
+            f'{self.url}?filter=all_without_unlisted', data={**self.minimal_data}
+        )
+        assert response.status_code == 403
+
+        # No problem for author.
+        self.client.login_api(self.user)
+        response = self.client.post(
+            f'{self.url}?filter=all_without_unlisted', data={**self.minimal_data}
+        )
+        assert response.status_code == 201
 
 
 class TestVersionViewSetCreateJWTAuth(TestVersionViewSetCreate):
@@ -4767,11 +4821,12 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
 
     def _submit_source(self, filepath, error=False):
         _, filename = os.path.split(filepath)
-        src = SimpleUploadedFile(
-            filename,
-            open(filepath, 'rb').read(),
-            content_type=mimetypes.guess_type(filename)[0],
-        )
+        with open(filepath, 'rb') as source_file:
+            src = SimpleUploadedFile(
+                filename,
+                source_file.read(),
+                content_type=mimetypes.guess_type(filename)[0],
+            )
         response = self.client.patch(self.url, data={'source': src}, format='multipart')
         if not error:
             assert response.status_code == 200, response.content
@@ -4848,7 +4903,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             pending_rejection_by=user_factory(),
             pending_content_rejection=False,
         )
-        response, self.version = self._submit_source(new_source)
+        _response, self.version = self._submit_source(new_source)
         self.addon.reload()
         assert self.version.source
         assert self.version.needshumanreview_set.filter(is_active=True).exists()
@@ -7208,7 +7263,7 @@ class TestAddonSearchView(ESTestCase):
 
         # Exclude addon2 and addon3 by slug.
         data = self.perform_search(
-            self.url, {'exclude_addons': ','.join((addon2.slug, addon3.slug))}
+            self.url, {'exclude_addons': f'{addon2.slug},{addon3.slug}'}
         )
 
         assert len(data['results']) == 1

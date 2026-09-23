@@ -34,10 +34,7 @@ class StaticCategory:
         return str(self.name)
 
     def __repr__(self):
-        return '<{}: {}>'.format(
-            self.__class__.__name__,
-            force_bytes(self),
-        )
+        return f'<{self.__class__.__name__}: {force_bytes(self)}>'
 
     def __eq__(self, other):
         return self.__class__ == other.__class__ and self.__dict__ == other.__dict__

@@ -26,12 +26,8 @@ def get_version_json(
             contents.update(json.loads(f.read()))
 
     py_info = sys.version_info
-    contents['python'] = '{major}.{minor}'.format(
-        major=py_info.major, minor=py_info.minor
-    )
-    contents['django'] = '{major}.{minor}'.format(
-        major=django.VERSION[0], minor=django.VERSION[1]
-    )
+    contents['python'] = f'{py_info.major}.{py_info.minor}'
+    contents['django'] = f'{django.VERSION[0]}.{django.VERSION[1]}'
 
     if os.path.exists(pkg_json_path):
         with open(pkg_json_path) as f:

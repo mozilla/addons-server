@@ -42,7 +42,7 @@ class AddonQueryParam:
             value = self.get_value_from_reverse_dict()
         if self.is_valid(value):
             return value
-        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+        raise ValueError(gettext('Invalid "{}" parameter.').format(self.query_param))
 
     def is_valid(self, value):
         return value in self.valid_values
@@ -55,7 +55,9 @@ class AddonQueryParam:
         value = self.query_data.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
-            raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+            raise ValueError(
+                gettext('Invalid "{}" parameter.').format(self.query_param)
+            )
         return value
 
     def get_value_from_object_from_reverse_dict(self):
@@ -88,7 +90,7 @@ class AddonQueryMultiParam:
             value = self.lookup_string_value(value)
         if self.is_valid(value):
             return value
-        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+        raise ValueError(gettext('Invalid "{}" parameter.').format(self.query_param))
 
     def get_values(self):
         values = str(self.query_data.get(self.query_param, '')).split(',')
@@ -163,7 +165,7 @@ class AddonThresholdQueryParam(AddonQueryParam):
             except ValueError:
                 pass  # we're going to raise ValueError anyway
 
-        raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+        raise ValueError(gettext('Invalid "{}" parameter.').format(self.query_param))
 
     @classmethod
     def get_classes(cls):
@@ -203,12 +205,16 @@ class AddonAppVersionQueryParam(AddonQueryParam):
             low = version_int(appversion)
             high = version_int(appversion + 'a')
             if low < version_int('10.0'):
-                raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+                raise ValueError(
+                    gettext('Invalid "{}" parameter.').format(self.query_param)
+                )
             return app, low, high
         raise ValueError(
             gettext(
-                'Invalid combination of "%s" and "%s" parameters.'
-                % (AddonAppQueryParam.query_param, self.query_param)
+                'Invalid combination of "{param1}" and "{param2}" parameters.'
+            ).format(
+                param1=AddonAppQueryParam.query_param,
+                param2=self.query_param,
             )
         )
 
@@ -327,11 +333,10 @@ class AddonCategoryQueryParam(AddonQueryParam):
         except KeyError as exc:
             raise ValueError(
                 gettext(
-                    'Invalid combination of "%s" and "%s" parameters.'
-                    % (
-                        AddonTypeQueryParam.query_param,
-                        self.query_param,
-                    )
+                    'Invalid combination of "{param1}" and "{param2}" parameters.'
+                ).format(
+                    param1=AddonTypeQueryParam.query_param,
+                    param2=self.query_param,
                 )
             ) from exc
 
@@ -349,7 +354,9 @@ class AddonCategoryQueryParam(AddonQueryParam):
         for reverse_dict in self.reverse_dict:
             value = reverse_dict.get(query_value)
             if value is None:
-                raise ValueError(gettext('Invalid "%s" parameter.' % self.query_param))
+                raise ValueError(
+                    gettext('Invalid "{}" parameter.').format(self.query_param)
+                )
             values.append(value)
         return values
 
@@ -454,7 +461,7 @@ class AddonColorQueryParam(AddonQueryParam):
             rgb = tuple(bytearray.fromhex(hexvalue))
         except ValueError as err:
             raise ValueError(
-                gettext('Invalid "%s" parameter.' % self.query_param)
+                gettext('Invalid "{}" parameter.').format(self.query_param)
             ) from err
         return colorgram.colorgram.hsl(*rgb)
 

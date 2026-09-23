@@ -538,8 +538,11 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm(
             {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
-            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
+        with (
+            storage.open(os.path.join(self.dest, upload_hash), 'wb') as f,
+            open(get_image_path(name), 'rb') as copy_src,
+        ):
+            shutil.copyfileobj(copy_src, f)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
@@ -571,8 +574,11 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm(
             {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
-            shutil.copyfileobj(open(get_image_path(name + '.png'), 'rb'), f)
+        with (
+            storage.open(os.path.join(self.dest, upload_hash), 'wb') as f,
+            open(get_image_path(name + '.png'), 'rb') as copy_src,
+        ):
+            shutil.copyfileobj(copy_src, f)
         assert form.is_valid()
         form.save(addon)
         preview = addon.previews.all()[0]
@@ -591,8 +597,11 @@ class TestPreviewForm(TestCase):
         form = forms.PreviewForm(
             {'caption': 'test', 'upload_hash': upload_hash, 'position': 1}
         )
-        with storage.open(os.path.join(self.dest, upload_hash), 'wb') as f:
-            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
+        with (
+            storage.open(os.path.join(self.dest, upload_hash), 'wb') as f,
+            open(get_image_path(name), 'rb') as copy_src,
+        ):
+            shutil.copyfileobj(copy_src, f)
         assert form.is_valid()
         form.save(addon)
         preview = addon.previews.all()[0]
@@ -1298,8 +1307,11 @@ class TestIconForm(TestCase):
             instance=self.addon,
         )
         dest = os.path.join(self.icon_path, icon_upload_hash)
-        with storage.open(dest, 'wb') as f:
-            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
+        with (
+            storage.open(dest, 'wb') as f,
+            open(get_image_path(name), 'rb') as copy_src,
+        ):
+            shutil.copyfileobj(copy_src, f)
         assert form.is_valid()
         form.save(addon=self.addon)
         assert update_mock.called

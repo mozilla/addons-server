@@ -569,9 +569,7 @@ class AddonAdmin(AddonAdminByGuidOrSlugMixin, AMOModelAdmin):
         from olympia.discovery.admin import DiscoveryAddon
 
         url = reverse(
-            'admin:{}_{}_change'.format(
-                DiscoveryAddon._meta.app_label, DiscoveryAddon._meta.model_name
-            ),
+            f'admin:{DiscoveryAddon._meta.app_label}_{DiscoveryAddon._meta.model_name}_change',
             args=[obj.pk],
         )
         return format_html('<a href="{}">Discovery Addon</a>', url)
@@ -597,9 +595,9 @@ class ReplacementAddonForm(AMOModelForm):
             else:
                 path = ('/' if not path.startswith('/') else '') + path
                 resolve(path)
-        except forms.ValidationError as validation_error:
+        except forms.ValidationError:
             # Re-raise the ValidationError about full paths for SITE_URL.
-            raise validation_error
+            raise
         except Exception as exc:
             raise forms.ValidationError('Path [%s] is not valid' % path) from exc
         return path

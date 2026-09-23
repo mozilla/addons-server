@@ -583,7 +583,7 @@ class BasePreview:
             try:
                 log.info(f'Removing filename: {filename} for preview: {instance.pk}')
                 storage.delete(filename)
-            except Exception as e:
+            except OSError as e:
                 log.error(f'Error deleting preview file ({filename}): {e}')
 
 

@@ -220,9 +220,9 @@ def test_has_urls():
 def test_walkfiles():
     basedir = tempfile.mkdtemp(dir=settings.TMP_PATH)
     subdir = tempfile.mkdtemp(dir=basedir)
-    file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
-    file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
-    file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
+    _file1, file1path = tempfile.mkstemp(dir=basedir, suffix='_foo')
+    _file2, file2path = tempfile.mkstemp(dir=subdir, suffix='_foo')
+    _file3, file3path = tempfile.mkstemp(dir=subdir, suffix='_bar')
 
     # Only files ending with _foo.
     assert list(walkfiles(basedir, suffix='_foo')) == [file1path, file2path]

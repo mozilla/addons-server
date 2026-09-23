@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from unittest import mock
 
 from django.conf import settings
@@ -31,7 +30,7 @@ class TestExtractHostPermissions(UploadMixin, TestCase):
             )
 
     def setUp(self):
-        super(TestExtractHostPermissions, self).setUp()
+        super().setUp()
         self.addon = Addon.objects.create(
             guid='mv3@extension', type=amo.ADDON_EXTENSION, name='xxx'
         )

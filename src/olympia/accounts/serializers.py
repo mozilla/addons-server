@@ -187,9 +187,8 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
 
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
-                gettext(
-                    'Please use images smaller than %dMB.'
-                    % (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
+                gettext('Please use images smaller than {}MB.').format(
+                    int(settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)
                 )
             )
         return value
@@ -255,7 +254,7 @@ class AccountSuperCreateSerializer(serializers.Serializer):
             if count != 1:
                 log.info(
                     'Super creation: looking for group with '
-                    'permissions {} {} (count: {})'.format(group, rule, count)
+                    f'permissions {group} {rule} (count: {count})'
                 )
                 raise serializers.ValidationError(
                     'Could not find a permissions group with the exact rules needed.'

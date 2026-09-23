@@ -71,7 +71,7 @@ from olympia.stats.utils import (
     VERSION_ADU_LIMIT,
     get_average_daily_users_per_version_from_bigquery,
 )
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 from src.olympia.abuse.actions import CONTENT_ACTION_FROM_DECISION_ACTION
@@ -200,7 +200,7 @@ def dashboard(request):
     if view_all or acl.action_allowed_for(request.user, amo.permissions.ADDONS_REVIEW):
         sections['Manual Review'] = [
             (
-                'Manual Review ({0})'.format(queue_counts['queue_extension']),
+                'Manual Review ({})'.format(queue_counts['queue_extension']),
                 reverse('reviewers.queue_extension'),
             ),
             ('Review Log', reverse('reviewers.reviewlog')),
@@ -214,7 +214,7 @@ def dashboard(request):
     ):
         sections['Content Review'] = [
             (
-                'Content Review ({0})'.format(queue_counts['queue_content_review']),
+                'Content Review ({})'.format(queue_counts['queue_content_review']),
                 reverse('reviewers.queue_content_review'),
             ),
         ]
@@ -223,7 +223,7 @@ def dashboard(request):
     ):
         sections['Themes'] = [
             (
-                'Awaiting Review ({0})'.format(queue_counts['queue_theme']),
+                'Awaiting Review ({})'.format(queue_counts['queue_theme']),
                 reverse('reviewers.queue_theme'),
             ),
             (
@@ -240,7 +240,7 @@ def dashboard(request):
     ):
         sections['User Ratings Moderation'] = [
             (
-                'Ratings Awaiting Moderation ({0})'.format(
+                'Ratings Awaiting Moderation ({})'.format(
                     queue_counts['queue_moderated']
                 ),
                 reverse('reviewers.queue_moderated'),
@@ -266,7 +266,7 @@ def dashboard(request):
     if view_all or acl.action_allowed_for(request.user, amo.permissions.REVIEWS_ADMIN):
         sections['Admin Tools'] = [
             (
-                'Add-ons Pending Rejection ({0})'.format(
+                'Add-ons Pending Rejection ({})'.format(
                     queue_counts['queue_pending_rejection']
                 ),
                 reverse('reviewers.queue_pending_rejection'),
@@ -277,7 +277,7 @@ def dashboard(request):
     ):
         sections['2nd Level Approval'] = [
             (
-                'Held Decisions for 2nd Level Approval ({0})'.format(
+                'Held Decisions for 2nd Level Approval ({})'.format(
                     queue_counts['queue_decisions']
                 ),
                 reverse('reviewers.queue_decisions'),
@@ -553,9 +553,12 @@ def review(request, addon, channel=None):
     # cached validation, since reviewers will almost certainly need to access
     # them. But only if we're not running in eager mode, since that could mean
     # blocking page load for several minutes.
-    if version and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False):
-        if not version.file.has_been_validated:
-            devhub_tasks.validate(version.file)
+    if (
+        version
+        and not getattr(settings, 'CELERY_TASK_ALWAYS_EAGER', False)
+        and not version.file.has_been_validated
+    ):
+        devhub_tasks.validate(version.file)
 
     actions = form.helper.actions.items()
 
@@ -670,6 +673,33 @@ def review(request, addon, channel=None):
         addonlog__addon=addon,
     ).order_by('id')
 
+    # Resolve the restriction instances recorded on DISABLE_AUTO_APPROVAL
+    # entries, so the template can show which restriction(s) matched - as a
+    # link to the admin for users that can access it.
+    restriction_history_ids = [
+        pk
+        for record in important_changes_log
+        if record.details
+        for pk in record.details.get('restriction_history_ids', ())
+    ]
+    restriction_history_by_id = {}
+    if restriction_history_ids:
+        restriction_history_entries = (
+            UserRestrictionHistory.objects.filter(pk__in=restriction_history_ids)
+            .select_related('restriction_content_type')
+            .prefetch_related('restriction_instance')
+        )
+        for entry in restriction_history_entries:
+            entry.admin_url = (
+                reverse(
+                    f'admin:users_{entry.restriction_content_type.model}_change',
+                    args=(entry.restriction_object_id,),
+                )
+                if entry.restriction_content_type_id and entry.restriction_object_id
+                else None
+            )
+            restriction_history_by_id[entry.pk] = entry
+
     name_translations = (
         addon.name.__class__.objects.filter(
             id=addon.name.id, localized_string__isnull=False
@@ -728,6 +758,9 @@ def review(request, addon, channel=None):
         .exists(),
         important_changes_log=important_changes_log,
         is_admin=is_admin,
+        is_advanced_admin=acl.action_allowed_for(
+            request.user, amo.permissions.ADMIN_ADVANCED
+        ),
         is_user_admin=acl.action_allowed_for(request.user, amo.permissions.USERS_EDIT),
         language_dict=dict(settings.LANGUAGES),
         latest_not_disabled_version=latest_not_disabled_version,
@@ -744,6 +777,7 @@ def review(request, addon, channel=None):
         num_pages=num_pages,
         pager=pager,
         reports=reports,
+        restriction_history_by_id=restriction_history_by_id,
         session_id=request.session.session_key,
         subscribed_listed=ReviewerSubscription.objects.filter(
             user=request.user, addon=addon, channel=amo.CHANNEL_LISTED
@@ -914,7 +948,7 @@ def abuse_reports(request, addon):
 @reviewer_addon_view_factory
 def whiteboard(request, addon, channel):
     channel_as_text = channel
-    channel, content_review = determine_channel(channel)
+    channel, _content_review = determine_channel(channel)
 
     unlisted_only = (
         channel == amo.CHANNEL_UNLISTED
@@ -949,7 +983,6 @@ def policy_viewer(request, addon, eula_or_privacy, page_title, long_title):
     if not eula_or_privacy:
         raise http.Http404
     channel_text = request.GET.get('channel')
-    channel, content_review = determine_channel(channel_text)
 
     review_url = reverse(
         'reviewers.review',

@@ -6,6 +6,7 @@ from django.urls import reverse
 import olympia.core.logger
 from olympia import amo
 from olympia.activity import log_create
+from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.users.utils import get_task_user
 from olympia.versions.models import Version
@@ -143,12 +144,46 @@ def datetime_to_ts(dt=None):
     return int((dt or datetime.now()).timestamp() * 1000)
 
 
+def disable_addon_for_block(block, submission):
+    """Force-disable an add-on being blocked.
+
+    Triggered by <BlocklistSubmission>.disable_addon."""
+    from olympia.abuse.models import ContentDecision
+    from olympia.abuse.tasks import report_decision_to_cinder_and_notify
+
+    task_user = get_task_user()
+    activity_user = block.updated_by or task_user
+    decision = ContentDecision.objects.create(
+        addon=block.addon,
+        # Note: we can't use AMO_BLOCK_ADDON: it's meant for automation, and
+        # when executed it force disables a single add-on then creates the
+        # BlocklistSubmission. Here we already have a submission (that may be
+        # affecting multiple add-ons) and the only thing left to do is to force
+        # disable the add-ons for each block the submission created.
+        action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+        reviewer_user=activity_user,
+        metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+    )
+    # FIXME: no policies for now, lacking the UI to set that (including for
+    # bulk actions) in the admin.
+    decision.execute_action(
+        extra_details={
+            'comments': submission.reason or '',
+            'is_addon_being_blocked': True,
+            'is_addon_being_disabled': True,  # Redundant, but doesn't hurt.
+        }
+    )
+    report_decision_to_cinder_and_notify.delay(decision_id=decision.id)
+
+
 def disable_versions_for_block(block, submission):
-    """Disable appropriate addon versions that are affected by the Block."""
+    """Disable appropriate addon versions that are affected by the Block.
+
+    Triggered by <BlocklistSubmission>.disable_versions."""
     from olympia.reviewers.utils import ReviewBase
 
     task_user = get_task_user()
-    activity_user = block.updated_by or get_task_user()
+    activity_user = block.updated_by or task_user
     human_review = activity_user != task_user
     review = ReviewBase(
         addon=block.addon, version=None, user=activity_user, human_review=human_review
@@ -159,6 +194,7 @@ def disable_versions_for_block(block, submission):
         # We don't need to reject versions from older deleted instances
         # and already disabled files
         if ver.addon == block.addon
+        and not submission.disable_addon
         and ver.id in submission.changed_version_ids
         and ver.file.status != amo.STATUS_DISABLED
         and ver.deleted is False
@@ -249,9 +285,11 @@ def save_versions_to_blocks(guids, submission):
             change=change,
             submission_obj=submission,
         )
-        if submission.disable_versions is True:
-            # disable_versions_for_block triggers email notifications
-            disable_versions_for_block(block, submission)
+        # Disabling the add-on or the versions will cause a decision to be
+        # recorded and a notification to the author. We don't want both
+        # notifications to go out, so start with disabling the add-on,
+        # disable_versions_for_block() should then avoid recording a no-op
+        # decision and clean-up NeedsHumanReview if necessary.
         if submission.disable_addon:
             if block.addon.status == amo.STATUS_DELETED:
                 try:
@@ -259,10 +297,10 @@ def save_versions_to_blocks(guids, submission):
                 except GuidAlreadyDeniedError:
                     pass
             else:
-                # Disabling the add-on triggers a bunch of things so make sure
-                # it's done last, after we've gone through
-                # disable_versions_for_block().
-                block.addon.update(status=amo.STATUS_DISABLED)
+                disable_addon_for_block(block, submission)
+        if submission.disable_versions:
+            disable_versions_for_block(block, submission)
+
     if submission.disable_versions is False and (followup := submission.from_followup):
         # Otherwise, if this relates to a follow-up, we need to send emails manually.
         # Followup actions are per-addon, so we only need to do this once per submission

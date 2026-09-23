@@ -53,6 +53,7 @@ from olympia.api.throttling import (
 )
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.devhub.serializers import SUPPORT_CATEGORY_CHOICES
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
@@ -706,13 +707,12 @@ class LicenseForm(AMOModelForm):
             # database.
             license = super().save(*args, **kw)
 
-        if self.version:
-            if (changed and is_other) or license != self.version.license:
-                self.version.update(license=license)
-                if log:
-                    ActivityLog.objects.create(
-                        amo.LOG.CHANGE_LICENSE, license, self.version.addon
-                    )
+        if self.version and ((changed and is_other) or license != self.version.license):
+            self.version.update(license=license)
+            if log:
+                ActivityLog.objects.create(
+                    amo.LOG.CHANGE_LICENSE, license, self.version.addon
+                )
         return license
 
 
@@ -769,7 +769,7 @@ class WithSourceMixin:
     def get_invalid_source_file_type_message(self):
         valid_extensions_string = '(%s)' % ', '.join(VALID_SOURCE_EXTENSIONS)
         return gettext(
-            'Unsupported file type, please upload an archive file {extensions}.'.format(
+            'Unsupported file type, please upload an archive file {extensions}.'.format(  # noqa: INT002
                 extensions=valid_extensions_string
             )
         )
@@ -1182,13 +1182,13 @@ class NewUploadForm(CheckThrottlesFormMixin, forms.Form):
 
             if self.addon:
                 self.check_for_existing_versions(parsed_data.get('version'))
-                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED:
-                    if error_message := (
-                        validate_version_number_is_gt_latest_signed_listed_version(
-                            self.addon, parsed_data.get('version')
-                        )
-                    ):
-                        raise forms.ValidationError(error_message)
+                if self.cleaned_data['upload'].channel == amo.CHANNEL_LISTED and (
+                    error_message
+                    := validate_version_number_is_gt_latest_signed_listed_version(
+                        self.addon, parsed_data.get('version')
+                    )
+                ):
+                    raise forms.ValidationError(error_message)
 
             self.cleaned_data['parsed_data'] = parsed_data
         return self.cleaned_data
@@ -1775,13 +1775,6 @@ class RollbackVersionForm(forms.Form):
 
 
 class SupportForm(CheckThrottlesFormMixin, forms.Form):
-    CATEGORY_CHOICES = [
-        ('', _('Choose a category')),
-        ('policy', _('Technical support for making your add-on compliant')),
-        ('technical', _('Issue with addons.mozilla.org')),
-        ('other', _('Other')),
-    ]
-
     throttle_classes = contact_support_throttles
 
     summary = forms.CharField(
@@ -1792,7 +1785,7 @@ class SupportForm(CheckThrottlesFormMixin, forms.Form):
         ),
     )
     category = forms.ChoiceField(
-        choices=CATEGORY_CHOICES,
+        choices=[('', _('Choose a category')), *SUPPORT_CATEGORY_CHOICES],
         label=_('Select category'),
     )
     body = forms.CharField(

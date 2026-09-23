@@ -90,7 +90,7 @@ translation.activate('en-us')
 # them at import time. Note that this works because pytest overrides
 # ES_INDEXES before the test run even begins - if we were using
 # override_settings() on ES_INDEXES we'd be in trouble.
-ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES.keys()}
+ES_INDEX_SUFFIXES = {key: timestamp_index('') for key in settings.ES_INDEXES}
 
 # django2.2 encodes with the decimal code; django3.2 with the hex code.
 SQUOTE_ESCAPED = escape("'")
@@ -363,7 +363,11 @@ class APITestClientJWT(JWTAuthKeyTester, APIClient):
         pass
 
     def login_api(self, user):
-        self.api_key = self.create_api_key(user, str(user.pk) + ':f')
+        from olympia.api.models import APIKey
+
+        self.api_key = APIKey.objects.filter(user=user).first() or self.create_api_key(
+            user, str(user.pk) + ':f'
+        )
 
     def logout_api(self):
         self.api_key = None
@@ -1082,9 +1086,7 @@ class ESTestCaseMixin:
         # suffixes generated at import time. Like the aliases later, the name
         # has been prefixed by pytest, we need to add a suffix that is unique
         # to this test run.
-        actual_indices = {
-            key: get_es_index_name(key) for key in settings.ES_INDEXES.keys()
-        }
+        actual_indices = {key: get_es_index_name(key) for key in settings.ES_INDEXES}
 
         # Create new addons and stats indexes with the timestamped name.
         # This is crucial to set up the correct mappings before we start
@@ -1266,7 +1268,7 @@ def prefix_indexes(config):
     Note that this is a pytest helper that is primarily used in conftest.
     """
     if hasattr(config, 'slaveinput'):
-        prefix = 'test_{[slaveid]}'.format(config.slaveinput)
+        prefix = f'test_{config.slaveinput["slaveid"]}'
     else:
         prefix = 'test'
 
@@ -1277,9 +1279,7 @@ def prefix_indexes(config):
     # unittest-based setup.
     for key, index in settings.ES_INDEXES.items():
         if not index.startswith(prefix):
-            settings.ES_INDEXES[key] = '{prefix}_amo_{index}'.format(
-                prefix=prefix, index=index
-            )
+            settings.ES_INDEXES[key] = f'{prefix}_amo_{index}'
 
 
 def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):

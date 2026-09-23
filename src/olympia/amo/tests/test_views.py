@@ -596,10 +596,7 @@ class TestVersion(TestCase):
         assert result.get('Content-Type') == 'application/json'
         assert result.get('Access-Control-Allow-Origin') == '*'
         content = result.json()
-        assert content['python'] == '{}.{}'.format(
-            sys.version_info.major,
-            sys.version_info.minor,
-        )
+        assert content['python'] == f'{sys.version_info.major}.{sys.version_info.minor}'
         assert content['django'] == f'{django.VERSION[0]}.{django.VERSION[1]}'
         assert 'addons-linter' in content
         assert '.' in content['addons-linter']
@@ -754,7 +751,7 @@ class TestSitemap(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
-            get_sitemap_path(None, None)
+            get_sitemap_path(None)
         )
         assert result.get('Cache-Control') == 'max-age=3600'
 
@@ -764,25 +761,16 @@ class TestSitemap(TestCase):
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
-            get_sitemap_path('amo', None)
+            get_sitemap_path('amo')
         )
         assert result.get('Cache-Control') == 'max-age=3600'
 
         # a section with more than one page
-        result = self.client.get('/sitemap.xml?section=addons&app_name=firefox&p=2')
+        result = self.client.get('/sitemap.xml?section=addons&p=2')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
-            get_sitemap_path('addons', 'firefox', 2)
-        )
-        assert result.get('Cache-Control') == 'max-age=3600'
-
-        # and for android
-        result = self.client.get('/sitemap.xml?section=addons&app_name=android')
-        assert result.status_code == 200
-        assert result.get('Content-Type') == 'application/xml'
-        assert result[settings.XSENDFILE_HEADER] == os.path.normpath(
-            get_sitemap_path('addons', 'android')
+            get_sitemap_path('addons', 2)
         )
         assert result.get('Cache-Control') == 'max-age=3600'
 
@@ -798,7 +786,7 @@ class TestSitemap(TestCase):
         )
 
         # a section
-        result = self.client.get('/sitemap.xml?section=addons&app_name=firefox&debug')
+        result = self.client.get('/sitemap.xml?section=addons&debug')
         assert result.status_code == 200
         assert result.get('Content-Type') == 'application/xml'
         # there aren't any addons so no content
@@ -825,12 +813,6 @@ class TestSitemap(TestCase):
         assert self.client.get('/sitemap.xml?debug&p=1.3').status_code == 404
         # invalid sections should also fail nicely
         assert self.client.get('/sitemap.xml?debug&section=foo').status_code == 404
-        assert (
-            self.client.get(
-                '/sitemap.xml?debug&section=amo&app_name=firefox'
-            ).status_code
-            == 404
-        )
 
     def test_exceptions(self):
         # check a non-integer page number
@@ -838,7 +820,3 @@ class TestSitemap(TestCase):
         assert self.client.get('/sitemap.xml?section=amo&p=1.3').status_code == 404
         # invalid sections should also fail nicely
         assert self.client.get('/sitemap.xml?section=foo').status_code == 404
-        assert (
-            self.client.get('/sitemap.xml?section=amo&app_name=firefox').status_code
-            == 404
-        )

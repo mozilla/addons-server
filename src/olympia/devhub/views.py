@@ -25,6 +25,15 @@ from django.views.decorators.csrf import csrf_exempt
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
+from rest_framework import status
+from rest_framework.decorators import (
+    api_view,
+    authentication_classes,
+    permission_classes,
+    throttle_classes,
+)
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 
 import olympia.core.logger
 from olympia import amo
@@ -58,6 +67,8 @@ from olympia.amo.utils import (
     send_mail,
     send_mail_jinja,
 )
+from olympia.api.authentication import SessionIDAuthentication
+from olympia.api.throttling import contact_support_throttles, dev_agreement_throttles
 from olympia.devhub.decorators import (
     dev_required,
     no_admin_disabled,
@@ -67,6 +78,8 @@ from olympia.devhub.file_validation_annotations import insert_validation_message
 from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
+    get_activity_feed,
+    get_dev_agreement_change_date,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload
@@ -91,6 +104,7 @@ from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
 from . import feeds, forms, tasks
+from .serializers import DeveloperAgreementSerializer, SupportSerializer
 
 
 log = olympia.core.logger.getLogger('z.devhub')
@@ -162,7 +176,7 @@ def index(request):
 
 @login_required
 def dashboard(request, theme=False):
-    addon_items = _get_items(None, request.user.addons.all())[:4]
+    addon_items = get_activity_feed(None, request.user.addons.all())[:4]
 
     data = {
         'rss': _get_rss_feed(request),
@@ -238,43 +252,6 @@ def _get_activities(request, action):
     return items
 
 
-def _get_items(action, addons):
-    if not isinstance(addons, (list, tuple)):
-        # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
-        # double # subquery the ActivityLog.objects.for_addons(addons) below
-        # would generate if addons is not transformed into a list first. Since
-        # some people have a lot of add-ons, we only take the last 100.
-        addons = list(
-            addons.all().order_by('-modified').values_list('pk', flat=True)[:100]
-        )
-
-    filters = {
-        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
-        'status': (
-            amo.LOG.USER_DISABLE,
-            amo.LOG.USER_ENABLE,
-            amo.LOG.CHANGE_STATUS,
-            amo.LOG.APPROVE_VERSION,
-        ),
-        'collections': (
-            amo.LOG.ADD_TO_COLLECTION,
-            amo.LOG.REMOVE_FROM_COLLECTION,
-        ),
-        'reviews': (amo.LOG.ADD_RATING,),
-    }
-
-    filter_ = filters.get(action)
-    items = (
-        ActivityLog.objects.for_addons(addons)
-        .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
-        .transform(ActivityLog.transformer_anonymize_user_for_developer)
-    )
-    if filter_:
-        items = items.filter(action__in=[i.id for i in filter_])
-
-    return items
-
-
 def _get_rss_feed(request):
     key, _ = RssKey.objects.get_or_create(user=request.user)
     return urlparams(reverse('devhub.feed_all'), privaterss=key.key.hex)
@@ -319,7 +296,7 @@ def feed(request, addon_id=None):
 
     action = request.GET.get('action')
 
-    items = _get_items(action, addons)
+    items = get_activity_feed(action, addons)
 
     activities = _get_activities(request, action)
     addon_items = _get_addons(request, addons_all, addon_selected, action)
@@ -2318,6 +2295,20 @@ def email_verification(request):
     return TemplateResponse(request, 'devhub/verify_email.html', context=data)
 
 
+def send_support_ticket(*, user, category, summary, body):
+    payload = {
+        'productName': settings.FXA_SUPPORT_PRODUCT_NAME,
+        'topic': category,
+        'subject': summary,
+        'message': body,
+        'email': user.email,
+    }
+    if settings.FXA_SUPPORT_BRAND_ID is not None:
+        payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
+
+    tasks.create_support_ticket.delay(payload)
+
+
 @login_required
 def support(request):
     if (
@@ -2331,17 +2322,7 @@ def support(request):
         request=request,
     )
     if request.method == 'POST' and form.is_valid():
-        payload = {
-            'productName': settings.FXA_SUPPORT_PRODUCT_NAME,
-            'topic': form.cleaned_data['category'],
-            'subject': form.cleaned_data['summary'],
-            'message': form.cleaned_data['body'],
-        }
-        if settings.FXA_SUPPORT_BRAND_ID is not None:
-            payload['brand_id'] = settings.FXA_SUPPORT_BRAND_ID
-        payload['email'] = request.user.email
-
-        tasks.create_support_ticket.delay(payload)
+        send_support_ticket(user=request.user, **form.cleaned_data)
         messages.success(
             request,
             gettext(
@@ -2364,3 +2345,55 @@ def survey_response(request, survey_id):
     except IntegrityError:
         return http.HttpResponse(status=500)
     return http.HttpResponse(status=201)
+
+
+@api_view(['POST'])
+@authentication_classes([SessionIDAuthentication])
+@permission_classes((IsAuthenticated,))
+@throttle_classes(contact_support_throttles)
+def developer_support(request):
+    if (
+        not waffle.switch_is_active('enable-devhub-support-form')
+        or not settings.FXA_SUPPORT_SECRET
+    ):
+        raise http.Http404
+    serializer = SupportSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    send_support_ticket(user=request.user, **serializer.validated_data)
+    return Response(serializer.validated_data, status=status.HTTP_202_ACCEPTED)
+
+
+@api_view(['POST', 'GET'])
+@authentication_classes([SessionIDAuthentication])
+@permission_classes((IsAuthenticated,))
+@throttle_classes(dev_agreement_throttles)
+def developer_agreement_api(request):
+    if request.method == 'GET':
+        return Response(
+            {
+                'display_name': request.user.display_name,
+                'has_read_developer_agreement': (
+                    request.user.has_read_developer_agreement()
+                ),
+                'last_developer_agreement_change': get_dev_agreement_change_date(),
+            },
+            status=status.HTTP_200_OK,
+        )
+    else:
+        if (
+            not RestrictionChecker(request=request).is_submission_allowed()
+            or request.user.has_read_developer_agreement()
+        ):
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = DeveloperAgreementSerializer(
+            data=request.data, context={'request': request}
+        )
+        serializer.is_valid(raise_exception=True)
+
+        data = {'read_dev_agreement': datetime.datetime.now()}
+        if 'display_name' in serializer.validated_data:
+            data['display_name'] = serializer.validated_data['display_name']
+
+        request.user.update(**data)
+        return Response(status=status.HTTP_202_ACCEPTED)

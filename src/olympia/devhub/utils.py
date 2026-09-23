@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from django.conf import settings
 from django.db import transaction
@@ -12,6 +13,7 @@ from django_statsd.clients import statsd
 
 import olympia.core.logger
 from olympia import amo, core
+from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import linkify_and_clean
 from olympia.files.models import File, FileUpload
@@ -23,6 +25,7 @@ from olympia.scanners.tasks import (
 )
 from olympia.versions.models import Version
 from olympia.versions.utils import process_color_value
+from olympia.zadmin.models import get_config
 
 from . import tasks
 
@@ -223,11 +226,7 @@ class Validator:
                 )
                 raise
             except ValidationError as form_error:
-                log.info(
-                    'could not parse addon for upload {}: {}'.format(
-                        file_.pk, form_error
-                    )
-                )
+                log.info(f'could not parse addon for upload {file_.pk}: {form_error}')
                 addon_data = None
             else:
                 file_.update(version=addon_data.get('version'))
@@ -314,7 +313,7 @@ def extract_theme_properties(addon, channel):
 
 def wizard_unsupported_properties(data, wizard_fields):
     # collect any 'theme' level unsupported properties
-    unsupported = [key for key in data.keys() if key not in ['colors', 'images']]
+    unsupported = [key for key in data if key not in ['colors', 'images']]
     # and any unsupported 'colors' properties
     unsupported += [key for key in data.get('colors', {}) if key not in wizard_fields]
     # and finally any 'images' properties (wizard only supports the background)
@@ -333,16 +332,12 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
     ).exists()
     if fileupload_exists or version_exists:
         log.info(
-            'Skipping Version creation for {upload_uuid} that would '
-            ' cause duplicate version'.format(upload_uuid=upload.uuid)
+            f'Skipping Version creation for {upload.uuid} that would '
+            ' cause duplicate version'
         )
         return None
     else:
-        log.info(
-            'Creating version for {upload_uuid} that passed validation'.format(
-                upload_uuid=upload.uuid
-            )
-        )
+        log.info(f'Creating version for {upload.uuid} that passed validation')
         # Note: if we somehow managed to get here with an invalid add-on,
         # parse_addon() will raise ValidationError and the task will fail
         # loudly in sentry.
@@ -366,3 +361,65 @@ def create_version_for_upload(*, addon, upload, channel, client_info=None):
         # invalid. Addon.update_status will set the status to NOMINATATED.
         addon.update_status()
         return version
+
+
+def get_dev_agreement_change_date():
+
+    last_agreement_change_config = None
+    try:
+        last_agreement_change_config = get_config(
+            amo.config_keys.LAST_DEV_AGREEMENT_CHANGE_DATE
+        )
+        change_config_date = datetime.strptime(
+            last_agreement_change_config, '%Y-%m-%d %H:%M'
+        )
+
+        # If the config date is in the future, instead
+        # check against the fallback date
+        if change_config_date > datetime.now():
+            return settings.DEV_AGREEMENT_CHANGE_FALLBACK
+
+        return change_config_date
+    except (ValueError, TypeError):
+        log.exception(
+            'last_developer_agreement_change misconfigured, "%s" is not a datetime',
+            last_agreement_change_config,
+        )
+        return settings.DEV_AGREEMENT_CHANGE_FALLBACK
+
+
+def get_activity_feed(action, addons):
+    if not isinstance(addons, (list, tuple)):
+        # MySQL 8.0.21 (and maybe higher) doesn't optimize the join with
+        # double # subquery the ActivityLog.objects.for_addons(addons) below
+        # would generate if addons is not transformed into a list first. Since
+        # some people have a lot of add-ons, we only take the last 100.
+        addons = list(
+            addons.all().order_by('-modified').values_list('pk', flat=True)[:100]
+        )
+
+    filters = {
+        'updates': (amo.LOG.ADD_VERSION, amo.LOG.ADD_FILE_TO_VERSION),
+        'status': (
+            amo.LOG.USER_DISABLE,
+            amo.LOG.USER_ENABLE,
+            amo.LOG.CHANGE_STATUS,
+            amo.LOG.APPROVE_VERSION,
+        ),
+        'collections': (
+            amo.LOG.ADD_TO_COLLECTION,
+            amo.LOG.REMOVE_FROM_COLLECTION,
+        ),
+        'reviews': (amo.LOG.ADD_RATING,),
+    }
+
+    filter_ = filters.get(action)
+    items = (
+        ActivityLog.objects.for_addons(addons)
+        .exclude(action__in=amo.LOG_HIDE_DEVELOPER)
+        .transform(ActivityLog.transformer_anonymize_user_for_developer)
+    )
+    if filter_:
+        items = items.filter(action__in=[i.id for i in filter_])
+
+    return items

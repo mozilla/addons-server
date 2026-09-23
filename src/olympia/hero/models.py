@@ -280,11 +280,10 @@ class SecondaryHero(CTACheckMixin, ModelBase):
 
     def clean(self):
         super().clean()
-        if not self.enabled:
-            if list(SecondaryHero.objects.filter(enabled=True)) == [self]:
-                raise ValidationError(
-                    "You can't disable the only enabled secondary shelf."
-                )
+        if not self.enabled and list(SecondaryHero.objects.filter(enabled=True)) == [
+            self
+        ]:
+            raise ValidationError("You can't disable the only enabled secondary shelf.")
 
 
 class SecondaryHeroModule(CTACheckMixin, ModelBase):

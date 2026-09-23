@@ -27,6 +27,7 @@ from olympia.api.throttling import GranularIPRateThrottle, GranularUserRateThrot
 from olympia.api.utils import is_gate_active
 
 from .models import Rating, RatingFlag
+from .pagination import AddonRatingsPagination
 from .permissions import CanCreateRatingPermission, CanDeleteRatingPermission
 from .serializers import RatingFlagSerializer, RatingSerializer, RatingSerializerReply
 from .utils import get_grouped_ratings
@@ -236,6 +237,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 if is_gate_active(self.request, 'ratings-score-filter')
                 else None
             )
+            top_level_filter = self.request.GET.get('filter')
             exclude_ratings = self.request.GET.get('exclude_ratings')
             if addon_identifier:
                 qs = qs.filter(addon=self.get_addon_object())
@@ -262,11 +264,23 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             if user_identifier and addon_identifier and version_identifier:
                 # When user, addon and version identifiers are set, we are
                 # effectively only looking for one or zero objects. Fake
-                # pagination in that case, avoiding all count() calls and
-                # therefore related cache-machine invalidation issues. Needed
+                # pagination in that case, avoiding all count() calls. Needed
                 # because the frontend wants to call this before and after
                 # having posted a new rating, and needs accurate results.
                 self.pagination_class = OneOrZeroPageNumberPagination
+            elif (
+                addon_identifier
+                and not user_identifier
+                and not version_identifier
+                and not top_level_filter
+                and not score_filter
+                and not exclude_ratings
+            ):
+                # Fast path: we're loading ratings for a specific add-on with
+                # no other filtering. We can avoid the count() by using the
+                # denormalized total_ratings field instead in a custom
+                # pagination class.
+                self.pagination_class = AddonRatingsPagination
             if score_filter:
                 try:
                     scores = [int(score) for score in score_filter.split(',')]
@@ -405,7 +419,9 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         # separate query to fetch them all.
         queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
-        return queryset.prefetch_related(Prefetch('replies', queryset=replies_qs))
+        return queryset.prefetch_related(
+            Prefetch('replies', queryset=replies_qs)
+        ).order_by('-pk')
 
     @action(
         detail=True,

@@ -22,8 +22,9 @@ def related_content_link(
     Return a link to the admin changelist for the instances of related_class
     linked to the object.
     """
-    url = 'admin:{}_{}_changelist'.format(
-        related_class._meta.app_label, related_class._meta.model_name
+    url = (
+        f'admin:{related_class._meta.app_label}_{related_class._meta.model_name}'
+        '_changelist'
     )
     if identifier is None:
         identifier = obj.pk
@@ -45,8 +46,9 @@ def related_single_content_link(obj, related_field):
     instance = getattr(obj, related_field)
     if instance:
         related_class = instance._meta.model
-        url = 'admin:{}_{}_change'.format(
-            related_class._meta.app_label, related_class._meta.model_name
+        url = (
+            f'admin:{related_class._meta.app_label}_{related_class._meta.model_name}'
+            '_change'
         )
         return format_html(
             '<a href="{}">{}</a>', reverse(url, args=(instance.pk,)), str(instance)

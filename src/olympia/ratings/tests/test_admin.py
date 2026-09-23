@@ -277,8 +277,9 @@ class TestRatingAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert len(doc('#result_list .field-id')) == 6
-        assert doc('#result_list .field-known_ip_addresses').text().strip() == ' '.join(
-            ['4.8.15.16', '4.8.15.16', '125.5.6.7', '125.1.2.3\n4.8.15.16 125.1.1.2']
+        assert (
+            doc('#result_list .field-known_ip_addresses').text().strip()
+            == '4.8.15.16 4.8.15.16 125.5.6.7 125.1.2.3\n4.8.15.16 125.1.1.2'
         )
 
     def test_can_delete_on_changelist_while_sorting_by_ip(self):

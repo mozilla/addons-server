@@ -186,10 +186,12 @@ class TestDockerTarget(BaseTestClass):
     @override_env(DOCKER_TARGET='development')
     def test_invalid_building_development_image(self):
         for version in ['local', 'latest']:
-            with self.subTest(version=version):
-                with override_env(DOCKER_VERSION=version):
-                    with self.assertRaises(ValueError):
-                        main(build=True)
+            with (
+                self.subTest(version=version),
+                override_env(DOCKER_VERSION=version),
+                self.assertRaises(ValueError),
+            ):
+                main(build=True)
 
 
 @override_env()

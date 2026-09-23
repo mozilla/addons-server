@@ -117,10 +117,10 @@ class TestUploadValidation(ValidatorTestCase, UploadMixin, TestCase):
         assert doc('td').text() == 'Dec. 6, 2010'
 
     def test_upload_processed_validation_error(self):
-        addon_file = open(get_addon_file('invalid_webextension.xpi'), 'rb')
-        response = self.client.post(
-            reverse('devhub.upload'), {'name': 'addon.xpi', 'upload': addon_file}
-        )
+        with open(get_addon_file('invalid_webextension.xpi'), 'rb') as addon_file:
+            response = self.client.post(
+                reverse('devhub.upload'), {'name': 'addon.xpi', 'upload': addon_file}
+            )
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
         assert upload.processed_validation['errors'] == 1

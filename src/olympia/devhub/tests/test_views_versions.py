@@ -841,7 +841,7 @@ class TestVersion(TestCase):
         v1 = self.addon.current_version
         v1.update(created=self.days_ago(1))
         v2, _ = self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
-        v3, _ = self._extra_version_and_file(amo.STATUS_APPROVED)
+        self._extra_version_and_file(amo.STATUS_APPROVED)
         # Add some activity log messages
         ActivityLog.objects.create(
             amo.LOG.REVIEWER_REPLY_VERSION, v1.addon, v1, user=self.user
@@ -1609,7 +1609,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         )
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        apps = [app.id for app in self.get_version().compatible_apps]
         assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')
@@ -1643,7 +1643,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         data[0]['DELETE'] = True
         response = self.client.post(self.url, self.formset(*data, initial_count=2))
         assert response.status_code == 302
-        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        apps = [app.id for app in self.get_version().compatible_apps]
         assert apps == [amo.ANDROID.id]
         assert list(
             ActivityLog.objects.exclude(action=amo.LOG.LOG_IN.id).values_list('action')

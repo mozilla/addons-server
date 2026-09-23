@@ -67,5 +67,5 @@ class TestReviewerAddonView(TestCase):
         addon.update(slug=str(addon.id))
         res = self.view(self.request, addon.slug)
         assert res == mock.sentinel.OK
-        request, addon_ = self.func.call_args[0]
+        addon_ = self.func.call_args[0][1]
         assert addon_ == addon

@@ -227,12 +227,11 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        with self.assertNumQueries(7):
-            # 7 queries:
+        with self.assertNumQueries(6):
+            # 6 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
-            # - One for the ratings count (pagination)
-            # - One for the ratings themselves
+            # - One for the ratings
             # - One for the replies (there aren't any, but we don't know
             #   that without making a query)
             # - One for the addon
@@ -293,11 +292,10 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        with self.assertNumQueries(7):
-            # 7 queries:
+        with self.assertNumQueries(6):
+            # 6 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
             #   tests, because TransactionTestCase wraps things in atomic().
-            # - One for the ratings count
             # - One for the ratings
             # - One for the replies (using prefetch_related())
             # - One for the addon
@@ -401,8 +399,6 @@ class TestRatingViewSetGet(TestCase):
         review2 = Rating.objects.create(
             addon=self.addon, body='review 2', user=self.user
         )
-        review1.update(created=self.days_ago(1))
-        review2.update(created=self.days_ago(2))
         # Add a review belonging to a different user, a reply and a deleted
         # review. The reply should show up since it's made by the right user,
         # but the rest should be ignored.
@@ -441,8 +437,8 @@ class TestRatingViewSetGet(TestCase):
         assert data['results']
         assert len(data['results']) == 3
         assert data['results'][0]['id'] == reply.pk
-        assert data['results'][1]['id'] == review1.pk
-        assert data['results'][2]['id'] == review2.pk
+        assert data['results'][1]['id'] == review2.pk
+        assert data['results'][2]['id'] == review1.pk
         assert 'can_reply' not in data  # Not enough information to show this.
         return data
 
@@ -1021,16 +1017,22 @@ class TestRatingViewSetGet(TestCase):
         self.grant_permission(self.user, amo.permissions.ADDONS_EDIT)
         self.client.login_api(self.user)
         review1 = Rating.objects.create(
-            addon=self.addon, body='review 1', user=user_factory()
+            addon=self.addon,
+            body='review 1',
+            user=user_factory(),
+            rating=1,
         )
         review2 = Rating.objects.create(
-            addon=self.addon, body='review 2', user=user_factory()
+            addon=self.addon,
+            body='review 2',
+            user=user_factory(),
+            rating=2,
         )
         review1.update(created=self.days_ago(1))
         # Add a review belonging to a different add-on, a reply and a deleted
         # review. They should not be present in the list.
         review_deleted = Rating.objects.create(
-            addon=self.addon, body='review deleted', user=review1.user
+            addon=self.addon, body='review deleted', user=review1.user, rating=3
         )
         review_deleted.delete()
         Rating.objects.create(
@@ -1040,7 +1042,10 @@ class TestRatingViewSetGet(TestCase):
             user=user_factory(),
         )
         Rating.objects.create(
-            addon=addon_factory(), body='review other addon', user=review1.user
+            addon=addon_factory(),
+            body='review other addon',
+            user=review1.user,
+            rating=4,
         )
         # Also add a deleted reply to the first review, it should not be shown.
         deleted_reply = Rating.objects.create(
@@ -1074,13 +1079,11 @@ class TestRatingViewSetGet(TestCase):
         review2 = Rating.objects.create(
             addon=self.addon, body='review 2', user=user_factory()
         )
-        review1.update(created=self.days_ago(1))
         # Add a review belonging to a different add-on, a reply and a deleted
         # review. The deleted review should be present, not the rest.
         review_deleted = Rating.objects.create(
             addon=self.addon, body='review deleted', user=review1.user
         )
-        review_deleted.update(created=self.days_ago(2))
         review_deleted.delete()
         Rating.objects.create(
             addon=self.addon,
@@ -1111,12 +1114,12 @@ class TestRatingViewSetGet(TestCase):
         assert data['count'] == 3
         assert data['results']
         assert len(data['results']) == 3
-        assert data['results'][0]['id'] == review2.pk
-        assert data['results'][0]['reply'] is not None
-        assert data['results'][1]['id'] == review1.pk
+        assert data['results'][0]['id'] == review_deleted.pk
+        assert data['results'][1]['id'] == review2.pk
         assert data['results'][1]['reply'] is not None
-        assert data['results'][1]['reply']['id'] == deleted_reply.pk
-        assert data['results'][2]['id'] == review_deleted.pk
+        assert data['results'][2]['id'] == review1.pk
+        assert data['results'][2]['reply'] is not None
+        assert data['results'][2]['reply']['id'] == deleted_reply.pk
 
     def test_list_weird_parameters(self):
         self.addon.update(slug='my-slûg')

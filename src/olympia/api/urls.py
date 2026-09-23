@@ -9,13 +9,14 @@ from drf_spectacular.views import (
 )
 
 from olympia.accounts.urls import accounts_v3, accounts_v4, auth_urls
+from olympia.activity.api_urls import activity_v5
 from olympia.addons.api_urls import addons_v3, addons_v4, addons_v5
 from olympia.amo.urls import api_patterns as amo_api_patterns
 from olympia.ratings.api_urls import ratings_v3, ratings_v4
 
 
 def get_versioned_api_routes(version, url_patterns):
-    route_pattern = r'^{}/'.format(version)
+    route_pattern = rf'^{version}/'
     url_name = 'schema'
 
     routes = url_patterns
@@ -89,7 +90,7 @@ v4_api_urls = [
 v5_api_urls = [
     re_path(r'^abuse/', include('olympia.abuse.api_urls')),
     re_path(r'^accounts/', include(accounts_v4)),
-    re_path(r'^activity/', include('olympia.activity.api_urls')),
+    re_path(r'^activity/', include(activity_v5)),
     re_path(r'^addons/', include(addons_v5)),
     re_path(r'^applications/', include('olympia.applications.api_urls')),
     re_path(r'^blocklist/', include('olympia.blocklist.urls')),
@@ -100,6 +101,7 @@ v5_api_urls = [
     re_path(r'^', include(amo_api_patterns)),
     re_path(r'^scanner/', include('olympia.scanners.api_urls')),
     re_path(r'^shelves/', include('olympia.shelves.urls')),
+    re_path(r'^developers/', include('olympia.devhub.api_urls')),
 ]
 
 

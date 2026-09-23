@@ -165,7 +165,7 @@ class TestMLBFStorageLoader(_MLBFBase):
         assert loader._raw == self._data
 
     def test_fallback_to_empty_list_for_missing_key(self):
-        for key in self._data.keys():
+        for key in self._data:
             new_data = self._data.copy()
             new_data.pop(key)
             # Generate a corrupted `cache.json` file
@@ -881,9 +881,7 @@ class TestMLBF(_MLBFBase):
             file_kw={'is_signed': True}, block_type=BlockType.BLOCKED
         )
         hard_block = block.blockversion_set.first()
-        (hard_block_hash,) = MLBF.hash_filter_inputs(
-            [(block.guid, hard_block.version.version)]
-        )
+        MLBF.hash_filter_inputs([(block.guid, hard_block.version.version)])
         soft_blocks = [
             self._block_version(
                 block, self._version(addon), block_type=BlockType.SOFT_BLOCKED

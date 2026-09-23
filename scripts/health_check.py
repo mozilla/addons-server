@@ -108,12 +108,12 @@ class Fetcher:
                         f'Request failed with {log_reason}. '
                         'No more retries or not retryable.'
                     )
-                    raise e
+                    raise
 
             except Exception as e:
                 last_exception = e
                 self.log(f'An unexpected error occurred: {e}. No more retries.')
-                raise e
+                raise
 
         raise last_exception or RuntimeError(
             f'Failed to fetch {url} after {self.retries + 1} attempts'

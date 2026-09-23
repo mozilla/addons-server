@@ -259,7 +259,6 @@ class SiteStatusView(APIView):
 @x_robots_tag
 def sitemap(request):
     section = request.GET.get('section')  # no section means the index page
-    app = request.GET.get('app_name')
     page = request.GET.get('p', 1)
     try:
         if 'debug' in request.GET and settings.SITEMAP_DEBUG_AVAILABLE:
@@ -269,14 +268,14 @@ def sitemap(request):
                     raise EmptyPage
                 content = render_index_xml(sitemaps)
             else:
-                sitemap_object = sitemaps.get((section, amo.APPS.get(app)))
+                sitemap_object = sitemaps.get(section)
                 if not sitemap_object:
                     raise InvalidSection
-                content = sitemap_object.render(app, page)
+                content = sitemap_object.render(page)
             response = HttpResponse(content, content_type='application/xml')
 
         else:
-            path = get_sitemap_path(section, app, page)
+            path = get_sitemap_path(section, page)
             response = HttpResponseXSendFile(
                 request, path, content_type='application/xml'
             )

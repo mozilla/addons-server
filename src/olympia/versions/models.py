@@ -54,7 +54,7 @@ from olympia.translations.fields import (
     TranslatedField,
     save_signal,
 )
-from olympia.users.models import UserProfile
+from olympia.users.models import UserProfile, UserRestrictionHistory
 from olympia.users.utils import RestrictionChecker, get_task_user
 from olympia.versions.compare import version_int
 from olympia.zadmin.models import get_config
@@ -421,6 +421,11 @@ class Version(OnChangeMixin, ModelBase):
                 'Addon is Mozilla Disabled; no new versions are allowed.'
             )
 
+        if upload.channel and upload.channel != channel:
+            raise VersionCreateError(
+                'The FileUpload channel and upload channel must match.'
+            )
+
         if upload.addon and upload.addon != addon:
             raise VersionCreateError('FileUpload was made for a different Addon')
 
@@ -570,14 +575,26 @@ class Version(OnChangeMixin, ModelBase):
         if is_mozilla_signed and addon.type != amo.ADDON_LPAPP:
             reviewer_flags_defaults['auto_approval_disabled'] = True
 
-        # Check if the approval should be restricted
-        if not RestrictionChecker(upload=upload).is_auto_approval_allowed():
+        # Check if the approval should be restricted. Enterprise versions are
+        # exempt: their auto-approval can never be disabled (see
+        # AutoApprovalSummary.check_has_auto_approval_disabled()), so the flag
+        # is not set and nothing is recorded for them.
+        checker = RestrictionChecker(upload=upload)
+        if channel != amo.CHANNEL_ENTERPRISE and not checker.is_auto_approval_allowed():
             flag = (
                 'auto_approval_disabled'
                 if channel == amo.CHANNEL_LISTED
                 else 'auto_approval_disabled_unlisted'
             )
             reviewer_flags_defaults[flag] = True
+            failed_names = [cls.__name__ for cls in checker.failed_restrictions]
+            history_ids = [entry.pk for entry in checker.history_entries]
+            # The checker ran before the version existed, so it could not
+            # record it on the history rows itself; backfill it now.
+            if history_ids:
+                UserRestrictionHistory.objects.filter(pk__in=history_ids).update(
+                    version=version
+                )
             activity.log_create(
                 amo.LOG.DISABLE_AUTO_APPROVAL,
                 addon,
@@ -586,7 +603,10 @@ class Version(OnChangeMixin, ModelBase):
                     'comments': (
                         f'{version.get_channel_display()} auto-approval automatically '
                         'disabled because of a restriction'
+                        f' ({", ".join(failed_names)})'
                     ),
+                    'restrictions': failed_names,
+                    'restriction_history_ids': history_ids,
                 },
                 user=get_task_user(),
             )
@@ -643,10 +663,8 @@ class Version(OnChangeMixin, ModelBase):
         upload_time = now_ts - upload_start
 
         log.info(
-            'Time for version {version} creation from upload: {delta}; '
-            'created={created}; now={now}'.format(
-                delta=upload_time, version=version, created=upload.created, now=now
-            )
+            f'Time for version {version} creation from upload: {upload_time}; '
+            f'created={upload.created}; now={now}'
         )
         statsd.timing('devhub.version_created_from_upload', upload_time)
         statsd.incr(

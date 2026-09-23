@@ -173,8 +173,8 @@ class Rating(ModelBase):
             models.Index(fields=('user',), name='reviews_ibfk_2'),
             models.Index(fields=('addon',), name='reviews_addon_idx'),
             models.Index(
-                fields=('reply_to', 'is_latest', 'addon', 'created'),
-                name='latest_reviews',
+                fields=('addon', 'reply_to', 'deleted', 'is_latest'),
+                name='latest_reviews_per_addon',
             ),
             models.Index(fields=('ip_address',), name='reviews_ip_address_057fddfa'),
         ]

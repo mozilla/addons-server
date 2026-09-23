@@ -945,7 +945,7 @@ class TestLanguagePackAndDictionaries(AppVersionsMixin, TestCase):
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):
-        if 'theme' not in base_data.keys():
+        if 'theme' not in base_data:
             base_data.update(theme={})
         return super().parse(base_data)
 
@@ -1246,9 +1246,11 @@ def test_extract_extension_to_dest_call_fsync(filename):
 def test_extract_extension_to_dest_non_existing_archive():
     extension_file = 'src/olympia/files/fixtures/files/doesntexist.zip'
 
-    with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
-        with pytest.raises(FileNotFoundError):
-            utils.extract_extension_to_dest(extension_file)
+    with (
+        mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree,
+        pytest.raises(FileNotFoundError),
+    ):
+        utils.extract_extension_to_dest(extension_file)
 
     # Make sure we are cleaning up our temporary directory if possible
     assert mock_rmtree.called
@@ -1257,9 +1259,11 @@ def test_extract_extension_to_dest_non_existing_archive():
 def test_extract_extension_to_dest_invalid_archive():
     extension_file = 'src/olympia/files/fixtures/files/invalid-cp437-encoding.xpi'
 
-    with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
-        with pytest.raises(forms.ValidationError):
-            utils.extract_extension_to_dest(extension_file)
+    with (
+        mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree,
+        pytest.raises(forms.ValidationError),
+    ):
+        utils.extract_extension_to_dest(extension_file)
 
     # Make sure we are cleaning up our temporary directory if possible
     assert mock_rmtree.called
@@ -1659,10 +1663,12 @@ class TestSafeZip(TestCase):
         utils.SafeZip(filename, ignore_filename_errors=True)
 
     def test_raises_validation_error_when_uncompressed_size_is_too_large(self):
-        with override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000):
-            with pytest.raises(utils.InvalidArchiveFile):
-                # total uncompressed size of this xpi is 126kb
-                utils.SafeZip(get_addon_file('mozilla_static_theme.zip'))
+        with (
+            override_settings(MAX_ZIP_UNCOMPRESSED_SIZE=1000),
+            pytest.raises(utils.InvalidArchiveFile),
+        ):
+            # total uncompressed size of this xpi is 126kb
+            utils.SafeZip(get_addon_file('mozilla_static_theme.zip'))
 
 
 class TestSafeTar(TestCase):
@@ -1744,6 +1750,22 @@ class TestArchiveMemberValidatorZip(TestCase):
         with pytest.raises(utils.InvalidArchiveFile):
             utils.archive_member_validator(
                 self._fake_archive_member('path\\to\\file.txt', 123)
+            )
+
+    def test_raises_when_filename_contains_control_character(self):
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\rfile.txt', 123)
+            )
+
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\nfile.txt', 123)
+            )
+
+        with pytest.raises(utils.InvalidArchiveFile):
+            utils.archive_member_validator(
+                self._fake_archive_member('path\tfile.txt', 123)
             )
 
     def test_raises_when_filename_is_dot_dot(self):

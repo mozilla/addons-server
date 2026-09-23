@@ -100,49 +100,6 @@ class MiddlewareTest(SimpleTestCase):
         response = self.process('/services', SCRIPT_NAME='/oremj')
         assert response is None
 
-    def test_get_app(self):
-        def check(url, expected, ua):
-            response = self.process(url, HTTP_USER_AGENT=ua)
-            assert response['Location'] == expected
-
-        check('/en-US/', '/en-US/firefox/', 'Firefox')
-
-        # Android can found by its user agent.
-        check('/en-US/', '/en-US/android/', 'Fennec/12.0.1')
-        check('/en-US/', '/en-US/android/', 'Fennec/12')
-        check('/en-US/', '/en-US/android/', 'Fennec/11.0')
-
-        # And the user agent changed again.
-        check(
-            '/en-US/',
-            '/en-US/android/',
-            'Mozilla/5.0 (Android; Mobile; rv:17.0) Gecko/17.0 Firefox/17.0',
-        )
-
-        # And the user agent yet changed again.
-        check(
-            '/en-US/',
-            '/en-US/android/',
-            'Mozilla/5.0 (Mobile; rv:18.0) Gecko/18.0 Firefox/18.0',
-        )
-
-        # And the tablet user agent yet changed again!
-        check(
-            '/en-US/',
-            '/en-US/android/',
-            'Mozilla/5.0 (Android; Tablet; rv:18.0) Gecko/18.0 Firefox/18.0',
-        )
-
-        # We can also set the application using the `app` query parameter.
-        check('/en-US/?app=android', '/en-US/android/', '')
-        check('/en-US/?app=firefox', '/en-US/firefox/', '')
-        check('/en-US/android?app=firefox', '/en-US/android/', '')
-        check('/en-US/android/?app=invalid', '/en-US/android/', '')
-        check('/en-US/android/?app=', '/en-US/android/', '')
-        check('/?app=android&lang=fr', '/fr/android/', '')
-        check('/?app=android&lang=', '/en-US/android/', '')
-        check('/?app=invalid&lang=', '/en-US/firefox/', '')
-
     def test_get_lang(self):
         def check(url, expected):
             response = self.process(url)
@@ -227,7 +184,7 @@ class TestPrefixer(TestCase):
         client.get('/')
         assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=android')
-        assert reverse('home') == '/en-US/android/'
+        assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=firefox')
         assert reverse('home') == '/en-US/firefox/'
         client.get('/?app=invalid')
@@ -237,16 +194,16 @@ class TestPrefixer(TestCase):
 
     def test_resolve(self):
         # 'home' is now a frontend view
-        func, args, kwargs = resolve('/')
+        func, _args, _kwargs = resolve('/')
         assert func.__name__ == 'frontend_view'
 
         # a django view works too
-        func, args, kwargs = resolve('/developers/')
+        func, _args, _kwargs = resolve('/developers/')
         assert func.__name__ == 'index'
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
-        func, args, kwargs = resolve('/en-US/firefox/addon/foo/statistics/')
+        func, _args, _kwargs = resolve('/en-US/firefox/addon/foo/statistics/')
         assert func.__name__ == 'stats_report'
 
     def test_script_name(self):

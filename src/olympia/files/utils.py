@@ -13,6 +13,7 @@ import stat
 import struct
 import tarfile
 import tempfile
+import unicodedata
 import zipfile
 from collections.abc import Mapping
 from types import MappingProxyType
@@ -363,10 +364,8 @@ class ManifestJSONExtractor:
             try:
                 min_appver = qs.get(version=strict_min_version)
             except AppVersion.DoesNotExist as exc:
-                msg = gettext(
-                    'Unknown "strict_min_version" {appver} for {app}'.format(
-                        app=app.pretty, appver=strict_min_version
-                    )
+                msg = gettext('Unknown "strict_min_version" {appver} for {app}').format(
+                    app=app.pretty, appver=strict_min_version
                 )
                 raise forms.ValidationError(msg) from exc
 
@@ -377,10 +376,8 @@ class ManifestJSONExtractor:
                 # error: we used to use '*' instead but this caused more
                 # problems, especially with langpacks that are really specific
                 # to a given Firefox version.
-                msg = gettext(
-                    'Unknown "strict_max_version" {appver} for {app}'.format(
-                        app=app.pretty, appver=strict_max_version
-                    )
+                msg = gettext('Unknown "strict_max_version" {appver} for {app}').format(
+                    app=app.pretty, appver=strict_max_version
                 )
                 raise forms.ValidationError(msg) from exc
 
@@ -575,17 +572,17 @@ def archive_member_validator(member, ignore_filename_errors=False):
         )
         raise InvalidArchiveFile(msg) from exc
 
-    if not ignore_filename_errors:
-        if (
-            '\\' in filename
-            or '../' in filename
-            or '..' == filename
-            or filename.startswith('/')
-        ):
-            log.warning('Extraction error, invalid file name: %s', filename)
-            # L10n: {0} is the name of the invalid file.
-            msg = gettext('Invalid file name in archive: {0}')
-            raise InvalidArchiveFile(msg.format(filename))
+    if not ignore_filename_errors and (
+        '\\' in filename
+        or '../' in filename
+        or '..' == filename
+        or filename.startswith('/')
+        or any(unicodedata.category(c)[0] == 'C' for c in filename)
+    ):
+        log.warning('Extraction error, invalid file name: %s', filename)
+        # L10n: {0} is the name of the invalid file.
+        msg = gettext('Invalid file name in archive: {0}')
+        raise InvalidArchiveFile(msg.format(filename))
 
     if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
         log.warning(
@@ -1019,9 +1016,8 @@ def parse_addon(pkg, *, addon=None, user=None, minimal=False, bypass_name_checks
         valid_extensions_string = '(%s)' % ', '.join(amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
             gettext(
-                'Unsupported file type, please upload a supported '
-                'file {extensions}.'.format(extensions=valid_extensions_string)
-            )
+                'Unsupported file type, please upload a supported file {extensions}.'
+            ).format(extensions=valid_extensions_string)
         )
 
     if not minimal:

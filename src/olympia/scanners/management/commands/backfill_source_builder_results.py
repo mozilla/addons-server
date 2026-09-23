@@ -1,3 +1,5 @@
+import uuid
+
 from django.core.management.base import BaseCommand
 from django.urls import reverse
 
@@ -85,7 +87,11 @@ class Command(BaseCommand):
             }
 
             try:
-                data = _call_webhook(webhook=webhook, payload=payload)
+                data = _call_webhook(
+                    webhook=webhook,
+                    payload=payload,
+                    request_id=uuid.uuid4().hex,
+                )
             except Exception:
                 log.exception(
                     'Error replaying source-builder webhook for ScannerResult %s',

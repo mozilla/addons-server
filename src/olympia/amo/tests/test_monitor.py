@@ -48,7 +48,7 @@ class TestMonitor(TestCase):
 
     @pytest.mark.requires_elasticsearch
     def test_elastic(self):
-        status, elastic_result = monitors.elastic()
+        status, _elastic_result = monitors.elastic()
         assert status == ''
 
     @patch('olympia.amo.monitors.get_es', side_effect=Exception('Connection error'))
@@ -68,7 +68,7 @@ class TestMonitor(TestCase):
     @patch('os.path.exists')
     @patch('os.access')
     def test_path(self, mock_exists, mock_access):
-        status, path_result = monitors.path()
+        status, _path_result = monitors.path()
         assert status == ''
 
     @override_settings(TMP_PATH='foo')
@@ -88,7 +88,7 @@ class TestMonitor(TestCase):
     def test_signer(self):
         responses.add_passthru(settings.AUTOGRAPH_CONFIG['server_url'])
 
-        status, signer_result = monitors.signer()
+        status, _signer_result = monitors.signer()
         assert status == ''
 
     def test_database(self):

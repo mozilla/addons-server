@@ -541,7 +541,7 @@ class TestResizeIcon(TestCase):
         img = get_image_path('mozilla.png')
         original_size = (339, 128)
 
-        src = tempfile.NamedTemporaryFile(
+        src = tempfile.NamedTemporaryFile(  # noqa: SIM115 (temp file used across the test (delete=False))
             mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH
         )
 
@@ -690,7 +690,7 @@ class TestDeleteAndRestoreAllAddonMediaWithFromBackup(TestCase):
         self.addCleanup(patcher2.stop)
         self.download_file_contents_from_backup_storage_mock = patcher2.start()
         self.download_file_contents_from_backup_storage_mock.side_effect = lambda nme: (
-            f'Content for {nme}'.encode('utf-8')
+            f'Content for {nme}'.encode()
         )
         patcher3 = mock.patch('olympia.addons.tasks.backup_storage_enabled')
         self.addCleanup(patcher3.stop)

@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from io import StringIO
 from unittest import mock
 
@@ -15,6 +16,10 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+)
+from olympia.reviewers.models import AutoApprovalSummary
+from olympia.scanners.management.commands.retry_versions_waiting_on_scanners import (
+    MIN_AGE,
 )
 from olympia.scanners.models import (
     ScannerResult,
@@ -183,3 +188,91 @@ class TestBackfillSourceBuilderResults(TestCase):
         # First one wasn't updated because the call raised.
         assert sr1.results == {'message': 'Task created'}
         assert sr2.results == {'message': 'done'}
+
+
+@mock.patch('olympia.scanners.tasks.wait_for_scanner_results.delay')
+class TestRetryVersionsWaitingOnScanners(TestCase):
+    COMMAND = 'retry_versions_waiting_on_scanners'
+
+    def _create_waiting_version(self, *, created=None, **summary_kwargs):
+        version = version_factory(
+            addon=addon_factory(), file_kw={'status': amo.STATUS_AWAITING_REVIEW}
+        )
+        version.update(created=created or self.days_ago(3))
+        summary_kwargs.setdefault('is_waiting_on_scanners', True)
+        AutoApprovalSummary.objects.create(version=version, **summary_kwargs)
+        return version
+
+    def _run(self, *args):
+        stdout = StringIO()
+        call_command(self.COMMAND, *args, stdout=stdout)
+        return stdout.getvalue()
+
+    def test_min_age(self, delay_mock):
+        # 2h countdown, then a retry every 2h, 12 times.
+        assert MIN_AGE == timedelta(hours=26)
+
+    def test_nothing_to_do(self, delay_mock):
+        output = self._run('--force')
+
+        assert 'Found 0 version(s) waiting on scanners (force=True).' in output
+        assert not delay_mock.called
+
+    def test_schedules_the_task(self, delay_mock):
+        version = self._create_waiting_version()
+
+        output = self._run('--force')
+
+        delay_mock.assert_called_once_with(version_pk=version.pk)
+        assert 'Found 1 version(s) waiting on scanners (force=True).' in output
+        assert f'version {version.pk}' in output
+
+    def test_does_nothing_without_force(self, delay_mock):
+        version = self._create_waiting_version()
+
+        output = self._run()
+
+        assert not delay_mock.called
+        assert 'Found 1 version(s) waiting on scanners (force=False).' in output
+        assert f'version {version.pk}' in output
+
+    def test_ignores_versions_not_old_enough(self, delay_mock):
+        self._create_waiting_version(created=datetime.now() - timedelta(hours=2))
+
+        self._run('--force')
+
+        assert not delay_mock.called
+
+    def test_ignores_versions_without_not_waiting_on_scanners(self, delay_mock):
+        self._create_waiting_version(is_waiting_on_scanners=False)
+
+        self._run('--force')
+
+        assert not delay_mock.called
+
+    def test_ignores_versions_without_a_summary(self, delay_mock):
+        version_factory(
+            addon=addon_factory(),
+            file_kw={'status': amo.STATUS_AWAITING_REVIEW},
+        ).update(created=self.days_ago(3))
+
+        self._run('--force')
+
+        assert not delay_mock.called
+
+    def test_ignores_versions_that_are_not_auto_approvable_anymore(self, delay_mock):
+        version = self._create_waiting_version()
+        version.file.update(status=amo.STATUS_APPROVED)
+
+        self._run('--force')
+
+        assert not delay_mock.called
+
+    def test_ignores_deleted_versions(self, delay_mock):
+        version = self._create_waiting_version()
+        version.delete()
+
+        output = self._run('--force')
+
+        assert not delay_mock.called
+        assert 'Found 0 version(s) waiting on scanners (force=True).' in output

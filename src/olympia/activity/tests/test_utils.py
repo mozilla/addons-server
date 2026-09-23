@@ -342,10 +342,7 @@ class TestLogAndNotify(TestCase):
     ):
         subject = call[0][0]
         body = call[0][1]
-        assert subject == 'Mozilla Add-ons: {} {}'.format(
-            self.addon.name,
-            self.version.version,
-        )
+        assert subject == f'Mozilla Add-ons: {self.addon.name} {self.version.version}'
         assert url in body
         assert ('receiving this email because %s' % reason_text) in body
         assert 'If we do not hear from you within' not in body
@@ -684,16 +681,13 @@ def test_send_activity_mail():
     assert mail.outbox[0].body == message
     assert mail.outbox[0].subject == subject
     uuid = latest_version.token.get(user=user).uuid.hex
-    reference_header = '<{addon}/{version}@{site}>'.format(
-        addon=latest_version.addon.id,
-        version=latest_version.id,
-        site=settings.INBOUND_EMAIL_DOMAIN,
+    reference_header = (
+        f'<{latest_version.addon.id}/'
+        f'{latest_version.id}@{settings.INBOUND_EMAIL_DOMAIN}>'
     )
-    message_id = '<{addon}/{version}/{action}@{site}>'.format(
-        addon=latest_version.addon.id,
-        version=latest_version.id,
-        action=action.id,
-        site=settings.INBOUND_EMAIL_DOMAIN,
+    message_id = (
+        f'<{latest_version.addon.id}/'
+        f'{latest_version.id}/{action.id}@{settings.INBOUND_EMAIL_DOMAIN}>'
     )
 
     assert mail.outbox[0].extra_headers['In-Reply-To'] == reference_header

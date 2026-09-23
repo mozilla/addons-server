@@ -20,11 +20,11 @@ def process_po_file(pofile, attempt=1):
         # If lint passes, run msgfmt
         subprocess.run(['msgfmt', '-o', mo_path, pofile], check=True)
         return
-    except subprocess.CalledProcessError as e:
+    except subprocess.CalledProcessError:
         if attempt < 3:
             print(f'Failed attempt {attempt} for {pofile}, retrying...')
             return process_po_file(pofile, attempt=attempt + 1)
-        raise e
+        raise
 
 
 def compile_locales():
