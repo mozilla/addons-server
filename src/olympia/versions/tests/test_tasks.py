@@ -26,6 +26,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.blocklist import BlockReason
 from olympia.constants.scanners import (
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
 )
@@ -1068,7 +1069,10 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         call_webhooks_on_version_created(version.pk)
 
         apply_async_mock.assert_called_with(
-            kwargs={'version_pk': version.pk},
+            kwargs={
+                'version_pk': version.pk,
+                'event_ids': WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            },
             countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
         )
 

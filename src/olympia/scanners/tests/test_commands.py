@@ -15,6 +15,7 @@ from olympia.amo.tests import (
 from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
 )
 from olympia.reviewers.models import AutoApprovalSummary
@@ -223,7 +224,9 @@ class TestRetryVersionsWaitingOnScanners(TestCase):
 
         output = self._run('--force')
 
-        delay_mock.assert_called_once_with(version_pk=version.pk)
+        delay_mock.assert_called_once_with(
+            version_pk=version.pk, event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL
+        )
         assert 'Found 1 version(s) waiting on scanners (force=True).' in output
         assert f'version {version.pk}' in output
 

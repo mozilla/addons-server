@@ -19,6 +19,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.constants.scanners import (
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
 )
@@ -457,7 +458,10 @@ def call_webhooks_on_version_created(version_pk):
     # Even when a webhook call failed, we still want to wait for the results of
     # every scanner blocking the auto-approval of this version.
     wait_for_scanner_results.apply_async(
-        kwargs={'version_pk': version_pk},
+        kwargs={
+            'version_pk': version_pk,
+            'event_ids': WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+        },
         countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
     )
 

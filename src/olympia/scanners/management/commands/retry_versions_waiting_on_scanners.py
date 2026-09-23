@@ -4,7 +4,10 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
-from olympia.constants.scanners import WEBHOOK_MAX_RETRIES
+from olympia.constants.scanners import (
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+    WEBHOOK_MAX_RETRIES,
+)
 from olympia.scanners.tasks import wait_for_scanner_results
 from olympia.versions.models import Version
 
@@ -59,7 +62,10 @@ class Command(BaseCommand):
             if not force:
                 continue
 
-            wait_for_scanner_results.delay(version_pk=version.pk)
+            wait_for_scanner_results.delay(
+                version_pk=version.pk,
+                event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            )
             log.info(
                 'Scheduled wait_for_scanner_results again for version %s.', version.pk
             )
