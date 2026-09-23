@@ -48,7 +48,6 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_EVENTS,
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     YARA,
 )
 from olympia.files.models import FileUpload
@@ -400,11 +399,12 @@ class ScannerWebhookEvent(ModelBase):
         unique_together = ('webhook', 'event')
 
     @classmethod
-    def blocking_auto_approval_for(cls, version):
-        """Return the events we wait on before auto-approving the version."""
+    def to_wait_for(cls, *, version, event_ids):
+        """Return the events subscribed to one of `event_ids` that the version
+        is expected to get results for."""
         return cls.objects.filter(
             # We want to find the active events to wait for...
-            event__in=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            event__in=event_ids,
             is_active=True,
             # ...but only for scanners that are active...
             webhook__is_active=True,
@@ -465,6 +465,13 @@ class ScannerResult(AbstractScannerResult):
     @property
     def is_complete(self):
         return self.results is None or 'matchedRules' in self.results
+
+    @classproperty
+    def complete_q(cls):
+        """The `is_complete` condition, as a queryset filter."""
+        return models.Q(results__isnull=True) | models.Q(
+            results__has_key='matchedRules'
+        )
 
     def get_rules_queryset(self):
         # See: https://github.com/mozilla/addons-server/issues/13143
