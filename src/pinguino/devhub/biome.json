@@ -6,6 +6,7 @@
       "!**/node_modules",
       "!dist",
       "!**/*.d.ts",
+      "!**/*.svg",
       "!package-lock.json"
     ]
   },

@@ -65,6 +65,10 @@ export class PinguinoApp extends LitElement {
   }
 }
 
+if (import.meta.env.DEV) {
+  import('./data/devtools').then((m) => m.mountDevtools());
+}
+
 declare global {
   interface HTMLElementTagNameMap {
     'pinguino-app': PinguinoApp;

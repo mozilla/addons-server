@@ -107,6 +107,7 @@ export class AddonCard extends LitElement {
           <moz-status-badge type="success">${a.statusLabel}</moz-status-badge>
         </div>
         <div class="meta">Current version: ${a.version}</div>
+        <div class="meta">Last updated: ${a.lastUpdated}</div>
 
         <div class="tags">
           <moz-status-badge

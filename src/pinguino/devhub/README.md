@@ -9,19 +9,29 @@ This is a self-contained frontend project. It does not use addons-server's root 
 ```
 src/pinguino/                           # umbrella for pinguino projects
 └── devhub/                             # this project (more sit alongside it)
-    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @mozilla/acorn-web-components
+    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @tanstack/lit-query, @mozilla/acorn-web-components
     ├── tsconfig.json                   # Lit-recommended TS (legacy decorators)
     ├── biome.json                      # lint + format (Biome, matches acorn)
     ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
     ├── .npmrc                          # @mozilla scope -> GitHub Packages (token via env)
+    ├── .env.example                    # AMO API config (VITE_AMO_*); copy to .env
     ├── index.html                      # SPA shell
     └── src/
         ├── main.ts                     # <pinguino-app> shell + client router
         ├── app.css                     # document-level styles
         ├── foundations/                # acorn registration + layout primitives
         │   ├── acorn.ts                # registers acorn (moz-*) components + tokens
-        │   └── layout/                 # layout primitives (app-grid/container/stack)
-        ├── data.ts                     # mock data (until the AMO API)
+        │   ├── layout/                 # layout primitives (app-grid/container/stack)
+        │   └── illustrations/          # vendored design-kit SVGs
+        ├── data/                       # data layer (see "Data and the AMO API")
+        │   ├── http.ts                 # apiFetch: base URL, session auth, typed errors
+        │   ├── api.ts                  # AMO endpoints + response mappers
+        │   ├── query-client.ts         # shared TanStack Query cache
+        │   ├── queries.ts              # query keys, lifetimes, mock-vs-API branch
+        │   ├── mock.ts                 # built-in sample data
+        │   ├── types.ts                # domain types
+        │   ├── devtools.ts             # dev-only TanStack Query devtools
+        │   └── index.ts                # public data API (barrel)
         ├── components/                 # UI: header, cards, updates feed
         └── pages/                      # route views: home, addon detail
 ```
@@ -40,6 +50,24 @@ While acorn is in alpha it's published to GitHub Packages, not the public npm re
 
 Track the alpha with `npm add @mozilla/acorn-web-components@alpha`.
 
+## Data and the AMO API
+
+Data access is a three-layer stack under `src/data/`, exposed through the `src/data/index.ts` barrel. Components attach query controllers and read reactive `{ data, isPending, isError }`; they never call `fetch` or track loading state themselves.
+
+- **`http.ts`** - one `apiFetch()` owning the API base URL, the session auth header, JSON parsing, and a typed `ApiError` (carries the HTTP status, ready for a 401 -> login interceptor).
+- **`api.ts`** - the AMO v5 endpoints (`fetchProfile`, `fetchAddons`, `fetchUpdates`) and the response-to-domain mappers.
+- **`query-client.ts` + `queries.ts`** - a single [`@tanstack/lit-query`](https://tanstack.com/query/latest/docs/framework/lit/overview) cache plus the query definitions: stable keys, per-query lifetimes, and the mock-vs-API branch. Caching, dedup, and invalidation live here, so shared long-lived data (e.g. the signed-in developer profile) is fetched once and reused across pages instead of re-fetched on every mount.
+
+With no API configured the app runs on the built-in mock data in `mock.ts`. To point it at a real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - separate from the repo-root `.env` that carries `NODE_AUTH_TOKEN`) and set:
+
+- `VITE_AMO_SESSION_ID` - a logged-in AMO session id, sent as `Authorization: Session <id>`.
+- `VITE_AMO_AUTHOR` - the author (account id or username) whose add-ons to list.
+- `VITE_AMO_API_BASE` - optional; defaults to same-origin `/api/v5` (local olympia via nginx).
+
+With both a session and an author set, queries hit the API and a failed request surfaces as an error state rather than silently falling back to mock data. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
+
+The [TanStack Query devtools](https://tanstack.com/query/latest/docs/framework/react/devtools) (`src/data/devtools.ts`) mount a floating panel for inspecting cache state, staleness, and refetches. They're loaded via a dynamic import behind `import.meta.env.DEV` in `main.ts`, so they run locally and are dropped from production builds.
+
 ## Running locally
 
 The usual root command brings it up with everything else:
@@ -48,7 +76,7 @@ The usual root command brings it up with everything else:
 make up
 ```
 
-A dedicated `pinguino` docker-compose service (its own `node:24` image, deps in an isolated volume) runs `vite` on `:5273`; nginx proxies `/pinguino/` to it. Then:
+A dedicated `pinguino` docker-compose service (its own `node:24-slim` image, deps in an isolated volume) runs `vite` on `:5273`; nginx proxies `/pinguino/` to it. Then:
 
 - Pinguino (new): http://olympia.test/pinguino/
 - Classic devhub (existing): http://olympia.test/developers/
@@ -68,6 +96,8 @@ Making changes to configuration files like `package.json`, `vite.config.ts` or `
 
 - `npm run lint` runs Biome (lint + format check), configured in `biome.json` to match acorn's setup. `npm run format` applies its fixes.
 - `npm run typecheck` and `npm run build` cover types and the production bundle.
+
+Dependencies install into the container's isolated volume, so run these checks inside the service (`docker compose exec pinguino ...`). Add packages the same way (`docker compose exec pinguino npm add <pkg>`) so the container volume and the committed lockfile stay in sync; the host's `node_modules` is not used.
 
 The `_test_pinguino` GitHub Action runs all three on pull requests that touch `src/pinguino/`.
 

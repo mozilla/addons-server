@@ -1,36 +1,11 @@
-// Mock data for the signed-in DevHub landing. Stand-in until the AMO API is wired.
+// Built-in sample data. Used until the AMO API is configured (see ./api), and as
+// the fallback when a request fails.
 
-export type AddonKind = 'extension' | 'theme';
-export type AddonVisibility = 'live' | 'hidden';
-export type AddonDistribution = 'amo' | 'self' | 'enterprise';
+import type { Addon, Developer, Update } from './types';
 
-export interface Addon {
-  slug: string;
-  name: string;
-  kind: AddonKind;
-  icon: string;
-  statusLabel: string;
-  version: string;
-  visibility: AddonVisibility;
-  distribution: AddonDistribution;
-  // Themes render a colour bar instead of an icon.
-  gradient?: string;
-}
+export const developer: Developer = { name: 'Kate' };
 
-export interface Update {
-  id: string;
-  approved: boolean;
-  title: string;
-  message: string;
-  version: string;
-  versionStatus: string;
-  tags: string[];
-  date: string;
-}
-
-export const developer = 'Kate';
-
-export const addons: Addon[] = [
+export const mockAddons: Addon[] = [
   {
     slug: 'remove-youtube-shorts',
     name: 'Remove YouTube Shorts',
@@ -38,6 +13,7 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
+    lastUpdated: 'Sep 2 2025',
     visibility: 'live',
     distribution: 'enterprise',
   },
@@ -48,6 +24,7 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
+    lastUpdated: 'Aug 18 2025',
     visibility: 'live',
     distribution: 'amo',
   },
@@ -58,6 +35,7 @@ export const addons: Addon[] = [
     icon: 'extension',
     statusLabel: 'Live add-on',
     version: '3.2.1',
+    lastUpdated: 'Jul 30 2025',
     visibility: 'hidden',
     distribution: 'self',
   },
@@ -68,6 +46,7 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
+    lastUpdated: 'Jun 2 2025',
     visibility: 'live',
     distribution: 'amo',
     gradient: 'linear-gradient(90deg, #ffd1e8, #ffe9a8)',
@@ -79,6 +58,7 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
+    lastUpdated: 'May 14 2025',
     visibility: 'live',
     distribution: 'self',
     gradient: 'linear-gradient(90deg, #ffb98a, #ffe27a)',
@@ -90,13 +70,14 @@ export const addons: Addon[] = [
     icon: 'sparkles',
     statusLabel: 'Live theme',
     version: '3.2.1',
+    lastUpdated: 'Apr 3 2025',
     visibility: 'hidden',
     distribution: 'amo',
     gradient: 'linear-gradient(90deg, #8ad4ff, #c9f3ff)',
   },
 ];
 
-export const updates: Update[] = [
+export const mockUpdates: Update[] = [
   {
     id: 'u1',
     approved: true,
@@ -129,6 +110,3 @@ export const updates: Update[] = [
     date: 'Sep 2 2025',
   },
 ];
-
-export const extensions = addons.filter((a) => a.kind === 'extension');
-export const themes = addons.filter((a) => a.kind === 'theme');
