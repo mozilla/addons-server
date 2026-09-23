@@ -40,7 +40,7 @@ jobs:
       is_fork: ${{ steps.context.outputs.is_fork }}
     steps:
       - id: context
-        uses: mozilla/addons/.github/actions/context@f748fdc2c8057ad7b574521a60c182939f2ee687
+        uses: mozilla/addons/.github/actions/context@c2dc2fd5862487f41add188a13243c2e71fdaa42  # 1.3
 
   test_check:
     runs-on: ubuntu-latest
