@@ -7,6 +7,7 @@ import uuid
 from collections import defaultdict
 
 from django.conf import settings
+from django.db import transaction
 from django.db.models import F
 from django.template.defaultfilters import slugify
 from django.urls import reverse
@@ -41,8 +42,10 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
+    WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_ON_VERSION_SCANNED,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -170,14 +173,25 @@ def _deliver_webhook(*, scanner_result, payload, request_id):
         )
 
     scanner_result.reload()
-    if scanner_result.results != previous_results:
-        # The scanner sent its results while we were calling it.
-        return
+    if scanner_result.results == previous_results:
+        # Don't overwrite the results the scanner may have sent while we were
+        # calling it.
+        scanner_result.results = data
+        # We don't pass `update_fields` because the `save()` method
+        # also updates other fields (e.g. has_matches, matched_rules).
+        scanner_result.save()
 
-    scanner_result.results = data
-    # We don't pass `update_fields` because the `save()` method
-    # also updates other fields (e.g. has_matches, matched_rules).
-    scanner_result.save()
+    maybe_call_webhooks_on_version_scanned(scanner_result)
+
+
+def maybe_call_webhooks_on_version_scanned(scanner_result):
+    if (
+        scanner_result.version_id
+        and scanner_result.is_complete
+        and scanner_result.webhook_event.event
+        in WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
+    ):
+        call_webhooks_on_version_scanned.delay(version_pk=scanner_result.version_id)
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):
@@ -198,7 +212,43 @@ def build_webhook_payload(event_id, *, upload=None, version=None):
             'version': WebhookVersionSerializer(version).data,
         }
 
+    if event_id == WEBHOOK_ON_VERSION_SCANNED:
+        return {
+            'addon': WebhookAddonSerializer(version.addon).data,
+            'version': WebhookVersionSerializer(version).data,
+            'scanner_results': _build_scanner_results(version),
+        }
+
     raise ValueError(f'No payload for webhook event {event_id}')
+
+
+def _build_scanner_results(version):
+    """Return the results of the events aggregated into `on_version_scanned`,
+    as a mapping of event name to scanner name to results."""
+    # Always expose every aggregated event, even when no scanner is listening
+    # to it, so that the payload has a stable shape.
+    scanner_results = {
+        WEBHOOK_EVENTS[event_id]: {}
+        for event_id in WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
+    }
+
+    # Only completed results, including those of webhooks deactivated since
+    # the version was created.
+    for result in (
+        ScannerResult.objects.filter(
+            ScannerResult.complete_q,
+            version=version,
+            webhook_event__event__in=WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
+        )
+        .select_related('webhook_event__webhook')
+        .order_by('pk')
+    ):
+        # When a scanner has more than one result for this event and this
+        # version, the last one (by pk) wins.
+        event_name = WEBHOOK_EVENTS[result.webhook_event.event]
+        scanner_results[event_name][result.webhook_event.webhook.name] = result.results
+
+    return scanner_results
 
 
 def _build_payload_for_result(scanner_result):
@@ -235,6 +285,108 @@ def _record_missing_results(scanner_result):
         scanner_result.version_id,
         scanner_result.pk,
     )
+
+    # This is the last thing we do for this version, so this is also our last
+    # chance to send `on_version_scanned`: the results it aggregates are now
+    # complete, even though we made some of them up.
+    maybe_call_webhooks_on_version_scanned(scanner_result)
+
+
+@task
+@use_primary_db
+def call_webhooks_on_version_scanned(version_pk):
+    """Call the webhooks subscribed to `on_version_scanned` for this version,
+    once we have the results the event aggregates.
+
+    Safe to call as often as we want: it does nothing until the version is
+    ready, and nothing again once the results exist. Creating them is what
+    makes this run the one that delivers the event, so it is also the run that
+    starts waiting for the answers."""
+    version = Version.unfiltered.get(pk=version_pk)
+
+    if is_waiting_on_scanner_webhook_events(
+        version=version, event_ids=WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
+    ):
+        return
+
+    scanner_results = []
+    with transaction.atomic():
+        # Lock the version row, so that two runs cannot create two results for
+        # the same event and deliver it twice. `exists()` drops the manager's
+        # `select_related()`, so we only lock that row.
+        Version.unfiltered.select_for_update().filter(pk=version_pk).exists()
+
+        for event in ScannerWebhookEvent.to_wait_for(
+            version=version, event_ids=[WEBHOOK_ON_VERSION_SCANNED]
+        ):
+            if ScannerResult.objects.filter(
+                version=version, webhook_event=event
+            ).exists():
+                # We have already delivered this event.
+                continue
+
+            scanner_results.append(
+                ScannerResult.objects.create(
+                    scanner=WEBHOOK, webhook_event=event, version=version
+                )
+            )
+
+    if not scanner_results:
+        return
+
+    # Built once: every scanner gets the same results.
+    payload = build_webhook_payload(WEBHOOK_ON_VERSION_SCANNED, version=version)
+
+    for scanner_result in scanner_results:
+        event = scanner_result.webhook_event
+        statsd_name = _get_webhook_statsd_name(event)
+        request_id = uuid.uuid4().hex
+        log.info(
+            'Calling webhook "%s" for version %s request_id=%s.',
+            event.webhook.name,
+            version_pk,
+            request_id,
+        )
+
+        try:
+            _deliver_webhook(
+                scanner_result=scanner_result,
+                payload=payload,
+                request_id=request_id,
+            )
+            statsd.incr(f'{statsd_name}.success')
+        except Exception:
+            statsd.incr(f'{statsd_name}.failure')
+            log.exception(
+                'Error while calling webhook "%s" for version %s.',
+                event.webhook.name,
+                version_pk,
+            )
+
+    if any(not result.is_complete for result in scanner_results):
+        # Some scanners will answer later. Start a chain to wait for them: the
+        # one started when the version was created only waits for the events
+        # we aggregate.
+        log.info(
+            'Waiting for the `on_version_scanned` results of version %s.', version_pk
+        )
+        wait_for_scanner_results.apply_async(
+            kwargs={
+                'version_pk': version_pk,
+                'event_ids': [WEBHOOK_ON_VERSION_SCANNED],
+            },
+            countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
+        )
+
+
+def scanner_webhook_events_to_wait_for(version):
+    """The events `version` is currently waiting on, i.e. which of the two
+    steps of `wait_for_scanner_results` it is in."""
+    if is_waiting_on_scanner_webhook_events(
+        version=version, event_ids=WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
+    ):
+        return WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
+    return [WEBHOOK_ON_VERSION_SCANNED]
 
 
 def is_waiting_on_scanner_webhook_events(*, version, event_ids):
@@ -282,7 +434,11 @@ def wait_for_scanner_results(self, version_pk, event_ids):
     """Call the webhooks subscribed to `event_ids` that still owe us results
     again, retrying at a fixed interval until they answer, then record
     artificial results matching the SCANNER_RESULTS_MISSING rule to stop
-    waiting."""
+    waiting.
+
+    We wait in two steps because `on_version_scanned` cannot be sent before we
+    have the results it aggregates: a chain started for those events hands over
+    to a chain started for `on_version_scanned` once they are all in."""
     if waffle.switch_is_active('disable-wait-for-scanner-results'):
         log.info(
             'Not waiting for scanner results for version %s, switch is active.',
@@ -302,6 +458,9 @@ def wait_for_scanner_results(self, version_pk, event_ids):
 
     if not pending:
         log.info('All scanners have sent their results for version %s.', version_pk)
+        # The results `on_version_scanned` aggregates may be what we were
+        # waiting for. Does nothing once the event has been sent.
+        call_webhooks_on_version_scanned.delay(version_pk=version_pk)
         return
 
     give_up = self.request.retries >= WEBHOOK_MAX_RETRIES
