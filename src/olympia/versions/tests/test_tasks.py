@@ -26,7 +26,7 @@ from olympia.amo.tests import (
 from olympia.blocklist.models import Block, BlockType, BlockVersion
 from olympia.constants.blocklist import BlockReason
 from olympia.constants.scanners import (
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+    WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
 )
@@ -1071,7 +1071,7 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         apply_async_mock.assert_called_with(
             kwargs={
                 'version_pk': version.pk,
-                'event_ids': WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+                'event_ids': WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
             },
             countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
         )
@@ -1087,6 +1087,16 @@ class TestCallWebhooksOnVersionCreated(TestCase):
         call_webhooks_on_version_created(version.pk)
 
         assert apply_async_mock.called
+
+    @mock.patch('olympia.versions.tasks.call_webhooks_on_version_scanned.delay')
+    @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_calls_webhooks_on_version_scanned(self, _, __, delay_mock):
+        version = version_factory(addon=addon_factory())
+
+        call_webhooks_on_version_created(version.pk)
+
+        delay_mock.assert_called_once_with(version_pk=version.pk)
 
     @mock.patch('olympia.versions.tasks.wait_for_scanner_results.apply_async')
     @mock.patch('olympia.versions.tasks.call_webhooks')

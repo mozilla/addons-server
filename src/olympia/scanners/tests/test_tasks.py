@@ -31,9 +31,11 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+    WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
     WEBHOOK_MAX_RETRIES,
+    WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_ON_VERSION_SCANNED,
     WEBHOOK_PUSH,
     YARA,
 )
@@ -53,7 +55,9 @@ from olympia.scanners.tasks import (
     _run_yara,
     call_webhooks,
     call_webhooks_during_validation,
+    call_webhooks_on_version_scanned,
     mark_scanner_query_rule_as_completed_or_aborted,
+    maybe_call_webhooks_on_version_scanned,
     run_actions_for_scanner_result,
     run_narc_on_version,
     run_scanner_query_rule,
@@ -2964,9 +2968,12 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
         kwargs.setdefault('version', self.version)
         return ScannerResult.objects.create(scanner=WEBHOOK, **kwargs)
 
-    def _run_task(self, retries=0):
+    def _run_task(self, retries=0, event_ids=None):
         return wait_for_scanner_results.apply(
-            args=(self.version.pk, WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL),
+            args=(
+                self.version.pk,
+                event_ids or WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
+            ),
             retries=retries,
         )
 
@@ -3181,3 +3188,398 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
         assert scanner_result.reload().results == {
             'matchedRules': [SCANNER_RESULTS_MISSING_RULE_NAME]
         }
+
+
+@mock.patch('olympia.scanners.tasks.wait_for_scanner_results.apply_async')
+@mock.patch('olympia.scanners.tasks._call_webhook')
+class TestCallWebhooksOnVersionScanned(UploadMixin, TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        self.event = self._create_event(
+            WEBHOOK_ON_VERSION_SCANNED, name='aggregating-scanner'
+        )
+
+    def _create_event(self, event, *, name, created=None):
+        webhook = ScannerWebhook.objects.create(
+            name=name,
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        # The webhook has to predate the version, otherwise we don't wait on it.
+        webhook.update(modified=created or self.days_ago(1))
+        return ScannerWebhookEvent.objects.create(event=event, webhook=webhook)
+
+    def _create_result(self, event, **kwargs):
+        kwargs.setdefault('version', self.version)
+        return ScannerResult.objects.create(
+            scanner=WEBHOOK, webhook_event=event, **kwargs
+        )
+
+    def _run_task(self):
+        return call_webhooks_on_version_scanned(version_pk=self.version.pk)
+
+    def _results_for(self, event):
+        return ScannerResult.objects.filter(version=self.version, webhook_event=event)
+
+    def test_nothing_to_do_when_no_scanner_is_listening(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        self.event.update(is_active=False)
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+        assert not ScannerResult.objects.exists()
+
+    def test_nothing_to_do_when_the_webhook_postdates_the_version(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        self.event.webhook.update(modified=datetime.now())
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+        assert not ScannerResult.objects.exists()
+
+    def test_nothing_to_do_while_an_aggregated_scanner_owes_us_results(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        self._create_result(
+            self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner')
+        )
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+        assert not self._results_for(self.event).exists()
+
+    def test_calls_the_webhook_when_the_aggregated_scanners_are_done(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {'matchedRules': []}
+        event = self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner')
+        self._create_result(event, results={'matchedRules': ['SOME_RULE']})
+
+        self._run_task()
+
+        scanner_result = self._results_for(self.event).get()
+        assert scanner_result.results == {'matchedRules': []}
+        assert _call_webhook_mock.call_count == 1
+        assert _call_webhook_mock.call_args[1]['webhook'] == self.event.webhook
+        assert _call_webhook_mock.call_args[1]['request_id'] is not None
+        payload = _call_webhook_mock.call_args[1]['payload']
+        assert payload.keys() == {
+            'addon',
+            'version',
+            'scanner_results',
+            'event',
+            'scanner_result_url',
+        }
+        assert payload['addon']['id'] == self.version.addon.pk
+        assert payload['version']['id'] == self.version.pk
+        assert payload['scanner_results'] == {
+            'during_validation': {},
+            'on_version_created': {'some-scanner': {'matchedRules': ['SOME_RULE']}},
+        }
+        assert payload['event'] == 'on_version_scanned'
+        assert payload['scanner_result_url'] == (
+            f'http://testserver/api/v5/scanner/results/{scanner_result.pk}/'
+        )
+
+    def test_calls_the_webhook_when_no_scanner_is_aggregated(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {'matchedRules': []}
+
+        self._run_task()
+
+        assert self._results_for(self.event).exists()
+        assert _call_webhook_mock.call_args[1]['payload']['scanner_results'] == {
+            'during_validation': {},
+            'on_version_created': {},
+        }
+
+    def test_aggregates_every_event_and_scanner(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        during_validation = self._create_event(
+            WEBHOOK_DURING_VALIDATION, name='some-scanner'
+        )
+        # The same scanner listening to both aggregated events.
+        on_version_created = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=during_validation.webhook
+        )
+        other = self._create_event(WEBHOOK_ON_VERSION_CREATED, name='other-scanner')
+        self._create_result(
+            during_validation,
+            results={'matchedRules': ['SOME_RULE']},
+            upload=self.get_upload('webextension.xpi'),
+        )
+        self._create_result(on_version_created, results={'matchedRules': []})
+        # This scanner skipped the event.
+        self._create_result(other, results=None)
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_args[1]['payload']['scanner_results'] == {
+            'during_validation': {'some-scanner': {'matchedRules': ['SOME_RULE']}},
+            'on_version_created': {
+                'some-scanner': {'matchedRules': []},
+                'other-scanner': None,
+            },
+        }
+
+    def test_aggregates_the_results_of_a_deactivated_scanner(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        event = self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner')
+        self._create_result(event, results={'matchedRules': []})
+        # We already have its results, so we keep reporting them.
+        event.webhook.update(is_active=False)
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_args[1]['payload']['scanner_results'] == {
+            'during_validation': {},
+            'on_version_created': {'some-scanner': {'matchedRules': []}},
+        }
+
+    def test_aggregates_the_last_result_of_a_scanner(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        event = self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner')
+        self._create_result(event, results={'matchedRules': ['FIRST']})
+        self._create_result(event, results={'matchedRules': ['LAST']})
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_args[1]['payload']['scanner_results'][
+            'on_version_created'
+        ] == {'some-scanner': {'matchedRules': ['LAST']}}
+
+    def test_does_not_aggregate_incomplete_results(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        event = self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner')
+        self._create_result(event, results={'matchedRules': []})
+        # Another event for a scanner we are not waiting on (it was added after
+        # the version was created), with no results yet.
+        self._create_result(
+            self._create_event(
+                WEBHOOK_ON_VERSION_CREATED,
+                name='other-scanner',
+                created=datetime.now(),
+            )
+        )
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_args[1]['payload']['scanner_results'][
+            'on_version_created'
+        ] == {'some-scanner': {'matchedRules': []}}
+
+    def test_does_not_call_the_webhook_twice(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {}
+
+        self._run_task()
+        self._run_task()
+
+        assert _call_webhook_mock.call_count == 1
+        assert self._results_for(self.event).count() == 1
+
+    def test_calls_every_subscribed_webhook(self, _call_webhook_mock, apply_async_mock):
+        _call_webhook_mock.return_value = {}
+        other_event = self._create_event(
+            WEBHOOK_ON_VERSION_SCANNED, name='other-aggregating-scanner'
+        )
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_count == 2
+        assert [call[1]['webhook'] for call in _call_webhook_mock.call_args_list] == [
+            self.event.webhook,
+            other_event.webhook,
+        ]
+
+    def test_does_not_stop_on_a_webhook_error(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.side_effect = [ValueError('scanner is down'), {}]
+        other_event = self._create_event(
+            WEBHOOK_ON_VERSION_SCANNED, name='other-aggregating-scanner'
+        )
+
+        self._run_task()
+
+        assert _call_webhook_mock.call_count == 2
+        assert self._results_for(self.event).get().results == []
+        assert self._results_for(other_event).get().results == {}
+
+    def test_waits_for_the_results_it_just_asked_for(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        # A `202` with no results: the scanner will send them later.
+        _call_webhook_mock.return_value = {}
+        self._create_result(
+            self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner'),
+            results={'matchedRules': []},
+        )
+
+        self._run_task()
+
+        assert not self._results_for(self.event).get().is_complete
+        # Nothing was waiting for this result before we created it: the chain
+        # for the events we aggregate only ever watched those.
+        apply_async_mock.assert_called_once_with(
+            kwargs={
+                'version_pk': self.version.pk,
+                'event_ids': [WEBHOOK_ON_VERSION_SCANNED],
+            },
+            countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
+        )
+
+    def test_does_not_wait_when_the_scanner_answered_synchronously(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        _call_webhook_mock.return_value = {'matchedRules': []}
+        self._create_result(
+            self._create_event(WEBHOOK_ON_VERSION_CREATED, name='some-scanner'),
+            results={'matchedRules': []},
+        )
+
+        self._run_task()
+
+        assert self._results_for(self.event).get().is_complete
+        apply_async_mock.assert_not_called()
+
+    def test_does_not_wait_when_there_is_nothing_to_send(
+        self, _call_webhook_mock, apply_async_mock
+    ):
+        self.event.update(is_active=False)
+
+        self._run_task()
+
+        _call_webhook_mock.assert_not_called()
+        apply_async_mock.assert_not_called()
+
+
+@mock.patch('olympia.scanners.tasks.call_webhooks_on_version_scanned.delay')
+class TestMaybeCallWebhooksOnVersionScanned(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        webhook.update(modified=self.days_ago(1))
+        self.event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_CREATED, webhook=webhook
+        )
+
+    def _create_result(self, **kwargs):
+        kwargs.setdefault('version', self.version)
+        kwargs.setdefault('webhook_event', self.event)
+        return ScannerResult.objects.create(scanner=WEBHOOK, **kwargs)
+
+    def test_schedules_the_task(self, delay_mock):
+        maybe_call_webhooks_on_version_scanned(
+            self._create_result(results={'matchedRules': []})
+        )
+
+        delay_mock.assert_called_once_with(version_pk=self.version.pk)
+
+    def test_schedules_the_task_when_the_event_was_skipped(self, delay_mock):
+        maybe_call_webhooks_on_version_scanned(self._create_result(results=None))
+
+        delay_mock.assert_called_once_with(version_pk=self.version.pk)
+
+    def test_does_nothing_when_the_result_is_incomplete(self, delay_mock):
+        maybe_call_webhooks_on_version_scanned(self._create_result())
+
+        delay_mock.assert_not_called()
+
+    def test_does_nothing_without_a_version(self, delay_mock):
+        maybe_call_webhooks_on_version_scanned(
+            self._create_result(version=None, results={'matchedRules': []})
+        )
+
+        delay_mock.assert_not_called()
+
+    def test_does_nothing_for_an_event_that_is_not_aggregated(self, delay_mock):
+        self.event.update(event=WEBHOOK_ON_SOURCE_CODE_UPLOADED)
+
+        maybe_call_webhooks_on_version_scanned(
+            self._create_result(results={'matchedRules': []})
+        )
+
+        delay_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_scheduled_when_a_webhook_answers_synchronously(
+        self, _call_webhook_mock, delay_mock
+    ):
+        _call_webhook_mock.return_value = {'matchedRules': []}
+
+        call_webhooks(
+            event_id=WEBHOOK_ON_VERSION_CREATED,
+            payload={},
+            version=self.version,
+        )
+
+        delay_mock.assert_called_with(version_pk=self.version.pk)
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_not_scheduled_when_a_webhook_answers_asynchronously(
+        self, _call_webhook_mock, delay_mock
+    ):
+        # A `202` with no results: the scanner will send them later.
+        _call_webhook_mock.return_value = {}
+
+        call_webhooks(
+            event_id=WEBHOOK_ON_VERSION_CREATED,
+            payload={},
+            version=self.version,
+        )
+
+        delay_mock.assert_not_called()
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_scheduled_by_wait_for_scanner_results(
+        self, _call_webhook_mock, delay_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        # Nothing left to wait for, which is what unlocks `on_version_scanned`.
+        self._create_result(results={'matchedRules': []})
+
+        wait_for_scanner_results.apply(
+            args=(self.version.pk, WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED)
+        )
+
+        delay_mock.assert_called_with(version_pk=self.version.pk)
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_not_scheduled_while_wait_for_scanner_results_is_still_waiting(
+        self, _call_webhook_mock, delay_mock
+    ):
+        _call_webhook_mock.return_value = {}
+        self._create_result()
+
+        with pytest.raises(Retry):
+            wait_for_scanner_results.apply(
+                args=(self.version.pk, WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED)
+            )
+
+        delay_mock.assert_not_called()
