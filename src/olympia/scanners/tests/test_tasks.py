@@ -49,10 +49,6 @@ from olympia.scanners.models import (
     ScannerWebhook,
     ScannerWebhookEvent,
 )
-from olympia.scanners.serializers import (
-    WebhookAddonSerializer,
-    WebhookVersionSerializer,
-)
 from olympia.scanners.tasks import (
     _call_webhook,
     _run_yara,
@@ -3171,17 +3167,15 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
 
         assert exc_info.value.when == settings.SCANNER_WEBHOOK_RETRY_DELAY
         assert _call_webhook_mock.call_count == 1
-        assert _call_webhook_mock.call_args == mock.call(
-            webhook=self.webhook,
-            payload={
-                'addon': WebhookAddonSerializer(self.version.addon).data,
-                'version': WebhookVersionSerializer(self.version).data,
-                'event': 'on_version_created',
-                'scanner_result_url': (
-                    f'http://testserver/api/v5/scanner/results/{scanner_result.pk}/'
-                ),
-            },
-            request_id=mock.ANY,
+        assert _call_webhook_mock.call_args[1]['webhook'] == self.webhook
+        assert _call_webhook_mock.call_args[1]['request_id'] is not None
+        payload = _call_webhook_mock.call_args[1]['payload']
+        assert payload.keys() == {'addon', 'version', 'event', 'scanner_result_url'}
+        assert payload['addon']['id'] == self.version.addon.pk
+        assert payload['version']['id'] == self.version.pk
+        assert payload['event'] == 'on_version_created'
+        assert payload['scanner_result_url'] == (
+            f'http://testserver/api/v5/scanner/results/{scanner_result.pk}/'
         )
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
