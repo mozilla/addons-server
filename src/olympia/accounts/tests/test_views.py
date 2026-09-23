@@ -1,7 +1,7 @@
 import base64
 import json
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 from ipaddress import IPv4Address
 from os import path
 from unittest import mock
@@ -789,7 +789,9 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         self.url = reverse_ns(self.view_name, api_version=self.api_version)
         self.fxa_state = '1cd2ae9d'
         self.initialize_session({'fxa_state': self.fxa_state})
-        self.login_user = self.patch('olympia.accounts.views.login_user')
+        self.login_user = self.patch(
+            'olympia.accounts.views.login_user', wraps=views.login_user
+        )
         self.register_user = self.patch('olympia.accounts.views.register_user')
         self.reregister_user = self.patch('olympia.accounts.views.reregister_user')
         self.user_edit_url = reverse('users.edit')
@@ -1064,12 +1066,13 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
         assert not self.reregister_user.called
 
     def test_success_with_account_logs_in(self):
-        user = UserProfile.objects.create(
-            username='foobar', email='real@yeahoo.com', fxa_id='9001'
-        )
+        user = user_factory(username='foobar', email='real@yeahoo.com', fxa_id='9001')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity, self.token_data
-        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+        with (
+            mock.patch('olympia.amo.views._frontend_view', empty_view),
+            time_machine.travel(datetime.now(), tick=False),
+        ):
             response = self.client.get(
                 self.url, {'code': 'code', 'state': self.fxa_state}
             )
@@ -1078,6 +1081,56 @@ class TestAuthenticateView(TestCase, InitializeSessionMixin):
                 response['Cache-Control']
                 == 'max-age=0, no-cache, no-store, must-revalidate, private'
             )
+            cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+            # The user's session should be valid for 2 weeks.
+            two_weeks_from_now = datetime.now() + timedelta(days=14)
+            cookie_expiry = datetime.strptime(
+                cookie['expires'], '%a, %d %b %Y %H:%M:%S %Z'
+            ).replace(tzinfo=None)
+            session_key = cookie.value
+            assert session_key
+            assert cookie_expiry == two_weeks_from_now.replace(microsecond=0)
+            session = self.get_session(session_key)
+            assert session.get_expiry_date() == two_weeks_from_now
+        self.login_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, user, identity, self.token_data
+        )
+        assert not self.register_user.called
+        assert not self.reregister_user.called
+
+    def test_success_with_account_logs_in_privileged_user(self):
+        user = user_factory(username='foobar', email='real@yeahoo.com', fxa_id='9001')
+        # NONE permission is enough to be considered privileged.
+        self.grant_permission(user, amo.permissions.NONE)
+        identity = {
+            'email': 'real@yeahoo.com',
+            'uid': '9001',
+            'twoFactorAuthentication': True,
+        }
+        self.fxa_identify.return_value = identity, self.token_data
+        with (
+            mock.patch('olympia.amo.views._frontend_view', empty_view),
+            time_machine.travel(datetime.now(), tick=False),
+        ):
+            response = self.client.get(
+                self.url, {'code': 'code', 'state': self.fxa_state}
+            )
+            self.assertRedirects(response, reverse('home'))
+            assert (
+                response['Cache-Control']
+                == 'max-age=0, no-cache, no-store, must-revalidate, private'
+            )
+            cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+            # The user's session should be valid for only 24 hours.
+            one_day_from_now = datetime.now() + timedelta(days=1)
+            cookie_expiry = datetime.strptime(
+                cookie['expires'], '%a, %d %b %Y %H:%M:%S %Z'
+            ).replace(tzinfo=None)
+            session_key = cookie.value
+            assert session_key
+            assert cookie_expiry == one_day_from_now.replace(microsecond=0)
+            session = self.get_session(session_key)
+            assert session.get_expiry_date() == one_day_from_now
         self.login_user.assert_called_with(
             views.AuthenticateView, mock.ANY, user, identity, self.token_data
         )
