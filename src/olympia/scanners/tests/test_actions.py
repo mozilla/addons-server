@@ -969,11 +969,11 @@ class TestActions(TestCase):
         for author in addon.authors.all():
             assert EmailUserRestriction.objects.filter(
                 email_pattern=author.email,
-                restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL,
+                restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
             ).exists()
             network = IPNetworkUserRestriction.network_from_ip(author.last_login_ip)
             assert IPNetworkUserRestriction.objects.filter(
-                network=network, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+                network=network, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
             ).exists()
 
     def test_disable_and_block(self):
