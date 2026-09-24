@@ -6,7 +6,6 @@ import '../components/submit-card';
 import '../components/update-card';
 import type { Addon, Update } from '../data';
 import { addonsQuery, profileQuery, updatesQuery } from '../data';
-import meditateClouds from '../foundations/illustrations/kit-meditate-clouds.svg';
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
@@ -43,10 +42,6 @@ export class DevhubHome extends LitElement {
       padding: var(--space-xxlarge) var(--space-large);
       text-align: center;
       color: var(--text-color-deemphasized, GrayText);
-    }
-    .illustration {
-      width: 180px;
-      height: auto;
     }
   `;
 
@@ -142,7 +137,7 @@ export class DevhubHome extends LitElement {
             ? updates.map((u) => html`<update-card .item=${u}></update-card>`)
             : html`
               <div class="empty-updates">
-                <img class="illustration" src=${meditateClouds} alt="" />
+                <moz-illustration name="kit-meditate-clouds" style="width:200px"></moz-illustration>
                 <h3>No updates yet, take it easy</h3>
               </div>
             `
