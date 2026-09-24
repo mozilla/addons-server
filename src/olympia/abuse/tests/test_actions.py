@@ -39,10 +39,17 @@ from olympia.constants.abuse import DECISION_ACTIONS
 from olympia.constants.blocklist import BlockReason, BlockType
 from olympia.constants.permissions import ADDONS_HIGH_IMPACT_APPROVE
 from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_DEFAULT
+from olympia.constants.scanners import YARA
 from olympia.core import set_user
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import AutoApprovalSummary, NeedsHumanReview
+from olympia.scanners.models import ScannerRule
+from olympia.users.models import (
+    RESTRICTION_TYPES,
+    EmailUserRestriction,
+    IPNetworkUserRestriction,
+)
 from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
@@ -679,7 +686,7 @@ class TestContentActionDisableAddon(
 
     def setUp(self):
         super().setUp()
-        self.author = user_factory()
+        self.author = user_factory(last_login_ip='4.8.15.16')
         self.addon = addon_factory(users=(self.author,), name='<b>Bad Addön</b>')
         self.old_version = self.addon.current_version
         self.version = version_factory(addon=self.addon)
@@ -2305,6 +2312,40 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
             self.old_version.blockversion.auto_block_reason
             == BlockReason.FRAUD_DECEPTIVE
         )
+
+    def test_execute_action(self):
+        super().test_execute_action()
+        # We shouldn't have added any restrictions because we didn't the
+        # relevant metadata set, it's not set by default.
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
+
+    def test_execute_action_restrict(self):
+        rule = ScannerRule.objects.create(scanner=YARA, name='Some yara rule')
+        self.decision.metadata['scanner_match_version'] = self.version.pk
+        self.decision.metadata['scanner_match_rule'] = rule.pk
+        super().test_execute_action()
+        assert EmailUserRestriction.objects.filter(
+            email_pattern=self.author.email,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        ).exists()
+        assert IPNetworkUserRestriction.objects.filter(
+            network=f'{self.author.last_login_ip}/32'
+        ).exists()
+
+    def test_execute_action_cant_restrict_incorrect_metadata_rule(self):
+        self.decision.metadata['scanner_match_version'] = self.version.pk
+        self.decision.metadata['scanner_match_rule'] = 42
+        super().test_execute_action()
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
+
+    def test_execute_action_cant_restrict_incorrect_metadata_version(self):
+        rule = ScannerRule.objects.create(scanner=YARA, name='Some yara rule')
+        self.decision.metadata['scanner_match_version'] = self.version.pk + 42
+        self.decision.metadata['scanner_match_rule'] = rule.pk
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
 
     def test_already_taken_down(self):
         """For a block action, this shouldn't affect the block, only the disable"""
