@@ -1013,8 +1013,8 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
         return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
 
     def restrict_authors(self):
-        from olympia.scanners.models import ScannerRule
         from olympia.scanners.actions import _restrict_future_approvals_or_submissions
+        from olympia.scanners.models import ScannerRule
 
         scanner_match_version = self.decision.metadata.get('scanner_match_version')
         scanner_match_rule = self.decision.metadata.get('scanner_match_rule')
