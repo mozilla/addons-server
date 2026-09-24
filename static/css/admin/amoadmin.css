@@ -107,3 +107,8 @@
 #changelist-filter select {
     width: 100%;
 }
+
+ul.messagelist li.info {
+    background-color: #ccefff;
+    background-image: url(../img/developers/test-info.png);
+}
