@@ -30,7 +30,7 @@ from olympia.constants.reviewers import REVIEWER_DELAYED_REJECTION_PERIOD_DAYS_D
 from olympia.files.models import File
 from olympia.lib.crypto.signing import sign_file
 from olympia.ratings.models import Rating
-from olympia.users.models import UserProfile
+from olympia.users.models import RESTRICTION_TYPES, UserProfile
 from olympia.versions.models import Version, VersionReviewerFlags
 
 
@@ -1012,12 +1012,45 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             qs = qs.exclude(blockversion__block_type=self.block_type)
         return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
 
+    def restrict_authors(self):
+        from olympia.scanners.actions import _restrict_future_approvals_or_submissions
+        from olympia.scanners.models import ScannerRule
+
+        scanner_match_version = self.decision.metadata.get('scanner_match_version')
+        scanner_match_rule = self.decision.metadata.get('scanner_match_rule')
+
+        if not scanner_match_version or not scanner_match_rule:
+            # For now we only restrict automatically because of scanners, if
+            # we don't have the version or the rule then we don't have anything
+            # to do.
+            return
+
+        try:
+            version = Version.unfiltered.get(pk=scanner_match_version)
+        except Version.DoesNotExist:
+            # This shouldn't happen, complain loudly, skip the restriction.
+            log.exception('Version %s does not exist', scanner_match_version)
+            return
+        try:
+            rule = ScannerRule.objects.get(pk=scanner_match_rule)
+        except ScannerRule.DoesNotExist:
+            # This shouldn't happen, complain loudly, skip the restriction.
+            log.exception('ScannerRule %s does not exist', scanner_match_rule)
+            return
+
+        _restrict_future_approvals_or_submissions(
+            version=version,
+            rule=rule,
+            restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
+        )
+
     def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
             # For now this action should only be used automatically by scanners and
             # monitoring tasks, not cinder webhook
             raise NotImplementedError
         self.prevent_auto_approval()
+        self.restrict_authors()
         versions = list(self.versions_block_will_affect)
         if versions:
             # Set target_versions before executing the action, since the

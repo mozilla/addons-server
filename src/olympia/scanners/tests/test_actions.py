@@ -992,7 +992,9 @@ class TestActions(TestCase):
         assert reject_and_block_addons_mock.call_count == 1
         assert reject_and_block_addons_mock.call_args.args == ([addon],)
         assert reject_and_block_addons_mock.call_args.kwargs == {
-            'reject_reason': 'scanner rule "Test Rule"'
+            'reject_reason': 'scanner rule "Test Rule"',
+            'scanner_match_rule': rule,
+            'scanner_match_version': addon.current_version,
         }
 
     def test_disable_and_block_second_level_approval(self):
@@ -1019,7 +1021,8 @@ class TestActions(TestCase):
         assert not version2.is_blocked
         assert version2.file.reload().status == amo.STATUS_APPROVED  # Not disabled yet
         assert ContentDecision.objects.count() == 1
-        assert not ContentDecision.objects.get().action_date  # Action pending approval
+        decision = ContentDecision.objects.get()
+        assert not decision.action_date  # Action pending approval
         assert (
             ActivityLog.objects.filter(
                 addonlog__addon=addon, action=amo.LOG.HELD_ACTION_FORCE_DISABLE.id
@@ -1028,6 +1031,13 @@ class TestActions(TestCase):
             .details['reason']
             == 'Rejected and blocked due to: scanner rule "Test Rule"'
         )
+        # We haven't added restrictions yet because of send level approval.
+        assert not EmailUserRestriction.objects.exists()
+        assert not IPNetworkUserRestriction.objects.exists()
+        # ContentDecision has relevant metadata to add restrictions later if
+        # the decision goes through.
+        assert decision.metadata['scanner_match_rule'] == rule.pk
+        assert decision.metadata['scanner_match_version'] == version2.pk
 
     def test_disable_and_block_not_available_for_that_tier(self):
         tier = UsageTier.objects.create(lower_adu_threshold=1)

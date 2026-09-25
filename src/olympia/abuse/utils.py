@@ -7,16 +7,23 @@ from django.conf import settings
 from olympia.constants.abuse import DECISION_ACTIONS
 
 
-def reject_and_block_addons(addons, *, reject_reason):
+def reject_and_block_addons(
+    addons, *, reject_reason, scanner_match_rule=None, scanner_match_version=None
+):
     from .models import CinderPolicy, ContentDecision
     from .tasks import report_decision_to_cinder_and_notify
 
     for addon in addons:
+        decision_metadata = {ContentDecision.POLICY_DYNAMIC_VALUES: {}}
+        if scanner_match_rule:
+            decision_metadata['scanner_match_rule'] = scanner_match_rule.pk
+        if scanner_match_version:
+            decision_metadata['scanner_match_version'] = scanner_match_version.pk
         decision = ContentDecision.objects.create(
             addon=addon,
             action=DECISION_ACTIONS.AMO_BLOCK_ADDON,
             reviewer_user_id=settings.TASK_USER_ID,
-            metadata={ContentDecision.POLICY_DYNAMIC_VALUES: {}},
+            metadata=decision_metadata,
         )
         decision.policies.set(
             CinderPolicy.objects.filter(
