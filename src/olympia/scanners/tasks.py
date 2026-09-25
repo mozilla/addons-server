@@ -43,6 +43,7 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
     YARA,
@@ -239,6 +240,40 @@ def _record_missing_results(scanner_result):
     )
 
 
+def is_waiting_on_scanner_webhook_events(*, version, event_ids):
+    """Return whether `version` is still waiting on any active scanner webhook
+    subscribed to one of `event_ids`.
+
+    For each of those events we are simultaneously waiting for two things:
+
+    1. The async task triggered by the event to run and create a `ScannerResult`
+       for the version.
+    2. The scanner to populate `results` on that result, which means the scanner
+       finished (see `ScannerResult.is_complete`).
+
+    Returns True as long as at least one expected scanner result is missing or
+    has not yet been completed by the scanner.
+    """
+    # If there is no event, that means no active scanner is listening to those
+    # events, so the version isn't waiting on scanners.
+    events = ScannerWebhookEvent.to_wait_for(version=version, event_ids=event_ids)
+    expected_event_ids = set(events.values_list('pk', flat=True))
+    if not expected_event_ids:
+        return False
+
+    # We collect the events rather than count the results, because a single
+    # event can have more than one result for a version.
+    completed_event_ids = set(
+        ScannerResult.objects.filter(
+            ScannerResult.complete_q,
+            version=version,
+            webhook_event__in=expected_event_ids,
+        ).values_list('webhook_event_id', flat=True)
+    )
+
+    return not expected_event_ids.issubset(completed_event_ids)
+
+
 @task(
     bind=True,
     autoretry_for=(ScannerResultsMissingError,),
@@ -258,7 +293,9 @@ def wait_for_scanner_results(self, version_pk):
         return
 
     version = Version.unfiltered.get(pk=version_pk)
-    events = ScannerWebhookEvent.blocking_auto_approval_for(version)
+    events = ScannerWebhookEvent.to_wait_for(
+        version=version, event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL
+    )
     pending = [
         scanner_result
         for scanner_result in ScannerResult.objects.filter(

@@ -1547,6 +1547,29 @@ class TestAutoApprovalSummary(TestCase):
         # No ScannerResult for webhook_2
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
 
+    def test_check_is_waiting_on_scanners_several_results_for_the_same_event(self):
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook
+        )
+        # The unique constraint does not prevent this because `upload` is null.
+        for _ in range(2):
+            ScannerResult.objects.create(
+                version=self.version,
+                scanner=WEBHOOK,
+                webhook_event=event,
+                results={'matchedRules': []},
+            )
+        webhook_2 = ScannerWebhook.objects.create(name='other-scanner')
+        webhook_2.update(modified=self.days_ago(1))
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_DURING_VALIDATION, webhook=webhook_2
+        )
+        # Two results for the first event don't make up for the missing result
+        # of the second event.
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
