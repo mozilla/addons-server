@@ -39,7 +39,6 @@ from olympia.constants.scanners import (
     NARC,
     RUNNING,
     SCANNER_RESULTS_MISSING_RULE_NAME,
-    SCANNERS,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
@@ -396,89 +395,6 @@ def _call_webhook(*, webhook, payload, request_id):
         raise ValueError(data)
 
     return data
-
-
-def run_scanner(results, upload_pk, scanner, api_url, api_key):
-    """
-    Run a scanner on a FileUpload via RPC and store the results.
-
-    - `results` are the validation results passed in the validation chain. This
-       task is a validation task, which is why it must receive the validation
-       results as first argument.
-    - `upload_pk` is the FileUpload ID.
-    """
-    scanner_name = SCANNERS.get(scanner)
-    log.info('Starting scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
-
-    upload = FileUpload.objects.get(pk=upload_pk)
-
-    try:
-        if not os.path.exists(upload.file_path):
-            raise ValueError(f'FileUpload "{upload.file_path}" does not exist.')
-
-        scanner_result = ScannerResult(upload=upload, scanner=scanner)
-
-        with statsd.timer(f'devhub.{scanner_name}'):
-            _run_scanner_for_url(
-                scanner_result,
-                upload.get_authenticated_download_url(),
-                scanner,
-                api_url,
-                api_key,
-            )
-
-        scanner_result.save()
-
-        if scanner_result.has_matches:
-            statsd.incr(f'devhub.{scanner_name}.has_matches')
-            for scanner_rule in scanner_result.matched_rules.all():
-                statsd.incr(f'devhub.{scanner_name}.rule.{scanner_rule.id}.match')
-
-        statsd.incr(f'devhub.{scanner_name}.success')
-        log.info('Ending scanner "%s" task for FileUpload %s.', scanner_name, upload_pk)
-    except Exception:
-        statsd.incr(f'devhub.{scanner_name}.failure')
-        log.exception(
-            'Error in scanner "%s" task for FileUpload %s.', scanner_name, upload_pk
-        )
-        if not waffle.switch_is_active('ignore-exceptions-in-scanner-tasks'):
-            raise
-
-    return results
-
-
-def _run_scanner_for_url(scanner_result, url, scanner, api_url, api_key):
-    """
-    Inner function to run a scanner on a particular URL via RPC and add results
-    to the given scanner_result. The caller is responsible for saving the
-    scanner_result to the database.
-    """
-    with requests.Session() as http:
-        adapter = make_adapter_with_retry()
-        http.mount('http://', adapter)
-        http.mount('https://', adapter)
-
-        json_payload = {
-            'api_key': api_key,
-            'download_url': url,
-        }
-        response = http.post(
-            url=api_url,
-            json=json_payload,
-            timeout=settings.SCANNER_TIMEOUT,
-            headers={'Authorization': f'Bearer {api_key}'},
-        )
-
-    try:
-        data = response.json()
-    except ValueError as exc:
-        # Log the response body when JSON decoding has failed.
-        raise ValueError(response.text) from exc
-
-    if response.status_code != 200 or 'error' in data:
-        raise ValueError(data)
-
-    scanner_result.results = data
 
 
 @task
