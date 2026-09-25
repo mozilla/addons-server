@@ -9,9 +9,7 @@ from django.test.utils import override_settings
 
 import pytest
 import requests
-import waffle
 from celery.exceptions import Retry
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import (
@@ -1902,13 +1900,9 @@ class TestRunYara(UploadMixin, TestCase):
         assert len(yara_result.results) == 0
 
     @mock.patch('yara_x.Compiler.build')
-    @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_run_does_not_raise(
-        self, incr_mock, yara_compile_mock, yara_x_compile_mock
-    ):
+    def test_run_does_not_raise(self, incr_mock, yara_x_compile_mock):
         self.create_switch('ignore-exceptions-in-scanner-tasks', active=True)
-        yara_compile_mock.side_effect = Exception()
         yara_x_compile_mock.side_effect = Exception()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
@@ -1921,10 +1915,8 @@ class TestRunYara(UploadMixin, TestCase):
         assert received_results == self.results
 
     @mock.patch('yara_x.Compiler.build')
-    @mock.patch('yara.compile')
     @mock.patch('olympia.scanners.tasks.statsd.incr')
-    def test_throws_errors(self, incr_mock, yara_compile_mock, yara_x_compile_mock):
-        yara_compile_mock.side_effect = RuntimeError()
+    def test_throws_errors(self, incr_mock, yara_x_compile_mock):
         yara_x_compile_mock.side_effect = RuntimeError()
 
         # We use `_run_yara()` because `run_yara()` is decorated with
@@ -1942,12 +1934,12 @@ class TestRunYara(UploadMixin, TestCase):
         assert timer_mock.called
         timer_mock.assert_called_with('devhub.yara')
 
-    @mock.patch('yara.compile')
-    def test_does_not_run_when_results_contain_errors(self, yara_compile_mock):
+    @mock.patch('yara_x.Compiler')
+    def test_does_not_run_when_results_contain_errors(self, yara_x_compiler_mock):
         self.results.update({'errors': 1})
         received_results = run_yara(self.results, self.upload.pk)
 
-        assert not yara_compile_mock.called
+        assert not yara_x_compiler_mock.called
         # The task should always return the results.
         assert received_results == self.results
 
@@ -1979,9 +1971,6 @@ class TestRunYara(UploadMixin, TestCase):
         # The task should always return the results.
         assert received_results == self.results
 
-
-@override_switch(name='use-yara-x', active=True)
-class TestRunYaraX(TestRunYara):
     def test_amo_module(self):
         self.upload = self.get_upload('webextension.xpi')
         rule = ScannerRule.objects.create(
@@ -2428,8 +2417,6 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
             name='always_false',
             state=RUNNING,
         )
-        # Force waffle switch to be cached to not affect queries count.
-        waffle.switch_is_active('use-yara-x')
         with self.assertNumQueries(3):
             # - 1 for the rule
             # - 1 for all promoted addon info (prefetched even if no match)
@@ -2457,8 +2444,6 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
             addon=extra_addon2_version1.addon, file_kw={'filename': 'webextension.xpi'}
         )
         self.rule.update(state=RUNNING)
-        # Force waffle switch to be cached to not affect queries count.
-        waffle.switch_is_active('use-yara-x')
         with self.assertNumQueries(4):
             # - 1 for the rule
             # - 1 for all versions + file
@@ -2474,11 +2459,6 @@ class TestRunYaraQueryRule(TestRunQueryRuleMixin, TestCase):
                 self.rule.pk,
             )
         assert ScannerQueryResult.objects.count() == 4
-
-
-@override_switch(name='use-yara-x', active=True)
-class TestRunYaraXQueryRule(TestRunYaraQueryRule):
-    pass
 
 
 class TestRunNarcQueryRule(TestRunQueryRuleMixin, TestCase):
