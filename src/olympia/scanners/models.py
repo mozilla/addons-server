@@ -10,8 +10,6 @@ from django.db.transaction import atomic
 from django.utils.functional import classproperty
 
 import regex
-import waffle
-import yara
 import yara_x
 from django_jsonform.models.fields import JSONField as JSONFormJSONField
 
@@ -283,18 +281,12 @@ class AbstractScannerRule(ModelBase):
             )
 
         try:
-            if waffle.switch_is_active('use-yara-x'):
-                compiler = yara_x.Compiler()
-                for name, value in self.get_yara_externals().items():
-                    compiler.define_global(name, value)
-                compiler.add_source(self.definition)
-                compiler.build()
-            else:
-                yara.compile(
-                    source=self.definition,
-                    externals=self.get_yara_externals(),
-                )
-        except (yara_x.CompileError, yara.SyntaxError) as syntaxError:
+            compiler = yara_x.Compiler()
+            for name, value in self.get_yara_externals().items():
+                compiler.define_global(name, value)
+            compiler.add_source(self.definition)
+            compiler.build()
+        except yara_x.CompileError as syntaxError:
             raise ValidationError(
                 {
                     'definition': 'The definition is not valid: %(error)s'

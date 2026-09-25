@@ -4,7 +4,7 @@ import itertools
 import json
 import os
 import uuid
-from collections import defaultdict, namedtuple
+from collections import defaultdict
 
 from django.conf import settings
 from django.db.models import F
@@ -14,7 +14,6 @@ from django.urls import reverse
 import regex
 import requests
 import waffle
-import yara
 import yara_x
 from django_statsd.clients import statsd
 from requests.adapters import HTTPAdapter
@@ -768,53 +767,28 @@ def _run_yara_for_path(scanner_result, path, definition=None):
 
         zip_file = SafeZip(source=path, ignore_filename_errors=True)
 
-        if waffle.switch_is_active('use-yara-x'):
-            compiler = yara_x.Compiler()
-            # Initialize the global variables (externals).
-            for k, v in externals.items():
-                compiler.define_global(k, v)
-            # Add the yara rule definition.
-            compiler.add_source(definition)
-            # Create a scanner instance so that we can override the externals
-            # per file (in the `_scan()` function).
-            scanner = yara_x.Scanner(compiler.build())
-            options = yara_x.ScanOptions()
-            options.set_module_metadata(
-                'amo',
-                json.dumps(
-                    {
-                        'manifest': (
-                            ManifestJSONExtractor(zip_file.read('manifest.json')).data
-                            if zip_file.exists('manifest.json')
-                            else {}
-                        )
-                    }
-                ).encode('utf-8'),
-            )
-
-            def _scan(data, externals):
-                for k, v in externals.items():
-                    scanner.set_global(k, v)
-                # Return an array of tuples that is compatible with the
-                # (legacy) yara matches.
-                LegacyYaraMatch = namedtuple(
-                    'LegacyYaraMatch',
-                    ['rule', 'meta', 'tags'],
-                )
-                return [
-                    LegacyYaraMatch(
-                        rule=match.identifier,
-                        meta=dict(match.metadata),
-                        tags=match.tags,
+        compiler = yara_x.Compiler()
+        # Initialize the global variables (externals).
+        for k, v in externals.items():
+            compiler.define_global(k, v)
+        # Add the yara rule definition.
+        compiler.add_source(definition)
+        # Create a scanner instance so that we can override the externals per
+        # file (in the loop below).
+        scanner = yara_x.Scanner(compiler.build())
+        options = yara_x.ScanOptions()
+        options.set_module_metadata(
+            'amo',
+            json.dumps(
+                {
+                    'manifest': (
+                        ManifestJSONExtractor(zip_file.read('manifest.json')).data
+                        if zip_file.exists('manifest.json')
+                        else {}
                     )
-                    for match in scanner.scan_with_options(data, options).matching_rules
-                ]
-
-        else:
-            rules = yara.compile(source=definition, externals=externals)
-
-            def _scan(data, externals):
-                return rules.match(data=data, externals=externals)
+                }
+            ).encode('utf-8'),
+        )
 
         for zip_info in zip_file.info_list:
             if not zip_info.is_dir():
@@ -828,11 +802,16 @@ def _run_yara_for_path(scanner_result, path, definition=None):
                     '_locales/'
                 ) and filename.endswith('/messages.json')
 
-                for match in _scan(data=file_content, externals=externals):
+                for k, v in externals.items():
+                    scanner.set_global(k, v)
+
+                for match in scanner.scan_with_options(
+                    file_content, options
+                ).matching_rules:
                     # Also add the filename to the meta dict in results.
-                    meta = {**match.meta, 'filename': filename}
+                    meta = {**dict(match.metadata), 'filename': filename}
                     scanner_result.add_yara_result(
-                        rule=match.rule, tags=match.tags, meta=meta
+                        rule=match.identifier, tags=match.tags, meta=meta
                     )
         zip_file.close()
 
