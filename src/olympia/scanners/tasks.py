@@ -43,7 +43,6 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
     YARA,
@@ -281,10 +280,11 @@ def is_waiting_on_scanner_webhook_events(*, version, event_ids):
     default_retry_delay=settings.SCANNER_WEBHOOK_RETRY_DELAY,
 )
 @use_primary_db
-def wait_for_scanner_results(self, version_pk):
-    """Call the webhooks that still owe us results again, retrying at a fixed
-    interval until they answer, then record artificial results matching the
-    SCANNER_RESULTS_MISSING rule to stop waiting."""
+def wait_for_scanner_results(self, version_pk, event_ids):
+    """Call the webhooks subscribed to `event_ids` that still owe us results
+    again, retrying at a fixed interval until they answer, then record
+    artificial results matching the SCANNER_RESULTS_MISSING rule to stop
+    waiting."""
     if waffle.switch_is_active('disable-wait-for-scanner-results'):
         log.info(
             'Not waiting for scanner results for version %s, switch is active.',
@@ -293,9 +293,7 @@ def wait_for_scanner_results(self, version_pk):
         return
 
     version = Version.unfiltered.get(pk=version_pk)
-    events = ScannerWebhookEvent.to_wait_for(
-        version=version, event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL
-    )
+    events = ScannerWebhookEvent.to_wait_for(version=version, event_ids=event_ids)
     pending = [
         scanner_result
         for scanner_result in ScannerResult.objects.filter(

@@ -33,6 +33,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
     WEBHOOK_PUSH,
@@ -3110,7 +3111,10 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
         return ScannerResult.objects.create(scanner=WEBHOOK, **kwargs)
 
     def _run_task(self, retries=0):
-        return wait_for_scanner_results.apply(args=(self.version.pk,), retries=retries)
+        return wait_for_scanner_results.apply(
+            args=(self.version.pk, WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL),
+            retries=retries,
+        )
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
     def test_nothing_to_do_when_results_are_complete(self, _call_webhook_mock):
