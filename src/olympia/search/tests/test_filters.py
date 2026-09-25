@@ -49,8 +49,9 @@ class TestQueryFilter(FilterTestsBase):
 
     def _test_q(self, qs, query):
         should = qs['query']['function_score']['query']['bool']['should']
+        sentinel_query = f'{amo.SENTINEL_BEGIN} {query} {amo.SENTINEL_END}'
 
-        assert len(should) == 8
+        assert len(should) == 9
 
         assert should[0] == {
             'dis_max': {
@@ -68,6 +69,50 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         assert should[1] == {
+            'bool': {
+                '_name': 'Bool(AnalyzedExactName, !ExactName)',
+                'must': [
+                    {
+                        'dis_max': {
+                            '_name': (
+                                'DisMax(MatchPhrase(name_exact_sentinel), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-us), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-ca), '
+                                'MatchPhrase(name_exact_sentinel_l10n_en-gb))'
+                            ),
+                            'boost': 50.0,
+                            'queries': [
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-us': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-ca': sentinel_query
+                                    }
+                                },
+                                {
+                                    'match_phrase': {
+                                        'name_exact_sentinel_l10n_en-gb': sentinel_query
+                                    }
+                                },
+                            ],
+                        }
+                    }
+                ],
+                # An add-on that already matches exactly gets should[0]'s
+                # boost only, not both.
+                'must_not': [should[0]],
+            }
+        }
+
+        assert should[2] == {
             'multi_match': {
                 '_name': 'MultiMatch(name_l10n_en-us,name_l10n_en-ca,name_l10n_en-gb)',
                 'analyzer': 'english',
@@ -78,7 +123,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[2] == {
+        assert should[3] == {
             'match_phrase': {
                 'name': {
                     '_name': 'MatchPhrase(name)',
@@ -89,7 +134,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[3] == {
+        assert should[4] == {
             'match': {
                 'name': {
                     '_name': 'Match(name)',
@@ -101,11 +146,11 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[4] == {
+        assert should[5] == {
             'prefix': {'name': {'_name': 'Prefix(name)', 'value': query, 'boost': 3.0}}
         }
 
-        assert should[5] == {
+        assert should[6] == {
             'dis_max': {
                 '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))',
                 'boost': 4.0,
@@ -132,7 +177,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[6] == {
+        assert should[7] == {
             'multi_match': {
                 '_name': 'MultiMatch(Match(summary), '
                 'Match(summary_l10n_en-us), '
@@ -150,7 +195,7 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
-        assert should[7] == {
+        assert should[8] == {
             'multi_match': {
                 '_name': 'MultiMatch(Match(description), '
                 'Match(description_l10n_en-us), '
@@ -255,7 +300,9 @@ class TestQueryFilter(FilterTestsBase):
     def test_q_single_word_no_phrase(self):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
-        assert len(should) == 7
+        assert len(should) == 8
+        # Only MatchPhrase(name) is skipped for single-word queries. The
+        # analyzed exact match keeps its phrase query, nested inside a bool.
         for conditions in should:
             assert 'match_phrase' not in conditions
 
@@ -406,6 +453,58 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         assert expected in should
+
+    def test_q_analyzed_exact_match_without_language_analyzer(self):
+        """Without an analyzer, only the default-locale field is queried.
+        _test_q() covers the rest."""
+        with translation.override('mn'):
+            qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        assert should[1] == {
+            'bool': {
+                '_name': 'Bool(AnalyzedExactName, !ExactName)',
+                'must': [
+                    {
+                        'match_phrase': {
+                            'name_exact_sentinel': {
+                                '_name': 'MatchPhrase(name_exact_sentinel)',
+                                'query': (
+                                    f'{amo.SENTINEL_BEGIN} adblock plus '
+                                    f'{amo.SENTINEL_END}'
+                                ),
+                                'boost': 50.0,
+                            }
+                        }
+                    }
+                ],
+                'must_not': [
+                    {
+                        'term': {
+                            'name.raw': {
+                                'value': 'adblock plus',
+                                'boost': 100.0,
+                                '_name': 'Term(name.raw)',
+                            }
+                        }
+                    }
+                ],
+            }
+        }
+
+    def test_q_no_letters_or_digits_skips_analyzed_exact_match(self):
+        """Such a query analyzes to nothing, so the clause would match any name
+        that also analyzes to nothing. Underscores are word characters, but the
+        analyzer drops them all the same."""
+        for query in ('???', '_'):
+            qs = self._filter(data={'q': query})
+            should = qs['query']['function_score']['query']['bool']['should']
+
+            assert not any(
+                conditions.get('bool', {}).get('_name')
+                == 'Bool(AnalyzedExactName, !ExactName)'
+                for conditions in should
+            ), query
 
 
 class TestReviewedContentFilter(FilterTestsBase):
