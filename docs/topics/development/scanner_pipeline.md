@@ -545,5 +545,21 @@ Actions are executed by `ScannerResult.run_actions()`, which is called:
 - when narc re-scans a version and finds new matches, over every rule matched
   on that version.
 
+## Good to know
+
+- Saving a scanner webhook in the admin, even without changing anything, stops
+  every version created before that save from waiting on its results (they may
+  still wait on other scanners). We only wait on webhook scanners that haven't
+  been modified after the version was created, so that enabling a scanner
+  doesn't block versions that were uploaded before. The version gets
+  auto-approved (or not) on the next run of the auto-approval cron job, and the
+  pipeline stops [calling the webhook scanner again](#scanner-delivery-retries)
+  for it.
+- In case of emergency, the `disable-check-is-waiting-on-scanners` waffle switch
+  makes versions stop waiting on scanners altogether: the auto-approval cron
+  job runs the [scanner actions](#scanner-actions) with whatever results are
+  available and attempts to auto-approve the versions right away. This switch
+  isn't created by a migration, so it has to be added in the admin first.
+
 [addons-scanner-utils]: https://github.com/mozilla/addons-scanner-utils
 [hmac]: https://en.wikipedia.org/wiki/HMAC
