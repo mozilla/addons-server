@@ -56,6 +56,9 @@ from .models import (
 from .tasks import run_scanner_query_rule
 
 
+SERVICE_ACCOUNT_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1VdiUAoluolqZIwvMZebaJIMqPbdewwiD-S8Z2g7gx08'
+
+
 @admin.display(description='Matched Rules')
 def formatted_matched_rules_with_files_and_data(
     obj,
@@ -1118,3 +1121,12 @@ class ScannerWebhookAdmin(AMOModelAdmin):
                 )
             except Exception:  # noqa: S110 (best-effort display of one-time JWT keys)
                 pass
+            messages.add_message(
+                request,
+                messages.INFO,
+                format_html(
+                    'You must add this new webhook account to the '
+                    '<a href="{}">service account sheet</a>.',
+                    SERVICE_ACCOUNT_SHEET_URL,
+                ),
+            )
