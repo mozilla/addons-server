@@ -663,8 +663,8 @@ class Version(OnChangeMixin, ModelBase):
         upload_time = now_ts - upload_start
 
         log.info(
-            f'Time for version {version} creation from upload: {upload_time}; '
-            f'created={upload.created}; now={now}'
+            f'Time for version {version!r} ({version.pk}) creation from upload '
+            f'{upload!r}: {upload_time}; created={upload.created}; now={now}'
         )
         statsd.timing('devhub.version_created_from_upload', upload_time)
         statsd.incr(
