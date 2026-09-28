@@ -1,5 +1,12 @@
 import { KnipConfig } from "knip";
 
+// vite.config.ts validates these env vars at load time via zod. Knip evaluates
+// the vite config as part of its analysis, outside of a build environment, so
+// provide harmless defaults to let the config load. Real builds set these.
+process.env.ENV ??= "local";
+process.env.STATIC_URL_PREFIX ??= "/static/";
+process.env.VITE_MANIFEST_FILE_NAME ??= "manifest.json";
+
 const CSS_IMPORT_REGEX = /@import\s*(?:url\()?(?:\([^)]*\)\s*)?["']([^"']+)["'](?:\))?/g;
 
 function compileLess(text: string): string {
@@ -26,10 +33,13 @@ export default {
   vite: true,
   vitest: true,
   eslint: true,
+  ignoreBinaries: [
+    // Invoked by tests/make/make.spec.js to exercise the Makefile targets
+    "make",
+  ],
   ignoreDependencies: [
     "addons-linter",
     // Disable rules causing errors
-    "esbuild",  // Used by vite through configuration
     "jqmodal",
     "jquery-pjax",
     "source-map",
