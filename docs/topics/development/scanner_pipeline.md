@@ -5,11 +5,11 @@ The scanner pipeline is a security feature to run scanners.
 ## Scanner Webhooks
 
 A scanner webhook is essentially a URL to a service subscribed to events that
-occur on AMO. These webhooks are registed in the AMO (django) admin.
+occur on AMO. These webhooks are registered in the AMO (django) admin.
 
 When a [scanner webhook event](#scanner-webhook-events) occurs, AMO will send an
 HTTP request to each webhook subscribed to this event. The payload sent to the
-webook depends on the event, but always includes:
+webhook depends on the event, but always includes:
 
 - `event`: the name of the event
 - `scanner_result_url`: the URL of the [scanner result](#scanner-results) that
@@ -19,7 +19,7 @@ Each service registered as a scanner webhook must be protected with a shared
 secret (api) key. Read [the authentication section](#scanners-authentication)
 for more information.
 
-Every webhook call includes a `X-AMO-Request-ID` header carrying a unique id
+Every webhook call includes an `X-AMO-Request-ID` header carrying a unique id
 generated for each webhook call. Scanners are encouraged to log it and include
 it in their own logs so a single webhook call can be correlated across AMO and
 the scanner service.
@@ -62,10 +62,12 @@ determines how AMO handles the response:
 | ---------------- | ------------------------------------------------------------------- |
 | `200 OK`         | Results returned synchronously in the response body                 |
 | `202 Accepted`   | Scanner acknowledged the event and will send results asynchronously |
-| `204 No Content` | Scanner skipped the event; no results will be stored                |
+| `204 No Content` | Scanner skipped the event and is considered done with it            |
 
-Any other status code or a response body containing an `error` field is
-unsupported and/or likely to be treated as a failure.
+Any other status code, or a response body containing an `error` field, is
+treated as a failure: no results are stored and, for events blocking
+auto-approval, the scanner webhook is [called again](#scanner-delivery-retries)
+later.
 
 (synchronous-response)=
 #### Synchronous response
@@ -73,7 +75,9 @@ unsupported and/or likely to be treated as a failure.
 Scanners can return a JSON response immediately that contains the following fields:
 
 - `version`: the scanner version
-- `matchedRules`: an array of matched rule identifiers (string)
+- `matchedRules`: an array of matched rule identifiers (string). This field is
+  required, even when empty: a scanner result without it is considered
+  incomplete (see [delivery retries](#scanner-delivery-retries))
 - `annotations` _(optional)_: a map of rule name to a list of annotation
   objects. See [Annotations](#scanner-annotations) for details.
 
@@ -86,7 +90,7 @@ payload. This is useful for long-running scans.
 
 To send results asynchronously:
 
-1. The scanner receives a webhook call with a `scanner_result_url` in the payload
+1. The scanner receives a webhook event with a `scanner_result_url` in the payload
 2. The scanner returns a quick acknowledgment (e.g., HTTP 202 Accepted with body
    `{}` or `{"ok": true}`)
 3. The scanner performs its analysis
@@ -113,8 +117,8 @@ response would return.
 
 Scanners can use the `204 No Content` HTTP status code to indicate that they
 intentionally skipped the event (e.g., the event is not relevant for this
-scanner). No results will be stored for the scanner result associated with this
-event.
+scanner). The `results` of the scanner result associated with this event are
+left empty (`null`), and the scanner is considered done with the event.
 
 (scanner-delivery-retries)=
 ### Delivery retries
@@ -123,10 +127,10 @@ A version is not auto-approved until every scanner blocking its auto-approval
 is done with it, i.e. it [skipped the event](#skipping-an-event) or sent its
 `matchedRules`.
 
-When some results are still missing two hours after the version was created,
-the `wait_for_scanner_results` task calls the corresponding webhooks again with
-the same payload, and keeps doing so every two hours, up to 12 times. The last
-retry therefore happens 24 hours after the version was created.
+When some results are still missing two hours after the version was created, the
+`wait_for_scanner_results` task calls the corresponding scanner webhooks again
+with the same payload, and keeps doing so every two hours, up to 12 times. The
+last retry therefore happens 24 hours after the version was created.
 
 Once the retries are exhausted, or when the payload can no longer be rebuilt
 (e.g., the uploaded file a `during_validation` payload points to is gone), AMO
@@ -140,7 +144,9 @@ records artificial results matching the special `SCANNER_RESULTS_MISSING`
 ```
 
 The version then stops waiting on that scanner, and whichever
-[action](#scanner-actions) is configured on that rule applies.
+[action](#scanner-actions) is configured on that rule applies. This rule is
+created by a migration with no action, so by default the version only stops
+waiting.
 
 (scanner-annotations)=
 ### Annotations
@@ -226,7 +232,7 @@ const handler = (req, res) => {
   console.log({ data: req.body });
 
   // Option 1: Synchronous response
-  res.json({ version: pkg.version });
+  res.json({ version: pkg.version, matchedRules: [] });
 
   // Option 2: Asynchronous response (for long-running scans)
   // res.status(202).json({ ok: true });
@@ -507,10 +513,14 @@ may be attached to is not enforced a second time.
    name must start with `WEBHOOK_`. Make sure the new constant is registered in
    `WEBHOOK_EVENTS` (in the same file).
 2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_id,
-payload, upload=none, version=None, activity_log=None)`. Make sure this task
+   payload, upload=None, version=None, activity_log=None)`. Make sure this task
    is assigned to a queue in `src/olympia/lib/settings_base.py`.
 3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
-4. Update this documentation page.
+4. If versions should not be auto-approved until the scanners subscribed to the
+   new event are done, add the event to `WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL`
+   and make `build_webhook_payload()` return its payload, so that the webhooks
+   can be [called again](#scanner-delivery-retries).
+5. Update this documentation page.
 
 (scanner-results)=
 ## Scanner Results
@@ -549,11 +559,11 @@ Actions are executed by `ScannerResult.run_actions()`, which is called:
 
 - Saving a scanner webhook in the admin, even without changing anything, stops
   every version created before that save from waiting on its results (they may
-  still wait on other scanners). We only wait on webhook scanners that haven't
+  still wait on other scanners). We only wait on scanner webhooks that haven't
   been modified after the version was created, so that enabling a scanner
   doesn't block versions that were uploaded before. The version gets
   auto-approved (or not) on the next run of the auto-approval cron job, and the
-  pipeline stops [calling the webhook scanner again](#scanner-delivery-retries)
+  pipeline stops [calling the scanner webhook again](#scanner-delivery-retries)
   for it.
 - In case of emergency, the `disable-check-is-waiting-on-scanners` waffle switch
   makes versions stop waiting on scanners altogether: the auto-approval cron
