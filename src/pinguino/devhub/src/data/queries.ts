@@ -2,11 +2,10 @@
 // branch in one place. Components attach these controllers and read reactive
 // { data, isPending, isError } — they never call fetch or manage loading state.
 
-import type { QueryObserverResult } from '@tanstack/lit-query';
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { fetchAddons, fetchProfile, fetchUpdates } from './api';
-import { apiConfigured, author } from './http';
+import { apiConfigured } from './http';
 import { developer, mockAddons, mockUpdates } from './mock';
 import { queryClient } from './query-client';
 import type { Addon } from './types';
@@ -15,8 +14,8 @@ import type { Addon } from './types';
 // key so navigating to a detail view reuses the cached list, not a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
-  addons: ['addons', author] as const,
-  updates: (versionIds: number[]) => ['updates', ...versionIds] as const,
+  addons: ['addons'] as const,
+  updates: ['updates'] as const,
 };
 
 // The signed-in developer. Session-lived, so it survives navigation without a
@@ -64,27 +63,16 @@ export function addonQuery(
   );
 }
 
-// Updates depend on the add-on list, so this reads the add-ons result and only
-// runs once it has settled. The options getter re-runs on host updates, so it
-// enables itself when the add-ons query resolves.
-export function updatesQuery(
-  host: ReactiveControllerHost,
-  getAddons: () => QueryObserverResult<Addon[]>,
-) {
+// The activity feed is a single endpoint scoped to the session, independent of
+// the add-on list.
+export function updatesQuery(host: ReactiveControllerHost) {
   return createQueryController(
     host,
-    () => {
-      const { data = [], isSuccess } = getAddons();
-      const versionIds = data
-        .map((a) => a.versionId)
-        .filter((v): v is number => v != null);
-      return {
-        queryKey: queryKeys.updates(versionIds),
-        queryFn: () =>
-          apiConfigured ? fetchUpdates(data) : Promise.resolve(mockUpdates),
-        enabled: isSuccess,
-      };
-    },
+    () => ({
+      queryKey: queryKeys.updates,
+      queryFn: () =>
+        apiConfigured ? fetchUpdates() : Promise.resolve(mockUpdates),
+    }),
     queryClient,
   );
 }

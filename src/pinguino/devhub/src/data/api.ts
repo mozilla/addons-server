@@ -2,10 +2,15 @@
 // the v5 response onto our domain types. Caching, dedup, and lifetime live in
 // the query layer (./queries), not here.
 
-import { apiFetch, author } from './http';
+import { apiFetch } from './http';
 import type { Addon, AddonKind, Developer, Update } from './types';
 
-// The subset of an AMO v5 addon search result we read.
+// Paginated envelope shared by the AMO v5 list endpoints.
+interface Paginated<T> {
+  results?: T[];
+}
+
+// The subset of an AMO v5 add-on we read (from /addons/addon/).
 interface ApiAddon {
   slug: string;
   name: string | Record<string, string>;
@@ -13,16 +18,18 @@ interface ApiAddon {
   status?: string;
   is_disabled?: boolean;
   last_updated?: string;
-  current_version?: { id?: number; version?: string };
+  icon_url?: string;
+  previews?: { image_url?: string; thumbnail_url?: string }[];
+  current_version?: { version?: string };
 }
 
-// The subset of an AMO v5 reviewnotes (ActivityLog) entry we read.
+// The subset of an AMO v5 activity-feed entry we read (from /activity/).
 interface ApiActivity {
   id: number;
-  action?: string;
-  action_label?: string;
+  title?: string;
   comments?: string;
   date?: string;
+  versions?: { version?: string }[];
 }
 
 // The current account, from /accounts/profile/. `name` already falls back to a
@@ -50,6 +57,7 @@ function formatDate(iso: string | undefined): string {
 function mapAddon(a: ApiAddon): Addon {
   const kind: AddonKind = a.type === 'statictheme' ? 'theme' : 'extension';
   const live = a.status === 'public' && !a.is_disabled;
+  const preview = a.previews?.[0];
   return {
     slug: a.slug,
     name: localized(a.name),
@@ -61,26 +69,27 @@ function mapAddon(a: ApiAddon): Addon {
         : 'Live add-on'
       : (a.status ?? 'Unknown'),
     version: a.current_version?.version ?? '—',
-    versionId: a.current_version?.id,
     lastUpdated: formatDate(a.last_updated),
     visibility: live ? 'live' : 'hidden',
-    // Distribution isn't exposed by the search API yet; default until it is.
+    // Distribution isn't exposed by the list API yet; default until it is.
     distribution: 'amo',
+    iconUrl: a.icon_url,
+    previewUrl: preview?.image_url ?? preview?.thumbnail_url,
   };
 }
 
-function mapActivity(a: ApiActivity, addon: Addon): Update {
-  const label = a.action_label ?? a.action ?? 'Update';
-  // Best-effort: the RSS/activity log has no explicit approved flag, so infer it
-  // from the action name (see the backend TODO on fetchUpdates).
-  const approved = /approv|public/i.test(a.action ?? label);
+function mapActivity(a: ApiActivity): Update {
+  const title = a.title ?? 'Update';
+  // Best-effort: the feed has no explicit approved flag, so infer it from the
+  // human-readable title/comments. Revisit if the API adds a status field.
+  const approved = /approv/i.test(`${title} ${a.comments ?? ''}`);
   return {
-    id: `${addon.slug}-${a.id}`,
+    id: String(a.id),
     approved,
-    title: `Your version is ${approved ? 'approved' : 'flagged'}.`,
-    message: a.comments || label,
-    version: addon.version,
-    versionStatus: label,
+    title,
+    message: a.comments ?? '',
+    version: a.versions?.[0]?.version ?? '',
+    versionStatus: approved ? 'Approved' : '',
     tags: [],
     date: formatDate(a.date),
   };
@@ -91,33 +100,18 @@ export async function fetchProfile(): Promise<Developer> {
   return { name: data.display_name || data.name || data.username || '' };
 }
 
+// Lists the add-ons the authenticated session owns; no author param needed.
 export async function fetchAddons(): Promise<Addon[]> {
-  const path = `/addons/search/?author=${encodeURIComponent(author)}&lang=en-US&page_size=50`;
-  const data = await apiFetch<{ results?: ApiAddon[] }>(path);
+  const data = await apiFetch<Paginated<ApiAddon>>(
+    '/addons/addon/?lang=en-US&page_size=50',
+  );
   return (data.results ?? []).map(mapAddon);
 }
 
-// TODO(backend): this builds the updates feed by fetching each add-on's current
-// version's review notes (one request per add-on) and inferring approved/flagged
-// from the action label. It should be replaced by a single JSON developer-activity
-// endpoint — the same ActivityLog query behind /developers/feed, serialized like
-// reviewnotes — giving one request, real structure (status/date/version), and CORS.
-export async function fetchUpdates(addons: Addon[]): Promise<Update[]> {
-  const withVersions = addons.filter((a) => a.versionId != null);
-  const perAddon = await Promise.all(
-    withVersions.map(async (addon) => {
-      const path = `/addons/addon/${encodeURIComponent(addon.slug)}/versions/${addon.versionId}/reviewnotes/`;
-      const data = await apiFetch<{ results?: ApiActivity[] }>(path);
-      return (data.results ?? []).map((a) => ({ activity: a, addon }));
-    }),
+// The authenticated user's activity across all their add-ons, in one request.
+export async function fetchUpdates(): Promise<Update[]> {
+  const data = await apiFetch<Paginated<ApiActivity>>(
+    '/activity/?lang=en-US&page_size=50',
   );
-  return (
-    perAddon
-      .flat()
-      // ISO 8601 dates sort lexicographically, so newest-first by the raw date.
-      .sort((x, y) =>
-        (y.activity.date ?? '').localeCompare(x.activity.date ?? ''),
-      )
-      .map(({ activity, addon }) => mapActivity(activity, addon))
-  );
+  return (data.results ?? []).map(mapActivity);
 }

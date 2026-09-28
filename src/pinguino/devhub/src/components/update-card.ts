@@ -64,9 +64,15 @@ export class UpdateCard extends LitElement {
         <p class="message">${u.message}</p>
         <div class="foot">
           <span>Version ${u.version}</span>
-          <moz-status-badge type=${u.approved ? 'success' : 'warning'}>
-            ${u.versionStatus}
-          </moz-status-badge>
+          ${
+            u.versionStatus
+              ? html`
+                <moz-status-badge type=${u.approved ? 'success' : 'warning'}>
+                  ${u.versionStatus}
+                </moz-status-badge>
+              `
+              : undefined
+          }
           ${u.tags.map((t) => html`<span>${t}</span>`)}
           <span>${u.date}</span>
         </div>

@@ -11,7 +11,7 @@ import { addonsQuery, profileQuery, updatesQuery } from '../data';
 export class DevhubHome extends LitElement {
   #profile = profileQuery(this);
   #addons = addonsQuery(this);
-  #updates = updatesQuery(this, () => this.#addons());
+  #updates = updatesQuery(this);
 
   static styles = css`
     :host {

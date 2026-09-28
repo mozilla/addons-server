@@ -46,7 +46,13 @@ The Router intercepts same-origin `<a>` clicks (across shadow DOM) and pushes hi
 
 UI is built from Mozilla's [`@mozilla/acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
 
-While acorn is in alpha it's published to GitHub Packages, not the public npm registry. `.npmrc` maps the `@mozilla` scope there, and GitHub Packages requires a `read:packages` token even for public packages. Provide it as `NODE_AUTH_TOKEN`: put `NODE_AUTH_TOKEN=<token>` in the repo-root `.env` (gitignored), and `make up` passes it to the `pinguino` service so its `npm ci` can install acorn. (Only needed locally as pinguino isn't built into the production image; see below.)
+While acorn is in alpha it's published to GitHub Packages, not the public npm registry. `.npmrc` maps the `@mozilla` scope there, and GitHub Packages requires a `read:packages` token even for public packages. Provide it as `NODE_AUTH_TOKEN` in your **shell environment** before `make up`:
+
+```sh
+export NODE_AUTH_TOKEN=<github token with read:packages>
+```
+
+docker compose interpolates `${NODE_AUTH_TOKEN}` from the shell into the `pinguino` service so its `npm ci` can install acorn. Don't put it in the repo-root `.env`: `make up` regenerates that file (`scripts/setup.py` rewrites it from its own known keys), so a hand-added token is dropped on the next run. For host-side installs (editor tooling), export the same token before running `npm install` in this directory. (Only needed locally as pinguino isn't built into the production image; see below.)
 
 Track the alpha with `npm add @mozilla/acorn-web-components@alpha`.
 
@@ -55,16 +61,15 @@ Track the alpha with `npm add @mozilla/acorn-web-components@alpha`.
 Data access is a three-layer stack under `src/data/`, exposed through the `src/data/index.ts` barrel. Components attach query controllers and read reactive `{ data, isPending, isError }`; they never call `fetch` or track loading state themselves.
 
 - **`http.ts`** - one `apiFetch()` owning the API base URL, the session auth header, JSON parsing, and a typed `ApiError` (carries the HTTP status, ready for a 401 -> login interceptor).
-- **`api.ts`** - the AMO v5 endpoints (`fetchProfile`, `fetchAddons`, `fetchUpdates`) and the response-to-domain mappers.
+- **`api.ts`** - the AMO v5 endpoints and the response-to-domain mappers: `fetchProfile` (`/accounts/profile/`), `fetchAddons` (`/addons/addon/`, the authenticated user's own add-ons), and `fetchUpdates` (`/activity/`, their activity feed across all add-ons in one request).
 - **`query-client.ts` + `queries.ts`** - a single [`@tanstack/lit-query`](https://tanstack.com/query/latest/docs/framework/lit/overview) cache plus the query definitions: stable keys, per-query lifetimes, and the mock-vs-API branch. Caching, dedup, and invalidation live here, so shared long-lived data (e.g. the signed-in developer profile) is fetched once and reused across pages instead of re-fetched on every mount.
 
-With no API configured the app runs on the built-in mock data in `mock.ts`. To point it at a real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - separate from the repo-root `.env` that carries `NODE_AUTH_TOKEN`) and set:
+With no API configured the app runs on the built-in mock data in `mock.ts`. To point it at a real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - not the repo-root `.env`) and set:
 
-- `VITE_AMO_SESSION_ID` - a logged-in AMO session id, sent as `Authorization: Session <id>`.
-- `VITE_AMO_AUTHOR` - the author (account id or username) whose add-ons to list.
+- `VITE_AMO_SESSION_ID` - a logged-in AMO session id, sent as `Authorization: Session <id>`. The endpoints are scoped to this user, so no separate author is needed.
 - `VITE_AMO_API_BASE` - optional; defaults to same-origin `/api/v5` (local olympia via nginx).
 
-With both a session and an author set, queries hit the API and a failed request surfaces as an error state rather than silently falling back to mock data. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
+With a session set, queries hit the API and a failed request surfaces as an error state rather than silently falling back to mock data. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
 
 The [TanStack Query devtools](https://tanstack.com/query/latest/docs/framework/react/devtools) (`src/data/devtools.ts`) mount a floating panel for inspecting cache state, staleness, and refetches. They're loaded via a dynamic import behind `import.meta.env.DEV` in `main.ts`, so they run locally and are dropped from production builds.
 
@@ -81,7 +86,7 @@ A dedicated `pinguino` docker-compose service (its own `node:24-slim` image, dep
 - Pinguino (new): http://olympia.test/pinguino/
 - Classic devhub (existing): http://olympia.test/developers/
 
-Both run at once. Editing files under `src/pinguino/src/` hot-reloads the page (HMR is proxied through nginx). To work directly against the service:
+Both run at once. Editing files under `src/pinguino/devhub/src/` hot-reloads the page (HMR is proxied through nginx). To work directly against the service:
 
 ```sh
 docker compose exec pinguino npm run typecheck

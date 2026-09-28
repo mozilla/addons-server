@@ -5,7 +5,6 @@ import type { Addon, AddonDistribution, AddonVisibility } from '../data';
 
 type Badge = { label: string; icon: IconName };
 
-// acorn has no literal office/building glyph, so Enterprise uses `briefcase`.
 const VISIBILITY: Record<AddonVisibility, Badge> = {
   live: { label: 'Live', icon: 'show-password' },
   hidden: { label: 'Hidden', icon: 'show-password-slash' },
@@ -59,6 +58,17 @@ export class AddonCard extends LitElement {
       height: 10px;
       border-radius: 999px;
     }
+    .logo {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--border-radius-small, 4px);
+    }
+    .preview {
+      width: 100%;
+      height: 96px;
+      object-fit: cover;
+      border-radius: var(--border-radius-medium, 8px);
+    }
     .meta {
       display: flex;
       align-items: center;
@@ -90,18 +100,24 @@ export class AddonCard extends LitElement {
           isTheme
             ? html`
               <h2 class="name">${a.name}</h2>
-              <!-- TODO: should use proper theme image -->
-              <div class="bar" style="background: ${a.gradient};"></div>
+              ${
+                a.previewUrl
+                  ? html`<img class="preview" src=${a.previewUrl} alt="" />`
+                  : html`<div class="bar" style="background: ${a.gradient};"></div>`
+              }
             `
             : html`
               <div class="title">
-                <!-- <moz-icon name=${a.icon}></moz-icon> -->
+                ${
+                  a.iconUrl
+                    ? html`<img class="logo" src=${a.iconUrl} alt="" />`
+                    : html`<moz-icon name=${a.icon}></moz-icon>`
+                }
                 <h2 class="name">${a.name}</h2>
               </div>
             `
         }
 
-        <!-- TODO: extensions should show extension logo -->
         <div class="meta">
           <span>Status</span>
           <moz-status-badge type="success">${a.statusLabel}</moz-status-badge>
