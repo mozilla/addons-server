@@ -489,7 +489,11 @@ def _run_narc(*, scanner_result, version, rules=None):
         manifest_data = version.file.file_manifest.manifest_data
         data = {
             'name': manifest_data.get('name'),
-            'description': manifest_data.get('description'),
+            # The dictionary key needs to match the Addon field that will
+            # determine the max length to obey. `description` in the manifest
+            # is used to populate Addon.summary, so the dictionary key needs to
+            # be called `summary`.
+            'summary': manifest_data.get('description'),
             'default_locale': manifest_data.get('default_locale'),
         }
     except FileManifest.DoesNotExist:
@@ -497,9 +501,10 @@ def _run_narc(*, scanner_result, version, rules=None):
         # shouldn't fail for that. This means validation was forced by an admin
         # or something similar.
         data = {}
-    # Find all translations from the XPI if necessary for fields we care about.
+    # Find all translations from the XPI if necessary for fields we care about,
+    # using the dictionary built from the manifest above.
     resolved_translations = Addon.resolve_webext_translations(
-        data, version.file.file, fields=('name', 'description')
+        data, version.file.file, fields=('name', 'summary')
     )
     # If we find None or a string, we returned early without bothering to open
     # the XPI because the `name` wasn't present or translated in the manifest.
@@ -507,8 +512,9 @@ def _run_narc(*, scanner_result, version, rules=None):
     name_values_from_xpi = resolved_translations.get('name', {})
     if name_values_from_xpi is None or isinstance(name_values_from_xpi, str):
         name_values_from_xpi = {None: name_values_from_xpi or ''}
-    # Same for `description`.
-    description_values_from_xpi = resolved_translations.get('description', {})
+    # As mentioned above, the dictionary key for the `description` field in the
+    # manifest is called `summary`.
+    description_values_from_xpi = resolved_translations.get('summary', {})
     if description_values_from_xpi is None or isinstance(
         description_values_from_xpi, str
     ):

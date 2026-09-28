@@ -1385,6 +1385,43 @@ class TestRunNarc(UploadMixin, TestCase):
         assert len(narc_result.results) == 6
         assert list(narc_result.matched_rules.all()) == [rule]
 
+    def test_run_truncate_xpi_manifest_values(self):
+        rule = ScannerRule.objects.create(
+            name='always_match_rule',
+            scanner=NARC,
+            definition='.*',
+            configuration={
+                'examine_xpi_names': True,
+                'examine_xpi_descriptions': True,
+            },
+        )
+        # NARC will bypass the actual XPI contents to use the FileManifest
+        # data, so we add values that are over the limit to verify that it
+        # truncates them properly.
+        expected_name = 'a' * 50
+        expected_description = 'b' * 250
+        self.version.file.file_manifest.manifest_data.update(
+            {
+                'name': expected_name + 'z',
+                'description': expected_description + 'z',
+            }
+        )
+        self.version.file.file_manifest.save()
+
+        run_narc_on_version(self.version.pk)
+
+        scanner_results = ScannerResult.objects.all()
+        assert len(scanner_results) == 1
+        narc_result = scanner_results[0]
+        assert narc_result.scanner == NARC
+        assert narc_result.upload is None
+        assert narc_result.version == self.version
+        assert narc_result.has_matches
+        assert list(narc_result.matched_rules.all()) == [rule]
+        assert len(narc_result.results) == 2
+        assert narc_result.results[0]['meta']['string'] == expected_name
+        assert narc_result.results[1]['meta']['string'] == expected_description
+
 
 class TestRunYara(UploadMixin, TestCase):
     def setUp(self):
