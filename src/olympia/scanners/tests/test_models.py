@@ -7,7 +7,6 @@ from django.db.utils import IntegrityError
 
 import pytest
 import time_machine
-from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.access.models import Group, GroupUser
@@ -557,20 +556,6 @@ class TestScannerRuleMixin:
         )
 
         with pytest.raises(
-            ValidationError, match=r'The definition is not valid: line 1'
-        ):
-            rule.clean()
-
-    @override_switch('use-yara-x', active=True)
-    def test_clean_raises_when_yara_x_rule_is_invalid(self):
-        rule = self.model(
-            name='some_rule',
-            scanner=YARA,
-            # Invalid because there is no `condition`.
-            definition='rule some_rule {}',
-        )
-
-        with pytest.raises(
             ValidationError,
             match=r'The definition is not valid: error\[E001\]: syntax error',
         ):
@@ -587,25 +572,8 @@ class TestScannerRuleMixin:
         )
         rule.clean()  # Shouldn't raise, the externals are automatically added.
 
-    @mock.patch('yara.compile')
-    def test_clean_raises_generic_error_when_yara_compile_failed(
-        self, yara_compile_mock
-    ):
-        rule = self.model(
-            name='some_rule',
-            scanner=YARA,
-            definition='rule some_rule { condition: true }',
-        )
-        yara_compile_mock.side_effect = Exception()
-
-        with pytest.raises(ValidationError, match=r'An error occurred'):
-            rule.clean()
-
-    @override_switch('use-yara-x', active=True)
     @mock.patch('yara_x.Compiler')
-    def test_clean_yara_uses_yara_x_compiler_when_switch_is_active(
-        self, compiler_class_mock
-    ):
+    def test_clean_yara_uses_yara_x_compiler(self, compiler_class_mock):
         rule = self.model(
             name='some_rule',
             scanner=YARA,
@@ -623,9 +591,8 @@ class TestScannerRuleMixin:
         compiler_mock.add_source.assert_called_once_with(rule.definition)
         compiler_mock.build.assert_called_once_with()
 
-    @override_switch('use-yara-x', active=True)
     @mock.patch('yara_x.Compiler')
-    def test_clean_yara_raises_when_yara_x_compiler_build_fails(
+    def test_clean_raises_generic_error_when_yara_compile_failed(
         self, compiler_class_mock
     ):
         rule = self.model(
