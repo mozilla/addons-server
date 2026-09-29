@@ -97,7 +97,7 @@ function mapActivity(a: ApiActivity): Update {
 
 export async function fetchProfile(): Promise<Developer> {
   const data = await apiFetch<ApiProfile>('/accounts/profile/');
-  return { name: data.display_name || data.name || data.username || '' };
+  return { name: data.name || '' };
 }
 
 // Lists the add-ons the authenticated session owns; no author param needed.
