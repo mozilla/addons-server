@@ -132,6 +132,12 @@ When some results are still missing two hours after the version was created, the
 with the same payload, and keeps doing so every two hours, up to 12 times. The
 last retry therefore happens 24 hours after the version was created.
 
+AMO waits in two steps, each with a budget of its own: first for the results
+[`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
+`on_version_scanned` itself, which cannot be sent before they are all in. A
+scanner listening to `on_version_scanned` therefore gets the same 24 hours,
+counted from the moment the event was sent to it.
+
 Once the retries are exhausted, or when the payload can no longer be rebuilt
 (e.g., the uploaded file a `during_validation` payload points to is gone), AMO
 records artificial results matching the special `SCANNER_RESULTS_MISSING`
@@ -452,6 +458,70 @@ The payload sent looks like this:
   "scanner_result_url": "http://olympia.test/api/v5/scanner/results/125/"
 }
 ```
+
+(scanner-on-version-scanned)=
+### `on_version_scanned`
+
+This event occurs once **every** scanner listening to a predefined set of events
+has returned its results for the version. It is meant for scanners that need to
+make a decision informed by what the other scanners found.
+
+In addition to the usual `addon` and `version` properties, the payload contains a
+`scanner_results` object. It has one property per aggregated event, each mapping
+the name of a scanner listening to that event to the results it returned. A
+`null` value means that scanner skipped the event.
+
+A scanner listening to both aggregated events appears under both, so its two sets
+of results remain distinguishable.
+
+```json
+{
+  "addon": {
+    // Similar to the `on_version_created` event.
+  },
+  "version": {
+    // Similar to the `on_version_created` event.
+  },
+  "scanner_results": {
+    "during_validation": {
+      "some-scanner": {
+        "version": "1.0",
+        "matchedRules": ["SOME_RULE"],
+        "annotations": {}
+      }
+    },
+    "on_version_created": {
+      "some-scanner": {
+        "version": "1.0",
+        "matchedRules": [],
+        "annotations": {}
+      },
+      "some-other-scanner": null
+    }
+  },
+  "event": "on_version_scanned",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/126/"
+}
+```
+
+```{warning}
+`scanner_results` reports every result AMO holds for an aggregated event, which
+is not the same set as the scanners currently subscribed to it. A scanner that
+subscribed *after* the version was created is missing entirely, because AMO
+never called it; conversely, a scanner whose webhook has since been deactivated
+is still reported, because its results had already been collected. Don't assume
+the object lists every scanner currently subscribed; look up the scanners you
+care about by name and handle their absence.
+```
+
+This event blocks auto-approval like the events it aggregates, so the version is
+not auto-approved until the scanners listening to it have answered as well. When
+AMO gave up on one of the aggregated scanners, the event is still sent, with the
+`SCANNER_RESULTS_MISSING` [rule](#scanner-rules) in place of that scanner's
+results.
+
+Results [pushed](#scanner-push) by a scanner are not part of the payload, and
+pushing results does not trigger this event.
 
 (scanner-push)=
 ### `push`

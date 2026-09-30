@@ -15,8 +15,8 @@ from olympia.amo.tests import (
 from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+    WEBHOOK_ON_VERSION_SCANNED,
 )
 from olympia.reviewers.models import AutoApprovalSummary
 from olympia.scanners.management.commands.retry_versions_waiting_on_scanners import (
@@ -210,8 +210,9 @@ class TestRetryVersionsWaitingOnScanners(TestCase):
         return stdout.getvalue()
 
     def test_min_age(self, delay_mock):
-        # 2h countdown, then a retry every 2h, 12 times.
-        assert MIN_AGE == timedelta(hours=26)
+        # 2h countdown, then a retry every 2h, 12 times, for each of the two
+        # steps we wait in.
+        assert MIN_AGE == timedelta(hours=52)
 
     def test_nothing_to_do(self, delay_mock):
         output = self._run('--force')
@@ -224,8 +225,10 @@ class TestRetryVersionsWaitingOnScanners(TestCase):
 
         output = self._run('--force')
 
+        # No scanner owes us any of the results `on_version_scanned`
+        # aggregates, so the version is in the second step.
         delay_mock.assert_called_once_with(
-            version_pk=version.pk, event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL
+            version_pk=version.pk, event_ids=[WEBHOOK_ON_VERSION_SCANNED]
         )
         assert 'Found 1 version(s) waiting on scanners (force=True).' in output
         assert f'version {version.pk}' in output

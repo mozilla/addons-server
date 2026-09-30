@@ -80,18 +80,27 @@ WEBHOOK_DURING_VALIDATION = 1
 WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
 WEBHOOK_ON_VERSION_CREATED = 3
 WEBHOOK_PUSH = 4
+WEBHOOK_ON_VERSION_SCANNED = 5
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
     WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
     WEBHOOK_ON_VERSION_CREATED: 'on_version_created',
     WEBHOOK_PUSH: 'push',
+    WEBHOOK_ON_VERSION_SCANNED: 'on_version_scanned',
 }
+
+# The events whose results are aggregated into the `on_version_scanned`
+# payload. We wait for all of them before sending it.
+WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED = [
+    WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_VERSION_CREATED,
+]
 
 # Events we wait on before auto-approving a version.
 WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
-    WEBHOOK_DURING_VALIDATION,
-    WEBHOOK_ON_VERSION_CREATED,
+    *WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
+    WEBHOOK_ON_VERSION_SCANNED,
 ]
 
 # Number of retries before we give up on the scanners for a version.
