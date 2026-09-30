@@ -32,6 +32,7 @@ from rest_framework.decorators import (
     permission_classes,
     throttle_classes,
 )
+from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
@@ -79,7 +80,6 @@ from olympia.devhub.models import BlogPost, RssKey, SurveyResponse
 from olympia.devhub.utils import (
     extract_theme_properties,
     get_activity_feed,
-    get_dev_agreement_change_date,
     wizard_unsupported_properties,
 )
 from olympia.files.models import File, FileUpload
@@ -2363,23 +2363,17 @@ def developer_support(request):
     return Response(serializer.validated_data, status=status.HTTP_202_ACCEPTED)
 
 
-@api_view(['POST', 'GET'])
-@authentication_classes([SessionIDAuthentication])
-@permission_classes((IsAuthenticated,))
-@throttle_classes(dev_agreement_throttles)
-def developer_agreement_api(request):
-    if request.method == 'GET':
-        return Response(
-            {
-                'display_name': request.user.display_name,
-                'has_read_developer_agreement': (
-                    request.user.has_read_developer_agreement()
-                ),
-                'last_developer_agreement_change': get_dev_agreement_change_date(),
-            },
-            status=status.HTTP_200_OK,
-        )
-    else:
+class DeveloperAgreementView(GenericAPIView):
+    authentication_classes = [SessionIDAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = DeveloperAgreementSerializer
+    throttle_classes = dev_agreement_throttles
+
+    def get(self, request):
+        serializer = self.get_serializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
         if (
             not RestrictionChecker(request=request).is_submission_allowed(
                 check_dev_agreement=False
@@ -2392,14 +2386,12 @@ def developer_agreement_api(request):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        serializer = DeveloperAgreementSerializer(
-            data=request.data, context={'request': request}
-        )
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         data = {'read_dev_agreement': datetime.datetime.now()}
-        if 'display_name' in serializer.validated_data:
-            data['display_name'] = serializer.validated_data['display_name']
+        if display_name := serializer.validated_data.get('display_name'):
+            data['display_name'] = display_name
 
         request.user.update(**data)
         return Response(data, status=status.HTTP_202_ACCEPTED)

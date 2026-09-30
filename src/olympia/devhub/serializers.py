@@ -22,11 +22,16 @@ class SupportSerializer(serializers.Serializer):
 
 
 class DeveloperAgreementSerializer(serializers.ModelSerializer):
-    last_developer_agreement_change = serializers.DateTimeField()
+    last_developer_agreement_change = serializers.SerializerMethodField()
+    has_read_developer_agreement = serializers.ReadOnlyField()
 
     class Meta:
         model = UserProfile
-        fields = ['display_name', 'last_developer_agreement_change']
+        fields = [
+            'display_name',
+            'has_read_developer_agreement',
+            'last_developer_agreement_change',
+        ]
 
     def validate_display_name(self, value):
         request = self.context['request']
@@ -47,6 +52,9 @@ class DeveloperAgreementSerializer(serializers.ModelSerializer):
                 {'display_name': ['display_name is required.']}
             )
         return attrs
+
+    def get_last_developer_agreement_change(self, instance):
+        return get_dev_agreement_change_date()
 
     def validate_last_developer_agreement_change(self, value):
         if value != get_dev_agreement_change_date():
