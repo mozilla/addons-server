@@ -2381,10 +2381,16 @@ def developer_agreement_api(request):
         )
     else:
         if (
-            not RestrictionChecker(request=request).is_submission_allowed()
+            not RestrictionChecker(request=request).is_submission_allowed(
+                check_dev_agreement=False
+            )
             or request.user.has_read_developer_agreement()
         ):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                'User is not allowed to submit or has already '
+                'accepted the developer agreement.',
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
         serializer = DeveloperAgreementSerializer(
             data=request.data, context={'request': request}
@@ -2396,4 +2402,4 @@ def developer_agreement_api(request):
             data['display_name'] = serializer.validated_data['display_name']
 
         request.user.update(**data)
-        return Response(status=status.HTTP_202_ACCEPTED)
+        return Response(data, status=status.HTTP_202_ACCEPTED)
