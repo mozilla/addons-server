@@ -14,12 +14,14 @@
   },
   "dependencies": {
     "@lit-labs/router": "^0.1.4",
-    "@mozilla/acorn-web-components": "^0.0.0-alpha.1",
+    "@mozilla/acorn-web-components": "^0.0.0-alpha.3",
+    "@tanstack/lit-query": "^0.2.23",
     "lit": "^3.3.3",
     "urlpattern-polyfill": "^10.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.5.13",
+    "@tanstack/query-devtools": "^5.103.2",
     "typescript": "^7.0.2",
     "vite": "^8.2.2"
   }
