@@ -47,7 +47,7 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
 from olympia.devhub.tasks import validate
-from olympia.devhub.views import developer_agreement_api, get_next_version_number
+from olympia.devhub.views import DeveloperAgreementView, get_next_version_number
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
@@ -3213,7 +3213,7 @@ class TestDeveloperAgreementAPI(TestCase):
         with time_machine.travel(datetime.now(), tick=False):
             for _x in range(4):
                 self._add_fake_throttling_action(
-                    view_class=developer_agreement_api.cls,
+                    view_class=DeveloperAgreementView,
                     url=self.api_url,
                     user=user,
                     remote_addr='1.2.3.4',
@@ -3226,7 +3226,7 @@ class TestDeveloperAgreementAPI(TestCase):
         with time_machine.travel(datetime.now(), tick=False):
             for _x in range(8):
                 self._add_fake_throttling_action(
-                    view_class=developer_agreement_api.cls,
+                    view_class=DeveloperAgreementView,
                     url=self.api_url,
                     user=user_factory(),
                     remote_addr='5.6.7.8',
