@@ -1,5 +1,5 @@
 import { afterEach, vi } from 'vitest';
-import { queryClient } from '../src/data';
+import { queryClient } from '../src/data/query-client';
 
 // Keep tests isolated: clear mounted elements, the shared query cache, and any
 // stubbed globals/env so one test's state can't leak into the next.
