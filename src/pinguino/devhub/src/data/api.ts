@@ -3,7 +3,14 @@
 // the query layer (./queries), not here.
 
 import { apiFetch } from './http';
-import type { Addon, AddonKind, Developer, Update } from './types';
+import type {
+  Addon,
+  AddonKind,
+  AgreementAcceptState,
+  AgreementState,
+  Developer,
+  Update,
+} from './types';
 
 // Paginated envelope shared by the AMO v5 list endpoints.
 interface Paginated<T> {
@@ -114,4 +121,15 @@ export async function fetchUpdates(): Promise<Update[]> {
     '/activity/?lang=en-US&page_size=50',
   );
   return (data.results ?? []).map(mapActivity);
+}
+
+export async function fetchAgreement(): Promise<AgreementState> {
+  return await apiFetch<AgreementState>('/developers/agreement');
+}
+
+export async function postAgreement(payload: AgreementAcceptState): Promise {
+  return await apiFetch('/developers/agreement', {
+    method: 'POST',
+    body: payload,
+  });
 }

@@ -1,6 +1,6 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { addonQuery } from '../data';
+import { addonQuery } from '../../../data';
 
 @customElement('devhub-addon')
 export class DevhubAddon extends LitElement {

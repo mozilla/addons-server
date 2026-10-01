@@ -4,11 +4,23 @@
 
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
-import { fetchAddons, fetchProfile, fetchUpdates } from './api';
+import {
+  fetchAddons,
+  fetchAgreement,
+  fetchProfile,
+  fetchUpdates,
+  postAgreement,
+} from './api';
 import { apiConfigured } from './http';
-import { developer, mockAddons, mockUpdates } from './mock';
+import {
+  developer,
+  mockAddons,
+  mockReadAgreement,
+  mockUnreadAgreement,
+  mockUpdates,
+} from './mock';
 import { queryClient } from './query-client';
-import type { Addon } from './types';
+import type { Addon, AgreementAcceptState } from './types';
 
 // Keys identify cache entries. The add-on list and a single add-on share one
 // key so navigating to a detail view reuses the cached list, not a new request.
@@ -16,6 +28,7 @@ export const queryKeys = {
   profile: ['profile'] as const,
   addons: ['addons'] as const,
   updates: ['updates'] as const,
+  agreement: ['agreement'] as const,
 };
 
 // The signed-in developer. Session-lived, so it survives navigation without a
@@ -75,4 +88,27 @@ export function updatesQuery(host: ReactiveControllerHost) {
     }),
     queryClient,
   );
+}
+
+// Fetches developer agreement information.
+export function agreementQuery(host: ReactiveControllerHost) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.agreement,
+      queryFn: () =>
+        apiConfigured ? fetchAgreement() : Promise.resolve(mockUnreadAgreement),
+    }),
+    queryClient,
+  );
+}
+
+// Accepts the agreement and refreshes the cached status.
+export async function acceptAgreement(payload: AgreementAcceptState) {
+  if (apiConfigured) {
+    await postAgreement(payload);
+    await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
+  } else {
+    queryClient.setQueryData(queryKeys.agreement, () => mockReadAgreement);
+  }
 }
