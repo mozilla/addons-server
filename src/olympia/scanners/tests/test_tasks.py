@@ -3037,6 +3037,16 @@ class TestWaitForScannerResults(UploadMixin, TestCase):
         )
 
     @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_handles_missing_event_ids_param(self, _call_webhook_mock):
+        _call_webhook_mock.return_value = {}
+        self._create_result()
+
+        with pytest.raises(Retry):
+            wait_for_scanner_results.apply(args=(self.version.pk,))
+
+        assert _call_webhook_mock.call_count == 1
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
     def test_retry_delay_is_fixed(self, _call_webhook_mock):
         _call_webhook_mock.return_value = {}
         self._create_result()
