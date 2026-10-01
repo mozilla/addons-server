@@ -9,6 +9,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
     "lint": "biome check",
     "format": "biome check --write"
   },
@@ -22,7 +24,10 @@
   "devDependencies": {
     "@biomejs/biome": "^2.5.13",
     "@tanstack/query-devtools": "^5.103.2",
+    "@vitest/coverage-v8": "^5.0.3",
+    "happy-dom": "^20.14.5",
     "typescript": "^7.0.2",
-    "vite": "^8.2.2"
+    "vite": "^8.2.2",
+    "vitest": "^5.0.3"
   }
 }
