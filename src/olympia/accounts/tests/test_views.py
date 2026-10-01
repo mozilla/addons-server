@@ -11,6 +11,7 @@ from django import http
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.models import AnonymousUser
+from django.core.signing import TimestampSigner
 from django.test.utils import override_settings
 from django.urls import reverse
 from django.utils.encoding import force_str
@@ -18,6 +19,7 @@ from django.utils.encoding import force_str
 import jwt
 import responses
 import time_machine
+from pyquery import PyQuery as pq
 from rest_framework import exceptions
 from rest_framework.settings import api_settings
 from rest_framework.test import APIClient, APIRequestFactory
@@ -29,6 +31,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_for
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
+from olympia.accounts.utils import fxa_login_url
 from olympia.accounts.views import FxaNotificationView
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -2768,3 +2771,222 @@ class TestFxaNotificationView(TestCase):
         )
         user.reload()
         assert user.auth_id is None
+
+
+class TestRestorePostView(TestCase):
+    def setUp(self):
+        self.url = reverse('auth:accounts.restore-post')
+        self.user = self.user = user_factory()
+
+    def test_requires_auth(self):
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=None,
+        )
+        self.assert3xx(response, expected_location)
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_requires_2fa(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        self.assert3xx(response, expected_location)
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_post_not_allowed(self):
+        self.client.force_login_with_2fa(self.user)
+        response = self.client.post(self.url)
+        assert response.status_code == 405
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_to_slash_if_nothing_in_session(self):
+        self.client.force_login_with_2fa(self.user)
+        response = self.client.get(self.url + '?s=something')
+        self.assert3xx(response, '/')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_signature_absent(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'url': '/some/where',
+            'key': 'key',
+            'data': '',
+        }
+        session.save()
+        response = self.client.get(self.url)
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_to_slash_if_unsafe_url(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'url': 'https://example.com',
+            'key': 'key',
+            'data': '',
+        }
+        session.save()
+        response = self.client.get(self.url)
+        self.assert3xx(response, '/')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_key_not_in_session(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'url': '/some/where',
+            'data': '',
+        }
+        session.save()
+        response = self.client.get(self.url + '?s=something')
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_to_slash_if_url_not_in_session(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'data': '',
+            'key': 'fakekey',
+        }
+        session.save()
+        response = self.client.get(self.url + f'?s={TimestampSigner().sign("fakekey")}')
+        self.assert3xx(response, '/')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_data_not_in_session(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'url': '/some/where',
+            'key': 'fakekey',
+        }
+        session.save()
+        response = self.client.get(self.url + f'?s={TimestampSigner().sign("fakekey")}')
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_signature_invalid(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'data': '',
+            'url': '/some/where',
+            'key': 'fakekey',
+        }
+        session.save()
+        response = self.client.get(self.url + '?s=fakesignature')
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_signature_expired(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'data': 'a=1&a=2&b=3',
+            'url': '/some/where',
+            'key': 'fakekey',
+        }
+        session.save()
+        with time_machine.travel(
+            datetime.now()
+            - timedelta(seconds=settings.FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT + 1),
+            tick=False,
+        ):
+            signature = TimestampSigner().sign('fakekey')
+        response = self.client.get(self.url + f'?s={signature}')
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_redirect_if_signature_doesnt_match(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'data': 'a=1&a=2&b=3',
+            'url': '/some/where',
+            'key': 'fakekey',
+        }
+        session.save()
+        response = self.client.get(
+            self.url + f'?s={TimestampSigner().sign("otherkey")}'
+        )
+        self.assert3xx(response, '/some/where')
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+
+    def test_works(self):
+        self.client.force_login_with_2fa(self.user)
+        session = self.client.session
+        session['_post_data_after_2fa_reprompt'] = {
+            'data': 'a=1&a=2&b=3',
+            'url': '/some/where',
+            'key': 'fakekey',
+        }
+        session.save()
+        response = self.client.get(self.url + f'?s={TimestampSigner().sign("fakekey")}')
+        assert response.status_code == 200
+        assert (
+            response['cache-control']
+            == 'max-age=0, no-cache, no-store, must-revalidate, private'
+        )
+        doc = pq(response.content)
+        assert doc('form')[0].attrib['id'] == 'accounts-restore-post'
+        assert doc('form input')[0].attrib['name'] == 'csrfmiddlewaretoken'
+        expected_inputs_and_values = [('a', '1'), ('a', '2'), ('b', '3')]
+        inputs_and_values = [
+            (k.attrib['name'], k.attrib['value']) for k in doc('form input')[1:]
+        ]
+        assert inputs_and_values == expected_inputs_and_values
+        assert doc('script')[0].attrib['src'].endswith('accounts-restore-post.js')
+
+    def test_session_post_data_is_cleared_after_showing_form(self):
+        self.test_works()
+        session = self.client.session
+        assert '_auth_user_id' in session  # Still there
+        assert '_post_data_after_2fa_reprompt' not in session  # Gone

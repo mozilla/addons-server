@@ -1,0 +1,11 @@
+<form action="{{ url }}" method="post" id="accounts-restore-post">
+{% csrf_token %}
+{% for key, values in qdict.lists() %}
+    {% for value in values %}
+        {% if key != "csrfmiddlewaretoken" %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}" />
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</form>
+{{ vite_asset('js/accounts-restore-post.js') }}
