@@ -15,7 +15,9 @@ class TestHomeAndIndex(TestCase):
 
     def setUp(self):
         super().setUp()
-        self.client.force_login(UserProfile.objects.get(email='admin@mozilla.com'))
+        self.client.force_login_with_2fa(
+            UserProfile.objects.get(email='admin@mozilla.com')
+        )
 
     def test_get_home(self):
         url = reverse('admin:index')

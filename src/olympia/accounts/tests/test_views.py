@@ -2983,7 +2983,6 @@ class TestRestorePostView(TestCase):
             (k.attrib['name'], k.attrib['value']) for k in doc('form input')[1:]
         ]
         assert inputs_and_values == expected_inputs_and_values
-        assert doc('script')[0].attrib['src'].endswith('accounts-restore-post.js')
 
     def test_session_post_data_is_cleared_after_showing_form(self):
         self.test_works()

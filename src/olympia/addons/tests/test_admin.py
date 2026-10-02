@@ -110,7 +110,7 @@ class TestAddonAdmin(TestCase):
     def test_can_see_addon_module_in_admin_with_addons_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -119,7 +119,7 @@ class TestAddonAdmin(TestCase):
 
     def test_can_not_see_addon_module_in_admin_without_permissions(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -130,7 +130,7 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory()
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -140,7 +140,7 @@ class TestAddonAdmin(TestCase):
         version_factory(addon=addon, channel=amo.CHANNEL_LISTED)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' in response.content
         assert b'Review (unlisted)' not in response.content
@@ -150,7 +150,7 @@ class TestAddonAdmin(TestCase):
         addon_factory(guid='@foo', version_kw=version_kw)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' not in response.content
         assert b'Review (unlisted)' in response.content
@@ -160,7 +160,7 @@ class TestAddonAdmin(TestCase):
         addon_factory(guid='@foo', version_kw=version_kw)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' not in response.content
         assert b'Review (unlisted)' not in response.content
@@ -173,7 +173,7 @@ class TestAddonAdmin(TestCase):
         version_factory(addon=addon, channel=amo.CHANNEL_ENTERPRISE)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert b'Review (listed)' in response.content
         assert b'Review (unlisted)' in response.content
@@ -185,7 +185,7 @@ class TestAddonAdmin(TestCase):
         addon_factory(guid='@xyz')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         with self.assertNumQueries(8):
             # - 2 savepoints
@@ -213,7 +213,7 @@ class TestAddonAdmin(TestCase):
         addon_factory(guid='@bar')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -240,7 +240,7 @@ class TestAddonAdmin(TestCase):
         addon_factory(guid='@bar')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         with self.assertNumQueries(8):
             # - 2 savepoints
@@ -258,7 +258,7 @@ class TestAddonAdmin(TestCase):
     def test_search_tooltip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
         assert doc('#searchbar-wrapper p').eq(0).text() == (
@@ -277,7 +277,7 @@ class TestAddonAdmin(TestCase):
     def test_search_by_ip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         addon = addon_factory(guid='@foo')
         with core.override_remote_addr_or_metadata(ip_address='4.8.15.16'):
@@ -328,7 +328,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -361,7 +361,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -394,7 +394,7 @@ class TestAddonAdmin(TestCase):
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert b'Reviewer Tools (listed)' in response.content
         assert b'Reviewer Tools (unlisted)' not in response.content
@@ -406,7 +406,7 @@ class TestAddonAdmin(TestCase):
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert b'Reviewer Tools (listed)' not in response.content
         assert b'Reviewer Tools (unlisted)' in response.content
@@ -418,7 +418,7 @@ class TestAddonAdmin(TestCase):
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert b'Reviewer Tools (listed)' not in response.content
         assert b'Reviewer Tools (unlisted)' not in response.content
@@ -432,7 +432,7 @@ class TestAddonAdmin(TestCase):
         detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         content = response.content.decode('utf-8')
         assert 'Reviewer Tools (listed)' in content
@@ -460,7 +460,7 @@ class TestAddonAdmin(TestCase):
     def test_can_not_list_without_addons_edit_permission(self):
         addon = addon_factory()
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 403
         assert addon.guid not in response.content.decode('utf-8')
@@ -469,7 +469,7 @@ class TestAddonAdmin(TestCase):
         addon = addon_factory(guid='@foo')
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
         assert addon.guid not in response.content.decode('utf-8')
@@ -499,7 +499,7 @@ class TestAddonAdmin(TestCase):
         detail_url_final = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url_by_slug, follow=False)
         self.assert3xx(response, detail_url_final, 301)
 
@@ -509,7 +509,7 @@ class TestAddonAdmin(TestCase):
         detail_url_final = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url_by_guid, follow=True)
         self.assert3xx(response, detail_url_final, 301)
 
@@ -519,7 +519,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -570,7 +570,7 @@ class TestAddonAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -601,7 +601,7 @@ class TestAddonAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -626,7 +626,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -647,7 +647,7 @@ class TestAddonAdmin(TestCase):
         self.detail_url = reverse('admin:addons_addon_change', args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -675,7 +675,7 @@ class TestAddonAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -734,7 +734,7 @@ class TestAddonAdmin(TestCase):
         post_data = self._get_full_post_data(addon, addon.addonuser_set.get())
         file.version.delete()
 
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -757,7 +757,7 @@ class TestAddonAdmin(TestCase):
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
 
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert 'Blocked' not in response.content.decode('utf-8')
@@ -776,7 +776,7 @@ class TestAddonAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         with self.assertNumQueries(20 if self.is_django42 else 18):
             # It's very high because most of AddonAdmin is unoptimized but we
             # don't want it unexpectedly increasing.
@@ -803,7 +803,7 @@ class TestAddonAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
         self.grant_permission(user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert addon.guid in response.content.decode('utf-8')
@@ -855,7 +855,7 @@ class TestReplacementAddonList(TestCase):
     def test_can_see_replacementaddon_module_in_admin_with_addons_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -868,7 +868,7 @@ class TestReplacementAddonList(TestCase):
     def test_can_see_replacementaddon_module_in_admin_with_admin(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -882,7 +882,7 @@ class TestReplacementAddonList(TestCase):
         ReplacementAddon.objects.create(guid='@bar', path='/addon/bar-replacement/')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert '/addon/bar-replacement/' in response.content.decode('utf-8')
@@ -896,7 +896,7 @@ class TestReplacementAddonList(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert '/addon/bar-replacement/' in response.content.decode('utf-8')
@@ -914,7 +914,7 @@ class TestReplacementAddonList(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
@@ -930,7 +930,7 @@ class TestReplacementAddonList(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         assert '/addon/foo-replacement/' in response.content.decode('utf-8')
@@ -951,7 +951,7 @@ class TestReplacementAddonList(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
         response = self.client.post(self.delete_url, data={'post': 'yes'}, follow=True)
@@ -961,7 +961,7 @@ class TestReplacementAddonList(TestCase):
     def test_can_list_with_admin_permission(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # '@foofoo&foo' isn't a valid guid, because &, but testing urlencoding.
         ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')
         response = self.client.get(self.list_url, follow=True)
@@ -987,7 +987,7 @@ class TestAddonRegionalRestrictionsAdmin(TestCase):
         self.list_url = reverse('admin:addons_addonregionalrestrictions_changelist')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADMIN_REGIONALRESTRICTIONS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
     def test_can_see_module_in_admin(self):
         url = reverse('admin:index')
@@ -1096,7 +1096,7 @@ class TestAddonBrowserMappingAdmin(TestCase):
     def setUp(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADMIN_CURATION)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         self.list_url = reverse('admin:addons_addonbrowsermapping_changelist')
         self.add_url = reverse('admin:addons_addonbrowsermapping_add')
 

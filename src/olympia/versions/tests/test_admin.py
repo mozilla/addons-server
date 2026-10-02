@@ -21,7 +21,7 @@ class TestVersionAdmin(TestCase):
         self.list_url = reverse('admin:versions_version_changelist')
         self.user = user_factory(email='someone@mozilla.com')
         self.grant_permission(self.user, amo.permissions.ADMIN_ADVANCED)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         user_factory(pk=settings.TASK_USER_ID)
 
     def get_post_data(self, additional_post_data):
@@ -97,7 +97,7 @@ class TestVersionAdmin(TestCase):
 
     def test_unauthorized_user_has_no_access(self):
         user = user_factory(email='someoneelse@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
 
@@ -193,7 +193,7 @@ class TestInstallOriginAdmin(TestCase):
         list_url = reverse('admin:versions_installorigin_changelist')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         with self.assertNumQueries(6):
             # - 2 SAVEPOINTs
             # - 2 user & groups
@@ -236,7 +236,7 @@ class TestInstallOriginAdmin(TestCase):
         add_url = reverse('admin:versions_installorigin_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(add_url, follow=True)
         assert response.status_code == 403
 
@@ -251,7 +251,7 @@ class TestInstallOriginAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(delete_url, follow=True)
         assert response.status_code == 403
 
@@ -266,7 +266,7 @@ class TestInstallOriginAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
