@@ -21,9 +21,17 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiFetch<T>(path: string): Promise<T> {
+export async function apiFetch<T>(
+  path: string,
+  { method = 'GET', body }: { method?: string; body?: unknown } = {},
+): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
-    headers: SESSION ? { authorization: `Session ${SESSION}` } : {},
+    method,
+    headers: {
+      ...(SESSION ? { authorization: `Session ${SESSION}` } : {}),
+      ...(body ? { 'content-type': 'application/json' } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
   });
   if (!res.ok) {
     // TODO(auth): on 401, clear the session and route to login once FxA lands.

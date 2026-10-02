@@ -11,10 +11,9 @@ import './foundations/layout';
 // After foundations/acorn so it overrides acorn's base.css :root color-scheme.
 import './app.css';
 
-import './pages/devhub-home';
-import './pages/devhub-addon';
-
 import './components/devhub-header';
+import './pages/devhub-home';
+import './pages/addon/main';
 
 // The SPA is mounted under /pinguino/, so routes match against that prefix.
 const BASE = '/pinguino';
@@ -41,9 +40,8 @@ export class PinguinoApp extends LitElement {
     [
       { path: `${BASE}/`, render: () => html`<devhub-home></devhub-home>` },
       {
-        path: `${BASE}/addon/:slug`,
-        render: ({ slug }) =>
-          html`<devhub-addon .slug=${slug ?? ''}></devhub-addon>`,
+        path: `${BASE}/addon/*`,
+        render: () => html`<addon-routes></addon-routes>`,
       },
     ],
     {
