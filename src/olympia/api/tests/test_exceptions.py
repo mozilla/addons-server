@@ -4,7 +4,7 @@ from django.http import Http404
 from django.test import TestCase, override_settings
 from django.urls import reverse
 
-from rest_framework.exceptions import APIException, PermissionDenied
+from rest_framework.exceptions import APIException, PermissionDenied, Throttled
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.routers import SimpleRouter
@@ -195,3 +195,52 @@ class TestExceptionHandler(TestCase):
                 raise KeyError()
             except KeyError as exc:
                 exception_handler(exc, {})
+
+
+class TestThrottledExceptionHandler(TestCase):
+    def handle(self, exc):
+        with self.settings(DEBUG_PROPAGATE_EXCEPTIONS=False):
+            return api_settings.EXCEPTION_HANDLER(exc, {})
+
+    def test_throttled_with_wait(self):
+        response = self.handle(Throttled(wait=41.3))
+        assert response.status_code == 429
+        assert response['Retry-After'] == '42'
+        assert response.data['detail'] == (
+            'Request was throttled. Expected available in 42 seconds.'
+        )
+
+    def test_throttled_with_wait_singular(self):
+        response = self.handle(Throttled(wait=1))
+        assert response.status_code == 429
+        assert response['Retry-After'] == '1'
+        assert response.data['detail'] == (
+            'Request was throttled. Expected available in 1 second.'
+        )
+
+    def test_throttled_without_wait(self):
+        response = self.handle(Throttled())
+        assert response.status_code == 429
+        assert 'Retry-After' not in response
+        assert response.data['detail'] == 'Request was throttled.'
+
+    @mock.patch('olympia.api.exceptions.ngettext')
+    def test_throttled_translates_before_formatting(self, ngettext_mock):
+        ngettext_mock.return_value = 'Encore {wait} secondes.'
+        response = self.handle(Throttled(wait=5))
+        ngettext_mock.assert_called_once_with(
+            'Expected available in {wait} second.',
+            'Expected available in {wait} seconds.',
+            5,
+        )
+        assert response.data['detail'] == 'Request was throttled. Encore 5 secondes.'
+
+    def test_throttled_custom_detail_left_untouched(self):
+        response = self.handle(Throttled(wait=5, detail='Slow down.'))
+        assert response.status_code == 429
+        assert response['Retry-After'] == '5'
+        # DRF still appends its own sentence to custom details, we leave
+        # those alone.
+        assert response.data['detail'] == (
+            'Slow down. Expected available in 5 seconds.'
+        )
