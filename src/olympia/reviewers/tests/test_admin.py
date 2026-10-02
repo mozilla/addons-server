@@ -44,7 +44,7 @@ class TestNeedsHumanReviewAdmin(TestCase):
 
         user = user_factory(email='admin@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
         assert [
@@ -166,12 +166,12 @@ class TestReviewActionReasonAdmin(TestCase):
         grant_permission(cls.user, amo.permissions.SUPERPOWERS, name='Admins')
 
     def setUp(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         self.list_url = reverse('admin:reviewers_reviewactionreason_changelist')
 
     def test_list_no_permission(self):
         user = user_factory(email='nobody@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
@@ -217,7 +217,7 @@ class TestUsageTierAdmin(TestCase):
         grant_permission(cls.user, amo.permissions.SUPERPOWERS, name='Admins')
 
     def setUp(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         self.list_url = reverse('admin:reviewers_usagetier_changelist')
         self.tier0 = UsageTier.objects.create()
         self.tier1 = UsageTier.objects.create(upper_adu_threshold=10)

@@ -14,7 +14,7 @@ class TestActivityLogAdmin(TestCase):
 
     def test_no_permission(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
@@ -35,7 +35,7 @@ class TestActivityLogAdmin(TestCase):
 
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         with self.assertNumQueries(11):
             # - 2 savepoints/release
@@ -62,7 +62,7 @@ class TestActivityLogAdmin(TestCase):
         activity.log_create(amo.LOG.USER_DISABLE, addon1, user=author)
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(
             self.list_url, {'action': [amo.LOG.CREATE_ADDON.id, amo.LOG.ADD_VERSION.id]}
         )
@@ -78,7 +78,7 @@ class TestActivityLogAdmin(TestCase):
     def test_search_for_single_ip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         user2 = user_factory()
         user3 = user_factory()
         addon = addon_factory(users=[user3])
@@ -120,7 +120,7 @@ class TestActivityLogAdmin(TestCase):
     def test_search_for_ja4(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         user2 = user_factory()
         user3 = user_factory()
         with core.override_remote_addr_or_metadata(
@@ -161,7 +161,7 @@ class TestActivityLogAdmin(TestCase):
             amo.LOG.ADD_VERSION, addon.current_version, addon, user=user
         )
         self.grant_permission(user, amo.permissions.ACTIVITYLOG_VIEW)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 200
         content = response.content.decode('utf-8)')
@@ -186,7 +186,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
     def test_can_see_module_in_admin_with_super_access(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -194,7 +194,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
 
     def test_can_not_see_module_in_admin_without_permissions(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.admin_home_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -209,7 +209,7 @@ class TestReviewActionReasonLogAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         activity_log = ActivityLog.objects.create(
             action=amo.LOG.APPROVE_VERSION.id, user=user
         )
