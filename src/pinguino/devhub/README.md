@@ -13,27 +13,29 @@ src/pinguino/                           # umbrella for pinguino projects
     ├── tsconfig.json                   # Lit-recommended TS (legacy decorators)
     ├── biome.json                      # lint + format (Biome, matches acorn)
     ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
+    ├── vitest.config.ts                # test runner (happy-dom, V8 coverage)
     ├── .npmrc                          # @mozilla scope -> GitHub Packages (token via env)
     ├── .env.example                    # AMO API config (VITE_AMO_*); copy to .env
     ├── index.html                      # SPA shell
-    └── src/
-        ├── main.ts                     # <pinguino-app> shell + client router
-        ├── app.css                     # document-level styles
-        ├── foundations/                # acorn registration + layout primitives
-        │   ├── acorn.ts                # registers acorn (moz-*) components + tokens
-        │   ├── layout/                 # layout primitives (app-grid/container/stack)
-        │   └── illustrations/          # vendored design-kit SVGs
-        ├── data/                       # data layer (see "Data and the AMO API")
-        │   ├── http.ts                 # apiFetch: base URL, session auth, typed errors
-        │   ├── api.ts                  # AMO endpoints + response mappers
-        │   ├── query-client.ts         # shared TanStack Query cache
-        │   ├── queries.ts              # query keys, lifetimes, mock-vs-API branch
-        │   ├── mock.ts                 # built-in sample data
-        │   ├── types.ts                # domain types
-        │   ├── devtools.ts             # dev-only TanStack Query devtools
-        │   └── index.ts                # public data API (barrel)
-        ├── components/                 # UI: header, cards, updates feed
-        └── pages/                      # route views: home, addon detail
+    ├── src/
+    │   ├── main.ts                     # <pinguino-app> shell + client router
+    │   ├── app.css                     # document-level styles
+    │   ├── foundations/                # acorn registration + layout primitives
+    │   │   ├── acorn.ts                # registers acorn (moz-*) components + tokens
+    │   │   ├── layout/                 # layout primitives (app-grid/container/stack)
+    │   │   └── illustrations/          # vendored design-kit SVGs
+    │   ├── data/                       # data layer (see "Data and the AMO API")
+    │   │   ├── http.ts                 # apiFetch: base URL, session auth, typed errors
+    │   │   ├── api.ts                  # AMO endpoints + response mappers
+    │   │   ├── query-client.ts         # shared TanStack Query cache
+    │   │   ├── queries.ts              # query keys, lifetimes, mock-vs-API branch
+    │   │   ├── mock.ts                 # built-in sample data
+    │   │   ├── types.ts                # domain types
+    │   │   ├── devtools.ts             # dev-only TanStack Query devtools
+    │   │   └── index.ts                # public data API (barrel)
+    │   ├── components/                 # UI: header, cards, updates feed
+    │   └── pages/                      # route views: home, addon detail
+    └── tests/                          # Vitest specs, mirroring src/ (see "Testing")
 ```
 
 ## Routing
@@ -101,10 +103,34 @@ Making changes to configuration files like `package.json`, `vite.config.ts` or `
 
 - `npm run lint` runs Biome (lint + format check), configured in `biome.json` to match acorn's setup. `npm run format` applies its fixes.
 - `npm run typecheck` and `npm run build` cover types and the production bundle.
+- `npm test` runs the Vitest suite (`npm run test:watch` for a watcher). See "Testing".
 
 Dependencies install into the container's isolated volume, so run these checks inside the service (`docker compose exec pinguino ...`). Add packages the same way (`docker compose exec pinguino npm add <pkg>`) so the container volume and the committed lockfile stay in sync; the host's `node_modules` is not used.
 
-The `_test_pinguino` GitHub Action runs all three on pull requests that touch `src/pinguino/`.
+The `_test_pinguino` GitHub Action runs all four on pull requests that touch `src/pinguino/`.
+
+## Testing
+
+[Vitest](https://vitest.dev/) under a [happy-dom](https://github.com/capricorn86/happy-dom) environment (`vitest.config.ts`). Tests live under `tests/`, mirroring `src/`, and cover the three layers where mock-data shapes drive the views:
+
+- **`tests/data/`** - the pure API-response → domain mappers in `data/api.ts` (`mapAddon`, `mapActivity`, `localized`, `formatDate`): localized-name fallback, date formatting, kind/status inference.
+- **`tests/components/`** - a component mounts with a crafted `.addon`/`.item` fixture; assertions read the component's own shadow root (which branch rendered, what it passed to the `moz-*` elements). acorn needn't upgrade — we assert our DOM, not acorn's internals.
+- **`tests/pages/`** - seed the shared TanStack cache with arbitrary shapes (`queryClient.setQueryData(queryKeys.addons, …)`), mount the page, and assert how it composes them. Seeded data is fresh, so controllers read it on first paint without a network call.
+
+`tests/helpers/fixture.ts` has `mount(tag, props)` (append + await first render) and `settle(el)` (flush a settled query, then re-render). `tests/setup.ts` clears the DOM, query cache, and any stubbed globals/env after each test. The config pins `VITE_AMO_SESSION_ID` empty so tests are deterministic and never hit the network regardless of a local `.env`; the few tests that need the configured path stub it and re-import.
+
+`npm test` reports V8 coverage (`coverage/`, gitignored); `reporter: ['text', 'html']` — open `coverage/index.html` for the browsable report. Layout primitives, the static header, and the network-only query branches are intentionally uncovered.
+
+### Known gaps
+
+This strategy verifies that data shapes drive the right view structure, not that the page looks right or that acorn behaves. Specifically, it does not cover:
+
+- **Visual / layout correctness.** happy-dom has no rendering engine, so nothing checks real CSS, computed styles, `light-dark()`, spacing, or responsive breakpoints. Visual regressions are the component library's (acorn's) job, not these tests.
+- **acorn component behaviour.** `moz-*` elements don't upgrade here, so we only assert the attributes and content we pass in. A broken acorn component, or an invalid-but-accepted attribute value, won't fail a test.
+- **Routing and navigation.** The client router, cross-shadow-DOM link interception, and history sync (`main.ts`) aren't exercised; these are unit/integration tests, not end-to-end.
+- **Live-API and transient states.** The `apiConfigured`-true query branches and the loading/pending UI are only lightly covered, since they depend on a real network or a fleeting render state.
+
+A real-browser layer (Vitest browser mode / Playwright) would close the first three if end-to-end confidence is later needed; for this milestone the goal is mock-data-shape coverage.
 
 ## Staging / production
 

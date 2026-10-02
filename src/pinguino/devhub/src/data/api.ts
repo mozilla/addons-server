@@ -40,13 +40,15 @@ interface ApiProfile {
   username?: string;
 }
 
-function localized(value: string | Record<string, string> | undefined): string {
+export function localized(
+  value: string | Record<string, string> | undefined,
+): string {
   if (!value) return '';
   if (typeof value === 'string') return value;
   return value['en-US'] ?? Object.values(value)[0] ?? '';
 }
 
-function formatDate(iso: string | undefined): string {
+export function formatDate(iso: string | undefined): string {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
@@ -54,7 +56,7 @@ function formatDate(iso: string | undefined): string {
   return `${month} ${date.getUTCDate()} ${date.getUTCFullYear()}`;
 }
 
-function mapAddon(a: ApiAddon): Addon {
+export function mapAddon(a: ApiAddon): Addon {
   const kind: AddonKind = a.type === 'statictheme' ? 'theme' : 'extension';
   const live = a.status === 'public' && !a.is_disabled;
   const preview = a.previews?.[0];
@@ -78,7 +80,7 @@ function mapAddon(a: ApiAddon): Addon {
   };
 }
 
-function mapActivity(a: ApiActivity): Update {
+export function mapActivity(a: ApiActivity): Update {
   const title = a.title ?? 'Update';
   // Best-effort: the feed has no explicit approved flag, so infer it from the
   // human-readable title/comments. Revisit if the API adds a status field.
