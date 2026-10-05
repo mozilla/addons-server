@@ -55,6 +55,7 @@ from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
+from olympia import amo
 from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 from olympia.constants.abuse import REPORTED_MEDIA_BACKUP_EXPIRATION_DAYS
 from olympia.core.languages import LANGUAGES_NOT_IN_BABEL
@@ -648,7 +649,7 @@ def image_size(filename):
     """
     Return an image size tuple, as returned by PIL.
     """
-    with Image.open(filename) as img:
+    with Image.open(filename, formats=amo.IMG_ACCEPTABLE_FORMATS) as img:
         size = img.size
     return size
 
@@ -728,11 +729,11 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
         }
         with tempfile.NamedTemporaryFile(**tmp_args) as temporary_png:
             convert_svg_to_png(source, temporary_png.name)
-            im = Image.open(temporary_png.name)
+            im = Image.open(temporary_png.name, formats=('PNG',))
             im.load()
     else:
         with storage.open(source, 'rb') as fp:
-            im = Image.open(fp)
+            im = Image.open(fp, formats=amo.IMG_ACCEPTABLE_FORMATS)
             im.load()
     im = im.convert('RGBA')
     original_size = im.size
@@ -770,38 +771,45 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
 
 
 class ImageCheck:
-    def __init__(self, image):
-        self._img = image
+    def __init__(self, data, *, valid_types):
+        self._data = data
+        # Accept animated png type mimetype if accepting pngs, the caller will
+        # use is_animated() separately if they don't want to accept those.
+        self.valid_types = (
+            valid_types + ('image/apng',) if 'image/png' in valid_types else valid_types
+        )
 
-    def is_image(self):
-        if not hasattr(self, '_is_image'):
+    def is_valid_image(self):
+        if not hasattr(self, '_is_valid_image'):
             try:
-                self._img.seek(0)
-                self.img = Image.open(self._img)
+                self._data.seek(0)
+                self.img = Image.open(self._data, formats=amo.IMG_ACCEPTABLE_FORMATS)
                 # PIL doesn't tell us what errors it will raise at this point,
                 # just "suitable ones", so let's catch them all.
                 self.img.verify()
-                self._is_image = True
+                self._is_valid_image = (
+                    self.img.get_format_mimetype() in self.valid_types
+                )
             except Exception:
                 log.exception('Error decoding image')
-                self._is_image = False
-        return self._is_image
+                self._is_valid_image = False
+        return self._is_valid_image
 
     @property
     def size(self):
-        if not self.is_image():
+        if not self.is_valid_image():
             return None
         return self.img.size if hasattr(self, 'img') else None
 
     def is_animated(self, size=100000):
-        if not self.is_image():
+        if not self.is_valid_image():
             return False
 
         if self.img.format == 'PNG':
-            self._img.seek(0)
+            self._data.seek(0)
             data = b''
             while True:
-                chunk = self._img.read(size)
+                chunk = self._data.read(size)
                 if not chunk:
                     break
                 data += chunk
@@ -813,8 +821,8 @@ class ImageCheck:
             # The image has been verified, and thus the file closed, we need to
             # reopen. Check the "verify" method of the Image object:
             # http://pillow.readthedocs.io/en/latest/reference/Image.html
-            self._img.seek(0)
-            img = Image.open(self._img)
+            self._data.seek(0)
+            img = Image.open(self._data, formats=('GIF',))
             # See the PIL docs for how this works:
             # http://www.pythonware.com/library/pil/handbook/introduction.htm
             try:

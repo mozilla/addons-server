@@ -339,7 +339,7 @@ def edit(request, addon_id, addon):
         'tags': addon.tags.values_list('tag_text', flat=True),
         'previews': previews,
         'header_preview': header_preview,
-        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+        'supported_image_types': ','.join(amo.IMG_TYPES),
     }
 
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
@@ -964,7 +964,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'dependency_form': dependency_form,
         'whiteboard_form': whiteboard_form,
         'valid_slug': valid_slug,
-        'supported_image_types': amo.SUPPORTED_IMAGE_TYPES,
+        'supported_image_types': ','.join(amo.IMG_TYPES),
     }
 
     return TemplateResponse(
@@ -1006,19 +1006,15 @@ def upload_image(request, addon_id, addon, upload_type):
 
         is_icon = upload_type == 'icon'
         is_preview = upload_type == 'preview'
-        image_check = amo_utils.ImageCheck(upload_preview)
-        is_animated = image_check.is_animated()  # will also cache .is_image()
+        image_check = amo_utils.ImageCheck(upload_preview, valid_types=amo.IMG_TYPES)
 
-        if (
-            upload_preview.content_type not in amo.IMG_TYPES
-            or not image_check.is_image()
-        ):
+        if not image_check.is_valid_image():
             if is_icon:
                 errors.append(gettext('Icons must be either PNG or JPG.'))
             else:
                 errors.append(gettext('Images must be either PNG or JPG.'))
 
-        if is_animated:
+        if image_check.is_animated():
             if is_icon:
                 errors.append(gettext('Icons cannot be animated.'))
             else:
@@ -1036,7 +1032,7 @@ def upload_image(request, addon_id, addon, upload_type):
             )
 
         content_waffle = waffle.switch_is_active('content-optimization')
-        if image_check.is_image() and content_waffle and is_preview:
+        if image_check.is_valid_image() and content_waffle and is_preview:
             min_size = amo.ADDON_PREVIEW_SIZES.get('min')
             # * 100 to get a nice integer to compare against rather than 1.3333
             required_ratio = min_size[0] * 100 // min_size[1]
@@ -1052,7 +1048,7 @@ def upload_image(request, addon_id, addon, upload_type):
             if actual_ratio != required_ratio:
                 errors.append(gettext('Image dimensions must be in the ratio 4:3.'))
 
-        if image_check.is_image() and content_waffle and is_icon:
+        if image_check.is_valid_image() and content_waffle and is_icon:
             standard_size = amo.ADDON_ICON_SIZES[-1]
             icon_size = image_check.size
             if icon_size[0] < standard_size or icon_size[1] < standard_size:

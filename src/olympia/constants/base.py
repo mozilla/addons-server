@@ -239,6 +239,13 @@ VALID_CONTRIBUTION_DOMAINS = (
     'paypal.me',
 )
 
+# Formats we're willing to manipulate in addons-server through Pillow.
+IMG_ACCEPTABLE_FORMATS = ('PNG', 'JPEG', 'GIF')
+
+# Accepted types for add-on images/icons & user avatars.
+# Has to be types that match a format in IMG_ACCEPTABLE_FORMATS.
+IMG_TYPES = ('image/png', 'image/jpeg')
+
 # Icon upload sizes
 ADDON_ICON_SIZES = (32, 64, 128)
 ADDON_ICON_FORMAT = 'png'
@@ -273,13 +280,9 @@ THEME_PREVIEW_RENDERINGS = {
 THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
-# Accepted image extensions and MIME-types
+# Accepted image extensions for theme backgrounds.
+# Has to be extensions that match a format in IMG_ACCEPTABLE_FORMATS.
 THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
-IMG_TYPES = ('image/png', 'image/jpeg')
-VIDEO_TYPES = ('video/webm',)
-
-# The string concatinating all accepted image MIME-types with ','
-SUPPORTED_IMAGE_TYPES = ','.join(IMG_TYPES)
 
 # Acceptable Add-on file extensions.
 # This is being used by `parse_addon` so please make sure we don't have

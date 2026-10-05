@@ -64,7 +64,9 @@ def encode_header(header_blob, file_ext):
             height = int(dimensions['height'])
             img_format = 'svg+xml'
         else:
-            with Image.open(io.BytesIO(header_blob)) as header_image:
+            with Image.open(
+                io.BytesIO(header_blob), formats=amo.IMG_ACCEPTABLE_FORMATS
+            ) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
         src = f'data:image/{img_format};base64,{force_str(b64encode(header_blob))}'
