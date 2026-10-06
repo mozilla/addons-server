@@ -125,7 +125,7 @@ def render_to_svg(template, context, preview, thumbnail_dimensions, theme_manife
             if not write_svg_to_png(image_only_svg, background_png.name):
                 return
             # TODO: improvement - only re-encode jpg backgrounds as jpg?
-            Image.open(background_png.name).convert('RGB').save(
+            Image.open(background_png.name, formats=('PNG',)).convert('RGB').save(
                 background_blob, 'JPEG', quality=80
             )
 

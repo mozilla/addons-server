@@ -177,7 +177,7 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
     def validate_picture_upload(self, value):
         image_check = ImageCheck(value)
 
-        if value.content_type not in amo.IMG_TYPES or not image_check.is_image():
+        if not image_check.is_valid_image():
             raise serializers.ValidationError(
                 gettext('Images must be either PNG or JPG.')
             )
