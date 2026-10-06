@@ -327,30 +327,36 @@ def get_addon_file(name):
     return os.path.join(ADDONS_TEST_FILES, name)
 
 
-VALID_TYPES_WITH_ANIMATED = amo.IMG_TYPES + ('image/gif', 'image/apng')
+VALID_TYPES_WITH_GIF = amo.IMG_TYPES + ('image/gif',)
 
 
+@patch.object(amo, 'IMG_TYPES', VALID_TYPES_WITH_GIF)
 def test_image_checker_animated_images():
     with open(get_image_path('animated.png'), mode='rb') as f:
-        assert ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_animated()
+        assert ImageCheck(f).is_valid_image()
+        assert ImageCheck(f).is_animated()
     with open(get_image_path('non-animated.png'), mode='rb') as f:
-        assert not ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_animated()
+        assert ImageCheck(f).is_valid_image()
+        assert not ImageCheck(f).is_animated()
     with open(get_image_path('animated.gif'), mode='rb') as f:
-        assert ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_animated()
+        assert ImageCheck(f).is_valid_image()
+        assert ImageCheck(f).is_animated()
     with open(get_image_path('non-animated.gif'), mode='rb') as f:
-        assert not ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_animated()
+        assert ImageCheck(f).is_valid_image()
+        assert not ImageCheck(f).is_animated()
 
 
+@patch.object(amo, 'IMG_TYPES', VALID_TYPES_WITH_GIF)
 def test_image_checker_junk():
     with open(__file__, 'rb') as f:
-        assert not ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_valid_image()
+        assert not ImageCheck(f).is_valid_image()
     with open(get_image_path('non-animated.gif'), mode='rb') as f:
-        assert ImageCheck(f, valid_types=VALID_TYPES_WITH_ANIMATED).is_valid_image()
+        assert ImageCheck(f).is_valid_image()
 
 
 def test_image_checker_unsupported_format():
     with open(get_image_path('non-animated.gif'), mode='rb') as f:
-        assert not ImageCheck(f, valid_types=amo.IMG_TYPES).is_valid_image()
+        assert not ImageCheck(f).is_valid_image()
 
 
 def test_jinja_trans_monkeypatch():

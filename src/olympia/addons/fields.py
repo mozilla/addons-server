@@ -359,7 +359,7 @@ class ImageField(serializers.ImageField):
     def to_internal_value(self, data):
         data = super().to_internal_value(data)
 
-        image_check = ImageCheck(data, valid_types=amo.IMG_TYPES)
+        image_check = ImageCheck(data)
 
         if not image_check.is_valid_image():
             raise exceptions.ValidationError(

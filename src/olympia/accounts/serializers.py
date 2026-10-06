@@ -175,7 +175,7 @@ class SelfUserProfileSerializer(PropertyUpdatedMixin, FullUserProfileSerializer)
             raise serializers.ValidationError(exc.messages) from exc
 
     def validate_picture_upload(self, value):
-        image_check = ImageCheck(value, valid_types=amo.IMG_TYPES)
+        image_check = ImageCheck(value)
 
         if not image_check.is_valid_image():
             raise serializers.ValidationError(

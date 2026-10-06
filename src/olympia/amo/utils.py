@@ -771,12 +771,14 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
 
 
 class ImageCheck:
-    def __init__(self, data, *, valid_types):
+    def __init__(self, data):
         self._data = data
         # Accept animated png type mimetype if accepting pngs, the caller will
         # use is_animated() separately if they don't want to accept those.
         self.valid_types = (
-            valid_types + ('image/apng',) if 'image/png' in valid_types else valid_types
+            amo.IMG_TYPES + ('image/apng',)
+            if 'image/png' in amo.IMG_TYPES
+            else amo.IMG_TYPES
         )
 
     def is_valid_image(self):

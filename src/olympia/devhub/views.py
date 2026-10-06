@@ -1006,7 +1006,7 @@ def upload_image(request, addon_id, addon, upload_type):
 
         is_icon = upload_type == 'icon'
         is_preview = upload_type == 'preview'
-        image_check = amo_utils.ImageCheck(upload_preview, valid_types=amo.IMG_TYPES)
+        image_check = amo_utils.ImageCheck(upload_preview)
 
         if not image_check.is_valid_image():
             if is_icon:
