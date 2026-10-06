@@ -72,9 +72,10 @@ export class UpdateCard extends LitElement {
         </div>
         <p class="message">${unsafeHTML(u.message)}</p>
         <div class="foot">
-          ${ u.version.length
-            ? html`<span>Version ${u.version}</span>`
-            : undefined
+          ${
+            u.version.length
+              ? html`<span>Version ${u.version}</span>`
+              : undefined
           }
           ${
             u.versionStatus

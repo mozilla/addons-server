@@ -17,9 +17,7 @@ export function interceptOutOfAppLinks(base: string): () => void {
     }
     const anchor = e
       .composedPath()
-      .find(
-        (n): n is HTMLAnchorElement => (n as HTMLElement).tagName === 'A',
-      );
+      .find((n): n is HTMLAnchorElement => (n as HTMLElement).tagName === 'A');
     if (
       anchor &&
       anchor.origin === location.origin &&

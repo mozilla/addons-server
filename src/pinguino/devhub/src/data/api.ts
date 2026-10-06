@@ -25,7 +25,7 @@ interface ApiAddon {
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
 interface ApiActivity {
-  addon: Partial<ApiAddon>,
+  addon: Partial<ApiAddon>;
   id: number;
   title?: string;
   comments?: string;
