@@ -240,11 +240,11 @@ VALID_CONTRIBUTION_DOMAINS = (
 )
 
 # Formats we're willing to manipulate in addons-server through Pillow.
-IMG_ACCEPTABLE_FORMATS = ('PNG', 'JPEG', 'GIF')
+VALID_IMAGE_FORMATS = ('PNG', 'JPEG', 'GIF')
 
 # Accepted types for add-on images/icons & user avatars.
-# Has to be types that match a format in IMG_ACCEPTABLE_FORMATS.
-IMG_TYPES = ('image/png', 'image/jpeg')
+# Has to be types that match a format we support in VALID_IMAGE_FORMATS.
+VALID_IMAGE_TYPES = ('image/png', 'image/jpeg')
 
 # Icon upload sizes
 ADDON_ICON_SIZES = (32, 64, 128)
@@ -281,7 +281,8 @@ THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
 # Accepted image extensions for theme backgrounds.
-# Has to be extensions that match a format in IMG_ACCEPTABLE_FORMATS.
+# Has to be extensions that match a format in IMG_VALID_FORMATS, plus .svg
+# which has its own special handling (PNG covers both .png and .apng)
 THEME_BACKGROUND_EXTS = ('.jpg', '.jpeg', '.png', '.apng', '.svg', '.gif')
 
 # Acceptable Add-on file extensions.

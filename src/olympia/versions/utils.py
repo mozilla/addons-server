@@ -65,7 +65,7 @@ def encode_header(header_blob, file_ext):
             img_format = 'svg+xml'
         else:
             with Image.open(
-                io.BytesIO(header_blob), formats=amo.IMG_ACCEPTABLE_FORMATS
+                io.BytesIO(header_blob), formats=amo.VALID_IMAGE_FORMATS
             ) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()

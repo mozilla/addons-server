@@ -327,10 +327,10 @@ def get_addon_file(name):
     return os.path.join(ADDONS_TEST_FILES, name)
 
 
-VALID_TYPES_WITH_GIF = amo.IMG_TYPES + ('image/gif',)
+VALID_IMAGE_TYPES_WITH_GIF = amo.VALID_IMAGE_TYPES + ('image/gif',)
 
 
-@patch.object(amo, 'IMG_TYPES', VALID_TYPES_WITH_GIF)
+@patch.object(amo, 'VALID_IMAGE_TYPES', VALID_IMAGE_TYPES_WITH_GIF)
 def test_image_checker_animated_images():
     with open(get_image_path('animated.png'), mode='rb') as f:
         assert ImageCheck(f).is_valid_image()
@@ -346,7 +346,7 @@ def test_image_checker_animated_images():
         assert not ImageCheck(f).is_animated()
 
 
-@patch.object(amo, 'IMG_TYPES', VALID_TYPES_WITH_GIF)
+@patch.object(amo, 'VALID_IMAGE_TYPES', VALID_IMAGE_TYPES_WITH_GIF)
 def test_image_checker_junk():
     with open(__file__, 'rb') as f:
         assert not ImageCheck(f).is_valid_image()

@@ -339,7 +339,7 @@ def edit(request, addon_id, addon):
         'tags': addon.tags.values_list('tag_text', flat=True),
         'previews': previews,
         'header_preview': header_preview,
-        'supported_image_types': ','.join(amo.IMG_TYPES),
+        'supported_image_types': ','.join(amo.VALID_IMAGE_TYPES),
     }
 
     return TemplateResponse(request, 'devhub/addons/edit.html', context=data)
@@ -964,7 +964,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
         'dependency_form': dependency_form,
         'whiteboard_form': whiteboard_form,
         'valid_slug': valid_slug,
-        'supported_image_types': ','.join(amo.IMG_TYPES),
+        'supported_image_types': ','.join(amo.VALID_IMAGE_TYPES),
     }
 
     return TemplateResponse(

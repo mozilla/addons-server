@@ -649,7 +649,7 @@ def image_size(filename):
     """
     Return an image size tuple, as returned by PIL.
     """
-    with Image.open(filename, formats=amo.IMG_ACCEPTABLE_FORMATS) as img:
+    with Image.open(filename, formats=amo.VALID_IMAGE_FORMATS) as img:
         size = img.size
     return size
 
@@ -733,7 +733,7 @@ def resize_image(source, destination, size=None, *, format='png', quality=80):
             im.load()
     else:
         with storage.open(source, 'rb') as fp:
-            im = Image.open(fp, formats=amo.IMG_ACCEPTABLE_FORMATS)
+            im = Image.open(fp, formats=amo.VALID_IMAGE_FORMATS)
             im.load()
     im = im.convert('RGBA')
     original_size = im.size
@@ -776,16 +776,16 @@ class ImageCheck:
         # Accept animated png type mimetype if accepting pngs, the caller will
         # use is_animated() separately if they don't want to accept those.
         self.valid_types = (
-            amo.IMG_TYPES + ('image/apng',)
-            if 'image/png' in amo.IMG_TYPES
-            else amo.IMG_TYPES
+            amo.VALID_IMAGE_TYPES + ('image/apng',)
+            if 'image/png' in amo.VALID_IMAGE_TYPES
+            else amo.VALID_IMAGE_TYPES
         )
 
     def is_valid_image(self):
         if not hasattr(self, '_is_valid_image'):
             try:
                 self._data.seek(0)
-                self.img = Image.open(self._data, formats=amo.IMG_ACCEPTABLE_FORMATS)
+                self.img = Image.open(self._data, formats=amo.VALID_IMAGE_FORMATS)
                 # PIL doesn't tell us what errors it will raise at this point,
                 # just "suitable ones", so let's catch them all.
                 self.img.verify()
