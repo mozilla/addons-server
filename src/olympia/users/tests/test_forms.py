@@ -21,7 +21,7 @@ class UserFormBase(TestCase):
 
 class TestDeniedNameAdminAddForm(UserFormBase):
     def test_no_usernames(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_deniedname_add')
         data = {
             'names': '\n\n',
@@ -32,7 +32,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         )
 
     def test_add(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_deniedname_add')
         data = {
             'names': 'IE6Fan\nfubar\n\n',
@@ -50,7 +50,7 @@ class TestEmailUserRestrictionAdminForm(UserFormBase):
             email_pattern='foo@example.com',
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_emailuserrestriction_add')
         data = {
             'email_pattern': 'foo+bar@example.com',
@@ -63,7 +63,7 @@ class TestEmailUserRestrictionAdminForm(UserFormBase):
     def test_record_normalized_pattern(self):
         # Note: this would happen because of the custom save() method in the
         # model anyway.
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_emailuserrestriction_add')
         data = {
             'email_pattern': 'foo+bar@example.com',
@@ -79,7 +79,7 @@ class TestEmailUserRestrictionAdminForm(UserFormBase):
 
 class TestIPNetworkUserRestrictionForm(UserFormBase):
     def test_add_converts_ipaddress_to_network(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.32',
@@ -93,7 +93,7 @@ class TestIPNetworkUserRestrictionForm(UserFormBase):
         assert restriction.network == ipaddress.IPv4Network('192.168.1.32/32')
 
     def test_add_validates_ip_address(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         url = reverse('admin:users_ipnetworkuserrestriction_add')
         data = {
             'ip_address': '192.168.1.0/28',

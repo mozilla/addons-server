@@ -16,6 +16,7 @@ from pyquery import PyQuery as pq
 from olympia.accounts.utils import fxa_login_url, path_with_query
 from olympia.accounts.verify import IdentificationError
 from olympia.amo.middleware import (
+    AdminStepUpMiddleware,
     AuthenticationMiddlewareWithoutAPI,
     CacheControlMiddleware,
     GraphiteMiddlewareNoAuth,
@@ -510,3 +511,54 @@ class TestGraphiteMiddlewareNoAuth(TestCase):
         assert response.status_code == 200
         assert statsd_mock.incr.call_count == 1
         assert statsd_mock.incr.call_args[0] == ('response.200',)
+
+
+@patch('olympia.amo.middleware.reprompt_for_2fa_if_necessary')
+class TestAdminStepUpMiddleware(TestCase):
+    def setUp(self):
+        self.user = user_factory()
+        self.get_response = lambda: None
+
+    def test_not_an_admin_path(self, reprompt_for_2fa_if_necessary_mock):
+        request = RequestFactory().post('/blah')
+        request.session = {SESSION_KEY: str(self.user.id)}
+        assert (
+            AdminStepUpMiddleware(self.get_response).process_view(
+                request, lambda: None, (), {}
+            )
+            is None
+        )
+        assert reprompt_for_2fa_if_necessary_mock.call_count == 0
+
+    def test_not_a_post(self, reprompt_for_2fa_if_necessary_mock):
+        request = RequestFactory().get('/admin/models/blah')
+        request.session = {SESSION_KEY: str(self.user.id)}
+        assert (
+            AdminStepUpMiddleware(self.get_response).process_view(
+                request, lambda: None, (), {}
+            )
+            is None
+        )
+        assert reprompt_for_2fa_if_necessary_mock.call_count == 0
+
+    def test_no_session(self, reprompt_for_2fa_if_necessary_mock):
+        request = RequestFactory().post('/admin/models/blah')
+        request.session = {}
+        assert (
+            AdminStepUpMiddleware(self.get_response).process_view(
+                request, lambda: None, (), {}
+            )
+            is None
+        )
+        assert reprompt_for_2fa_if_necessary_mock.call_count == 0
+
+    def test_do_reprompt(self, reprompt_for_2fa_if_necessary_mock):
+        request = RequestFactory().post('/admin/models/foo')
+        request.session = {SESSION_KEY: str(self.user.id)}
+        assert (
+            AdminStepUpMiddleware(self.get_response).process_view(
+                request, lambda: None, (), {}
+            )
+            == reprompt_for_2fa_if_necessary_mock.return_value
+        )
+        assert reprompt_for_2fa_if_necessary_mock.call_count == 1

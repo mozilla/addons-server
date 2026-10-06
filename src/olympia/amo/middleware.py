@@ -44,6 +44,7 @@ from rest_framework import permissions
 
 import olympia.core.logger
 from olympia import amo
+from olympia.accounts.decorators import reprompt_for_2fa_if_necessary
 from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.verify import (
     IdentificationError,
@@ -57,7 +58,9 @@ from .templatetags.jinja_helpers import urlparams
 
 log = olympia.core.logger.getLogger('amo.middleware')
 
-auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
+auth_path = re.compile(
+    f'{settings.DRF_API_REGEX}accounts/authenticate/?$|^/api/auth/authenticated-restore-post/$'
+)
 
 # Name of the header used to expose/propagate the request id across services.
 REQUEST_ID_HEADER = 'X-AMO-Request-ID'
@@ -502,3 +505,27 @@ class CSPMiddleware(CSPMiddlewareUpstream):
             }
 
         return policy_parts
+
+
+class AdminStepUpMiddleware(MiddlewareMixin):
+    """Middleware to force admins to be reprompted for 2FA when doing POST
+    requests. Should be called last when processing views."""
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        if (
+            # We set path_info in LocaleAndAppURLMiddleware to not include the
+            # locale part.
+            request.path_info.startswith('/admin/')
+            and request.method == 'POST'
+            and SESSION_KEY in request.session
+        ):
+            # Django documentation mention that accessing request.POST inside
+            # middleware before the view runs or in process_view() will prevent
+            # any view running after the middleware from being able to modify
+            # the upload handlers for the request, and should normally be
+            # avoided. reprompt_for_2fa_if_necessary() does access request.POST
+            # if reprompting for 2FA ends up being necessary, but in that case,
+            # the view would not be called anyway because it means we're
+            # redirecting the user to re-auth.
+            return reprompt_for_2fa_if_necessary(request)
+        return None

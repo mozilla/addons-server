@@ -28,7 +28,7 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
     def test_can_see_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -40,7 +40,7 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
 
     def test_cannot_see_in_admin_without_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -52,14 +52,14 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
         addon_factory(name='FooBâr')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(reverse(self.list_url_name), follow=True)
         assert response.status_code == 200
 
     def test_cannot_list_without_discovery_edit(self):
         addon_factory(name='FooBâr')
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(reverse(self.list_url_name), follow=True)
         assert response.status_code == 403
 
@@ -104,7 +104,7 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
         addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         change_url = reverse(
             'admin:discovery_discoverypromotedgroup_change', args=[group.pk]
         )
@@ -130,7 +130,7 @@ class TestDiscoveryPromotedGroupAdmin(TestCase):
         addon = addon_factory(promoted_kwargs={'api_name': group.api_name})
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.SUPERPOWERS)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         delete_url = reverse(
             'admin:discovery_discoverypromotedgroup_delete', args=[group.pk]
         )
@@ -198,7 +198,7 @@ class TestDiscoveryAddonAdmin(TestCase):
     def test_can_see_in_admin_with_discovery_edit(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         url = reverse('admin:index')
         response = self.client.get(url)
         assert response.status_code == 200
@@ -212,7 +212,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon_factory(name='FooBâr')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         with self.assertNumQueries(10):
             # 1. select current user
@@ -264,7 +264,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         filters = {
             # See DiscoveryAddonAdmin.list_filter
@@ -285,7 +285,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url_by_slug = reverse(self.detail_url_name, args=(addon.slug,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url_by_slug, follow=False)
         self.assert3xx(response, detail_url, 301)
 
@@ -295,7 +295,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url_by_guid = reverse(self.detail_url_name, args=(addon.guid,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url_by_guid, follow=False)
         self.assert3xx(response, detail_url, 301)
 
@@ -338,7 +338,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -407,7 +407,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         # try to change the approval group
         response = self.client.post(
@@ -466,7 +466,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         assert addon.approved_applications
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # can't access
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
@@ -521,7 +521,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         # And can delete.
         response = self.client.post(
@@ -550,7 +550,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         )
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         # Can't delete.
         response = self.client.post(
@@ -573,7 +573,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # create an approval that doesn't have a matching PromotedAddon yet
         group = PromotedGroup.objects.get(api_name=RECOMMENDED_API_NAME)
         response = self.client.get(detail_url, follow=True)
@@ -606,7 +606,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # create an approval that doesn't have a matching PromotedAddon yet
         group = PromotedGroup.objects.get(api_name='line')
         PromotedApproval.objects.create(
@@ -639,7 +639,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         addon = addon_factory()
         detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(detail_url, follow=True)
         assert response.status_code == 403
         # try to add anyway
@@ -659,7 +659,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         self.detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -695,7 +695,7 @@ class TestDiscoveryAddonAdmin(TestCase):
         self.detail_url = reverse(self.detail_url_name, args=(addon.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')

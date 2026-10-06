@@ -522,6 +522,7 @@ MIDDLEWARE = (
     'olympia.access.middleware.UserAndAddrMiddleware',
     'olympia.amo.middleware.RequestIdMiddleware',
     'olympia.amo.middleware.TokenValidMiddleware',
+    'olympia.amo.middleware.AdminStepUpMiddleware',
 )
 
 # Auth
