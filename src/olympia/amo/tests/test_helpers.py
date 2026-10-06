@@ -16,7 +16,7 @@ from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.amo.reverse import set_url_prefix
 from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.tests import SQUOTE_ESCAPED, TestCase, reverse_ns
+from olympia.amo.tests import SQUOTE_ESCAPED, reverse_ns
 from olympia.amo.utils import ImageCheck
 
 
@@ -327,22 +327,36 @@ def get_addon_file(name):
     return os.path.join(ADDONS_TEST_FILES, name)
 
 
-class TestAnimatedImages(TestCase):
-    def test_animated_images(self):
-        with open(get_image_path('animated.png'), mode='rb') as f:
-            assert ImageCheck(f).is_animated()
-        with open(get_image_path('non-animated.png'), mode='rb') as f:
-            assert not ImageCheck(f).is_animated()
-        with open(get_image_path('animated.gif'), mode='rb') as f:
-            assert ImageCheck(f).is_animated()
-        with open(get_image_path('non-animated.gif'), mode='rb') as f:
-            assert not ImageCheck(f).is_animated()
+VALID_IMAGE_TYPES_WITH_GIF = amo.VALID_IMAGE_TYPES + ('image/gif',)
 
-    def test_junk(self):
-        with open(__file__, 'rb') as f:
-            assert not ImageCheck(f).is_image()
-        with open(get_image_path('non-animated.gif'), mode='rb') as f:
-            assert ImageCheck(f).is_image()
+
+@patch.object(amo, 'VALID_IMAGE_TYPES', VALID_IMAGE_TYPES_WITH_GIF)
+def test_image_checker_animated_images():
+    with open(get_image_path('animated.png'), mode='rb') as f:
+        assert ImageCheck(f).is_valid_image()
+        assert ImageCheck(f).is_animated()
+    with open(get_image_path('non-animated.png'), mode='rb') as f:
+        assert ImageCheck(f).is_valid_image()
+        assert not ImageCheck(f).is_animated()
+    with open(get_image_path('animated.gif'), mode='rb') as f:
+        assert ImageCheck(f).is_valid_image()
+        assert ImageCheck(f).is_animated()
+    with open(get_image_path('non-animated.gif'), mode='rb') as f:
+        assert ImageCheck(f).is_valid_image()
+        assert not ImageCheck(f).is_animated()
+
+
+@patch.object(amo, 'VALID_IMAGE_TYPES', VALID_IMAGE_TYPES_WITH_GIF)
+def test_image_checker_junk():
+    with open(__file__, 'rb') as f:
+        assert not ImageCheck(f).is_valid_image()
+    with open(get_image_path('non-animated.gif'), mode='rb') as f:
+        assert ImageCheck(f).is_valid_image()
+
+
+def test_image_checker_unsupported_format():
+    with open(get_image_path('non-animated.gif'), mode='rb') as f:
+        assert not ImageCheck(f).is_valid_image()
 
 
 def test_jinja_trans_monkeypatch():

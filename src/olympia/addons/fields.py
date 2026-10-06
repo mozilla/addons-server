@@ -361,7 +361,7 @@ class ImageField(serializers.ImageField):
 
         image_check = ImageCheck(data)
 
-        if data.content_type not in amo.IMG_TYPES or not image_check.is_image():
+        if not image_check.is_valid_image():
             raise exceptions.ValidationError(
                 gettext('Images must be either PNG or JPG.')
             )

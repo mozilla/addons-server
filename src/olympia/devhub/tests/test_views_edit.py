@@ -4,9 +4,10 @@ from unittest import mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.client import MULTIPART_CONTENT
 from django.test.utils import override_settings
 from django.urls import reverse
-from django.utils.encoding import force_str
+from django.utils.encoding import force_bytes, force_str
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -1154,18 +1155,45 @@ class TestEditMedia(BaseTestEdit):
         assert addon.icon_type == 'image/png'
         assert addon.icon_hash == 'f02063c9'
 
-    def check_image_type(self, url, msg):
-        img = 'static/js/zamboni/devhub.js'
-        with open(img, 'rb') as src_image:
-            res = self.client.post(url, {'upload_image': src_image})
+    def _check_image_type(self, url, msg, *, content_type_override=None):
+        # Favicon is used because it's a real image, but not one we support,
+        # so it should return an error when we load it, even when content type
+        # provided by the client would be supported.
+        src = 'static/img/favicon.ico'
+        with open(src, 'rb') as src_image:
+            # We're manually encoding data and calling client.generic() instead
+            # of client.post() to be able to alter content-type send by the
+            # client.
+            post_data = self.client._encode_data(
+                {'upload_image': src_image}, MULTIPART_CONTENT
+            )
+            if content_type_override:
+                post_data.replace(
+                    b'image/vnd.microsoft.icon', force_bytes(content_type_override)
+                )
+            res = self.client.generic('POST', url, post_data, MULTIPART_CONTENT)
         response_json = json.loads(force_str(res.content))
         assert response_json['errors'][0] == msg
 
     def test_edit_media_icon_wrong_type(self):
-        self.check_image_type(self.icon_upload, 'Icons must be either PNG or JPG.')
+        self._check_image_type(self.icon_upload, 'Icons must be either PNG or JPG.')
+
+    def test_edit_media_icon_wrong_type_with_image_content_type(self):
+        self._check_image_type(
+            self.icon_upload,
+            'Icons must be either PNG or JPG.',
+            content_type_override='image/png',
+        )
 
     def test_edit_media_screenshot_wrong_type(self):
-        self.check_image_type(self.preview_upload, 'Images must be either PNG or JPG.')
+        self._check_image_type(self.preview_upload, 'Images must be either PNG or JPG.')
+
+    def test_edit_media_screenshot_wrong_type_with_image_content_type(self):
+        self._check_image_type(
+            self.preview_upload,
+            'Images must be either PNG or JPG.',
+            content_type_override='image/png',
+        )
 
     @override_settings(MAX_IMAGE_UPLOAD_SIZE=10 * 1024)
     def test_image_too_big(self):
