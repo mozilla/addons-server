@@ -80,6 +80,7 @@ export const mockAddons: Addon[] = [
 export const mockUpdates: Update[] = [
   {
     id: 'u1',
+    addonSlug: 'tab-organizer',
     approved: true,
     title: 'Your Version is approved.',
     message: 'Congrats! "Tab Organizer 3.2.1" is approved.',
@@ -90,6 +91,7 @@ export const mockUpdates: Update[] = [
   },
   {
     id: 'u2',
+    addonSlug: 'tab-organizer',
     approved: false,
     title: 'Your Version is flagged.',
     message:
@@ -101,6 +103,7 @@ export const mockUpdates: Update[] = [
   },
   {
     id: 'u3',
+    addonSlug: 'tab-organizer',
     approved: true,
     title: 'Your Version is approved.',
     message: 'Congrats! "Tab Organizer 3.2.1" is approved.',

@@ -111,7 +111,7 @@ export class AddonCard extends LitElement {
                 ${
                   a.iconUrl
                     ? html`<img class="logo" src=${a.iconUrl} alt="" />`
-                    : html`<moz-icon name=${a.icon}></moz-icon>`
+                    : undefined
                 }
                 <h2 class="name">${a.name}</h2>
               </div>

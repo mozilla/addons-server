@@ -13,6 +13,7 @@ const baseUpdate: Update = {
   versionStatus: 'Approved',
   tags: ['Live', 'AMO'],
   date: 'Sep 2 2025',
+  addonSlug: 'ad-blocker',
 };
 
 async function card(item: Partial<Update>) {
@@ -67,5 +68,20 @@ describe('update-card', () => {
     for (const tag of ['Live', 'AMO', 'Beta']) {
       expect(foot).toContain(tag);
     }
+  });
+
+  it('renders HTML in the title and message as real DOM, not escaped text', async () => {
+    const root = await card({
+      title: '<a href="https://amo.test/a">My Add-on</a> status changed.',
+      message: 'See <a href="https://amo.test/x">the review</a> for details.',
+    });
+
+    const titleLink = root.querySelector('.title a');
+    expect(titleLink?.getAttribute('href')).toBe('https://amo.test/a');
+    expect(titleLink?.textContent).toBe('My Add-on');
+
+    const messageLink = root.querySelector('.message a');
+    expect(messageLink?.getAttribute('href')).toBe('https://amo.test/x');
+    expect(messageLink?.textContent).toBe('the review');
   });
 });

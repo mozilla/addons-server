@@ -1,5 +1,6 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import type { Update } from '../data';
 
 @customElement('update-card')
@@ -29,8 +30,12 @@ export class UpdateCard extends LitElement {
     .title {
       display: flex;
       align-items: center;
-      gap: var(--space-xsmall);
+      gap: var(--space-small);
       font-weight: 600;
+    }
+    .title p {
+      margin: 0;
+      padding: 0;
     }
     .message {
       margin: 0;
@@ -51,19 +56,26 @@ export class UpdateCard extends LitElement {
     const u = this.item;
     return html`
       <div class="card">
+        <!-- title and message are HTML (e.g. <a> links) sanitized server-side
+             by the activity API; the link to the add-on lives in the title. -->
         <div class="head">
           <span class="title">
             <moz-status-dot
               icon
               type=${u.approved ? 'success' : 'warning'}
             ></moz-status-dot>
-            ${u.title}
+            <p>
+              ${unsafeHTML(u.title)}
+            </p>
           </span>
-          <moz-button size="small">View</moz-button>
+          <moz-button size="small" href="/pinguino/addon/${u.addonSlug}">View</moz-button>
         </div>
-        <p class="message">${u.message}</p>
+        <p class="message">${unsafeHTML(u.message)}</p>
         <div class="foot">
-          <span>Version ${u.version}</span>
+          ${ u.version.length
+            ? html`<span>Version ${u.version}</span>`
+            : undefined
+          }
           ${
             u.versionStatus
               ? html`

@@ -16,6 +16,8 @@ import './pages/devhub-addon';
 
 import './components/devhub-header';
 
+import { interceptOutOfAppLinks } from './navigation';
+
 // The SPA is mounted under /pinguino/, so routes match against that prefix.
 const BASE = '/pinguino';
 
@@ -53,6 +55,18 @@ export class PinguinoApp extends LitElement {
       },
     },
   );
+
+  #cleanupLinks?: () => void;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.#cleanupLinks = interceptOutOfAppLinks(BASE);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this.#cleanupLinks?.();
+  }
 
   render() {
     return html`
