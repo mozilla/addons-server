@@ -32,6 +32,19 @@ describe('apiFetch', () => {
     expect(init.headers).toEqual({});
   });
 
+  it('sends a JSON body with content-type when given', async () => {
+    const body = { foo: 'bar' };
+    const fetchFn = mockFetch({});
+    await apiFetch('/x', { method: 'POST', body: body });
+
+    const [, init] = fetchFn.mock.calls[0];
+    expect(init).toMatchObject({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+  });
+
   it('throws a typed ApiError carrying the status on a failed response', async () => {
     mockFetch({ ok: false, status: 404 });
 
