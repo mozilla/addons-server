@@ -5,6 +5,7 @@
       "**",
       "!**/node_modules",
       "!dist",
+      "!coverage",
       "!**/*.d.ts",
       "!**/*.svg",
       "!package-lock.json"
