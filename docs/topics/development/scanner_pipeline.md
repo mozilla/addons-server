@@ -185,7 +185,7 @@ Rules used as annotation keys must be listed in `matchedRules`. When there is
 no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
 name.
 
-Each annotated rule must exist as a [scanner rule](#scanner-rules) on AMO for
+Each annotated rule must be an active [scanner rule](#scanner-rules) on AMO for
 the annotation to be displayed.
 
 ### Adding a scanner webhook
@@ -494,8 +494,8 @@ attach results to and the scan results:
 | `409 Conflict`    | One or more of the `matchedRules` have already been pushed for this version                    |
 
 A push is rejected with `409 Conflict` when any rule in `matchedRules` has
-already been pushed for the same version via the same webhook. Only rules that
-exist as [scanner rules](#scanner-rules) are considered for this check.
+already been pushed for the same version via the same webhook. Only active
+[scanner rules](#scanner-rules) are considered for this check.
 
 #### Actions
 
@@ -537,6 +537,9 @@ which essentially allows a scanner to make a change to an add-on version.
 ## Scanner Rules
 
 A scanner rule allows scanners to trigger an [action](#scanner-actions).
+
+Unknown rules reported by scanner webhooks are created automatically (active,
+with no action). Existing rules are left untouched.
 
 (scanner-actions)=
 ## Scanner Actions

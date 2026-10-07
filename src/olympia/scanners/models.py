@@ -470,6 +470,18 @@ class ScannerResult(AbstractScannerResult):
         return super().get_rules_queryset().filter(is_active=True)
 
     def save(self, *args, **kwargs):
+        if self.scanner == WEBHOOK:
+            # Create the unknown rules reported by a webhook scanner, so that
+            # we don't need to manually register them in the admin.
+            for name in self.extract_rule_names():
+                self.rule_model.objects.get_or_create(
+                    name=name,
+                    scanner=self.scanner,
+                    defaults={
+                        'is_active': True,
+                    },
+                )
+
         matched_rules = self.get_rules_queryset()
         self.has_matches = bool(matched_rules)
         # Save the instance first...

@@ -16,8 +16,10 @@ from olympia.constants.scanners import (
     ABORTING,
     ANNOTATIONS_RULE_NAME,
     COMPLETED,
+    FLAG_FOR_HUMAN_REVIEW,
     NARC,
     NEW,
+    NO_ACTION,
     RUNNING,
     SCANNER_SERVICE_ACCOUNTS_GROUP,
     SCANNERS,
@@ -458,6 +460,64 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
         result.has_matches = None
         result.results = [{'rule': rule.name}]  # Fake match
         result.save()
+        assert result.has_matches is False
+
+    def test_save_creates_unknown_webhook_rules(self):
+        existing_rule = self.rule_model.objects.create(
+            name='existing-rule',
+            scanner=WEBHOOK,
+            action=FLAG_FOR_HUMAN_REVIEW,
+        )
+        initial_count = self.rule_model.objects.count()
+        result = self.create_result(
+            scanner=WEBHOOK,
+            results={'matchedRules': ['existing-rule', 'unknown-rule']},
+        )
+
+        assert self.rule_model.objects.count() == initial_count + 1
+        new_rule = self.rule_model.objects.get(name='unknown-rule', scanner=WEBHOOK)
+        assert new_rule.is_active
+        assert new_rule.action == NO_ACTION
+        assert new_rule.policy is None
+        assert result.has_matches is True
+        assert set(result.matched_rules.all()) == {existing_rule, new_rule}
+
+    def test_save_does_not_duplicate_created_webhook_rules(self):
+        result = self.create_result(
+            scanner=WEBHOOK, results={'matchedRules': ['unknown-rule']}
+        )
+        initial_count = self.rule_model.objects.count()
+        result.save()
+
+        result.duplicate(version=version_factory(addon=addon_factory()))
+        assert self.rule_model.objects.count() == initial_count
+
+    def test_save_does_not_reenable_disabled_webhook_rules(self):
+        self.rule_model.objects.create(
+            name='disabled-rule', scanner=WEBHOOK, is_active=False
+        )
+        initial_count = self.rule_model.objects.count()
+        result = self.create_result(
+            scanner=WEBHOOK, results={'matchedRules': ['disabled-rule']}
+        )
+
+        assert self.rule_model.objects.count() == initial_count
+        assert result.has_matches is False
+        assert not result.matched_rules.exists()
+
+    def test_save_does_not_create_rules_for_incomplete_webhook_results(self):
+        initial_count = self.rule_model.objects.count()
+
+        for results in (None, {}):
+            result = self.create_result(scanner=WEBHOOK, results=results)
+            assert result.has_matches is False
+
+        assert self.rule_model.objects.count() == initial_count
+
+    def test_save_does_not_create_unknown_rules_for_other_scanners(self):
+        initial_count = self.rule_model.objects.count()
+        result = self.create_result(scanner=YARA, results=[{'rule': 'unknown'}])
+        assert self.rule_model.objects.count() == initial_count
         assert result.has_matches is False
 
     def test_str(self):
