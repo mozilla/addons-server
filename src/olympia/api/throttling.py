@@ -245,12 +245,12 @@ api_key_throttles = (APIKeyUserThrottle, APIKeyIPThrottle)
 
 class DeveloperAgreementUserThrottle(GranularUserRateThrottle):
     scope = 'user_api_key'
-    rate = '4/day'
+    rate = '8/day'
 
 
 class DeveloperAgreementIPThrottle(GranularIPRateThrottle):
     scope = 'ip_api_key'
-    rate = '8/day'
+    rate = '16/day'
 
 
 dev_agreement_throttles = (DeveloperAgreementUserThrottle, DeveloperAgreementIPThrottle)

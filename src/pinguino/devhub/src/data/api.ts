@@ -126,13 +126,13 @@ export async function fetchUpdates(): Promise<Update[]> {
 }
 
 export async function fetchAgreement(): Promise<AgreementState> {
-  return await apiFetch<AgreementState>('/developers/agreement');
+  return await apiFetch<AgreementState>('/developers/agreement/');
 }
 
 export async function postAgreement(
   payload: AgreementAcceptState,
 ): Promise<unknown> {
-  return await apiFetch('/developers/agreement', {
+  return await apiFetch('/developers/agreement/', {
     method: 'POST',
     body: payload,
   });
