@@ -547,10 +547,15 @@ class AbstractScannerRuleAdminMixin:
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
         if not self.has_change_permission(request, obj):
-            # Remove the 'definition' field...
-            fields = list(filter(lambda x: x != 'definition', fields))
-            # ...and add its readonly (and pretty!) alter-ego.
-            fields.append('formatted_definition')
+            # Replace the 'definition' field with its readonly (and pretty!)
+            # alter-ego.
+            fields = [
+                'formatted_definition' if field == 'definition' else field
+                for field in fields
+            ]
+        if obj and obj.scanner != NARC:
+            # Only narc rules have a configuration.
+            fields = [field for field in fields if field != 'configuration']
         return fields
 
     def get_readonly_fields(self, request, obj=None):
@@ -784,16 +789,23 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'description',
         'action',
         'policy',
-        'created',
-        'modified',
-        'matched_results_link',
-        'is_active',
         'definition',
         'configuration',
         'exclude_promoted_addons',
+        'is_active',
+        'created',
+        'modified',
+        'matched_results_link',
     )
     readonly_fields = ('created', 'modified', 'matched_results_link')
     list_select_related = ('policy__parent',)
+
+    def get_fields(self, request, obj=None):
+        fields = super().get_fields(request, obj)
+        if obj and obj.scanner == WEBHOOK:
+            hidden = ('definition', 'formatted_definition')
+            fields = [field for field in fields if field not in hidden]
+        return fields
 
     def get_form(self, request, obj=None, **kwargs):
         form = super().get_form(request, obj=obj, **kwargs)
@@ -834,12 +846,12 @@ class ScannerQueryRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         'name',
         'pretty_name',
         'description',
-        'created',
-        'modified',
         'completion_rate',
-        'matched_results_link',
         'definition',
         'configuration',
+        'created',
+        'modified',
+        'matched_results_link',
     )
     readonly_fields = (
         'completion_rate',

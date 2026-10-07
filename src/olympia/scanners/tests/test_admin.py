@@ -29,6 +29,7 @@ from olympia.constants.scanners import (
     COMPLETED,
     NARC,
     NEW,
+    NO_ACTION,
     RUNNING,
     SCANNER_RESULTS_MISSING_RULE_NAME,
     SCHEDULED,
@@ -984,6 +985,53 @@ class TestScannerRuleAdmin(TestCase):
         assert 'configuration' in admin_form.fields
         assert admin_form.fields['configuration'].widget.instance == rule
 
+    def test_change_view_hides_definition_and_configuration_for_webhook(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=WEBHOOK)
+        url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        admin_form = response.context_data['adminform']
+        assert 'definition' not in admin_form.fields
+        assert 'configuration' not in admin_form.fields
+        doc = pq(response.content)
+        assert not doc('.field-definition')
+        assert not doc('.field-configuration')
+
+        response = self.client.post(
+            url,
+            {
+                'pretty_name': 'Bar',
+                'description': '',
+                'action': NO_ACTION,
+                'is_active': True,
+            },
+        )
+        assert response.status_code == 302
+        rule.reload()
+        assert rule.pretty_name == 'Bar'
+
+    def test_change_view_hides_configuration_for_yara(self):
+        rule = ScannerRule.objects.create(
+            name='bar', scanner=YARA, definition='rule bar { condition: true }'
+        )
+        url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        admin_form = response.context_data['adminform']
+        assert 'definition' in admin_form.fields
+        assert 'configuration' not in admin_form.fields
+
+    def test_get_fields_hides_formatted_definition_for_webhook_viewer(self):
+        rule = ScannerRule.objects.create(name='bar', scanner=WEBHOOK)
+        user = user_factory(email='viewer@mozilla.com')
+        self.grant_permission(user, amo.permissions.ADMIN_SCANNERS_RULES_VIEW)
+        request = RequestFactory().get('/')
+        request.user = user
+        fields = self.admin.get_fields(request=request, obj=rule)
+        assert 'definition' not in fields
+        assert 'formatted_definition' not in fields
+        assert 'configuration' not in fields
+
 
 class TestScannerQueryRuleAdmin(TestCase):
     def setUp(self):
@@ -993,6 +1041,17 @@ class TestScannerQueryRuleAdmin(TestCase):
         self.grant_permission(self.user, amo.permissions.ADMIN_SCANNERS_QUERY_EDIT)
         self.client.force_login_with_2fa(self.user)
         self.list_url = reverse('admin:scanners_scannerqueryrule_changelist')
+
+    def test_change_view_shows_configuration_only_for_narc(self):
+        for scanner, expected in ((NARC, True), (YARA, False)):
+            rule = ScannerQueryRule.objects.create(
+                name=f'rule_{scanner}', scanner=scanner
+            )
+            url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
+            response = self.client.get(url)
+            assert response.status_code == 200
+            admin_form = response.context_data['adminform']
+            assert ('configuration' in admin_form.fields) is expected
 
     def test_list_view(self):
         ScannerQueryRule.objects.create(name='bar', scanner=YARA)
@@ -1371,10 +1430,7 @@ class TestScannerQueryRuleAdmin(TestCase):
             definition='rule always_true { condition: true }',
         )
 
-        data = {
-            'definition': rule.definition,
-            'configuration': json.dumps(rule.configuration),
-        }
+        data = {'definition': rule.definition}
         url = reverse('admin:scanners_scannerqueryrule_change', args=(rule.pk,))
 
         # The form is prefilled with every channel.
