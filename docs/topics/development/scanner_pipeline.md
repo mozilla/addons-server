@@ -331,8 +331,7 @@ The payload sent looks like this:
         "id": 11181,
         "name": "Firefox user 11181",
         "url": "http://olympia.test/user/11181/",
-        "username": "some-username",
-        "picture_url": null
+        "username": "some-username"
       }
     ],
     "id": 88,

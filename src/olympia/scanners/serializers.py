@@ -7,6 +7,7 @@ import jsonschema
 from rest_framework import serializers
 
 from olympia import amo
+from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.models import Addon
 from olympia.addons.serializers import (
     AddonSerializer,
@@ -31,6 +32,8 @@ YARA_RULE_NAME_RE = re.compile(r'rule\s+(.+?)\s+{')
 
 
 class WebhookAddonSerializer(AddonSerializer):
+    authors = serializers.SerializerMethodField()
+
     class Meta:
         model = Addon
         excluded_fields = (
@@ -55,6 +58,11 @@ class WebhookAddonSerializer(AddonSerializer):
 
     def get_url(self, obj):
         return absolutify(reverse('v5:addon-detail', kwargs={'pk': obj.id}))
+
+    def get_authors(self, obj):
+        # Unlike the public API, scanners also need the unlisted authors.
+        authors = obj.authors.filter(addons=obj).order_by('addonuser__position')
+        return BaseUserSerializer(authors, many=True, context=self.context).data
 
 
 class WebhookVersionSerializer(VersionSerializer):
