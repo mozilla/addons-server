@@ -185,6 +185,16 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         assert self.scanner_result.has_matches is True
         assert list(self.scanner_result.matched_rules.all()) == [rule]
 
+    def test_success_creates_unknown_rule(self):
+        results = {'version': '1.2.3', 'matchedRules': ['unknown-rule']}
+        response = self.patch(self.url, data={'results': results})
+
+        assert response.status_code == 204
+        rule = ScannerRule.objects.get(name='unknown-rule', scanner=WEBHOOK)
+        self.scanner_result.refresh_from_db()
+        assert self.scanner_result.has_matches is True
+        assert list(self.scanner_result.matched_rules.all()) == [rule]
+
     def test_invalid_group(self):
         self.webhook.service_account.groupuser_set.all().delete()
 
@@ -447,17 +457,22 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         run_actions_mock.delay.assert_not_called()
 
     @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
-    def test_does_not_run_actions_for_unknown_rule(self, run_actions_mock):
-        response = self._push_scanner_result(
-            data={
-                'version_id': self.version.pk,
-                'results': {'version': '1.0.0', 'matchedRules': ['unknown-rule']},
-            }
-        )
+    def test_run_actions_for_unknown_rule(self, run_actions_mock):
+        data = {
+            'version_id': self.version.pk,
+            'results': {'version': '1.0.0', 'matchedRules': ['unknown-rule']},
+        }
+        response = self._push_scanner_result(data=data)
 
         assert response.status_code == 201
-        assert not ScannerResult.objects.get().has_matches
-        run_actions_mock.delay.assert_not_called()
+        rule = ScannerRule.objects.get(name='unknown-rule', scanner=WEBHOOK)
+        scanner_result = ScannerResult.objects.get()
+        assert scanner_result.has_matches
+        assert list(scanner_result.matched_rules.all()) == [rule]
+        run_actions_mock.delay.assert_called_once_with(scanner_result.pk)
+
+        response = self._push_scanner_result(data=data)
+        assert response.status_code == 409
 
     @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
     def test_does_not_run_actions_for_inactive_rule(self, run_actions_mock):

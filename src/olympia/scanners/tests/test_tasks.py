@@ -106,12 +106,14 @@ class TestRunActionsForScannerResult(TestCase):
         assert run_actions_mock.call_count == 0
 
     @mock.patch.object(ScannerResult, 'run_actions')
-    def test_no_run_actions_for_unknown_rule(self, run_actions_mock):
+    def test_run_actions_for_unknown_rule(self, run_actions_mock):
         scanner_result = self.create_result(['unknown-rule'])
+        new_rule = ScannerRule.objects.get(name='unknown-rule', scanner=WEBHOOK)
 
         run_actions_for_scanner_result(scanner_result.pk)
 
-        assert run_actions_mock.call_count == 0
+        assert run_actions_mock.call_count == 1
+        assert run_actions_mock.call_args[1]['rules'] == [new_rule.pk]
 
 
 class TestRunNarc(UploadMixin, TestCase):
