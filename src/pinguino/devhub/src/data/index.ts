@@ -1,6 +1,5 @@
 // Public data API for the app. Components attach query controllers and read
-// their reactive results; the query layer handles caching, dedup, and the
-// mock-vs-API branch.
+// their reactive results; the query layer handles caching, and dedup.
 
 export {
   acceptAgreement,

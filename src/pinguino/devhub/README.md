@@ -28,8 +28,7 @@ src/pinguino/                           # umbrella for pinguino projects
     │   │   ├── http.ts                 # apiFetch: base URL, session auth, typed errors
     │   │   ├── api.ts                  # AMO endpoints + response mappers
     │   │   ├── query-client.ts         # shared TanStack Query cache
-    │   │   ├── queries.ts              # query keys, lifetimes, mock-vs-API branch
-    │   │   ├── mock.ts                 # built-in sample data
+    │   │   ├── queries.ts              # query keys + lifetimes
     │   │   ├── types.ts                # domain types
     │   │   ├── devtools.ts             # dev-only TanStack Query devtools
     │   │   └── index.ts                # public data API (barrel)
@@ -64,14 +63,14 @@ Data access is a three-layer stack under `src/data/`, exposed through the `src/d
 
 - **`http.ts`** - one `apiFetch()` owning the API base URL, the session auth header, JSON parsing, and a typed `ApiError` (carries the HTTP status, ready for a 401 -> login interceptor).
 - **`api.ts`** - the AMO v5 endpoints and the response-to-domain mappers: `fetchProfile` (`/accounts/profile/`), `fetchAddons` (`/addons/addon/`, the authenticated user's own add-ons), and `fetchUpdates` (`/activity/`, their activity feed across all add-ons in one request).
-- **`query-client.ts` + `queries.ts`** - a single [`@tanstack/lit-query`](https://tanstack.com/query/latest/docs/framework/lit/overview) cache plus the query definitions: stable keys, per-query lifetimes, and the mock-vs-API branch. Caching, dedup, and invalidation live here, so shared long-lived data (e.g. the signed-in developer profile) is fetched once and reused across pages instead of re-fetched on every mount.
+- **`query-client.ts` + `queries.ts`** - a single [`@tanstack/lit-query`](https://tanstack.com/query/latest/docs/framework/lit/overview) cache plus the query definitions: stable keys, per-query and lifetimes. Caching, dedup, and invalidation live here, so shared long-lived data (e.g. the signed-in developer profile) is fetched once and reused across pages instead of re-fetched on every mount.
 
-With no API configured the app runs on the built-in mock data in `mock.ts`. To point it at a real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - not the repo-root `.env`) and set:
+To configure Pinguino to read from the real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - not the repo-root `.env`) and set:
 
 - `VITE_AMO_SESSION_ID` - a logged-in AMO session id, sent as `Authorization: Session <id>`. The endpoints are scoped to this user, so no separate author is needed.
 - `VITE_AMO_API_BASE` - optional; defaults to same-origin `/api/v5` (local olympia via nginx).
 
-With a session set, queries hit the API and a failed request surfaces as an error state rather than silently falling back to mock data. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
+With a session set, queries hit the API and a failed request surfaces as an error state. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
 
 The [TanStack Query devtools](https://tanstack.com/query/latest/docs/framework/react/devtools) (`src/data/devtools.ts`) mount a floating panel for inspecting cache state, staleness, and refetches. They're loaded via a dynamic import behind `import.meta.env.DEV` in `main.ts`, so they run locally and are dropped from production builds.
 
@@ -128,7 +127,7 @@ This strategy verifies that data shapes drive the right view structure, not that
 - **Visual / layout correctness.** happy-dom has no rendering engine, so nothing checks real CSS, computed styles, `light-dark()`, spacing, or responsive breakpoints. Visual regressions are the component library's (acorn's) job, not these tests.
 - **acorn component behaviour.** `moz-*` elements don't upgrade here, so we only assert the attributes and content we pass in. A broken acorn component, or an invalid-but-accepted attribute value, won't fail a test.
 - **Routing and navigation.** The client router, cross-shadow-DOM link interception, and history sync (`main.ts`) aren't exercised; these are unit/integration tests, not end-to-end.
-- **Live-API and transient states.** The `apiConfigured`-true query branches and the loading/pending UI are only lightly covered, since they depend on a real network or a fleeting render state.
+- **Live-API and transient states.** The loading/pending UI is only lightly covered, since it depends on a fleeting render state.
 
 A real-browser layer (Vitest browser mode / Playwright) would close the first three if end-to-end confidence is later needed; for this milestone the goal is mock-data-shape coverage.
 

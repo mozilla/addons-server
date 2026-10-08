@@ -1,5 +1,5 @@
-// Query definitions: stable keys, per-query lifetimes, and the mock-vs-API
-// branch in one place. Components attach these controllers and read reactive
+// Query definitions: stable keys, and per-query lifetimes
+// in one place. Components attach these controllers and read reactive
 // { data, isPending, isError } — they never call fetch or manage loading state.
 
 import { createQueryController } from '@tanstack/lit-query';
@@ -11,14 +11,6 @@ import {
   fetchUpdates,
   postAgreement,
 } from './api';
-import { apiConfigured } from './http';
-import {
-  developer,
-  mockAddons,
-  mockReadAgreement,
-  mockUnreadAgreement,
-  mockUpdates,
-} from './mock';
 import { queryClient } from './query-client';
 import type { Addon, AgreementAcceptState } from './types';
 
@@ -38,8 +30,7 @@ export function profileQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.profile,
-      queryFn: () =>
-        apiConfigured ? fetchProfile() : Promise.resolve(developer),
+      queryFn: fetchProfile,
       staleTime: Number.POSITIVE_INFINITY,
     }),
     queryClient,
@@ -51,8 +42,7 @@ export function addonsQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.addons,
-      queryFn: () =>
-        apiConfigured ? fetchAddons() : Promise.resolve(mockAddons),
+      queryFn: fetchAddons,
     }),
     queryClient,
   );
@@ -68,8 +58,7 @@ export function addonQuery(
     host,
     () => ({
       queryKey: queryKeys.addons,
-      queryFn: () =>
-        apiConfigured ? fetchAddons() : Promise.resolve(mockAddons),
+      queryFn: fetchAddons,
       select: (addons: Addon[]) => addons.find((a) => a.slug === getSlug()),
     }),
     queryClient,
@@ -83,8 +72,7 @@ export function updatesQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.updates,
-      queryFn: () =>
-        apiConfigured ? fetchUpdates() : Promise.resolve(mockUpdates),
+      queryFn: fetchUpdates,
     }),
     queryClient,
   );
@@ -96,8 +84,7 @@ export function agreementQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.agreement,
-      queryFn: () =>
-        apiConfigured ? fetchAgreement() : Promise.resolve(mockUnreadAgreement),
+      queryFn: fetchAgreement,
     }),
     queryClient,
   );
@@ -105,10 +92,6 @@ export function agreementQuery(host: ReactiveControllerHost) {
 
 // Accepts the agreement and refreshes the cached status.
 export async function acceptAgreement(payload: AgreementAcceptState) {
-  if (apiConfigured) {
-    await postAgreement(payload);
-    await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
-  } else {
-    queryClient.setQueryData(queryKeys.agreement, () => mockReadAgreement);
-  }
+  await postAgreement(payload);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
 }
