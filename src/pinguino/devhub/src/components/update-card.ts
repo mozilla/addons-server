@@ -2,6 +2,11 @@ import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import type { Update } from '../data';
+import { sanitizeHTML } from '../utils/sanitizeHTML';
+
+// The activity title/message are HTML from the API; the only markup we expect
+// (and allow) is the link to the add-on.
+const ALLOWED_TAGS = ['a'];
 
 @customElement('update-card')
 export class UpdateCard extends LitElement {
@@ -56,8 +61,9 @@ export class UpdateCard extends LitElement {
     const u = this.item;
     return html`
       <div class="card">
-        <!-- title and message are HTML (e.g. <a> links) sanitized server-side
-             by the activity API; the link to the add-on lives in the title. -->
+        <!-- title and message are HTML from the activity API; sanitize to a
+             link-only allowlist before rendering. The add-on link lives in the
+             title. -->
         <div class="head">
           <span class="title">
             <moz-status-dot
@@ -65,12 +71,12 @@ export class UpdateCard extends LitElement {
               type=${u.approved ? 'success' : 'warning'}
             ></moz-status-dot>
             <p>
-              ${unsafeHTML(u.title)}
+              ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
             </p>
           </span>
           <moz-button size="small" href="/pinguino/addon/${u.addonSlug}">View</moz-button>
         </div>
-        <p class="message">${unsafeHTML(u.message)}</p>
+        <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">
           ${
             u.version.length

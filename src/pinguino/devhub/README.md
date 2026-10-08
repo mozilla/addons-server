@@ -117,7 +117,11 @@ The `_test_pinguino` GitHub Action runs all four on pull requests that touch `sr
 - **`tests/components/`** - a component mounts with a crafted `.addon`/`.item` fixture; assertions read the component's own shadow root (which branch rendered, what it passed to the `moz-*` elements). acorn needn't upgrade — we assert our DOM, not acorn's internals.
 - **`tests/pages/`** - seed the shared TanStack cache with arbitrary shapes (`queryClient.setQueryData(queryKeys.addons, …)`), mount the page, and assert how it composes them. Seeded data is fresh, so controllers read it on first paint without a network call.
 
+- **`tests/utils/`** - pure helpers, e.g. `sanitizeHTML` (DOMPurify allowlisting).
+
 `tests/helpers/fixture.ts` has `mount(tag, props)` (append + await first render) and `settle(el)` (flush a settled query, then re-render). `tests/setup.ts` clears the DOM, query cache, and any stubbed globals/env after each test. The config pins `VITE_AMO_SESSION_ID` empty so tests are deterministic and never hit the network regardless of a local `.env`; the few tests that need the configured path stub it and re-import.
+
+happy-dom is the default environment, but DOMPurify needs DOM internals it doesn't fully implement (it silently strips allowed tags), so tests that exercise sanitization (`tests/utils/sanitizeHTML.test.ts`, `tests/components/update-card.test.ts`) opt into jsdom with a `// @vitest-environment jsdom` header. In a real browser DOMPurify works regardless.
 
 `npm test` reports V8 coverage (`coverage/`, gitignored); `reporter: ['text', 'html']` — open `coverage/index.html` for the browsable report. Layout primitives, the static header, and the network-only query branches are intentionally uncovered.
 
