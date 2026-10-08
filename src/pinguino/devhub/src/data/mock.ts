@@ -1,7 +1,7 @@
 // Built-in sample data. Used until the AMO API is configured (see ./api), and as
 // the fallback when a request fails.
 
-import type { Addon, Developer, Update } from './types';
+import type { Addon, AgreementState, Developer, Update } from './types';
 
 export const developer: Developer = { name: 'Kate' };
 
@@ -110,3 +110,15 @@ export const mockUpdates: Update[] = [
     date: 'Sep 2 2025',
   },
 ];
+
+export const mockUnreadAgreement: AgreementState = {
+  display_name: null,
+  has_read_developer_agreement: false,
+  last_developer_agreement_change: '2020-01-10T12:00:00',
+};
+
+export const mockReadAgreement: AgreementState = {
+  display_name: 'username',
+  has_read_developer_agreement: true,
+  last_developer_agreement_change: '2020-01-10T12:00:00',
+};

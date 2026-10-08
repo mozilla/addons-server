@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import type { DevhubAddon } from '../../src/pages/devhub-addon';
-import '../../src/pages/devhub-addon';
+import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
+import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
 import { queryClient, queryKeys } from '../../src/data';
 import { mount, settle } from '../helpers/fixture';

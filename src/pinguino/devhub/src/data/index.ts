@@ -3,8 +3,10 @@
 // mock-vs-API branch.
 
 export {
+  acceptAgreement,
   addonQuery,
   addonsQuery,
+  agreementQuery,
   profileQuery,
   queryKeys,
   updatesQuery,
