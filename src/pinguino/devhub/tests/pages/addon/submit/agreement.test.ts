@@ -23,7 +23,9 @@ describe('devhub-agreement', () => {
   let willUpdate: ReturnType<typeof vi.spyOn>;
 
   beforeEach(() => {
-    acceptAgreement = vi.spyOn(queries, 'acceptAgreement');
+    acceptAgreement = vi
+      .spyOn(queries, 'acceptAgreement')
+      .mockImplementation(() => {});
     willUpdate = vi.spyOn(DevhubAgreement.prototype, 'willUpdate');
   });
 
@@ -49,7 +51,7 @@ describe('devhub-agreement', () => {
   it('accepts the agreement on submit', async () => {
     const root = await mountAgreement(agreementState);
     const form = root.querySelector('form');
-  
+
     root.querySelector('#display-name').value = 'new_name';
     form.dispatchEvent(new Event('submit', { cancelable: true }));
 

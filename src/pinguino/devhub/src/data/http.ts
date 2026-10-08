@@ -6,10 +6,6 @@
 const SESSION = import.meta.env.VITE_AMO_SESSION_ID;
 const BASE = import.meta.env.VITE_AMO_API_BASE ?? '/api/v5';
 
-// Hit the API when we have a session; the endpoints are scoped to that user.
-// Otherwise the app runs on built-in mock data (see ./mock).
-export const apiConfigured = Boolean(SESSION);
-
 // Carries the HTTP status so callers (and a future 401 interceptor) can branch.
 export class ApiError extends Error {
   constructor(

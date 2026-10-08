@@ -146,7 +146,7 @@ describe('endpoints', () => {
 
     await postAgreement(payload);
     const [url, init] = vi.mocked(fetch).mock.calls[0];
-    expect(url).toBe('/api/v5/developers/agreement');
+    expect(url).toBe('/api/v5/developers/agreement/');
     expect(init).toMatchObject({
       method: 'POST',
       body: JSON.stringify(payload),

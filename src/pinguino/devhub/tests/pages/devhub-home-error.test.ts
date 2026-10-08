@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 // The error/loading branches depend on the query controller's state, which the
-// real (mock-backed) queries never reach. Mock addonsQuery to a controller stuck
+// real queries never reach. Mock addonsQuery to a controller stuck
 // in the error state so the error UI is reachable; the rest of the data barrel
 // stays real.
 const { refetchMock } = vi.hoisted(() => ({ refetchMock: vi.fn() }));
