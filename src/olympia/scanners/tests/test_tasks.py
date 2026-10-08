@@ -6,12 +6,14 @@ from unittest import mock
 from django.conf import settings
 from django.core.files import File as DjangoFile
 from django.test.utils import override_settings
+from django.urls import reverse
 
 import pytest
 import requests
 from celery.exceptions import Retry
 
 from olympia import amo
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     TestCase,
     addon_factory,
@@ -33,6 +35,7 @@ from olympia.constants.scanners import (
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
+    WEBHOOK_ON_LISTING_CHANGED,
     WEBHOOK_ON_VERSION_CREATED,
     WEBHOOK_PUSH,
     YARA,
@@ -48,11 +51,16 @@ from olympia.scanners.models import (
     ScannerWebhook,
     ScannerWebhookEvent,
 )
+from olympia.scanners.serializers import (
+    WebhookAddonSerializer,
+    WebhookVersionSerializer,
+)
 from olympia.scanners.tasks import (
     _call_webhook,
     _run_yara,
     call_webhooks,
     call_webhooks_during_validation,
+    call_webhooks_on_listing_changed,
     mark_scanner_query_rule_as_completed_or_aborted,
     run_actions_for_scanner_result,
     run_narc_on_version,
@@ -112,6 +120,73 @@ class TestRunActionsForScannerResult(TestCase):
         run_actions_for_scanner_result(scanner_result.pk)
 
         assert run_actions_mock.call_count == 0
+
+
+class TestCallWebhooksOnListingChanged(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.addon = addon_factory()
+        self.version = self.addon.current_version
+        self.webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+        )
+
+    def create_event(self, event=WEBHOOK_ON_LISTING_CHANGED):
+        return ScannerWebhookEvent.objects.create(event=event, webhook=self.webhook)
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_call_webhooks(self, _call_webhook_mock):
+        event = self.create_event()
+        _call_webhook_mock.return_value = {'version': '1.0', 'matchedRules': []}
+
+        call_webhooks_on_listing_changed(self.version.pk, reason='metadata')
+
+        scanner_result = ScannerResult.objects.get()
+        assert scanner_result.version == self.version
+        assert scanner_result.webhook_event == event
+        _call_webhook_mock.assert_called_once_with(
+            webhook=self.webhook,
+            payload={
+                'addon': WebhookAddonSerializer(self.addon).data,
+                'version': WebhookVersionSerializer(self.version).data,
+                'reason': 'metadata',
+                'event': 'on_listing_changed',
+                'scanner_result_url': absolutify(
+                    reverse('v5:scanner-result-patch', args=[scanner_result.pk])
+                ),
+            },
+            request_id=mock.ANY,
+        )
+
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_no_subscribed_scanner(self, _call_webhook_mock):
+        self.create_event(event=WEBHOOK_ON_VERSION_CREATED)
+        ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_LISTING_CHANGED,
+            webhook=self.webhook,
+            is_active=False,
+        )
+
+        call_webhooks_on_listing_changed(self.version.pk, reason='metadata')
+
+        assert _call_webhook_mock.call_count == 0
+        assert not ScannerResult.objects.exists()
+
+    @mock.patch('olympia.scanners.tasks.log')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_logs_errors(self, _call_webhook_mock, log_mock):
+        self.create_event()
+        _call_webhook_mock.side_effect = RuntimeError()
+
+        call_webhooks_on_listing_changed(self.version.pk, reason='metadata')
+
+        log_mock.exception.assert_any_call(
+            'Error while calling webhooks for Version %s',
+            self.version.pk,
+        )
 
 
 class TestRunNarc(UploadMixin, TestCase):

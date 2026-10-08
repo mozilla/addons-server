@@ -453,6 +453,34 @@ The payload sent looks like this:
 }
 ```
 
+### `on_listing_changed`
+
+This event occurs when the listing of an add-on changes. The `reason` field
+indicates what changed:
+
+- `metadata`: the name or summary of the add-on changed
+- `authors`: a new author was added (besides the first one), or an author
+  changed their username or display name
+
+The `version` is the latest non-rejected listed version of the add-on. Add-ons
+without such a version don't trigger this event.
+
+The payload sent looks like this:
+
+```json
+{
+  "addon": {
+    // Similar to the `on_version_created` event.
+  },
+  "version": {
+    // Similar to the `on_version_created` event.
+  },
+  "reason": "metadata",
+  "event": "on_listing_changed",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/126/"
+}
+```
+
 (scanner-push)=
 ### `push`
 
