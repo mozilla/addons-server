@@ -10,7 +10,22 @@
     <h2>{{ title }}</h2>
     <p>{{ _("Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please refer to your add-on(s) version history. We'll get back to you as soon as possible.") }}</p>
   </header>
-  <form method="post" class="support-form">
+  <div class="notification-box info" id="support-faq-banner">
+    <p>
+      {% trans faq_url=url('devhub.faq') %}
+        Before reaching out, please check our <a href="{{ faq_url }}">Developer FAQ</a>. Many common questions about reviews, API keys, accounts, appeals and listings are answered there, and you may find your answer faster.
+      {% endtrans %}
+    </p>
+  </div>
+  {# The checkbox must stay a direct sibling of the form: the form is revealed
+     purely in CSS (.support-faq-confirm:checked ~ .support-form), so it works
+     without JavaScript. #}
+  <input type="checkbox" id="support-faq-confirm" class="support-faq-confirm"
+         {% if request.method == 'POST' %}checked{% endif %}>
+  <label for="support-faq-confirm" class="support-faq-confirm-label">
+    {{ _('I have read the Developer FAQ and my question is not covered there.') }}
+  </label>
+  <form method="post" class="support-form" id="support-form">
     {% csrf_token %}
     {{ form.as_div() }}
     <div class="action-group">
