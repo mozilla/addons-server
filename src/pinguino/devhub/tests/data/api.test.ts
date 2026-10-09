@@ -61,12 +61,50 @@ describe('mapAddon', () => {
       version: '—', // no current_version
     });
   });
+
+  it('maps the listing-detail fields, resolving outgoing URLs and slugs', () => {
+    const addon = mapAddon({
+      slug: 'tab-organizer',
+      guid: '{tab-organizer-guid}',
+      name: 'Tab Organizer',
+      type: 'extension',
+      status: 'public',
+      url: 'https://amo.test/addon/tab-organizer',
+      summary: { 'en-US': 'Organize tabs' },
+      description: null,
+      homepage: { url: { 'en-US': 'https://tabs.example' }, outgoing: '...' },
+      support_email: 'help@tabs.example',
+      average_daily_users: 1597,
+      ratings: { average: 3, count: 5 },
+      categories: ['alerts-updates', 'tabs'],
+      authors: [{ name: 'Benjamin' }],
+      current_version: { version: '1.0', license: { name: 'MPL 2.0' } },
+    });
+
+    expect(addon).toMatchObject({
+      rating: 3,
+      reviewCount: 5,
+      averageDailyUsers: 1597,
+      listingUrl: 'https://amo.test/addon/tab-organizer',
+      summary: 'Organize tabs',
+      homepageUrl: 'https://tabs.example',
+      supportEmail: 'help@tabs.example',
+      categories: ['Alerts Updates', 'Tabs'],
+      authors: [{ name: 'Benjamin' }],
+      license: 'MPL 2.0',
+      uuid: '{tab-organizer-guid}',
+    });
+    // Null/absent fields stay undefined rather than empty strings.
+    expect(addon.description).toBeUndefined();
+    expect(addon.supportUrl).toBeUndefined();
+  });
 });
 
 describe('mapActivity', () => {
   it('infers approval from the title and sets a matching status', () => {
     const update = mapActivity({
       id: 42,
+      addon: { slug: 'my-addon' },
       title: 'Your version is approved.',
       comments: 'Congrats!',
       date: '2025-09-02T00:00:00Z',
@@ -79,11 +117,16 @@ describe('mapActivity', () => {
       versionStatus: 'Approved',
       version: '3.2.1',
       date: 'Sep 2 2025',
+      addonSlug: 'my-addon',
     });
   });
 
   it('leaves a non-approval activity unapproved with no status', () => {
-    const update = mapActivity({ id: 7, title: 'Version flagged for review' });
+    const update = mapActivity({
+      id: 7,
+      addon: {},
+      title: 'Version flagged for review',
+    });
     expect(update).toMatchObject({ approved: false, versionStatus: '' });
   });
 });

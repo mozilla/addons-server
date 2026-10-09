@@ -17,26 +17,65 @@ const addon: Addon = {
   distribution: 'amo',
 };
 
-const heading = (root: ShadowRoot) =>
-  root.querySelector('moz-page-header')?.getAttribute('heading');
-
 describe('devhub-addon', () => {
-  it('resolves the add-on name from the cached list by slug', async () => {
+  it('defaults to the listing editor tab and renders the shell', async () => {
     queryClient.setQueryData(queryKeys.addons, [addon]);
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    expect(heading(root)).toBe('Manage: Ad Blocker');
-    expect(root.querySelector('strong')?.textContent).toBe('Ad Blocker');
+    const header = root.querySelector('addon-manage-header');
+    expect((header as unknown as { addon: Addon })?.addon.name).toBe(
+      'Ad Blocker',
+    );
+
+    const tabs = [...root.querySelectorAll('moz-segmented-control-item')].map(
+      (t) => t.getAttribute('value'),
+    );
+    expect(tabs).toEqual(['versions', 'feed', 'edit', 'statistics']);
+    expect(
+      root.querySelector('moz-segmented-control')?.getAttribute('value'),
+    ).toBe('edit');
+    expect(root.querySelector('addon-listing')).not.toBeNull();
   });
 
-  it('falls back to the slug when no matching add-on is cached', async () => {
+  it('renders a stub (not the listing) for a non-edit tab', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'versions',
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    expect(
+      root.querySelector('moz-segmented-control')?.getAttribute('value'),
+    ).toBe('versions');
+    expect(root.querySelector('addon-listing')).toBeNull();
+    expect(root.querySelector('.stub')?.textContent).toContain('Versions');
+  });
+
+  it('selecting a tab navigates to its sub-URL', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    root.querySelector('moz-segmented-control')?.dispatchEvent(
+      new CustomEvent('moz-segmented-control:change', {
+        detail: { value: 'statistics' },
+      }),
+    );
+    expect(location.pathname).toBe('/pinguino/addon/ad-blocker/statistics');
+  });
+
+  it('shows a not-found message when no add-on matches the slug', async () => {
     queryClient.setQueryData(queryKeys.addons, [addon]);
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'unknown' });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    expect(heading(root)).toBe('Manage: unknown');
+    expect(root.querySelector('addon-manage-header')).toBeNull();
+    expect(root.textContent).toContain("couldn't find that add-on");
   });
 });

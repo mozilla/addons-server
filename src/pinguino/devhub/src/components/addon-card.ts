@@ -31,7 +31,7 @@ export class AddonCard extends LitElement {
       flex-direction: column;
       gap: var(--space-small);
       padding: var(--space-large);
-      border: 1px solid var(--icon-color-accent-primary-desaturated);
+      border: 1px solid #E4D7FC;
       border-radius: var(--border-radius-medium, 8px);
     }
     .top {
@@ -111,7 +111,7 @@ export class AddonCard extends LitElement {
                 ${
                   a.iconUrl
                     ? html`<img class="logo" src=${a.iconUrl} alt="" />`
-                    : html`<moz-icon name=${a.icon}></moz-icon>`
+                    : undefined
                 }
                 <h2 class="name">${a.name}</h2>
               </div>

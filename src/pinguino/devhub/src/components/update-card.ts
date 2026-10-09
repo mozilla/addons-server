@@ -1,6 +1,12 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import type { Update } from '../data';
+import { sanitizeHTML } from '../utils/sanitizeHTML';
+
+// The activity title/message are HTML from the API; the only markup we expect
+// (and allow) is the link to the add-on.
+const ALLOWED_TAGS = ['a'];
 
 @customElement('update-card')
 export class UpdateCard extends LitElement {
@@ -29,8 +35,12 @@ export class UpdateCard extends LitElement {
     .title {
       display: flex;
       align-items: center;
-      gap: var(--space-xsmall);
+      gap: var(--space-small);
       font-weight: 600;
+    }
+    .title p {
+      margin: 0;
+      padding: 0;
     }
     .message {
       margin: 0;
@@ -51,19 +61,28 @@ export class UpdateCard extends LitElement {
     const u = this.item;
     return html`
       <div class="card">
+        <!-- title and message are HTML from the activity API; sanitize to a
+             link-only allowlist before rendering. The add-on link lives in the
+             title. -->
         <div class="head">
           <span class="title">
             <moz-status-dot
               icon
               type=${u.approved ? 'success' : 'warning'}
             ></moz-status-dot>
-            ${u.title}
+            <p>
+              ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
+            </p>
           </span>
-          <moz-button size="small">View</moz-button>
+          <moz-button size="small" href="/pinguino/addon/${u.addonSlug}">View</moz-button>
         </div>
-        <p class="message">${u.message}</p>
+        <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">
-          <span>Version ${u.version}</span>
+          ${
+            u.version.length
+              ? html`<span>Version ${u.version}</span>`
+              : undefined
+          }
           ${
             u.versionStatus
               ? html`

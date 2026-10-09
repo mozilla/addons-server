@@ -1,3 +1,6 @@
+// @vitest-environment jsdom
+// update-card sanitizes its HTML via DOMPurify, which needs jsdom (happy-dom
+// strips the allowed tags). See tests/utils/sanitizeHTML.test.ts.
 import { describe, expect, it } from 'vitest';
 import type { UpdateCard } from '../../src/components/update-card';
 import '../../src/components/update-card';
@@ -13,6 +16,7 @@ const baseUpdate: Update = {
   versionStatus: 'Approved',
   tags: ['Live', 'AMO'],
   date: 'Sep 2 2025',
+  addonSlug: 'ad-blocker',
 };
 
 async function card(item: Partial<Update>) {
@@ -67,5 +71,35 @@ describe('update-card', () => {
     for (const tag of ['Live', 'AMO', 'Beta']) {
       expect(foot).toContain(tag);
     }
+  });
+
+  it('renders HTML in the title and message as real DOM, not escaped text', async () => {
+    const root = await card({
+      title: '<a href="https://amo.test/a">My Add-on</a> status changed.',
+      message: 'See <a href="https://amo.test/x">the review</a> for details.',
+    });
+
+    const titleLink = root.querySelector('.title a');
+    expect(titleLink?.getAttribute('href')).toBe('https://amo.test/a');
+    expect(titleLink?.textContent).toBe('My Add-on');
+
+    const messageLink = root.querySelector('.message a');
+    expect(messageLink?.getAttribute('href')).toBe('https://amo.test/x');
+    expect(messageLink?.textContent).toBe('the review');
+  });
+
+  it('sanitizes untrusted markup, keeping links but dropping scripts', async () => {
+    const root = await card({
+      title: '<a href="/x" onclick="evil()">ok</a><script>evil()</script>',
+      message: '<img src=x onerror="evil()">text',
+    });
+
+    const link = root.querySelector('.title a');
+    expect(link?.getAttribute('href')).toBe('/x');
+    expect(link?.getAttribute('onclick')).toBeNull();
+    expect(root.querySelector('.title script')).toBeNull();
+    // <img> isn't in the allowlist, so only its text survives.
+    expect(root.querySelector('.message img')).toBeNull();
+    expect(root.querySelector('.message')?.textContent?.trim()).toBe('text');
   });
 });

@@ -33,6 +33,7 @@ const update: Update = {
   versionStatus: 'Approved',
   tags: ['Live'],
   date: 'Sep 2 2025',
+  addonSlug: 'a',
 };
 
 function seed(addons: Addon[], updates: Update[]) {
