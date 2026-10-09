@@ -14,7 +14,7 @@ class TestTagAdmin(TestCase):
         item = Tag.objects.all().first()
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         assert item.tag_text in response.content.decode('utf-8')
@@ -25,7 +25,7 @@ class TestTagAdmin(TestCase):
         self.detail_url = reverse('admin:tags_tag_change', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
         content = response.content.decode('utf-8')
@@ -50,7 +50,7 @@ class TestTagAdmin(TestCase):
         self.delete_url = reverse('admin:tags_tag_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # Can access delete confirmation page.
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
@@ -66,7 +66,7 @@ class TestTagAdmin(TestCase):
         self.add_url = reverse('admin:tags_tag_add')
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.DISCOVERY_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 200
         assert Tag.objects.count() == tag_count
@@ -88,7 +88,7 @@ class TestTagAdmin(TestCase):
         tag_count = Tag.objects.count()
         self.add_url = reverse('admin:tags_tag_add')
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.add_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(
@@ -107,7 +107,7 @@ class TestTagAdmin(TestCase):
         item = Tag.objects.all().first()
         self.detail_url = reverse('admin:tags_tag_change', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
 
@@ -129,7 +129,7 @@ class TestTagAdmin(TestCase):
         item = Tag.objects.all().first()
         self.delete_url = reverse('admin:tags_tag_delete', args=(item.pk,))
         user = user_factory(email='someone@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # Can not access delete confirmation page.
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403

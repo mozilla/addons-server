@@ -3211,7 +3211,7 @@ class TestDeveloperAgreementAPI(TestCase):
         user = user_factory(read_dev_agreement=None)
         self.client.login_api(user)
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(4):
+            for _x in range(8):
                 self._add_fake_throttling_action(
                     view_class=DeveloperAgreementView,
                     url=self.api_url,
@@ -3224,7 +3224,7 @@ class TestDeveloperAgreementAPI(TestCase):
 
     def test_throttled_ip(self):
         with time_machine.travel(datetime.now(), tick=False):
-            for _x in range(8):
+            for _x in range(16):
                 self._add_fake_throttling_action(
                     view_class=DeveloperAgreementView,
                     url=self.api_url,

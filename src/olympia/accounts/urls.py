@@ -58,6 +58,11 @@ auth_urls = [
         name='accounts.authenticate',
     ),
     re_path(
+        r'^authenticated-restore-post/$',
+        views.restore_post,
+        name='accounts.restore-post',
+    ),
+    re_path(
         r'^fxa-notification',
         views.FxaNotificationView.as_view(),
         name='fxa-notification',

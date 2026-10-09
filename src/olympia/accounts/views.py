@@ -7,8 +7,15 @@ from urllib.parse import quote_plus
 
 from django.conf import settings
 from django.contrib.auth import login, logout
+from django.core.signing import (
+    BadSignature,
+    SignatureExpired,
+    TimestampSigner,
+    constant_time_compare,
+)
 from django.db.models import Q
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseNotAllowed, HttpResponseRedirect, QueryDict
+from django.template.response import TemplateResponse
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
@@ -48,8 +55,9 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.access.models import GroupUser
+from olympia.accounts.decorators import two_factor_auth_required
 from olympia.activity.models import ActivityLog
-from olympia.amo.decorators import use_primary_db
+from olympia.amo.decorators import login_required, use_primary_db
 from olympia.amo.reverse import get_url_prefix
 from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
@@ -90,13 +98,10 @@ ERROR_NO_PROFILE = 'no-profile'
 ERROR_NO_USER = 'no-user'
 ERROR_STATE_MISMATCH = 'state-mismatch'
 ERROR_FXA_ERROR = 'error-fxa'
-ERROR_STATUSES = {
-    ERROR_AUTHENTICATED: 400,
-    ERROR_NO_CODE: 422,
-    ERROR_NO_PROFILE: 401,
-    ERROR_STATE_MISMATCH: 400,
-    ERROR_FXA_ERROR: 400,
-}
+ERROR_RESTORE_POST_MISSING_DATA = 'error-restore-post-missing-data'
+ERROR_RESTORE_POST_EXPIRED_SIGNATURE = 'error-restore-post-expired-signature'
+ERROR_RESTORE_POST_INVALID_SIGNATURE = 'error-restore-post-invalid-signature'
+ERROR_RESTORE_POST_UNSAFE_URL = 'error-restore-post-unsafe-url'
 
 
 def safe_redirect(request, url, action):
@@ -884,3 +889,54 @@ class FxaNotificationView(APIView):
             self.process_event(uid, event_key, event_data)
 
         return Response('202 Accepted', status=202)
+
+
+@never_cache
+# Note: this view lives under /api/auth/ to make it easily accessible and
+# because it's technically part of the auth flow after a 2fa reprompt. It has
+# access to regular session auth because AuthenticationMiddlewareWithoutAPI has
+# a special exception for it, like it does for /api/auth/authenticate/
+@two_factor_auth_required
+@login_required
+def restore_post(request):
+    """Restore post data from session after 2fa reprompt.
+
+    Requires the right data to be set in the session and a valid signature
+    proving this is the last request (since the signature needs to match a
+    unique key that gets overwritten each time) and that the request isn't too
+    old.
+    """
+    if request.method != 'GET':
+        return HttpResponseNotAllowed(['GET'])
+    if '_post_data_after_2fa_reprompt' not in request.session:
+        # Redirect to / as we don't even have the url
+        return safe_redirect(request, '/', ERROR_RESTORE_POST_MISSING_DATA)
+    key = request.session['_post_data_after_2fa_reprompt'].get('key')
+    url = request.session['_post_data_after_2fa_reprompt'].get('url')
+    data = request.session['_post_data_after_2fa_reprompt'].get('data')
+    signature = request.GET.get('s')
+    if not url or not is_safe_url(url, request):
+        return safe_redirect(request, '/', ERROR_RESTORE_POST_UNSAFE_URL)
+    if not signature or not key or data is None:
+        return safe_redirect(request, url, ERROR_RESTORE_POST_MISSING_DATA)
+    try:
+        key_from_signature = TimestampSigner().unsign(
+            signature, max_age=settings.FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT
+        )
+        if not constant_time_compare(key, key_from_signature):
+            raise BadSignature
+    except BadSignature:
+        return safe_redirect(request, url, ERROR_RESTORE_POST_INVALID_SIGNATURE)
+    except SignatureExpired:
+        return safe_redirect(request, url, ERROR_RESTORE_POST_EXPIRED_SIGNATURE)
+    # Remove data from session now that we are rendering the form, user should
+    # not get the opportunity to try again to prevent replay attacks.
+    del request.session['_post_data_after_2fa_reprompt']
+    return TemplateResponse(
+        request,
+        'accounts/restore-post.html',
+        context={
+            'qdict': QueryDict(data),
+            'url': url,
+        },
+    )

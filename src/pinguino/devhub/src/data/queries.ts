@@ -1,14 +1,18 @@
-// Query definitions: stable keys, per-query lifetimes, and the mock-vs-API
-// branch in one place. Components attach these controllers and read reactive
+// Query definitions: stable keys, and per-query lifetimes
+// in one place. Components attach these controllers and read reactive
 // { data, isPending, isError } — they never call fetch or manage loading state.
 
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
-import { fetchAddons, fetchProfile, fetchUpdates } from './api';
-import { apiConfigured } from './http';
-import { developer, mockAddons, mockUpdates } from './mock';
+import {
+  fetchAddons,
+  fetchAgreement,
+  fetchProfile,
+  fetchUpdates,
+  postAgreement,
+} from './api';
 import { queryClient } from './query-client';
-import type { Addon } from './types';
+import type { Addon, AgreementAcceptState } from './types';
 
 // Keys identify cache entries. The add-on list and a single add-on share one
 // key so navigating to a detail view reuses the cached list, not a new request.
@@ -16,6 +20,7 @@ export const queryKeys = {
   profile: ['profile'] as const,
   addons: ['addons'] as const,
   updates: ['updates'] as const,
+  agreement: ['agreement'] as const,
 };
 
 // The signed-in developer. Session-lived, so it survives navigation without a
@@ -25,8 +30,7 @@ export function profileQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.profile,
-      queryFn: () =>
-        apiConfigured ? fetchProfile() : Promise.resolve(developer),
+      queryFn: fetchProfile,
       staleTime: Number.POSITIVE_INFINITY,
     }),
     queryClient,
@@ -38,8 +42,7 @@ export function addonsQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.addons,
-      queryFn: () =>
-        apiConfigured ? fetchAddons() : Promise.resolve(mockAddons),
+      queryFn: fetchAddons,
     }),
     queryClient,
   );
@@ -55,8 +58,7 @@ export function addonQuery(
     host,
     () => ({
       queryKey: queryKeys.addons,
-      queryFn: () =>
-        apiConfigured ? fetchAddons() : Promise.resolve(mockAddons),
+      queryFn: fetchAddons,
       select: (addons: Addon[]) => addons.find((a) => a.slug === getSlug()),
     }),
     queryClient,
@@ -70,9 +72,26 @@ export function updatesQuery(host: ReactiveControllerHost) {
     host,
     () => ({
       queryKey: queryKeys.updates,
-      queryFn: () =>
-        apiConfigured ? fetchUpdates() : Promise.resolve(mockUpdates),
+      queryFn: fetchUpdates,
     }),
     queryClient,
   );
+}
+
+// Fetches developer agreement information.
+export function agreementQuery(host: ReactiveControllerHost) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.agreement,
+      queryFn: fetchAgreement,
+    }),
+    queryClient,
+  );
+}
+
+// Accepts the agreement and refreshes the cached status.
+export async function acceptAgreement(payload: AgreementAcceptState) {
+  await postAgreement(payload);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
 }

@@ -1,12 +1,14 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   fetchAddons,
+  fetchAgreement,
   fetchProfile,
   fetchUpdates,
   formatDate,
   localized,
   mapActivity,
   mapAddon,
+  postAgreement,
 } from '../../src/data/api';
 
 function mockJson(payload: unknown) {
@@ -133,5 +135,27 @@ describe('endpoints', () => {
   it('fetchProfile reads the account name', async () => {
     mockJson({ name: 'Kate' });
     expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  });
+
+  it('fetchAgreement returns the agreement state as it was fetched', async () => {
+    const state = {
+      display_name: 'my_display_name',
+      last_developer_agreement_change: '2020-01-10T12:00:00',
+    };
+    mockJson(state);
+    expect(await fetchAgreement()).toEqual(state);
+  });
+
+  it('postAgreement POSTs to the agreement endpoint', async () => {
+    mockJson({});
+    const payload = { last_developer_agreement_change: '2020-01-10T12:00:00' };
+
+    await postAgreement(payload);
+    const [url, init] = vi.mocked(fetch).mock.calls[0];
+    expect(url).toBe('/api/v5/developers/agreement/');
+    expect(init).toMatchObject({
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
   });
 });

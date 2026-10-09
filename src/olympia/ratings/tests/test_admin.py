@@ -44,7 +44,7 @@ class TestRatingAdmin(TestCase):
         )
 
         self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -92,7 +92,7 @@ class TestRatingAdmin(TestCase):
             'created__range__lte': some_time_ago.isoformat(),
         }
         self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content.decode('utf-8'))
@@ -121,7 +121,7 @@ class TestRatingAdmin(TestCase):
     def test_search_tooltip(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         doc = pq(response.content)
         assert doc('#searchbar-wrapper p').eq(0).text() == (
@@ -141,7 +141,7 @@ class TestRatingAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
         self.grant_permission(user, amo.permissions.RATINGS_DELETE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         addon = Addon.objects.get(pk=3615)
         second_addon = addon_factory(guid='@second_addon')
@@ -293,7 +293,7 @@ class TestRatingAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_DELETE)
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         # Find link to sort by IP
         response = self.client.post(self.list_url, {'addon': self.addon.pk})
         doc = pq(response.content)
@@ -332,7 +332,7 @@ class TestRatingAdmin(TestCase):
             'created__range__gte': not_long_ago.isoformat(),
         }
         self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content.decode('utf-8'))
@@ -372,7 +372,7 @@ class TestRatingAdmin(TestCase):
             'created__range__lte': some_time_ago.isoformat(),
         }
         self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         response = self.client.get(self.list_url, data, follow=True)
         assert response.status_code == 200
         doc = pq(response.content.decode('utf-8'))
@@ -414,7 +414,7 @@ class TestRatingAdmin(TestCase):
         )
 
         self.grant_permission(self.user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         with self.assertNumQueries(9):
             # - 2 Savepoint/release
             # - 2 user and its groups
@@ -432,7 +432,7 @@ class TestRatingAdmin(TestCase):
     def test_can_not_access_detail_without_ratings_moderate_permission(self):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.ADDONS_EDIT)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 403
 
@@ -440,7 +440,7 @@ class TestRatingAdmin(TestCase):
         assert Rating.objects.count() == 1
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)  # Not enough!
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 403
         response = self.client.post(self.delete_url, {'post': 'yes'}, follow=True)
@@ -454,7 +454,7 @@ class TestRatingAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_DELETE)
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
@@ -473,7 +473,7 @@ class TestRatingAdmin(TestCase):
         user = user_factory(email='someone@mozilla.com')
         self.grant_permission(user, amo.permissions.RATINGS_DELETE)
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
@@ -483,7 +483,7 @@ class TestRatingAdmin(TestCase):
         user = UserProfile.objects.get(pk=999)
         self.grant_permission(user, amo.permissions.RATINGS_DELETE)
         self.grant_permission(user, amo.permissions.RATINGS_MODERATE)
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
 
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200

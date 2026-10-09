@@ -36,3 +36,14 @@ export interface Update {
   date: string;
   addonSlug: string;
 }
+
+export interface AgreementState {
+  display_name: string | null;
+  has_read_developer_agreement?: boolean;
+  last_developer_agreement_change: string;
+}
+
+export interface AgreementAcceptState {
+  last_developer_agreement_change: string;
+  display_name?: string;
+}

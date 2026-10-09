@@ -6,7 +6,7 @@ import { queryClient, queryKeys } from '../../src/data';
 import { mount, settle } from '../helpers/fixture';
 
 // Seeded cache data is fresh, so the query controllers read it on first paint
-// without refetching — no network, no reliance on the built-in mock.
+// without refetching.
 const ext = (slug: string): Addon => ({
   slug,
   name: slug,

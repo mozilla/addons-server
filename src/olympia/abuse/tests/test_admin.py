@@ -87,12 +87,12 @@ class TestAbuseReportAdmin(TestCase):
         )
 
     def setUp(self):
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
         self.list_url = reverse('admin:abuse_abusereport_changelist')
 
     def test_list_no_permission(self):
         user = user_factory(email='nobody@mozilla.com')
-        self.client.force_login(user)
+        self.client.force_login_with_2fa(user)
         response = self.client.get(self.list_url)
         assert response.status_code == 403
 
@@ -587,7 +587,7 @@ class TestCinderPolicyAdmin(TestCase):
         self.user = user_factory(email='someone@mozilla.com')
         if permission:
             grant_permission(self.user, permission, name='Group')
-        self.client.force_login(self.user)
+        self.client.force_login_with_2fa(self.user)
 
     def _make_list_request(self, *, read_only=False):
         foo = CinderPolicy.objects.create(name='Foo')

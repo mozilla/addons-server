@@ -6,10 +6,6 @@
 const SESSION = import.meta.env.VITE_AMO_SESSION_ID;
 const BASE = import.meta.env.VITE_AMO_API_BASE ?? '/api/v5';
 
-// Hit the API when we have a session; the endpoints are scoped to that user.
-// Otherwise the app runs on built-in mock data (see ./mock).
-export const apiConfigured = Boolean(SESSION);
-
 // Carries the HTTP status so callers (and a future 401 interceptor) can branch.
 export class ApiError extends Error {
   constructor(
@@ -21,9 +17,17 @@ export class ApiError extends Error {
   }
 }
 
-export async function apiFetch<T>(path: string): Promise<T> {
+export async function apiFetch<T>(
+  path: string,
+  { method = 'GET', body }: { method?: string; body?: unknown } = {},
+): Promise<T> {
   const res = await fetch(`${BASE}${path}`, {
-    headers: SESSION ? { authorization: `Session ${SESSION}` } : {},
+    method,
+    headers: {
+      ...(SESSION ? { authorization: `Session ${SESSION}` } : {}),
+      ...(body ? { 'content-type': 'application/json' } : {}),
+    },
+    body: body ? JSON.stringify(body) : undefined,
   });
   if (!res.ok) {
     // TODO(auth): on 401, clear the session and route to login once FxA lands.
