@@ -27,6 +27,7 @@ from olympia.amo.tests import (
     addon_factory,
     block_factory,
     collection_factory,
+    rating_factory,
     user_factory,
     version_factory,
 )
@@ -2579,6 +2580,59 @@ class TestUserManager(TestCase):
 
         assert len(UserProfile.objects.all()) == number_of_users + 1
         assert len(APIKey.objects.all()) == number_of_keys + 1
+
+    def test_active(self):
+        with_addon = user_factory()
+        addon_factory(users=[with_addon])
+        with_collection = user_factory()
+        collection_factory(author=with_collection)
+        with_rating = user_factory()
+        rating_factory(addon=addon_factory(), user=with_rating)
+        with_everything = user_factory()
+        addon_factory(users=[with_everything])
+        addon_factory(users=[with_everything])
+        collection_factory(author=with_everything)
+        collection_factory(author=with_everything)
+        rating_factory(addon=addon_factory(), user=with_everything)
+        rating_factory(addon=addon_factory(), user=with_everything)
+
+        # deleted instances are still considered active
+        with_deleted_addon = user_factory()
+        addon_factory(users=[with_deleted_addon]).delete()
+        with_deleted_role_addon = user_factory()
+        AddonUser.objects.create(
+            addon=addon_factory(),
+            user=with_deleted_role_addon,
+            role=amo.AUTHOR_ROLE_DELETED,
+        )
+        with_deleted_collection = user_factory()
+        collection_factory(author=with_deleted_collection).delete()
+        with_deleted_rating = user_factory()
+        rating_factory(addon=addon_factory(), user=with_deleted_rating).delete()
+
+        # Inactive users that must not be returned.
+        user_factory()
+        deleted_user = user_factory(deleted=True)
+        addon_factory(users=[deleted_user])
+        collection_factory(author=deleted_user)
+        rating_factory(addon=addon_factory(), user=deleted_user)
+        no_fxa_user = user_factory(fxa_id=None)
+        addon_factory(users=[no_fxa_user])
+        collection_factory(author=no_fxa_user)
+        rating_factory(addon=addon_factory(), user=no_fxa_user)
+
+        expected = {
+            with_addon,
+            with_collection,
+            with_rating,
+            with_everything,
+            with_deleted_addon,
+            with_deleted_role_addon,
+            with_deleted_collection,
+            with_deleted_rating,
+        }
+        assert set(UserProfile.objects.active()) == expected
+        assert len(UserProfile.objects.active()) == len(expected)  # no duplicates
 
 
 @pytest.mark.django_db
