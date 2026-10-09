@@ -557,6 +557,17 @@ class BaseTestEditDescribe(BaseTestEdit):
         self._test_metadata_change_triggers_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
+    @mock.patch('olympia.devhub.forms.call_webhooks_on_listing_changed')
+    def test_call_webhooks_on_listing_changed_on_metadata_change(self, webhooks_mock):
+        addon = self.get_addon()
+        self.client.post(self.describe_edit_url, self.get_dict())
+        if self.listed:
+            webhooks_mock.delay.assert_called_once_with(
+                addon.current_version.pk, reason='metadata'
+            )
+        else:
+            webhooks_mock.delay.assert_not_called()
+
     def test_noindex_on_content_change(self):
         data = self.get_dict()
         addon = self.get_addon()

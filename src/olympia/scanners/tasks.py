@@ -43,6 +43,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS,
     WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
+    WEBHOOK_ON_LISTING_CHANGED,
     WEBHOOK_ON_VERSION_CREATED,
     YARA,
 )
@@ -179,6 +180,38 @@ def _deliver_webhook(*, scanner_result, payload, request_id):
     # We don't pass `update_fields` because the `save()` method
     # also updates other fields (e.g. has_matches, matched_rules).
     scanner_result.save()
+
+
+@task
+@use_primary_db
+def call_webhooks_on_listing_changed(version_pk, *, reason):
+    """Call the webhooks subscribed to `on_listing_changed` after a change to
+    the listing or the authors of the add-on `version` belongs to."""
+    from olympia.scanners.serializers import (
+        WebhookAddonSerializer,
+        WebhookVersionSerializer,
+    )
+
+    log.info(
+        'Calling webhooks for listing change of Version %s (reason = %s)',
+        version_pk,
+        reason,
+    )
+
+    try:
+        version = Version.unfiltered.get(pk=version_pk)
+
+        call_webhooks(
+            event_id=WEBHOOK_ON_LISTING_CHANGED,
+            payload={
+                'addon': WebhookAddonSerializer(version.addon).data,
+                'version': WebhookVersionSerializer(version).data,
+                'reason': reason,
+            },
+            version=version,
+        )
+    except Exception:
+        log.exception('Error while calling webhooks for Version %s', version_pk)
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):

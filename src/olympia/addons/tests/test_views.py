@@ -2807,6 +2807,21 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self._test_metadata_content_review()
         assert run_narc_on_version_mock.delay.call_count == 0
 
+    @patch('olympia.addons.serializers.call_webhooks_on_listing_changed')
+    def test_call_webhooks_on_listing_changed_on_metadata_change(self, webhooks_mock):
+        self._test_metadata_content_review()
+        webhooks_mock.delay.assert_called_once_with(
+            self.addon.current_version.pk, reason='metadata'
+        )
+
+    @patch('olympia.addons.serializers.call_webhooks_on_listing_changed')
+    def test_dont_call_webhooks_on_listing_changed_if_no_listed_versions(
+        self, webhooks_mock
+    ):
+        self.change_channel_for_addon(self.addon, amo.CHANNEL_UNLISTED)
+        self._test_metadata_content_review()
+        webhooks_mock.delay.assert_not_called()
+
     def test_noindex_on_content_change(self):
         # Make sure the add-on is recent enough.
         self.addon.update(created=self.days_ago(1))

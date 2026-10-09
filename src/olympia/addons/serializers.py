@@ -46,7 +46,10 @@ from olympia.files.models import File, FileUpload
 from olympia.files.utils import DuplicateAddonID, parse_addon
 from olympia.promoted.models import PromotedGroup
 from olympia.ratings.utils import get_grouped_ratings
-from olympia.scanners.tasks import run_narc_on_version
+from olympia.scanners.tasks import (
+    call_webhooks_on_listing_changed,
+    run_narc_on_version,
+)
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
 from olympia.translations.utils import (
@@ -1422,10 +1425,10 @@ class AddonSerializer(AMOModelSerializer):
             changes = get_translation_differences(old_metadata, new_metadata)
             AddonListingInfo.maybe_mark_as_noindexed(addon=instance)
 
-            if waffle.switch_is_active('enable-narc') and (
-                version := instance.find_latest_non_rejected_listed_version()
-            ):
-                run_narc_on_version.delay(version.pk)
+            if version := instance.find_latest_non_rejected_listed_version():
+                if waffle.switch_is_active('enable-narc'):
+                    run_narc_on_version.delay(version.pk)
+                call_webhooks_on_listing_changed.delay(version.pk, reason='metadata')
 
         self.log(instance, validated_data, changes)
         return instance
