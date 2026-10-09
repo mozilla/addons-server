@@ -1425,6 +1425,8 @@ FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT = 15 * 60  # 15 minutes in seconds
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True
 
+FXA_ACTIVES_BIGQUERY_TABLE = env('FXA_ACTIVES_BIGQUERY_TABLE', default=None)
+
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path
 CRON_JOBS = {

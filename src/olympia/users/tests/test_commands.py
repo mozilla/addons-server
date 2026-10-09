@@ -6,6 +6,7 @@ from ipaddress import IPv4Address
 from unittest.mock import ANY, patch
 
 from django.core.management import CommandError, call_command
+from django.test.utils import override_settings
 
 from celery.result import EagerResult
 from waffle.testutils import override_switch
@@ -13,7 +14,13 @@ from waffle.testutils import override_switch
 from olympia import amo
 from olympia.activity.models import ActivityLog, IPLog
 from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, addon_factory, user_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    collection_factory,
+    rating_factory,
+    user_factory,
+)
 from olympia.users.management.commands.createsuperuser import Command as CreateSuperUser
 from olympia.users.models import (
     RESTRICTION_TYPES,
@@ -642,4 +649,40 @@ class TestRestrictBannedUsers(TestCase):
         assert (
             restriction.reason
             == f'Automatically added because of user {banned.pk} ban (backfill)'
+        )
+
+
+@override_settings(FXA_ACTIVES_BIGQUERY_TABLE='project.dataset.active_accounts')
+@patch('olympia.users.management.commands.sync_active_users_to_fxa.create_client')
+class TestSyncActiveUsersToFxa(TestCase):
+    def test_loads_active_users_into_bigquery(self, create_client_mock):
+        active_with_addon = user_factory()
+        addon_factory(users=[active_with_addon])
+        active_with_collection = user_factory()
+        collection_factory(author=active_with_collection)
+        active_with_rating = user_factory()
+        rating_factory(addon=addon_factory(), user=active_with_rating)
+        # Inactive users that must not be synced.
+        user_factory()  # no addons/collections
+        no_fxa = user_factory(fxa_id=None)
+        addon_factory(users=[no_fxa])
+
+        client = create_client_mock.return_value
+        job = client.load_table_from_json.return_value
+        job.output_rows = 3
+
+        call_command('sync_active_users_to_fxa')
+
+        client.load_table_from_json.assert_called_once_with(
+            ANY, 'project.dataset.active_accounts', job_config=ANY
+        )
+        job.result.assert_called_once()
+
+        data = client.load_table_from_json.call_args.args[0]
+        assert sorted(list(row.items()) for row in data) == sorted(
+            [
+                [('uid', active_with_addon.fxa_id)],
+                [('uid', active_with_collection.fxa_id)],
+                [('uid', active_with_rating.fxa_id)],
+            ]
         )

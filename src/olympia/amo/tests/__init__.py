@@ -63,6 +63,7 @@ from olympia.promoted.models import (
     PromotedGroup,
     update_es_for_promoted_addon_version,
 )
+from olympia.ratings.models import Rating
 from olympia.search.utils import get_es, timestamp_index
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -1044,6 +1045,13 @@ def block_factory(*, version_ids=None, block_type=BlockType.BLOCKED, **kwargs):
             for version_id in version_ids
         )
     return block
+
+
+def rating_factory(addon, user=None):
+    user = user or user_factory()
+    return Rating.objects.create(
+        addon=addon, version=addon.current_version, rating=2, body='text', user=user
+    )
 
 
 @pytest.mark.requires_elasticsearch
