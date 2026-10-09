@@ -837,6 +837,9 @@ CELERY_TASK_ROUTES = {
     'olympia.scanners.tasks.wait_for_scanner_results': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_source_code_uploaded': {'queue': 'devhub'},
     'olympia.versions.tasks.call_webhooks_on_version_created': {'queue': 'devhub'},
+    'olympia.versions.tasks.call_webhooks_on_version_entered_review_queue': {
+        'queue': 'devhub'
+    },
     'olympia.versions.tasks.duplicate_addon_version_for_rollback': {'queue': 'devhub'},
     'olympia.versions.tasks.soft_block_versions': {'queue': 'devhub'},
     # Crons.

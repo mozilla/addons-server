@@ -44,6 +44,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
     YARA,
 )
 from olympia.devhub.tasks import validation_task
@@ -182,9 +183,8 @@ def _deliver_webhook(*, scanner_result, payload, request_id):
 
 
 def build_webhook_payload(event_id, *, upload=None, version=None):
-    """Return the payload for the given event.
-
-    Only supports the events we might have to deliver more than once."""
+    """Return the payload for the given event."""
+    from olympia.reviewers.models import NeedsHumanReview
     from olympia.scanners.serializers import (
         WebhookAddonSerializer,
         WebhookVersionSerializer,
@@ -197,6 +197,21 @@ def build_webhook_payload(event_id, *, upload=None, version=None):
         return {
             'addon': WebhookAddonSerializer(version.addon).data,
             'version': WebhookVersionSerializer(version).data,
+        }
+
+    if event_id == WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE:
+        reasons = (
+            version.needshumanreview_set.filter(is_active=True)
+            .values_list('reason', flat=True)
+            .distinct()
+        )
+        return {
+            'addon': WebhookAddonSerializer(version.addon).data,
+            'version': WebhookVersionSerializer(version).data,
+            'due_date': version.due_date.isoformat() if version.due_date else None,
+            'needs_human_review_reasons': sorted(
+                NeedsHumanReview.REASONS(reason).api_value for reason in reasons
+            ),
         }
 
     raise ValueError(f'No payload for webhook event {event_id}')

@@ -1123,7 +1123,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def setUp(self):
         self.task_user = user_factory(id=settings.TASK_USER_ID)
 
-    def test_report(self):
+    @mock.patch(
+        'olympia.versions.tasks.call_webhooks_on_version_entered_review_queue.delay'
+    )
+    def test_report(self, _):
         addon = self._create_dummy_target()
         # Make sure this is testing the case where no user is set (we fall back
         # to the task user).
