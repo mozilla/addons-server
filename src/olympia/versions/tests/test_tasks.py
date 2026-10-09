@@ -29,6 +29,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
 )
 from olympia.reviewers.models import NeedsHumanReview
 from olympia.scanners.models import WEBHOOK, ScannerResult, ScannerRule
@@ -42,6 +43,7 @@ from ..tasks import (
     UI_FIELDS,
     call_webhooks_on_source_code_uploaded,
     call_webhooks_on_version_created,
+    call_webhooks_on_version_entered_review_queue,
     duplicate_addon_version_for_rollback,
     generate_static_theme_preview,
     hard_delete_versions,
@@ -1121,3 +1123,56 @@ class TestCallWebhooksOnVersionCreated(TestCase):
             },
             version=version,
         )
+
+
+class TestCallWebhooksOnVersionEnteredReviewQueue(TestCase):
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_call_with_mock(self, call_webhooks_mock):
+        user_factory(pk=settings.TASK_USER_ID)
+        addon = addon_factory()
+        version = addon.current_version
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.SCANNER_ACTION
+        )
+        NeedsHumanReview.objects.create(
+            version=version, reason=NeedsHumanReview.REASONS.HOTNESS_THRESHOLD
+        )
+        NeedsHumanReview.objects.create(
+            version=version,
+            reason=NeedsHumanReview.REASONS.DEVELOPER_REPLY,
+            is_active=False,
+        )
+        addon.reload()
+        version.reload()
+        assert version.due_date
+        call_webhooks_mock.reset_mock()
+
+        call_webhooks_on_version_entered_review_queue(version.pk)
+
+        call_webhooks_mock.assert_called_once_with(
+            event_id=WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
+            payload={
+                'addon': WebhookAddonSerializer(addon).data,
+                'version': WebhookVersionSerializer(version).data,
+                'due_date': version.due_date.isoformat(),
+                'needs_human_review_reasons': ['hotness_threshold', 'scanner_action'],
+            },
+            version=version,
+        )
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_skip_webhooks_on_langpack(self, call_webhooks_mock):
+        version = addon_factory(type=amo.ADDON_LPAPP).current_version
+
+        call_webhooks_on_version_entered_review_queue(version.pk)
+
+        call_webhooks_mock.assert_not_called()
+
+    @mock.patch('olympia.versions.tasks.call_webhooks')
+    def test_does_not_raise_when_a_call_failed(self, call_webhooks_mock):
+        call_webhooks_mock.side_effect = ValueError('scanner is down')
+        version = addon_factory().current_version
+
+        call_webhooks_on_version_entered_review_queue(version.pk)
+
+        assert call_webhooks_mock.called

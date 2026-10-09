@@ -453,6 +453,30 @@ The payload sent looks like this:
 }
 ```
 
+### `on_version_entered_review_queue`
+
+This event occurs when a version enters a review queue.
+
+The payload sent looks like this:
+
+```json
+{
+  "addon": {
+    // Similar to the `on_version_created` event.
+  },
+  "version": {
+    // Similar to the `on_version_created` event.
+  },
+  // When the version is due for review.
+  "due_date": "2026-10-12T14:00:00",
+  // Active "needs human review" reasons on the version. This can be empty
+  // because a version can be in a queue for other reasons.
+  "needs_human_review_reasons": ["scanner_action"],
+  "event": "on_version_entered_review_queue",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/126/"
+}
+```
+
 (scanner-push)=
 ### `push`
 
