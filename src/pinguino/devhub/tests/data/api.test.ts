@@ -67,6 +67,7 @@ describe('mapActivity', () => {
   it('infers approval from the title and sets a matching status', () => {
     const update = mapActivity({
       id: 42,
+      addon: { slug: 'my-addon' },
       title: 'Your version is approved.',
       comments: 'Congrats!',
       date: '2025-09-02T00:00:00Z',
@@ -79,11 +80,16 @@ describe('mapActivity', () => {
       versionStatus: 'Approved',
       version: '3.2.1',
       date: 'Sep 2 2025',
+      addonSlug: 'my-addon',
     });
   });
 
   it('leaves a non-approval activity unapproved with no status', () => {
-    const update = mapActivity({ id: 7, title: 'Version flagged for review' });
+    const update = mapActivity({
+      id: 7,
+      addon: {},
+      title: 'Version flagged for review',
+    });
     expect(update).toMatchObject({ approved: false, versionStatus: '' });
   });
 });

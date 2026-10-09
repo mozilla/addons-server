@@ -26,7 +26,7 @@ async function card(addon: Partial<Addon>) {
 }
 
 describe('addon-card', () => {
-  it('renders an extension with its icon and visibility/distribution badges', async () => {
+  it('renders an extension name with its visibility/distribution badges', async () => {
     const root = await card({
       kind: 'extension',
       visibility: 'live',
@@ -34,8 +34,10 @@ describe('addon-card', () => {
     });
 
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Extension');
-    expect(root.querySelector('moz-icon')).not.toBeNull();
+    // No iconUrl and no theme preview — just the name in the title row.
+    expect(root.querySelector('.logo')).toBeNull();
     expect(root.querySelector('.preview')).toBeNull();
+    expect(root.querySelector('.name')?.textContent?.trim()).toBe('Ad Blocker');
 
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),

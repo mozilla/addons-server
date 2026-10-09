@@ -34,6 +34,7 @@ export interface Update {
   versionStatus: string;
   tags: string[];
   date: string;
+  addonSlug: string;
 }
 
 export interface AgreementState {

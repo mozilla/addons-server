@@ -32,6 +32,7 @@ interface ApiAddon {
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
 interface ApiActivity {
+  addon: Partial<ApiAddon>;
   id: number;
   title?: string;
   comments?: string;
@@ -67,6 +68,7 @@ export function mapAddon(a: ApiAddon): Addon {
   const kind: AddonKind = a.type === 'statictheme' ? 'theme' : 'extension';
   const live = a.status === 'public' && !a.is_disabled;
   const preview = a.previews?.[0];
+
   return {
     slug: a.slug,
     name: localized(a.name),
@@ -91,6 +93,7 @@ export function mapActivity(a: ApiActivity): Update {
   const title = a.title ?? 'Update';
   // Best-effort: the feed has no explicit approved flag, so infer it from the
   // human-readable title/comments. Revisit if the API adds a status field.
+
   const approved = /approv/i.test(`${title} ${a.comments ?? ''}`);
   return {
     id: String(a.id),
@@ -101,6 +104,7 @@ export function mapActivity(a: ApiActivity): Update {
     versionStatus: approved ? 'Approved' : '',
     tags: [],
     date: formatDate(a.date),
+    addonSlug: a.addon?.slug ?? '',
   };
 }
 
