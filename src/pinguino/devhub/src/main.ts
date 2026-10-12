@@ -15,10 +15,8 @@ import './components/devhub-header';
 import './pages/devhub-home';
 import './pages/addon/main';
 
+import { BASE } from './base';
 import { interceptOutOfAppLinks } from './navigation';
-
-// The SPA is mounted under /pinguino/, so routes match against that prefix.
-const BASE = '/pinguino';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.

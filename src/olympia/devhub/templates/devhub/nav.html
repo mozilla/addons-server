@@ -68,5 +68,10 @@
         {% endif %}
       </ul>
     </li>
+    {% if flag_is_active('pinguino-switch') %}
+    <li>
+      <a href="{{ url('devhub.switch-pinguino') }}?path={{ request.path }}">Try new Developer Hub!</a>
+    </li>
+    {% endif %}
   </ul>
 </nav>

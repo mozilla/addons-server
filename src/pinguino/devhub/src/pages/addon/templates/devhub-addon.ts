@@ -1,5 +1,6 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { BASE } from '../../../base';
 import { addonQuery } from '../../../data';
 
 @customElement('devhub-addon')
@@ -13,7 +14,7 @@ export class DevhubAddon extends LitElement {
   render() {
     const name = this.#addon().data?.name ?? this.slug;
     return html`
-      <p><a href="/pinguino/">&larr; Back to home</a></p>
+      <p><a href="${BASE}/">&larr; Back to home</a></p>
       <moz-page-header heading=${`Manage: ${name}`}></moz-page-header>
       <moz-card>
         <p>Placeholder detail for <strong>${name}</strong>.</p>

@@ -1,6 +1,23 @@
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, type Plugin } from 'vite';
+import { toViteBasePath, VITE_BASE } from './src/base.ts';
 
-const BASE = '/pinguino/';
+// The SPA is also served under locale-prefixed URLs (e.g. /en-US/developers/...);
+// nginx proxies those here unchanged. Vite's dev server enforces its configured
+// `base` (the unprefixed segment) and rejects anything outside it, so strip the
+// locale prefix before Vite's own middlewares see the request.
+function serveLocalePrefixed(): Plugin {
+  return {
+    name: 'pinguino-serve-locale-prefixed',
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url) {
+          req.url = toViteBasePath(req.url);
+        }
+        next();
+      });
+    },
+  };
+}
 
 export default defineConfig(({ mode }) => {
   // Under `make up` the browser reaches Vite through nginx (Vite's port isn't
@@ -10,7 +27,8 @@ export default defineConfig(({ mode }) => {
   const hmrClientPort = loadEnv(mode, '.', 'VITE_').VITE_HMR_CLIENT_PORT;
 
   return {
-    base: BASE,
+    base: VITE_BASE,
+    plugins: [serveLocalePrefixed()],
     server: {
       host: true,
       port: 5273,

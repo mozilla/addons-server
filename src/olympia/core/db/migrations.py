@@ -61,6 +61,66 @@ class RenameWaffleSwitch(migrations.RunPython):
         return 'Rename Waffle Switch, safely (Python operation)'
 
 
+def delete_waffle_flag(name):
+    def inner(apps, schema_editor):
+        Flag = apps.get_model('waffle', 'Flag')
+        Flag.objects.filter(name=name).delete()
+
+    return inner
+
+
+def create_waffle_flag(name):
+    def inner(apps, schema_editor):
+        Flag = apps.get_model('waffle', 'Flag')
+        Flag.objects.get_or_create(name=name)
+
+    return inner
+
+
+def rename_waffle_flag(old_name, new_name):
+    def inner(apps, schema_editor):
+        Flag = apps.get_model('waffle', 'Flag')
+        Flag.objects.update_or_create(name=old_name, defaults={'name': new_name})
+
+    return inner
+
+
+class DeleteWaffleFlag(migrations.RunPython):
+    def __init__(self, name, **kwargs):
+        super().__init__(
+            delete_waffle_flag(name),
+            reverse_code=create_waffle_flag(name),
+            **kwargs,
+        )
+
+    def describe(self):
+        return 'Delete Waffle Flag (Python operation)'
+
+
+class CreateWaffleFlag(migrations.RunPython):
+    def __init__(self, name, **kwargs):
+        super().__init__(
+            create_waffle_flag(name),
+            reverse_code=delete_waffle_flag(name),
+            **kwargs,
+        )
+
+    def describe(self):
+        return 'Create Waffle Flag (Python operation)'
+
+
+class RenameWaffleFlag(migrations.RunPython):
+    def __init__(self, old_name, new_name, **kwargs):
+        super().__init__(
+            rename_waffle_flag(old_name, new_name),
+            reverse_code=rename_waffle_flag(new_name, old_name),
+            **kwargs,
+        )
+
+    def describe(self):
+        return 'Rename Waffle Flag, safely (Python operation)'
+
+
 class RemoveFieldInstant(migrations.RemoveField):
     """A RemoveField that uses ALGORITHM=INSTANT to drop the field without row rewrites.
 
