@@ -7,6 +7,7 @@ from django_statsd.clients import statsd
 from google.cloud import bigquery
 
 from olympia.constants.applications import ANDROID, FIREFOX
+from olympia.core.bigquery import create_client
 
 
 # This is the mapping between the AMO usage stats `sources` and the BigQuery
@@ -44,12 +45,6 @@ def get_amo_stats_dau_view_name():
 
 def get_amo_stats_download_view_name():
     return make_fully_qualified_view_name(AMO_STATS_DOWNLOAD_VIEW)
-
-
-def create_client():
-    return bigquery.Client.from_service_account_json(
-        settings.GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY
-    )
 
 
 def rows_to_series(rows, count_column, filter_by=None):

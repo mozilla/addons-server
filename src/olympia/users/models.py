@@ -331,6 +331,11 @@ class UserQuerySet(BaseQuerySet):
                 blocklist_submissions_pks, user_responsible_id=user_responsible.pk
             )
 
+    def active(self):
+        return self.exclude(
+            addons__isnull=True, _ratings_all__isnull=True, collections__isnull=True
+        ).filter(deleted=False, fxa_id__isnull=False)
+
 
 class UserManager(BaseUserManager, ManagerBase):
     _queryset_class = UserQuerySet
@@ -379,6 +384,9 @@ class UserManager(BaseUserManager, ManagerBase):
             APIKey.new_jwt_credentials(user=user)
 
         return user, created
+
+    def active(self):
+        return self.all().active()
 
 
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
