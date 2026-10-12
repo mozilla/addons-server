@@ -31,7 +31,10 @@ from .serializers import (
     ScannerQueryResultSerializer,
     ScannerQueryRuleSerializer,
 )
-from .tasks import run_actions_for_scanner_result, run_scanner_query_rule
+from .tasks import (
+    maybe_run_actions_for_webhook_result,
+    run_scanner_query_rule,
+)
 
 
 log = olympia.core.logger.getLogger('z.scanners.views')
@@ -82,8 +85,7 @@ def push_scanner_result(request):
         'Pushed new scanner result %s for version %s', scanner_result.pk, version_id
     )
 
-    if scanner_result.has_matches:
-        run_actions_for_scanner_result.delay(scanner_result.pk)
+    maybe_run_actions_for_webhook_result(scanner_result)
 
     return Response({'id': scanner_result.pk}, status=status.HTTP_201_CREATED)
 
@@ -124,6 +126,7 @@ def patch_scanner_result(request, pk=None):
         scanner_result.pk,
         scanner_result.version_id,
     )
+    maybe_run_actions_for_webhook_result(scanner_result)
 
     return Response(status=status.HTTP_204_NO_CONTENT)
 
