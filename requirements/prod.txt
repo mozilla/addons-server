@@ -175,7 +175,7 @@ pyparsing==3.3.3 \
 setuptools==84.0.0 \
     --hash=sha256:51a52592b3b99e102b609654876bd65f19f999935166d1352678931132b0c670 \
     --hash=sha256:f4695c21257f0d9b537ec2692c941d02ee143b7cc1276941349a546573b2ef73
-# six is required by Sphinx, cryptography, -environ, -extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, html5lib, mock, nobot, packaging, pathlib2, prompt_toolkit, sphinxcontrib-httpdomain, websocket-client
+# six is required by Sphinx, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, html5lib, mock, nobot, packaging, pathlib2, prompt_toolkit, sphinxcontrib-httpdomain, websocket-client
 six==1.17.0 \
     --hash=sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274 \
     --hash=sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81
