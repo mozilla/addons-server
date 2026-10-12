@@ -43,6 +43,14 @@ const showOrHideDefinition = (select) => {
   }
 };
 
+// Similar to `showOrHideDefinition()` but for the `configuration` field.
+const showOrHideConfiguration = (select) => {
+  const configuration = document.querySelector('.field-configuration');
+  const isNarc = selectedScannerIsNarc(select);
+
+  configuration.style.display = isNarc ? 'block' : 'none';
+};
+
 // This function changes the visibility of the `name` field in the "change
 // form". We only want to show this field when a scanner is selected and this
 // scanner is not "yara" (because we will infer the name of the rule using the
@@ -120,6 +128,7 @@ if (scannerSelect) {
     const select = event.target;
 
     showOrHideDefinition(select);
+    showOrHideConfiguration(select);
     showOrHideName(select);
     setInitialConfiguration(select);
   });
@@ -128,5 +137,6 @@ if (scannerSelect) {
   // form does not have a pre-selected value for the `scanner` select.
   showOrHideName(scannerSelect);
   showOrHideDefinition(scannerSelect);
+  showOrHideConfiguration(scannerSelect);
   setInitialConfiguration(scannerSelect);
 }
