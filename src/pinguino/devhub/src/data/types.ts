@@ -6,17 +6,28 @@ export type AddonKind = 'extension' | 'theme';
 export type AddonVisibility = 'live' | 'hidden';
 export type AddonDistribution = 'amo' | 'self' | 'enterprise';
 
-export type AddonAuthorRole = 'Owner' | 'Developer';
+// The API's writable role values.
+export type AddonAuthorRole = 'owner' | 'developer';
 
 export interface AddonAuthor {
   name: string;
-  // The list API exposes neither the author's email nor an owner/developer
-  // role, so both are optional and only rendered when present (e.g. from mock).
+  // The add-on list API only carries the name; the authors endpoint adds the
+  // rest, so these are optional.
+  userId?: number;
   email?: string;
   role?: AddonAuthorRole;
+  listed?: boolean;
+}
+
+// Fields for adding an author (via the pending-authors endpoint).
+export interface AddonAuthorAdd {
+  userId: number;
+  role: AddonAuthorRole;
+  listed: boolean;
 }
 
 export interface AddonScreenshot {
+  id?: number;
   src: string;
   caption?: string;
 }
@@ -46,14 +57,12 @@ export interface Addon {
   reviewCount?: number;
   averageDailyUsers?: number;
   homepageUrl?: string;
-  websiteUrl?: string;
   listingUrl?: string;
   supportEmail?: string;
   supportUrl?: string;
   summary?: string;
   description?: string;
   categories?: string[];
-  authors?: AddonAuthor[];
   screenshots?: AddonScreenshot[];
   license?: string;
   developerComments?: string;
@@ -67,6 +76,41 @@ export interface Addon {
     hasEula?: boolean;
     hasPrivacyPolicy?: boolean;
   };
+}
+
+// The subset of listing fields editable from the manage page's Listing Details
+// card. Domain-shaped; patchAddon maps these to the API's writable fields.
+export interface AddonListingEdit {
+  name?: string;
+  summary?: string;
+  description?: string;
+  homepageUrl?: string;
+  supportEmail?: string;
+  supportUrl?: string;
+  categories?: string[];
+  experimental?: boolean;
+  requiresPayment?: boolean;
+  developerComments?: string;
+}
+
+// A listing category (from /addons/categories/). `type` matches the API's
+// 'extension' | 'statictheme'.
+export interface Category {
+  slug: string;
+  name: string;
+  type: string;
+}
+
+// EULA and privacy-policy text live on a separate endpoint from the rest of the
+// listing, so they have their own read/edit shapes.
+export interface EulaPolicy {
+  eula: string;
+  privacyPolicy: string;
+}
+
+export interface EulaPolicyEdit {
+  eula?: string;
+  privacyPolicy?: string;
 }
 
 export interface Update {

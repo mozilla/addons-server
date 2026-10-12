@@ -21,17 +21,23 @@ export async function apiFetch<T>(
   path: string,
   { method = 'GET', body }: { method?: string; body?: unknown } = {},
 ): Promise<T> {
+  // FormData (file uploads) must go as multipart — let the browser set the
+  // content-type/boundary and send it as-is rather than JSON.
+  const isForm = body instanceof FormData;
   const res = await fetch(`${BASE}${path}`, {
     method,
     headers: {
       ...(SESSION ? { authorization: `Session ${SESSION}` } : {}),
-      ...(body ? { 'content-type': 'application/json' } : {}),
+      ...(body != null && !isForm
+        ? { 'content-type': 'application/json' }
+        : {}),
     },
-    body: body ? JSON.stringify(body) : undefined,
+    body: body == null ? undefined : isForm ? body : JSON.stringify(body),
   });
   if (!res.ok) {
     // TODO(auth): on 401, clear the session and route to login once FxA lands.
     throw new ApiError(res.status, `AMO API responded ${res.status}`);
   }
-  return (await res.json()) as T;
+  // DELETE and other 204s have no body to parse.
+  return res.status === 204 ? (undefined as T) : ((await res.json()) as T);
 }

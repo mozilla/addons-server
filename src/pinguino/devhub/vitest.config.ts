@@ -1,9 +1,8 @@
 import { defineConfig } from 'vitest/config';
 
 // Standalone from vite.config.ts: the dev server's base/proxy/HMR settings are
-// irrelevant to tests, and there are no Vite plugins to inherit. Vitest still
-// uses Vite's transform pipeline, so legacy decorators and `?inline` CSS imports
-// work the same as in `npm run dev`.
+// irrelevant to tests. Vitest still uses Vite's transform pipeline, so legacy
+// decorators and `?inline` CSS imports work the same as in `npm run dev`.
 export default defineConfig({
   test: {
     // Lit components render to real shadow roots here; we assert on their DOM

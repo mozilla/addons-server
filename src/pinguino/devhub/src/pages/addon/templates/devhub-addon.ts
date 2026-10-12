@@ -22,6 +22,8 @@ const isTab = (v: string): v is TabValue => TABS.some((t) => t.value === v);
 export class DevhubAddon extends LitElement {
   @property() slug = '';
   @property() tab: string = DEFAULT_TAB;
+  // Active section within the Listing Details (edit) tab.
+  @property() section = '';
 
   #addon = addonQuery(this, () => this.slug);
 
@@ -58,7 +60,10 @@ export class DevhubAddon extends LitElement {
   #panel(addon: Addon) {
     switch (this.#activeTab) {
       case 'edit':
-        return html`<addon-listing .addon=${addon}></addon-listing>`;
+        return html`<addon-listing
+          .addon=${addon}
+          .section=${this.section || undefined}
+        ></addon-listing>`;
       default: {
         const label = TABS.find((t) => t.value === this.#activeTab)?.label;
         return html`<div class="stub">

@@ -20,7 +20,10 @@ export class AddonManageHeader extends LitElement {
       display: block;
     }
     .back {
-      margin: 0 0 var(--space-small);
+      display: flex;
+      align-items: center;
+      margin: var(--space-small) 0;
+      color: var(--text-color-deemphasized);
     }
     .back a {
       color: var(--text-color-deemphasized, GrayText);
@@ -28,6 +31,9 @@ export class AddonManageHeader extends LitElement {
     }
     .back a:hover {
       text-decoration: underline;
+    }
+    .back moz-icon {
+      color: var(--text-color-deemphasized);
     }
     moz-breadcrumb-group {
       display: block;
@@ -125,8 +131,8 @@ export class AddonManageHeader extends LitElement {
     const a = this.addon;
     const live = a.visibility === 'live';
     return html`
-      <!-- TODO: Query the back to dashboard with Kate, duplicated by breadcrumb? -->
-      <p class="back"><a href="/pinguino/">&lsaquo; back to dashboard</a></p>
+      <!-- TODO: "Back to Dashboard" duplicates the breadcrumb's Dashboard link — confirm we want both. -->
+      <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="/pinguino/">Back to Dashboard</a></p>
       <moz-breadcrumb-group label="Breadcrumb">
         <moz-breadcrumb href="/pinguino/">Dashboard</moz-breadcrumb>
         <moz-breadcrumb>${a.name}</moz-breadcrumb>

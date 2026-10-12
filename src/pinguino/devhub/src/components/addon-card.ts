@@ -55,7 +55,6 @@ export class AddonCard extends LitElement {
     }
     .name {
       margin: 0;
-      /* font-size: 1rem; */
       font-weight: 600;
     }
     .bar {
