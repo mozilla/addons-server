@@ -2462,6 +2462,27 @@ class TestOnChangeName(TestCase):
             version_from_addon3.pk,
         )
 
+    @mock.patch('olympia.scanners.tasks.call_webhooks_on_listing_changed')
+    def test_change_display_name_calls_webhooks_on_listing_changed(self, webhooks_mock):
+        user = user_factory()
+        addon = addon_factory(users=[user])
+        addon2 = addon_factory(users=[user])
+        addon_factory(name='Force disabled', users=[user]).force_disable()
+
+        user.update(display_name='Flôp')
+
+        assert webhooks_mock.delay.call_args_list == [
+            mock.call(addon.current_version.pk, reason='authors'),
+            mock.call(addon2.current_version.pk, reason='authors'),
+        ]
+
+    @mock.patch('olympia.scanners.tasks.call_webhooks_on_listing_changed')
+    def test_changes_something_else_does_not_call_webhooks_on_listing_changed(
+        self, webhooks_mock
+    ):
+        self.test_changes_something_else()
+        webhooks_mock.delay.assert_not_called()
+
     def test_changes_something_else(self):
         user = user_factory()
         addon = addon_factory()

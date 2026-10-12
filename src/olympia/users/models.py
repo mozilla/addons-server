@@ -1652,41 +1652,46 @@ def watch_changes(old_attr=None, new_attr=None, instance=None, sender=None, **kw
     # are any.
     if 'username' in changes or 'display_name' in changes:
         from olympia.addons.tasks import index_addons
-        from olympia.scanners.tasks import run_narc_on_version
+        from olympia.scanners.tasks import (
+            call_webhooks_on_listing_changed,
+            run_narc_on_version,
+        )
 
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
 
-        if waffle.switch_is_active('enable-narc'):
-            # Re-run narc scanner on the last non rejected version of their
-            # non-disabled by Mozilla add-ons - this is a slightly larger set
-            # than the one used above for reindexing, as we want to include
-            # add-ons and versions disabled by their developers, to scan them
-            # before they would be re-enabled.
-            version_pks = (
-                instance.addons.not_disabled_by_mozilla()
-                .annotate(
-                    last_version_id=Max(
-                        'versions',
-                        filter=Q(
-                            versions__channel=amo.CHANNEL_LISTED,
-                            versions__deleted=False,
-                        )
-                        & ~Q(
-                            versions__file__status=amo.STATUS_DISABLED,
-                            versions__file__status_disabled_reason=(
-                                File.STATUS_DISABLED_REASONS.NONE
-                            ),
-                        ),
+        # Scan again the last non rejected version of their non-disabled by
+        # Mozilla add-ons - this is a slightly larger set than the one used
+        # above for reindexing, as we want to include add-ons and versions
+        # disabled by their developers, to scan them before they would be
+        # re-enabled.
+        version_pks = (
+            instance.addons.not_disabled_by_mozilla()
+            .annotate(
+                last_version_id=Max(
+                    'versions',
+                    filter=Q(
+                        versions__channel=amo.CHANNEL_LISTED,
+                        versions__deleted=False,
                     )
+                    & ~Q(
+                        versions__file__status=amo.STATUS_DISABLED,
+                        versions__file__status_disabled_reason=(
+                            File.STATUS_DISABLED_REASONS.NONE
+                        ),
+                    ),
                 )
-                .exclude(last_version_id=None)
-                .values_list('last_version_id', flat=True)
-                .order_by('last_version_id')
             )
-            for version_pk in version_pks:
+            .exclude(last_version_id=None)
+            .values_list('last_version_id', flat=True)
+            .order_by('last_version_id')
+        )
+        run_narc = waffle.switch_is_active('enable-narc')
+        for version_pk in version_pks:
+            if run_narc:
                 run_narc_on_version.delay(version_pk)
+            call_webhooks_on_listing_changed.delay(version_pk, reason='authors')
 
 
 user_logged_in.connect(UserProfile.user_logged_in)

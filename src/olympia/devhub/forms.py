@@ -57,7 +57,10 @@ from olympia.devhub.serializers import SUPPORT_CATEGORY_CHOICES
 from olympia.devhub.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.files.models import FileUpload
 from olympia.files.utils import SafeTar, SafeZip, parse_addon
-from olympia.scanners.tasks import run_narc_on_version
+from olympia.scanners.tasks import (
+    call_webhooks_on_listing_changed,
+    run_narc_on_version,
+)
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import LocaleErrorMessage, TransField, TransTextarea
@@ -165,10 +168,12 @@ class AddonFormBase(TranslationFormMixin, AMOModelForm):
                 )
                 AddonListingInfo.maybe_mark_as_noindexed(addon=obj)
 
-                if waffle.switch_is_active('enable-narc') and (
-                    version := self.instance.find_latest_non_rejected_listed_version()
-                ):
-                    run_narc_on_version.delay(version.pk)
+                if version := self.instance.find_latest_non_rejected_listed_version():
+                    if waffle.switch_is_active('enable-narc'):
+                        run_narc_on_version.delay(version.pk)
+                    call_webhooks_on_listing_changed.delay(
+                        version.pk, reason='metadata'
+                    )
 
         return obj
 

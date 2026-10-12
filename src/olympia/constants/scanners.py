@@ -80,12 +80,14 @@ WEBHOOK_DURING_VALIDATION = 1
 WEBHOOK_ON_SOURCE_CODE_UPLOADED = 2
 WEBHOOK_ON_VERSION_CREATED = 3
 WEBHOOK_PUSH = 4
+WEBHOOK_ON_LISTING_CHANGED = 5
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
     WEBHOOK_ON_SOURCE_CODE_UPLOADED: 'on_source_code_uploaded',
     WEBHOOK_ON_VERSION_CREATED: 'on_version_created',
     WEBHOOK_PUSH: 'push',
+    WEBHOOK_ON_LISTING_CHANGED: 'on_listing_changed',
 }
 
 # Events we wait on before auto-approving a version.
