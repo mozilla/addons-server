@@ -71,6 +71,10 @@ FXA_OAUTH_HOST = 'https://oauth.stage.mozaws.net/v1'
 FXA_PROFILE_HOST = 'https://profile.stage.mozaws.net/v1'
 FXA_SUPPORT_HOST = 'https://api-accounts.stage.mozaws.net/v1'
 
+FXA_ACTIVES_BIGQUERY_TABLE = (
+    'moz-fx-fxa-nonprod.fxa_rp_active_accounts.client_285dd6fd9907a74c_active_accounts'
+)
+
 SITEMAP_DEBUG_AVAILABLE = True
 
 ENABLE_ADMIN_MLBF_UPLOAD = True
