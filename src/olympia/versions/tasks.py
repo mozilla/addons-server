@@ -19,7 +19,7 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import SafeStorage, extract_colors_from_image, pngcrush_image
 from olympia.constants.scanners import (
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+    WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
 )
@@ -32,6 +32,7 @@ from olympia.scanners.models import ScannerResult
 from olympia.scanners.tasks import (
     build_webhook_payload,
     call_webhooks,
+    call_webhooks_on_version_scanned,
     wait_for_scanner_results,
 )
 from olympia.users.models import UserProfile
@@ -455,12 +456,18 @@ def call_webhooks_on_version_created(version_pk):
     except Exception:
         log.exception('Error while calling webhooks for Version %s', version_pk)
 
-    # Even when a webhook call failed, we still want to wait for the results of
-    # every scanner blocking the auto-approval of this version.
+    # The scanners called above may all have answered synchronously, or none
+    # may have been called at all, in which case nothing else would send
+    # `on_version_scanned` before the retries below.
+    call_webhooks_on_version_scanned.delay(version_pk=version_pk)
+
+    # Even when a webhook call failed, we still want to wait for the results
+    # `on_version_scanned` aggregates. Waiting for `on_version_scanned` itself
+    # is a second step, started once we have them.
     wait_for_scanner_results.apply_async(
         kwargs={
             'version_pk': version_pk,
-            'event_ids': WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+            'event_ids': WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
         },
         countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
     )
