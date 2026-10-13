@@ -991,9 +991,11 @@ class TestScannerRuleAdmin(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         admin_form = response.context_data['adminform']
+        assert 'description' not in admin_form.fields
         assert 'definition' not in admin_form.fields
         assert 'configuration' not in admin_form.fields
         doc = pq(response.content)
+        assert not doc('.field-description')
         assert not doc('.field-definition')
         assert not doc('.field-configuration')
 
@@ -1001,7 +1003,6 @@ class TestScannerRuleAdmin(TestCase):
             url,
             {
                 'pretty_name': 'Bar',
-                'description': '',
                 'action': NO_ACTION,
                 'is_active': True,
             },
@@ -1009,6 +1010,18 @@ class TestScannerRuleAdmin(TestCase):
         assert response.status_code == 302
         rule.reload()
         assert rule.pretty_name == 'Bar'
+
+    def test_change_view_shows_non_empty_description_for_webhook(self):
+        rule = ScannerRule.objects.create(
+            name='bar', scanner=WEBHOOK, description='Some description'
+        )
+        url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        admin_form = response.context_data['adminform']
+        assert 'description' in admin_form.fields
+        assert 'definition' not in admin_form.fields
+        assert 'configuration' not in admin_form.fields
 
     def test_change_view_hides_configuration_for_yara(self):
         rule = ScannerRule.objects.create(
@@ -1028,6 +1041,7 @@ class TestScannerRuleAdmin(TestCase):
         request = RequestFactory().get('/')
         request.user = user
         fields = self.admin.get_fields(request=request, obj=rule)
+        assert 'description' not in fields
         assert 'definition' not in fields
         assert 'formatted_definition' not in fields
         assert 'configuration' not in fields
