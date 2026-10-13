@@ -63,7 +63,7 @@ export class DevhubHeader extends LitElement {
             rel="external"
             href="${BASE}/switch-pinguino"
             @click=${this.#switchToClassic}
-            >Switch back to old Developer Hub</a
+            >Switch back to the old Developer Hub</a
           >
         </nav>
         <span class="spacer"></span>

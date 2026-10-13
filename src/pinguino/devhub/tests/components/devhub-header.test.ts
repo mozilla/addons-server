@@ -16,7 +16,7 @@ describe('devhub-header', () => {
     const link = root.querySelector('a[rel="external"]');
     expect(link).not.toBeNull();
     expect(link?.getAttribute('href')).toBe('/developers/switch-pinguino');
-    expect(link?.textContent?.trim()).toBe('Switch back to old Developer Hub');
+    expect(link?.textContent?.trim()).toBe('Switch back to the old Developer Hub');
   });
 
   it('on click, navigates to the endpoint with the current path', async () => {
