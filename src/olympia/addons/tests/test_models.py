@@ -2379,6 +2379,29 @@ class TestAddonUser(TestCase):
         addon.addonuser_set.create(user=user_factory())
         assert run_narc_on_version_mock.delay.call_count == 0
 
+    @patch('olympia.scanners.tasks.call_webhooks_on_listing_changed')
+    def test_call_webhooks_on_listing_changed_new_author(self, webhooks_mock):
+        addon = addon_factory(users=[user_factory()])
+        addon.addonuser_set.create(user=user_factory())
+        webhooks_mock.delay.assert_called_once_with(
+            addon.current_version.pk, reason='authors'
+        )
+
+    @patch('olympia.scanners.tasks.call_webhooks_on_listing_changed')
+    def test_dont_call_webhooks_on_listing_changed_first_author(self, webhooks_mock):
+        addon = addon_factory()
+        addon.addonuser_set.create(user=user_factory())
+        webhooks_mock.delay.assert_not_called()
+
+    @patch('olympia.scanners.tasks.call_webhooks_on_listing_changed')
+    def test_dont_call_webhooks_on_listing_changed_no_listed_version(
+        self, webhooks_mock
+    ):
+        addon = addon_factory(users=[user_factory()])
+        self.change_channel_for_addon(addon, amo.CHANNEL_UNLISTED)
+        addon.addonuser_set.create(user=user_factory())
+        webhooks_mock.delay.assert_not_called()
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']

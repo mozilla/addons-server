@@ -28,24 +28,14 @@ from olympia.amo.tests import (
     TestCase,
     addon_factory,
     collection_factory,
+    rating_factory,
     user_factory,
 )
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.promoted import RECOMMENDED_API_NAME
-from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 
 from .test_views import TEST_SITEMAPS_DIR
-
-
-def rating_factory(addon):
-    return Rating.objects.create(
-        addon=addon,
-        version=addon.current_version,
-        rating=2,
-        body='text',
-        user=user_factory(),
-    )
 
 
 class TestAddonSitemap(TestCase):

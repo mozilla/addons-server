@@ -831,6 +831,8 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.validate_upload': {'queue': 'devhub'},
     'olympia.files.tasks.repack_fileupload': {'queue': 'devhub'},
     'olympia.scanners.tasks.call_webhooks_during_validation': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_webhooks_on_listing_changed': {'queue': 'devhub'},
+    'olympia.scanners.tasks.call_webhooks_on_version_scanned': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_actions_for_scanner_result': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_narc_on_version': {'queue': 'devhub'},
     'olympia.scanners.tasks.run_yara': {'queue': 'devhub'},
@@ -1424,6 +1426,8 @@ FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT = 15 * 60  # 15 minutes in seconds
 
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True
+
+FXA_ACTIVES_BIGQUERY_TABLE = env('FXA_ACTIVES_BIGQUERY_TABLE', default=None)
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path

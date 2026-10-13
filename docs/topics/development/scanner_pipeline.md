@@ -132,6 +132,12 @@ When some results are still missing two hours after the version was created, the
 with the same payload, and keeps doing so every two hours, up to 12 times. The
 last retry therefore happens 24 hours after the version was created.
 
+AMO waits in two steps, each with a budget of its own: first for the results
+[`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
+`on_version_scanned` itself, which cannot be sent before they are all in. A
+scanner listening to `on_version_scanned` therefore gets the same 24 hours,
+counted from the moment the event was sent to it.
+
 Once the retries are exhausted, or when the payload can no longer be rebuilt
 (e.g., the uploaded file a `during_validation` payload points to is gone), AMO
 records artificial results matching the special `SCANNER_RESULTS_MISSING`
@@ -185,7 +191,7 @@ Rules used as annotation keys must be listed in `matchedRules`. When there is
 no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
 name.
 
-Each annotated rule must exist as a [scanner rule](#scanner-rules) on AMO for
+Each annotated rule must be an active [scanner rule](#scanner-rules) on AMO for
 the annotation to be displayed.
 
 ### Adding a scanner webhook
@@ -331,8 +337,7 @@ The payload sent looks like this:
         "id": 11181,
         "name": "Firefox user 11181",
         "url": "http://olympia.test/user/11181/",
-        "username": "some-username",
-        "picture_url": null
+        "username": "some-username"
       }
     ],
     "id": 88,
@@ -453,6 +458,98 @@ The payload sent looks like this:
 }
 ```
 
+### `on_listing_changed`
+
+This event occurs when the listing of an add-on changes. The `reason` field
+indicates what changed:
+
+- `metadata`: the name or summary of the add-on changed
+- `authors`: a new author was added (besides the first one), or an author
+  changed their username or display name
+
+The `version` is the latest non-rejected listed version of the add-on. Add-ons
+without such a version don't trigger this event.
+
+The payload sent looks like this:
+
+```json
+{
+  "addon": {
+    // Similar to the `on_version_created` event.
+  },
+  "version": {
+    // Similar to the `on_version_created` event.
+  },
+  "reason": "metadata",
+  "event": "on_listing_changed",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/126/"
+}
+```
+
+(scanner-on-version-scanned)=
+### `on_version_scanned`
+
+This event occurs once **every** scanner listening to a predefined set of events
+has returned its results for the version. It is meant for scanners that need to
+make a decision informed by what the other scanners found.
+
+In addition to the usual `addon` and `version` properties, the payload contains a
+`scanner_results` object. It has one property per aggregated event, each mapping
+the name of a scanner listening to that event to the results it returned. A
+`null` value means that scanner skipped the event.
+
+A scanner listening to both aggregated events appears under both, so its two sets
+of results remain distinguishable.
+
+```json
+{
+  "addon": {
+    // Similar to the `on_version_created` event.
+  },
+  "version": {
+    // Similar to the `on_version_created` event.
+  },
+  "scanner_results": {
+    "during_validation": {
+      "some-scanner": {
+        "version": "1.0",
+        "matchedRules": ["SOME_RULE"],
+        "annotations": {}
+      }
+    },
+    "on_version_created": {
+      "some-scanner": {
+        "version": "1.0",
+        "matchedRules": [],
+        "annotations": {}
+      },
+      "some-other-scanner": null
+    }
+  },
+  "event": "on_version_scanned",
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/127/"
+}
+```
+
+```{warning}
+`scanner_results` reports every result AMO holds for an aggregated event, which
+is not the same set as the scanners currently subscribed to it. A scanner that
+subscribed *after* the version was created is missing entirely, because AMO
+never called it; conversely, a scanner whose webhook has since been deactivated
+is still reported, because its results had already been collected. Don't assume
+the object lists every scanner currently subscribed; look up the scanners you
+care about by name and handle their absence.
+```
+
+This event blocks auto-approval like the events it aggregates, so the version is
+not auto-approved until the scanners listening to it have answered as well. When
+AMO gave up on one of the aggregated scanners, the event is still sent, with the
+`SCANNER_RESULTS_MISSING` [rule](#scanner-rules) in place of that scanner's
+results.
+
+Results [pushed](#scanner-push) by a scanner are not part of the payload, and
+pushing results does not trigger this event.
+
 (scanner-push)=
 ### `push`
 
@@ -494,8 +591,8 @@ attach results to and the scan results:
 | `409 Conflict`    | One or more of the `matchedRules` have already been pushed for this version                    |
 
 A push is rejected with `409 Conflict` when any rule in `matchedRules` has
-already been pushed for the same version via the same webhook. Only rules that
-exist as [scanner rules](#scanner-rules) are considered for this check.
+already been pushed for the same version via the same webhook. Only active
+[scanner rules](#scanner-rules) are considered for this check.
 
 #### Actions
 
@@ -537,6 +634,9 @@ which essentially allows a scanner to make a change to an add-on version.
 ## Scanner Rules
 
 A scanner rule allows scanners to trigger an [action](#scanner-actions).
+
+Unknown rules reported by scanner webhooks are created automatically (active,
+with no action). Existing rules are left untouched.
 
 (scanner-actions)=
 ## Scanner Actions

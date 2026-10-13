@@ -1,8 +1,15 @@
 from django.urls import reverse
 
 from olympia import amo
+from olympia.addons.models import AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import TestCase, addon_factory, reverse_ns, version_factory
+from olympia.amo.tests import (
+    TestCase,
+    addon_factory,
+    reverse_ns,
+    user_factory,
+    version_factory,
+)
 from olympia.constants.scanners import (
     NARC,
     NARC_RULE_CONFIGURATION_SCHEMA,
@@ -72,6 +79,32 @@ class TestWebhookAddonSerializer(TestCase):
         addon = addon_factory(type=amo.ADDON_STATICTHEME)
         data = WebhookAddonSerializer(addon).data
         assert data['type'] == 'statictheme'
+
+    def test_serialize_includes_unlisted_authors(self):
+        listed_author = user_factory(display_name='Listed')
+        unlisted_author = user_factory(display_name='Unlisted')
+        deleted_author = user_factory(display_name='Deleted')
+        addon = addon_factory()
+        AddonUser.objects.create(
+            addon=addon, user=unlisted_author, listed=False, position=1
+        )
+        AddonUser.objects.create(addon=addon, user=listed_author, position=0)
+        AddonUser.objects.create(
+            addon=addon, user=deleted_author, role=amo.AUTHOR_ROLE_DELETED
+        )
+
+        data = WebhookAddonSerializer(addon).data
+
+        assert [author['id'] for author in data['authors']] == [
+            listed_author.pk,
+            unlisted_author.pk,
+        ]
+        assert data['authors'][1] == {
+            'id': unlisted_author.pk,
+            'name': 'Unlisted',
+            'url': unlisted_author.get_absolute_url(),
+            'username': unlisted_author.username,
+        }
 
 
 class TestWebhookVersionSerializer(TestCase):

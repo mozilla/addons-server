@@ -26,7 +26,11 @@ from olympia.amo.tests import (
     version_factory,
 )
 from olympia.blocklist.models import BlockVersion
-from olympia.constants.scanners import WEBHOOK, WEBHOOK_DURING_VALIDATION
+from olympia.constants.scanners import (
+    WEBHOOK,
+    WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_VERSION_SCANNED,
+)
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.promoted.models import (
     PromotedAddon,
@@ -1504,6 +1508,22 @@ class TestAutoApprovalSummary(TestCase):
             results={'ok': True},
         )
         assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
+    def test_check_is_waiting_on_scanners_on_version_scanned_event(self):
+        webhook = ScannerWebhook.objects.create(name='some-scanner')
+        webhook.update(modified=self.days_ago(1))
+        event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_VERSION_SCANNED, webhook=webhook
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is True
+
+        ScannerResult.objects.create(
+            version=self.version,
+            scanner=WEBHOOK,
+            webhook_event=event,
+            results={'matchedRules': []},
+        )
+        assert AutoApprovalSummary.check_is_waiting_on_scanners(self.version) is False
 
     def test_check_is_waiting_on_scanners_multiple_events_all_complete(self):
         webhook = ScannerWebhook.objects.create(name='some-scanner')

@@ -4,19 +4,19 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 
 import olympia.core.logger
-from olympia.constants.scanners import (
-    WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
-    WEBHOOK_MAX_RETRIES,
+from olympia.constants.scanners import WEBHOOK_MAX_RETRIES
+from olympia.scanners.tasks import (
+    scanner_webhook_events_to_wait_for,
+    wait_for_scanner_results,
 )
-from olympia.scanners.tasks import wait_for_scanner_results
 from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.scanners.retry_versions_waiting_on_scanners')
 
 # How long `wait_for_scanner_results` can keep retrying a version: the initial
-# countdown plus one delay per retry.
-MIN_AGE = timedelta(
+# countdown plus one delay per retry, for each of the two steps we wait in.
+MIN_AGE = 2 * timedelta(
     seconds=settings.SCANNER_WEBHOOK_RETRY_DELAY * (WEBHOOK_MAX_RETRIES + 1)
 )
 
@@ -64,7 +64,7 @@ class Command(BaseCommand):
 
             wait_for_scanner_results.delay(
                 version_pk=version.pk,
-                event_ids=WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL,
+                event_ids=scanner_webhook_events_to_wait_for(version),
             )
             log.info(
                 'Scheduled wait_for_scanner_results again for version %s.', version.pk
