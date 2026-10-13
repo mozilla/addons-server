@@ -1,4 +1,4 @@
-import type { InputType } from '@mozilla/acorn-web-components';
+import type { IconName, InputType } from '@mozilla/acorn-web-components';
 import {
   html,
   LitElement,
@@ -37,6 +37,19 @@ type ListingDraft = AddonListingEdit & {
   eula?: string;
   hasPrivacyPolicy?: boolean;
   privacyPolicy?: string;
+};
+
+type SectionId =
+  | 'listing-details'
+  | 'graphic-assets'
+  | 'authors'
+  | 'technical-details';
+
+type SectionInfo = {
+  id: SectionId;
+  title: string;
+  description: string;
+  icon: IconName;
 };
 
 // One editable authors row. Existing authors carry their real user id/email;
@@ -81,12 +94,38 @@ const FLAGS = [
   },
 ] as const;
 
-const SECTIONS = [
-  { id: 'listing-details', label: 'Listing details', icon: 'settings' },
-  { id: 'graphic-assets', label: 'Images', icon: 'canvas' },
-  { id: 'authors', label: 'Authors', icon: 'users' },
-  { id: 'technical-details', label: 'Technical details', icon: 'layer' },
-] as const;
+// Keyed by id so each card can look up its own metadata with a total,
+// non-optional access; SECTIONS is the ordered list the nav renders.
+const SECTION = {
+  // TODO: "applied-policy" matches design, but acorn UX might not be happy
+  'listing-details': {
+    id: 'listing-details',
+    title: 'Listing details',
+    icon: 'applied-policy',
+    description:
+      'Describe your listing, categories, and promotional assets on AMO.',
+  },
+  'graphic-assets': {
+    id: 'graphic-assets',
+    title: 'Graphical assets',
+    icon: 'canvas',
+    description: 'The icon, banner, and screenshots shown on your listing.',
+  },
+  authors: {
+    id: 'authors',
+    title: 'Authors',
+    icon: 'users',
+    description: 'Developers with permission to manage this add-on.',
+  },
+  'technical-details': {
+    id: 'technical-details',
+    title: 'Technical details',
+    icon: 'layer',
+    description: 'Developer notes and metadata for this add-on.',
+  },
+} satisfies Record<SectionId, SectionInfo>;
+
+const SECTIONS: SectionInfo[] = Object.values(SECTION);
 
 @customElement('addon-listing')
 export class AddonListing extends LitElement {
@@ -94,8 +133,6 @@ export class AddonListing extends LitElement {
   // Which section (card) to show; each is its own page under the edit tab.
   @property() section: string = SECTIONS[0].id;
 
-  // Only the Listing Details card is editable so far; its form writes through
-  // updateAddon (PATCH /addons/addon/). Other cards are view-only for now.
   @state() private editing = false;
   @state() private saving = false;
   @state() private error = '';
@@ -121,19 +158,24 @@ export class AddonListing extends LitElement {
     if (changed.has('section')) this.editing = false;
   }
 
-  get #activeSection(): string {
-    return SECTIONS.some((s) => s.id === this.section)
-      ? this.section
+  get #activeSection(): SectionId {
+    return this.section in SECTION
+      ? (this.section as SectionId)
       : SECTIONS[0].id;
   }
 
-  // `actions` overrides the default (inert) Edit button; the Listing Details
-  // card passes its Edit or Save/Cancel controls.
-  #cardHead(title: string, subtitle: string, actions?: TemplateResult) {
+  // Renders the heading for a section's card from its SECTION metadata.
+  // `actions` overrides the default (inert) Edit button; cards pass their Edit
+  // or Save/Cancel controls.
+  #cardHead(id: SectionId, actions?: TemplateResult) {
+    const { title, description, icon } = SECTION[id];
     return html`<div slot="heading" class="card-head">
       <div>
-        <h2>${title}</h2>
-        <p class="sub">${subtitle}</p>
+        <span class="card-title">
+          <moz-icon name=${icon}></moz-icon>
+          <h2>${title}</h2>
+        </span>
+        <p class="sub">${description}</p>
       </div>
       ${actions ?? html`<moz-button size="small">Edit</moz-button>`}
     </div>`;
@@ -656,11 +698,7 @@ export class AddonListing extends LitElement {
       spacing="spacious"
       id="listing-details"
     >
-      ${this.#cardHead(
-        'Listing Details',
-        'Describe your listing, categories, and promotional assets on AMO.',
-        this.#draftActions(),
-      )}
+      ${this.#cardHead('listing-details', this.#draftActions())}
       ${this.editing ? this.#listingForm() : this.#listingView(this.addon)}
     </moz-card>`;
   }
@@ -739,11 +777,7 @@ export class AddonListing extends LitElement {
       spacing="spacious"
       id="graphic-assets"
     >
-      ${this.#cardHead(
-        'Graphic assets',
-        'The icon, banner, and screenshots shown on your listing.',
-        this.#graphicsActions(),
-      )}
+      ${this.#cardHead('graphic-assets', this.#graphicsActions())}
       <div class="asset">
         <p class="label">Upload an icon</p>
         <p class="help">
@@ -840,11 +874,7 @@ export class AddonListing extends LitElement {
     const result = this.#authors();
     const authors = result.data ?? [];
     return html`<moz-card appearance="outline" spacing="spacious" id="authors">
-      ${this.#cardHead(
-        'Authors',
-        'Developers with permission to manage this add-on.',
-        this.#authorsActions(),
-      )}
+      ${this.#cardHead('authors', this.#authorsActions())}
       ${
         this.error
           ? html`<moz-message-bar type="error">${this.error}</moz-message-bar>`
@@ -942,11 +972,7 @@ export class AddonListing extends LitElement {
       spacing="spacious"
       id="technical-details"
     >
-      ${this.#cardHead(
-        'Technical Details',
-        'Developer notes and metadata for this add-on.',
-        this.#draftActions(),
-      )}
+      ${this.#cardHead('technical-details', this.#draftActions())}
       ${
         this.editing
           ? html`<div class="form">
@@ -995,7 +1021,7 @@ export class AddonListing extends LitElement {
               value=${s.id}
               href="/pinguino/addon/${a.slug}/edit/${s.id}"
               icon-start=${s.icon}
-              >${s.label}</moz-page-nav-button
+              >${s.title}</moz-page-nav-button
             >`,
           )}
         </moz-page-nav>
