@@ -49,12 +49,13 @@ Our search can be reached either via the API through {ref}`/api/v5/addons/search
 The key fields we search against are `name`, `summary` and `description`. Because all can be translated, we index them multiple times:
 
 > - Once with the translation in the default locale of the add-on, under `{field}`, analyzed with just the `snowball` analyzer for `description` and `summary`, and a custom analyzer for `name` that applies the following filters: `standard`, `word_delimiter` (a custom version with `preserve_original` set to `true`), `lowercase`, `stop`, and `dictionary_decompounder` (with a specific word list) and `unique`.
-> - Once for every translation that exists for that field, using Elasticsearch language-specific analyzer if supported, under `{field}_l10n_{analyzer}`.
+> - Once for every translation that exists for that field, using Elasticsearch language-specific analyzer if supported, under `{field}_l10n_{lang}`.
 
 **In addition, for the name, we also have:**
 
 - For all fields described above also contains a subfield called `raw` that holds a non-analyzed variant for exact matches in the corresponding language (stored as a `keyword`, with a `lowercase` normalizer).
 - A `name.trigram` variant for the field in the default language, which is using a custom analyzer that depends on a `ngram` tokenizer (with `min_gram=3`, `max_gram=3` and `token_chars=["letter", "digit"]`).
+- A `name_exact_sentinel` variant for the field in the default language, and a `name_exact_sentinel_l10n_{lang}` variant for every translation, holding the name wrapped between two marker tokens (`__SENTINEL_BEGIN__` and `__SENTINEL_END__`). A phrase query including the markers then only matches if it spans the name from start to end, which lets us treat a stemmed name as an exact match. The default language variant uses the `standard` analyzer, the per-translation ones use the language-specific analyzers with stop words turned off (see `NO_STOPWORDS_ANALYZER_SUFFIX`).
 
 ### Flow of a search query through AMO
 
@@ -72,12 +73,15 @@ These are the ones using the strongest boosts, so they are only applied to the a
 
 **Applied rules** (merged via `should`):
 
-1. A `dis_max` query with `term` matches on `name_l10n_{analyzer}.raw` and `name.raw` if the language of the request matches a known language-specific analyzer, or just a `term` query on `name.raw` (`boost=100.0`) otherwise - our attempt to implement exact matches
-2. If we have a matching language-specific analyzer, we add a `match` query to `name_l10n_{analyzer}` (`boost=5.0`, `operator=and`)
-3. A `phrase` match on `name` that allows swapped terms (`boost=8.0`, `slop=1`)
-4. A `match` on `name`, using the standard text analyzer (`boost=6.0`, `analyzer=standard`, `operator=and`)
-5. A `prefix` match on `name` (`boost=3.0`)
-6. If a query is \< 20 characters long, a `dis_max` query (`boost=4.0`) composed of a fuzzy match on `name` (`boost=4.0`, `prefix_length=2`, `fuzziness=AUTO`, `minimum_should_match=2<2 3<-25%`) and a `match` query on `name.trigram`, with a `minimum_should_match=66%` to avoid noise
+1. A `dis_max` query with `term` matches on `name_l10n_{lang}.raw` and `name.raw` if the language of the request matches a known language-specific analyzer, or just a `term` query on `name.raw` (`boost=100.0`) otherwise - our attempt to implement exact matches
+2. A `dis_max` of `match_phrase` queries on `name_exact_sentinel` and `name_exact_sentinel_l10n_{lang}` if the language of the request matches a known language-specific analyzer, or just a `match_phrase` query on `name_exact_sentinel` otherwise (`boost=50.0`), with the query wrapped in the marker tokens - the same idea as rule 1, but after analysis, so that a name matching the query once stemmed still counts as an exact match. Skipped entirely if the query has no letters or digits, since it would then match any name that also analyzes to nothing
+3. If we have a matching language-specific analyzer, we add a `match` query to `name_l10n_{lang}` (`boost=5.0`, `operator=and`)
+4. A `phrase` match on `name` that allows swapped terms (`boost=8.0`, `slop=1`)
+5. A `match` on `name`, using the standard text analyzer (`boost=6.0`, `analyzer=standard`, `operator=and`)
+6. A `prefix` match on `name` (`boost=3.0`)
+7. If a query is \< 20 characters long, a `dis_max` query (`boost=4.0`) composed of a fuzzy match on `name` (`boost=4.0`, `prefix_length=2`, `fuzziness=AUTO`, `minimum_should_match=2<2 3<-25%`) and a `match` query on `name.trigram`, with a `minimum_should_match=66%` to avoid noise
+
+Rule 2 is wrapped in a `bool` whose `must_not` is rule 1, so an add-on whose name already matches the query literally is scored by rule 1 alone, instead of accumulating both.
 
 #### Secondary rules
 
@@ -88,7 +92,7 @@ These are the ones using the weakest boosts, they are applied to fields containi
 1. Look for matches inside the summary (`boost=3.0`, `operator=and`)
 2. Look for matches inside the description (`boost=2.0`, `operator=and`)
 
-If the language of the request matches a known language-specific analyzer, those are made using a `multi_match` query using `summary` or `description` and the corresponding `{field}_l10n_{analyzer}`, similar to how exact name matches are performed above, in order to support potential translations.
+If the language of the request matches a known language-specific analyzer, those are made using a `multi_match` query using `summary` or `description` and the corresponding `{field}_l10n_{lang}`, similar to how exact name matches are performed above, in order to support potential translations.
 
 #### Scoring
 
