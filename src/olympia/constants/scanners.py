@@ -82,6 +82,7 @@ WEBHOOK_ON_VERSION_CREATED = 3
 WEBHOOK_PUSH = 4
 WEBHOOK_ON_LISTING_CHANGED = 5
 WEBHOOK_ON_VERSION_SCANNED = 6
+WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE = 7
 
 WEBHOOK_EVENTS = {
     WEBHOOK_DURING_VALIDATION: 'during_validation',
@@ -90,6 +91,7 @@ WEBHOOK_EVENTS = {
     WEBHOOK_PUSH: 'push',
     WEBHOOK_ON_LISTING_CHANGED: 'on_listing_changed',
     WEBHOOK_ON_VERSION_SCANNED: 'on_version_scanned',
+    WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE: 'on_version_entered_review_queue',
 }
 
 # The events whose results are aggregated into the `on_version_scanned`

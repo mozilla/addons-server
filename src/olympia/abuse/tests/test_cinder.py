@@ -1123,7 +1123,10 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
     def setUp(self):
         self.task_user = user_factory(id=settings.TASK_USER_ID)
 
-    def test_report(self):
+    @mock.patch(
+        'olympia.versions.tasks.call_webhooks_on_version_entered_review_queue.delay'
+    )
+    def test_report(self, call_webhooks_mock):
         addon = self._create_dummy_target()
         # Make sure this is testing the case where no user is set (we fall back
         # to the task user).
@@ -1159,6 +1162,8 @@ class TestCinderAddonHandledByReviewers(TestCinderAddon):
         assert ActivityLog.objects.for_versions(addon.current_version).filter(
             action=amo.LOG.NEEDS_HUMAN_REVIEW_CINDER.id
         )
+        # Mocked so that the webhook queries don't count in assertNumQueries().
+        call_webhooks_mock.assert_called_once_with(version_pk=addon.current_version.pk)
 
     @override_switch('dsa-abuse-reports-review', active=False)
     def test_report_waffle_switch_off(self):

@@ -22,6 +22,7 @@ from olympia.constants.scanners import (
     WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
     WEBHOOK_ON_VERSION_CREATED,
+    WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
 )
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
@@ -471,6 +472,48 @@ def call_webhooks_on_version_created(version_pk):
         },
         countdown=settings.SCANNER_WEBHOOK_RETRY_DELAY,
     )
+
+
+@task
+@use_primary_db
+def call_webhooks_on_version_entered_review_queue(version_pk):
+    log.info('Calling webhooks for Version %s entering the review queue', version_pk)
+
+    try:
+        from olympia.scanners.serializers import (
+            WebhookAddonSerializer,
+            WebhookVersionSerializer,
+        )
+
+        version = Version.unfiltered.get(pk=version_pk)
+
+        if version.addon.type == amo.ADDON_LPAPP:
+            log.info('Skipping webhooks on langpack %s', version_pk)
+            return
+
+        reasons = (
+            version.needshumanreview_set.filter(is_active=True)
+            .values_list('reason', flat=True)
+            .distinct()
+        )
+        payload = {
+            'addon': WebhookAddonSerializer(version.addon).data,
+            'version': WebhookVersionSerializer(version).data,
+            'due_date': version.due_date.isoformat() if version.due_date else None,
+            'needs_human_review_reasons': sorted(
+                NeedsHumanReview.REASONS(reason).api_value for reason in reasons
+            ),
+        }
+        call_webhooks(
+            event_id=WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
+            payload=payload,
+            version=version,
+        )
+    except Exception:
+        log.exception(
+            'Error while calling webhooks for Version %s entering the review queue',
+            version_pk,
+        )
 
 
 @task
