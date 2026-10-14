@@ -9,7 +9,7 @@ This is a self-contained frontend project. It does not use addons-server's root 
 ```
 src/pinguino/                           # umbrella for pinguino projects
 └── devhub/                             # this project (more sit alongside it)
-    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @tanstack/lit-query, @mozilla/acorn-web-components
+    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @tanstack/lit-query, acorn-web-components
     ├── tsconfig.json                   # Lit-recommended TS (legacy decorators)
     ├── biome.json                      # lint + format (Biome, matches acorn)
     ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
@@ -45,7 +45,7 @@ The Router intercepts same-origin `<a>` clicks (across shadow DOM) and pushes hi
 
 ## Component library (acorn)
 
-UI is built from Mozilla's [`@mozilla/acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
+UI is built from Mozilla's [`acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
 
 Track the alpha with `npm add acorn-web-components@alpha`.
 

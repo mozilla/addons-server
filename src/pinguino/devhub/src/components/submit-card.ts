@@ -1,7 +1,7 @@
 // acorn's component tokens are :host-scoped, so adopt the sheet into this
 // component's shadow root — a plain global import would leave :host matching
 // nothing. `?inline` gives the CSS as a string instead of injecting it.
-import buttonTokens from '@mozilla/acorn-web-components/tokens/button.css?inline';
+import buttonTokens from 'acorn-web-components/tokens/button.css?inline';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
