@@ -82,7 +82,7 @@ export class GraphicAssetsCard extends SectionCard {
       this.editing = false;
       this.captionDrafts = {};
     } catch (e) {
-      this.error = e instanceof Error ? e.message : 'Could not save changes.';
+      this.setError(e);
     } finally {
       this.saving = false;
     }

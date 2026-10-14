@@ -1,39 +1,37 @@
 import { html } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 import { updateAddon } from '../../data';
+import { FormController, textArea } from '../../foundations/form';
 import { SectionCard } from './section-card';
+
+type TechnicalDraft = { developer_comments?: string };
 
 @customElement('technical-details-card')
 export class TechnicalDetailsCard extends SectionCard {
-  // Only developer comments are editable here; it's an add-on PATCH field.
-  @state() private developerComments = '';
+  #form = new FormController<TechnicalDraft>(this);
 
   #startEdit() {
-    this.developerComments = this.addon.developerComments ?? '';
-    this.error = '';
-    this.editing = true;
+    this.#form.start({
+      developer_comments: this.addon.developerComments ?? '',
+    });
   }
 
-  async #save() {
-    const next = this.developerComments;
-    if (next === (this.addon.developerComments ?? '')) {
-      this.editing = false;
-      return;
-    }
-    this.saving = true;
-    this.error = '';
-    try {
-      await updateAddon(this.addon.slug, { developerComments: next });
-      this.editing = false;
-    } catch (e) {
-      this.error = e instanceof Error ? e.message : 'Could not save changes.';
-    } finally {
-      this.saving = false;
-    }
+  #save() {
+    return this.#form.submit(async (d) => {
+      if (
+        (d.developer_comments ?? '') === (this.addon.developerComments ?? '')
+      ) {
+        return;
+      }
+      await updateAddon(this.addon.slug, {
+        developer_comments: d.developer_comments,
+      });
+    });
   }
 
   render() {
     const a = this.addon;
+    const form = this.#form;
     return html`<moz-card
       appearance="outline"
       spacing="spacious"
@@ -42,24 +40,16 @@ export class TechnicalDetailsCard extends SectionCard {
       ${this.cardHead(
         'technical-details',
         this.draftActions(
+          form,
           () => this.#startEdit(),
           () => this.#save(),
         ),
       )}
       ${
-        this.editing
+        form.editing
           ? html`<div class="form">
-            ${this.errorBar()}
-            <moz-textarea
-              label="Developer comments"
-              full-width
-              .value=${this.developerComments}
-              @input=${(e: Event) => {
-                this.developerComments = (
-                  e.target as HTMLTextAreaElement
-                ).value;
-              }}
-            ></moz-textarea>
+            ${this.errorBar(form.error)}
+            ${textArea(form, 'developer_comments', 'Developer comments')}
             <dl>
               ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}
             </dl>

@@ -24,11 +24,12 @@ interface Paginated<T> {
   results?: T[];
 }
 
-type Localized = string | Record<string, string>;
+// v5 always serializes translated fields as a { lang: value } object.
+type Localized = Record<string, string>;
 
-// AMO wraps external links as an "outgoing URL" object; sometimes it's a plain
-// (localized) string. Either way we want the plain destination URL.
-type ApiUrl = Localized | { url?: Localized; outgoing?: Localized } | null;
+// AMO wraps external links as an "outgoing URL" object; its `url`/`outgoing`
+// are themselves translated. We want the plain destination URL.
+type ApiUrl = { url?: Localized; outgoing?: Localized } | null;
 
 // The subset of an AMO v5 add-on we read (from /addons/addon/).
 interface ApiAddon {
@@ -43,6 +44,7 @@ interface ApiAddon {
   url?: string;
   summary?: Localized | null;
   description?: Localized | null;
+  developer_comments?: Localized | null;
   homepage?: ApiUrl;
   support_email?: Localized | null;
   support_url?: ApiUrl;
@@ -84,18 +86,25 @@ export function localized(
   return value['en-US'] ?? Object.values(value)[0] ?? '';
 }
 
-// Resolve an AMO URL field (plain string, localized map, or outgoing-URL
-// object) to a single destination URL.
+// Resolve an AMO outgoing-URL field to its (translated) destination URL.
 function urlValue(value: ApiUrl | undefined): string {
   if (!value) return '';
-  if (typeof value === 'string') return value;
-  // An outgoing-URL object carries `url`; a plain localized map does not.
-  if ('url' in value) return localized(value.url);
-  return localized(value as Record<string, string>);
+  return localized(value.url);
 }
 
 function undefinedIfEmpty(s: string): string | undefined {
   return s === '' ? undefined : s;
+}
+
+// The API returns the cleaned translation (`localized_string_clean`), which
+// HTML-escapes `& < >`. For plain-text fields that's the only transform, so we
+// decode it back for display/editing. (HTML fields like description are also
+// linkified and need the raw value from the API — not handled here.)
+function decodeEntities(s: string): string {
+  if (!s.includes('&')) return s;
+  const el = document.createElement('textarea');
+  el.innerHTML = s;
+  return el.value;
 }
 
 export function formatDate(iso: string | undefined): string {
@@ -113,7 +122,7 @@ export function mapAddon(a: ApiAddon): Addon {
 
   return {
     slug: a.slug,
-    name: localized(a.name),
+    name: decodeEntities(localized(a.name)),
     kind,
     icon: kind === 'theme' ? 'themes' : 'extension',
     statusLabel: live
@@ -142,8 +151,13 @@ export function mapAddon(a: ApiAddon): Addon {
     homepageUrl: undefinedIfEmpty(urlValue(a.homepage)),
     supportEmail: undefinedIfEmpty(localized(a.support_email ?? undefined)),
     supportUrl: undefinedIfEmpty(urlValue(a.support_url)),
-    summary: undefinedIfEmpty(localized(a.summary ?? undefined)),
+    summary: undefinedIfEmpty(
+      decodeEntities(localized(a.summary ?? undefined)),
+    ),
     description: undefinedIfEmpty(localized(a.description ?? undefined)),
+    developerComments: undefinedIfEmpty(
+      localized(a.developer_comments ?? undefined),
+    ),
     // Raw slugs; the manage view resolves readable names via fetchCategories.
     categories: a.categories,
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
@@ -183,29 +197,30 @@ export async function fetchAddons(): Promise<Addon[]> {
   return (data.results ?? []).map(mapAddon);
 }
 
-// Reverse of the listing-detail mapping: domain edit fields -> the add-on PATCH
-// endpoint's writable fields. Only keys present on `edit` are sent, so callers
-// can PATCH just what changed. Translated fields (name/summary/urls/…) must be
-// sent as { lang: value } objects, not bare strings; we target the add-on's
-// default locale (en-US for now).
+// Builds the add-on PATCH body from the edit fields. Keys already match the
+// API; only keys present on `edit` are sent (so callers PATCH just what
+// changed), and the translated fields are wrapped as { lang: value } objects
+// (bare strings are rejected) targeting the default locale (en-US for now).
 export async function patchAddon(
   slug: string,
   edit: AddonListingEdit,
 ): Promise<Addon> {
   const t = (value: string | undefined) => ({ 'en-US': value ?? '' });
+  const TRANSLATED = [
+    'name',
+    'summary',
+    'description',
+    'homepage',
+    'support_email',
+    'support_url',
+    'developer_comments',
+  ] as const;
   const body: Record<string, unknown> = {};
-  if ('name' in edit) body.name = t(edit.name);
-  if ('summary' in edit) body.summary = t(edit.summary);
-  if ('description' in edit) body.description = t(edit.description);
-  if ('homepageUrl' in edit) body.homepage = t(edit.homepageUrl);
-  if ('supportEmail' in edit) body.support_email = t(edit.supportEmail);
-  if ('supportUrl' in edit) body.support_url = t(edit.supportUrl);
-  if ('categories' in edit) body.categories = edit.categories;
-  if ('developerComments' in edit) {
-    body.developer_comments = t(edit.developerComments);
+  for (const [key, value] of Object.entries(edit)) {
+    body[key] = (TRANSLATED as readonly string[]).includes(key)
+      ? t(value as string | undefined)
+      : value;
   }
-  if ('experimental' in edit) body.is_experimental = edit.experimental;
-  if ('requiresPayment' in edit) body.requires_payment = edit.requiresPayment;
 
   const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`, {
     method: 'PATCH',

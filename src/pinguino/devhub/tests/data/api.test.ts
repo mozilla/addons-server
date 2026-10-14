@@ -49,10 +49,22 @@ describe('mapAddon', () => {
     });
   });
 
+  it('decodes HTML entities in the plain-text fields (name, summary)', () => {
+    const addon = mapAddon({
+      slug: 'x',
+      name: { 'en-US': 'Tom &amp; Jerry' },
+      type: 'extension',
+      status: 'public',
+      summary: { 'en-US': 'A &amp; B &lt; C' },
+    });
+    expect(addon.name).toBe('Tom & Jerry');
+    expect(addon.summary).toBe('A & B < C');
+  });
+
   it('treats a disabled add-on as hidden and surfaces the raw status label', () => {
     const addon = mapAddon({
       slug: 'grammarly',
-      name: 'Grammarly',
+      name: { 'en-US': 'Grammarly' },
       type: 'extension',
       status: 'nominated',
       is_disabled: true,
@@ -70,18 +82,25 @@ describe('mapAddon', () => {
     const addon = mapAddon({
       slug: 'tab-organizer',
       guid: '{tab-organizer-guid}',
-      name: 'Tab Organizer',
+      name: { 'en-US': 'Tab Organizer' },
       type: 'extension',
       status: 'public',
       url: 'https://amo.test/addon/tab-organizer',
       summary: { 'en-US': 'Organize tabs' },
       description: null,
-      homepage: { url: { 'en-US': 'https://tabs.example' }, outgoing: '...' },
-      support_email: 'help@tabs.example',
+      developer_comments: { 'en-US': 'Pure content script.' },
+      homepage: {
+        url: { 'en-US': 'https://tabs.example' },
+        outgoing: { 'en-US': 'https://outgoing.example' },
+      },
+      support_email: { 'en-US': 'help@tabs.example' },
       average_daily_users: 1597,
       ratings: { average: 3, count: 5 },
       categories: ['alerts-updates', 'tabs'],
-      current_version: { version: '1.0', license: { name: 'MPL 2.0' } },
+      current_version: {
+        version: '1.0',
+        license: { name: { 'en-US': 'MPL 2.0' } },
+      },
     });
 
     expect(addon).toMatchObject({
@@ -90,6 +109,7 @@ describe('mapAddon', () => {
       averageDailyUsers: 1597,
       listingUrl: 'https://amo.test/addon/tab-organizer',
       summary: 'Organize tabs',
+      developerComments: 'Pure content script.',
       homepageUrl: 'https://tabs.example',
       supportEmail: 'help@tabs.example',
       categories: ['alerts-updates', 'tabs'],
@@ -180,8 +200,8 @@ describe('endpoints', () => {
     mockJson({ slug: 'x', name: 'New', type: 'extension', status: 'public' });
     await patchAddon('x', {
       name: 'New',
-      homepageUrl: 'https://h.example',
-      experimental: true,
+      homepage: 'https://h.example',
+      is_experimental: true,
     });
 
     const [url, init] = vi.mocked(fetch).mock.calls[0];

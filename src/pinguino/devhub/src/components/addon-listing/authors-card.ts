@@ -83,7 +83,7 @@ export class AuthorsCard extends SectionCard {
       }
       this.editing = false;
     } catch (e) {
-      this.error = e instanceof Error ? e.message : 'Could not save authors.';
+      this.setError(e);
     } finally {
       this.saving = false;
     }

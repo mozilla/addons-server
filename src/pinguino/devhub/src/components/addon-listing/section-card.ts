@@ -1,6 +1,7 @@
 import { html, LitElement, nothing, type TemplateResult, unsafeCSS } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import type { Addon } from '../../data';
+import { routeApiError } from '../../foundations/form';
 // Styles live in a sibling .css file; `?inline` brings them in as a string that
 // unsafeCSS adopts (the project's convention). One CSSResult instance is shared
 // across every section card and the shell.
@@ -37,25 +38,27 @@ export abstract class SectionCard extends LitElement {
     </div>`;
   }
 
-  // Edit / Save+Cancel for cards backed by a draft (listing, technical).
-  protected draftActions(onEdit: () => void, onSave: () => void) {
-    return this.editing
+  // Edit / Save+Cancel for cards backed by a FormController (listing, technical).
+  protected draftActions(
+    form: { editing: boolean; saving: boolean; cancel: () => void },
+    onEdit: () => void,
+    onSave: () => void,
+  ) {
+    return form.editing
       ? html`<div class="card-actions">
           <moz-button
             size="small"
             variant="ghost"
-            ?disabled=${this.saving}
-            @click=${() => {
-              this.editing = false;
-            }}
+            ?disabled=${form.saving}
+            @click=${() => form.cancel()}
             >Cancel</moz-button
           >
           <moz-button
             size="small"
             variant="primary"
-            ?disabled=${this.saving}
+            ?disabled=${form.saving}
             @click=${onSave}
-            >${this.saving ? 'Saving…' : 'Save'}</moz-button
+            >${form.saving ? 'Saving…' : 'Save'}</moz-button
           >
         </div>`
       : html`<moz-button size="small" @click=${onEdit}>Edit</moz-button>`;
@@ -77,22 +80,32 @@ export abstract class SectionCard extends LitElement {
       : null;
   }
 
+  // Routes a failure to the card's error bar. These cards have no single
+  // API-field-keyed input to attach to (authors rows, screenshot captions), so
+  // field errors are folded into the one general message via routeApiError.
+  protected setError(e: unknown) {
+    const { error, fieldErrors } = routeApiError(e);
+    const parts = [
+      error,
+      ...Object.entries(fieldErrors).map(([field, msg]) => `${field}: ${msg}`),
+    ].filter(Boolean);
+    this.error = parts.join(' • ') || 'Something went wrong.';
+  }
+
   // Runs a one-off action that persists immediately, toggling saving/error.
   protected runAction(fn: () => Promise<unknown>) {
     this.saving = true;
     this.error = '';
     fn()
-      .catch((e) => {
-        this.error = e instanceof Error ? e.message : 'Action failed.';
-      })
+      .catch((e) => this.setError(e))
       .finally(() => {
         this.saving = false;
       });
   }
 
-  protected errorBar() {
-    return this.error
-      ? html`<moz-message-bar type="error">${this.error}</moz-message-bar>`
+  protected errorBar(message: string = this.error) {
+    return message
+      ? html`<moz-message-bar type="error">${message}</moz-message-bar>`
       : nothing;
   }
 }

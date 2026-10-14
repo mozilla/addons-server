@@ -24,6 +24,7 @@ vi.mock('../../src/data', () => ({
 import type { ListingDetailsCard } from '../../src/components/addon-listing/listing-details-card';
 import '../../src/components/addon-listing/listing-details-card';
 import type { Addon } from '../../src/data';
+import { ApiError } from '../../src/data/http';
 import { mount } from '../helpers/fixture';
 
 const base: Addon = {
@@ -145,6 +146,38 @@ describe('listing-details-card', () => {
         categories: ['tabs'],
       }),
     );
+  });
+
+  it('maps a 400 field error onto its input', async () => {
+    updateAddon.mockRejectedValueOnce(
+      new ApiError(
+        400,
+        'name: Ensure this field has no more than 50 characters.',
+        {
+          name: 'Ensure this field has no more than 50 characters.',
+        },
+      ),
+    );
+    const { el, root } = await enterEdit();
+
+    const nameInput = [...root.querySelectorAll('.form moz-input-text')].find(
+      (i) => i.getAttribute('label') === 'Add-on name',
+    ) as HTMLInputElement;
+    nameInput.value = 'x'.repeat(99);
+    nameInput.dispatchEvent(new Event('input'));
+    await el.updateComplete;
+
+    save(root);
+    await vi.waitFor(() => {
+      const input = [...root.querySelectorAll('.form moz-input-text')].find(
+        (i) => i.getAttribute('label') === 'Add-on name',
+      );
+      expect(input?.getAttribute('error')).toBe(
+        'Ensure this field has no more than 50 characters.',
+      );
+    });
+    // Field-level errors don't also raise the card-level bar.
+    expect(root.querySelector('.form moz-message-bar')).toBeNull();
   });
 
   it('reveals a textarea when a policy is checked and saves its text', async () => {

@@ -18,6 +18,7 @@ vi.mock('../../src/data', () => ({
 import type { GraphicAssetsCard } from '../../src/components/addon-listing/graphic-assets-card';
 import '../../src/components/addon-listing/graphic-assets-card';
 import type { Addon } from '../../src/data';
+import { ApiError } from '../../src/data/http';
 import { mount } from '../helpers/fixture';
 
 const base: Addon = {
@@ -78,6 +79,27 @@ describe('graphic-assets-card', () => {
     await el.updateComplete;
 
     await vi.waitFor(() => expect(updateIcon).toHaveBeenCalledOnce());
+  });
+
+  it('surfaces an API field error from a failed upload in the error bar', async () => {
+    updateIcon.mockRejectedValueOnce(
+      new ApiError(400, 'icon: Images must be square.', {
+        icon: 'Images must be square.',
+      }),
+    );
+    const { root } = await editCard();
+
+    const input = root.querySelector('moz-input-file') as HTMLElement;
+    Object.defineProperty(input, 'files', {
+      configurable: true,
+      value: [new File(['x'], 'icon.png', { type: 'image/png' })],
+    });
+    input.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+
+    await vi.waitFor(() => {
+      const bar = root.querySelector('moz-message-bar');
+      expect(bar?.textContent).toContain('icon: Images must be square.');
+    });
   });
 
   it('editing a screenshot caption saves it on the card Save', async () => {

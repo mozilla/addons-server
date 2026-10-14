@@ -79,18 +79,21 @@ export interface Addon {
 }
 
 // The subset of listing fields editable from the manage page's Listing Details
-// card. Domain-shaped; patchAddon maps these to the API's writable fields.
+// card. Keyed by the API's writable field names so the edit form, its field
+// errors, and the PATCH body all line up without renaming; patchAddon only
+// localizes the translated fields. Seeding from the camelCase Addon read model
+// is the one place names are translated (in the card).
 export interface AddonListingEdit {
   name?: string;
   summary?: string;
   description?: string;
-  homepageUrl?: string;
-  supportEmail?: string;
-  supportUrl?: string;
+  homepage?: string;
+  support_email?: string;
+  support_url?: string;
   categories?: string[];
-  experimental?: boolean;
-  requiresPayment?: boolean;
-  developerComments?: string;
+  is_experimental?: boolean;
+  requires_payment?: boolean;
+  developer_comments?: string;
 }
 
 // A listing category (from /addons/categories/). `type` matches the API's

@@ -44,7 +44,7 @@ describe('technical-details-card', () => {
       ?.click();
     await vi.waitFor(() =>
       expect(updateAddon).toHaveBeenCalledWith('ad-blocker', {
-        developerComments: 'Pure content script.',
+        developer_comments: 'Pure content script.',
       }),
     );
   });

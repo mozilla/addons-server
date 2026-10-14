@@ -121,7 +121,6 @@ export class AddonManageHeader extends LitElement {
         >`,
       );
     }
-    // Interleave a separator between parts.
     return parts.flatMap((p, i) =>
       i === 0 ? [p] : [html`<span class="sep">·</span>`, p],
     );
