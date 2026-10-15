@@ -9,7 +9,7 @@ This is a self-contained frontend project. It does not use addons-server's root 
 ```
 src/pinguino/                           # umbrella for pinguino projects
 └── devhub/                             # this project (more sit alongside it)
-    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @tanstack/lit-query, @mozilla/acorn-web-components
+    ├── package.json / package-lock.json  # own deps: lit, @lit-labs/router, @tanstack/lit-query, acorn-web-components
     ├── tsconfig.json                   # Lit-recommended TS (legacy decorators)
     ├── biome.json                      # lint + format (Biome, matches acorn)
     ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
@@ -45,17 +45,9 @@ The Router intercepts same-origin `<a>` clicks (across shadow DOM) and pushes hi
 
 ## Component library (acorn)
 
-UI is built from Mozilla's [`@mozilla/acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
+UI is built from Mozilla's [`acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
 
-While acorn is in alpha it's published to GitHub Packages, not the public npm registry. `.npmrc` maps the `@mozilla` scope there, and GitHub Packages requires a `read:packages` token even for public packages. Provide it as `NODE_AUTH_TOKEN` in your **shell environment** before `make up`:
-
-```sh
-export NODE_AUTH_TOKEN=<github token with read:packages>
-```
-
-docker compose interpolates `${NODE_AUTH_TOKEN}` from the shell into the `pinguino` service so its `npm ci` can install acorn. Don't put it in the repo-root `.env`: `make up` regenerates that file (`scripts/setup.py` rewrites it from its own known keys), so a hand-added token is dropped on the next run. For host-side installs (editor tooling), export the same token before running `npm install` in this directory. (Only needed locally as pinguino isn't built into the production image; see below.)
-
-Track the alpha with `npm add @mozilla/acorn-web-components@alpha`.
+Track the alpha with `npm add acorn-web-components@alpha`.
 
 ## Data and the AMO API
 
@@ -140,6 +132,5 @@ A real-browser layer (Vitest browser mode / Playwright) would close the first th
 Pinguino is local-only for now - it is deliberately not built into the production image, so it doesn't ship to staging or production. `make up` runs it locally via the `pinguino` dev service; the classic devhub is unaffected in every environment.
 
 To ship it later:
-1. Add a build stage to the repo `Dockerfile` that installs `@mozilla/acorn-web-components` (the GitHub Packages token must reach it as a build secret) and runs `npm run build`, then copy its `dist/` into the image (e.g. `site-static/pinguino/`).
-2. Wire the token into the build: a `secret` on the `web` bake target (`docker-bake.hcl`) forwarding `NODE_AUTH_TOKEN`, supplied by whatever pipeline builds the production image.
-3. Add a `/pinguino/` SPA-fallback route (`try_files $uri /pinguino/index.html`) to the deploy-infra nginx.
+1. Add a build stage to the repo `Dockerfile` that installs `acorn-web-components` and runs `npm run build`, then copy its `dist/` into the image (e.g. `site-static/pinguino/`).
+2. Add a `/pinguino/` SPA-fallback route (`try_files $uri /pinguino/index.html`) to the deploy-infra nginx.

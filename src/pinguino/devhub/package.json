@@ -16,9 +16,9 @@
   },
   "dependencies": {
     "@lit-labs/router": "^0.1.4",
-    "@mozilla/acorn-web-components": "^0.0.0-alpha.3",
     "@tanstack/lit-query": "^0.2.23",
     "dompurify": "^3.4.16",
+    "acorn-web-components": "^0.0.0-alpha.5",
     "lit": "^3.3.3",
     "urlpattern-polyfill": "^10.1.0"
   },
