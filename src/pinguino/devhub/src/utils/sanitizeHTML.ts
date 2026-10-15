@@ -1,5 +1,20 @@
 import DOMPurify from 'dompurify';
 
+export const MARKDOWN_TAGS = [
+  'a',
+  'abbr',
+  'acronym',
+  'b',
+  'blockquote',
+  'code',
+  'em',
+  'i',
+  'li',
+  'ol',
+  'strong',
+  'ul',
+];
+
 // Adapted from addons-frontend's sanitizeHTML (src/amo/utils/index.js): we don't
 // fully trust HTML the API returns, so run it through DOMPurify and keep only an
 // explicit allowlist of tags/attributes. Returns a string for Lit's unsafeHTML

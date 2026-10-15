@@ -10,6 +10,8 @@ import {
 } from '../../data';
 import { FormController, textArea, textField } from '../../foundations/form';
 import { SectionCard } from './section-card';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
 
 const MAX_CATEGORIES = 3;
 
@@ -270,7 +272,7 @@ export class ListingDetailsCard extends SectionCard {
         ${this.row('Support Website', this.link(a.supportUrl))}
         ${this.row('Support Email', a.supportEmail)}
         ${this.row('Summary', a.summary)}
-        ${this.row('Description', a.description)}
+        ${this.row('Description', unsafeHTML(sanitizeHTML(a.description, MARKDOWN_TAGS)))}
         ${this.row(
           'Categories',
           a.categories?.length
