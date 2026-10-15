@@ -1,12 +1,12 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { BASE } from '../../../base';
 import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
 import { type Addon, addonQuery } from '../../../data';
 
-// Each tab is its own URL under /pinguino/addon/:slug/<tab>, so a tab is
-// linkable and survives reload. The bare add-on URL defaults to the listing
-// editor.
+// Each tab is its own URL under <base>/addon/:slug/<tab>, so a tab is linkable
+// and survives reload. The bare add-on URL defaults to the listing editor.
 const TABS = [
   { value: 'versions', label: 'Versions' },
   { value: 'feed', label: 'Activity & Notification' },
@@ -49,7 +49,7 @@ export class DevhubAddon extends LitElement {
 
   #selectTab = (e: Event) => {
     const { value } = (e as CustomEvent<{ value: string }>).detail;
-    const url = `/pinguino/addon/${this.slug}/${value}`;
+    const url = `${BASE}/addon/${this.slug}/${value}`;
     if (location.pathname !== url) {
       history.pushState({}, '', url);
       // Nudge the shell router (it re-renders on popstate) to match the URL.
@@ -81,7 +81,7 @@ export class DevhubAddon extends LitElement {
     const a = result.data;
     if (!a) {
       return html`
-        <p><a href="/pinguino/">&larr; Back to dashboard</a></p>
+        <p><a href="${BASE}/">&larr; Back to dashboard</a></p>
         <p class="stub">We couldn't find that add-on.</p>
       `;
     }

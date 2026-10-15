@@ -28,7 +28,7 @@ describe('addon-manage-header', () => {
     const root = await header({ visibility: 'live' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
     expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
-      '/pinguino/',
+      '/developers/',
     );
     // Breadcrumb: Dashboard › {name}.
     const crumbs = [...root.querySelectorAll('moz-breadcrumb')].map((c) =>

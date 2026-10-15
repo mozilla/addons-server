@@ -1,5 +1,6 @@
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { BASE } from '../../base';
 import type { Addon } from '../../data';
 // Registering the section cards (side-effect imports) so the shell can render
 // them by tag name.
@@ -54,7 +55,7 @@ export class AddonListing extends LitElement {
           ${SECTIONS.map(
             (s) => html`<moz-page-nav-button
               value=${s.id}
-              href="/pinguino/addon/${a.slug}/edit/${s.id}"
+              href="${BASE}/addon/${a.slug}/edit/${s.id}"
               icon-start=${s.icon}
               >${s.title}</moz-page-nav-button
             >`,

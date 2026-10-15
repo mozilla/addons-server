@@ -66,7 +66,7 @@ describe('devhub-addon', () => {
         detail: { value: 'statistics' },
       }),
     );
-    expect(location.pathname).toBe('/pinguino/addon/ad-blocker/statistics');
+    expect(location.pathname).toBe('/developers/addon/ad-blocker/statistics');
   });
 
   it('shows a not-found message when no add-on matches the slug', async () => {

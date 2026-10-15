@@ -1,5 +1,6 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { BASE } from '../base';
 import type { Addon } from '../data';
 
 // Host only (strip scheme/path) for the compact homepage link in the stats row.
@@ -131,9 +132,9 @@ export class AddonManageHeader extends LitElement {
     const live = a.visibility === 'live';
     return html`
       <!-- TODO: "Back to Dashboard" duplicates the breadcrumb's Dashboard link — confirm we want both. -->
-      <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="/pinguino/">Back to Dashboard</a></p>
+      <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="${BASE}/">Back to Dashboard</a></p>
       <moz-breadcrumb-group label="Breadcrumb">
-        <moz-breadcrumb href="/pinguino/">Dashboard</moz-breadcrumb>
+        <moz-breadcrumb href="${BASE}/">Dashboard</moz-breadcrumb>
         <moz-breadcrumb>${a.name}</moz-breadcrumb>
       </moz-breadcrumb-group>
       <div class="bar">

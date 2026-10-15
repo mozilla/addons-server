@@ -60,10 +60,10 @@ describe('addon-listing', () => {
       (b) => b.getAttribute('href'),
     );
     expect(navTargets).toEqual([
-      '/pinguino/addon/ad-blocker/edit/listing-details',
-      '/pinguino/addon/ad-blocker/edit/graphic-assets',
-      '/pinguino/addon/ad-blocker/edit/authors',
-      '/pinguino/addon/ad-blocker/edit/technical-details',
+      '/developers/addon/ad-blocker/edit/listing-details',
+      '/developers/addon/ad-blocker/edit/graphic-assets',
+      '/developers/addon/ad-blocker/edit/authors',
+      '/developers/addon/ad-blocker/edit/technical-details',
     ]);
   });
 
