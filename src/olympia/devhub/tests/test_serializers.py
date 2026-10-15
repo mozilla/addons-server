@@ -76,6 +76,12 @@ class TestDeveloperAgreementSerializer(TestCase):
         assert not serializer.is_valid()
         assert serializer.errors['display_name'] == ['User already has display_name.']
 
+    def test_validate_display_name_invalid_for_empty_display_name(self):
+        assert self.request.user.has_anonymous_display_name
+        serializer = self._serializer(display_name=' ')
+        assert not serializer.is_valid()
+        assert serializer.errors['display_name'] == ['Display name cannot be empty.']
+
     def test_valid_when_user_already_has_display_name_and_field_omitted(self):
         self.request.user.update(display_name='user')
         serializer = self._serializer()
