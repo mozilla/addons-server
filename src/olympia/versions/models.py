@@ -1009,8 +1009,13 @@ class Version(OnChangeMixin, ModelBase):
                 log.info('Version %r (%s) due_date set to %s', self, self.id, due_date)
                 self.update(due_date=due_date, _signal=False)
                 if not self.reviewqueuehistory_set.filter(exit_date=None).exists():
+                    from .tasks import call_webhooks_on_version_entered_review_queue
+
                     self.reviewqueuehistory_set.create(
                         exit_date=None, original_due_date=due_date
+                    )
+                    call_webhooks_on_version_entered_review_queue.delay(
+                        version_pk=self.pk
                     )
         elif self.due_date:
             # otherwise it shouldn't have a due_date so clear it.

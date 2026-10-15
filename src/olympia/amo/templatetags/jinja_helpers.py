@@ -26,6 +26,7 @@ from django_vite.templatetags.django_vite import (
 from jinja2.ext import Extension
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
+from waffle import flag_is_active as waffle_flag_is_active
 
 from olympia import amo
 from olympia.amo import urlresolvers, utils
@@ -49,6 +50,13 @@ def urlparams(*args, **kwargs):
 @library.global_function
 def switch_is_active(switch_name):
     return waffle.switch_is_active(switch_name)
+
+
+@library.global_function
+@jinja2.pass_context
+def flag_is_active(context, switch_name):
+    request = context.get('request')
+    return waffle_flag_is_active(request, switch_name)
 
 
 @library.global_function

@@ -1,6 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { BASE } from '../base';
 import type { Update } from '../data';
 import { sanitizeHTML } from '../utils/sanitizeHTML';
 
@@ -74,7 +75,7 @@ export class UpdateCard extends LitElement {
               ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
             </p>
           </span>
-          <moz-button size="small" href="/pinguino/addon/${u.addonSlug}">View</moz-button>
+          <moz-button size="small" href="${BASE}/addon/${u.addonSlug}">View</moz-button>
         </div>
         <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">

@@ -1,6 +1,7 @@
-import type { IconName } from '@mozilla/acorn-web-components';
+import type { IconName } from 'acorn-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { BASE } from '../base';
 import type { Addon, AddonDistribution, AddonVisibility } from '../data';
 
 type Badge = { label: string; icon: IconName };
@@ -95,7 +96,7 @@ export class AddonCard extends LitElement {
         <div class="body">
           <div class="top">
           <span class="kind">${isTheme ? 'Theme' : 'Extension'}</span>
-          <moz-button size="small" href="/pinguino/addon/${a.slug}">
+          <moz-button size="small" href="${BASE}/addon/${a.slug}">
             Manage
           </moz-button>
         </div>

@@ -1374,6 +1374,34 @@ class TestVersion(AMOPaths, TestCase):
         needs_human_review.update(is_active=False)
         assert not version.reload().due_date
 
+    @mock.patch(
+        'olympia.versions.tasks.call_webhooks_on_version_entered_review_queue.delay'
+    )
+    def test_reset_due_date_calls_webhooks_on_entering_review_queue(self, delay_mock):
+        version = addon_factory().current_version
+
+        needs_human_review = NeedsHumanReview.objects.create(version=version)
+        assert version.reload().due_date
+        delay_mock.assert_called_once_with(version_pk=version.pk)
+
+        # Changing the due date of a version already in the queue isn't
+        # entering the queue.
+        delay_mock.reset_mock()
+        version.reset_due_date(self.days_ago(1))
+        NeedsHumanReview.objects.create(version=version)
+        delay_mock.assert_not_called()
+
+        # Leaving the queue doesn't trigger anything either.
+        version.needshumanreview_set.update(is_active=False)
+        version.reset_due_date()
+        assert not version.reload().due_date
+        delay_mock.assert_not_called()
+
+        # Entering the queue again does.
+        needs_human_review.update(is_active=True)
+        assert version.reload().due_date
+        delay_mock.assert_called_once_with(version_pk=version.pk)
+
     def test_transformer_license(self):
         addon = Addon.objects.get(id=3615)
         version1 = version_factory(addon=addon)

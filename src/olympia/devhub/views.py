@@ -2391,3 +2391,20 @@ class DeveloperAgreementView(GenericAPIView):
 
         request.user.update(**data)
         return Response(data, status=status.HTTP_202_ACCEPTED)
+
+
+def switch_pinguino(request):
+    path = request.GET.get('path')
+    cookie_name = 'PINGUINO'
+    enable, disable = '1', '0'
+    # if the waffle flag is off, still allow users to hit the url to turn off pinguino
+    if request.COOKIES.get(cookie_name) == enable or not waffle.flag_is_active(
+        request, 'pinguino-switch'
+    ):
+        value = disable
+    else:
+        value = enable
+    path = path or reverse('devhub.index')
+    response = http.HttpResponseRedirect(path)
+    response.set_cookie('PINGUINO', value=value)
+    return response

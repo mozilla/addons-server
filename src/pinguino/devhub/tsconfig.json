@@ -12,6 +12,8 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+    // Allow the explicit .ts extension on vite.config.ts's import of ./src/base.ts
+    "allowImportingTsExtensions": true,
 
     // Lit uses TypeScript's legacy decorators for @customElement/@property.
     "experimentalDecorators": true,

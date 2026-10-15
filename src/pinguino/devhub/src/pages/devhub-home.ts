@@ -1,4 +1,4 @@
-import type { IconName } from '@mozilla/acorn-web-components';
+import type { IconName } from 'acorn-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';

@@ -9,6 +9,7 @@ from django.core.management import CommandError, call_command
 from django.test.utils import override_settings
 
 from celery.result import EagerResult
+from google.cloud import bigquery
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -670,12 +671,14 @@ class TestSyncActiveUsersToFxa(TestCase):
         client = create_client_mock.return_value
         job = client.load_table_from_json.return_value
         job.output_rows = 3
+        table = client.get_table.return_value
+        table.schema = [
+            bigquery.SchemaField('uid', 'STRING', 'REQUIRED', max_length=128)
+        ]
 
         call_command('sync_active_users_to_fxa')
 
-        client.load_table_from_json.assert_called_once_with(
-            ANY, 'project.dataset.active_accounts', job_config=ANY
-        )
+        client.load_table_from_json.assert_called_once_with(ANY, table, job_config=ANY)
         job.result.assert_called_once()
 
         data = client.load_table_from_json.call_args.args[0]
@@ -686,3 +689,7 @@ class TestSyncActiveUsersToFxa(TestCase):
                 [('uid', active_with_rating.fxa_id)],
             ]
         )
+        config = client.load_table_from_json.call_args.kwargs['job_config']
+        assert config.schema == table.schema
+        assert config.write_disposition == bigquery.WriteDisposition.WRITE_TRUNCATE
+        assert config.create_disposition == bigquery.CreateDisposition.CREATE_NEVER

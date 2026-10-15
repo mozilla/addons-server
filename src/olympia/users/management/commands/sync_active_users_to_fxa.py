@@ -17,17 +17,18 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         fxa_ids = UserProfile.objects.active().values(uid=F('fxa_id'))
-        table_id = settings.FXA_ACTIVES_BIGQUERY_TABLE
         client = create_client()
+        table = client.get_table(settings.FXA_ACTIVES_BIGQUERY_TABLE)
 
         log.info(f'Adding {fxa_ids.count()} AMO users to FxAs active table')
 
         job = client.load_table_from_json(
             fxa_ids,
-            table_id,
+            table,
             job_config=bigquery.LoadJobConfig(
                 write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE,
                 create_disposition=bigquery.CreateDisposition.CREATE_NEVER,
+                schema=table.schema,
             ),
         )
         job.result()

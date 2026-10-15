@@ -10,22 +10,22 @@ server {
         alias /srv/storage/;
     }
 
-    # Pinguino (Lit DevHub rebuild), proxied to its own Vite dev server. nginx
-    # matches the longest location prefix, so this stays ahead of the `location /`
-    # catch-all and /pinguino/ coexists with the classic devhub at /developers/.
-    location /pinguino/ {
-        proxy_pass http://pinguino;
+    location ~ "^/\w{2,3}(?:-\w{2,6})?/developers/switch-pinguino" {
+        try_files $uri @olympia;
+    }
 
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto  $scheme;
-        proxy_http_version 1.1;
-        proxy_cache_bypass $http_upgrade;
-        proxy_buffering off;
-
-        add_header X-Served-By "pinguino-vite" always;
+    # Pinguino (Lit DevHub rebuild), proxied to its own Vite dev server. When the
+    # PINGUINO cookie is set to 1, serve /<locale>/developers/ from Pinguino
+    # instead of passing through to addons-frontend. Urls without a locale prefix
+    # are redirected in django. The proxying lives in the @pinguino named
+    # location, reached via `return`/`error_page` because `return` is one of the
+    # few things that is safe to use inside an `if`, unlike `proxy_pass`.
+    location ~ "^/\w{2,3}(?:-\w{2,6})?/developers/" {
+        error_page 418 = @pinguino;
+        if ($cookie_PINGUINO = "1") {
+            return 418;
+        }
+        try_files $uri @olympia;
     }
 
     location ^~ ${STATIC_URL_PREFIX}bundle/ {
@@ -116,6 +116,21 @@ server {
         # addons frontend so that nginx can act on it.
         proxy_intercept_errors on;
 
+    }
+
+    location @pinguino {
+        proxy_pass http://pinguino;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_http_version 1.1;
+        proxy_cache_bypass $http_upgrade;
+        proxy_buffering off;
+
+        add_header X-Served-By "pinguino-vite" always;
     }
 
     # Return 204 for CSP reports to save sending them
