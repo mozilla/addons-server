@@ -1,5 +1,6 @@
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { BASE } from '../base';
 
 const NAV = [
   'My Add-ons',
@@ -44,12 +45,26 @@ export class DevhubHeader extends LitElement {
     }
   `;
 
+  // Switch to the classic devhub via the Django endpoint that flips the PINGUINO
+  // cookie; the bare href is a no-JS fallback (view defaults to the index).
+  #switchToClassic = (event: Event) => {
+    event.preventDefault();
+    const path = location.pathname + location.search;
+    location.href = `${BASE}/switch-pinguino?path=${encodeURIComponent(path)}`;
+  };
+
   render() {
     return html`
       <div class="bar">
-        <a class="brand" href="/pinguino/">Add-ons</a>
+        <a class="brand" href="${BASE}/">Add-ons</a>
         <nav>
-          ${NAV.map((label) => html`<a href="/pinguino/">${label}</a>`)}
+          ${NAV.map((label) => html`<a href="${BASE}/">${label}</a>`)}
+          <a
+            rel="external"
+            href="${BASE}/switch-pinguino"
+            @click=${this.#switchToClassic}
+            >Switch back to the old Developer Hub</a
+          >
         </nav>
         <span class="spacer"></span>
         <moz-icon name="settings"></moz-icon>

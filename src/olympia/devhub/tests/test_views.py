@@ -20,7 +20,7 @@ import pytest
 import responses
 import time_machine
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
+from waffle.testutils import override_flag, override_switch
 
 from olympia import amo, core
 from olympia.accounts.utils import fxa_login_url
@@ -3239,3 +3239,44 @@ class TestDeveloperAgreementAPI(TestCase):
             )
         assert response.status_code == 429
         assert user.has_anonymous_display_name
+
+
+@override_flag('pinguino-switch', active=True)
+class TestSwitchPinguino(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('devhub.switch-pinguino')
+
+    def test_enables_when_no_cookie(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.index')
+        assert response.cookies['PINGUINO'].value == '1'
+
+    def test_enables_when_disabled(self):
+        self.client.cookies['PINGUINO'] = '0'
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.index')
+        assert response.cookies['PINGUINO'].value == '1'
+
+    def test_disables_when_enabled(self):
+        self.client.cookies['PINGUINO'] = '1'
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.index')
+        assert response.cookies['PINGUINO'].value == '0'
+
+    def test_redirects_to_path_param(self):
+        response = self.client.get(self.url, {'path': '/en-US/developers/addon/x'})
+        assert response.status_code == 302
+        assert response['Location'] == '/en-US/developers/addon/x'
+        assert response.cookies['PINGUINO'].value == '1'
+
+    @override_flag('pinguino-switch', active=False)
+    def test_cannot_enable_when_flag_inactive(self):
+        # With the flag off, hitting the url can only turn pinguino off, never on.
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.index')
+        assert response.cookies['PINGUINO'].value == '0'

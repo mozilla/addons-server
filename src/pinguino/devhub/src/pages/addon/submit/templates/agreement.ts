@@ -1,6 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, query } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
+import { BASE } from '../../../../base';
 import { acceptAgreement, agreementQuery } from '../../../../data/queries';
 
 const WORKSHOP_URL = 'https://extensionworkshop.com/documentation/publish';
@@ -110,7 +111,7 @@ export class DevhubAgreement extends LitElement {
           <moz-button id="accept-agreement" type="submit" variant="primary">
             Accept
           </moz-button>
-          or <a href="/pinguino/">Cancel</a>
+          or <a href="${BASE}/">Cancel</a>
         </div>
       </div>
 

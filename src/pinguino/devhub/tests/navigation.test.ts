@@ -3,16 +3,16 @@ import { interceptOutOfAppLinks, isInAppPath } from '../src/navigation';
 
 describe('isInAppPath', () => {
   it('matches the base and its descendants', () => {
-    expect(isInAppPath('/pinguino', '/pinguino')).toBe(true);
-    expect(isInAppPath('/pinguino/', '/pinguino')).toBe(true);
-    expect(isInAppPath('/pinguino/addon/x', '/pinguino')).toBe(true);
+    expect(isInAppPath('/developers', '/developers')).toBe(true);
+    expect(isInAppPath('/developers/', '/developers')).toBe(true);
+    expect(isInAppPath('/developers/addon/x', '/developers')).toBe(true);
   });
 
   it('rejects paths outside the base', () => {
-    expect(isInAppPath('/en-US/firefox/addon/x', '/pinguino')).toBe(false);
-    expect(isInAppPath('/', '/pinguino')).toBe(false);
+    expect(isInAppPath('/en-US/firefox/addon/x', '/developers')).toBe(false);
+    expect(isInAppPath('/', '/developers')).toBe(false);
     // A sibling prefix must not count as in-app.
-    expect(isInAppPath('/pinguino-foo', '/pinguino')).toBe(false);
+    expect(isInAppPath('/developers-foo', '/developers')).toBe(false);
   });
 });
 
@@ -22,7 +22,7 @@ describe('interceptOutOfAppLinks', () => {
   function clickSpy(href: string) {
     const navGuard = (e: Event) => e.preventDefault();
     window.addEventListener('click', navGuard, { capture: true });
-    const cleanup = interceptOutOfAppLinks('/pinguino');
+    const cleanup = interceptOutOfAppLinks('/developers');
 
     const anchor = document.createElement('a');
     anchor.href = href;
@@ -50,7 +50,7 @@ describe('interceptOutOfAppLinks', () => {
 
   it('leaves in-app links for the router to handle', () => {
     expect(
-      clickSpy(`${location.origin}/pinguino/addon/x`),
+      clickSpy(`${location.origin}/developers/addon/x`),
     ).not.toHaveBeenCalled();
   });
 });

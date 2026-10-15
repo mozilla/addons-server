@@ -853,7 +853,7 @@ class TestVersion(TestCase):
             amo.LOG.REVIEWER_REPLY_VERSION, v2.addon, v2, user=self.user
         )
 
-        with self.assertNumQueries(43):
+        with self.assertNumQueries(46):
             # 1. SAVEPOINT
             # 2. the add-on
             # 3. translations for that add-on (default transformer)
@@ -895,6 +895,8 @@ class TestVersion(TestCase):
             # 38. waffle switch
             # 39-40. promotion group queries
             # 41-42. (not in order) version-rollback waffle check
+            # 43. (latest non-disabled version in enterprise channel?)
+            # 44-46. (not in order) pinguino-switch waffle flag check
             response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -961,7 +963,7 @@ class TestVersion(TestCase):
         )
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
 
-        with self.assertNumQueries(48):
+        with self.assertNumQueries(51):
             # see test_pending_activity_count for the query breakdown
             # + 2 more for the 2 extra versions (not good, but the current state)
             # + 3 more for the channel rollback queries
@@ -1058,7 +1060,7 @@ class TestVersion(TestCase):
         )
 
         # with both channels available with multiple versions
-        with self.assertNumQueries(52):
+        with self.assertNumQueries(55):
             # see test_pending_activity_count & test_version_rollback_form_not_available
             # for the baseline when there no versions available.  We expect 3 more
             # queries here:
