@@ -28,9 +28,9 @@ docutils==0.23 \
 imagesize==2.0.1 \
     --hash=sha256:b2ba6a4dea487a7ebcd53248d3476aca449d30db12a2dde5e0c5ca9624fd77e5 \
     --hash=sha256:ea0c9a0384df69ed86a943a15cde37d0360b82491b3910dc2215e202e62b5b02
-sphinxcontrib-httpdomain==2.0.0 \
-    --hash=sha256:9e4e8733bf41ee4d9d5f9eb4dbf3cc2c22a665221ba42c5c3ae181b98af8855d \
-    --hash=sha256:e968775c9994f8139cb6ff91e1f6a8557396a2cc08073997eed10d9b39f96df3
+sphinxcontrib-httpdomain==2.1.0 \
+    --hash=sha256:62ce09d3091d1987916075ba0b3a0e16b7c577d4baa0c109a853ab2587fff1ea \
+    --hash=sha256:889d7f69b55633e22a28a8222c4952df65f707e0a9a157f38729625a33ea5d5b
 sphinxcontrib-serializinghtml==2.0.0 \
     --hash=sha256:6e2cb0eef194e10c27ec0023bfeb25badbbb5868244cf5bc5bdc04e4464bf331 \
     --hash=sha256:e9d912827f872c029017a53f0ef2180b327c3f7fd23c87229f7a8e8b70031d4d
