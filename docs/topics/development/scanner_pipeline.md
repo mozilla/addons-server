@@ -314,10 +314,14 @@ and any other arbitrary fields.
       {
         "file": "background.js",
         "message": "Obfuscated code detected.",
-        "line": 42
+        "line": 42,
+        "description": "Detects obfuscated code.",
+        "ticket": "https://example.com/tickets/1234"
       },
       {
-        "message": "This version contains potentially malicious code."
+        "message": "This version contains potentially malicious code.",
+        "description": "Detects obfuscated code.",
+        "ticket": "https://example.com/tickets/1234"
       }
     ],
     "ANNOTATIONS": [
@@ -333,8 +337,15 @@ Rules used as annotation keys must be listed in `matchedRules`. When there is
 no specific rule to associate with an annotation, use `ANNOTATIONS` as the rule
 name.
 
-Each annotated rule must be an active [scanner rule](#scanner-rules) on AMO for
-the annotation to be displayed.
+Each annotation of a matched rule is expected to include the following fields:
+
+- `description`: a human-readable description of the rule
+- `ticket`: a link to the ticket associated with the rule
+
+```{note}
+Each annotated rule must be an _active_ [scanner rule](#scanner-rules) on AMO
+for the annotation to be displayed.
+```
 
 (scanner-webhook-events)=
 ## Scanner Webhook Events
