@@ -16,7 +16,7 @@ const ext = (slug: string): Addon => ({
   version: '1.0.0',
   lastUpdated: 'Aug 18 2025',
   visibility: 'live',
-  distribution: 'amo',
+  distribution: 'listed',
 });
 const theme = (slug: string): Addon => ({
   ...ext(slug),

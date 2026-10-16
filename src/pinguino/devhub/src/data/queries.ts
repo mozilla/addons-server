@@ -9,10 +9,21 @@ import {
   fetchAgreement,
   fetchProfile,
   fetchUpdates,
+  fetchUpload,
+  fetchVersion,
+  patchVersion,
   postAgreement,
+  postUpload,
+  postVersion,
 } from './api';
 import { queryClient } from './query-client';
-import type { Addon, AgreementAcceptState } from './types';
+import type {
+  Addon,
+  AddonDistribution,
+  AgreementAcceptState,
+  FileUpload,
+  Version,
+} from './types';
 
 // Keys identify cache entries. The add-on list and a single add-on share one
 // key so navigating to a detail view reuses the cached list, not a new request.
@@ -21,6 +32,8 @@ export const queryKeys = {
   addons: ['addons'] as const,
   updates: ['updates'] as const,
   agreement: ['agreement'] as const,
+  upload: (uuid: string) => ['upload', uuid] as const,
+  version: (slug: string, id: number) => ['version', slug, id] as const,
 };
 
 // The signed-in developer. Session-lived, so it survives navigation without a
@@ -65,6 +78,23 @@ export function addonQuery(
   );
 }
 
+// One version.
+export function versionQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getId: () => number,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.version(getSlug(), getId()),
+      queryFn: () => fetchVersion(getSlug(), getId()),
+      enabled: Boolean(getSlug() && getId()),
+    }),
+    queryClient,
+  );
+}
+
 // The activity feed is a single endpoint scoped to the session, independent of
 // the add-on list.
 export function updatesQuery(host: ReactiveControllerHost) {
@@ -94,4 +124,79 @@ export function agreementQuery(host: ReactiveControllerHost) {
 export async function acceptAgreement(payload: AgreementAcceptState) {
   await postAgreement(payload);
   await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
+}
+
+// Creates a new FileUpload.
+export async function createUpload(
+  file: File,
+  channel: AddonDistribution,
+): Promise<FileUpload> {
+  const upload = await postUpload(file, channel);
+  queryClient.setQueryData(queryKeys.upload(upload.uuid), upload);
+  return upload;
+}
+
+export function uploadQuery(
+  host: ReactiveControllerHost,
+  getUuid: () => string,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.upload(getUuid()),
+      queryFn: () => fetchUpload(getUuid()),
+      enabled: Boolean(getUuid()),
+      refetchInterval: (query) => (query.state.data?.processed ? false : 1000),
+    }),
+    queryClient,
+  );
+}
+
+// Create a version from a FileUpload.
+export async function createVersion(
+  slug: string,
+  uuid: string,
+): Promise<Version> {
+  const version = await postVersion(slug, uuid);
+  queryClient.setQueryData(queryKeys.version(slug, version.id), version);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) });
+  return version;
+}
+
+async function _updateVersion(
+  slug: string,
+  id: number,
+  body: FormData | object,
+): Promise<Version> {
+  const version = await patchVersion(slug, id, body);
+  queryClient.setQueryData(queryKeys.version(slug, id), version);
+  return version;
+}
+
+export async function disableVersion(slug: string, id: number) {
+  await _updateVersion(slug, id, { is_disabled: true });
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function uploadVersionSource(
+  slug: string,
+  id: number,
+  file: File,
+) {
+  const body = new FormData();
+  body.append('source', file);
+  await _updateVersion(slug, id, body);
+}
+
+export async function uploadVersionNotes(
+  slug: string,
+  id: number,
+  releaseNotes?: string,
+  reviewerNotes?: string,
+) {
+  await _updateVersion(slug, id, {
+    approval_notes: reviewerNotes ?? '',
+    // TODO: https://github.com/mozilla/addons/issues/16478
+    ...(releaseNotes && { release_notes: { 'en-US': releaseNotes } }),
+  });
 }

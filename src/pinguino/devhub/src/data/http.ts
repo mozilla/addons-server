@@ -11,6 +11,7 @@ export class ApiError extends Error {
   constructor(
     readonly status: number,
     message: string,
+    readonly body?: unknown,
   ) {
     super(message);
     this.name = 'ApiError';
@@ -19,15 +20,16 @@ export class ApiError extends Error {
 
 export async function apiFetch<T>(
   path: string,
-  { method = 'GET', body }: { method?: string; body?: unknown } = {},
+  { method = 'GET', body }: { method?: string; body?: FormData | object } = {},
 ): Promise<T> {
+  const isJson = body !== undefined && !(body instanceof FormData);
   const res = await fetch(`${BASE}${path}`, {
     method,
     headers: {
       ...(SESSION ? { authorization: `Session ${SESSION}` } : {}),
-      ...(body ? { 'content-type': 'application/json' } : {}),
+      ...(isJson ? { 'content-type': 'application/json' } : {}),
     },
-    body: body ? JSON.stringify(body) : undefined,
+    body: isJson ? JSON.stringify(body) : body,
   });
   if (!res.ok) {
     // TODO(auth): on 401, clear the session and route to login once FxA lands.

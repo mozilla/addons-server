@@ -6,9 +6,16 @@ export {
   addonQuery,
   addonsQuery,
   agreementQuery,
+  createUpload,
+  createVersion,
+  disableVersion,
   profileQuery,
   queryKeys,
   updatesQuery,
+  uploadQuery,
+  uploadVersionNotes,
+  uploadVersionSource,
+  versionQuery,
 } from './queries';
 export { queryClient } from './query-client';
 export * from './types';

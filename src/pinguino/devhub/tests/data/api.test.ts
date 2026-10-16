@@ -8,7 +8,10 @@ import {
   localized,
   mapActivity,
   mapAddon,
+  patchVersion,
   postAgreement,
+  postUpload,
+  postVersion,
 } from '../../src/data/api';
 
 function mockJson(payload: unknown) {
@@ -19,6 +22,8 @@ function mockJson(payload: unknown) {
       .mockResolvedValue({ ok: true, status: 200, json: async () => payload }),
   );
 }
+
+const lastCall = () => vi.mocked(fetch).mock.calls[0];
 
 describe('mapAddon', () => {
   it('maps a public static theme to a live theme', () => {
@@ -151,11 +156,50 @@ describe('endpoints', () => {
     const payload = { last_developer_agreement_change: '2020-01-10T12:00:00' };
 
     await postAgreement(payload);
-    const [url, init] = vi.mocked(fetch).mock.calls[0];
+    const [url, init] = lastCall();
     expect(url).toBe('/api/v5/developers/agreement/');
     expect(init).toMatchObject({
       method: 'POST',
       body: JSON.stringify(payload),
+    });
+  });
+});
+
+describe('submission endpoints', () => {
+  it('postUpload POSTs the file and channel as FormData', async () => {
+    mockJson({ uuid: 'foo' });
+    const file = new File(['zip'], 'addon.zip');
+
+    await postUpload(file, 'unlisted');
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/upload/');
+    const body = init?.body as FormData;
+    expect(body.get('channel')).toBe('unlisted');
+    expect((body.get('upload') as File).name).toBe('addon.zip');
+  });
+
+  it('postVersion POSTs the upload uuid to the versions list', async () => {
+    mockJson({ id: 1 });
+    await postVersion('my addon', 'foo');
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/addon/my%20addon/versions/');
+    expect(init).toMatchObject({
+      method: 'POST',
+      body: JSON.stringify({ upload: 'foo' }),
+    });
+  });
+
+  it('patchVersion PATCHes the version detail', async () => {
+    mockJson({ id: 1 });
+    await patchVersion('slug', 1, { is_disabled: true });
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/addon/slug/versions/1/');
+    expect(init).toMatchObject({
+      method: 'PATCH',
+      body: JSON.stringify({ is_disabled: true }),
     });
   });
 });
