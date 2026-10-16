@@ -689,12 +689,13 @@ is done with it, i.e. it [skipped the event](#skipping-an-event) or sent its
 When some results are still missing two hours after the version was created, the
 `wait_for_scanner_results` task calls the corresponding scanner webhooks again
 with the same payload, and keeps doing so every two hours, up to 12 times. The
-last retry therefore happens 24 hours after the version was created.
+last retry therefore happens 24 hours after the version was created, and AMO
+gives up two hours later if results are still missing.
 
 AMO waits in two steps, each with a budget of its own: first for the results
 [`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
 `on_version_scanned` itself, which cannot be sent before they are all in. A
-scanner listening to `on_version_scanned` therefore gets the same 24 hours,
+scanner listening to `on_version_scanned` therefore gets the same schedule,
 counted from the moment the event was sent to it.
 
 Once the retries are exhausted, or when the payload can no longer be rebuilt
