@@ -4,7 +4,7 @@ export interface Developer {
 
 export type AddonKind = 'extension' | 'theme';
 export type AddonVisibility = 'live' | 'hidden';
-export type AddonDistribution = 'amo' | 'self' | 'enterprise';
+export type AddonDistribution = 'listed' | 'unlisted' | 'enterprise';
 
 export interface Addon {
   slug: string;
@@ -23,6 +23,16 @@ export interface Addon {
   previewUrl?: string;
   // Fallback theme swatch when there's no preview image.
   gradient?: string;
+}
+
+export interface Version {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: { id: number; url: string; size: number; status: string };
+  release_notes: string | null;
+  approval_notes: string;
+  source: string | null;
 }
 
 export interface Update {
@@ -46,4 +56,30 @@ export interface AgreementState {
 export interface AgreementAcceptState {
   last_developer_agreement_change: string;
   display_name?: string;
+}
+
+export interface FileUpload {
+  uuid: string;
+  channel: AddonDistribution;
+  processed: boolean;
+  submitted: boolean;
+  url: string;
+  valid: boolean;
+  validation: ValidationResult | null;
+  version: string | null;
+}
+
+export interface ValidationMessage {
+  type: 'error' | 'warning' | 'notice';
+  message: string;
+  description?: string;
+  file?: string | null;
+  line?: number | null;
+}
+
+export interface ValidationResult {
+  errors: number;
+  warnings: number;
+  notices: number;
+  messages: ValidationMessage[];
 }

@@ -15,7 +15,7 @@ const baseAddon: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'live',
-  distribution: 'amo',
+  distribution: 'listed',
 };
 
 async function card(addon: Partial<Addon>) {
@@ -30,7 +30,7 @@ describe('addon-card', () => {
     const root = await card({
       kind: 'extension',
       visibility: 'live',
-      distribution: 'amo',
+      distribution: 'listed',
     });
 
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Extension');
@@ -81,7 +81,7 @@ describe('addon-card', () => {
   });
 
   it('maps a hidden / self-distributed add-on to the right badges', async () => {
-    const root = await card({ visibility: 'hidden', distribution: 'self' });
+    const root = await card({ visibility: 'hidden', distribution: 'unlisted' });
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
