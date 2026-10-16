@@ -1,11 +1,169 @@
 # Scanner Pipeline
 
-The scanner pipeline is a security feature to run scanners.
+The scanner pipeline is a security feature that lets external services, called
+scanners, analyze add-ons submitted to AMO and act on what they find.
 
+## Overview
+
+1. Something happens on AMO, e.g. a new version is created. This is a [scanner
+   webhook event](#scanner-webhook-events).
+2. AMO calls every [scanner webhook](#scanner-webhooks) subscribed to that
+   event.
+3. Each scanner returns its results, synchronously or asynchronously, and AMO
+   stores them as a [scanner result](#scanner-results).
+4. The rules matched by a scanner can trigger [scanner
+   actions](#scanner-actions), e.g. flagging the version for human review.
+
+Some events block auto-approval: a version is not auto-approved until the
+scanners subscribed to them have sent their results. See [Waiting for scanner
+results](#scanner-waiting).
+
+Scanners can also [push](#scanner-push) results on their own, without AMO
+calling them first.
+
+## Concepts
+
+(scanner-results)=
+### Scanner Results
+
+A scanner result stores the output returned by a scanner, and it might be tied
+to a [webhook event](#scanner-webhook-events).
+
+Scanners can return a list of _matched rules_. When these rules exist as
+[scanner rules](#scanner-rules) on AMO, it becomes possible to execute [scanner
+actions](#scanner-actions). This is a core concept of the scanner pipeline,
+which essentially allows a scanner to make a change to an add-on version.
+
+(scanner-rules)=
+### Scanner Rules
+
+A scanner rule allows scanners to trigger an [action](#scanner-actions).
+
+Unknown rules reported by scanner webhooks are created automatically (active,
+with no action). Existing rules are left untouched.
+
+(scanner-actions)=
+### Scanner Actions
+
+A scanner action is some logic that can be applied to an add-on version. For
+example, flagging a version for manual review is a scanner action.
+
+These actions are defined in `src/olympia/scanners/actions.py`.
+
+Actions are executed by `ScannerResult.run_actions()`, which is called:
+
+- by the auto-approval cron job, once per version, over every rule matched on
+  that version;
+- when a scanner [pushes](#scanner-push) a result, over the rules of that result
+  only;
+- when narc re-scans a version and finds new matches, over every rule matched
+  on that version.
+
+## Writing a scanner
+
+(adding-a-scanner-webhook)=
+### Adding a scanner webhook
+
+Scanner webhooks must be registered in the AMO (django) admin. The following
+information must be provided:
+
+- _Name_: the name of the scanner
+- _URL_: the full URL of the scanner, which will receive the events
+- _API key_: the secret key sent to the scanner to authenticate AMO requests
+
+Add one or more [Scanner Webhook Events](#scanner-webhook-events).
+
+```{note}
+Upon creation, a _service account_ will be automatically generated for this
+scanner webhook. The service account is automatically granted the
+`Scanners:PatchResults` permission to [submit its results
+asynchronously](#asynchronous-scanning).
+
+A service account is needed to authenticate the scanner against the AMO API.
+Make sure to add the relevant permissions to it, depending on what the scanner
+needs to access.
+```
+
+### Creating a new scanner
+
+We provide a library to quickly develop new scanners written with Node.js:
+[addons-scanner-utils][].
+
+Start by installing the dependencies using `npm`:
+
+```text
+npm add express safe-compare addons-scanner-utils
+```
+
+Next, create an `index.js` containing the code of the scanner:
+
+```js
+import { createExpressApp } from "addons-scanner-utils";
+
+import pkg from "./package.json" with { type: "json" };
+
+const handler = (req, res) => {
+  console.log({ data: req.body });
+
+  // Option 1: Synchronous response
+  res.json({ version: pkg.version, matchedRules: [] });
+
+  // Option 2: Asynchronous response (for long-running scans)
+  // res.status(202).json({ ok: true });
+  // // Perform scanning asynchronously and later send results with:
+  // //
+  // // await patchScannerResult(req.body.scanner_result_url, {
+  // //   results: { version: pkg.version, matchedRules: [] },
+  // // });
+};
+
+const app = createExpressApp({
+  apiKeyEnvVarName: "NEW_SCANNER_API_KEY",
+})(handler);
+
+const port = process.env.PORT || 20000;
+app.listen(port, () => {
+  console.log(`new-scanner is running on port ${port}`);
+});
+```
+
+Start the new scanner with `node`:
+
+```text
+NEW_SCANNER_API_KEY=new-scanner-api-key node index.js
+new-scanner is running on port 20000
+```
+
+Register the new scanner on AMO:
+
+![](../../_static/images/scanner-pipeline-create-new-scanner.png)
+
+When the new scanner is created, the Django admin will display the JWT keys for
+the service account bound to this new scanner. Keep these credentials safe.
+
+![](../../_static/images/scanner-pipeline-jwt-keys.png)
+
+When uploading a new file, you should see the following in the console:
+
+```js
+{
+  data: {
+    download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N",
+    event: "during_validation",
+    scanner_result_url: "http://olympia.test/api/v5/scanner/results/123/"
+  }
+}
+```
+
+The rest of this page describes what AMO sends to scanners and what they are
+expected to send back.
+
+(scanner-webhooks)=
 ## Scanner Webhooks
 
 A scanner webhook is essentially a URL to a service subscribed to events that
-occur on AMO. These webhooks are registered in the AMO (django) admin.
+occur on AMO. These webhooks are [registered](#adding-a-scanner-webhook) in the
+AMO (django) admin.
 
 When a [scanner webhook event](#scanner-webhook-events) occurs, AMO will send an
 HTTP request to each webhook subscribed to this event. The payload sent to the
@@ -120,40 +278,6 @@ intentionally skipped the event (e.g., the event is not relevant for this
 scanner). The `results` of the scanner result associated with this event are
 left empty (`null`), and the scanner is considered done with the event.
 
-(scanner-delivery-retries)=
-### Delivery retries
-
-A version is not auto-approved until every scanner blocking its auto-approval
-is done with it, i.e. it [skipped the event](#skipping-an-event) or sent its
-`matchedRules`.
-
-When some results are still missing two hours after the version was created, the
-`wait_for_scanner_results` task calls the corresponding scanner webhooks again
-with the same payload, and keeps doing so every two hours, up to 12 times. The
-last retry therefore happens 24 hours after the version was created.
-
-AMO waits in two steps, each with a budget of its own: first for the results
-[`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
-`on_version_scanned` itself, which cannot be sent before they are all in. A
-scanner listening to `on_version_scanned` therefore gets the same 24 hours,
-counted from the moment the event was sent to it.
-
-Once the retries are exhausted, or when the payload can no longer be rebuilt
-(e.g., the uploaded file a `during_validation` payload points to is gone), AMO
-records artificial results matching the special `SCANNER_RESULTS_MISSING`
-[rule](#scanner-rules):
-
-```json
-{
-  "matchedRules": ["SCANNER_RESULTS_MISSING"]
-}
-```
-
-The version then stops waiting on that scanner, and whichever
-[action](#scanner-actions) is configured on that rule applies. This rule is
-created by a migration with no action, so by default the version only stops
-waiting.
-
 (scanner-annotations)=
 ### Annotations
 
@@ -193,99 +317,6 @@ name.
 
 Each annotated rule must be an active [scanner rule](#scanner-rules) on AMO for
 the annotation to be displayed.
-
-### Adding a scanner webhook
-
-Scanner webhooks must be registered in the AMO (django) admin. The following
-information must be provided:
-
-- _Name_: the name of the scanner
-- _URL_: the full URL of the scanner, which will receive the events
-- _API key_: the secret key sent to the scanner to authenticate AMO requests
-
-Add one or more [Scanner Webhook Events](#scanner-webhook-events).
-
-```{note}
-Upon creation, a _service account_ will be automatically generated for this
-scanner webhook. The service account is automatically granted the
-`Scanners:PatchResults` permission to [submit its results
-asynchronously](#asynchronous-scanning).
-
-A service account is needed to authenticate the scanner against the AMO API.
-Make sure to add the relevant permissions to it, depending on what the scanner
-needs to access.
-```
-
-### Creating a new scanner
-
-We provide a library to quickly develop new scanners written with Node.js:
-[addons-scanner-utils][].
-
-Start by installing the dependencies using `npm`:
-
-```text
-npm add express safe-compare addons-scanner-utils
-```
-
-Next, create an `index.js` containing the code of the scanner:
-
-```js
-import { createExpressApp } from "addons-scanner-utils";
-
-import pkg from "./package.json" with { type: "json" };
-
-const handler = (req, res) => {
-  console.log({ data: req.body });
-
-  // Option 1: Synchronous response
-  res.json({ version: pkg.version, matchedRules: [] });
-
-  // Option 2: Asynchronous response (for long-running scans)
-  // res.status(202).json({ ok: true });
-  // // Perform scanning asynchronously and later send results with:
-  // //
-  // // await patchScannerResult(req.body.scanner_result_url, {
-  // //   results: { version: pkg.version, matchedRules: [] },
-  // // });
-};
-
-const app = createExpressApp({
-  apiKeyEnvVarName: "NEW_SCANNER_API_KEY",
-})(handler);
-
-const port = process.env.PORT || 20000;
-app.listen(port, () => {
-  console.log(`new-scanner is running on port ${port}`);
-});
-```
-
-Start the new scanner with `node`:
-
-```text
-NEW_SCANNER_API_KEY=new-scanner-api-key node index.js
-new-scanner is running on port 20000
-```
-
-Register the new scanner on AMO:
-
-![](../../_static/images/scanner-pipeline-create-new-scanner.png)
-
-When the new scanner is created, the Django admin will display the JWT keys for
-the service account bound to this new scanner. Keep these credentials safe.
-
-![](../../_static/images/scanner-pipeline-jwt-keys.png)
-
-When uploading a new file, you should see the following in the console:
-
-```js
-{
-  data: {
-    download_url: "http://olympia.test/uploads/file/fa7868396b7e44ef8a0711f608f534f7/?access_token=w0Tl7qmJqBMQ4gtitKbcdKozulWVQWhkU0wEA10N",
-    event: "during_validation",
-    scanner_result_url: "http://olympia.test/api/v5/scanner/results/123/"
-  }
-}
-```
 
 (scanner-webhook-events)=
 ## Scanner Webhook Events
@@ -575,14 +606,17 @@ The payload sent looks like this:
 ```
 
 (scanner-push)=
-### `push`
+## Pushing results
 
 In addition to responding to AMO-initiated webhook events, a scanner can
 proactively **push** results for an existing version using the {ref}`push
 endpoint <scanner-result-push>`. This is useful for scanners that operate on
 their own schedule or that re-scan versions independently of AMO events.
 
-#### Request
+Unlike the other events, `push` is never sent by AMO: subscribing a scanner
+webhook to it is what allows the scanner to push results.
+
+### Request
 
 Scanners can push results by sending a POST request to `/api/v5/scanner/results/`
 using their JWT service account credentials. The service account must have the
@@ -605,7 +639,7 @@ attach results to and the scan results:
 | `version_id` | integer | The primary key of the add-on version to attach results to        |
 | `results`    | object  | Same structure as a [synchronous response](#synchronous-response) |
 
-#### Responses
+### Responses
 
 | Status code       | Meaning                                                                                        |
 | ----------------- | ---------------------------------------------------------------------------------------------- |
@@ -618,7 +652,7 @@ A push is rejected with `409 Conflict` when any rule in `matchedRules` has
 already been pushed for the same version via the same webhook. Only active
 [scanner rules](#scanner-rules) are considered for this check.
 
-#### Actions
+### Actions
 
 When a pushed result matches at least one [scanner rule](#scanner-rules), the
 [actions](#scanner-actions) of those rules are executed asynchronously.
@@ -628,58 +662,44 @@ auto-approval flow which considers every rule matched on the version. A rule
 matched earlier by another scanner is therefore not re-run, and the policy it
 may be attached to is not enforced a second time.
 
-### Adding a new event
+(scanner-waiting)=
+## Waiting for scanner results
 
-1. Add a constant for the new event in `src/olympia/constants/scanners.py`. The
-   name must start with `WEBHOOK_`. Make sure the new constant is registered in
-   `WEBHOOK_EVENTS` (in the same file).
-2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_id,
-   payload, upload=None, version=None, activity_log=None)`. Make sure this task
-   is assigned to a queue in `src/olympia/lib/settings_base.py`.
-3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
-4. If versions should not be auto-approved until the scanners subscribed to the
-   new event are done, add the event to `WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL`
-   and make `build_webhook_payload()` return its payload, so that the webhooks
-   can be [called again](#scanner-delivery-retries).
-5. Update this documentation page.
+A version is not auto-approved until every scanner blocking its auto-approval
+is done with it, i.e. it [skipped the event](#skipping-an-event) or sent its
+`matchedRules`.
 
-(scanner-results)=
-## Scanner Results
+(scanner-delivery-retries)=
+### Delivery retries
 
-A scanner result stores the output returned by a scanner, and it might be tied
-to a [webhook event](#scanner-webhook-events).
+When some results are still missing two hours after the version was created, the
+`wait_for_scanner_results` task calls the corresponding scanner webhooks again
+with the same payload, and keeps doing so every two hours, up to 12 times. The
+last retry therefore happens 24 hours after the version was created.
 
-Scanners can return a list of _matched rules_. When these rules exist as
-[scanner rules](#scanner-rules) on AMO, it becomes possible to execute [scanner
-actions](#scanner-actions). This is a core concept of the scanner pipeline,
-which essentially allows a scanner to make a change to an add-on version.
+AMO waits in two steps, each with a budget of its own: first for the results
+[`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
+`on_version_scanned` itself, which cannot be sent before they are all in. A
+scanner listening to `on_version_scanned` therefore gets the same 24 hours,
+counted from the moment the event was sent to it.
 
-(scanner-rules)=
-## Scanner Rules
+Once the retries are exhausted, or when the payload can no longer be rebuilt
+(e.g., the uploaded file a `during_validation` payload points to is gone), AMO
+records artificial results matching the special `SCANNER_RESULTS_MISSING`
+[rule](#scanner-rules):
 
-A scanner rule allows scanners to trigger an [action](#scanner-actions).
+```json
+{
+  "matchedRules": ["SCANNER_RESULTS_MISSING"]
+}
+```
 
-Unknown rules reported by scanner webhooks are created automatically (active,
-with no action). Existing rules are left untouched.
+The version then stops waiting on that scanner, and whichever
+[action](#scanner-actions) is configured on that rule applies. This rule is
+created by a migration with no action, so by default the version only stops
+waiting.
 
-(scanner-actions)=
-## Scanner Actions
-
-A scanner action is some logic that can be applied to an add-on version. For
-example, flagging a version for manual review is a scanner action.
-
-These actions are defined in `src/olympia/scanners/actions.py`.
-
-Actions are executed by `ScannerResult.run_actions()`, which is called:
-
-- by the auto-approval cron job, once per version, over every rule matched on
-  that version;
-- when a scanner [pushes](#scanner-push) a result, over the rules of that result
-  only;
-- when narc re-scans a version and finds new matches, over every rule matched
-  on that version.
-
-## Good to know
+### Good to know
 
 - Saving a scanner webhook in the admin, even without changing anything, stops
   every version created before that save from waiting on its results (they may
@@ -694,6 +714,21 @@ Actions are executed by `ScannerResult.run_actions()`, which is called:
   job runs the [scanner actions](#scanner-actions) with whatever results are
   available and attempts to auto-approve the versions right away. This switch
   isn't created by a migration, so it has to be added in the admin first.
+
+## Adding a new event
+
+1. Add a constant for the new event in `src/olympia/constants/scanners.py`. The
+   name must start with `WEBHOOK_`. Make sure the new constant is registered in
+   `WEBHOOK_EVENTS` (in the same file).
+2. In a `tasks.py` file, create a Celery task that calls `call_webhooks(event_id,
+   payload, upload=None, version=None, activity_log=None)`. Make sure this task
+   is assigned to a queue in `src/olympia/lib/settings_base.py`.
+3. Invoke this Celery task (with `.delay()`) where the event occurs in the code.
+4. If versions should not be auto-approved until the scanners subscribed to the
+   new event are done, add the event to `WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL`
+   and make `build_webhook_payload()` return its payload, so that the webhooks
+   can be [called again](#scanner-delivery-retries).
+5. Update this documentation page.
 
 [addons-scanner-utils]: https://github.com/mozilla/addons-scanner-utils
 [hmac]: https://en.wikipedia.org/wiki/HMAC
