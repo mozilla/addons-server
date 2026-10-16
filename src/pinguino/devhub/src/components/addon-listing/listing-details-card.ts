@@ -1,5 +1,6 @@
 import { html, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {
   type Addon,
   type AddonListingEdit,
@@ -9,9 +10,8 @@ import {
   updateEulaPolicy,
 } from '../../data';
 import { FormController, textArea, textField } from '../../foundations/form';
-import { SectionCard } from './section-card';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
+import { SectionCard } from './section-card';
 
 const MAX_CATEGORIES = 3;
 
