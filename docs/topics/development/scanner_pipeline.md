@@ -228,6 +228,10 @@ treated as a failure: no results are stored and, for events blocking
 auto-approval, the scanner webhook is [called again](#scanner-delivery-retries)
 later.
 
+On a connection error, a timeout, or a `50x` status code, AMO immediately
+retries the call once before treating it as a failure. Long-running scanners
+should respond [asynchronously](#asynchronous-scanning).
+
 (synchronous-response)=
 #### Synchronous response
 
