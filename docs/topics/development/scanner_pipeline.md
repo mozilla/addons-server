@@ -272,8 +272,17 @@ field:
 }
 ```
 
-The `results` field should contain the same data structure as a synchronous
-response would return.
+The `results` field has the same structure as a [synchronous
+response](#synchronous-response). Both `version` and `matchedRules` are
+required, every key in `annotations` must be listed in `matchedRules`, and no
+field other than `results` is allowed in the request body.
+
+| Status code       | Meaning                                                                   |
+| ----------------- | ------------------------------------------------------------------------- |
+| `204 No Content`  | Results stored successfully                                               |
+| `400 Bad Request` | Validation error (missing fields, extra fields, unknown annotation keys)  |
+| `404 Not Found`   | No scanner result with this id bound to the authenticated service account |
+| `409 Conflict`    | Results have already been sent for this scanner result                    |
 
 (skipping-an-event)=
 #### Skipping an event
