@@ -219,6 +219,7 @@ determines how AMO handles the response:
 | Status code      | Meaning                                                             |
 | ---------------- | ------------------------------------------------------------------- |
 | `200 OK`         | Results returned synchronously in the response body                 |
+| `201 Created`    | Same as `200 OK`                                                    |
 | `202 Accepted`   | Scanner acknowledged the event and will send results asynchronously |
 | `204 No Content` | Scanner skipped the event and is considered done with it            |
 
@@ -242,9 +243,9 @@ Scanners can return a JSON response immediately that contains the following fiel
 (asynchronous-scanning)=
 #### Asynchronous response
 
-Scanners can also return a quick acknowledgment response (or any response) and
-send their results later using the `scanner_result_url` provided in the webhook
-payload. This is useful for long-running scans.
+Scanners can also return a quick acknowledgment response and send their results
+later using the `scanner_result_url` provided in the webhook payload. This is
+useful for long-running scans.
 
 To send results asynchronously:
 
@@ -253,6 +254,10 @@ To send results asynchronously:
    `{}` or `{"ok": true}`)
 3. The scanner performs its analysis
 4. The scanner sends a PATCH request to the `scanner_result_url` with the results
+
+The acknowledgment body must be valid JSON: an empty body is treated as a
+failure. It must not contain `matchedRules` either, otherwise AMO considers it
+the final result.
 
 The PATCH request must be authenticated using the [service account JWT
 credentials](#scanners-authentication) and include a JSON body with a `results`
