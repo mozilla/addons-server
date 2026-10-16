@@ -40,15 +40,20 @@ which essentially allows a scanner to make a change to an add-on version.
 A scanner rule allows scanners to trigger an [action](#scanner-actions).
 
 Unknown rules reported by scanner webhooks are created automatically (active,
-with no action). Existing rules are left untouched.
+with no workflow action and no policy). Existing rules are left untouched.
 
 (scanner-actions)=
 ### Scanner Actions
 
-A scanner action is some logic that can be applied to an add-on version. For
-example, flagging a version for manual review is a scanner action.
+A scanner action is some logic that can be applied to an add-on version. Each
+[scanner rule](#scanner-rules) can be configured with two kinds of actions:
 
-These actions are defined in `src/olympia/scanners/actions.py`.
+- a _workflow action_, e.g. flagging a version for human review. These actions
+  are defined in `src/olympia/scanners/actions.py`. When several matched rules
+  have one, only the most severe is executed.
+- a _policy_, from which AMO derives an enforcement action (e.g. disabling the
+  add-on) and records it as a content decision. When several policies are hit,
+  only the most aggressive enforcement action is executed.
 
 Actions are executed by `ScannerResult.run_actions()`, which is called:
 
@@ -726,8 +731,8 @@ records artificial results matching the special `SCANNER_RESULTS_MISSING`
 
 The version then stops waiting on that scanner, and whichever
 [action](#scanner-actions) is configured on that rule applies. This rule is
-created by a migration with no action, so by default the version only stops
-waiting.
+created by a migration with no workflow action and no policy, so by default the
+version only stops waiting.
 
 ### Good to know
 
