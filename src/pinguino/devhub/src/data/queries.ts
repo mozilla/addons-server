@@ -5,14 +5,33 @@
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import {
+  addAuthor,
+  addPreview,
+  deleteAuthor,
+  deletePreview,
   fetchAddons,
   fetchAgreement,
+  fetchAuthors,
+  fetchCategories,
+  fetchPendingAuthors,
   fetchProfile,
   fetchUpdates,
+  patchAddon,
+  patchAuthor,
+  patchEulaPolicy,
+  patchPreview,
   postAgreement,
+  uploadIcon,
 } from './api';
 import { queryClient } from './query-client';
-import type { Addon, AgreementAcceptState } from './types';
+import type {
+  Addon,
+  AddonAuthorAdd,
+  AddonAuthorRole,
+  AddonListingEdit,
+  AgreementAcceptState,
+  EulaPolicyEdit,
+} from './types';
 
 // Keys identify cache entries. The add-on list and a single add-on share one
 // key so navigating to a detail view reuses the cached list, not a new request.
@@ -21,7 +40,21 @@ export const queryKeys = {
   addons: ['addons'] as const,
   updates: ['updates'] as const,
   agreement: ['agreement'] as const,
+  categories: ['categories'] as const,
 };
+
+// The static category list rarely changes, so keep it for the session.
+export function categoriesQuery(host: ReactiveControllerHost) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.categories,
+      queryFn: fetchCategories,
+      staleTime: Number.POSITIVE_INFINITY,
+    }),
+    queryClient,
+  );
+}
 
 // The signed-in developer. Session-lived, so it survives navigation without a
 // refetch; invalidate queryKeys.profile explicitly after a profile edit.
@@ -63,6 +96,102 @@ export function addonQuery(
     }),
     queryClient,
   );
+}
+
+// Persist Listing Details edits, then refresh the cached add-on list so the
+// manage view (which reads from it) reflects the saved values.
+export async function updateAddon(slug: string, edit: AddonListingEdit) {
+  const updated = await patchAddon(slug, edit);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  return updated;
+}
+
+// EULA/privacy text is a separate endpoint; refresh the add-on list after so the
+// has_* badges reflect the change.
+export async function updateEulaPolicy(slug: string, edit: EulaPolicyEdit) {
+  await patchEulaPolicy(slug, edit);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+// --- Authors ---
+
+const authorsKey = (slug: string) => ['authors', slug] as const;
+const pendingAuthorsKey = (slug: string) => ['pending-authors', slug] as const;
+
+export function authorsQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: authorsKey(getSlug()),
+      queryFn: () => fetchAuthors(getSlug()),
+    }),
+    queryClient,
+  );
+}
+
+// Authors invited but not yet confirmed, shown in their own group.
+export function pendingAuthorsQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: pendingAuthorsKey(getSlug()),
+      queryFn: () => fetchPendingAuthors(getSlug()),
+    }),
+    queryClient,
+  );
+}
+
+export async function updateAuthor(
+  slug: string,
+  userId: number,
+  edit: { role?: AddonAuthorRole; listed?: boolean },
+) {
+  await patchAuthor(slug, userId, edit);
+  await queryClient.invalidateQueries({ queryKey: authorsKey(slug) });
+}
+
+export async function removeAuthor(slug: string, userId: number) {
+  await deleteAuthor(slug, userId);
+  await queryClient.invalidateQueries({ queryKey: authorsKey(slug) });
+}
+
+// A new author starts as a pending invitation, so refresh that group too.
+export async function createAuthor(slug: string, add: AddonAuthorAdd) {
+  await addAuthor(slug, add);
+  await queryClient.invalidateQueries({ queryKey: authorsKey(slug) });
+  await queryClient.invalidateQueries({ queryKey: pendingAuthorsKey(slug) });
+}
+
+// --- Graphic assets --- (refresh the add-on list so icon/screenshots update)
+
+export async function updateIcon(slug: string, file: File) {
+  await uploadIcon(slug, file);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function createPreview(slug: string, file: File) {
+  await addPreview(slug, file);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function updatePreview(
+  slug: string,
+  previewId: number,
+  caption: string,
+) {
+  await patchPreview(slug, previewId, caption);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function removePreview(slug: string, previewId: number) {
+  await deletePreview(slug, previewId);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
 }
 
 // The activity feed is a single endpoint scoped to the session, independent of

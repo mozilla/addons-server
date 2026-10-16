@@ -18,12 +18,18 @@ export function interceptOutOfAppLinks(base: string): () => void {
     const anchor = e
       .composedPath()
       .find((n): n is HTMLAnchorElement => (n as HTMLElement).tagName === 'A');
-    if (
-      anchor &&
-      anchor.origin === location.origin &&
-      anchor.target === '' &&
-      !isInAppPath(anchor.pathname, base)
-    ) {
+    if (!anchor || anchor.origin !== location.origin || anchor.target !== '') {
+      return;
+    }
+    // Same-page hash links (in-page anchors, e.g. the listing side-nav) are
+    // scrolled by the component that owns them. Suppress the native jump — which
+    // can't reach shadow-DOM targets anyway — and keep the router out (it bails
+    // on defaultPrevented) without stopping the component's own click handler.
+    if (anchor.hash && anchor.pathname === location.pathname) {
+      e.preventDefault();
+      return;
+    }
+    if (!isInAppPath(anchor.pathname, base)) {
       // Keep the router's own window listener from intercepting this link;
       // leaving the default action intact lets the browser navigate fully.
       e.stopImmediatePropagation();

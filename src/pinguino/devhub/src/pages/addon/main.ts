@@ -14,6 +14,20 @@ class AddonRoutes extends LitElement {
       render: ({ slug }) =>
         html`<devhub-addon .slug=${slug ?? ''}></devhub-addon>`,
     },
+    {
+      path: `:slug/:tab`,
+      render: ({ slug, tab }) =>
+        html`<devhub-addon .slug=${slug ?? ''} .tab=${tab ?? ''}></devhub-addon>`,
+    },
+    {
+      path: `:slug/:tab/:section`,
+      render: ({ slug, tab, section }) =>
+        html`<devhub-addon
+          .slug=${slug ?? ''}
+          .tab=${tab ?? ''}
+          .section=${section ?? ''}
+        ></devhub-addon>`,
+    },
   ]);
   render() {
     return this._routes.outlet();

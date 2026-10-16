@@ -25,15 +25,19 @@ export class AddonCard extends LitElement {
       display: block;
       height: 100%;
     }
-    .card {
+    /* Fill the grid cell so the body's margin-top:auto pins the tags to the
+     * bottom and cards in a row stay equal height. */
+    moz-card,
+    moz-card::part(card),
+    moz-card::part(content) {
+      height: 100%;
+    }
+    .body {
       box-sizing: border-box;
       height: 100%;
       display: flex;
       flex-direction: column;
       gap: var(--space-small);
-      padding: var(--space-large);
-      border: 1px solid var(--icon-color-accent-primary-desaturated);
-      border-radius: var(--border-radius-medium, 8px);
     }
     .top {
       display: flex;
@@ -52,7 +56,6 @@ export class AddonCard extends LitElement {
     }
     .name {
       margin: 0;
-      /* font-size: 1rem; */
       font-weight: 600;
     }
     .bar {
@@ -89,8 +92,9 @@ export class AddonCard extends LitElement {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
     return html`
-      <div class="card">
-        <div class="top">
+      <moz-card appearance="outline">
+        <div class="body">
+          <div class="top">
           <span class="kind">${isTheme ? 'Theme' : 'Extension'}</span>
           <moz-button size="small" href="${BASE}/addon/${a.slug}">
             Manage
@@ -140,7 +144,8 @@ export class AddonCard extends LitElement {
             ${DISTRIBUTION[a.distribution].label}
           </moz-status-badge>
         </div>
-      </div>
+        </div>
+      </moz-card>
     `;
   }
 }

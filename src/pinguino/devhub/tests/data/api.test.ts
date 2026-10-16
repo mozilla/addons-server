@@ -2,12 +2,16 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   fetchAddons,
   fetchAgreement,
+  fetchCategories,
+  fetchEulaPolicy,
   fetchProfile,
   fetchUpdates,
   formatDate,
   localized,
   mapActivity,
   mapAddon,
+  patchAddon,
+  patchEulaPolicy,
   postAgreement,
 } from '../../src/data/api';
 
@@ -45,10 +49,22 @@ describe('mapAddon', () => {
     });
   });
 
+  it('decodes HTML entities in the plain-text fields (name, summary)', () => {
+    const addon = mapAddon({
+      slug: 'x',
+      name: { 'en-US': 'Tom &amp; Jerry' },
+      type: 'extension',
+      status: 'public',
+      summary: { 'en-US': 'A &amp; B &lt; C' },
+    });
+    expect(addon.name).toBe('Tom & Jerry');
+    expect(addon.summary).toBe('A & B < C');
+  });
+
   it('treats a disabled add-on as hidden and surfaces the raw status label', () => {
     const addon = mapAddon({
       slug: 'grammarly',
-      name: 'Grammarly',
+      name: { 'en-US': 'Grammarly' },
       type: 'extension',
       status: 'nominated',
       is_disabled: true,
@@ -60,6 +76,49 @@ describe('mapAddon', () => {
       statusLabel: 'nominated',
       version: '—', // no current_version
     });
+  });
+
+  it('maps the listing-detail fields, resolving outgoing URLs and slugs', () => {
+    const addon = mapAddon({
+      slug: 'tab-organizer',
+      guid: '{tab-organizer-guid}',
+      name: { 'en-US': 'Tab Organizer' },
+      type: 'extension',
+      status: 'public',
+      url: 'https://amo.test/addon/tab-organizer',
+      summary: { 'en-US': 'Organize tabs' },
+      description: null,
+      developer_comments: { 'en-US': 'Pure content script.' },
+      homepage: {
+        url: { 'en-US': 'https://tabs.example' },
+        outgoing: { 'en-US': 'https://outgoing.example' },
+      },
+      support_email: { 'en-US': 'help@tabs.example' },
+      average_daily_users: 1597,
+      ratings: { average: 3, count: 5 },
+      categories: ['alerts-updates', 'tabs'],
+      current_version: {
+        version: '1.0',
+        license: { name: { 'en-US': 'MPL 2.0' } },
+      },
+    });
+
+    expect(addon).toMatchObject({
+      rating: 3,
+      reviewCount: 5,
+      averageDailyUsers: 1597,
+      listingUrl: 'https://amo.test/addon/tab-organizer',
+      summary: 'Organize tabs',
+      developerComments: 'Pure content script.',
+      homepageUrl: 'https://tabs.example',
+      supportEmail: 'help@tabs.example',
+      categories: ['alerts-updates', 'tabs'],
+      license: 'MPL 2.0',
+      uuid: '{tab-organizer-guid}',
+    });
+    // Null/absent fields stay undefined rather than empty strings.
+    expect(addon.description).toBeUndefined();
+    expect(addon.supportUrl).toBeUndefined();
   });
 });
 
@@ -135,6 +194,62 @@ describe('endpoints', () => {
   it('fetchProfile reads the account name', async () => {
     mockJson({ name: 'Kate' });
     expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  });
+
+  it('patchAddon maps domain edit fields to the API body and PATCHes', async () => {
+    mockJson({ slug: 'x', name: 'New', type: 'extension', status: 'public' });
+    await patchAddon('x', {
+      name: 'New',
+      homepage: 'https://h.example',
+      is_experimental: true,
+    });
+
+    const [url, init] = vi.mocked(fetch).mock.calls[0];
+    expect(url).toBe('/api/v5/addons/addon/x/?lang=en-US');
+    expect(init?.method).toBe('PATCH');
+    expect(JSON.parse(String(init?.body))).toEqual({
+      name: { 'en-US': 'New' },
+      homepage: { 'en-US': 'https://h.example' },
+      is_experimental: true,
+    });
+  });
+
+  it('patchAddon sends categories as a bare slug array (not localized)', async () => {
+    mockJson({ slug: 'x', name: 'X', type: 'extension', status: 'public' });
+    await patchAddon('x', { categories: ['bookmarks', 'tabs'] });
+    const [, init] = vi.mocked(fetch).mock.calls[0];
+    expect(JSON.parse(String(init?.body))).toEqual({
+      categories: ['bookmarks', 'tabs'],
+    });
+  });
+
+  it('fetchCategories returns slug/name/type triples', async () => {
+    mockJson([
+      { id: 1, name: 'Bookmarks', slug: 'bookmarks', type: 'extension' },
+    ]);
+    expect(await fetchCategories()).toEqual([
+      { slug: 'bookmarks', name: 'Bookmarks', type: 'extension' },
+    ]);
+  });
+
+  it('fetchEulaPolicy localizes the eula and privacy text', async () => {
+    mockJson({ eula: { 'en-US': 'Terms' }, privacy_policy: null });
+    expect(await fetchEulaPolicy('x')).toEqual({
+      eula: 'Terms',
+      privacyPolicy: '',
+    });
+  });
+
+  it('patchEulaPolicy PATCHes the localized policy fields', async () => {
+    mockJson({});
+    await patchEulaPolicy('x', { eula: 'New terms', privacyPolicy: '' });
+    const [url, init] = vi.mocked(fetch).mock.calls[0];
+    expect(url).toBe('/api/v5/addons/addon/x/eula_policy/?lang=en-US');
+    expect(init?.method).toBe('PATCH');
+    expect(JSON.parse(String(init?.body))).toEqual({
+      eula: { 'en-US': 'New terms' },
+      privacy_policy: { 'en-US': '' },
+    });
   });
 
   it('fetchAgreement returns the agreement state as it was fetched', async () => {
