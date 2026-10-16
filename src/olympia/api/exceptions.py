@@ -1,10 +1,11 @@
+import math
 import traceback
 
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.signals import got_request_exception
 from django.http import Http404
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext, gettext_lazy as _, ngettext
 
 from rest_framework import exceptions, status
 from rest_framework.response import Response
@@ -21,6 +22,38 @@ class Conflict(exceptions.APIException):
     status_code = status.HTTP_409_CONFLICT
     default_detail = 'Conflict'
     default_code = 'conflict'
+
+
+class Throttled(exceptions.Throttled):
+    """
+    Throttled exception with a message fully localized through our own catalog.
+
+    DRF's own message comes from its translation catalog, where many locales
+    translate "Request was throttled." but not the "Expected available in
+    {wait} second(s)." sentence, resulting in a partly localized message.
+
+    Here both sentences are AMO strings, extracted for localization. ngettext()
+    is called with the unformatted msgids so they match the catalog, and the
+    translated result is formatted afterwards.
+    """
+
+    def __init__(self, wait=None, detail=None, code=None):
+        if detail is None:
+            detail = gettext('Request was throttled.')
+        if wait is not None:
+            wait = math.ceil(wait)
+            detail = ' '.join(
+                (
+                    detail,
+                    ngettext(
+                        'Expected available in {wait} second.',
+                        'Expected available in {wait} seconds.',
+                        wait,
+                    ).format(wait=wait),
+                )
+            )
+        super().__init__(wait=None, detail=detail, code=code)
+        self.wait = wait
 
 
 def custom_exception_handler(exc, context=None):
@@ -44,6 +77,11 @@ def custom_exception_handler(exc, context=None):
         exc = exceptions.NotFound()
     elif isinstance(exc, PermissionDenied):
         exc = exceptions.PermissionDenied()
+    elif (
+        type(exc) is exceptions.Throttled
+        and exc.detail == exceptions.Throttled(wait=exc.wait).detail
+    ):
+        exc = Throttled(wait=exc.wait)
 
     if isinstance(exc, exceptions.APIException):
         headers = {}
