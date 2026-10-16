@@ -619,7 +619,7 @@ The payload sent looks like this:
   // because a version can be in a queue for other reasons.
   "needs_human_review_reasons": ["scanner_action"],
   "event": "on_version_entered_review_queue",
-  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/127/"
+  "scanner_result_url": "http://olympia.test/api/v5/scanner/results/128/"
 }
 ```
 
