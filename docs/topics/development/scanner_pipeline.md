@@ -531,7 +531,7 @@ The payload sent looks like this:
 }
 ```
 
-(scanner-on-version-scanned)=
+(on-version-scanned)=
 ### `on_version_scanned`
 
 This event occurs once **every** scanner listening to a predefined set of events
@@ -693,7 +693,7 @@ last retry therefore happens 24 hours after the version was created, and AMO
 gives up two hours later if results are still missing.
 
 AMO waits in two steps, each with a budget of its own: first for the results
-[`on_version_scanned`](#scanner-on-version-scanned) aggregates, then for
+[`on_version_scanned`](#on-version-scanned) aggregates, then for
 `on_version_scanned` itself, which cannot be sent before they are all in. A
 scanner listening to `on_version_scanned` therefore gets the same schedule,
 counted from the moment the event was sent to it.
