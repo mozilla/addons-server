@@ -34,6 +34,7 @@ from olympia.constants.scanners import (
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
+    WEBHOOK_EVENTS_SHOULD_RUN_ACTIONS_ON_RESULTS,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_LISTING_CHANGED,
     WEBHOOK_ON_SOURCE_CODE_UPLOADED,
@@ -66,6 +67,7 @@ from olympia.scanners.tasks import (
     call_webhooks_on_version_scanned,
     mark_scanner_query_rule_as_completed_or_aborted,
     maybe_call_webhooks_on_version_scanned,
+    maybe_run_actions_for_webhook_result,
     run_actions_for_scanner_result,
     run_narc_on_version,
     run_scanner_query_rule,
@@ -89,7 +91,8 @@ class TestRunActionsForScannerResult(TestCase):
         self.event = ScannerWebhookEvent.objects.create(
             webhook=self.webhook, event=WEBHOOK_PUSH
         )
-        self.rule = ScannerRule.objects.create(name='rule-a', scanner=WEBHOOK)
+        self.rule_a = ScannerRule.objects.create(name='rule-a', scanner=WEBHOOK)
+        self.rule_b = ScannerRule.objects.create(name='rule-b', scanner=WEBHOOK)
 
     def create_result(self, matched_rules):
         return ScannerResult.objects.create(
@@ -107,7 +110,7 @@ class TestRunActionsForScannerResult(TestCase):
 
         assert run_actions_mock.call_count == 1
         assert run_actions_mock.call_args[0] == (self.version,)
-        assert run_actions_mock.call_args[1]['rules'] == [self.rule.pk]
+        assert run_actions_mock.call_args[1]['rules'] == [self.rule_a.pk]
 
     @mock.patch.object(ScannerResult, 'run_actions')
     def test_no_run_actions_without_matched_rules(self, run_actions_mock):
@@ -126,6 +129,137 @@ class TestRunActionsForScannerResult(TestCase):
 
         assert run_actions_mock.call_count == 1
         assert run_actions_mock.call_args[1]['rules'] == [new_rule.pk]
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_no_run_actions_when_rules_were_already_matched(self, run_actions_mock):
+        self.create_result(['rule-a', 'rule-b'])
+        scanner_result = self.create_result(['rule-a'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        assert run_actions_mock.call_count == 0
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions_for_new_rules_only(self, run_actions_mock):
+        self.create_result(['rule-a'])
+        scanner_result = self.create_result(['rule-a', 'rule-b'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        run_actions_mock.assert_called_once_with(self.version, rules=[self.rule_b.pk])
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions_when_rule_was_only_matched_by_a_newer_result(
+        self, run_actions_mock
+    ):
+        scanner_result = self.create_result(['rule-a'])
+        self.create_result(['rule-a'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        run_actions_mock.assert_called_once_with(self.version, rules=[self.rule_a.pk])
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions_when_rule_was_only_matched_for_another_event(
+        self, run_actions_mock
+    ):
+        other_event = ScannerWebhookEvent.objects.create(
+            webhook=self.webhook, event=WEBHOOK_ON_LISTING_CHANGED
+        )
+        ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            version=self.version,
+            webhook_event=other_event,
+            results={'version': '1.0.0', 'matchedRules': ['rule-a']},
+        )
+        scanner_result = self.create_result(['rule-a'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        run_actions_mock.assert_called_once_with(self.version, rules=[self.rule_a.pk])
+
+    @mock.patch.object(ScannerResult, 'run_actions')
+    def test_run_actions_when_rule_was_only_matched_for_another_version(
+        self, run_actions_mock
+    ):
+        ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            version=version_factory(addon=self.version.addon),
+            webhook_event=self.event,
+            results={'version': '1.0.0', 'matchedRules': ['rule-a']},
+        )
+        scanner_result = self.create_result(['rule-a'])
+
+        run_actions_for_scanner_result(scanner_result.pk)
+
+        run_actions_mock.assert_called_once_with(self.version, rules=[self.rule_a.pk])
+
+
+@mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result.delay')
+class TestMaybeRunActionsForWebhookResult(TestCase):
+    def setUp(self):
+        super().setUp()
+
+        self.version = version_factory(addon=addon_factory())
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        self.event = ScannerWebhookEvent.objects.create(
+            event=WEBHOOK_ON_LISTING_CHANGED,
+            webhook=webhook,
+        )
+
+    def _create_result(self, **kwargs):
+        return ScannerResult.objects.create(
+            scanner=WEBHOOK,
+            version=self.version,
+            webhook_event=self.event,
+            **kwargs,
+        )
+
+    def test_call_run_actions_for_scanner_result(self, delay_mock):
+        for event in WEBHOOK_EVENTS_SHOULD_RUN_ACTIONS_ON_RESULTS:
+            with self.subTest(event=event):
+                delay_mock.reset_mock()
+                self.event.update(event=event)
+                scanner_result = self._create_result(
+                    results={'matchedRules': ['some-rule']}
+                )
+
+                maybe_run_actions_for_webhook_result(scanner_result)
+
+                delay_mock.assert_called_once_with(scanner_result.pk)
+
+    def test_does_nothing_without_matches(self, delay_mock):
+        maybe_run_actions_for_webhook_result(
+            self._create_result(results={'matchedRules': []})
+        )
+
+        delay_mock.assert_not_called()
+
+    def test_does_nothing_when_the_result_is_incomplete(self, delay_mock):
+        maybe_run_actions_for_webhook_result(
+            self._create_result(results={'message': 'Task queued'})
+        )
+
+        delay_mock.assert_not_called()
+
+    def test_does_nothing_when_the_event_was_skipped(self, delay_mock):
+        maybe_run_actions_for_webhook_result(self._create_result(results=None))
+
+        delay_mock.assert_not_called()
+
+    def test_does_nothing_for_other_events(self, delay_mock):
+        self.event.update(event=WEBHOOK_ON_VERSION_CREATED)
+
+        maybe_run_actions_for_webhook_result(
+            self._create_result(results={'matchedRules': ['some-rule']})
+        )
+
+        delay_mock.assert_not_called()
 
 
 class TestCallWebhooksOnListingChanged(TestCase):
@@ -193,6 +327,36 @@ class TestCallWebhooksOnListingChanged(TestCase):
             'Error while calling webhooks for Version %s',
             self.version.pk,
         )
+
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_runs_actions_on_matches(self, _call_webhook_mock, run_actions_task_mock):
+        self.create_event()
+        _call_webhook_mock.return_value = {'matchedRules': ['some-rule']}
+
+        call_webhooks_on_listing_changed(self.version.pk, reason='metadata')
+
+        scanner_result = ScannerResult.objects.get()
+        run_actions_task_mock.delay.assert_called_once_with(scanner_result.pk)
+
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks._call_webhook')
+    def test_no_run_actions_when_results_were_patched_during_the_call(
+        self, _call_webhook_mock, run_actions_task_mock
+    ):
+        self.create_event()
+
+        # The scanner PATCHed the result before answering, so the PATCH endpoint
+        # has already scheduled the actions.
+        def patch_results_then_answer(*args, **kwargs):
+            ScannerResult.objects.update(results={'matchedRules': ['some-rule']})
+            return {'message': 'Task queued'}
+
+        _call_webhook_mock.side_effect = patch_results_then_answer
+
+        call_webhooks_on_listing_changed(self.version.pk, reason='metadata')
+
+        assert run_actions_task_mock.delay.call_count == 0
 
 
 class TestRunNarc(UploadMixin, TestCase):

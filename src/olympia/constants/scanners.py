@@ -107,6 +107,14 @@ WEBHOOK_EVENTS_BLOCKING_AUTO_APPROVAL = [
     WEBHOOK_ON_VERSION_SCANNED,
 ]
 
+# Events whose results trigger scanner actions as soon as they are received.
+WEBHOOK_EVENTS_SHOULD_RUN_ACTIONS_ON_RESULTS = [
+    WEBHOOK_ON_LISTING_CHANGED,
+    WEBHOOK_ON_SOURCE_CODE_UPLOADED,
+    WEBHOOK_ON_VERSION_ENTERED_REVIEW_QUEUE,
+    WEBHOOK_PUSH,
+]
+
 # Number of retries before we give up on the scanners for a version.
 WEBHOOK_MAX_RETRIES = 12
 
