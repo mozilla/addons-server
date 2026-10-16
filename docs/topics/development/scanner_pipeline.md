@@ -675,12 +675,13 @@ attach results to and the scan results:
 
 ### Responses
 
-| Status code       | Meaning                                                                                        |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| `201 Created`     | Result created successfully                                                                    |
-| `400 Bad Request` | Validation error (unknown version, missing fields, extra fields)                               |
-| `403 Forbidden`   | Not authenticated as a scanner service account, or no active webhook with a `push` event found |
-| `409 Conflict`    | One or more of the `matchedRules` have already been pushed for this version                    |
+| Status code        | Meaning                                                                       |
+| ------------------ | ----------------------------------------------------------------------------- |
+| `201 Created`      | Result created successfully                                                   |
+| `400 Bad Request`  | Validation error (unknown version, missing fields, extra fields)              |
+| `401 Unauthorized` | Missing or invalid JWT credentials                                            |
+| `403 Forbidden`    | Not a scanner service account, or no active webhook with a `push` event found |
+| `409 Conflict`     | One or more of the `matchedRules` have already been pushed for this version   |
 
 A push is rejected with `409 Conflict` when any rule in `matchedRules` has
 already been pushed for the same version via the same webhook. Only active
