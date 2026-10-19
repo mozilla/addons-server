@@ -382,6 +382,19 @@ class TestCacheControlMiddleware(TestCase):
         response = CacheControlMiddleware(lambda x: response)(request)
         assert response['Cache-Control'] == 'max-age=0'
 
+    def test_no_store_response_should_not_be_given_max_age(self):
+        # A response that opted out of caching must never get a cacheable
+        # max-age, even on an otherwise cacheable (unauthenticated API GET)
+        # request - it could leak per-user data from a shared cache.
+        for directive in ('no-store', 'no-cache', 'private'):
+            request = self.request_factory.get('/api/v5/foo')
+            request.is_api = True
+            response = HttpResponse()
+            response['Cache-Control'] = directive
+            response = CacheControlMiddleware(lambda x, r=response: r)(request)
+            assert 'max-age=360' not in response['Cache-Control']
+            assert directive in response['Cache-Control']
+
     def test_non_success_status_code_should_not_cache(self):
         request = self.request_factory.get('/api/v5/foo')
         request.is_api = True

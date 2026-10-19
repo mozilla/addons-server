@@ -6,6 +6,7 @@ export {
   addonQuery,
   addonsQuery,
   agreementQuery,
+  logout,
   profileQuery,
   queryKeys,
   updatesQuery,

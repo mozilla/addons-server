@@ -59,10 +59,9 @@ Data access is a three-layer stack under `src/data/`, exposed through the `src/d
 
 To configure Pinguino to read from the real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - not the repo-root `.env`) and set:
 
-- `VITE_AMO_SESSION_ID` - a logged-in AMO session id, sent as `Authorization: Session <id>`. The endpoints are scoped to this user, so no separate author is needed.
 - `VITE_AMO_API_BASE` - optional; defaults to same-origin `/api/v5` (local olympia via nginx).
 
-With a session set, queries hit the API and a failed request surfaces as an error state. There's no FxA login flow yet - the session id is supplied by hand. Vite restarts when `.env` changes, so reload after editing it.
+Vite restarts when `.env` changes, so reload after editing it.
 
 The [TanStack Query devtools](https://tanstack.com/query/latest/docs/framework/react/devtools) (`src/data/devtools.ts`) mount a floating panel for inspecting cache state, staleness, and refetches. They're loaded via a dynamic import behind `import.meta.env.DEV` in `main.ts`, so they run locally and are dropped from production builds.
 
@@ -110,7 +109,7 @@ The `_test_pinguino` GitHub Action runs all four on pull requests that touch `sr
 
 - **`tests/utils/`** - pure helpers, e.g. `sanitizeHTML` (DOMPurify allowlisting).
 
-`tests/helpers/fixture.ts` has `mount(tag, props)` (append + await first render) and `settle(el)` (flush a settled query, then re-render). `tests/setup.ts` clears the DOM, query cache, and any stubbed globals/env after each test. The config pins `VITE_AMO_SESSION_ID` empty so tests are deterministic and never hit the network regardless of a local `.env`; the few tests that need the configured path stub it and re-import.
+`tests/helpers/fixture.ts` has `mount(tag, props)` (append + await first render) and `settle(el)` (flush a settled query, then re-render). `tests/setup.ts` clears the DOM, query cache, and any stubbed globals/env after each test.
 
 happy-dom is the default environment, but DOMPurify needs DOM internals it doesn't fully implement (it silently strips allowed tags), so tests that exercise sanitization (`tests/utils/sanitizeHTML.test.ts`, `tests/components/update-card.test.ts`) opt into jsdom with a `// @vitest-environment jsdom` header. In a real browser DOMPurify works regardless.
 

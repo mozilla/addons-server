@@ -2131,6 +2131,30 @@ class TestSessionView(TestCase):
             )
             assert self.client.session['_auth_user_id'] == str(user.id)
 
+    def test_get_returns_session_id_from_cookie(self):
+        response = self.client.get(reverse_ns('accounts.session'))
+        # 401 when not logged in
+        assert response.status_code == 401
+
+        user = user_factory(fxa_id='123123412')
+        self.login_user(user)
+        # No header: the session cookie the client sends must be enough to authenticate.
+        response = self.client.get(reverse_ns('accounts.session'))
+        assert response.status_code == 200, response.content
+        assert response.data == {'session_id': self.client.session.session_key}
+        # Per-user and no Vary: Cookie, so it must never be cached.
+        assert 'no-store' in response['Cache-Control']
+        assert 'private' in response['Cache-Control']
+
+    def test_get_exposes_cors_headers(self):
+        user = user_factory(fxa_id='123123412')
+        self.login_user(user)
+        origin = 'http://example.org'
+        response = self.client.get(reverse_ns('accounts.session'), HTTP_ORIGIN=origin)
+        assert response.status_code == 200, response.content
+        assert response['Access-Control-Allow-Origin'] == origin
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+
     def test_delete_when_authenticated(self):
         user = user_factory(fxa_id='123123412')
         self.login_user(user)
@@ -2147,6 +2171,16 @@ class TestSessionView(TestCase):
     def test_delete_when_unauthenticated(self):
         response = self.client.delete(reverse_ns('accounts.session'))
         assert response.status_code == 401
+
+    def test_delete_rejects_cookie_only_auth(self):
+        # Even with a valid session cookie, delete requires the Authorization
+        # header: SessionCookieAuthentication only applies to GET, so logout
+        # stays immune to CSRF.
+        user = user_factory(fxa_id='123123412')
+        self.login_user(user)
+        response = self.client.delete(reverse_ns('accounts.session'))
+        assert response.status_code == 401
+        assert self.client.session.get('_auth_user_id')
 
     def test_cors_headers_are_exposed(self):
         user = user_factory(fxa_id='123123412')

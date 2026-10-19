@@ -5,6 +5,7 @@
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import {
+  deleteSession,
   fetchAddons,
   fetchAgreement,
   fetchProfile,
@@ -94,4 +95,10 @@ export function agreementQuery(host: ReactiveControllerHost) {
 export async function acceptAgreement(payload: AgreementAcceptState) {
   await postAgreement(payload);
   await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
+}
+
+// Ends the current session server-side. Callers reload afterwards so the app
+// rebuilds as signed-out; the reload discards the cache, so no invalidation here.
+export async function logout() {
+  await deleteSession();
 }

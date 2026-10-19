@@ -132,9 +132,13 @@ describe('endpoints', () => {
     expect(updates[0]).toMatchObject({ id: '1', approved: true });
   });
 
-  it('fetchProfile reads the account name', async () => {
-    mockJson({ name: 'Kate' });
-    expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  it('fetchProfile maps the id, name and picture url', async () => {
+    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+    expect(await fetchProfile()).toEqual({
+      id: '99',
+      name: 'Kate',
+      pictureUrl: 'https://cdn/a.png',
+    });
   });
 
   it('fetchAgreement returns the agreement state as it was fetched', async () => {

@@ -13,7 +13,7 @@ export default defineConfig({
     // Pin the API as unconfigured so tests are deterministic and never hit the
     // network, regardless of a developer's local .env. Tests that need the
     // configured path stub this env var and re-import.
-    env: { VITE_AMO_SESSION_ID: '' },
+    env: {},
     setupFiles: ['tests/setup.ts'],
     include: ['tests/**/*.test.ts'],
     coverage: {
