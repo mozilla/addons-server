@@ -2833,6 +2833,81 @@ class TestRequestContentReview(TestCase):
         )
 
 
+class TestFAQView(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.url = reverse('devhub.faq')
+
+    def test_url(self):
+        assert self.url == '/en-US/developers/faq'
+
+    def test_get_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        self.assertTemplateUsed(response, 'devhub/faq.html')
+        doc = pq(response.content)
+        assert doc('h2').eq(0).text() == 'Firefox Add-ons Developer FAQ'
+
+    def test_get_logged_in(self):
+        self.client.force_login(user_factory())
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+    def test_sections(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert [s.attrib['id'] for s in doc('section.faq-section')] == [
+            'reviews',
+            'api-keys',
+            'accounts',
+            'appeals',
+            'data-collection',
+            'listings',
+        ]
+        toc_links = [a.attrib['href'] for a in doc('.faq-toc a')]
+        assert toc_links == [
+            '#reviews',
+            '#api-keys',
+            '#accounts',
+            '#appeals',
+            '#data-collection',
+            '#listings',
+        ]
+        assert doc('.faq-section h4').length == 25
+
+    def test_every_question_has_permalink(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        questions = doc('.faq-section h4')
+        ids = [question.attrib['id'] for question in questions]
+        assert len(ids) == len(set(ids))
+        for question in questions.items():
+            permalink = question.find('a.faq-permalink')
+            assert permalink.length == 1
+            assert permalink.attr('href') == f'#{question.attr("id")}'
+            assert permalink.attr('aria-label') == 'Link to this question'
+
+    def test_links_to_support_form(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        support_url = reverse('devhub.support')
+        assert doc(f'.devhub-faq a[href="{support_url}"]').length > 0
+
+    def test_external_links_open_in_new_tab(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        external = doc('.devhub-faq a[href^="http"]')
+        assert external.length > 0
+        for link in external:
+            assert link.attrib['target'] == '_blank'
+            assert link.attrib['rel'] == 'noopener noreferrer'
+
+    def test_nav_link(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc(f'#site-nav a[href="{self.url}"]').text() == 'Developer FAQ'
+
+
 @override_switch('enable-devhub-support-form', active=True)
 @override_settings(FXA_SUPPORT_SECRET='mysecret')
 class TestSupportView(TestCase):
@@ -2863,6 +2938,39 @@ class TestSupportView(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'form' in response.context
+
+    def test_get_renders_faq_banner(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        banner = doc('#support-faq-banner')
+        assert banner.length == 1
+        assert 'Before reaching out' in banner.text()
+        assert banner.find('a').attr('href') == reverse('devhub.faq')
+
+    def test_get_renders_unchecked_faq_confirmation(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        checkbox = doc('#support-faq-confirm')
+        assert checkbox.length == 1
+        assert checkbox.attr('checked') is None
+        assert doc('label[for="support-faq-confirm"]').text() == (
+            'I have read the Developer FAQ and my question is not covered there.'
+        )
+        # The form is revealed in CSS by a sibling selector, so the checkbox
+        # has to come before the form under the same parent.
+        assert checkbox.next_all('form#support-form').length == 1
+
+    def test_post_invalid_keeps_faq_confirmation_checked(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            self.url, {'summary': '', 'category': '', 'body': ''}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#support-faq-confirm').attr('checked') is not None
 
     def _post(self, data=None, follow=False):
         payload = {

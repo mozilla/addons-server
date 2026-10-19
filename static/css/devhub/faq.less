@@ -1,0 +1,79 @@
+.devhub-faq {
+    header p {
+        margin-top: 8px;
+    }
+
+    .faq-toc ul {
+        list-style: disc;
+        margin: 0 0 1.5em 1.5em;
+    }
+
+    .faq-section {
+        margin-bottom: 2em;
+
+        h3 {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 0.5em;
+            padding-bottom: 0.25em;
+        }
+
+        h4 {
+            font-weight: bold;
+            margin: 1.25em 0 0.5em;
+            scroll-margin-top: 1em;
+
+            &:target {
+                background-color: #fff8d6;
+                outline: 4px solid #fff8d6;
+            }
+
+            &:hover .faq-permalink,
+            &:target .faq-permalink,
+            .faq-permalink:focus {
+                opacity: 1;
+            }
+        }
+
+        .faq-permalink {
+            font-weight: normal;
+            margin-left: 4px;
+            opacity: 0.4;
+            text-decoration: none;
+        }
+
+        ol {
+            list-style: decimal;
+            margin: 0 0 1em 1.5em;
+        }
+    }
+
+    .faq-timeline {
+        margin-bottom: 1em;
+        width: 100%;
+    }
+}
+
+#support-faq-banner {
+    margin: 0 0 20px;
+}
+
+// The support form stays hidden until the developer confirms they checked
+// the FAQ. Pure CSS, so the checkbox must be a sibling preceding the form.
+.support-faq-confirm {
+    margin: 0 8px 0 0;
+    vertical-align: middle;
+}
+
+.support-faq-confirm-label {
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.support-faq-confirm ~ .support-form {
+    display: none;
+}
+
+.support-faq-confirm:checked ~ .support-form {
+    display: block;
+    margin-top: 24px;
+}
