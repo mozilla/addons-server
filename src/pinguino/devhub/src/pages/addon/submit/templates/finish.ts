@@ -32,7 +32,7 @@ export class SubmitFinish extends LitElement {
         <p>You will be able to see the submitted add-ons on the main dashboard</p>
       </div>
       <img id="kit-submit" src=${kitSubmit} alt="" />
-      <moz-button variant="primary" size="medium">
+      <moz-button variant="primary" size="medium" href="/developers/">
         Go to the dashboard
       </moz-button>
     `;
