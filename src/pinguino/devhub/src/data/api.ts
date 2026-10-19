@@ -51,6 +51,10 @@ interface ApiAddon {
   average_daily_users?: number;
   ratings?: { average?: number; count?: number };
   categories?: string[];
+  is_experimental?: boolean;
+  requires_payment?: boolean;
+  has_eula?: boolean;
+  has_privacy_policy?: boolean;
   previews?: {
     id?: number;
     image_url?: string;
@@ -160,6 +164,12 @@ export function mapAddon(a: ApiAddon): Addon {
     ),
     // Raw slugs; the manage view resolves readable names via fetchCategories.
     categories: a.categories,
+    flags: {
+      experimental: a.is_experimental ?? false,
+      requiresPayment: a.requires_payment ?? false,
+      hasEula: a.has_eula ?? false,
+      hasPrivacyPolicy: a.has_privacy_policy ?? false,
+    },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
   };

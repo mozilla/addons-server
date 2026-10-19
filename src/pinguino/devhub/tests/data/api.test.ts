@@ -97,6 +97,8 @@ describe('mapAddon', () => {
       average_daily_users: 1597,
       ratings: { average: 3, count: 5 },
       categories: ['alerts-updates', 'tabs'],
+      has_eula: true,
+      is_experimental: false,
       current_version: {
         version: '1.0',
         license: { name: { 'en-US': 'MPL 2.0' } },
@@ -113,6 +115,7 @@ describe('mapAddon', () => {
       homepageUrl: 'https://tabs.example',
       supportEmail: 'help@tabs.example',
       categories: ['alerts-updates', 'tabs'],
+      flags: { hasEula: true, hasPrivacyPolicy: false, experimental: false },
       license: 'MPL 2.0',
       uuid: '{tab-organizer-guid}',
     });
