@@ -16,6 +16,8 @@ const MOUNT_RE = new RegExp(
   `^(?:/(\\w{2,3}(?:-\\w{2,6})?))?/${DEVHUB_SEGMENT}(?=/|$)`,
 );
 
+export const MAX_UPLOAD_SIZE = 209715200;
+
 export interface Mount {
   /** The app's base path, locale prefix included, without a trailing slash. */
   base: string;

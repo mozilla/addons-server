@@ -10,7 +10,7 @@ const VISIBILITY: Record<AddonVisibility, Badge> = {
   live: { label: 'Live', icon: 'show-password' },
   hidden: { label: 'Hidden', icon: 'show-password-slash' },
 };
-const DISTRIBUTION: Record<AddonDistribution, Badge> = {
+export const DISTRIBUTION: Record<AddonDistribution, Badge> = {
   listed: { label: 'AMO', icon: 'globe' },
   unlisted: { label: 'Self', icon: 'home' },
   enterprise: { label: 'Enterprise', icon: 'organizational-unit' },
