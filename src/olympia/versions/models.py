@@ -1088,7 +1088,7 @@ class Version(OnChangeMixin, ModelBase):
         }
 
     def can_be_disabled_and_deleted(self):
-        # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959  # noqa
+        # see https://github.com/mozilla/addons-server/issues/15121#issuecomment-667226959
         # "It should apply to the <groups> that require a review to be badged"
         from olympia.promoted.models import PromotedApproval
 
