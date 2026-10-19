@@ -43,6 +43,7 @@ from olympia.constants.scanners import (
     WEBHOOK_DURING_VALIDATION,
     WEBHOOK_EVENTS,
     WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED,
+    WEBHOOK_EVENTS_SHOULD_RUN_ACTIONS_ON_RESULTS,
     WEBHOOK_MAX_RETRIES,
     WEBHOOK_ON_LISTING_CHANGED,
     WEBHOOK_ON_VERSION_CREATED,
@@ -56,6 +57,7 @@ from olympia.versions.models import Version
 
 from .models import (
     ImproperScannerQueryRuleStateError,
+    ScannerMatch,
     ScannerQueryResult,
     ScannerQueryRule,
     ScannerResult,
@@ -181,6 +183,7 @@ def _deliver_webhook(*, scanner_result, payload, request_id):
         # We don't pass `update_fields` because the `save()` method also
         # updates other fields (e.g. has_matches, matched_rules).
         scanner_result.save()
+        maybe_run_actions_for_webhook_result(scanner_result)
 
     maybe_call_webhooks_on_version_scanned(scanner_result)
 
@@ -193,6 +196,18 @@ def maybe_call_webhooks_on_version_scanned(scanner_result):
         in WEBHOOK_EVENTS_AGGREGATED_BY_ON_VERSION_SCANNED
     ):
         call_webhooks_on_version_scanned.delay(version_pk=scanner_result.version_id)
+
+
+def maybe_run_actions_for_webhook_result(scanner_result):
+    """Queue the scanner actions for a webhook result that has just been
+    completed, if its event runs actions on results."""
+    if (
+        scanner_result.webhook_event.event
+        in WEBHOOK_EVENTS_SHOULD_RUN_ACTIONS_ON_RESULTS
+        and scanner_result.is_complete
+        and scanner_result.has_matches
+    ):
+        run_actions_for_scanner_result.delay(scanner_result.pk)
 
 
 @task
@@ -596,15 +611,26 @@ def _call_webhook(*, webhook, payload, request_id):
 @task
 @use_primary_db
 def run_actions_for_scanner_result(scanner_result_pk):
-    """Execute the scanner actions for the rules matched by a single scanner
-    result."""
+    """Execute the scanner actions for the rules newly matched by a scanner
+    result, i.e. not matched by an older result for the same event and
+    version."""
     log.info('Starting run actions task for ScannerResult %s.', scanner_result_pk)
     scanner_result = ScannerResult.objects.get(pk=scanner_result_pk)
-    rule_pks = list(scanner_result.matched_rules.values_list('pk', flat=True))
+    matched_rule_pks = set(scanner_result.matched_rules.values_list('pk', flat=True))
+    previously_matched_rule_pks = set(
+        ScannerMatch.objects.filter(
+            result__version=scanner_result.version_id,
+            result__webhook_event=scanner_result.webhook_event_id,
+            # Only look at older results, otherwise two results matching the
+            # same rule close together would each skip because of the other.
+            result__pk__lt=scanner_result.pk,
+        ).values_list('rule_id', flat=True)
+    )
+    rule_pks = sorted(matched_rule_pks - previously_matched_rule_pks)
 
     if not rule_pks:
         log.info(
-            'No matched rule for ScannerResult %s, not running any action.',
+            'No new matched rule for ScannerResult %s, not running any action.',
             scanner_result_pk,
         )
         return
