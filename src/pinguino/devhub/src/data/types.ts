@@ -5,6 +5,7 @@ export interface Developer {
 export type AddonKind = 'extension' | 'theme';
 export type AddonVisibility = 'live' | 'hidden';
 export type AddonDistribution = 'listed' | 'unlisted' | 'enterprise';
+export type FileStatus = 'public' | 'disabled' | 'unreviewed';
 
 // The API's writable role values.
 export type AddonAuthorRole = 'owner' | 'developer';
@@ -121,7 +122,7 @@ export interface Version {
   id: number;
   version: string;
   channel: AddonDistribution;
-  file: { id: number; url: string; size: number; status: string };
+  file: { id: number; url: string; size: number; status: FileStatus };
   release_notes: string | null;
   approval_notes: string;
   source: string | null;

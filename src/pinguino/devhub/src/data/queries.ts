@@ -4,6 +4,7 @@
 
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
+import { LOCALE } from '../base';
 import {
   addAuthor,
   addPreview,
@@ -341,10 +342,10 @@ export async function uploadVersionNotes(
   id: number,
   releaseNotes?: string,
   reviewerNotes?: string,
+  langCode: string = LOCALE ?? 'en-US',
 ) {
   await _updateVersion(slug, id, {
     approval_notes: reviewerNotes ?? '',
-    // TODO: https://github.com/mozilla/addons/issues/16478
-    ...(releaseNotes && { release_notes: { 'en-US': releaseNotes } }),
+    ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
 }
