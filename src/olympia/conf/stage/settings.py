@@ -63,6 +63,10 @@ FXA_CONFIG = {
     },
 }
 
+FXA_ACTIVES_BIGQUERY_TABLE = (
+    'moz-fx-fxa-prod.fxa_rp_active_accounts.client_1e5a77cf09e5b4b5_active_accounts'
+)
+
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'
 )
