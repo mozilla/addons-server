@@ -13,6 +13,7 @@ import {
   fetchAgreement,
   fetchAuthors,
   fetchCategories,
+  fetchEulaPolicy,
   fetchPendingAuthors,
   fetchProfile,
   fetchUpdates,
@@ -106,11 +107,32 @@ export async function updateAddon(slug: string, edit: AddonListingEdit) {
   return updated;
 }
 
+const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
+
+// The EULA/privacy text (separate endpoint), for the view-mode preview. Gated
+// by `getEnabled` so it only fetches when the add-on actually has a policy.
+export function eulaPolicyQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: eulaPolicyKey(getSlug()),
+      queryFn: () => fetchEulaPolicy(getSlug()),
+      enabled: getEnabled(),
+    }),
+    queryClient,
+  );
+}
+
 // EULA/privacy text is a separate endpoint; refresh the add-on list after so the
-// has_* badges reflect the change.
+// has_* badges reflect the change, and the policy text so the preview updates.
 export async function updateEulaPolicy(slug: string, edit: EulaPolicyEdit) {
   await patchEulaPolicy(slug, edit);
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  await queryClient.invalidateQueries({ queryKey: eulaPolicyKey(slug) });
 }
 
 // --- Authors ---

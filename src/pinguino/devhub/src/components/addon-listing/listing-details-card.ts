@@ -5,6 +5,7 @@ import {
   type Addon,
   type AddonListingEdit,
   categoriesQuery,
+  eulaPolicyQuery,
   fetchEulaPolicy,
   updateAddon,
   updateEulaPolicy,
@@ -58,6 +59,15 @@ const FLAGS = [
 export class ListingDetailsCard extends SectionCard {
   #form = new FormController<ListingDraft>(this);
   #categories = categoriesQuery(this);
+  // Policy text for the view-mode preview; only fetched when the add-on has one.
+  #eula = eulaPolicyQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () =>
+      Boolean(
+        this.addon?.flags?.hasEula || this.addon?.flags?.hasPrivacyPolicy,
+      ),
+  );
   // Original EULA/privacy text, fetched on edit open, to diff against on save.
   #eulaBaseline = { eula: '', privacyPolicy: '' };
 
@@ -65,6 +75,7 @@ export class ListingDetailsCard extends SectionCard {
     const a = this.addon;
     this.#form.start({
       name: a.name,
+      slug: a.slug,
       summary: a.summary ?? '',
       description: a.description ?? '',
       homepage: a.homepageUrl ?? '',
@@ -105,31 +116,40 @@ export class ListingDetailsCard extends SectionCard {
     }
   }
 
-  // The add-on PATCH fields the user actually changed, for a minimal body.
+  // The add-on PATCH fields the user actually changed, for a minimal body;
+  // each key is spread in only when its value differs from the saved add-on.
   #changedListing(d: ListingDraft): AddonListingEdit {
     const a = this.addon;
-    const out: AddonListingEdit = {};
-    if (d.name !== a.name) out.name = d.name;
-    if ((d.summary ?? '') !== (a.summary ?? '')) out.summary = d.summary;
-    if ((d.description ?? '') !== (a.description ?? ''))
-      out.description = d.description;
-    if ((d.homepage ?? '') !== (a.homepageUrl ?? '')) out.homepage = d.homepage;
-    if ((d.support_email ?? '') !== (a.supportEmail ?? ''))
-      out.support_email = d.support_email;
-    if ((d.support_url ?? '') !== (a.supportUrl ?? ''))
-      out.support_url = d.support_url;
     const cats = d.categories ?? [];
     const original = a.categories ?? [];
-    if (
+    const categoriesChanged =
       cats.length !== original.length ||
-      cats.some((c) => !original.includes(c))
-    )
-      out.categories = cats;
-    if ((d.is_experimental ?? false) !== (a.flags?.experimental ?? false))
-      out.is_experimental = d.is_experimental;
-    if ((d.requires_payment ?? false) !== (a.flags?.requiresPayment ?? false))
-      out.requires_payment = d.requires_payment;
-    return out;
+      cats.some((c) => !original.includes(c));
+    return {
+      ...(d.name !== a.name && { name: d.name }),
+      ...(d.slug !== a.slug && { slug: d.slug }),
+      ...((d.summary ?? '') !== (a.summary ?? '') && { summary: d.summary }),
+      ...((d.description ?? '') !== (a.description ?? '') && {
+        description: d.description,
+      }),
+      ...((d.homepage ?? '') !== (a.homepageUrl ?? '') && {
+        homepage: d.homepage,
+      }),
+      ...((d.support_email ?? '') !== (a.supportEmail ?? '') && {
+        support_email: d.support_email,
+      }),
+      ...((d.support_url ?? '') !== (a.supportUrl ?? '') && {
+        support_url: d.support_url,
+      }),
+      ...(categoriesChanged && { categories: cats }),
+      ...((d.is_experimental ?? false) !== (a.flags?.experimental ?? false) && {
+        is_experimental: d.is_experimental,
+      }),
+      ...((d.requires_payment ?? false) !==
+        (a.flags?.requiresPayment ?? false) && {
+        requires_payment: d.requires_payment,
+      }),
+    };
   }
 
   // Returns the changed, non-empty policy text, or null when nothing changed.
@@ -174,15 +194,41 @@ export class ListingDetailsCard extends SectionCard {
     return (this.#categories().data ?? []).filter((c) => c.type === apiType);
   }
 
+  // "Add-on URL" edit: the listing-URL base shown as static text with the slug
+  // input inline beside it. The base is the add-on's listing URL minus its
+  // current slug (its last path segment), so the host/locale aren't hard-coded.
+  #urlField() {
+    const form = this.#form;
+    const base = (this.addon.listingUrl ?? '')
+      .replace(/\/?$/, '')
+      .replace(/[^/]*$/, '');
+    return html`<div class="url-field">
+      <span class="url-label">Add-on URL</span>
+      <div class="url-row">
+        <span class="url-base">${base}</span>
+        <moz-input-text
+          class="url-slug"
+          aria-label="Add-on URL slug"
+          full-width
+          error=${form.fieldError('slug')}
+          .value=${form.value('slug') ?? ''}
+          @input=${(e: Event) =>
+            form.set('slug', (e.target as HTMLInputElement).value)}
+        ></moz-input-text>
+      </div>
+    </div>`;
+  }
+
   #editForm() {
     const form = this.#form;
     return html`
       <div class="form">
         ${this.errorBar(form.error)}
         ${textField(form, 'name', 'Add-on name')}
+        ${this.#urlField()}
         ${textField(form, 'homepage', 'Homepage of the add-on', 'url')}
-        ${textField(form, 'support_email', 'Support email', 'email')}
-        ${textField(form, 'support_url', 'Support site', 'url')}
+        ${textField(form, 'support_url', 'Support Website', 'url')}
+        ${textField(form, 'support_email', 'Support Email', 'email')}
         ${textArea(form, 'summary', 'Summary')}
         ${textArea(form, 'description', 'Description')}
         ${this.#categoriesField()}
@@ -262,6 +308,18 @@ export class ListingDetailsCard extends SectionCard {
     </div>`;
   }
 
+  // Read-only preview of a policy's text in a collapsible moz-details, shown
+  // under its own checkbox only when the add-on has that policy (and text).
+  #policyDetail(key: 'hasEula' | 'hasPrivacyPolicy', heading: string) {
+    if (!this.addon.flags?.[key]) return nothing;
+    const data = this.#eula().data;
+    const text = key === 'hasEula' ? data?.eula : data?.privacyPolicy;
+    if (!text) return nothing;
+    return html`<moz-details heading=${heading} class="policy-preview">
+      ${unsafeHTML(sanitizeHTML(text, MARKDOWN_TAGS))}
+    </moz-details>`;
+  }
+
   #view(a: Addon) {
     const flags = a.flags ?? {};
     return html`
@@ -290,11 +348,18 @@ export class ListingDetailsCard extends SectionCard {
       <div class="flags">
         ${FLAGS.map(
           (f) => html`<moz-checkbox
-            disabled
-            ?checked=${Boolean(flags[f.key])}
-            label=${f.label}
-            description=${f.description}
-          ></moz-checkbox>`,
+              disabled
+              ?checked=${Boolean(flags[f.key])}
+              label=${f.label}
+              description=${f.description}
+            ></moz-checkbox>
+            ${
+              f.key === 'hasEula'
+                ? this.#policyDetail('hasEula', 'End-User License Agreement')
+                : f.key === 'hasPrivacyPolicy'
+                  ? this.#policyDetail('hasPrivacyPolicy', 'Privacy Policy')
+                  : nothing
+            }`,
         )}
       </div>
     `;

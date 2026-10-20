@@ -1,10 +1,14 @@
 import { describe, expect, it, vi } from 'vitest';
 
-const { updateAddon, updateEulaPolicy, fetchEulaPolicy } = vi.hoisted(() => ({
-  updateAddon: vi.fn(async () => {}),
-  updateEulaPolicy: vi.fn(async () => {}),
-  fetchEulaPolicy: vi.fn(async () => ({ eula: '', privacyPolicy: '' })),
-}));
+const { updateAddon, updateEulaPolicy, fetchEulaPolicy, eula } = vi.hoisted(
+  () => ({
+    updateAddon: vi.fn(async () => {}),
+    updateEulaPolicy: vi.fn(async () => {}),
+    fetchEulaPolicy: vi.fn(async () => ({ eula: '', privacyPolicy: '' })),
+    // Mutable so tests can seed the view-mode policy preview.
+    eula: { value: { eula: '', privacyPolicy: '' } },
+  }),
+);
 vi.mock('../../src/data', () => ({
   updateAddon,
   updateEulaPolicy,
@@ -16,6 +20,11 @@ vi.mock('../../src/data', () => ({
       { slug: 'other', name: 'Other', type: 'extension' },
       { slug: 'shopping', name: 'Shopping', type: 'extension' },
     ],
+    isPending: false,
+    isError: false,
+  }),
+  eulaPolicyQuery: () => () => ({
+    data: eula.value,
     isPending: false,
     isError: false,
   }),
@@ -69,6 +78,27 @@ describe('listing-details-card', () => {
     expect(chips).toEqual(['Appearance', 'Privacy & Security']);
   });
 
+  it('previews a present policy in a disclosure under its checkbox', async () => {
+    eula.value = {
+      eula: 'Be nice to users.',
+      privacyPolicy: 'We keep nothing.',
+    };
+    const { root } = await card({
+      flags: { hasEula: true, hasPrivacyPolicy: false },
+    });
+    const details = [...root.querySelectorAll('.flags moz-details')];
+    expect(details.map((d) => d.getAttribute('heading'))).toEqual([
+      'End-User License Agreement',
+    ]);
+    expect(details[0].textContent).toContain('Be nice to users.');
+  });
+
+  it('shows no policy preview when the add-on has none', async () => {
+    eula.value = { eula: '', privacyPolicy: '' };
+    const { root } = await card({ flags: {} });
+    expect(root.querySelector('moz-details')).toBeNull();
+  });
+
   it('renders the four flags as checkboxes, checked per the add-on', async () => {
     const { root } = await card({
       flags: { experimental: true, hasPrivacyPolicy: true },
@@ -118,6 +148,34 @@ describe('listing-details-card', () => {
       expect(updateAddon).toHaveBeenCalledWith('ad-blocker', {
         name: 'Renamed',
       }),
+    );
+  });
+
+  it('PATCHes the add-on URL (slug) when changed', async () => {
+    updateAddon.mockClear();
+    const { el, root } = await enterEdit();
+
+    const urlInput = root.querySelector(
+      '.url-field .url-slug',
+    ) as HTMLInputElement;
+    urlInput.value = 'ad-blocker-pro';
+    urlInput.dispatchEvent(new Event('input'));
+    await el.updateComplete;
+
+    save(root);
+    await vi.waitFor(() =>
+      expect(updateAddon).toHaveBeenCalledWith('ad-blocker', {
+        slug: 'ad-blocker-pro',
+      }),
+    );
+  });
+
+  it('shows the listing-URL base as static text beside the slug input', async () => {
+    const { root } = await enterEdit({
+      listingUrl: 'http://olympia.test/en-US/firefox/addon/ad-blocker',
+    });
+    expect(root.querySelector('.url-base')?.textContent?.trim()).toBe(
+      'http://olympia.test/en-US/firefox/addon/',
     );
   });
 

@@ -11,6 +11,7 @@ export {
   categoriesQuery,
   createAuthor,
   createPreview,
+  eulaPolicyQuery,
   pendingAuthorsQuery,
   profileQuery,
   queryKeys,

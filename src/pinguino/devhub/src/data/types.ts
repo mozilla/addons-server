@@ -85,6 +85,7 @@ export interface Addon {
 // is the one place names are translated (in the card).
 export interface AddonListingEdit {
   name?: string;
+  slug?: string;
   summary?: string;
   description?: string;
   homepage?: string;

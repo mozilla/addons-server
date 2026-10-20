@@ -65,6 +65,27 @@ dl {
   gap: var(--space-medium);
   margin-top: var(--space-xxlarge);
 }
+.policy-preview {
+  margin-inline-start: var(--space-large);
+}
+.url-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xsmall);
+}
+.url-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xxsmall);
+}
+.url-base {
+  color: var(--text-color-deemphasized, GrayText);
+  white-space: nowrap;
+}
+.url-slug {
+  flex: 1;
+  min-width: 0;
+}
 .form {
   display: flex;
   flex-direction: column;

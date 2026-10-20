@@ -20,6 +20,7 @@ vi.mock('../../src/data', () => {
     categoriesQuery: () => reader([]),
     authorsQuery: () => reader([]),
     pendingAuthorsQuery: () => reader([]),
+    eulaPolicyQuery: () => reader({ eula: '', privacyPolicy: '' }),
   };
 });
 
