@@ -2,9 +2,8 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // The header's signed-in/out UI keys off the profile query controller. Drive it
 // through a mutable state object so each test can pick the auth state without
-// touching the network; the rest of the data barrel stays real, except logout
-// which we stub to assert the sign-out flow without a request.
-const { profileState, logoutMock } = vi.hoisted(() => ({
+// touching the network.
+const { profileState } = vi.hoisted(() => ({
   profileState: {
     data: undefined as
       | { id: string; name: string; pictureUrl?: string }
@@ -12,7 +11,6 @@ const { profileState, logoutMock } = vi.hoisted(() => ({
     isPending: false,
     isError: false,
   },
-  logoutMock: vi.fn(),
 }));
 
 vi.mock('../../src/data', async (importOriginal) => {
@@ -20,10 +18,10 @@ vi.mock('../../src/data', async (importOriginal) => {
   return {
     ...actual,
     profileQuery: () => () => profileState,
-    logout: logoutMock,
   };
 });
 
+import type { DevhubAccountMenu } from '../../src/components/devhub-account-menu';
 import type { DevhubHeader } from '../../src/components/devhub-header';
 import '../../src/components/devhub-header';
 import { mount } from '../helpers/fixture';
@@ -64,13 +62,6 @@ async function header() {
   return await mount<DevhubHeader>('devhub-header');
 }
 
-async function openMenu(el: DevhubHeader) {
-  const root = el.shadowRoot as ShadowRoot;
-  root.querySelector<HTMLButtonElement>('.trigger')?.click();
-  await el.updateComplete;
-  return root;
-}
-
 describe('devhub-header', () => {
   beforeEach(signedOut);
 
@@ -106,12 +97,12 @@ describe('devhub-header', () => {
   });
 
   describe('account area', () => {
-    it('shows a log-in link and no account trigger when signed out', async () => {
+    it('shows a log-in link and no account menu when signed out', async () => {
       signedOut();
       const root = (await header()).shadowRoot as ShadowRoot;
 
       expect(root.querySelector('a.login')).not.toBeNull();
-      expect(root.querySelector('.trigger')).toBeNull();
+      expect(root.querySelector('devhub-account-menu')).toBeNull();
     });
 
     it('links to the login flow with the current path as the return target', async () => {
@@ -142,111 +133,27 @@ describe('devhub-header', () => {
       expect(loc.href).toBe(expected);
     });
 
-    it('shows neither log-in nor trigger while the profile is loading', async () => {
+    it('shows neither log-in nor account menu while the profile is loading', async () => {
       loading();
       const root = (await header()).shadowRoot as ShadowRoot;
 
       expect(root.querySelector('a.login')).toBeNull();
-      expect(root.querySelector('.trigger')).toBeNull();
+      expect(root.querySelector('devhub-account-menu')).toBeNull();
     });
 
-    it('shows the avatar trigger (collapsed) and no menu when signed in', async () => {
-      signedIn();
-      const root = (await header()).shadowRoot as ShadowRoot;
-
-      const trigger = root.querySelector('.trigger');
-      expect(trigger).not.toBeNull();
-      expect(trigger?.getAttribute('aria-expanded')).toBe('false');
-      expect(root.querySelector('a.login')).toBeNull();
-      expect(root.querySelector('[role="menu"]')).toBeNull();
-    });
-
-    it('renders the profile picture as the circular avatar', async () => {
-      signedIn({ pictureUrl: 'https://cdn.test/me.png' });
-      const root = (await header()).shadowRoot as ShadowRoot;
-
-      const avatar = root.querySelector<HTMLImageElement>(
-        '.trigger img.avatar',
-      );
-      expect(avatar?.getAttribute('src')).toBe('https://cdn.test/me.png');
-      // No settings icon once signed in.
-      expect(root.querySelector('moz-icon')).toBeNull();
-    });
-
-    it('falls back to an initial when there is no profile picture', async () => {
-      // Set state directly: a `pictureUrl: undefined` arg would hit the helper's
-      // default. Here the field is genuinely absent, as the API may omit it.
-      Object.assign(profileState, {
-        data: { id: '1', name: 'Zoe' },
-        isPending: false,
-        isError: false,
-      });
-      const root = (await header()).shadowRoot as ShadowRoot;
-
-      expect(root.querySelector('img.avatar')).toBeNull();
-      expect(root.querySelector('.avatar--fallback')?.textContent?.trim()).toBe(
-        'Z',
-      );
-    });
-
-    it('opens a menu with profile and log-out items when the trigger is clicked', async () => {
+    it('delegates to devhub-account-menu with the profile when signed in', async () => {
       signedIn({ name: 'Kate', id: '1234' });
-      const root = await openMenu(await header());
+      const root = (await header()).shadowRoot as ShadowRoot;
 
-      expect(root.querySelector('[role="menu"]')).not.toBeNull();
-      expect(
-        root.querySelector('.trigger')?.getAttribute('aria-expanded'),
-      ).toBe('true');
-
-      const profile = root.querySelector<HTMLAnchorElement>('a.profile');
-      expect(profile?.textContent?.trim()).toBe('Kate');
-      // Locale-prefixed frontend profile page; no locale in the test URL => en-US.
-      expect(profile?.getAttribute('href')).toBe('/en-US/firefox/user/1234/');
-      expect(root.querySelector('button.logout')?.textContent?.trim()).toBe(
-        'Log out',
-      );
-    });
-
-    it('logs out via the session endpoint then reloads', async () => {
-      signedIn();
-      logoutMock.mockResolvedValue(undefined);
-      const reload = vi.fn();
-      vi.stubGlobal('location', {
-        pathname: '/',
-        search: '',
-        href: '',
-        reload,
+      const menu = root.querySelector<DevhubAccountMenu>('devhub-account-menu');
+      expect(menu).not.toBeNull();
+      expect(menu?.profile).toEqual({
+        id: '1234',
+        name: 'Kate',
+        pictureUrl: 'https://cdn.test/avatar.png',
       });
-
-      const root = await openMenu(await header());
-      root.querySelector<HTMLButtonElement>('button.logout')?.click();
-
-      await vi.waitFor(() => expect(reload).toHaveBeenCalledOnce());
-      expect(logoutMock).toHaveBeenCalledOnce();
-    });
-
-    it('closes the menu on a click outside the header', async () => {
-      signedIn();
-      const el = await header();
-      const root = await openMenu(el);
-      expect(root.querySelector('[role="menu"]')).not.toBeNull();
-
-      document.body.click();
-      await el.updateComplete;
-      expect(root.querySelector('[role="menu"]')).toBeNull();
-    });
-
-    it('closes the menu on Escape', async () => {
-      signedIn();
-      const el = await header();
-      const root = await openMenu(el);
-      expect(root.querySelector('[role="menu"]')).not.toBeNull();
-
-      el.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
-      );
-      await el.updateComplete;
-      expect(root.querySelector('[role="menu"]')).toBeNull();
+      // The header hands off the signed-in UI entirely; no log-in link.
+      expect(root.querySelector('a.login')).toBeNull();
     });
   });
 });
