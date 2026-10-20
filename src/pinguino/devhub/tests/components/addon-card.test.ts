@@ -15,7 +15,7 @@ const baseAddon: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'live',
-  distribution: 'amo',
+  channels: ['listed'],
 };
 
 async function card(addon: Partial<Addon>) {
@@ -30,7 +30,7 @@ describe('addon-card', () => {
     const root = await card({
       kind: 'extension',
       visibility: 'live',
-      distribution: 'amo',
+      channels: ['listed'],
     });
 
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Extension');
@@ -42,7 +42,7 @@ describe('addon-card', () => {
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Live', 'AMO']);
+    expect(badges).toEqual(['Live', 'Listed']);
   });
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
@@ -81,10 +81,13 @@ describe('addon-card', () => {
   });
 
   it('maps a hidden / self-distributed add-on to the right badges', async () => {
-    const root = await card({ visibility: 'hidden', distribution: 'self' });
+    const root = await card({
+      visibility: 'hidden',
+      channels: ['listed', 'unlisted', 'enterprise'],
+    });
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Hidden', 'Self']);
+    expect(badges).toEqual(['Hidden', 'Listed', 'Unlisted', 'Enterprise']);
   });
 });
