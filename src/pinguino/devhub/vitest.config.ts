@@ -10,10 +10,6 @@ export default defineConfig({
     // rather than acorn's internals. See README "Testing".
     environment: 'happy-dom',
     globals: true,
-    // Pin the API as unconfigured so tests are deterministic and never hit the
-    // network, regardless of a developer's local .env. Tests that need the
-    // configured path stub this env var and re-import.
-    env: {},
     setupFiles: ['tests/setup.ts'],
     include: ['tests/**/*.test.ts'],
     coverage: {
