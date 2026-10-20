@@ -15,7 +15,6 @@ src/pinguino/                           # umbrella for pinguino projects
     ├── vite.config.ts                  # base '/pinguino/', dev server on :5273
     ├── vitest.config.ts                # test runner (happy-dom, V8 coverage)
     ├── .npmrc                          # @mozilla scope -> GitHub Packages (token via env)
-    ├── .env.example                    # AMO API config (VITE_AMO_*); copy to .env
     ├── index.html                      # SPA shell
     ├── src/
     │   ├── main.ts                     # <pinguino-app> shell + client router
@@ -57,7 +56,7 @@ Data access is a three-layer stack under `src/data/`, exposed through the `src/d
 - **`api.ts`** - the AMO v5 endpoints and the response-to-domain mappers: `fetchProfile` (`/accounts/profile/`), `fetchAddons` (`/addons/addon/`, the authenticated user's own add-ons), and `fetchUpdates` (`/activity/`, their activity feed across all add-ons in one request).
 - **`query-client.ts` + `queries.ts`** - a single [`@tanstack/lit-query`](https://tanstack.com/query/latest/docs/framework/lit/overview) cache plus the query definitions: stable keys, per-query and lifetimes. Caching, dedup, and invalidation live here, so shared long-lived data (e.g. the signed-in developer profile) is fetched once and reused across pages instead of re-fetched on every mount.
 
-To configure Pinguino to read from the real AMO instance, copy `.env.example` to `.env` (gitignored, project-level - not the repo-root `.env`) and set:
+To configure Pinguino to read from the real AMO instance, create a `.env` (gitignored, project-level - not the repo-root `.env`) and set:
 
 - `VITE_AMO_API_BASE` - optional; defaults to same-origin `/api/v5` (local olympia via nginx).
 
