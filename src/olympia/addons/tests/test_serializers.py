@@ -1136,6 +1136,18 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         result = self.serialize()
         assert result['is_noindexed'] is True
 
+    def test_channels(self):
+        self.addon = addon_factory()
+        assert self.addon.current_version.channel == amo.CHANNEL_LISTED
+        version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED)
+        result = self.serialize()
+        # Channels are not exposed by default.
+        assert 'channels' not in result
+        # ...Unless its the developer
+        self.serializer_class = DeveloperAddonSerializer
+        result = self.serialize()
+        assert sorted(result['channels']) == ['listed', 'unlisted']
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer

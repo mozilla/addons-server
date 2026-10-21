@@ -5,6 +5,7 @@
 import { apiFetch } from './http';
 import type {
   Addon,
+  AddonDistribution,
   AddonKind,
   AgreementAcceptState,
   AgreementState,
@@ -28,6 +29,7 @@ interface ApiAddon {
   icon_url?: string;
   previews?: { image_url?: string; thumbnail_url?: string }[];
   current_version?: { version?: string };
+  channels: AddonDistribution[];
 }
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
@@ -82,8 +84,7 @@ export function mapAddon(a: ApiAddon): Addon {
     version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
     visibility: live ? 'live' : 'hidden',
-    // Distribution isn't exposed by the list API yet; default until it is.
-    distribution: 'amo',
+    channels: a.channels,
     iconUrl: a.icon_url,
     previewUrl: preview?.image_url ?? preview?.thumbnail_url,
   };
