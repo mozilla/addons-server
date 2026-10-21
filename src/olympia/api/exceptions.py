@@ -78,7 +78,7 @@ def custom_exception_handler(exc, context=None):
     elif isinstance(exc, PermissionDenied):
         exc = exceptions.PermissionDenied()
     elif (
-        type(exc) is exceptions.Throttled
+        isinstance(exc, exceptions.Throttled)
         and exc.detail == exceptions.Throttled(wait=exc.wait).detail
     ):
         exc = Throttled(wait=exc.wait)
