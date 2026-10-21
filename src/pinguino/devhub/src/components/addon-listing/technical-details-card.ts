@@ -1,7 +1,9 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { updateAddon } from '../../data';
 import { FormController, textArea } from '../../foundations/form';
+import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
 import { SectionCard } from './section-card';
 
 type TechnicalDraft = { developer_comments?: string };
@@ -55,7 +57,7 @@ export class TechnicalDetailsCard extends SectionCard {
             </dl>
           </div>`
           : html`<dl>
-            ${this.row('Developer comments', a.developerComments)}
+            ${this.row('Developer comments', unsafeHTML(sanitizeHTML(a.developerComments, MARKDOWN_TAGS)))}
             ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}
           </dl>`
       }

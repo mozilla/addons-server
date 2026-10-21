@@ -170,6 +170,30 @@ describe('listing-details-card', () => {
     );
   });
 
+  it('redirects to the new slug URL after the add-on URL changes', async () => {
+    history.pushState(
+      {},
+      '',
+      '/developers/addon/ad-blocker/edit/listing-details',
+    );
+    const { el, root } = await enterEdit();
+
+    const urlInput = root.querySelector(
+      '.url-field .url-slug',
+    ) as HTMLInputElement;
+    urlInput.value = 'ad-blocker-pro';
+    urlInput.dispatchEvent(new Event('input'));
+    await el.updateComplete;
+
+    save(root);
+    await vi.waitFor(() =>
+      expect(location.pathname).toBe(
+        '/developers/addon/ad-blocker-pro/edit/listing-details',
+      ),
+    );
+    history.pushState({}, '', '/');
+  });
+
   it('shows the listing-URL base as static text beside the slug input', async () => {
     const { root } = await enterEdit({
       listingUrl: 'http://olympia.test/en-US/firefox/addon/ad-blocker',

@@ -168,6 +168,7 @@ export class ListingDetailsCard extends SectionCard {
   }
 
   #save() {
+    const previousSlug = this.addon.slug;
     return this.#form.submit(async (d) => {
       const listing = this.#changedListing(d);
       const eula = this.#changedEula(d);
@@ -176,6 +177,20 @@ export class ListingDetailsCard extends SectionCard {
       }
       if (eula) {
         await updateEulaPolicy(this.addon.slug, eula);
+      }
+      // The slug lives in the page URL, so a changed slug leaves the current
+      // URL pointing at a now-missing add-on. Point the router at the new slug
+      // (the add-on list has already refetched via updateAddon).
+      if (listing.slug && listing.slug !== previousSlug) {
+        history.pushState(
+          {},
+          '',
+          location.pathname.replace(
+            `/addon/${previousSlug}`,
+            `/addon/${listing.slug}`,
+          ),
+        );
+        dispatchEvent(new PopStateEvent('popstate'));
       }
     });
   }
