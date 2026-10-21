@@ -264,7 +264,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object version: For create or update requests that included a :ref:`version <version-create-request>` only. Object holding the :ref:`version <version-detail-object>` that was submitted.
     :>json string versions_url: The URL to the version history page for the add-on.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
-    :>json string[] channels: The channels the add-on has versions in. Can be `listed`, `unlisted`, or `enterprise`. Shown only to authors of the add-on.
+    :>json string[] channels: The channels the add-on has versions in. Can be `listed`, `unlisted`, or `enterprise`. This field is only present if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
+
 
 .. _addon-detail-status:
 
