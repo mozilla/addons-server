@@ -383,10 +383,10 @@ class CacheControlMiddleware:
     """Middleware to add Cache-Control: max-age=xxx header to responses that
     should be cached, Cache-Control: s-maxage:0 to responses that should not.
 
-    The only responses that should be cached are API, unauthenticated responses
-    from "safe" HTTP verbs, or responses that already had a max-age set before
-    being processed by this middleware. In that last case, the Cache-Control
-    header already present is left intact.
+    The only responses that should be cached are: API, unauthenticated responses
+    from "safe" HTTP verbs, where Cache-Control forbids caching, or responses that
+    already had a max-age set before being processed by this middleware. In that last
+    case, the Cache-Control header already present is left intact.
     """
 
     def __init__(self, get_response):
@@ -395,6 +395,11 @@ class CacheControlMiddleware:
     def __call__(self, request):
         response = self.get_response(request)
         max_age_from_response = get_max_age(response)
+        cache_control = response.get('Cache-Control', '')
+        response_forbids_caching = any(
+            directive in cache_control
+            for directive in ('no-store', 'no-cache', 'private')
+        )
         request_conditions = (
             request.is_api
             and request.method in ('GET', 'HEAD')
@@ -406,6 +411,7 @@ class CacheControlMiddleware:
             and response.status_code >= 200
             and response.status_code < 400
             and not max_age_from_response
+            and not response_forbids_caching
         )
         if request_conditions and response_conditions:
             if request.META['SERVER_NAME'] == settings.SERVICES_DOMAIN:

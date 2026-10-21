@@ -134,6 +134,21 @@ class SessionIDAuthentication(BaseAuthentication):
         return (user, token)
 
 
+class SessionCookieGetAuthentication(SessionIDAuthentication):
+    """
+    Subclass of SessionIDAuthentication that reads the session key from the cookie
+    instead of from the Authorization header. Used by pinguino devhub that can't read
+    session cookie themselves. Deliberately restricted to GET, so unsafe methods have to
+    either use one of the other authentication methods or jump through the CRSF hoops.
+    """
+
+    def get_token_value(self, request):
+        if request.method != 'GET':
+            return None
+        # SessionMiddleware sets request.session from the cookie, even on API requests.
+        return request.session.session_key or None
+
+
 class JWTKeyAuthentication(BaseAuthentication):
     """
     DRF authentication class for JWT header auth with API keys.

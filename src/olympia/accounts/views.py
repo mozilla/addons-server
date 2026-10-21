@@ -17,6 +17,7 @@ from django.db.models import Q
 from django.http import HttpResponseNotAllowed, HttpResponseRedirect, QueryDict
 from django.template.response import TemplateResponse
 from django.urls import reverse
+from django.utils.cache import add_never_cache_headers
 from django.utils.decorators import method_decorator
 from django.utils.encoding import force_bytes, force_str
 from django.utils.html import format_html
@@ -62,6 +63,7 @@ from olympia.amo.reverse import get_url_prefix
 from olympia.amo.utils import fetch_subscribed_newsletters, is_safe_url, use_fake_fxa
 from olympia.api.authentication import (
     JWTKeyAuthentication,
+    SessionCookieGetAuthentication,
     SessionIDAuthentication,
     UnsubscribeTokenAuthentication,
 )
@@ -428,14 +430,32 @@ def logout_user(request, response):
 # This view is not covered by the CORS middleware, see:
 # https://github.com/mozilla/addons-server/issues/11100
 class SessionView(APIView):
+    # SessionCookieGetAuthentication is only used to GET the session id. Delete still
+    # requires the Authorization header.
+    authentication_classes = [SessionIDAuthentication, SessionCookieGetAuthentication]
     permission_classes = [
         ByHttpMethod(
             {
                 'options': AllowAny,  # Needed for CORS.
+                'get': IsAuthenticated,
                 'delete': IsAuthenticated,
             }
         ),
     ]
+
+    def get(self, request, *args, **kwargs):
+        # Hand the session id to the client so it can use SessionIDAuthentication for
+        # further API calls.
+        # Never cache it: it is per-user and responses here carry no Vary: Cookie
+        # (see NoVarySessionMiddleware).
+        response = Response({'session_id': request.session.session_key})
+        add_never_cache_headers(response)
+        origin = request.META.get('HTTP_ORIGIN')
+        if not origin:
+            return response
+        response[ACCESS_CONTROL_ALLOW_ORIGIN] = origin
+        response[ACCESS_CONTROL_ALLOW_CREDENTIALS] = 'true'
+        return response
 
     def options(self, request, *args, **kwargs):
         response = Response()

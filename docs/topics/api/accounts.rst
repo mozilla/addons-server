@@ -362,11 +362,36 @@ This allows you to generate a new user account and sign in as that user.
             "https://addons.mozilla.org/en-US/developers/addon/submit/1" \
             -o /dev/null
 
-.. _`session`:
 
--------
-Session
--------
+.. _`session-get`:
+
+-----------
+Session Get
+-----------
+
+If the user is authenticated with browser authentication, this endpoint will return the value
+from the `session` cookie, from the current session, to use with :ref:`internal authentication <api-auth-internal>`.
+
+.. http:get:: /api/v5/accounts/session/
+
+    **Request:**
+
+    A browser GET request to https://addons.mozilla.org/api/v5/accounts/session/
+
+    **Response:**
+
+    .. sourcecode:: json
+
+        {
+            "session_id": "xxxxxxxxx"
+        }
+
+
+.. _`session-delete`:
+
+--------------
+Session Delete
+--------------
 
 Log out of the current session. This is for use with the
 :ref:`internal authentication <api-auth-internal>` that authenticates browser
