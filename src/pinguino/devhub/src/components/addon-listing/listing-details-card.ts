@@ -319,7 +319,7 @@ export class ListingDetailsCard extends SectionCard {
         @change=${(e: Event) =>
           form.set(opts.hasKey, (e.target as HTMLInputElement).checked)}
       ></moz-checkbox>
-      ${checked ? textArea(form, opts.textKey, opts.label) : nothing}
+      ${checked ? textArea(form, opts.textKey) : nothing}
     </div>`;
   }
 

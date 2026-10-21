@@ -1,5 +1,5 @@
 import type { InputType } from 'acorn-web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import type { FormController } from './form-controller';
 
 // Text input bound to a FormController field: value, inline error, and input
@@ -24,10 +24,10 @@ export function textField<D extends object>(
 export function textArea<D extends object>(
   form: FormController<D>,
   name: keyof D & string,
-  label: string,
+  label?: string,
 ) {
   return html`<moz-textarea
-    label=${label}
+    label=${label ?? nothing}
     full-width
     error=${form.fieldError(name)}
     .value=${(form.value(name) as string) ?? ''}
