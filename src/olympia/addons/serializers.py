@@ -1446,7 +1446,7 @@ class DeveloperAddonSerializer(AddonSerializer):
         )
 
     def get_channels(self, obj):
-        return [amo.CHANNEL_CHOICES_API[channel] for channel in obj.version_channels()]
+        return [amo.CHANNEL_CHOICES_API.get(channel, str(channel)) for channel in obj.version_channels()]
 
 
 class SimpleAddonSerializer(AddonSerializer):
