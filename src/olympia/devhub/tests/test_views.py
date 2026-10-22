@@ -7,7 +7,7 @@ from urllib.parse import quote, urlencode
 
 from django.conf import settings
 from django.core import mail
-from django.http import HttpResponse, HttpResponseNotAllowed
+from django.http import HttpResponseNotAllowed
 from django.template import defaultfilters
 from django.test import RequestFactory, override_settings
 from django.urls import reverse
@@ -3304,10 +3304,27 @@ class TestSwitchPinguino(TestCase):
     PINGUINO_DEV_SERVER_URL='http://pinguino:5273',
     STATIC_URL_PREFIX='/static-server/',
 )
+@override_settings(
+    PINGUINO_DEV_SERVER_URL='http://pinguino:5273',
+    STATIC_URL_PREFIX='/static-server/',
+)
 class TestServePinguino(TestCase):
     # The URL the dev server serves the SPA shell from: the vite base is
     # STATIC_URL_PREFIX + 'pinguino/'.
     dev_server_url = 'http://pinguino:5273/static-server/pinguino/'
+    # The shell as shipped: the token placeholder is filled in per-request.
+    shell = (
+        b'<html><body>'
+        b'<pinguino-app token="INSERT_TOKEN_HERE"></pinguino-app>'
+        b'</body></html>'
+    )
+
+    def _request(self, path='/developers/', *, session_key=None):
+        # The view reads request.session.session_key; a bare RequestFactory
+        # request has no session (middleware adds it), so supply one.
+        request = RequestFactory().get(path)
+        request.session = mock.Mock(session_key=session_key)
+        return request
 
     @override_settings(DEV_MODE=True)
     @responses.activate
@@ -3315,14 +3332,14 @@ class TestServePinguino(TestCase):
         responses.add(
             responses.GET,
             self.dev_server_url,
-            body='<html><pinguino-app></pinguino-app></html>',
+            body=self.shell,
             content_type='text/html',
             status=200,
         )
-        response = serve_pinguino(RequestFactory().get('/developers/addon/5'))
+        response = serve_pinguino(self._request('/developers/addon/5'))
         assert response.status_code == 200
         assert response['Content-Type'] == 'text/html'
-        assert b'<pinguino-app>' in response.content
+        assert b'<pinguino-app' in response.content
         # We fetch the shell once, from the dev server's base, regardless of the
         # requested path (the SPA router handles the path client-side).
         assert len(responses.calls) == 1
@@ -3332,19 +3349,44 @@ class TestServePinguino(TestCase):
     @responses.activate
     def test_dev_mode_propagates_upstream_status(self):
         responses.add(responses.GET, self.dev_server_url, body='boom', status=502)
-        response = serve_pinguino(RequestFactory().get('/developers/'))
+        response = serve_pinguino(self._request('/developers/'))
         assert response.status_code == 502
 
     @override_settings(DEV_MODE=False, STATIC_ROOT='/fake/static/root')
     def test_production_serves_built_shell_from_static_root(self):
-        request = RequestFactory().get('/developers/addon/5')
-        with mock.patch('django.views.static.serve') as serve_static:
-            serve_static.return_value = HttpResponse('shell')
-            response = serve_pinguino(request)
-        serve_static.assert_called_once_with(
-            request, 'pinguino/index.html', document_root='/fake/static/root'
+        opener = mock.mock_open(read_data=self.shell)
+        with mock.patch('olympia.devhub.views.open', opener, create=True):
+            response = serve_pinguino(self._request('/developers/addon/5'))
+        opener.assert_called_once_with('/fake/static/root/pinguino/index.html', 'rb')
+        assert response.status_code == 200
+        assert b'<pinguino-app' in response.content
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_injects_session_token_into_shell(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=200,
         )
-        assert response.content == b'shell'
+        response = serve_pinguino(self._request(session_key='sess-abc'))
+        assert b'<pinguino-app token="sess-abc"></pinguino-app>' in response.content
+        assert b'INSERT_TOKEN_HERE' not in response.content
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_anonymous_request_injects_empty_token(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=200,
+        )
+        response = serve_pinguino(self._request(session_key=None))
+        assert b'<pinguino-app token=""></pinguino-app>' in response.content
 
 
 @override_flag('pinguino-switch', active=True)

@@ -2420,15 +2420,20 @@ def serve_pinguino(request):
             f'{settings.PINGUINO_DEV_SERVER_URL}{settings.STATIC_URL_PREFIX}pinguino/'
         )
         response = requests.get(upstream, timeout=5)
-        return http.HttpResponse(
-            response.content,
-            status=response.status_code,
-            content_type=response.headers.get('Content-Type', 'text/html'),
-        )
+        content = response.content
+    else:
+        # In production, read the built index.html from STATIC_ROOT.
+        with open(os.path.join(settings.STATIC_ROOT, 'pinguino/index.html'), 'rb') as f:
+            content = f.read()
+        response = http.HttpResponse(content)
 
-    # In production the entire SPA has been built and collected into STATIC_ROOT
-    from django.views.static import serve as serve_static
-
-    return serve_static(
-        request, 'pinguino/index.html', document_root=settings.STATIC_ROOT
+    session_id = (request.session.session_key or '').encode('utf-8')
+    content = content.replace(
+        b'<pinguino-app token="INSERT_TOKEN_HERE"></pinguino-app>',
+        b'<pinguino-app token="' + session_id + b'"></pinguino-app>',
+    )
+    return http.HttpResponse(
+        content,
+        status=response.status_code,
+        content_type=response.headers.get('Content-Type', 'text/html'),
     )

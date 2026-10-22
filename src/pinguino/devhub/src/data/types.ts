@@ -1,7 +1,9 @@
 import type { AddonVisibility, StatusInfo } from './statuses';
 
 export interface Developer {
+  id: string;
   name: string;
+  pictureUrl?: string;
 }
 
 export type AddonKind = 'extension' | 'theme';
