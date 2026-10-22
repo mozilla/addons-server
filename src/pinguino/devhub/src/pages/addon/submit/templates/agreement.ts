@@ -1,8 +1,9 @@
 import { css, html, LitElement } from 'lit';
-import { customElement, query } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { BASE } from '../../../../base';
 import { acceptAgreement, agreementQuery } from '../../../../data/queries';
+import { navigateTo } from '../../../../helper';
 
 const WORKSHOP_URL = 'https://extensionworkshop.com/documentation/publish';
 
@@ -20,6 +21,8 @@ export class DevhubAgreement extends LitElement {
   }
   `;
 
+  @property() next = '';
+
   @query('#display-name') private displayNameInput?: HTMLInputElement;
   #agreement = agreementQuery(this);
   #redirected = false;
@@ -27,7 +30,7 @@ export class DevhubAgreement extends LitElement {
   private redirect() {
     if (this.#redirected) return;
     this.#redirected = true;
-    // TODO: Redirect
+    if (this.next) navigateTo(this.next, { replace: true });
   }
 
   willUpdate() {
