@@ -58,6 +58,22 @@ describe('apiFetch', () => {
     expect((caught as ApiError).status).toBe(404);
   });
 
+  it('surfaces field-level validation errors in the ApiError message', async () => {
+    mockFetch({
+      ok: false,
+      status: 400,
+      json: async () => ({ name: ['This field is required.'] }),
+    });
+
+    let caught: unknown;
+    try {
+      await apiFetch('/addons/addon/x/', { method: 'PATCH', body: {} });
+    } catch (e) {
+      caught = e;
+    }
+    expect((caught as ApiError).message).toBe('name: This field is required.');
+  });
+
   it('sends a Session auth header and custom base when configured', async () => {
     vi.stubEnv('VITE_AMO_SESSION_ID', 'sess-123');
     vi.stubEnv('VITE_AMO_API_BASE', 'https://amo.test/api/v5');

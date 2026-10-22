@@ -42,7 +42,7 @@ describe('addon-card', () => {
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Live', 'Listed']);
+    expect(badges).toEqual(['Live', 'AMO']);
   });
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
@@ -88,6 +88,6 @@ describe('addon-card', () => {
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Hidden', 'Listed', 'Unlisted', 'Enterprise']);
+    expect(badges).toEqual(['Hidden', 'AMO', 'Self', 'Enterprise']);
   });
 });

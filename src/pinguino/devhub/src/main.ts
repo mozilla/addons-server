@@ -67,7 +67,7 @@ export class PinguinoApp extends LitElement {
   render() {
     return html`
       <moz-provider>
-        <!-- TODO: impliment proper page header/navigation -->
+        <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
         <app-container>${this._router.outlet()}</app-container>
       </moz-provider>

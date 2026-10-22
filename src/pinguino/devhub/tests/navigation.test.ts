@@ -53,4 +53,26 @@ describe('interceptOutOfAppLinks', () => {
       clickSpy(`${location.origin}/developers/addon/x`),
     ).not.toHaveBeenCalled();
   });
+
+  it('suppresses the native jump for same-page hash links but keeps the component handler', () => {
+    const cleanup = interceptOutOfAppLinks('/pinguino');
+    const anchor = document.createElement('a');
+    anchor.href = `${location.origin}${location.pathname}#listing-details`;
+    document.body.append(anchor);
+
+    const e = new MouseEvent('click', {
+      bubbles: true,
+      composed: true,
+      cancelable: true,
+      button: 0,
+    });
+    const prevent = vi.spyOn(e, 'preventDefault');
+    const stop = vi.spyOn(e, 'stopImmediatePropagation');
+    anchor.dispatchEvent(e);
+    cleanup();
+
+    // Router bails on defaultPrevented; the component's own listener still runs.
+    expect(prevent).toHaveBeenCalledOnce();
+    expect(stop).not.toHaveBeenCalled();
+  });
 });
