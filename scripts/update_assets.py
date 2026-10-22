@@ -24,6 +24,34 @@ def clean_static_dirs(verbose: bool = False):
                 os.remove(entry_path)
 
 
+def build_pinguino(environment):
+    # Pinguino DevHub is (for now) a separate npm project with its own deps, built into
+    # static/pinguino/ (see its vite.config.ts) so that collectstatic picks it.
+    # ASSET_BASE in vite.config.ts uses STATIC_URL_PREFIX, which is in `environment`.
+    home = Path(os.environ['HOME'])
+    pinguino_dir = home / 'src' / 'pinguino' / 'devhub'
+
+    # Force the shared npm cache via an absolute path - .npmrc sets `cache` relative to
+    # the cwd, and we want all the deps in one place.
+    environment = {
+        **environment,
+        'npm_config_cache': str(home / 'deps' / 'cache' / 'npm'),
+    }
+
+    subprocess.run(
+        ['npm', 'ci', '--no-audit', '--no-fund'],
+        check=True,
+        cwd=pinguino_dir,
+        env=environment,
+    )
+    subprocess.run(
+        ['npm', 'run', 'build'],
+        check=True,
+        cwd=pinguino_dir,
+        env=environment,
+    )
+
+
 def update_assets(verbose: bool = False):
     clean_static_dirs(verbose)
 
@@ -38,6 +66,7 @@ def update_assets(verbose: bool = False):
         check=True,
         env=environment,
     )
+    build_pinguino(environment)
     subprocess.run(
         script_prefix + ['generate_jsi18n_files'],
         check=True,

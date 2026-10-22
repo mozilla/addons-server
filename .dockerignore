@@ -36,7 +36,8 @@ docs/_gh-pages
 docs/api/_build
 local_settings.py
 MANIFEST
-node_modules
+# Match node_modules at any depth (e.g. src/pinguino/devhub/node_modules)
+**/node_modules
 pip-log.txt
 private/
 .ruff_cache
