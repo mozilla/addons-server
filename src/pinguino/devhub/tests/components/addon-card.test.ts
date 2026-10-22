@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AddonCard } from '../../src/components/addon-card';
 import '../../src/components/addon-card';
 import type { Addon } from '../../src/data';
+import { ADDON_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
 
 // Assertions read this component's own shadow root, not acorn's moz-* internals,
@@ -11,10 +12,10 @@ const baseAddon: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
+  visibility: 'visible',
   channels: ['listed'],
 };
 
@@ -29,7 +30,7 @@ describe('addon-card', () => {
   it('renders an extension name with its visibility/distribution badges', async () => {
     const root = await card({
       kind: 'extension',
-      visibility: 'live',
+      visibility: 'visible',
       channels: ['listed'],
     });
 
@@ -42,7 +43,7 @@ describe('addon-card', () => {
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Live', 'AMO']);
+    expect(badges).toEqual(['Visible', 'AMO']);
   });
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
@@ -82,12 +83,12 @@ describe('addon-card', () => {
 
   it('maps a hidden / self-distributed add-on to the right badges', async () => {
     const root = await card({
-      visibility: 'hidden',
+      visibility: 'invisible',
       channels: ['listed', 'unlisted', 'enterprise'],
     });
     const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
       (b) => b.textContent?.trim(),
     );
-    expect(badges).toEqual(['Hidden', 'AMO', 'Self', 'Enterprise']);
+    expect(badges).toEqual(['Invisible', 'AMO', 'Self', 'Enterprise']);
   });
 });

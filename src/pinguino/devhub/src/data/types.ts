@@ -1,9 +1,10 @@
+import type { AddonVisibility, StatusInfo } from './statuses';
+
 export interface Developer {
   name: string;
 }
 
 export type AddonKind = 'extension' | 'theme';
-export type AddonVisibility = 'live' | 'hidden';
 export type AddonDistribution = 'listed' | 'unlisted' | 'enterprise';
 
 // The API's writable role values.
@@ -37,7 +38,7 @@ export interface Addon {
   name: string;
   kind: AddonKind;
   icon: string;
-  statusLabel: string;
+  status: StatusInfo;
   version: string;
   // Display string ("Sep 2 2025"); the API mapper formats ISO dates to this.
   lastUpdated: string;
@@ -119,11 +120,11 @@ export interface EulaPolicyEdit {
 
 export interface Update {
   id: string;
-  approved: boolean;
   title: string;
   message: string;
   version: string;
-  versionStatus: string;
+  // Absent when the feed entry isn't about a review outcome.
+  versionStatus?: StatusInfo;
   tags: string[];
   date: string;
   addonSlug: string;
