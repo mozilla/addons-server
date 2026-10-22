@@ -52,6 +52,7 @@ from olympia.scanners.tasks import (
 )
 from olympia.search.filters import AddonAppVersionQueryParam
 from olympia.tags.models import Tag
+from olympia.translations.models import delete_translation
 from olympia.translations.utils import (
     fetch_translations_from_instance,
     get_translation_differences,
@@ -865,8 +866,8 @@ class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
 
 
 class AddonEulaPolicySerializer(AMOModelSerializer):
-    eula = TranslationSerializerField()
-    privacy_policy = TranslationSerializerField()
+    eula = TranslationSerializerField(required=False)
+    privacy_policy = TranslationSerializerField(required=False)
 
     class Meta:
         model = Addon
@@ -876,8 +877,42 @@ class AddonEulaPolicySerializer(AMOModelSerializer):
         )
         validators = (NoThemesValidator(),)
 
+    def to_internal_value(self, data):
+        # A null value clears that policy. The translation field itself only
+        # accepts a {lang-code: value} object, so pull the nulls out before
+        # field validation and let update() delete the translation.
+        cleared = [
+            field
+            for field in ('eula', 'privacy_policy')
+            if field in data and data[field] is None
+        ]
+        validated = super().to_internal_value(
+            {key: value for key, value in data.items() if key not in cleared}
+        )
+        for field in cleared:
+            validated[field] = None
+        return validated
+
     def update(self, instance, validated_data):
-        instance = super().update(instance, validated_data)
+        # Clearing a policy (null) deletes its translation, mirroring the
+        # classic devhub's PolicyForm; everything else is a normal update. The
+        # delete runs last (like PolicyForm.save) so a trailing instance.save()
+        # can't resurrect the just-nulled translation FK.
+        cleared = [
+            field
+            for field in ('eula', 'privacy_policy')
+            if field in validated_data and validated_data[field] is None
+        ]
+        instance = super().update(
+            instance,
+            {
+                key: value
+                for key, value in validated_data.items()
+                if key not in cleared
+            },
+        )
+        for field in cleared:
+            delete_translation(instance, field)
 
         if validated_data:
             ActivityLog.objects.create(

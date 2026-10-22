@@ -379,10 +379,14 @@ export async function patchEulaPolicy(
   slug: string,
   edit: EulaPolicyEdit,
 ): Promise<void> {
+  // null clears the policy (the endpoint deletes the translation); a string
+  // sets it as a { lang: value } object.
   const body: Record<string, unknown> = {};
-  if ('eula' in edit) body.eula = { 'en-US': edit.eula ?? '' };
+  if ('eula' in edit)
+    body.eula = edit.eula == null ? null : { 'en-US': edit.eula };
   if ('privacyPolicy' in edit) {
-    body.privacy_policy = { 'en-US': edit.privacyPolicy ?? '' };
+    body.privacy_policy =
+      edit.privacyPolicy == null ? null : { 'en-US': edit.privacyPolicy };
   }
   await apiFetch(`/addons/addon/${slug}/eula_policy/?lang=en-US`, {
     method: 'PATCH',
