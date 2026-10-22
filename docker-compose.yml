@@ -24,7 +24,7 @@ x-env-mapping: &env
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
     - FXA_CLIENT_SECRET
-    - STATIC_URL_PREFIX=/static-server/
+    - &static_url_prefix STATIC_URL_PREFIX=/static-server/
     - MEDIA_URL_PREFIX=/user-media/
 
 x-olympia: &olympia
@@ -209,6 +209,10 @@ services:
     environment:
       - VITE_HMR_CLIENT_PORT=80
       - NODE_AUTH_TOKEN=${NODE_AUTH_TOKEN:-}
+      # Reuse the same value as the olympia services (see the &env block) so the
+      # vite dev server's base (STATIC_URL_PREFIX + pinguino/) matches what nginx
+      # proxies here and what devhub.views.serve_pinguino fetches.
+      - *static_url_prefix
     volumes:
       - ./src/pinguino/devhub:/app
       # Keep deps inside the container so they never mix with the host or olympia.
