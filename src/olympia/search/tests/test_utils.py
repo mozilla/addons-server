@@ -10,7 +10,8 @@ from olympia.search.utils import get_es, index_objects, unindex_objects
 class TestGetES(ESTestCase):
     def test_get_es(self):
         es = get_es()
-        assert es.transport._verified_elasticsearch
+        assert es._retry_on_timeout
+        assert es._max_retries == 1
 
 
 @mock.patch('olympia.search.utils.helpers')

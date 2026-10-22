@@ -772,7 +772,7 @@ class TestCinderJobManager(TestCase):
 
 class TestCinderJob(TestCase):
     def setUp(self):
-        user_factory(id=settings.TASK_USER_ID)
+        self.task_user = user_factory(id=settings.TASK_USER_ID)
 
     def final_decision(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
@@ -1504,6 +1504,35 @@ class TestCinderJob(TestCase):
         assert mid_action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
+
+    def test_create_and_execute_decision_no_action(self):
+        cinder_job = CinderJob.objects.create(job_id='1234')
+        target = addon_factory(users=[self.task_user])
+        AbuseReport.objects.create(
+            guid=target.guid, cinder_job=cinder_job, reporter_email='some@email.com'
+        )
+        policy = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        ActivityLog.objects.all().delete()
+
+        set_user(self.task_user)
+        CinderJob.create_and_execute_decision(
+            cinder_job,
+            target=target,
+            decision_cinder_id='12345',
+            decision_actions=[DECISION_ACTIONS.AMO_IGNORE.value],
+            decision_notes='',
+            policy_ids=['123-45'],
+            job_queue='some-cinder-queue',
+        )
+
+        assert cinder_job.final_decision.cinder_id == '12345'
+        assert cinder_job.final_decision.action == DECISION_ACTIONS.AMO_IGNORE
+        assert cinder_job.final_decision.addon == target
+        assert list(cinder_job.final_decision.policies.all()) == [policy]
+        assert not ActivityLog.objects.exists(), ActivityLog.objects.all()
+
+        assert len(mail.outbox) == 1
+        assert mail.outbox[0].to == ['some@email.com']
 
     @override_switch('dsa-cinder-forwarded-review', active=True)
     def test_process_queue_move_into_reviewer_handled(self):

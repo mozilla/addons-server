@@ -141,7 +141,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: elasticsearch:8.19.22@sha256:909a569c9c973d1de81cee7a002b69e65726f8d6317de4627ccfeb690a6d0ccb
+    image: elasticsearch:8.19.23@sha256:8b1751877c984f3e4f59bafb15fc890e01969a744255fd5f6860c060b62cff36
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -181,7 +181,7 @@ services:
 
   addons-frontend:
     <<: *env
-    image: mozilla/addons-frontend:2026.10.01@sha256:c536f7e4e510ffafba4317c690bf4b9797dcd1b70c7859a53ff70489fe27670b
+    image: mozilla/addons-frontend:2026.10.15@sha256:d3c14a78840d171c673f1c1cd7e49bda53b6a1ffc93123db09c05af62f6e7998
     platform: linux/amd64
     environment:
       # We change the proxy port (which is the main entrypoint) as well as the

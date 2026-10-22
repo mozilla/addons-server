@@ -8,6 +8,7 @@ import type {
   AddonAuthor,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonDistribution,
   AddonKind,
   AddonListingEdit,
   AgreementAcceptState,
@@ -62,6 +63,7 @@ interface ApiAddon {
     caption?: Localized | null;
   }[];
   current_version?: { version?: string; license?: { name?: Localized } };
+  channels: AddonDistribution[];
 }
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
@@ -137,8 +139,7 @@ export function mapAddon(a: ApiAddon): Addon {
     version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
     visibility: live ? 'live' : 'hidden',
-    // Distribution isn't exposed by the list API yet; default until it is.
-    distribution: 'amo',
+    channels: a.channels,
     iconUrl: a.icon_url,
     previewUrl: preview?.image_url ?? preview?.thumbnail_url,
     screenshots: a.previews?.map((p) => ({

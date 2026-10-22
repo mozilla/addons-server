@@ -1437,12 +1437,19 @@ class AddonSerializer(AMOModelSerializer):
 class DeveloperAddonSerializer(AddonSerializer):
     current_version = SimpleDeveloperVersionSerializer(read_only=True)
     latest_unlisted_version = SimpleDeveloperVersionSerializer(read_only=True)
+    channels = serializers.SerializerMethodField()
 
     class Meta(AddonSerializer.Meta):
-        fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
+        fields = AddonSerializer.Meta.fields + ('latest_unlisted_version', 'channels')
         read_only_fields = tuple(
             set(fields) - set(AddonSerializer.Meta.writeable_fields)
         )
+
+    def get_channels(self, obj):
+        return [
+            amo.CHANNEL_CHOICES_API.get(channel, str(channel))
+            for channel in obj.version_channels()
+        ]
 
 
 class SimpleAddonSerializer(AddonSerializer):

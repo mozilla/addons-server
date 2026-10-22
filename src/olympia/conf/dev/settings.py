@@ -63,7 +63,7 @@ FXA_CONFIG = {
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
-        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local
     },
 }
 FXA_CONTENT_HOST = 'https://accounts.stage.mozaws.net'

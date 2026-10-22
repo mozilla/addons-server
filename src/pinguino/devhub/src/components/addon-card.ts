@@ -11,8 +11,8 @@ const VISIBILITY: Record<AddonVisibility, Badge> = {
   hidden: { label: 'Hidden', icon: 'show-password-slash' },
 };
 const DISTRIBUTION: Record<AddonDistribution, Badge> = {
-  amo: { label: 'AMO', icon: 'globe' },
-  self: { label: 'Self', icon: 'home' },
+  listed: { label: 'Listed', icon: 'globe' },
+  unlisted: { label: 'Unlisted', icon: 'home' },
   enterprise: { label: 'Enterprise', icon: 'organizational-unit' },
 };
 
@@ -84,7 +84,7 @@ export class AddonCard extends LitElement {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-xsmall);
-      margin-top: auto;
+      margin-bottom: auto;
     }
   `;
 
@@ -137,12 +137,16 @@ export class AddonCard extends LitElement {
           >
             ${VISIBILITY[a.visibility].label}
           </moz-status-badge>
-          <moz-status-badge
-            type="ghost"
-            icon-start=${DISTRIBUTION[a.distribution].icon}
-          >
-            ${DISTRIBUTION[a.distribution].label}
-          </moz-status-badge>
+           ${a.channels?.map((channel) => {
+             return html`
+                  <moz-status-badge
+                    type="ghost"
+                    icon-start=${DISTRIBUTION[channel].icon}
+                  >
+                    ${DISTRIBUTION[channel].label}
+                  </moz-status-badge>
+                    `;
+           })}
         </div>
         </div>
       </moz-card>

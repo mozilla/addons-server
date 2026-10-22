@@ -5,20 +5,10 @@ from copy import deepcopy
 from django.conf import settings
 from django.core.management.base import CommandError
 
-from elasticsearch import Elasticsearch, helpers, transport
+from elasticsearch import Elasticsearch, helpers
 from elasticsearch.exceptions import NotFoundError
 
 from .models import Reindexing
-
-
-class AlreadyVerifiedTransport(transport.Transport):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Pretend we've already done the verification request that would
-        # normally be made by elasticsearch client 7.14+ once per connection
-        # before the first request. We're using a genuine ES cluster but we
-        # don't want the extra request.
-        self._verified_elasticsearch = True
 
 
 def get_es():
@@ -27,7 +17,8 @@ def get_es():
         settings.ES_HOST,
         http_compress=settings.ES_COMPRESS,
         timeout=settings.ES_TIMEOUT,
-        transport_class=AlreadyVerifiedTransport,
+        retry_on_timeout=True,
+        max_retries=1,
     )
 
 

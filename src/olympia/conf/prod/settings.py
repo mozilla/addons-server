@@ -74,3 +74,7 @@ CINDER_QUEUE_PREFIX = 'amo-'
 CINDER_UNIQUE_IDS = True
 
 AMO_LANGUAGES = PROD_LANGUAGES
+
+FXA_ACTIVES_BIGQUERY_TABLE = (
+    'moz-fx-fxa-prod.fxa_rp_active_accounts.client_a4907de5fa9d78fc_active_accounts'
+)

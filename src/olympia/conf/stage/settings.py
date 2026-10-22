@@ -59,9 +59,13 @@ FXA_CONFIG = {
     'local': {
         'client_id': env('DEVELOPMENT_FXA_CLIENT_ID'),
         'client_secret': env('DEVELOPMENT_FXA_CLIENT_SECRET'),
-        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local  # noqa
+        # fxa redirects to http://localhost:3000/api/auth/authenticate-callback/?config=local
     },
 }
+
+FXA_ACTIVES_BIGQUERY_TABLE = (
+    'moz-fx-fxa-prod.fxa_rp_active_accounts.client_1e5a77cf09e5b4b5_active_accounts'
+)
 
 REMOTE_SETTINGS_WRITER_URL = env(
     'REMOTE_SETTINGS_WRITER_URL', default='https://remote-settings.allizom.org/v1/'

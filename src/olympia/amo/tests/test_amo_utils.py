@@ -96,7 +96,7 @@ def test_resize_transparency():
 @mock.patch('olympia.amo.utils.SafeStorage.base_location', '/')
 def test_resize_transparency_for_P_mode_bug_1181221():
     # We had a monkeypatch that was added in
-    # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5  # noqa
+    # https://github.com/jbalogh/zamboni/commit/10340af6d1a64a16f4b9cade9faa69976b5b6da5
     # which caused the issue in bug 1181221. Since then we upgraded Pillow, and
     # we don't need it anymore. We thus don't have this issue anymore.
     src = os.path.join(
