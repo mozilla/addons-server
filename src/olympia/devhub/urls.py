@@ -279,5 +279,4 @@ urlpatterns = [
         views.survey_response,
         name='devhub.survey_response',
     ),
-    re_path(r'^switch-pinguino$', views.switch_pinguino, name='devhub.switch-pinguino'),
 ]

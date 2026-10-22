@@ -1,5 +1,9 @@
 import { defineConfig, loadEnv, type Plugin } from 'vite';
-import { toViteBasePath, VITE_BASE } from './src/base.ts';
+import { STATIC_SEGMENT, toViteBasePath } from './src/base.ts';
+
+// the fallback is for a standalone build/dev run
+const STATIC_URL_PREFIX = process.env.STATIC_URL_PREFIX ?? '/static/';
+const ASSET_BASE = `${STATIC_URL_PREFIX}${STATIC_SEGMENT}/`;
 
 // The SPA is also served under locale-prefixed URLs (e.g. /en-US/developers/...);
 // nginx proxies those here unchanged. Vite's dev server enforces its configured
@@ -27,7 +31,7 @@ export default defineConfig(({ mode }) => {
   const hmrClientPort = loadEnv(mode, '.', 'VITE_').VITE_HMR_CLIENT_PORT;
 
   return {
-    base: VITE_BASE,
+    base: ASSET_BASE,
     plugins: [serveLocalePrefixed()],
     server: {
       host: true,
@@ -38,7 +42,10 @@ export default defineConfig(({ mode }) => {
       hmr: hmrClientPort ? { clientPort: Number(hmrClientPort) } : true,
     },
     build: {
-      outDir: 'dist',
+      // Write straight into the repo's static files location (static/pinguino/) so
+      // Django/nginx/cdn can serve the build output directly.
+      // Relative to this config at src/pinguino/devhub/.
+      outDir: `../../../static/${STATIC_SEGMENT}`,
       manifest: true,
       emptyOutDir: true,
     },
