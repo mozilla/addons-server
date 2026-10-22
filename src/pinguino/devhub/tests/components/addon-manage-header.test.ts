@@ -13,7 +13,7 @@ const base: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'live',
-  distribution: 'amo',
+  channels: ['listed'],
 };
 
 async function header(addon: Partial<Addon>) {

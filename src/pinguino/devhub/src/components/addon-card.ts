@@ -11,8 +11,8 @@ const VISIBILITY: Record<AddonVisibility, Badge> = {
   hidden: { label: 'Hidden', icon: 'show-password-slash' },
 };
 const DISTRIBUTION: Record<AddonDistribution, Badge> = {
-  listed: { label: 'Listed', icon: 'globe' },
-  unlisted: { label: 'Unlisted', icon: 'home' },
+  listed: { label: 'AMO', icon: 'globe' },
+  unlisted: { label: 'Self', icon: 'home' },
   enterprise: { label: 'Enterprise', icon: 'organizational-unit' },
 };
 

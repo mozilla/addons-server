@@ -34,6 +34,7 @@ describe('mapAddon', () => {
       last_updated: '2025-05-14T10:00:00Z',
       current_version: { version: '3.2.1' },
       previews: [{ image_url: 'https://cdn/preview.png' }],
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
@@ -56,6 +57,7 @@ describe('mapAddon', () => {
       type: 'extension',
       status: 'public',
       summary: { 'en-US': 'A &amp; B &lt; C' },
+      channels: ['listed'],
     });
     expect(addon.name).toBe('Tom & Jerry');
     expect(addon.summary).toBe('A & B < C');
@@ -68,6 +70,7 @@ describe('mapAddon', () => {
       type: 'extension',
       status: 'nominated',
       is_disabled: true,
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
@@ -103,6 +106,7 @@ describe('mapAddon', () => {
         version: '1.0',
         license: { name: { 'en-US': 'MPL 2.0' } },
       },
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
