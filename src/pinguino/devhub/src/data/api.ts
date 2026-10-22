@@ -3,6 +3,11 @@
 // the query layer (./queries), not here.
 
 import { apiFetch } from './http';
+import {
+  resolveAddonStatus,
+  resolveVisibility,
+  VERSION_STATUS,
+} from './statuses';
 import type {
   Addon,
   AddonAuthor,
@@ -123,7 +128,6 @@ export function formatDate(iso: string | undefined): string {
 
 export function mapAddon(a: ApiAddon): Addon {
   const kind: AddonKind = a.type === 'statictheme' ? 'theme' : 'extension';
-  const live = a.status === 'public' && !a.is_disabled;
   const preview = a.previews?.[0];
 
   return {
@@ -131,14 +135,10 @@ export function mapAddon(a: ApiAddon): Addon {
     name: decodeEntities(localized(a.name)),
     kind,
     icon: kind === 'theme' ? 'themes' : 'extension',
-    statusLabel: live
-      ? kind === 'theme'
-        ? 'Live theme'
-        : 'Live add-on'
-      : (a.status ?? 'Unknown'),
+    status: resolveAddonStatus(a.status),
     version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
-    visibility: live ? 'live' : 'hidden',
+    visibility: resolveVisibility(a.is_disabled ?? false),
     channels: a.channels,
     iconUrl: a.icon_url,
     previewUrl: preview?.image_url ?? preview?.thumbnail_url,
@@ -184,11 +184,10 @@ export function mapActivity(a: ApiActivity): Update {
   const approved = /approv/i.test(`${title} ${a.comments ?? ''}`);
   return {
     id: String(a.id),
-    approved,
     title,
     message: a.comments ?? '',
     version: a.versions?.[0]?.version ?? '',
-    versionStatus: approved ? 'Approved' : '',
+    versionStatus: approved ? VERSION_STATUS.public : undefined,
     tags: [],
     date: formatDate(a.date),
     addonSlug: a.addon?.slug ?? '',

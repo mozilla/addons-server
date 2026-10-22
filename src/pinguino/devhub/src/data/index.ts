@@ -25,4 +25,18 @@ export {
   updatesQuery,
 } from './queries';
 export { queryClient } from './query-client';
+export {
+  ADDON_STATUS,
+  type AddonStatus,
+  type AddonVisibility,
+  type ApiStatus,
+  canChangeVisibility,
+  resolveAddonStatus,
+  resolveVersionStatus,
+  resolveVisibility,
+  type StatusInfo,
+  VERSION_STATUS,
+  type VersionStatus,
+  VISIBILITY,
+} from './statuses';
 export * from './types';

@@ -2,13 +2,18 @@ import type { IconName } from 'acorn-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
-import type { Addon, AddonDistribution, AddonVisibility } from '../data';
+import {
+  type Addon,
+  type AddonDistribution,
+  type AddonVisibility,
+  VISIBILITY,
+} from '../data';
 
 type Badge = { label: string; icon: IconName };
 
-const VISIBILITY: Record<AddonVisibility, Badge> = {
-  live: { label: 'Live', icon: 'show-password' },
-  hidden: { label: 'Hidden', icon: 'show-password-slash' },
+const VISIBILITY_ICON: Record<AddonVisibility, IconName> = {
+  visible: 'show-password',
+  invisible: 'show-password-slash',
 };
 const DISTRIBUTION: Record<AddonDistribution, Badge> = {
   listed: { label: 'AMO', icon: 'globe' },
@@ -125,7 +130,7 @@ export class AddonCard extends LitElement {
 
         <div class="meta">
           <span>Status</span>
-          <moz-status-badge type="success">${a.statusLabel}</moz-status-badge>
+          <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
         </div>
         <div class="meta">Current version: ${a.version}</div>
         <div class="meta">Last updated: ${a.lastUpdated}</div>
@@ -133,7 +138,7 @@ export class AddonCard extends LitElement {
         <div class="tags">
           <moz-status-badge
             type="ghost"
-            icon-start=${VISIBILITY[a.visibility].icon}
+            icon-start=${VISIBILITY_ICON[a.visibility]}
           >
             ${VISIBILITY[a.visibility].label}
           </moz-status-badge>

@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AddonManageHeader } from '../../src/components/addon-manage-header';
 import '../../src/components/addon-manage-header';
 import type { Addon } from '../../src/data';
+import { ADDON_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
 
 const base: Addon = {
@@ -9,10 +10,10 @@ const base: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
+  visibility: 'visible',
   channels: ['listed'],
 };
 
@@ -24,8 +25,8 @@ async function header(addon: Partial<Addon>) {
 }
 
 describe('addon-manage-header', () => {
-  it('renders the name, a back link, and a Live badge', async () => {
-    const root = await header({ visibility: 'live' });
+  it('renders the name, a back link, and a Visible badge', async () => {
+    const root = await header({ visibility: 'visible' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
     expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
       '/developers/',
@@ -36,14 +37,14 @@ describe('addon-manage-header', () => {
     );
     expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
     expect(root.querySelector('moz-status-badge')?.textContent?.trim()).toBe(
-      'Live',
+      'Visible',
     );
   });
 
-  it('shows Hidden for a hidden add-on', async () => {
-    const root = await header({ visibility: 'hidden' });
+  it('shows Invisible for a hidden add-on', async () => {
+    const root = await header({ visibility: 'invisible' });
     expect(root.querySelector('moz-status-badge')?.textContent?.trim()).toBe(
-      'Hidden',
+      'Invisible',
     );
   });
 
