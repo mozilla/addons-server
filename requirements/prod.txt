@@ -590,9 +590,9 @@ asgiref==3.12.1 \
     --hash=sha256:59dcb51c272ad209d59bed5708a64a333083e86017d7fcdd67498eeab7784340 \
     --hash=sha256:fe386d1c2bff7259ea95929266d12a8cf9a8b5a1c2598402967d8792e7a7c094
 # billiard is required by celery
-billiard==4.2.4 \
-    --hash=sha256:525b42bdec68d2b983347ac312f892db930858495db601b5836ac24e6477cde5 \
-    --hash=sha256:55f542c371209e03cd5862299b74e52e4fbcba8250ba611ad94276b369b6a85f
+billiard==4.3.1 \
+    --hash=sha256:2c7075283191d9c0add66cf8fca8e06ba599e75fe7319b67186759f8877dfdaf \
+    --hash=sha256:c88559b306ee5dc93f8d5f843d07da15d795d67af26720d14ee9d09f09eb0b22
 # bitarray is required by filtercascade
 bitarray == 3.12.1 \
     --hash=sha256:042a2f4e46549c8573c678f1c25e2ab8d48a4924e7f2314032021d71ebae551e \
