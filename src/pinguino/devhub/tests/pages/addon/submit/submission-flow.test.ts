@@ -79,32 +79,25 @@ async function mountFlow(path: string) {
   const host = await mount<TestRouter>('test-router');
   await host.router.goto(`/submit/${path}`);
   await settle(host);
-  const el = must(host.shadowRoot?.querySelector('addon-submission'), 'flow');
+  const el = host.shadowRoot?.querySelector('addon-submission');
+  if (!el) throw new Error('expected addon-submission in the DOM');
   await settle(el);
   return ui(el);
 }
 
-// querySelector is typed `T | null`, and these helpers are meaningless on a
-// missing node. Throwing names the node instead of failing on a null deref
-// several lines later.
-function must<T extends Element>(el: T | null | undefined, what: string): T {
-  if (!el) throw new Error(`expected ${what} in the DOM`);
-  return el;
-}
-
 function chooseFiles(input: Element | null, ...files: File[]) {
-  const el = must(input, 'moz-input-file');
-  Object.assign(el, {
+  if (!input) throw new Error('expected moz-input-file in the DOM');
+  Object.assign(input, {
     files,
-    clear: () => Object.assign(el, { files: [] }),
+    clear: () => Object.assign(input, { files: [] }),
   });
-  el.dispatchEvent(new Event('change'));
+  input.dispatchEvent(new Event('change'));
 }
 
 function pick(picker: Element | null, value: string) {
-  const el = must(picker, 'moz-visual-picker');
-  Object.assign(el, { value });
-  el.dispatchEvent(new Event('change'));
+  if (!picker) throw new Error('expected moz-visual-picker in the DOM');
+  Object.assign(picker, { value });
+  picker.dispatchEvent(new Event('change'));
 }
 
 function ui(el: LitElement) {
