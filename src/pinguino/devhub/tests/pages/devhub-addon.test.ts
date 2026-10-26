@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
-import { queryClient, queryKeys } from '../../src/data';
+import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
 import { mount, settle } from '../helpers/fixture';
 
 const addon: Addon = {
@@ -10,10 +10,10 @@ const addon: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
+  visibility: 'visible',
   channels: ['listed'],
 };
 

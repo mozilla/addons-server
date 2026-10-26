@@ -60,6 +60,7 @@ export class UpdateCard extends LitElement {
 
   render() {
     const u = this.item;
+    const status = u.versionStatus;
     return html`
       <div class="card">
         <!-- title and message are HTML from the activity API; sanitize to a
@@ -69,7 +70,7 @@ export class UpdateCard extends LitElement {
           <span class="title">
             <moz-status-dot
               icon
-              type=${u.approved ? 'success' : 'warning'}
+              type=${status?.badge ?? 'warning'}
             ></moz-status-dot>
             <p>
               ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
@@ -85,10 +86,10 @@ export class UpdateCard extends LitElement {
               : undefined
           }
           ${
-            u.versionStatus
+            status
               ? html`
-                <moz-status-badge type=${u.approved ? 'success' : 'warning'}>
-                  ${u.versionStatus}
+                <moz-status-badge type=${status.badge}>
+                  ${status.label}
                 </moz-status-badge>
               `
               : undefined

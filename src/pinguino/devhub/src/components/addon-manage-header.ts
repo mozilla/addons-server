@@ -2,6 +2,7 @@ import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
 import type { Addon } from '../data';
+import '../foundations/badges';
 
 // Host only (strip scheme/path) for the compact homepage link in the stats row.
 function hostOf(url: string): string {
@@ -129,7 +130,6 @@ export class AddonManageHeader extends LitElement {
 
   render() {
     const a = this.addon;
-    const live = a.visibility === 'live';
     return html`
       <!-- TODO: "Back to Dashboard" duplicates the breadcrumb's Dashboard link — confirm we want both. -->
       <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="${BASE}/">Back to Dashboard</a></p>
@@ -150,9 +150,7 @@ export class AddonManageHeader extends LitElement {
         </div>
         <div class="actions">
           <!-- TODO: implement addon status management https://github.com/mozilla/addons/issues/16389 -->
-          <moz-status-badge type=${live ? 'success' : 'ghost'}>
-            ${live ? 'Live' : 'Hidden'}
-          </moz-status-badge>
+          <visibility-badge visibility=${a.visibility}></visibility-badge>
         </div>
       </div>
     `;

@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 import type { DevhubHome } from '../../src/pages/devhub-home';
 import '../../src/pages/devhub-home';
 import type { Addon, Update } from '../../src/data';
-import { queryClient, queryKeys } from '../../src/data';
+import {
+  ADDON_STATUS,
+  queryClient,
+  queryKeys,
+  VERSION_STATUS,
+} from '../../src/data';
 import { mount, settle } from '../helpers/fixture';
 
 // Seeded cache data is fresh, so the query controllers read it on first paint
@@ -12,10 +17,10 @@ const ext = (slug: string): Addon => ({
   name: slug,
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '1.0.0',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
+  visibility: 'visible',
   channels: ['listed'],
 });
 const theme = (slug: string): Addon => ({
@@ -26,11 +31,10 @@ const theme = (slug: string): Addon => ({
 
 const update: Update = {
   id: 'u1',
-  approved: true,
   title: 'Approved',
   message: 'Congrats!',
   version: '1.0.0',
-  versionStatus: 'Approved',
+  versionStatus: VERSION_STATUS.public,
   tags: ['Live'],
   date: 'Sep 2 2025',
   addonSlug: 'a',

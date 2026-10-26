@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { DISTRIBUTION } from '../../../../components/addon-card';
 import type { AddonDistribution } from '../../../../data/types';
+import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
 import { emit, SubmissionStep } from '../submission-flow';
 
 const OPTIONS: Record<

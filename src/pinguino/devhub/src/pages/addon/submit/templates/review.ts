@@ -1,11 +1,11 @@
 import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import { DISTRIBUTION } from '../../../../components/addon-card';
 import { uploadVersionNotes, versionQuery } from '../../../../data/queries';
 import type { AddonDistribution } from '../../../../data/types';
 import { errorBar, errorMessage, SubmissionStep } from '../submission-flow';
 import '../../../../components/not-found';
 import '../../../../foundations/components/message-bar';
+import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
 
 type Textarea = HTMLElement & { value: string };
 

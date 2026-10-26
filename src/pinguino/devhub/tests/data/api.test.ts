@@ -17,6 +17,7 @@ import {
   postUpload,
   postVersion,
 } from '../../src/data/api';
+import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
 
 function mockJson(payload: unknown) {
   vi.stubGlobal(
@@ -47,8 +48,8 @@ describe('mapAddon', () => {
       name: 'Sunset', // en-US preferred out of the localized map
       kind: 'theme',
       icon: 'themes',
-      statusLabel: 'Live theme',
-      visibility: 'live',
+      status: ADDON_STATUS.public,
+      visibility: 'visible',
       version: '3.2.1',
       lastUpdated: 'May 14 2025',
       previewUrl: 'https://cdn/preview.png',
@@ -68,7 +69,7 @@ describe('mapAddon', () => {
     expect(addon.summary).toBe('A & B < C');
   });
 
-  it('treats a disabled add-on as hidden and surfaces the raw status label', () => {
+  it('treats an author-disabled add-on as invisible and surfaces the raw status label', () => {
     const addon = mapAddon({
       slug: 'grammarly',
       name: { 'en-US': 'Grammarly' },
@@ -80,8 +81,8 @@ describe('mapAddon', () => {
 
     expect(addon).toMatchObject({
       kind: 'extension',
-      visibility: 'hidden',
-      statusLabel: 'nominated',
+      visibility: 'invisible',
+      status: ADDON_STATUS.nominated,
       version: '—', // no current_version
     });
   });
@@ -147,21 +148,20 @@ describe('mapActivity', () => {
 
     expect(update).toMatchObject({
       id: '42',
-      approved: true,
-      versionStatus: 'Approved',
+      versionStatus: VERSION_STATUS.public,
       version: '3.2.1',
       date: 'Sep 2 2025',
       addonSlug: 'my-addon',
     });
   });
 
-  it('leaves a non-approval activity unapproved with no status', () => {
+  it('leaves a non-approval activity with no version status', () => {
     const update = mapActivity({
       id: 7,
       addon: {},
       title: 'Version flagged for review',
     });
-    expect(update).toMatchObject({ approved: false, versionStatus: '' });
+    expect(update.versionStatus).toBeUndefined();
   });
 });
 
@@ -200,7 +200,10 @@ describe('endpoints', () => {
     mockJson({ results: [{ id: 1, title: 'Approved!' }] });
     const updates = await fetchUpdates();
     expect(updates).toHaveLength(1);
-    expect(updates[0]).toMatchObject({ id: '1', approved: true });
+    expect(updates[0]).toMatchObject({
+      id: '1',
+      versionStatus: VERSION_STATUS.public,
+    });
   });
 
   it('fetchProfile reads the account name', async () => {
