@@ -25,7 +25,7 @@ async function header(addon: Partial<Addon>) {
 }
 
 describe('addon-manage-header', () => {
-  it('renders the name, a back link, and a Visible badge', async () => {
+  it('renders the name, a back link, and the visibility badge', async () => {
     const root = await header({ visibility: 'visible' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
     expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
@@ -36,16 +36,16 @@ describe('addon-manage-header', () => {
       c.textContent?.trim(),
     );
     expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
-    expect(root.querySelector('moz-status-badge')?.textContent?.trim()).toBe(
-      'Visible',
-    );
+    expect(
+      root.querySelector('visibility-badge')?.getAttribute('visibility'),
+    ).toBe('visible');
   });
 
-  it('shows Invisible for a hidden add-on', async () => {
+  it('passes an invisible add-on to the visibility badge', async () => {
     const root = await header({ visibility: 'invisible' });
-    expect(root.querySelector('moz-status-badge')?.textContent?.trim()).toBe(
-      'Invisible',
-    );
+    expect(
+      root.querySelector('visibility-badge')?.getAttribute('visibility'),
+    ).toBe('invisible');
   });
 
   it('renders rating, review count and a listing link when present', async () => {

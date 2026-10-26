@@ -1,25 +1,8 @@
-import type { IconName } from 'acorn-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
-import {
-  type Addon,
-  type AddonDistribution,
-  type AddonVisibility,
-  VISIBILITY,
-} from '../data';
-
-type Badge = { label: string; icon: IconName };
-
-const VISIBILITY_ICON: Record<AddonVisibility, IconName> = {
-  visible: 'show-password',
-  invisible: 'show-password-slash',
-};
-const DISTRIBUTION: Record<AddonDistribution, Badge> = {
-  listed: { label: 'AMO', icon: 'globe' },
-  unlisted: { label: 'Self', icon: 'home' },
-  enterprise: { label: 'Enterprise', icon: 'organizational-unit' },
-};
+import type { Addon } from '../data';
+import '../foundations/badges';
 
 @customElement('addon-card')
 export class AddonCard extends LitElement {
@@ -136,22 +119,13 @@ export class AddonCard extends LitElement {
         <div class="meta">Last updated: ${a.lastUpdated}</div>
 
         <div class="tags">
-          <moz-status-badge
-            type="ghost"
-            icon-start=${VISIBILITY_ICON[a.visibility]}
-          >
-            ${VISIBILITY[a.visibility].label}
-          </moz-status-badge>
-           ${a.channels?.map((channel) => {
-             return html`
-                  <moz-status-badge
-                    type="ghost"
-                    icon-start=${DISTRIBUTION[channel].icon}
-                  >
-                    ${DISTRIBUTION[channel].label}
-                  </moz-status-badge>
-                    `;
-           })}
+          <visibility-badge visibility=${a.visibility}></visibility-badge>
+          ${a.channels?.map(
+            (channel) =>
+              html`<distribution-badge
+                distribution=${channel}
+              ></distribution-badge>`,
+          )}
         </div>
         </div>
       </moz-card>
