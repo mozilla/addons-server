@@ -173,6 +173,7 @@ This endpoint returns a list of activities relevant to the user.
     :>json string results[].versions[].channel: The channel of the version - either ``listed``, ``unlisted``, or ``enterprise``.
     :>json object results[].versions[].file: The version file.
     :>json object results[].versions[].addon: The add-on the version belongs to.
+    :>json string|null results[].versions[].reviewed: The date the version was reviewed at, or ``null`` if no human has reviewed it.
 
     :statuscode 200: Success.
     :statuscode 400: Invalid request parameters.

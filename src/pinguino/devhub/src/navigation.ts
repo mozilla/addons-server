@@ -38,3 +38,9 @@ export function interceptOutOfAppLinks(base: string): () => void {
   window.addEventListener('click', onClick, { capture: true });
   return () => window.removeEventListener('click', onClick, { capture: true });
 }
+
+// Clamped to 1 so a junk or absent value renders the first page, not an empty one.
+export function pageParam(search: string = location.search): number {
+  const page = Number(new URLSearchParams(search).get('page'));
+  return Number.isInteger(page) && page > 0 ? page : 1;
+}

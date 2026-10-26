@@ -14,9 +14,10 @@ import './app.css';
 import './components/devhub-header';
 import './pages/devhub-home';
 import './pages/addon/main';
+import './pages/addon/templates/devhub-addon';
 
 import { BASE } from './base';
-import { interceptOutOfAppLinks } from './navigation';
+import { interceptOutOfAppLinks, pageParam } from './navigation';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.
@@ -42,6 +43,17 @@ export class PinguinoApp extends LitElement {
       {
         path: `${BASE}/addon/*`,
         render: () => html`<addon-routes></addon-routes>`,
+      },
+      // The legacy DevHub's per-add-on feed URL, kept working by rendering the
+      // same add-on shell with the feed tab active.
+      {
+        path: `${BASE}/feed/:slug`,
+        render: ({ slug }) =>
+          html`<devhub-addon
+            .slug=${slug ?? ''}
+            tab="feed"
+            .page=${pageParam()}
+          ></devhub-addon>`,
       },
     ],
     {

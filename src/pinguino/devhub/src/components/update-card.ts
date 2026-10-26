@@ -1,8 +1,9 @@
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE } from '../base';
 import type { Update } from '../data';
+import '../foundations/badges';
 import { sanitizeHTML } from '../utils/sanitizeHTML';
 
 // The activity title/message are HTML from the API; the only markup we expect
@@ -36,12 +37,19 @@ export class UpdateCard extends LitElement {
     .title {
       display: flex;
       align-items: center;
-      gap: var(--space-small);
-      font-weight: 600;
+      gap: var(--space-medium);
+      flex: 1;
+      min-width: 0;
     }
     .title p {
       margin: 0;
       padding: 0;
+      font-weight: 600;
+    }
+    .addon-name {
+      font-size: 0.85rem;
+      font-weight: normal;
+      color: var(--text-color-deemphasized, GrayText);
     }
     .message {
       margin: 0;
@@ -68,23 +76,26 @@ export class UpdateCard extends LitElement {
              title. -->
         <div class="head">
           <span class="title">
+            <!-- TODO: Fix type error in acorn-web-components, this should be a valid use -->
             <moz-status-dot
               icon
-              type=${status?.badge ?? 'warning'}
+              type=${status?.badge ?? 'information'}
             ></moz-status-dot>
-            <p>
-              ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
-            </p>
+            <span>
+              <p>${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}</p>
+              ${
+                u.addonName
+                  ? html`<p class="addon-name">${u.addonName}</p>`
+                  : nothing
+              }
+            </span>
           </span>
           <moz-button size="small" href="${BASE}/addon/${u.addonSlug}">View</moz-button>
         </div>
         <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">
-          ${
-            u.version.length
-              ? html`<span>Version ${u.version}</span>`
-              : undefined
-          }
+          <span>${u.user ? `${u.date} by ${u.user}` : u.date}</span>
+          ${u.version.length ? html`<span>Version: ${u.version}</span>` : nothing}
           ${
             status
               ? html`
@@ -92,10 +103,15 @@ export class UpdateCard extends LitElement {
                   ${status.label}
                 </moz-status-badge>
               `
-              : undefined
+              : nothing
           }
-          ${u.tags.map((t) => html`<span>${t}</span>`)}
-          <span>${u.date}</span>
+          ${
+            u.channel
+              ? html`<distribution-badge
+                  distribution=${u.channel}
+                ></distribution-badge>`
+              : nothing
+          }
         </div>
       </div>
     `;
