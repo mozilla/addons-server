@@ -4,6 +4,7 @@
 
 import { createQueryController } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
+import { LOCALE } from '../base';
 import {
   addAuthor,
   addPreview,
@@ -18,11 +19,16 @@ import {
   fetchPendingAuthors,
   fetchProfile,
   fetchUpdates,
+  fetchUpload,
+  fetchVersion,
   patchAddon,
   patchAuthor,
   patchEulaPolicy,
   patchPreview,
+  patchVersion,
   postAgreement,
+  postUpload,
+  postVersion,
   uploadIcon,
 } from './api';
 import { queryClient } from './query-client';
@@ -30,9 +36,12 @@ import type {
   Addon,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonDistribution,
   AddonListingEdit,
   AgreementAcceptState,
   EulaPolicyEdit,
+  FileUpload,
+  Version,
 } from './types';
 
 // Keys identify cache entries. The add-on list and a single add-on share one
@@ -43,6 +52,8 @@ export const queryKeys = {
   updates: ['updates'] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
+  upload: (uuid: string) => ['upload', uuid] as const,
+  version: (slug: string, id: number) => ['version', slug, id] as const,
 };
 
 // The static category list rarely changes, so keep it for the session.
@@ -123,6 +134,23 @@ export function eulaPolicyQuery(
       queryKey: eulaPolicyKey(getSlug()),
       queryFn: () => fetchEulaPolicy(getSlug()),
       enabled: getEnabled(),
+    }),
+    queryClient,
+  );
+}
+
+// One version.
+export function versionQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getId: () => number,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.version(getSlug(), getId()),
+      queryFn: () => fetchVersion(getSlug(), getId()),
+      enabled: Boolean(getSlug() && getId()),
     }),
     queryClient,
   );
@@ -266,4 +294,79 @@ export function agreementQuery(host: ReactiveControllerHost) {
 export async function acceptAgreement(payload: AgreementAcceptState) {
   await postAgreement(payload);
   await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
+}
+
+// Creates a new FileUpload.
+export async function createUpload(
+  file: File,
+  channel: AddonDistribution,
+): Promise<FileUpload> {
+  const upload = await postUpload(file, channel);
+  queryClient.setQueryData(queryKeys.upload(upload.uuid), upload);
+  return upload;
+}
+
+export function uploadQuery(
+  host: ReactiveControllerHost,
+  getUuid: () => string,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.upload(getUuid()),
+      queryFn: () => fetchUpload(getUuid()),
+      enabled: Boolean(getUuid()),
+      refetchInterval: (query) => (query.state.data?.processed ? false : 1000),
+    }),
+    queryClient,
+  );
+}
+
+// Create a version from a FileUpload.
+export async function createVersion(
+  slug: string,
+  uuid: string,
+): Promise<Version> {
+  const version = await postVersion(slug, uuid);
+  queryClient.setQueryData(queryKeys.version(slug, version.id), version);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) });
+  return version;
+}
+
+async function _updateVersion(
+  slug: string,
+  id: number,
+  body: FormData | object,
+): Promise<Version> {
+  const version = await patchVersion(slug, id, body);
+  queryClient.setQueryData(queryKeys.version(slug, id), version);
+  return version;
+}
+
+export async function disableVersion(slug: string, id: number) {
+  await _updateVersion(slug, id, { is_disabled: true });
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function uploadVersionSource(
+  slug: string,
+  id: number,
+  file: File,
+) {
+  const body = new FormData();
+  body.append('source', file);
+  await _updateVersion(slug, id, body);
+}
+
+export async function uploadVersionNotes(
+  slug: string,
+  id: number,
+  releaseNotes?: string,
+  reviewerNotes?: string,
+  langCode: string = LOCALE ?? 'en-US',
+) {
+  await _updateVersion(slug, id, {
+    approval_notes: reviewerNotes ?? '',
+    ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
+  });
 }

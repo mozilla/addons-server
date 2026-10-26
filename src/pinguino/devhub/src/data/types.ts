@@ -6,6 +6,7 @@ export interface Developer {
 
 export type AddonKind = 'extension' | 'theme';
 export type AddonDistribution = 'listed' | 'unlisted' | 'enterprise';
+export type FileStatus = 'public' | 'disabled' | 'unreviewed';
 
 // The API's writable role values.
 export type AddonAuthorRole = 'owner' | 'developer';
@@ -118,6 +119,16 @@ export interface EulaPolicyEdit {
   privacyPolicy?: string;
 }
 
+export interface Version {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: { id: number; url: string; size: number; status: FileStatus };
+  release_notes: string | null;
+  approval_notes: string;
+  source: string | null;
+}
+
 export interface Update {
   id: string;
   title: string;
@@ -149,4 +160,30 @@ export interface AgreementState {
 export interface AgreementAcceptState {
   last_developer_agreement_change: string;
   display_name?: string;
+}
+
+export interface FileUpload {
+  uuid: string;
+  channel: AddonDistribution;
+  processed: boolean;
+  submitted: boolean;
+  url: string;
+  valid: boolean;
+  validation: ValidationResult | null;
+  version: string | null;
+}
+
+export interface ValidationMessage {
+  type: 'error' | 'warning' | 'notice';
+  message: string;
+  description?: string;
+  file?: string | null;
+  line?: number | null;
+}
+
+export interface ValidationResult {
+  errors: number;
+  warnings: number;
+  notices: number;
+  messages: ValidationMessage[];
 }

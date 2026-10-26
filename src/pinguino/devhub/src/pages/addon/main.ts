@@ -5,6 +5,7 @@ import { pageParam } from '../../navigation';
 
 import './submit/main';
 import './templates/devhub-addon';
+import './versions/main';
 
 @customElement('addon-routes')
 class AddonRoutes extends LitElement {
@@ -14,6 +15,11 @@ class AddonRoutes extends LitElement {
       path: `:slug`,
       render: ({ slug }) =>
         html`<devhub-addon .slug=${slug ?? ''}></devhub-addon>`,
+    },
+    {
+      path: ':slug/versions/*',
+      render: ({ slug }) =>
+        html`<version-routes .slug=${slug ?? ''}></version-routes>`,
     },
     {
       path: `:slug/:tab`,

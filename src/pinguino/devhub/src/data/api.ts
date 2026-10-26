@@ -23,7 +23,9 @@ import type {
   Developer,
   EulaPolicy,
   EulaPolicyEdit,
+  FileUpload,
   Update,
+  Version,
 } from './types';
 
 // Paginated envelope shared by the AMO v5 list endpoints.
@@ -188,7 +190,6 @@ export function mapActivity(a: ApiActivity): Update {
   // An entry can touch several versions (e.g. a bulk approval); the feed row
   // describes the first, matching what the activity title names.
   const version = a.versions?.[0];
-  console.log(a);
   return {
     id: String(a.id),
     title: a.title ?? 'Update',
@@ -440,5 +441,51 @@ export async function postAgreement(
   return await apiFetch('/developers/agreement/', {
     method: 'POST',
     body: payload,
+  });
+}
+
+export async function postUpload(
+  file: File,
+  channel: AddonDistribution,
+): Promise<FileUpload> {
+  const body = new FormData();
+  body.append('upload', file);
+  body.append('channel', channel);
+  return await apiFetch<FileUpload>('/addons/upload/', {
+    method: 'POST',
+    body,
+  });
+}
+
+export async function fetchUpload(uuid: string): Promise<FileUpload> {
+  return await apiFetch<FileUpload>(`/addons/upload/${uuid}/`);
+}
+
+const versionPath = (slug: string, id?: number) => {
+  return `/addons/addon/${encodeURIComponent(slug)}/versions/${id ? `${id}/` : ''}`;
+};
+
+export async function fetchVersion(slug: string, id: number): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug, id));
+}
+
+export async function postVersion(
+  slug: string,
+  uploadUuid: string,
+): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug), {
+    method: 'POST',
+    body: { upload: uploadUuid },
+  });
+}
+
+export async function patchVersion(
+  slug: string,
+  id: number,
+  body: object,
+): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug, id), {
+    method: 'PATCH',
+    body,
   });
 }
