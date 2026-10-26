@@ -45,6 +45,18 @@ describe('apiFetch', () => {
     });
   });
 
+  it('sends FormData when given', async () => {
+    const fetchFn = mockFetch({});
+    const body = new FormData();
+    body.append('upload', 'x');
+
+    await apiFetch('/x', { method: 'POST', body });
+
+    const [, init] = fetchFn.mock.calls[0];
+    expect(init.body).toBe(body);
+    expect(init.headers).toEqual({});
+  });
+
   it('throws a typed ApiError carrying the status on a failed response', async () => {
     mockFetch({ ok: false, status: 404 });
 

@@ -59,7 +59,7 @@ async function parseError(res: Response): Promise<{
 
 export async function apiFetch<T>(
   path: string,
-  { method = 'GET', body }: { method?: string; body?: unknown } = {},
+  { method = 'GET', body }: { method?: string; body?: FormData | object } = {},
 ): Promise<T> {
   // FormData (file uploads) must go as multipart — let the browser set the
   // content-type/boundary and send it as-is rather than JSON.

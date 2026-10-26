@@ -1065,6 +1065,7 @@ MAX_ZIP_UNCOMPRESSED_SIZE = 250 * 1024 * 1024
 # See SourceForm, _submit_upload(), validate_review_attachment(), etc. Since it
 # is displayed to users with filesizeformat it should be using powers of 1000
 # to be displayed correctly.
+# Mirrored to Pinguino in base.ts.
 MAX_UPLOAD_SIZE = 200 * 1000 * 1000
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
