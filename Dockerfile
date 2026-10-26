@@ -2,7 +2,7 @@
 # Read docs/topics/development/building_and_running_services.md for more info about this Dockerfile.
 ####################################################################################################
 
-FROM python:3.13-slim-bookworm@sha256:50b530b93da5a3ce61c6b7eabdb1a90f15d509ca1f026d9ab7cb2cb04f4dda46 AS olympia
+FROM python:3.13.17-slim-bookworm@sha256:e32be0e55814a08977501ca863271d9bd02443710db8f2afaf8372e2c4508530 AS olympia
 
 ENV BUILD_INFO=/build-info.json
 ENV ENV=build
