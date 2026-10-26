@@ -12,6 +12,7 @@ import './foundations/layout';
 import './app.css';
 
 import './components/devhub-header';
+import './components/not-found';
 import './pages/devhub-home';
 import './pages/addon/main';
 
@@ -46,8 +47,7 @@ export class PinguinoApp extends LitElement {
     ],
     {
       fallback: {
-        render: () =>
-          html`<p>Not found. <a href="${BASE}">Back to home</a></p>`,
+        render: () => html`<not-found></not-found>`,
       },
     },
   );

@@ -1,10 +1,12 @@
+import type { AddonVisibility, StatusInfo } from './statuses';
+
 export interface Developer {
   name: string;
 }
 
 export type AddonKind = 'extension' | 'theme';
-export type AddonVisibility = 'live' | 'hidden';
-export type AddonDistribution = 'amo' | 'self' | 'enterprise';
+export type AddonDistribution = 'listed' | 'unlisted' | 'enterprise';
+export type FileStatus = 'public' | 'disabled' | 'unreviewed';
 
 // The API's writable role values.
 export type AddonAuthorRole = 'owner' | 'developer';
@@ -37,12 +39,12 @@ export interface Addon {
   name: string;
   kind: AddonKind;
   icon: string;
-  statusLabel: string;
+  status: StatusInfo;
   version: string;
   // Display string ("Sep 2 2025"); the API mapper formats ISO dates to this.
   lastUpdated: string;
   visibility: AddonVisibility;
-  distribution: AddonDistribution;
+  channels?: AddonDistribution[];
   // Extension logo (icon_url) and theme preview (previews[].image_url) from the
   // API; the card falls back to an icon / gradient bar when either is absent.
   iconUrl?: string;
@@ -118,13 +120,23 @@ export interface EulaPolicyEdit {
   privacyPolicy?: string | null;
 }
 
+export interface Version {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: { id: number; url: string; size: number; status: FileStatus };
+  release_notes: string | null;
+  approval_notes: string;
+  source: string | null;
+}
+
 export interface Update {
   id: string;
-  approved: boolean;
   title: string;
   message: string;
   version: string;
-  versionStatus: string;
+  // Absent when the feed entry isn't about a review outcome.
+  versionStatus?: StatusInfo;
   tags: string[];
   date: string;
   addonSlug: string;
@@ -139,4 +151,30 @@ export interface AgreementState {
 export interface AgreementAcceptState {
   last_developer_agreement_change: string;
   display_name?: string;
+}
+
+export interface FileUpload {
+  uuid: string;
+  channel: AddonDistribution;
+  processed: boolean;
+  submitted: boolean;
+  url: string;
+  valid: boolean;
+  validation: ValidationResult | null;
+  version: string | null;
+}
+
+export interface ValidationMessage {
+  type: 'error' | 'warning' | 'notice';
+  message: string;
+  description?: string;
+  file?: string | null;
+  line?: number | null;
+}
+
+export interface ValidationResult {
+  errors: number;
+  warnings: number;
+  notices: number;
+  messages: ValidationMessage[];
 }

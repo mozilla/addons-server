@@ -19,6 +19,7 @@ import type { GraphicAssetsCard } from '../../src/components/addon-listing/graph
 import '../../src/components/addon-listing/graphic-assets-card';
 import type { Addon } from '../../src/data';
 import { ApiError } from '../../src/data/http';
+import { ADDON_STATUS } from '../../src/data/statuses';
 import { mount } from '../helpers/fixture';
 
 const base: Addon = {
@@ -26,11 +27,11 @@ const base: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
-  distribution: 'amo',
+  visibility: 'visible',
+  channels: ['listed'],
 };
 
 async function card(addon: Partial<Addon> = {}) {

@@ -8,6 +8,7 @@ vi.mock('../../src/data', () => ({ updateAddon }));
 import type { TechnicalDetailsCard } from '../../src/components/addon-listing/technical-details-card';
 import '../../src/components/addon-listing/technical-details-card';
 import type { Addon } from '../../src/data';
+import { ADDON_STATUS } from '../../src/data/statuses';
 import { mount } from '../helpers/fixture';
 
 const base: Addon = {
@@ -15,11 +16,11 @@ const base: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
-  distribution: 'amo',
+  visibility: 'visible',
+  channels: ['listed'],
 };
 
 describe('technical-details-card', () => {

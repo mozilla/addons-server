@@ -11,6 +11,9 @@ export {
   categoriesQuery,
   createAuthor,
   createPreview,
+  createUpload,
+  createVersion,
+  disableVersion,
   eulaPolicyQuery,
   pendingAuthorsQuery,
   profileQuery,
@@ -23,6 +26,24 @@ export {
   updateIcon,
   updatePreview,
   updatesQuery,
+  uploadQuery,
+  uploadVersionNotes,
+  uploadVersionSource,
+  versionQuery,
 } from './queries';
 export { queryClient } from './query-client';
+export {
+  ADDON_STATUS,
+  type AddonStatus,
+  type AddonVisibility,
+  type ApiStatus,
+  canChangeVisibility,
+  resolveAddonStatus,
+  resolveVersionStatus,
+  resolveVisibility,
+  type StatusInfo,
+  VERSION_STATUS,
+  type VersionStatus,
+  VISIBILITY,
+} from './statuses';
 export * from './types';

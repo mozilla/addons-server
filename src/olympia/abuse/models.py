@@ -1439,12 +1439,17 @@ class ContentDecision(ModelBase):
                 log_entry = self.action_activity = action_helper.process_action(
                     release_hold=release_hold, extra_details=extra_details
                 )
-                if not log_entry and not self.activities.exists():
+                if (
+                    not log_entry
+                    and not self.activities.exists()
+                    and action_helper.get_owners()
+                ):
                     # If there was no action taken (e.g. the content was already
                     # removed, so the action was a no-op) we still need to log that the
                     # decision was created so there is a record in the reviewer tools
                     # history, and we can send out an accurate email with policy text,
                     # etc.
+                    # Limit this to actions when owners should be notified though
                     if not self.target_versions.exists() and (
                         addon_version := getattr(action_helper, 'addon_version', None)
                     ):

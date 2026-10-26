@@ -4,16 +4,15 @@
 import { describe, expect, it } from 'vitest';
 import type { UpdateCard } from '../../src/components/update-card';
 import '../../src/components/update-card';
-import type { Update } from '../../src/data';
+import { type Update, VERSION_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
 
 const baseUpdate: Update = {
   id: 'u1',
-  approved: true,
   title: 'Your version is approved.',
   message: 'Congrats!',
   version: '3.2.1',
-  versionStatus: 'Approved',
+  versionStatus: VERSION_STATUS.public,
   tags: ['Live', 'AMO'],
   date: 'Sep 2 2025',
   addonSlug: 'ad-blocker',
@@ -28,7 +27,7 @@ async function card(item: Partial<Update>) {
 
 describe('update-card', () => {
   it('renders an approved update with a success dot and status badge', async () => {
-    const root = await card({ approved: true, versionStatus: 'Approved' });
+    const root = await card({ versionStatus: VERSION_STATUS.public });
 
     expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
       'success',
@@ -40,8 +39,7 @@ describe('update-card', () => {
 
   it('renders a flagged update with a warning dot and status badge', async () => {
     const root = await card({
-      approved: false,
-      versionStatus: 'Pending Approval',
+      versionStatus: VERSION_STATUS.unreviewed,
     });
 
     expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
@@ -52,8 +50,8 @@ describe('update-card', () => {
     ).toBe('warning');
   });
 
-  it('omits the status badge when versionStatus is empty', async () => {
-    const root = await card({ versionStatus: '' });
+  it('omits the status badge when there is no version status', async () => {
+    const root = await card({ versionStatus: undefined });
     expect(root.querySelector('.foot moz-status-badge')).toBeNull();
   });
 

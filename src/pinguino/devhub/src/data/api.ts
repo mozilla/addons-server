@@ -3,11 +3,17 @@
 // the query layer (./queries), not here.
 
 import { apiFetch } from './http';
+import {
+  resolveAddonStatus,
+  resolveVisibility,
+  VERSION_STATUS,
+} from './statuses';
 import type {
   Addon,
   AddonAuthor,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonDistribution,
   AddonKind,
   AddonListingEdit,
   AgreementAcceptState,
@@ -16,7 +22,9 @@ import type {
   Developer,
   EulaPolicy,
   EulaPolicyEdit,
+  FileUpload,
   Update,
+  Version,
 } from './types';
 
 // Paginated envelope shared by the AMO v5 list endpoints.
@@ -62,6 +70,7 @@ interface ApiAddon {
     caption?: Localized | null;
   }[];
   current_version?: { version?: string; license?: { name?: Localized } };
+  channels: AddonDistribution[];
 }
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
@@ -121,7 +130,6 @@ export function formatDate(iso: string | undefined): string {
 
 export function mapAddon(a: ApiAddon): Addon {
   const kind: AddonKind = a.type === 'statictheme' ? 'theme' : 'extension';
-  const live = a.status === 'public' && !a.is_disabled;
   const preview = a.previews?.[0];
 
   return {
@@ -129,16 +137,11 @@ export function mapAddon(a: ApiAddon): Addon {
     name: decodeEntities(localized(a.name)),
     kind,
     icon: kind === 'theme' ? 'themes' : 'extension',
-    statusLabel: live
-      ? kind === 'theme'
-        ? 'Live theme'
-        : 'Live add-on'
-      : (a.status ?? 'Unknown'),
+    status: resolveAddonStatus(a.status),
     version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
-    visibility: live ? 'live' : 'hidden',
-    // Distribution isn't exposed by the list API yet; default until it is.
-    distribution: 'amo',
+    visibility: resolveVisibility(a.is_disabled ?? false),
+    channels: a.channels,
     iconUrl: a.icon_url,
     previewUrl: preview?.image_url ?? preview?.thumbnail_url,
     screenshots: a.previews?.map((p) => ({
@@ -183,11 +186,10 @@ export function mapActivity(a: ApiActivity): Update {
   const approved = /approv/i.test(`${title} ${a.comments ?? ''}`);
   return {
     id: String(a.id),
-    approved,
     title,
     message: a.comments ?? '',
     version: a.versions?.[0]?.version ?? '',
-    versionStatus: approved ? 'Approved' : '',
+    versionStatus: approved ? VERSION_STATUS.public : undefined,
     tags: [],
     date: formatDate(a.date),
     addonSlug: a.addon?.slug ?? '',
@@ -411,5 +413,51 @@ export async function postAgreement(
   return await apiFetch('/developers/agreement/', {
     method: 'POST',
     body: payload,
+  });
+}
+
+export async function postUpload(
+  file: File,
+  channel: AddonDistribution,
+): Promise<FileUpload> {
+  const body = new FormData();
+  body.append('upload', file);
+  body.append('channel', channel);
+  return await apiFetch<FileUpload>('/addons/upload/', {
+    method: 'POST',
+    body,
+  });
+}
+
+export async function fetchUpload(uuid: string): Promise<FileUpload> {
+  return await apiFetch<FileUpload>(`/addons/upload/${uuid}/`);
+}
+
+const versionPath = (slug: string, id?: number) => {
+  return `/addons/addon/${encodeURIComponent(slug)}/versions/${id ? `${id}/` : ''}`;
+};
+
+export async function fetchVersion(slug: string, id: number): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug, id));
+}
+
+export async function postVersion(
+  slug: string,
+  uploadUuid: string,
+): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug), {
+    method: 'POST',
+    body: { upload: uploadUuid },
+  });
+}
+
+export async function patchVersion(
+  slug: string,
+  id: number,
+  body: object,
+): Promise<Version> {
+  return await apiFetch<Version>(versionPath(slug, id), {
+    method: 'PATCH',
+    body,
   });
 }

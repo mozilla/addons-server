@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AddonCard } from '../../src/components/addon-card';
 import '../../src/components/addon-card';
 import type { Addon } from '../../src/data';
+import { ADDON_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
 
 // Assertions read this component's own shadow root, not acorn's moz-* internals,
@@ -11,11 +12,11 @@ const baseAddon: Addon = {
   name: 'Ad Blocker',
   kind: 'extension',
   icon: 'extension',
-  statusLabel: 'Live add-on',
+  status: ADDON_STATUS.public,
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
-  visibility: 'live',
-  distribution: 'amo',
+  visibility: 'visible',
+  channels: ['listed'],
 };
 
 async function card(addon: Partial<Addon>) {
@@ -29,8 +30,8 @@ describe('addon-card', () => {
   it('renders an extension name with its visibility/distribution badges', async () => {
     const root = await card({
       kind: 'extension',
-      visibility: 'live',
-      distribution: 'amo',
+      visibility: 'visible',
+      channels: ['listed'],
     });
 
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Extension');
@@ -39,10 +40,14 @@ describe('addon-card', () => {
     expect(root.querySelector('.preview')).toBeNull();
     expect(root.querySelector('.name')?.textContent?.trim()).toBe('Ad Blocker');
 
-    const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
-      (b) => b.textContent?.trim(),
-    );
-    expect(badges).toEqual(['Live', 'AMO']);
+    expect(
+      root.querySelector('.tags visibility-badge')?.getAttribute('visibility'),
+    ).toBe('visible');
+    expect(
+      [...root.querySelectorAll('.tags distribution-badge')].map((b) =>
+        b.getAttribute('distribution'),
+      ),
+    ).toEqual(['listed']);
   });
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
@@ -80,11 +85,18 @@ describe('addon-card', () => {
     expect(root.querySelector('.bar')).not.toBeNull();
   });
 
-  it('maps a hidden / self-distributed add-on to the right badges', async () => {
-    const root = await card({ visibility: 'hidden', distribution: 'self' });
-    const badges = [...root.querySelectorAll('.tags moz-status-badge')].map(
-      (b) => b.textContent?.trim(),
-    );
-    expect(badges).toEqual(['Hidden', 'Self']);
+  it('passes an invisible add-on and every channel to the badges', async () => {
+    const root = await card({
+      visibility: 'invisible',
+      channels: ['listed', 'unlisted', 'enterprise'],
+    });
+    expect(
+      root.querySelector('.tags visibility-badge')?.getAttribute('visibility'),
+    ).toBe('invisible');
+    expect(
+      [...root.querySelectorAll('.tags distribution-badge')].map((b) =>
+        b.getAttribute('distribution'),
+      ),
+    ).toEqual(['listed', 'unlisted', 'enterprise']);
   });
 });

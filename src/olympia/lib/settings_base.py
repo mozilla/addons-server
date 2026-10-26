@@ -1065,6 +1065,7 @@ MAX_ZIP_UNCOMPRESSED_SIZE = 250 * 1024 * 1024
 # See SourceForm, _submit_upload(), validate_review_attachment(), etc. Since it
 # is displayed to users with filesizeformat it should be using powers of 1000
 # to be displayed correctly.
+# Mirrored to Pinguino in base.ts.
 MAX_UPLOAD_SIZE = 200 * 1000 * 1000
 
 # File uploads should have -rw-r--r-- permissions in order to be served by
@@ -1430,7 +1431,7 @@ FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT = 15 * 60  # 15 minutes in seconds
 USE_FAKE_FXA_AUTH = False  # Should only be True for local development envs.
 VERIFY_FXA_ACCESS_TOKEN = True
 
-FXA_ACTIVES_BIGQUERY_TABLE = env('FXA_ACTIVES_BIGQUERY_TABLE', default=None)
+FXA_ACTIVES_BIGQUERY_TABLE = None
 
 # List all jobs that should be callable with cron here.
 # syntax is: job_and_method_name: full.package.path

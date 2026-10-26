@@ -38,12 +38,15 @@ class DeveloperAgreementSerializer(serializers.ModelSerializer):
         # See: AgreementForm
         if request.user.is_authenticated and request.user.display_name:
             raise serializers.ValidationError('User already has display_name.')
+        if not value:
+            raise serializers.ValidationError('Display name cannot be empty.')
         try:
-            return validate_user_name(
+            validate_user_name(
                 value, error_message=gettext('This display name cannot be used.')
             )
         except DjangoValidationError as exc:
             raise serializers.ValidationError(exc.messages) from exc
+        return value
 
     def validate(self, attrs):
         request_user = self.context['request'].user

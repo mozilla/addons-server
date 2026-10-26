@@ -12,8 +12,12 @@ import {
   mapAddon,
   patchAddon,
   patchEulaPolicy,
+  patchVersion,
   postAgreement,
+  postUpload,
+  postVersion,
 } from '../../src/data/api';
+import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
 
 function mockJson(payload: unknown) {
   vi.stubGlobal(
@@ -23,6 +27,8 @@ function mockJson(payload: unknown) {
       .mockResolvedValue({ ok: true, status: 200, json: async () => payload }),
   );
 }
+
+const lastCall = () => vi.mocked(fetch).mock.calls[0];
 
 describe('mapAddon', () => {
   it('maps a public static theme to a live theme', () => {
@@ -34,6 +40,7 @@ describe('mapAddon', () => {
       last_updated: '2025-05-14T10:00:00Z',
       current_version: { version: '3.2.1' },
       previews: [{ image_url: 'https://cdn/preview.png' }],
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
@@ -41,8 +48,8 @@ describe('mapAddon', () => {
       name: 'Sunset', // en-US preferred out of the localized map
       kind: 'theme',
       icon: 'themes',
-      statusLabel: 'Live theme',
-      visibility: 'live',
+      status: ADDON_STATUS.public,
+      visibility: 'visible',
       version: '3.2.1',
       lastUpdated: 'May 14 2025',
       previewUrl: 'https://cdn/preview.png',
@@ -56,24 +63,26 @@ describe('mapAddon', () => {
       type: 'extension',
       status: 'public',
       summary: { 'en-US': 'A &amp; B &lt; C' },
+      channels: ['listed'],
     });
     expect(addon.name).toBe('Tom & Jerry');
     expect(addon.summary).toBe('A & B < C');
   });
 
-  it('treats a disabled add-on as hidden and surfaces the raw status label', () => {
+  it('treats an author-disabled add-on as invisible and surfaces the raw status label', () => {
     const addon = mapAddon({
       slug: 'grammarly',
       name: { 'en-US': 'Grammarly' },
       type: 'extension',
       status: 'nominated',
       is_disabled: true,
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
       kind: 'extension',
-      visibility: 'hidden',
-      statusLabel: 'nominated',
+      visibility: 'invisible',
+      status: ADDON_STATUS.nominated,
       version: '—', // no current_version
     });
   });
@@ -103,6 +112,7 @@ describe('mapAddon', () => {
         version: '1.0',
         license: { name: { 'en-US': 'MPL 2.0' } },
       },
+      channels: ['listed'],
     });
 
     expect(addon).toMatchObject({
@@ -138,21 +148,20 @@ describe('mapActivity', () => {
 
     expect(update).toMatchObject({
       id: '42',
-      approved: true,
-      versionStatus: 'Approved',
+      versionStatus: VERSION_STATUS.public,
       version: '3.2.1',
       date: 'Sep 2 2025',
       addonSlug: 'my-addon',
     });
   });
 
-  it('leaves a non-approval activity unapproved with no status', () => {
+  it('leaves a non-approval activity with no version status', () => {
     const update = mapActivity({
       id: 7,
       addon: {},
       title: 'Version flagged for review',
     });
-    expect(update).toMatchObject({ approved: false, versionStatus: '' });
+    expect(update.versionStatus).toBeUndefined();
   });
 });
 
@@ -191,7 +200,10 @@ describe('endpoints', () => {
     mockJson({ results: [{ id: 1, title: 'Approved!' }] });
     const updates = await fetchUpdates();
     expect(updates).toHaveLength(1);
-    expect(updates[0]).toMatchObject({ id: '1', approved: true });
+    expect(updates[0]).toMatchObject({
+      id: '1',
+      versionStatus: VERSION_STATUS.public,
+    });
   });
 
   it('fetchProfile reads the account name', async () => {
@@ -269,11 +281,50 @@ describe('endpoints', () => {
     const payload = { last_developer_agreement_change: '2020-01-10T12:00:00' };
 
     await postAgreement(payload);
-    const [url, init] = vi.mocked(fetch).mock.calls[0];
+    const [url, init] = lastCall();
     expect(url).toBe('/api/v5/developers/agreement/');
     expect(init).toMatchObject({
       method: 'POST',
       body: JSON.stringify(payload),
+    });
+  });
+});
+
+describe('submission endpoints', () => {
+  it('postUpload POSTs the file and channel as FormData', async () => {
+    mockJson({ uuid: 'foo' });
+    const file = new File(['zip'], 'addon.zip');
+
+    await postUpload(file, 'unlisted');
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/upload/');
+    const body = init?.body as FormData;
+    expect(body.get('channel')).toBe('unlisted');
+    expect((body.get('upload') as File).name).toBe('addon.zip');
+  });
+
+  it('postVersion POSTs the upload uuid to the versions list', async () => {
+    mockJson({ id: 1 });
+    await postVersion('my addon', 'foo');
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/addon/my%20addon/versions/');
+    expect(init).toMatchObject({
+      method: 'POST',
+      body: JSON.stringify({ upload: 'foo' }),
+    });
+  });
+
+  it('patchVersion PATCHes the version detail', async () => {
+    mockJson({ id: 1 });
+    await patchVersion('slug', 1, { is_disabled: true });
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/addons/addon/slug/versions/1/');
+    expect(init).toMatchObject({
+      method: 'PATCH',
+      body: JSON.stringify({ is_disabled: true }),
     });
   });
 });

@@ -17,11 +17,8 @@ on:
       - '.github/workflows/_test_pinguino.yml'
   workflow_dispatch:
 
-# @mozilla/acorn-web-components installs from GitHub Packages; npm ci needs a
-# read:packages token, which the automatic GITHUB_TOKEN provides.
 permissions:
   contents: read
-  packages: read
 
 concurrency:
   group: test-pinguino-${{ github.ref }}
@@ -30,11 +27,6 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
-    # Fork PRs can't read the org's GitHub Packages, so skip them (they'd 401 on
-    # install). Same-repo branches, pushes and manual runs still run.
-    if: >-
-      github.event_name != 'pull_request' ||
-      github.event.pull_request.head.repo.full_name == github.repository
     defaults:
       run:
         working-directory: src/pinguino/devhub
@@ -43,7 +35,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: 24
           cache: npm
@@ -51,8 +43,6 @@ jobs:
 
       - name: Install
         run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint (Biome)
         run: npm run lint
