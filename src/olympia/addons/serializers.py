@@ -905,11 +905,7 @@ class AddonEulaPolicySerializer(AMOModelSerializer):
         ]
         instance = super().update(
             instance,
-            {
-                key: value
-                for key, value in validated_data.items()
-                if key not in cleared
-            },
+            {key: value for key, value in validated_data.items() if key not in cleared},
         )
         for field in cleared:
             delete_translation(instance, field)
