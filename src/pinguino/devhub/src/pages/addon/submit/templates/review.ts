@@ -38,7 +38,7 @@ export class ReviewSubmit extends SubmissionStep {
 
   @property() slug = '';
   @property({ type: Number }) versionId?: number;
-  @property() distribution: AddonDistribution;
+  @property() distribution!: AddonDistribution;
   @state() private error?: string;
 
   @query('#release-notes') private releaseNotes?: Textarea;

@@ -80,11 +80,13 @@ async function mountFlow(path: string) {
   await host.router.goto(`/submit/${path}`);
   await settle(host);
   const el = host.shadowRoot?.querySelector('addon-submission');
+  if (!el) throw new Error('expected addon-submission in the DOM');
   await settle(el);
   return ui(el);
 }
 
-function chooseFiles(input: Element, ...files: File[]) {
+function chooseFiles(input: Element | null, ...files: File[]) {
+  if (!input) throw new Error('expected moz-input-file in the DOM');
   Object.assign(input, {
     files,
     clear: () => Object.assign(input, { files: [] }),
@@ -92,7 +94,8 @@ function chooseFiles(input: Element, ...files: File[]) {
   input.dispatchEvent(new Event('change'));
 }
 
-function pick(picker: Element, value: string) {
+function pick(picker: Element | null, value: string) {
+  if (!picker) throw new Error('expected moz-visual-picker in the DOM');
   Object.assign(picker, { value });
   picker.dispatchEvent(new Event('change'));
 }
