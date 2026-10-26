@@ -11,6 +11,9 @@ export {
   categoriesQuery,
   createAuthor,
   createPreview,
+  createUpload,
+  createVersion,
+  disableVersion,
   eulaPolicyQuery,
   pendingAuthorsQuery,
   profileQuery,
@@ -23,6 +26,10 @@ export {
   updateIcon,
   updatePreview,
   updatesQuery,
+  uploadQuery,
+  uploadVersionNotes,
+  uploadVersionSource,
+  versionQuery,
 } from './queries';
 export { queryClient } from './query-client';
 export {

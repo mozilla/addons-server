@@ -3222,6 +3222,20 @@ class TestDeveloperAgreementAPI(TestCase):
         assert response.status_code == 429
         assert user.has_anonymous_display_name
 
+    def test_throttle_skips_get(self):
+        user = user_factory(read_dev_agreement=None)
+        self.client.login_api(user)
+        with time_machine.travel(datetime.now(), tick=False):
+            for _x in range(8):
+                self._add_fake_throttling_action(
+                    view_class=DeveloperAgreementView,
+                    url=self.api_url,
+                    user=user,
+                    remote_addr='1.2.3.4',
+                )
+            response = self.client.get(self.api_url)
+        assert response.status_code == 200
+
     def test_throttled_ip(self):
         with time_machine.travel(datetime.now(), tick=False):
             for _x in range(16):

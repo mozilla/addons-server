@@ -220,7 +220,7 @@ class Validator:
                         ),
                     )
             except InvalidAddonType:
-                log.error(
+                log.warning(
                     'Tried to validate non-theme upload %s using theme specific flow',
                     file_.uuid,
                 )
