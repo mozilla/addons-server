@@ -10,12 +10,19 @@ server {
         alias /srv/storage/;
     }
 
-    # Pinguino (Lit DevHub rebuild) vite dev server. Its assets/modules/HMR are
-    # served under the vite base (STATIC_URL_PREFIX + pinguino/), so proxy that
-    # prefix to the dev server - mirroring the main app's bundle/ block below.
-    # The shell itself is served at /developers/ by devhub.views.serve_pinguino,
-    # which proxies the dev server's index.html in DEV_MODE.
-    location ^~ ${STATIC_URL_PREFIX}pinguino/ {
+    # Pinguino (Lit DevHub rebuild) assets live under the vite base
+    # (STATIC_URL_PREFIX + pinguino/). Both the built assets and the dev server's
+    # source modules use this same prefix, so serve built files from disk when
+    # present (DEV_MODE=False / production-like) and only fall back to the vite
+    # dev server for paths not on disk - its HMR client and source modules
+    # (DEV_MODE=True). The shell itself is served at /developers/ by
+    # devhub.views.serve_pinguino. Must precede the generic static block below.
+    location ~ ^${STATIC_URL_PREFIX}pinguino/(.*)$ {
+        root /srv;
+        try_files /site-static/pinguino/$1 /static/pinguino/$1 @pinguino;
+    }
+
+    location @pinguino {
         proxy_pass http://pinguino;
 
         proxy_set_header Upgrade $http_upgrade;
