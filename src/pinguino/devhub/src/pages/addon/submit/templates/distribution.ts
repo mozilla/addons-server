@@ -1,8 +1,8 @@
 import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { AddonDistribution } from '../../../../data/types';
-import { emit, SubmissionStep } from '../submission-flow';
 import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
+import { emit, SubmissionStep } from '../submission-flow';
 
 const OPTIONS: Record<
   AddonDistribution,
