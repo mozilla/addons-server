@@ -403,9 +403,9 @@ pytest-reportlog==1.0.0 \
 django-dbbackup==5.3.1 \
     --hash=sha256:029573a760ddd288eae26504dcf3d9013282a4d2fed7d723d113a9c5fefa8aaf \
     --hash=sha256:4ea14444ea879dbd247da0cb5ed3145f695ab240bb71a1706aaaaa7d092c584b
-pytest-env==1.7.1 \
-    --hash=sha256:22341b945305b65ef4e53d7c678982cfd64b5c5800afdf7d37caad2362ea002c \
-    --hash=sha256:f2c5aed2621dbfc73c2866a710e2e456409495c5ac10905612c9509b3ee631a2
+pytest-env==1.8.1 \
+    --hash=sha256:753d3f0c646dd43f292a6d664099d1cafce39dda08217510ec5e9b6a681628a0 \
+    --hash=sha256:996f86ad78b6c7b5335e0d493f9e9ecd3e421174e056742856f91da439e1cbd9
 # python-dotenv is required by pytest-env
 python-dotenv==1.2.3 \
     --hash=sha256:904552145e8bfed22162c09dab1c2b9b54fefa7b23ba780f4f26ca0316b0f0d9 \
