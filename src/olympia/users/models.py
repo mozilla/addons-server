@@ -1404,6 +1404,75 @@ class FingerprintRestriction(RestrictionAbstractBaseModel):
         return list(cls.objects.filter(ja4=ja4, restriction_type=restriction_type))
 
 
+class ContentCreationThresholdRestriction(RestrictionAbstractBaseModel):
+    interval = models.PositiveIntegerField(help_text='Interval in seconds')
+    threshold = models.PositiveIntegerField(
+        help_text=(
+            'Threshold for the given interval that triggers the restriction (inclusive)'
+        )
+    )
+
+    error_message = _('You have submitted too much content recently.')
+
+    def __str__(self):
+        return f'{self.threshold}/{timedelta(seconds=self.interval)!s}'
+
+    @classmethod
+    def get_matching_restrictions(cls, argument, *, restriction_type):
+        if not (user := getattr(argument, 'user', None)) or not user.is_authenticated:
+            return cls.objects.none()
+
+        if restriction_type in (
+            RESTRICTION_TYPES.ADDON_SUBMISSION,
+            RESTRICTION_TYPES.ADDON_APPROVAL,
+        ):
+            # We consider any addons you're the author of, even if technically
+            # it may not have been created by you.
+            qs = (
+                user.addonuser_set(manager='unfiltered_for_relations')
+                .order_by('addon__created')
+                .values_list('addon__created', flat=True)
+            )
+        elif restriction_type in (
+            RESTRICTION_TYPES.RATING,
+            RESTRICTION_TYPES.RATING_MODERATE,
+        ):
+            qs = (
+                user._ratings_all(manager='unfiltered_for_relations')
+                .order_by('created')
+                .values_list('created', flat=True)
+            )
+        else:
+            # Shouldn't reach this.
+            return cls.objects.none()
+
+        if not (interval_start := qs.first()) or not (count := qs.order_by().count()):
+            # No previous content of that type, shouldn't be restricted.
+            return cls.objects.none()
+
+        # These restrictions are valid for a specific interval starting from
+        # the first content of the relevant type the user is an author of (by
+        # creation date), and check if you are over the threshold by counting
+        # how many the user has (including deleted).
+        return cls.objects.filter(
+            restriction_type=restriction_type,
+            threshold__lte=count,
+            interval__gte=(datetime.now() - interval_start).total_seconds(),
+        )
+
+    @classmethod
+    def allow_request(cls, request, *, restriction_type):
+        return not cls.get_matching_restrictions(
+            request, restriction_type=restriction_type
+        ).exists()
+
+    @classmethod
+    def allow_auto_approval(cls, upload):
+        return not cls.get_matching_restrictions(
+            upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        ).exists()
+
+
 class ReputationRestrictionMixin:
     reputation_threshold = 50
 
@@ -1551,6 +1620,7 @@ class UserRestrictionHistory(ModelBase):
         (5, IPReputationRestriction),
         (6, FingerprintRestriction),
         (7, AsnUserRestriction),
+        (8, ContentCreationThresholdRestriction),
     )
 
     user = models.ForeignKey(

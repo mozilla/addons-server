@@ -41,6 +41,7 @@ from . import forms
 from .models import (
     AsnUserRestriction,
     BannedUserContent,
+    ContentCreationThresholdRestriction,
     DeniedName,
     DisposableEmailDomainRestriction,
     EmailUserRestriction,
@@ -772,6 +773,13 @@ class AsnUserRestrictionAdmin(AMOModelAdmin):
     list_display = ('asn', 'restriction_type', 'reason')
     list_filter = ('restriction_type',)
     search_fields = ('^asn',)
+
+
+@admin.register(ContentCreationThresholdRestriction)
+class ContentCreationThresholdRestrictionAdmin(AMOModelAdmin):
+    actions = ['delete_selected']
+    list_display = ('__str__', 'interval', 'threshold', 'reason')
+    list_filter = ('restriction_type',)
 
 
 @admin.register(UserRestrictionHistory)
