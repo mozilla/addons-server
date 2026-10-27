@@ -378,8 +378,7 @@ export async function fetchEulaPolicy(slug: string): Promise<EulaPolicy> {
 
 // Any translated field is cleared per locale, and the API rejects nulling the
 // default locale while other translations survive — so clearing one means
-// nulling every locale it currently has. Takes the field's current value
-// (all locales) and returns the map that clears it.
+// nulling every locale it currently has.
 export function clearTranslations(
   current?: Localized | null,
 ): Record<string, null> {
@@ -407,7 +406,6 @@ export async function patchEulaPolicy(
         }>(`/addons/addon/${slug}/eula_policy/`)
       : null;
 
-  // A string sets the policy as a { lang: value } object; null clears it.
   const body: Record<string, unknown> = {};
   if ('eula' in edit) {
     body.eula =

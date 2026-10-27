@@ -153,9 +153,9 @@ export class ListingDetailsCard extends SectionCard {
     };
   }
 
-  // The policy changes to persist, or null when nothing changed. New/updated
-  // text is sent as a string; a policy that was present and is now switched off
-  // (or emptied) is sent as null to clear it.
+  // The policy changes to persist, diffed against the fetched baseline, or null
+  // when nothing changed. A policy switched off (or emptied) becomes a null,
+  // which clears it.
   #changedEula(d: ListingDraft) {
     const nextEula = d.has_eula ? (d.eula ?? '').trim() : '';
     const nextPrivacy = d.has_privacy_policy

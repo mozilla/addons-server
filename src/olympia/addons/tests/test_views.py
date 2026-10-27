@@ -5952,9 +5952,8 @@ class TestAddonViewSetEulaPolicy(TestCase):
         response = self.client.patch(self.url, {'eula': {'en-US': None, 'fr': None}})
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
-        # Cleared: the translation is gone (serialized as empty / null).
+        # Serialized as null once cleared, rather than an empty translation.
         assert not data['eula']
-        # Only the eula was cleared; the privacy policy is untouched.
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
         addon = Addon.objects.get(pk=self.addon.pk)
         assert addon.eula is None
