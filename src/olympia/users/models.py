@@ -1426,6 +1426,8 @@ class ContentCreationThresholdRestriction(RestrictionAbstractBaseModel):
             RESTRICTION_TYPES.ADDON_SUBMISSION,
             RESTRICTION_TYPES.ADDON_APPROVAL,
         ):
+            # We consider any addons you're the author of, even if technically
+            # it may not have been created by you.
             qs = (
                 user.addonuser_set(manager='unfiltered_for_relations')
                 .order_by('addon__created')
@@ -1443,8 +1445,6 @@ class ContentCreationThresholdRestriction(RestrictionAbstractBaseModel):
         else:
             # Shouldn't reach this.
             return cls.objects.none()
-
-        interval_start = qs.first()
 
         if not (interval_start := qs.first()) or not (count := qs.order_by().count()):
             # No previous content of that type, shouldn't be restricted.
