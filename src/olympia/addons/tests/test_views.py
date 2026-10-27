@@ -5942,14 +5942,14 @@ class TestAddonViewSetEulaPolicy(TestCase):
             0
         ].details == ['eula', 'privacy_policy']
 
-    def test_update_clear_with_null(self):
+    def test_update_clear_with_nulls(self):
         self.addon.eula = {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
         self.addon.privacy_policy = 'My Prïvacy, My Policy'
         self.addon.save()
         AddonUser.objects.create(user=self.user, addon=self.addon)
         self.client.login_api(self.user)
 
-        response = self.client.patch(self.url, {'eula': None})
+        response = self.client.patch(self.url, {'eula': {'en-US': None, 'fr': None}})
         assert response.status_code == 200
         data = json.loads(force_str(response.content))
         # Cleared: the translation is gone (serialized as empty / null).
@@ -5957,8 +5957,21 @@ class TestAddonViewSetEulaPolicy(TestCase):
         # Only the eula was cleared; the privacy policy is untouched.
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
         addon = Addon.objects.get(pk=self.addon.pk)
-        assert addon.eula_id is None
-        assert addon.privacy_policy_id is not None
+        assert addon.eula is None
+        assert addon.privacy_policy is not None
+
+    def test_update_clear_requires_all_locales(self):
+        self.addon.eula = {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
+        self.addon.save()
+        AddonUser.objects.create(user=self.user, addon=self.addon)
+        self.client.login_api(self.user)
+
+        response = self.client.patch(self.url, {'eula': {'en-US': None}})
+        assert response.status_code == 400
+        assert json.loads(force_str(response.content))['eula'] == [
+            'A value in the default locale of "en-US" is required if other '
+            'translations are set.'
+        ]
 
     def test_update_put(self):
         AddonUser.objects.create(user=self.user, addon=self.addon)

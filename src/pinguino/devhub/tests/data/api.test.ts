@@ -267,6 +267,36 @@ describe('endpoints', () => {
     });
   });
 
+  it('patchEulaPolicy clears a policy by nulling every existing locale', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            eula: { 'en-US': 'Terms', fr: 'Conditions' },
+            privacy_policy: null,
+          }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({}),
+        }),
+    );
+
+    await patchEulaPolicy('x', { eula: null });
+
+    const [lookupUrl] = vi.mocked(fetch).mock.calls[0];
+    expect(lookupUrl).toBe('/api/v5/addons/addon/x/eula_policy/');
+    const [, init] = vi.mocked(fetch).mock.calls[1];
+    expect(JSON.parse(String(init?.body))).toEqual({
+      eula: { 'en-US': null, fr: null },
+    });
+  });
+
   it('fetchAgreement returns the agreement state as it was fetched', async () => {
     const state = {
       display_name: 'my_display_name',

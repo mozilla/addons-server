@@ -1000,8 +1000,8 @@ This endpoint allows an add-on's EULA and privacy policy to be edited.
 
 .. http:patch:: /api/v5/addons/addon/(int:id|string:slug|string:guid)/eula_policy/
 
-    :<json object|null eula: The EULA text (See :ref:`translated fields <api-overview-translations>`).
-    :<json object|null privacy_policy: The privacy policy text (See :ref:`translated fields <api-overview-translations>`).
+    :<json object eula: The EULA text (See :ref:`translated fields <api-overview-translations>`). To clear it, pass ``null`` for every language it's translated into.
+    :<json object privacy_policy: The privacy policy text (See :ref:`translated fields <api-overview-translations>`). To clear it, pass ``null`` for every language it's translated into.
 
 
 --------------
