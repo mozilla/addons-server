@@ -17,6 +17,7 @@ from olympia.constants.scanners import (
     SCHEDULED,
     WEBHOOK,
     WEBHOOK_DURING_VALIDATION,
+    WEBHOOK_ON_LISTING_CHANGED,
     WEBHOOK_PUSH,
     YARA,
 )
@@ -202,6 +203,27 @@ class TestPatchScannerResult(APIKeyAuthTestMixin, TestCase):
         response = self.patch(self.url, data={'results': results})
 
         assert response.status_code == 403
+
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
+    def test_runs_actions_on_matches(self, run_actions_task_mock):
+        self.scanner_result.webhook_event.update(event=WEBHOOK_ON_LISTING_CHANGED)
+
+        results = {'version': '1.2.3', 'matchedRules': ['some-rule']}
+        response = self.patch(self.url, data={'results': results})
+
+        assert response.status_code == 204
+        run_actions_task_mock.delay.assert_called_once_with(self.scanner_result.pk)
+
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
+    def test_no_run_actions_when_patched_twice(self, run_actions_task_mock):
+        self.scanner_result.webhook_event.update(event=WEBHOOK_ON_LISTING_CHANGED)
+        self.scanner_result.update(results={'matchedRules': []})
+
+        results = {'version': '1.2.3', 'matchedRules': ['some-rule']}
+        response = self.patch(self.url, data={'results': results})
+
+        assert response.status_code == 409
+        assert run_actions_task_mock.delay.call_count == 0
 
 
 class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
@@ -434,7 +456,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert response.status_code == 400
         assert response.json() == {'results': ['This field is required.']}
 
-    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
     def test_runs_actions_for_matched_rules(self, run_actions_mock):
         response = self._push_scanner_result(
             data={
@@ -448,7 +470,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert scanner_result.has_matches
         run_actions_mock.delay.assert_called_once_with(scanner_result.pk)
 
-    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
     def test_does_not_run_actions_without_matched_rules(self, run_actions_mock):
         response = self._push_scanner_result()
 
@@ -456,7 +478,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert not ScannerResult.objects.get().has_matches
         run_actions_mock.delay.assert_not_called()
 
-    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
     def test_run_actions_for_unknown_rule(self, run_actions_mock):
         data = {
             'version_id': self.version.pk,
@@ -474,7 +496,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         response = self._push_scanner_result(data=data)
         assert response.status_code == 409
 
-    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
     def test_does_not_run_actions_for_inactive_rule(self, run_actions_mock):
         ScannerRule.objects.filter(name='rule-a').update(is_active=False)
 
@@ -489,7 +511,7 @@ class TestPushScannerResult(APIKeyAuthTestMixin, TestCase):
         assert not ScannerResult.objects.get().has_matches
         run_actions_mock.delay.assert_not_called()
 
-    @mock.patch('olympia.scanners.views.run_actions_for_scanner_result')
+    @mock.patch('olympia.scanners.tasks.run_actions_for_scanner_result')
     def test_does_not_run_actions_on_duplicate_rule(self, run_actions_mock):
         data = {
             'version_id': self.version.pk,
