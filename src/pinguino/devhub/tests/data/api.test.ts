@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  clearTranslations,
   fetchAddons,
   fetchAgreement,
   fetchCategories,
@@ -178,6 +179,30 @@ describe('localized / formatDate', () => {
   });
 });
 
+describe('clearTranslations', () => {
+  it('nulls every locale the field is translated into', () => {
+    expect(clearTranslations({ 'en-US': 'Terms', fr: 'Conditions' })).toEqual({
+      'en-US': null,
+      fr: null,
+    });
+  });
+
+  it('always nulls en-US, even for an absent or fallback-only field', () => {
+    expect(clearTranslations(undefined)).toEqual({ 'en-US': null });
+    expect(clearTranslations({ fr: 'Conditions' })).toEqual({
+      fr: null,
+      'en-US': null,
+    });
+  });
+
+  it('ignores the `_default` marker of a single-translation response', () => {
+    expect(clearTranslations({ fr: 'Conditions', _default: 'fr' })).toEqual({
+      fr: null,
+      'en-US': null,
+    });
+  });
+});
+
 describe('endpoints', () => {
   it('fetchAddons maps the paginated envelope through mapAddon', async () => {
     mockJson({
@@ -287,13 +312,16 @@ describe('endpoints', () => {
         }),
     );
 
-    await patchEulaPolicy('x', { eula: null });
+    await patchEulaPolicy('x', { eula: null, privacyPolicy: 'Kept' });
 
+    // One lookup, unscoped by `lang` so it sees every locale.
+    expect(vi.mocked(fetch).mock.calls).toHaveLength(2);
     const [lookupUrl] = vi.mocked(fetch).mock.calls[0];
     expect(lookupUrl).toBe('/api/v5/addons/addon/x/eula_policy/');
     const [, init] = vi.mocked(fetch).mock.calls[1];
     expect(JSON.parse(String(init?.body))).toEqual({
       eula: { 'en-US': null, fr: null },
+      privacy_policy: { 'en-US': 'Kept' },
     });
   });
 

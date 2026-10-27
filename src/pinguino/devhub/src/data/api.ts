@@ -376,19 +376,15 @@ export async function fetchEulaPolicy(slug: string): Promise<EulaPolicy> {
   };
 }
 
-// Translated fields are cleared per locale, and the API rejects nulling the
-// default locale while other translations survive — so clearing means nulling
-// every locale the policy currently has. We only edit en-US, so fetch the full
-// set first rather than trusting the en-US view of it.
-async function clearedLocales(
-  slug: string,
-  field: 'eula' | 'privacy_policy',
-): Promise<Record<string, null>> {
-  const data = await apiFetch<{
-    eula?: Localized | null;
-    privacy_policy?: Localized | null;
-  }>(`/addons/addon/${slug}/eula_policy/`);
-  const locales = Object.keys(data[field] ?? {}).filter(
+// Any translated field is cleared per locale, and the API rejects nulling the
+// default locale while other translations survive — so clearing one means
+// nulling every locale it currently has. Takes the field's current value
+// (all locales) and returns the map that clears it.
+export function clearTranslations(
+  current?: Localized | null,
+): Record<string, null> {
+  const locales = Object.keys(current ?? {}).filter(
+    // A single-translation response carries `_default` alongside the locales.
     (locale) => !locale.startsWith('_'),
   );
   return Object.fromEntries(
@@ -400,18 +396,29 @@ export async function patchEulaPolicy(
   slug: string,
   edit: EulaPolicyEdit,
 ): Promise<void> {
+  // We only ever edit en-US, so clearing needs the full locale set: fetch it
+  // without `lang` rather than trusting the en-US view of the policy.
+  const current =
+    ('eula' in edit && edit.eula == null) ||
+    ('privacyPolicy' in edit && edit.privacyPolicy == null)
+      ? await apiFetch<{
+          eula?: Localized | null;
+          privacy_policy?: Localized | null;
+        }>(`/addons/addon/${slug}/eula_policy/`)
+      : null;
+
   // A string sets the policy as a { lang: value } object; null clears it.
   const body: Record<string, unknown> = {};
   if ('eula' in edit) {
     body.eula =
       edit.eula == null
-        ? await clearedLocales(slug, 'eula')
+        ? clearTranslations(current?.eula)
         : { 'en-US': edit.eula };
   }
   if ('privacyPolicy' in edit) {
     body.privacy_policy =
       edit.privacyPolicy == null
-        ? await clearedLocales(slug, 'privacy_policy')
+        ? clearTranslations(current?.privacy_policy)
         : { 'en-US': edit.privacyPolicy };
   }
   await apiFetch(`/addons/addon/${slug}/eula_policy/?lang=en-US`, {
