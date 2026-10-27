@@ -69,7 +69,7 @@ interface ApiAddon {
     thumbnail_url?: string;
     caption?: Localized | null;
   }[];
-  current_version?: { version?: string; license?: { name?: Localized } };
+  current_version?: Version;
   channels: AddonDistribution[];
 }
 
@@ -94,7 +94,7 @@ interface ApiProfile {
 }
 
 export function localized(
-  value: string | Record<string, string> | undefined,
+  value: string | Record<string, string> | null | undefined,
 ): string {
   if (!value) return '';
   if (typeof value === 'string') return value;
@@ -122,7 +122,7 @@ function decodeEntities(s: string): string {
   return el.value;
 }
 
-export function formatDate(iso: string | undefined): string {
+export function formatDate(iso: string | null | undefined): string {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
@@ -177,6 +177,7 @@ export function mapAddon(a: ApiAddon): Addon {
     },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
+    currentVersion: a.current_version,
   };
 }
 
@@ -496,6 +497,24 @@ export async function patchVersion(
     method: 'PATCH',
     body,
   });
+}
+
+export async function fetchVersions(
+  slug: string,
+  lang: string,
+  filter:
+    | 'all_without_unlisted'
+    | 'all_with_unlisted'
+    | 'all_with_deleted' = 'all_with_unlisted',
+): Promise<Version[]> {
+  const data = await apiFetch<Paginated<Version>>(
+    `${versionPath(slug)}?${new URLSearchParams({
+      filter,
+      lang,
+      page_size: '50',
+    })}`,
+  );
+  return data.results ?? [];
 }
 
 // Ends the current session server-side.

@@ -3,7 +3,7 @@ import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
-import { mount, settle } from '../helpers/fixture';
+import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
 
 const addon: Addon = {
   slug: 'ad-blocker',
@@ -39,8 +39,27 @@ describe('devhub-addon', () => {
     expect(root.querySelector('addon-listing')).not.toBeNull();
   });
 
-  it('renders a stub (not the listing) for a non-edit tab', async () => {
+  it('renders a stub (not the listing) for an unfinished tab', async () => {
     queryClient.setQueryData(queryKeys.addons, [addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'statistics',
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    expect(
+      root.querySelector('moz-segmented-control')?.getAttribute('value'),
+    ).toBe('statistics');
+    expect(root.querySelector('addon-listing')).toBeNull();
+    expect(root.querySelector('.stub')?.textContent).toContain('Statistics');
+  });
+
+  it('renders the versions panel for the add-on on the versions tab', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
+      DEFAULT_VERSION,
+    ]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'versions',
@@ -48,11 +67,9 @@ describe('devhub-addon', () => {
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    expect(
-      root.querySelector('moz-segmented-control')?.getAttribute('value'),
-    ).toBe('versions');
+    const panel = root.querySelector('addon-version');
+    expect(panel?.addon.slug).toBe('ad-blocker');
     expect(root.querySelector('addon-listing')).toBeNull();
-    expect(root.querySelector('.stub')?.textContent).toContain('Versions');
   });
 
   it('selecting a tab navigates to its sub-URL', async () => {
