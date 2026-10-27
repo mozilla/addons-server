@@ -1373,6 +1373,52 @@ class TestUserRestrictionHistoryAdmin(TestCase):
         assert str(self.user) in content
         assert str(other_user) not in content
 
+    def test_detail(self):
+        other_user = user_factory(last_login_ip='127.0.0.42')
+        history = UserRestrictionHistory.objects.create(user=other_user)
+        url = reverse('admin:users_userrestrictionhistory_change', args=(history.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert str(other_user) in content
+        assert (
+            reverse('admin:users_userprofile_change', args=(other_user.pk,)) in content
+        )
+
+    def test_detail_with_restriction_instance_and_version(self):
+        other_user = user_factory(last_login_ip='127.0.0.42')
+        # Dummy IPNetworkUserRestriction shouldn't matter, proves that we are
+        # linking to the correct restriction.
+        IPNetworkUserRestriction.objects.create(network='10.0.0.2/32')
+        restriction = EmailUserRestriction.objects.create(
+            email_pattern=other_user.email
+        )
+        addon = addon_factory()
+        version = addon.current_version
+        history = UserRestrictionHistory.objects.create(
+            user=other_user,
+            restriction=2,
+            restriction_instance=restriction,
+            version=version,
+        )
+        url = reverse('admin:users_userrestrictionhistory_change', args=(history.pk,))
+        restriction_url = reverse(
+            'admin:users_emailuserrestriction_change',
+            args=(history.restriction_object_id,),
+        )
+        version_url = reverse('admin:versions_version_change', args=(version.pk,))
+        addon_url = reverse('admin:addons_addon_change', args=(addon.pk,))
+        response = self.client.get(url)
+        assert response.status_code == 200
+        content = response.content.decode('utf-8')
+        assert restriction_url in content
+        assert str(restriction) in content
+        assert restriction.__class__.__name__ in content
+        assert addon_url in content
+        assert str(addon) in content
+        assert version_url in content
+        assert str(version) in content
+
 
 class TestUserHistoryAdmin(TestCase):
     def setUp(self):

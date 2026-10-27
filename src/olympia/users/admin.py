@@ -776,19 +776,31 @@ class AsnUserRestrictionAdmin(AMOModelAdmin):
 
 @admin.register(UserRestrictionHistory)
 class UserRestrictionHistoryAdmin(AMOModelAdmin):
-    raw_id_fields = ('user',)
+    raw_id_fields = ('user', 'version')
     readonly_fields = (
-        'restriction',
-        'ip_address',
-        'user_link',
-        'last_login_ip',
         'created',
+        'ip_address',
+        'last_login_ip',
+        'restriction',
+        'restriction_link',
         'user',
+        'user_link',
+        'version',
+        'version_link',
     )
     list_display = (
         'created',
         'user_link',
         'restriction',
+        'ip_address',
+        'last_login_ip',
+    )
+    fields = (
+        'created',
+        'restriction',
+        'restriction_link',
+        'user_link',
+        'version_link',
         'ip_address',
         'last_login_ip',
     )
@@ -800,6 +812,22 @@ class UserRestrictionHistoryAdmin(AMOModelAdmin):
         return related_single_content_link(obj, 'user')
 
     user_link.short_description = 'User'
+
+    def restriction_link(self, obj):
+        return related_single_content_link(obj, 'restriction_instance')
+
+    restriction_link.short_description = 'Restriction Instance'
+
+    def version_link(self, obj):
+        if obj.version:
+            return format_html(
+                '{} of {}',
+                related_single_content_link(obj, 'version'),
+                related_single_content_link(obj.version, 'addon'),
+            )
+        return ''
+
+    version_link.short_description = 'Version'
 
     def has_add_permission(self, request):
         return False
