@@ -114,9 +114,10 @@ export interface EulaPolicy {
   privacyPolicy: string;
 }
 
+// A null value clears that policy; a string sets it.
 export interface EulaPolicyEdit {
-  eula?: string;
-  privacyPolicy?: string;
+  eula?: string | null;
+  privacyPolicy?: string | null;
 }
 
 export interface Version {
