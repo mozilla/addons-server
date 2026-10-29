@@ -1,9 +1,17 @@
 import { describe, expect, it, vi } from 'vitest';
 
-const { updateAddon } = vi.hoisted(() => ({
+const { updateAddon, source } = vi.hoisted(() => ({
   updateAddon: vi.fn(async () => {}),
+  source: { value: {} as Partial<Addon> },
 }));
-vi.mock('../../src/data', () => ({ updateAddon }));
+vi.mock('../../src/data', () => ({
+  updateAddon,
+  addonSourceQuery: () => () => ({
+    data: source.value,
+    isPending: false,
+    isError: false,
+  }),
+}));
 
 import type { TechnicalDetailsCard } from '../../src/components/addon-listing/technical-details-card';
 import '../../src/components/addon-listing/technical-details-card';
@@ -24,6 +32,24 @@ const base: Addon = {
 };
 
 describe('technical-details-card', () => {
+  it('populates developer comments from its source', async () => {
+    source.value = { developerComments: '*foo* _bar_' };
+    const el = await mount<TechnicalDetailsCard>('technical-details-card', {
+      addon: {
+        ...base,
+        developerComments: '<strong>foo</strong> <em>bar</em>',
+      },
+    });
+    const root = el.shadowRoot as ShadowRoot;
+    root.querySelector<HTMLElement>('.card-head moz-button')?.click();
+    await el.updateComplete;
+
+    expect(
+      (root.querySelector('.form moz-textarea') as HTMLTextAreaElement).value,
+    ).toBe('*foo* _bar_');
+    source.value = {};
+  });
+
   it('saving developer comments PATCHes the add-on', async () => {
     updateAddon.mockClear();
     const el = await mount<TechnicalDetailsCard>('technical-details-card', {

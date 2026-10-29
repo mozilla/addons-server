@@ -4,10 +4,10 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import {
   type Addon,
   type AddonListingEdit,
+  addonSourceQuery,
   categoriesQuery,
   type EulaPolicyEdit,
   eulaPolicyQuery,
-  fetchEulaPolicy,
   updateAddon,
   updateEulaPolicy,
 } from '../../data';
@@ -64,13 +64,29 @@ export class ListingDetailsCard extends SectionCard {
   #eula = eulaPolicyQuery(
     this,
     () => this.addon?.slug ?? '',
-    () =>
-      Boolean(
-        this.addon?.flags?.hasEula || this.addon?.flags?.hasPrivacyPolicy,
-      ),
+    () => this.#hasPolicy(),
   );
-  // Original EULA/privacy text, fetched on edit open, to diff against on save.
-  #eulaBaseline = { eula: '', privacyPolicy: '' };
+  #eulaSource = eulaPolicyQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => this.#hasPolicy(),
+    true,
+  );
+  #source = addonSourceQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => Boolean(this.addon?.description),
+  );
+
+  #hasPolicy() {
+    return Boolean(
+      this.addon?.flags?.hasEula || this.addon?.flags?.hasPrivacyPolicy,
+    );
+  }
+
+  get #eulaBaseline() {
+    return this.#eulaSource().data ?? { eula: '', privacyPolicy: '' };
+  }
 
   #startEdit() {
     const a = this.addon;
@@ -78,7 +94,7 @@ export class ListingDetailsCard extends SectionCard {
       name: a.name,
       slug: a.slug,
       summary: a.summary ?? '',
-      description: a.description ?? '',
+      description: this.#source().data?.description ?? '',
       homepage: a.homepageUrl ?? '',
       support_email: a.supportEmail ?? '',
       support_url: a.supportUrl ?? '',
@@ -87,21 +103,9 @@ export class ListingDetailsCard extends SectionCard {
       requires_payment: a.flags?.requiresPayment ?? false,
       has_eula: a.flags?.hasEula ?? false,
       has_privacy_policy: a.flags?.hasPrivacyPolicy ?? false,
+      eula: this.#eulaBaseline.eula,
+      privacy_policy: this.#eulaBaseline.privacyPolicy,
     });
-    // The list API doesn't carry the EULA/privacy text; fetch it so the
-    // textareas start from the saved values.
-    fetchEulaPolicy(a.slug)
-      .then((p) => {
-        this.#eulaBaseline = p;
-        this.#form.set('eula', this.#form.value('eula') ?? p.eula);
-        this.#form.set(
-          'privacy_policy',
-          this.#form.value('privacy_policy') ?? p.privacyPolicy,
-        );
-      })
-      .catch(() => {
-        /* leave textareas empty if the fetch fails */
-      });
   }
 
   #toggleCategory(slug: string, checked: boolean) {
@@ -130,7 +134,8 @@ export class ListingDetailsCard extends SectionCard {
       ...(d.name !== a.name && { name: d.name }),
       ...(d.slug !== a.slug && { slug: d.slug }),
       ...((d.summary ?? '') !== (a.summary ?? '') && { summary: d.summary }),
-      ...((d.description ?? '') !== (a.description ?? '') && {
+      ...((d.description ?? '') !==
+        (this.#source().data?.description ?? '') && {
         description: d.description,
       }),
       ...((d.homepage ?? '') !== (a.homepageUrl ?? '') && {

@@ -11,6 +11,7 @@ import {
   deleteAuthor,
   deletePreview,
   deleteSession,
+  fetchAddonSource,
   fetchAddons,
   fetchAgreement,
   fetchAuthors,
@@ -121,9 +122,27 @@ export async function updateAddon(slug: string, edit: AddonListingEdit) {
 
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
 
-// The EULA/privacy text (separate endpoint), for the view-mode preview. Gated
-// by `getEnabled` so it only fetches when the add-on actually has a policy.
+// The EULA/privacy text (separate endpoint), for the view-mode preview or the
+// unsanitized source for the edit form. Gated by `getEnabled` so it
+// only fetches when the add-on actually has a policy.
 export function eulaPolicyQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
+  showSource = false,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: [...eulaPolicyKey(getSlug()), showSource],
+      queryFn: () => fetchEulaPolicy(getSlug(), showSource),
+      enabled: getEnabled(),
+    }),
+    queryClient,
+  );
+}
+
+export function addonSourceQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
   getEnabled: () => boolean = () => true,
@@ -131,8 +150,8 @@ export function eulaPolicyQuery(
   return createQueryController(
     host,
     () => ({
-      queryKey: eulaPolicyKey(getSlug()),
-      queryFn: () => fetchEulaPolicy(getSlug()),
+      queryKey: [...queryKeys.addons, 'source', getSlug()],
+      queryFn: () => fetchAddonSource(getSlug()),
       enabled: getEnabled(),
     }),
     queryClient,

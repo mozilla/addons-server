@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { updateAddon } from '../../data';
+import { addonSourceQuery, updateAddon } from '../../data';
 import { FormController, textArea } from '../../foundations/form';
 import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
 import { SectionCard } from './section-card';
@@ -11,17 +11,23 @@ type TechnicalDraft = { developer_comments?: string };
 @customElement('technical-details-card')
 export class TechnicalDetailsCard extends SectionCard {
   #form = new FormController<TechnicalDraft>(this);
+  #source = addonSourceQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => Boolean(this.addon?.developerComments),
+  );
 
   #startEdit() {
     this.#form.start({
-      developer_comments: this.addon.developerComments ?? '',
+      developer_comments: this.#source().data?.developerComments ?? '',
     });
   }
 
   #save() {
     return this.#form.submit(async (d) => {
       if (
-        (d.developer_comments ?? '') === (this.addon.developerComments ?? '')
+        (d.developer_comments ?? '') ===
+        (this.#source().data?.developerComments ?? '')
       ) {
         return;
       }
