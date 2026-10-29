@@ -231,9 +231,13 @@ describe('endpoints', () => {
     });
   });
 
-  it('fetchProfile reads the account name', async () => {
-    mockJson({ name: 'Kate' });
-    expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  it('fetchProfile maps the id, name and picture url', async () => {
+    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+    expect(await fetchProfile()).toEqual({
+      id: '99',
+      name: 'Kate',
+      pictureUrl: 'https://cdn/a.png',
+    });
   });
 
   it('patchAddon maps domain edit fields to the API body and PATCHes', async () => {

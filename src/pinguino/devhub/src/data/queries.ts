@@ -10,6 +10,7 @@ import {
   addPreview,
   deleteAuthor,
   deletePreview,
+  deleteSession,
   fetchAddons,
   fetchAgreement,
   fetchAuthors,
@@ -348,4 +349,10 @@ export async function uploadVersionNotes(
     approval_notes: reviewerNotes ?? '',
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
+}
+
+// Ends the current session server-side. Callers reload afterwards so the app
+// rebuilds as signed-out; the reload discards the cache, so no invalidation here.
+export async function logout() {
+  await deleteSession();
 }
