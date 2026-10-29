@@ -92,6 +92,7 @@ from .serializers import (
     AddonListingContentReviewSerializer,
     AddonPendingAuthorSerializer,
     AddonSerializer,
+    DeveloperAddonEulaPolicySerializer,
     DeveloperAddonSerializer,
     DeveloperListVersionSerializer,
     DeveloperVersionSerializer,
@@ -388,9 +389,7 @@ class AddonViewSet(
     @action(
         detail=True,
         serializer_class=AddonEulaPolicySerializer,
-        # For this action, developers use the same serializer - it only
-        # contains eula/privacy policy.
-        serializer_class_for_developers=AddonEulaPolicySerializer,
+        serializer_class_for_developers=DeveloperAddonEulaPolicySerializer,
     )
     def eula_policy(self, request, pk=None):
         return self.retrieve(request)

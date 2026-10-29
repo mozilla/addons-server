@@ -661,6 +661,68 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['latest_unlisted_version']
         assert result['latest_unlisted_version']['id'] == unlisted_version.pk
 
+    def _setup_markdown(self):
+        self.addon.description = '**description**'
+        self.addon.developer_comments = '_developer_ comments'
+        self.addon.save()
+        self.addon.current_version.release_notes = '_release notes_'
+        self.addon.current_version.save()
+
+    def test_show_source_invalid_value(self):
+        # Ignored entirely if there's no populated markdown field.
+        response = self.client.get(self.url, {'show_source': 'test'})
+        assert response.status_code == 200
+
+        self._setup_markdown()
+        user = user_factory()
+        self.addon.addonuser_set.create(user=user)
+        self.client.login_api(user)
+        response = self.client.get(self.url, {'show_source': 'test'})
+        assert response.status_code == 400
+        assert response.json() == {'detail': 'Invalid boolean value for show_source.'}
+
+    def test_show_source_logged_out(self):
+        self._setup_markdown()
+        result = self._test_url(show_source=True)
+        assert result['description'] == {'en-US': '<strong>description</strong>'}
+        assert result['developer_comments'] == {'en-US': '<em>developer</em> comments'}
+        assert result['current_version']['release_notes'] == {
+            'en-US': '<em>release notes</em>'
+        }
+
+    def test_show_source_not_author(self):
+        self._setup_markdown()
+        self.client.login_api(user_factory())
+        result = self._test_url(show_source=True)
+        assert result['description'] == {'en-US': '<strong>description</strong>'}
+        assert result['developer_comments'] == {'en-US': '<em>developer</em> comments'}
+        assert result['current_version']['release_notes'] == {
+            'en-US': '<em>release notes</em>'
+        }
+
+    def test_show_source(self):
+        self._setup_markdown()
+        user = user_factory()
+        self.addon.addonuser_set.create(user=user)
+        self.client.login_api(user)
+
+        result = self._test_url()
+        assert result['description'] == {'en-US': '<strong>description</strong>'}
+        assert result['developer_comments'] == {'en-US': '<em>developer</em> comments'}
+        assert result['current_version']['release_notes'] == {
+            'en-US': '<em>release notes</em>'
+        }
+
+        result = self._test_url(show_source=True)
+        assert result['description'] == {'en-US': '**description**'}
+        assert result['developer_comments'] == {'en-US': '_developer_ comments'}
+        assert result['current_version']['release_notes'] == {
+            'en-US': '_release notes_'
+        }
+
+        # But non-markdown fields are unaffected.
+        assert result['name'] == {'en-US': 'My Addôn'}
+
     def test_with_lang(self):
         self.addon.name = {
             'en-US': 'My Addôn, mine',
@@ -740,7 +802,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
     def test_with_grouped_ratings(self):
         assert 'grouped_counts' not in self.client.get(self.url).json()['ratings']
 
-        response = self.client.get(self.url, {'show_grouped_ratings': 'true'})
+        response = self.client.get(self.url, {'show_grouped_ratings': True})
         assert 'grouped_counts' in response.json()['ratings']
         assert response.json()['ratings']['grouped_counts'] == {
             '1': 0,
@@ -3151,6 +3213,25 @@ class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         self.url = reverse_ns(
             'addon-version-detail', kwargs={'addon_pk': param, 'pk': self.version.pk}
         )
+
+    def test_show_source(self):
+        self.version.release_notes = '**Release** notes'
+        self.version.save()
+
+        # Non-authors can't get the raw markdown version.
+        response = self.client.get(self.url, {'show_source': True})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['release_notes'] == {'en-US': '<strong>Release</strong> notes'}
+
+        # Authors can.
+        user = user_factory()
+        self.addon.addonuser_set.create(user=user)
+        self.client.login_api(user)
+        response = self.client.get(self.url, {'show_source': True})
+        assert response.status_code == 200
+        result = json.loads(force_str(response.content))
+        assert result['release_notes'] == {'en-US': '**Release** notes'}
 
     def test_version_get_not_found(self):
         self.url = reverse_ns(
@@ -5841,6 +5922,26 @@ class TestAddonViewSetEulaPolicy(TestCase):
         assert list(data.keys()) == ['eula', 'privacy_policy']
         assert data['eula'] == {'en-US': 'My Addôn EULA', 'fr': 'Hoüla'}
         assert data['privacy_policy'] == {'en-US': 'My Prïvacy, My Policy'}
+
+    def test_eula_and_policy_show_source(self):
+        self.addon.eula = '**EULA**'
+        self.addon.privacy_policy = '_privacy policy_'
+        self.addon.save()
+
+        # Non-authors can't get the raw markdown version.
+        response = self.client.get(self.url, {'show_source': True})
+        assert response.status_code == 200
+        data = json.loads(force_str(response.content))
+        assert data['eula'] == {'en-US': '<strong>EULA</strong>'}
+
+        # Authors can.
+        self.addon.addonuser_set.create(user=self.user)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url, {'show_source': True})
+        assert response.status_code == 200
+        data = json.loads(force_str(response.content))
+        assert data['eula'] == {'en-US': '**EULA**'}
+        assert data['privacy_policy'] == {'en-US': '_privacy policy_'}
 
     def test_update_non_author(self):
         self.client.login_api(self.user)

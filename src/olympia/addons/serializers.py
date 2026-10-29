@@ -30,6 +30,7 @@ from olympia.api.fields import (
     LazyChoiceField,
     OutgoingURLTranslationField,
     ReverseChoiceField,
+    SourceTranslationSerializerField,
     SplitField,
     TranslationSerializerField,
 )
@@ -478,6 +479,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         write_only=True,
         validators=(CreateOnlyValidator(),),
     )
+    release_notes = SourceTranslationSerializerField(required=False)
 
     class Meta:
         model = Version
@@ -887,6 +889,11 @@ class AddonEulaPolicySerializer(AMOModelSerializer):
                 user=self.context['request'].user,
             )
         return instance
+
+
+class DeveloperAddonEulaPolicySerializer(AddonEulaPolicySerializer):
+    eula = SourceTranslationSerializerField(required=False)
+    privacy_policy = SourceTranslationSerializerField(required=False)
 
 
 class UserSerializerWithPictureUrl(BaseUserSerializer):
@@ -1436,6 +1443,8 @@ class AddonSerializer(AMOModelSerializer):
 
 class DeveloperAddonSerializer(AddonSerializer):
     current_version = SimpleDeveloperVersionSerializer(read_only=True)
+    description = SourceTranslationSerializerField(required=False)
+    developer_comments = SourceTranslationSerializerField(required=False)
     latest_unlisted_version = SimpleDeveloperVersionSerializer(read_only=True)
     channels = serializers.SerializerMethodField()
 
@@ -1874,7 +1883,7 @@ class VersionRollbackSerializer(DeveloperVersionSerializer):
     new_version_string = serializers.CharField(
         max_length=255, required=True, source='version'
     )
-    release_notes = TranslationSerializerField(required=False)
+    release_notes = SourceTranslationSerializerField(required=False)
 
     class Meta:
         model = Version
