@@ -502,14 +502,10 @@ export async function patchVersion(
 export async function fetchVersions(
   slug: string,
   lang: string,
-  filter:
-    | 'all_without_unlisted'
-    | 'all_with_unlisted'
-    | 'all_with_deleted' = 'all_with_unlisted',
 ): Promise<Version[]> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
-      filter,
+      filter: 'all_without_unlisted',
       lang,
       page_size: '50',
     })}`,

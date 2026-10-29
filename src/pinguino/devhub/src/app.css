@@ -1,4 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Mozilla+Headline:wght@200..700&display=swap");
+@font-face {
+  font-family: "Mozilla Headline";
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("./fonts/MozillaHeadline-Variable.woff2") format("woff2");
+}
 
 body {
   margin: 0;
