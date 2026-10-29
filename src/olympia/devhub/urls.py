@@ -35,6 +35,23 @@ detail_patterns = [
         views.addons_section,
         name='devhub.addons.section',
     ),
+    # Pinguino URL compatibility.
+    re_path(
+        r'^edit/authors$',
+        lambda r, addon_id: redirect('devhub.addons.owner', addon_id),
+    ),
+    re_path(
+        r'^edit/[^/]+$',
+        lambda r, addon_id: redirect('devhub.addons.edit', addon_id),
+    ),
+    re_path(
+        r'^feed$',
+        lambda r, addon_id: redirect('devhub.feed', addon_id),
+    ),
+    re_path(
+        r'^statistics$',
+        lambda r, addon_id: redirect('stats.overview', addon_id),
+    ),
     re_path(
         r'^upload_preview$',
         views.upload_image,

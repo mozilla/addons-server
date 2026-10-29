@@ -1,6 +1,7 @@
 import { Routes } from '@lit-labs/router';
 import { customElement } from 'lit/decorators.js';
 
+import '../../../components/coming-soon';
 import './templates/agreement';
 
 import { html, LitElement } from 'lit';
@@ -11,6 +12,11 @@ class SubmitRoutes extends LitElement {
     {
       path: 'agreement',
       render: () => html`<devhub-agreement></devhub-agreement>`,
+    },
+    // Theme submission isn't reimplemented yet
+    {
+      path: 'theme/agreement{/}?',
+      render: () => html`<coming-soon></coming-soon>`,
     },
   ]);
   render() {

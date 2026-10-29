@@ -39,7 +39,7 @@ describe('devhub-addon', () => {
     expect(root.querySelector('addon-listing')).not.toBeNull();
   });
 
-  it('renders a stub (not the listing) for a non-edit tab', async () => {
+  it('stubs (not the listing) for a non-edit tab', async () => {
     queryClient.setQueryData(queryKeys.addons, [addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
@@ -52,7 +52,20 @@ describe('devhub-addon', () => {
       root.querySelector('moz-segmented-control')?.getAttribute('value'),
     ).toBe('versions');
     expect(root.querySelector('addon-listing')).toBeNull();
-    expect(root.querySelector('.stub')?.textContent).toContain('Versions');
+    expect(root.querySelector('coming-soon')).not.toBeNull();
+  });
+
+  it('stubs an unimplemented Django tab', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'invitation',
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    expect(root.querySelector('coming-soon')).not.toBeNull();
+    expect(root.querySelector('addon-listing')).toBeNull();
   });
 
   it('selecting a tab navigates to its sub-URL', async () => {
