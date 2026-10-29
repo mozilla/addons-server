@@ -57,6 +57,16 @@ describe('update-card', () => {
     expect(root.querySelector('.foot moz-status-badge')).toBeNull();
   });
 
+  // Only the headline is bold; a `.title p` rule once caught the name too.
+  it('emphasises the headline but not the add-on name', async () => {
+    const root = await card({});
+    const name = root.querySelector('.addon-name') as HTMLElement;
+    const headline = root.querySelector('.headline') as HTMLElement;
+
+    expect(getComputedStyle(headline).fontWeight).toBe('600');
+    expect(getComputedStyle(name).fontWeight).not.toBe('600');
+  });
+
   it('renders the title, add-on name, message, date and version', async () => {
     const root = await card({});
 

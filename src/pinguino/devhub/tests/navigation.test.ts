@@ -1,6 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  classicPath,
   interceptOutOfAppLinks,
+  isDashboardPath,
   isInAppPath,
   pageParam,
 } from '../src/navigation';
@@ -78,6 +80,35 @@ describe('interceptOutOfAppLinks', () => {
     // Router bails on defaultPrevented; the component's own listener still runs.
     expect(prevent).toHaveBeenCalledOnce();
     expect(stop).not.toHaveBeenCalled();
+  });
+});
+
+describe('isDashboardPath', () => {
+  it('is the base alone, not the pages under it', () => {
+    expect(isDashboardPath('/developers', '/developers')).toBe(true);
+    expect(isDashboardPath('/developers/', '/developers')).toBe(true);
+    expect(isDashboardPath('/developers/addon/x', '/developers')).toBe(false);
+    expect(isDashboardPath('/developers/feed/x', '/developers')).toBe(false);
+  });
+});
+
+describe('classicPath', () => {
+  it('translates the add-on feed tab to the classic feed URL', () => {
+    expect(classicPath('/developers/addon/my-addon/feed', '/developers')).toBe(
+      '/developers/feed/my-addon',
+    );
+  });
+
+  it('leaves paths classic has no counterpart for alone', () => {
+    for (const path of [
+      '/developers/',
+      '/developers/addon/my-addon',
+      '/developers/addon/my-addon/listing',
+      '/developers/feed/my-addon',
+      '/en-US/firefox/addon/my-addon',
+    ]) {
+      expect(classicPath(path, '/developers')).toBe(path);
+    }
   });
 });
 

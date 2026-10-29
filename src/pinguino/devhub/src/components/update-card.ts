@@ -24,7 +24,7 @@ export class UpdateCard extends LitElement {
       display: flex;
       flex-direction: column;
       gap: var(--space-small);
-      padding: var(--space-medium) var(--space-large);
+      padding: var(--space-large);
       border-radius: var(--border-radius-medium, 8px);
       background: var(--background-color-canvas);
     }
@@ -44,11 +44,12 @@ export class UpdateCard extends LitElement {
     .title p {
       margin: 0;
       padding: 0;
+    }
+    .title .headline {
       font-weight: 600;
     }
     .addon-name {
       font-size: 0.85rem;
-      font-weight: normal;
       color: var(--text-color-deemphasized, GrayText);
     }
     .message {
@@ -82,7 +83,7 @@ export class UpdateCard extends LitElement {
               type=${status?.badge ?? 'information'}
             ></moz-status-dot>
             <span>
-              <p>${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}</p>
+              <p class="headline">${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}</p>
               ${
                 u.addonName
                   ? html`<p class="addon-name">${u.addonName}</p>`

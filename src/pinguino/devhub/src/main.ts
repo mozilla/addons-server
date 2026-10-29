@@ -18,7 +18,11 @@ import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
 
 import { BASE } from './base';
-import { interceptOutOfAppLinks, pageParam } from './navigation';
+import {
+  interceptOutOfAppLinks,
+  isDashboardPath,
+  pageParam,
+} from './navigation';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.
@@ -33,7 +37,13 @@ export class PinguinoApp extends LitElement {
      * the viewport height. */
     moz-provider {
       display: block;
+      /* The page surface is painted here rather than on body, which is outside
+       * this shadow tree and so can't be selected per route. */
+      background-color: var(--background-color-box);
       min-height: 100vh;
+    }
+    moz-provider.canvas {
+      background-color: var(--background-color-canvas);
     }
   `;
 
@@ -77,8 +87,11 @@ export class PinguinoApp extends LitElement {
   }
 
   render() {
+    // Re-evaluated on every route change: the Router requests an update on
+    // navigation, and it doesn't fire popstate for in-app links to listen for.
+    const dashboard = isDashboardPath(location.pathname, BASE);
     return html`
-      <moz-provider>
+      <moz-provider class=${dashboard ? 'canvas' : ''}>
         <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
         <app-container>${this._router.outlet()}</app-container>

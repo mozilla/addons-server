@@ -1,6 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE } from '../base';
+import { classicPath } from '../navigation';
 
 const NAV = [
   'My Add-ons',
@@ -49,7 +50,7 @@ export class DevhubHeader extends LitElement {
   // cookie; the bare href is a no-JS fallback (view defaults to the index).
   #switchToClassic = (event: Event) => {
     event.preventDefault();
-    const path = location.pathname + location.search;
+    const path = classicPath(location.pathname, BASE) + location.search;
     location.href = `${BASE}/switch-pinguino?path=${encodeURIComponent(path)}`;
   };
 
