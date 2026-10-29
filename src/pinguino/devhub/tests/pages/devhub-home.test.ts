@@ -21,6 +21,7 @@ const ext = (slug: string): Addon => ({
   version: '1.0.0',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
+  canChangeVisibility: true,
   channels: ['listed'],
 });
 const theme = (slug: string): Addon => ({

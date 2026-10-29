@@ -8,6 +8,7 @@ import { LOCALE } from '../base';
 import {
   addAuthor,
   addPreview,
+  deleteAddon,
   deleteAuthor,
   deletePreview,
   fetchAddons,
@@ -30,7 +31,9 @@ import {
   postVersion,
   uploadIcon,
 } from './api';
+import { isAddonOwner } from './permissions';
 import { queryClient } from './query-client';
+import type { AddonVisibility } from './statuses';
 import type {
   Addon,
   AddonAuthorAdd,
@@ -118,6 +121,22 @@ export async function updateAddon(slug: string, edit: AddonListingEdit) {
   return updated;
 }
 
+// Hide or unhide a listing. `invisible` is the author's own setting, which the
+// API takes as `is_disabled`; Mozilla's own disabling isn't writable here.
+export async function setAddonVisibility(
+  slug: string,
+  visibility: AddonVisibility,
+) {
+  return updateAddon(slug, { is_disabled: visibility === 'invisible' });
+}
+
+// Permanently delete an add-on, then drop it from the cached list the manage
+// view reads — that view is about to unmount, so it must not refetch it.
+export async function removeAddon(slug: string) {
+  await deleteAddon(slug);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
 
 // The EULA/privacy text (separate endpoint), for the view-mode preview. Gated
@@ -195,6 +214,18 @@ export function pendingAuthorsQuery(
     }),
     queryClient,
   );
+}
+
+// Whether the signed-in developer owns this add-on, from the two queries that
+// answer it together. Both are shared keys, so a page that already shows the
+// authors or the profile pays nothing extra to ask.
+export function addonOwnershipQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  const authors = authorsQuery(host, getSlug);
+  const profile = profileQuery(host);
+  return () => isAddonOwner(authors().data, profile().data?.id);
 }
 
 export async function updateAuthor(

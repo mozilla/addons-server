@@ -2,8 +2,10 @@
 // their reactive results; the query layer handles caching, and dedup.
 
 export { fetchEulaPolicy } from './api';
+export { isAddonOwner } from './permissions';
 export {
   acceptAgreement,
+  addonOwnershipQuery,
   addonQuery,
   addonsQuery,
   agreementQuery,
@@ -18,8 +20,10 @@ export {
   pendingAuthorsQuery,
   profileQuery,
   queryKeys,
+  removeAddon,
   removeAuthor,
   removePreview,
+  setAddonVisibility,
   updateAddon,
   updateAuthor,
   updateEulaPolicy,
@@ -39,6 +43,7 @@ export {
   type ApiStatus,
   canChangeVisibility,
   resolveAddonStatus,
+  resolveListingState,
   resolveVersionStatus,
   resolveVisibility,
   type StatusInfo,

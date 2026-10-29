@@ -4,6 +4,7 @@
 
 import { apiFetch } from './http';
 import {
+  canChangeVisibility,
   resolveAddonStatus,
   resolveVisibility,
   VERSION_STATUS,
@@ -86,6 +87,7 @@ interface ApiActivity {
 // The current account, from /accounts/profile/. `name` already falls back to a
 // generated name server-side; display_name is the user-chosen label when set.
 interface ApiProfile {
+  id: number;
   display_name?: string;
   name?: string;
   username?: string;
@@ -141,6 +143,7 @@ export function mapAddon(a: ApiAddon): Addon {
     version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
     visibility: resolveVisibility(a.is_disabled ?? false),
+    canChangeVisibility: canChangeVisibility(a.status),
     channels: a.channels,
     iconUrl: a.icon_url,
     previewUrl: preview?.image_url ?? preview?.thumbnail_url,
@@ -198,7 +201,7 @@ export function mapActivity(a: ApiActivity): Update {
 
 export async function fetchProfile(): Promise<Developer> {
   const data = await apiFetch<ApiProfile>('/accounts/profile/');
-  return { name: data.name || '' };
+  return { id: data.id, name: data.name || '' };
 }
 
 // Lists the add-ons the authenticated session owns; no author param needed.
@@ -290,6 +293,19 @@ export async function patchAuthor(
     method: 'PATCH',
     body: edit,
   });
+}
+
+// Deleting an add-on is irreversible, so the API gates it behind a token from
+// its own endpoint, good for 60 seconds and for this add-on only. Fetching it
+// and spending it belong together — a token held any longer just expires.
+export async function deleteAddon(slug: string): Promise<void> {
+  const { delete_confirm: token } = await apiFetch<{ delete_confirm: string }>(
+    `/addons/addon/${slug}/delete_confirm/`,
+  );
+  await apiFetch(
+    `/addons/addon/${slug}/?delete_confirm=${encodeURIComponent(token)}`,
+    { method: 'DELETE' },
+  );
 }
 
 export async function deleteAuthor(

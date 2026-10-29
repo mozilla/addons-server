@@ -80,6 +80,15 @@ export function resolveVisibility(isDisabled: boolean): AddonVisibility {
   return isDisabled ? 'invisible' : 'visible';
 }
 
+// The single state to show for a listing. Author-set invisibility outranks the
+// review status: it's the thing they chose, and the thing they undo.
+export function resolveListingState(
+  status: StatusInfo,
+  visibility: AddonVisibility,
+): StatusInfo {
+  return visibility === 'invisible' ? VISIBILITY.invisible : status;
+}
+
 // An author can't un-hide what Mozilla disabled or deleted.
 // (devhub/includes/listing_visibility.html)
 export function canChangeVisibility(status: string | undefined): boolean {

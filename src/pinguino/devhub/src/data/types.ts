@@ -1,6 +1,7 @@
 import type { AddonVisibility, StatusInfo } from './statuses';
 
 export interface Developer {
+  id: number;
   name: string;
 }
 
@@ -44,6 +45,9 @@ export interface Addon {
   // Display string ("Sep 2 2025"); the API mapper formats ISO dates to this.
   lastUpdated: string;
   visibility: AddonVisibility;
+  // Whether the author may still hide/unhide it; false once Mozilla has
+  // disabled or deleted it, which `visibility` alone can't distinguish.
+  canChangeVisibility: boolean;
   channels?: AddonDistribution[];
   // Extension logo (icon_url) and theme preview (previews[].image_url) from the
   // API; the card falls back to an icon / gradient bar when either is absent.
@@ -97,6 +101,9 @@ export interface AddonListingEdit {
   is_experimental?: boolean;
   requires_payment?: boolean;
   developer_comments?: string;
+  // Writes the author's own hide setting (the API maps it to
+  // `disabled_by_user`), though it reads back true for Mozilla-disabled too.
+  is_disabled?: boolean;
 }
 
 // A listing category (from /addons/categories/). `type` matches the API's
