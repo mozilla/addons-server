@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { AddonManageHeader } from '../../src/components/addon-manage-header';
 import '../../src/components/addon-manage-header';
+import type { AddonActionsMenu } from '../../src/components/addon-actions-menu';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
@@ -14,6 +15,7 @@ const base: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
+  canChangeVisibility: true,
   channels: ['listed'],
 };
 
@@ -25,7 +27,7 @@ async function header(addon: Partial<Addon>) {
 }
 
 describe('addon-manage-header', () => {
-  it('renders the name, a back link, and the visibility badge', async () => {
+  it('renders the name, a back link, and the status badge', async () => {
     const root = await header({ visibility: 'visible' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
     expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
@@ -36,16 +38,24 @@ describe('addon-manage-header', () => {
       c.textContent?.trim(),
     );
     expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
-    expect(
-      root.querySelector('visibility-badge')?.getAttribute('visibility'),
-    ).toBe('visible');
+    const badge = root.querySelector('listing-status-badge');
+    expect(badge?.textContent?.trim()).toBe('Approved');
+    expect(badge?.getAttribute('type')).toBe('success');
   });
 
-  it('passes an invisible add-on to the visibility badge', async () => {
+  // Hiding the listing is the author's own doing, so it's what the header
+  // reports — not the review status underneath it.
+  it('shows Invisible over the review status once hidden', async () => {
     const root = await header({ visibility: 'invisible' });
-    expect(
-      root.querySelector('visibility-badge')?.getAttribute('visibility'),
-    ).toBe('invisible');
+    const badge = root.querySelector('listing-status-badge');
+    expect(badge?.textContent?.trim()).toBe('Invisible');
+    expect(badge?.getAttribute('type')).toBe('ghost');
+  });
+
+  it('hands the add-on to the actions menu', async () => {
+    const root = await header({ visibility: 'invisible' });
+    const menu = root.querySelector('addon-actions-menu') as AddonActionsMenu;
+    expect(menu?.addon.visibility).toBe('invisible');
   });
 
   it('renders rating, review count and a listing link when present', async () => {

@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
   clearTranslations,
+  deleteAddon,
   fetchAddons,
   fetchAgreement,
   fetchCategories,
@@ -55,6 +56,29 @@ describe('mapAddon', () => {
       lastUpdated: 'May 14 2025',
       previewUrl: 'https://cdn/preview.png',
     });
+  });
+
+  it('reports whether the author may still hide the listing', () => {
+    const live = mapAddon({
+      slug: 'a',
+      name: { 'en-US': 'A' },
+      type: 'extension',
+      status: 'public',
+      channels: ['listed'],
+    });
+    const byMozilla = mapAddon({
+      slug: 'b',
+      name: { 'en-US': 'B' },
+      type: 'extension',
+      status: 'disabled',
+      is_disabled: true,
+      channels: ['listed'],
+    });
+
+    expect(live.canChangeVisibility).toBe(true);
+    // Both read back as invisible; only the status tells them apart.
+    expect(byMozilla.visibility).toBe('invisible');
+    expect(byMozilla.canChangeVisibility).toBe(false);
   });
 
   it('decodes HTML entities in the plain-text fields (name, summary)', () => {
@@ -323,6 +347,34 @@ describe('endpoints', () => {
       eula: { 'en-US': null, fr: null },
       privacy_policy: { 'en-US': 'Kept' },
     });
+  });
+
+  it('deleteAddon spends a freshly fetched confirmation token', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({ delete_confirm: 'tok en/1' }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 204,
+          json: async () => ({}),
+        }),
+    );
+
+    await deleteAddon('x');
+
+    const [tokenUrl] = vi.mocked(fetch).mock.calls[0];
+    expect(tokenUrl).toBe('/api/v5/addons/addon/x/delete_confirm/');
+    const [deleteUrl, init] = vi.mocked(fetch).mock.calls[1];
+    expect(deleteUrl).toBe(
+      '/api/v5/addons/addon/x/?delete_confirm=tok%20en%2F1',
+    );
+    expect(init?.method).toBe('DELETE');
   });
 
   it('fetchAgreement returns the agreement state as it was fetched', async () => {
