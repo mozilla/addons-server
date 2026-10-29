@@ -3345,6 +3345,16 @@ class TestServePinguino(TestCase):
         assert len(responses.calls) == 1
         assert responses.calls[0].request.url == self.dev_server_url
 
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=404,
+        )
+        response = serve_pinguino(self._request('/developers/addon/5'))
+        assert response.status_code == 404
+
     @override_settings(DEV_MODE=True)
     @responses.activate
     def test_dev_mode_propagates_upstream_status(self):
@@ -3359,6 +3369,7 @@ class TestServePinguino(TestCase):
             response = serve_pinguino(self._request('/developers/addon/5'))
         opener.assert_called_once_with('/fake/static/root/pinguino/index.html', 'rb')
         assert response.status_code == 200
+        assert response['Content-Type'] == 'text/html'
         assert b'<pinguino-app' in response.content
 
     @override_settings(DEV_MODE=True)
