@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("./fonts/MozillaHeadline-Variable.woff2") format("woff2");
+  src: url("./fonts/MozillaHeadline[wdth,wght].woff2") format("woff2");
 }
 
 body {
