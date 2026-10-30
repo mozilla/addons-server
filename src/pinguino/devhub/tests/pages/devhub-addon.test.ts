@@ -52,7 +52,7 @@ describe('devhub-addon', () => {
       root.querySelector('moz-segmented-control')?.getAttribute('value'),
     ).toBe('statistics');
     expect(root.querySelector('addon-listing')).toBeNull();
-    expect(root.querySelector('.stub')?.textContent).toContain('Statistics');
+    expect(root.querySelector('coming-soon')).not.toBeNull();
   });
 
   it('renders the versions panel for the add-on on the versions tab', async () => {
@@ -70,7 +70,7 @@ describe('devhub-addon', () => {
     const panel = root.querySelector('addon-version');
     expect(panel?.addon.slug).toBe('ad-blocker');
     expect(root.querySelector('addon-listing')).toBeNull();
-    expect(root.querySelector('coming-soon')).not.toBeNull();
+    expect(root.querySelector('coming-soon')).toBeNull();
   });
 
   it('stubs an unimplemented Django tab', async () => {
