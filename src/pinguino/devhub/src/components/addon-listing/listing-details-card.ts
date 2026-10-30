@@ -5,6 +5,7 @@ import {
   type Addon,
   type AddonListingEdit,
   categoriesQuery,
+  type EulaPolicyEdit,
   eulaPolicyQuery,
   fetchEulaPolicy,
   updateAddon,
@@ -152,18 +153,21 @@ export class ListingDetailsCard extends SectionCard {
     };
   }
 
-  // Returns the changed, non-empty policy text, or null when nothing changed.
-  // The endpoint rejects blank values, so clearing a policy (unchecking it)
-  // isn't supported here yet — only setting/updating non-empty text.
+  // The policy changes to persist, diffed against the fetched baseline, or null
+  // when nothing changed. A policy switched off (or emptied) becomes a null,
+  // which clears it.
   #changedEula(d: ListingDraft) {
     const nextEula = d.has_eula ? (d.eula ?? '').trim() : '';
     const nextPrivacy = d.has_privacy_policy
       ? (d.privacy_policy ?? '').trim()
       : '';
-    const out: { eula?: string; privacyPolicy?: string } = {};
+    const out: EulaPolicyEdit = {};
     if (nextEula && nextEula !== this.#eulaBaseline.eula) out.eula = nextEula;
+    else if (!nextEula && this.#eulaBaseline.eula) out.eula = null;
     if (nextPrivacy && nextPrivacy !== this.#eulaBaseline.privacyPolicy)
       out.privacyPolicy = nextPrivacy;
+    else if (!nextPrivacy && this.#eulaBaseline.privacyPolicy)
+      out.privacyPolicy = null;
     return Object.keys(out).length ? out : null;
   }
 

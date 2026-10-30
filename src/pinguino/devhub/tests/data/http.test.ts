@@ -86,9 +86,10 @@ describe('apiFetch', () => {
     expect((caught as ApiError).message).toBe('name: This field is required.');
   });
 
-  it('sends a Session auth header and custom base when configured', async () => {
-    vi.stubEnv('VITE_AMO_SESSION_ID', 'sess-123');
+  it('sends a Session auth header (from the <pinguino-app> token) and custom base', async () => {
     vi.stubEnv('VITE_AMO_API_BASE', 'https://amo.test/api/v5');
+    // The token is read from the DOM at module load, so set it up then re-import.
+    document.body.innerHTML = '<pinguino-app token="sess-123"></pinguino-app>';
     vi.resetModules();
     const fetchFn = mockFetch({});
 
@@ -98,6 +99,25 @@ describe('apiFetch', () => {
     const [url, init] = fetchFn.mock.calls[0];
     expect(url).toBe('https://amo.test/api/v5/accounts/profile/');
     expect(init.headers).toEqual({ authorization: 'Session sess-123' });
+
+    // The token is stripped from the DOM so later scripts can't scrape it.
+    expect(
+      document.querySelector('pinguino-app')?.getAttribute('token'),
+    ).toBeNull();
+    vi.resetModules();
+  });
+
+  it('ignores the unsubstituted placeholder token (no auth header)', async () => {
+    document.body.innerHTML =
+      '<pinguino-app token="INSERT_TOKEN_HERE"></pinguino-app>';
+    vi.resetModules();
+    const fetchFn = mockFetch({});
+
+    const { apiFetch: freshFetch } = await import('../../src/data/http');
+    await freshFetch('/x');
+
+    const [, init] = fetchFn.mock.calls[0];
+    expect(init.headers).toEqual({});
     vi.resetModules();
   });
 });

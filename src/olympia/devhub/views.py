@@ -22,6 +22,7 @@ from django.utils.translation import gettext, gettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import requests
 import waffle
 from csp.decorators import csp_update
 from django_statsd.clients import statsd
@@ -2408,3 +2409,27 @@ def switch_pinguino(request):
     response = http.HttpResponseRedirect(path)
     response.set_cookie('PINGUINO', value=value)
     return response
+
+
+def serve_pinguino(request):
+    # Serve pinguino index.html for every path under /developers/ and let the
+    # client-side router handle the urls.
+    if settings.DEV_MODE:
+        # Locally, we proxy the output from the vite dev server
+        upstream = (
+            f'{settings.PINGUINO_DEV_SERVER_URL}{settings.STATIC_URL_PREFIX}pinguino/'
+        )
+        response = requests.get(upstream, timeout=5)
+        content, status_code = response.content, response.status_code
+    else:
+        # In production, read the built index.html from STATIC_ROOT.
+        with open(os.path.join(settings.STATIC_ROOT, 'pinguino/index.html'), 'rb') as f:
+            content = f.read()
+        status_code = status.HTTP_200_OK
+
+    session_id = (request.session.session_key or '').encode('utf-8')
+    content = content.replace(
+        b'<pinguino-app token="INSERT_TOKEN_HERE"></pinguino-app>',
+        b'<pinguino-app token="' + session_id + b'"></pinguino-app>',
+    )
+    return http.HttpResponse(content, status=status_code, content_type='text/html')

@@ -35,6 +35,7 @@ from django.utils.http import MAX_URL_LENGTH
 from django.utils.translation import activate, gettext_lazy as _
 
 import MySQLdb as mysql
+import waffle
 from csp.middleware import CSPMiddleware as CSPMiddlewareUpstream
 from django_statsd.clients import statsd
 from django_statsd.middleware import (
@@ -529,3 +530,25 @@ class AdminStepUpMiddleware(MiddlewareMixin):
             # redirecting the user to re-auth.
             return reprompt_for_2fa_if_necessary(request)
         return None
+
+
+class PinguinoSwitchMiddleware:
+    """Middleware to switch to pinguino rather than old devhub.
+    Must be called after LocaleAndAppURLMiddleware"""
+
+    ENABLED = '1'
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if (
+            request.path_info.startswith('/developers/')
+            and request.COOKIES.get('PINGUINO') == self.ENABLED
+            and waffle.flag_is_active(request, 'pinguino-switch')
+        ):
+            request.urlconf = 'olympia.urls_pinguino'
+
+        response = self.get_response(request)
+
+        return response

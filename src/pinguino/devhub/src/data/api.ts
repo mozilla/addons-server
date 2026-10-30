@@ -71,7 +71,7 @@ interface ApiAddon {
     thumbnail_url?: string;
     caption?: Localized | null;
   }[];
-  current_version?: { version?: string; license?: { name?: Localized } };
+  current_version?: Version;
   channels: AddonDistribution[];
 }
 
@@ -94,13 +94,15 @@ interface ApiActivity {
 // The current account, from /accounts/profile/. `name` already falls back to a
 // generated name server-side; display_name is the user-chosen label when set.
 interface ApiProfile {
+  id: number;
   display_name?: string;
-  name?: string;
+  name: string;
   username?: string;
+  picture_url?: string;
 }
 
 export function localized(
-  value: string | Record<string, string> | undefined,
+  value: string | Record<string, string> | null | undefined,
 ): string {
   if (!value) return '';
   if (typeof value === 'string') return value;
@@ -128,7 +130,7 @@ function decodeEntities(s: string): string {
   return el.value;
 }
 
-export function formatDate(iso: string | undefined): string {
+export function formatDate(iso: string | null | undefined): string {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
@@ -183,6 +185,7 @@ export function mapAddon(a: ApiAddon): Addon {
     },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
+    currentVersion: a.current_version,
   };
 }
 
@@ -210,7 +213,11 @@ export function mapActivity(a: ApiActivity): Update {
 
 export async function fetchProfile(): Promise<Developer> {
   const data = await apiFetch<ApiProfile>('/accounts/profile/');
-  return { name: data.name || '' };
+  return {
+    id: String(data.id),
+    name: data.name,
+    pictureUrl: data.picture_url,
+  };
 }
 
 // Lists the add-ons the authenticated session owns; no author param needed.
@@ -388,14 +395,48 @@ export async function fetchEulaPolicy(slug: string): Promise<EulaPolicy> {
   };
 }
 
+// Any translated field is cleared per locale, and the API rejects nulling the
+// default locale while other translations survive — so clearing one means
+// nulling every locale it currently has.
+export function clearTranslations(
+  current?: Localized | null,
+): Record<string, null> {
+  const locales = Object.keys(current ?? {}).filter(
+    // A single-translation response carries `_default` alongside the locales.
+    (locale) => !locale.startsWith('_'),
+  );
+  return Object.fromEntries(
+    [...new Set([...locales, 'en-US'])].map((locale) => [locale, null]),
+  );
+}
+
 export async function patchEulaPolicy(
   slug: string,
   edit: EulaPolicyEdit,
 ): Promise<void> {
+  // We only ever edit en-US, so clearing needs the full locale set: fetch it
+  // without `lang` rather than trusting the en-US view of the policy.
+  const current =
+    ('eula' in edit && edit.eula == null) ||
+    ('privacyPolicy' in edit && edit.privacyPolicy == null)
+      ? await apiFetch<{
+          eula?: Localized | null;
+          privacy_policy?: Localized | null;
+        }>(`/addons/addon/${slug}/eula_policy/`)
+      : null;
+
   const body: Record<string, unknown> = {};
-  if ('eula' in edit) body.eula = { 'en-US': edit.eula ?? '' };
+  if ('eula' in edit) {
+    body.eula =
+      edit.eula == null
+        ? clearTranslations(current?.eula)
+        : { 'en-US': edit.eula };
+  }
   if ('privacyPolicy' in edit) {
-    body.privacy_policy = { 'en-US': edit.privacyPolicy ?? '' };
+    body.privacy_policy =
+      edit.privacyPolicy == null
+        ? clearTranslations(current?.privacy_policy)
+        : { 'en-US': edit.privacyPolicy };
   }
   await apiFetch(`/addons/addon/${slug}/eula_policy/?lang=en-US`, {
     method: 'PATCH',
@@ -488,4 +529,24 @@ export async function patchVersion(
     method: 'PATCH',
     body,
   });
+}
+
+export async function fetchVersions(
+  slug: string,
+  lang: string,
+): Promise<Version[]> {
+  const data = await apiFetch<Paginated<Version>>(
+    `${versionPath(slug)}?${new URLSearchParams({
+      filter: 'all_without_unlisted',
+      lang,
+      page_size: '50',
+    })}`,
+  );
+  return data.results ?? [];
+}
+
+// Ends the current session server-side.
+// Callers should then reload so all client state is rebuilt as signed-out.
+export async function deleteSession(): Promise<void> {
+  await apiFetch('/accounts/session/', { method: 'DELETE' });
 }

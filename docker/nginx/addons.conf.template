@@ -10,22 +10,31 @@ server {
         alias /srv/storage/;
     }
 
-    location ~ "^/\w{2,3}(?:-\w{2,6})?/developers/switch-pinguino" {
-        try_files $uri @olympia;
+    # Pinguino (Lit DevHub rebuild) assets live under the vite base
+    # (STATIC_URL_PREFIX + pinguino/). Both the built assets and the dev server's
+    # source modules use this same prefix, so serve built files from disk when
+    # present (DEV_MODE=False / production-like) and only fall back to the vite
+    # dev server for paths not on disk - its HMR client and source modules
+    # (DEV_MODE=True). The shell itself is served at /developers/ by
+    # devhub.views.serve_pinguino. Must precede the generic static block below.
+    location ~ ^${STATIC_URL_PREFIX}pinguino/(.*)$ {
+        root /srv;
+        try_files /site-static/pinguino/$1 /static/pinguino/$1 @pinguino;
     }
 
-    # Pinguino (Lit DevHub rebuild), proxied to its own Vite dev server. When the
-    # PINGUINO cookie is set to 1, serve /<locale>/developers/ from Pinguino
-    # instead of passing through to addons-frontend. Urls without a locale prefix
-    # are redirected in django. The proxying lives in the @pinguino named
-    # location, reached via `return`/`error_page` because `return` is one of the
-    # few things that is safe to use inside an `if`, unlike `proxy_pass`.
-    location ~ "^/\w{2,3}(?:-\w{2,6})?/developers/" {
-        error_page 418 = @pinguino;
-        if ($cookie_PINGUINO = "1") {
-            return 418;
-        }
-        try_files $uri @olympia;
+    location @pinguino {
+        proxy_pass http://pinguino;
+
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto  $scheme;
+        proxy_http_version 1.1;
+        proxy_cache_bypass $http_upgrade;
+        proxy_buffering off;
+
+        add_header X-Served-By "pinguino-vite" always;
     }
 
     location ^~ ${STATIC_URL_PREFIX}bundle/ {
@@ -116,21 +125,6 @@ server {
         # addons frontend so that nginx can act on it.
         proxy_intercept_errors on;
 
-    }
-
-    location @pinguino {
-        proxy_pass http://pinguino;
-
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For    $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto  $scheme;
-        proxy_http_version 1.1;
-        proxy_cache_bypass $http_upgrade;
-        proxy_buffering off;
-
-        add_header X-Served-By "pinguino-vite" always;
     }
 
     # Return 204 for CSP reports to save sending them

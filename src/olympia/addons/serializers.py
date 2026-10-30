@@ -865,8 +865,8 @@ class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
 
 
 class AddonEulaPolicySerializer(AMOModelSerializer):
-    eula = TranslationSerializerField()
-    privacy_policy = TranslationSerializerField()
+    eula = TranslationSerializerField(required=False)
+    privacy_policy = TranslationSerializerField(required=False)
 
     class Meta:
         model = Addon

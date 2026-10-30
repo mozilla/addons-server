@@ -291,4 +291,37 @@ describe('listing-details-card', () => {
       }),
     );
   });
+
+  it('clears a policy (sends null) when its checkbox is unchecked', async () => {
+    updateEulaPolicy.mockClear();
+    fetchEulaPolicy.mockResolvedValueOnce({
+      eula: 'Existing terms.',
+      privacyPolicy: '',
+    });
+    const { el, root } = await enterEdit({ flags: { hasEula: true } });
+
+    // Wait for the fetched policy text to seed the draft.
+    await vi.waitFor(() => {
+      const ta = root.querySelector(
+        '.policy moz-textarea',
+      ) as HTMLTextAreaElement;
+      expect(ta?.value).toBe('Existing terms.');
+    });
+
+    const eulaBox = [...root.querySelectorAll('.policy moz-checkbox')].find(
+      (b) =>
+        b.getAttribute('label') ===
+        'This add-on has an End-User License Agreement',
+    ) as HTMLInputElement;
+    eulaBox.checked = false;
+    eulaBox.dispatchEvent(new Event('change'));
+    await el.updateComplete;
+
+    save(root);
+    await vi.waitFor(() =>
+      expect(updateEulaPolicy).toHaveBeenCalledWith('ad-blocker', {
+        eula: null,
+      }),
+    );
+  });
 });

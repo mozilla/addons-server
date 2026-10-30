@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
+  clearTranslations,
   fetchActivity,
   fetchAddons,
   fetchAgreement,
@@ -19,6 +20,7 @@ import {
   postVersion,
 } from '../../src/data/api';
 import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
+import { DEFAULT_VERSION } from '../helpers/fixture';
 
 function mockJson(payload: unknown) {
   vi.stubGlobal(
@@ -39,7 +41,7 @@ describe('mapAddon', () => {
       type: 'statictheme',
       status: 'public',
       last_updated: '2025-05-14T10:00:00Z',
-      current_version: { version: '3.2.1' },
+      current_version: { ...DEFAULT_VERSION, version: '3.2.1' },
       previews: [{ image_url: 'https://cdn/preview.png' }],
       channels: ['listed'],
     });
@@ -110,8 +112,14 @@ describe('mapAddon', () => {
       has_eula: true,
       is_experimental: false,
       current_version: {
+        ...DEFAULT_VERSION,
         version: '1.0',
-        license: { name: { 'en-US': 'MPL 2.0' } },
+        license: {
+          id: 1,
+          is_custom: false,
+          name: { 'en-US': 'MPL 2.0' },
+          url: null,
+        },
       },
       channels: ['listed'],
     });
@@ -212,6 +220,30 @@ describe('localized / formatDate', () => {
   });
 });
 
+describe('clearTranslations', () => {
+  it('nulls every locale the field is translated into', () => {
+    expect(clearTranslations({ 'en-US': 'Terms', fr: 'Conditions' })).toEqual({
+      'en-US': null,
+      fr: null,
+    });
+  });
+
+  it('always nulls en-US, even for an absent or fallback-only field', () => {
+    expect(clearTranslations(undefined)).toEqual({ 'en-US': null });
+    expect(clearTranslations({ fr: 'Conditions' })).toEqual({
+      fr: null,
+      'en-US': null,
+    });
+  });
+
+  it('ignores the `_default` marker of a single-translation response', () => {
+    expect(clearTranslations({ fr: 'Conditions', _default: 'fr' })).toEqual({
+      fr: null,
+      'en-US': null,
+    });
+  });
+});
+
 describe('endpoints', () => {
   it('fetchAddons maps the paginated envelope through mapAddon', async () => {
     mockJson({
@@ -261,9 +293,13 @@ describe('endpoints', () => {
     expect(page.items).toHaveLength(1);
   });
 
-  it('fetchProfile reads the account name', async () => {
-    mockJson({ name: 'Kate' });
-    expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  it('fetchProfile maps the id, name and picture url', async () => {
+    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+    expect(await fetchProfile()).toEqual({
+      id: '99',
+      name: 'Kate',
+      pictureUrl: 'https://cdn/a.png',
+    });
   });
 
   it('patchAddon maps domain edit fields to the API body and PATCHes', async () => {
@@ -319,6 +355,39 @@ describe('endpoints', () => {
     expect(JSON.parse(String(init?.body))).toEqual({
       eula: { 'en-US': 'New terms' },
       privacy_policy: { 'en-US': '' },
+    });
+  });
+
+  it('patchEulaPolicy clears a policy by nulling every existing locale', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi
+        .fn()
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({
+            eula: { 'en-US': 'Terms', fr: 'Conditions' },
+            privacy_policy: null,
+          }),
+        })
+        .mockResolvedValueOnce({
+          ok: true,
+          status: 200,
+          json: async () => ({}),
+        }),
+    );
+
+    await patchEulaPolicy('x', { eula: null, privacyPolicy: 'Kept' });
+
+    // One lookup, unscoped by `lang` so it sees every locale.
+    expect(vi.mocked(fetch).mock.calls).toHaveLength(2);
+    const [lookupUrl] = vi.mocked(fetch).mock.calls[0];
+    expect(lookupUrl).toBe('/api/v5/addons/addon/x/eula_policy/');
+    const [, init] = vi.mocked(fetch).mock.calls[1];
+    expect(JSON.parse(String(init?.body))).toEqual({
+      eula: { 'en-US': null, fr: null },
+      privacy_policy: { 'en-US': 'Kept' },
     });
   });
 

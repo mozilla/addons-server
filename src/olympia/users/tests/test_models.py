@@ -44,6 +44,7 @@ from olympia.users.models import (
     RESTRICTION_TYPES,
     AsnUserRestriction,
     BannedUserContent,
+    ContentCreationThresholdRestriction,
     DisposableEmailDomainRestriction,
     EmailReputationRestriction,
     EmailUserRestriction,
@@ -2159,6 +2160,243 @@ class TestAsnRestriction(TestCase):
         assert (
             AsnUserRestriction.get_matching_restrictions(
                 upload, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+            )
+            == []
+        )
+
+
+class TestContentCreationThresholdRestriction(TestCase):
+    def test_str(self):
+        obj = ContentCreationThresholdRestriction(interval=3602, threshold=42)
+        assert str(obj) == '42/1:00:02'
+
+        obj = ContentCreationThresholdRestriction(
+            interval=timedelta(days=365, hours=1, minutes=2, seconds=3).total_seconds(),
+            threshold=42,
+        )
+        assert str(obj) == '42/365 days, 1:02:03'
+
+    def test_no_restriction_submission_allowed(self):
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_other_restriction_type_submission_allowed(self):
+        ContentCreationThresholdRestriction.objects.create(
+            interval=600, threshold=1, restriction_type=RESTRICTION_TYPES.RATING
+        )
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_no_restriction_auto_approval_allowed(self):
+        upload = FileUpload.objects.create(
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        addon_factory(users=[upload.user], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_auto_approval(upload)
+
+    def test_no_addons_yet_submission_allowed(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=0)
+        request = RequestFactory().get('/')
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_no_addons_yet_auto_approval_allowed(self):
+        ContentCreationThresholdRestriction.objects.create(
+            interval=600, threshold=0, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        upload = FileUpload.objects.create(
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        assert ContentCreationThresholdRestriction.allow_auto_approval(upload)
+
+    def test_submission_not_restricted(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=3)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_submission_not_restricted_past_interval(self):
+        ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 24, threshold=2
+        )
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=self.days_ago(2))
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_submission_not_restricted_addons_from_other_users(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=2)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[user_factory()], created=datetime.now())
+        addon_factory(users=[user_factory()], created=datetime.now())
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_submission_restricted(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=2)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        assert not ContentCreationThresholdRestriction.allow_submission(request)
+
+        # Even more than the threshold, obviously still restricted.
+        addon_factory(users=[request.user], created=datetime.now())
+        assert not ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_submission_restricted_threshold_below_number_of_addons_already(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=0)
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        assert not ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_multiple_restrictions_allowed(self):
+        # Allowed to create 1 in the first 10 minutes
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=1)
+        # Then 2 in the first 24 hours
+        ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 48, threshold=2
+        )
+
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=self.days_ago(3))
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        # Allowed, their first add-on is far enough in the past that no
+        # interval applies.
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_multiple_restrictions_disallowed(self):
+        # Allowed to create 1 in the first 10 minutes
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=1)
+        # Then 2 in the first 48 hours
+        ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 48, threshold=2
+        )
+
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=self.days_ago(1))
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        # Disallowed, the second restriction applies.
+        assert not ContentCreationThresholdRestriction.allow_submission(request)
+
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        # Disallowed, the first restriction applies.
+        assert not ContentCreationThresholdRestriction.allow_submission(request)
+
+    def test_multiple_authors(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=2)
+
+        request1 = RequestFactory().get('/')
+        request1.user = user_factory()
+
+        request2 = RequestFactory().get('/')
+        request2.user = user_factory()
+        addon_factory(users=[request1.user, request2.user], created=datetime.now())
+        addon_factory(users=[request1.user], created=datetime.now())
+
+        # user 1 has 2 add-ons, they are at/above threshold: disallowed
+        assert not ContentCreationThresholdRestriction.allow_submission(request1)
+
+        # user 2 has 1 add-on, they are below threshold: allowed
+        assert ContentCreationThresholdRestriction.allow_submission(request2)
+
+    def test_restriction_rating(self):
+        ContentCreationThresholdRestriction.objects.create(
+            interval=600, threshold=2, restriction_type=RESTRICTION_TYPES.RATING
+        )
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        rating_factory(addon=addon_factory(), user=request.user)
+        assert ContentCreationThresholdRestriction.allow_rating(request)
+        rating_factory(addon=addon_factory(), user=request.user)
+        assert not ContentCreationThresholdRestriction.allow_rating(request)
+
+    def test_auto_approval_restricted(self):
+        ContentCreationThresholdRestriction.objects.create(
+            interval=600, threshold=1, restriction_type=RESTRICTION_TYPES.ADDON_APPROVAL
+        )
+        upload = FileUpload.objects.create(
+            user=user_factory(),
+            source=amo.UPLOAD_SOURCE_DEVHUB,
+            channel=amo.CHANNEL_LISTED,
+        )
+        addon_factory(users=[upload.user], created=datetime.now())
+
+        # Creation is allowed...
+        request = RequestFactory().get('/')
+        request.user = upload.user
+        assert ContentCreationThresholdRestriction.allow_submission(request)
+
+        # ... But they won't get auto-approval since they are past threshold.
+        assert not ContentCreationThresholdRestriction.allow_auto_approval(upload)
+
+    def test_get_matching_restrictions_match(self):
+        # Allowed to create 1 in the first 10 minutes
+        restriction1 = ContentCreationThresholdRestriction.objects.create(
+            interval=600, threshold=1
+        )
+        # Then 2 in the first 48 hours
+        restriction2 = ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 48, threshold=2
+        )
+        # Another that shouldn't be hit
+        ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 365, threshold=20
+        )
+
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        addon_factory(users=[request.user], created=datetime.now())
+        assert set(
+            ContentCreationThresholdRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+        ) == {restriction1, restriction2}
+
+        # If the first add-on was created more than 10 minutes ago, then only
+        # the second restriction woud match.
+        addon_factory(users=[request.user], created=self.days_ago(1))
+        assert set(
+            ContentCreationThresholdRestriction.get_matching_restrictions(
+                request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+            )
+        ) == {restriction2}
+
+    def test_get_matching_restrictions_no_matches(self):
+        ContentCreationThresholdRestriction.objects.create(interval=600, threshold=3)
+        ContentCreationThresholdRestriction.objects.create(
+            interval=60 * 60 * 365, threshold=20
+        )
+
+        request = RequestFactory().get('/')
+        request.user = user_factory()
+        addon_factory(users=[request.user], created=datetime.now())
+        assert (
+            list(
+                ContentCreationThresholdRestriction.get_matching_restrictions(
+                    request, restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION
+                )
             )
             == []
         )

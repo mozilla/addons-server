@@ -47,7 +47,11 @@ from olympia.devhub.decorators import dev_required
 from olympia.devhub.forms import APIKeyForm, SupportForm
 from olympia.devhub.models import BlogPost, SurveyResponse
 from olympia.devhub.tasks import validate
-from olympia.devhub.views import DeveloperAgreementView, get_next_version_number
+from olympia.devhub.views import (
+    DeveloperAgreementView,
+    get_next_version_number,
+    serve_pinguino,
+)
 from olympia.files.models import FileUpload
 from olympia.files.tests.test_models import UploadMixin
 from olympia.ratings.models import Rating
@@ -3294,3 +3298,133 @@ class TestSwitchPinguino(TestCase):
         assert response.status_code == 302
         assert response['Location'] == reverse('devhub.index')
         assert response.cookies['PINGUINO'].value == '0'
+
+
+@override_settings(
+    PINGUINO_DEV_SERVER_URL='http://pinguino:5273',
+    STATIC_URL_PREFIX='/static-server/',
+)
+@override_settings(
+    PINGUINO_DEV_SERVER_URL='http://pinguino:5273',
+    STATIC_URL_PREFIX='/static-server/',
+)
+class TestServePinguino(TestCase):
+    # The URL the dev server serves the SPA shell from: the vite base is
+    # STATIC_URL_PREFIX + 'pinguino/'.
+    dev_server_url = 'http://pinguino:5273/static-server/pinguino/'
+    # The shell as shipped: the token placeholder is filled in per-request.
+    shell = (
+        b'<html><body>'
+        b'<pinguino-app token="INSERT_TOKEN_HERE"></pinguino-app>'
+        b'</body></html>'
+    )
+
+    def _request(self, path='/developers/', *, session_key=None):
+        # The view reads request.session.session_key; a bare RequestFactory
+        # request has no session (middleware adds it), so supply one.
+        request = RequestFactory().get(path)
+        request.session = mock.Mock(session_key=session_key)
+        return request
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_dev_mode_proxies_vite_dev_server(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=200,
+        )
+        response = serve_pinguino(self._request('/developers/addon/5'))
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'text/html'
+        assert b'<pinguino-app' in response.content
+        # We fetch the shell once, from the dev server's base, regardless of the
+        # requested path (the SPA router handles the path client-side).
+        assert len(responses.calls) == 1
+        assert responses.calls[0].request.url == self.dev_server_url
+
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=404,
+        )
+        response = serve_pinguino(self._request('/developers/addon/5'))
+        assert response.status_code == 404
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_dev_mode_propagates_upstream_status(self):
+        responses.add(responses.GET, self.dev_server_url, body='boom', status=502)
+        response = serve_pinguino(self._request('/developers/'))
+        assert response.status_code == 502
+
+    @override_settings(DEV_MODE=False, STATIC_ROOT='/fake/static/root')
+    def test_production_serves_built_shell_from_static_root(self):
+        opener = mock.mock_open(read_data=self.shell)
+        with mock.patch('olympia.devhub.views.open', opener, create=True):
+            response = serve_pinguino(self._request('/developers/addon/5'))
+        opener.assert_called_once_with('/fake/static/root/pinguino/index.html', 'rb')
+        assert response.status_code == 200
+        assert response['Content-Type'] == 'text/html'
+        assert b'<pinguino-app' in response.content
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_injects_session_token_into_shell(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=200,
+        )
+        response = serve_pinguino(self._request(session_key='sess-abc'))
+        assert b'<pinguino-app token="sess-abc"></pinguino-app>' in response.content
+        assert b'INSERT_TOKEN_HERE' not in response.content
+
+    @override_settings(DEV_MODE=True)
+    @responses.activate
+    def test_anonymous_request_injects_empty_token(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body=self.shell,
+            content_type='text/html',
+            status=200,
+        )
+        response = serve_pinguino(self._request(session_key=None))
+        assert b'<pinguino-app token=""></pinguino-app>' in response.content
+
+
+@override_flag('pinguino-switch', active=True)
+@override_settings(
+    DEV_MODE=True,
+    PINGUINO_DEV_SERVER_URL='http://pinguino:5273',
+    STATIC_URL_PREFIX='/static-server/',
+)
+class TestPinguinoRouting(TestCase):
+    dev_server_url = 'http://pinguino:5273/static-server/pinguino/'
+
+    @responses.activate
+    def test_developers_routed_to_pinguino_with_cookie(self):
+        responses.add(
+            responses.GET,
+            self.dev_server_url,
+            body='<pinguino-app></pinguino-app>',
+            content_type='text/html',
+        )
+        self.client.cookies['PINGUINO'] = '1'
+        response = self.client.get('/en-US/developers/addon/5')
+        assert response.status_code == 200
+        assert response.resolver_match.func == serve_pinguino
+        assert b'<pinguino-app>' in response.content
+
+    def test_developers_routed_to_classic_devhub_without_cookie(self):
+        response = self.client.get('/en-US/developers/')
+        # No urlconf switch happened, so the classic devhub handles it - not the
+        # Pinguino shell view.
+        assert response.resolver_match.func != serve_pinguino

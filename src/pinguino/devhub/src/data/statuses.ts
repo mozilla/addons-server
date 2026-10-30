@@ -71,7 +71,7 @@ export type AddonVisibility = 'visible' | 'invisible';
 
 export const VISIBILITY: Record<AddonVisibility, StatusInfo> = {
   visible: { label: 'Visible', badge: 'success' },
-  invisible: { label: 'Invisible', badge: 'ghost' },
+  invisible: { label: 'Hidden', badge: 'ghost' },
 };
 
 // `is_disabled` writes to the author's own setting but reads back true for
