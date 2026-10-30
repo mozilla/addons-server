@@ -15,6 +15,7 @@ export {
   createVersion,
   disableVersion,
   eulaPolicyQuery,
+  logout,
   pendingAuthorsQuery,
   profileQuery,
   queryKeys,

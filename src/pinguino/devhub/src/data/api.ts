@@ -86,9 +86,11 @@ interface ApiActivity {
 // The current account, from /accounts/profile/. `name` already falls back to a
 // generated name server-side; display_name is the user-chosen label when set.
 interface ApiProfile {
+  id: number;
   display_name?: string;
-  name?: string;
+  name: string;
   username?: string;
+  picture_url?: string;
 }
 
 export function localized(
@@ -198,7 +200,11 @@ export function mapActivity(a: ApiActivity): Update {
 
 export async function fetchProfile(): Promise<Developer> {
   const data = await apiFetch<ApiProfile>('/accounts/profile/');
-  return { name: data.name || '' };
+  return {
+    id: String(data.id),
+    name: data.name,
+    pictureUrl: data.picture_url,
+  };
 }
 
 // Lists the add-ons the authenticated session owns; no author param needed.
@@ -490,4 +496,10 @@ export async function patchVersion(
     method: 'PATCH',
     body,
   });
+}
+
+// Ends the current session server-side.
+// Callers should then reload so all client state is rebuilt as signed-out.
+export async function deleteSession(): Promise<void> {
+  await apiFetch('/accounts/session/', { method: 'DELETE' });
 }
