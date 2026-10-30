@@ -254,11 +254,16 @@ DJANGO_PERMISSIONS_MAPPING.update(
         ),
         **_addchangedelete('tags', 'tag', DISCOVERY_EDIT),
         'users.change_userprofile': USERS_EDIT,
+        **_addchangedelete('users', 'asnuseruserrestriction', ADMIN_ADVANCED),
+        **_addchangedelete(
+            'users', 'contentcreationthresholdrestriction', ADMIN_ADVANCED
+        ),
         **_addchangedelete(
             'users', 'disposableemaildomainrestriction', ADMIN_DISPOSABLE_EMAIL_EDIT
         ),
         'users.view_disposableemaildomainrestriction': ADMIN_DISPOSABLE_EMAIL_VIEW,
         **_addchangedelete('users', 'emailuserrestriction', ADMIN_ADVANCED),
+        **_addchangedelete('users', 'fingerprintrestriction', ADMIN_ADVANCED),
         **_addchangedelete('users', 'ipnetworkuserrestriction', ADMIN_ADVANCED),
         'users.view_userrestrictionhistory': ADMIN_ADVANCED,
         'users.view_userhistory': ADMIN_ADVANCED,
