@@ -8,7 +8,7 @@ import { queryClient, queryKeys } from '../../../../src/data';
 import * as api from '../../../../src/data/api';
 import type { FileUpload, Version } from '../../../../src/data/types';
 import '../../../../src/pages/addon/versions/submit/main';
-import { mount, settle } from '../../../helpers/fixture';
+import { DEFAULT_VERSION, mount, settle } from '../../../helpers/fixture';
 
 vi.mock('../../../../src/data/api');
 
@@ -27,18 +27,14 @@ class TestRouter extends LitElement {
 }
 
 const VERSION: Version = {
+  ...DEFAULT_VERSION,
   id: 20,
-  version: '1.0.0',
-  channel: 'listed',
   file: {
-    id: 1,
+    id: 20,
     url: 'https://example.com/files/addon.xpi',
-    size: 1,
+    size: 0,
     status: 'public',
   },
-  release_notes: null,
-  approval_notes: '',
-  source: null,
 };
 
 const makeUpload = (args: Partial<FileUpload> = {}): FileUpload => ({
