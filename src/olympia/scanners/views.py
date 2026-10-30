@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from rest_framework import serializers, status
@@ -65,9 +66,10 @@ def push_scanner_result(request):
     if (
         new_rules
         and ScannerResult.objects.filter(
+            Q(matched_rules__name__in=new_rules)
+            | Q(experimental_matches__rule_name__in=new_rules),
             webhook_event=push_event,
             version_id=version_id,
-            matched_rules__name__in=new_rules,
         ).exists()
     ):
         return Response(
