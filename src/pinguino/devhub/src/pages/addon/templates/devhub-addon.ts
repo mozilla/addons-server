@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../../../base';
 import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
+import '../../../components/addon-version/addon-version';
 import { type Addon, addonQuery } from '../../../data';
 
 // Each tab is its own URL under <base>/addon/:slug/<tab>, so a tab is linkable
@@ -64,6 +65,11 @@ export class DevhubAddon extends LitElement {
           .addon=${addon}
           .section=${this.section || undefined}
         ></addon-listing>`;
+      case 'versions':
+        return html`<addon-version
+          .addon=${addon}
+          .section=${this.section || undefined}
+        ></addon-version>`;
       default: {
         const label = TABS.find((t) => t.value === this.#activeTab)?.label;
         return html`<div class="stub">

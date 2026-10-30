@@ -80,6 +80,32 @@ export interface Addon {
     hasEula?: boolean;
     hasPrivacyPolicy?: boolean;
   };
+  currentVersion?: Version;
+}
+
+export interface Version {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: {
+    id: number;
+    url: string;
+    size: number;
+    status: FileStatus;
+    created?: string;
+  };
+  release_notes: Record<string, string> | string | null;
+  approval_notes: string;
+  source: string | null;
+  edit_url: string;
+  is_disabled: boolean;
+  license?: {
+    id: number;
+    is_custom: boolean;
+    name: Record<string, string> | string;
+    url: string | null;
+  } | null;
+  reviewed?: string | null;
 }
 
 // The subset of listing fields editable from the manage page's Listing Details
@@ -99,6 +125,7 @@ export interface AddonListingEdit {
   is_experimental?: boolean;
   requires_payment?: boolean;
   developer_comments?: string;
+  is_disabled?: boolean;
 }
 
 // A listing category (from /addons/categories/). `type` matches the API's
@@ -120,16 +147,6 @@ export interface EulaPolicy {
 export interface EulaPolicyEdit {
   eula?: string | null;
   privacyPolicy?: string | null;
-}
-
-export interface Version {
-  id: number;
-  version: string;
-  channel: AddonDistribution;
-  file: { id: number; url: string; size: number; status: FileStatus };
-  release_notes: string | null;
-  approval_notes: string;
-  source: string | null;
 }
 
 export interface Update {
