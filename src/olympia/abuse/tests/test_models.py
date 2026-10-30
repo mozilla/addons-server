@@ -43,6 +43,7 @@ from olympia.versions.models import Version, VersionReviewerFlags
 
 from ..actions import (
     CONTENT_ACTION_FROM_DECISION_ACTION,
+    ContentActionApproveListingContent,
     ContentActionBanUser,
     ContentActionDelayedMidHardBlockAddon,
     ContentActionDelayedShortSoftBlockAddon,
@@ -1448,6 +1449,46 @@ class TestCinderJob(TestCase):
         assert action_mock.call_count == 1
         assert notify_mock.call_count == 1
         assert list(cinder_job.final_decision.policies.all()) == [policy_a, policy_b]
+
+    def test_create_and_execute_decision_override_decision_no_job(self):
+        target = user_factory()
+        earlier_decision = ContentDecision.objects.create(
+            cinder_id='1234',
+            action=DECISION_ACTIONS.AMO_BAN_USER,
+            user=target,
+        )
+        policy_a = CinderPolicy.objects.create(uuid='123-45', name='aaa', text='AAA')
+        policy_b = CinderPolicy.objects.create(uuid='678-90', name='bbb', text='BBB')
+        with (
+            mock.patch.object(
+                ContentActionApproveListingContent, 'process_action'
+            ) as action_mock,
+            mock.patch.object(
+                ContentActionApproveListingContent, 'notify_owners'
+            ) as notify_mock,
+        ):
+            action_mock.return_value = None
+            CinderJob.create_and_execute_decision(
+                None,
+                target=target,
+                decision_cinder_id='12345',
+                decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
+                decision_notes='teh notes',
+                policy_ids=['123-45', '678-90'],
+                job_queue='some-cinder-queue',
+                override_of=earlier_decision,
+            )
+        decision = ContentDecision.objects.get(cinder_id='12345')
+        assert decision.cinder_id == '12345'
+        assert decision.action == DECISION_ACTIONS.AMO_APPROVE
+        assert decision.private_notes == 'teh notes'
+        assert decision.reasoning == ''
+        assert decision.from_job_queue == 'some-cinder-queue'
+        assert decision.user == target
+        assert decision.override_of == earlier_decision
+        assert action_mock.call_count == 1
+        assert notify_mock.call_count == 1
+        assert list(decision.policies.all()) == [policy_a, policy_b]
 
     def test_create_and_execute_decision_with_followup_actions(self):
         cinder_job = CinderJob.objects.create(job_id='1234')
