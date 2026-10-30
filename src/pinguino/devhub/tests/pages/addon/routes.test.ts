@@ -17,16 +17,34 @@ async function goto(tag: string, path: string) {
 }
 
 describe('addon-routes', () => {
-  it('renders the add-on page for a slug', async () => {
-    const root = await goto('addon-routes', 'addon-slug');
+  it('renders the add-on page for a slug/tab', async () => {
+    const root = await goto('addon-routes', 'addon-slug/edit');
     const page = root.querySelector('devhub-addon');
     expect(page).not.toBeNull();
     expect(page?.slug).toBe('addon-slug');
+    expect(page?.tab).toBe('edit');
+  });
+
+  it('redirects a bare slug to its edit tab', async () => {
+    // The bare :slug route has an `enter` redirect and renders nothing itself.
+    const root = await goto('addon-routes', 'addon-slug');
+    expect(root.querySelector('devhub-addon')).toBeNull();
+  });
+
+  it('redirects ownership to the edit authors section', async () => {
+    // The :slug/ownership route redirects via `enter` and renders nothing.
+    const root = await goto('addon-routes', 'addon-slug/ownership');
+    expect(root.querySelector('devhub-addon')).toBeNull();
   });
 
   it('hands submit/* to the submit routes', async () => {
     const root = await goto('addon-routes', 'submit/agreement');
     expect(root.querySelector('submit-routes')).not.toBeNull();
+  });
+
+  it('stubs pages that are not reimplemented yet', async () => {
+    const root = await goto('addon-routes', 'validate');
+    expect(root.querySelector('coming-soon')).not.toBeNull();
   });
 });
 

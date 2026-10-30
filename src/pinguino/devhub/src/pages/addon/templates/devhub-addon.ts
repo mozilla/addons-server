@@ -4,6 +4,7 @@ import { BASE } from '../../../base';
 import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
 import '../../../components/addon-version/addon-version';
+import '../../../components/coming-soon';
 import { type Addon, addonQuery } from '../../../data';
 
 // Each tab is its own URL under <base>/addon/:slug/<tab>, so a tab is linkable
@@ -59,6 +60,10 @@ export class DevhubAddon extends LitElement {
   };
 
   #panel(addon: Addon) {
+    // Django detail pages we haven't reimplemented yet
+    if (this.tab === 'invitation') {
+      return html`<coming-soon></coming-soon>`;
+    }
     switch (this.#activeTab) {
       case 'edit':
         return html`<addon-listing
@@ -71,10 +76,7 @@ export class DevhubAddon extends LitElement {
           .section=${this.section || undefined}
         ></addon-version>`;
       default: {
-        const label = TABS.find((t) => t.value === this.#activeTab)?.label;
-        return html`<div class="stub">
-          ${label} - coming in a later ticket.
-        </div>`;
+        return html`<coming-soon></coming-soon>`;
       }
     }
   }

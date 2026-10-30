@@ -11,13 +11,16 @@ import './foundations/layout';
 // After foundations/acorn so it overrides acorn's base.css :root color-scheme.
 import './app.css';
 
+import './components/coming-soon';
 import './components/devhub-header';
 import './components/not-found';
 import './pages/devhub-home';
 import './pages/addon/main';
 
 import { BASE } from './base';
+import { navigateTo } from './helper';
 import { interceptOutOfAppLinks } from './navigation';
+import { recordLanding } from './switch-back';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.
@@ -39,10 +42,55 @@ export class PinguinoApp extends LitElement {
   private _router = new Router(
     this,
     [
-      { path: `${BASE}/`, render: () => html`<devhub-home></devhub-home>` },
+      // The developer dashboard lives at the base path (and has themes too).
+      {
+        path: `${BASE}{/}?`,
+        render: () => html`<devhub-home></devhub-home>`,
+      },
+      // The old dashboard, themes and /addon(s) URLs redirect to the base.
+      {
+        path: `${BASE}/addons`,
+        enter: () => navigateTo(BASE, { replace: true }),
+      },
+      {
+        path: `${BASE}/themes`,
+        enter: () => navigateTo(BASE, { replace: true }),
+      },
+      // /addon is a typo for /addons, redirect it.
+      {
+        path: `${BASE}/addon`,
+        enter: () => navigateTo(BASE, { replace: true }),
+      },
+      // /addons/<id>/... paths are a typo for /addon/<id>/...
+      {
+        path: `${BASE}/addons/*`,
+        enter: () =>
+          navigateTo(location.pathname.replace('/addons/', '/addon/'), {
+            replace: true,
+          }),
+      },
       {
         path: `${BASE}/addon/*`,
         render: () => html`<addon-routes></addon-routes>`,
+      },
+      // feeds now live directly on the dashboard, and per add-on feeds live on the /addon/xxx/feed
+      {
+        path: `${BASE}/feed`,
+        enter: () => navigateTo(BASE, { replace: true }),
+      },
+      {
+        path: `${BASE}/feed/:addonId`,
+        enter: ({ addonId }) =>
+          navigateTo(`${BASE}/addon/${addonId}/feed`, { replace: true }),
+      },
+      // Top-level pages not yet reimplemented
+      {
+        path: `${BASE}/support`,
+        render: () => html`<coming-soon></coming-soon>`,
+      },
+      {
+        path: `${BASE}/verify-email`,
+        render: () => html`<coming-soon></coming-soon>`,
       },
     ],
     {
@@ -56,6 +104,8 @@ export class PinguinoApp extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    // Remember the url we landed on after redirects, for switching back.
+    recordLanding();
     this.#cleanupLinks = interceptOutOfAppLinks(BASE);
   }
 
