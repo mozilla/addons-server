@@ -1,8 +1,8 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE } from '../base';
-import { switchBackPath } from '../switch-back';
 import { profileQuery } from '../data';
+import { switchBackPath } from '../switch-back';
 import './devhub-account-menu';
 
 const NAV = [
