@@ -370,13 +370,25 @@ export async function fetchCategories(): Promise<Category[]> {
   return data.map((c) => ({ slug: c.slug, name: c.name, type: c.type }));
 }
 
+export async function fetchAddonSource(slug: string): Promise<Addon> {
+  const data = await apiFetch<ApiAddon>(
+    `/addons/addon/${slug}/?lang=en-US&show_source=true`,
+  );
+  return mapAddon(data);
+}
+
 // EULA and privacy policy live on their own endpoint; the list API only exposes
 // the has_* booleans, so the edit form fetches the text here.
-export async function fetchEulaPolicy(slug: string): Promise<EulaPolicy> {
+export async function fetchEulaPolicy(
+  slug: string,
+  showSource = false,
+): Promise<EulaPolicy> {
   const data = await apiFetch<{
     eula?: Localized | null;
     privacy_policy?: Localized | null;
-  }>(`/addons/addon/${slug}/eula_policy/?lang=en-US`);
+  }>(
+    `/addons/addon/${slug}/eula_policy/?lang=en-US${showSource ? '&show_source=true' : ''}`,
+  );
   return {
     eula: localized(data.eula ?? undefined),
     privacyPolicy: localized(data.privacy_policy ?? undefined),

@@ -217,6 +217,48 @@ class TranslationSerializerField(fields.CharField):
         return ESTranslationSerializerField(source=self.source)
 
 
+class SourceTranslationSerializerField(TranslationSerializerField):
+    """
+    If the request is a GET with a truthy `show_source` parameter,
+    the unsanitized source is returned.
+    """
+
+    def can_request_source(self):
+        request = self.context.get('request', None)
+        if (
+            request
+            and request.method == 'GET'
+            and (show_source := request.GET.get('show_source'))
+        ):
+            try:
+                return fields.BooleanField().to_internal_value(show_source)
+            except exceptions.ValidationError as exc:
+                raise exceptions.ParseError(
+                    'Invalid boolean value for show_source.'
+                ) from exc
+        else:
+            return False
+
+    def fetch_all_translations(self, obj, field):
+        if field is None or not self.can_request_source():
+            return super().fetch_all_translations(obj, field)
+        translations = field.__class__.objects.filter(
+            id=field.id, localized_string__isnull=False
+        )
+        return {
+            to_language(trans.locale): trans.localized_string for trans in translations
+        }
+
+    def fetch_single_translation(self, obj, field, requested_language):
+        if field is None or not self.can_request_source():
+            return super().fetch_single_translation(obj, field, requested_language)
+        return self._format_single_translation_response(
+            field.localized_string,
+            to_language(field.locale),
+            to_language(requested_language),
+        )
+
+
 class ESTranslationSerializerField(TranslationSerializerField):
     """
     Like TranslationSerializerField, but fetching the data from a dictionary

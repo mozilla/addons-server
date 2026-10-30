@@ -5,6 +5,7 @@ export { fetchEulaPolicy, formatDate, localized } from './api';
 export {
   acceptAgreement,
   addonQuery,
+  addonSourceQuery,
   addonsQuery,
   agreementQuery,
   authorsQuery,

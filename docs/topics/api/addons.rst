@@ -136,6 +136,7 @@ This endpoint allows you to list all add-ons you are the author of. It does not 
 .. http:get:: /api/v5/addons/addon/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :query int page: 1-based page number. Defaults to 1.
     :query int page size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-list-sort>`.
@@ -198,6 +199,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :query string app: Used in conjunction with ``appversion`` below to alter ``current_version`` behaviour. Need to be a valid :ref:`add-on application <addon-detail-application>`.
     :query string appversion: Make ``current_version`` return the latest public version of the add-on compatible with the given application version, if possible, otherwise fall back on the generic implementation. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present. Currently only compatible with language packs through the add-on detail API, ignored for other types of add-ons and APIs.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`Translated Fields <api-overview-translations>`)
+    :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :query boolean show_grouped_ratings: Whether or not to show ratings aggregates in the ``ratings`` object (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
     :>json int id: The add-on id on AMO.
     :>json array authors: Array holding information about the authors (developers) for the add-on.
@@ -521,6 +523,7 @@ This endpoint allows you to list all versions belonging to a specific add-on.
 
     :query string filter: The :ref:`filter <version-filtering-param>` to apply.
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :>json int count: The number of versions for this add-on.
@@ -569,6 +572,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     .. _version-detail-object:
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :>json int id: The version id.
     :>json string approval_notes: Information for Mozilla reviewers, for when the add-on is reviewed.  These notes are only visible to Mozilla, and this field is only present if the user has reviewer permissions, or is listed as an author (developer) of the add-on.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted``, ``listed``, or ``enterprise``.
@@ -980,6 +984,7 @@ This endpoint allows you to fetch an add-on EULA and privacy policy.
             * authentication
             * reviewer permissions or an account listed as an author (developer) of the add-on
 
+    :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :>json object|null eula: The text of the EULA, if present (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null privacy_policy: The text of the Privacy Policy, if present (See :ref:`translated fields <api-overview-translations>`).
 
