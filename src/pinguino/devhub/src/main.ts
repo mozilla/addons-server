@@ -20,6 +20,7 @@ import './pages/addon/main';
 import { BASE } from './base';
 import { navigateTo } from './helper';
 import { interceptOutOfAppLinks } from './navigation';
+import { recordLanding } from './switch-back';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.
@@ -103,6 +104,8 @@ export class PinguinoApp extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    // Remember the url we landed on after redirects, for switching back.
+    recordLanding();
     this.#cleanupLinks = interceptOutOfAppLinks(BASE);
   }
 
