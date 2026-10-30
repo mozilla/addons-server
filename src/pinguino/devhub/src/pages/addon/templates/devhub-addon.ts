@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../../../base';
 import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
+import '../../../components/addon-version/addon-version';
 import '../../../components/coming-soon';
 import { type Addon, addonQuery } from '../../../data';
 
@@ -69,6 +70,11 @@ export class DevhubAddon extends LitElement {
           .addon=${addon}
           .section=${this.section || undefined}
         ></addon-listing>`;
+      case 'versions':
+        return html`<addon-version
+          .addon=${addon}
+          .section=${this.section || undefined}
+        ></addon-version>`;
       default: {
         return html`<coming-soon></coming-soon>`;
       }

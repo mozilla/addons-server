@@ -32,11 +32,6 @@ class AddonRoutes extends LitElement {
         navigateTo(`${BASE}/addon/${slug}/edit/authors`, { replace: true }),
     },
     {
-      path: `:slug/:tab`,
-      render: ({ slug, tab }) =>
-        html`<devhub-addon .slug=${slug ?? ''} .tab=${tab ?? ''}></devhub-addon>`,
-    },
-    {
       path: `:slug/:tab/:section`,
       render: ({ slug, tab, section }) =>
         html`<devhub-addon
@@ -44,6 +39,11 @@ class AddonRoutes extends LitElement {
           .tab=${tab ?? ''}
           .section=${section ?? ''}
         ></devhub-addon>`,
+    },
+    {
+      path: `:slug/:tab`,
+      render: ({ slug, tab }) =>
+        html`<devhub-addon .slug=${slug ?? ''} .tab=${tab ?? ''}></devhub-addon>`,
     },
   ]);
   render() {

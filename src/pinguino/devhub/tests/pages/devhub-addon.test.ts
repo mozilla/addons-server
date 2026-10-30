@@ -3,7 +3,7 @@ import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
-import { mount, settle } from '../helpers/fixture';
+import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
 
 const addon: Addon = {
   slug: 'ad-blocker',
@@ -43,14 +43,32 @@ describe('devhub-addon', () => {
     queryClient.setQueryData(queryKeys.addons, [addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
-      tab: 'versions',
+      tab: 'statistics',
     });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
     expect(
       root.querySelector('moz-segmented-control')?.getAttribute('value'),
-    ).toBe('versions');
+    ).toBe('statistics');
+    expect(root.querySelector('addon-listing')).toBeNull();
+    expect(root.querySelector('.stub')?.textContent).toContain('Statistics');
+  });
+
+  it('renders the versions panel for the add-on on the versions tab', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
+      DEFAULT_VERSION,
+    ]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'versions',
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    const panel = root.querySelector('addon-version');
+    expect(panel?.addon.slug).toBe('ad-blocker');
     expect(root.querySelector('addon-listing')).toBeNull();
     expect(root.querySelector('coming-soon')).not.toBeNull();
   });
