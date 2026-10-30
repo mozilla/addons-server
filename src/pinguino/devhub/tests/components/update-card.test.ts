@@ -13,8 +13,10 @@ const baseUpdate: Update = {
   message: 'Congrats!',
   version: '3.2.1',
   versionStatus: VERSION_STATUS.public,
-  tags: ['Live', 'AMO'],
+  addonName: 'Ad Blocker',
+  channel: 'listed',
   date: 'Sep 2 2025',
+  user: 'Kate',
   addonSlug: 'ad-blocker',
 };
 
@@ -55,20 +57,67 @@ describe('update-card', () => {
     expect(root.querySelector('.foot moz-status-badge')).toBeNull();
   });
 
-  it('renders the title, message, version and each tag', async () => {
-    const root = await card({ tags: ['Live', 'AMO', 'Beta'] });
+  // The title's own links go to the public listing; View is the DevHub side.
+  it('points View at the Versions tab for an entry about a version', async () => {
+    const root = await card({ version: '3.2.1' });
+    expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
+      '/developers/addon/ad-blocker/versions',
+    );
+  });
+
+  it('points View at the add-on when no version is involved', async () => {
+    const root = await card({ version: '' });
+    expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
+      '/developers/addon/ad-blocker',
+    );
+  });
+
+  // Only the headline is bold; a `.title p` rule once caught the name too.
+  it('emphasises the headline but not the add-on name', async () => {
+    const root = await card({});
+    const name = root.querySelector('.addon-name') as HTMLElement;
+    const headline = root.querySelector('.headline') as HTMLElement;
+
+    expect(getComputedStyle(headline).fontWeight).toBe('600');
+    expect(getComputedStyle(name).fontWeight).not.toBe('600');
+  });
+
+  it('renders the title, add-on name, message, date and version', async () => {
+    const root = await card({});
 
     expect(root.querySelector('.title')?.textContent).toContain(
       'Your version is approved.',
+    );
+    expect(root.querySelector('.addon-name')?.textContent?.trim()).toBe(
+      'Ad Blocker',
     );
     expect(root.querySelector('.message')?.textContent?.trim()).toBe(
       'Congrats!',
     );
     const foot = root.querySelector('.foot')?.textContent ?? '';
-    expect(foot).toContain('Version 3.2.1');
-    for (const tag of ['Live', 'AMO', 'Beta']) {
-      expect(foot).toContain(tag);
-    }
+    expect(foot).toContain('Sep 2 2025 by Kate');
+    expect(foot).toContain('Version: 3.2.1');
+  });
+
+  it('shows the date alone when the action had no acting user', async () => {
+    const root = await card({ user: undefined });
+    const foot = root.querySelector('.foot')?.textContent ?? '';
+    expect(foot).toContain('Sep 2 2025');
+    expect(foot).not.toContain('by');
+  });
+
+  it('shows the version channel as a distribution badge', async () => {
+    const root = await card({ channel: 'unlisted' });
+    expect(
+      root
+        .querySelector('.foot distribution-badge')
+        ?.getAttribute('distribution'),
+    ).toBe('unlisted');
+  });
+
+  it('omits the distribution badge for an entry with no version', async () => {
+    const root = await card({ channel: undefined });
+    expect(root.querySelector('.foot distribution-badge')).toBeNull();
   });
 
   it('renders HTML in the title and message as real DOM, not escaped text', async () => {

@@ -154,11 +154,21 @@ export interface Update {
   title: string;
   message: string;
   version: string;
-  // Absent when the feed entry isn't about a review outcome.
+  // Both absent when the entry touches no version (e.g. an add-on-level event).
   versionStatus?: StatusInfo;
-  tags: string[];
+  channel?: AddonDistribution;
   date: string;
+  // Absent when the action had no acting user. Reviewer actions arrive already
+  // anonymised by the API, so this is safe to show to the developer as-is.
+  user?: string;
+  addonName: string;
   addonSlug: string;
+}
+
+// `total` counts every page, not this one — a short page isn't the last.
+export interface ActivityPage {
+  items: Update[];
+  total: number;
 }
 
 export interface AgreementState {

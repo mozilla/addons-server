@@ -11,6 +11,7 @@ import {
   deleteAuthor,
   deletePreview,
   deleteSession,
+  fetchActivity,
   fetchAddons,
   fetchAgreement,
   fetchAuthors,
@@ -255,6 +256,26 @@ export function updatesQuery(host: ReactiveControllerHost) {
     () => ({
       queryKey: queryKeys.updates,
       queryFn: fetchUpdates,
+    }),
+    queryClient,
+  );
+}
+
+const activityKey = (slug: string, page: number) =>
+  ['activity', slug, page] as const;
+
+// Keyed by page, so paging back and forth is served from cache.
+export function activityQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getPage: () => number,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: activityKey(getSlug(), getPage()),
+      queryFn: () => fetchActivity(getSlug(), getPage()),
+      enabled: Boolean(getSlug()),
     }),
     queryClient,
   );

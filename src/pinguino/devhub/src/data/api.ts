@@ -5,10 +5,11 @@
 import { apiFetch } from './http';
 import {
   resolveAddonStatus,
+  resolveVersionStatus,
   resolveVisibility,
-  VERSION_STATUS,
 } from './statuses';
 import type {
+  ActivityPage,
   Addon,
   AddonAuthor,
   AddonAuthorAdd,
@@ -30,6 +31,7 @@ import type {
 // Paginated envelope shared by the AMO v5 list endpoints.
 interface Paginated<T> {
   results?: T[];
+  count?: number;
 }
 
 // v5 always serializes translated fields as a { lang: value } object.
@@ -80,7 +82,13 @@ interface ApiActivity {
   title?: string;
   comments?: string;
   date?: string;
-  versions?: { version?: string }[];
+  user?: { name?: string } | null;
+  versions?: {
+    version?: string;
+    channel?: AddonDistribution;
+    file?: { status?: string };
+    reviewed?: string | null;
+  }[];
 }
 
 // The current account, from /accounts/profile/. `name` already falls back to a
@@ -182,19 +190,23 @@ export function mapAddon(a: ApiAddon): Addon {
 }
 
 export function mapActivity(a: ApiActivity): Update {
-  const title = a.title ?? 'Update';
-  // Best-effort: the feed has no explicit approved flag, so infer it from the
-  // human-readable title/comments. Revisit if the API adds a status field.
-
-  const approved = /approv/i.test(`${title} ${a.comments ?? ''}`);
+  // An entry can touch several versions (e.g. a bulk approval); the feed row
+  // describes the first, matching what the activity title names.
+  const version = a.versions?.[0];
   return {
     id: String(a.id),
-    title,
+    title: a.title ?? 'Update',
     message: a.comments ?? '',
-    version: a.versions?.[0]?.version ?? '',
-    versionStatus: approved ? VERSION_STATUS.public : undefined,
-    tags: [],
+    version: version?.version ?? '',
+    versionStatus: version?.file?.status
+      ? resolveVersionStatus(version.file.status, {
+          reviewed: version.reviewed,
+        })
+      : undefined,
+    channel: version?.channel,
     date: formatDate(a.date),
+    user: undefinedIfEmpty(decodeEntities(a.user?.name ?? '')),
+    addonName: decodeEntities(localized(a.addon?.name)),
     addonSlug: a.addon?.slug ?? '',
   };
 }
@@ -438,6 +450,26 @@ export async function fetchUpdates(): Promise<Update[]> {
     '/activity/?lang=en-US&page_size=50',
   );
   return (data.results ?? []).map(mapActivity);
+}
+
+export const ACTIVITY_PAGE_SIZE = 20;
+
+// Paged server-side, so the URL's `?page=` maps straight onto the API's paging.
+export async function fetchActivity(
+  slug: string,
+  page: number,
+): Promise<ActivityPage> {
+  const params = new URLSearchParams({
+    lang: 'en-US',
+    addon: slug,
+    page: String(page),
+    page_size: String(ACTIVITY_PAGE_SIZE),
+  });
+  const data = await apiFetch<Paginated<ApiActivity>>(`/activity/?${params}`);
+  return {
+    items: (data.results ?? []).map(mapActivity),
+    total: data.count ?? 0,
+  };
 }
 
 export async function fetchAgreement(): Promise<AgreementState> {

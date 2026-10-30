@@ -117,7 +117,7 @@ class FeedActivityLogVersionSerializer(MinimalVersionSerializer):
 
     class Meta:
         model = Version
-        fields = ('id', 'version', 'channel', 'file', 'addon')
+        fields = ('id', 'version', 'channel', 'file', 'addon', 'reviewed')
         list_serializer_class = FeedActivityLogVersionsListSerializer
 
 
@@ -154,5 +154,7 @@ class FeedActivityLogSerializer(AMOModelSerializer):
         return obj.to_string()
 
     def get_comments(self, obj):
-        comments = obj.details['comments'] if obj.details else ''
-        return getattr(obj.log(), 'sanitize', comments)
+        # The feed is unfiltered, so it carries actions whose details is a list
+        # of changed field names rather than a mapping (EDIT_PROPERTIES: ["eula"]).
+        details = obj.details if isinstance(obj.details, dict) else {}
+        return getattr(obj.log(), 'sanitize', details.get('comments', ''))
