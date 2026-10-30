@@ -90,6 +90,8 @@ constants are as follows:
                                   invalid.
     ERROR_AUTHENTICATION_EXPIRED  The payload references an invalid session hash,
                                   probably because the session has expired.
+                    2FA_REQUIRED  Two-factor authentication is required for this
+                                  endpoint and wasn't present or recent enough.
     ============================  =====================================================
 
 

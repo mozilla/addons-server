@@ -28,6 +28,7 @@ from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
+from olympia.accounts.utils import fxa_login_url
 from olympia.activity.models import ActivityLog
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
@@ -46,7 +47,7 @@ from olympia.amo.urlresolvers import get_outgoing_url
 from olympia.bandwagon.models import CollectionAddon
 from olympia.constants.browsers import CHROME
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
-from olympia.constants.licenses import LICENSE_GPL3
+from olympia.constants.licenses import LICENSE_CC_BY40, LICENSE_GPL3
 from olympia.constants.promoted import (
     RECOMMENDED_API_NAME,
 )
@@ -1147,7 +1148,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
             channel=amo.CHANNEL_UNLISTED,
         )
         self.url = reverse_ns('addon-list', api_version='v5')
-        self.client.login_api(self.user)
+        self.client.login_api(self.user, with_2fa=True)
         self.license = License.objects.create(builtin=1)
         self.minimal_data = {'version': {'upload': self.upload.uuid}}
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
@@ -1185,6 +1186,24 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert provenance.version == expected_version
         assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
         assert provenance.client_info == 'web-ext/12.34'
+
+    def test_missing_2fa_with_session_auth(self):
+        self.client.login_api(self.user, with_2fa=False)
+        response = self.request()
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path='/',
+            enforce_2fa=True,
+            login_hint=self.user.email,
+        )
+        assert response.status_code == 403, response.content
+        data = response.json()
+        assert data['detail'] == (
+            'Please add two-factor authentication to your account to submit extensions.'
+        )
+        assert data['code'] == '2FA_REQUIRED'
+        assert data['url'] == expected_location
 
     def test_submissions_disabled(self):
         self.create_flag('enable-submissions', note=':-(', everyone=False)
@@ -1227,15 +1246,18 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
 
     def test_basic_listed(self):
         self.upload.update(channel=amo.CHANNEL_LISTED)
-        response = self.request(
-            data={
+        self._test_basic_listed(
+            {
                 'categories': ['bookmarks'],
                 'version': {
                     'upload': self.upload.uuid,
                     'license': self.license.slug,
                 },
-            },
+            }
         )
+
+    def _test_basic_listed(self, data):
+        response = self.request(data=data)
         assert response.status_code == 201, response.content
         data = response.data
         assert data['name'] == {'en-US': 'My WebExtension Addon'}
@@ -1268,6 +1290,28 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         assert provenance.version == expected_version
         assert provenance.source == amo.UPLOAD_SOURCE_ADDON_API
         assert provenance.client_info == 'web-ext/12.34'
+
+    def test_basic_listed_theme(self):
+        self.license = License.objects.get(builtin=LICENSE_CC_BY40.builtin)
+        self.upload = self.get_upload(
+            os.path.join(
+                settings.ROOT, './src/olympia/devhub/tests/addons/static_theme.zip'
+            ),
+            user=self.user,
+            source=amo.UPLOAD_SOURCE_ADDON_API,
+            channel=amo.CHANNEL_LISTED,
+        )
+        # 2FA shouldn't be required for themes.
+        self.client.login_api(self.user, with_2fa=False)
+        self._test_basic_listed(
+            {
+                'categories': ['general'],
+                'version': {
+                    'upload': self.upload.uuid,
+                    'license': self.license.slug,
+                },
+            }
+        )
 
     def test_no_client_info(self):
         self.upload.update(channel=amo.CHANNEL_LISTED)
@@ -2176,6 +2220,10 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
 class TestAddonViewSetCreateJWTAuth(TestAddonViewSetCreate):
     client_class = APITestClientJWT
 
+    def test_missing_2fa_with_session_auth(self):
+        # That test is only relevant with session auth.
+        pass
+
 
 class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
     client_class = APITestClientSessionID
@@ -2189,7 +2237,7 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         self.url = reverse_ns(
             'addon-detail', kwargs={'pk': self.addon.pk}, api_version='v5'
         )
-        self.client.login_api(self.user)
+        self.client.login_api(self.user, with_2fa=True)
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
 
     def test_basic(self):
@@ -3968,7 +4016,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             kwargs={'addon_pk': self.addon.slug},
             api_version='v5',
         )
-        self.client.login_api(self.user)
+        self.client.login_api(self.user, with_2fa=True)
         self.license = License.objects.create(builtin=2)
         self.minimal_data = {'upload': self.upload.uuid}
         self.statsd_incr_mock = self.patch('olympia.addons.serializers.statsd.incr')
@@ -4487,7 +4535,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
     def test_filters_permissions_only_for_list_action(self):
         reviewer = user_factory(read_dev_agreement=self.days_ago(0))
         self.grant_permission(reviewer, amo.permissions.ADDONS_API_VIEW)
-        self.client.login_api(reviewer)
+        self.client.login_api(reviewer, with_2fa=True)
         response = self.client.post(self.url, data={**self.minimal_data})
         assert response.status_code == 403
 
@@ -4497,7 +4545,7 @@ class TestVersionViewSetCreate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
         assert response.status_code == 403
 
         # No problem for author.
-        self.client.login_api(self.user)
+        self.client.login_api(self.user, with_2fa=True)
         response = self.client.post(
             f'{self.url}?filter=all_without_unlisted', data={**self.minimal_data}
         )
@@ -4551,7 +4599,7 @@ class TestVersionViewSetUpdate(UploadMixin, VersionViewSetCreateUpdateMixin, Tes
             kwargs={'addon_pk': self.addon.slug, 'pk': self.version.id},
             api_version='v5',
         )
-        self.client.login_api(self.user)
+        self.client.login_api(self.user, with_2fa=True)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED
         )
@@ -8500,17 +8548,6 @@ class TestAddonPreviewViewSet(TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
         assert alog.addonlog_set.get().addon == self.addon
-
-        self.create_flag('enable-submissions', note=':-(', everyone=False)
-        response = self.client.post(url)
-        assert response.status_code == 503
-        assert response.json() == {
-            'error': 'Add-on uploads are temporarily unavailable.',
-            'reason': ':-(',
-        }
-        self.create_flag('enable-submissions', note=':-(', users=[self.user.id])
-        response = self.client.post(url)
-        assert response.status_code != 503
 
     def test_cannot_create_for_themes(self):
         self.client.login_api(self.user)

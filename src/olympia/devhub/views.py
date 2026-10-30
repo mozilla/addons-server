@@ -2394,6 +2394,7 @@ class DeveloperAgreementView(GenericAPIView):
         return Response(data, status=status.HTTP_202_ACCEPTED)
 
 
+@two_factor_auth_required
 def switch_pinguino(request):
     path = request.GET.get('path')
     cookie_name = 'PINGUINO'

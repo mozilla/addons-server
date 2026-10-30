@@ -6,8 +6,8 @@
     <h3> Don't panic! </h3>
     <p>
       You're seeing this page instead of the regular authentication page because the
-      <code>FXA_CONFIG</code> being used has the client_id set to <code>.</code> and
-      `<code>ENV</code> is set to <code>local</code>.
+      <code>FXA_CONFIG</code> being used has the client_id set to <code>""</code> and
+      <code>ENV</code> is set to <code>"local"</code>.
       This is used to trigger fake authentication without redirecting to an actual
       authentication server.
     </p>
@@ -16,8 +16,8 @@
       <input type="hidden" name="{{ key }}" value="{{ value }}" />
     {% endfor %}
     <input type="hidden" name="code" value="fakecode" />
-    <label for="id_email">Email:</label> <input type="email" name="fake_fxa_email" id="id_email" />
-    <label><input type="checkbox" name="fake_two_factor_authentication" value="true" />Two-factor authentication</label>
+    <label for="id_email">Email:</label> <input type="email" name="fake_fxa_email" id="id_email" value="{{ request.user.email if request.user and request.user.is_authenticated else '' }}" required />
+    <label><input type="checkbox" name="fake_two_factor_authentication" {% if two_factor_authentication_requested %}required{% endif %} value="true" />Two-factor authentication</label>
     <input type="submit" value="OK" />
 
     {% if interesting_accounts %}

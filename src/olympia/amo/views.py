@@ -236,10 +236,14 @@ def fake_fxa_authorization(request):
     interesting_accounts = UserProfile.objects.exclude(groups=None).exclude(
         deleted=True
     )[:25]
+    two_factor_authentication_requested = 'AAL2' in request.GET.getlist('acr_values')
     return TemplateResponse(
         request,
         'amo/fake_fxa_authorization.html',
-        context={'interesting_accounts': interesting_accounts},
+        context={
+            'interesting_accounts': interesting_accounts,
+            'two_factor_authentication_requested': two_factor_authentication_requested,
+        },
     )
 
 

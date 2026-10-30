@@ -13,6 +13,7 @@ from django_statsd.clients import statsd
 from rest_framework import exceptions, serializers
 
 from olympia import amo
+from olympia.accounts.decorators import reprompt_for_2fa_if_necessary
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 from olympia.addons.utils import remove_icons
@@ -24,6 +25,7 @@ from olympia.amo.validators import (
     OneOrMoreLetterOrNumberCharacterValidator,
     PreventPartialUpdateValidator,
 )
+from olympia.api.authentication import SessionIDAuthentication
 from olympia.api.exceptions import Conflict
 from olympia.api.fields import (
     EmailTranslationField,
@@ -568,8 +570,38 @@ class DeveloperVersionSerializer(VersionSerializer):
                 raise exceptions.ValidationError(msg)
         return disable
 
+    def reprompt_for_2fa_if_necessary(self):
+        # If reprompt_for_2fa_if_necessary() returns a truthy value, it's an
+        # HttpResponse with an URL redirecting to the auth flow: catch it,
+        # raise a 403 instead (a redirect doesn't make sense in an API context)
+        # with a field containing that URL.
+        # Ideally clients should check for 2FA (and 2FA "freshness" when
+        # reprompting is enabled) before making API requests, for 2 reasons:
+        # - This is late, after they have already started their action
+        # - We can't redirect them to request.path since this is going to be an
+        #   API path, so we have to redirect them to '/'.
+        if response := reprompt_for_2fa_if_necessary(
+            self.context['request'], next_path='/'
+        ):
+            msg = {
+                'detail': gettext(
+                    'Please add two-factor authentication to your account '
+                    'to submit extensions.'
+                ),
+                'code': '2FA_REQUIRED',
+                'url': response['location'],
+            }
+            raise exceptions.PermissionDenied(msg)
+
     def validate(self, data):
         if not self.instance:
+            authenticator = self.context['request'].successful_authenticator
+
+            if self.addon_type != amo.ADDON_STATICTHEME and isinstance(
+                authenticator, SessionIDAuthentication
+            ):
+                self.reprompt_for_2fa_if_necessary()
+
             version_string = self.parsed_data.get('version')
             if self.addon:
                 if error_msg := (
