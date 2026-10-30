@@ -64,6 +64,11 @@ from olympia.users.models import UserProfile
 
 log = olympia.core.logger.getLogger('z.scanners.models')
 
+# A scanner can set this status in the annotations of a matched rule to run it
+# in shadow mode.
+ANNOTATION_STATUS_FIELD = 'status'
+EXPERIMENTAL_RULE_STATUS = 'experimental'
+
 
 class AbstractScannerResult(ModelBase):
     # Store the "raw" results of a scanner.
@@ -467,13 +472,34 @@ class ScannerResult(AbstractScannerResult):
 
     def get_rules_queryset(self):
         # See: https://github.com/mozilla/addons-server/issues/13143
-        return super().get_rules_queryset().filter(is_active=True)
+        return (
+            super()
+            .get_rules_queryset()
+            .filter(is_active=True)
+            .exclude(name__in=self.extract_experimental_rule_names())
+        )
+
+    def extract_experimental_rule_names(self):
+        if self.scanner != WEBHOOK or 'annotations' not in (self.results or {}):
+            return set()
+
+        annotations = self.results['annotations']
+        return {
+            name
+            for name in self.extract_rule_names()
+            if any(
+                annotation.get(ANNOTATION_STATUS_FIELD) == EXPERIMENTAL_RULE_STATUS
+                for annotation in annotations.get(name, [])
+            )
+        }
 
     def save(self, *args, **kwargs):
+        experimental_rule_names = self.extract_experimental_rule_names()
         if self.scanner == WEBHOOK:
-            # Create the unknown rules reported by a webhook scanner, so that
-            # we don't need to manually register them in the admin.
-            for name in self.extract_rule_names():
+            # Create the unknown non-experimental rules reported by a webhook
+            # scanner, so that we don't need to manually register them in the
+            # admin.
+            for name in set(self.extract_rule_names()) - experimental_rule_names:
                 self.rule_model.objects.get_or_create(
                     name=name,
                     scanner=self.scanner,
@@ -486,9 +512,12 @@ class ScannerResult(AbstractScannerResult):
         self.has_matches = bool(matched_rules)
         # Save the instance first...
         super().save(*args, **kwargs)
-        # ...then add the associated rules.
+        # ...then add the associated rules
         for scanner_rule in matched_rules:
             self.matched_rules.add(scanner_rule)
+        # ...and record the matches for the experimental rules.
+        for name in experimental_rule_names:
+            self.experimental_matches.get_or_create(rule_name=name)
 
     @classmethod
     def get_matched_rules_for_version(cls, version, *, rules=None):
@@ -665,6 +694,24 @@ class ScannerResult(AbstractScannerResult):
 class ScannerMatch(ModelBase):
     result = models.ForeignKey(ScannerResult, on_delete=models.CASCADE)
     rule = models.ForeignKey(ScannerRule, on_delete=models.CASCADE)
+
+
+class ExperimentalScannerMatch(ModelBase):
+    """A match of an experimental scanner rule."""
+
+    scanner_result = models.ForeignKey(
+        ScannerResult,
+        related_name='experimental_matches',
+        on_delete=models.CASCADE,
+    )
+    rule_name = models.CharField(max_length=200, db_index=True)
+
+    class Meta:
+        db_table = 'scanners_experimental_matches'
+        unique_together = ('scanner_result', 'rule_name')
+
+    def __str__(self):
+        return self.rule_name
 
 
 class ImproperScannerQueryRuleStateError(ValueError):
