@@ -57,6 +57,21 @@ describe('update-card', () => {
     expect(root.querySelector('.foot moz-status-badge')).toBeNull();
   });
 
+  // The title's own links go to the public listing; View is the DevHub side.
+  it('points View at the Versions tab for an entry about a version', async () => {
+    const root = await card({ version: '3.2.1' });
+    expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
+      '/developers/addon/ad-blocker/versions',
+    );
+  });
+
+  it('points View at the add-on when no version is involved', async () => {
+    const root = await card({ version: '' });
+    expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
+      '/developers/addon/ad-blocker',
+    );
+  });
+
   // Only the headline is bold; a `.title p` rule once caught the name too.
   it('emphasises the headline but not the add-on name', async () => {
     const root = await card({});

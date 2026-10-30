@@ -26,10 +26,10 @@ describe('app-pagination', () => {
 
   it('always shows both steps, whichever page is current', async () => {
     const first = await pager({ page: 1, total: 60 });
-    expect(labels(first)).toEqual(['Prev', '1', '2', '3', 'Next']);
+    expect(labels(first)).toEqual(['Previous', '1', '2', '3', 'Next']);
 
     const last = await pager({ page: 3, total: 60 });
-    expect(labels(last)).toEqual(['Prev', '1', '2', '3', 'Next']);
+    expect(labels(last)).toEqual(['Previous', '1', '2', '3', 'Next']);
   });
 
   it('disables the step that has nowhere to go', async () => {
@@ -75,7 +75,7 @@ describe('app-pagination', () => {
   it('pins the first and last page behind ellipses when truncated', async () => {
     const root = await pager({ page: 10, total: 400 });
     expect(labels(root)).toEqual([
-      'Prev',
+      'Previous',
       '1',
       '…',
       '7',

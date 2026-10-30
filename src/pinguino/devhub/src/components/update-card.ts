@@ -67,6 +67,16 @@ export class UpdateCard extends LitElement {
     }
   `;
 
+  // Where "View" goes: the Versions tab for an entry about a version, the
+  // add-on otherwise. The title's own links point at the public listing, so
+  // this is the DevHub counterpart. There's no per-version page to deep-link
+  // to yet, and the activity API doesn't give us a version id either.
+  #viewHref() {
+    const { addonSlug, version } = this.item;
+    const addon = `${BASE}/addon/${addonSlug}`;
+    return version ? `${addon}/versions` : addon;
+  }
+
   render() {
     const u = this.item;
     const status = u.versionStatus;
@@ -91,7 +101,7 @@ export class UpdateCard extends LitElement {
               }
             </span>
           </span>
-          <moz-button size="small" href="${BASE}/addon/${u.addonSlug}">View</moz-button>
+          <moz-button size="small" href=${this.#viewHref()}>View</moz-button>
         </div>
         <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">

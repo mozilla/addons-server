@@ -111,7 +111,7 @@ export class AppPagination extends LitElement {
     return html`
       <nav aria-label=${this.label}>
         <ol>
-          ${this.#step(this.page - 1, 'Prev', 'prev')}
+          ${this.#step(this.page - 1, 'Previous', 'prev')}
           ${
             dottedLower
               ? html`${this.#step(1, '1')}<li class="skip" aria-hidden="true">…</li>`
