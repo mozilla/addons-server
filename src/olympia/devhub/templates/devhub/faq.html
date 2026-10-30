@@ -1,0 +1,255 @@
+{% extends "devhub/base.html" %}
+
+{% set title = _('Firefox Add-ons Developer FAQ') %}
+{% set support_url = url('devhub.support') %}
+{% set mdh_link_attrs = 'target="_blank" rel="noopener noreferrer"'|safe %}
+
+{% block title %}{{ dev_page_title(title) }}{% endblock %}
+
+{% block content %}
+<section class="primary devhub-faq" role="main">
+  <header>
+    <h2>{{ title }}</h2>
+    <p>
+      {% trans %}
+        Answers to the questions we hear most often from add-on developers. If you cannot find what you need here, <a href="{{ support_url }}">contact us</a>.
+      {% endtrans %}
+    </p>
+  </header>
+
+  <nav class="faq-toc" aria-label="{{ _('FAQ sections') }}">
+    <ul>
+      <li><a href="#reviews">{{ _('Reviews and review times') }}</a></li>
+      <li><a href="#api-keys">{{ _('API keys, signing and uploads') }}</a></li>
+      <li><a href="#accounts">{{ _('Accounts and sign-in') }}</a></li>
+      <li><a href="#appeals">{{ _('Disabled, rejected and appeals') }}</a></li>
+      <li><a href="#data-collection">{{ _('Data collection consent') }}</a></li>
+      <li><a href="#listings">{{ _('Listings, versions and slugs') }}</a></li>
+    </ul>
+  </nav>
+
+  <section id="reviews" class="faq-section">
+    <h3>{{ _('Reviews and review times') }}</h3>
+
+    <h4 id="manual-review">{{ _('Why is my add-on waiting for manual review?') }} <a class="faq-permalink" href="#manual-review" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('All submissions go through automated checks that help keep our ecosystem secure. If a submission is flagged for possibly not adhering to our policies, it is added to the manual review queue for a real person to review.') }}</p>
+
+    <h4 id="review-time">{{ _('How long will a manual review take?') }} <a class="faq-permalink" href="#review-time" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('We do not have a fixed turnaround time right now, and we are sorry about that. We are seeing a large influx of new submissions, many of them malicious, so a manual review can take anywhere from a few days to a few weeks.') }}</p>
+    <p>
+      {% trans url='https://discourse.mozilla.org/t/important-update-addressing-the-long-manual-review-times/148498' %}
+        We cannot give a date for a specific add-on. We wrote about what is happening and what we are doing about it here: <a href="{{ url }}" {{ mdh_link_attrs }}>Important update: Addressing the long manual review times</a>.
+      {% endtrans %}
+    </p>
+
+    <h4 id="every-update">{{ _('Will every update I publish go through the manual review process?') }} <a class="faq-permalink" href="#every-update" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('Most versions are signed and published automatically, usually within minutes.') }}</p>
+    <p>{{ _('Only submissions that our checks flag are set aside for a person. A first submission from a new developer is more likely to get that look than the routine updates that follow it.') }}</p>
+
+    <h4 id="speed-up">{{ _('Can I speed my review up?') }} <a class="faq-permalink" href="#speed-up" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans url='https://discourse.mozilla.org/t/help-our-source-code-review-process-add-a-build-for-amo-script/148822' %}
+        The one thing that genuinely helps is including your source code, with a build script the reviewer can run to reproduce your package exactly. This guide walks you through it: <a href="{{ url }}" {{ mdh_link_attrs }}>Help our source code review process, add a build for AMO script</a>.
+      {% endtrans %}
+    </p>
+    <p>{{ _('Uploading new versions, resubmitting, or following up repeatedly does not move an add-on up the queue.') }}</p>
+
+    <h4 id="message-reviewer">{{ _('How do I message my reviewer?') }} <a class="faq-permalink" href="#message-reviewer" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        Use the review tool. On your add-on's page in the Developer Hub, open <strong>Manage Status &amp; Versions</strong> and add your notes or replies there.
+      {% endtrans %}
+    </p>
+    <p>{{ _('Reviewers do not monitor Discourse or the support desk, so messages left there will not reach them.') }}</p>
+
+    <h4 id="broken-live-version">{{ _('My live version is broken, and the fix is stuck in review. What can I do?') }} <a class="faq-permalink" href="#broken-live-version" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        Use the <a href="{{ support_url }}">contact form</a> to submit an expedited review request. Include the add-on ID, roughly how many users are affected, and what broke. We will make sure the impact is visible on our side and try to address the review as quickly as possible.
+      {% endtrans %}
+    </p>
+
+    <h4 id="avoid-queue">{{ _('Is there a way to avoid the public review queue?') }} <a class="faq-permalink" href="#avoid-queue" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('If your add-on is only for your own users, you can self-distribute it through the unlisted channel. Most unlisted submissions are signed straight away.') }}</p>
+    <p>{{ _('Unlisted versions can still be picked up for manual review if our security scanners flag something, and signing waits in that case. Again, that is not a verdict on your add-on.') }}</p>
+  </section>
+
+  <section id="api-keys" class="faq-section">
+    <h3>{{ _('API keys, signing and uploads') }}</h3>
+
+    <h4 id="api-key-email">{{ _('My API key confirmation email never arrived, or arrived without a link') }} <a class="faq-permalink" href="#api-key-email" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        Check your spam folder once. If you cannot find an email, wait a few hours and then request a new email. If the second email does not arrive, then contact us using the <a href="{{ support_url }}">contact form</a> so we can verify it is you and reset your request.
+      {% endtrans %}
+    </p>
+
+    <h4 id="api-key-rate-limit">{{ _('The API key request page says: "You have submitted this form too many times recently"') }} <a class="faq-permalink" href="#api-key-rate-limit" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('Retrying while the email is slow trips a rate limit. Please stop resubmitting, since each attempt extends the wait. Wait from a few hours up to a day.') }}</p>
+    <p>
+      {% trans %}
+        If it stays blocked, contact us using the <a href="{{ support_url }}">contact form</a>, and we will reset it.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section id="accounts" class="faq-section">
+    <h3>{{ _('Accounts and sign-in') }}</h3>
+
+    <h4 id="cannot-sign-in">{{ _('I cannot sign in to AMO or the Developer Hub') }} <a class="faq-permalink" href="#cannot-sign-in" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans url='https://support.mozilla.org' %}
+        For problems with your Mozilla account itself (password, login email, sign-in loops), <a href="{{ url }}" {{ mdh_link_attrs }}>support.mozilla.org</a> is the right place.
+      {% endtrans %}
+    </p>
+    <p>
+      {% trans %}
+        If signing in creates a brand-new, empty account, you are most likely signing in with a different email address than the one that owns your add-ons. <a href="{{ support_url }}">Contact us</a> privately, and we will help you find the right one.
+      {% endtrans %}
+    </p>
+    <p>{{ _('Please never post your email address or account details in a public thread.') }}</p>
+
+    <h4 id="move-account">{{ _('How do I move my add-ons to a new Mozilla account?') }} <a class="faq-permalink" href="#move-account" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('You can do it yourself, as long as you can still sign in to the old account.') }}</p>
+    <ol>
+      <li>{{ _('Create the new Mozilla account, verify its email address, and set a display name.') }}</li>
+      <li>
+        {% trans %}
+          In the Developer Hub, open your add-on's edit page and go to <strong>Manage Authors &amp; License</strong>.
+        {% endtrans %}
+      </li>
+      <li>{{ _('Add the new account as an author.') }}</li>
+      <li>{{ _('Once it shows up, remove the old account.') }}</li>
+      <li>{{ _('Repeat for each add-on.') }}</li>
+    </ol>
+    <p>
+      {% trans %}
+        If you can no longer sign in to the old account, <a href="{{ support_url }}">contact us</a>, and we will help from our side.
+      {% endtrans %}
+    </p>
+
+    <h4 id="email-not-allowed">{{ _('My email address is not allowed to submit add-ons') }} <a class="faq-permalink" href="#email-not-allowed" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        Some email domains are blocked from submitting. If you think yours was blocked by mistake, <a href="{{ support_url }}">contact us</a> privately with the address and your user ID, and we will look into it.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section id="appeals" class="faq-section">
+    <h3>{{ _('Disabled, rejected and appeals') }}</h3>
+
+    <h4 id="appeal">{{ _('My add-on was disabled or rejected. How do I appeal?') }} <a class="faq-permalink" href="#appeal" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('You should have received an email explaining the reason and including a link to appeal the decision. Please use that link, and the team will review it.') }}</p>
+    <p>
+      {% trans %}
+        To send changes or notes for another review, use <strong>Manage Status &amp; Versions</strong> on your add-on's Developer Hub page.
+      {% endtrans %}
+    </p>
+
+    <h4 id="no-email">{{ _('I received no email at all') }} <a class="faq-permalink" href="#no-email" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        That is not how it should work, and we are sorry. <a href="{{ support_url }}">Contact us</a>, and we will look into what happened with your add-on and why the email did not reach you.
+      {% endtrans %}
+    </p>
+
+    <h4 id="duplicate-id">{{ _('Resubmitting gives me "Duplicate add-on ID found"') }} <a class="faq-permalink" href="#duplicate-id" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('This is expected. While the original add-on is disabled, a new submission with the same ID is blocked, so resubmitting will not bypass it. The appeal is the right path.') }}</p>
+    <p>
+      {% trans %}
+        IDs that belonged to a deleted add-on cannot be reused either. Use a new ID in your manifest, or <a href="{{ support_url }}">contact us</a> if an ID your organization needs is held by a test upload.
+      {% endtrans %}
+    </p>
+
+    <h4 id="fake-reviews">{{ _('My add-on was hit by a flood of fake one-star reviews') }} <a class="faq-permalink" href="#fake-reviews" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        A sudden burst of near-identical negative reviews looks like a coordinated attack, not real feedback. <a href="{{ support_url }}">Report it to us</a> with a link to the add-on and roughly when it started, and we will get it in front of the right people.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section id="data-collection" class="faq-section">
+    <h3>{{ _('Data collection consent') }}</h3>
+
+    <h4 id="why-declare">{{ _('Why do I suddenly need to declare data collection?') }} <a class="faq-permalink" href="#why-declare" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('It is not new, though it may feel that way. Here is the timeline:') }}</p>
+    <table class="data-grid faq-timeline">
+      <thead>
+        <tr>
+          <th scope="col">{{ _('When') }}</th>
+          <th scope="col">{{ _('What happened') }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ _('October 23, 2025') }}</td>
+          <td>
+            {% trans url='https://blog.mozilla.org/addons/2025/10/23/data-collection-consent-changes-for-new-firefox-extensions/' %}
+              We announced the change: <a href="{{ url }}" {{ mdh_link_attrs }}>Announcing data collection consent changes for new Firefox extensions</a>
+            {% endtrans %}
+          </td>
+        </tr>
+        <tr>
+          <td>{{ _('November 3, 2025') }}</td>
+          <td>{{ _("Every new extension has had to declare its data practices using Firefox's built-in consent system") }}</td>
+        </tr>
+        <tr>
+          <td>{{ _('Now') }}</td>
+          <td>{{ _('Established extensions are moving over, so their users see the prompt for the first time in an update') }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      {% trans url=settings.EXTENSION_WORKSHOP_URL + '/documentation/develop/firefox-builtin-data-consent/' %}
+        The developer guide covers how to declare <code>data_collection_permissions</code> in your manifest: <a href="{{ url }}" {{ mdh_link_attrs }}>Firefox built-in consent for data collection and transmission</a>.
+      {% endtrans %}
+    </p>
+
+    <h4 id="technical-data">{{ _('Does sending technical data, like the browser or OS name, really count?') }} <a class="faq-permalink" href="#technical-data" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('Yes. Our policies are written with legal experts to match laws worldwide, so the language is very specific. As it stands, sending any information out of the browser, including technical data, triggers the consent requirement.') }}</p>
+    <p>
+      {% trans url='https://discourse.mozilla.org/c/add-ons/' %}
+        We know some of these cases feel strict. If you have a specific case where the rule produces an outcome that does not make sense, please post it in the <a href="{{ url }}" {{ mdh_link_attrs }}>Add-ons category on Discourse</a> so we can bring it to our policy discussions.
+      {% endtrans %}
+    </p>
+  </section>
+
+  <section id="listings" class="faq-section">
+    <h3>{{ _('Listings, versions and slugs') }}</h3>
+
+    <h4 id="restore-version">{{ _('I deleted a version by mistake. Can you restore it?') }} <a class="faq-permalink" href="#restore-version" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('No, and we are sorry. Deleting a version on AMO is permanent, which is why the deletion flow warns about it twice before you confirm.') }}</p>
+    <p>{{ _('The version number stays locked afterward, so you cannot re-upload it.') }}</p>
+
+    <h4 id="wrong-channel">{{ _('I uploaded to the private (unlisted) channel but wanted it public') }} <a class="faq-permalink" href="#wrong-channel" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('An existing upload cannot be switched between channels. Upload a new version to the listed channel of the same add-on, and it will go public once it passes review.') }}</p>
+
+    <h4 id="unhide">{{ _('I hid my add-on and now cannot make it visible again') }} <a class="faq-permalink" href="#unhide" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('You can make an add-on visible only when it has an approved version in the listed channel. If your new version is still awaiting review, the option stays unavailable until that review completes.') }}</p>
+
+    <h4 id="approved-404">{{ _('My version is approved, but the public page shows a 404') }} <a class="faq-permalink" href="#approved-404" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>
+      {% trans %}
+        Please check if your version is indeed submitted as public and not unlisted. If it is approved and public but you cannot access it, please check your email for an update from us. If you cannot find an update, please <a href="{{ support_url }}">contact us</a>.
+      {% endtrans %}
+    </p>
+
+    <h4 id="slug-taken">{{ _('The slug I want says it is taken, but its page is a 404') }} <a class="faq-permalink" href="#slug-taken" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('A 404 does not mean the slug is free. Slugs stay reserved by whichever add-on holds them, including add-ons that are unlisted, incomplete, disabled, or deleted.') }}</p>
+    <p>{{ _("We generally do not take a slug away from another developer's add-on, even one that looks inactive.") }}</p>
+
+    <h4 id="update-delay">{{ _('Users are not getting my new version yet') }} <a class="faq-permalink" href="#update-delay" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('This is expected. Firefox checks for updates periodically, so it usually takes around 24 to 48 hours for an approved version to reach users.') }}</p>
+
+    <h4 id="stats">{{ _('My stats dropped to zero or show "No data available"') }} <a class="faq-permalink" href="#stats" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a></h4>
+    <p>{{ _('Stats are processed with a delay, so a new add-on can show no data for its first days. A sudden drop to zero is usually a reporting issue, not your users disappearing.') }}</p>
+    <p>
+      {% trans url='https://discourse.mozilla.org/c/add-ons/' %}
+        If it lasts, post in <a href="{{ url }}" {{ mdh_link_attrs }}>Discourse</a> with a link to the add-on, and we will check for a known issue.
+      {% endtrans %}
+    </p>
+  </section>
+</section>
+{% endblock content %}
