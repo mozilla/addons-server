@@ -11,6 +11,7 @@ export {
   acceptAgreement,
   activityQuery,
   addonQuery,
+  addonSourceQuery,
   addonsQuery,
   agreementQuery,
   authorsQuery,

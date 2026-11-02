@@ -11,7 +11,6 @@ vi.mock('../../src/data', () => {
   return {
     updateAddon: vi.fn(async () => {}),
     updateEulaPolicy: vi.fn(async () => {}),
-    fetchEulaPolicy: vi.fn(async () => ({ eula: '', privacyPolicy: '' })),
     updateAuthor: vi.fn(async () => {}),
     updateIcon: vi.fn(async () => {}),
     createPreview: vi.fn(async () => {}),
@@ -21,6 +20,7 @@ vi.mock('../../src/data', () => {
     authorsQuery: () => reader([]),
     pendingAuthorsQuery: () => reader([]),
     eulaPolicyQuery: () => reader({ eula: '', privacyPolicy: '' }),
+    addonSourceQuery: () => reader({}),
   };
 });
 

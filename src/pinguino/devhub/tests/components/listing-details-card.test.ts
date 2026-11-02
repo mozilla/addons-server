@@ -1,18 +1,23 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-const { updateAddon, updateEulaPolicy, fetchEulaPolicy, eula } = vi.hoisted(
+const { updateAddon, updateEulaPolicy, eula, eulaSource, source } = vi.hoisted(
   () => ({
     updateAddon: vi.fn(async () => {}),
     updateEulaPolicy: vi.fn(async () => {}),
-    fetchEulaPolicy: vi.fn(async () => ({ eula: '', privacyPolicy: '' })),
     // Mutable so tests can seed the view-mode policy preview.
     eula: { value: { eula: '', privacyPolicy: '' } },
+    eulaSource: { value: { eula: '', privacyPolicy: '' } },
+    source: { value: {} as Partial<Addon> },
   }),
 );
 vi.mock('../../src/data', () => ({
   updateAddon,
   updateEulaPolicy,
-  fetchEulaPolicy,
+  addonSourceQuery: () => () => ({
+    data: source.value,
+    isPending: false,
+    isError: false,
+  }),
   categoriesQuery: () => () => ({
     data: [
       { slug: 'bookmarks', name: 'Bookmarks', type: 'extension' },
@@ -23,11 +28,13 @@ vi.mock('../../src/data', () => ({
     isPending: false,
     isError: false,
   }),
-  eulaPolicyQuery: () => () => ({
-    data: eula.value,
-    isPending: false,
-    isError: false,
-  }),
+  eulaPolicyQuery:
+    (_host: unknown, _slug: unknown, _enabled: unknown, showSource = false) =>
+    () => ({
+      data: showSource ? eulaSource.value : eula.value,
+      isPending: false,
+      isError: false,
+    }),
 }));
 
 import type { ListingDetailsCard } from '../../src/components/addon-listing/listing-details-card';
@@ -69,6 +76,11 @@ const save = (root: ShadowRoot) =>
     ?.click();
 
 describe('listing-details-card', () => {
+  beforeEach(() => {
+    eulaSource.value = { eula: '', privacyPolicy: '' };
+    source.value = {};
+  });
+
   it('renders categories as chips', async () => {
     const { root } = await card({
       categories: ['Appearance', 'Privacy & Security'],
@@ -150,6 +162,28 @@ describe('listing-details-card', () => {
         name: 'Renamed',
       }),
     );
+  });
+
+  it('populates the editable description and policy fields from their source', async () => {
+    updateAddon.mockClear();
+    source.value = { description: '*foo* _bar_' };
+    eulaSource.value = { eula: '_bar_ *foo*', privacyPolicy: '' };
+
+    const { root } = await enterEdit({
+      description: '<strong>foo</strong> bar.',
+      flags: { hasEula: true },
+    });
+
+    const [_, description, eulaText] = [
+      ...root.querySelectorAll('.form moz-textarea'),
+    ] as HTMLTextAreaElement[];
+    expect(description.value).toBe('*foo* _bar_');
+    expect(eulaText.value).toBe('_bar_ *foo*');
+
+    // Doesn't update with no changes.
+    save(root);
+    await vi.waitFor(() => expect(root.querySelector('.form')).toBeNull());
+    expect(updateAddon).not.toHaveBeenCalled();
   });
 
   it('PATCHes the add-on URL (slug) when changed', async () => {
@@ -294,19 +328,13 @@ describe('listing-details-card', () => {
 
   it('clears a policy (sends null) when its checkbox is unchecked', async () => {
     updateEulaPolicy.mockClear();
-    fetchEulaPolicy.mockResolvedValueOnce({
-      eula: 'Existing terms.',
-      privacyPolicy: '',
-    });
+    eulaSource.value = { eula: 'Existing terms.', privacyPolicy: '' };
     const { el, root } = await enterEdit({ flags: { hasEula: true } });
 
-    // Wait for the fetched policy text to seed the draft.
-    await vi.waitFor(() => {
-      const ta = root.querySelector(
-        '.policy moz-textarea',
-      ) as HTMLTextAreaElement;
-      expect(ta?.value).toBe('Existing terms.');
-    });
+    const ta = root.querySelector(
+      '.policy moz-textarea',
+    ) as HTMLTextAreaElement;
+    expect(ta?.value).toBe('Existing terms.');
 
     const eulaBox = [...root.querySelectorAll('.policy moz-checkbox')].find(
       (b) =>
