@@ -35,7 +35,7 @@ describe('resolveVersionStatus', () => {
 
   it('splits "disabled" into the three states it collapses', () => {
     expect(resolveVersionStatus('disabled', { isDisabled: true }).label).toBe(
-      'Disabled by you',
+      'Deactivated by developer',
     );
     expect(
       resolveVersionStatus('disabled', { reviewed: '2025-08-18T00:00:00Z' })
@@ -53,7 +53,7 @@ describe('resolveVersionStatus', () => {
         isDisabled: true,
         reviewed: '2025-08-18T00:00:00Z',
       }).label,
-    ).toBe('Disabled by you');
+    ).toBe('Deactivated by developer');
   });
 });
 
@@ -62,7 +62,7 @@ describe('visibility', () => {
     expect(resolveVisibility(false)).toBe('visible');
     expect(resolveVisibility(true)).toBe('invisible');
     expect(VISIBILITY.visible.label).toBe('Visible');
-    expect(VISIBILITY.invisible.label).toBe('Hidden');
+    expect(VISIBILITY.invisible.label).toBe('Deactivated by developer');
   });
 
   it('locks the control once Mozilla disabled or deleted the add-on', () => {

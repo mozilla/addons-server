@@ -9,13 +9,20 @@ import type { AddonAuthor } from './types';
  *
  * Either argument may still be loading, and an unknown answer is "no" — better
  * to withhold an action for a moment than to offer one that 403s.
+ *
+ * The two ids are compared as strings: the profile endpoint gives the signed-in
+ * user's id as one and the authors endpoint gives its own as numbers, so `===`
+ * between them is never true.
  */
 export function isAddonOwner(
   authors: AddonAuthor[] | undefined,
-  userId: number | undefined,
+  userId: string | number | undefined,
 ): boolean {
   if (userId === undefined) return false;
   return (authors ?? []).some(
-    (author) => author.userId === userId && author.role === 'owner',
+    (author) =>
+      author.userId !== undefined &&
+      String(author.userId) === String(userId) &&
+      author.role === 'owner',
   );
 }

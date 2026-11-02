@@ -81,6 +81,14 @@ describe('addon-actions-menu', () => {
     expect(items(root)[0].textContent?.trim()).toBe('Enable extension');
   });
 
+  // The row swaps between two actions, so the icon has to swap with it.
+  it('marks enable and disable with their own icons', async () => {
+    const live = (await menu()).root;
+    const hidden = (await menu({ visibility: 'invisible' })).root;
+    expect(items(live)[0].getAttribute('icon-start')).toBe('block');
+    expect(items(hidden)[0].getAttribute('icon-start')).toBe('checkmark');
+  });
+
   it('asks before doing anything', async () => {
     const { el, root } = await menu();
     expect(dialog(root)?.hasAttribute('open')).toBe(false);

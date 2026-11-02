@@ -20,7 +20,7 @@ describe('visibility-badge', () => {
     const visibleRoot = visible.shadowRoot as ShadowRoot;
     const invisibleRoot = invisible.shadowRoot as ShadowRoot;
     expect(label(visibleRoot)).toBe('Visible');
-    expect(label(invisibleRoot)).toBe('Hidden');
+    expect(label(invisibleRoot)).toBe('Deactivated by developer');
     expect(
       visibleRoot.querySelector('moz-status-badge')?.getAttribute('icon-start'),
     ).not.toBe(

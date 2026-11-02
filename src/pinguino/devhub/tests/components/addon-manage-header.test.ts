@@ -39,16 +39,16 @@ describe('addon-manage-header', () => {
     );
     expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
     const badge = root.querySelector('listing-status-badge');
-    expect(badge?.textContent?.trim()).toBe('Approved');
+    expect(badge?.textContent?.trim()).toBe('Live');
     expect(badge?.getAttribute('type')).toBe('success');
   });
 
   // Hiding the listing is the author's own doing, so it's what the header
   // reports — not the review status underneath it.
-  it('shows Invisible over the review status once hidden', async () => {
+  it('shows the developer deactivation over the review status', async () => {
     const root = await header({ visibility: 'invisible' });
     const badge = root.querySelector('listing-status-badge');
-    expect(badge?.textContent?.trim()).toBe('Invisible');
+    expect(badge?.textContent?.trim()).toBe('Deactivated by developer');
     expect(badge?.getAttribute('type')).toBe('ghost');
   });
 

@@ -26,7 +26,6 @@ export class VisibilityBadge extends LitElement {
     }
     moz-status-badge::part(badge) {
       padding-inline: var(--space-small);
-      background-color: var(--color-white-alpha-70);
     }
     .chevron {
       --icon-size: var(--icon-size-xsmall);

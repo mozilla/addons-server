@@ -27,12 +27,17 @@ export type VersionStatus = Extract<
   'unreviewed' | 'public' | 'disabled'
 >;
 
+// Labels are content-reviewed; see "DHUB - DevHub Redesign - Content Design
+// Documentation". "Live" rather than "Approved" because approval is a version
+// status with a different meaning — a version can be approved while the add-on
+// isn't public — and "Deactivated by X" rather than "Disabled" because Firefox
+// already uses "disabled" for an extension a user switched off.
 export const ADDON_STATUS: Record<AddonStatus, StatusInfo> = {
-  public: { label: 'Approved', badge: 'success' },
+  public: { label: 'Live', badge: 'success' },
   nominated: { label: 'Awaiting review', badge: 'warning' },
   incomplete: { label: 'Incomplete', badge: 'warning' },
-  rejected: { label: 'Listing content rejected', badge: 'critical' },
-  disabled: { label: 'Disabled by Mozilla', badge: 'critical' },
+  rejected: { label: 'Listing rejected', badge: 'critical' },
+  disabled: { label: 'Deactivated by Mozilla', badge: 'critical' },
   deleted: { label: 'Deleted', badge: 'critical' },
 };
 
@@ -40,7 +45,7 @@ export const VERSION_STATUS: Record<VersionStatus, StatusInfo> = {
   public: { label: 'Approved', badge: 'success' },
   unreviewed: { label: 'Awaiting review', badge: 'warning' },
   // Collapses rejected, Mozilla-disabled and author-disabled.
-  disabled: { label: 'Disabled', badge: 'critical' },
+  disabled: { label: 'Deactivated', badge: 'critical' },
 };
 
 const UNKNOWN: StatusInfo = { label: 'Unknown', badge: 'default' };
@@ -61,7 +66,9 @@ export function resolveVersionStatus(
   const info = VERSION_STATUS[status as VersionStatus];
   if (!info) return UNKNOWN;
   if (status !== 'disabled') return info;
-  if (isDisabled) return { label: 'Disabled by you', badge: 'warning' };
+  if (isDisabled) {
+    return { label: 'Deactivated by developer', badge: 'warning' };
+  }
   return reviewed
     ? { label: 'Rejected', badge: 'critical' }
     : VERSION_STATUS.unreviewed;
@@ -69,9 +76,12 @@ export function resolveVersionStatus(
 
 export type AddonVisibility = 'visible' | 'invisible';
 
+// The add-on status for a developer-deactivated listing. The content doc also
+// proposes splitting this into Visible / Paused / Hidden, but `is_disabled` is
+// a boolean, so there's no third state to resolve until the API grows one.
 export const VISIBILITY: Record<AddonVisibility, StatusInfo> = {
   visible: { label: 'Visible', badge: 'success' },
-  invisible: { label: 'Hidden', badge: 'ghost' },
+  invisible: { label: 'Deactivated by developer', badge: 'ghost' },
 };
 
 // `is_disabled` writes to the author's own setting but reads back true for

@@ -112,7 +112,7 @@ export class AddonActionsMenu extends LitElement {
       ></moz-button>
       <moz-panel-list id=${MENU_ID} type="menu" label="Add-on actions">
         <moz-panel-item
-          icon-start="block"
+          icon-start=${this.#hidden ? 'play-fill' : 'pause-fill'}
           @click=${() => {
             this.confirming = this.#hidden ? 'enable' : 'disable';
           }}
