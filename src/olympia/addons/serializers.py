@@ -40,7 +40,7 @@ from olympia.api.validators import NoURLsValidator
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APP_IDS, APPS_ALL
-from olympia.constants.base import ADDON_TYPE_CHOICES_API
+from olympia.constants.base import ADDON_TYPE_CHOICES_API, CHANNEL_CHOICES_API
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.constants.promoted import RECOMMENDED_API_NAME
 from olympia.files.models import File, FileUpload
@@ -68,6 +68,7 @@ from olympia.versions.utils import (
     validate_version_number_does_not_exist,
     validate_version_number_is_gt_latest_signed_listed_version,
 )
+from olympia.zadmin.models import get_config
 
 from .fields import (
     CategoriesSerializerField,
@@ -1447,9 +1448,14 @@ class DeveloperAddonSerializer(AddonSerializer):
     developer_comments = SourceTranslationSerializerField(required=False)
     latest_unlisted_version = SimpleDeveloperVersionSerializer(read_only=True)
     channels = serializers.SerializerMethodField()
+    submit_notification_warning = serializers.SerializerMethodField()
 
     class Meta(AddonSerializer.Meta):
-        fields = AddonSerializer.Meta.fields + ('latest_unlisted_version', 'channels')
+        fields = AddonSerializer.Meta.fields + (
+            'channels',
+            'latest_unlisted_version',
+            'submit_notification_warning',
+        )
         read_only_fields = tuple(
             set(fields) - set(AddonSerializer.Meta.writeable_fields)
         )
@@ -1459,6 +1465,22 @@ class DeveloperAddonSerializer(AddonSerializer):
             amo.CHANNEL_CHOICES_API.get(channel, str(channel))
             for channel in obj.version_channels()
         ]
+
+    def get_submit_notification_warning(self, obj):
+        """Per-addon submission notice, shown for per channel for specific promoted
+        groups. Currently just for pre-review."""
+
+        promoted_group = obj.promoted_groups(currently_approved=False)
+        message = get_config(amo.config_keys.SUBMIT_NOTIFICATION_WARNING_PRE_REVIEW)
+        return {
+            CHANNEL_CHOICES_API[amo.CHANNEL_LISTED]: message
+            if any(promoted_group.listed_pre_review)
+            else None,
+            CHANNEL_CHOICES_API[amo.CHANNEL_UNLISTED]: message
+            if any(promoted_group.unlisted_pre_review)
+            else None,
+            CHANNEL_CHOICES_API[amo.CHANNEL_ENTERPRISE]: None,
+        }
 
 
 class SimpleAddonSerializer(AddonSerializer):

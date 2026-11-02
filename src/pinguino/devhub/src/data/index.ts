@@ -28,6 +28,7 @@ export {
   queryKeys,
   removeAuthor,
   removePreview,
+  siteStatusQuery,
   updateAddon,
   updateAuthor,
   updateEulaPolicy,

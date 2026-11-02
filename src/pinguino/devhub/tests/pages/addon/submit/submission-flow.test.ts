@@ -6,7 +6,12 @@ import { customElement } from 'lit/decorators.js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { queryClient, queryKeys } from '../../../../src/data';
 import * as api from '../../../../src/data/api';
-import type { FileUpload, Version } from '../../../../src/data/types';
+import type {
+  Addon,
+  AddonDistribution,
+  FileUpload,
+  Version,
+} from '../../../../src/data/types';
 import '../../../../src/pages/addon/versions/submit/main';
 import { DEFAULT_VERSION, mount, settle } from '../../../helpers/fixture';
 
@@ -49,6 +54,12 @@ const makeUpload = (args: Partial<FileUpload> = {}): FileUpload => ({
   ...args,
 });
 
+// The submit notice only reads the add-on's per-channel submissionNotice, so a
+// slug + that map is enough; the rest of Addon is irrelevant here.
+const makeAddon = (
+  submissionNotice?: Partial<Record<AddonDistribution, string | null>>,
+): Addon => ({ slug: 'my-addon', submissionNotice }) as unknown as Addon;
+
 const BAD_VALIDATION = {
   valid: false,
   validation: {
@@ -61,6 +72,16 @@ const BAD_VALIDATION = {
 
 beforeEach(() => {
   vi.resetAllMocks();
+  // The flow now observes the profile (for the site-status submit notice).
+  // Clear the cache so each test refetches, and default to a healthy status.
+  queryClient.clear();
+  vi.mocked(api.fetchProfile).mockResolvedValue({
+    id: '1',
+    name: 'Kate',
+    siteStatus: { readOnly: false, siteNotice: null, submissionNotice: null },
+  });
+  // The flow also looks up the add-on for its per-channel submit notice.
+  vi.mocked(api.fetchAddons).mockResolvedValue([]);
   vi.mocked(api.postUpload).mockResolvedValue(makeUpload());
   vi.mocked(api.fetchUpload).mockImplementation(
     () => vi.mocked(api.postUpload).mock.results.at(-1)?.value,
@@ -351,6 +372,90 @@ describe('addon-submission', () => {
         .poll(() => $.continue()?.hasAttribute('disabled'))
         .toBe(false);
       expect(fileInput()).toBeNull();
+    });
+  });
+
+  describe('site status submit notice', () => {
+    it('surfaces the submission notice from the site status', async () => {
+      vi.mocked(api.fetchProfile).mockResolvedValue({
+        id: '1',
+        name: 'Kate',
+        siteStatus: {
+          readOnly: false,
+          siteNotice: null,
+          submissionNotice: 'Submissions are temporarily paused.',
+        },
+      });
+      const $ = await mountFlow('');
+      await expect
+        .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
+        .toContain('Submissions are temporarily paused.');
+    });
+
+    it('renders no notice when the site status has none', async () => {
+      const $ = await mountFlow('');
+      // Let the profile query settle; the default status has no submit notice.
+      await expect
+        .poll(() => vi.mocked(api.fetchProfile).mock.calls.length)
+        .toBeGreaterThan(0);
+      expect($.root.querySelector('#submit-status-banner')).toBeNull();
+    });
+
+    it("falls back to the add-on's per-channel notice when the site has none", async () => {
+      vi.mocked(api.fetchAddons).mockResolvedValue([
+        makeAddon({ listed: 'Listed submissions are paused.' }),
+      ]);
+      // The upload step (not Distribution) with the default 'listed' channel.
+      const $ = await mountFlow('');
+      await expect
+        .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
+        .toContain('Listed submissions are paused.');
+    });
+
+    it('shows no notice when the current channel has a null warning', async () => {
+      // The API returns every channel, with null where there's no warning.
+      vi.mocked(api.fetchAddons).mockResolvedValue([
+        makeAddon({ listed: null, unlisted: null, enterprise: null }),
+      ]);
+      const $ = await mountFlow('');
+      await expect
+        .poll(() => vi.mocked(api.fetchAddons).mock.calls.length)
+        .toBeGreaterThan(0);
+      expect($.root.querySelector('#submit-status-banner')).toBeNull();
+    });
+
+    it('ignores the per-channel notice on the Distribution step', async () => {
+      vi.mocked(api.fetchAddons).mockResolvedValue([
+        makeAddon({ listed: 'Listed submissions are paused.' }),
+      ]);
+      const $ = await mountFlow('distribution');
+      // Let the add-on query settle; the channel isn't settled on this step.
+      await expect
+        .poll(() => vi.mocked(api.fetchAddons).mock.calls.length)
+        .toBeGreaterThan(0);
+      expect($.root.querySelector('#submit-status-banner')).toBeNull();
+    });
+
+    it('prefers the site-status notice over the add-on notice', async () => {
+      vi.mocked(api.fetchProfile).mockResolvedValue({
+        id: '1',
+        name: 'Kate',
+        siteStatus: {
+          readOnly: false,
+          siteNotice: null,
+          submissionNotice: 'Site-wide pause.',
+        },
+      });
+      vi.mocked(api.fetchAddons).mockResolvedValue([
+        makeAddon({ listed: 'Listed submissions are paused.' }),
+      ]);
+      const $ = await mountFlow('');
+      await expect
+        .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
+        .toContain('Site-wide pause.');
+      expect(
+        $.root.querySelector('#submit-status-banner')?.textContent,
+      ).not.toContain('Listed submissions are paused.');
     });
   });
 
