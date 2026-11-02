@@ -81,20 +81,20 @@ export class AddonActionsMenu extends LitElement {
     if (this.confirming === 'delete') {
       return {
         heading: `Are you sure you want to delete your ${kind}?`,
-        body: `Once deleted, it can be restored.`,
+        body: `Once deleted, it can't be restored.`,
         action: `Delete ${kind}`,
       };
     }
     if (this.confirming === 'enable') {
       return {
-        heading: `Are you sure you want disable your ${kind}?`,
-        body: `Once enabled, you can disable it later`,
+        heading: `Are you sure you want to enable your ${kind}?`,
+        body: `Once enabled, you can disable it again later.`,
         action: `Enable ${kind}`,
       };
     }
     return {
-      heading: `Are you sure you want disable your ${kind}?`,
-      body: `Once disabled, you can enabled it later`,
+      heading: `Are you sure you want to disable your ${kind}?`,
+      body: `Once disabled, you can enable it again later.`,
       action: `Disable ${kind}`,
     };
   }

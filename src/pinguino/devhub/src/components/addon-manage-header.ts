@@ -22,25 +22,9 @@ export class AddonManageHeader extends LitElement {
     :host {
       display: block;
     }
-    .back {
-      display: flex;
-      align-items: center;
-      margin: var(--space-small) 0;
-      color: var(--text-color-deemphasized);
-    }
-    .back a {
-      color: var(--text-color-deemphasized, GrayText);
-      text-decoration: none;
-    }
-    .back a:hover {
-      text-decoration: underline;
-    }
-    .back moz-icon {
-      color: var(--text-color-deemphasized);
-    }
     moz-breadcrumb-group {
       display: block;
-      margin-bottom: var(--space-large);
+      margin: var(--space-large) 0;
     }
     .bar {
       display: flex;
@@ -139,8 +123,6 @@ export class AddonManageHeader extends LitElement {
     const a = this.addon;
     const state = resolveListingState(a.status, a.visibility);
     return html`
-      <!-- TODO: "Back to Dashboard" duplicates the breadcrumb's Dashboard link — confirm we want both. -->
-      <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="${BASE}/">Back to Dashboard</a></p>
       <moz-breadcrumb-group label="Breadcrumb">
         <moz-breadcrumb href="${BASE}/">Dashboard</moz-breadcrumb>
         <moz-breadcrumb>${a.name}</moz-breadcrumb>

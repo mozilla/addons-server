@@ -45,7 +45,7 @@ export const VERSION_STATUS: Record<VersionStatus, StatusInfo> = {
   public: { label: 'Approved', badge: 'success' },
   unreviewed: { label: 'Awaiting review', badge: 'warning' },
   // Collapses rejected, Mozilla-disabled and author-disabled.
-  disabled: { label: 'Deactivated', badge: 'critical' },
+  disabled: { label: 'Deactivated by Mozilla', badge: 'critical' },
 };
 
 const UNKNOWN: StatusInfo = { label: 'Unknown', badge: 'default' };

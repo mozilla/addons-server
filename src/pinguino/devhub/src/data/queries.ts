@@ -135,10 +135,16 @@ export async function setAddonVisibility(
   return updateAddon(slug, { is_disabled: visibility === 'invisible' });
 }
 
-// Permanently delete an add-on, then drop it from the cached list the manage
-// view reads — that view is about to unmount, so it must not refetch it.
+// Permanently delete an add-on. Invalidating alone isn't enough: it marks the
+// list stale and refetches only *active* observers, and the manage view is
+// unmounting as this resolves — so the deleted add-on would sit in the cache
+// and render on the dashboard. Drop it by hand, then invalidate so the
+// server's own list still replaces ours.
 export async function removeAddon(slug: string) {
   await deleteAddon(slug);
+  queryClient.setQueryData(queryKeys.addons, (addons?: Addon[]) =>
+    addons?.filter((addon) => addon.slug !== slug),
+  );
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
 }
 

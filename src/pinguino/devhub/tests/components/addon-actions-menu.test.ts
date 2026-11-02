@@ -85,8 +85,8 @@ describe('addon-actions-menu', () => {
   it('marks enable and disable with their own icons', async () => {
     const live = (await menu()).root;
     const hidden = (await menu({ visibility: 'invisible' })).root;
-    expect(items(live)[0].getAttribute('icon-start')).toBe('block');
-    expect(items(hidden)[0].getAttribute('icon-start')).toBe('checkmark');
+    expect(items(live)[0].getAttribute('icon-start')).toBe('pause-fill');
+    expect(items(hidden)[0].getAttribute('icon-start')).toBe('play-fill');
   });
 
   it('asks before doing anything', async () => {
