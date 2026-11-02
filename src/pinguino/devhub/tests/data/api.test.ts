@@ -281,6 +281,13 @@ describe('endpoints', () => {
     expect(addons.map((a) => a.kind)).toEqual(['extension', 'theme']);
   });
 
+  // Users who can view deleted add-ons are shown their own unless we opt out.
+  it('fetchAddons asks the API to leave deleted add-ons out', async () => {
+    mockJson({ results: [] });
+    await fetchAddons();
+    expect(String(lastCall()[0])).toContain('exclude_deleted=true');
+  });
+
   it('fetchAddons tolerates a missing results array', async () => {
     mockJson({});
     expect(await fetchAddons()).toEqual([]);

@@ -11,10 +11,7 @@ export type ListingStatusType = StatusInfo['badge'];
  * (Figma: "Status with menu size L", node 1353-38820).
  *
  * Purely presentational. One `type` drives both the surface and the dot, so a
- * caller can't pair a green dot with a rejected pill: approved is a green dot
- * on an outline, pending/incomplete a yellow dot on yellow, rejected and
- * Mozilla-disabled a red dot on red, and developer-hidden a muted dot on an
- * offset surface.
+ * caller can't pair a green dot with a rejected pill.
  */
 @customElement('listing-status-badge')
 export class ListingStatusBadge extends LitElement {
@@ -56,9 +53,9 @@ export class ListingStatusBadge extends LitElement {
     :host([type='critical']) {
       --listing-status-background: var(--background-color-critical);
     }
-    /* Hidden by the developer: an offset surface rather than no surface, so it
-       still reads as a state. moz-status-dot has no colour for this one, so
-       give it a muted dot instead of the information blue it defaults to. */
+    /* Deactivated by the developer: an offset surface rather than no surface,
+       so it still reads as a state. moz-status-dot has no colour for this one,
+       so give it a muted dot instead of the information blue it defaults to. */
     :host([type='ghost']) {
       --listing-status-background: var(--background-color-canvas);
       --listing-status-border: var(--border-color-deemphasized);

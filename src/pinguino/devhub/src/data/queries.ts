@@ -47,6 +47,7 @@ import type {
   AgreementAcceptState,
   EulaPolicyEdit,
   FileUpload,
+  Update,
   Version,
 } from './types';
 
@@ -145,7 +146,14 @@ export async function removeAddon(slug: string) {
   queryClient.setQueryData(queryKeys.addons, (addons?: Addon[]) =>
     addons?.filter((addon) => addon.slug !== slug),
   );
+  // The dashboard lists the add-on twice: as a card, and by name in the
+  // activity feed. The feed drops a deleted add-on's entries server-side, so
+  // this one has to go too or the dashboard keeps naming what we just deleted.
+  queryClient.setQueryData(queryKeys.updates, (updates?: Update[]) =>
+    updates?.filter((update) => update.addonSlug !== slug),
+  );
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  await queryClient.invalidateQueries({ queryKey: queryKeys.updates });
 }
 
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;

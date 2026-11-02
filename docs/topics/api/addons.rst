@@ -136,6 +136,7 @@ This endpoint allows you to list all add-ons you are the author of. It does not 
 .. http:get:: /api/v5/addons/addon/
 
     :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
+    :query boolean exclude_deleted: Omit deleted add-ons. Only has an effect for users who are allowed to view deleted add-ons, who are otherwise shown their own deleted add-ons alongside the rest. Defaults to ``false``.
     :query boolean show_source: Return the unsanitized source of compatible fields. This parameter is only available if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :query int page: 1-based page number. Defaults to 1.
     :query int page size: Maximum number of results to return for the requested page. Defaults to 25.

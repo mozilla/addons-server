@@ -18,8 +18,8 @@ type Confirm = 'disable' | 'enable' | 'delete';
 
 /**
  * The manage header's overflow menu: disable/enable the listing, or delete the
- * add-on. Both are destructive enough to confirm first, so each opens a modal
- * before anything is sent.
+ * add-on. Each is consequential enough to confirm first, so nothing is sent
+ * until a modal is accepted.
  *
  * Once Mozilla has disabled or deleted the add-on neither action is the
  * author's to take, so the menu goes away with them.

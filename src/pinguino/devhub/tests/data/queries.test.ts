@@ -44,6 +44,23 @@ describe('removeAddon', () => {
     expect(cached.map((a) => a.slug)).toEqual(['kept']);
   });
 
+  // The dashboard names the add-on in its activity feed as well as its cards,
+  // and the feed is a separate query that nothing else invalidates.
+  it('drops the deleted add-on from the cached activity feed', async () => {
+    mockDelete([]);
+    queryClient.setQueryData(queryKeys.updates, [
+      { id: '1', addonSlug: 'doomed', addonName: 'Doomed' },
+      { id: '2', addonSlug: 'kept', addonName: 'Kept' },
+    ]);
+
+    await removeAddon('doomed');
+
+    const cached = queryClient.getQueryData(queryKeys.updates) as {
+      addonSlug: string;
+    }[];
+    expect(cached.map((u) => u.addonSlug)).toEqual(['kept']);
+  });
+
   it('spends the delete token before touching the cache', async () => {
     const fetchMock = mockDelete([]);
     queryClient.setQueryData(queryKeys.addons, [{ slug: 'doomed' }]);

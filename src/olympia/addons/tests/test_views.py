@@ -1025,6 +1025,50 @@ class TestAddonViewSetList(TestCase):
             disabled.pk,
         }
 
+    def _setup_deleted_for_viewer(self):
+        # Anyone with ADDONS_API_VIEW_DELETED gets Addon.unfiltered from
+        # get_queryset(), so their own deleted add-ons reach the listing.
+        self.grant_permission(self.user, amo.permissions.ADDONS_API_VIEW_DELETED)
+        kept = addon_factory(users=[self.user])
+        deleted = addon_factory(users=[self.user])
+        deleted.delete()
+        assert deleted.reload().status == amo.STATUS_DELETED
+        # Deleting the add-on leaves the authorship alone, so the role filter
+        # doesn't exclude it.
+        assert AddonUser.objects.filter(addon=deleted, user=self.user).exists()
+        self.client.login_api(self.user)
+        return kept, deleted
+
+    def test_deleted_returned_to_viewers_by_default(self):
+        kept, deleted = self._setup_deleted_for_viewer()
+
+        data = self._get_results()
+        assert {result['id'] for result in data['results']} == {kept.pk, deleted.pk}
+
+    def test_exclude_deleted_omits_them(self):
+        kept, _ = self._setup_deleted_for_viewer()
+
+        self.url += '?exclude_deleted=true'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [kept.pk]
+
+    def test_exclude_deleted_rejects_a_non_boolean(self):
+        self._setup_deleted_for_viewer()
+
+        response = self.client.get(self.url + '?exclude_deleted=yesplease')
+        assert response.status_code == 400
+        assert 'exclude_deleted' in response.json()['detail']
+
+    def test_exclude_deleted_is_harmless_without_the_permission(self):
+        kept = addon_factory(users=[self.user])
+        deleted = addon_factory(users=[self.user])
+        deleted.delete()
+        self.client.login_api(self.user)
+
+        self.url += '?exclude_deleted=true'
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [kept.pk]
+
     def test_sort_by_created(self):
         older = addon_factory(users=[self.user], created=self.days_ago(10))
         newer = addon_factory(users=[self.user], created=self.days_ago(1))

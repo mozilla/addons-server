@@ -43,8 +43,8 @@ describe('addon-manage-header', () => {
     expect(badge?.getAttribute('type')).toBe('success');
   });
 
-  // Hiding the listing is the author's own doing, so it's what the header
-  // reports — not the review status underneath it.
+  // Deactivating the listing is the author's own doing, so it's what the
+  // header reports — not the review status underneath it.
   it('shows the developer deactivation over the review status', async () => {
     const root = await header({ visibility: 'invisible' });
     const badge = root.querySelector('listing-status-badge');
