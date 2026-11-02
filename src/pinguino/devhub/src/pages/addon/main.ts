@@ -1,6 +1,7 @@
 import { Routes } from '@lit-labs/router';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
+import { pageParam } from '../../navigation';
 
 import './submit/main';
 import './templates/devhub-addon';
@@ -21,17 +22,21 @@ class AddonRoutes extends LitElement {
         html`<version-routes .slug=${slug ?? ''}></version-routes>`,
     },
     {
-      path: `:slug/:tab`,
-      render: ({ slug, tab }) =>
-        html`<devhub-addon .slug=${slug ?? ''} .tab=${tab ?? ''}></devhub-addon>`,
-    },
-    {
       path: `:slug/:tab/:section`,
       render: ({ slug, tab, section }) =>
         html`<devhub-addon
           .slug=${slug ?? ''}
           .tab=${tab ?? ''}
           .section=${section ?? ''}
+        ></devhub-addon>`,
+    },
+    {
+      path: `:slug/:tab`,
+      render: ({ slug, tab }) =>
+        html`<devhub-addon
+          .slug=${slug ?? ''}
+          .tab=${tab ?? ''}
+          .page=${pageParam()}
         ></devhub-addon>`,
     },
   ]);

@@ -1,10 +1,24 @@
 // Low-level HTTP for the AMO API. One place owns the base URL, session auth,
 // JSON parsing, and error typing — endpoint functions in ./api stay one-liners.
-// Auth is the AMO session id (sent as `Authorization: Session <id>`), supplied
-// via env; see .env.example.
+// Auth is the AMO session id (sent as `Authorization: Session <id>`).
 
-const SESSION = import.meta.env.VITE_AMO_SESSION_ID;
 const BASE = import.meta.env.VITE_AMO_API_BASE ?? '/api/v5';
+
+// src/olympia/developers/views.py::serve_pinguino injects the AMO session id into
+// the html, setting the `token` attribute of the <pinguino-app> element in index.html.
+// Read it once at startup, hold it in memory for the session, and immediately strip it
+// from the DOM so other scripts (extensions, injected code) can't scrape it afterwards.
+function takeSessionToken(): string {
+  const el =
+    typeof document === 'undefined'
+      ? null
+      : document.querySelector('pinguino-app');
+  const token = el?.getAttribute('token') ?? '';
+  el?.removeAttribute('token');
+  return token && token !== 'INSERT_TOKEN_HERE' ? token : '';
+}
+
+const session = takeSessionToken();
 
 // Carries the HTTP status and any validation errors so callers can branch (a
 // future 401 interceptor) or map errors onto the inputs that caused them.
@@ -67,7 +81,7 @@ export async function apiFetch<T>(
   const res = await fetch(`${BASE}${path}`, {
     method,
     headers: {
-      ...(SESSION ? { authorization: `Session ${SESSION}` } : {}),
+      ...(session ? { authorization: `Session ${session}` } : {}),
       ...(body != null && !isForm
         ? { 'content-type': 'application/json' }
         : {}),

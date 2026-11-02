@@ -5,8 +5,9 @@
 // The URL segment the SPA lives under, e.g. "/developers/...".
 export const DEVHUB_SEGMENT = 'developers';
 
-// Vite's `base`: the segment with leading and trailing slashes.
-export const VITE_BASE = `/${DEVHUB_SEGMENT}/`;
+// The directory the SPA's built assets (js/css/etc) are written to and served
+// from, under the static files location.
+export const STATIC_SEGMENT = 'pinguino';
 
 // A URL under the SPA may be locale-prefixed (e.g. /en-US/developers/...). Match
 // an optional locale code followed by the segment, capturing the locale. The

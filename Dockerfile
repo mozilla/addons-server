@@ -176,13 +176,17 @@ COPY --chown=olympia:olympia static/ ${HOME}/static/
 # Run that command without having to copy the whole source code
 # This will shave nearly 1 minute off the best case build time
 RUN \
-    --mount=type=bind,src=src,target=${HOME}/src \
+    # update_assets also installs and builds pinguino (src/pinguino/devhub), with
+    # node_modules under src/, so this bind is read-write
+    --mount=type=bind,src=src,target=${HOME}/src,rw \
     --mount=type=bind,src=Makefile-docker,target=${HOME}/Makefile-docker \
     --mount=type=bind,src=scripts/update_assets.py,target=${HOME}/scripts/update_assets.py \
     --mount=type=bind,src=manage.py,target=${HOME}/manage.py \
     --mount=type=bind,src=package.json,target=${HOME}/package.json \
     --mount=type=bind,src=package-lock.json,target=${HOME}/package-lock.json \
     --mount=type=bind,src=vite.config.ts,target=${HOME}/vite.config.ts \
+    --mount=type=cache,target=${HOME}/src/pinguino/devhub/node_modules,sharing=locked,uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
+    --mount=type=cache,target=${NPM_CACHE_DIR},uid=${OLYMPIA_UID},gid=${OLYMPIA_UID} \
 <<EOF
 make -f Makefile-docker update_assets
 EOF

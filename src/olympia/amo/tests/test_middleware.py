@@ -12,6 +12,7 @@ from django.test.utils import override_settings
 from django.urls import reverse
 
 from pyquery import PyQuery as pq
+from waffle.testutils import override_flag
 
 from olympia.accounts.utils import fxa_login_url, path_with_query
 from olympia.accounts.verify import IdentificationError
@@ -20,6 +21,7 @@ from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI,
     CacheControlMiddleware,
     GraphiteMiddlewareNoAuth,
+    PinguinoSwitchMiddleware,
     RequestIdMiddleware,
     SetRemoteAddrFromForwardedFor,
     TokenValidMiddleware,
@@ -562,3 +564,39 @@ class TestAdminStepUpMiddleware(TestCase):
             == reprompt_for_2fa_if_necessary_mock.return_value
         )
         assert reprompt_for_2fa_if_necessary_mock.call_count == 1
+
+
+@override_flag('pinguino-switch', active=True)
+class TestPinguinoSwitchMiddleware(TestCase):
+    def process(self, path, cookie=None):
+        request = RequestFactory().get(path)
+        if cookie is not None:
+            request.COOKIES['PINGUINO'] = cookie
+        get_response = Mock(return_value=HttpResponse())
+        response = PinguinoSwitchMiddleware(get_response)(request)
+        # The middleware always delegates to the next handler and returns its
+        # response untouched.
+        get_response.assert_called_once_with(request)
+        assert response == get_response.return_value
+        return request
+
+    def test_switches_urlconf_when_cookie_enabled_and_flag_active(self):
+        request = self.process('/developers/addon/5', cookie='1')
+        assert request.urlconf == 'olympia.urls_pinguino'
+
+    def test_no_switch_without_cookie(self):
+        request = self.process('/developers/addon/5')
+        assert getattr(request, 'urlconf', None) is None
+
+    def test_no_switch_when_cookie_not_enabled(self):
+        request = self.process('/developers/addon/5', cookie='0')
+        assert getattr(request, 'urlconf', None) is None
+
+    def test_no_switch_outside_developers(self):
+        request = self.process('/addon/5', cookie='1')
+        assert getattr(request, 'urlconf', None) is None
+
+    @override_flag('pinguino-switch', active=False)
+    def test_no_switch_when_flag_inactive(self):
+        request = self.process('/developers/addon/5', cookie='1')
+        assert getattr(request, 'urlconf', None) is None

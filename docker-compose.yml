@@ -24,7 +24,7 @@ x-env-mapping: &env
     - SKIP_DATA_SEED
     - FXA_CLIENT_ID
     - FXA_CLIENT_SECRET
-    - STATIC_URL_PREFIX=/static-server/
+    - &static_url_prefix STATIC_URL_PREFIX=/static-server/
     - MEDIA_URL_PREFIX=/user-media/
 
 x-olympia: &olympia
@@ -115,7 +115,7 @@ services:
     image: memcached:1.5.16@sha256:9655004969fb55e163c665f1c485f48b48784d3eb54c210882103f54d7d842d1
 
   mysqld:
-    image: mysql:8.4.11@sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242
+    image: mysql:8.4.11@sha256:0f51e63e537a1f176423fa03ef559aabe6fa4372a53160a44bc7e75da7d15364
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
       - MYSQL_DATABASE=olympia
@@ -141,7 +141,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: elasticsearch:8.19.23@sha256:8b1751877c984f3e4f59bafb15fc890e01969a744255fd5f6860c060b62cff36
+    image: elasticsearch:8.19.23@sha256:3f4d63c59ca5a05b535179dfcced47a514119e351fa81653f69902beacae90c9
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -209,6 +209,10 @@ services:
     environment:
       - VITE_HMR_CLIENT_PORT=80
       - NODE_AUTH_TOKEN=${NODE_AUTH_TOKEN:-}
+      # Reuse the same value as the olympia services (see the &env block) so the
+      # vite dev server's base (STATIC_URL_PREFIX + pinguino/) matches what nginx
+      # proxies here and what devhub.views.serve_pinguino fetches.
+      - *static_url_prefix
     volumes:
       - ./src/pinguino/devhub:/app
       # Keep deps inside the container so they never mix with the host or olympia.

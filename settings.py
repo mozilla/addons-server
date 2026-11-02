@@ -171,3 +171,5 @@ GOOGLE_APPLICATION_CREDENTIALS_BIGQUERY = env(
 )
 
 CINDER_SERVER_URL = 'https://mozilla-staging.cinderapp.com/api/'
+
+PINGUINO_DEV_SERVER_URL = 'http://pinguino:5273'

@@ -9,6 +9,7 @@ from django.views.static import serve as serve_static
 from olympia.amo.utils import urlparams
 from olympia.amo.views import frontend_view
 from olympia.api.views import serve_swagger_ui_js
+from olympia.devhub import views as devhub_views
 from olympia.files.urls import upload_patterns
 from olympia.versions import views as version_views
 from olympia.versions.update import update
@@ -21,7 +22,7 @@ handler403 = 'olympia.amo.views.handler403'
 handler404 = 'olympia.amo.views.handler404'
 handler500 = 'olympia.amo.views.handler500'
 
-urlpatterns = [
+base_urlpatterns = [
     # Legacy Discovery pane is first for undetectable efficiency wins.
     re_path(
         r'^discovery/.*',
@@ -50,8 +51,12 @@ urlpatterns = [
     re_path(r'activity/', include('olympia.activity.urls')),
     # Users
     re_path(r'', include('olympia.users.urls')),
-    # Developer Hub.
-    re_path(r'^developers/', include('olympia.devhub.urls')),
+    # old devhub/pinguino switch
+    re_path(
+        r'^developers/switch-pinguino$',
+        devhub_views.switch_pinguino,
+        name='devhub.switch-pinguino',
+    ),
     # Reviewers Hub.
     re_path(r'^reviewers/', include('olympia.reviewers.urls')),
     # Redirect everything under editors/ (old reviewer urls) to reviewers/.
@@ -134,7 +139,7 @@ if settings.SERVE_STATIC_FILES:
 
     static_url_prefix = settings.STATIC_URL_PREFIX.lstrip('/').rstrip('/')
 
-    urlpatterns.extend(
+    base_urlpatterns.extend(
         [
             re_path(
                 r'^%s/(?P<path>.*)$' % media_url,
@@ -165,8 +170,14 @@ if settings.SERVE_STATIC_FILES:
 if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
     import debug_toolbar
 
-    urlpatterns.extend(
+    base_urlpatterns.extend(
         [
             re_path(r'__debug__/', include(debug_toolbar.urls)),
         ]
     )
+
+urlpatterns = [
+    *base_urlpatterns,
+    # (Old, django) Developer Hub.
+    re_path(r'^developers/', include('olympia.devhub.urls')),
+]

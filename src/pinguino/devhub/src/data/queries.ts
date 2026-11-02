@@ -11,6 +11,9 @@ import {
   deleteAddon,
   deleteAuthor,
   deletePreview,
+  deleteSession,
+  fetchActivity,
+  fetchAddonSource,
   fetchAddons,
   fetchAgreement,
   fetchAuthors,
@@ -21,6 +24,7 @@ import {
   fetchUpdates,
   fetchUpload,
   fetchVersion,
+  fetchVersions,
   patchAddon,
   patchAuthor,
   patchEulaPolicy,
@@ -56,6 +60,7 @@ export const queryKeys = {
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
   version: (slug: string, id: number) => ['version', slug, id] as const,
+  versions: (slug: string) => ['versions', slug] as const,
 };
 
 // The static category list rarely changes, so keep it for the session.
@@ -139,9 +144,27 @@ export async function removeAddon(slug: string) {
 
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
 
-// The EULA/privacy text (separate endpoint), for the view-mode preview. Gated
-// by `getEnabled` so it only fetches when the add-on actually has a policy.
+// The EULA/privacy text (separate endpoint), for the view-mode preview or the
+// unsanitized source for the edit form. Gated by `getEnabled` so it
+// only fetches when the add-on actually has a policy.
 export function eulaPolicyQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
+  showSource = false,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: [...eulaPolicyKey(getSlug()), showSource],
+      queryFn: () => fetchEulaPolicy(getSlug(), showSource),
+      enabled: getEnabled(),
+    }),
+    queryClient,
+  );
+}
+
+export function addonSourceQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
   getEnabled: () => boolean = () => true,
@@ -149,8 +172,8 @@ export function eulaPolicyQuery(
   return createQueryController(
     host,
     () => ({
-      queryKey: eulaPolicyKey(getSlug()),
-      queryFn: () => fetchEulaPolicy(getSlug()),
+      queryKey: [...queryKeys.addons, 'source', getSlug()],
+      queryFn: () => fetchAddonSource(getSlug()),
       enabled: getEnabled(),
     }),
     queryClient,
@@ -288,6 +311,26 @@ export function updatesQuery(host: ReactiveControllerHost) {
   );
 }
 
+const activityKey = (slug: string, page: number) =>
+  ['activity', slug, page] as const;
+
+// Keyed by page, so paging back and forth is served from cache.
+export function activityQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getPage: () => number,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: activityKey(getSlug(), getPage()),
+      queryFn: () => fetchActivity(getSlug(), getPage()),
+      enabled: Boolean(getSlug()),
+    }),
+    queryClient,
+  );
+}
+
 // Fetches developer agreement information.
 export function agreementQuery(host: ReactiveControllerHost) {
   return createQueryController(
@@ -340,7 +383,23 @@ export async function createVersion(
   const version = await postVersion(slug, uuid);
   queryClient.setQueryData(queryKeys.version(slug, version.id), version);
   await queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) });
+  await queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
   return version;
+}
+
+export function versionsQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.versions(getSlug()),
+      queryFn: () => fetchVersions(getSlug(), LOCALE ?? 'en-US'),
+      enabled: Boolean(getSlug()),
+    }),
+    queryClient,
+  );
 }
 
 async function _updateVersion(
@@ -350,6 +409,7 @@ async function _updateVersion(
 ): Promise<Version> {
   const version = await patchVersion(slug, id, body);
   queryClient.setQueryData(queryKeys.version(slug, id), version);
+  await queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
   return version;
 }
 
@@ -379,4 +439,10 @@ export async function uploadVersionNotes(
     approval_notes: reviewerNotes ?? '',
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
+}
+
+// Ends the current session server-side. Callers reload afterwards so the app
+// rebuilds as signed-out; the reload discards the cache, so no invalidation here.
+export async function logout() {
+  await deleteSession();
 }

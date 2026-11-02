@@ -23,6 +23,7 @@ from olympia.api.fields import (
     OutgoingURLField,
     ReverseChoiceField,
     SlugOrPrimaryKeyRelatedField,
+    SourceTranslationSerializerField,
     SplitField,
     TranslationSerializerField,
     TranslationSerializerFieldFlat,
@@ -354,6 +355,42 @@ class TestTranslationSerializerField(TestCase):
         with self.assertRaises(serializers.ValidationError) as exc:
             field.to_representation(field.get_attribute(self.addon))
         assert exc.exception.detail == [f'The language code "{bad_lang}" is invalid.']
+
+
+class TestSourceTranslationSerializerField(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.addon = addon_factory(description='**Bold**')
+        Translation.objects.create(
+            id=self.addon.description.id, locale='fr', localized_string='_Français_'
+        )
+
+    def get_result(self, **params):
+        request = Request(APIRequestFactory().get('/', params))
+        field = SourceTranslationSerializerField()
+        field.bind('description', serializers.Serializer(context={'request': request}))
+        return field.to_representation(field.get_attribute(self.addon))
+
+    def test_fetch_all_translations(self):
+        html = {'en-US': '<strong>Bold</strong>', 'fr': '<em>Français</em>'}
+        assert self.get_result() == html
+        assert self.get_result(show_source='false') == html
+        assert self.get_result(show_source='true') == {
+            'en-US': '**Bold**',
+            'fr': '_Français_',
+        }
+
+    def test_fetch_single_translation(self):
+        with self.activate('fr'):
+            self.addon = self.addon.reload()
+            assert self.get_result(lang='fr') == {'fr': '<em>Français</em>'}
+            assert self.get_result(lang='fr', show_source='true') == {
+                'fr': '_Français_'
+            }
+
+    def test_invalid_show_source_value(self):
+        with self.assertRaises(exceptions.ParseError):
+            self.get_result(show_source='test')
 
 
 @override_settings(DRF_API_GATES={None: ('l10n_flat_input_output',)})

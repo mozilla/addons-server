@@ -1,12 +1,19 @@
 // Public data API for the app. Components attach query controllers and read
 // their reactive results; the query layer handles caching, and dedup.
 
-export { fetchEulaPolicy } from './api';
+export {
+  ACTIVITY_PAGE_SIZE,
+  fetchEulaPolicy,
+  formatDate,
+  localized,
+} from './api';
 export { isAddonOwner } from './permissions';
 export {
   acceptAgreement,
+  activityQuery,
   addonOwnershipQuery,
   addonQuery,
+  addonSourceQuery,
   addonsQuery,
   agreementQuery,
   authorsQuery,
@@ -17,6 +24,7 @@ export {
   createVersion,
   disableVersion,
   eulaPolicyQuery,
+  logout,
   pendingAuthorsQuery,
   profileQuery,
   queryKeys,
@@ -34,6 +42,7 @@ export {
   uploadVersionNotes,
   uploadVersionSource,
   versionQuery,
+  versionsQuery,
 } from './queries';
 export { queryClient } from './query-client';
 export {

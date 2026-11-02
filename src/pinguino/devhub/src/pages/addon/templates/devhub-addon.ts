@@ -1,8 +1,10 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../../../base';
+import '../../../components/activity-feed';
 import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
+import '../../../components/addon-version/addon-version';
 import { type Addon, addonQuery } from '../../../data';
 
 // Each tab is its own URL under <base>/addon/:slug/<tab>, so a tab is linkable
@@ -24,6 +26,8 @@ export class DevhubAddon extends LitElement {
   @property() tab: string = DEFAULT_TAB;
   // Active section within the Listing Details (edit) tab.
   @property() section = '';
+  // 1-based page for the Activity & Notification (feed) tab.
+  @property({ type: Number }) page = 1;
 
   #addon = addonQuery(this, () => this.slug);
 
@@ -64,6 +68,16 @@ export class DevhubAddon extends LitElement {
           .addon=${addon}
           .section=${this.section || undefined}
         ></addon-listing>`;
+      case 'feed':
+        return html`<activity-feed
+          .slug=${addon.slug}
+          .page=${this.page}
+        ></activity-feed>`;
+      case 'versions':
+        return html`<addon-version
+          .addon=${addon}
+          .section=${this.section || undefined}
+        ></addon-version>`;
       default: {
         const label = TABS.find((t) => t.value === this.#activeTab)?.label;
         return html`<div class="stub">

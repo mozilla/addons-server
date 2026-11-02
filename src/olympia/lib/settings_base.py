@@ -523,6 +523,7 @@ MIDDLEWARE = (
     'olympia.amo.middleware.RequestIdMiddleware',
     'olympia.amo.middleware.TokenValidMiddleware',
     'olympia.amo.middleware.AdminStepUpMiddleware',
+    'olympia.amo.middleware.PinguinoSwitchMiddleware',
 )
 
 # Auth
@@ -1545,6 +1546,9 @@ DJANGO_VITE = {
         'manifest_path': STATIC_BUILD_MANIFEST_PATH,
     }
 }
+
+# Internal URL of the Pinguino SPA vite dev server. Only defined when DEV_MODE is True
+PINGUINO_DEV_SERVER_URL = None
 
 # The environment in which the application is running.
 # This is set by the environment variables in production environments.

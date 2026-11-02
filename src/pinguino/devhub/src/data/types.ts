@@ -1,8 +1,9 @@
 import type { AddonVisibility, StatusInfo } from './statuses';
 
 export interface Developer {
-  id: number;
+  id: string;
   name: string;
+  pictureUrl?: string;
 }
 
 export type AddonKind = 'extension' | 'theme';
@@ -82,6 +83,32 @@ export interface Addon {
     hasEula?: boolean;
     hasPrivacyPolicy?: boolean;
   };
+  currentVersion?: Version;
+}
+
+export interface Version {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: {
+    id: number;
+    url: string;
+    size: number;
+    status: FileStatus;
+    created?: string;
+  };
+  release_notes: Record<string, string> | string | null;
+  approval_notes: string;
+  source: string | null;
+  edit_url: string;
+  is_disabled: boolean;
+  license?: {
+    id: number;
+    is_custom: boolean;
+    name: Record<string, string> | string;
+    url: string | null;
+  } | null;
+  reviewed?: string | null;
 }
 
 // The subset of listing fields editable from the manage page's Listing Details
@@ -127,26 +154,26 @@ export interface EulaPolicyEdit {
   privacyPolicy?: string | null;
 }
 
-export interface Version {
-  id: number;
-  version: string;
-  channel: AddonDistribution;
-  file: { id: number; url: string; size: number; status: FileStatus };
-  release_notes: string | null;
-  approval_notes: string;
-  source: string | null;
-}
-
 export interface Update {
   id: string;
   title: string;
   message: string;
   version: string;
-  // Absent when the feed entry isn't about a review outcome.
+  // Both absent when the entry touches no version (e.g. an add-on-level event).
   versionStatus?: StatusInfo;
-  tags: string[];
+  channel?: AddonDistribution;
   date: string;
+  // Absent when the action had no acting user. Reviewer actions arrive already
+  // anonymised by the API, so this is safe to show to the developer as-is.
+  user?: string;
+  addonName: string;
   addonSlug: string;
+}
+
+// `total` counts every page, not this one — a short page isn't the last.
+export interface ActivityPage {
+  items: Update[];
+  total: number;
 }
 
 export interface AgreementState {

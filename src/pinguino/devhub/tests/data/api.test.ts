@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import {
   clearTranslations,
   deleteAddon,
+  fetchActivity,
   fetchAddons,
   fetchAgreement,
   fetchCategories,
@@ -20,6 +21,7 @@ import {
   postVersion,
 } from '../../src/data/api';
 import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
+import { DEFAULT_VERSION } from '../helpers/fixture';
 
 function mockJson(payload: unknown) {
   vi.stubGlobal(
@@ -40,7 +42,7 @@ describe('mapAddon', () => {
       type: 'statictheme',
       status: 'public',
       last_updated: '2025-05-14T10:00:00Z',
-      current_version: { version: '3.2.1' },
+      current_version: { ...DEFAULT_VERSION, version: '3.2.1' },
       previews: [{ image_url: 'https://cdn/preview.png' }],
       channels: ['listed'],
     });
@@ -134,8 +136,14 @@ describe('mapAddon', () => {
       has_eula: true,
       is_experimental: false,
       current_version: {
+        ...DEFAULT_VERSION,
         version: '1.0',
-        license: { name: { 'en-US': 'MPL 2.0' } },
+        license: {
+          id: 1,
+          is_custom: false,
+          name: { 'en-US': 'MPL 2.0' },
+          url: null,
+        },
       },
       channels: ['listed'],
     });
@@ -161,32 +169,65 @@ describe('mapAddon', () => {
 });
 
 describe('mapActivity', () => {
-  it('infers approval from the title and sets a matching status', () => {
+  it('reads status and channel off the version, not the title text', () => {
     const update = mapActivity({
       id: 42,
-      addon: { slug: 'my-addon' },
+      addon: { slug: 'my-addon', name: { 'en-US': 'My Add-on' } },
       title: 'Your version is approved.',
       comments: 'Congrats!',
       date: '2025-09-02T00:00:00Z',
-      versions: [{ version: '3.2.1' }],
+      user: { name: 'Add-ons Review Team' },
+      versions: [
+        {
+          version: '3.2.1',
+          channel: 'listed',
+          file: { status: 'public' },
+          reviewed: '2025-09-01T00:00:00Z',
+        },
+      ],
     });
 
     expect(update).toMatchObject({
       id: '42',
       versionStatus: VERSION_STATUS.public,
+      channel: 'listed',
       version: '3.2.1',
       date: 'Sep 2 2025',
+      user: 'Add-ons Review Team',
+      addonName: 'My Add-on',
       addonSlug: 'my-addon',
     });
   });
 
-  it('leaves a non-approval activity with no version status', () => {
+  it('reports a reviewed, disabled file as rejected', () => {
+    const update = mapActivity({
+      id: 43,
+      addon: {},
+      // Title says "approved" — the old regex would have believed it.
+      title: 'Version approved',
+      versions: [
+        {
+          version: '1.0',
+          file: { status: 'disabled' },
+          reviewed: '2025-09-01T00:00:00Z',
+        },
+      ],
+    });
+    expect(update.versionStatus?.label).toBe('Rejected');
+  });
+
+  it('leaves an activity with no version unstatused', () => {
     const update = mapActivity({
       id: 7,
       addon: {},
-      title: 'Version flagged for review',
+      title: 'Add-on disabled',
     });
     expect(update.versionStatus).toBeUndefined();
+    expect(update.channel).toBeUndefined();
+  });
+
+  it('leaves the user unset when the action had none', () => {
+    expect(mapActivity({ id: 8, addon: {}, user: null }).user).toBeUndefined();
   });
 });
 
@@ -246,7 +287,15 @@ describe('endpoints', () => {
   });
 
   it('fetchUpdates maps the activity feed through mapActivity', async () => {
-    mockJson({ results: [{ id: 1, title: 'Approved!' }] });
+    mockJson({
+      results: [
+        {
+          id: 1,
+          title: 'Approved!',
+          versions: [{ file: { status: 'public' } }],
+        },
+      ],
+    });
     const updates = await fetchUpdates();
     expect(updates).toHaveLength(1);
     expect(updates[0]).toMatchObject({
@@ -255,9 +304,26 @@ describe('endpoints', () => {
     });
   });
 
-  it('fetchProfile reads the account name', async () => {
-    mockJson({ name: 'Kate' });
-    expect(await fetchProfile()).toEqual({ name: 'Kate' });
+  it('fetchActivity filters by add-on and pages, reporting the total', async () => {
+    mockJson({ results: [{ id: 1, addon: {} }], count: 42 });
+
+    const page = await fetchActivity('my-addon', 3);
+
+    const [url] = vi.mocked(fetch).mock.calls[0];
+    expect(String(url)).toContain('addon=my-addon');
+    expect(String(url)).toContain('page=3');
+    // The total is the count across all pages, not this page's length.
+    expect(page).toMatchObject({ total: 42 });
+    expect(page.items).toHaveLength(1);
+  });
+
+  it('fetchProfile maps the id, name and picture url', async () => {
+    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+    expect(await fetchProfile()).toEqual({
+      id: '99',
+      name: 'Kate',
+      pictureUrl: 'https://cdn/a.png',
+    });
   });
 
   it('patchAddon maps domain edit fields to the API body and PATCHes', async () => {

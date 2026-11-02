@@ -62,7 +62,7 @@ describe('visibility', () => {
     expect(resolveVisibility(false)).toBe('visible');
     expect(resolveVisibility(true)).toBe('invisible');
     expect(VISIBILITY.visible.label).toBe('Visible');
-    expect(VISIBILITY.invisible.label).toBe('Invisible');
+    expect(VISIBILITY.invisible.label).toBe('Hidden');
   });
 
   it('locks the control once Mozilla disabled or deleted the add-on', () => {
