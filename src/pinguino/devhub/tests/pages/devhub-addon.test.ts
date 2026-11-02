@@ -96,3 +96,22 @@ describe('devhub-addon', () => {
     expect(root.textContent).toContain("couldn't find that add-on");
   });
 });
+
+describe('devhub-addon feed tab', () => {
+  it('renders the activity feed for the add-on and page', async () => {
+    queryClient.setQueryData(queryKeys.addons, [addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'feed',
+      page: 2,
+    });
+    await settle(el);
+
+    const feed = (el.shadowRoot as ShadowRoot).querySelector('activity-feed');
+    expect(feed).not.toBeNull();
+    expect((feed as unknown as { slug: string; page: number }).slug).toBe(
+      'ad-blocker',
+    );
+    expect((feed as unknown as { slug: string; page: number }).page).toBe(2);
+  });
+});

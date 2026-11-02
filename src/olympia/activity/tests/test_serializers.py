@@ -203,6 +203,30 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         assert version['channel'] == amo.CHANNEL_CHOICES_API[self.version.channel]
         assert version['file']['status'] == 'public'
         assert version['addon']['id'] == self.version.addon.pk
+        assert 'reviewed' in version
+
+    def test_reviewed_distinguishes_rejected_from_unreviewed(self):
+        # Without `reviewed`, a disabled file can't be told from an unreviewed
+        # one, and the feed's status badge needs that distinction.
+        unreviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        assert self.serialize(unreviewed)['versions'][0]['reviewed'] is None
+
+        self.version.file.update(approval_date=self.now)
+        reviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        assert (
+            self.serialize(reviewed)['versions'][0]['reviewed']
+            == self.now.isoformat() + 'Z'
+        )
+
+    def test_comments_for_list_shaped_details(self):
+        # EDIT_PROPERTIES records changed fields as a list, and the unfiltered
+        # feed carries it.
+        log = ActivityLog.objects.create(
+            amo.LOG.EDIT_PROPERTIES, self.addon, user=self.user
+        )
+        log.details = ['eula']
+        log.save()
+        assert self.serialize(log)['comments'] == ''
 
     def test_no_versions(self):
         log = ActivityLog.objects.create(

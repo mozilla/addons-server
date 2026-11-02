@@ -24,6 +24,15 @@ describe('addon-routes', () => {
     expect(page?.slug).toBe('addon-slug');
   });
 
+  it('carries the tab and the ?page= onto the add-on page', async () => {
+    history.replaceState({}, '', '?page=4');
+    const root = await goto('addon-routes', 'addon-slug/feed');
+    const page = root.querySelector('devhub-addon');
+    expect(page?.tab).toBe('feed');
+    expect(page?.page).toBe(4);
+    history.replaceState({}, '', location.pathname);
+  });
+
   it('hands submit/* to the submit routes', async () => {
     const root = await goto('addon-routes', 'submit/agreement');
     expect(root.querySelector('submit-routes')).not.toBeNull();

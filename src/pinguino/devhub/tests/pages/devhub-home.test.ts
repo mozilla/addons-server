@@ -35,8 +35,10 @@ const update: Update = {
   message: 'Congrats!',
   version: '1.0.0',
   versionStatus: VERSION_STATUS.public,
-  tags: ['Live'],
+  addonName: 'Ad Blocker',
+  channel: 'listed',
   date: 'Sep 2 2025',
+  user: 'Kate',
   addonSlug: 'a',
 };
 
