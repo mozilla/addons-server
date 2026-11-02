@@ -27,17 +27,17 @@ async function header(addon: Partial<Addon>) {
 }
 
 describe('addon-manage-header', () => {
-  it('renders the name, a back link, and the status badge', async () => {
+  it('renders the name, the breadcrumb, and the status badge', async () => {
     const root = await header({ visibility: 'visible' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
-    expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
-      '/developers/',
-    );
-    // Breadcrumb: Dashboard › {name}.
-    const crumbs = [...root.querySelectorAll('moz-breadcrumb')].map((c) =>
-      c.textContent?.trim(),
-    );
-    expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
+    // Breadcrumb: Dashboard › {name}. The Dashboard crumb is the only way
+    // back now that the separate "Back to Dashboard" link is gone.
+    const crumbs = [...root.querySelectorAll('moz-breadcrumb')];
+    expect(crumbs.map((c) => c.textContent?.trim())).toEqual([
+      'Dashboard',
+      'Ad Blocker',
+    ]);
+    expect(crumbs[0].getAttribute('href')).toBe('/developers/');
     const badge = root.querySelector('listing-status-badge');
     expect(badge?.textContent?.trim()).toBe('Live');
     expect(badge?.getAttribute('type')).toBe('success');
