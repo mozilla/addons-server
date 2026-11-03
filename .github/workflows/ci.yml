@@ -314,6 +314,8 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
+    environment: build
+
     env:
       registry: us-docker.pkg.dev
       image: moz-fx-amo-prod/amo-prod/addons-server
@@ -334,8 +336,8 @@ jobs:
         uses: mozilla/addons/.github/actions/login-gar@c2dc2fd5862487f41add188a13243c2e71fdaa42  # 1.3
         with:
           registry: ${{ env.registry }}
-          service_account: ${{ secrets.GAR_PUSHER_SERVICE_ACCOUNT_EMAIL }}
-          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ vars.GAR_SERVICE_ACCOUNT }}
+          workload_identity_provider: ${{ vars.GCPV2_GITHUB_WORKLOAD_IDENTITY_PROVIDER }}
 
       - name: Build and Push Image
         id: build
