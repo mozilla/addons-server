@@ -453,16 +453,6 @@ class AddonViewSet(
     def listingcontentreview(self, request, pk=None):
         return self.retrieve(request)
 
-    def exclude_deleted_requested(self):
-        if value := self.request.GET.get('exclude_deleted'):
-            try:
-                return serializers.BooleanField().to_internal_value(value)
-            except exceptions.ValidationError as exc:
-                raise exceptions.ParseError(
-                    'Invalid boolean value for exclude_deleted.'
-                ) from exc
-        return False
-
     def filter_queryset(self, queryset):
         # List is limited to a users own add-ons
         if self.action == 'list':
@@ -476,10 +466,11 @@ class AddonViewSet(
                     & ~djangoQ(addonuser__role=amo.AUTHOR_ROLE_DELETED)
                 )
                 # get_queryset() hands anyone with ADDONS_API_VIEW_DELETED the
-                # unfiltered queryset, so an admin listing their own add-ons
-                # gets the deleted ones too, new devhub needs a way to filter
-                if self.exclude_deleted_requested():
-                    queryset = queryset.exclude(status=amo.STATUS_DELETED)
+                # unfiltered queryset so the detail endpoint can serve a
+                # deleted add-on; this listing never should, for anyone. And
+                # deleting leaves the AddonUser role alone, so the role filter
+                # above doesn't catch them.
+                queryset = queryset.exclude(status=amo.STATUS_DELETED)
         return super().filter_queryset(queryset)
 
     @listingcontentreview.mapping.patch

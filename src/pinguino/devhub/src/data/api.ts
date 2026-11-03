@@ -224,10 +224,8 @@ export async function fetchProfile(): Promise<Developer> {
 
 // Lists the add-ons the authenticated session owns; no author param needed.
 export async function fetchAddons(): Promise<Addon[]> {
-  // Without the opt-out, anyone allowed to view deleted add-ons is served
-  // their own among the rest — never what a dashboard wants.
   const data = await apiFetch<Paginated<ApiAddon>>(
-    '/addons/addon/?lang=en-US&page_size=50&exclude_deleted=true',
+    '/addons/addon/?lang=en-US&page_size=50',
   );
   return (data.results ?? []).map(mapAddon);
 }
