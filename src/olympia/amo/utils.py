@@ -51,7 +51,7 @@ from django_statsd.clients import statsd
 from google.api_core.exceptions import PreconditionFailed
 from google.cloud import storage as google_storage
 from html5lib.serializer import HTMLSerializer
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 from rest_framework.utils.encoders import JSONEncoder
 from rest_framework.utils.formatting import lazy_format
 
@@ -792,8 +792,10 @@ class ImageCheck:
                 self._is_valid_image = (
                     self.img.get_format_mimetype() in self.valid_types
                 )
-            except Exception:
-                log.exception('Error decoding image')
+            except UnidentifiedImageError:
+                self._is_valid_image = False
+            except Exception as exc:
+                log.exception('Error decoding image', exc_info=exc)
                 self._is_valid_image = False
         return self._is_valid_image
 
