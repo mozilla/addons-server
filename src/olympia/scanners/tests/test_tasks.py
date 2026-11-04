@@ -2999,7 +2999,7 @@ class TestCallWebhook(TestCase):
         )
         payload = {'some': 'payload to send to the scanners for that event'}
 
-        response_data = {'some': 'data'}
+        response_data = {'version': '1.0.0', 'matchedRules': []}
         requests_mock.return_value = self.create_response(data=response_data)
 
         returned_value = _call_webhook(
@@ -3033,7 +3033,7 @@ class TestCallWebhook(TestCase):
             api_key='some-api-key',
             is_active=True,
         )
-        response_data = {'some': 'data'}
+        response_data = {'version': '1.0.0', 'matchedRules': []}
         requests_mock.return_value = self.create_response(
             status_code=201, data=response_data
         )
@@ -3139,6 +3139,48 @@ class TestCallWebhook(TestCase):
 
         assert requests_mock.called
         assert exc.exception.args[0] == response_data
+
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_with_no_results_in_http_200(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        requests_mock.return_value = self.create_response(data={'ok': True})
+
+        with self.assertRaises(ValueError) as exc:
+            _call_webhook(
+                webhook=webhook,
+                payload={},
+                request_id='some-request-id',
+            )
+
+        assert exc.exception.args[0] == "$: 'version' is a required property"
+
+    @mock.patch.object(requests.Session, 'post')
+    def test_call_webhook_with_results_in_http_202(self, requests_mock):
+        webhook = ScannerWebhook.objects.create(
+            name='some-scanner',
+            url='https://example.org/webhook',
+            api_key='some-api-key',
+            is_active=True,
+        )
+        requests_mock.return_value = self.create_response(
+            status_code=202, data={'version': '1.0.0', 'matchedRules': []}
+        )
+
+        with self.assertRaises(ValueError) as exc:
+            _call_webhook(
+                webhook=webhook,
+                payload={},
+                request_id='some-request-id',
+            )
+
+        assert exc.exception.args[0] == (
+            "'matchedRules' is not allowed in a 202 response"
+        )
 
 
 class TestCallWebhooksDuringValidation(UploadMixin, TestCase):
