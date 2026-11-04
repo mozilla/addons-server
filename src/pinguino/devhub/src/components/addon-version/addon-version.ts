@@ -48,7 +48,10 @@ export class AddonVersion extends LitElement {
       background-color: var(--background-color-canvas);
     }
     .version-section.current {
-      background-color: var(--color-violet-desaturated-10);
+      background-color: light-dark(
+        var(--color-violet-desaturated-10),
+        var(--color-violet-desaturated-80)
+      );
     }
     .section-title {
       display: flex;
@@ -73,11 +76,11 @@ export class AddonVersion extends LitElement {
       padding: var(--space-xlarge) var(--space-medium);
     }
     .version-row:not(.labels) + .version-row {
-      border-top: 1px solid var(--color-gray-20);
+      border-top: 1px solid var(--border-color);
     }
     .version-row.labels {
       padding-block: 0 var(--space-small);
-      color: var(--color-black-alpha-70);
+      color: var(--text-color-deemphasized);
       font-size: var(--font-size-small);
     }
     .current .version-row:not(.labels) {
