@@ -241,7 +241,7 @@ export class AddonVersion extends LitElement {
       nextListedId = this.getNextListed(current, otherVersions);
     }
     return html`
-      <moz-card>
+      <moz-card appearance="outline">
         <div gap="xlarge" class="main-content">
           <moz-page-header
             heading="Version"
