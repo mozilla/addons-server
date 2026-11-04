@@ -1252,6 +1252,7 @@ class TestCinderWebhook(TestCase):
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue=slug,
+                override_of=None,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1272,6 +1273,7 @@ class TestCinderWebhook(TestCase):
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue='amo-content-infringement',
+                override_of=None,
             )
         assert response.status_code == 200
         assert response.data == {
@@ -1311,6 +1313,7 @@ class TestCinderWebhook(TestCase):
             decision_notes='still no!',
             policy_ids=['1c5d711a-78b7-4fc2-bdef-9a33024f5e8b'],
             job_queue='amo-dev-ratings',
+            override_of=None,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1356,6 +1359,7 @@ class TestCinderWebhook(TestCase):
                 'a5c96c92-2373-4d11-b573-61b0de00d8e0',
             ],
             job_queue='amo-dev-ratings',
+            override_of=None,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1383,6 +1387,34 @@ class TestCinderWebhook(TestCase):
             decision_notes='changed our mind',
             policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
             job_queue=None,
+            override_of=None,
+        )
+        assert response.status_code == 201
+        assert response.data == {'amo': {'received': True, 'handled': True}}
+
+    def test_create_and_execute_decision_called_for_override_to_approve_no_job(self):
+        # i.e. an override of a manual/proactive decision
+        target = addon_factory(id=633963, created=datetime(2024, 11, 6, 6, 48, 24))
+        original_decision = ContentDecision.objects.create(
+            cinder_id='d1f01fae-3bce-41d5-af8a-e0b4b5ceaaed',
+            action=DECISION_ACTIONS.AMO_DISABLE_ADDON,
+            addon=target,
+        )
+        req = self.get_request(
+            data=self.get_data(filename='override_change_to_approve.json')
+        )
+        with mock.patch.object(CinderJob, 'create_and_execute_decision') as create_mock:
+            response = cinder_webhook(req)
+        assert create_mock.call_count == 1, response.data
+        create_mock.assert_called_with(
+            None,
+            target=target,
+            decision_cinder_id='3eacdc09-c292-4fcb-a56f-a3d45d5eefeb',
+            decision_actions=[DECISION_ACTIONS.AMO_APPROVE.value],
+            decision_notes='changed our mind',
+            policy_ids=['085f6a1c-46b6-44c2-a6ae-c3a73488aa1e'],
+            job_queue=None,
+            override_of=original_decision,
         )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1603,6 +1635,7 @@ class TestCinderWebhook(TestCase):
                 decision_notes='some notes',
                 policy_ids=['f73ad527-54ed-430c-86ff-80e15e2a352b'],
                 job_queue='amo-content-infringement',
+                override_of=None,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}
@@ -1720,6 +1753,7 @@ class TestCinderWebhook(TestCase):
                 decision_notes='some notes',
                 policy_ids=[data['payload']['policies'][0]['id']],
                 job_queue=None,
+                override_of=None,
             )
         assert response.status_code == 201
         assert response.data == {'amo': {'received': True, 'handled': True}}

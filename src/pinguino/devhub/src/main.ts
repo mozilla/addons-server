@@ -16,10 +16,12 @@ import './components/devhub-header';
 import './components/not-found';
 import './pages/devhub-home';
 import './pages/addon/main';
+import './pages/addon/templates/devhub-addon';
 
 import { BASE } from './base';
+
 import { navigateTo } from './helper';
-import { interceptOutOfAppLinks } from './navigation';
+import { interceptOutOfAppLinks, isDashboardPath } from './navigation';
 import { recordLanding } from './switch-back';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
@@ -35,7 +37,13 @@ export class PinguinoApp extends LitElement {
      * the viewport height. */
     moz-provider {
       display: block;
+      /* The page surface is painted here rather than on body, which is outside
+       * this shadow tree and so can't be selected per route. */
+      background-color: var(--background-color-box);
       min-height: 100vh;
+    }
+    moz-provider.canvas {
+      background-color: var(--background-color-canvas);
     }
   `;
 
@@ -115,8 +123,11 @@ export class PinguinoApp extends LitElement {
   }
 
   render() {
+    // Re-evaluated on every route change: the Router requests an update on
+    // navigation, and it doesn't fire popstate for in-app links to listen for.
+    const dashboard = isDashboardPath(location.pathname, BASE);
     return html`
-      <moz-provider>
+      <moz-provider class=${dashboard ? 'canvas' : ''}>
         <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
         <app-container>${this._router.outlet()}</app-container>

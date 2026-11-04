@@ -196,6 +196,17 @@ class CinderWebhookMissingIdError(CinderWebhookError):
         return settings.CINDER_UNIQUE_IDS
 
 
+def get_previous_decision_from_payload(payload):
+    if prev_decision_id := payload.get('previous_decision', {}).get('id'):
+        try:
+            prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
+        except ContentDecision.DoesNotExist as exc:
+            log.debug('ContentDecision instance not found for id %s', prev_decision_id)
+            raise CinderWebhookMissingIdError('No matching decision id found') from exc
+        return prev_decision
+    return None
+
+
 def get_job_from_payload(payload):
     source = payload.get('source', {})
     if job_id := source.get('job', {}).get('id'):
@@ -205,13 +216,8 @@ def get_job_from_payload(payload):
             log.debug('CinderJob instance not found for job id %s', job_id)
             return None
 
-    if prev_decision_id := payload.get('previous_decision', {}).get('id'):
-        try:
-            prev_decision = ContentDecision.objects.get(cinder_id=prev_decision_id)
-        except ContentDecision.DoesNotExist as exc:
-            log.debug('ContentDecision instance not found for id %s', prev_decision_id)
-            raise CinderWebhookMissingIdError('No matching decision id found') from exc
-        return prev_decision.cinder_job
+    if previous_decision := get_previous_decision_from_payload(payload):
+        return previous_decision.cinder_job
 
     if source.get('decision', {}).get('type') == 'manual':
         log.debug('Cinder webhook decision is a manual decision, no job to link to.')
@@ -261,6 +267,16 @@ def process_webhook_payload_decision(payload):
         if cinder_job
         else get_target_from_payload_entity(payload.get('entity', {}))
     )
+    # create_and_execute_decision only uses this if there is no existing CinderJob,
+    # because otherwise there are edge case where the previous decision might not be
+    # what we want, for example:
+    # - an appeal, where there is a new job so the new decision doesn't directly
+    # override the old decision
+    # - we created an intermediate decision, e.g. a requeue decision, that cinder
+    # doesn't know about
+    overriden_decision = (
+        get_previous_decision_from_payload(payload) if not cinder_job else None
+    )
 
     enforcement_actions = filter_enforcement_actions(
         split_enforcement_actions(payload.get('enforcement_actions') or []),
@@ -292,6 +308,7 @@ def process_webhook_payload_decision(payload):
         decision_notes=payload.get('notes') or '',
         policy_ids=policy_ids,
         job_queue=queue_slug,
+        override_of=overriden_decision,
     )
     if not created:
         raise CinderWebhookIgnoredError('Decision already exists')

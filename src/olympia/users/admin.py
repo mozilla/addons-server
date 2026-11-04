@@ -778,7 +778,7 @@ class AsnUserRestrictionAdmin(AMOModelAdmin):
 @admin.register(ContentCreationThresholdRestriction)
 class ContentCreationThresholdRestrictionAdmin(AMOModelAdmin):
     actions = ['delete_selected']
-    list_display = ('__str__', 'interval', 'threshold', 'reason')
+    list_display = ('__str__', 'restriction_type', 'interval', 'threshold', 'reason')
     list_filter = ('restriction_type',)
 
 

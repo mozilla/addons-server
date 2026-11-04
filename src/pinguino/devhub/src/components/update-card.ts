@@ -1,8 +1,9 @@
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE } from '../base';
 import type { Update } from '../data';
+import '../foundations/badges';
 import { sanitizeHTML } from '../utils/sanitizeHTML';
 
 // The activity title/message are HTML from the API; the only markup we expect
@@ -23,7 +24,7 @@ export class UpdateCard extends LitElement {
       display: flex;
       flex-direction: column;
       gap: var(--space-small);
-      padding: var(--space-medium) var(--space-large);
+      padding: var(--space-large);
       border-radius: var(--border-radius-medium, 8px);
       background: var(--background-color-canvas);
     }
@@ -36,12 +37,20 @@ export class UpdateCard extends LitElement {
     .title {
       display: flex;
       align-items: center;
-      gap: var(--space-small);
-      font-weight: 600;
+      gap: var(--space-medium);
+      flex: 1;
+      min-width: 0;
     }
     .title p {
       margin: 0;
       padding: 0;
+    }
+    .title .headline {
+      font-weight: 600;
+    }
+    .addon-name {
+      font-size: 0.85rem;
+      color: var(--text-color-deemphasized, GrayText);
     }
     .message {
       margin: 0;
@@ -58,6 +67,16 @@ export class UpdateCard extends LitElement {
     }
   `;
 
+  // Where "View" goes: the Versions tab for an entry about a version, the
+  // add-on otherwise. The title's own links point at the public listing, so
+  // this is the DevHub counterpart. There's no per-version page to deep-link
+  // to yet, and the activity API doesn't give us a version id either.
+  #viewHref() {
+    const { addonSlug, version } = this.item;
+    const addon = `${BASE}/addon/${addonSlug}`;
+    return version ? `${addon}/versions` : addon;
+  }
+
   render() {
     const u = this.item;
     const status = u.versionStatus;
@@ -68,23 +87,26 @@ export class UpdateCard extends LitElement {
              title. -->
         <div class="head">
           <span class="title">
+            <!-- TODO: Fix type error in acorn-web-components, this should be a valid use -->
             <moz-status-dot
               icon
-              type=${status?.badge ?? 'warning'}
+              type=${status?.badge ?? 'information'}
             ></moz-status-dot>
-            <p>
-              ${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}
-            </p>
+            <span>
+              <p class="headline">${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}</p>
+              ${
+                u.addonName
+                  ? html`<p class="addon-name">${u.addonName}</p>`
+                  : nothing
+              }
+            </span>
           </span>
-          <moz-button size="small" href="${BASE}/addon/${u.addonSlug}">View</moz-button>
+          <moz-button size="small" href=${this.#viewHref()}>View</moz-button>
         </div>
         <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
         <div class="foot">
-          ${
-            u.version.length
-              ? html`<span>Version ${u.version}</span>`
-              : undefined
-          }
+          <span>${u.user ? `${u.date} by ${u.user}` : u.date}</span>
+          ${u.version.length ? html`<span>Version: ${u.version}</span>` : nothing}
           ${
             status
               ? html`
@@ -92,10 +114,15 @@ export class UpdateCard extends LitElement {
                   ${status.label}
                 </moz-status-badge>
               `
-              : undefined
+              : nothing
           }
-          ${u.tags.map((t) => html`<span>${t}</span>`)}
-          <span>${u.date}</span>
+          ${
+            u.channel
+              ? html`<distribution-badge
+                  distribution=${u.channel}
+                ></distribution-badge>`
+              : nothing
+          }
         </div>
       </div>
     `;
