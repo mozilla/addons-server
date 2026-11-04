@@ -225,7 +225,7 @@ export async function fetchProfile(): Promise<Developer> {
 // Lists the add-ons the authenticated session owns; no author param needed.
 export async function fetchAddons(): Promise<Addon[]> {
   const data = await apiFetch<Paginated<ApiAddon>>(
-    '/addons/addon/?lang=en-US&page_size=50',
+    '/addons/addon/?lang=en-US&page_size=50&sort=last_updated',
   );
   return (data.results ?? []).map(mapAddon);
 }
