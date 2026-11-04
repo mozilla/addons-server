@@ -29,7 +29,7 @@ describe('visibility-badge', () => {
         .querySelector('moz-status-badge')
         ?.getAttribute('icon-start'),
     );
-    expect(visibleRoot.querySelector('button')).toBeNull();
+    expect(visibleRoot.querySelector('moz-button')).toBeNull();
   });
 
   it('opens a panel list of the slotted content when clicked', async () => {
@@ -44,8 +44,9 @@ describe('visibility-badge', () => {
     expect(panel?.querySelector('slot')).not.toBeNull();
     const toggle = vi.fn();
     Object.assign(panel as MozPanelList, { toggle });
-    root.querySelector('button')?.click();
-    expect(toggle).toHaveBeenCalled();
+    const button = root.querySelector('moz-button') as HTMLElement;
+    button.click();
+    expect(toggle).toHaveBeenCalledWith(expect.any(Event), button);
   });
 });
 
