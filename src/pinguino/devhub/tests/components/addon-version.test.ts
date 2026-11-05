@@ -36,20 +36,42 @@ function versionNumbers(section: Element | null | undefined): string[] {
 describe('addon-version', () => {
   it('splits the current version from the other versions', async () => {
     const versions: Version[] = [
-      { ...DEFAULT_VERSION, id: 1, version: '1.0', channel: 'listed' },
+      {
+        ...DEFAULT_VERSION,
+        id: 1,
+        version: '1.0',
+        channel: 'listed',
+        file: { ...DEFAULT_VERSION.file, status: 'unreviewed' },
+      },
       { ...DEFAULT_VERSION, id: 2, version: '2.0', channel: 'unlisted' },
       { ...DEFAULT_VERSION, id: 3, version: '3.0', channel: 'enterprise' },
     ];
+
+    // The unapproved current_version is not shown in the 'Current on AMO' section.
+    const unapprovedRoot = await mountVersions(
+      { currentVersion: versions[0] },
+      versions,
+    );
+    expect(unapprovedRoot.querySelector('.version-section.current')).toBeNull();
+    // It stays in the 'other versions' section instead.
+    expect(
+      versionNumbers(
+        unapprovedRoot.querySelector('.version-section:not(.current)'),
+      ),
+    ).toEqual(['1.0', '2.0', '3.0']);
+
+    // Once approved...
+    versions[0].file.status = 'public';
     const root = await mountVersions({ currentVersion: versions[0] }, versions);
 
-    // The current_version is shown in the listed version section.
+    // ...The current (approved) version is shown in the 'Current on AMO' section.
     const current = root.querySelector('.version-section.current');
     expect(current?.querySelector('.section-title')?.textContent).toContain(
-      'Listed Version',
+      'Current on AMO',
     );
     expect(versionNumbers(current)).toEqual(['1.0']);
 
-    // And not in the 'other versions' section.
+    // And no longer in the 'other versions' section.
     const remaining = root.querySelector('.version-section:not(.current)');
     expect(versionNumbers(remaining)).toEqual(['2.0', '3.0']);
 
@@ -89,7 +111,10 @@ describe('addon-version', () => {
 
   it('points an incomplete listing back to the submission flow', async () => {
     const root = await mountVersions({ status: ADDON_STATUS.incomplete }, [
-      DEFAULT_VERSION,
+      {
+        ...DEFAULT_VERSION,
+        file: { ...DEFAULT_VERSION.file, status: 'unreviewed' },
+      },
     ]);
     const continueUrl = '/addon/ad-blocker/submit/details';
 
