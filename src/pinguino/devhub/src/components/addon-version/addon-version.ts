@@ -13,6 +13,7 @@ import {
   versionsQuery,
 } from '../../data';
 import '../../foundations/badges';
+import crown from '../../static/img/crown.svg';
 
 const LABELS = ['Version', 'Status', 'Distribution', 'Visibility', 'Date'];
 
@@ -47,10 +48,13 @@ export class AddonVersion extends LitElement {
       border-radius: var(--border-radius-large);
       background-color: var(--background-color-canvas);
     }
+    .version-section .icon{
+      max-height: 1.5em;
+    }
     .version-section.current {
       background-color: light-dark(
         var(--color-violet-desaturated-10),
-        var(--color-violet-desaturated-80)
+        var(--color-violet-desaturated-70)
       );
     }
     .section-title {
@@ -73,7 +77,10 @@ export class AddonVersion extends LitElement {
       display: grid;
       grid-template-columns: subgrid;
       align-items: center;
-      padding: var(--space-xlarge) var(--space-medium);
+      padding: var(--space-xxlarge) var(--space-medium);
+    }
+    .current .version-row {
+      padding: var(--space-xlarge) 0;
     }
     .version-row:not(.labels) + .version-row {
       border-top: 1px solid var(--border-color);
@@ -109,6 +116,9 @@ export class AddonVersion extends LitElement {
     }
     .manage-button {
       --button-text-color-ghost: var(--color-violet-50);
+    }
+    visibility-badge::part(button) {
+      --button-padding-inline-small: var(--space-xxsmall);
     }
   `;
 
@@ -205,7 +215,10 @@ export class AddonVersion extends LitElement {
         gap="large"
         class=${classMap({ 'version-section': true, current })}
       >
-        <h3 class="section-title">${title}</h3>
+        <h3 class="section-title">
+          ${current ? html`<img class="icon" src=${crown} alt=""/>` : nothing}
+          ${title}
+        </h3>
         <div class="version-list">
           <div class="version-row labels">
             ${LABELS.map((label) => html`<div>${label}</div>`)}
@@ -232,7 +245,10 @@ export class AddonVersion extends LitElement {
   render() {
     const versions = this.#versions().data;
     if (!versions) return nothing;
-    const current = this.addon.currentVersion;
+    let current: Version;
+    if (this.addon.currentVersion?.file?.status === 'public') {
+      current = this.addon.currentVersion;
+    }
     const otherVersions = versions.filter(
       (version) => version.id !== current?.id,
     );
@@ -251,7 +267,7 @@ export class AddonVersion extends LitElement {
               slot="actions"
               variant="primary"
               icon-start="add"
-              href="${BASE}/addon/${this.addon.slug}/versions/submit/distribution"
+              href="${BASE}/addon/${this.addon.slug}/versions/submit/"
               >Upload a new version</moz-button
             >
           </moz-page-header>
@@ -264,7 +280,7 @@ export class AddonVersion extends LitElement {
           ${
             current
               ? this.renderSection(
-                  'Listed Version',
+                  'Current on AMO',
                   this.renderVersion(current, { showVisibility: true }),
                   { current: true },
                 )

@@ -45,6 +45,7 @@ export class VisibilityBadge extends LitElement {
       ${
         hasPopover
           ? html`<moz-button
+              part="button"
               variant='ghost'
               size="small"
               @click=${(e: Event) => this.panel.toggle(e, e.currentTarget as HTMLElement)}
