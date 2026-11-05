@@ -96,7 +96,7 @@ export function resolveListingState(
   status: StatusInfo,
   visibility: AddonVisibility,
 ): StatusInfo {
-  return visibility === 'invisible' ? VISIBILITY.invisible : status;
+  return (status !==ADDON_STATUS.disabled && visibility === 'invisible') ? VISIBILITY.invisible : status;
 }
 
 // An author can't un-hide what Mozilla disabled or deleted.
