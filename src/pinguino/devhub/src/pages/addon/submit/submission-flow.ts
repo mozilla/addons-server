@@ -472,12 +472,8 @@ export class AddonSubmission extends LitElement {
   }
 
   private renderSubmitNotice() {
-    // The add-on's warning is per channel, so we need a channel chosen, i.e. after the
-    // distribution step. Ideally we'd use this.channel but it defaults to listed.
-    const addonNotice =
-      this.steps[this.currStep]?.id === 'distribution'
-        ? undefined
-        : this.#addon().data?.submissionNotice?.[this.channel];
+    // The add-on's warning is per channel
+    const addonNotice = this.#addon().data?.submissionNotice?.[this.channel];
     const message =
       this.#profile().data?.siteStatus?.submissionNotice ?? addonNotice;
     if (!message) return nothing;

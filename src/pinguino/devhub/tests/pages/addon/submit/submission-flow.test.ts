@@ -405,7 +405,7 @@ describe('addon-submission', () => {
       vi.mocked(api.fetchAddons).mockResolvedValue([
         makeAddon({ listed: 'Listed submissions are paused.' }),
       ]);
-      // The upload step (not Distribution) with the default 'listed' channel.
+      // Defaults to the 'listed' channel.
       const $ = await mountFlow('');
       await expect
         .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
@@ -424,16 +424,28 @@ describe('addon-submission', () => {
       expect($.root.querySelector('#submit-status-banner')).toBeNull();
     });
 
-    it('ignores the per-channel notice on the Distribution step', async () => {
+    it('follows the selected channel', async () => {
       vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: 'Listed submissions are paused.' }),
+        makeAddon({
+          listed: 'Listed submissions are paused.',
+          unlisted: 'Unlisted submissions are paused.',
+        }),
       ]);
       const $ = await mountFlow('distribution');
-      // Let the add-on query settle; the channel isn't settled on this step.
+
+      // Starts on the default 'listed' channel.
       await expect
-        .poll(() => vi.mocked(api.fetchAddons).mock.calls.length)
-        .toBeGreaterThan(0);
-      expect($.root.querySelector('#submit-status-banner')).toBeNull();
+        .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
+        .toContain('Listed submissions are paused.');
+
+      // Choosing another channel swaps the notice.
+      pick(
+        $.step('submit-distribution').querySelector('moz-visual-picker'),
+        'unlisted',
+      );
+      await expect
+        .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
+        .toContain('Unlisted submissions are paused.');
     });
 
     it('prefers the site-status notice over the add-on notice', async () => {
