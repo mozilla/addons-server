@@ -1,4 +1,4 @@
-import type { IconName } from 'acorn-web-components';
+import type { IconName } from '@mozilla/lit-web-components';
 
 export type SectionId =
   | 'listing-details'

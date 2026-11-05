@@ -1,4 +1,4 @@
-import type { InputType } from 'acorn-web-components';
+import type { InputType } from '@mozilla/lit-web-components';
 import { html, nothing } from 'lit';
 import type { FormController } from './form-controller';
 
