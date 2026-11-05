@@ -51,6 +51,7 @@ export {
   type AddonVisibility,
   type ApiStatus,
   canChangeVisibility,
+  isIncompleteSubmission,
   resolveAddonStatus,
   resolveListingState,
   resolveVersionStatus,

@@ -7,6 +7,7 @@ import {
   type Addon,
   type AddonVisibility,
   formatDate,
+  isIncompleteSubmission,
   updateAddon,
   type Version,
   VISIBILITY,
@@ -174,9 +175,8 @@ export class AddonVersion extends LitElement {
 
   renderVersion(
     version: Version,
-    { nextListed = false, showVisibility = false } = {},
+    { nextListed = false, showVisibility = false, incomplete = false } = {},
   ) {
-    const incompleteVersion = this.addon.status === ADDON_STATUS.incomplete;
     return html`
       <div
         class=${classMap({
@@ -202,8 +202,8 @@ export class AddonVersion extends LitElement {
         <moz-button
           class="manage-button"
           variant="ghost"
-          href=${incompleteVersion ? this.#continueUrl : version.edit_url}
-          >${incompleteVersion ? 'Continue Uploading' : 'Manage version'}</moz-button
+          href=${incomplete && version.channel === 'listed' ? this.#continueUrl : version.edit_url}
+          >${incomplete && version.channel === 'listed' ? 'Continue Uploading' : 'Manage version'}</moz-button
         >
       </div>
     `;
@@ -245,13 +245,14 @@ export class AddonVersion extends LitElement {
   render() {
     const versions = this.#versions().data;
     if (!versions) return nothing;
-    let current: Version;
-    if (this.addon.currentVersion?.file?.status === 'public') {
-      current = this.addon.currentVersion;
-    }
+    const current =
+      this.addon.currentVersion?.file?.status === 'public'
+        ? this.addon.currentVersion
+        : undefined;
     const otherVersions = versions.filter(
       (version) => version.id !== current?.id,
     );
+    const incomplete = isIncompleteSubmission(this.addon.status, versions);
     let nextListedId: number | undefined;
     if (current) {
       nextListedId = this.getNextListed(current, otherVersions);
@@ -272,16 +273,15 @@ export class AddonVersion extends LitElement {
             >
           </moz-page-header>
 
-          ${
-            this.addon.status === ADDON_STATUS.incomplete
-              ? this.renderIncompleteMessage()
-              : nothing
-          }
+          ${incomplete ? this.renderIncompleteMessage() : nothing}
           ${
             current
               ? this.renderSection(
                   'Current on AMO',
-                  this.renderVersion(current, { showVisibility: true }),
+                  this.renderVersion(current, {
+                    showVisibility: true,
+                    incomplete,
+                  }),
                   { current: true },
                 )
               : nothing
@@ -293,6 +293,7 @@ export class AddonVersion extends LitElement {
                   otherVersions.map((version) =>
                     this.renderVersion(version, {
                       nextListed: version.id === nextListedId,
+                      incomplete,
                     }),
                   ),
                 )
