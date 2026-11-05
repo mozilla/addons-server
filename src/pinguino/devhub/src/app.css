@@ -3,8 +3,9 @@
   font-style: normal;
   font-weight: 200 700;
   font-display: swap;
-  src: url("./fonts/MozillaHeadline[wdth,wght].woff2") format("woff2");
+  src: url("../src/static/fonts/MozillaHeadline[wdth\,wght].woff2") format("woff2");
 }
+
 
 body {
   margin: 0;
