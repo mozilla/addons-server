@@ -1,8 +1,9 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
-import type { Addon } from '../data';
+import { type Addon, resolveListingState } from '../data';
 import '../foundations/badges';
+import './addon-actions-menu';
 
 // Host only (strip scheme/path) for the compact homepage link in the stats row.
 function hostOf(url: string): string {
@@ -21,25 +22,9 @@ export class AddonManageHeader extends LitElement {
     :host {
       display: block;
     }
-    .back {
-      display: flex;
-      align-items: center;
-      margin: var(--space-small) 0;
-      color: var(--text-color-deemphasized);
-    }
-    .back a {
-      color: var(--text-color-deemphasized, GrayText);
-      text-decoration: none;
-    }
-    .back a:hover {
-      text-decoration: underline;
-    }
-    .back moz-icon {
-      color: var(--text-color-deemphasized);
-    }
     moz-breadcrumb-group {
       display: block;
-      margin-bottom: var(--space-large);
+      margin: var(--space-large) 0;
     }
     .bar {
       display: flex;
@@ -56,8 +41,14 @@ export class AddonManageHeader extends LitElement {
       flex: 1;
       min-width: 0;
     }
+    .title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xlarge);
+      margin-bottom: var(--space-xsmall);
+    }
     h1 {
-      margin: 0 0 var(--space-xsmall);
+      margin: 0;
       font-size: 1.5rem;
     }
     .tagline {
@@ -86,7 +77,7 @@ export class AddonManageHeader extends LitElement {
       flex: none;
       display: flex;
       align-items: center;
-      gap: var(--space-small);
+      gap: var(--space-medium);
     }
   `;
 
@@ -130,9 +121,8 @@ export class AddonManageHeader extends LitElement {
 
   render() {
     const a = this.addon;
+    const state = resolveListingState(a.status, a.visibility);
     return html`
-      <!-- TODO: "Back to Dashboard" duplicates the breadcrumb's Dashboard link — confirm we want both. -->
-      <p class="back"><moz-icon name="chevron-left"></moz-icon><a href="${BASE}/">Back to Dashboard</a></p>
       <moz-breadcrumb-group label="Breadcrumb">
         <moz-breadcrumb href="${BASE}/">Dashboard</moz-breadcrumb>
         <moz-breadcrumb>${a.name}</moz-breadcrumb>
@@ -144,13 +134,17 @@ export class AddonManageHeader extends LitElement {
             : undefined
         }
         <div class="body">
-          <h1>${a.name}</h1>
+          <div class="title">
+            <h1>${a.name}</h1>
+            <div class="actions">
+              <listing-status-badge type=${state.badge}>
+                ${state.label}
+              </listing-status-badge>
+              <addon-actions-menu .addon=${a}></addon-actions-menu>
+            </div>
+          </div>
           ${a.summary ? html`<p class="tagline">${a.summary}</p>` : nothing}
           <div class="stats">${this.#stats()}</div>
-        </div>
-        <div class="actions">
-          <!-- TODO: implement addon status management https://github.com/mozilla/addons/issues/16389 -->
-          <visibility-badge visibility=${a.visibility}></visibility-badge>
         </div>
       </div>
     `;

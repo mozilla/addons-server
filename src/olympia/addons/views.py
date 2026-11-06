@@ -465,6 +465,12 @@ class AddonViewSet(
                     djangoQ(addonuser__user=self.request.user.id)
                     & ~djangoQ(addonuser__role=amo.AUTHOR_ROLE_DELETED)
                 )
+                # get_queryset() hands anyone with ADDONS_API_VIEW_DELETED the
+                # unfiltered queryset so the detail endpoint can serve a
+                # deleted add-on; this listing never should, for anyone. And
+                # deleting leaves the AddonUser role alone, so the role filter
+                # above doesn't catch them.
+                queryset = queryset.exclude(status=amo.STATUS_DELETED)
         return super().filter_queryset(queryset)
 
     @listingcontentreview.mapping.patch

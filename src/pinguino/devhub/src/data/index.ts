@@ -7,9 +7,11 @@ export {
   formatDate,
   localized,
 } from './api';
+export { isAddonOwner } from './permissions';
 export {
   acceptAgreement,
   activityQuery,
+  addonOwnershipQuery,
   addonQuery,
   addonSourceQuery,
   addonsQuery,
@@ -26,8 +28,10 @@ export {
   pendingAuthorsQuery,
   profileQuery,
   queryKeys,
+  removeAddon,
   removeAuthor,
   removePreview,
+  setAddonVisibility,
   siteStatusQuery,
   updateAddon,
   updateAuthor,
@@ -49,6 +53,7 @@ export {
   type ApiStatus,
   canChangeVisibility,
   resolveAddonStatus,
+  resolveListingState,
   resolveVersionStatus,
   resolveVisibility,
   type StatusInfo,

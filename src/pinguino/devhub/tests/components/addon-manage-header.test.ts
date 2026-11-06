@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { AddonManageHeader } from '../../src/components/addon-manage-header';
 import '../../src/components/addon-manage-header';
+import type { AddonActionsMenu } from '../../src/components/addon-actions-menu';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS } from '../../src/data';
 import { mount } from '../helpers/fixture';
@@ -14,6 +15,7 @@ const base: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
+  canChangeVisibility: true,
   channels: ['listed'],
 };
 
@@ -25,27 +27,35 @@ async function header(addon: Partial<Addon>) {
 }
 
 describe('addon-manage-header', () => {
-  it('renders the name, a back link, and the visibility badge', async () => {
+  it('renders the name, the breadcrumb, and the status badge', async () => {
     const root = await header({ visibility: 'visible' });
     expect(root.querySelector('h1')?.textContent).toBe('Ad Blocker');
-    expect(root.querySelector('.back a')?.getAttribute('href')).toBe(
-      '/developers/',
-    );
-    // Breadcrumb: Dashboard › {name}.
-    const crumbs = [...root.querySelectorAll('moz-breadcrumb')].map((c) =>
-      c.textContent?.trim(),
-    );
-    expect(crumbs).toEqual(['Dashboard', 'Ad Blocker']);
-    expect(
-      root.querySelector('visibility-badge')?.getAttribute('visibility'),
-    ).toBe('visible');
+    // Breadcrumb: Dashboard › {name}. The Dashboard crumb is the only way
+    // back now that the separate "Back to Dashboard" link is gone.
+    const crumbs = [...root.querySelectorAll('moz-breadcrumb')];
+    expect(crumbs.map((c) => c.textContent?.trim())).toEqual([
+      'Dashboard',
+      'Ad Blocker',
+    ]);
+    expect(crumbs[0].getAttribute('href')).toBe('/developers/');
+    const badge = root.querySelector('listing-status-badge');
+    expect(badge?.textContent?.trim()).toBe('Live');
+    expect(badge?.getAttribute('type')).toBe('success');
   });
 
-  it('passes an invisible add-on to the visibility badge', async () => {
+  // Deactivating the listing is the author's own doing, so it's what the
+  // header reports — not the review status underneath it.
+  it('shows the developer deactivation over the review status', async () => {
     const root = await header({ visibility: 'invisible' });
-    expect(
-      root.querySelector('visibility-badge')?.getAttribute('visibility'),
-    ).toBe('invisible');
+    const badge = root.querySelector('listing-status-badge');
+    expect(badge?.textContent?.trim()).toBe('Deactivated by developer');
+    expect(badge?.getAttribute('type')).toBe('ghost');
+  });
+
+  it('hands the add-on to the actions menu', async () => {
+    const root = await header({ visibility: 'invisible' });
+    const menu = root.querySelector('addon-actions-menu') as AddonActionsMenu;
+    expect(menu?.addon.visibility).toBe('invisible');
   });
 
   it('renders rating, review count and a listing link when present', async () => {

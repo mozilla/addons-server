@@ -299,13 +299,14 @@ class CinderJob(ModelBase):
         decision_notes,
         policy_ids,
         job_queue,
+        override_of=None,
     ):
         """Process a decision as sent by the webhook. If a decision with that
         `decision_cinder_id` already exists, do nothing.
 
         Note: job can be None if the decision is made on a job that we don't know about,
         e.g. a job created by a workflow event for content review, rather than an abuse
-        report.
+        report, or manual decision (optionally, `override_of` too).
         """
         # We expect decision_actions to be correctly ordered already.
         # process_webhook_payload_decision validates the actions and orders them.
@@ -338,7 +339,7 @@ class CinderJob(ModelBase):
                 'private_notes': decision_notes[
                     : ContentDecision._meta.get_field('reasoning').max_length
                 ],
-                'override_of': job.final_decision if job else None,
+                'override_of': job.final_decision if job else override_of,
                 'cinder_job': job,
                 'from_job_queue': job_queue,
             },

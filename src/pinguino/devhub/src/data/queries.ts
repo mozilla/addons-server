@@ -8,6 +8,7 @@ import { LOCALE } from '../base';
 import {
   addAuthor,
   addPreview,
+  deleteAddon,
   deleteAuthor,
   deletePreview,
   deleteSession,
@@ -35,7 +36,9 @@ import {
   postVersion,
   uploadIcon,
 } from './api';
+import { isAddonOwner } from './permissions';
 import { queryClient } from './query-client';
+import type { AddonVisibility } from './statuses';
 import type {
   Addon,
   AddonAuthorAdd,
@@ -45,6 +48,7 @@ import type {
   AgreementAcceptState,
   EulaPolicyEdit,
   FileUpload,
+  Update,
   Version,
 } from './types';
 
@@ -142,6 +146,35 @@ export async function updateAddon(slug: string, edit: AddonListingEdit) {
   return updated;
 }
 
+// Hide or unhide a listing. `invisible` is the author's own setting, which the
+// API takes as `is_disabled`; Mozilla's own disabling isn't writable here.
+export async function setAddonVisibility(
+  slug: string,
+  visibility: AddonVisibility,
+) {
+  return updateAddon(slug, { is_disabled: visibility === 'invisible' });
+}
+
+// Permanently delete an add-on. Invalidating alone isn't enough: it marks the
+// list stale and refetches only *active* observers, and the manage view is
+// unmounting as this resolves — so the deleted add-on would sit in the cache
+// and render on the dashboard. Drop it by hand, then invalidate so the
+// server's own list still replaces ours.
+export async function removeAddon(slug: string) {
+  await deleteAddon(slug);
+  queryClient.setQueryData(queryKeys.addons, (addons?: Addon[]) =>
+    addons?.filter((addon) => addon.slug !== slug),
+  );
+  // The dashboard lists the add-on twice: as a card, and by name in the
+  // activity feed. The feed drops a deleted add-on's entries server-side, so
+  // this one has to go too or the dashboard keeps naming what we just deleted.
+  queryClient.setQueryData(queryKeys.updates, (updates?: Update[]) =>
+    updates?.filter((update) => update.addonSlug !== slug),
+  );
+  await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  await queryClient.invalidateQueries({ queryKey: queryKeys.updates });
+}
+
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
 
 // The EULA/privacy text (separate endpoint), for the view-mode preview or the
@@ -237,6 +270,18 @@ export function pendingAuthorsQuery(
     }),
     queryClient,
   );
+}
+
+// Whether the signed-in developer owns this add-on, from the two queries that
+// answer it together. Both are shared keys, so a page that already shows the
+// authors or the profile pays nothing extra to ask.
+export function addonOwnershipQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  const authors = authorsQuery(host, getSlug);
+  const profile = profileQuery(host);
+  return () => isAddonOwner(authors().data, profile().data?.id);
 }
 
 export async function updateAuthor(

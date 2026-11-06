@@ -1025,6 +1025,24 @@ class TestAddonViewSetList(TestCase):
             disabled.pk,
         }
 
+    def test_deleted_not_returned_to_viewers_of_deleted_either(self):
+        # Anyone with ADDONS_API_VIEW_DELETED gets Addon.unfiltered from
+        # get_queryset(), which the detail endpoint needs; this listing is the
+        # developer's own dashboard, so deleted add-ons stay out of it for
+        # everyone.
+        self.grant_permission(self.user, amo.permissions.ADDONS_API_VIEW_DELETED)
+        kept = addon_factory(users=[self.user])
+        deleted = addon_factory(users=[self.user])
+        deleted.delete()
+        assert deleted.reload().status == amo.STATUS_DELETED
+        # Deleting the add-on leaves the authorship alone, so the role filter
+        # doesn't exclude it.
+        assert AddonUser.objects.filter(addon=deleted, user=self.user).exists()
+
+        self.client.login_api(self.user)
+        data = self._get_results()
+        assert [result['id'] for result in data['results']] == [kept.pk]
+
     def test_sort_by_created(self):
         older = addon_factory(users=[self.user], created=self.days_ago(10))
         newer = addon_factory(users=[self.user], created=self.days_ago(1))

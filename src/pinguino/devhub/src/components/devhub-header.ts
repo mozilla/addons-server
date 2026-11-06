@@ -2,7 +2,7 @@ import { css, html, LitElement, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE } from '../base';
 import { profileQuery, type SiteStatus, siteStatusQuery } from '../data';
-import { classicPath } from '../navigation';
+import { switchBackPath } from '../switch-back';
 import './devhub-account-menu';
 
 const NAV = [
@@ -70,7 +70,7 @@ export class DevhubHeader extends LitElement {
   // cookie; the bare href is a no-JS fallback (view defaults to the index).
   #switchToClassic = (event: Event) => {
     event.preventDefault();
-    const path = classicPath(location.pathname, BASE) + location.search;
+    const path = switchBackPath();
     location.href = `${BASE}/switch-pinguino?path=${encodeURIComponent(path)}`;
   };
 
