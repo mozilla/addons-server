@@ -198,8 +198,26 @@ describe('devhub-header', () => {
     const banner = (root: ShadowRoot) =>
       root.querySelector('#site-status-banner');
 
-    it('is absent when signed out (no profile, so no site status)', async () => {
+    it('does not flash the /site fallback while the profile is loading', async () => {
+      loading();
+      // A fallback value is available, but it must stay gated until the profile
+      // actually errors, so nothing flashes during the pending state.
+      siteStatusState.data = {
+        readOnly: true,
+        siteNotice: 'Should not flash.',
+        submissionNotice: null,
+      };
+      const root = (await header()).shadowRoot as ShadowRoot;
+      expect(banner(root)).toBeNull();
+    });
+
+    it('is absent when signed out, and /site response is okay too', async () => {
       signedOut();
+      siteStatusState.data = {
+        readOnly: false,
+        siteNotice: null,
+        submissionNotice: null,
+      };
       const root = (await header()).shadowRoot as ShadowRoot;
       expect(banner(root)).toBeNull();
     });
@@ -210,7 +228,7 @@ describe('devhub-header', () => {
       expect(banner(root)).toBeNull();
     });
 
-    it('shows the server-provided notice when one is set', async () => {
+    it('shows the site notice when one is set in the profile', async () => {
       signedIn({
         siteStatus: {
           readOnly: false,
@@ -241,7 +259,7 @@ describe('devhub-header', () => {
       expect(bar?.textContent).toContain('website maintenance');
     });
 
-    it('prefers the notice over the read-only fallback when both apply', async () => {
+    it('prefers siteNotice over the read-only fallback when both apply', async () => {
       signedIn({
         siteStatus: {
           readOnly: true,
@@ -256,61 +274,60 @@ describe('devhub-header', () => {
       expect(bar?.textContent).not.toContain('website maintenance');
     });
 
-    describe('fallback to the standalone site-status query', () => {
-      it('shows the banner from the fallback when the profile has errored', async () => {
-        // Signed out: the profile query errors, so the fallback supplies status.
-        signedOut();
-        siteStatusState.data = {
+    it('shows the site notice from /site, after the profile has errored', async () => {
+      // Signed out: the profile query errors, so the fallback supplies status.
+      signedOut();
+      siteStatusState.data = {
+        readOnly: false,
+        siteNotice: 'Fallback notice.',
+        submissionNotice: null,
+      };
+      const root = (await header()).shadowRoot as ShadowRoot;
+
+      const bar = banner(root);
+      expect(bar).not.toBeNull();
+      expect(bar?.textContent).toContain('Fallback notice.');
+    });
+
+    it('enables the fallback to /site only once the profile has errored', async () => {
+      // Mount so the header hands its enabled predicate to siteStatusQuery.
+      signedOut();
+      await header();
+      const enabled = siteStatusState.enabled;
+      expect(enabled).toBeTypeOf('function');
+
+      // Errored profile -> fallback is needed.
+      signedOut();
+      expect(enabled?.()).toBe(true);
+
+      // Pending or signed-in profile -> fallback must stay dormant so it never
+      // fires early or races the profile request.
+      loading();
+      expect(enabled?.()).toBe(false);
+      signedIn();
+      expect(enabled?.()).toBe(false);
+    });
+
+    it('prefers the profile status over the fallback when signed in', async () => {
+      signedIn({
+        siteStatus: {
           readOnly: false,
-          siteNotice: 'Fallback notice.',
+          siteNotice: 'From profile.',
           submissionNotice: null,
-        };
-        const root = (await header()).shadowRoot as ShadowRoot;
-
-        const bar = banner(root);
-        expect(bar).not.toBeNull();
-        expect(bar?.textContent).toContain('Fallback notice.');
+        },
       });
+      // A stale fallback value must not win over the live profile status.
+      // Note this is not a real scenario: /profile includes the identical site status
+      siteStatusState.data = {
+        readOnly: false,
+        siteNotice: 'From fallback.',
+        submissionNotice: null,
+      };
+      const root = (await header()).shadowRoot as ShadowRoot;
 
-      it('enables the fallback only once the profile has errored', async () => {
-        // Mount so the header hands its enabled predicate to siteStatusQuery.
-        signedOut();
-        await header();
-        const enabled = siteStatusState.enabled;
-        expect(enabled).toBeTypeOf('function');
-
-        // Errored profile -> fallback is needed.
-        signedOut();
-        expect(enabled?.()).toBe(true);
-
-        // Pending or signed-in profile -> fallback must stay dormant so it never
-        // fires early or races the profile request.
-        loading();
-        expect(enabled?.()).toBe(false);
-        signedIn();
-        expect(enabled?.()).toBe(false);
-      });
-
-      it('prefers the profile status over the fallback when signed in', async () => {
-        signedIn({
-          siteStatus: {
-            readOnly: false,
-            siteNotice: 'From profile.',
-            submissionNotice: null,
-          },
-        });
-        // A stale fallback value must not win over the live profile status.
-        siteStatusState.data = {
-          readOnly: false,
-          siteNotice: 'From fallback.',
-          submissionNotice: null,
-        };
-        const root = (await header()).shadowRoot as ShadowRoot;
-
-        const bar = banner(root);
-        expect(bar?.textContent).toContain('From profile.');
-        expect(bar?.textContent).not.toContain('From fallback.');
-      });
+      const bar = banner(root);
+      expect(bar?.textContent).toContain('From profile.');
+      expect(bar?.textContent).not.toContain('From fallback.');
     });
   });
 });
