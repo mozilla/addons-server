@@ -21,6 +21,7 @@ import {
   fetchEulaPolicy,
   fetchPendingAuthors,
   fetchProfile,
+  fetchSiteStatus,
   fetchUpdates,
   fetchUpload,
   fetchVersion,
@@ -55,6 +56,7 @@ import type {
 // key so navigating to a detail view reuses the cached list, not a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
+  siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
   updates: ['updates'] as const,
   agreement: ['agreement'] as const,
@@ -85,7 +87,24 @@ export function profileQuery(host: ReactiveControllerHost) {
     () => ({
       queryKey: queryKeys.profile,
       queryFn: fetchProfile,
-      staleTime: Number.POSITIVE_INFINITY,
+    }),
+    queryClient,
+  );
+}
+
+// Standalone site status, used as a fallback when the profile query can't
+// supply it (signed out, or any other profile failure). Gated by `getEnabled`
+// so the request only fires once, and if, that fallback is actually needed.
+export function siteStatusQuery(
+  host: ReactiveControllerHost,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.siteStatus,
+      queryFn: fetchSiteStatus,
+      enabled: getEnabled(),
     }),
     queryClient,
   );

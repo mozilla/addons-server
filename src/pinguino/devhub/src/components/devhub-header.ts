@@ -1,7 +1,7 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE } from '../base';
-import { profileQuery } from '../data';
+import { profileQuery, type SiteStatus, siteStatusQuery } from '../data';
 import { switchBackPath } from '../switch-back';
 import './devhub-account-menu';
 
@@ -51,12 +51,20 @@ export class DevhubHeader extends LitElement {
     .spacer {
       margin-inline-start: auto;
     }
+    #site-status-banner {
+      margin: 0.2em;
+    }
   `;
 
   // Signed-in developer, session-lived. data present => signed in; no data (and
   // not loading) => signed out, since the profile can't be fetched without a
   // session.
   #profile = profileQuery(this);
+
+  // Site status is included in the profile response. When that request fails
+  // (signed out, or any other reason) - but only once the profile has
+  // actually errored - we retry with the standalone site status query.
+  #siteStatus = siteStatusQuery(this, () => this.#profile().isError);
 
   // Switch to the classic devhub via the Django endpoint that flips the PINGUINO
   // cookie; the bare href is a no-JS fallback (view defaults to the index).
@@ -82,9 +90,27 @@ export class DevhubHeader extends LitElement {
     >`;
   }
 
+  #siteStatusBanner(siteStatus: SiteStatus | undefined) {
+    if (!siteStatus?.siteNotice && !siteStatus?.readOnly) {
+      return nothing;
+    }
+    const message =
+      siteStatus?.siteNotice ||
+      html`<p>Some features are temporarily disabled while we perform website maintenance.
+      We'll be back to full capacity shortly.</p>`;
+    return html`<div class="site-status">
+      <moz-message-bar id="site-status-banner" type="warning" variant="default">
+        ${message}
+      </moz-message-bar>
+    </div>`;
+  }
+
   render() {
     const profile = this.#profile();
+    // Prefer the status carried by the profile; fall back to the standalone query.
+    const siteStatus = profile.data?.siteStatus ?? this.#siteStatus().data;
     return html`
+      ${this.#siteStatusBanner(siteStatus)}
       <div class="bar">
         <a class="brand" href="${BASE}/">Add-ons</a>
         <nav>
@@ -98,13 +124,11 @@ export class DevhubHeader extends LitElement {
         </nav>
         <span class="spacer"></span>
         ${
-          profile.isPending
-            ? nothing
-            : profile.data
-              ? html`<devhub-account-menu
+          profile.isPending || !profile.data
+            ? this.#loginLink()
+            : html`<devhub-account-menu
                   .profile=${profile.data}
                 ></devhub-account-menu>`
-              : this.#loginLink()
         }
       </div>
     `;

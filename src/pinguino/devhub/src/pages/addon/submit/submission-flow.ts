@@ -9,7 +9,11 @@ import {
 } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { BASE } from '../../../base';
-import { disableVersion } from '../../../data/queries';
+import {
+  addonQuery,
+  disableVersion,
+  profileQuery,
+} from '../../../data/queries';
 import type { AddonDistribution, FileUpload } from '../../../data/types';
 import type {
   TimelineSection,
@@ -122,6 +126,11 @@ export class AddonSubmission extends LitElement {
   @query('.outlet > *') private stepElement?: SubmissionStep;
   #sections?: { versionId?: number; sections: FlowSection[] };
   #uploadElement?: HTMLElementTagNameMap['submit-upload'];
+
+  // The submit notice comes from the profile's site status, falling back to the
+  // add-on's per-channel submission warning.
+  #profile = profileQuery(this);
+  #addon = addonQuery(this, () => this.slug);
 
   static styles = css`
     .main-content {
@@ -462,6 +471,19 @@ export class AddonSubmission extends LitElement {
     `;
   }
 
+  private renderSubmitNotice() {
+    // The add-on's warning is per channel
+    const addonNotice = this.#addon().data?.submissionNotice?.[this.channel];
+    const message =
+      this.#profile().data?.siteStatus?.submissionNotice ?? addonNotice;
+    if (!message) return nothing;
+    return html`
+      <moz-message-bar id="submit-status-banner" type="warning" variant="default">
+        ${message}
+      </moz-message-bar>
+    `;
+  }
+
   render() {
     const finish = this.indexOf('finish');
     return html`
@@ -485,6 +507,7 @@ export class AddonSubmission extends LitElement {
         ></timeline-nav>
         <moz-card class="step-content">
           ${this.renderCrumbs()}
+          ${this.renderSubmitNotice()}
           <div
             class="outlet"
             @step-ready=${(e: CustomEvent<{ ready: boolean }>) => {
