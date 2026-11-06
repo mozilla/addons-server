@@ -64,6 +64,7 @@ from .models import (
     ScannerRule,
     ScannerWebhookEvent,
 )
+from .utils import validate_scanner_results
 
 
 log = olympia.core.logger.getLogger('z.scanners.task')
@@ -604,6 +605,12 @@ def _call_webhook(*, webhook, payload, request_id):
 
     if response.status_code not in [200, 201, 202] or 'error' in data:
         raise ValueError(data)
+
+    # A 202 is an acknowledgment, results are sent later via the API.
+    if response.status_code != 202:
+        validate_scanner_results(data)
+    elif 'matchedRules' in data:
+        raise ValueError("'matchedRules' is not allowed in a 202 response")
 
     return data
 
