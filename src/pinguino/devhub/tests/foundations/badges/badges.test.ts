@@ -1,4 +1,5 @@
-import { describe, expect, it } from 'vitest';
+import type { MozPanelList } from 'acorn-web-components';
+import { describe, expect, it, vi } from 'vitest';
 import type { DistributionBadge } from '../../../src/foundations/badges/distribution-badge';
 import type { ListingStatusBadge } from '../../../src/foundations/badges/listing-status-badge';
 import type { VisibilityBadge } from '../../../src/foundations/badges/visibility-badge';
@@ -28,10 +29,10 @@ describe('visibility-badge', () => {
         .querySelector('moz-status-badge')
         ?.getAttribute('icon-start'),
     );
-    expect(visibleRoot.querySelector('button')).toBeNull();
+    expect(visibleRoot.querySelector('moz-button')).toBeNull();
   });
 
-  it('becomes a popover toggle when given slotted content', async () => {
+  it('opens a panel list of the slotted content when clicked', async () => {
     const el = document.createElement('visibility-badge') as VisibilityBadge;
     el.append(document.createElement('moz-radio-group'));
     document.body.append(el);
@@ -39,9 +40,13 @@ describe('visibility-badge', () => {
     const root = el.shadowRoot as ShadowRoot;
     expect(root.querySelector('.chevron')).not.toBeNull();
     expect(label(root)).toBe('Visible');
-    expect(root.querySelector('button')?.getAttribute('popovertarget')).toBe(
-      root.querySelector('[popover] slot')?.parentElement?.id,
-    );
+    const panel = root.querySelector('moz-panel-list');
+    expect(panel?.querySelector('slot')).not.toBeNull();
+    const toggle = vi.fn();
+    Object.assign(panel as MozPanelList, { toggle });
+    const button = root.querySelector('moz-button') as HTMLElement;
+    button.click();
+    expect(toggle).toHaveBeenCalledWith(expect.any(Event), button);
   });
 });
 
