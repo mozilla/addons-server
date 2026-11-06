@@ -124,13 +124,11 @@ export class DevhubHeader extends LitElement {
         </nav>
         <span class="spacer"></span>
         ${
-          profile.isPending
-            ? nothing
-            : profile.data
-              ? html`<devhub-account-menu
+          profile.isPending || !profile.data
+            ? this.#loginLink()
+            : html`<devhub-account-menu
                   .profile=${profile.data}
                 ></devhub-account-menu>`
-              : this.#loginLink()
         }
       </div>
     `;

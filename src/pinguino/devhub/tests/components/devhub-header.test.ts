@@ -170,11 +170,11 @@ describe('devhub-header', () => {
       expect(loc.href).toBe(expected);
     });
 
-    it('shows neither log-in nor account menu while the profile is loading', async () => {
+    it('shows log-in while the profile is loading', async () => {
       loading();
       const root = (await header()).shadowRoot as ShadowRoot;
 
-      expect(root.querySelector('a.login')).toBeNull();
+      expect(root.querySelector('a.login')).not.toBeNull();
       expect(root.querySelector('devhub-account-menu')).toBeNull();
     });
 
