@@ -83,7 +83,6 @@ export function profileQuery(host: ReactiveControllerHost) {
     () => ({
       queryKey: queryKeys.profile,
       queryFn: fetchProfile,
-      staleTime: Number.POSITIVE_INFINITY,
     }),
     queryClient,
   );
@@ -102,7 +101,6 @@ export function siteStatusQuery(
       queryKey: queryKeys.siteStatus,
       queryFn: fetchSiteStatus,
       enabled: getEnabled(),
-      staleTime: Number.POSITIVE_INFINITY,
     }),
     queryClient,
   );
