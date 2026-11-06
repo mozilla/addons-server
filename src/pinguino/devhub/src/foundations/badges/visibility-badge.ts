@@ -1,4 +1,4 @@
-import type { IconName } from 'acorn-web-components';
+import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { type AddonVisibility, VISIBILITY } from '../../data';
@@ -26,7 +26,6 @@ export class VisibilityBadge extends LitElement {
     }
     moz-status-badge::part(badge) {
       padding-inline: var(--space-small);
-      background-color: var(--color-white-alpha-70);
     }
     .chevron {
       --icon-size: var(--icon-size-xsmall);

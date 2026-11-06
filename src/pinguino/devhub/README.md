@@ -44,9 +44,7 @@ The Router intercepts same-origin `<a>` clicks (across shadow DOM) and pushes hi
 
 ## Component library (acorn)
 
-UI is built from Mozilla's [`acorn-web-components`](https://github.com/mozilla/acorn-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
-
-Track the alpha with `npm add acorn-web-components@alpha`.
+UI is built from Mozilla's [`@mozilla/lit-web-components`](https://github.com/mozilla/lit-web-components) (the `moz-*` elements). `src/foundations/acorn.ts` imports the library (registering every `moz-*` element) and its design tokens; components are then used directly in templates.
 
 ## Data and the AMO API
 
@@ -130,5 +128,5 @@ A real-browser layer (Vitest browser mode / Playwright) would close the first th
 Pinguino is local-only for now - it is deliberately not built into the production image, so it doesn't ship to staging or production. `make up` runs it locally via the `pinguino` dev service; the classic devhub is unaffected in every environment.
 
 To ship it later:
-1. Add a build stage to the repo `Dockerfile` that installs `acorn-web-components` and runs `npm run build`, then copy its `dist/` into the image (e.g. `site-static/pinguino/`).
+1. Add a build stage to the repo `Dockerfile` that installs `@mozilla/lit-web-components` and runs `npm run build`, then copy its `dist/` into the image (e.g. `site-static/pinguino/`).
 2. Add a `/pinguino/` SPA-fallback route (`try_files $uri /pinguino/index.html`) to the deploy-infra nginx.

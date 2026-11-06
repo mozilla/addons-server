@@ -87,7 +87,7 @@ export class UpdateCard extends LitElement {
              title. -->
         <div class="head">
           <span class="title">
-            <!-- TODO: Fix type error in acorn-web-components, this should be a valid use -->
+            <!-- TODO: Fix type error in @mozilla/lit-web-components, this should be a valid use -->
             <moz-status-dot
               icon
               type=${status?.badge ?? 'information'}

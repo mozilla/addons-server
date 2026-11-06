@@ -1,4 +1,4 @@
-import type { IconName } from 'acorn-web-components';
+import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { AddonDistribution } from '../../data';
