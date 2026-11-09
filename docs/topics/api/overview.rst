@@ -76,10 +76,10 @@ Unauthorized and Permission Denied
 When returning ``HTTP 401 Unauthorized`` and ``HTTP 403 Permission Denied``
 responses, the API will try to return some information about the error in the
 body of the response, as a JSON object. A ``detail`` property will contain a
-message explaining the error. In addition, in some cases, an optional ``code``
-property will be present and will contain a constant corresponding to
-specific problems to help clients address the situation programmatically. The
-constants are as follows:
+message explaining the error. In some cases, an optional ``code`` property will
+be present and will contain a constant corresponding to specific problems to
+help clients address the situation programmatically. The constants are as
+follows:
 
     ============================  =====================================================
                            Value  Description
@@ -93,6 +93,10 @@ constants are as follows:
                     2FA_REQUIRED  Two-factor authentication is required for this
                                   endpoint and wasn't present or recent enough.
     ============================  =====================================================
+
+In addition, some errors might return an optional ``url`` property that the
+client should ask the user to go (or redirect) to in order to resolve the
+problem.
 
 
 .. _api-overview-maintenance:

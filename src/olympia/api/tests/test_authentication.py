@@ -315,6 +315,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Invalid Authorization header. No credentials provided.'
         )
+        assert 'url' not in exp.exception.detail
 
     def test_wrong_header_too_many_spaces(self):
         request = self.factory.post(
@@ -328,6 +329,7 @@ class TestSessionIDAuthentication(TestCase):
             'Invalid Authorization header. '
             'Credentials string should not contain spaces.'
         )
+        assert 'url' not in exp.exception.detail
 
     def test_no_token(self):
         request = self.factory.post('/api/v4/whatever/')
@@ -351,6 +353,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_user_id_is_none(self):
@@ -361,6 +364,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_user_deleted(self):
@@ -372,6 +376,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_not_found(self):
@@ -382,6 +387,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_invalid_user_other_user(self):
@@ -398,6 +404,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_wrong_auth_id(self):
@@ -409,6 +416,7 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Valid user session not found matching the provided session key.'
         )
+        assert 'url' not in exp.exception.detail
         self.update_token_mock.assert_not_called()
 
     def test_fxa_access_token_validity_token_invalid(self):
@@ -420,3 +428,4 @@ class TestSessionIDAuthentication(TestCase):
         assert exp.exception.detail['detail'] == (
             'Access token refresh failed; user needs to login to FxA again.'
         )
+        assert 'url' not in exp.exception.detail
