@@ -1305,7 +1305,8 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.client.login_api(self.user, with_2fa=False)
         self._test_basic_listed(
             {
-                'categories': ['general'],
+                'name':  {'en-US': 'My WebExtension Addon'},
+                'categories': ['firefox'],
                 'version': {
                     'upload': self.upload.uuid,
                     'license': self.license.slug,
