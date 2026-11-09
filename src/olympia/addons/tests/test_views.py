@@ -1305,7 +1305,7 @@ class TestAddonViewSetCreate(UploadMixin, AddonViewSetCreateUpdateMixin, TestCas
         self.client.login_api(self.user, with_2fa=False)
         self._test_basic_listed(
             {
-                'name':  {'en-US': 'My WebExtension Addon'},
+                'name': {'en-US': 'My WebExtension Addon'},
                 'categories': ['firefox'],
                 'version': {
                     'upload': self.upload.uuid,
@@ -2120,7 +2120,6 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
 
         with patch('olympia.files.utils.parse_xpi', side_effect=parse_xpi_mock):
             super().test_basic_listed_theme()
-
 
     def test_guid_mismatch(self):
         def parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
