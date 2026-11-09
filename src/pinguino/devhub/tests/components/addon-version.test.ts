@@ -64,10 +64,10 @@ describe('addon-version', () => {
     versions[0].file.status = 'public';
     const root = await mountVersions({ currentVersion: versions[0] }, versions);
 
-    // ...The current (approved) version is shown in the 'Current on AMO' section.
+    // ...The current (approved) version is shown in the live section.
     const current = root.querySelector('.version-section.current');
     expect(current?.querySelector('.section-title')?.textContent).toContain(
-      'Current on AMO',
+      'Live on addons.mozilla.org',
     );
     expect(versionNumbers(current)).toEqual(['1.0']);
 
