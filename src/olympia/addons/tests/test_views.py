@@ -2111,6 +2111,17 @@ class TestAddonViewSetCreatePut(TestAddonViewSetCreate):
         self.set_guid('langpack-de@firefox.mozilla.org')
         return super().test_compatibility_langpack()
 
+    def test_basic_listed_theme(self):
+        def parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
+            return {
+                **parse_xpi(pkg, addon=addon, minimal=minimal, user=user),
+                'guid': self.guid,
+            }
+
+        with patch('olympia.files.utils.parse_xpi', side_effect=parse_xpi_mock):
+            super().test_basic_listed_theme()
+
+
     def test_guid_mismatch(self):
         def parse_xpi_mock(pkg, *, addon, minimal, user, **kwargs):
             return {
