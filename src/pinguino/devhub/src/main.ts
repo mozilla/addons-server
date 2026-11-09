@@ -18,6 +18,7 @@ import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
 
+// @ts-ignore
 import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
