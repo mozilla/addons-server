@@ -153,6 +153,9 @@ export class AddonSubmission extends LitElement {
     .step-content > * {
       padding: var(--space-medium);
     }
+    .step-content moz-message-bar {
+      padding: 0;
+    }
     .continue {
       display: flex;
       justify-content: space-between;
