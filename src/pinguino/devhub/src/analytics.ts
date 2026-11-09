@@ -1,11 +1,13 @@
-// GA Analytics code. The 'create' below is specific to AMO tracking.
+// biome-ignore-all lint/complexity/noArguments: GA wants Arguments objects
+// GA Analytics snippet that obeys Do Not Track. Copied from legacy devhub
+// with pinguino dimension set.
 
 function isDoNotTrackEnabled() {
   // We ignore things like `msDoNotTrack` because they are for older,
   // unsupported browsers and don't really respect the DNT spec. This
   // covers new versions of IE/Edge, Firefox from 32+, Chrome, Safari, and
   // any browsers built on these stacks (Chromium, Tor Browser, etc.).
-  let dnt = navigator.doNotTrack || window.doNotTrack;
+  const dnt = navigator.doNotTrack || window.doNotTrack;
   if (dnt === '1') {
     window.console &&
       console.info(
@@ -21,21 +23,22 @@ function isDoNotTrackEnabled() {
 export function insertAnalyticsScript(dnt = isDoNotTrackEnabled()) {
   if (dnt) return;
 
-  (function (i, s, o, g, r, a, m) {
-    i['GoogleAnalyticsObject'] = r;
+  ((i, s, o, g, r, a, m) => {
+    i.GoogleAnalyticsObject = r;
     i[r] =
       i[r] ||
       function () {
+        // biome-ignore lint/suspicious/noAssignInExpressions: original code from GA
         (i[r].q = i[r].q || []).push(arguments);
       };
-    i[r].l = 1 * new Date();
+    i[r].l = 1 * Date.now();
     a = s.createElement(o);
     m = s.getElementsByTagName(o)[0] || null;
 
     a.async = 1;
     a.src = g;
 
-    if (m && m.parentNode) {
+    if (m?.parentNode) {
       // Insert before the first script tag
       m.parentNode.insertBefore(a, m);
     } else {
@@ -70,6 +73,6 @@ export function insertAnalyticsScript(dnt = isDoNotTrackEnabled()) {
   }
   gtag('js', new Date());
   gtag('config', ga4Id, {
-    implementation: 'pinguino'
+    implementation: 'pinguino',
   });
 }
