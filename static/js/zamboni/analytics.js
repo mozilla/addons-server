@@ -1,4 +1,5 @@
-// GA Analytics code. The 'create' below is specific to AMO tracking.
+// GA Analytics code, copied from /static with a different gtag('config'...)
+// call to distinguish pinguino from legacy devhub.
 
 function isDoNotTrackEnabled() {
   // We ignore things like `msDoNotTrack` because they are for older,
@@ -69,5 +70,7 @@ export function insertAnalyticsScript(dnt = isDoNotTrackEnabled()) {
     window.dataLayer.push(arguments);
   }
   gtag('js', new Date());
-  gtag('config', ga4Id);
+  gtag('config', ga4Id, {
+    implementation: 'legacy'
+  });
 }
