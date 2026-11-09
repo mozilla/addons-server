@@ -18,7 +18,7 @@ import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
 
-import { insertAnalyticsScript } from './analytics';
+import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
 import { navigateTo } from './helper';
