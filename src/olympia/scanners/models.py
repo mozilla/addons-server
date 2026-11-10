@@ -202,14 +202,14 @@ class AbstractScannerRule(ModelBase):
     )
     pretty_name = models.CharField(
         default='',
-        help_text='Human-readable name for the scanner rule',
+        help_text='Human-readable name for the scanner rule.',
         max_length=255,
         blank=True,
         verbose_name='Human-readable name',
     )
     description = models.CharField(
         default='',
-        help_text='Human readable description for the scanner rule',
+        help_text='Human readable description for the scanner rule.',
         max_length=255,
         blank=True,
     )
@@ -310,7 +310,7 @@ class ScannerRule(AbstractScannerRule):
         choices=ACTIONS.items(),
         default=NO_ACTION,
         verbose_name='Workflow action',
-        help_text='Workflow action to execute',
+        help_text='Workflow action to execute.',
     )
     policy = models.ForeignKey(
         'abuse.CinderPolicy',
@@ -330,6 +330,13 @@ class ScannerRule(AbstractScannerRule):
             'When unchecked, scanner results will not be linked to this rule '
             'and its automated actions will not be executed. For webhook '
             'rules, only uncheck this as a last resort in an emergency.'
+        ),
+    )
+    exclude_promoted_addons = models.BooleanField(
+        default=False,
+        help_text=(
+            'When checked, the automated actions of this rule will not be '
+            'executed for add-ons that are in a promoted group.'
         ),
     )
 
