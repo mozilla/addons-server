@@ -39,7 +39,6 @@ export class AddonVersion extends LitElement {
       display: flex;
       flex-direction: column;
       gap: var(--space-xlarge);
-      padding: var(--space-small);
     }
     .version-section {
       display: flex;
@@ -258,8 +257,8 @@ export class AddonVersion extends LitElement {
       nextListedId = this.getNextListed(current, otherVersions);
     }
     return html`
-      <moz-card appearance="outline">
-        <div gap="xlarge" class="main-content">
+      <moz-card appearance="outline" spacing="spacious">
+        <div class="main-content">
           <moz-page-header
             heading="Version"
             description="See all your versions at once and easily manage them."
