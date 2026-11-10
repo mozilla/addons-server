@@ -3,7 +3,6 @@ import re
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.urls import reverse
 
-import jsonschema
 from rest_framework import serializers
 
 from olympia import amo
@@ -24,6 +23,7 @@ from olympia.constants.scanners import (
 from olympia.versions.models import Version
 
 from .models import ScannerQueryResult, ScannerQueryRule, rule_schema
+from .utils import validate_scanner_results
 
 
 # Same pattern the admin's change-form JS uses to infer the rule name from a
@@ -93,38 +93,11 @@ class WebhookVersionSerializer(VersionSerializer):
 
 
 class ScannerResultsValidationMixin:
-    RESULTS_SCHEMA = {
-        'type': 'object',
-        'required': ['version', 'matchedRules'],
-        'properties': {
-            'version': {'type': 'string'},
-            'matchedRules': {
-                'type': 'array',
-                'items': {'type': 'string'},
-            },
-            'annotations': {
-                'type': 'object',
-                'additionalProperties': {
-                    'type': 'array',
-                    'items': {'type': 'object'},
-                },
-            },
-        },
-    }
-
     def validate_results(self, value):
         try:
-            jsonschema.validate(value, self.RESULTS_SCHEMA)
-        except jsonschema.ValidationError as e:
-            raise serializers.ValidationError(e.message) from e
-
-        if 'annotations' in value:
-            matched_rules = set(value['matchedRules'])
-            unknown_keys = set(value['annotations'].keys()) - matched_rules
-            if unknown_keys:
-                raise serializers.ValidationError(
-                    f'Annotation keys not in matchedRules: {sorted(unknown_keys)}'
-                )
+            validate_scanner_results(value)
+        except ValueError as exc:
+            raise serializers.ValidationError(str(exc)) from exc
 
         return value
 
