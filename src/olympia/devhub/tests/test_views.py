@@ -3263,7 +3263,37 @@ class TestDeveloperAgreementAPI(TestCase):
 class TestSwitchPinguino(TestCase):
     def setUp(self):
         super().setUp()
+        # For the moment pinguino requires auth and 2FA.
+        self.client.force_login_with_2fa(user_factory())
         self.url = reverse('devhub.switch-pinguino')
+
+    def test_auth_missing(self):
+        self.client.logout()
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        assert response['location'] != reverse('devhub.index')
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=None,
+        )
+        assert response['location'] == expected_location
+
+    def test_2fa_missing(self):
+        user = user_factory()
+        self.client.force_login(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 302
+        expected_location = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=self.client.session['fxa_state'],
+            next_path=self.url,
+            enforce_2fa=True,
+            login_hint=user.email,
+        )
+        assert response['location'] == expected_location
 
     def test_enables_when_no_cookie(self):
         response = self.client.get(self.url)

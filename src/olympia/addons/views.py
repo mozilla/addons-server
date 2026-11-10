@@ -877,7 +877,6 @@ class AddonPreviewViewSet(
     def get_queryset(self):
         return self.get_addon_object().previews.all()
 
-    @method_decorator(require_submissions_enabled)
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
         return response
