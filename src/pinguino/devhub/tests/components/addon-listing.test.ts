@@ -21,6 +21,8 @@ vi.mock('../../src/data', () => {
     pendingAuthorsQuery: () => reader([]),
     eulaPolicyQuery: () => reader({ eula: '', privacyPolicy: '' }),
     addonSourceQuery: () => reader({}),
+    versionQuery: () => reader(undefined),
+    updateVersionLicense: vi.fn(async () => {}),
   };
 });
 
@@ -63,8 +65,8 @@ describe('addon-listing', () => {
       (b) => b.getAttribute('href'),
     );
     expect(navTargets).toEqual([
-      '/developers/addon/ad-blocker/edit/listing-details',
-      '/developers/addon/ad-blocker/edit/graphic-assets',
+      '/developers/addon/ad-blocker/edit/details',
+      '/developers/addon/ad-blocker/edit/graphics',
       '/developers/addon/ad-blocker/edit/authors',
       '/developers/addon/ad-blocker/edit/technical-details',
     ]);
@@ -83,6 +85,6 @@ describe('addon-listing', () => {
     const root = await shell('nope');
     expect(root.querySelector('listing-details-card')).not.toBeNull();
     const nav = root.querySelector('moz-page-nav') as { current?: string };
-    expect(nav.current).toBe('listing-details');
+    expect(nav.current).toBe('details');
   });
 });
