@@ -327,8 +327,9 @@ class ScannerRule(AbstractScannerRule):
     is_active = models.BooleanField(
         default=True,
         help_text=(
-            'When unchecked, the scanner results will not be bound to this '
-            'rule and the action will not be executed.'
+            'When unchecked, scanner results will not be linked to this rule '
+            'and its automated actions will not be executed. For webhook '
+            'rules, only uncheck this as a last resort in an emergency.'
         ),
     )
 
