@@ -804,6 +804,8 @@ class ScannerRuleAdmin(AbstractScannerRuleAdminMixin, AMOModelAdmin):
         fields = super().get_fields(request, obj)
         if obj and obj.scanner == WEBHOOK:
             hidden = ['definition', 'formatted_definition']
+            if not obj.pretty_name:
+                hidden.append('pretty_name')
             if not obj.description:
                 hidden.append('description')
             fields = [field for field in fields if field not in hidden]
