@@ -19,6 +19,8 @@ import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
 
+// @ts-ignore
+import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
 import { navigateTo } from './helper';
@@ -136,6 +138,8 @@ export class PinguinoApp extends LitElement {
     `;
   }
 }
+
+insertAnalyticsScript();
 
 if (import.meta.env.DEV) {
   import('./data/devtools').then((m) => m.mountDevtools());
