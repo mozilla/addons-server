@@ -40,12 +40,9 @@ export class TechnicalDetailsCard extends SectionCard {
   render() {
     const a = this.addon;
     const form = this.#form;
-    return html`<moz-card
-      appearance="outline"
-      spacing="spacious"
-      id="technical-details"
-    >
-      ${this.cardHead(
+    return this.frame(
+      'technical-details',
+      html`${this.cardHead(
         'technical-details',
         this.draftActions(
           form,
@@ -66,8 +63,8 @@ export class TechnicalDetailsCard extends SectionCard {
             ${this.row('Developer comments', unsafeHTML(sanitizeHTML(a.developerComments, MARKDOWN_TAGS)))}
             ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}
           </dl>`
-      }
-    </moz-card>`;
+      }`,
+    );
   }
 }
 

@@ -1,24 +1,54 @@
 import { Routes } from '@lit-labs/router';
-import { customElement } from 'lit/decorators.js';
-
-import '../../../components/coming-soon';
-import './templates/agreement';
-
 import { html, LitElement } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { hasReadAgreement } from '../../../data/queries';
+import { navigateTo } from '../../../utils/helper';
+
+import './addon-submission';
+import './templates/agreement';
 
 @customElement('submit-routes')
 class SubmitRoutes extends LitElement {
-  private _routes = new Routes(this, [
+  @property() slug = '';
+
+  private _routes: Routes = new Routes(this, [
     {
       path: 'agreement',
-      render: () => html`<devhub-agreement></devhub-agreement>`,
+      enter: () => this.unlessAccepted('distribution'),
+      render: () => this.agreement('distribution'),
     },
-    // Theme submission isn't reimplemented yet
     {
-      path: 'theme/agreement{/}?',
-      render: () => html`<coming-soon></coming-soon>`,
+      path: 'theme/agreement',
+      enter: () => this.unlessAccepted('theme/distribution'),
+      render: () => this.agreement('theme/distribution'),
+    },
+    {
+      path: '*',
+      enter: async ({ 0: step = '' }) =>
+        Boolean(this.slug) ||
+        (await hasReadAgreement()) ||
+        navigateTo(
+          step.startsWith('theme/') ? 'theme/agreement' : 'agreement',
+          { routes: this._routes, replace: true },
+        ),
+      render: () =>
+        html`<addon-submission .slug=${this.slug}></addon-submission>`,
     },
   ]);
+
+  private async unlessAccepted(next: string) {
+    return (
+      !(await hasReadAgreement().catch(() => false)) ||
+      navigateTo(next, { routes: this._routes, replace: true })
+    );
+  }
+
+  private agreement(next: string) {
+    return html`<devhub-agreement
+      .next=${this._routes.link(next)}
+    ></devhub-agreement>`;
+  }
+
   render() {
     return this._routes.outlet();
   }

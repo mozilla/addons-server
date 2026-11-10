@@ -31,7 +31,7 @@ export class AddonListing extends LitElement {
   #activeCard() {
     const a = this.addon;
     switch (this.#activeSection) {
-      case 'graphic-assets':
+      case 'graphics':
         return html`<graphic-assets-card .addon=${a}></graphic-assets-card>`;
       case 'authors':
         return html`<authors-card .addon=${a}></authors-card>`;

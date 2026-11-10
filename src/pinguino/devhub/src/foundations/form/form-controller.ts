@@ -1,12 +1,22 @@
 import type { ReactiveController, ReactiveControllerHost } from 'lit';
 import { ApiError } from '../../data/http';
 
+export class FieldError extends Error {
+  constructor(readonly fields: Record<string, string>) {
+    super(Object.values(fields).join(' '));
+    this.name = 'FieldError';
+  }
+}
+
 // Splits a failure into an inline per-field map and a general message, so forms
 // (and bespoke editors) route errors the same way. Field keys match the API.
 export function routeApiError(e: unknown): {
   error: string;
   fieldErrors: Record<string, string>;
 } {
+  if (e instanceof FieldError) {
+    return { error: '', fieldErrors: e.fields };
+  }
   if (e instanceof ApiError) {
     const hasFields = Object.keys(e.fields).length > 0;
     // Prefer the general detail for the bar; if there's nothing general but

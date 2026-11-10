@@ -1,3 +1,5 @@
+import type { Addon } from './types';
+
 // AMO serializes `addon.status` and `version.file.status` through one map
 // (amo.STATUS_CHOICES_API), so the strings share a namespace although each
 // field only uses the subset documented in docs/topics/api/addons.rst.
@@ -105,4 +107,25 @@ export function resolveListingState(
 // (devhub/includes/listing_visibility.html)
 export function canChangeVisibility(status: string | undefined): boolean {
   return status !== 'disabled' && status !== 'deleted';
+}
+
+export function canSubmitListed(addon: Addon): boolean {
+  const { status } = addon;
+  if (
+    addon.visibility === 'invisible' ||
+    status === ADDON_STATUS.disabled ||
+    status === ADDON_STATUS.deleted ||
+    status === ADDON_STATUS.rejected
+  ) {
+    return false;
+  }
+  return !hasIncompleteListing(addon);
+}
+
+export function hasIncompleteListing(addon: Addon): boolean {
+  return (
+    addon.status === ADDON_STATUS.incomplete &&
+    !!addon.channels?.includes('listed') &&
+    !(addon.name && addon.summary && addon.categories?.length)
+  );
 }

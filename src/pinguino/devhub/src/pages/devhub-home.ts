@@ -6,6 +6,7 @@ import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
 import '../components/submit-card';
 import '../components/update-card';
+import { BASE } from '../base';
 import type { ActivityPage, Addon, Update } from '../data';
 import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
 
@@ -127,13 +128,19 @@ export class DevhubHome extends LitElement {
     const themes = addons.filter((a) => a.kind === 'theme');
     return html`
       <app-stack gap="xlarge">
-        ${this.#group('Extensions', 'extension', extensions, 'Submit new extension')}
-        ${this.#group('Themes', 'themes', themes, 'Submit new theme')}
+        ${this.#group('Extensions', 'extension', extensions, 'Submit new extension', `${BASE}/addon/submit/`)}
+        ${this.#group('Themes', 'themes', themes, 'Submit new theme', `${BASE}/addon/submit/theme/`)}
       </app-stack>
     `;
   }
 
-  #group(title: string, icon: IconName, items: Addon[], submitLabel: string) {
+  #group(
+    title: string,
+    icon: IconName,
+    items: Addon[],
+    submitLabel: string,
+    submitLink: string,
+  ) {
     return html`
       <section class="section">
         <p class="count">
@@ -145,12 +152,12 @@ export class DevhubHome extends LitElement {
             ? html`
           <app-grid columns="2" columns-md="2" columns-sm="1" gap="medium">
             ${items.map((a) => html`<addon-card .addon=${a}></addon-card>`)}
-            <submit-card label=${submitLabel}></submit-card>
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
             : html`
           <app-grid columns="1" gap="medium">
-            <submit-card label=${submitLabel}></submit-card>
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
         }

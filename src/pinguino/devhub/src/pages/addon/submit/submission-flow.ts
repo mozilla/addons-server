@@ -1,115 +1,59 @@
-import { Routes } from '@lit-labs/router';
-import {
-  type CSSResultGroup,
-  css,
-  html,
-  LitElement,
-  nothing,
-  type PropertyValues,
-} from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import type { Routes } from '@lit-labs/router';
+import { css, html, LitElement, nothing } from 'lit';
+import { property, query, state } from 'lit/decorators.js';
 import { BASE } from '../../../base';
 import {
   addonQuery,
   disableVersion,
   profileQuery,
 } from '../../../data/queries';
-import type { AddonDistribution, FileUpload } from '../../../data/types';
+import type {
+  Addon,
+  AddonDistribution,
+  AddonKind,
+  FileUpload,
+  Version,
+} from '../../../data/types';
 import type {
   TimelineSection,
   TimelineStep,
 } from '../../../foundations/components/timeline-nav';
-import { navigateTo } from '../../../helper';
+import { navigateTo } from '../../../utils/helper';
+import { errorMessage, type SubmissionStep } from './submission-step';
 import '../../../foundations/components/message-bar';
 import '../../../foundations/components/timeline-nav';
+import './templates/distribution';
+import './templates/finish';
+import './templates/images';
+import './templates/listing';
+import './templates/review';
+import './templates/source';
+import './templates/upload';
 
-export function emit(el: HTMLElement, type: string, detail: unknown) {
-  el.dispatchEvent(
-    new CustomEvent(type, { detail, bubbles: true, composed: true }),
-  );
-}
+export type StepId =
+  | 'distribution'
+  | 'upload'
+  | 'validation'
+  | 'source'
+  | 'details'
+  | 'graphics'
+  | 'review'
+  | 'finish';
+export type FlowStep = TimelineStep & { id: StepId };
+export type FlowSection = TimelineSection & { steps: FlowStep[] };
 
-export function errorMessage(err: unknown): string {
-  return err instanceof Error ? err.message : String(err);
-}
+// The labels the flows word differently.
+export type FlowLabels = {
+  distribution: string;
+  // The upload's section, and its step.
+  upload: string;
+};
 
-export function errorBar(heading: string, message?: string) {
-  return message
-    ? html`<message-bar
-        type="error"
-        heading=${heading}
-        description=${message}
-      ></message-bar>`
-    : nothing;
-}
-
-type FlowStep = TimelineStep & { id: string };
-type FlowSection = TimelineSection & { steps: FlowStep[] };
-
-export abstract class SubmissionStep extends LitElement {
-  // Typed wider than the inferred CSSResult so subclasses can compose it into
-  // an array, which is how they all extend these styles.
-  static styles: CSSResultGroup = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-large);
-    }
-  `;
-
-  protected abstract get ready(): boolean;
-
-  connectedCallback() {
-    super.connectedCallback();
-    if (this.hasUpdated) this.requestUpdate();
-  }
-
-  updated(changed: PropertyValues) {
-    super.updated(changed);
-    emit(this, 'step-ready', { ready: this.ready });
-  }
-
-  async submit(): Promise<boolean> {
-    return true;
-  }
-}
-
-@customElement('submission-header')
-export class SubmissionHeader extends LitElement {
-  static styles = css`
-    :host {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25em;
-    }
-    legend {
-      padding: 0;
-      font-weight: var(--font-weight-heading);
-    }
-    .description {
-      margin: 0;
-      color: var(--text-color-deemphasized);
-      font-size: var(--font-size-small);
-    }
-  `;
-
-  @property() label?: string;
-  @property() description?: string;
-
-  render() {
-    return html`
-      ${this.label && html`<legend>${this.label}</legend>`}
-      ${this.description && html`<p class="description">${this.description}</p>`}
-    `;
-  }
-}
-
-@customElement('addon-submission')
-export class AddonSubmission extends LitElement {
+export abstract class SubmissionFlow extends LitElement {
   @property() slug = '';
 
-  @state() private versionId?: number;
-  @state() private currStep = 0;
+  @state() protected versionId?: number;
+  @state() protected currStep = 0;
   @state() private submitting = false;
 
   @state() private stepReady = false;
@@ -118,14 +62,12 @@ export class AddonSubmission extends LitElement {
     open: boolean;
   };
 
-  // TODO: Default to last used channel.
-  @state() private channel: AddonDistribution = 'listed';
-  @state() private upload?: FileUpload;
-  @state() private canCreateVersion = false;
+  @state() protected channel: AddonDistribution = 'listed';
+  @state() protected upload?: FileUpload;
 
   @query('.outlet > *') private stepElement?: SubmissionStep;
-  #sections?: { versionId?: number; sections: FlowSection[] };
-  #uploadElement?: HTMLElementTagNameMap['submit-upload'];
+  #sections?: { key: string; sections: FlowSection[] };
+  #uploadElement = this.#createUploadElement();
 
   // The submit notice comes from the profile's site status, falling back to the
   // add-on's per-channel submission warning.
@@ -166,76 +108,165 @@ export class AddonSubmission extends LitElement {
     }
   `;
 
-  private _routes: Routes = new Routes(
-    this,
-    [
-      {
-        path: '',
-        enter: () => this.enterStep(this.upload ? 'validation' : 'upload'),
-        render: () => this.uploadStep(),
-      },
-      {
-        path: 'distribution',
-        enter: () => this.enterStep('distribution'),
-        render: () =>
-          html`<submit-distribution
-            .channel=${this.channel}
-            @distribution-change=${(
-              e: CustomEvent<{ value: AddonDistribution }>,
-            ) => {
-              this.channel = e.detail.value;
-              this.resetUpload();
-            }}
-          ></submit-distribution>`,
-      },
-      {
-        path: ':versionId/source',
-        enter: (params) => this.enterVersion(params, 'source'),
-        render: ({ versionId }) =>
-          html`<submit-source
-            .slug=${this.slug}
-            .versionId=${Number(versionId)}
-          ></submit-source>`,
-      },
-      {
-        path: ':versionId/details',
-        enter: (params) => this.enterVersion(params, 'review'),
-        render: ({ versionId }) =>
-          html`<review-submit
-            .slug=${this.slug}
-            .versionId=${Number(versionId)}
-            .distribution=${this.channel}
-          ></review-submit>`,
-      },
-      {
-        path: ':versionId/finish',
-        enter: (params) => this.enterVersion(params, 'finish'),
-        render: () => html`<submit-finish></submit-finish>`,
-      },
-    ],
-    {
-      fallback: {
-        enter: () => navigateTo('', { routes: this._routes, replace: true }),
-      },
-    },
-  );
+  protected abstract readonly heading: string;
+  protected abstract readonly kind: AddonKind;
+  protected abstract readonly labels: FlowLabels;
+  protected abstract readonly _routes: Routes;
+  protected abstract stepHrefs(): Record<StepId, string | undefined>;
+  protected abstract createFromUpload(uuid: string): Promise<void>;
 
-  private uploadStep() {
-    if (!this.#uploadElement) {
-      const el = document.createElement('submit-upload');
-      el.addEventListener('version-create', (e) => {
-        this.versionId = e.detail.id;
-      });
-      el.addEventListener('upload-change', (e) => {
-        this.setUpload(e.detail.upload);
-      });
-      this.#uploadElement = el;
-    }
+  // The add-on's slug as created or renamed here. The URL's lags behind it
+  // until the router catches up, and a new add-on's is empty again after
+  // browser back to a page from before it existed.
+  @state() protected latestSlug?: string;
+  @state() protected pendingSource?: File;
+
+  protected get addonSlug() {
+    return this.latestSlug || this.slug;
+  }
+
+  protected get isTheme() {
+    return this.kind === 'theme';
+  }
+
+  protected get isNewAddon() {
+    return false;
+  }
+
+  protected get hasSource() {
+    return this.channel !== 'enterprise' && !this.isTheme;
+  }
+
+  protected get showListingDetails() {
+    return this.channel === 'listed';
+  }
+
+  protected get canSubmitListed() {
+    return true;
+  }
+
+  protected goto(path: string) {
+    return navigateTo(path, { routes: this._routes, replace: true });
+  }
+
+  protected onCreate(version: Version, _addon?: Addon) {
+    this.versionId = version.id;
+    this.pendingSource = undefined;
+  }
+
+  protected distributionStep() {
+    return html`<submit-distribution
+      ?theme=${this.isTheme}
+      ?no-listed=${!this.canSubmitListed}
+      .channel=${this.channel}
+      @distribution-change=${(e: CustomEvent<{ value: AddonDistribution }>) => {
+        this.channel = e.detail.value;
+        this.resetUpload();
+      }}
+    ></submit-distribution>`;
+  }
+
+  #createUploadElement() {
+    const el = document.createElement('submit-upload');
+    el.addEventListener('upload-change', (e) => {
+      this.setUpload(e.detail.upload);
+    });
+    el.create = async (uuid) => {
+      if (!this.showListingDetails) await this.createFromUpload(uuid);
+    };
+    return el;
+  }
+
+  protected uploadStep() {
     const el = this.#uploadElement;
-    el.slug = this.slug;
     el.channel = this.channel;
     el.uuid = this.upload?.uuid;
     return el;
+  }
+
+  protected sourceStep() {
+    return html`<submit-source
+      .slug=${this.addonSlug}
+      .versionId=${this.versionId}
+      @source-select=${(e: CustomEvent<{ file?: File }>) => {
+        this.pendingSource = e.detail.file;
+      }}
+    ></submit-source>`;
+  }
+
+  protected listingStep() {
+    return html`<submit-listing
+      .slug=${this.addonSlug}
+      .versionId=${this.versionId}
+      .upload=${this.upload?.uuid}
+      .source=${this.pendingSource}
+      .kind=${this.kind}
+      @addon-create=${(e: CustomEvent<{ addon: Addon; version: Version }>) =>
+        this.onCreate(e.detail.version, e.detail.addon)}
+      @version-create=${(e: CustomEvent<{ version: Version }>) =>
+        this.onCreate(e.detail.version)}
+      @addon-slug-change=${(e: CustomEvent<{ slug: string }>) => {
+        this.latestSlug = e.detail.slug;
+      }}
+    ></submit-listing>`;
+  }
+
+  protected imagesStep() {
+    return html`<submit-images .slug=${this.addonSlug}></submit-images>`;
+  }
+
+  protected reviewStep(content: unknown = nothing) {
+    return html`<review-submit
+      ?theme=${this.isTheme}
+      ?new-addon=${this.isNewAddon}
+      .slug=${this.addonSlug}
+      .versionId=${this.versionId}
+      .distribution=${this.channel}
+      >${content}</review-submit
+    >`;
+  }
+
+  protected finishStep() {
+    return html`<submit-finish ?theme=${this.isTheme}></submit-finish>`;
+  }
+
+  protected buildSections(): FlowSection[] {
+    const href = this.stepHrefs();
+    const { labels } = this;
+    const step = (id: StepId, label: string): FlowStep => ({
+      id,
+      label,
+      href: href[id],
+    });
+    return [
+      {
+        title: labels.upload,
+        steps: [
+          step('distribution', labels.distribution),
+          step('upload', labels.upload),
+          step('validation', 'Validation'),
+          ...(this.hasSource ? [step('source', 'Upload source code')] : []),
+        ],
+      },
+      ...(this.showListingDetails
+        ? [
+            {
+              title: 'Create your listing',
+              steps: [
+                step('details', 'Listing details'),
+                ...(this.isTheme ? [] : [step('graphics', 'Add images')]),
+              ],
+            },
+          ]
+        : []),
+      {
+        title: 'Review',
+        steps: [
+          { ...step('review', 'Review before submitting'), canSubmit: true },
+          step('finish', 'Submit'),
+        ],
+      },
+    ];
   }
 
   private setUpload(upload: FileUpload | undefined) {
@@ -248,21 +279,21 @@ export class AddonSubmission extends LitElement {
   }
 
   // Changing the package invalidates other steps.
-  private clearUpload() {
+  protected clearUpload() {
     this.upload = undefined;
     this.versionId = undefined;
-    this.canCreateVersion = false;
+    this.pendingSource = undefined;
   }
 
-  private resetUpload() {
+  protected resetUpload() {
     this.clearUpload();
-    this.#uploadElement?.reset();
+    this.#uploadElement.reset();
   }
 
   // Keep currStep in sync with the URL so browser back/forward and reloads
   // land on the right step. Steps sharing a route (upload/validation) keep
   // whichever one is current.
-  private enterStep(id: string) {
+  protected enterStep(id: StepId) {
     const { steps } = this;
     const target = this.indexOf(id);
     if (steps[this.currStep]?.href !== steps[target].href) {
@@ -271,60 +302,19 @@ export class AddonSubmission extends LitElement {
     return true;
   }
 
-  private enterVersion({ versionId }: { versionId?: string }, id: string) {
-    this.versionId = Number(versionId);
-    return this.enterStep(id);
-  }
-
-  private get sections(): FlowSection[] {
-    const { versionId } = this;
-    if (this.#sections?.versionId !== versionId || !this.#sections) {
-      this.#sections = { versionId, sections: this.buildSections() };
+  protected get sections(): FlowSection[] {
+    const key = `${this.addonSlug}/${this.versionId}/${this.channel}/${this.isTheme}/${this.showListingDetails}`;
+    if (this.#sections?.key !== key) {
+      this.#sections = { key, sections: this.buildSections() };
     }
     return this.#sections.sections;
   }
 
-  private buildSections(): FlowSection[] {
-    const link = (step: string) => this._routes.link(step);
-    const versionLink = (step: string) =>
-      this.versionId ? link(`${this.versionId}/${step}`) : undefined;
-    return [
-      {
-        title: 'Upload Version',
-        steps: [
-          {
-            id: 'distribution',
-            label: 'Add-on distribution',
-            href: link('distribution'),
-          },
-          { id: 'upload', label: 'Upload version', href: link('') },
-          { id: 'validation', label: 'Validation', href: link('') },
-          {
-            id: 'source',
-            label: 'Upload source code',
-            href: versionLink('source'),
-          },
-        ],
-      },
-      {
-        title: 'Review',
-        steps: [
-          {
-            id: 'review',
-            label: 'Review before submit',
-            href: versionLink('details'),
-          },
-          { id: 'finish', label: 'Submit', href: versionLink('finish') },
-        ],
-      },
-    ];
-  }
-
-  private get steps(): FlowStep[] {
+  protected get steps(): FlowStep[] {
     return this.sections.flatMap((section) => section.steps);
   }
 
-  private indexOf(id: string) {
+  protected indexOf(id: StepId) {
     return this.steps.findIndex((step) => step.id === id);
   }
 
@@ -352,7 +342,6 @@ export class AddonSubmission extends LitElement {
       return;
     }
     if (!(await this.submitStep())) return;
-    if (steps[this.currStep].id === 'source') this.canCreateVersion = true;
     this.navigate(target);
   }
 
@@ -373,8 +362,8 @@ export class AddonSubmission extends LitElement {
     if (!this.versionId) return;
     this.submitting = true;
     try {
-      await disableVersion(this.slug, this.versionId);
-      navigateTo(`${BASE}/addon/${encodeURIComponent(this.slug)}`);
+      await disableVersion(this.addonSlug, this.versionId);
+      navigateTo(`${BASE}/addon/${encodeURIComponent(this.addonSlug)}`);
     } catch (err) {
       this.cancelError = errorMessage(err);
     } finally {
@@ -410,11 +399,9 @@ export class AddonSubmission extends LitElement {
 
   private canSubmit() {
     return (
-      Boolean(this.versionId && this.upload) &&
-      this.canCreateVersion &&
+      Boolean(this.steps[this.currStep]?.canSubmit) &&
       this.stepReady &&
-      !this.submitting &&
-      this.currStep < this.indexOf('finish')
+      !this.submitting
     );
   }
 
@@ -490,7 +477,7 @@ export class AddonSubmission extends LitElement {
   render() {
     const finish = this.indexOf('finish');
     return html`
-      <moz-page-header heading="Submit a new version">
+      <moz-page-header heading=${this.heading}>
         <moz-button
           slot="actions"
           variant="primary"
@@ -515,12 +502,6 @@ export class AddonSubmission extends LitElement {
             class="outlet"
             @step-ready=${(e: CustomEvent<{ ready: boolean }>) => {
               this.stepReady = e.detail.ready;
-              if (
-                !e.detail.ready &&
-                this.steps[this.currStep].id === 'source'
-              ) {
-                this.canCreateVersion = false;
-              }
             }}
           >
             ${this._routes.outlet()}
@@ -534,12 +515,5 @@ export class AddonSubmission extends LitElement {
       </div>
       ${this.renderCancelDialog()}
     `;
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'addon-submission': AddonSubmission;
-    'submission-header': SubmissionHeader;
   }
 }

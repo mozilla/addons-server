@@ -1,5 +1,5 @@
 import { css, html, LitElement } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 import kitSubmit from './img/firefox_motion_off_switch.gif';
 
 @customElement('submit-finish')
@@ -25,15 +25,20 @@ export class SubmitFinish extends LitElement {
     }
   `;
 
+  @property({ type: Boolean }) theme = false;
+
   render() {
     return html`
       <div>
-        <h2>Congrats, your version is submitted</h2>
-        <p>You will be able to see the submitted add-ons on the main dashboard</p>
+        <h2>All done! Thanks for shaping Firefox.</h2>
+        <p>
+          Your ${this.theme ? 'theme' : 'extension'} has been submitted for
+          review. Follow the progress on your dashboard.
+        </p>
       </div>
       <img id="kit-submit" src=${kitSubmit} alt="" />
       <moz-button variant="primary" size="medium" href="/developers/">
-        Go to the dashboard
+        Go to dashboard
       </moz-button>
     `;
   }

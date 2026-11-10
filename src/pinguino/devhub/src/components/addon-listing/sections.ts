@@ -1,8 +1,8 @@
 import type { IconName } from '@mozilla/lit-web-components';
 
 export type SectionId =
-  | 'listing-details'
-  | 'graphic-assets'
+  | 'details'
+  | 'graphics'
   | 'authors'
   | 'technical-details';
 
@@ -17,15 +17,15 @@ export type SectionInfo = {
 // non-optional access; SECTIONS is the ordered list the nav renders.
 export const SECTION = {
   // TODO: "applied-policy" matches design, but acorn UX might not be happy
-  'listing-details': {
-    id: 'listing-details',
+  details: {
+    id: 'details',
     title: 'Listing details',
     icon: 'applied-policy',
     description:
       'Describe your listing, categories, and promotional assets on AMO.',
   },
-  'graphic-assets': {
-    id: 'graphic-assets',
+  graphics: {
+    id: 'graphics',
     title: 'Graphical assets',
     icon: 'canvas',
     description: 'The icon, banner, and screenshots shown on your listing.',
