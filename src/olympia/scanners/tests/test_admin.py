@@ -411,7 +411,7 @@ class TestScannerResultAdmin(TestCase):
                 f'?matched_rules__id__exact={rule_annotations.pk}',
             ),
             (
-                f'{rule_missing_results.pretty_name} (webhook)',
+                f'{SCANNER_RESULTS_MISSING_RULE_NAME} (webhook)',
                 f'?matched_rules__id__exact={rule_missing_results.pk}',
             ),
             ('All', '?has_version=all'),
@@ -432,7 +432,7 @@ class TestScannerResultAdmin(TestCase):
             ('foo (narc)', str(rule_foo.pk)),
             (f'{ANNOTATIONS_RULE_NAME} (webhook)', str(rule_annotations.pk)),
             (
-                f'{rule_missing_results.pretty_name} (webhook)',
+                f'{SCANNER_RESULTS_MISSING_RULE_NAME} (webhook)',
                 str(rule_missing_results.pk),
             ),
         ]
@@ -994,10 +994,12 @@ class TestScannerRuleAdmin(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
         admin_form = response.context_data['adminform']
+        assert 'pretty_name' not in admin_form.fields
         assert 'description' not in admin_form.fields
         assert 'definition' not in admin_form.fields
         assert 'configuration' not in admin_form.fields
         doc = pq(response.content)
+        assert not doc('.field-pretty_name')
         assert not doc('.field-description')
         assert not doc('.field-definition')
         assert not doc('.field-configuration')
@@ -1005,23 +1007,26 @@ class TestScannerRuleAdmin(TestCase):
         response = self.client.post(
             url,
             {
-                'pretty_name': 'Bar',
                 'action': NO_ACTION,
-                'is_active': True,
+                'is_active': False,
             },
         )
         assert response.status_code == 302
         rule.reload()
-        assert rule.pretty_name == 'Bar'
+        assert not rule.is_active
 
-    def test_change_view_shows_non_empty_description_for_webhook(self):
+    def test_change_view_shows_non_empty_pretty_name_and_description_for_webhook(self):
         rule = ScannerRule.objects.create(
-            name='bar', scanner=WEBHOOK, description='Some description'
+            name='bar',
+            scanner=WEBHOOK,
+            pretty_name='Bar',
+            description='Some description',
         )
         url = reverse('admin:scanners_scannerrule_change', args=(rule.pk,))
         response = self.client.get(url)
         assert response.status_code == 200
         admin_form = response.context_data['adminform']
+        assert 'pretty_name' in admin_form.fields
         assert 'description' in admin_form.fields
         assert 'definition' not in admin_form.fields
         assert 'configuration' not in admin_form.fields
