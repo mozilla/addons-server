@@ -2,6 +2,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Built-in Licenses
+# Mirrored in src/pinguino/devhub/src/licenses.ts.
 class _LicenseBase:
     """Base class for built-in licenses."""
 
