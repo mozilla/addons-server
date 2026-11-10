@@ -1,21 +1,13 @@
 import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
-import {
-  createUpload,
-  createVersion,
-  uploadQuery,
-} from '../../../../data/queries';
+import { createUpload, uploadQuery } from '../../../../data/queries';
 import type {
   AddonDistribution,
   FileUpload,
   ValidationMessage,
 } from '../../../../data/types';
-import {
-  emit,
-  errorBar,
-  errorMessage,
-  SubmissionStep,
-} from '../submission-flow';
+import { emit } from '../../../../utils/helper';
+import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
 import '../../../../foundations/components/message-bar';
 import { MAX_UPLOAD_SIZE } from '../../../../base';
 
@@ -44,8 +36,9 @@ export class SubmitUpload extends SubmissionStep {
     clear(): void;
   };
 
-  @property() slug = '';
   @property() channel: AddonDistribution = 'listed';
+  @property({ attribute: false }) create: (uuid: string) => Promise<void> =
+    async () => {};
   @property() uuid?: string;
   @state() private uploading = false;
   @state() private uploadError?: string;
@@ -79,8 +72,7 @@ export class SubmitUpload extends SubmissionStep {
       return false;
     }
     try {
-      const version = await createVersion(this.slug, this.uuid);
-      emit(this, 'version-create', { id: version.id });
+      await this.create(this.uuid);
       return true;
     } catch (err) {
       this.input?.clear();
@@ -177,7 +169,6 @@ declare global {
     'submit-upload': SubmitUpload;
   }
   interface HTMLElementEventMap {
-    'version-create': CustomEvent<{ id: number }>;
     'upload-change': CustomEvent<{
       upload: FileUpload | undefined;
       uploading: boolean;

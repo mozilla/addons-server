@@ -25,7 +25,7 @@ import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 import { interceptOutOfAppLinks, isDashboardPath } from './navigation';
 import { recordLanding } from './switch-back';
-import { navigateTo } from './utils/helper';
+import { navigateTo, notFoundRoute } from './utils/helper';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.

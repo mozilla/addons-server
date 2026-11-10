@@ -5,7 +5,7 @@ import {
 } from '@lit-labs/router';
 import { html, type ReactiveControllerHost } from 'lit';
 
-import './components/error-page';
+import '../components/error-page';
 
 // Prompt a redirect. `path` is absolute, or relative to `routes` when given.
 export function navigateTo(

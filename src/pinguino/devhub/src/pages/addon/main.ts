@@ -6,12 +6,12 @@ import '../../components/coming-soon';
 import './submit/main';
 import './templates/devhub-addon';
 import './versions/main';
-import { createRoutes, navigateTo } from '../../helper';
+import { createRoutes, navigateTo } from '../../utils/helper';
 
 @customElement('addon-routes')
 class AddonRoutes extends LitElement {
   private _routes = createRoutes(this, [
-    { path: 'submit/*', render: () => html`<submit-routes></submit-routes>` },
+    { path: 'submit/*', render: () => this.#submit('') },
     // Top-level add-on pages not yet reimplemented
     { path: 'api/key{/}?', render: () => html`<coming-soon></coming-soon>` },
     { path: 'validate{/}?', render: () => html`<coming-soon></coming-soon>` },
@@ -23,6 +23,10 @@ class AddonRoutes extends LitElement {
       path: ':slug/versions/*',
       render: ({ slug }) =>
         html`<version-routes .slug=${slug ?? ''}></version-routes>`,
+    },
+    {
+      path: ':slug/submit/*',
+      render: ({ slug }) => this.#submit(slug ?? ''),
     },
     // Django's /ownership page is the authors section of the edit tab.
     {
@@ -49,6 +53,11 @@ class AddonRoutes extends LitElement {
         ></devhub-addon>`,
     },
   ]);
+
+  #submit(slug: string) {
+    return html`<submit-routes .slug=${slug}></submit-routes>`;
+  }
+
   render() {
     return this._routes.outlet();
   }

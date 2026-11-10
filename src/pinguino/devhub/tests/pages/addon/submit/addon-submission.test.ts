@@ -107,7 +107,7 @@ beforeEach(() => {
       vi.mocked(api.postUpload).mock.calls.at(-1)?.[1] ?? 'listed',
     ),
   }));
-  vi.mocked(api.fetchAddons).mockResolvedValue([ADDON]);
+  vi.mocked(api.fetchAddons).mockResolvedValue({ results: [ADDON], count: 1 });
   vi.mocked(api.fetchEulaPolicy).mockResolvedValue({
     eula: '',
     privacyPolicy: '',
@@ -296,7 +296,10 @@ describe('addon-submission of a theme', () => {
       addon: THEME,
       version: makeVersion('listed'),
     }));
-    vi.mocked(api.fetchAddons).mockResolvedValue([THEME]);
+    vi.mocked(api.fetchAddons).mockResolvedValue({
+      results: [THEME],
+      count: 1,
+    });
   });
 
   it('submits a listed theme, with no source or images steps', async () => {

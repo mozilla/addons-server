@@ -121,7 +121,7 @@ beforeEach(() => {
   vi.mocked(api.fetchVersion).mockResolvedValue(VERSION);
   vi.mocked(api.postVersion).mockResolvedValue(VERSION);
   vi.mocked(api.patchVersion).mockResolvedValue(VERSION);
-  vi.mocked(api.fetchAddons).mockResolvedValue([ADDON]);
+  mockAddons(ADDON);
   vi.mocked(api.fetchVersions).mockResolvedValue([VERSION]);
 });
 
@@ -373,7 +373,7 @@ describe('version-submission', () => {
     it.each(['', 'distribution'])(
       'redirects /submit/%s to finish an incomplete listing',
       async (path) => {
-        vi.mocked(api.fetchAddons).mockResolvedValue([INCOMPLETE]);
+        mockAddons(INCOMPLETE);
         await enter(path);
         await expect
           .poll(() => location.pathname)
@@ -408,9 +408,7 @@ describe('version-submission', () => {
     });
 
     it('does not offer listed channel while the add-on is hidden', async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        { ...ADDON, visibility: 'invisible' },
-      ]);
+      mockAddons({ ...ADDON, visibility: 'invisible' });
       const $ = await mountFlow('');
       await expect.poll(() => $.step('submit-distribution')).toBeTruthy();
       expect(options($)).toEqual(['unlisted', 'enterprise']);
@@ -418,9 +416,7 @@ describe('version-submission', () => {
     });
 
     it('does not offer listed channel while the listing is rejected', async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        { ...ADDON, status: ADDON_STATUS.rejected },
-      ]);
+      mockAddons({ ...ADDON, status: ADDON_STATUS.rejected });
       const $ = await mountFlow('');
       await expect.poll(() => $.step('submit-distribution')).toBeTruthy();
       expect(options($)).toEqual(['unlisted', 'enterprise']);
@@ -437,7 +433,7 @@ describe('version-submission', () => {
     };
 
     beforeEach(() => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([UNLISTED_ONLY]);
+      mockAddons(UNLISTED_ONLY);
       vi.mocked(api.fetchVersions).mockResolvedValue([
         { ...VERSION, channel: 'unlisted' },
       ]);

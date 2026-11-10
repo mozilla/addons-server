@@ -127,22 +127,24 @@ describe('version-submit-routes', () => {
     expect(root.querySelector('devhub-agreement')).toBeNull();
   });
 
-  it('shows the error page for an unknown submit step', async () => {
+  // submit/* is a catch-all: unknown steps go to the submission flow, which
+  // routes them itself, rather than to the error page.
+  it('hands an unknown submit step to the submission flow', async () => {
+    setAgreement(true);
     const root = await goto('submit-routes', 'bogus');
-    expect(root.querySelector('error-page')).not.toBeNull();
+    expect(root.querySelector('addon-submission')).not.toBeNull();
+    expect(root.querySelector('error-page')).toBeNull();
   });
 
-  // Two navigations on purpose: there has to be a previous match for a
-  // fallback-less router to strand.
+  // Two navigations on purpose: the previous match mustn't be stranded.
   it('replaces the previous page rather than stranding it', async () => {
+    setAgreement(true);
     const el = await mount<RouterHost>('submit-routes');
-    await el._routes.goto('agreement');
+    await el._routes.goto('theme/agreement');
     await settle(el);
-    expect(el.shadowRoot?.querySelector('devhub-agreement')).not.toBeNull();
-
     await el._routes.goto('bogus');
     await settle(el);
     expect(el.shadowRoot?.querySelector('devhub-agreement')).toBeNull();
-    expect(el.shadowRoot?.querySelector('error-page')).not.toBeNull();
+    expect(el.shadowRoot?.querySelector('addon-submission')).not.toBeNull();
   });
 });

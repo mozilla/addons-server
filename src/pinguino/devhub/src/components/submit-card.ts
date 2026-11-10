@@ -4,10 +4,12 @@
 import buttonTokens from '@mozilla/lit-web-components/tokens/button.css?inline';
 import { css, html, LitElement, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { navigateTo } from '../utils/helper';
 
 @customElement('submit-card')
 export class SubmitCard extends LitElement {
   @property() label = 'Submit new extension';
+  @property() href = '';
 
   static styles = [
     unsafeCSS(buttonTokens),
@@ -52,7 +54,7 @@ export class SubmitCard extends LitElement {
 
   render() {
     return html`
-      <button type="button">
+      <button @click=${() => navigateTo(this.href)} type="button">
         <moz-icon name="add"></moz-icon>
         ${this.label}
       </button>
