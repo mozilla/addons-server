@@ -14,6 +14,7 @@ import './app.css';
 import './components/coming-soon';
 import './components/devhub-header';
 import './components/not-found';
+import './components/support';
 import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
@@ -91,11 +92,11 @@ export class PinguinoApp extends LitElement {
         enter: ({ addonId }) =>
           navigateTo(`${BASE}/addon/${addonId}/feed`, { replace: true }),
       },
-      // Top-level pages not yet reimplemented
       {
         path: `${BASE}/support`,
-        render: () => html`<coming-soon></coming-soon>`,
+        render: () => html`<support-form></support-form>`,
       },
+      // Top-level pages not yet reimplemented
       {
         path: `${BASE}/verify-email`,
         render: () => html`<coming-soon></coming-soon>`,
