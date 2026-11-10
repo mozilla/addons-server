@@ -128,7 +128,6 @@ export class PinguinoApp extends LitElement {
     const dashboard = isDashboardPath(location.pathname, BASE);
     return html`
       <moz-provider class=${dashboard ? 'canvas' : ''}>
-        <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
         <app-container>${this._router.outlet()}</app-container>
       </moz-provider>
