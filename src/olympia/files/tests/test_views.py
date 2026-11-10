@@ -12,6 +12,7 @@ from olympia.amo.tests import (
     APITestClientJWT,
     APITestClientSessionID,
     TestCase,
+    addon_factory,
     get_random_ip,
     reverse_ns,
     user_factory,
@@ -61,7 +62,7 @@ class TestServeFileUpload(UploadMixin, TestCase):
         assert resp.status_code == 410
 
 
-class TestFileUploadViewSet(TestCase):
+class TestFileUploadViewSet(UploadMixin, TestCase):
     client_class = APITestClientSessionID
 
     def setUp(self):
@@ -196,6 +197,31 @@ class TestFileUploadViewSet(TestCase):
         data = response.json()
         assert data['uuid'] == self.upload.uuid.hex
         assert data['url'] == self.detail_url
+
+    def test_retrieve_manifest_data(self):
+        assert self.client.get(self.detail_url).json()['manifest_data'] is None
+
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        assert self.client.get(detail_url).json()['manifest_data'] == {
+            'name': 'My WebExtension Addon',
+            'summary': 'just a test addon with the manifest.json format',
+            'homepage': None,
+        }
+
+        upload.update(addon=addon_factory())
+        assert self.client.get(detail_url).json()['manifest_data'] is None
+
+    def test_retrieve_manifest_data_translations(self):
+        upload = self.get_upload('notify-link-clicks-i18n.xpi', user=self.user)
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        data = self.client.get(detail_url).json()['manifest_data']
+        assert data['name']['en-US'] == 'Notify link clicks i18n'
+        assert data['name']['de'] == 'Meine Beispielerweiterung'
 
     def test_cannot_retrieve_other_uploads(self):
         detail_url = reverse_ns(

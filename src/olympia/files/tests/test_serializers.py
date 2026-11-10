@@ -28,6 +28,7 @@ class TestFileUploadSerializer(TestCase):
         assert data == {
             'uuid': file_upload.uuid.hex,
             'channel': 'unlisted',
+            'manifest_data': None,
             'processed': False,
             'submitted': False,
             'url': settings.EXTERNAL_SITE_URL
