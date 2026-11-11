@@ -264,6 +264,22 @@ describe('devhub-header', () => {
       expect(theme.getAttribute('icon-start')).toBe('themes');
     });
 
+    it('orders add-ons by name, as the classic devhub does', async () => {
+      signedIn();
+      addonsState.data = [
+        { slug: 'zebra', name: 'Zebra Tabs', kind: 'extension' },
+        { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
+        { slug: 'dark-mode', name: 'Dark Mode', kind: 'theme' },
+      ];
+      const { panel } = await menuFor('My Add-ons');
+
+      expect((labels(panel) as string[]).slice(0, 3)).toEqual([
+        'Ad Blocker',
+        'Dark Mode',
+        'Zebra Tabs',
+      ]);
+    });
+
     it('caps the list and points the overflow at the dashboard', async () => {
       signedIn();
       addonsState.data = Array.from({ length: 9 }, (_, i) => ({
@@ -279,6 +295,83 @@ describe('devhub-header', () => {
       expect(
         panel?.querySelector('moz-panel-item[href="/developers/"]'),
       ).not.toBeNull();
+    });
+  });
+  describe('collapsed navigation', () => {
+    // The hamburger is the whole nav at narrow widths; CSS swaps which of the
+    // two is shown, so both are always in the DOM and testable here.
+    async function collapsed() {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      return root.getElementById('nav-collapsed');
+    }
+
+    it('is opened by a labelled hamburger', async () => {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      const button = root.querySelector('moz-button.hamburger');
+
+      expect(button?.getAttribute('icon-only')).toBe('Menu');
+      expect(button?.getAttribute('menu-id')).toBe('nav-collapsed');
+    });
+
+    it('concatenates every menu the full nav shows', async () => {
+      signedIn();
+      addonsState.data = [
+        { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
+      ];
+      const panel = await collapsed();
+      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
+        h.textContent?.trim(),
+      );
+
+      expect(captions).toEqual([
+        'My Add-ons',
+        'Create New Add-on',
+        'Documentation',
+        'Tools',
+        'Community & Support',
+        'Extension Workshop',
+      ]);
+    });
+
+    it('drops My Add-ons when signed out, like the full nav', async () => {
+      const panel = await collapsed();
+      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
+        h.textContent?.trim(),
+      );
+
+      expect(captions).not.toContain('My Add-ons');
+      expect(captions[0]).toBe('Documentation');
+    });
+
+    it('separates the sections but never leads with a rule', async () => {
+      const panel = await collapsed();
+      const kids = [...(panel?.children ?? [])].map((el) =>
+        el.tagName.toLowerCase(),
+      );
+
+      expect(kids[0]).toBe('h2');
+      // One rule before each section after the first, plus one before the
+      // switch-back row at the end.
+      expect(kids.filter((t) => t === 'hr')).toHaveLength(
+        kids.filter((t) => t === 'h2').length,
+      );
+    });
+
+    it('keeps the switch back action reachable', async () => {
+      const panel = await collapsed();
+      const rows = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
+      const row = rows.at(-1);
+      expect(row?.textContent?.trim()).toBe(
+        'Switch back to the old Developer Hub',
+      );
+
+      const loc = { pathname: '/developers/addon/x', search: '', href: '' };
+      vi.stubGlobal('location', loc);
+      row?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+      expect(loc.href).toBe(
+        '/developers/switch-pinguino?path=%2Fdevelopers%2Faddon%2Fx',
+      );
     });
   });
 });

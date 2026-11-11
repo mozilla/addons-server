@@ -3,9 +3,11 @@
 // no Django template to read settings from, so the public host is fixed here.
 const EXTENSION_WORKSHOP = 'https://extensionworkshop.com';
 
-// How Extension Workshop attributes its inbound traffic from us.
+// How Extension Workshop attributes its inbound traffic from us. Deliberately
+// not the classic devhub's `devhub-menu-link`, so the two can be told apart
+// while both are live.
 const UTM =
-  'utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link';
+  'utm_source=addons.mozilla.org&utm_medium=referral&utm_content=pinguino-menu-link';
 
 export function extensionWorkshop(path = '/', hash = ''): string {
   return `${EXTENSION_WORKSHOP}${path}?${UTM}${hash}`;
