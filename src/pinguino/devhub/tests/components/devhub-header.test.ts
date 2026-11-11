@@ -3,11 +3,17 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 // The header's signed-in/out UI keys off the profile query controller. Drive it
 // through a mutable state object so each test can pick the auth state without
 // touching the network.
-const { profileState } = vi.hoisted(() => ({
+const { profileState, addonsState } = vi.hoisted(() => ({
   profileState: {
     data: undefined as
       | { id: string; name: string; pictureUrl?: string }
       | undefined,
+    isPending: false,
+    isError: false,
+  },
+  // What the "My Add-ons" menu lists.
+  addonsState: {
+    data: [] as { slug: string; name: string; kind: string }[],
     isPending: false,
     isError: false,
   },
@@ -18,6 +24,7 @@ vi.mock('../../src/data', async (importOriginal) => {
   return {
     ...actual,
     profileQuery: () => () => profileState,
+    addonsQuery: () => () => addonsState,
   };
 });
 
@@ -63,7 +70,10 @@ async function header() {
 }
 
 describe('devhub-header', () => {
-  beforeEach(signedOut);
+  beforeEach(() => {
+    signedOut();
+    addonsState.data = [];
+  });
 
   it('shows a link to switch back to the classic devhub', async () => {
     const root = (await header()).shadowRoot as ShadowRoot;
@@ -154,6 +164,214 @@ describe('devhub-header', () => {
       });
       // The header hands off the signed-in UI entirely; no log-in link.
       expect(root.querySelector('a.login')).toBeNull();
+    });
+  });
+  describe('navigation menus', () => {
+    async function menuFor(label: string) {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      const trigger = [...root.querySelectorAll('moz-button.trigger')].find(
+        (el) => el.textContent?.trim() === label,
+      );
+      const id = trigger?.getAttribute('menu-id') ?? '';
+      return { root, trigger, panel: root.getElementById(id) };
+    }
+
+    const labels = (panel: Element | null) =>
+      [...(panel?.querySelectorAll('moz-panel-item') ?? [])].map((item) =>
+        item.textContent?.trim(),
+      );
+
+    // A trigger whose menu-id resolves to nothing renders as a dead control.
+    it('pairs every trigger with the panel it names', async () => {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      const triggers = [...root.querySelectorAll('moz-button.trigger')];
+
+      expect(triggers.length).toBeGreaterThan(0);
+      for (const trigger of triggers) {
+        const id = trigger.getAttribute('menu-id') as string;
+        expect(root.getElementById(id)?.tagName.toLowerCase()).toBe(
+          'moz-panel-list',
+        );
+      }
+    });
+
+    it('sends off-site documentation links to a new tab, tagged for referral', async () => {
+      const { panel } = await menuFor('Documentation');
+
+      expect(labels(panel)).toEqual([
+        'Extension Development',
+        'Themes',
+        'Developer Policies',
+      ]);
+      for (const item of panel?.querySelectorAll('moz-panel-item') ?? []) {
+        expect(item.getAttribute('target')).toBe('_blank');
+        expect(item.getAttribute('href')).toContain(
+          'utm_source=addons.mozilla.org',
+        );
+      }
+    });
+
+    it('keeps the tools links in-app', async () => {
+      const { panel } = await menuFor('Tools');
+      const items = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
+
+      expect(items.map((i) => i.getAttribute('href'))).toEqual([
+        '/developers/addon/validate',
+        '/developers/addon/api/key',
+      ]);
+      expect(items.every((i) => !i.hasAttribute('target'))).toBe(true);
+    });
+
+    it('offers support off-site and on', async () => {
+      const { panel } = await menuFor('Community & Support');
+
+      expect(labels(panel)).toEqual([
+        'Add-on Blog',
+        'Add-on Forum',
+        'Contact Support',
+      ]);
+      expect(
+        panel?.querySelector('moz-panel-item[href="/developers/support"]'),
+      ).not.toBeNull();
+    });
+
+    it('hides My Add-ons when signed out', async () => {
+      const { trigger } = await menuFor('My Add-ons');
+      expect(trigger).toBeUndefined();
+    });
+
+    it('lists the developer\u2019s add-ons, typed by kind, above the submit links', async () => {
+      signedIn();
+      addonsState.data = [
+        { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
+        { slug: 'dark-mode', name: 'Dark Mode', kind: 'theme' },
+      ];
+      const { panel } = await menuFor('My Add-ons');
+
+      expect(labels(panel)).toEqual([
+        'Ad Blocker',
+        'Dark Mode',
+        'Submit a New Add-on',
+        'Submit a New Theme',
+      ]);
+      const [extension, theme] = [
+        ...(panel?.querySelectorAll('moz-panel-item') ?? []),
+      ];
+      expect(extension.getAttribute('href')).toBe(
+        '/developers/addon/ad-blocker',
+      );
+      expect(extension.getAttribute('icon-start')).toBe('extension');
+      expect(theme.getAttribute('icon-start')).toBe('themes');
+    });
+
+    it('orders add-ons by name, as the classic devhub does', async () => {
+      signedIn();
+      addonsState.data = [
+        { slug: 'zebra', name: 'Zebra Tabs', kind: 'extension' },
+        { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
+        { slug: 'dark-mode', name: 'Dark Mode', kind: 'theme' },
+      ];
+      const { panel } = await menuFor('My Add-ons');
+
+      expect((labels(panel) as string[]).slice(0, 3)).toEqual([
+        'Ad Blocker',
+        'Dark Mode',
+        'Zebra Tabs',
+      ]);
+    });
+
+    it('caps the list and points the overflow at the dashboard', async () => {
+      signedIn();
+      addonsState.data = Array.from({ length: 9 }, (_, i) => ({
+        slug: `addon-${i}`,
+        name: `Add-on ${i}`,
+        kind: 'extension',
+      }));
+      const { panel } = await menuFor('My Add-ons');
+
+      const names = labels(panel) as string[];
+      expect(names.filter((n) => n.startsWith('Add-on '))).toHaveLength(7);
+      expect(names).toContain('More add-ons\u2026');
+      expect(
+        panel?.querySelector('moz-panel-item[href="/developers/"]'),
+      ).not.toBeNull();
+    });
+  });
+  describe('collapsed navigation', () => {
+    // The hamburger is the whole nav at narrow widths; CSS swaps which of the
+    // two is shown, so both are always in the DOM and testable here.
+    async function collapsed() {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      return root.getElementById('nav-collapsed');
+    }
+
+    it('is opened by a labelled hamburger', async () => {
+      const root = (await header()).shadowRoot as ShadowRoot;
+      const button = root.querySelector('moz-button.hamburger');
+
+      expect(button?.getAttribute('icon-only')).toBe('Menu');
+      expect(button?.getAttribute('menu-id')).toBe('nav-collapsed');
+    });
+
+    it('concatenates every menu the full nav shows', async () => {
+      signedIn();
+      addonsState.data = [
+        { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
+      ];
+      const panel = await collapsed();
+      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
+        h.textContent?.trim(),
+      );
+
+      expect(captions).toEqual([
+        'My Add-ons',
+        'Create New Add-on',
+        'Documentation',
+        'Tools',
+        'Community & Support',
+        'Extension Workshop',
+      ]);
+    });
+
+    it('drops My Add-ons when signed out, like the full nav', async () => {
+      const panel = await collapsed();
+      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
+        h.textContent?.trim(),
+      );
+
+      expect(captions).not.toContain('My Add-ons');
+      expect(captions[0]).toBe('Documentation');
+    });
+
+    it('separates the sections but never leads with a rule', async () => {
+      const panel = await collapsed();
+      const kids = [...(panel?.children ?? [])].map((el) =>
+        el.tagName.toLowerCase(),
+      );
+
+      expect(kids[0]).toBe('h2');
+      // One rule before each section after the first, plus one before the
+      // switch-back row at the end.
+      expect(kids.filter((t) => t === 'hr')).toHaveLength(
+        kids.filter((t) => t === 'h2').length,
+      );
+    });
+
+    it('keeps the switch back action reachable', async () => {
+      const panel = await collapsed();
+      const rows = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
+      const row = rows.at(-1);
+      expect(row?.textContent?.trim()).toBe(
+        'Switch back to the old Developer Hub',
+      );
+
+      const loc = { pathname: '/developers/addon/x', search: '', href: '' };
+      vi.stubGlobal('location', loc);
+      row?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
+      expect(loc.href).toBe(
+        '/developers/switch-pinguino?path=%2Fdevelopers%2Faddon%2Fx',
+      );
     });
   });
 });
