@@ -1,14 +1,10 @@
-.devhub-faq {
-    header p {
+.support-page {
+    .support-header p {
         margin-top: 8px;
     }
 
-    .faq-toc ul {
-        list-style: disc;
-        margin: 0 0 1.5em 1.5em;
-    }
-
-    .faq-section {
+    .faq-section,
+    .support-contact {
         margin-bottom: 2em;
 
         h3 {
@@ -16,49 +12,52 @@
             margin-bottom: 0.5em;
             padding-bottom: 0.25em;
         }
+    }
 
-        h4 {
+    .faq-item {
+        border-bottom: 1px solid #eee;
+        scroll-margin-top: 1em;
+
+        summary {
+            cursor: pointer;
             font-weight: bold;
-            margin: 1.25em 0 0.5em;
-            scroll-margin-top: 1em;
-
-            &:target {
-                background-color: #fff8d6;
-                outline: 4px solid #fff8d6;
-            }
+            padding: 8px 0;
 
             &:hover .faq-permalink,
-            &:target .faq-permalink,
             .faq-permalink:focus {
                 opacity: 1;
             }
         }
 
-        .faq-permalink {
-            font-weight: normal;
-            margin-left: 4px;
-            opacity: 0.4;
-            text-decoration: none;
+        &:target summary {
+            background-color: #fff8d6;
         }
+
+        &[open] summary .faq-permalink {
+            opacity: 0.4;
+        }
+    }
+
+    .faq-permalink {
+        font-weight: normal;
+        margin-left: 4px;
+        opacity: 0;
+        text-decoration: none;
+    }
+
+    .faq-answer {
+        padding: 0 0 12px 1.25em;
 
         ol {
             list-style: decimal;
             margin: 0 0 1em 1.5em;
         }
     }
-
-    .faq-timeline {
-        margin-bottom: 1em;
-        width: 100%;
-    }
 }
 
-#support-faq-banner {
-    margin: 0 0 20px;
-}
-
-// The support form stays hidden until the developer confirms they checked
-// the FAQ. Pure CSS, so the checkbox must be a sibling preceding the form.
+// The support form stays hidden until the developer confirms the FAQ did not
+// cover their question. Pure CSS, so the checkbox must be a sibling preceding
+// the form.
 .support-faq-confirm {
     margin: 0 8px 0 0;
     vertical-align: middle;

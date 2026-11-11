@@ -2833,81 +2833,6 @@ class TestRequestContentReview(TestCase):
         )
 
 
-class TestFAQView(TestCase):
-    def setUp(self):
-        super().setUp()
-        self.url = reverse('devhub.faq')
-
-    def test_url(self):
-        assert self.url == '/en-US/developers/faq'
-
-    def test_get_anonymous(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        self.assertTemplateUsed(response, 'devhub/faq.html')
-        doc = pq(response.content)
-        assert doc('h2').eq(0).text() == 'Firefox Add-ons Developer FAQ'
-
-    def test_get_logged_in(self):
-        self.client.force_login(user_factory())
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-
-    def test_sections(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert [s.attrib['id'] for s in doc('section.faq-section')] == [
-            'reviews',
-            'api-keys',
-            'accounts',
-            'appeals',
-            'data-collection',
-            'listings',
-        ]
-        toc_links = [a.attrib['href'] for a in doc('.faq-toc a')]
-        assert toc_links == [
-            '#reviews',
-            '#api-keys',
-            '#accounts',
-            '#appeals',
-            '#data-collection',
-            '#listings',
-        ]
-        assert doc('.faq-section h4').length == 25
-
-    def test_every_question_has_permalink(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        questions = doc('.faq-section h4')
-        ids = [question.attrib['id'] for question in questions]
-        assert len(ids) == len(set(ids))
-        for question in questions.items():
-            permalink = question.find('a.faq-permalink')
-            assert permalink.length == 1
-            assert permalink.attr('href') == f'#{question.attr("id")}'
-            assert permalink.attr('aria-label') == 'Link to this question'
-
-    def test_links_to_support_form(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        support_url = reverse('devhub.support')
-        assert doc(f'.devhub-faq a[href="{support_url}"]').length > 0
-
-    def test_external_links_open_in_new_tab(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        external = doc('.devhub-faq a[href^="http"]')
-        assert external.length > 0
-        for link in external:
-            assert link.attrib['target'] == '_blank'
-            assert link.attrib['rel'] == 'noopener noreferrer'
-
-    def test_nav_link(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc(f'#site-nav a[href="{self.url}"]').text() == 'Developer FAQ'
-
-
 @override_switch('enable-devhub-support-form', active=True)
 @override_settings(FXA_SUPPORT_SECRET='mysecret')
 class TestSupportView(TestCase):
@@ -2939,15 +2864,104 @@ class TestSupportView(TestCase):
         assert response.status_code == 200
         assert 'form' in response.context
 
-    def test_get_renders_faq_banner(self):
+    def test_get_renders_faq(self):
         self.client.force_login(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        banner = doc('#support-faq-banner')
-        assert banner.length == 1
-        assert 'Before reaching out' in banner.text()
-        assert banner.find('a').attr('href') == reverse('devhub.faq')
+        assert [s.attrib['id'] for s in doc('section.faq-section')] == [
+            'reviews',
+            'api-keys',
+            'accounts',
+            'appeals',
+            'listings',
+        ]
+        items = doc('details.faq-item')
+        assert items.length == 21
+        # Collapsed by default: only the questions are visible.
+        assert all(item.attrib.get('open') is None for item in items)
+        for item in items.items():
+            assert item.children('summary').length == 1
+            assert item.children('.faq-answer').length == 1
+
+    def test_faq_removed_questions(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#cannot-sign-in').length == 0
+        assert doc('#data-collection').length == 0
+        assert doc('#restricted-appeal').length == 0
+        assert doc('#stats').length == 0
+        assert doc('#approved-404').length == 0
+        assert '404' not in doc('.faq-section').text()
+
+    def test_faq_api_key_email_mentions_apple_relay(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert "Apple's Hide My Email relay" in doc('#api-key-email').text()
+
+    def test_faq_approved_not_visible_explains_unlisted_channel(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        item = doc('#approved-not-visible')
+        assert (
+            item.children('summary')
+            .text()
+            .startswith('My version has been approved, but it is not visible')
+        )
+        answer = item.find('.faq-answer').text()
+        assert 'On your own' in answer
+        assert 'On this site' in answer
+
+    def test_every_faq_item_has_permalink(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        items = doc('details.faq-item')
+        ids = [item.attrib['id'] for item in items]
+        assert len(ids) == len(set(ids))
+        for item in items.items():
+            permalink = item.find('summary a.faq-permalink')
+            assert permalink.length == 1
+            assert permalink.attr('href') == f'#{item.attr("id")}'
+            assert permalink.attr('aria-label') == 'Link to this question'
+
+    def test_faq_contact_links_point_to_form_section(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        contact_links = doc('.faq-answer a[href="#contact"]')
+        assert contact_links.length == 3
+        for link in contact_links.items():
+            assert link.text() == 'contact form below'
+        assert doc('section#contact').length == 1
+
+    def test_faq_external_links_open_in_new_tab(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        external = doc('.faq-answer a[href^="http"]')
+        assert external.length > 0
+        for link in external:
+            assert link.attrib['target'] == '_blank'
+            assert link.attrib['rel'] == 'noopener noreferrer'
+
+    def test_form_comes_after_faq(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        sections = [s.attrib['id'] for s in doc('section.primary > section')]
+        assert sections[-1] == 'contact'
+        assert doc('section#contact form#support-form').length == 1
+        assert doc('.faq-section form').length == 0
+
+    def test_nav_link(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc(f'#site-nav a[href="{self.url}"]').text() == 'Support'
 
     def test_get_renders_unchecked_faq_confirmation(self):
         self.client.force_login(self.user)
@@ -2957,7 +2971,8 @@ class TestSupportView(TestCase):
         assert checkbox.length == 1
         assert checkbox.attr('checked') is None
         assert doc('label[for="support-faq-confirm"]').text() == (
-            'I have read the Developer FAQ and my question is not covered there.'
+            'My question is not covered by the FAQ above, and I want to send a '
+            'support request.'
         )
         # The form is revealed in CSS by a sibling selector, so the checkbox
         # has to come before the form under the same parent.

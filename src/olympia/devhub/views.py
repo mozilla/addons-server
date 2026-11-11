@@ -2330,10 +2330,6 @@ def support(request):
     return TemplateResponse(request, 'devhub/support.html', {'form': form})
 
 
-def faq(request):
-    return TemplateResponse(request, 'devhub/faq.html')
-
-
 @post_required
 @login_required
 def survey_response(request, survey_id):

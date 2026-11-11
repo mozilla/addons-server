@@ -1,36 +1,218 @@
 {% extends "devhub/base.html" %}
 
 {% set title = _('Get support for extensions and themes') %}
+{% set external_link_attrs = 'target="_blank" rel="noopener noreferrer"'|safe %}
 
 {% block title %}{{ dev_page_title(title) }}{% endblock %}
 
+{# Each FAQ entry is collapsed to its question. The id doubles as a permalink
+   (e.g. /developers/support#api-key-rate-limit); support-faq.js opens the
+   matching entry when the page loads with, or navigates to, that hash. #}
+{% macro faq_item(id, question) %}
+  <details class="faq-item" id="{{ id }}">
+    <summary>
+      {{ question }}
+      <a class="faq-permalink" href="#{{ id }}" title="{{ _('Link to this question') }}" aria-label="{{ _('Link to this question') }}">#</a>
+    </summary>
+    <div class="faq-answer">
+      {{ caller() }}
+    </div>
+  </details>
+{% endmacro %}
+
 {% block content %}
-<section class="primary" role="main">
+<section class="primary support-page" role="main">
   <header class="support-header">
     <h2>{{ title }}</h2>
-    <p>{{ _("Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please refer to your add-on(s) version history. We'll get back to you as soon as possible.") }}</p>
+    <p>{{ _('Many questions have a quick answer. Please check the frequently asked questions below first. If yours is not covered, you can contact us using the form at the end of this page.') }}</p>
   </header>
-  <div class="notification-box info" id="support-faq-banner">
-    <p>
-      {% trans faq_url=url('devhub.faq') %}
-        Before reaching out, please check our <a href="{{ faq_url }}">Developer FAQ</a>. Many common questions about reviews, API keys, accounts, appeals and listings are answered there, and you may find your answer faster.
-      {% endtrans %}
-    </p>
-  </div>
-  {# The checkbox must stay a direct sibling of the form: the form is revealed
-     purely in CSS (.support-faq-confirm:checked ~ .support-form), so it works
-     without JavaScript. #}
-  <input type="checkbox" id="support-faq-confirm" class="support-faq-confirm"
-         {% if request.method == 'POST' %}checked{% endif %}>
-  <label for="support-faq-confirm" class="support-faq-confirm-label">
-    {{ _('I have read the Developer FAQ and my question is not covered there.') }}
-  </label>
-  <form method="post" class="support-form" id="support-form">
-    {% csrf_token %}
-    {{ form.as_div() }}
-    <div class="action-group">
-      <button type="submit" class="button prominent">{{ _('Send request') }}</button>
-    </div>
-  </form>
+
+  <section id="reviews" class="faq-section">
+    <h3>{{ _('Reviews and review times') }}</h3>
+
+    {% call faq_item('manual-review', _('Why is my add-on waiting for manual review?')) %}
+      <p>{{ _('All submissions go through automated checks that help keep our ecosystem secure. Some submissions are then added to the manual review queue for a real person to look at, for example when our checks find something that needs a closer look.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('review-time', _('How long will a manual review take?')) %}
+      <p>{{ _('We do not have a fixed turnaround time right now, and we are sorry about that. We are seeing a large influx of new submissions, many of them malicious, so a manual review can take anywhere from a few days to a few weeks.') }}</p>
+      <p>
+        {% trans url='https://discourse.mozilla.org/t/important-update-addressing-the-long-manual-review-times/148498' %}
+          We cannot give a date for a specific add-on. We wrote about what is happening and what we are doing about it here: <a href="{{ url }}" {{ external_link_attrs }}>Important update: Addressing the long manual review times</a>.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call faq_item('every-update', _('Will every update I publish go through the manual review process?')) %}
+      <p>{{ _('Most versions are signed and published automatically, usually within minutes.') }}</p>
+      <p>{{ _('Only submissions that our checks flag are set aside for a person. A first submission from a new developer is more likely to get that look than the routine updates that follow it.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('speed-up', _('Can I speed my review up?')) %}
+      <p>
+        {% trans url='https://discourse.mozilla.org/t/help-our-source-code-review-process-add-a-build-for-amo-script/148822' %}
+          The one thing that genuinely helps is including your source code, with a build script the reviewer can run to reproduce your package exactly. This guide walks you through it: <a href="{{ url }}" {{ external_link_attrs }}>Help our source code review process, add a build for AMO script</a>.
+        {% endtrans %}
+      </p>
+      <p>{{ _('Uploading new versions, resubmitting, or following up repeatedly does not move an add-on up the queue.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('message-reviewer', _('How do I message my reviewer?')) %}
+      <p>
+        {% trans %}
+          Use the <strong>Reply</strong> feature in the Review History. On your add-on's page in the Developer Hub, open <strong>Manage Status &amp; Versions</strong> and reply from the review history of the relevant version.
+        {% endtrans %}
+      </p>
+      <p>{{ _('Reviewers do not monitor Discourse or the support desk, so messages left there will not reach them.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('broken-live-version', _('My live version is broken, and the fix is stuck in review. What can I do?')) %}
+      <p>
+        {% trans %}
+          Use the <a href="#contact">contact form below</a> to submit an expedited review request. Include the add-on ID, roughly how many users are affected, and what broke. We will make sure the impact is visible on our side and try to address the review as quickly as possible.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call faq_item('avoid-queue', _('Is there a way to avoid the public review queue?')) %}
+      <p>{{ _('If your add-on is only for your own users, you can self-distribute it through the unlisted channel. Most unlisted submissions are signed straight away.') }}</p>
+      <p>{{ _('Unlisted versions can still be picked up for manual review if our security scanners flag something, and signing waits in that case. Again, that is not a verdict on your add-on.') }}</p>
+    {% endcall %}
+  </section>
+
+  <section id="api-keys" class="faq-section">
+    <h3>{{ _('API keys, signing and uploads') }}</h3>
+
+    {% call faq_item('api-key-email', _('My API key confirmation email never arrived, or arrived without a link')) %}
+      <p>{{ _('Check your spam folder once. If you cannot find the email, wait a few hours and then request a new one.') }}</p>
+      <p>{{ _("If you are using Apple's Hide My Email relay, our emails may not reach you. Change the email address on your Mozilla account to one that receives email directly, then request a new email.") }}</p>
+    {% endcall %}
+
+    {% call faq_item('api-key-rate-limit', _('The API key request page says: "You have submitted this form too many times recently"')) %}
+      <p>{{ _('Retrying while the email is slow trips a rate limit. Please stop resubmitting, since each attempt extends the wait. Wait from a few hours up to a day.') }}</p>
+    {% endcall %}
+  </section>
+
+  <section id="accounts" class="faq-section">
+    <h3>{{ _('Accounts') }}</h3>
+
+    {% call faq_item('move-account', _('How do I move my add-ons to a new Mozilla account?')) %}
+      <p>{{ _('You can do it yourself, as long as you can still sign in to the old account.') }}</p>
+      <ol>
+        <li>{{ _('Create the new Mozilla account, verify its email address, and set a display name.') }}</li>
+        <li>
+          {% trans %}
+            In the Developer Hub, open your add-on's edit page and go to <strong>Manage Authors &amp; License</strong>.
+          {% endtrans %}
+        </li>
+        <li>{{ _('Add the new account as an author.') }}</li>
+        <li>{{ _('Once it shows up, remove the old account.') }}</li>
+        <li>{{ _('Repeat for each add-on.') }}</li>
+      </ol>
+    {% endcall %}
+
+    {% call faq_item('email-not-allowed', _('My email address is not allowed to submit add-ons')) %}
+      <p>
+        {% trans %}
+          Some email domains are blocked from submitting. If you think yours was blocked by mistake, contact us using the <a href="#contact">contact form below</a> with the address and your user ID, and we will look into it.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+  </section>
+
+  <section id="appeals" class="faq-section">
+    <h3>{{ _('Disabled, rejected and appeals') }}</h3>
+
+    {% call faq_item('appeal', _('My add-on was disabled or rejected. How do I appeal?')) %}
+      <p>{{ _('You should have received an email explaining the reason and including a link to appeal the decision. Please use that link, and the team will review it.') }}</p>
+      <p>
+        {% trans %}
+          To send changes or notes for another review, use <strong>Manage Status &amp; Versions</strong> on your add-on's Developer Hub page.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call faq_item('no-email', _('I received no email at all')) %}
+      <p>
+        {% trans %}
+          That is not how it should work, and we are sorry. Contact us using the <a href="#contact">contact form below</a>, and we will look into what happened with your add-on and why the email did not reach you.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call faq_item('duplicate-id', _('Resubmitting gives me "Duplicate add-on ID found"')) %}
+      <p>{{ _('This is expected. While the original add-on is disabled, a new submission with the same ID is blocked, so resubmitting will not bypass it. The appeal is the right path.') }}</p>
+      <p>{{ _('IDs that belonged to a deleted add-on cannot be reused either. Use a new ID in your manifest.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('fake-reviews', _('My add-on was hit by a flood of fake one-star reviews')) %}
+      <p>
+        {% trans %}
+          A sudden burst of near-identical negative reviews looks like a coordinated attack, not real feedback. Report each of them using the <strong>Flag</strong> option on the review, so they reach the right people.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+  </section>
+
+  <section id="listings" class="faq-section">
+    <h3>{{ _('Listings, versions and slugs') }}</h3>
+
+    {% call faq_item('restore-version', _('I deleted a version by mistake. Can you restore it?')) %}
+      <p>{{ _('No, and we are sorry. Deleting a version on AMO is permanent, which is why the deletion flow warns about it twice before you confirm.') }}</p>
+      <p>{{ _('The version number stays locked afterward, so you cannot re-upload it.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('wrong-channel', _('I uploaded to the private (unlisted) channel but wanted it public')) %}
+      <p>{{ _('An existing upload cannot be switched between channels. Upload a new version to the listed channel of the same add-on, and it will go public once it passes review.') }}</p>
+    {% endcall %}
+
+    {% call faq_item('unhide', _('I hid my add-on and now cannot make it visible again')) %}
+      <p>{{ _('You can make an add-on visible only when it has an approved version in the listed channel. If your new version is still awaiting review, the option stays unavailable until that review completes.') }}</p>
+    {% endcall %}
+
+
+    {% call faq_item('approved-not-visible', _('My version has been approved, but it is not visible')) %}
+      <p>
+        {% trans %}
+          First, check which channel you submitted the version to. On your add-on's Developer Hub page, open <strong>Manage Status &amp; Versions</strong>. Versions submitted to be distributed <strong>On your own</strong> (the unlisted channel) are signed for you to distribute yourself, and are never shown on AMO.
+        {% endtrans %}
+      </p>
+      <p>
+        {% trans %}
+          If that is the case, the version cannot be moved to the public listing. Upload a new version with a higher version number, and choose <strong>On this site</strong> when asked how to distribute it. It will appear on AMO once it is approved.
+        {% endtrans %}
+      </p>
+    {% endcall %}
+
+    {% call faq_item('slug-taken', _('The slug I want says it is taken, but its page is not found')) %}
+      <p>{{ _('A page that is not found does not mean the slug is free. Slugs stay reserved by whichever add-on holds them, including add-ons that are unlisted, incomplete, or disabled.') }}</p>
+      <p>{{ _("We generally do not take a slug away from another developer's add-on, even one that looks inactive.") }}</p>
+    {% endcall %}
+
+    {% call faq_item('update-delay', _('Users are not getting my new version yet')) %}
+      <p>{{ _('This is expected. Firefox checks for updates periodically, so it usually takes around 24 to 48 hours for an approved version to reach users.') }}</p>
+    {% endcall %}
+
+  </section>
+
+  <section id="contact" class="support-contact">
+    <h3>{{ _('Contact us') }}</h3>
+    {# The checkbox must stay a direct sibling of the form: the form is revealed
+       purely in CSS (.support-faq-confirm:checked ~ .support-form), so it works
+       without JavaScript. #}
+    <input type="checkbox" id="support-faq-confirm" class="support-faq-confirm"
+           {% if request.method == 'POST' %}checked{% endif %}>
+    <label for="support-faq-confirm" class="support-faq-confirm-label">
+      {{ _('My question is not covered by the FAQ above, and I want to send a support request.') }}
+    </label>
+    <form method="post" class="support-form" id="support-form">
+      <p>{{ _("Use this form for support related to your account, policy compliance issues, and more. The more details you share, the easier it is for us to help. For questions about your add-on(s) reviews, please refer to your add-on(s) version history. We'll get back to you as soon as possible.") }}</p>
+      {% csrf_token %}
+      {{ form.as_div() }}
+      <div class="action-group">
+        <button type="submit" class="button prominent">{{ _('Send request') }}</button>
+      </div>
+    </form>
+  </section>
 </section>
 {% endblock content %}
