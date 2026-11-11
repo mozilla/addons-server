@@ -1,9 +1,10 @@
 import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { errorStatus } from '../../../../data/http';
 import { uploadVersionNotes, versionQuery } from '../../../../data/queries';
 import type { AddonDistribution } from '../../../../data/types';
 import { errorBar, errorMessage, SubmissionStep } from '../submission-flow';
-import '../../../../components/not-found';
+import '../../../../components/error-page';
 import '../../../../foundations/components/message-bar';
 import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
 
@@ -73,7 +74,8 @@ export class ReviewSubmit extends SubmissionStep {
   render() {
     const query = this.#version();
     if (query.isPending) return nothing;
-    if (query.isError) return html`<not-found></not-found>`;
+    if (query.isError)
+      return html`<error-page .code=${errorStatus(query.error)}></error-page>`;
     const version = query.data;
     const packageName = version.file.url.split('/').pop() ?? '';
     const distribution = DISTRIBUTION[this.distribution];

@@ -36,6 +36,12 @@ export class ApiError extends Error {
   }
 }
 
+// Anything that isn't an ApiError never reached the API, so it's our fault
+// rather than a status the server chose.
+export function errorStatus(e: unknown): number {
+  return e instanceof ApiError ? e.status : 500;
+}
+
 // Parse a failed response. DRF validation errors come back as
 // { field: ["msg", …] } (plus { detail } / { non_field_errors } for general
 // ones); split the field errors out so forms can attach them to inputs, and

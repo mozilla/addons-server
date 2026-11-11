@@ -13,8 +13,8 @@ import './app.css';
 
 import './components/coming-soon';
 import './components/devhub-header';
-import './components/not-found';
 import './components/support';
+import './components/error-page';
 import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
@@ -39,11 +39,18 @@ export class PinguinoApp extends LitElement {
     /* acorn's moz-provider is display:contents; give it a box so it can fill
      * the viewport height. */
     moz-provider {
-      display: block;
+      display: flex;
+      flex-direction: column;
       /* The page surface is painted here rather than on body, which is outside
        * this shadow tree and so can't be selected per route. */
       background-color: var(--background-color-box);
       min-height: 100vh;
+    }
+
+    /* Takes the height the header leaves, so a view that wants to fill the
+     * viewport doesn't have to guess the header's size. */
+    app-container {
+      flex: 1;
     }
     moz-provider.canvas {
       background-color: var(--background-color-canvas);
@@ -106,7 +113,7 @@ export class PinguinoApp extends LitElement {
     ],
     {
       fallback: {
-        render: () => html`<not-found></not-found>`,
+        render: () => html`<error-page></error-page>`,
       },
     },
   );
