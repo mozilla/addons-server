@@ -5,13 +5,17 @@ import '../components/addon-card';
 import '../components/submit-card';
 import '../components/update-card';
 import type { Addon, Update } from '../data';
-import { addonsQuery, profileQuery, updatesQuery } from '../data';
+import { activityQuery, addonsQuery, profileQuery } from '../data';
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
   #profile = profileQuery(this);
   #addons = addonsQuery(this);
-  #updates = updatesQuery(this);
+  #updates = activityQuery(
+    this,
+    undefined,
+    () => 1,
+  );
 
   static styles = css`
     :host {
@@ -75,7 +79,7 @@ export class DevhubHome extends LitElement {
                   ${this.#addonSections(addons.data ?? [])}
                 </div>
                 <div style="grid-column: span 5">
-                  ${this.#feed(this.#updates().data ?? [])}
+                  ${this.#feed(this.#updates().data?.items ?? [])}
                 </div>
               </app-grid>
             `

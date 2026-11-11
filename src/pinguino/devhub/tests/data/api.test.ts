@@ -8,7 +8,6 @@ import {
   fetchCategories,
   fetchEulaPolicy,
   fetchProfile,
-  fetchUpdates,
   formatDate,
   localized,
   mapActivity,
@@ -287,7 +286,7 @@ describe('endpoints', () => {
     expect(await fetchAddons()).toEqual([]);
   });
 
-  it('fetchUpdates maps the activity feed through mapActivity', async () => {
+  it('fetchActivity maps the activity feed through mapActivity', async () => {
     mockJson({
       results: [
         {
@@ -297,12 +296,21 @@ describe('endpoints', () => {
         },
       ],
     });
-    const updates = await fetchUpdates();
-    expect(updates).toHaveLength(1);
-    expect(updates[0]).toMatchObject({
+    const page = await fetchActivity(undefined, 1);
+    expect(page.items).toHaveLength(1);
+    expect(page.items[0]).toMatchObject({
       id: '1',
       versionStatus: VERSION_STATUS.public,
     });
+  });
+
+  it('fetchActivity omits the addon param when no slug is given', async () => {
+    mockJson({ results: [], count: 0 });
+
+    await fetchActivity(undefined, 1);
+
+    const [url] = vi.mocked(fetch).mock.calls[0];
+    expect(String(url)).not.toContain('addon=');
   });
 
   it('fetchActivity filters by add-on and pages, reporting the total', async () => {

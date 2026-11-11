@@ -37,7 +37,6 @@ export {
   updateEulaPolicy,
   updateIcon,
   updatePreview,
-  updatesQuery,
   uploadQuery,
   uploadVersionNotes,
   uploadVersionSource,

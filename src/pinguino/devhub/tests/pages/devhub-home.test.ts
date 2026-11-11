@@ -46,7 +46,11 @@ const update: Update = {
 function seed(addons: Addon[], updates: Update[]) {
   queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
   queryClient.setQueryData(queryKeys.addons, addons);
-  queryClient.setQueryData(queryKeys.updates, updates);
+  // The dashboard feed is the all-add-ons activity query: no slug, page 1.
+  queryClient.setQueryData(['activity', null, 1], {
+    items: updates,
+    total: updates.length,
+  });
 }
 
 const text = (el: Element | null) =>
