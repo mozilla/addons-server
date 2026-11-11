@@ -2,7 +2,11 @@
 // in one place. Components attach these controllers and read reactive
 // { data, isPending, isError } — they never call fetch or manage loading state.
 
-import { createQueryController } from '@tanstack/lit-query';
+import {
+  createInfiniteQueryController,
+  createQueryController,
+  type InfiniteData,
+} from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { LOCALE } from '../base';
 import {
@@ -66,6 +70,11 @@ export const queryKeys = {
 // null so it stays a stable, distinct cache entry.
 const activityKey = (slug: string | undefined, page: number) =>
   ['activity', slug ?? null, page] as const;
+
+// The infinite (scroll-to-load) variant of the feed. Shares the 'activity'
+// prefix so one invalidate refreshes both the paged and infinite caches.
+const activityInfiniteKey = (slug: string | undefined) =>
+  ['activity', 'infinite', slug ?? null] as const;
 
 // The static category list rarely changes, so keep it for the session.
 export function categoriesQuery(host: ReactiveControllerHost) {
@@ -152,11 +161,23 @@ export async function removeAddon(slug: string) {
   // The dashboard lists the add-on twice: as a card, and by name in the
   // activity feed. The feed drops a deleted add-on's entries server-side, so
   // this one has to go too or the dashboard keeps naming what we just deleted.
-  queryClient.setQueryData(activityKey(undefined, 1), (page?: ActivityPage) => {
-    if (!page) return page;
-    const items = page.items.filter((item) => item.addonSlug !== slug);
-    return { items, total: page.total - (page.items.length - items.length) };
-  });
+  queryClient.setQueryData(
+    activityInfiniteKey(undefined),
+    (data?: InfiniteData<ActivityPage>) => {
+      if (!data) return data;
+      let removed = 0;
+      const pages = data.pages.map((page) => {
+        const items = page.items.filter((item) => item.addonSlug !== slug);
+        removed += page.items.length - items.length;
+        return { items, total: page.total };
+      });
+      if (!removed) return data;
+      return {
+        ...data,
+        pages: pages.map((page) => ({ ...page, total: page.total - removed })),
+      };
+    },
+  );
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
   await queryClient.invalidateQueries({ queryKey: ['activity'] });
 }
@@ -332,6 +353,33 @@ export function activityQuery(
       return {
         queryKey: activityKey(slug, page),
         queryFn: () => fetchActivity(slug, page),
+        // Wait for a slug only when one is expected; the all-add-ons feed fetches
+        // immediately.
+        enabled: !getSlug || Boolean(slug),
+      };
+    },
+    queryClient,
+  );
+}
+
+// The feed as an infinite query: each page is fetched on demand as the reader
+// scrolls. `getNextPageParam` stops once we've loaded every row the server has.
+export function activityInfiniteQuery(
+  host: ReactiveControllerHost,
+  getSlug?: () => string,
+) {
+  return createInfiniteQueryController(
+    host,
+    () => {
+      const slug = getSlug?.();
+      return {
+        queryKey: activityInfiniteKey(slug),
+        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage: ActivityPage, pages: ActivityPage[]) => {
+          const loaded = pages.reduce((n, page) => n + page.items.length, 0);
+          return loaded < lastPage.total ? pages.length + 1 : undefined;
+        },
         // Wait for a slug only when one is expected; the all-add-ons feed fetches
         // immediately.
         enabled: !getSlug || Boolean(slug),
