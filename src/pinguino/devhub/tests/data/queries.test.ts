@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import type { Addon, AddonPage } from '../../src/data';
 import { queryClient, queryKeys, removeAddon } from '../../src/data';
+import { seedAddons } from '../helpers/fixture';
 
 function mockDelete(listAfter: unknown[]) {
   const fetchMock = vi.fn(async (url: string, init?: RequestInit) => {
@@ -31,17 +33,22 @@ describe('removeAddon', () => {
   // renders the add-on we just deleted.
   it('leaves the cached list without the deleted add-on', async () => {
     mockDelete([{ slug: 'kept', name: 'Kept', type: 'extension' }]);
-    queryClient.setQueryData(queryKeys.addons, [
-      { slug: 'doomed', name: 'Doomed' },
-      { slug: 'kept', name: 'Kept' },
-    ]);
+    seedAddons(
+      [
+        { slug: 'doomed', name: 'Doomed', kind: 'extension' },
+        { slug: 'kept', name: 'Kept', kind: 'extension' },
+      ] as Addon[],
+      { extension: 9 },
+    );
 
     await removeAddon('doomed');
 
-    const cached = queryClient.getQueryData(queryKeys.addons) as {
-      slug: string;
-    }[];
-    expect(cached.map((a) => a.slug)).toEqual(['kept']);
+    const cached = queryClient.getQueryData(
+      queryKeys.addonList('extension'),
+    ) as AddonPage;
+    expect(cached.results.map((a) => a.slug)).toEqual(['kept']);
+    // The author's total drops with it, not just the page we hold.
+    expect(cached.count).toBe(8);
   });
 
   // The dashboard names the add-on in its activity feed as well as its cards,
@@ -63,7 +70,7 @@ describe('removeAddon', () => {
 
   it('spends the delete token before touching the cache', async () => {
     const fetchMock = mockDelete([]);
-    queryClient.setQueryData(queryKeys.addons, [{ slug: 'doomed' }]);
+    seedAddons([{ slug: 'doomed', kind: 'extension' }] as Addon[]);
 
     await removeAddon('doomed');
 
@@ -78,6 +85,8 @@ describe('removeAddon', () => {
   it('keeps an empty cache empty rather than inventing a list', async () => {
     mockDelete([]);
     await removeAddon('doomed');
-    expect(queryClient.getQueryData(queryKeys.addons)).toBeUndefined();
+    expect(
+      queryClient.getQueryData(queryKeys.addonList('extension')),
+    ).toBeUndefined();
   });
 });
