@@ -497,27 +497,22 @@ export async function patchEulaPolicy(
   });
 }
 
-// The authenticated user's activity across all their add-ons, in one request.
-export async function fetchUpdates(): Promise<Update[]> {
-  const data = await apiFetch<Paginated<ApiActivity>>(
-    '/activity/?lang=en-US&page_size=50',
-  );
-  return (data.results ?? []).map(mapActivity);
-}
-
 export const ACTIVITY_PAGE_SIZE = 20;
 
 // Paged server-side, so the URL's `?page=` maps straight onto the API's paging.
+// Without a slug, the feed spans all of the authenticated user's add-ons.
 export async function fetchActivity(
-  slug: string,
+  slug: string | undefined,
   page: number,
 ): Promise<ActivityPage> {
   const params = new URLSearchParams({
     lang: 'en-US',
-    addon: slug,
     page: String(page),
     page_size: String(ACTIVITY_PAGE_SIZE),
   });
+  if (slug) {
+    params.set('addon', slug);
+  }
   const data = await apiFetch<Paginated<ApiActivity>>(`/activity/?${params}`);
   return {
     items: (data.results ?? []).map(mapActivity),

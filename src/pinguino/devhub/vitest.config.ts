@@ -1,3 +1,4 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vitest/config';
 
 // Standalone from vite.config.ts: the dev server's base/proxy/HMR settings are
@@ -10,6 +11,15 @@ export default defineConfig({
     environment: 'happy-dom',
     globals: true,
     setupFiles: ['tests/setup.ts'],
+    // The real virtualizer measures layout APIs happy-dom lacks (it renders
+    // nothing and throws). Swap it for a stub that renders every row eagerly so
+    // component DOM assertions stay meaningful. Production uses the real one via
+    // vite.config.ts.
+    alias: {
+      '@lit-labs/virtualizer': fileURLToPath(
+        new URL('./tests/doubles/lit-virtualizer.ts', import.meta.url),
+      ),
+    },
     include: ['tests/**/*.test.ts'],
     coverage: {
       provider: 'v8',

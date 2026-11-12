@@ -10,6 +10,7 @@ export {
 export { isAddonOwner } from './permissions';
 export {
   acceptAgreement,
+  activityInfiniteQuery,
   activityQuery,
   addonOwnershipQuery,
   addonQuery,
@@ -38,7 +39,6 @@ export {
   updateEulaPolicy,
   updateIcon,
   updatePreview,
-  updatesQuery,
   uploadQuery,
   uploadVersionNotes,
   uploadVersionSource,
