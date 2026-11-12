@@ -249,6 +249,10 @@ Scanners can return a JSON response immediately that contains the following fiel
 - `annotations` _(optional)_: a map of rule name to a list of annotation
   objects. See [Annotations](#scanner-annotations) for details.
 
+This response is validated like the results sent
+[asynchronously](#asynchronous-scanning): when invalid, it is treated as a
+failure.
+
 (asynchronous-scanning)=
 #### Asynchronous response
 
@@ -259,14 +263,14 @@ useful for long-running scans.
 To send results asynchronously:
 
 1. The scanner receives a webhook event with a `scanner_result_url` in the payload
-2. The scanner returns a quick acknowledgment (e.g., HTTP 202 Accepted with body
-   `{}` or `{"ok": true}`)
+2. The scanner returns a quick acknowledgment with HTTP 202 Accepted (e.g., with
+   body `{}` or `{"ok": true}`)
 3. The scanner performs its analysis
 4. The scanner sends a PATCH request to the `scanner_result_url` with the results
 
 The acknowledgment body must be valid JSON: an empty body is treated as a
-failure. It must not contain `matchedRules` either, otherwise AMO considers it
-the final result.
+failure. It must not contain `matchedRules` either, otherwise it is treated as
+a failure too.
 
 The PATCH request must be authenticated using the [service account JWT
 credentials](#scanners-authentication) and include a JSON body with a `results`

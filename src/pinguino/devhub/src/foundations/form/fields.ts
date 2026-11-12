@@ -1,4 +1,4 @@
-import type { InputType } from 'acorn-web-components';
+import type { InputType } from '@mozilla/lit-web-components';
 import { html, nothing } from 'lit';
 import type { FormController } from './form-controller';
 
@@ -9,6 +9,7 @@ export function textField<D extends object>(
   name: keyof D & string,
   label: string,
   type: InputType = 'text',
+  placeholder?: string,
 ) {
   return html`<moz-input-text
     label=${label}
@@ -16,6 +17,7 @@ export function textField<D extends object>(
     full-width
     error=${form.fieldError(name)}
     .value=${(form.value(name) as string) ?? ''}
+    placeholder=${placeholder ?? nothing}
     @input=${(e: Event) =>
       form.set(name, (e.target as HTMLInputElement).value as D[typeof name])}
   ></moz-input-text>`;
@@ -25,12 +27,18 @@ export function textArea<D extends object>(
   form: FormController<D>,
   name: keyof D & string,
   label?: string,
+  placeholder?: string,
+  maxlength?: number,
+  rows?: number,
 ) {
   return html`<moz-textarea
     label=${label ?? nothing}
     full-width
     error=${form.fieldError(name)}
     .value=${(form.value(name) as string) ?? ''}
+    placeholder=${placeholder ?? nothing}
+    maxlength=${maxlength ?? nothing}
+    rows=${rows ?? nothing}
     @input=${(e: Event) =>
       form.set(name, (e.target as HTMLTextAreaElement).value as D[typeof name])}
   ></moz-textarea>`;

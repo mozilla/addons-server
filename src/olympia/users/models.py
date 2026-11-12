@@ -1412,7 +1412,10 @@ class ContentCreationThresholdRestriction(RestrictionAbstractBaseModel):
         )
     )
 
-    error_message = _('You have submitted too much content recently.')
+    error_message = _(
+        'You have reached the submission limit for this type of content,'
+        ' please try again later.'
+    )
 
     def __str__(self):
         return f'{self.threshold}/{timedelta(seconds=self.interval)!s}'

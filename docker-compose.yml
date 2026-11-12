@@ -96,7 +96,7 @@ services:
       start_period: 10s
 
   nginx:
-    image: nginx:1.31.6@sha256:60f0d4e986561e08804f75c211dcaf7fc5455699eada29f42cbe8a0a7253dd86
+    image: nginx:1.31.7@sha256:8632b3314d74c61f0e27f59055bab13f7793b988c94c090154d867bc29e0f39b
     <<: *env
     volumes:
       - data_nginx:/etc/nginx/templates
@@ -141,7 +141,7 @@ services:
       retries: 3
 
   elasticsearch:
-    image: elasticsearch:8.19.23@sha256:3f4d63c59ca5a05b535179dfcced47a514119e351fa81653f69902beacae90c9
+    image: elasticsearch:8.19.23@sha256:ef5cafd961d7e273f13fed8def82e63c5ae0491106b5eecb5a69aa12d64f089b
     environment:
       # Disable all xpack related features to avoid unrelated logging
       # in docker logs. https://github.com/mozilla/addons-server/issues/8887
@@ -155,7 +155,7 @@ services:
     mem_limit: 2g
 
   redis:
-    image: redis:6.2.24@sha256:a9c881672688090a1a9fee7277c69174398acd5369f0bdb8bb58726c43b98a2a
+    image: redis:6.2.24@sha256:71075871d0c318a0a835648a954e32d2b88d7b2a75c89a034ad0aa404e0319c9
     volumes:
       - data_redis:/data
 

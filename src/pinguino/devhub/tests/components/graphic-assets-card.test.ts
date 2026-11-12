@@ -31,6 +31,7 @@ const base: Addon = {
   version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
+  canChangeVisibility: true,
   channels: ['listed'],
 };
 

@@ -309,7 +309,7 @@ class TestClient(Client):
 
 
 class APITestClientSessionID(APIClient):
-    def create_session(self, user, **overrides):
+    def create_session(self, user, with_2fa=False, **overrides):
         """
         Creates a session in the database for this user and returns the session key.
         """
@@ -321,7 +321,11 @@ class APITestClientSessionID(APIClient):
             auth.BACKEND_SESSION_KEY: settings.AUTHENTICATION_BACKENDS[0],
             auth.HASH_SESSION_KEY: user.get_session_auth_hash(),
         }
+        # Our auth does that at all times.
+        session_data['fxa_auth_at'] = int(time.time())
+        session_data['has_two_factor_authentication'] = with_2fa
 
+        # Only true FxA auth does that.
         if not use_fake_fxa(get_fxa_config(request)):
             session_data['fxa_access_token_expiry'] = time.time() + 1000
 
@@ -334,8 +338,10 @@ class APITestClientSessionID(APIClient):
         )
         return request.session.session_key
 
-    def login_api(self, user):
-        self.defaults['HTTP_AUTHORIZATION'] = f'Session {self.create_session(user)}'
+    def login_api(self, user, with_2fa=False):
+        self.defaults['HTTP_AUTHORIZATION'] = (
+            f'Session {self.create_session(user, with_2fa=with_2fa)}'
+        )
         # Prime cache for enable-session-anomaly-recording waffle switch because it
         # has the potential to mess with a lot of assertNumQueries().
         waffle.switch_is_active('enable-session-anomaly-recording')
@@ -364,7 +370,7 @@ class APITestClientJWT(JWTAuthKeyTester, APIClient):
         # ignore setting the value
         pass
 
-    def login_api(self, user):
+    def login_api(self, user, with_2fa=False):
         from olympia.api.models import APIKey
 
         self.api_key = APIKey.objects.filter(user=user).first() or self.create_api_key(

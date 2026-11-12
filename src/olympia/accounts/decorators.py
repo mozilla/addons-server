@@ -16,7 +16,7 @@ from olympia.accounts.utils import redirect_for_login_with_2fa_enforced
 log = olympia.core.logger.getLogger('accounts')
 
 
-def reprompt_for_2fa_if_necessary(request):
+def reprompt_for_2fa_if_necessary(request, next_path=None):
     """Return None if reprompting for 2FA is not enforced or necessary for this
     request, or an HttpResponse redirecting to login prompting for that 2FA."""
     has_2fa = request.session.get('has_two_factor_authentication')
@@ -40,11 +40,11 @@ def reprompt_for_2fa_if_necessary(request):
             if request.user.is_authenticated and not should_reprompt_2fa
             else None
         )
-        next_path = None
         if (
             should_reprompt_2fa
             and request.user.is_authenticated
             and request.method == 'POST'
+            and not request.is_api
             # Only content-type: multipart/form-data: we're going to store the
             # data in session, we don't want to serialize uploads...
             and request.headers.get('Content-Type') != 'multipart/form-data'
