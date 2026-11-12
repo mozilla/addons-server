@@ -8,7 +8,7 @@ import {
   queryKeys,
   VERSION_STATUS,
 } from '../../src/data';
-import { mount, settle } from '../helpers/fixture';
+import { mount, seedAddons, settle } from '../helpers/fixture';
 
 // Seeded cache data is fresh, so the query controllers read it on first paint
 // without refetching.
@@ -43,9 +43,13 @@ const update: Update = {
   addonSlug: 'a',
 };
 
-function seed(addons: Addon[], updates: Update[]) {
+function seed(
+  addons: Addon[],
+  updates: Update[],
+  counts?: Partial<Record<Addon['kind'], number>>,
+) {
   queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
-  queryClient.setQueryData(queryKeys.addons, addons);
+  seedAddons(addons, counts);
   queryClient.setQueryData(queryKeys.updates, updates);
 }
 
@@ -65,6 +69,18 @@ describe('devhub-home', () => {
 
     expect(root.querySelectorAll('addon-card')).toHaveLength(3);
     expect(root.querySelectorAll('submit-card')).toHaveLength(2); // one per group
+  });
+
+  it('counts every add-on the developer owns, not just the page it holds', async () => {
+    seed([ext('a'), ext('b'), theme('t')], [], { extension: 71, theme: 12 });
+    const el = await mount<DevhubHome>('devhub-home');
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    const counts = [...root.querySelectorAll('.count')].map(text);
+    expect(counts).toContain('71 Extensions');
+    expect(counts).toContain('12 Themes');
+    expect(root.querySelectorAll('addon-card')).toHaveLength(3);
   });
 
   it('shows the empty-updates illustration when the feed is empty', async () => {

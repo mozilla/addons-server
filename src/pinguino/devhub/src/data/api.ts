@@ -18,6 +18,7 @@ import type {
   AddonDistribution,
   AddonKind,
   AddonListingEdit,
+  AddonPage,
   AgreementAcceptState,
   AgreementState,
   Category,
@@ -222,12 +223,32 @@ export async function fetchProfile(): Promise<Developer> {
   };
 }
 
-// Lists the add-ons the authenticated session owns; no author param needed.
-export async function fetchAddons(): Promise<Addon[]> {
-  const data = await apiFetch<Paginated<ApiAddon>>(
-    '/addons/addon/?lang=en-US&page_size=50&sort=last_updated',
-  );
-  return (data.results ?? []).map(mapAddon);
+// Dictionaries and language packs are extensions to us, as they are to
+// mapAddon and to the classic devhub's dashboard.
+const KIND_TYPES: Record<AddonKind, string> = {
+  extension: 'extension,dictionary,language',
+  theme: 'statictheme',
+};
+
+// Newest activity first. The leading `-` is load-bearing: the API sorts
+// ascending by default, so dropping it buries the add-ons a developer is
+// actually working on. `last_updated` covers "added" too — the server falls
+// back to the creation date for an add-on that has never shipped a version.
+// `-id` only breaks ties, so paging can't reshuffle same-timestamp rows.
+const SORT = '-last_updated,-id';
+
+// Lists one kind of the add-ons the authenticated session owns; no author
+// param needed.
+export async function fetchAddons(kind: AddonKind): Promise<AddonPage> {
+  const params = new URLSearchParams({
+    lang: 'en-US',
+    page_size: '50',
+    sort: SORT,
+    type: KIND_TYPES[kind],
+  });
+  const data = await apiFetch<Paginated<ApiAddon>>(`/addons/addon/?${params}`);
+  const results = (data.results ?? []).map(mapAddon);
+  return { results, count: data.count ?? results.length };
 }
 
 // Builds the add-on PATCH body from the edit fields. Keys already match the

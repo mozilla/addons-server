@@ -272,19 +272,39 @@ describe('clearTranslations', () => {
 describe('endpoints', () => {
   it('fetchAddons maps the paginated envelope through mapAddon', async () => {
     mockJson({
+      count: 2,
       results: [
         { slug: 'a', name: 'A', type: 'extension', status: 'public' },
-        { slug: 't', name: 'T', type: 'statictheme', status: 'public' },
+        { slug: 'b', name: 'B', type: 'dictionary', status: 'public' },
       ],
     });
 
-    const addons = await fetchAddons();
-    expect(addons.map((a) => a.kind)).toEqual(['extension', 'theme']);
+    const page = await fetchAddons('extension');
+    expect(page.results.map((a) => a.kind)).toEqual(['extension', 'extension']);
+    expect(page.count).toBe(2);
   });
 
-  it('fetchAddons tolerates a missing results array', async () => {
+  it('fetchAddons asks for one kind at a time', async () => {
     mockJson({});
-    expect(await fetchAddons()).toEqual([]);
+    await fetchAddons('extension');
+    expect(lastCall()[0]).toContain('type=extension%2Cdictionary%2Clanguage');
+
+    mockJson({});
+    await fetchAddons('theme');
+    expect(lastCall()[0]).toContain('type=statictheme');
+  });
+
+  // The API sorts ascending unless asked otherwise, so a dropped `-` silently
+  // serves the developer their stalest add-ons.
+  it('fetchAddons asks for the most recently updated first', async () => {
+    mockJson({});
+    await fetchAddons('extension');
+    expect(lastCall()[0]).toContain('sort=-last_updated%2C-id');
+  });
+
+  it('fetchAddons falls back to the page size when count is missing', async () => {
+    mockJson({});
+    expect(await fetchAddons('theme')).toEqual({ results: [], count: 0 });
   });
 
   it('fetchUpdates maps the activity feed through mapActivity', async () => {

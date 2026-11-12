@@ -4,13 +4,33 @@ import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
 import '../components/submit-card';
 import '../components/update-card';
-import type { Addon, Update } from '../data';
+import type { AddonKind, AddonsQuery, Update } from '../data';
 import { addonsQuery, profileQuery, updatesQuery } from '../data';
+
+interface Group {
+  title: string;
+  icon: IconName;
+  submitLabel: string;
+}
+
+const GROUPS: Record<AddonKind, Group> = {
+  extension: {
+    title: 'Extensions',
+    icon: 'extension',
+    submitLabel: 'Submit new extension',
+  },
+  theme: {
+    title: 'Themes',
+    icon: 'themes',
+    submitLabel: 'Submit new theme',
+  },
+};
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
   #profile = profileQuery(this);
-  #addons = addonsQuery(this);
+  #extensions = addonsQuery(this, 'extension');
+  #themes = addonsQuery(this, 'theme');
   #updates = updatesQuery(this);
 
   static styles = css`
@@ -50,56 +70,58 @@ export class DevhubHome extends LitElement {
     const heading = name
       ? `Welcome to the Developer Hub, ${name}`
       : 'Welcome to the Developer Hub.';
-    const addons = this.#addons();
     return html`
       <moz-page-header
         heading=${heading}
         description="Manage your Firefox add-ons, track reviews, and publish updates."
       ></moz-page-header>
 
-      ${
-        addons.isError
-          ? html`
-            <div class="count">
-              <span>We couldn't load your add-ons.</span>
-              <moz-button size="small" @click=${() => this.#addons.refetch()}>
-                Retry
-              </moz-button>
-            </div>
-          `
-          : addons.isPending
-            ? html`<p class="count">Loading your add-ons…</p>`
-            : html`
-              <app-grid columns-md="1">
-                <div style="grid-column: span 7">
-                  ${this.#addonSections(addons.data ?? [])}
-                </div>
-                <div style="grid-column: span 5">
-                  ${this.#feed(this.#updates().data ?? [])}
-                </div>
-              </app-grid>
-            `
-      }
+      <app-grid columns-md="1">
+        <div style="grid-column: span 7">
+          <app-stack gap="xlarge">
+            ${this.#group('extension', this.#extensions)}
+            ${this.#group('theme', this.#themes)}
+          </app-stack>
+        </div>
+        <div style="grid-column: span 5">
+          ${this.#feed(this.#updates().data ?? [])}
+        </div>
+      </app-grid>
     `;
   }
 
-  #addonSections(addons: Addon[]) {
-    const extensions = addons.filter((a) => a.kind === 'extension');
-    const themes = addons.filter((a) => a.kind === 'theme');
-    return html`
-      <app-stack gap="xlarge">
-        ${this.#group('Extensions', 'extension', extensions, 'Submit new extension')}
-        ${this.#group('Themes', 'themes', themes, 'Submit new theme')}
-      </app-stack>
-    `;
-  }
+  // Each section owns its request, so one kind failing or still loading leaves
+  // the other readable.
+  #group(kind: AddonKind, query: AddonsQuery) {
+    const { title, icon, submitLabel } = GROUPS[kind];
+    const { data, isError, isPending } = query();
 
-  #group(title: string, icon: IconName, items: Addon[], submitLabel: string) {
+    if (isError) {
+      return html`
+        <section class="section">
+          <div class="count">
+            <span>We couldn't load your ${title.toLowerCase()}.</span>
+            <moz-button size="small" @click=${() => query.refetch()}>
+              Retry
+            </moz-button>
+          </div>
+        </section>
+      `;
+    }
+    if (isPending) {
+      return html`
+        <section class="section">
+          <p class="count">Loading your ${title.toLowerCase()}…</p>
+        </section>
+      `;
+    }
+
+    const items = data.results;
     return html`
       <section class="section">
         <p class="count">
           <moz-icon name=${icon} color="accent-primary-desaturated"></moz-icon>
-          ${items.length} ${title}
+          ${data.count} ${title}
         </p>
         ${
           items.length > 0

@@ -86,6 +86,13 @@ export interface Addon {
   currentVersion?: Version;
 }
 
+// `count` is the author's total for that type, which outruns `results` once
+// they own more than a page of them.
+export interface AddonPage {
+  results: Addon[];
+  count: number;
+}
+
 export interface Version {
   id: number;
   version: string;
