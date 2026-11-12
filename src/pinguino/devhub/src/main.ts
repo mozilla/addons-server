@@ -15,10 +15,13 @@ import './components/coming-soon';
 import './components/devhub-header';
 import './components/not-found';
 import './components/site-status-banner';
+import './components/support';
 import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
 
+// @ts-ignore
+import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
 import { navigateTo } from './helper';
@@ -92,11 +95,11 @@ export class PinguinoApp extends LitElement {
         enter: ({ addonId }) =>
           navigateTo(`${BASE}/addon/${addonId}/feed`, { replace: true }),
       },
-      // Top-level pages not yet reimplemented
       {
         path: `${BASE}/support`,
-        render: () => html`<coming-soon></coming-soon>`,
+        render: () => html`<support-form></support-form>`,
       },
+      // Top-level pages not yet reimplemented
       {
         path: `${BASE}/verify-email`,
         render: () => html`<coming-soon></coming-soon>`,
@@ -129,7 +132,6 @@ export class PinguinoApp extends LitElement {
     const dashboard = isDashboardPath(location.pathname, BASE);
     return html`
       <moz-provider class=${dashboard ? 'canvas' : ''}>
-        <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
         <app-container>
           <site-status-banner></site-status-banner>
@@ -139,6 +141,8 @@ export class PinguinoApp extends LitElement {
     `;
   }
 }
+
+insertAnalyticsScript();
 
 if (import.meta.env.DEV) {
   import('./data/devtools').then((m) => m.mountDevtools());

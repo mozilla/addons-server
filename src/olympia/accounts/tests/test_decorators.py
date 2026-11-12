@@ -20,6 +20,7 @@ class TestTwoFactorAuthRequired(TestCase):
         self.f.__name__ = 'function'
         self.f.return_value = 'FakeResponse'
         self.request = RequestFactory().get('/')
+        self.request.is_api = False
         self.request.session = {}
         self.request.user = AnonymousUser()
 
@@ -94,7 +95,31 @@ class TestTwoFactorAuthRequired(TestCase):
         self.request = RequestFactory().post(
             '/somewhere/important', {'foo': 'baré', 'a': ['1', '2'], 'b': 'c'}
         )
+        self.request.is_api = False
         self.request.user = AnonymousUser()
+        self.request.session = {}
+        self.request.session['has_two_factor_authentication'] = True
+        self.request.session['fxa_auth_at'] = int(
+            time.time() - settings.FXA_MAX_AUTH_TIME_BEFORE_MFA_REPROMPT - 10
+        )
+        func = two_factor_auth_required(self.f)
+        response = func(self.request)
+        assert self.f.call_count == 0
+        assert '_post_data_after_2fa_reprompt' not in self.request.session
+        # Redirect normally (not to the special post restore endpoint)
+        expected_redirect_url = redirect_for_login_with_2fa_enforced(self.request)[
+            'location'
+        ]
+        self.assert3xx(response, expected_redirect_url)
+
+    @override_switch('2fa-reprompt', active=True)
+    def test_has_two_factor_auth_should_be_reprompted_cant_post_data_is_api(self):
+        # When reprompting because of an API request, don't store POST data.
+        self.request = RequestFactory().post(
+            '/somewhere/important', {'foo': 'baré', 'a': ['1', '2'], 'b': 'c'}
+        )
+        self.request.is_api = True
+        self.request.user = self.user
         self.request.session = {}
         self.request.session['has_two_factor_authentication'] = True
         self.request.session['fxa_auth_at'] = int(
@@ -117,6 +142,7 @@ class TestTwoFactorAuthRequired(TestCase):
         self.request = RequestFactory().post(
             '/somewhere/important', {'foo': 'baré', 'a': ['1', '2'], 'b': 'c'}
         )
+        self.request.is_api = False
         self.request.user = self.user
         self.request.session = {}
         self.request.session['has_two_factor_authentication'] = True

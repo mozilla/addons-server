@@ -110,12 +110,18 @@ export function siteStatusQuery(
   );
 }
 
-export function addonsQuery(host: ReactiveControllerHost) {
+// These are the signed-in developer's own add-ons, so asking while signed out
+// only earns a 401; `getEnabled` lets a caller wait for the profile first.
+export function addonsQuery(
+  host: ReactiveControllerHost,
+  getEnabled: () => boolean = () => true,
+) {
   return createQueryController(
     host,
     () => ({
       queryKey: queryKeys.addons,
       queryFn: fetchAddons,
+      enabled: getEnabled(),
     }),
     queryClient,
   );

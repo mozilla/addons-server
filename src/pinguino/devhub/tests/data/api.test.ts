@@ -18,6 +18,7 @@ import {
   patchEulaPolicy,
   patchVersion,
   postAgreement,
+  postSupport,
   postUpload,
   postVersion,
 } from '../../src/data/api';
@@ -550,6 +551,26 @@ describe('endpoints', () => {
 });
 
 describe('submission endpoints', () => {
+  it('postSupport POSTs the request as JSON and returns the echoed data', async () => {
+    const payload = {
+      category: 'policy' as const,
+      summary: 'Login broken',
+      body: 'I cannot sign in.',
+    };
+    mockJson(payload);
+
+    const result = await postSupport(payload);
+
+    const [url, init] = lastCall();
+    expect(url).toBe('/api/v5/developers/support/');
+    expect(init).toMatchObject({
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+    // The endpoint echoes the submitted data back on success.
+    expect(result).toEqual(payload);
+  });
+
   it('postUpload POSTs the file and channel as FormData', async () => {
     mockJson({ uuid: 'foo' });
     const file = new File(['zip'], 'addon.zip');

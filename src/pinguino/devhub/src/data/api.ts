@@ -538,6 +538,23 @@ export async function postAgreement(
   });
 }
 
+export type SupportCategory = 'policy' | 'technical' | 'other';
+
+export interface SupportRequest {
+  category: SupportCategory;
+  summary: string;
+  body: string;
+}
+
+export async function postSupport(
+  payload: SupportRequest,
+): Promise<SupportRequest> {
+  return await apiFetch<SupportRequest>('/developers/support/', {
+    method: 'POST',
+    body: payload,
+  });
+}
+
 export async function postUpload(
   file: File,
   channel: AddonDistribution,
