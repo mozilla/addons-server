@@ -25,6 +25,7 @@ import {
   fetchEulaPolicy,
   fetchPendingAuthors,
   fetchProfile,
+  fetchSiteStatus,
   fetchUpload,
   fetchVersion,
   fetchVersions,
@@ -58,6 +59,7 @@ import type {
 // key so navigating to a detail view reuses the cached list, not a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
+  siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
@@ -97,18 +99,41 @@ export function profileQuery(host: ReactiveControllerHost) {
     () => ({
       queryKey: queryKeys.profile,
       queryFn: fetchProfile,
-      staleTime: Number.POSITIVE_INFINITY,
     }),
     queryClient,
   );
 }
 
-export function addonsQuery(host: ReactiveControllerHost) {
+// Standalone site status, used as a fallback when the profile query can't
+// supply it (signed out, or any other profile failure). Gated by `getEnabled`
+// so the request only fires once, and if, that fallback is actually needed.
+export function siteStatusQuery(
+  host: ReactiveControllerHost,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.siteStatus,
+      queryFn: fetchSiteStatus,
+      enabled: getEnabled(),
+    }),
+    queryClient,
+  );
+}
+
+// These are the signed-in developer's own add-ons, so asking while signed out
+// only earns a 401; `getEnabled` lets a caller wait for the profile first.
+export function addonsQuery(
+  host: ReactiveControllerHost,
+  getEnabled: () => boolean = () => true,
+) {
   return createQueryController(
     host,
     () => ({
       queryKey: queryKeys.addons,
       queryFn: fetchAddons,
+      enabled: getEnabled(),
     }),
     queryClient,
   );
