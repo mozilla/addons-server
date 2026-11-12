@@ -115,7 +115,7 @@ export class AddonVersion extends LitElement {
       margin-block-start: var(--space-small);
     }
     .manage-button {
-      --button-text-color-ghost: var(--color-violet-50);
+      --button-text-color-ghost: light-dark(var(--color-violet-50), var(--color-violet-30));
     }
     visibility-badge::part(button) {
       --button-padding-inline-small: var(--space-xxsmall);
