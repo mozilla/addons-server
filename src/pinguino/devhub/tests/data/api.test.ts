@@ -8,6 +8,7 @@ import {
   fetchCategories,
   fetchEulaPolicy,
   fetchProfile,
+  fetchSiteStatus,
   fetchUpdates,
   formatDate,
   localized,
@@ -58,6 +59,20 @@ describe('mapAddon', () => {
       version: '3.2.1',
       lastUpdated: 'May 14 2025',
       previewUrl: 'https://cdn/preview.png',
+    });
+  });
+
+  it('carries the per-channel submission warning through unchanged', () => {
+    const addon = mapAddon({
+      slug: 'x',
+      name: { 'en-US': 'X' },
+      type: 'extension',
+      status: 'public',
+      channels: ['listed'],
+      submit_notification_warning: { listed: 'Listed submissions are paused.' },
+    });
+    expect(addon.submissionNotice).toEqual({
+      listed: 'Listed submissions are paused.',
     });
   });
 
@@ -318,12 +333,80 @@ describe('endpoints', () => {
     expect(page.items).toHaveLength(1);
   });
 
-  it('fetchProfile maps the id, name and picture url', async () => {
-    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+  it('fetchProfile maps the id, name, picture url and site status', async () => {
+    mockJson({
+      id: 99,
+      name: 'Kate',
+      picture_url: 'https://cdn/a.png',
+      site_status: {
+        read_only: true,
+        notice: 'Scheduled maintenance tonight.',
+        submit_notification_warning: 'Submissions are paused.',
+      },
+    });
     expect(await fetchProfile()).toEqual({
       id: '99',
       name: 'Kate',
       pictureUrl: 'https://cdn/a.png',
+      siteStatus: {
+        readOnly: true,
+        siteNotice: 'Scheduled maintenance tonight.',
+        submissionNotice: 'Submissions are paused.',
+      },
+    });
+  });
+
+  it('fetchProfile defaults missing site-status fields to a safe shape', async () => {
+    mockJson({
+      id: 99,
+      name: 'Kate',
+      picture_url: 'https://cdn/a.png',
+      site_status: {
+        read_only: false,
+        notice: null,
+        submit_notification_warning: null,
+      },
+    });
+    expect((await fetchProfile()).siteStatus).toEqual({
+      readOnly: false,
+      siteNotice: null,
+      submissionNotice: null,
+    });
+  });
+
+  it('fetchProfile tolerates an entirely absent site_status', async () => {
+    mockJson({ id: 99, name: 'Kate', picture_url: 'https://cdn/a.png' });
+    expect((await fetchProfile()).siteStatus).toEqual({
+      readOnly: false,
+      siteNotice: null,
+      submissionNotice: null,
+    });
+  });
+
+  it('fetchSiteStatus translates the standalone site-status endpoint', async () => {
+    mockJson({
+      read_only: true,
+      notice: 'We are in read-only mode.',
+      submit_notification_warning: null,
+    });
+
+    const status = await fetchSiteStatus();
+
+    const [url] = lastCall();
+    expect(url).toBe('/api/v5/site/');
+    expect(status).toEqual({
+      readOnly: true,
+      siteNotice: 'We are in read-only mode.',
+      submissionNotice: null,
+    });
+  });
+
+  it('fetchSiteStatus coerces absent flags to defaults', async () => {
+    mockJson({});
+    expect(await fetchSiteStatus()).toEqual({
+      readOnly: false,
+      siteNotice: null,
+      submissionNotice: null,
     });
   });
 

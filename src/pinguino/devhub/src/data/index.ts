@@ -32,6 +32,7 @@ export {
   removeAuthor,
   removePreview,
   setAddonVisibility,
+  siteStatusQuery,
   updateAddon,
   updateAuthor,
   updateEulaPolicy,
