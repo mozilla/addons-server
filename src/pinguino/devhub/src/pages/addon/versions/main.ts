@@ -4,7 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { addonQuery } from '../../../data';
 
 import '../../../components/coming-soon';
-import '../../../components/not-found';
+import '../../../components/error-page';
 import './submit/main';
 
 @customElement('version-routes')
@@ -25,7 +25,7 @@ class VersionRoutes extends LitElement {
   render() {
     const addon = this.#addon();
     if (addon.isPending) return nothing;
-    if (addon.isSuccess && !addon.data) return html`<not-found></not-found>`;
+    if (addon.isSuccess && !addon.data) return html`<error-page></error-page>`;
     return this._routes.outlet();
   }
 }
