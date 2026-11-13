@@ -15,7 +15,6 @@ export default {
     'declaration-property-value-no-unknown': null,
     'font-family-no-missing-generic-family-keyword': null,
     'function-linear-gradient-no-nonstandard-direction': null,
-    'declaration-block-single-line-max-declarations': null,
     'selector-pseudo-class-no-unknown': null,
     'block-no-empty': null,
     'declaration-block-no-shorthand-property-overrides': null,
@@ -52,6 +51,9 @@ export default {
     'media-feature-range-notation': null,
     'value-keyword-case': null,
     'selector-not-notation': null,
+    'value-no-invalid': null,
+    'selector-no-deprecated': null,
+    'selector-no-unmatchable': null,
     'declaration-property-value-keyword-no-deprecated': null,
   },
   overrides: [
