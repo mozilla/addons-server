@@ -433,9 +433,9 @@ pytest-env==1.8.4 \
     --hash=sha256:1054caabdbcc6d6ef1b06b010413f8bd482f7ea19487b27cd61e3385f5262bc1 \
     --hash=sha256:5b2d0685f3075ce7edce79d45a3cfa1117f01ec2098d209d1de15765fe3e8105
 # python-dotenv is required by pytest-env
-python-dotenv==1.2.3 \
-    --hash=sha256:904552145e8bfed22162c09dab1c2b9b54fefa7b23ba780f4f26ca0316b0f0d9 \
-    --hash=sha256:a20a594dabeaa385725aa239d5244871c143ecb356add8a20fcf23773a6c3a35
+python-dotenv==1.2.4 \
+    --hash=sha256:42269a8a5b3fd54ffa6f3d84b18abed50064717576b4ecf03dc4a55d8aa04fdc \
+    --hash=sha256:f0d53e69935a851c0dcc78f3ab7aaccd8cabef0b92382b576b824212902873c0
 django-model-info==2026.3.1 \
     --hash=sha256:0cd5043a999b30841f7e2ba64f1ec6e973a080e6c8f0ac8e7a3759131ff2a287 \
     --hash=sha256:4ceceb4766e56f7ec01b75d0ff1458eef14211fff819d3e1396d25ad55e7e323
