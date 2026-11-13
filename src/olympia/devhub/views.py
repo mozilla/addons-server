@@ -2412,6 +2412,7 @@ def switch_pinguino(request):
     return response
 
 
+@two_factor_auth_required
 def serve_pinguino(request):
     # Serve pinguino index.html for every path under /developers/ and let the
     # client-side router handle the urls.
