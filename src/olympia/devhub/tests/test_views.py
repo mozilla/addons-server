@@ -2868,6 +2868,129 @@ class TestSupportView(TestCase):
         assert response.status_code == 200
         assert 'form' in response.context
 
+    def test_get_renders_faq(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert [s.attrib['id'] for s in doc('section.faq-section')] == [
+            'reviews',
+            'api-keys',
+            'accounts',
+            'appeals',
+            'listings',
+        ]
+        items = doc('details.faq-item')
+        assert items.length == 21
+        # Collapsed by default: only the questions are visible.
+        assert all(item.attrib.get('open') is None for item in items)
+        for item in items.items():
+            assert item.children('summary').length == 1
+            assert item.children('.faq-answer').length == 1
+
+    def test_faq_removed_questions(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#cannot-sign-in').length == 0
+        assert doc('#data-collection').length == 0
+        assert doc('#restricted-appeal').length == 0
+        assert doc('#stats').length == 0
+        assert doc('#approved-404').length == 0
+        assert '404' not in doc('.faq-section').text()
+
+    def test_faq_api_key_email_mentions_apple_relay(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert "Apple's Hide My Email relay" in doc('#api-key-email').text()
+
+    def test_faq_approved_not_visible_explains_unlisted_channel(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        item = doc('#approved-not-visible')
+        assert (
+            item.children('summary')
+            .text()
+            .startswith('My version has been approved, but it is not visible')
+        )
+        answer = item.find('.faq-answer').text()
+        assert 'On your own' in answer
+        assert 'On this site' in answer
+
+    def test_every_faq_item_has_permalink(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        items = doc('details.faq-item')
+        ids = [item.attrib['id'] for item in items]
+        assert len(ids) == len(set(ids))
+        for item in items.items():
+            permalink = item.find('summary a.faq-permalink')
+            assert permalink.length == 1
+            assert permalink.attr('href') == f'#{item.attr("id")}'
+            assert permalink.attr('aria-label') == 'Link to this question'
+
+    def test_faq_contact_links_point_to_form_section(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        contact_links = doc('.faq-answer a[href="#contact"]')
+        assert contact_links.length == 3
+        for link in contact_links.items():
+            assert link.text() == 'contact form below'
+        assert doc('section#contact').length == 1
+
+    def test_faq_external_links_open_in_new_tab(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        external = doc('.faq-answer a[href^="http"]')
+        assert external.length > 0
+        for link in external:
+            assert link.attrib['target'] == '_blank'
+            assert link.attrib['rel'] == 'noopener noreferrer'
+
+    def test_form_comes_after_faq(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        sections = [s.attrib['id'] for s in doc('section.primary > section')]
+        assert sections[-1] == 'contact'
+        assert doc('section#contact form#support-form').length == 1
+        assert doc('.faq-section form').length == 0
+
+    def test_nav_link(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc(f'#site-nav a[href="{self.url}"]').text() == 'Support'
+
+    def test_get_renders_unchecked_faq_confirmation(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        checkbox = doc('#support-faq-confirm')
+        assert checkbox.length == 1
+        assert checkbox.attr('checked') is None
+        assert doc('label[for="support-faq-confirm"]').text() == (
+            'My question is not covered by the FAQ above, and I want to send a '
+            'support request.'
+        )
+        # The form is revealed in CSS by a sibling selector, so the checkbox
+        # has to come before the form under the same parent.
+        assert checkbox.next_all('form#support-form').length == 1
+
+    def test_post_invalid_keeps_faq_confirmation_checked(self):
+        self.client.force_login(self.user)
+        response = self.client.post(
+            self.url, {'summary': '', 'category': '', 'body': ''}
+        )
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#support-faq-confirm').attr('checked') is not None
+
     def _post(self, data=None, follow=False):
         payload = {
             'summary': 'Something is broken',
