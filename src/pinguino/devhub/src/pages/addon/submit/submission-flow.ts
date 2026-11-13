@@ -20,6 +20,7 @@ import type {
   TimelineStep,
 } from '../../../foundations/components/timeline-nav';
 import { navigateTo } from '../../../helper';
+import { setPageTitle } from '../../../page-title';
 import '../../../foundations/components/message-bar';
 import '../../../foundations/components/timeline-nav';
 
@@ -131,6 +132,13 @@ export class AddonSubmission extends LitElement {
   // add-on's per-channel submission warning.
   #profile = profileQuery(this);
   #addon = addonQuery(this, () => this.slug);
+
+  updated() {
+    setPageTitle([
+      this.steps[this.currStep]?.label ?? 'Submit a new version',
+      this.#addon().data?.name,
+    ]);
+  }
 
   static styles = css`
     .main-content {
