@@ -602,7 +602,7 @@ export async function fetchVersions(
 ): Promise<Version[]> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
-      filter: 'all_without_unlisted',
+      filter: 'all_with_unlisted',
       lang,
       page_size: '50',
     })}`,

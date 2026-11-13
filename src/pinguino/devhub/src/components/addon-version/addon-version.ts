@@ -7,12 +7,14 @@ import {
   type Addon,
   type AddonVisibility,
   formatDate,
+  isIncompleteSubmission,
   updateAddon,
   type Version,
   VISIBILITY,
   versionsQuery,
 } from '../../data';
 import '../../foundations/badges';
+import crown from '../../static/img/crown.svg';
 
 const LABELS = ['Version', 'Status', 'Distribution', 'Visibility', 'Date'];
 
@@ -37,7 +39,6 @@ export class AddonVersion extends LitElement {
       display: flex;
       flex-direction: column;
       gap: var(--space-xlarge);
-      padding: var(--space-small);
     }
     .version-section {
       display: flex;
@@ -47,8 +48,14 @@ export class AddonVersion extends LitElement {
       border-radius: var(--border-radius-large);
       background-color: var(--background-color-canvas);
     }
+    .version-section .icon{
+      max-height: 1.5em;
+    }
     .version-section.current {
-      background-color: var(--color-violet-desaturated-10);
+      background-color: light-dark(
+        var(--color-violet-desaturated-10),
+        var(--color-violet-desaturated-70)
+      );
     }
     .section-title {
       display: flex;
@@ -70,14 +77,17 @@ export class AddonVersion extends LitElement {
       display: grid;
       grid-template-columns: subgrid;
       align-items: center;
-      padding: var(--space-xlarge) var(--space-medium);
+      padding: var(--space-xxlarge) var(--space-medium);
+    }
+    .current .version-row {
+      padding: var(--space-xlarge) 0;
     }
     .version-row:not(.labels) + .version-row {
-      border-top: 1px solid var(--color-gray-20);
+      border-top: 1px solid var(--border-color);
     }
     .version-row.labels {
       padding-block: 0 var(--space-small);
-      color: var(--color-black-alpha-70);
+      color: var(--text-color-deemphasized);
       font-size: var(--font-size-small);
     }
     .current .version-row:not(.labels) {
@@ -105,7 +115,10 @@ export class AddonVersion extends LitElement {
       margin-block-start: var(--space-small);
     }
     .manage-button {
-      --button-text-color-ghost: var(--color-violet-50);
+      --button-text-color-ghost: light-dark(var(--color-violet-50), var(--color-violet-30));
+    }
+    visibility-badge::part(button) {
+      --button-padding-inline-small: var(--space-xxsmall);
     }
   `;
 
@@ -161,9 +174,8 @@ export class AddonVersion extends LitElement {
 
   renderVersion(
     version: Version,
-    { nextListed = false, showVisibility = false } = {},
+    { nextListed = false, showVisibility = false, incomplete = false } = {},
   ) {
-    const incompleteVersion = this.addon.status === ADDON_STATUS.incomplete;
     return html`
       <div
         class=${classMap({
@@ -189,8 +201,8 @@ export class AddonVersion extends LitElement {
         <moz-button
           class="manage-button"
           variant="ghost"
-          href=${incompleteVersion ? this.#continueUrl : version.edit_url}
-          >${incompleteVersion ? 'Continue Uploading' : 'Manage version'}</moz-button
+          href=${incomplete && version.channel === 'listed' ? this.#continueUrl : version.edit_url}
+          >${incomplete && version.channel === 'listed' ? 'Continue Uploading' : 'Manage version'}</moz-button
         >
       </div>
     `;
@@ -202,7 +214,10 @@ export class AddonVersion extends LitElement {
         gap="large"
         class=${classMap({ 'version-section': true, current })}
       >
-        <h3 class="section-title">${title}</h3>
+        <h3 class="section-title">
+          ${current ? html`<img class="icon" src=${crown} alt=""/>` : nothing}
+          ${title}
+        </h3>
         <div class="version-list">
           <div class="version-row labels">
             ${LABELS.map((label) => html`<div>${label}</div>`)}
@@ -229,17 +244,21 @@ export class AddonVersion extends LitElement {
   render() {
     const versions = this.#versions().data;
     if (!versions) return nothing;
-    const current = this.addon.currentVersion;
+    const current =
+      this.addon.currentVersion?.file?.status === 'public'
+        ? this.addon.currentVersion
+        : undefined;
     const otherVersions = versions.filter(
       (version) => version.id !== current?.id,
     );
+    const incomplete = isIncompleteSubmission(this.addon.status, versions);
     let nextListedId: number | undefined;
     if (current) {
       nextListedId = this.getNextListed(current, otherVersions);
     }
     return html`
-      <moz-card>
-        <div gap="xlarge" class="main-content">
+      <moz-card appearance="outline" spacing="spacious">
+        <div class="main-content">
           <moz-page-header
             heading="Version"
             description="See all your versions at once and easily manage them."
@@ -248,21 +267,20 @@ export class AddonVersion extends LitElement {
               slot="actions"
               variant="primary"
               icon-start="add"
-              href="${BASE}/addon/${this.addon.slug}/versions/submit/distribution"
+              href="${BASE}/addon/${this.addon.slug}/versions/submit/"
               >Upload a new version</moz-button
             >
           </moz-page-header>
 
-          ${
-            this.addon.status === ADDON_STATUS.incomplete
-              ? this.renderIncompleteMessage()
-              : nothing
-          }
+          ${incomplete ? this.renderIncompleteMessage() : nothing}
           ${
             current
               ? this.renderSection(
-                  'Listed Version',
-                  this.renderVersion(current, { showVisibility: true }),
+                  'Live on addons.mozilla.org',
+                  this.renderVersion(current, {
+                    showVisibility: true,
+                    incomplete,
+                  }),
                   { current: true },
                 )
               : nothing
@@ -274,6 +292,7 @@ export class AddonVersion extends LitElement {
                   otherVersions.map((version) =>
                     this.renderVersion(version, {
                       nextListed: version.id === nextListedId,
+                      incomplete,
                     }),
                   ),
                 )
