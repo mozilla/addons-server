@@ -454,6 +454,7 @@ def urlencode(items):
 SLUG_OK = '-_~'
 
 
+# Mirrored in src/pinguino/devhub/src/utils/helper.ts.
 def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     # L and N signify letter/number.
     # http://www.unicode.org/reports/tr44/tr44-4.html#GC_Values_Table

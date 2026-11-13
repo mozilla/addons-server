@@ -208,8 +208,9 @@ export class AuthorsCard extends SectionCard {
   render() {
     const result = this.#authors();
     const authors = result.data ?? [];
-    return html`<moz-card appearance="outline" spacing="spacious" id="authors">
-      ${this.cardHead('authors', this.#actions())} ${this.errorBar()}
+    return this.frame(
+      'authors',
+      html`${this.cardHead('authors', this.#actions())} ${this.errorBar()}
       ${
         result.isPending
           ? html`<p class="muted">Loading authors…</p>`
@@ -223,8 +224,8 @@ export class AuthorsCard extends SectionCard {
               </div>`
               : html`<p class="muted">No authors listed.</p>`
       }
-      ${this.#pendingGroup()}
-    </moz-card>`;
+      ${this.#pendingGroup()}`,
+    );
   }
 }
 

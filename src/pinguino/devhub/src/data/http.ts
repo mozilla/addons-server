@@ -36,10 +36,26 @@ export class ApiError extends Error {
   }
 }
 
-// Parse a failed response. DRF validation errors come back as
-// { field: ["msg", …] } (plus { detail } / { non_field_errors } for general
-// ones); split the field errors out so forms can attach them to inputs, and
-// build a readable summary for anywhere that only shows a message.
+function collectErrors(
+  value: unknown,
+  key: string,
+  out: Record<string, string[]>,
+) {
+  if (Array.isArray(value)) {
+    for (const item of value) collectErrors(item, key, out);
+  } else if (value && typeof value === 'object') {
+    for (const [name, inner] of Object.entries(value)) {
+      const general = name === 'detail' || name === 'non_field_errors';
+      collectErrors(inner, general ? key : key ? `${key}.${name}` : name, out);
+    }
+  } else if (value != null && value !== '') {
+    out[key] = [...(out[key] ?? []), String(value)];
+  }
+}
+
+// Parse a failed response: split the field errors out so forms can attach them
+// to inputs, and build a readable summary for anywhere that only shows a
+// message.
 async function parseError(res: Response): Promise<{
   message: string;
   fields: Record<string, string>;
@@ -47,18 +63,12 @@ async function parseError(res: Response): Promise<{
 }> {
   const fallback = `AMO API responded ${res.status}`;
   try {
-    const body = await res.json();
-    if (typeof body === 'string')
-      return { message: body || fallback, fields: {}, detail: body };
-    const fields: Record<string, string> = {};
-    const general: string[] = [];
-    for (const [key, value] of Object.entries(
-      body as Record<string, unknown>,
-    )) {
-      const text = Array.isArray(value) ? value.join(' ') : String(value);
-      if (key === 'detail' || key === 'non_field_errors') general.push(text);
-      else fields[key] = text;
-    }
+    const errors: Record<string, string[]> = {};
+    collectErrors(await res.json(), '', errors);
+    const { '': general = [], ...byField } = errors;
+    const fields = Object.fromEntries(
+      Object.entries(byField).map(([k, texts]) => [k, texts.join(' ')]),
+    );
     const detail = general.join(' • ');
     const message =
       [

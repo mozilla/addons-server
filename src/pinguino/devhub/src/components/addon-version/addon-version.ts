@@ -7,6 +7,7 @@ import {
   type Addon,
   type AddonVisibility,
   formatDate,
+  hasIncompleteListing,
   updateAddon,
   type Version,
   VISIBILITY,
@@ -140,6 +141,10 @@ export class AddonVersion extends LitElement {
     `;
   }
 
+  get #incompleteListing() {
+    return hasIncompleteListing(this.addon);
+  }
+
   get #continueUrl() {
     return `${BASE}/addon/${this.addon.slug}/submit/details`;
   }
@@ -163,7 +168,8 @@ export class AddonVersion extends LitElement {
     version: Version,
     { nextListed = false, showVisibility = false } = {},
   ) {
-    const incompleteVersion = this.addon.status === ADDON_STATUS.incomplete;
+    const incompleteVersion =
+      this.#incompleteListing && (version.channel ?? 'listed') === 'listed';
     return html`
       <div
         class=${classMap({
@@ -253,11 +259,7 @@ export class AddonVersion extends LitElement {
             >
           </moz-page-header>
 
-          ${
-            this.addon.status === ADDON_STATUS.incomplete
-              ? this.renderIncompleteMessage()
-              : nothing
-          }
+          ${this.#incompleteListing ? this.renderIncompleteMessage() : nothing}
           ${
             current
               ? this.renderSection(

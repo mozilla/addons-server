@@ -11,3 +11,19 @@ export function navigateTo(
   window.dispatchEvent(new PopStateEvent('popstate'));
   return false;
 }
+
+export function emit(el: HTMLElement, type: string, detail: unknown) {
+  el.dispatchEvent(
+    new CustomEvent(type, { detail, bubbles: true, composed: true }),
+  );
+}
+
+// Mirrors olympia's slugify.
+export function slugify(text = ''): string {
+  return text
+    .replace(/[^\p{L}\p{N}\p{Z}\-_~]/gu, '')
+    .replace(/\p{Z}/gu, ' ')
+    .trim()
+    .replace(/[-\s]+/g, '-')
+    .toLowerCase();
+}

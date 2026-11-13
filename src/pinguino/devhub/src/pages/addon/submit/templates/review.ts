@@ -2,7 +2,7 @@ import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { uploadVersionNotes, versionQuery } from '../../../../data/queries';
 import type { AddonDistribution } from '../../../../data/types';
-import { errorBar, errorMessage, SubmissionStep } from '../submission-flow';
+import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
 import '../../../../components/not-found';
 import '../../../../foundations/components/message-bar';
 import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
@@ -39,6 +39,8 @@ export class ReviewSubmit extends SubmissionStep {
   @property() slug = '';
   @property({ type: Number }) versionId?: number;
   @property() distribution!: AddonDistribution;
+  @property({ type: Boolean }) theme = false;
+  @property({ type: Boolean, attribute: 'new-addon' }) newAddon = false;
   @state() private error?: string;
 
   @query('#release-notes') private releaseNotes?: Textarea;
@@ -56,18 +58,46 @@ export class ReviewSubmit extends SubmissionStep {
 
   async submit(): Promise<boolean> {
     if (!this.versionId) return false;
+    const releaseNotes = this.releaseNotes?.value.trim();
+    const reviewerNotes = this.reviewerNotes?.value;
+    if (!releaseNotes && !reviewerNotes) return true;
     try {
       await uploadVersionNotes(
         this.slug,
         this.versionId,
-        this.releaseNotes?.value.trim(),
-        this.reviewerNotes?.value,
+        releaseNotes,
+        reviewerNotes,
       );
       return true;
     } catch (err) {
       this.error = errorMessage(err);
       return false;
     }
+  }
+
+  private renderNotes() {
+    return html`
+      <moz-card heading="Notes" appearance="outline">
+        <div class="notes">
+          ${
+            this.newAddon
+              ? nothing
+              : html`<moz-textarea
+                  id="release-notes"
+                  label="Release notes"
+                  rows="2"
+                  full-width
+                ></moz-textarea>`
+          }
+          <moz-textarea
+            id="reviewer-notes"
+            label="Notes for reviewer"
+            rows="2"
+            full-width
+          ></moz-textarea>
+        </div>
+      </moz-card>
+    `;
   }
 
   render() {
@@ -79,44 +109,39 @@ export class ReviewSubmit extends SubmissionStep {
     const distribution = DISTRIBUTION[this.distribution];
     return html`
       <submission-header
-        label="Review before submit"
+        label="Review before submitting"
       ></submission-header>
 
-      <dl>
-        <div>
-          <dt>Package</dt>
-          <dd>${packageName}</dd>
-        </div>
-        <div>
-          <dt>Version number</dt>
-          <dd>${version.version}</dd>
-        </div>
-        <div>
-          <dt>Distribution</dt>
-          <dd>
-            <moz-status-badge icon-start=${distribution.icon}
-              >${distribution.label}</moz-status-badge
-            >
-          </dd>
-        </div>
-      </dl>
+      <slot name="preview"></slot>
 
-      <moz-card heading="Notes" appearance="outline">
-        <div class="notes">
-          <moz-textarea
-            id="release-notes"
-            label="Release notes"
-            rows="2"
-            full-width
-          ></moz-textarea>
-          <moz-textarea
-            id="reviewer-notes"
-            label="Notes for reviewer"
-            rows="2"
-            full-width
-          ></moz-textarea>
-        </div>
-      </moz-card>
+      ${
+        !(this.newAddon && this.distribution === 'listed')
+          ? html`
+          <dl>
+            <div>
+              <dt>Package</dt>
+              <dd>${packageName}</dd>
+            </div>
+            <div>
+              <dt>Version number</dt>
+              <dd>${version.version}</dd>
+            </div>
+            <div>
+              <dt>Distribution</dt>
+              <dd>
+                <moz-status-badge icon-start=${distribution.icon}
+                  >${distribution.label}</moz-status-badge
+                >
+              </dd>
+            </div>
+          </dl>
+        `
+          : nothing
+      }
+
+      ${this.theme ? nothing : this.renderNotes()}
+
+      <slot></slot>
 
       ${errorBar('Could not save notes.', this.error)}
     `;

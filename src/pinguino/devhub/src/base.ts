@@ -17,6 +17,8 @@ const MOUNT_RE = new RegExp(
   `^(?:/(\\w{2,3}(?:-\\w{2,6})?))?/${DEVHUB_SEGMENT}(?=/|$)`,
 );
 
+export const SITE_URL = typeof location === 'undefined' ? '' : location.origin;
+
 // Mirrors settings_base.py.
 export const MAX_UPLOAD_SIZE = 200 * 1000 * 1000;
 
