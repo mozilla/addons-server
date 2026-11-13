@@ -8,6 +8,7 @@ import '../components/submit-card';
 import '../components/update-card';
 import type { ActivityPage, Addon, Update } from '../data';
 import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
+import { DEVHUB_TITLE, setPageTitle } from '../page-title';
 
 // Threshold for loading more rows once the reader is close, so they're ready beforehand
 const LOAD_MORE_THRESHOLD = 5;
@@ -17,6 +18,10 @@ export class DevhubHome extends LitElement {
   #profile = profileQuery(this);
   #addons = addonsQuery(this);
   #updates = activityInfiniteQuery(this);
+
+  updated() {
+    setPageTitle([DEVHUB_TITLE]);
+  }
 
   static styles = css`
     :host {

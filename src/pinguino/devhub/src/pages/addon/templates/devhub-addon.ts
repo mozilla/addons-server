@@ -6,7 +6,12 @@ import '../../../components/addon-listing';
 import '../../../components/addon-manage-header';
 import '../../../components/addon-version/addon-version';
 import '../../../components/coming-soon';
+import {
+  SECTION,
+  type SectionId,
+} from '../../../components/addon-listing/sections';
 import { type Addon, addonQuery } from '../../../data';
+import { setPageTitle } from '../../../page-title';
 
 // Each tab is its own URL under <base>/addon/:slug/<tab>, so a tab is linkable
 // and survives reload. The bare add-on URL defaults to the listing editor.
@@ -31,6 +36,27 @@ export class DevhubAddon extends LitElement {
   @property({ type: Number }) page = 1;
 
   #addon = addonQuery(this, () => this.slug);
+
+  updated() {
+    setPageTitle([this.#pageTitle, this.#addon().data?.name]);
+  }
+
+  get #pageTitle(): string {
+    switch (this.#activeTab) {
+      case 'edit': {
+        // Within the edit tab, use the active section too
+        const section = SECTION[this.section as SectionId];
+        return `Edit ${section ? section.title : 'Listing details'}`;
+      }
+      case 'feed':
+        return 'Activity & Notification';
+      case 'versions':
+        return 'Versions';
+      default:
+        // For not implemented tabs return an empty string so it's just the add-on name.
+        return '';
+    }
+  }
 
   static styles = css`
     :host {
@@ -63,7 +89,7 @@ export class DevhubAddon extends LitElement {
   };
 
   #panel(addon: Addon) {
-    // Django detail pages we haven't reimplemented yet
+    // Django detail pages we haven't reimplemented yet.
     if (this.tab === 'invitation') {
       return html`<coming-soon></coming-soon>`;
     }
