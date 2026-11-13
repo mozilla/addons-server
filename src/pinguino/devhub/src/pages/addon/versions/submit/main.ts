@@ -1,10 +1,10 @@
-import { Routes } from '@lit-labs/router';
+import type { Routes } from '@lit-labs/router';
 import { html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { fetchAgreement } from '../../../../data/api';
 import { queryKeys } from '../../../../data/queries';
 import { queryClient } from '../../../../data/query-client';
-import { navigateTo } from '../../../../helper';
+import { createRoutes, navigateTo } from '../../../../helper';
 
 import '../../submit/submission-flow';
 import '../../submit/templates/agreement';
@@ -18,7 +18,7 @@ import '../../submit/templates/upload';
 class VersionSubmitRoutes extends LitElement {
   @property() slug = '';
 
-  private _routes: Routes = new Routes(this, [
+  private _routes: Routes = createRoutes(this, [
     {
       path: 'agreement',
       render: () =>

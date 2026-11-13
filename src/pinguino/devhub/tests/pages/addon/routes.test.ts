@@ -55,6 +55,11 @@ describe('addon-routes', () => {
     const root = await goto('addon-routes', 'validate');
     expect(root.querySelector('coming-soon')).not.toBeNull();
   });
+
+  it('shows the error page for a path no nested route claims', async () => {
+    const root = await goto('addon-routes', 'slug/edit/section/extra');
+    expect(root.querySelector('error-page')).not.toBeNull();
+  });
 });
 
 describe('submit-routes', () => {
@@ -62,5 +67,24 @@ describe('submit-routes', () => {
     const root = await goto('submit-routes', 'agreement');
     const page = root.querySelector('devhub-agreement');
     expect(page).not.toBeNull();
+  });
+
+  it('shows the error page for an unknown submit step', async () => {
+    const root = await goto('submit-routes', 'bogus');
+    expect(root.querySelector('error-page')).not.toBeNull();
+  });
+
+  // Two navigations on purpose: there has to be a previous match for a
+  // fallback-less router to strand.
+  it('replaces the previous page rather than stranding it', async () => {
+    const el = await mount<RouterHost>('submit-routes');
+    await el._routes.goto('agreement');
+    await settle(el);
+    expect(el.shadowRoot?.querySelector('devhub-agreement')).not.toBeNull();
+
+    await el._routes.goto('bogus');
+    await settle(el);
+    expect(el.shadowRoot?.querySelector('devhub-agreement')).toBeNull();
+    expect(el.shadowRoot?.querySelector('error-page')).not.toBeNull();
   });
 });

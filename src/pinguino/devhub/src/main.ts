@@ -23,7 +23,7 @@ import './pages/addon/templates/devhub-addon';
 import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
-import { navigateTo } from './helper';
+import { navigateTo, notFoundRoute } from './helper';
 import { interceptOutOfAppLinks, isDashboardPath } from './navigation';
 import { recordLanding } from './switch-back';
 
@@ -111,11 +111,7 @@ export class PinguinoApp extends LitElement {
         render: () => html`<coming-soon></coming-soon>`,
       },
     ],
-    {
-      fallback: {
-        render: () => html`<error-page></error-page>`,
-      },
-    },
+    { fallback: notFoundRoute },
   );
 
   #cleanupLinks?: () => void;

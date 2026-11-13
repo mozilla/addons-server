@@ -1,7 +1,7 @@
-import { Routes } from '@lit-labs/router';
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { addonQuery } from '../../../data';
+import { createRoutes } from '../../../helper';
 
 import '../../../components/coming-soon';
 import '../../../components/error-page';
@@ -13,7 +13,7 @@ class VersionRoutes extends LitElement {
 
   #addon = addonQuery(this, () => this.slug);
 
-  private _routes = new Routes(this, [
+  private _routes = createRoutes(this, [
     {
       path: 'submit/*',
       render: () =>
