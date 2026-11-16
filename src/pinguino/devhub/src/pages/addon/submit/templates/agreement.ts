@@ -97,6 +97,11 @@ export class DevhubAgreement extends LitElement {
               target="_blank"
               rel="noopener noreferrer"
               >Review Policies and Rules</a>
+            <a
+              href="${WORKSHOP_URL}/add-on-policies-for-enterprise/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >(Addendum for Enterprise Add-ons)</a>
           </li>
         </ul>
 
