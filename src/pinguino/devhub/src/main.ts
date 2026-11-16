@@ -13,6 +13,7 @@ import './app.css';
 
 import './components/coming-soon';
 import './components/devhub-header';
+import './components/site-status-banner';
 import './components/support';
 import './components/error-page';
 import './pages/devhub-home';
@@ -134,9 +135,11 @@ export class PinguinoApp extends LitElement {
     const dashboard = isDashboardPath(location.pathname, BASE);
     return html`
       <moz-provider class=${dashboard ? 'canvas' : ''}>
-        <!-- TODO: implement proper page header/navigation -->
         <devhub-header></devhub-header>
-        <app-container>${this._router.outlet()}</app-container>
+        <app-container>
+          <site-status-banner></site-status-banner>
+          ${this._router.outlet()}
+        </app-container>
       </moz-provider>
     `;
   }

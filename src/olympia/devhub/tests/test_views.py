@@ -3349,11 +3349,18 @@ class TestServePinguino(TestCase):
         b'</body></html>'
     )
 
-    def _request(self, path='/developers/', *, session_key=None):
+    def _request(self, path='/developers/', *, has_two_factor_authentication=True):
         # The view reads request.session.session_key; a bare RequestFactory
         # request has no session (middleware adds it), so supply one.
         request = RequestFactory().get(path)
-        request.session = mock.Mock(session_key=session_key)
+        request.user = user_factory()
+        self.initialize_session(
+            {
+                'has_two_factor_authentication': has_two_factor_authentication,
+                'fxa_auth_at': int(datetime.now().timestamp()),
+            },
+            request=request,
+        )
         return request
 
     @override_settings(DEV_MODE=True)
@@ -3412,13 +3419,18 @@ class TestServePinguino(TestCase):
             content_type='text/html',
             status=200,
         )
-        response = serve_pinguino(self._request(session_key='sess-abc'))
-        assert b'<pinguino-app token="sess-abc"></pinguino-app>' in response.content
+        request = self._request()
+        response = serve_pinguino(request)
+        assert request.session.session_key
+        assert (
+            f'<pinguino-app token="{request.session.session_key}"></pinguino-app>'
+            in str(response.content)
+        )
         assert b'INSERT_TOKEN_HERE' not in response.content
 
     @override_settings(DEV_MODE=True)
     @responses.activate
-    def test_anonymous_request_injects_empty_token(self):
+    def test_2fa_required(self):
         responses.add(
             responses.GET,
             self.dev_server_url,
@@ -3426,8 +3438,17 @@ class TestServePinguino(TestCase):
             content_type='text/html',
             status=200,
         )
-        response = serve_pinguino(self._request(session_key=None))
-        assert b'<pinguino-app token=""></pinguino-app>' in response.content
+        request = self._request(has_two_factor_authentication=False)
+        response = serve_pinguino(request)
+        assert response.status_code == 302
+        expected_url = fxa_login_url(
+            config=settings.FXA_CONFIG['default'],
+            state=request.session['fxa_state'],
+            next_path=request.path,
+            enforce_2fa=True,
+            login_hint=request.user.email,
+        )
+        self.assert3xx(response, expected_url)
 
 
 @override_flag('pinguino-switch', active=True)
@@ -3447,6 +3468,7 @@ class TestPinguinoRouting(TestCase):
             body='<pinguino-app></pinguino-app>',
             content_type='text/html',
         )
+        self.client.force_login_with_2fa(user_factory())
         self.client.cookies['PINGUINO'] = '1'
         response = self.client.get('/en-US/developers/addon/5')
         assert response.status_code == 200
@@ -3454,6 +3476,7 @@ class TestPinguinoRouting(TestCase):
         assert b'<pinguino-app>' in response.content
 
     def test_developers_routed_to_classic_devhub_without_cookie(self):
+        self.client.force_login_with_2fa(user_factory())
         response = self.client.get('/en-US/developers/')
         # No urlconf switch happened, so the classic devhub handles it - not the
         # Pinguino shell view.

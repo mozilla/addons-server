@@ -1,17 +1,22 @@
+import '@lit-labs/virtualizer';
+import type { VisibilityChangedEvent } from '@lit-labs/virtualizer/events.js';
 import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
 import '../components/submit-card';
 import '../components/update-card';
-import type { Addon, Update } from '../data';
-import { addonsQuery, profileQuery, updatesQuery } from '../data';
+import type { ActivityPage, Addon, Update } from '../data';
+import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
+
+// Threshold for loading more rows once the reader is close, so they're ready beforehand
+const LOAD_MORE_THRESHOLD = 5;
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
   #profile = profileQuery(this);
   #addons = addonsQuery(this);
-  #updates = updatesQuery(this);
+  #updates = activityInfiniteQuery(this);
 
   static styles = css`
     :host {
@@ -34,14 +39,48 @@ export class DevhubHome extends LitElement {
       font-size: 0.85rem;
       color: var(--text-color-deemphasized, GrayText);
     }
+    .feed-column {
+      height: 1030px;
+    }
+    .feed {
+      height: 100%;
+      box-sizing: border-box;
+    }
+    .feed-scroller {
+      flex: 1;
+      min-height: 0;
+    }
+    .feed-scroller update-card {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      margin-block-end: 20px;
+    }
+    .loading-more {
+      margin: 0;
+      text-align: center;
+      color: var(--text-color-deemphasized, GrayText);
+    }
     .empty-updates {
       display: flex;
+      flex: 1;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
       gap: var(--space-medium);
       padding: var(--space-xxlarge) var(--space-large);
       text-align: center;
       color: var(--text-color-deemphasized, GrayText);
+
+      > * {
+        margin: 0;
+      }
+
+      moz-illustration {
+        width: 110px;
+        rotate: 30deg;
+        margin: 30px;
+      }
     }
   `;
 
@@ -74,8 +113,8 @@ export class DevhubHome extends LitElement {
                 <div style="grid-column: span 7">
                   ${this.#addonSections(addons.data ?? [])}
                 </div>
-                <div style="grid-column: span 5">
-                  ${this.#feed(this.#updates().data ?? [])}
+                <div class="feed-column" style="grid-column: span 5">
+                  ${this.#feed(this.#updates().data?.pages ?? [])}
                 </div>
               </app-grid>
             `
@@ -119,28 +158,52 @@ export class DevhubHome extends LitElement {
     `;
   }
 
-  #feed(updates: Update[]) {
+  // Pull the next page in as the reader nears the end of the loaded rows.
+  #loadMoreIfNeeded(lastVisible: number, loaded: number) {
+    const feed = this.#updates();
+    if (
+      lastVisible >= loaded - LOAD_MORE_THRESHOLD &&
+      feed.hasNextPage &&
+      !feed.isFetchingNextPage
+    ) {
+      this.#updates.fetchNextPage();
+    }
+  }
+
+  #feed(pages: ActivityPage[]) {
+    const updates = pages.flatMap((p) => p.items);
+    if (updates.length === 0) {
+      return html`
+        <app-stack gap="medium" class="section feed">
+          <div class="empty-updates">
+            <moz-illustration name="pic-puzzle"></moz-illustration>
+            <h3>All quiet for now</h3>
+            Updates about your add-ons will land here.
+          </div>
+        </app-stack>
+      `;
+    }
+    // The server's running total across all pages, not just the rows loaded so
+    // far; every page carries it, so read it from the latest.
+    const total = pages.at(-1)?.total ?? updates.length;
     return html`
-      <app-stack gap="medium" class="section">
+      <app-stack gap="medium" class="section feed">
+        <p class="count">
+          ${total} Updates
+        </p>
+        <lit-virtualizer
+          scroller
+          class="feed-scroller"
+          .items=${updates}
+          .renderItem=${(u: Update) =>
+            html`<update-card .item=${u}></update-card>`}
+          @visibilityChanged=${(e: VisibilityChangedEvent) =>
+            this.#loadMoreIfNeeded(e.last, updates.length)}
+        ></lit-virtualizer>
         ${
-          updates.length > 0
-            ? html`
-          <moz-input-search
-            placeholder="Search updates to find the information"
-            full-width
-          ></moz-input-search>
-        `
+          this.#updates().isFetchingNextPage
+            ? html`<p class="loading-more">Loading more…</p>`
             : undefined
-        }
-        ${
-          updates.length > 0
-            ? updates.map((u) => html`<update-card .item=${u}></update-card>`)
-            : html`
-              <div class="empty-updates">
-                <moz-illustration name="kit-meditate-clouds" style="width:200px"></moz-illustration>
-                <h3>No updates yet, take it easy</h3>
-              </div>
-            `
         }
       </app-stack>
     `;

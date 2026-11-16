@@ -8,6 +8,7 @@ import {
   setAddonVisibility,
 } from '../data';
 import { routeApiError } from '../foundations/form';
+import { panelPointer } from '../foundations/panel';
 import { navigateTo } from '../helper';
 
 // moz-button resolves this through getRootNode(), so it stays scoped to this
@@ -34,11 +35,14 @@ export class AddonActionsMenu extends LitElement {
   #isOwner = addonOwnershipQuery(this, () => this.addon?.slug ?? '');
 
   // Transparent host, so the button is the flex item in the header's row.
-  static styles = css`
-    :host {
-      display: contents;
-    }
-  `;
+  static styles = [
+    panelPointer,
+    css`
+      :host {
+        display: contents;
+      }
+    `,
+  ];
 
   get #hidden() {
     return this.addon.visibility === 'invisible';

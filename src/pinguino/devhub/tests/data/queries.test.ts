@@ -48,17 +48,35 @@ describe('removeAddon', () => {
   // and the feed is a separate query that nothing else invalidates.
   it('drops the deleted add-on from the cached activity feed', async () => {
     mockDelete([]);
-    queryClient.setQueryData(queryKeys.updates, [
-      { id: '1', addonSlug: 'doomed', addonName: 'Doomed' },
-      { id: '2', addonSlug: 'kept', addonName: 'Kept' },
-    ]);
+    // The dashboard feed is the all-add-ons infinite activity query (no slug);
+    // deleted entries must be dropped from every loaded page.
+    const feedKey = ['activity', 'infinite', null] as const;
+    queryClient.setQueryData(feedKey, {
+      pages: [
+        {
+          items: [
+            { id: '1', addonSlug: 'doomed', addonName: 'Doomed' },
+            { id: '2', addonSlug: 'kept', addonName: 'Kept' },
+          ],
+          total: 3,
+        },
+        {
+          items: [{ id: '3', addonSlug: 'doomed', addonName: 'Doomed' }],
+          total: 3,
+        },
+      ],
+      pageParams: [1, 2],
+    });
 
     await removeAddon('doomed');
 
-    const cached = queryClient.getQueryData(queryKeys.updates) as {
-      addonSlug: string;
-    }[];
-    expect(cached.map((u) => u.addonSlug)).toEqual(['kept']);
+    const cached = queryClient.getQueryData(feedKey) as {
+      pages: { items: { addonSlug: string }[]; total: number }[];
+    };
+    const slugs = cached.pages.flatMap((p) => p.items.map((u) => u.addonSlug));
+    expect(slugs).toEqual(['kept']);
+    // Two 'doomed' rows removed, so the server total drops from 3 to 1.
+    expect(cached.pages.every((p) => p.total === 1)).toBe(true);
   });
 
   it('spends the delete token before touching the cache', async () => {

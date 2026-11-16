@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { LOCALE } from '../base';
 import type { Developer } from '../data';
 import { logout } from '../data';
+import { panelPointer } from '../foundations/panel';
 
 // The user's AMO profile page lives on the frontend. Prefix the locale when we
 // have one; omit it entirely otherwise (no empty segment / double slash).
@@ -12,33 +13,36 @@ const profileUrl = (id: string) =>
 // An account avatar plus dropdown menu, show for logged-in developers.
 @customElement('devhub-account-menu')
 export class DevhubAccountMenu extends LitElement {
-  static styles = css`
-    :host {
-      display: inline-flex;
-    }
-    .trigger::part(button) {
-      padding: 0;
-      min-width: auto;
-      // Make the button circular like the avatar inside.
-      border-radius: 50%;
-    }
-    .avatar {
-      display: block;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    /* Initials circle shown only when a picture_url is missing. */
-    .avatar--fallback {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      background: light-dark(rgba(21, 20, 26, 0.1), rgba(251, 251, 254, 0.16));
-    }
-  `;
+  static styles = [
+    panelPointer,
+    css`
+      :host {
+        display: inline-flex;
+      }
+      .trigger::part(button) {
+        padding: 0;
+        min-width: auto;
+        /* Match the avatar inside, which is a circle. */
+        border-radius: 50%;
+      }
+      .avatar {
+        display: block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      /* Initials circle shown only when a picture_url is missing. */
+      .avatar--fallback {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+        font-weight: 600;
+        background: light-dark(rgba(21, 20, 26, 0.1), rgba(251, 251, 254, 0.16));
+      }
+    `,
+  ];
 
   @property({ attribute: false }) profile!: Developer;
 
