@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import kitSubmit from './img/firefox_motion_off_switch.gif';
+import kitSubmit from '../../../../static/img/firefox_motion_off_switch.gif';
 
 @customElement('submit-finish')
 export class SubmitFinish extends LitElement {

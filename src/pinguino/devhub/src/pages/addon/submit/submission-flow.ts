@@ -1,4 +1,4 @@
-import { Routes } from '@lit-labs/router';
+import type { Routes } from '@lit-labs/router';
 import {
   type CSSResultGroup,
   css,
@@ -19,7 +19,7 @@ import type {
   TimelineSection,
   TimelineStep,
 } from '../../../foundations/components/timeline-nav';
-import { navigateTo } from '../../../helper';
+import { createRoutes, navigateTo } from '../../../helper';
 import { setPageTitle } from '../../../page-title';
 import '../../../foundations/components/message-bar';
 import '../../../foundations/components/timeline-nav';
@@ -174,7 +174,7 @@ export class AddonSubmission extends LitElement {
     }
   `;
 
-  private _routes: Routes = new Routes(
+  private _routes: Routes = createRoutes(
     this,
     [
       {
