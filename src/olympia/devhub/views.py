@@ -2026,7 +2026,7 @@ def docs(request, doc_name=None):
         ),
         'policies/enterprise': ext_url(
             '/documentation/publish/add-on-policies-for-enterprise/'
-        )
+        ),
     }
 
     if doc_name in mdn_docs:
