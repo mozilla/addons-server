@@ -2,6 +2,7 @@ import type { IllustrationName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
+import { setPageTitle } from '../page-title';
 
 interface ErrorCopy {
   heading: string;
@@ -73,6 +74,11 @@ export class ErrorPage extends LitElement {
 
   /** Overrides the status's message. */
   @property() message?: string;
+
+  updated() {
+    const copy = errorCopy(this.code);
+    setPageTitle(this.heading ?? copy.heading);
+  }
 
   static styles = css`
     :host {
