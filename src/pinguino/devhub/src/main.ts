@@ -133,7 +133,7 @@ export class PinguinoApp extends LitElement {
     return html`
       <moz-provider class=${dashboard ? 'canvas' : ''}>
         <devhub-header></devhub-header>
-        <app-container>
+        <app-container size="xxlarge">
           <site-status-banner></site-status-banner>
           ${this._router.outlet()}
         </app-container>

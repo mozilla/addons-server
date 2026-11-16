@@ -26,6 +26,9 @@ export class AppContainer extends LitElement {
     :host([size='xlarge']) {
       max-width: 1280px;
     }
+    :host([size='xxlarge']) {
+      max-width: 1450px;
+    }
   `;
 
   render() {

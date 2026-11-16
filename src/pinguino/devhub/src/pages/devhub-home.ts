@@ -35,7 +35,7 @@ export class DevhubHome extends LitElement {
       display: flex;
       gap: var(--space-small);
       align-items: center;
-      margin: 0 0 var(--space-small);
+      margin: 0 0 var(--space-medium);
       font-size: 0.85rem;
       color: var(--text-color-deemphasized, GrayText);
     }
@@ -54,7 +54,7 @@ export class DevhubHome extends LitElement {
       display: block;
       box-sizing: border-box;
       width: 100%;
-      margin-block-end: 20px;
+      margin-block-end: var(--space-large);
     }
     .loading-more {
       margin: 0;
@@ -109,11 +109,11 @@ export class DevhubHome extends LitElement {
           : addons.isPending
             ? html`<p class="count">Loading your add-ons…</p>`
             : html`
-              <app-grid columns-md="1">
-                <div style="grid-column: span 7">
+              <app-grid columns-md="1" gap="xlarge">
+                <div style="grid-column: span 8">
                   ${this.#addonSections(addons.data ?? [])}
                 </div>
-                <div class="feed-column" style="grid-column: span 5">
+                <div class="feed-column" style="grid-column: span 4">
                   ${this.#feed(this.#updates().data?.pages ?? [])}
                 </div>
               </app-grid>
@@ -143,13 +143,13 @@ export class DevhubHome extends LitElement {
         ${
           items.length > 0
             ? html`
-          <app-grid columns="2" columns-md="2" columns-sm="1" gap="medium">
+          <app-grid columns="2" columns-md="2" columns-sm="1" gap="large">
             ${items.map((a) => html`<addon-card .addon=${a}></addon-card>`)}
             <submit-card label=${submitLabel}></submit-card>
           </app-grid>
         `
             : html`
-          <app-grid columns="1" gap="medium">
+          <app-grid columns="1" gap="large">
             <submit-card label=${submitLabel}></submit-card>
           </app-grid>
         `
@@ -187,7 +187,7 @@ export class DevhubHome extends LitElement {
     // far; every page carries it, so read it from the latest.
     const total = pages.at(-1)?.total ?? updates.length;
     return html`
-      <app-stack gap="medium" class="section feed">
+      <app-stack gap="medium" class="section feed" style="gap: 0">
         <p class="count">
           ${total} Updates
         </p>
