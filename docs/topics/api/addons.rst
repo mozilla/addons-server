@@ -211,6 +211,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int average_daily_users: The average number of users for the add-on (updated daily).
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
+    :>json string[] channels: The channels the add-on has versions in. Can be `listed`, `unlisted`, or `enterprise`. This field is only present if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :>json object|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set. Can be an empty value.  (See :ref:`Outgoing Links <api-overview-outgoing>`)
     :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
@@ -257,6 +258,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json string review_url: The URL to the reviewer review page for the add-on.
     :>json string slug: The add-on slug.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
+    :>json object submission_notice: Object holding any submission notices for this add-on, per channel. This field is only present if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on
     :>json object|null summary: The add-on summary (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_email: The add-on support email (See :ref:`translated fields <api-overview-translations>`).
     :>json object|null support_url: The add-on support URL (See :ref:`translated fields <api-overview-translations>` and :ref:`Outgoing Links <api-overview-outgoing>`).
@@ -266,7 +268,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object version: For create or update requests that included a :ref:`version <version-create-request>` only. Object holding the :ref:`version <version-detail-object>` that was submitted.
     :>json string versions_url: The URL to the version history page for the add-on.
     :>json int weekly_downloads: The number of downloads for the add-on in the last week. Not present for lightweight themes.
-    :>json string[] channels: The channels the add-on has versions in. Can be `listed`, `unlisted`, or `enterprise`. This field is only present if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
 
 
 .. _addon-detail-status:

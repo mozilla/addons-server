@@ -3,8 +3,10 @@
 // { data, isPending, isError } — they never call fetch or manage loading state.
 
 import {
+  createInfiniteQueryController,
   createQueriesController,
   createQueryController,
+  type InfiniteData,
   type QueryObserverResult,
 } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
@@ -25,7 +27,7 @@ import {
   fetchEulaPolicy,
   fetchPendingAuthors,
   fetchProfile,
-  fetchUpdates,
+  fetchSiteStatus,
   fetchUpload,
   fetchVersion,
   fetchVersions,
@@ -43,6 +45,7 @@ import { isAddonOwner } from './permissions';
 import { queryClient } from './query-client';
 import type { AddonVisibility } from './statuses';
 import type {
+  ActivityPage,
   AddonAuthorAdd,
   AddonAuthorRole,
   AddonDistribution,
@@ -52,7 +55,6 @@ import type {
   AgreementAcceptState,
   EulaPolicyEdit,
   FileUpload,
-  Update,
   Version,
 } from './types';
 
@@ -62,15 +64,25 @@ import type {
 // cache rather than making a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
+  siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
   addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
-  updates: ['updates'] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
   version: (slug: string, id: number) => ['version', slug, id] as const,
   versions: (slug: string) => ['versions', slug] as const,
 };
+
+// Keyed by add-on and page; a missing slug (the all-add-ons feed) normalises to
+// null so it stays a stable, distinct cache entry.
+const activityKey = (slug: string | undefined, page: number) =>
+  ['activity', slug ?? null, page] as const;
+
+// The infinite (scroll-to-load) variant of the feed. Shares the 'activity'
+// prefix so one invalidate refreshes both the paged and infinite caches.
+const activityInfiniteKey = (slug: string | undefined) =>
+  ['activity', 'infinite', slug ?? null] as const;
 
 // The static category list rarely changes, so keep it for the session.
 export function categoriesQuery(host: ReactiveControllerHost) {
@@ -93,7 +105,24 @@ export function profileQuery(host: ReactiveControllerHost) {
     () => ({
       queryKey: queryKeys.profile,
       queryFn: fetchProfile,
-      staleTime: Number.POSITIVE_INFINITY,
+    }),
+    queryClient,
+  );
+}
+
+// Standalone site status, used as a fallback when the profile query can't
+// supply it (signed out, or any other profile failure). Gated by `getEnabled`
+// so the request only fires once, and if, that fallback is actually needed.
+export function siteStatusQuery(
+  host: ReactiveControllerHost,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.siteStatus,
+      queryFn: fetchSiteStatus,
+      enabled: getEnabled(),
     }),
     queryClient,
   );
@@ -205,11 +234,25 @@ export async function removeAddon(slug: string) {
   // The dashboard lists the add-on twice: as a card, and by name in the
   // activity feed. The feed drops a deleted add-on's entries server-side, so
   // this one has to go too or the dashboard keeps naming what we just deleted.
-  queryClient.setQueryData(queryKeys.updates, (updates?: Update[]) =>
-    updates?.filter((update) => update.addonSlug !== slug),
+  queryClient.setQueryData(
+    activityInfiniteKey(undefined),
+    (data?: InfiniteData<ActivityPage>) => {
+      if (!data) return data;
+      let removed = 0;
+      const pages = data.pages.map((page) => {
+        const items = page.items.filter((item) => item.addonSlug !== slug);
+        removed += page.items.length - items.length;
+        return { items, total: page.total };
+      });
+      if (!removed) return data;
+      return {
+        ...data,
+        pages: pages.map((page) => ({ ...page, total: page.total - removed })),
+      };
+    },
   );
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
-  await queryClient.invalidateQueries({ queryKey: queryKeys.updates });
+  await queryClient.invalidateQueries({ queryKey: ['activity'] });
 }
 
 const eulaPolicyKey = (slug: string) => ['eula-policy', slug] as const;
@@ -368,35 +411,53 @@ export async function removePreview(slug: string, previewId: number) {
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
 }
 
-// The activity feed is a single endpoint scoped to the session, independent of
-// the add-on list.
-export function updatesQuery(host: ReactiveControllerHost) {
-  return createQueryController(
-    host,
-    () => ({
-      queryKey: queryKeys.updates,
-      queryFn: fetchUpdates,
-    }),
-    queryClient,
-  );
-}
-
-const activityKey = (slug: string, page: number) =>
-  ['activity', slug, page] as const;
-
-// Keyed by page, so paging back and forth is served from cache.
+// Keyed by add-on and page, so paging back and forth is served from cache. An
+// undefined slug spans all of the user's add-ons (the dashboard feed).
 export function activityQuery(
   host: ReactiveControllerHost,
-  getSlug: () => string,
+  getSlug: (() => string) | undefined,
   getPage: () => number,
 ) {
   return createQueryController(
     host,
-    () => ({
-      queryKey: activityKey(getSlug(), getPage()),
-      queryFn: () => fetchActivity(getSlug(), getPage()),
-      enabled: Boolean(getSlug()),
-    }),
+    () => {
+      const slug = getSlug?.();
+      const page = getPage();
+      return {
+        queryKey: activityKey(slug, page),
+        queryFn: () => fetchActivity(slug, page),
+        // Wait for a slug only when one is expected; the all-add-ons feed fetches
+        // immediately.
+        enabled: !getSlug || Boolean(slug),
+      };
+    },
+    queryClient,
+  );
+}
+
+// The feed as an infinite query: each page is fetched on demand as the reader
+// scrolls. `getNextPageParam` stops once we've loaded every row the server has.
+export function activityInfiniteQuery(
+  host: ReactiveControllerHost,
+  getSlug?: () => string,
+) {
+  return createInfiniteQueryController(
+    host,
+    () => {
+      const slug = getSlug?.();
+      return {
+        queryKey: activityInfiniteKey(slug),
+        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam),
+        initialPageParam: 1,
+        getNextPageParam: (lastPage: ActivityPage, pages: ActivityPage[]) => {
+          const loaded = pages.reduce((n, page) => n + page.items.length, 0);
+          return loaded < lastPage.total ? pages.length + 1 : undefined;
+        },
+        // Wait for a slug only when one is expected; the all-add-ons feed fetches
+        // immediately.
+        enabled: !getSlug || Boolean(slug),
+      };
+    },
     queryClient,
   );
 }

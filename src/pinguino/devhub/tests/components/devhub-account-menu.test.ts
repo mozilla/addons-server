@@ -13,10 +13,17 @@ import '../../src/components/devhub-account-menu';
 import type { Developer } from '../../src/data';
 import { mount } from '../helpers/fixture';
 
+const healthySiteStatus = {
+  readOnly: false,
+  siteNotice: null,
+  submissionNotice: null,
+};
+
 const baseProfile: Developer = {
   id: '1234',
   name: 'Kate',
   pictureUrl: 'https://cdn.test/avatar.png',
+  siteStatus: healthySiteStatus,
 };
 
 async function menu(profile: Developer = baseProfile) {
@@ -46,8 +53,9 @@ describe('devhub-account-menu', () => {
 
   it('falls back to an initial when there is no profile picture', async () => {
     // The field is genuinely absent (the API may omit it), not defaulted.
-    const root = (await menu({ id: '1', name: 'Zoe' }))
-      .shadowRoot as ShadowRoot;
+    const root = (
+      await menu({ id: '1', name: 'Zoe', siteStatus: healthySiteStatus })
+    ).shadowRoot as ShadowRoot;
 
     expect(root.querySelector('img.avatar')).toBeNull();
     expect(root.querySelector('.avatar--fallback')?.textContent?.trim()).toBe(
@@ -56,8 +64,9 @@ describe('devhub-account-menu', () => {
   });
 
   it('offers profile and log-out items in the panel', async () => {
-    const root = (await menu({ id: '1234', name: 'Kate' }))
-      .shadowRoot as ShadowRoot;
+    const root = (
+      await menu({ id: '1234', name: 'Kate', siteStatus: healthySiteStatus })
+    ).shadowRoot as ShadowRoot;
 
     const profile = root.querySelector<HTMLElement>('moz-panel-item.profile');
     expect(profile?.textContent?.trim()).toBe('Kate');

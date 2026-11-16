@@ -13,8 +13,9 @@ import './app.css';
 
 import './components/coming-soon';
 import './components/devhub-header';
-import './components/not-found';
+import './components/site-status-banner';
 import './components/support';
+import './components/error-page';
 import './pages/devhub-home';
 import './pages/addon/main';
 import './pages/addon/templates/devhub-addon';
@@ -23,7 +24,7 @@ import './pages/addon/templates/devhub-addon';
 import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 
-import { navigateTo } from './helper';
+import { navigateTo, notFoundRoute } from './helper';
 import { interceptOutOfAppLinks, isDashboardPath } from './navigation';
 import { recordLanding } from './switch-back';
 
@@ -39,11 +40,18 @@ export class PinguinoApp extends LitElement {
     /* acorn's moz-provider is display:contents; give it a box so it can fill
      * the viewport height. */
     moz-provider {
-      display: block;
+      display: flex;
+      flex-direction: column;
       /* The page surface is painted here rather than on body, which is outside
        * this shadow tree and so can't be selected per route. */
       background-color: var(--background-color-box);
       min-height: 100vh;
+    }
+
+    /* Takes the height the header leaves, so a view that wants to fill the
+     * viewport doesn't have to guess the header's size. */
+    app-container {
+      flex: 1;
     }
     moz-provider.canvas {
       background-color: var(--background-color-canvas);
@@ -104,11 +112,7 @@ export class PinguinoApp extends LitElement {
         render: () => html`<coming-soon></coming-soon>`,
       },
     ],
-    {
-      fallback: {
-        render: () => html`<not-found></not-found>`,
-      },
-    },
+    { fallback: notFoundRoute },
   );
 
   #cleanupLinks?: () => void;
@@ -132,7 +136,10 @@ export class PinguinoApp extends LitElement {
     return html`
       <moz-provider class=${dashboard ? 'canvas' : ''}>
         <devhub-header></devhub-header>
-        <app-container>${this._router.outlet()}</app-container>
+        <app-container>
+          <site-status-banner></site-status-banner>
+          ${this._router.outlet()}
+        </app-container>
       </moz-provider>
     `;
   }

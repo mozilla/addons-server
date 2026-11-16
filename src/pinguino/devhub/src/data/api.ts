@@ -26,6 +26,7 @@ import type {
   EulaPolicy,
   EulaPolicyEdit,
   FileUpload,
+  SiteStatus,
   Update,
   Version,
 } from './types';
@@ -75,6 +76,9 @@ interface ApiAddon {
   }[];
   current_version?: Version;
   channels: AddonDistribution[];
+  submit_notification_warning?: Partial<
+    Record<AddonDistribution, string | null>
+  >;
 }
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
@@ -93,6 +97,12 @@ interface ApiActivity {
   }[];
 }
 
+interface ApiSiteStatus {
+  read_only: boolean;
+  notice: string | null;
+  submit_notification_warning: string | null;
+}
+
 // The current account, from /accounts/profile/. `name` already falls back to a
 // generated name server-side; display_name is the user-chosen label when set.
 interface ApiProfile {
@@ -101,6 +111,7 @@ interface ApiProfile {
   name: string;
   username?: string;
   picture_url?: string;
+  site_status?: ApiSiteStatus;
 }
 
 export function localized(
@@ -189,6 +200,7 @@ export function mapAddon(a: ApiAddon): Addon {
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
     currentVersion: a.current_version,
+    submissionNotice: a.submit_notification_warning,
   };
 }
 
@@ -214,13 +226,27 @@ export function mapActivity(a: ApiActivity): Update {
   };
 }
 
+function mapSiteStatus(data?: ApiSiteStatus): SiteStatus {
+  return {
+    readOnly: data?.read_only ?? false,
+    siteNotice: data?.notice ?? null,
+    submissionNotice: data?.submit_notification_warning ?? null,
+  };
+}
+
 export async function fetchProfile(): Promise<Developer> {
   const data = await apiFetch<ApiProfile>('/accounts/profile/');
   return {
     id: String(data.id),
     name: data.name,
     pictureUrl: data.picture_url,
+    siteStatus: mapSiteStatus(data.site_status),
   };
+}
+
+export async function fetchSiteStatus(): Promise<SiteStatus> {
+  const data = await apiFetch<ApiSiteStatus>('/site/');
+  return mapSiteStatus(data);
 }
 
 // Dictionaries and language packs are extensions to us, as they are to
@@ -492,27 +518,22 @@ export async function patchEulaPolicy(
   });
 }
 
-// The authenticated user's activity across all their add-ons, in one request.
-export async function fetchUpdates(): Promise<Update[]> {
-  const data = await apiFetch<Paginated<ApiActivity>>(
-    '/activity/?lang=en-US&page_size=50',
-  );
-  return (data.results ?? []).map(mapActivity);
-}
-
 export const ACTIVITY_PAGE_SIZE = 20;
 
 // Paged server-side, so the URL's `?page=` maps straight onto the API's paging.
+// Without a slug, the feed spans all of the authenticated user's add-ons.
 export async function fetchActivity(
-  slug: string,
+  slug: string | undefined,
   page: number,
 ): Promise<ActivityPage> {
   const params = new URLSearchParams({
     lang: 'en-US',
-    addon: slug,
     page: String(page),
     page_size: String(ACTIVITY_PAGE_SIZE),
   });
+  if (slug) {
+    params.set('addon', slug);
+  }
   const data = await apiFetch<Paginated<ApiActivity>>(`/activity/?${params}`);
   return {
     items: (data.results ?? []).map(mapActivity),
@@ -602,7 +623,7 @@ export async function fetchVersions(
 ): Promise<Version[]> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
-      filter: 'all_without_unlisted',
+      filter: 'all_with_unlisted',
       lang,
       page_size: '50',
     })}`,

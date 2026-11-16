@@ -6,7 +6,11 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 const { profileState, addonsState } = vi.hoisted(() => ({
   profileState: {
     data: undefined as
-      | { id: string; name: string; pictureUrl?: string }
+      | {
+          id: string;
+          name: string;
+          pictureUrl?: string;
+        }
       | undefined,
     isPending: false,
     isError: false,
@@ -72,7 +76,6 @@ async function header() {
 describe('devhub-header', () => {
   beforeEach(() => {
     signedOut();
-    addonsState.data = [];
   });
 
   it('shows a link to switch back to the classic devhub', async () => {
@@ -143,11 +146,11 @@ describe('devhub-header', () => {
       expect(loc.href).toBe(expected);
     });
 
-    it('shows neither log-in nor account menu while the profile is loading', async () => {
+    it('shows log-in while the profile is loading', async () => {
       loading();
       const root = (await header()).shadowRoot as ShadowRoot;
 
-      expect(root.querySelector('a.login')).toBeNull();
+      expect(root.querySelector('a.login')).not.toBeNull();
       expect(root.querySelector('devhub-account-menu')).toBeNull();
     });
 
@@ -157,7 +160,7 @@ describe('devhub-header', () => {
 
       const menu = root.querySelector<DevhubAccountMenu>('devhub-account-menu');
       expect(menu).not.toBeNull();
-      expect(menu?.profile).toEqual({
+      expect(menu?.profile).toMatchObject({
         id: '1234',
         name: 'Kate',
         pictureUrl: 'https://cdn.test/avatar.png',

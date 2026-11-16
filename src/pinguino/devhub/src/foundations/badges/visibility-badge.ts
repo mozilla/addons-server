@@ -1,6 +1,6 @@
-import type { IconName } from '@mozilla/lit-web-components';
+import type { IconName, MozPanelList } from '@mozilla/lit-web-components';
 import { css, html, LitElement, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, query } from 'lit/decorators.js';
 import { type AddonVisibility, VISIBILITY } from '../../data';
 
 export const VISIBILITY_ICON: Record<AddonVisibility, IconName> = {
@@ -18,27 +18,16 @@ export class VisibilityBadge extends LitElement {
     :host {
       display: contents;
     }
-    .toggle {
-      display: inline-flex;
-      background: none;
-      border: none;
-      cursor: pointer;
-    }
-    moz-status-badge::part(badge) {
-      padding-inline: var(--space-small);
-    }
     .chevron {
       --icon-size: var(--icon-size-xsmall);
     }
-    .popover {
-      position-area: bottom span-right;
-      border: 1px solid var(--color-violet-desaturated-10);
-      border-radius: var(--border-radius-xlarge);
-      margin: var(--space-small) 0;
+    moz-panel-list {
       padding: var(--space-xlarge);
-      inline-size: 60%;
+      max-inline-size: 24rem;
     }
   `;
+
+  @query('moz-panel-list') private panel!: MozPanelList;
 
   render() {
     const hasPopover = this.childElementCount > 0;
@@ -55,12 +44,19 @@ export class VisibilityBadge extends LitElement {
     return html`
       ${
         hasPopover
-          ? html`<button class="toggle" popovertarget="popover">${badge}</button>`
+          ? html`<moz-button
+              part="button"
+              variant='ghost'
+              size="small"
+              @click=${(e: Event) => this.panel.toggle(e, e.currentTarget as HTMLElement)}
+            >
+              ${badge}
+            </moz-button>`
           : badge
       }
-      <div id="popover" class="popover" popover>
+      <moz-panel-list type="slot" align="start">
         <slot @slotchange=${() => this.requestUpdate()}></slot>
-      </div>
+      </moz-panel-list>
     `;
   }
 }
