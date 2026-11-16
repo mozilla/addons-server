@@ -15,3 +15,5 @@ export function extensionWorkshop(path = '/', hash = ''): string {
 
 export const ADDONS_BLOG = 'https://blog.mozilla.org/addons/';
 export const ADDONS_FORUM = 'https://discourse.mozilla.org/c/add-ons';
+// TODO: update this with the real blog post
+export const PREVIEW_BLOG_POST = ADDONS_BLOG;

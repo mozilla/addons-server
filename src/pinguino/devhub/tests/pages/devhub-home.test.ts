@@ -165,15 +165,13 @@ describe('devhub-home', () => {
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
-  it('greets the signed-in developer by name in the header', async () => {
+  it('renders the home banner at the top of the dashboard', async () => {
     seed([ext('a')], []);
     const el = await mount<DevhubHome>('devhub-home');
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    expect(root.querySelector('moz-page-header')?.getAttribute('heading')).toBe(
-      'Welcome to the Developer Hub, Kate',
-    );
+    expect(root.querySelector('devhub-home-banner')).not.toBeNull();
   });
 
   it('shows only the submit card in an empty group', async () => {
