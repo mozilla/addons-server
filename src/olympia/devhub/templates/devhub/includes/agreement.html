@@ -7,8 +7,12 @@
   </p>
   <ul class="agreement-links">
     <li>{{ agreement_form.distribution_agreement }}<a href="{{ url('devhub.docs', 'policies/agreement') }}" target="_blank" rel="noopener noreferrer">{{ _('Firefox Add-on Distribution Agreement') }}</a> {{ agreement_form.distribution_agreement.errors }}</li>
-    <li><ul><li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a>{{ agreement_form.review_policy.errors }}</li>
-    {% if waffle.switch('enterprise-channel') %}<li><a href="{{ url('devhub.docs', 'policies/enterprise') }}" target="_blank" rel="noopener noreferrer">{{ _('(Addendum for Enterprise Add-ons)') }}</a>{% endif %}</li></ul></li>
+    <li>
+      <ul>
+        <li>{{ agreement_form.review_policy }}<a href="{{ url('devhub.docs', 'policies') }}" target="_blank" rel="noopener noreferrer">{{ _('Review Policies and Rules') }}</a> {{ agreement_form.review_policy.errors }}</li>
+        {% if waffle.switch('enterprise-channel') %}<li><a href="{{ url('devhub.docs', 'policies/enterprise') }}" target="_blank" rel="noopener noreferrer">{{ _('(Addendum for Enterprise Add-ons)') }}</a></li>{% endif %}
+      </ul>
+    </li>
   </ul>
   <p>
     {{ _('I have read and accept this Agreement and the Rules and Policies') }}.
