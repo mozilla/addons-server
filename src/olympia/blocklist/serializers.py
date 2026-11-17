@@ -35,7 +35,7 @@ class BlockSerializer(AMOModelSerializer):
 
     def _get_blocked_for(self, obj, *, block_type):
         if not hasattr(obj, '_blockversion_set_qs_values_list'):
-            obj._blockversion_set_qs_values_list = sorted(
+            obj._blockversion_set_qs_values_list = list(
                 obj.blockversion_set.order_by('version__version').values_list(
                     'version__version', 'block_type', 'auto_block_reason'
                 )
