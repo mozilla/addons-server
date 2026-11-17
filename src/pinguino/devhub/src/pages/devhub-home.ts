@@ -4,10 +4,11 @@ import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
+import '../components/devhub-home-banner';
 import '../components/submit-card';
 import '../components/update-card';
 import type { ActivityPage, Addon, Update } from '../data';
-import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
+import { activityInfiniteQuery, addonsQuery } from '../data';
 import { setPageTitle } from '../page-title';
 
 // Threshold for loading more rows once the reader is close, so they're ready beforehand
@@ -15,7 +16,6 @@ const LOAD_MORE_THRESHOLD = 5;
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
-  #profile = profileQuery(this);
   #addons = addonsQuery(this);
   #updates = activityInfiniteQuery(this);
 
@@ -27,10 +27,6 @@ export class DevhubHome extends LitElement {
   static styles = css`
     :host {
       display: block;
-    }
-    moz-page-header {
-      display: block;
-      margin-block: var(--space-xxlarge);
     }
     .section {
       padding: var(--space-xlarge);
@@ -91,16 +87,9 @@ export class DevhubHome extends LitElement {
   `;
 
   render() {
-    const name = this.#profile().data?.name;
-    const heading = name
-      ? `Welcome to the Developer Hub, ${name}`
-      : 'Welcome to the Developer Hub.';
     const addons = this.#addons();
     return html`
-      <moz-page-header
-        heading=${heading}
-        description="Manage your Firefox add-ons, track reviews, and publish updates."
-      ></moz-page-header>
+      <devhub-home-banner></devhub-home-banner>
 
       ${
         addons.isError
