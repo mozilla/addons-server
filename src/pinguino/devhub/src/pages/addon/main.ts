@@ -1,4 +1,3 @@
-import { Routes } from '@lit-labs/router';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE } from '../../base';
@@ -7,11 +6,11 @@ import '../../components/coming-soon';
 import './submit/main';
 import './templates/devhub-addon';
 import './versions/main';
-import { navigateTo } from '../../helper';
+import { createRoutes, navigateTo } from '../../helper';
 
 @customElement('addon-routes')
 class AddonRoutes extends LitElement {
-  private _routes = new Routes(this, [
+  private _routes = createRoutes(this, [
     { path: 'submit/*', render: () => html`<submit-routes></submit-routes>` },
     // Top-level add-on pages not yet reimplemented
     { path: 'api/key{/}?', render: () => html`<coming-soon></coming-soon>` },

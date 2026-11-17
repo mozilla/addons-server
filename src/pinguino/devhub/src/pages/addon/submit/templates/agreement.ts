@@ -4,6 +4,7 @@ import { when } from 'lit/directives/when.js';
 import { BASE } from '../../../../base';
 import { acceptAgreement, agreementQuery } from '../../../../data/queries';
 import { navigateTo } from '../../../../helper';
+import { setPageTitle } from '../../../../page-title';
 
 const WORKSHOP_URL = 'https://extensionworkshop.com/documentation/publish';
 
@@ -26,6 +27,11 @@ export class DevhubAgreement extends LitElement {
   @query('#display-name') private displayNameInput?: HTMLInputElement;
   #agreement = agreementQuery(this);
   #redirected = false;
+
+  connectedCallback() {
+    super.connectedCallback();
+    setPageTitle('Firefox Add-on Distribution Agreement');
+  }
 
   private redirect() {
     if (this.#redirected) return;
@@ -56,7 +62,7 @@ export class DevhubAgreement extends LitElement {
     <div class="form-section">
       <h3>Display Name</h3>
       <div>
-        Your account needs a display name set so users know who 
+        Your account needs a display name set so users know who
         your add-on is coming from. Please enter one below.
       </div>
     </div>
@@ -81,7 +87,7 @@ export class DevhubAgreement extends LitElement {
             <a href="${WORKSHOP_URL}/add-on-policies-faq"
             target="_blank" rel="noopener noreferrer">
             Frequently Asked Questions</a>.
-          The Firefox Add-on Distribution Agreement also links to our 
+          The Firefox Add-on Distribution Agreement also links to our
           Privacy Notice which explains how we handle your information.
         </div>
 
@@ -97,6 +103,11 @@ export class DevhubAgreement extends LitElement {
               target="_blank"
               rel="noopener noreferrer"
               >Review Policies and Rules</a>
+            <a
+              href="${WORKSHOP_URL}/add-on-policies-for-enterprise/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >(Addendum for Enterprise Add-ons)</a>
           </li>
         </ul>
 
