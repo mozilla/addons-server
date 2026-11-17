@@ -38,7 +38,8 @@ class BlockSerializer(AMOModelSerializer):
             obj._blockversion_set_qs_values_list = sorted(
                 obj.blockversion_set.order_by('version__version').values_list(
                     'version__version', 'block_type', 'auto_block_reason'
-                )
+                ),
+                key=lambda x: x[0],
             )
         return [
             (version, reason)
