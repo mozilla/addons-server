@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@lit-labs/router": "^0.1.4",
+    "@lit-labs/virtualizer": "^2.1.1",
     "@mozilla/lit-web-components": "1.0.0",
     "@tanstack/lit-query": "^0.2.23",
     "dompurify": "^3.4.17",

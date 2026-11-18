@@ -2024,6 +2024,9 @@ def docs(request, doc_name=None):
         'policies/agreement': ext_url(
             '/documentation/publish/firefox-add-on-distribution-agreement'
         ),
+        'policies/enterprise': ext_url(
+            '/documentation/publish/add-on-policies-for-enterprise/'
+        ),
     }
 
     if doc_name in mdn_docs:
@@ -2412,6 +2415,7 @@ def switch_pinguino(request):
     return response
 
 
+@two_factor_auth_required
 def serve_pinguino(request):
     # Serve pinguino index.html for every path under /developers/ and let the
     # client-side router handle the urls.

@@ -80,6 +80,7 @@ from olympia.versions.models import (
     Version,
     VersionPreview,
 )
+from olympia.zadmin.models import set_config
 
 
 class AddonSerializerOutputTestMixin:
@@ -1147,6 +1148,33 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         self.serializer_class = DeveloperAddonSerializer
         result = self.serialize()
         assert sorted(result['channels']) == ['listed', 'unlisted']
+
+    def test_submit_notification_warning(self):
+        set_config(
+            amo.config_keys.SUBMIT_NOTIFICATION_WARNING_PRE_REVIEW, 'Test message'
+        )
+        self.addon = addon_factory()
+        result = self.serialize()
+        # submit_notification_warning is not exposed by default.
+        assert 'submit_notification_warning' not in result
+        # ...Unless its the developer
+        self.serializer_class = DeveloperAddonSerializer
+        result = self.serialize()
+        assert result['submit_notification_warning'] == {
+            'listed': None,
+            'unlisted': None,
+            'enterprise': None,
+        }
+
+        self.make_addon_promoted(
+            self.addon, api_name='pre_review', unlisted_pre_review=True
+        )
+        result = self.serialize()
+        assert result['submit_notification_warning'] == {
+            'listed': None,
+            'unlisted': 'Test message',
+            'enterprise': None,
+        }
 
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):

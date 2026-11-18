@@ -1,9 +1,16 @@
 import type { AddonVisibility, StatusInfo } from './statuses';
 
+export interface SiteStatus {
+  readOnly: boolean;
+  siteNotice: string | null;
+  submissionNotice: string | null;
+}
+
 export interface Developer {
   id: string;
   name: string;
   pictureUrl?: string;
+  siteStatus: SiteStatus;
 }
 
 export type AddonKind = 'extension' | 'theme';
@@ -84,6 +91,8 @@ export interface Addon {
     hasPrivacyPolicy?: boolean;
   };
   currentVersion?: Version;
+  // Add-on specific, per-channel submission warning.
+  submissionNotice?: Partial<Record<AddonDistribution, string | null>>;
 }
 
 export interface Version {

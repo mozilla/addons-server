@@ -328,13 +328,11 @@ export class DevhubHeader extends LitElement {
         <nav class="collapsed">${this.#collapsedNav(menus)}</nav>
         <span class="account">
           ${
-            profile.isPending
-              ? nothing
-              : profile.data
-                ? html`<devhub-account-menu
+            profile.isPending || !profile.data
+              ? this.#loginLink()
+              : html`<devhub-account-menu
                     .profile=${profile.data}
                   ></devhub-account-menu>`
-                : this.#loginLink()
           }
         </span>
       </div>

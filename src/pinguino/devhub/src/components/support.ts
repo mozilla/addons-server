@@ -2,6 +2,7 @@ import { css, html, LitElement, nothing } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { postSupport, type SupportCategory } from '../data/api';
 import { FormController, textArea, textField } from '../foundations/form';
+import { setPageTitle } from '../page-title';
 
 interface SupportDraft {
   category: SupportCategory | undefined;
@@ -50,6 +51,7 @@ export class Support extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    setPageTitle('Request Support');
     this.#form.start({ ...EMPTY });
   }
 
