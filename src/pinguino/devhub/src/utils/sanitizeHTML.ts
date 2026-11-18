@@ -1,5 +1,7 @@
 import DOMPurify from 'dompurify';
 
+export const ACTIVITY_TAGS = ['a'];
+
 export const MARKDOWN_TAGS = [
   'a',
   'abbr',
