@@ -19,7 +19,7 @@ const update = (id: string): Update => ({
 });
 
 async function feed(page: number, data: ActivityPage) {
-  queryClient.setQueryData(['activity', 'ad-blocker', page], data);
+  queryClient.setQueryData(['activity', 'ad-blocker', null, page], data);
   const el = await mount<ActivityFeed>('activity-feed', {
     slug: 'ad-blocker',
     page,

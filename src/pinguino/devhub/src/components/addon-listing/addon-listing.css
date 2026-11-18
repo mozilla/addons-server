@@ -95,6 +95,7 @@ dl {
   display: flex;
   gap: var(--space-small);
   flex: none;
+  align-items: center;
 }
 .cat-label {
   font-weight: 600;
