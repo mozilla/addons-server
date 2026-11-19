@@ -4,14 +4,26 @@
 .layout {
   display: grid;
   grid-template-columns: 220px 1fr;
-  gap: var(--space-xlarge);
+  grid-template-rows: auto 1fr;
+  column-gap: var(--space-xlarge);
+  /* Matches moz-page-nav's own --page-nav-gap, which used to space the heading
+   * off the list back when the heading was slotted into it. */
+  row-gap: var(--space-large);
   align-items: start;
 }
+/* The heading sits in its own row rather than inside moz-page-nav, so the card
+ * lines up with the first nav item instead of the heading above it. */
+.nav-heading {
+  grid-area: 1 / 1;
+  margin: 0;
+}
 moz-page-nav {
+  grid-area: 2 / 1;
   position: sticky;
   top: var(--space-medium);
 }
 .cards {
+  grid-area: 2 / 2;
   display: flex;
   flex-direction: column;
   gap: var(--space-large);
@@ -244,6 +256,13 @@ dl {
 @media (max-width: 760px) {
   .layout {
     grid-template-columns: 1fr;
+  }
+  /* Single column: let them stack in source order instead of holding the
+   * two-row placement that pairs the nav with the card. */
+  .nav-heading,
+  moz-page-nav,
+  .cards {
+    grid-area: auto;
   }
   moz-page-nav {
     position: static;

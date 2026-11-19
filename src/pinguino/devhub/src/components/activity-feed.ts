@@ -19,16 +19,12 @@ export class ActivityFeed extends LitElement {
     :host {
       display: block;
     }
-    .head {
-      margin-bottom: var(--space-large);
-    }
-    .head h2 {
-      margin: 0 0 var(--space-xsmall);
-      font-size: 1.0625rem;
-    }
-    .head p {
-      margin: 0;
-      color: var(--text-color-deemphasized, GrayText);
+    /* The single gap owner inside the card, matching the versions tab so the
+     * two sit identically in their shell. */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xlarge);
     }
     .items {
       display: flex;
@@ -42,9 +38,6 @@ export class ActivityFeed extends LitElement {
       color: var(--text-color-deemphasized, GrayText);
       background-color: var(--background-color-canvas);
       border-radius: var(--border-radius-medium);
-    }
-    app-pagination {
-      margin-top: var(--space-large);
     }
   `;
 
@@ -62,25 +55,29 @@ export class ActivityFeed extends LitElement {
   render() {
     const { data, isPending, isError } = this.#activity();
     return html`
-      <div class="head">
-        <h2>Activity &amp; Notification</h2>
-        <p>Review outcomes and other events for this add-on.</p>
-      </div>
-      ${
-        isError
-          ? html`<div class="error">Couldn't load activity. Try again.</div>`
-          : isPending || !data
-            ? html`<div class="empty">Loading activity…</div>`
-            : html`
-              ${this.#items(data.items)}
-              <app-pagination
-                .page=${this.page}
-                .total=${data.total}
-                .pageSize=${ACTIVITY_PAGE_SIZE}
-                label="Activity pages"
-              ></app-pagination>
-            `
-      }
+      <moz-card appearance="outline" spacing="spacious">
+        <div class="main-content">
+          <moz-page-header
+            heading="Activity &amp; Notification"
+            description="Review outcomes and other events for this add-on."
+          ></moz-page-header>
+          ${
+            isError
+              ? html`<div class="error">Couldn't load activity. Try again.</div>`
+              : isPending || !data
+                ? html`<div class="empty">Loading activity…</div>`
+                : html`
+                  ${this.#items(data.items)}
+                  <app-pagination
+                    .page=${this.page}
+                    .total=${data.total}
+                    .pageSize=${ACTIVITY_PAGE_SIZE}
+                    label="Activity pages"
+                  ></app-pagination>
+                `
+          }
+        </div>
+      </moz-card>
     `;
   }
 }

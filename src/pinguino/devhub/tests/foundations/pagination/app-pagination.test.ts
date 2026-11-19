@@ -50,26 +50,25 @@ describe('app-pagination', () => {
     );
   });
 
-  it('disables the current page and leaves the others clickable', async () => {
+  // The filled variant marks the current page now, so it no longer has to be
+  // disabled to stand out.
+  it('leaves every numbered page clickable, current included', async () => {
     const root = await pager({ page: 2, total: 60 });
     const numbers = [...root.querySelectorAll('moz-button:not([rel])')];
     expect(
       numbers.map((b) => [b.textContent?.trim(), b.hasAttribute('disabled')]),
     ).toEqual([
       ['Page 1', false],
-      ['Current page, 2', true],
+      ['Current page, 2', false],
       ['Page 3', false],
     ]);
   });
 
   it('drops the href on a disabled step so it cannot navigate', async () => {
     const root = await pager({ page: 1, total: 60 });
-    expect(root.querySelector('[rel="prev"]')?.hasAttribute('href')).toBe(
-      false,
-    );
-    expect(
-      root.querySelector('moz-button[aria-current]')?.hasAttribute('href'),
-    ).toBe(false);
+    const prev = root.querySelector('[rel="prev"]');
+    expect(prev?.hasAttribute('disabled')).toBe(true);
+    expect(prev?.hasAttribute('href')).toBe(false);
   });
 
   it('pins the first and last page behind ellipses when truncated', async () => {
@@ -97,13 +96,24 @@ describe('app-pagination', () => {
     expect(current?.textContent?.trim()).toBe('Current page, 2');
   });
 
-  it('styles numbers as default buttons and the steps as primary', async () => {
+  it('fills the current page and leaves every other step ghosted', async () => {
     const root = await pager({ page: 2, total: 60 });
     const variant = (sel: string) =>
       root.querySelector(sel)?.getAttribute('variant');
-    expect(variant('moz-button[rel="prev"]')).toBe('primary');
-    expect(variant('moz-button[rel="next"]')).toBe('primary');
-    expect(variant('moz-button[aria-current="page"]')).toBe('default');
+    expect(variant('moz-button[aria-current="page"]')).toBe('primary');
+    expect(variant('moz-button[rel="prev"]')).toBe('ghost');
+    expect(variant('moz-button[rel="next"]')).toBe('ghost');
+    expect(variant('moz-button:not([rel]):not([aria-current])')).toBe('ghost');
+  });
+
+  it('points the steps with a chevron each way', async () => {
+    const root = await pager({ page: 2, total: 60 });
+    expect(
+      root.querySelector('moz-button[rel="prev"]')?.getAttribute('icon-start'),
+    ).toBe('chevron-left');
+    expect(
+      root.querySelector('moz-button[rel="next"]')?.getAttribute('icon-end'),
+    ).toBe('chevron-right');
   });
 
   it('links to each page with a real href that keeps other params', async () => {

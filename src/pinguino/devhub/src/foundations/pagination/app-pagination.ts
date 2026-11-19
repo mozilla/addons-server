@@ -31,23 +31,25 @@ export class AppPagination extends LitElement {
     ol {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: var(--space-xsmall);
+      /* The ellipsis is short; sitting it on the baseline of the buttons
+       * rather than their middle is what the design shows. */
+      align-items: flex-end;
+      gap: var(--space-small);
       margin: 0;
       padding: 0;
       list-style: none;
     }
-    /* Disabled already dims the dead steps; weight is what tells the current
-     * page apart from them. */
-    moz-button[aria-current]::part(button) {
-      font-weight: 600;
+    /* Previous/Next stand a step further off the numbers than the numbers do
+     * from each other — 24px against 8px. */
+    li:first-child {
+      margin-inline-end: calc(var(--space-xlarge) - var(--space-small));
+    }
+    li:last-child {
+      margin-inline-start: calc(var(--space-xlarge) - var(--space-small));
     }
     .skip {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      min-width: 32px;
-      color: var(--text-color-deemphasized, GrayText);
     }
     .sr-only {
       position: absolute;
@@ -80,12 +82,13 @@ export class AppPagination extends LitElement {
   // makes moz-button render a <button>, so it's dead rather than just dimmed.
   #step(page: number, text: string, rel?: 'prev' | 'next') {
     const current = !rel && page === this.page;
-    const disabled = current || page < 1 || page > this.#numPages;
+    const disabled = page < 1 || page > this.#numPages;
     const prefix = rel ? '' : current ? 'Current page, ' : 'Page ';
     return html`<li>
       <moz-button
-        size="small"
-        variant=${rel ? 'primary' : 'default'}
+        variant=${current ? 'primary' : 'ghost'}
+        icon-start=${rel === 'prev' ? 'chevron-left' : nothing}
+        icon-end=${rel === 'next' ? 'chevron-right' : nothing}
         href=${disabled ? nothing : this.#href(page)}
         rel=${rel ?? nothing}
         ?disabled=${disabled}
