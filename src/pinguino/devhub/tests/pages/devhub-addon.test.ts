@@ -137,7 +137,7 @@ describe('devhub-addon page title', () => {
   });
 
   it('passes the page parameter to the versions panel', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'versions',
