@@ -62,7 +62,6 @@ export {
   canChangeVisibility,
   canSubmitListed,
   hasIncompleteListing,
-  isIncompleteSubmission,
   resolveAddonStatus,
   resolveListingState,
   resolveVersionStatus,

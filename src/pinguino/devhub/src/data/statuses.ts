@@ -4,8 +4,6 @@ import type { Addon } from './types';
 // (amo.STATUS_CHOICES_API), so the strings share a namespace although each
 // field only uses the subset documented in docs/topics/api/addons.rst.
 
-import type { Version } from './types';
-
 // Mirrors acorn's StatusBadgeType, kept local so data/ needn't depend on the
 // component library.
 type BadgeType = 'default' | 'ghost' | 'success' | 'warning' | 'critical';
@@ -57,21 +55,6 @@ const UNKNOWN: StatusInfo = { label: 'Unknown', badge: 'default' };
 // Review state only; author-hiding reports through VISIBILITY.
 export function resolveAddonStatus(status: string | undefined): StatusInfo {
   return ADDON_STATUS[status as AddonStatus] ?? UNKNOWN;
-}
-
-export function isIncompleteSubmission(
-  status: StatusInfo,
-  versions: Version[],
-): boolean {
-  return (
-    status === ADDON_STATUS.incomplete &&
-    versions.some(
-      (version) =>
-        version.channel === 'listed' &&
-        version.file.status === 'unreviewed' &&
-        !version.is_disabled,
-    )
-  );
 }
 
 // `reviewed` tells a rejection from a file no human reached; both are `disabled`.

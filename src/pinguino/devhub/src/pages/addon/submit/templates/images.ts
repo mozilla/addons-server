@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { customElement, property, query } from 'lit/decorators.js';
 import type { GraphicAssetsCard } from '../../../../components/addon-listing/graphic-assets-card';
 import { addonQuery } from '../../../../data/queries';
@@ -23,6 +23,7 @@ export class SubmitImages extends SubmissionStep {
 
   render() {
     const addon = this.#addon().data;
+    if (!addon) return nothing;
     return html`<graphic-assets-card
           edit-only
           embedded
