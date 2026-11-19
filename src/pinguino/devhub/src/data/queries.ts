@@ -4,8 +4,10 @@
 
 import {
   createInfiniteQueryController,
+  createQueriesController,
   createQueryController,
   type InfiniteData,
+  type QueryObserverResult,
 } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { LOCALE } from '../base';
@@ -44,23 +46,27 @@ import { queryClient } from './query-client';
 import type { AddonVisibility } from './statuses';
 import type {
   ActivityPage,
-  Addon,
   AddonAuthorAdd,
   AddonAuthorRole,
   AddonDistribution,
+  AddonKind,
   AddonListingEdit,
+  AddonPage,
   AgreementAcceptState,
   EulaPolicyEdit,
   FileUpload,
   Version,
 } from './types';
 
-// Keys identify cache entries. The add-on list and a single add-on share one
-// key so navigating to a detail view reuses the cached list, not a new request.
+// Keys identify cache entries. Every add-on entry hangs off the `addons`
+// prefix, so invalidating that covers both kind lists at once; the lists and a
+// single add-on share their keys, so navigating to a detail view reuses the
+// cache rather than making a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
   siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
+  addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
@@ -122,41 +128,77 @@ export function siteStatusQuery(
   );
 }
 
+const ADDON_KINDS: readonly AddonKind[] = ['extension', 'theme'];
+
+// One list per kind, because the API pages extensions and themes together: ask
+// once and a developer with over a page of add-ons gets an arbitrary split of
+// the two, under a `count` covering only what came back.
+//
 // These are the signed-in developer's own add-ons, so asking while signed out
 // only earns a 401; `getEnabled` lets a caller wait for the profile first.
 export function addonsQuery(
   host: ReactiveControllerHost,
+  kind: AddonKind,
   getEnabled: () => boolean = () => true,
 ) {
   return createQueryController(
     host,
     () => ({
-      queryKey: queryKeys.addons,
-      queryFn: fetchAddons,
+      queryKey: queryKeys.addonList(kind),
+      queryFn: () => fetchAddons(kind),
       enabled: getEnabled(),
     }),
     queryClient,
   );
 }
 
-// One add-on, selected from the cached list by slug — no extra request when
-// arriving from the dashboard. Swap in a detail endpoint here when one exists.
-export function addonQuery(
+export type AddonsQuery = ReturnType<typeof addonsQuery>;
+
+// Both kind lists flattened, for callers that don't care which kind each one
+// is. Same keys as addonsQuery, so this shares the dashboard's cache entries
+// rather than fetching its own.
+export function allAddonsQuery(
   host: ReactiveControllerHost,
-  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
 ) {
-  return createQueryController(
+  return createQueriesController(
     host,
     () => ({
-      queryKey: queryKeys.addons,
-      queryFn: fetchAddons,
-      select: (addons: Addon[]) => addons.find((a) => a.slug === getSlug()),
+      queries: ADDON_KINDS.map((kind) => ({
+        queryKey: queryKeys.addonList(kind),
+        queryFn: () => fetchAddons(kind),
+        enabled: getEnabled(),
+      })),
+      combine: (results: QueryObserverResult<AddonPage>[]) => ({
+        data: results.flatMap((result) => result.data?.results ?? []),
+        isPending: results.some((result) => result.isPending),
+        isSuccess: results.every((result) => result.isSuccess),
+        isError: results.some((result) => result.isError),
+      }),
     }),
     queryClient,
   );
 }
 
-// Persist Listing Details edits, then refresh the cached add-on list so the
+// One add-on, picked out of the cached lists by slug — no extra request when
+// arriving from the dashboard. Swap in a detail endpoint here when one exists.
+export function addonQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  const addons = allAddonsQuery(host);
+  return () => {
+    const { data, isPending, isSuccess, isError } = addons();
+    return {
+      data: data.find((addon) => addon.slug === getSlug()),
+      isPending,
+      isSuccess,
+      isError,
+    };
+  };
+}
+
+// Persist Listing Details edits, then refresh the cached add-on lists so the
 // manage view (which reads from it) reflects the saved values.
 export async function updateAddon(slug: string, edit: AddonListingEdit) {
   const updated = await patchAddon(slug, edit);
@@ -180,9 +222,15 @@ export async function setAddonVisibility(
 // server's own list still replaces ours.
 export async function removeAddon(slug: string) {
   await deleteAddon(slug);
-  queryClient.setQueryData(queryKeys.addons, (addons?: Addon[]) =>
-    addons?.filter((addon) => addon.slug !== slug),
-  );
+  for (const kind of ADDON_KINDS) {
+    queryClient.setQueryData(queryKeys.addonList(kind), (page?: AddonPage) => {
+      if (!page) return page;
+      const results = page.results.filter((addon) => addon.slug !== slug);
+      return results.length === page.results.length
+        ? page
+        : { results, count: page.count - 1 };
+    });
+  }
   // The dashboard lists the add-on twice: as a card, and by name in the
   // activity feed. The feed drops a deleted add-on's entries server-side, so
   // this one has to go too or the dashboard keeps naming what we just deleted.

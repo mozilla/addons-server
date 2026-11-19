@@ -1,5 +1,6 @@
 import type { LitElement } from 'lit';
-import type { Version } from '../../src/data/types';
+import { queryClient, queryKeys } from '../../src/data';
+import type { Addon, AddonKind, Version } from '../../src/data/types';
 
 // Mount a Lit element, apply props, and wait for its first render. Returns the
 // element so tests can read `el.shadowRoot`. Props are applied before connection
@@ -39,3 +40,18 @@ export const DEFAULT_VERSION: Version = {
   edit_url: '/developers/addon/ad-blocker/versions/1',
   is_disabled: false,
 };
+
+// Seeds both kind lists, splitting `addons` by kind. `counts` overrides the
+// author's totals, for tests that want them to outrun the page they seeded.
+export function seedAddons(
+  addons: Addon[],
+  counts: Partial<Record<AddonKind, number>> = {},
+) {
+  for (const kind of ['extension', 'theme'] as const) {
+    const results = addons.filter((addon) => addon.kind === kind);
+    queryClient.setQueryData(queryKeys.addonList(kind), {
+      results,
+      count: counts[kind] ?? results.length,
+    });
+  }
+}

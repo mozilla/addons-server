@@ -9,6 +9,7 @@ export {
 } from './api';
 export { isAddonOwner } from './permissions';
 export {
+  type AddonsQuery,
   acceptAgreement,
   activityInfiniteQuery,
   activityQuery,
@@ -17,6 +18,7 @@ export {
   addonSourceQuery,
   addonsQuery,
   agreementQuery,
+  allAddonsQuery,
   authorsQuery,
   categoriesQuery,
   createAuthor,

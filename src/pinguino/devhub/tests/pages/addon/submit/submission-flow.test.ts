@@ -17,6 +17,15 @@ import { DEFAULT_VERSION, mount, settle } from '../../../helpers/fixture';
 
 vi.mock('../../../../src/data/api');
 
+// fetchAddons resolves one page per kind; the flow only reads the add-on, so
+// the same page answers both calls.
+function mockAddons(...addons: Addon[]) {
+  vi.mocked(api.fetchAddons).mockResolvedValue({
+    results: addons,
+    count: addons.length,
+  });
+}
+
 @customElement('test-router')
 class TestRouter extends LitElement {
   router = new Router(this, [
@@ -81,7 +90,7 @@ beforeEach(() => {
     siteStatus: { readOnly: false, siteNotice: null, submissionNotice: null },
   });
   // The flow also looks up the add-on for its per-channel submit notice.
-  vi.mocked(api.fetchAddons).mockResolvedValue([]);
+  mockAddons();
   vi.mocked(api.postUpload).mockResolvedValue(makeUpload());
   vi.mocked(api.fetchUpload).mockImplementation(
     () => vi.mocked(api.postUpload).mock.results.at(-1)?.value,
@@ -402,9 +411,7 @@ describe('addon-submission', () => {
     });
 
     it("falls back to the add-on's per-channel notice when the site has none", async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: 'Listed submissions are paused.' }),
-      ]);
+      mockAddons(makeAddon({ listed: 'Listed submissions are paused.' }));
       // Defaults to the 'listed' channel.
       const $ = await mountFlow('');
       await expect
@@ -414,9 +421,7 @@ describe('addon-submission', () => {
 
     it('shows no notice when the current channel has a null warning', async () => {
       // The API returns every channel, with null where there's no warning.
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: null, unlisted: null, enterprise: null }),
-      ]);
+      mockAddons(makeAddon({ listed: null, unlisted: null, enterprise: null }));
       const $ = await mountFlow('');
       await expect
         .poll(() => vi.mocked(api.fetchAddons).mock.calls.length)
@@ -425,12 +430,12 @@ describe('addon-submission', () => {
     });
 
     it('follows the selected channel', async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
+      mockAddons(
         makeAddon({
           listed: 'Listed submissions are paused.',
           unlisted: 'Unlisted submissions are paused.',
         }),
-      ]);
+      );
       const $ = await mountFlow('distribution');
 
       // Starts on the default 'listed' channel.
@@ -458,9 +463,7 @@ describe('addon-submission', () => {
           submissionNotice: 'Site-wide pause.',
         },
       });
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: 'Listed submissions are paused.' }),
-      ]);
+      mockAddons(makeAddon({ listed: 'Listed submissions are paused.' }));
       const $ = await mountFlow('');
       await expect
         .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)
