@@ -253,9 +253,10 @@ export class AddonVersion extends LitElement {
     }
   }
 
-  render() {
+  renderVersionContent() {
     const data = this.#versions().data;
-    if (!data) return nothing;
+    if (!data?.total)
+      return html`<p class="empty-versions">No versions to show.</p>`;
     const versions = data.items;
     const current =
       this.addon.currentVersion?.file?.status === 'public'
@@ -270,20 +271,6 @@ export class AddonVersion extends LitElement {
       nextListedId = this.getNextListed(current, otherVersions);
     }
     return html`
-      <moz-card appearance="outline" spacing="spacious">
-        <div class="main-content">
-          <moz-page-header
-            heading="Version"
-            description="See all your versions at once and easily manage them."
-          >
-            <moz-button
-              slot="actions"
-              variant="primary"
-              icon-start="add"
-              href="${BASE}/addon/${this.addon.slug}/versions/submit/"
-              >Upload a new version</moz-button
-            >
-          </moz-page-header>
 
           ${incomplete ? this.renderIncompleteMessage() : nothing}
           ${
@@ -309,15 +296,38 @@ export class AddonVersion extends LitElement {
                     }),
                   ),
                 )
-              : html`<p class="empty-versions">No versions to show.</p>`
+              : nothing
           }
-          <app-pagination
+          ${
+            data.total > VERSION_PAGE_SIZE
+              ? html`<app-pagination
             .page=${this.page}
             .total=${data.total}
             .pageSize=${VERSION_PAGE_SIZE}
             label="Version pages"
-          ></app-pagination>
-        </div>
+          ></app-pagination>`
+              : nothing
+          }
+    `;
+  }
+
+  render() {
+    return html`
+      <moz-card appearance="outline" spacing="spacious">
+        <div class="main-content">
+          <moz-page-header
+            heading="Version"
+            description="See all your versions at once and easily manage them."
+          >
+            <moz-button
+              slot="actions"
+              variant="primary"
+              icon-start="add"
+              href="${BASE}/addon/${this.addon.slug}/versions/submit/"
+              >Upload a new version</moz-button
+            >
+          </moz-page-header>
+        ${this.renderVersionContent()}
       </moz-card>
     `;
   }

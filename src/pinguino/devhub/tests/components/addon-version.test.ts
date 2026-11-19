@@ -156,11 +156,18 @@ describe('addon-version', () => {
     expect(versionButton?.textContent?.trim()).toBe('Manage version');
   });
 
+  it('shows empty message if no add-on versions exist', async () => {
+    const root = await mountVersions({}, []);
+
+    const emptyVersion = root.querySelector('.empty-versions');
+    expect(emptyVersion?.textContent?.trim()).toBe('No versions to show.');
+  });
+
   it('hides pagination when every version fits on one page', async () => {
     const root = await mountVersions({}, [DEFAULT_VERSION]);
     const pagination = root.querySelector('app-pagination');
     await pagination?.updateComplete;
-    expect(pagination?.shadowRoot?.querySelector('nav')).toBeNull();
+    expect(pagination?.shadowRoot?.querySelector('nav')).toBeUndefined();
   });
 
   it('paginates the other versions from the total across pages', async () => {
