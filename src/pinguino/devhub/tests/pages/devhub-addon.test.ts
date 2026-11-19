@@ -112,6 +112,59 @@ describe('devhub-addon', () => {
   });
 });
 
+describe('devhub-addon page title', () => {
+  async function titleFor(props: Partial<DevhubAddon>): Promise<string> {
+    seedAddons([addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      ...props,
+    });
+    await settle(el);
+    return document.title;
+  }
+
+  it('titles the edit tab "Edit Listing details" under the add-on name', async () => {
+    expect(await titleFor({})).toBe(
+      'Edit Listing details :: Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+
+  it('titles the edit tab by its active section', async () => {
+    expect(await titleFor({ tab: 'edit', section: 'authors' })).toBe(
+      'Edit Authors :: Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+
+  it('titles the versions tab', async () => {
+    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
+      DEFAULT_VERSION,
+    ]);
+    expect(await titleFor({ tab: 'versions' })).toBe(
+      'Versions :: Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+
+  it('titles the feed tab', async () => {
+    expect(await titleFor({ tab: 'feed' })).toBe(
+      'Activity & Notification :: Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+
+  it('drops the page segment for a not-yet-implemented tab', async () => {
+    expect(await titleFor({ tab: 'statistics' })).toBe(
+      'Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+
+  it('drops the page segment for a non-TabValue tab too (e.g. invitation)', async () => {
+    // invitation isn't a real tab, so it must behave like statistics rather
+    // than inheriting the edit title via the #activeTab fallback.
+    expect(await titleFor({ tab: 'invitation' })).toBe(
+      'Ad Blocker :: Add-ons for Firefox',
+    );
+  });
+});
+
 describe('devhub-addon feed tab', () => {
   it('renders the activity feed for the add-on and page', async () => {
     seedAddons([addon]);

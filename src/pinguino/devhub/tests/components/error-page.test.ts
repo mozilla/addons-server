@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it } from 'vitest';
 import type { ErrorPage } from '../../src/components/error-page';
 import '../../src/components/error-page';
 import { ApiError, errorStatus } from '../../src/data/http';
@@ -56,6 +56,33 @@ describe('error-page', () => {
     // The fallback is the slot's own content, so it shows until a caller fills it.
     expect(slot?.querySelector('moz-button')?.getAttribute('href')).toBe(
       '/developers',
+    );
+  });
+});
+
+describe('error-page document title', () => {
+  afterEach(() => {
+    document.title = '';
+  });
+
+  it('titles the tab with the status heading (no numeric code)', async () => {
+    await page();
+    expect(document.title).toBe(
+      'Page not found :: Developer Hub :: Add-ons for Firefox',
+    );
+  });
+
+  it('uses the status-specific heading', async () => {
+    await page({ code: 403 });
+    expect(document.title).toBe(
+      "You don't have access to this :: Developer Hub :: Add-ons for Firefox",
+    );
+  });
+
+  it('prefers a caller-supplied heading over the status copy', async () => {
+    await page({ code: 404, heading: 'No such version' });
+    expect(document.title).toBe(
+      'No such version :: Developer Hub :: Add-ons for Firefox',
     );
   });
 });
