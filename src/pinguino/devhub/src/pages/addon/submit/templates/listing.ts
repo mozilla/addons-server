@@ -1,5 +1,5 @@
 import { html, nothing } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import type { ListingDetailsCard } from '../../../../components/addon-listing/listing-details-card';
 import { localized } from '../../../../data/api';
 import {
@@ -14,7 +14,7 @@ import type {
   FileUpload,
   Version,
 } from '../../../../data/types';
-import { SubmissionStep } from '../submission-step';
+import { errorBar, SubmissionStep } from '../submission-step';
 import '../../../../components/addon-listing/listing-details-card';
 
 function newAddon(kind: AddonKind, upload?: FileUpload): Addon {
@@ -43,6 +43,7 @@ export class SubmitListing extends SubmissionStep {
   @property() kind: AddonKind = 'extension';
 
   @query('listing-details-card') private card?: ListingDetailsCard;
+  @state() private error?: ReturnType<typeof errorBar>;
 
   #addon = addonQuery(this, () => this.slug);
   #upload = uploadQuery(this, () => (this.slug ? '' : (this.upload ?? '')));
@@ -60,15 +61,24 @@ export class SubmitListing extends SubmissionStep {
   }
 
   async submit(): Promise<boolean> {
-    if (!(await this.card?.save())) return false;
+    if (!this.error && !(await this.card?.save())) return false;
     const created = this.#created;
-    this.#created = undefined;
     if (created?.source) {
-      await uploadVersionSource(
-        created.slug,
-        created.versionId,
-        created.source,
-      ).catch(() => {});
+      try {
+        await uploadVersionSource(
+          created.slug,
+          created.versionId,
+          created.source,
+        );
+        this.#created = undefined;
+        this.error = undefined;
+      } catch {
+        this.error = errorBar(
+          'Source code upload failed',
+          'Could not save source code. Please try again.',
+        );
+        return false;
+      }
     }
     return true;
   }
@@ -77,6 +87,7 @@ export class SubmitListing extends SubmissionStep {
     const addon = this.#listingAddon();
     if (!addon) return nothing;
     return html`
+    ${this.error ? this.error : nothing}
       <listing-details-card
         edit-only
         embedded
