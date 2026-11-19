@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest';
 import type { AddonVersion } from '../../src/components/addon-version/addon-version';
 import '../../src/components/addon-version/addon-version';
 import type { Addon, Version } from '../../src/data';
-import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
+import {
+  ADDON_STATUS,
+  queryClient,
+  queryKeys,
+  VERSION_PAGE_SIZE,
+} from '../../src/data';
 import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
 
 const addon: Addon = {
@@ -18,10 +23,18 @@ const addon: Addon = {
   channels: ['listed'],
 };
 
-async function mountVersions(props: Partial<Addon>, versions: Version[]) {
-  queryClient.setQueryData(queryKeys.versions('ad-blocker'), versions);
+async function mountVersions(
+  props: Partial<Addon>,
+  versions: Version[],
+  { page = 1, total = versions.length } = {},
+) {
+  queryClient.setQueryData([...queryKeys.versions('ad-blocker'), page], {
+    items: versions,
+    total,
+  });
   const el = await mount<AddonVersion>('addon-version', {
     addon: { ...addon, ...props },
+    page,
   });
   await settle(el);
   return el.shadowRoot as ShadowRoot;
@@ -141,5 +154,23 @@ describe('addon-version', () => {
       '.version-row:not(.labels) .manage-button',
     );
     expect(versionButton?.textContent?.trim()).toBe('Manage version');
+  });
+
+  it('hides pagination when every version fits on one page', async () => {
+    const root = await mountVersions({}, [DEFAULT_VERSION]);
+    const pagination = root.querySelector('app-pagination');
+    await pagination?.updateComplete;
+    expect(pagination?.shadowRoot?.querySelector('nav')).toBeNull();
+  });
+
+  it('paginates the other versions from the total across pages', async () => {
+    const root = await mountVersions({}, [DEFAULT_VERSION], {
+      page: 2,
+      total: 120,
+    });
+    const pagination = root.querySelector('app-pagination');
+    expect(pagination?.page).toBe(2);
+    expect(pagination?.total).toBe(120);
+    expect(pagination?.pageSize).toBe(VERSION_PAGE_SIZE);
   });
 });

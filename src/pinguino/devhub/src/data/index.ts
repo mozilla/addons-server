@@ -6,6 +6,7 @@ export {
   fetchEulaPolicy,
   formatDate,
   localized,
+  VERSION_PAGE_SIZE,
 } from './api';
 export { isAddonOwner } from './permissions';
 export {

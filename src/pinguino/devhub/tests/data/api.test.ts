@@ -9,6 +9,7 @@ import {
   fetchEulaPolicy,
   fetchProfile,
   fetchSiteStatus,
+  fetchVersions,
   formatDate,
   localized,
   mapActivity,
@@ -359,6 +360,18 @@ describe('endpoints', () => {
     // The total is the count across all pages, not this page's length.
     expect(page).toMatchObject({ total: 42 });
     expect(page.items).toHaveLength(1);
+  });
+
+  it('fetchVersions paginates the version list, reporting the total', async () => {
+    mockJson({ results: [DEFAULT_VERSION], count: 58 });
+
+    const page = await fetchVersions('my-addon', 'en-US', 2);
+
+    const [url] = vi.mocked(fetch).mock.calls[0];
+    expect(String(url)).toContain('/addons/addon/my-addon/versions/');
+    expect(String(url)).toContain('page=2');
+    expect(String(url)).toContain('page_size=50');
+    expect(page).toEqual({ items: [DEFAULT_VERSION], total: 58 });
   });
 
   it('fetchProfile maps the id, name, picture url and site status', async () => {

@@ -9,11 +9,13 @@ import {
   formatDate,
   isIncompleteSubmission,
   updateAddon,
+  VERSION_PAGE_SIZE,
   type Version,
   VISIBILITY,
   versionsQuery,
 } from '../../data';
 import '../../foundations/badges';
+import '../../foundations/pagination';
 import crown from '../../static/img/crown.svg';
 
 const LABELS = ['Version', 'Status', 'Distribution', 'Visibility', 'Date'];
@@ -28,8 +30,13 @@ const VISIBILITY_DESCRIPTION: Record<AddonVisibility, string> = {
 @customElement('addon-version')
 export class AddonVersion extends LitElement {
   @property({ attribute: false }) addon!: Addon;
+  @property({ type: Number }) page = 1;
 
-  #versions = versionsQuery(this, () => this.addon?.slug ?? '');
+  #versions = versionsQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => this.page,
+  );
 
   static styles = css`
     moz-page-header::part(heading) {
@@ -119,6 +126,11 @@ export class AddonVersion extends LitElement {
     }
     visibility-badge::part(button) {
       --button-padding-inline-small: var(--space-xxsmall);
+    }
+    .empty-versions {
+      display: flex;
+      justify-content: center;
+      color: var(--text-color-deemphasized, GrayText);
     }
   `;
 
@@ -242,8 +254,9 @@ export class AddonVersion extends LitElement {
   }
 
   render() {
-    const versions = this.#versions().data;
-    if (!versions) return nothing;
+    const data = this.#versions().data;
+    if (!data) return nothing;
+    const versions = data.items;
     const current =
       this.addon.currentVersion?.file?.status === 'public'
         ? this.addon.currentVersion
@@ -296,8 +309,14 @@ export class AddonVersion extends LitElement {
                     }),
                   ),
                 )
-              : nothing
+              : html`<p class="empty-versions">No versions to show.</p>`
           }
+          <app-pagination
+            .page=${this.page}
+            .total=${data.total}
+            .pageSize=${VERSION_PAGE_SIZE}
+            label="Version pages"
+          ></app-pagination>
         </div>
       </moz-card>
     `;
