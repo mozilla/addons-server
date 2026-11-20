@@ -21,6 +21,7 @@ import {
   postSupport,
   postUpload,
   postVersion,
+  VERSION_PAGE_SIZE,
 } from '../../src/data/api';
 import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
 import { DEFAULT_VERSION } from '../helpers/fixture';
@@ -370,7 +371,7 @@ describe('endpoints', () => {
     const [url] = vi.mocked(fetch).mock.calls[0];
     expect(String(url)).toContain('/addons/addon/my-addon/versions/');
     expect(String(url)).toContain('page=2');
-    expect(String(url)).toContain('page_size=50');
+    expect(String(url)).toContain(`page_size=${VERSION_PAGE_SIZE}`);
     expect(page).toEqual({ items: [DEFAULT_VERSION], total: 58 });
   });
 

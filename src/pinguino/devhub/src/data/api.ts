@@ -618,7 +618,7 @@ export async function patchVersion(
   });
 }
 
-export const VERSION_PAGE_SIZE = 50;
+export const VERSION_PAGE_SIZE = 20;
 
 export async function fetchVersions(
   slug: string,
