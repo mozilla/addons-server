@@ -192,6 +192,11 @@ export interface ActivityPage {
   total: number;
 }
 
+export interface VersionPage {
+  items: Version[];
+  total: number;
+}
+
 export interface AgreementState {
   display_name: string | null;
   has_read_developer_agreement?: boolean;

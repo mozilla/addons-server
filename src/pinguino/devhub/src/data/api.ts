@@ -29,6 +29,7 @@ import type {
   SiteStatus,
   Update,
   Version,
+  VersionPage,
 } from './types';
 
 // Paginated envelope shared by the AMO v5 list endpoints.
@@ -617,18 +618,25 @@ export async function patchVersion(
   });
 }
 
+export const VERSION_PAGE_SIZE = 20;
+
 export async function fetchVersions(
   slug: string,
   lang: string,
-): Promise<Version[]> {
+  page: number,
+): Promise<VersionPage> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
       filter: 'all_with_unlisted',
       lang,
-      page_size: '50',
+      page: String(page),
+      page_size: String(VERSION_PAGE_SIZE),
     })}`,
   );
-  return data.results ?? [];
+  return {
+    items: data.results ?? [],
+    total: data.count ?? 0,
+  };
 }
 
 // Ends the current session server-side.
