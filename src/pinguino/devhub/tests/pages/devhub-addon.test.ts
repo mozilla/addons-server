@@ -58,9 +58,10 @@ describe('devhub-addon', () => {
 
   it('renders the versions panel for the add-on on the versions tab', async () => {
     seedAddons([addon]);
-    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
-      DEFAULT_VERSION,
-    ]);
+    queryClient.setQueryData([...queryKeys.versions('ad-blocker'), 1], {
+      items: [DEFAULT_VERSION],
+      total: 1,
+    });
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'versions',
@@ -135,10 +136,24 @@ describe('devhub-addon page title', () => {
     );
   });
 
+  it('passes the page parameter to the versions panel', async () => {
+    seedAddons([addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'versions',
+      page: 2,
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    expect(root.querySelector('addon-version')?.page).toBe(2);
+  });
+
   it('titles the versions tab', async () => {
-    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
-      DEFAULT_VERSION,
-    ]);
+    queryClient.setQueryData([...queryKeys.versions('ad-blocker'), 1], {
+      items: [DEFAULT_VERSION],
+      total: 1,
+    });
     expect(await titleFor({ tab: 'versions' })).toBe(
       'Versions :: Ad Blocker :: Add-ons for Firefox',
     );

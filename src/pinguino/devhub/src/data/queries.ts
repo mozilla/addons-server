@@ -598,14 +598,19 @@ export async function createVersion(
 export function versionsQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
+  getPage: () => number,
 ) {
   return createQueryController(
     host,
-    () => ({
-      queryKey: queryKeys.versions(getSlug()),
-      queryFn: () => fetchVersions(getSlug(), LOCALE ?? 'en-US'),
-      enabled: Boolean(getSlug()),
-    }),
+    () => {
+      const slug = getSlug();
+      const page = getPage();
+      return {
+        queryKey: [...queryKeys.versions(slug), page],
+        queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US', page),
+        enabled: Boolean(slug),
+      };
+    },
     queryClient,
   );
 }
