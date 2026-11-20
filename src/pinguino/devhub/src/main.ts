@@ -1,3 +1,6 @@
+// First import: read and clear AMO session id from the <pinguino-app> token.
+import './data/session';
+
 // URLPattern isn't in every browser yet (Firefox/Safari only added it recently);
 // the polyfill is a no-op where it's native. Must load before the Router is built.
 import 'urlpattern-polyfill';
