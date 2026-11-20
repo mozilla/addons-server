@@ -142,7 +142,7 @@ class TestScannerResultMixin:
 
     def test_get_scanner_name(self):
         result = self.create_result(scanner=YARA)
-        assert result.get_scanner_name() == 'yara'
+        assert result.get_scanner_name() == 'yara (legacy)'
 
     def test_get_pretty_results(self):
         result = self.create_result(scanner=YARA)
@@ -522,7 +522,7 @@ class TestScannerResult(TestScannerResultMixin, TestCase):
 
     def test_str(self):
         result = ScannerResult(scanner=YARA)
-        assert str(result) == 'yara'
+        assert str(result) == 'yara (legacy)'
 
         event = ScannerWebhookEvent.objects.create(
             event=WEBHOOK_DURING_VALIDATION,
