@@ -8,6 +8,7 @@ from django.urls import reverse
 
 import waffle
 from pyquery import PyQuery as pq
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
@@ -418,8 +419,16 @@ class TestValidateAddon(TestCase):
         assert doc('#upload-addon').attr('data-upload-url-unlisted') == (
             reverse('devhub.standalone_upload_unlisted')
         )
+        assert doc('#upload-addon').attr('data-upload-url-enterprise') is None
         assert doc('#upload-addon').attr('data-max-upload-size') == str(
             settings.MAX_UPLOAD_SIZE
+        )
+
+        with override_switch('enterprise-channel', active=True):
+            response = self.client.get(reverse('devhub.validate_addon'))
+        doc = pq(response.content)
+        assert doc('#upload-addon').attr('data-upload-url-enterprise') == (
+            reverse('devhub.standalone_upload_enterprise')
         )
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -538,6 +547,21 @@ class TestUploadURLs(TestCase):
 
         self.upload('devhub.standalone_upload_unlisted')
         self.expect_validation(channel=amo.CHANNEL_UNLISTED)
+
+        with override_switch('enterprise-channel', active=True):
+            self.upload('devhub.standalone_upload_enterprise')
+        self.expect_validation(channel=amo.CHANNEL_ENTERPRISE)
+
+    def test_upload_standalone_enterprise_switch_disabled(self):
+        """Test that the standalone enterprise upload URL is not available
+        when the enterprise-channel switch is off."""
+        fpath = 'src/olympia/files/fixtures/files/webextension_validation_error.zip'
+        with open(fpath, 'rb') as file_:
+            response = self.client.post(
+                reverse('devhub.standalone_upload_enterprise'), {'upload': file_}
+            )
+        assert response.status_code == 404
+        assert not FileUpload.objects.exists()
 
     def test_upload_submit(self):
         """Test that the add-on creation upload URLs result in file uploads
