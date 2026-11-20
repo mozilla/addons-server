@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { ActivityFeed } from '../../src/components/activity-feed';
 import '../../src/components/activity-feed';
+import type { MozPagination } from '@mozilla/lit-web-components';
 import type { ActivityPage, Update } from '../../src/data';
 import { queryClient, VERSION_STATUS } from '../../src/data';
 import { mount, settle } from '../helpers/fixture';
@@ -53,8 +54,10 @@ describe('activity-feed', () => {
       items: [update('1')],
       total: 42,
     });
-    const pager = root.querySelector('app-pagination');
+    const pager = root.querySelector<MozPagination>('moz-pagination');
     expect(pager?.page).toBe(2);
     expect(pager?.total).toBe(42);
+    // AMO's page numbers only line up with the Django paginator at 9 slots.
+    expect(pager?.getAttribute('max-slots')).toBe('9');
   });
 });

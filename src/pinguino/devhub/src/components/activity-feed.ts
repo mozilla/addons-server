@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ACTIVITY_PAGE_SIZE, activityQuery, type Update } from '../data';
-import '../foundations/pagination';
+import { pageHref } from '../navigation';
 import './update-card';
 
 @customElement('activity-feed')
@@ -25,6 +25,17 @@ export class ActivityFeed extends LitElement {
       display: flex;
       flex-direction: column;
       gap: var(--space-xlarge);
+    }
+    .pager {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-small);
+    }
+    .count {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text-color-deemphasized, GrayText);
     }
     .items {
       display: flex;
@@ -52,6 +63,14 @@ export class ActivityFeed extends LitElement {
     `;
   }
 
+  // moz-pagination renders the control and nothing else, so the running tally
+  // under it is ours.
+  #resultCount(total: number) {
+    const from = (this.page - 1) * ACTIVITY_PAGE_SIZE + 1;
+    const to = Math.min(this.page * ACTIVITY_PAGE_SIZE, total);
+    return html`<p class="count">Results ${from}–${to} of ${total}</p>`;
+  }
+
   render() {
     const { data, isPending, isError } = this.#activity();
     return html`
@@ -68,12 +87,17 @@ export class ActivityFeed extends LitElement {
                 ? html`<div class="empty">Loading activity…</div>`
                 : html`
                   ${this.#items(data.items)}
-                  <app-pagination
-                    .page=${this.page}
-                    .total=${data.total}
-                    .pageSize=${ACTIVITY_PAGE_SIZE}
-                    label="Activity pages"
-                  ></app-pagination>
+                  <div class="pager">
+                    <moz-pagination
+                      .page=${this.page}
+                      .total=${data.total}
+                      .pageSize=${ACTIVITY_PAGE_SIZE}
+                      .hrefForPage=${(page: number) => pageHref(page)}
+                      max-slots="9"
+                      label="Activity pages"
+                    ></moz-pagination>
+                    ${this.#resultCount(data.total)}
+                  </div>
                 `
           }
         </div>

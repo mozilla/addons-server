@@ -50,3 +50,11 @@ export function pageParam(search: string = location.search): number {
   const page = Number(new URLSearchParams(search).get('page'));
   return Number.isInteger(page) && page > 0 ? page : 1;
 }
+
+// The counterpart writer. Relative, and built from the current query, so other
+// params on the URL survive paging.
+export function pageHref(page: number, param = 'page'): string {
+  const params = new URLSearchParams(location.search);
+  params.set(param, String(page));
+  return `?${params}`;
+}
