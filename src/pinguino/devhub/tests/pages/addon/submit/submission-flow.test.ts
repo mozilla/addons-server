@@ -186,6 +186,14 @@ describe('version-submission', () => {
     it('walks through the version submission flow', async () => {
       const $ = await mountFlow('');
 
+      // The flow opens on the distribution step; accept the default and continue.
+      expect($.timeline().currStep).toBe(0);
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.upload()).toBeTruthy();
+
       // Uploading an invalid submission fails validation. Cannot continue.
       expect($.timeline().currStep).toBe(1);
       expect($.continue()?.hasAttribute('disabled')).toBe(true);
@@ -318,7 +326,7 @@ describe('version-submission', () => {
 
   describe('distribution', () => {
     it('reflects the selected distribution', async () => {
-      const $ = await mountFlow('distribution');
+      const $ = await mountFlow('');
       const picker = $.step('submit-distribution').querySelector(
         'moz-visual-picker',
       ) as Element & { value: string };
@@ -333,7 +341,7 @@ describe('version-submission', () => {
     });
 
     it('skips the source step for enterprise', async () => {
-      const $ = await mountFlow('distribution');
+      const $ = await mountFlow('');
       pick(
         $.step('submit-distribution').querySelector('moz-visual-picker'),
         'enterprise',
@@ -405,6 +413,13 @@ describe('version-submission', () => {
         total: 1,
       });
       const $ = await mountFlow('');
+      // The distribution step opens pre-selected to the last version's channel.
+      expect(picked($)).toBe('unlisted');
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.upload()).toBeTruthy();
       chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
       await expect
         .poll(() => vi.mocked(api.postUpload).mock.lastCall?.[1])
@@ -445,7 +460,7 @@ describe('version-submission', () => {
     });
 
     it('collects the listing before creating the version', async () => {
-      const $ = await mountFlow('distribution');
+      const $ = await mountFlow('');
       pick(
         $.step('submit-distribution').querySelector('moz-visual-picker'),
         'listed',
@@ -508,8 +523,14 @@ describe('version-submission', () => {
   describe('upload', () => {
     let $: ReturnType<typeof ui>;
 
+    // The upload step follows the distribution step; accept the default to reach it.
     beforeEach(async () => {
       $ = await mountFlow('');
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.upload()).toBeTruthy();
     });
 
     it('shows no validation errors if there are none', async () => {
@@ -640,7 +661,7 @@ describe('version-submission', () => {
           unlisted: 'Unlisted submissions are paused.',
         }),
       );
-      const $ = await mountFlow('distribution');
+      const $ = await mountFlow('');
 
       // Starts on the default 'listed' channel.
       await expect

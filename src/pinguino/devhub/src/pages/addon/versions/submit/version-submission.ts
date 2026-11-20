@@ -33,7 +33,6 @@ export class VersionSubmission extends SubmissionFlow {
   @state() private hadListed = true;
 
   #lookedUp?: Promise<void>;
-  #startOnDistribution = false;
 
   protected get kind() {
     return this.addon?.kind ?? 'extension';
@@ -52,13 +51,13 @@ export class VersionSubmission extends SubmissionFlow {
     [
       {
         path: '',
-        enter: () => this.enterStart('upload'),
-        render: () => this.uploadStep(),
-      },
-      {
-        path: 'distribution',
         enter: () => this.enterStart('distribution'),
         render: () => this.distributionStep(),
+      },
+      {
+        path: 'upload',
+        enter: () => this.enterStart('upload'),
+        render: () => this.uploadStep(),
       },
       this.pendingRoute('source', () => this.sourceStep()),
       this.pendingRoute('details', () => this.listingStep()),
@@ -110,12 +109,12 @@ export class VersionSubmission extends SubmissionFlow {
       this.channel = current.channel;
       return;
     }
-    // Continue on the last version's channel, if it's still allowed.
+    // Pre-select the distribution picker with the last version's channel if it's
+    // still allowed, else the first allowed channel.
     const last = versions[0]?.channel;
     if (last && (last !== 'listed' || this.canSubmitListed)) {
       this.channel = last;
     } else {
-      this.#startOnDistribution = true;
       this.channel = this.canSubmitListed ? 'listed' : 'unlisted';
     }
   }
@@ -135,10 +134,7 @@ export class VersionSubmission extends SubmissionFlow {
         replace: true,
       });
     }
-    const toDistribution = this.#startOnDistribution;
-    this.#startOnDistribution = false;
     if (id === 'distribution') return this.enterStep(id);
-    if (toDistribution) return this.goto('distribution');
     return this.enterStep(this.upload ? 'validation' : 'upload');
   }
 
@@ -177,9 +173,9 @@ export class VersionSubmission extends SubmissionFlow {
       versionLink(id) ??
       (this.showListingDetails ? this.link(PATHS[id]) : undefined);
     return {
-      distribution: this.link('distribution'),
-      upload: this.link(''),
-      validation: this.link(''),
+      distribution: this.link(''),
+      upload: this.link('upload'),
+      validation: this.link('upload'),
       source: pendingVersionLink('source'),
       details: pendingVersionLink('details'),
       graphics: versionLink('graphics'),
