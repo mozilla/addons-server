@@ -182,17 +182,15 @@ def upload_filter(generation_time: str, actions: list[str] | None = None):
             attachment_type = record['attachment_type']
             if attachment_type in attachment_types_to_delete:
                 server.delete_record(record['id'])
-
-        elif 'stash' in record:
-            # Delete stash records if that is one of the actions to perform.
-            # Currently we have a brute force approach to clearing stashes
-            # because we always upload both filters together in order to prevent
-            # stale stashes from being used by FX instances. Eventually, we may
-            # want support independently uploading filters and stashes which would
-            # require a more fine grained approach to clearing or even re-writing
-            # stashes based on which filters are being re-uploaded.
-            if BlockListAction.CLEAR_STASH in actions:
-                server.delete_record(record['id'])
+        # Delete stash records if that is one of the actions to perform.
+        # Currently we have a brute force approach to clearing stashes
+        # because we always upload both filters together in order to prevent
+        # stale stashes from being used by FX instances. Eventually, we may
+        # want support independently uploading filters and stashes which would
+        # require a more fine grained approach to clearing or even re-writing
+        # stashes based on which filters are being re-uploaded.
+        elif 'stash' in record and BlockListAction.CLEAR_STASH in actions:
+            server.delete_record(record['id'])
 
     # Commit the changes to remote settings for review + signing.
     # Only after any changes to records (attachments and stashes)
