@@ -38,7 +38,7 @@ describe('addon-card', () => {
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Extension');
     // No iconUrl and no theme preview — just the name in the title row.
     expect(root.querySelector('.logo')).toBeNull();
-    expect(root.querySelector('.preview')).toBeNull();
+    expect(root.querySelector('theme-preview')).toBeNull();
     expect(root.querySelector('.name')?.textContent?.trim()).toBe('Ad Blocker');
 
     expect(
@@ -62,28 +62,16 @@ describe('addon-card', () => {
     expect(root.querySelector('moz-icon')).toBeNull();
   });
 
-  it('renders a theme preview image when previewUrl is present', async () => {
+  it("renders a theme's preview", async () => {
     const root = await card({
       kind: 'theme',
       previewUrl: 'https://cdn/preview.png',
-      gradient: 'linear-gradient(90deg, #fff, #000)',
     });
 
     expect(root.querySelector('.kind')?.textContent?.trim()).toBe('Theme');
-    expect(root.querySelector('img.preview')?.getAttribute('src')).toBe(
+    expect(root.querySelector('theme-preview')?.addon.previewUrl).toBe(
       'https://cdn/preview.png',
     );
-    expect(root.querySelector('.bar')).toBeNull(); // image wins over gradient
-  });
-
-  it('falls back to a gradient bar when a theme has no preview', async () => {
-    const root = await card({
-      kind: 'theme',
-      previewUrl: undefined,
-      gradient: 'g',
-    });
-    expect(root.querySelector('img.preview')).toBeNull();
-    expect(root.querySelector('.bar')).not.toBeNull();
   });
 
   it('passes an invisible add-on and every channel to the badges', async () => {

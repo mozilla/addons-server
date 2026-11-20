@@ -15,6 +15,7 @@ import type {
   AddonAuthor,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonCreate,
   AddonDistribution,
   AddonKind,
   AddonListingEdit,
@@ -29,6 +30,7 @@ import type {
   SiteStatus,
   Update,
   Version,
+  VersionLicenseEdit,
   VersionPage,
 } from './types';
 
@@ -75,7 +77,7 @@ interface ApiAddon {
     thumbnail_url?: string;
     caption?: Localized | null;
   }[];
-  current_version?: Version;
+  current_version?: Version | null;
   channels: AddonDistribution[];
   submit_notification_warning?: Partial<
     Record<AddonDistribution, string | null>
@@ -200,7 +202,7 @@ export function mapAddon(a: ApiAddon): Addon {
     },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
-    currentVersion: a.current_version,
+    currentVersion: a.current_version ?? undefined,
     submissionNotice: a.submit_notification_warning,
   };
 }
@@ -278,14 +280,11 @@ export async function fetchAddons(kind: AddonKind): Promise<AddonPage> {
   return { results, count: data.count ?? results.length };
 }
 
-// Builds the add-on PATCH body from the edit fields. Keys already match the
+// Builds an add-on request body from the edit fields. Keys already match the
 // API; only keys present on `edit` are sent (so callers PATCH just what
 // changed), and the translated fields are wrapped as { lang: value } objects
 // (bare strings are rejected) targeting the default locale (en-US for now).
-export async function patchAddon(
-  slug: string,
-  edit: AddonListingEdit,
-): Promise<Addon> {
+function addonBody(edit: AddonListingEdit): Record<string, unknown> {
   const t = (value: string | undefined) => ({ 'en-US': value ?? '' });
   const TRANSLATED = [
     'name',
@@ -302,12 +301,53 @@ export async function patchAddon(
       ? t(value as string | undefined)
       : value;
   }
+  return body;
+}
 
+export async function patchAddon(
+  slug: string,
+  edit: AddonListingEdit,
+): Promise<Addon> {
   const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`, {
     method: 'PATCH',
-    body,
+    body: addonBody(edit),
   });
   return mapAddon(data);
+}
+
+function buildLicense(
+  license: string | undefined,
+  custom: { name: string; text: string } | undefined,
+): Record<string, unknown> {
+  if (custom) {
+    return {
+      custom_license: {
+        name: { 'en-US': custom.name },
+        text: { 'en-US': custom.text },
+      },
+    };
+  }
+  return license ? { license } : {};
+}
+
+export async function postAddon(
+  create: AddonCreate,
+): Promise<{ addon: Addon; version: Version }> {
+  const { version, ...listing } = create;
+  const data = await apiFetch<ApiAddon & { version: Version }>(
+    '/addons/addon/?lang=en-US',
+    {
+      method: 'POST',
+      body: {
+        ...addonBody(listing),
+        version: {
+          upload: version.upload,
+          ...buildLicense(version.license, version.custom_license),
+        },
+      },
+    },
+  );
+  return { addon: mapAddon(data), version: data.version };
 }
 
 // --- Authors (ownership) ---
@@ -443,6 +483,11 @@ export async function deletePreview(
 export async function fetchCategories(): Promise<Category[]> {
   const data = await apiFetch<Category[]>('/addons/categories/');
   return data.map((c) => ({ slug: c.slug, name: c.name, type: c.type }));
+}
+
+export async function fetchAddon(slug: string): Promise<Addon> {
+  const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`);
+  return mapAddon(data);
 }
 
 export async function fetchAddonSource(slug: string): Promise<Addon> {
@@ -597,13 +642,26 @@ export async function fetchVersion(slug: string, id: number): Promise<Version> {
   return await apiFetch<Version>(versionPath(slug, id));
 }
 
+export async function fetchLatestVersion(
+  slug: string,
+): Promise<Version | null> {
+  const data = await apiFetch<Paginated<Version>>(
+    `${versionPath(slug)}?filter=all_with_unlisted&page_size=1`,
+  );
+  return data.results?.[0] ?? null;
+}
+
 export async function postVersion(
   slug: string,
   uploadUuid: string,
+  license: VersionLicenseEdit = {},
 ): Promise<Version> {
   return await apiFetch<Version>(versionPath(slug), {
     method: 'POST',
-    body: { upload: uploadUuid },
+    body: {
+      upload: uploadUuid,
+      ...buildLicense(license.license, license.custom_license),
+    },
   });
 }
 
@@ -623,20 +681,28 @@ export const VERSION_PAGE_SIZE = 20;
 export async function fetchVersions(
   slug: string,
   lang: string,
-  page: number,
+  page?: number,
 ): Promise<VersionPage> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
       filter: 'all_with_unlisted',
       lang,
-      page: String(page),
-      page_size: String(VERSION_PAGE_SIZE),
+      ...(page && { page: String(page), page_size: String(VERSION_PAGE_SIZE) }),
     })}`,
   );
   return {
     items: data.results ?? [],
     total: data.count ?? 0,
   };
+}
+
+export async function patchVersionLicense(
+  slug: string,
+  id: number,
+  license: string | undefined,
+  custom?: { name: string; text: string },
+): Promise<Version> {
+  return await patchVersion(slug, id, buildLicense(license, custom));
 }
 
 // Ends the current session server-side.

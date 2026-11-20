@@ -12,14 +12,28 @@ export const sharedStyles = unsafeCSS(stylesText);
 
 // Base for the four listing-section cards. Holds the add-on, the shared
 // edit/save/error state, the stylesheet, and the card-head/row/link/runAction
-// helpers; each subclass renders its own <moz-card> body.
+// helpers; each subclass renders its body inside frame().
 export abstract class SectionCard extends LitElement {
   @property({ attribute: false }) addon!: Addon;
+  @property({ type: Boolean, attribute: 'edit-only' }) editOnly = false;
+  @property({ type: Boolean }) embedded = false;
   @state() protected editing = false;
   @state() protected saving = false;
   @state() protected error = '';
 
   static styles = sharedStyles;
+
+  async save(): Promise<boolean> {
+    return true;
+  }
+
+  protected frame(id: SectionId, contents: TemplateResult) {
+    return this.embedded
+      ? contents
+      : html`<moz-card appearance="outline" spacing="spacious" id=${id}>
+          ${contents}
+        </moz-card>`;
+  }
 
   // Renders the heading for a section's card from its SECTION metadata.
   // `actions` overrides the default (inert) Edit button; cards pass their Edit
@@ -34,7 +48,11 @@ export abstract class SectionCard extends LitElement {
         </span>
         <p class="sub">${description}</p>
       </div>
-      ${actions ?? html`<moz-button size="small">Edit</moz-button>`}
+      ${
+        this.editOnly || this.embedded
+          ? nothing
+          : (actions ?? html`<moz-button size="small">Edit</moz-button>`)
+      }
     </div>`;
   }
 

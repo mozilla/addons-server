@@ -154,12 +154,12 @@ describe('mapAddon', () => {
       is_experimental: false,
       current_version: {
         ...DEFAULT_VERSION,
+        id: 7,
         version: '1.0',
         license: {
-          id: 1,
+          slug: 'MPL-2.0',
           is_custom: false,
           name: { 'en-US': 'MPL 2.0' },
-          url: null,
         },
       },
       channels: ['listed'],
@@ -177,6 +177,7 @@ describe('mapAddon', () => {
       categories: ['alerts-updates', 'tabs'],
       flags: { hasEula: true, hasPrivacyPolicy: false, experimental: false },
       license: 'MPL 2.0',
+      currentVersion: { id: 7, version: '1.0' },
       uuid: '{tab-organizer-guid}',
     });
     // Null/absent fields stay undefined rather than empty strings.

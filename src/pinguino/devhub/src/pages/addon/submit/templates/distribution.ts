@@ -2,7 +2,8 @@ import { html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import type { AddonDistribution } from '../../../../data/types';
 import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
-import { emit, SubmissionStep } from '../submission-flow';
+import { emit } from '../../../../utils/helper';
+import { SubmissionStep } from '../submission-step';
 
 const OPTIONS: Record<
   AddonDistribution,
@@ -28,6 +29,8 @@ const OPTIONS: Record<
 @customElement('submit-distribution')
 export class SubmitDistribution extends SubmissionStep {
   @property() channel?: AddonDistribution;
+  @property({ type: Boolean }) theme = false;
+  @property({ type: Boolean, attribute: 'no-listed' }) noListed = false;
 
   protected get ready() {
     return !!this.channel;
@@ -50,10 +53,13 @@ export class SubmitDistribution extends SubmissionStep {
         .value=${this.channel}
         @change=${this.onChange}
       >
-        ${(Object.keys(OPTIONS) as AddonDistribution[]).map((value) => {
-          const { label, description } = OPTIONS[value];
-          const badge = DISTRIBUTION[value];
-          return html`<moz-visual-picker-item
+        ${(Object.keys(OPTIONS) as AddonDistribution[])
+          .filter((value) => !(this.theme && value === 'enterprise'))
+          .filter((value) => !(this.noListed && value === 'listed'))
+          .map((value) => {
+            const { label, description } = OPTIONS[value];
+            const badge = DISTRIBUTION[value];
+            return html`<moz-visual-picker-item
               value=${value}
               label=${label}
               description=${description}
@@ -62,7 +68,7 @@ export class SubmitDistribution extends SubmissionStep {
                 >${badge.label}</moz-status-badge
               >
             </moz-visual-picker-item>`;
-        })}
+          })}
       </moz-visual-picker>
     `;
   }

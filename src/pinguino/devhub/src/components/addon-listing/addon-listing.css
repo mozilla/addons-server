@@ -124,6 +124,10 @@ dl {
   flex-direction: column;
   gap: var(--space-small);
 }
+.group-error {
+  margin: var(--space-small) 0 0;
+  color: var(--text-color-error, #d70022);
+}
 .divider {
   width: 100%;
   margin: 0;
