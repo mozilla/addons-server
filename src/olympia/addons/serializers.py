@@ -483,6 +483,7 @@ class DeveloperVersionSerializer(VersionSerializer):
         validators=(CreateOnlyValidator(),),
     )
     release_notes = SourceTranslationSerializerField(required=False)
+    is_source_editable = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
@@ -500,6 +501,7 @@ class DeveloperVersionSerializer(VersionSerializer):
             'edit_url',
             'file',
             'is_disabled',
+            'is_source_editable',
             'is_strict_compatibility_enabled',
             'license',
             'release_notes',
@@ -528,6 +530,10 @@ class DeveloperVersionSerializer(VersionSerializer):
         for name in fields:
             fields[name].read_only = name in self.Meta.read_only_fields
         return fields
+
+    def get_is_source_editable(self, instance):
+        # Mirrors ReviewedSourceFileValidator.
+        return not instance.human_review_date or bool(instance.pending_rejection)
 
     def to_representation(self, instance):
         # SourceFileField needs the version id to build the url.

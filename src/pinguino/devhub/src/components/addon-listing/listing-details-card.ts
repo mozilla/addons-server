@@ -14,12 +14,9 @@ import {
   updateAddon,
   updateEulaPolicy,
   updateVersionLicense,
-  type VersionLicense,
-  type VersionLicenseEdit,
   versionQuery,
 } from '../../data';
 import { localized } from '../../data/api';
-import { ApiError } from '../../data/http';
 import {
   FieldError,
   FormController,
@@ -28,16 +25,18 @@ import {
 } from '../../foundations/form';
 import { emit, navigateTo, slugify } from '../../utils/helper';
 import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
-import { CUSTOM_LICENSE, type LicenseFieldChange } from './license';
+import {
+  customLicenseErrors,
+  type LicenseDraft,
+  licenseChanged,
+  licenseDraft,
+  licenseEdit,
+  licenseField,
+  routeVersionErrors,
+} from './license';
 import { SectionCard } from './section-card';
 
 const MAX_CATEGORIES = 3;
-
-type LicenseDraft = {
-  license?: string;
-  license_name?: string;
-  license_text?: string;
-};
 
 // The edit draft: the add-on PATCH fields (API-named, so field errors land on
 // the right input) plus the EULA/privacy text and license, which save via their own endpoints.
@@ -48,43 +47,6 @@ type ListingDraft = AddonListingEdit &
     has_privacy_policy?: boolean;
     privacy_policy?: string;
   };
-
-function licenseDraft(license?: VersionLicense | null): LicenseDraft {
-  if (!license) return {};
-  if (license.is_custom) {
-    return {
-      license: CUSTOM_LICENSE,
-      license_name: localized(license.name),
-      license_text: localized(license.text),
-    };
-  }
-  return { license: license.slug ?? undefined };
-}
-
-const LICENSE_ERROR_FIELDS: Record<string, keyof LicenseDraft> = {
-  license: 'license',
-  custom_license: 'license',
-  'custom_license.name': 'license_name',
-  'custom_license.text': 'license_text',
-};
-
-function routeVersionErrors(e: unknown, nested = false): unknown {
-  if (!(e instanceof ApiError)) return e;
-  const fields: Record<string, string> = {};
-  const general = e.detail ? [e.detail] : [];
-  for (const [key, text] of Object.entries(e.fields)) {
-    if (nested && key !== 'version' && !key.startsWith('version.')) {
-      fields[key] = text;
-      continue;
-    }
-    const field =
-      LICENSE_ERROR_FIELDS[nested ? key.slice('version.'.length) : key];
-    if (field)
-      fields[field] = fields[field] ? `${fields[field]} ${text}` : text;
-    else general.push(text);
-  }
-  return new ApiError(e.status, e.message, fields, general.join(' • '));
-}
 
 // The listing flags, shown as (read-only) checkboxes with help text so the view
 // mirrors the edit form. `key` indexes Addon['flags'].
@@ -305,29 +267,6 @@ export class ListingDetailsCard extends SectionCard {
     return Object.keys(out).length ? out : null;
   }
 
-  #licenseEdit(d: LicenseDraft): VersionLicenseEdit | undefined {
-    if (d.license === CUSTOM_LICENSE) {
-      return {
-        custom_license: {
-          name: (d.license_name ?? '').trim(),
-          text: (d.license_text ?? '').trim(),
-        },
-      };
-    }
-    return d.license ? { license: d.license } : undefined;
-  }
-
-  #licenseChanged(d: LicenseDraft) {
-    if (d.license === undefined) return false;
-    const saved = this.#licenseBaseline ?? {};
-    return (
-      d.license !== saved.license ||
-      (d.license === CUSTOM_LICENSE &&
-        ((d.license_name ?? '') !== (saved.license_name ?? '') ||
-          (d.license_text ?? '') !== (saved.license_text ?? '')))
-    );
-  }
-
   #checkRequired(d: ListingDraft) {
     const errors: Record<string, string> = {};
     if (this.#creating) {
@@ -340,14 +279,7 @@ export class ListingDetailsCard extends SectionCard {
       }
       if (!d.license) errors.license = 'Choose a license for your add-on.';
     }
-    if (d.license === CUSTOM_LICENSE) {
-      if (!d.license_name?.trim()) {
-        errors.license_name = 'Enter the license name.';
-      }
-      if (!d.license_text?.trim()) {
-        errors.license_text = 'Enter the license text.';
-      }
-    }
+    Object.assign(errors, customLicenseErrors(d));
     if (Object.keys(errors).length) throw new FieldError(errors);
   }
 
@@ -370,7 +302,7 @@ export class ListingDetailsCard extends SectionCard {
     if (this.showListing) return this.#createVersion(d);
     const { addon, version } = await addonFromUpload({
       ...this.#changedListing(d),
-      version: { upload: this.upload ?? '', ...this.#licenseEdit(d) },
+      version: { upload: this.upload ?? '', ...licenseEdit(d) },
     }).catch((e: unknown) => {
       throw routeVersionErrors(e, true);
     });
@@ -394,7 +326,7 @@ export class ListingDetailsCard extends SectionCard {
     const version = await createVersion(
       slug,
       this.upload ?? '',
-      this.#licenseEdit(d),
+      licenseEdit(d),
     ).catch((e: unknown) => {
       throw routeVersionErrors(e);
     });
@@ -411,7 +343,7 @@ export class ListingDetailsCard extends SectionCard {
     const previousSlug = this.addon.slug;
     const listing = this.#changedListing(d);
     const eula = this.#changedEula(d);
-    const license = this.#licenseChanged(d) && this.#licenseEdit(d);
+    const license = licenseChanged(d, this.#licenseBaseline) && licenseEdit(d);
     const { versionId } = this;
     if (license) this.#checkRequired(d);
     if (Object.keys(listing).length) {
@@ -552,21 +484,8 @@ export class ListingDetailsCard extends SectionCard {
 
   #licenseField() {
     if (!this.#hasLicense) return nothing;
-    const form = this.#form;
     return html`<hr class="divider" />
-      <license-field
-        ?theme=${this.#isTheme}
-        license=${form.value('license') ?? ''}
-        license-name=${form.value('license_name') ?? ''}
-        license-text=${form.value('license_text') ?? ''}
-        .errors=${{
-          license: form.fieldError('license'),
-          license_name: form.fieldError('license_name'),
-          license_text: form.fieldError('license_text'),
-        }}
-        @license-change=${(e: CustomEvent<LicenseFieldChange>) =>
-          form.set(e.detail.field, e.detail.value)}
-      ></license-field>`;
+      ${licenseField(this.#form, this.#isTheme)}`;
   }
 
   #categoriesField() {
