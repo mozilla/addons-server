@@ -58,7 +58,7 @@ services:
       "watchmedo",
       "auto-restart",
       "--directory=/data/olympia/src",
-      "--pattern=*.py",
+      "--pattern=**/*.py",
       "--recursive",
       "--no-restart-on-command-exit",
       "--",
