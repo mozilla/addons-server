@@ -122,7 +122,10 @@ beforeEach(() => {
   vi.mocked(api.postVersion).mockResolvedValue(VERSION);
   vi.mocked(api.patchVersion).mockResolvedValue(VERSION);
   mockAddons(ADDON);
-  vi.mocked(api.fetchVersions).mockResolvedValue([VERSION]);
+  vi.mocked(api.fetchVersions).mockResolvedValue({
+    items: [VERSION],
+    total: 1,
+  });
 });
 
 async function mountFlow(path: string) {
@@ -397,9 +400,10 @@ describe('version-submission', () => {
       )?.value;
 
     it("uploads to the last version's channel", async () => {
-      vi.mocked(api.fetchVersions).mockResolvedValue([
-        { ...VERSION, channel: 'unlisted' },
-      ]);
+      vi.mocked(api.fetchVersions).mockResolvedValue({
+        items: [{ ...VERSION, channel: 'unlisted' }],
+        total: 1,
+      });
       const $ = await mountFlow('');
       chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
       await expect
@@ -434,9 +438,10 @@ describe('version-submission', () => {
 
     beforeEach(() => {
       mockAddons(UNLISTED_ONLY);
-      vi.mocked(api.fetchVersions).mockResolvedValue([
-        { ...VERSION, channel: 'unlisted' },
-      ]);
+      vi.mocked(api.fetchVersions).mockResolvedValue({
+        items: [{ ...VERSION, channel: 'unlisted' }],
+        total: 1,
+      });
     });
 
     it('collects the listing before creating the version', async () => {

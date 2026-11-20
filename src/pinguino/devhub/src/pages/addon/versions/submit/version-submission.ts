@@ -102,7 +102,7 @@ export class VersionSubmission extends SubmissionFlow {
       getVersions(this.addonSlug),
     ]).catch(() => undefined);
     if (!fetched) return;
-    const [addon, versions] = fetched;
+    const [addon, { items: versions }] = fetched;
     this.addon = addon;
     const current = versions.find((v) => v.id === versionId);
     this.hadListed = this.#hadListed(versions, current);

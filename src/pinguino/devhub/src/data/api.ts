@@ -681,14 +681,13 @@ export const VERSION_PAGE_SIZE = 20;
 export async function fetchVersions(
   slug: string,
   lang: string,
-  page: number,
+  page?: number,
 ): Promise<VersionPage> {
   const data = await apiFetch<Paginated<Version>>(
     `${versionPath(slug)}?${new URLSearchParams({
       filter: 'all_with_unlisted',
       lang,
-      page: String(page),
-      page_size: String(VERSION_PAGE_SIZE),
+      ...(page && { page: String(page), page_size: String(VERSION_PAGE_SIZE) }),
     })}`,
   );
   return {
