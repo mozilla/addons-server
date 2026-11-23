@@ -1,9 +1,19 @@
 import 'urlpattern-polyfill';
 
 import type { LitElement } from 'lit';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { queryClient, queryKeys } from '../../../src/data';
 import '../../../src/pages/addon/main';
+import '../../../src/pages/addon/versions/submit/main';
 import { mount, settle } from '../../helpers/fixture';
+
+function setAgreement(accepted: boolean) {
+  queryClient.setQueryData(queryKeys.agreement, {
+    display_name: 'me',
+    has_read_developer_agreement: accepted,
+    last_developer_agreement_change: '2020-01-10T12:00:00',
+  });
+}
 
 type RouterHost = LitElement & {
   _routes: { goto(path: string): Promise<void> };
@@ -62,29 +72,79 @@ describe('addon-routes', () => {
   });
 });
 
+describe('addon-routes submission', () => {
+  it("hands a created add-on's <slug>/submit/* to the submit routes", async () => {
+    const root = await goto('addon-routes', 'addon-slug/submit/details');
+    expect(root.querySelector('submit-routes')?.slug).toBe('addon-slug');
+    expect(root.querySelector('devhub-addon')).toBeNull();
+  });
+});
+
 describe('submit-routes', () => {
+  beforeEach(() => setAgreement(false));
+
   it('renders the agreement page', async () => {
     const root = await goto('submit-routes', 'agreement');
     const page = root.querySelector('devhub-agreement');
     expect(page).not.toBeNull();
+    expect(root.querySelector('devhub-agreement')?.next).toBe('distribution');
   });
 
-  it('shows the error page for an unknown submit step', async () => {
+  it('goes to submission once the agreement is accepted', async () => {
+    setAgreement(true);
+    const root = await goto('submit-routes', 'agreement');
+    expect(root.querySelector('devhub-agreement')).toBeNull();
+    expect(location.pathname).toMatch(/\/distribution$/);
+  });
+
+  it("renders a theme's agreement", async () => {
+    const root = await goto('submit-routes', 'theme/agreement');
+    const page = root.querySelector('devhub-agreement');
+    expect(page).not.toBeNull();
+    expect(root.querySelector('devhub-agreement')?.next).toBe(
+      'theme/distribution',
+    );
+  });
+
+  it('goes to theme submission once the agreement is accepted', async () => {
+    setAgreement(true);
+    const root = await goto('submit-routes', 'theme/agreement');
+    expect(root.querySelector('devhub-agreement')).toBeNull();
+    expect(location.pathname).toMatch(/\/theme\/distribution$/);
+  });
+});
+
+describe('version-submit-routes', () => {
+  it('renders the agreement page', async () => {
+    setAgreement(false);
+    const root = await goto('version-submit-routes', 'agreement');
+    expect(root.querySelector('devhub-agreement')).not.toBeNull();
+  });
+
+  it('goes to the submission once the agreement is accepted', async () => {
+    setAgreement(true);
+    const root = await goto('version-submit-routes', 'agreement');
+    expect(root.querySelector('devhub-agreement')).toBeNull();
+  });
+
+  // submit/* is a catch-all: unknown steps go to the submission flow, which
+  // routes them itself, rather than to the error page.
+  it('hands an unknown submit step to the submission flow', async () => {
+    setAgreement(true);
     const root = await goto('submit-routes', 'bogus');
-    expect(root.querySelector('error-page')).not.toBeNull();
+    expect(root.querySelector('addon-submission')).not.toBeNull();
+    expect(root.querySelector('error-page')).toBeNull();
   });
 
-  // Two navigations on purpose: there has to be a previous match for a
-  // fallback-less router to strand.
+  // Two navigations on purpose: the previous match mustn't be stranded.
   it('replaces the previous page rather than stranding it', async () => {
+    setAgreement(true);
     const el = await mount<RouterHost>('submit-routes');
-    await el._routes.goto('agreement');
+    await el._routes.goto('theme/agreement');
     await settle(el);
-    expect(el.shadowRoot?.querySelector('devhub-agreement')).not.toBeNull();
-
     await el._routes.goto('bogus');
     await settle(el);
     expect(el.shadowRoot?.querySelector('devhub-agreement')).toBeNull();
-    expect(el.shadowRoot?.querySelector('error-page')).not.toBeNull();
+    expect(el.shadowRoot?.querySelector('addon-submission')).not.toBeNull();
   });
 });

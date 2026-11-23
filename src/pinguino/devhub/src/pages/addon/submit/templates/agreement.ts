@@ -3,8 +3,8 @@ import { customElement, property, query } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 import { BASE } from '../../../../base';
 import { acceptAgreement, agreementQuery } from '../../../../data/queries';
-import { navigateTo } from '../../../../helper';
 import { setPageTitle } from '../../../../page-title';
+import { navigateTo } from '../../../../utils/helper';
 
 const WORKSHOP_URL = 'https://extensionworkshop.com/documentation/publish';
 

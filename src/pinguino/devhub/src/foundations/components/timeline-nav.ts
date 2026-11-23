@@ -6,6 +6,7 @@ import { classMap } from 'lit/directives/class-map.js';
 export interface TimelineStep {
   label: string;
   href?: string;
+  canSubmit?: boolean;
 }
 
 export interface TimelineSection {
@@ -65,7 +66,7 @@ export class TimelineNav extends LitElement {
       background: var(--color-gray-30);
       width: var(--marker-size);
       height: var(--marker-size);
-      border: var(--marker-ring) solid var(--color-gray-10);
+      border: var(--marker-ring) solid light-dark(var(--color-gray-10), var(--color-gray-50));
     }
     .marker moz-icon {
       width: 10px;

@@ -6,6 +6,7 @@ import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
 import '../components/submit-card';
 import '../components/update-card';
+import { BASE } from '../base';
 import type { ActivityPage, AddonKind, AddonsQuery, Update } from '../data';
 import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
 import { setPageTitle } from '../page-title';
@@ -17,6 +18,7 @@ interface Group {
   title: string;
   icon: IconName;
   submitLabel: string;
+  submitLink: string;
 }
 
 const GROUPS: Record<AddonKind, Group> = {
@@ -24,11 +26,13 @@ const GROUPS: Record<AddonKind, Group> = {
     title: 'Extensions',
     icon: 'extension',
     submitLabel: 'Submit new extension',
+    submitLink: `${BASE}/addon/submit/`,
   },
   theme: {
     title: 'Themes',
     icon: 'themes',
     submitLabel: 'Submit new theme',
+    submitLink: `${BASE}/addon/submit/theme/`,
   },
 };
 
@@ -138,7 +142,7 @@ export class DevhubHome extends LitElement {
   // Each section owns its request, so one kind failing or still loading leaves
   // the other readable.
   #group(kind: AddonKind, query: AddonsQuery) {
-    const { title, icon, submitLabel } = GROUPS[kind];
+    const { title, icon, submitLabel, submitLink } = GROUPS[kind];
     const { data, isError, isPending } = query();
 
     if (isError) {
@@ -173,12 +177,12 @@ export class DevhubHome extends LitElement {
             ? html`
           <app-grid columns="2" columns-md="2" columns-sm="1" gap="large">
             ${items.map((a) => html`<addon-card .addon=${a}></addon-card>`)}
-            <submit-card label=${submitLabel}></submit-card>
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
             : html`
           <app-grid columns="1" gap="large">
-            <submit-card label=${submitLabel}></submit-card>
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
         }

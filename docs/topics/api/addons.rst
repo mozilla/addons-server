@@ -961,6 +961,10 @@ This endpoint is for fetching a single previous upload by uuid.
 
     :>json string uuid: The upload id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted``, ``listed``, or ``enterprise``.
+    :>json object|null manifest_data: The listing details read from the manifest, if the upload is valid.
+    :>json string|object|null manifest_data.name: The add-on name.
+    :>json string|object|null manifest_data.summary: The add-on summary.
+    :>json string|object|null manifest_data.homepage: The add-on homepage.
     :>json boolean processed: If the version has been processed by the validator.
     :>json boolean submitted: If this upload has been submitted as a new add-on or version already. An upload can only be submitted once.
     :>json string url: URL to check the status of this upload.
