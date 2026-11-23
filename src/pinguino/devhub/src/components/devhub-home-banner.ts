@@ -24,15 +24,12 @@ export class DevhubHomeBanner extends LitElement {
     }
     .preview-banner {
       margin-block: 1em;
-      height: 200px;
-    }
-    #preview-banner-card::part(card) {
-      padding-inline-start: 80px;
     }
     .preview-banner-content {
       display: flex;
       align-items: center;
       gap: var(--space-large);
+      margin-left: 5rem;
     }
     .preview-banner-text {
       flex: 1;
@@ -41,15 +38,15 @@ export class DevhubHomeBanner extends LitElement {
       gap: var(--space-small);
     }
     .preview-banner-header {
-      font-size: 26px;
-      font-weight: 590;
+      font-size: var(--font-size-heading-xlarge);
+      font-weight: var(--font-weight-heading);
     }
     .preview-banner-message a {
       text-decoration: none;
     }
     moz-illustration {
       flex: none;
-      width: 154px;
+      width: 10rem;
     }
     .preview-banner-dismiss {
       flex: none;

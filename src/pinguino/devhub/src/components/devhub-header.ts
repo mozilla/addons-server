@@ -127,8 +127,8 @@ export class DevhubHeader extends LitElement {
         display: flex;
       }
       .preview moz-badge {
-        --font-size-small: 13px;
-        block-size: 18px;
+        font-size: var(--font-size-small);
+        block-size: var(--icon-size-medium);
       }
       .brand {
         display: flex;
