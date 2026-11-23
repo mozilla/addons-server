@@ -8,7 +8,13 @@ import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
 import '../../../../foundations/components/message-bar';
 import { MAX_UPLOAD_SIZE } from '../../../../base';
 
-const SOURCE_EXTENSIONS = '.zip,.tar.gz,.tgz,.tar.bz2';
+const SOURCE_EXTENSIONS = ['.zip', '.tar.gz', '.tgz', '.tar.bz2'];
+
+const SOURCE_ACCEPT = SOURCE_EXTENSIONS.join(',');
+const SOURCE_FORMATS = SOURCE_EXTENSIONS.join(', ');
+
+// Decimal MB, as the server's limit is set and as the upload step states it.
+const MAX_UPLOAD_MB = MAX_UPLOAD_SIZE / 1000 / 1000;
 
 const TRANSFORM_TOOLS = [
   'Code minifiers or obfuscators',
@@ -97,6 +103,16 @@ export class SubmitSource extends SubmissionStep {
     this.error = undefined;
   }
 
+  // The control filters on `accept` and reports what it turned away instead of
+  // rendering it, so a rejected file is silent until we say something.
+  private onFileReject(e: CustomEvent<{ reason: string }>) {
+    this.file = undefined;
+    this.error =
+      e.detail.reason === 'size'
+        ? `That file is over the ${MAX_UPLOAD_MB} MB limit.`
+        : `Unsupported file. Use ${SOURCE_FORMATS}.`;
+  }
+
   private renderOption(usesTools: boolean, label: string, description: string) {
     const value = String(usesTools);
     return html`
@@ -147,11 +163,14 @@ export class SubmitSource extends SubmissionStep {
           this.usesTools
             ? html`<moz-input-file
               name="source"
-              accept=${SOURCE_EXTENSIONS}
+              accept=${SOURCE_ACCEPT}
               max-size=${MAX_UPLOAD_SIZE}
               placeholder="Drag &amp; drop your source archive, or"
               @change=${this.onFileChange}
-            ></moz-input-file>`
+              @moz-input-file:rejected=${this.onFileReject}
+            >
+              <span slot="hint">Max ${MAX_UPLOAD_MB} MB · ${SOURCE_FORMATS}</span>
+            </moz-input-file>`
             : nothing
         }
       </div>
