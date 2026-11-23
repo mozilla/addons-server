@@ -7,16 +7,40 @@ import '../components/addon-card';
 import '../components/devhub-home-banner';
 import '../components/submit-card';
 import '../components/update-card';
-import type { ActivityPage, Addon, Update } from '../data';
+import { BASE } from '../base';
+import type { ActivityPage, AddonKind, AddonsQuery, Update } from '../data';
 import { activityInfiniteQuery, addonsQuery } from '../data';
 import { setPageTitle } from '../page-title';
 
 // Threshold for loading more rows once the reader is close, so they're ready beforehand
 const LOAD_MORE_THRESHOLD = 5;
 
+interface Group {
+  title: string;
+  icon: IconName;
+  submitLabel: string;
+  submitLink: string;
+}
+
+const GROUPS: Record<AddonKind, Group> = {
+  extension: {
+    title: 'Extensions',
+    icon: 'extension',
+    submitLabel: 'Submit new extension',
+    submitLink: `${BASE}/addon/submit/`,
+  },
+  theme: {
+    title: 'Themes',
+    icon: 'themes',
+    submitLabel: 'Submit new theme',
+    submitLink: `${BASE}/addon/submit/theme/`,
+  },
+};
+
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
-  #addons = addonsQuery(this);
+  #extensions = addonsQuery(this, 'extension');
+  #themes = addonsQuery(this, 'theme');
   #updates = activityInfiniteQuery(this);
 
   connectedCallback() {
@@ -37,7 +61,7 @@ export class DevhubHome extends LitElement {
       display: flex;
       gap: var(--space-small);
       align-items: center;
-      margin: 0 0 var(--space-small);
+      margin: 0 0 var(--space-medium);
       font-size: 0.85rem;
       color: var(--text-color-deemphasized, GrayText);
     }
@@ -56,7 +80,7 @@ export class DevhubHome extends LitElement {
       display: block;
       box-sizing: border-box;
       width: 100%;
-      margin-block-end: 20px;
+      margin-block-end: var(--space-large);
     }
     .loading-more {
       margin: 0;
@@ -87,65 +111,67 @@ export class DevhubHome extends LitElement {
   `;
 
   render() {
-    const addons = this.#addons();
     return html`
       <devhub-home-banner></devhub-home-banner>
 
-      ${
-        addons.isError
-          ? html`
-            <div class="count">
-              <span>We couldn't load your add-ons.</span>
-              <moz-button size="small" @click=${() => this.#addons.refetch()}>
-                Retry
-              </moz-button>
-            </div>
-          `
-          : addons.isPending
-            ? html`<p class="count">Loading your add-ons…</p>`
-            : html`
-              <app-grid columns-md="1">
-                <div style="grid-column: span 7">
-                  ${this.#addonSections(addons.data ?? [])}
-                </div>
-                <div class="feed-column" style="grid-column: span 5">
-                  ${this.#feed(this.#updates().data?.pages ?? [])}
-                </div>
-              </app-grid>
-            `
-      }
+      <app-grid columns-md="1" gap="xlarge">
+        <div style="grid-column: span 7">
+          <app-stack gap="xlarge">
+            ${this.#group('extension', this.#extensions)}
+            ${this.#group('theme', this.#themes)}
+          </app-stack>
+        </div>
+        <div class="feed-column" style="grid-column: span 5">
+          ${this.#feed(this.#updates().data?.pages ?? [])}
+        </div>
+      </app-grid>
     `;
   }
 
-  #addonSections(addons: Addon[]) {
-    const extensions = addons.filter((a) => a.kind === 'extension');
-    const themes = addons.filter((a) => a.kind === 'theme');
-    return html`
-      <app-stack gap="xlarge">
-        ${this.#group('Extensions', 'extension', extensions, 'Submit new extension')}
-        ${this.#group('Themes', 'themes', themes, 'Submit new theme')}
-      </app-stack>
-    `;
-  }
+  // Each section owns its request, so one kind failing or still loading leaves
+  // the other readable.
+  #group(kind: AddonKind, query: AddonsQuery) {
+    const { title, icon, submitLabel, submitLink } = GROUPS[kind];
+    const { data, isError, isPending } = query();
 
-  #group(title: string, icon: IconName, items: Addon[], submitLabel: string) {
+    if (isError) {
+      return html`
+        <section class="section">
+          <div class="count">
+            <span>We couldn't load your ${title.toLowerCase()}.</span>
+            <moz-button size="small" @click=${() => query.refetch()}>
+              Retry
+            </moz-button>
+          </div>
+        </section>
+      `;
+    }
+    if (isPending) {
+      return html`
+        <section class="section">
+          <p class="count">Loading your ${title.toLowerCase()}…</p>
+        </section>
+      `;
+    }
+
+    const items = data.results;
     return html`
       <section class="section">
         <p class="count">
           <moz-icon name=${icon} color="accent-primary-desaturated"></moz-icon>
-          ${items.length} ${title}
+          ${data.count} ${title}
         </p>
         ${
           items.length > 0
             ? html`
-          <app-grid columns="2" columns-md="2" columns-sm="1" gap="medium">
+          <app-grid columns="2" columns-md="2" columns-sm="1" gap="large">
             ${items.map((a) => html`<addon-card .addon=${a}></addon-card>`)}
-            <submit-card label=${submitLabel}></submit-card>
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
             : html`
-          <app-grid columns="1" gap="medium">
-            <submit-card label=${submitLabel}></submit-card>
+          <app-grid columns="1" gap="large">
+            <submit-card label=${submitLabel} href=${submitLink}></submit-card>
           </app-grid>
         `
         }
@@ -182,7 +208,7 @@ export class DevhubHome extends LitElement {
     // far; every page carries it, so read it from the latest.
     const total = pages.at(-1)?.total ?? updates.length;
     return html`
-      <app-stack gap="medium" class="section feed">
+      <app-stack gap="medium" class="section feed" style="gap: 0">
         <p class="count">
           ${total} Updates
         </p>

@@ -95,6 +95,13 @@ export interface Addon {
   submissionNotice?: Partial<Record<AddonDistribution, string | null>>;
 }
 
+// `count` is the author's total for that type, which outruns `results` once
+// they own more than a page of them.
+export interface AddonPage {
+  results: Addon[];
+  count: number;
+}
+
 export interface Version {
   id: number;
   version: string;
@@ -111,13 +118,15 @@ export interface Version {
   source: string | null;
   edit_url: string;
   is_disabled: boolean;
-  license?: {
-    id: number;
-    is_custom: boolean;
-    name: Record<string, string> | string;
-    url: string | null;
-  } | null;
+  license?: VersionLicense | null;
   reviewed?: string | null;
+}
+
+export interface VersionLicense {
+  slug: string | null;
+  is_custom: boolean;
+  name: Record<string, string> | string | null;
+  text?: Record<string, string> | string | null;
 }
 
 // The subset of listing fields editable from the manage page's Listing Details
@@ -141,6 +150,19 @@ export interface AddonListingEdit {
   // `disabled_by_user`), though it reads back true for Mozilla-disabled too.
   is_disabled?: boolean;
 }
+
+export interface AddonCreate extends AddonListingEdit {
+  version: {
+    upload: string;
+    license?: string;
+    custom_license?: { name: string; text: string };
+  };
+}
+
+export type VersionLicenseEdit = Pick<
+  AddonCreate['version'],
+  'license' | 'custom_license'
+>;
 
 // A listing category (from /addons/categories/). `type` matches the API's
 // 'extension' | 'statictheme'.
@@ -185,6 +207,11 @@ export interface ActivityPage {
   total: number;
 }
 
+export interface VersionPage {
+  items: Version[];
+  total: number;
+}
+
 export interface AgreementState {
   display_name: string | null;
   has_read_developer_agreement?: boolean;
@@ -196,9 +223,16 @@ export interface AgreementAcceptState {
   display_name?: string;
 }
 
+export interface ManifestData {
+  name: string | Record<string, string> | null;
+  summary: string | Record<string, string> | null;
+  homepage: string | Record<string, string> | null;
+}
+
 export interface FileUpload {
   uuid: string;
   channel: AddonDistribution;
+  manifest_data: ManifestData | null;
   processed: boolean;
   submitted: boolean;
   url: string;

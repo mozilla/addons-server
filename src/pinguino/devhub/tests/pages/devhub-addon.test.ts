@@ -3,7 +3,7 @@ import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
-import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
+import { DEFAULT_VERSION, mount, seedAddons, settle } from '../helpers/fixture';
 
 const addon: Addon = {
   slug: 'ad-blocker',
@@ -20,7 +20,7 @@ const addon: Addon = {
 
 describe('devhub-addon', () => {
   it('defaults to the listing editor tab and renders the shell', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
@@ -41,7 +41,7 @@ describe('devhub-addon', () => {
   });
 
   it('stubs (not the listing) for a non-edit tab', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'statistics',
@@ -57,10 +57,11 @@ describe('devhub-addon', () => {
   });
 
   it('renders the versions panel for the add-on on the versions tab', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
-    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
-      DEFAULT_VERSION,
-    ]);
+    seedAddons([addon]);
+    queryClient.setQueryData([...queryKeys.versions('ad-blocker'), 1], {
+      items: [DEFAULT_VERSION],
+      total: 1,
+    });
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'versions',
@@ -75,7 +76,7 @@ describe('devhub-addon', () => {
   });
 
   it('stubs an unimplemented Django tab', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'invitation',
@@ -88,7 +89,7 @@ describe('devhub-addon', () => {
   });
 
   it('selecting a tab navigates to its sub-URL', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
@@ -102,7 +103,7 @@ describe('devhub-addon', () => {
   });
 
   it('shows a not-found message when no add-on matches the slug', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'unknown' });
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
@@ -114,7 +115,7 @@ describe('devhub-addon', () => {
 
 describe('devhub-addon page title', () => {
   async function titleFor(props: Partial<DevhubAddon>): Promise<string> {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       ...props,
@@ -135,10 +136,24 @@ describe('devhub-addon page title', () => {
     );
   });
 
+  it('passes the page parameter to the versions panel', async () => {
+    seedAddons([addon]);
+    const el = await mount<DevhubAddon>('devhub-addon', {
+      slug: 'ad-blocker',
+      tab: 'versions',
+      page: 2,
+    });
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    expect(root.querySelector('addon-version')?.page).toBe(2);
+  });
+
   it('titles the versions tab', async () => {
-    queryClient.setQueryData(queryKeys.versions('ad-blocker'), [
-      DEFAULT_VERSION,
-    ]);
+    queryClient.setQueryData([...queryKeys.versions('ad-blocker'), 1], {
+      items: [DEFAULT_VERSION],
+      total: 1,
+    });
     expect(await titleFor({ tab: 'versions' })).toBe(
       'Versions :: Ad Blocker :: Add-ons for Firefox',
     );
@@ -167,7 +182,7 @@ describe('devhub-addon page title', () => {
 
 describe('devhub-addon feed tab', () => {
   it('renders the activity feed for the add-on and page', async () => {
-    queryClient.setQueryData(queryKeys.addons, [addon]);
+    seedAddons([addon]);
     const el = await mount<DevhubAddon>('devhub-addon', {
       slug: 'ad-blocker',
       tab: 'feed',

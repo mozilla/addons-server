@@ -4,8 +4,10 @@
 
 import {
   createInfiniteQueryController,
+  createQueriesController,
   createQueryController,
   type InfiniteData,
+  type QueryObserverResult,
 } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { LOCALE } from '../base';
@@ -17,12 +19,14 @@ import {
   deletePreview,
   deleteSession,
   fetchActivity,
+  fetchAddon,
   fetchAddonSource,
   fetchAddons,
   fetchAgreement,
   fetchAuthors,
   fetchCategories,
   fetchEulaPolicy,
+  fetchLatestVersion,
   fetchPendingAuthors,
   fetchProfile,
   fetchSiteStatus,
@@ -34,6 +38,8 @@ import {
   patchEulaPolicy,
   patchPreview,
   patchVersion,
+  patchVersionLicense,
+  postAddon,
   postAgreement,
   postUpload,
   postVersion,
@@ -44,28 +50,35 @@ import { queryClient } from './query-client';
 import type { AddonVisibility } from './statuses';
 import type {
   ActivityPage,
-  Addon,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonCreate,
   AddonDistribution,
+  AddonKind,
   AddonListingEdit,
+  AddonPage,
   AgreementAcceptState,
   EulaPolicyEdit,
   FileUpload,
   Version,
+  VersionLicenseEdit,
 } from './types';
 
-// Keys identify cache entries. The add-on list and a single add-on share one
-// key so navigating to a detail view reuses the cached list, not a new request.
+// Keys identify cache entries. Every add-on entry hangs off the `addons`
+// prefix, so invalidating that covers both kind lists at once; the lists and a
+// single add-on share their keys, so navigating to a detail view reuses the
+// cache rather than making a new request.
 export const queryKeys = {
   profile: ['profile'] as const,
   siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
+  addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
   version: (slug: string, id: number) => ['version', slug, id] as const,
   versions: (slug: string) => ['versions', slug] as const,
+  latestVersion: (slug: string) => ['latest-version', slug] as const,
 };
 
 // Keyed by add-on and page; a missing slug (the all-add-ons feed) normalises to
@@ -122,41 +135,117 @@ export function siteStatusQuery(
   );
 }
 
+const ADDON_KINDS: readonly AddonKind[] = ['extension', 'theme'];
+
+// One list per kind, because the API pages extensions and themes together: ask
+// once and a developer with over a page of add-ons gets an arbitrary split of
+// the two, under a `count` covering only what came back.
+//
 // These are the signed-in developer's own add-ons, so asking while signed out
 // only earns a 401; `getEnabled` lets a caller wait for the profile first.
 export function addonsQuery(
   host: ReactiveControllerHost,
+  kind: AddonKind,
   getEnabled: () => boolean = () => true,
 ) {
   return createQueryController(
     host,
     () => ({
-      queryKey: queryKeys.addons,
-      queryFn: fetchAddons,
+      queryKey: queryKeys.addonList(kind),
+      queryFn: () => fetchAddons(kind),
       enabled: getEnabled(),
     }),
     queryClient,
   );
 }
 
-// One add-on, selected from the cached list by slug — no extra request when
-// arriving from the dashboard. Swap in a detail endpoint here when one exists.
-export function addonQuery(
+export type AddonsQuery = ReturnType<typeof addonsQuery>;
+
+// Both kind lists flattened, for callers that don't care which kind each one
+// is. Same keys as addonsQuery, so this shares the dashboard's cache entries
+// rather than fetching its own.
+export function allAddonsQuery(
   host: ReactiveControllerHost,
-  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
 ) {
-  return createQueryController(
+  return createQueriesController(
     host,
     () => ({
-      queryKey: queryKeys.addons,
-      queryFn: fetchAddons,
-      select: (addons: Addon[]) => addons.find((a) => a.slug === getSlug()),
+      queries: ADDON_KINDS.map((kind) => ({
+        queryKey: queryKeys.addonList(kind),
+        queryFn: () => fetchAddons(kind),
+        enabled: getEnabled(),
+      })),
+      combine: (results: QueryObserverResult<AddonPage>[]) => ({
+        data: results.flatMap((result) => result.data?.results ?? []),
+        isPending: results.some((result) => result.isPending),
+        isSuccess: results.every((result) => result.isSuccess),
+        isError: results.some((result) => result.isError),
+      }),
     }),
     queryClient,
   );
 }
 
-// Persist Listing Details edits, then refresh the cached add-on list so the
+// One add-on, picked out of the cached lists by slug — no extra request when
+// arriving from the dashboard. Swap in a detail endpoint here when one exists.
+// A rename refetches the list before the URL catches up, so while the slug is
+// unchanged the add-on is still found by the GUID it last had, rather than
+// showing "not found" (and unmounting).
+export function addonQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+) {
+  const addons = allAddonsQuery(host, () => Boolean(getSlug()));
+  let seen: { slug: string; uuid?: string } | undefined;
+  return () => {
+    const { data, isPending, isSuccess, isError } = addons();
+    const slug = getSlug();
+    const uuid = seen?.slug === slug ? seen.uuid : undefined;
+    const addon =
+      data.find((a) => a.slug === slug) ??
+      (uuid ? data.find((a) => a.uuid === uuid) : undefined);
+    if (addon) seen = { slug, uuid: addon.uuid };
+    return { data: addon, isPending, isSuccess, isError };
+  };
+}
+
+export async function getAddon(slug: string) {
+  const pages = await Promise.all(
+    ADDON_KINDS.map((kind) =>
+      queryClient.query({
+        queryKey: queryKeys.addonList(kind),
+        queryFn: () => fetchAddons(kind),
+      }),
+    ),
+  );
+  return pages.flatMap((page) => page.results).find((a) => a.slug === slug);
+}
+
+export function themePreviewQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: ['theme-preview', getSlug()],
+      queryFn: async () => {
+        const addon = await fetchAddon(getSlug());
+        if (addon.previewUrl) {
+          await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+        }
+        return addon;
+      },
+      enabled: Boolean(getSlug()) && getEnabled(),
+      refetchInterval: (query) => (query.state.data?.previewUrl ? false : 1000),
+    }),
+    queryClient,
+  );
+}
+
+// Persist Listing Details edits, then refresh the cached add-on lists so the
 // manage view (which reads from it) reflects the saved values.
 export async function updateAddon(slug: string, edit: AddonListingEdit) {
   const updated = await patchAddon(slug, edit);
@@ -180,9 +269,15 @@ export async function setAddonVisibility(
 // server's own list still replaces ours.
 export async function removeAddon(slug: string) {
   await deleteAddon(slug);
-  queryClient.setQueryData(queryKeys.addons, (addons?: Addon[]) =>
-    addons?.filter((addon) => addon.slug !== slug),
-  );
+  for (const kind of ADDON_KINDS) {
+    queryClient.setQueryData(queryKeys.addonList(kind), (page?: AddonPage) => {
+      if (!page) return page;
+      const results = page.results.filter((addon) => addon.slug !== slug);
+      return results.length === page.results.length
+        ? page
+        : { results, count: page.count - 1 };
+    });
+  }
   // The dashboard lists the add-on twice: as a card, and by name in the
   // activity feed. The feed drops a deleted add-on's entries server-side, so
   // this one has to go too or the dashboard keeps naming what we just deleted.
@@ -260,6 +355,20 @@ export function versionQuery(
     }),
     queryClient,
   );
+}
+
+export function getLatestVersion(slug: string) {
+  return queryClient.query({
+    queryKey: queryKeys.latestVersion(slug),
+    queryFn: () => fetchLatestVersion(slug),
+  });
+}
+
+export function getVersions(slug: string) {
+  return queryClient.query({
+    queryKey: queryKeys.versions(slug),
+    queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US'),
+  });
 }
 
 // EULA/privacy text is a separate endpoint; refresh the add-on list after so the
@@ -426,6 +535,15 @@ export function agreementQuery(host: ReactiveControllerHost) {
   );
 }
 
+export async function hasReadAgreement() {
+  const agreement = await queryClient.query({
+    queryKey: queryKeys.agreement,
+    queryFn: fetchAgreement,
+    staleTime: 'static',
+  });
+  return Boolean(agreement.has_read_developer_agreement);
+}
+
 // Accepts the agreement and refreshes the cached status.
 export async function acceptAgreement(payload: AgreementAcceptState) {
   await postAgreement(payload);
@@ -462,27 +580,52 @@ export function uploadQuery(
 export async function createVersion(
   slug: string,
   uuid: string,
+  license?: VersionLicenseEdit,
 ): Promise<Version> {
-  const version = await postVersion(slug, uuid);
+  const version = await (license
+    ? postVersion(slug, uuid, license)
+    : postVersion(slug, uuid));
   queryClient.setQueryData(queryKeys.version(slug, version.id), version);
-  await queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) });
-  await queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.latestVersion(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
   return version;
 }
 
 export function versionsQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
+  getPage: () => number,
 ) {
   return createQueryController(
     host,
-    () => ({
-      queryKey: queryKeys.versions(getSlug()),
-      queryFn: () => fetchVersions(getSlug(), LOCALE ?? 'en-US'),
-      enabled: Boolean(getSlug()),
-    }),
+    () => {
+      const slug = getSlug();
+      const page = getPage();
+      return {
+        queryKey: [...queryKeys.versions(slug), page],
+        queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US', page),
+        enabled: Boolean(slug),
+      };
+    },
     queryClient,
   );
+}
+
+export async function addonFromUpload(create: AddonCreate) {
+  const created = await postAddon(create);
+  const { addon, version } = created;
+  queryClient.setQueryData(queryKeys.version(addon.slug, version.id), version);
+  await Promise.all([
+    queryClient.invalidateQueries({
+      queryKey: queryKeys.upload(create.version.upload),
+    }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+  return created;
 }
 
 async function _updateVersion(
@@ -511,6 +654,25 @@ export async function uploadVersionSource(
   await _updateVersion(slug, id, body);
 }
 
+export async function updateVersionLicense(
+  slug: string,
+  id: number,
+  license: string | undefined,
+  custom?: { name: string; text: string },
+) {
+  const version = await patchVersionLicense(slug, id, license, custom);
+  queryClient.setQueryData(queryKeys.version(slug, id), version);
+  const isCurrent = ADDON_KINDS.some((kind) =>
+    queryClient
+      .getQueryData<AddonPage>(queryKeys.addonList(kind))
+      ?.results.some((a) => a.slug === slug && a.currentVersion?.id === id),
+  );
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    isCurrent && queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+}
+
 export async function uploadVersionNotes(
   slug: string,
   id: number,
@@ -519,7 +681,7 @@ export async function uploadVersionNotes(
   langCode: string = LOCALE ?? 'en-US',
 ) {
   await _updateVersion(slug, id, {
-    approval_notes: reviewerNotes ?? '',
+    ...(reviewerNotes && { approval_notes: reviewerNotes }),
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
 }

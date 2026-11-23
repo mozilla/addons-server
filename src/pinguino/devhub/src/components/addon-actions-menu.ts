@@ -9,7 +9,7 @@ import {
 } from '../data';
 import { routeApiError } from '../foundations/form';
 import { panelPointer } from '../foundations/panel';
-import { navigateTo } from '../helper';
+import { navigateTo } from '../utils/helper';
 
 // moz-button resolves this through getRootNode(), so it stays scoped to this
 // component's shadow root however many headers are on the page.

@@ -22,16 +22,17 @@ import '../../src/pages/devhub-home';
 import { mount } from '../helpers/fixture';
 
 describe('devhub-home (error state)', () => {
-  it('shows an error message and retries on click', async () => {
+  it('shows an error message per section and retries on click', async () => {
     const el = await mount<DevhubHome>('devhub-home');
     const root = el.shadowRoot as ShadowRoot;
 
-    expect(root.textContent).toContain("We couldn't load your add-ons.");
+    expect(root.textContent).toContain("We couldn't load your extensions.");
+    expect(root.textContent).toContain("We couldn't load your themes.");
     expect(root.querySelectorAll('addon-card')).toHaveLength(0);
 
-    root
-      .querySelector<HTMLElement>('moz-button')
-      ?.dispatchEvent(new MouseEvent('click'));
-    expect(refetchMock).toHaveBeenCalledOnce();
+    for (const button of root.querySelectorAll<HTMLElement>('moz-button')) {
+      button.dispatchEvent(new MouseEvent('click'));
+    }
+    expect(refetchMock).toHaveBeenCalledTimes(2);
   });
 });

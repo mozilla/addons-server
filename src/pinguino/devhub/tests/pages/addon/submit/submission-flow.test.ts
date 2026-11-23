@@ -4,26 +4,42 @@ import { Router } from '@lit-labs/router';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { BASE } from '../../../../src/base';
 import { queryClient, queryKeys } from '../../../../src/data';
 import * as api from '../../../../src/data/api';
+import { ADDON_STATUS } from '../../../../src/data/statuses';
 import type {
   Addon,
   AddonDistribution,
   FileUpload,
   Version,
 } from '../../../../src/data/types';
+import type { SubmitListing } from '../../../../src/pages/addon/submit/templates/listing';
 import '../../../../src/pages/addon/versions/submit/main';
 import { DEFAULT_VERSION, mount, settle } from '../../../helpers/fixture';
 
 vi.mock('../../../../src/data/api');
 
+const SUBMIT = `${BASE}/addon/my-addon/versions/submit/`;
+
+// fetchAddons resolves one page per kind; the flow only reads the add-on, so
+// the same page answers both calls.
+function mockAddons(...addons: Addon[]) {
+  vi.mocked(api.fetchAddons).mockResolvedValue({
+    results: addons,
+    count: addons.length,
+  });
+}
+
 @customElement('test-router')
 class TestRouter extends LitElement {
   router = new Router(this, [
     {
-      path: '/submit/*',
-      render: () => html`<addon-submission slug="my-addon"></addon-submission>`,
+      path: `${SUBMIT}*`,
+      render: () =>
+        html`<version-submission slug="my-addon"></version-submission>`,
     },
+    { path: '/*', render: () => html`` },
   ]);
 
   render() {
@@ -42,9 +58,25 @@ const VERSION: Version = {
   },
 };
 
+const ADDON: Addon = {
+  slug: 'my-addon',
+  name: 'My add-on',
+  kind: 'extension',
+  icon: 'extension',
+  status: ADDON_STATUS.public,
+  version: '1.0.0',
+  lastUpdated: '',
+  visibility: 'visible',
+  canChangeVisibility: true,
+  channels: ['listed'],
+  summary: 'Does things',
+  categories: ['tabs'],
+};
+
 const makeUpload = (args: Partial<FileUpload> = {}): FileUpload => ({
   uuid: crypto.randomUUID(),
   channel: 'listed',
+  manifest_data: null,
   processed: true,
   submitted: false,
   url: '',
@@ -81,7 +113,7 @@ beforeEach(() => {
     siteStatus: { readOnly: false, siteNotice: null, submissionNotice: null },
   });
   // The flow also looks up the add-on for its per-channel submit notice.
-  vi.mocked(api.fetchAddons).mockResolvedValue([]);
+  mockAddons();
   vi.mocked(api.postUpload).mockResolvedValue(makeUpload());
   vi.mocked(api.fetchUpload).mockImplementation(
     () => vi.mocked(api.postUpload).mock.results.at(-1)?.value,
@@ -89,15 +121,24 @@ beforeEach(() => {
   vi.mocked(api.fetchVersion).mockResolvedValue(VERSION);
   vi.mocked(api.postVersion).mockResolvedValue(VERSION);
   vi.mocked(api.patchVersion).mockResolvedValue(VERSION);
+  mockAddons(ADDON);
+  vi.mocked(api.fetchVersions).mockResolvedValue({
+    items: [VERSION],
+    total: 1,
+  });
 });
 
 async function mountFlow(path: string) {
-  window.history.replaceState({}, '', `/submit/${path}`);
+  window.history.replaceState({}, '', `${SUBMIT}${path}`);
   const host = await mount<TestRouter>('test-router');
-  await host.router.goto(`/submit/${path}`);
+  await host.router.goto(`${SUBMIT}${path}`);
   await settle(host);
-  const el = host.shadowRoot?.querySelector('addon-submission');
-  if (!el) throw new Error('expected addon-submission in the DOM');
+  const el = host.shadowRoot?.querySelector('version-submission');
+  if (!el) throw new Error('expected version-submission in the DOM');
+  // Its steps wait for the add-on and its versions.
+  await expect
+    .poll(() => el.shadowRoot?.querySelector('.outlet > *'))
+    .toBeTruthy();
   await settle(el);
   return ui(el);
 }
@@ -140,7 +181,7 @@ function ui(el: LitElement) {
   };
 }
 
-describe('addon-submission', () => {
+describe('version-submission', () => {
   describe('version upload', () => {
     it('walks through the version submission flow', async () => {
       const $ = await mountFlow('');
@@ -269,7 +310,7 @@ describe('addon-submission', () => {
 
       // Shows finish screen.
       expect($.step('submit-finish').textContent).toContain(
-        'Congrats, your version is submitted',
+        'All done! Thanks for shaping Firefox.',
       );
       expect($.continue()).toBeNull();
     });
@@ -289,6 +330,178 @@ describe('addon-submission', () => {
       $.continue()?.click();
       await expect.poll(() => $.upload()).toBeTruthy();
       expect($.root.querySelector('submit-upload')?.channel).toBe('enterprise');
+    });
+
+    it('skips the source step for enterprise', async () => {
+      const $ = await mountFlow('distribution');
+      pick(
+        $.step('submit-distribution').querySelector('moz-visual-picker'),
+        'enterprise',
+      );
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.upload()).toBeTruthy();
+      expect($.root.querySelector('.step-count')?.textContent).toBe('Step 2/5');
+
+      vi.mocked(api.postUpload).mockResolvedValue(
+        makeUpload({ channel: 'enterprise' }),
+      );
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.step('review-submit')).toBeTruthy();
+      expect($.source()).toBeFalsy();
+      await expect.poll(() => $.submit()?.hasAttribute('disabled')).toBe(false);
+    });
+  });
+
+  describe('incomplete listing', () => {
+    const INCOMPLETE = {
+      ...ADDON,
+      status: ADDON_STATUS.incomplete,
+      summary: undefined,
+      categories: [],
+    };
+
+    async function enter(path: string) {
+      window.history.replaceState({}, '', `${SUBMIT}${path}`);
+      const host = await mount<TestRouter>('test-router');
+      await host.router.goto(`${SUBMIT}${path}`);
+    }
+
+    it.each(['', 'distribution'])(
+      'redirects /submit/%s to finish an incomplete listing',
+      async (path) => {
+        mockAddons(INCOMPLETE);
+        await enter(path);
+        await expect
+          .poll(() => location.pathname)
+          .toMatch(/\/addon\/my-addon\/submit\/details$/);
+      },
+    );
+  });
+
+  describe('default channel', () => {
+    const options = ($: ReturnType<typeof ui>) =>
+      [
+        ...$.step('submit-distribution').querySelectorAll(
+          'moz-visual-picker-item',
+        ),
+      ].map((item) => item.getAttribute('value'));
+    const picked = ($: ReturnType<typeof ui>) =>
+      (
+        $.step('submit-distribution').querySelector('moz-visual-picker') as
+          | (Element & { value: string })
+          | null
+      )?.value;
+
+    it("uploads to the last version's channel", async () => {
+      vi.mocked(api.fetchVersions).mockResolvedValue({
+        items: [{ ...VERSION, channel: 'unlisted' }],
+        total: 1,
+      });
+      const $ = await mountFlow('');
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect
+        .poll(() => vi.mocked(api.postUpload).mock.lastCall?.[1])
+        .toBe('unlisted');
+    });
+
+    it('does not offer listed channel while the add-on is hidden', async () => {
+      mockAddons({ ...ADDON, visibility: 'invisible' });
+      const $ = await mountFlow('');
+      await expect.poll(() => $.step('submit-distribution')).toBeTruthy();
+      expect(options($)).toEqual(['unlisted', 'enterprise']);
+      expect(picked($)).toBe('unlisted');
+    });
+
+    it('does not offer listed channel while the listing is rejected', async () => {
+      mockAddons({ ...ADDON, status: ADDON_STATUS.rejected });
+      const $ = await mountFlow('');
+      await expect.poll(() => $.step('submit-distribution')).toBeTruthy();
+      expect(options($)).toEqual(['unlisted', 'enterprise']);
+    });
+  });
+
+  describe('first listed version', () => {
+    const UNLISTED_ONLY: Addon = {
+      ...ADDON,
+      status: ADDON_STATUS.incomplete,
+      channels: ['unlisted'],
+      summary: undefined,
+      categories: [],
+    };
+
+    beforeEach(() => {
+      mockAddons(UNLISTED_ONLY);
+      vi.mocked(api.fetchVersions).mockResolvedValue({
+        items: [{ ...VERSION, channel: 'unlisted' }],
+        total: 1,
+      });
+    });
+
+    it('collects the listing before creating the version', async () => {
+      const $ = await mountFlow('distribution');
+      pick(
+        $.step('submit-distribution').querySelector('moz-visual-picker'),
+        'listed',
+      );
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.upload()).toBeTruthy();
+      const labels = () =>
+        [...$.root.querySelectorAll('moz-breadcrumb')].map(
+          (b) => b.textContent,
+        );
+      const timeline = $.timeline() as unknown as {
+        sections: { title: string }[];
+      };
+      expect(timeline.sections.map((section) => section.title)).toEqual([
+        'Upload version',
+        'Create your listing',
+        'Review',
+      ]);
+
+      // The upload doesn't create the version...
+      const valid = makeUpload();
+      vi.mocked(api.postUpload).mockResolvedValue(valid);
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => $.source()).toBeTruthy();
+      expect(location.pathname).toBe(`${SUBMIT}source`);
+      expect(api.postVersion).not.toHaveBeenCalled();
+
+      // ...the listing step does.
+      pick($.source().querySelectorAll('moz-visual-picker')[1], 'false');
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect
+        .poll(() => $.root.querySelector('.outlet submit-listing'))
+        .toBeTruthy();
+      expect(location.pathname).toBe(`${SUBMIT}listing`);
+      expect(labels().at(-1)).toBe('Listing details');
+      const listing = $.root.querySelector<SubmitListing>(
+        '.outlet submit-listing',
+      );
+      expect(listing?.upload).toBe(valid.uuid);
+      await expect
+        .poll(() => listing?.shadowRoot?.querySelector('listing-details-card'))
+        .toBeTruthy();
+      expect(
+        listing?.shadowRoot?.querySelector('listing-details-card')?.showListing,
+      ).toBe(true);
+      expect(api.postVersion).not.toHaveBeenCalled();
     });
   });
 
@@ -402,9 +615,7 @@ describe('addon-submission', () => {
     });
 
     it("falls back to the add-on's per-channel notice when the site has none", async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: 'Listed submissions are paused.' }),
-      ]);
+      mockAddons(makeAddon({ listed: 'Listed submissions are paused.' }));
       // Defaults to the 'listed' channel.
       const $ = await mountFlow('');
       await expect
@@ -414,9 +625,7 @@ describe('addon-submission', () => {
 
     it('shows no notice when the current channel has a null warning', async () => {
       // The API returns every channel, with null where there's no warning.
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: null, unlisted: null, enterprise: null }),
-      ]);
+      mockAddons(makeAddon({ listed: null, unlisted: null, enterprise: null }));
       const $ = await mountFlow('');
       await expect
         .poll(() => vi.mocked(api.fetchAddons).mock.calls.length)
@@ -425,12 +634,12 @@ describe('addon-submission', () => {
     });
 
     it('follows the selected channel', async () => {
-      vi.mocked(api.fetchAddons).mockResolvedValue([
+      mockAddons(
         makeAddon({
           listed: 'Listed submissions are paused.',
           unlisted: 'Unlisted submissions are paused.',
         }),
-      ]);
+      );
       const $ = await mountFlow('distribution');
 
       // Starts on the default 'listed' channel.
@@ -458,9 +667,7 @@ describe('addon-submission', () => {
           submissionNotice: 'Site-wide pause.',
         },
       });
-      vi.mocked(api.fetchAddons).mockResolvedValue([
-        makeAddon({ listed: 'Listed submissions are paused.' }),
-      ]);
+      mockAddons(makeAddon({ listed: 'Listed submissions are paused.' }));
       const $ = await mountFlow('');
       await expect
         .poll(() => $.root.querySelector('#submit-status-banner')?.textContent)

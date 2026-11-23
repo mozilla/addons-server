@@ -9,6 +9,7 @@ import {
   fetchEulaPolicy,
   fetchProfile,
   fetchSiteStatus,
+  fetchVersions,
   formatDate,
   localized,
   mapActivity,
@@ -20,6 +21,7 @@ import {
   postSupport,
   postUpload,
   postVersion,
+  VERSION_PAGE_SIZE,
 } from '../../src/data/api';
 import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
 import { DEFAULT_VERSION } from '../helpers/fixture';
@@ -152,12 +154,12 @@ describe('mapAddon', () => {
       is_experimental: false,
       current_version: {
         ...DEFAULT_VERSION,
+        id: 7,
         version: '1.0',
         license: {
-          id: 1,
+          slug: 'MPL-2.0',
           is_custom: false,
           name: { 'en-US': 'MPL 2.0' },
-          url: null,
         },
       },
       channels: ['listed'],
@@ -175,6 +177,7 @@ describe('mapAddon', () => {
       categories: ['alerts-updates', 'tabs'],
       flags: { hasEula: true, hasPrivacyPolicy: false, experimental: false },
       license: 'MPL 2.0',
+      currentVersion: { id: 7, version: '1.0' },
       uuid: '{tab-organizer-guid}',
     });
     // Null/absent fields stay undefined rather than empty strings.
@@ -286,19 +289,39 @@ describe('clearTranslations', () => {
 describe('endpoints', () => {
   it('fetchAddons maps the paginated envelope through mapAddon', async () => {
     mockJson({
+      count: 2,
       results: [
         { slug: 'a', name: 'A', type: 'extension', status: 'public' },
-        { slug: 't', name: 'T', type: 'statictheme', status: 'public' },
+        { slug: 'b', name: 'B', type: 'dictionary', status: 'public' },
       ],
     });
 
-    const addons = await fetchAddons();
-    expect(addons.map((a) => a.kind)).toEqual(['extension', 'theme']);
+    const page = await fetchAddons('extension');
+    expect(page.results.map((a) => a.kind)).toEqual(['extension', 'extension']);
+    expect(page.count).toBe(2);
   });
 
-  it('fetchAddons tolerates a missing results array', async () => {
+  it('fetchAddons asks for one kind at a time', async () => {
     mockJson({});
-    expect(await fetchAddons()).toEqual([]);
+    await fetchAddons('extension');
+    expect(lastCall()[0]).toContain('type=extension%2Cdictionary%2Clanguage');
+
+    mockJson({});
+    await fetchAddons('theme');
+    expect(lastCall()[0]).toContain('type=statictheme');
+  });
+
+  // The API sorts ascending unless asked otherwise, so a dropped `-` silently
+  // serves the developer their stalest add-ons.
+  it('fetchAddons asks for the most recently updated first', async () => {
+    mockJson({});
+    await fetchAddons('extension');
+    expect(lastCall()[0]).toContain('sort=-last_updated%2C-id');
+  });
+
+  it('fetchAddons falls back to the page size when count is missing', async () => {
+    mockJson({});
+    expect(await fetchAddons('theme')).toEqual({ results: [], count: 0 });
   });
 
   it('fetchActivity maps the activity feed through mapActivity', async () => {
@@ -339,6 +362,18 @@ describe('endpoints', () => {
     // The total is the count across all pages, not this page's length.
     expect(page).toMatchObject({ total: 42 });
     expect(page.items).toHaveLength(1);
+  });
+
+  it('fetchVersions paginates the version list, reporting the total', async () => {
+    mockJson({ results: [DEFAULT_VERSION], count: 58 });
+
+    const page = await fetchVersions('my-addon', 'en-US', 2);
+
+    const [url] = vi.mocked(fetch).mock.calls[0];
+    expect(String(url)).toContain('/addons/addon/my-addon/versions/');
+    expect(String(url)).toContain('page=2');
+    expect(String(url)).toContain(`page_size=${VERSION_PAGE_SIZE}`);
+    expect(page).toEqual({ items: [DEFAULT_VERSION], total: 58 });
   });
 
   it('fetchProfile maps the id, name, picture url and site status', async () => {

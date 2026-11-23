@@ -32,7 +32,7 @@ export class DevhubAddon extends LitElement {
   @property() tab: string = DEFAULT_TAB;
   // Active section within the Listing Details (edit) tab.
   @property() section = '';
-  // 1-based page for the Activity & Notification (feed) tab.
+  // 1-based page for the paginated tabs (versions, activity).
   @property({ type: Number }) page = 1;
 
   #addon = addonQuery(this, () => this.slug);
@@ -107,6 +107,7 @@ export class DevhubAddon extends LitElement {
       case 'versions':
         return html`<addon-version
           .addon=${addon}
+          .page=${this.page}
           .section=${this.section || undefined}
         ></addon-version>`;
       default: {

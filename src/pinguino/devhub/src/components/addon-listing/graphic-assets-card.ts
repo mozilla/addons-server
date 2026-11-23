@@ -1,4 +1,4 @@
-import { html, nothing } from 'lit';
+import { html, nothing, type PropertyValues } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import {
   type Addon,
@@ -14,6 +14,10 @@ import { SectionCard } from './section-card';
 export class GraphicAssetsCard extends SectionCard {
   // In-progress screenshot caption edits, keyed by preview id.
   @state() private captionDrafts: Record<number, string> = {};
+
+  willUpdate(changed: PropertyValues) {
+    if (changed.has('editOnly') && this.editOnly) this.editing = true;
+  }
 
   // moz-input-file exposes the selection as a File[] (native inputs a FileList);
   // both index the same way.
@@ -57,7 +61,7 @@ export class GraphicAssetsCard extends SectionCard {
             size="small"
             variant="primary"
             ?disabled=${this.saving}
-            @click=${() => this.#save()}
+            @click=${() => this.save()}
             >${this.saving ? 'Saving…' : 'Save'}</moz-button
           >
         </div>`
@@ -67,7 +71,7 @@ export class GraphicAssetsCard extends SectionCard {
   }
 
   // Persist the screenshot captions the user changed, then leave edit mode.
-  async #save() {
+  async save() {
     const slug = this.addon.slug;
     this.saving = true;
     this.error = '';
@@ -79,10 +83,12 @@ export class GraphicAssetsCard extends SectionCard {
           await updatePreview(slug, s.id, draft);
         }
       }
-      this.editing = false;
+      this.editing = this.editOnly;
       this.captionDrafts = {};
+      return true;
     } catch (e) {
       this.setError(e);
+      return false;
     } finally {
       this.saving = false;
     }
@@ -162,12 +168,9 @@ export class GraphicAssetsCard extends SectionCard {
   render() {
     const a = this.addon;
     const shots = a.screenshots ?? [];
-    return html`<moz-card
-      appearance="outline"
-      spacing="spacious"
-      id="graphic-assets"
-    >
-      ${this.cardHead('graphic-assets', this.#actions())}
+    return this.frame(
+      'graphics',
+      html`${this.cardHead('graphics', this.#actions())}
       <div class="asset">
         <p class="label">Upload an icon</p>
         <p class="help">
@@ -216,8 +219,8 @@ export class GraphicAssetsCard extends SectionCard {
             : nothing
         }
       </div>
-      ${this.errorBar()}
-    </moz-card>`;
+      ${this.errorBar()}`,
+    );
   }
 }
 

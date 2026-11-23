@@ -2,7 +2,7 @@ import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement, nothing, type TemplateResult } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { BASE, LOCALE } from '../base';
-import { type Addon, addonsQuery, profileQuery } from '../data';
+import { type Addon, allAddonsQuery, profileQuery } from '../data';
 import { panelPointer } from '../foundations/panel';
 import {
   ADDONS_BLOG,
@@ -196,7 +196,7 @@ export class DevhubHeader extends LitElement {
   // session.
   #profile = profileQuery(this);
 
-  #addons = addonsQuery(this, () => Boolean(this.#profile().data));
+  #addons = allAddonsQuery(this, () => Boolean(this.#profile().data));
 
   // Switch to the classic devhub via the Django endpoint that flips the PINGUINO
   // cookie; the bare href is a no-JS fallback (view defaults to the index).
@@ -266,7 +266,7 @@ export class DevhubHeader extends LitElement {
   // The signed-in developer's own menu, as data so both layouts render it the
   // same way. Sorted by name to match the classic devhub's my_addons().
   #myAddons(): NavMenu {
-    const addons: Addon[] = [...(this.#addons().data ?? [])].sort((a, b) =>
+    const addons: Addon[] = [...this.#addons().data].sort((a, b) =>
       a.name.localeCompare(b.name, LOCALE ?? undefined),
     );
     const listed: NavItem[] = addons.slice(0, MAX_ADDONS).map((addon) => ({

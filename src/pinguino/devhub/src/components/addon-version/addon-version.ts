@@ -7,13 +7,15 @@ import {
   type Addon,
   type AddonVisibility,
   formatDate,
-  isIncompleteSubmission,
+  hasIncompleteListing,
   updateAddon,
+  VERSION_PAGE_SIZE,
   type Version,
   VISIBILITY,
   versionsQuery,
 } from '../../data';
 import '../../foundations/badges';
+import '../../foundations/pagination';
 import crown from '../../static/img/crown.svg';
 
 const LABELS = ['Version', 'Status', 'Distribution', 'Visibility', 'Date'];
@@ -28,8 +30,13 @@ const VISIBILITY_DESCRIPTION: Record<AddonVisibility, string> = {
 @customElement('addon-version')
 export class AddonVersion extends LitElement {
   @property({ attribute: false }) addon!: Addon;
+  @property({ type: Number }) page = 1;
 
-  #versions = versionsQuery(this, () => this.addon?.slug ?? '');
+  #versions = versionsQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => this.page,
+  );
 
   static styles = css`
     moz-page-header::part(heading) {
@@ -120,6 +127,11 @@ export class AddonVersion extends LitElement {
     visibility-badge::part(button) {
       --button-padding-inline-small: var(--space-xxsmall);
     }
+    .empty-versions {
+      display: flex;
+      justify-content: center;
+      color: var(--text-color-deemphasized, GrayText);
+    }
   `;
 
   async #setVisibility(event: Event) {
@@ -153,6 +165,10 @@ export class AddonVersion extends LitElement {
     `;
   }
 
+  get #incompleteListing() {
+    return hasIncompleteListing(this.addon);
+  }
+
   get #continueUrl() {
     return `${BASE}/addon/${this.addon.slug}/submit/details`;
   }
@@ -174,8 +190,10 @@ export class AddonVersion extends LitElement {
 
   renderVersion(
     version: Version,
-    { nextListed = false, showVisibility = false, incomplete = false } = {},
+    { nextListed = false, showVisibility = false } = {},
   ) {
+    const incompleteVersion =
+      this.#incompleteListing && (version.channel ?? 'listed') === 'listed';
     return html`
       <div
         class=${classMap({
@@ -201,8 +219,8 @@ export class AddonVersion extends LitElement {
         <moz-button
           class="manage-button"
           variant="ghost"
-          href=${incomplete && version.channel === 'listed' ? this.#continueUrl : version.edit_url}
-          >${incomplete && version.channel === 'listed' ? 'Continue Uploading' : 'Manage version'}</moz-button
+          href=${incompleteVersion ? this.#continueUrl : version.edit_url}
+          >${incompleteVersion ? 'Continue Uploading' : 'Manage version'}</moz-button
         >
       </div>
     `;
@@ -241,9 +259,11 @@ export class AddonVersion extends LitElement {
     }
   }
 
-  render() {
-    const versions = this.#versions().data;
-    if (!versions) return nothing;
+  renderVersionContent() {
+    const data = this.#versions().data;
+    if (!data?.total)
+      return html`<p class="empty-versions">No versions to show.</p>`;
+    const versions = data.items;
     const current =
       this.addon.currentVersion?.file?.status === 'public'
         ? this.addon.currentVersion
@@ -251,11 +271,50 @@ export class AddonVersion extends LitElement {
     const otherVersions = versions.filter(
       (version) => version.id !== current?.id,
     );
-    const incomplete = isIncompleteSubmission(this.addon.status, versions);
     let nextListedId: number | undefined;
     if (current) {
       nextListedId = this.getNextListed(current, otherVersions);
     }
+    return html`
+
+          ${this.#incompleteListing ? this.renderIncompleteMessage() : nothing}
+          ${
+            current
+              ? this.renderSection(
+                  'Live on addons.mozilla.org',
+                  this.renderVersion(current, {
+                    showVisibility: true,
+                  }),
+                  { current: true },
+                )
+              : nothing
+          }
+          ${
+            otherVersions.length
+              ? this.renderSection(
+                  'Other versions',
+                  otherVersions.map((version) =>
+                    this.renderVersion(version, {
+                      nextListed: version.id === nextListedId,
+                    }),
+                  ),
+                )
+              : nothing
+          }
+          ${
+            data.total > VERSION_PAGE_SIZE
+              ? html`<app-pagination
+            .page=${this.page}
+            .total=${data.total}
+            .pageSize=${VERSION_PAGE_SIZE}
+            label="Version pages"
+          ></app-pagination>`
+              : nothing
+          }
+    `;
+  }
+
+  render() {
     return html`
       <moz-card appearance="outline" spacing="spacious">
         <div class="main-content">
@@ -271,34 +330,7 @@ export class AddonVersion extends LitElement {
               >Upload a new version</moz-button
             >
           </moz-page-header>
-
-          ${incomplete ? this.renderIncompleteMessage() : nothing}
-          ${
-            current
-              ? this.renderSection(
-                  'Live on addons.mozilla.org',
-                  this.renderVersion(current, {
-                    showVisibility: true,
-                    incomplete,
-                  }),
-                  { current: true },
-                )
-              : nothing
-          }
-          ${
-            otherVersions.length
-              ? this.renderSection(
-                  'Other versions',
-                  otherVersions.map((version) =>
-                    this.renderVersion(version, {
-                      nextListed: version.id === nextListedId,
-                      incomplete,
-                    }),
-                  ),
-                )
-              : nothing
-          }
-        </div>
+        ${this.renderVersionContent()}
       </moz-card>
     `;
   }

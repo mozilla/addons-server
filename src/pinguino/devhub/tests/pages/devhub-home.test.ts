@@ -8,7 +8,7 @@ import {
   queryKeys,
   VERSION_STATUS,
 } from '../../src/data';
-import { mount, settle } from '../helpers/fixture';
+import { mount, seedAddons, settle } from '../helpers/fixture';
 
 // Seeded cache data is fresh, so the query controllers read it on first paint
 // without refetching.
@@ -43,9 +43,13 @@ const update: Update = {
   addonSlug: 'a',
 };
 
-function seed(addons: Addon[], updates: Update[]) {
+function seed(
+  addons: Addon[],
+  updates: Update[],
+  counts?: Partial<Record<Addon['kind'], number>>,
+) {
   queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
-  queryClient.setQueryData(queryKeys.addons, addons);
+  seedAddons(addons, counts);
   // The dashboard feed is the all-add-ons infinite activity query (no slug); its
   // cache holds an InfiniteData of ActivityPages.
   queryClient.setQueryData(['activity', 'infinite', null], {
@@ -70,6 +74,18 @@ describe('devhub-home', () => {
 
     expect(root.querySelectorAll('addon-card')).toHaveLength(3);
     expect(root.querySelectorAll('submit-card')).toHaveLength(2); // one per group
+  });
+
+  it('counts every add-on the developer owns, not just the page it holds', async () => {
+    seed([ext('a'), ext('b'), theme('t')], [], { extension: 71, theme: 12 });
+    const el = await mount<DevhubHome>('devhub-home');
+    await settle(el);
+    const root = el.shadowRoot as ShadowRoot;
+
+    const counts = [...root.querySelectorAll('.count')].map(text);
+    expect(counts).toContain('71 Extensions');
+    expect(counts).toContain('12 Themes');
+    expect(root.querySelectorAll('addon-card')).toHaveLength(3);
   });
 
   it('shows the empty-updates illustration when the feed is empty', async () => {
@@ -97,7 +113,7 @@ describe('devhub-home', () => {
   it('counts the server total, not just the rows loaded so far', async () => {
     // Two rows loaded, but the server reports 50 in total.
     queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
-    queryClient.setQueryData(queryKeys.addons, [ext('a')]);
+    seedAddons([ext('a')]);
     queryClient.setQueryData(['activity', 'infinite', null], {
       pages: [{ items: [update, { ...update, id: 'u2' }], total: 50 }],
       pageParams: [1],
@@ -114,7 +130,7 @@ describe('devhub-home', () => {
   it('fetches the next page when the end of the feed scrolls into view', async () => {
     // One page loaded, but the server reports more rows than are loaded.
     queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
-    queryClient.setQueryData(queryKeys.addons, [ext('a')]);
+    seedAddons([ext('a')]);
     queryClient.setQueryData(['activity', 'infinite', null], {
       pages: [{ items: [update], total: 2 }],
       pageParams: [1],
@@ -143,7 +159,7 @@ describe('devhub-home', () => {
   it('does not page past the last entry', async () => {
     // Everything the server has is already loaded: total matches the row count.
     queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
-    queryClient.setQueryData(queryKeys.addons, [ext('a')]);
+    seedAddons([ext('a')]);
     queryClient.setQueryData(['activity', 'infinite', null], {
       pages: [{ items: [update], total: 1 }],
       pageParams: [1],

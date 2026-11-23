@@ -131,4 +131,26 @@ describe('graphic-assets-card', () => {
       ),
     );
   });
+
+  it('does not show edit button in edit-only mode', async () => {
+    updatePreview.mockClear();
+    const el = await mount<GraphicAssetsCard>('graphic-assets-card', {
+      addon: { ...base, screenshots: [{ id: 1, src: 'a.png', caption: '' }] },
+      editOnly: true,
+    });
+    await el.updateComplete;
+    const root = el.shadowRoot as ShadowRoot;
+    expect(root.querySelector('.card-head moz-button')).toBeNull();
+    expect(root.querySelectorAll('moz-input-file')).toHaveLength(2);
+  });
+
+  it('does not render card in embedded mode', async () => {
+    const el = await mount<GraphicAssetsCard>('graphic-assets-card', {
+      addon: base,
+      embedded: true,
+    });
+    const root = el.shadowRoot as ShadowRoot;
+    expect(root.querySelector('moz-card')).toBeNull();
+    expect(root.querySelector('.card-head moz-button')).toBeNull();
+  });
 });
