@@ -15,7 +15,7 @@ import {
   versionsQuery,
 } from '../../data';
 import '../../foundations/badges';
-import '../../foundations/pagination';
+import { pageHref } from '../../navigation';
 import crown from '../../static/img/crown.svg';
 
 const LABELS = ['Version', 'Status', 'Distribution', 'Visibility', 'Date'];
@@ -303,12 +303,14 @@ export class AddonVersion extends LitElement {
           }
           ${
             data.total > VERSION_PAGE_SIZE
-              ? html`<app-pagination
+              ? html`<moz-pagination
             .page=${this.page}
             .total=${data.total}
             .pageSize=${VERSION_PAGE_SIZE}
+            .hrefForPage=${(page: number) => pageHref(page)}
+            max-slots="9"
             label="Version pages"
-          ></app-pagination>`
+          ></moz-pagination>`
               : nothing
           }
     `;

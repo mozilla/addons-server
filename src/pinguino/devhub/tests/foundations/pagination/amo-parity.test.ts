@@ -17,7 +17,8 @@ async function numbers(page: number, totalPages: number): Promise<number[]> {
     totalPages,
     maxSlots: MAX_SLOTS,
   });
-  return [...el.shadowRoot!.querySelectorAll('li.number')].map((li) =>
+  const slots = el.shadowRoot?.querySelectorAll('li.number') ?? [];
+  return [...slots].map((li) =>
     Number(li.textContent?.trim().match(/\d+$/)?.[0]),
   );
 }
