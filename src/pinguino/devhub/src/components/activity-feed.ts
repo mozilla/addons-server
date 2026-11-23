@@ -1,7 +1,7 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { ACTIVITY_PAGE_SIZE, activityQuery, type Update } from '../data';
-import '../foundations/pagination';
+import { pageHref } from '../navigation';
 import './update-card';
 
 @customElement('activity-feed')
@@ -19,15 +19,22 @@ export class ActivityFeed extends LitElement {
     :host {
       display: block;
     }
-    .head {
-      margin-bottom: var(--space-large);
+    /* The single gap owner inside the card, matching the versions tab so the
+     * two sit identically in their shell. */
+    .main-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xlarge);
     }
-    .head h2 {
-      margin: 0 0 var(--space-xsmall);
-      font-size: 1.0625rem;
+    .pager {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-small);
     }
-    .head p {
+    .count {
       margin: 0;
+      font-size: 0.85rem;
       color: var(--text-color-deemphasized, GrayText);
     }
     .items {
@@ -43,9 +50,6 @@ export class ActivityFeed extends LitElement {
       background-color: var(--background-color-canvas);
       border-radius: var(--border-radius-medium);
     }
-    app-pagination {
-      margin-top: var(--space-large);
-    }
   `;
 
   #items(items: Update[]) {
@@ -59,28 +63,45 @@ export class ActivityFeed extends LitElement {
     `;
   }
 
+  // moz-pagination renders the control and nothing else, so the running tally
+  // under it is ours.
+  #resultCount(total: number) {
+    const from = (this.page - 1) * ACTIVITY_PAGE_SIZE + 1;
+    const to = Math.min(this.page * ACTIVITY_PAGE_SIZE, total);
+    return html`<p class="count">Results ${from}–${to} of ${total}</p>`;
+  }
+
   render() {
     const { data, isPending, isError } = this.#activity();
     return html`
-      <div class="head">
-        <h2>Activity &amp; Notification</h2>
-        <p>Review outcomes and other events for this add-on.</p>
-      </div>
-      ${
-        isError
-          ? html`<div class="error">Couldn't load activity. Try again.</div>`
-          : isPending || !data
-            ? html`<div class="empty">Loading activity…</div>`
-            : html`
-              ${this.#items(data.items)}
-              <app-pagination
-                .page=${this.page}
-                .total=${data.total}
-                .pageSize=${ACTIVITY_PAGE_SIZE}
-                label="Activity pages"
-              ></app-pagination>
-            `
-      }
+      <moz-card appearance="outline" spacing="spacious">
+        <div class="main-content">
+          <moz-page-header
+            heading="Activity &amp; Notification"
+            description="Review outcomes and other events for this add-on."
+          ></moz-page-header>
+          ${
+            isError
+              ? html`<div class="error">Couldn't load activity. Try again.</div>`
+              : isPending || !data
+                ? html`<div class="empty">Loading activity…</div>`
+                : html`
+                  ${this.#items(data.items)}
+                  <div class="pager">
+                    <moz-pagination
+                      .page=${this.page}
+                      .total=${data.total}
+                      .pageSize=${ACTIVITY_PAGE_SIZE}
+                      .hrefForPage=${(page: number) => pageHref(page)}
+                      max-slots="9"
+                      label="Activity pages"
+                    ></moz-pagination>
+                    ${this.#resultCount(data.total)}
+                  </div>
+                `
+          }
+        </div>
+      </moz-card>
     `;
   }
 }
