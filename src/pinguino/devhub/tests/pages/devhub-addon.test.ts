@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
@@ -17,6 +17,17 @@ const addon: Addon = {
   canChangeVisibility: true,
   channels: ['listed'],
 };
+
+// The page fetches authors and categories too; report only detail requests.
+function mockDetail(response: object) {
+  const calls: string[] = [];
+  const fetchMock = vi.fn(async (url: string) => {
+    if (/\/addons\/addon\/[^/]+\/\?/.test(String(url))) calls.push(String(url));
+    return response;
+  });
+  vi.stubGlobal('fetch', fetchMock);
+  return calls;
+}
 
 describe('devhub-addon', () => {
   it('defaults to the listing editor tab and renders the shell', async () => {
@@ -101,14 +112,58 @@ describe('devhub-addon', () => {
     expect(location.pathname).toBe('/developers/addon/ad-blocker/statistics');
   });
 
-  it('shows a not-found message when no add-on matches the slug', async () => {
+  it('fetches an add-on missing from the cached lists', async () => {
+    const detailCalls = mockDetail({
+      ok: true,
+      status: 200,
+      json: async () => ({
+        slug: 'hidden-gem',
+        name: { 'en-US': 'Hidden Gem' },
+        type: 'extension',
+        status: 'public',
+        channels: ['listed'],
+      }),
+    });
     seedAddons([addon]);
-    const el = await mount<DevhubAddon>('devhub-addon', { slug: 'unknown' });
-    await settle(el);
-    const root = el.shadowRoot as ShadowRoot;
 
-    expect(root.querySelector('addon-manage-header')).toBeNull();
-    expect(root.textContent).toContain("couldn't find that add-on");
+    const el = await mount<DevhubAddon>('devhub-addon', { slug: 'hidden-gem' });
+    await vi.waitFor(async () => {
+      await settle(el);
+      const header = (el.shadowRoot as ShadowRoot).querySelector(
+        'addon-manage-header',
+      );
+      expect((header as unknown as { addon: Addon })?.addon.name).toBe(
+        'Hidden Gem',
+      );
+    });
+    expect(detailCalls).toHaveLength(1);
+    expect(detailCalls[0]).toContain('/addons/addon/hidden-gem/');
+  });
+
+  it('asks for nothing when the slug is already in the cached lists', async () => {
+    const detailCalls = mockDetail({
+      ok: true,
+      status: 200,
+      json: async () => ({}),
+    });
+    seedAddons([addon]);
+
+    const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
+    await settle(el);
+
+    expect(detailCalls).toEqual([]);
+  });
+
+  it('shows a not-found message when the API has no such add-on either', async () => {
+    mockDetail({ ok: false, status: 404, json: async () => ({}) });
+    seedAddons([addon]);
+
+    const el = await mount<DevhubAddon>('devhub-addon', { slug: 'unknown' });
+    await vi.waitFor(async () => {
+      await settle(el);
+      expect(el.shadowRoot?.textContent).toContain("couldn't find that add-on");
+    });
+    expect(el.shadowRoot?.querySelector('addon-manage-header')).toBeNull();
   });
 });
 

@@ -444,6 +444,13 @@ export async function fetchCategories(): Promise<Category[]> {
   return data.map((c) => ({ slug: c.slug, name: c.name, type: c.type }));
 }
 
+export async function fetchAddon(slug: string): Promise<Addon> {
+  const data = await apiFetch<ApiAddon>(
+    `/addons/addon/${encodeURIComponent(slug)}/?lang=en-US`,
+  );
+  return mapAddon(data);
+}
+
 export async function fetchAddonSource(slug: string): Promise<Addon> {
   const data = await apiFetch<ApiAddon>(
     `/addons/addon/${slug}/?lang=en-US&show_source=true`,

@@ -25,7 +25,7 @@ class VersionRoutes extends LitElement {
   render() {
     const addon = this.#addon();
     if (addon.isPending) return nothing;
-    if (addon.isSuccess && !addon.data) return html`<error-page></error-page>`;
+    if (!addon.data) return html`<error-page></error-page>`;
     return this._routes.outlet();
   }
 }

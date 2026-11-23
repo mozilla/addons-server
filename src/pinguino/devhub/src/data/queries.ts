@@ -19,6 +19,7 @@ import {
   deletePreview,
   deleteSession,
   fetchActivity,
+  fetchAddon,
   fetchAddonSource,
   fetchAddons,
   fetchAgreement,
@@ -41,6 +42,7 @@ import {
   postVersion,
   uploadIcon,
 } from './api';
+import { errorStatus } from './http';
 import { isAddonOwner } from './permissions';
 import { queryClient } from './query-client';
 import type { AddonVisibility } from './statuses';
@@ -59,14 +61,14 @@ import type {
 } from './types';
 
 // Keys identify cache entries. Every add-on entry hangs off the `addons`
-// prefix, so invalidating that covers both kind lists at once; the lists and a
-// single add-on share their keys, so navigating to a detail view reuses the
-// cache rather than making a new request.
+// prefix, so invalidating that covers both kind lists and any single add-on we
+// fetched on its own.
 export const queryKeys = {
   profile: ['profile'] as const,
   siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
   addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
+  addon: (slug: string) => ['addons', 'detail', slug] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
@@ -180,21 +182,47 @@ export function allAddonsQuery(
   );
 }
 
-// One add-on, picked out of the cached lists by slug — no extra request when
-// arriving from the dashboard. Swap in a detail endpoint here when one exists.
+// Served from the cached lists when they hold the slug, so arriving from the
+// dashboard costs no extra request. The lists are only one page deep, though,
+// so missing from them doesn't mean missing — ask the API before saying so.
 export function addonQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
 ) {
   const addons = allAddonsQuery(host);
+  const listed = () => addons().data.find((addon) => addon.slug === getSlug());
+  const detail = createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.addon(getSlug()),
+      queryFn: () => fetchAddon(getSlug()),
+      enabled: Boolean(getSlug()) && !addons().isPending && !listed(),
+      // A 404/403 is the answer, not a blip; retrying just delays the verdict.
+      retry: (count: number, error: Error) =>
+        errorStatus(error) >= 500 && count < 1,
+    }),
+    queryClient,
+  );
   return () => {
-    const { data, isPending, isSuccess, isError } = addons();
-    return {
-      data: data.find((addon) => addon.slug === getSlug()),
-      isPending,
-      isSuccess,
-      isError,
-    };
+    const fromList = listed();
+    if (fromList) {
+      return {
+        data: fromList,
+        isPending: false,
+        isSuccess: true,
+        isError: false,
+      };
+    }
+    if (addons().isPending) {
+      return {
+        data: undefined,
+        isPending: true,
+        isSuccess: false,
+        isError: false,
+      };
+    }
+    const { data, isPending, isSuccess, isError } = detail();
+    return { data, isPending, isSuccess, isError };
   };
 }
 
@@ -222,6 +250,7 @@ export async function setAddonVisibility(
 // server's own list still replaces ours.
 export async function removeAddon(slug: string) {
   await deleteAddon(slug);
+  queryClient.removeQueries({ queryKey: queryKeys.addon(slug) });
   for (const kind of ADDON_KINDS) {
     queryClient.setQueryData(queryKeys.addonList(kind), (page?: AddonPage) => {
       if (!page) return page;
