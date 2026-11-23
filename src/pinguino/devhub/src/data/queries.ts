@@ -4,10 +4,8 @@
 
 import {
   createInfiniteQueryController,
-  createQueriesController,
   createQueryController,
   type InfiniteData,
-  type QueryObserverResult,
 } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { LOCALE } from '../base';
@@ -27,6 +25,7 @@ import {
   fetchCategories,
   fetchEulaPolicy,
   fetchLatestVersion,
+  fetchNavAddons,
   fetchPendingAuthors,
   fetchProfile,
   fetchSiteStatus,
@@ -74,6 +73,7 @@ export const queryKeys = {
   addons: ['addons'] as const,
   addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
   addon: (slug: string) => ['addons', 'detail', slug] as const,
+  addonNav: (limit: number) => ['addons', 'nav', limit] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
@@ -165,83 +165,66 @@ export function addonsQuery(
 
 export type AddonsQuery = ReturnType<typeof addonsQuery>;
 
-// Both kind lists flattened, for callers that don't care which kind each one
-// is. Same keys as addonsQuery, so this shares the dashboard's cache entries
-// rather than fetching its own.
-export function allAddonsQuery(
+export function navAddonsQuery(
   host: ReactiveControllerHost,
+  limit: number,
   getEnabled: () => boolean = () => true,
 ) {
-  return createQueriesController(
+  return createQueryController(
     host,
     () => ({
-      queries: ADDON_KINDS.map((kind) => ({
-        queryKey: queryKeys.addonList(kind),
-        queryFn: () => fetchAddons(kind),
-        enabled: getEnabled(),
-      })),
-      combine: (results: QueryObserverResult<AddonPage>[]) => ({
-        data: results.flatMap((result) => result.data?.results ?? []),
-        isPending: results.some((result) => result.isPending),
-        isSuccess: results.every((result) => result.isSuccess),
-        isError: results.some((result) => result.isError),
-      }),
+      queryKey: queryKeys.addonNav(limit),
+      queryFn: () => fetchNavAddons(limit),
+      enabled: getEnabled(),
     }),
     queryClient,
   );
 }
 
-// Prefers the cached lists, so arriving from the dashboard costs no request.
-// They're only one page deep though, so missing from them isn't missing.
+// Read without an observer, so the manage page neither triggers the
+// dashboard's list requests nor waits on them.
+function addonFromLists(slug: string, uuid?: string) {
+  for (const kind of ADDON_KINDS) {
+    const state = queryClient.getQueryState<AddonPage>(
+      queryKeys.addonList(kind),
+    );
+    const addon = state?.data?.results.find(
+      (a) => a.slug === slug || (uuid !== undefined && a.uuid === uuid),
+    );
+    if (addon) return { addon, updatedAt: state?.dataUpdatedAt };
+  }
+}
+
+// Those lists are only one page deep, so a miss means fetching the add-on
+// itself rather than calling it missing.
 export function addonQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
 ) {
-  const addons = allAddonsQuery(host, () => Boolean(getSlug()));
   // A rename refetches the list before the URL catches up, so until it does
   // the add-on is found by the GUID it last had rather than looking deleted.
   let seen: { slug: string; uuid?: string } | undefined;
-  const listed = () => {
-    const { data } = addons();
-    const slug = getSlug();
-    const uuid = seen?.slug === slug ? seen.uuid : undefined;
-    const addon =
-      data.find((a) => a.slug === slug) ??
-      (uuid ? data.find((a) => a.uuid === uuid) : undefined);
-    if (addon) seen = { slug, uuid: addon.uuid };
-    return addon;
-  };
-  const detail = createQueryController(
+  return createQueryController(
     host,
-    () => ({
-      queryKey: queryKeys.addon(getSlug()),
-      queryFn: () => fetchAddon(getSlug()),
-      enabled: Boolean(getSlug()) && !addons().isPending && !listed(),
-      retry: retryServerErrors,
-    }),
+    () => {
+      const slug = getSlug();
+      const seed = addonFromLists(
+        slug,
+        seen?.slug === slug ? seen.uuid : undefined,
+      );
+      if (seed) seen = { slug, uuid: seed.addon.uuid };
+      return {
+        queryKey: queryKeys.addon(slug),
+        queryFn: () => fetchAddon(slug),
+        enabled: Boolean(slug),
+        // Dated to the list fetch, so a seed ages with its source.
+        initialData: seed?.addon,
+        initialDataUpdatedAt: seed?.updatedAt,
+        retry: retryServerErrors,
+      };
+    },
     queryClient,
   );
-  return () => {
-    const fromList = listed();
-    if (fromList) {
-      return {
-        data: fromList,
-        isPending: false,
-        isSuccess: true,
-        isError: false,
-      };
-    }
-    if (addons().isPending) {
-      return {
-        data: undefined,
-        isPending: true,
-        isSuccess: false,
-        isError: false,
-      };
-    }
-    const { data, isPending, isSuccess, isError } = detail();
-    return { data, isPending, isSuccess, isError };
-  };
 }
 
 export async function getAddon(slug: string) {
@@ -686,6 +669,8 @@ export async function addonFromUpload(create: AddonCreate) {
     }),
     queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
   ]);
+  // After the invalidate, or this is immediately marked stale and refetched.
+  queryClient.setQueryData(queryKeys.addon(addon.slug), addon);
   return created;
 }
 

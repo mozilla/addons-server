@@ -18,11 +18,13 @@ const addon: Addon = {
   channels: ['listed'],
 };
 
-// The page fetches authors and categories too; report only detail requests.
+// The page fetches authors and categories too; report only add-on requests.
 function mockDetail(response: object) {
-  const calls: string[] = [];
+  const calls = { detail: [] as string[], list: [] as string[] };
   const fetchMock = vi.fn(async (url: string) => {
-    if (/\/addons\/addon\/[^/]+\/\?/.test(String(url))) calls.push(String(url));
+    const href = String(url);
+    if (/\/addons\/addon\/\?/.test(href)) calls.list.push(href);
+    else if (/\/addons\/addon\/[^/]+\/\?/.test(href)) calls.detail.push(href);
     return response;
   });
   vi.stubGlobal('fetch', fetchMock);
@@ -114,7 +116,7 @@ describe('devhub-addon', () => {
   });
 
   it('fetches an add-on missing from the cached lists', async () => {
-    const detailCalls = mockDetail({
+    const calls = mockDetail({
       ok: true,
       status: 200,
       json: async () => ({
@@ -137,12 +139,13 @@ describe('devhub-addon', () => {
         'Hidden Gem',
       );
     });
-    expect(detailCalls).toHaveLength(1);
-    expect(detailCalls[0]).toContain('/addons/addon/hidden-gem/');
+    expect(calls.detail).toHaveLength(1);
+    expect(calls.detail[0]).toContain('/addons/addon/hidden-gem/');
+    expect(calls.list).toEqual([]);
   });
 
   it('asks for nothing when the slug is already in the cached lists', async () => {
-    const detailCalls = mockDetail({
+    const calls = mockDetail({
       ok: true,
       status: 200,
       json: async () => ({}),
@@ -152,7 +155,8 @@ describe('devhub-addon', () => {
     const el = await mount<DevhubAddon>('devhub-addon', { slug: 'ad-blocker' });
     await settle(el);
 
-    expect(detailCalls).toEqual([]);
+    expect(calls.detail).toEqual([]);
+    expect(calls.list).toEqual([]);
   });
 
   it('shows a not-found message when the API has no such add-on either', async () => {
