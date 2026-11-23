@@ -3,15 +3,13 @@ import { customElement, state } from 'lit/decorators.js';
 import { PREVIEW_BLOG_POST } from '../links';
 
 // Records the dismissal client-side so the preview card stays swapped out
-const PREVIEW_DISMISS_COOKIE = 'devhub-preview-banner-dismissed';
-const DISMISS_MAX_AGE = 60 * 60 * 24 * 365;
+const PREVIEW_DISMISS_KEY = 'devhub-preview-banner-dismissed';
 
-const hasDismissed = (cookie: string): boolean =>
-  document.cookie.split('; ').some((entry) => entry === `${cookie}=1`);
+const hasDismissed = (key: string): boolean =>
+  localStorage.getItem(key) === '1';
 
-const recordDismissal = (cookie: string): void => {
-  // biome-ignore lint/suspicious/noDocumentCookie: cookieStore API is https only, but local dev is http
-  document.cookie = `${cookie}=1; path=/; max-age=${DISMISS_MAX_AGE}; samesite=strict`;
+const recordDismissal = (key: string): void => {
+  localStorage.setItem(key, '1');
 };
 
 @customElement('devhub-home-banner')
@@ -59,10 +57,10 @@ export class DevhubHomeBanner extends LitElement {
     }
   `;
 
-  @state() private previewDismissed = hasDismissed(PREVIEW_DISMISS_COOKIE);
+  @state() private previewDismissed = hasDismissed(PREVIEW_DISMISS_KEY);
 
   #dismissPreview = () => {
-    recordDismissal(PREVIEW_DISMISS_COOKIE);
+    recordDismissal(PREVIEW_DISMISS_KEY);
     this.previewDismissed = true;
   };
 

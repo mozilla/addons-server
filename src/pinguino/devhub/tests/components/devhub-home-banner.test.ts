@@ -4,17 +4,15 @@ import '../../src/components/devhub-home-banner';
 import { PREVIEW_BLOG_POST } from '../../src/links';
 import { mount } from '../helpers/fixture';
 
-// The banner reads its state straight from document.cookie, so the suite drives
-// it by writing the cookie rather than mocking anything.
-const COOKIE = 'devhub-preview-banner-dismissed';
+// The banner reads its state straight from localStorage, so the suite drives it
+// by writing the key rather than mocking anything.
+const KEY = 'devhub-preview-banner-dismissed';
 
 const clearDismissal = () => {
-  // biome-ignore lint/suspicious/noDocumentCookie: can't use because local dev
-  document.cookie = `${COOKIE}=; path=/; max-age=0`;
+  localStorage.removeItem(KEY);
 };
 const setDismissed = () => {
-  // biome-ignore lint/suspicious/noDocumentCookie: can't use because local dev
-  document.cookie = `${COOKIE}=1; path=/`;
+  localStorage.setItem(KEY, '1');
 };
 
 async function banner() {
@@ -24,7 +22,7 @@ async function banner() {
 const root = (el: DevhubHomeBanner) => el.shadowRoot as ShadowRoot;
 
 describe('devhub-home-banner', () => {
-  // Keep each test isolated from the dismissal cookie the others may set.
+  // Keep each test isolated from the dismissal flag the others may set.
   beforeEach(clearDismissal);
   afterEach(clearDismissal);
 
@@ -42,7 +40,7 @@ describe('devhub-home-banner', () => {
     expect(link?.getAttribute('href')).toBe(PREVIEW_BLOG_POST);
   });
 
-  it('swaps the card for the page header when dismissed, recording a cookie', async () => {
+  it('swaps the card for the page header when dismissed, recording the flag', async () => {
     const el = await banner();
     root(el).querySelector<HTMLElement>('.preview-banner-dismiss')?.click();
     await el.updateComplete;
@@ -52,10 +50,10 @@ describe('devhub-home-banner', () => {
       root(el).querySelector('moz-page-header')?.getAttribute('heading'),
     ).toBe('Welcome to the Developer Hub.');
     // The dismissal is persisted so it survives a reload.
-    expect(document.cookie).toContain(`${COOKIE}=1`);
+    expect(localStorage.getItem(KEY)).toBe('1');
   });
 
-  it('starts on the page header when the dismissal cookie is already set', async () => {
+  it('starts on the page header when the dismissal flag is already set', async () => {
     setDismissed();
     const el = await banner();
     expect(root(el).querySelector('moz-page-header')).not.toBeNull();
