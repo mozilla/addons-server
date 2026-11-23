@@ -47,6 +47,9 @@ export class AddonVersion extends LitElement {
       flex-direction: column;
       gap: var(--space-xlarge);
     }
+    moz-pagination {
+      align-self: center;
+    }
     .version-section {
       display: flex;
       flex-direction: column;
