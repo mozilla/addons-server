@@ -114,10 +114,12 @@ export interface Version {
     created?: string;
   };
   release_notes: Record<string, string> | string | null;
+  is_source_editable?: boolean;
   approval_notes: string;
   source: string | null;
   edit_url: string;
   is_disabled: boolean;
+  compatibility?: Record<string, { min: string; max: string }>;
   license?: VersionLicense | null;
   reviewed?: string | null;
 }
@@ -127,6 +129,13 @@ export interface VersionLicense {
   is_custom: boolean;
   name: Record<string, string> | string | null;
   text?: Record<string, string> | string | null;
+}
+
+export interface VersionEdit {
+  release_notes?: string;
+  approval_notes?: string;
+  compatibility?: Record<string, { min?: string; max?: string }>;
+  is_disabled?: boolean;
 }
 
 // The subset of listing fields editable from the manage page's Listing Details

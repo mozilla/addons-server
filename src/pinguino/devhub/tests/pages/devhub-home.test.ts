@@ -105,8 +105,10 @@ describe('devhub-home', () => {
     const el = await mount<DevhubHome>('devhub-home');
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
+    const list = root.querySelector('app-infinite-list');
+    await list?.updateComplete;
 
-    expect(root.querySelectorAll('update-card')).toHaveLength(2);
+    expect(list?.shadowRoot?.querySelectorAll('update-card')).toHaveLength(2);
     expect(root.querySelector('.empty-updates')).toBeNull();
   });
 
@@ -125,9 +127,9 @@ describe('devhub-home', () => {
     expect(text(root.querySelector('.feed .count'))).toBe('50 Updates');
   });
 
-  // The feed is virtualized infinite scroll: as the last loaded rows come into
-  // view it pulls the next page, provided the server has more.
-  it('fetches the next page when the end of the feed scrolls into view', async () => {
+  // The feed is an app-infinite-list, which asks for more as its last loaded
+  // rows come into view (covered by its own tests); the page fetches it.
+  it('fetches the next page when the list asks for more', async () => {
     // One page loaded, but the server reports more rows than are loaded.
     queryClient.setQueryData(queryKeys.profile, { name: 'Kate' });
     seedAddons([ext('a')]);
@@ -144,10 +146,9 @@ describe('devhub-home', () => {
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    const event = new Event('visibilityChanged');
-    // Last visible row is the final loaded one, so the threshold is crossed.
-    (event as Event & { last: number }).last = 0;
-    root.querySelector('lit-virtualizer')?.dispatchEvent(event);
+    const list = root.querySelector('app-infinite-list');
+    expect(list?.hasMore).toBe(true);
+    list?.dispatchEvent(new Event('load-more'));
 
     await settle(el);
     const fetchedPage2 = fetchMock.mock.calls.some(([url]) =>
@@ -173,11 +174,7 @@ describe('devhub-home', () => {
     await settle(el);
     const root = el.shadowRoot as ShadowRoot;
 
-    const event = new Event('visibilityChanged');
-    (event as Event & { last: number }).last = 0;
-    root.querySelector('lit-virtualizer')?.dispatchEvent(event);
-
-    await settle(el);
+    expect(root.querySelector('app-infinite-list')?.hasMore).toBe(false);
     expect(fetchMock).not.toHaveBeenCalled();
   });
 
