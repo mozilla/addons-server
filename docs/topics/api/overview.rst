@@ -496,6 +496,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2026-10-21: added ``channels`` to the /addons/addon/ endpoint. https://github.com/mozilla/addons/issues/16474
 * 2026-10-30: added ``show_source`` query parameter to /api/v5/addons/addon/ endpoints. https://github.com/mozilla/addons/issues/16513
 * 2026-11-12: added ``submit_notification_warning`` to /addons/addon/ endpoint for developers. https://github.com/mozilla/addons/issues/16390
+* 2026-11-12: added ``manifest_data`` to the upload detail endpoint. https://github.com/mozilla/addons/issues/16384
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

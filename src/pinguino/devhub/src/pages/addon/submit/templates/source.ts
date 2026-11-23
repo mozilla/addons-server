@@ -2,8 +2,9 @@ import { css, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { errorStatus } from '../../../../data/http';
 import { uploadVersionSource, versionQuery } from '../../../../data/queries';
-import { errorBar, errorMessage, SubmissionStep } from '../submission-flow';
 import '../../../../components/error-page';
+import { emit } from '../../../../utils/helper';
+import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
 import '../../../../foundations/components/message-bar';
 import { MAX_UPLOAD_SIZE } from '../../../../base';
 
@@ -28,7 +29,7 @@ export class SubmitSource extends SubmissionStep {
       gap: var(--space-medium);
       padding: var(--space-large);
       border-radius: var(--border-radius-large);
-      background-color: var(--color-gray-05);
+      background-color: var(--background-color-canvas);
     }
     ul {
       display: flex;
@@ -46,7 +47,7 @@ export class SubmitSource extends SubmissionStep {
     }
     li moz-icon {
       color: var(--color-gray-40);
-      border: var(--space-xsmall) solid var(--color-gray-10);
+      border: var(--space-xsmall) solid light-dark(var(--color-gray-10), var(--color-gray-50));
       border-radius: 50%;
     }
     moz-visual-picker-item {
@@ -75,7 +76,11 @@ export class SubmitSource extends SubmissionStep {
   }
 
   async submit(): Promise<boolean> {
-    if (!this.ready || !this.versionId) return false;
+    if (!this.ready) return false;
+    if (!this.versionId) {
+      emit(this, 'source-select', { file: this.file });
+      return true;
+    }
     if (!this.file) return true;
 
     try {
@@ -111,10 +116,12 @@ export class SubmitSource extends SubmissionStep {
   }
 
   render() {
-    const version = this.#version();
-    if (version.isPending) return nothing;
-    if (version.isError)
-      return html`<error-page .code=${errorStatus(version.error)}></error-page>`;
+    if (this.versionId) {
+      const version = this.#version();
+      if (version.isPending) return nothing;
+      if (version.isError)
+        return html`<error-page .code=${errorStatus(version.error)}></error-page>`;
+    }
     return html`
       <submission-header
         label="Upload source code"
@@ -173,5 +180,8 @@ export class SubmitSource extends SubmissionStep {
 declare global {
   interface HTMLElementTagNameMap {
     'submit-source': SubmitSource;
+  }
+  interface HTMLElementEventMap {
+    'source-select': CustomEvent<{ file?: File }>;
   }
 }

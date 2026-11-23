@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
 import type { Addon } from '../data';
 import '../foundations/badges';
+import './theme-preview';
 
 @customElement('addon-card')
 export class AddonCard extends LitElement {
@@ -46,20 +47,10 @@ export class AddonCard extends LitElement {
       margin: 0;
       font-weight: 600;
     }
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-    }
     .logo {
       width: 32px;
       height: 32px;
       border-radius: var(--border-radius-small, 4px);
-    }
-    .preview {
-      width: 100%;
-      height: 96px;
-      object-fit: cover;
-      border-radius: var(--border-radius-medium, 8px);
     }
     .meta {
       display: flex;
@@ -93,11 +84,7 @@ export class AddonCard extends LitElement {
           isTheme
             ? html`
               <h2 class="name">${a.name}</h2>
-              ${
-                a.previewUrl
-                  ? html`<img class="preview" src=${a.previewUrl} alt="" />`
-                  : html`<div class="bar" style="background: ${a.gradient};"></div>`
-              }
+              <theme-preview .addon=${a}></theme-preview>
             `
             : html`
               <div class="title">

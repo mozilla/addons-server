@@ -26,6 +26,7 @@ import {
   fetchAuthors,
   fetchCategories,
   fetchEulaPolicy,
+  fetchLatestVersion,
   fetchPendingAuthors,
   fetchProfile,
   fetchSiteStatus,
@@ -37,6 +38,8 @@ import {
   patchEulaPolicy,
   patchPreview,
   patchVersion,
+  patchVersionLicense,
+  postAddon,
   postAgreement,
   postUpload,
   postVersion,
@@ -50,6 +53,7 @@ import type {
   ActivityPage,
   AddonAuthorAdd,
   AddonAuthorRole,
+  AddonCreate,
   AddonDistribution,
   AddonKind,
   AddonListingEdit,
@@ -58,6 +62,7 @@ import type {
   EulaPolicyEdit,
   FileUpload,
   Version,
+  VersionLicenseEdit,
 } from './types';
 
 // Keys identify cache entries. Every add-on entry hangs off the `addons`
@@ -74,6 +79,7 @@ export const queryKeys = {
   upload: (uuid: string) => ['upload', uuid] as const,
   version: (slug: string, id: number) => ['version', slug, id] as const,
   versions: (slug: string) => ['versions', slug] as const,
+  latestVersion: (slug: string) => ['latest-version', slug] as const,
 };
 
 // Keyed by add-on and page; a missing slug (the all-add-ons feed) normalises to
@@ -132,6 +138,10 @@ export function siteStatusQuery(
 
 const ADDON_KINDS: readonly AddonKind[] = ['extension', 'theme'];
 
+// A 404/403 on an add-on is the answer, not a blip; retrying delays the verdict.
+const retryServerErrors = (count: number, error: Error) =>
+  errorStatus(error) >= 500 && count < 1;
+
 // One list per kind, because the API pages extensions and themes together: ask
 // once and a developer with over a page of add-ons gets an arbitrary split of
 // the two, under a `count` covering only what came back.
@@ -189,17 +199,28 @@ export function addonQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
 ) {
-  const addons = allAddonsQuery(host);
-  const listed = () => addons().data.find((addon) => addon.slug === getSlug());
+  const addons = allAddonsQuery(host, () => Boolean(getSlug()));
+  // A rename refetches the list before the URL catches up, so while the slug
+  // is still the old one the add-on is found by the GUID it last had, rather
+  // than looking deleted.
+  let seen: { slug: string; uuid?: string } | undefined;
+  const listed = () => {
+    const { data } = addons();
+    const slug = getSlug();
+    const uuid = seen?.slug === slug ? seen.uuid : undefined;
+    const addon =
+      data.find((a) => a.slug === slug) ??
+      (uuid ? data.find((a) => a.uuid === uuid) : undefined);
+    if (addon) seen = { slug, uuid: addon.uuid };
+    return addon;
+  };
   const detail = createQueryController(
     host,
     () => ({
       queryKey: queryKeys.addon(getSlug()),
       queryFn: () => fetchAddon(getSlug()),
       enabled: Boolean(getSlug()) && !addons().isPending && !listed(),
-      // A 404/403 is the answer, not a blip; retrying just delays the verdict.
-      retry: (count: number, error: Error) =>
-        errorStatus(error) >= 500 && count < 1,
+      retry: retryServerErrors,
     }),
     queryClient,
   );
@@ -224,6 +245,52 @@ export function addonQuery(
     const { data, isPending, isSuccess, isError } = detail();
     return { data, isPending, isSuccess, isError };
   };
+}
+
+export async function getAddon(slug: string) {
+  const pages = await Promise.all(
+    ADDON_KINDS.map((kind) =>
+      queryClient.query({
+        queryKey: queryKeys.addonList(kind),
+        queryFn: () => fetchAddons(kind),
+      }),
+    ),
+  );
+  const listed = pages
+    .flatMap((page) => page.results)
+    .find((a) => a.slug === slug);
+  if (listed) return listed;
+  // Beyond the first page of the lists, only the API can say it doesn't exist.
+  return await queryClient
+    .query({
+      queryKey: queryKeys.addon(slug),
+      queryFn: () => fetchAddon(slug),
+      retry: retryServerErrors,
+    })
+    .catch(() => undefined);
+}
+
+export function themePreviewQuery(
+  host: ReactiveControllerHost,
+  getSlug: () => string,
+  getEnabled: () => boolean = () => true,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: ['theme-preview', getSlug()],
+      queryFn: async () => {
+        const addon = await fetchAddon(getSlug());
+        if (addon.previewUrl) {
+          await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+        }
+        return addon;
+      },
+      enabled: Boolean(getSlug()) && getEnabled(),
+      refetchInterval: (query) => (query.state.data?.previewUrl ? false : 1000),
+    }),
+    queryClient,
+  );
 }
 
 // Persist Listing Details edits, then refresh the cached add-on lists so the
@@ -337,6 +404,20 @@ export function versionQuery(
     }),
     queryClient,
   );
+}
+
+export function getLatestVersion(slug: string) {
+  return queryClient.query({
+    queryKey: queryKeys.latestVersion(slug),
+    queryFn: () => fetchLatestVersion(slug),
+  });
+}
+
+export function getVersions(slug: string) {
+  return queryClient.query({
+    queryKey: queryKeys.versions(slug),
+    queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US'),
+  });
 }
 
 // EULA/privacy text is a separate endpoint; refresh the add-on list after so the
@@ -503,6 +584,15 @@ export function agreementQuery(host: ReactiveControllerHost) {
   );
 }
 
+export async function hasReadAgreement() {
+  const agreement = await queryClient.query({
+    queryKey: queryKeys.agreement,
+    queryFn: fetchAgreement,
+    staleTime: 'static',
+  });
+  return Boolean(agreement.has_read_developer_agreement);
+}
+
 // Accepts the agreement and refreshes the cached status.
 export async function acceptAgreement(payload: AgreementAcceptState) {
   await postAgreement(payload);
@@ -539,27 +629,52 @@ export function uploadQuery(
 export async function createVersion(
   slug: string,
   uuid: string,
+  license?: VersionLicenseEdit,
 ): Promise<Version> {
-  const version = await postVersion(slug, uuid);
+  const version = await (license
+    ? postVersion(slug, uuid, license)
+    : postVersion(slug, uuid));
   queryClient.setQueryData(queryKeys.version(slug, version.id), version);
-  await queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) });
-  await queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.upload(uuid) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.latestVersion(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
   return version;
 }
 
 export function versionsQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
+  getPage: () => number,
 ) {
   return createQueryController(
     host,
-    () => ({
-      queryKey: queryKeys.versions(getSlug()),
-      queryFn: () => fetchVersions(getSlug(), LOCALE ?? 'en-US'),
-      enabled: Boolean(getSlug()),
-    }),
+    () => {
+      const slug = getSlug();
+      const page = getPage();
+      return {
+        queryKey: [...queryKeys.versions(slug), page],
+        queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US', page),
+        enabled: Boolean(slug),
+      };
+    },
     queryClient,
   );
+}
+
+export async function addonFromUpload(create: AddonCreate) {
+  const created = await postAddon(create);
+  const { addon, version } = created;
+  queryClient.setQueryData(queryKeys.version(addon.slug, version.id), version);
+  await Promise.all([
+    queryClient.invalidateQueries({
+      queryKey: queryKeys.upload(create.version.upload),
+    }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+  return created;
 }
 
 async function _updateVersion(
@@ -588,6 +703,25 @@ export async function uploadVersionSource(
   await _updateVersion(slug, id, body);
 }
 
+export async function updateVersionLicense(
+  slug: string,
+  id: number,
+  license: string | undefined,
+  custom?: { name: string; text: string },
+) {
+  const version = await patchVersionLicense(slug, id, license, custom);
+  queryClient.setQueryData(queryKeys.version(slug, id), version);
+  const isCurrent = ADDON_KINDS.some((kind) =>
+    queryClient
+      .getQueryData<AddonPage>(queryKeys.addonList(kind))
+      ?.results.some((a) => a.slug === slug && a.currentVersion?.id === id),
+  );
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    isCurrent && queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+}
+
 export async function uploadVersionNotes(
   slug: string,
   id: number,
@@ -596,7 +730,7 @@ export async function uploadVersionNotes(
   langCode: string = LOCALE ?? 'en-US',
 ) {
   await _updateVersion(slug, id, {
-    approval_notes: reviewerNotes ?? '',
+    ...(reviewerNotes && { approval_notes: reviewerNotes }),
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
 }

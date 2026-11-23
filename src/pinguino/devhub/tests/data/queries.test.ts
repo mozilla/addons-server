@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Addon, AddonPage } from '../../src/data';
-import { queryClient, queryKeys, removeAddon } from '../../src/data';
+import { getAddon, queryClient, queryKeys, removeAddon } from '../../src/data';
 import { seedAddons } from '../helpers/fixture';
 
 function mockDelete(listAfter: unknown[]) {
@@ -106,5 +106,38 @@ describe('removeAddon', () => {
     expect(
       queryClient.getQueryData(queryKeys.addonList('extension')),
     ).toBeUndefined();
+  });
+});
+
+describe('getAddon', () => {
+  beforeEach(() => queryClient.clear());
+
+  it('fetches an add-on the one-page lists do not reach', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => ({
+        ok: true,
+        status: 200,
+        json: async () =>
+          String(url).includes('/addons/addon/hidden-gem/')
+            ? { slug: 'hidden-gem', name: { 'en-US': 'Hidden Gem' } }
+            : { results: [], count: 80 },
+      })),
+    );
+
+    expect((await getAddon('hidden-gem'))?.name).toBe('Hidden Gem');
+  });
+
+  it('resolves undefined when the API has no such add-on', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => ({
+        ok: !String(url).includes('/addons/addon/nope/'),
+        status: String(url).includes('/addons/addon/nope/') ? 404 : 200,
+        json: async () => ({ results: [] }),
+      })),
+    );
+
+    await expect(getAddon('nope')).resolves.toBeUndefined();
   });
 });

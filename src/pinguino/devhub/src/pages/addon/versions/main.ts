@@ -1,7 +1,7 @@
 import { html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { addonQuery } from '../../../data';
-import { createRoutes } from '../../../helper';
+import { createRoutes } from '../../../utils/helper';
 
 import '../../../components/coming-soon';
 import '../../../components/error-page';
