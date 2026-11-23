@@ -443,7 +443,10 @@ export class ListingDetailsCard extends SectionCard {
         ${textField(form, 'support_url', 'Support Website', 'url')}
         ${textField(form, 'support_email', 'Support Email', 'email')}
         ${textArea(form, 'summary', 'Summary')}
-        ${textArea(form, 'description', 'Description')}
+        <div class="syntax-support">
+          ${textArea(form, 'description', 'Description')}
+          ${this.getMarkdownSupportLink()}
+        </div>
         ${this.#categoriesField()}
         ${this.#isTheme ? nothing : this.#flagFields()}
         ${this.#licenseField()}
@@ -535,7 +538,16 @@ export class ListingDetailsCard extends SectionCard {
         @change=${(e: Event) =>
           form.set(opts.hasKey, (e.target as HTMLInputElement).checked)}
       ></moz-checkbox>
-      ${checked ? textArea(form, opts.textKey) : nothing}
+      ${
+        checked
+          ? html`
+            <div class="syntax-support">
+              ${textArea(form, opts.textKey)}
+              ${this.getMarkdownSupportLink()}
+            </div>
+        `
+          : nothing
+      }
     </div>`;
   }
 
