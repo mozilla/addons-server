@@ -1,5 +1,3 @@
-import '@lit-labs/virtualizer';
-import type { VisibilityChangedEvent } from '@lit-labs/virtualizer/events.js';
 import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
@@ -10,10 +8,8 @@ import '../components/update-card';
 import { BASE } from '../base';
 import type { ActivityPage, AddonKind, AddonsQuery, Update } from '../data';
 import { activityInfiniteQuery, addonsQuery } from '../data';
+import '../foundations/infinite-list';
 import { setPageTitle } from '../page-title';
-
-// Threshold for loading more rows once the reader is close, so they're ready beforehand
-const LOAD_MORE_THRESHOLD = 5;
 
 interface Group {
   title: string;
@@ -74,18 +70,6 @@ export class DevhubHome extends LitElement {
     }
     .feed-scroller {
       flex: 1;
-      min-height: 0;
-    }
-    .feed-scroller update-card {
-      display: block;
-      box-sizing: border-box;
-      width: 100%;
-      margin-block-end: var(--space-large);
-    }
-    .loading-more {
-      margin: 0;
-      text-align: center;
-      color: var(--text-color-deemphasized, GrayText);
     }
     .empty-updates {
       display: flex;
@@ -179,18 +163,6 @@ export class DevhubHome extends LitElement {
     `;
   }
 
-  // Pull the next page in as the reader nears the end of the loaded rows.
-  #loadMoreIfNeeded(lastVisible: number, loaded: number) {
-    const feed = this.#updates();
-    if (
-      lastVisible >= loaded - LOAD_MORE_THRESHOLD &&
-      feed.hasNextPage &&
-      !feed.isFetchingNextPage
-    ) {
-      this.#updates.fetchNextPage();
-    }
-  }
-
   #feed(pages: ActivityPage[]) {
     const updates = pages.flatMap((p) => p.items);
     if (updates.length === 0) {
@@ -207,25 +179,21 @@ export class DevhubHome extends LitElement {
     // The server's running total across all pages, not just the rows loaded so
     // far; every page carries it, so read it from the latest.
     const total = pages.at(-1)?.total ?? updates.length;
+    const feed = this.#updates();
     return html`
       <app-stack gap="medium" class="section feed" style="gap: 0">
         <p class="count">
           ${total} Updates
         </p>
-        <lit-virtualizer
-          scroller
+        <app-infinite-list
           class="feed-scroller"
           .items=${updates}
           .renderItem=${(u: Update) =>
             html`<update-card .item=${u}></update-card>`}
-          @visibilityChanged=${(e: VisibilityChangedEvent) =>
-            this.#loadMoreIfNeeded(e.last, updates.length)}
-        ></lit-virtualizer>
-        ${
-          this.#updates().isFetchingNextPage
-            ? html`<p class="loading-more">Loading more…</p>`
-            : undefined
-        }
+          ?has-more=${feed.hasNextPage}
+          ?loading=${feed.isFetchingNextPage}
+          @load-more=${() => this.#updates.fetchNextPage()}
+        ></app-infinite-list>
       </app-stack>
     `;
   }

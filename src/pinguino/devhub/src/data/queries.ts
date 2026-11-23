@@ -18,11 +18,13 @@ import {
   deleteAuthor,
   deletePreview,
   deleteSession,
+  deleteVersion,
   fetchActivity,
   fetchAddon,
   fetchAddonSource,
   fetchAddons,
   fetchAgreement,
+  fetchAppVersions,
   fetchAuthors,
   fetchCategories,
   fetchEulaPolicy,
@@ -41,6 +43,7 @@ import {
   patchVersionLicense,
   postAddon,
   postAgreement,
+  postReviewNote,
   postUpload,
   postVersion,
   uploadIcon,
@@ -61,6 +64,7 @@ import type {
   EulaPolicyEdit,
   FileUpload,
   Version,
+  VersionEdit,
   VersionLicenseEdit,
 } from './types';
 
@@ -79,17 +83,25 @@ export const queryKeys = {
   version: (slug: string, id: number) => ['version', slug, id] as const,
   versions: (slug: string) => ['versions', slug] as const,
   latestVersion: (slug: string) => ['latest-version', slug] as const,
+  appVersions: (app: string | undefined) => ['app-versions', app] as const,
 };
 
-// Keyed by add-on and page; a missing slug (the all-add-ons feed) normalises to
+// Keyed by add-on/version and page; a missing slug (the all-add-ons feed) normalises to
 // null so it stays a stable, distinct cache entry.
-const activityKey = (slug: string | undefined, page: number) =>
-  ['activity', slug ?? null, page] as const;
+const activityKey = (
+  slug: string | undefined,
+  page: number,
+  version?: number,
+) => ['activity', slug ?? null, version ?? null, page] as const;
 
 // The infinite (scroll-to-load) variant of the feed. Shares the 'activity'
 // prefix so one invalidate refreshes both the paged and infinite caches.
-const activityInfiniteKey = (slug: string | undefined) =>
-  ['activity', 'infinite', slug ?? null] as const;
+// A version-scoped feed nests under its add-on's key, so invalidating the
+// add-on's feed also refreshes its versions' feeds.
+const activityInfiniteKey = (slug: string | undefined, version?: number) =>
+  version
+    ? (['activity', 'infinite', slug ?? null, version] as const)
+    : (['activity', 'infinite', slug ?? null] as const);
 
 // The static category list rarely changes, so keep it for the session.
 export function categoriesQuery(host: ReactiveControllerHost) {
@@ -478,15 +490,17 @@ export function activityQuery(
   host: ReactiveControllerHost,
   getSlug: (() => string) | undefined,
   getPage: () => number,
+  getVersion?: () => number,
 ) {
   return createQueryController(
     host,
     () => {
       const slug = getSlug?.();
       const page = getPage();
+      const version = getVersion?.();
       return {
-        queryKey: activityKey(slug, page),
-        queryFn: () => fetchActivity(slug, page),
+        queryKey: activityKey(slug, page, version),
+        queryFn: () => fetchActivity(slug, page, version),
         // Wait for a slug only when one is expected; the all-add-ons feed fetches
         // immediately.
         enabled: !getSlug || Boolean(slug),
@@ -496,19 +510,33 @@ export function activityQuery(
   );
 }
 
+export async function replyToVersion(
+  slug: string,
+  id: number,
+  comments: string,
+) {
+  await postReviewNote(slug, id, comments);
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: ['activity', slug] }),
+    queryClient.invalidateQueries({ queryKey: activityInfiniteKey(slug) }),
+  ]);
+}
+
 // The feed as an infinite query: each page is fetched on demand as the reader
 // scrolls. `getNextPageParam` stops once we've loaded every row the server has.
 export function activityInfiniteQuery(
   host: ReactiveControllerHost,
   getSlug?: () => string,
+  getVersion?: () => number,
 ) {
   return createInfiniteQueryController(
     host,
     () => {
       const slug = getSlug?.();
+      const version = getVersion?.();
       return {
-        queryKey: activityInfiniteKey(slug),
-        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam),
+        queryKey: activityInfiniteKey(slug, version),
+        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam, version),
         initialPageParam: 1,
         getNextPageParam: (lastPage: ActivityPage, pages: ActivityPage[]) => {
           const loaded = pages.reduce((n, page) => n + page.items.length, 0);
@@ -639,9 +667,44 @@ async function _updateVersion(
   return version;
 }
 
+export async function updateVersion(
+  slug: string,
+  id: number,
+  { release_notes, approval_notes, ...edit }: VersionEdit,
+  source?: File | null,
+) {
+  const body = {
+    ...edit,
+    ...(approval_notes !== undefined && { approval_notes }),
+    ...(release_notes !== undefined && {
+      release_notes: { [LOCALE ?? 'en-US']: release_notes },
+    }),
+    ...(source === null && { source: null }),
+  };
+  let version: Version | undefined;
+  if (Object.keys(body).length) version = await patchVersion(slug, id, body);
+  if (source) {
+    const form = new FormData();
+    form.append('source', source);
+    version = await patchVersion(slug, id, form);
+  }
+  if (version) queryClient.setQueryData(queryKeys.version(slug, id), version);
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+}
+
 export async function disableVersion(slug: string, id: number) {
   await _updateVersion(slug, id, { is_disabled: true });
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function removeVersion(slug: string, id: number) {
+  await deleteVersion(slug, id);
+  queryClient.removeQueries({ queryKey: queryKeys.version(slug, id) });
+  void queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
 }
 
 export async function uploadVersionSource(
@@ -684,6 +747,24 @@ export async function uploadVersionNotes(
     ...(reviewerNotes && { approval_notes: reviewerNotes }),
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
+}
+
+// The versions an application can be marked compatible with.
+export function appVersionsQuery(
+  host: ReactiveControllerHost,
+  getApp: () => string | undefined,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.appVersions(getApp()),
+      queryFn: () => fetchAppVersions(getApp() ?? ''),
+      enabled: Boolean(getApp()),
+      // Supported app versions rarely change.
+      staleTime: Number.POSITIVE_INFINITY,
+    }),
+    queryClient,
+  );
 }
 
 // Ends the current session server-side. Callers reload afterwards so the app
