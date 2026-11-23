@@ -1244,10 +1244,22 @@ class Addon(OnChangeMixin, ModelBase):
         return None
 
     @cached_property
+    def latest_listed_version(self):
+        """Shortcut property for Addon.find_latest_version(
+        channel=CHANNEL_LISTED)."""
+        return self.find_latest_version(channel=amo.CHANNEL_LISTED)
+
+    @cached_property
     def latest_unlisted_version(self):
         """Shortcut property for Addon.find_latest_version(
         channel=CHANNEL_UNLISTED)."""
         return self.find_latest_version(channel=amo.CHANNEL_UNLISTED)
+
+    @cached_property
+    def latest_enterprise_version(self):
+        """Shortcut property for Addon.find_latest_version(
+        channel=CHANNEL_UNLISTED)."""
+        return self.find_latest_version(channel=amo.CHANNEL_ENTERPRISE)
 
     def get_icon_dir(self):
         return os.path.join(

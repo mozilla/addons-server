@@ -230,6 +230,8 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json boolean|null is_noindexed: Whether the add-on should be indexed or not indexed for SEO. Note that the search endpoint will always return a ``null`` value.
     :>json object|null name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string last_updated: The date of the last time the add-on was updated by its author(s) (developers)
+    :>json object|null latest_enterprise_version: Object holding the latest enterprise :ref:`version <version-detail-object>` of the add-on. This field is only present if the user is listed as a author (developer) of the add-on.
+    :>json object|null latest_listed_version: Object holding the latest listed :ref:`version <version-detail-object>` of the add-on. This field is only present if the user is listed as a author (developer) of the add-on.
     :>json object|null latest_unlisted_version: Object holding the latest unlisted :ref:`version <version-detail-object>` of the add-on. This field is only present if the user has unlisted reviewer permissions, or is listed as a author (developer) of the add-on.
     :>json array previews: Array holding information about the previews for the add-on.
     :>json int previews[].id: The id for a preview.
