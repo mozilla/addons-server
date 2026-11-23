@@ -266,6 +266,11 @@ urlpatterns = [
         name='devhub.standalone_upload_unlisted',
     ),
     re_path(
+        r'^standalone-upload-enterprise$',
+        partial(views.upload, is_standalone=True, channel='enterprise'),
+        name='devhub.standalone_upload_enterprise',
+    ),
+    re_path(
         r'^standalone-upload/([^/]+)$',
         views.standalone_upload_detail,
         name='devhub.standalone_upload_detail',

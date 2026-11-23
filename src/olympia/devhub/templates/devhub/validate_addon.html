@@ -27,6 +27,9 @@
       data-upload-url="{{ url('devhub.standalone_upload') }}"
       data-upload-url-listed="{{ url('devhub.standalone_upload') }}"
       data-upload-url-unlisted="{{ url('devhub.standalone_upload_unlisted') }}"
+      {% if waffle.switch('enterprise-channel') %}
+      data-upload-url-enterprise="{{ url('devhub.standalone_upload_enterprise') }}"
+      {% endif %}
       data-max-upload-size="{{ max_upload_size }}">
   </section>
 </form>

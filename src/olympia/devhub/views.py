@@ -609,6 +609,12 @@ def handle_upload(
 def upload(request, channel='listed', addon=None, is_standalone=False):
     channel_as_text = channel
     channel = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    if (
+        is_standalone
+        and channel == amo.CHANNEL_ENTERPRISE
+        and not waffle.switch_is_active('enterprise-channel')
+    ):
+        raise http.Http404
     filedata = request.FILES['upload']
     theme_specific = django_forms.BooleanField().to_python(
         request.POST.get('theme_specific')

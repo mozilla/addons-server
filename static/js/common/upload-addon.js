@@ -425,6 +425,12 @@ $.fn.addonUploader = function (options) {
       );
     }
 
+    function isEnterprise() {
+      return (
+        $channelChoice.length &&
+        $('input[name="channel"]:checked').val() === 'enterprise'
+      );
+    }
     // is_unlisted checkbox: should the add-on be listed on AMO? If not,
     // change the addon upload button's data-upload-url.
     // If this add-on is unlisted, then tell the upload view so
@@ -445,11 +451,19 @@ $.fn.addonUploader = function (options) {
         );
         $submitAddonProgress.removeClass('unlisted');
       } else {
+        if (isEnterprise()) {
+          $upload_field.attr(
+            'data-upload-url',
+            $upload_field.data('upload-url-enterprise'),
+          );
+        }
         // It's an unlisted add-on.
-        $upload_field.attr(
-          'data-upload-url',
-          $upload_field.data('upload-url-unlisted'),
-        );
+        else {
+          $upload_field.attr(
+            'data-upload-url',
+            $upload_field.data('upload-url-unlisted'),
+          );
+        }
         $submitAddonProgress.addClass('unlisted');
       }
       /* Don't allow submitting, need to reupload/revalidate the file. */
