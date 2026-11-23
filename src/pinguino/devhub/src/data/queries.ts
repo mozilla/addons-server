@@ -138,7 +138,6 @@ export function siteStatusQuery(
 
 const ADDON_KINDS: readonly AddonKind[] = ['extension', 'theme'];
 
-// A 404/403 on an add-on is the answer, not a blip; retrying delays the verdict.
 const retryServerErrors = (count: number, error: Error) =>
   errorStatus(error) >= 500 && count < 1;
 
@@ -192,17 +191,15 @@ export function allAddonsQuery(
   );
 }
 
-// Served from the cached lists when they hold the slug, so arriving from the
-// dashboard costs no extra request. The lists are only one page deep, though,
-// so missing from them doesn't mean missing — ask the API before saying so.
+// Prefers the cached lists, so arriving from the dashboard costs no request.
+// They're only one page deep though, so missing from them isn't missing.
 export function addonQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
 ) {
   const addons = allAddonsQuery(host, () => Boolean(getSlug()));
-  // A rename refetches the list before the URL catches up, so while the slug
-  // is still the old one the add-on is found by the GUID it last had, rather
-  // than looking deleted.
+  // A rename refetches the list before the URL catches up, so until it does
+  // the add-on is found by the GUID it last had rather than looking deleted.
   let seen: { slug: string; uuid?: string } | undefined;
   const listed = () => {
     const { data } = addons();
@@ -418,6 +415,21 @@ export function getVersions(slug: string) {
     queryKey: queryKeys.versions(slug),
     queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US'),
   });
+}
+
+// `loaded` is one page at the API's default of 25, so a longer history can
+// deep-link to a version past it — fetch that one rather than calling it gone.
+export async function getVersion(slug: string, id: number, loaded: Version[]) {
+  return (
+    loaded.find((v) => v.id === id) ??
+    (await queryClient
+      .query({
+        queryKey: queryKeys.version(slug, id),
+        queryFn: () => fetchVersion(slug, id),
+        retry: retryServerErrors,
+      })
+      .catch(() => undefined))
+  );
 }
 
 // EULA/privacy text is a separate endpoint; refresh the add-on list after so the

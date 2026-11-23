@@ -1,7 +1,13 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Addon, AddonPage } from '../../src/data';
-import { getAddon, queryClient, queryKeys, removeAddon } from '../../src/data';
-import { seedAddons } from '../helpers/fixture';
+import {
+  getAddon,
+  getVersion,
+  queryClient,
+  queryKeys,
+  removeAddon,
+} from '../../src/data';
+import { DEFAULT_VERSION, seedAddons } from '../helpers/fixture';
 
 function mockDelete(listAfter: unknown[]) {
   const fetchMock = vi.fn(async (url: string, init?: RequestInit) => {
@@ -139,5 +145,34 @@ describe('getAddon', () => {
     );
 
     await expect(getAddon('nope')).resolves.toBeUndefined();
+  });
+});
+
+describe('getVersion', () => {
+  beforeEach(() => queryClient.clear());
+
+  it('takes the version from the loaded page without asking', async () => {
+    const fetchMock = vi.fn();
+    vi.stubGlobal('fetch', fetchMock);
+
+    const loaded = [{ ...DEFAULT_VERSION, id: 7 }];
+    expect(await getVersion('ad-blocker', 7, loaded)).toBe(loaded[0]);
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it('fetches a version older than the loaded page', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => ({
+        ok: true,
+        status: 200,
+        json: async () => ({ ...DEFAULT_VERSION, id: 3, channel: 'unlisted' }),
+      })),
+    );
+
+    const current = await getVersion('ad-blocker', 3, [
+      { ...DEFAULT_VERSION, id: 7 },
+    ]);
+    expect(current?.channel).toBe('unlisted');
   });
 });
