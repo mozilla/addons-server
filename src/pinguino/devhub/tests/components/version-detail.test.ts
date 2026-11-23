@@ -92,6 +92,10 @@ async function openActivity({
 const range = (from: number, to: number) =>
   Array.from({ length: to - from + 1 }, (_, i) => from + i);
 
+function submitReply(root: ShadowRoot) {
+  root.querySelector<HTMLFormElement>('form.reply')?.requestSubmit();
+}
+
 async function typeReply(el: VersionDetail, root: ShadowRoot, text: string) {
   const input = root.querySelector('.reply moz-input-text') as HTMLElement & {
     value: string;
@@ -152,7 +156,7 @@ describe('version-detail', () => {
     const input = await typeReply(el, root, '  Thanks!  ');
     expect(send?.hasAttribute('disabled')).toBe(false);
 
-    send?.click();
+    submitReply(root);
     await vi.waitFor(() =>
       expect(replyToVersion).toHaveBeenCalledWith('ad-blocker', 7, 'Thanks!'),
     );
@@ -172,7 +176,7 @@ describe('version-detail', () => {
     const scrollToStart = vi.spyOn(list, 'scrollToStart');
 
     await typeReply(el, root, 'Thanks!');
-    root.querySelector<HTMLElement>('.reply moz-button')?.click();
+    submitReply(root);
 
     await vi.waitFor(() => expect(scrollToStart).toHaveBeenCalled());
   });

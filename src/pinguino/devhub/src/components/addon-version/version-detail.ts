@@ -676,16 +676,22 @@ export class VersionDetail extends SectionCard {
     return html`
       ${this.#activityList()}
       ${this.errorBar(reply.error)}
-      <div class="reply">
+      <form
+        class="reply"
+        @submit=${(e: SubmitEvent) => {
+          e.preventDefault();
+          this.#sendReply(v);
+        }}
+      >
         ${textField(reply, 'comments', '', undefined, 'Reply')}
         <moz-button
+          type="submit"
           variant="primary"
           icon-start="forward"
           icon-only="Send reply"
           ?disabled=${reply.saving || !reply.value('comments')?.trim()}
-          @click=${() => this.#sendReply(v)}
         ></moz-button>
-      </div>
+      </form>
     `;
   }
 
