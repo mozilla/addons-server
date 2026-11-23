@@ -1889,7 +1889,7 @@ psutil==7.2.2 \
     --hash=sha256:ed0cace939114f62738d808fdcecd4c869222507e266e574799e9c0faa17d486 \
     --hash=sha256:eed63d3b4d62449571547b60578c5b2c4bcccc5387148db46e0c2313dad0ee00 \
     --hash=sha256:fd04ef36b4a6d599bbdb225dd1d3f51e00105f6d48a28f006da7f9822f2606d8
-justhtml==3.16.0 \
-    --hash=sha256:600c95a6a9b766cffe50688a6335617fbcc33ef47f364317e92d6b8dd7a25ce9 \
-    --hash=sha256:b7d02cff6ad712bdb58e1ebbcca8b8402dea61d1b5f92ee3b44db6b0b58ca68e
+justhtml==3.17.1 \
+    --hash=sha256:6cd82e832562dc4e1bfaa4ec605ea7bbb3abd9d7862ad93e45b2d2972d3f3088 \
+    --hash=sha256:91f9840a44231cbf5af8fa420d5a8b80635c5d77b9c897a4b22a9c78b93d44e3
 -r yara-x.txt
