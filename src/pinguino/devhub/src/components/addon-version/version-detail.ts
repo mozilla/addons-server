@@ -65,7 +65,6 @@ const APP_NAMES: Record<string, string> = {
   android: 'Firefox for Android',
 };
 
-// TODO: Update
 const APP_ICONS: Record<string, TemplateResult> = {
   firefox: html`<moz-icon
       name=${'logo-firefox'}
@@ -531,14 +530,14 @@ export class VersionDetail extends SectionCard {
   }
 
   #source(v: Version) {
+    if (!this.#form.editing) {
+      return v.source ? html`<a href=${v.source}>Download source</a>` : null;
+    }
     if (v.is_source_editable === false) {
       return html`<moz-message-bar type="warning"
         >You cannot change attached sources because this version has been
         reviewed by Mozilla.</moz-message-bar
       >`;
-    }
-    if (!this.#form.editing) {
-      return v.source ? html`<a href=${v.source}>Download source</a>` : null;
     }
     if (this.source === null) {
       return html`<p class="muted">
