@@ -78,6 +78,9 @@ interface ApiAddon {
     caption?: Localized | null;
   }[];
   current_version?: Version | null;
+  latest_listed_version?: Version | null;
+  latest_unlisted_version?: Version | null;
+  latest_enterprise_version?: Version | null;
   channels: AddonDistribution[];
   submit_notification_warning?: Partial<
     Record<AddonDistribution, string | null>
@@ -164,7 +167,6 @@ export function mapAddon(a: ApiAddon): Addon {
     kind,
     icon: kind === 'theme' ? 'themes' : 'extension',
     status: resolveAddonStatus(a.status),
-    version: a.current_version?.version ?? '—',
     lastUpdated: formatDate(a.last_updated),
     visibility: resolveVisibility(a.is_disabled ?? false),
     canChangeVisibility: canChangeVisibility(a.status),
@@ -202,6 +204,9 @@ export function mapAddon(a: ApiAddon): Addon {
     },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
+    latestListedVersion: a.latest_listed_version ?? undefined,
+    latestUnlistedVersion: a.latest_unlisted_version ?? undefined,
+    latestEnterpriseVersion: a.latest_enterprise_version ?? undefined,
     currentVersion: a.current_version ?? undefined,
     submissionNotice: a.submit_notification_warning,
   };

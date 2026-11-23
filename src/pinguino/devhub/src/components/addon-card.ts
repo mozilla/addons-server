@@ -28,11 +28,11 @@ export class AddonCard extends LitElement {
       flex-direction: column;
       gap: var(--space-small);
     }
-    .top {
+    .middle {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: var(--space-small);
+      flex-grow: 1;
     }
     .kind {
       font-size: 0.75rem;
@@ -40,23 +40,28 @@ export class AddonCard extends LitElement {
     }
     .title {
       display: flex;
-      align-items: center;
-      gap: var(--space-xsmall);
+      gap: var(--space-small);
     }
     .name {
       margin: 0;
+      font-size: var(--font-size-large);
       font-weight: 600;
     }
     .logo {
       width: 32px;
       height: 32px;
+      padding: 12px;
+      background: var(--background-color-canvas);
       border-radius: var(--border-radius-small, 4px);
+    }
+    .version {
+      vertical-align: middle;
     }
     .meta {
       display: flex;
       align-items: center;
       gap: var(--space-xsmall);
-      font-size: 0.85rem;
+      font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
     }
     .tags {
@@ -65,56 +70,77 @@ export class AddonCard extends LitElement {
       gap: var(--space-xsmall);
       margin-bottom: auto;
     }
+    .divider {
+      width: 100%;
+      margin: 0;
+      border: none;
+      opacity: 70%;
+      border-top: 1px solid var(--background-color-information);
+    }
   `;
 
   render() {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
+    const versionProps = [
+      'currentVersion', 'latestUnlistedVersion', 'latestEnterpriseVersion'
+    ];
+    let firstChannelDisplayed;
+    let remainingChannels;
     return html`
       <moz-card appearance="outline">
         <div class="body">
-          <div class="top">
-          <span class="kind">${isTheme ? 'Theme' : 'Extension'}</span>
+        <div class="title">
+          ${
+            a.iconUrl
+              ? html`<img class="logo" src=${a.iconUrl} alt="" />`
+              : undefined
+          }
+          <div class="middle">
+            <h2 class="name">${a.name}</h2>
+            <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
+          </div>
           <moz-button size="small" href="${BASE}/addon/${a.slug}">
             Manage
           </moz-button>
         </div>
 
-        ${
-          isTheme
-            ? html`
-              <h2 class="name">${a.name}</h2>
-              <theme-preview .addon=${a}></theme-preview>
-            `
-            : html`
-              <div class="title">
-                ${
-                  a.iconUrl
-                    ? html`<img class="logo" src=${a.iconUrl} alt="" />`
-                    : undefined
-                }
-                <h2 class="name">${a.name}</h2>
-              </div>
-            `
+        ${versionProps.map((propertyName) => {
+            const version = a[propertyName];
+            if (version && firstChannelDisplayed === undefined) {
+              firstChannelDisplayed = version.channel;
+              remainingChannels = a.channels.filter((channel) => channel !== version.channel);
+              return html`<div>
+                <span class="version">Version: ${version.version}</span>
+                <distribution-badge distribution=${version.channel}></distribution-badge>
+              </div>`;
+            }
+          })
         }
 
-        <div class="meta">
-          <span>Status</span>
-          <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
-        </div>
-        <div class="meta">Current version: ${a.version}</div>
-        <div class="meta">Last updated: ${a.lastUpdated}</div>
+        ${a.latestListedVersion && a.latestListedVersion.version != a.currentVersion?.version
+        ? html`<hr class="divider"><div class="meta">
+          Upcoming Version: ${a.latestListedVersion.version}
+        </div>`
+        : undefined
+        }
 
-        <div class="tags">
-          <visibility-badge visibility=${a.visibility}></visibility-badge>
-          ${a.channels?.map(
-            (channel) =>
-              html`<distribution-badge
+        ${remainingChannels.length
+        ? html`<hr class="divider"><div class="meta">
+          Other Versions: ${remainingChannels?.map(
+            (channel) => html`<distribution-badge
                 distribution=${channel}
               ></distribution-badge>`,
           )}
-        </div>
-        </div>
+          </div>`
+        : undefined
+        }
+
+        ${
+          isTheme
+            ? html`<hr class="divider"><theme-preview .addon=${a}></theme-preview>`
+            : undefined
+        }
       </moz-card>
     `;
   }
