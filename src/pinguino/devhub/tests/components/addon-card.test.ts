@@ -39,12 +39,104 @@ describe('addon-card', () => {
     expect(root.querySelector('theme-preview')).toBeNull();
     expect(root.querySelector('.name')?.textContent?.trim()).toBe('Ad Blocker');
 
+    // All distribution badges
     expect(
       [...root.querySelectorAll('distribution-badge')].map((b) =>
         b.getAttribute('distribution'),
       ),
     ).toEqual(['listed', 'unlisted', 'enterprise']);
+
+    // Current version is present so listed is separate
+    expect(
+      root
+        .querySelector('.version + distribution-badge')
+        ?.getAttribute('distribution'),
+    ).toBe('listed');
+    expect(
+      [...root.querySelectorAll('.meta distribution-badge')].map((b) =>
+        b.getAttribute('distribution'),
+      ),
+    ).toEqual(['unlisted', 'enterprise']);
   });
+
+  it('renders current version number and distribution badge', async () => {
+    const root = await card({});
+
+    expect(root.querySelector('.version')?.textContent?.trim()).toBe(
+      'Version: 1.0.0',
+    );
+    expect(
+      root
+        .querySelector('.version + distribution-badge')
+        ?.getAttribute('distribution'),
+    ).toBe('listed');
+    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
+  });
+
+  it('renders current version number with upcoming if different', async () => {
+    const root = await card({
+      latestListedVersion: { ...DEFAULT_VERSION, version: '2.0.0' },
+    });
+
+    expect(root.querySelector('.version')?.textContent?.trim()).toBe(
+      'Version: 1.0.0',
+    );
+    expect(
+      root
+        .querySelector('.version + distribution-badge')
+        ?.getAttribute('distribution'),
+    ).toBe('listed');
+    expect(root.querySelector('.upcoming')?.textContent?.trim()).toBe(
+      'Upcoming Version: 2.0.0',
+    );
+    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
+  });
+
+  it('renders latest unlisted version number if no current version', async () => {
+    const root = await card({
+      channels: ['unlisted'],
+      currentVersion: null,
+      latestUnlistedVersion: {
+        ...DEFAULT_VERSION,
+        channel: 'unlisted',
+        version: '1.42',
+      },
+    });
+
+    expect(root.querySelector('.version')?.textContent?.trim()).toBe(
+      'Version: 1.42',
+    );
+    expect(
+      root
+        .querySelector('.version + distribution-badge')
+        .getAttribute('distribution'),
+    ).toBe('unlisted');
+    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
+  });
+
+  it('renders latest enterprise version number if no other channel', async () => {
+    const root = await card({
+      channels: ['enterprise'],
+      currentVersion: null,
+      latestUnlistedVersion: {
+        ...DEFAULT_VERSION,
+        channel: 'enterprise',
+        version: '1.54',
+      },
+    });
+
+    expect(root.querySelector('.version')?.textContent?.trim()).toBe(
+      'Version: 1.54',
+    );
+    expect(
+      root
+        .querySelector('.version + distribution-badge')
+        .getAttribute('distribution'),
+    ).toBe('enterprise');
+    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
+  });
+
+  it('renders remaining distribution badges', async () => {});
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
     const root = await card({

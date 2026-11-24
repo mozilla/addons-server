@@ -84,68 +84,70 @@ export class AddonCard extends LitElement {
     const isTheme = a.kind === 'theme';
     let firstChannelDisplayed: string | undefined;
     let remainingChannels: string[] | undefined;
+
     return html`
       <moz-card appearance="outline">
         <div class="body">
-        <div class="title">
+          <div class="title">
+            ${
+              a.iconUrl
+                ? html`<img class="logo" src=${a.iconUrl} alt="" />`
+                : nothing
+            }
+            <div class="middle">
+              <h2 class="name">${a.name}</h2>
+              <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
+            </div>
+            <moz-button size="small" href="${BASE}/addon/${a.slug}">
+              Manage
+            </moz-button>
+          </div>
+
+          ${[
+            a.currentVersion,
+            a.latestUnlistedVersion,
+            a.latestEnterpriseVersion,
+          ].map((version) => {
+            if (version && firstChannelDisplayed === undefined) {
+              firstChannelDisplayed = version.channel;
+              remainingChannels = a.channels?.filter(
+                (channel) => channel !== version.channel,
+              );
+              return html`<div>
+                  <span class="version">Version: ${version.version}</span>
+                  <distribution-badge distribution=${version.channel}></distribution-badge>
+                </div>`;
+            }
+            return null;
+          })}
+
           ${
-            a.iconUrl
-              ? html`<img class="logo" src=${a.iconUrl} alt="" />`
+            a.latestListedVersion &&
+            a.latestListedVersion.version !== a.currentVersion?.version
+              ? html`<hr class="divider"><div class="meta upcoming">
+            Upcoming Version: ${a.latestListedVersion.version}
+          </div>`
               : nothing
           }
-          <div class="middle">
-            <h2 class="name">${a.name}</h2>
-            <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
-          </div>
-          <moz-button size="small" href="${BASE}/addon/${a.slug}">
-            Manage
-          </moz-button>
-        </div>
 
-        ${[
-          a.currentVersion,
-          a.latestUnlistedVersion,
-          a.latestEnterpriseVersion,
-        ].map((version) => {
-          if (version && firstChannelDisplayed === undefined) {
-            firstChannelDisplayed = version.channel;
-            remainingChannels = a.channels?.filter(
-              (channel) => channel !== version.channel,
-            );
-            return html`<div>
-                <span class="version">Version: ${version.version}</span>
-                <distribution-badge distribution=${version.channel}></distribution-badge>
-              </div>`;
+          ${
+            remainingChannels?.length
+              ? html`<hr class="divider"><div class="meta">
+            Other Versions: ${remainingChannels?.map(
+              (channel) => html`<distribution-badge
+                  distribution=${channel}
+                ></distribution-badge>`,
+            )}
+            </div>`
+              : nothing
           }
-          return null;
-        })}
 
-        ${
-          a.latestListedVersion &&
-          a.latestListedVersion.version !== a.currentVersion?.version
-            ? html`<hr class="divider"><div class="meta">
-          Upcoming Version: ${a.latestListedVersion.version}
-        </div>`
-            : nothing
-        }
-
-        ${
-          remainingChannels?.length
-            ? html`<hr class="divider"><div class="meta">
-          Other Versions: ${remainingChannels?.map(
-            (channel) => html`<distribution-badge
-                distribution=${channel}
-              ></distribution-badge>`,
-          )}
-          </div>`
-            : nothing
-        }
-
-        ${
-          isTheme
-            ? html`<hr class="divider"><theme-preview .addon=${a}></theme-preview>`
-            : nothing
-        }
+          ${
+            isTheme
+              ? html`<hr class="divider"><theme-preview .addon=${a}></theme-preview>`
+              : nothing
+          }
+        </div>
       </moz-card>
     `;
   }
