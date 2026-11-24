@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { addonQuery } from '../../../data';
 import { createRoutes } from '../../../utils/helper';
 
-import '../../../components/coming-soon';
+import '../../../components/addon-version/version-detail';
 import '../../../components/error-page';
 import './submit/main';
 
@@ -19,7 +19,14 @@ class VersionRoutes extends LitElement {
       render: () =>
         html`<version-submit-routes .slug=${this.slug}></version-submit-routes>`,
     },
-    { path: ':versionId', render: () => html`<coming-soon></coming-soon>` },
+    {
+      path: ':versionId',
+      render: ({ versionId }) =>
+        html`<version-detail
+          .addon=${this.#addon().data}
+          .versionId=${Number(versionId)}
+        ></version-detail>`,
+    },
   ]);
 
   render() {

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { AddonVersion } from '../../src/components/addon-version/addon-version';
 import '../../src/components/addon-version/addon-version';
+import type { MozPagination } from '@mozilla/lit-web-components';
 import type { Addon, Version } from '../../src/data';
 import {
   ADDON_STATUS,
@@ -165,7 +166,7 @@ describe('addon-version', () => {
 
   it('hides pagination when every version fits on one page', async () => {
     const root = await mountVersions({}, [DEFAULT_VERSION]);
-    const pagination = root.querySelector('app-pagination');
+    const pagination = root.querySelector<MozPagination>('moz-pagination');
     await pagination?.updateComplete;
     expect(pagination?.shadowRoot?.querySelector('nav')).toBeUndefined();
   });
@@ -175,7 +176,7 @@ describe('addon-version', () => {
       page: 2,
       total: 120,
     });
-    const pagination = root.querySelector('app-pagination');
+    const pagination = root.querySelector<MozPagination>('moz-pagination');
     expect(pagination?.page).toBe(2);
     expect(pagination?.total).toBe(120);
     expect(pagination?.pageSize).toBe(VERSION_PAGE_SIZE);

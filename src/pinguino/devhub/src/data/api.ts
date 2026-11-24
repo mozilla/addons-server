@@ -583,6 +583,7 @@ export const ACTIVITY_PAGE_SIZE = 20;
 export async function fetchActivity(
   slug: string | undefined,
   page: number,
+  version?: number,
 ): Promise<ActivityPage> {
   const params = new URLSearchParams({
     lang: 'en-US',
@@ -591,6 +592,9 @@ export async function fetchActivity(
   });
   if (slug) {
     params.set('addon', slug);
+  }
+  if (version) {
+    params.set('version', String(version));
   }
   const data = await apiFetch<Paginated<ApiActivity>>(`/activity/?${params}`);
   return {
@@ -689,6 +693,26 @@ export async function patchVersion(
 }
 
 export const VERSION_PAGE_SIZE = 20;
+
+export async function deleteVersion(slug: string, id: number): Promise<void> {
+  await apiFetch(versionPath(slug, id), { method: 'DELETE' });
+}
+
+export async function postReviewNote(
+  slug: string,
+  id: number,
+  comments: string,
+): Promise<void> {
+  await apiFetch(`${versionPath(slug, id)}reviewnotes/`, {
+    method: 'POST',
+    body: { comments },
+  });
+}
+
+export async function fetchAppVersions(app: string): Promise<string[]> {
+  const data = await apiFetch<{ versions: string[] }>(`/applications/${app}/`);
+  return data.versions;
+}
 
 export async function fetchVersions(
   slug: string,

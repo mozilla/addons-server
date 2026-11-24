@@ -4,7 +4,12 @@ import { customElement } from 'lit/decorators.js';
 import { BASE, LOCALE } from '../base';
 import { type Addon, navAddonsQuery, profileQuery } from '../data';
 import { panelPointer } from '../foundations/panel';
-import { ADDONS_BLOG, ADDONS_FORUM, extensionWorkshop } from '../links';
+import {
+  ADDONS_BLOG,
+  ADDONS_FORUM,
+  extensionWorkshop,
+  PREVIEW_BLOG_POST,
+} from '../links';
 import { switchBackPath } from '../switch-back';
 import './devhub-account-menu';
 
@@ -112,6 +117,18 @@ export class DevhubHeader extends LitElement {
         gap: var(--space-large);
         padding-block: var(--space-large);
         padding-inline: var(--space-large) var(--space-xlarge);
+      }
+      .start {
+        display: flex;
+        align-items: center;
+        gap: var(--space-small);
+      }
+      .preview {
+        display: flex;
+      }
+      .preview moz-badge {
+        font-size: var(--font-size-small);
+        block-size: var(--icon-size-medium);
       }
       .brand {
         display: flex;
@@ -321,10 +338,15 @@ export class DevhubHeader extends LitElement {
     const menus = profile.data ? [this.#myAddons(), ...MENUS] : MENUS;
     return html`
       <div class="bar">
-        <a class="brand" href="${BASE}">
-          <moz-icon name="logo-firefox"></moz-icon>
-          Add-ons
-        </a>
+        <div class="start">
+          <a class="brand" href="${BASE}">
+            <moz-icon name="logo-firefox"></moz-icon>
+            Add-ons
+          </a>
+          <a class="preview" href="${PREVIEW_BLOG_POST}" target="external">
+            <moz-badge type="new">Preview</moz-badge>
+          </a>
+        </div>
         <nav class="full">
           ${menus.map((menu) => this.#menu(menu))} ${this.#switchBackLink()}
         </nav>
