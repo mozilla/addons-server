@@ -1,6 +1,7 @@
 import {
   type BaseRouteConfig,
   type RouteConfig,
+  Router,
   Routes,
 } from '@lit-labs/router';
 import { html, type ReactiveControllerHost } from 'lit';
@@ -23,6 +24,23 @@ export const notFoundRoute: BaseRouteConfig = {
   render: () => html`<error-page></error-page>`,
 };
 
+// Django retries a 404 without its trailing slash (RemoveSlashMiddleware); we
+// route client-side, where nothing retries, so the patterns accept it instead.
+// Wildcards already absorb whatever follows, and rewriting one to match the
+// slash would change which route wins for the slashless URL.
+function optionalTrailingSlash(path: string): string {
+  if (path === '' || path.endsWith('*') || path.endsWith('{/}?')) return path;
+  return `${path.replace(/\/$/, '')}{/}?`;
+}
+
+function tolerant(routes: RouteConfig[]): RouteConfig[] {
+  return routes.map((route) =>
+    'path' in route
+      ? { ...route, path: optionalTrailingSlash(route.path) }
+      : route,
+  );
+}
+
 // Routers nest: once the root hands the unmatched tail to a child, its own
 // fallback can't fire. And a child without one doesn't merely skip the error
 // page — goto() throws before it assigns the current route, so the outlet
@@ -32,7 +50,23 @@ export function createRoutes(
   routes: RouteConfig[],
   options: { fallback?: BaseRouteConfig } = {},
 ) {
-  return new Routes(host, routes, { fallback: notFoundRoute, ...options });
+  return new Routes(host, tolerant(routes), {
+    fallback: notFoundRoute,
+    ...options,
+  });
+}
+
+// The root router. Same pattern handling; Router adds the global click and
+// popstate listeners that drive every nested Routes below it.
+export function createRouter(
+  host: ReactiveControllerHost & HTMLElement,
+  routes: RouteConfig[],
+  options: { fallback?: BaseRouteConfig } = {},
+) {
+  return new Router(host, tolerant(routes), {
+    fallback: notFoundRoute,
+    ...options,
+  });
 }
 
 export function emit(el: HTMLElement, type: string, detail: unknown) {
