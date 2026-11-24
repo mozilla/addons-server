@@ -82,13 +82,8 @@ export class AddonCard extends LitElement {
   render() {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
-    const versionProps = [
-      'currentVersion',
-      'latestUnlistedVersion',
-      'latestEnterpriseVersion',
-    ];
     let firstChannelDisplayed: string | undefined;
-    let remainingChannels: string[];
+    let remainingChannels: string[] | undefined;
     return html`
       <moz-card appearance="outline">
         <div class="body">
@@ -107,11 +102,14 @@ export class AddonCard extends LitElement {
           </moz-button>
         </div>
 
-        ${versionProps.map((propertyName) => {
-          const version = a[propertyName];
+        ${[
+          a.currentVersion,
+          a.latestUnlistedVersion,
+          a.latestEnterpriseVersion,
+        ].map((version) => {
           if (version && firstChannelDisplayed === undefined) {
             firstChannelDisplayed = version.channel;
-            remainingChannels = a.channels.filter(
+            remainingChannels = a.channels?.filter(
               (channel) => channel !== version.channel,
             );
             return html`<div>
@@ -132,7 +130,7 @@ export class AddonCard extends LitElement {
         }
 
         ${
-          remainingChannels.length
+          remainingChannels?.length
             ? html`<hr class="divider"><div class="meta">
           Other Versions: ${remainingChannels?.map(
             (channel) => html`<distribution-badge
