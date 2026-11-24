@@ -25,7 +25,7 @@ export const MAX_UPLOAD_SIZE = 200 * 1000 * 1000;
 // Mirrors VALID_SOURCE_EXTENSIONS in versions/models.py.
 export const SOURCE_EXTENSIONS = ['.zip', '.tar.gz', '.tgz', '.tar.bz2'];
 
-export const PACKAGE_EXTENSIONS = ['.zip', '.xpi'];
+export const PACKAGE_EXTENSIONS = ['.zip', '.xpi', '.crx'];
 
 export interface Mount {
   /** The app's base path, locale prefix included, without a trailing slash. */
