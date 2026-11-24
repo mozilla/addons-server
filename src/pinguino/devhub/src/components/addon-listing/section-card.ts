@@ -9,6 +9,7 @@ import {
 import { property, state } from 'lit/decorators.js';
 import type { Addon } from '../../data';
 import { routeApiError } from '../../foundations/form';
+import { extensionWorkshop } from '../../links';
 // Styles live in a sibling .css file; `?inline` brings them in as a string that
 // unsafeCSS adopts (the project's convention). One CSSResult instance is shared
 // across every section card and the shell.
@@ -33,6 +34,10 @@ export abstract class SectionCard extends LitElement {
   async save(): Promise<boolean> {
     return true;
   }
+
+  protected getMarkdownSupportLink = () => {
+    return html`<a href=${extensionWorkshop('/documentation/develop/create-an-appealing-listing', '#make-use-of-markdown')}>Some markdown supported.</a>`;
+  };
 
   protected frame(id: SectionId, contents: TemplateResult) {
     return this.embedded

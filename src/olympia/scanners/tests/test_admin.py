@@ -392,16 +392,19 @@ class TestScannerResultAdmin(TestCase):
             ('Show counts', '?_facets=True'),
             ('All', '?'),
             ('customs (legacy)', '?scanner=1'),
-            ('wat', '?scanner=2'),
-            ('yara', '?scanner=3'),
-            ('mad', '?scanner=4'),
+            ('wat (legacy)', '?scanner=2'),
+            ('yara (legacy)', '?scanner=3'),
+            ('mad (legacy)', '?scanner=4'),
             ('narc', '?scanner=5'),
             ('some-webhook', f'?scanner=6_{webhook.id}'),
             ('All', '?has_matched_rules=all'),
             (' With matched rules only', '?'),
             ('All', '?'),
-            ('bar (yara)', f'?matched_rules__id__exact={rule_bar.pk}'),
-            ('Pretty Hello (yara)', f'?matched_rules__id__exact={rule_hello.pk}'),
+            ('bar (yara (legacy))', f'?matched_rules__id__exact={rule_bar.pk}'),
+            (
+                'Pretty Hello (yara (legacy))',
+                f'?matched_rules__id__exact={rule_hello.pk}',
+            ),
             ('foo (narc)', f'?matched_rules__id__exact={rule_foo.pk}'),
             (
                 f'{ANNOTATIONS_RULE_NAME} (webhook)',
@@ -424,8 +427,8 @@ class TestScannerResultAdmin(TestCase):
 
         # Exclude rules is a form, needs a separate check.
         expected = [
-            ('bar (yara)', str(rule_bar.pk)),
-            ('Pretty Hello (yara)', str(rule_hello.pk)),
+            ('bar (yara (legacy))', str(rule_bar.pk)),
+            ('Pretty Hello (yara (legacy))', str(rule_hello.pk)),
             ('foo (narc)', str(rule_foo.pk)),
             (f'{ANNOTATIONS_RULE_NAME} (webhook)', str(rule_annotations.pk)),
             (
@@ -539,7 +542,7 @@ class TestScannerResultAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody > tr').length == 1
         assert doc('.field-formatted_matched_rules').text() == (
-            'bar (yara), hello (yara)'
+            'bar (yara (legacy)), hello (yara (legacy))'
         )
 
     def test_list_filter_results(self):
@@ -843,7 +846,7 @@ class TestScannerResultAdmin(TestCase):
 
     def test_formatted_scanner(self):
         result = ScannerResult(scanner=YARA)
-        assert self.admin.formatted_scanner(result) == 'yara'
+        assert self.admin.formatted_scanner(result) == 'yara (legacy)'
 
         event = ScannerWebhookEvent.objects.create(
             event=WEBHOOK_DURING_VALIDATION,
@@ -959,7 +962,7 @@ class TestScannerRuleAdmin(TestCase):
         select = pq(response.content)('#id_scanner')
         assert [pq(opt).text() for opt in select.children()] == [
             '---------',
-            'yara',
+            'yara (legacy)',
             'narc',
             'webhook',
         ]
@@ -2316,7 +2319,7 @@ class FormattedMatchedRulesWithFilesAndData(TestCase):
             result, display_scanner=True
         )
         doc = pq(content)
-        assert doc('.scanner-result').text() == 'yara'
+        assert doc('.scanner-result').text() == 'yara (legacy)'
         assert doc('.scanner-result a')[0].attrib['href'] == (
             '/en-US/admin/models/scanners/scannerresult/42/change/'
         )

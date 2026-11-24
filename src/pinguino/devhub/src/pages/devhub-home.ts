@@ -2,11 +2,12 @@ import type { IconName } from '@mozilla/lit-web-components';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import '../components/addon-card';
+import '../components/devhub-home-banner';
 import '../components/submit-card';
 import '../components/update-card';
 import { BASE } from '../base';
 import type { ActivityPage, AddonKind, AddonsQuery, Update } from '../data';
-import { activityInfiniteQuery, addonsQuery, profileQuery } from '../data';
+import { activityInfiniteQuery, addonsQuery } from '../data';
 import '../foundations/infinite-list';
 import { setPageTitle } from '../page-title';
 
@@ -34,7 +35,6 @@ const GROUPS: Record<AddonKind, Group> = {
 
 @customElement('devhub-home')
 export class DevhubHome extends LitElement {
-  #profile = profileQuery(this);
   #extensions = addonsQuery(this, 'extension');
   #themes = addonsQuery(this, 'theme');
   #updates = activityInfiniteQuery(this);
@@ -47,10 +47,6 @@ export class DevhubHome extends LitElement {
   static styles = css`
     :host {
       display: block;
-    }
-    moz-page-header {
-      display: block;
-      margin-block: var(--space-xxlarge);
     }
     .section {
       padding: var(--space-xlarge);
@@ -99,15 +95,8 @@ export class DevhubHome extends LitElement {
   `;
 
   render() {
-    const name = this.#profile().data?.name;
-    const heading = name
-      ? `Welcome to the Developer Hub, ${name}`
-      : 'Welcome to the Developer Hub.';
     return html`
-      <moz-page-header
-        heading=${heading}
-        description="Manage your Firefox add-ons, track reviews, and publish updates."
-      ></moz-page-header>
+      <devhub-home-banner></devhub-home-banner>
 
       <app-grid columns-md="1" gap="xlarge">
         <div style="grid-column: span 7">
