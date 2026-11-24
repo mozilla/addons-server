@@ -1,7 +1,7 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
-import { type Addon, resolveListingState } from '../data';
+import { type Addon, resolveListingState, type Version } from '../data';
 import '../foundations/badges';
 import './addon-actions-menu';
 
@@ -17,6 +17,7 @@ function hostOf(url: string): string {
 @customElement('addon-manage-header')
 export class AddonManageHeader extends LitElement {
   @property({ attribute: false }) addon!: Addon;
+  @property({ attribute: false }) version?: Version;
 
   static styles = css`
     :host {
@@ -120,12 +121,15 @@ export class AddonManageHeader extends LitElement {
   }
 
   render() {
-    const a = this.addon;
+    const { addon: a, version: v } = this;
     const state = resolveListingState(a.status, a.visibility);
     return html`
       <moz-breadcrumb-group label="Breadcrumb">
         <moz-breadcrumb href="${BASE}/">Dashboard</moz-breadcrumb>
-        <moz-breadcrumb>${a.name}</moz-breadcrumb>
+        <moz-breadcrumb href=${v ? `${BASE}/addon/${a.slug}/versions` : nothing}
+          >${a.name}</moz-breadcrumb
+        >
+        ${v && html`<moz-breadcrumb>Version ${v.version}</moz-breadcrumb>`}
       </moz-breadcrumb-group>
       <div class="bar">
         ${

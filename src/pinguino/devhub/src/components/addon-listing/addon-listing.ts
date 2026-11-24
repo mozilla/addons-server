@@ -50,8 +50,8 @@ export class AddonListing extends LitElement {
     const a = this.addon;
     return html`
       <div class="layout">
+        <h3 class="nav-heading">Details</h3>
         <moz-page-nav .current=${this.#activeSection} label="Listing sections">
-          <h3 slot="heading" style="margin:0">Details</h3>
           ${SECTIONS.map(
             (s) => html`<moz-page-nav-button
               value=${s.id}

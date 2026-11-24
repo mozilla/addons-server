@@ -4,11 +4,10 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE } from '../base';
 import type { Update } from '../data';
 import '../foundations/badges';
-import { sanitizeHTML } from '../utils/sanitizeHTML';
+import { ACTIVITY_TAGS, sanitizeHTML } from '../utils/sanitizeHTML';
 
 // The activity title/message are HTML from the API; the only markup we expect
 // (and allow) is the link to the add-on.
-const ALLOWED_TAGS = ['a'];
 
 @customElement('update-card')
 export class UpdateCard extends LitElement {
@@ -93,7 +92,7 @@ export class UpdateCard extends LitElement {
               type=${status?.badge ?? 'information'}
             ></moz-status-dot>
             <span>
-              <p class="headline">${unsafeHTML(sanitizeHTML(u.title, ALLOWED_TAGS))}</p>
+              <p class="headline">${unsafeHTML(sanitizeHTML(u.title, ACTIVITY_TAGS))}</p>
               ${
                 u.addonName
                   ? html`<p class="addon-name">${u.addonName}</p>`
@@ -103,7 +102,7 @@ export class UpdateCard extends LitElement {
           </span>
           <moz-button size="small" href=${this.#viewHref()}>View</moz-button>
         </div>
-        <p class="message">${unsafeHTML(sanitizeHTML(u.message, ALLOWED_TAGS))}</p>
+        <p class="message">${unsafeHTML(sanitizeHTML(u.message, ACTIVITY_TAGS))}</p>
         <div class="foot">
           <span>${u.user ? `${u.date} by ${u.user}` : u.date}</span>
           ${u.version.length ? html`<span>Version: ${u.version}</span>` : nothing}

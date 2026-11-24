@@ -1,12 +1,20 @@
-import { html, LitElement, nothing, type TemplateResult, unsafeCSS } from 'lit';
+import {
+  type CSSResultGroup,
+  html,
+  LitElement,
+  nothing,
+  type TemplateResult,
+  unsafeCSS,
+} from 'lit';
 import { property, state } from 'lit/decorators.js';
 import type { Addon } from '../../data';
 import { routeApiError } from '../../foundations/form';
+import { extensionWorkshop } from '../../links';
 // Styles live in a sibling .css file; `?inline` brings them in as a string that
 // unsafeCSS adopts (the project's convention). One CSSResult instance is shared
 // across every section card and the shell.
 import stylesText from './addon-listing.css?inline';
-import { SECTION, type SectionId } from './sections';
+import { SECTION, type SectionId, type SectionInfo } from './sections';
 
 export const sharedStyles = unsafeCSS(stylesText);
 
@@ -21,11 +29,15 @@ export abstract class SectionCard extends LitElement {
   @state() protected saving = false;
   @state() protected error = '';
 
-  static styles = sharedStyles;
+  static styles: CSSResultGroup = sharedStyles;
 
   async save(): Promise<boolean> {
     return true;
   }
+
+  protected getMarkdownSupportLink = () => {
+    return html`<a href=${extensionWorkshop('/documentation/develop/create-an-appealing-listing', '#make-use-of-markdown')}>Some markdown supported.</a>`;
+  };
 
   protected frame(id: SectionId, contents: TemplateResult) {
     return this.embedded
@@ -38,15 +50,19 @@ export abstract class SectionCard extends LitElement {
   // Renders the heading for a section's card from its SECTION metadata.
   // `actions` overrides the default (inert) Edit button; cards pass their Edit
   // or Save/Cancel controls.
-  protected cardHead(id: SectionId, actions?: TemplateResult) {
-    const { title, description, icon } = SECTION[id];
+  protected cardHead(
+    id: SectionId | Partial<Omit<SectionInfo, 'id'>>,
+    actions?: TemplateResult,
+  ) {
+    const { title, description, icon } =
+      typeof id === 'string' ? SECTION[id] : id;
     return html`<div slot="heading" class="card-head">
       <div>
         <span class="card-title">
-          <moz-icon name=${icon}></moz-icon>
+          ${icon ? html`<moz-icon name=${icon}></moz-icon>` : nothing}
           <h2>${title}</h2>
         </span>
-        <p class="sub">${description}</p>
+        ${description ? html`<p class="sub">${description}</p>` : nothing}
       </div>
       ${
         this.editOnly || this.embedded

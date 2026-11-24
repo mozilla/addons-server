@@ -621,6 +621,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string|null license.slug: The license :ref:`slug <license-list>`, for non-custom (predefined) licenses.
     :>json object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
+    :>json boolean is_source_editable: Whether the source for this version can still be changed. This field is only present for authenticated users, for their own add-ons.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string|null source: The (absolute) URL to download the submitted source for this version. This field is only present for authenticated users, for their own add-ons.
     :>json string version: The version number string for the version.

@@ -1,11 +1,11 @@
 import 'urlpattern-polyfill';
 
 import type { LitElement } from 'lit';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { queryClient, queryKeys } from '../../../src/data';
 import '../../../src/pages/addon/main';
 import '../../../src/pages/addon/versions/submit/main';
-import { mount, settle } from '../../helpers/fixture';
+import { mount, seedAddons, settle } from '../../helpers/fixture';
 
 function setAgreement(accepted: boolean) {
   queryClient.setQueryData(queryKeys.agreement, {
@@ -146,5 +146,23 @@ describe('version-submit-routes', () => {
     await settle(el);
     expect(el.shadowRoot?.querySelector('devhub-agreement')).toBeNull();
     expect(el.shadowRoot?.querySelector('addon-submission')).not.toBeNull();
+  });
+});
+
+describe('version-routes', () => {
+  it('shows the error page when the API has no such add-on', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => ({ ok: false, status: 404, json: async () => ({}) })),
+    );
+    seedAddons([]);
+    const el = await mount<LitElement & { slug: string }>('version-routes', {
+      slug: 'unknown',
+    });
+
+    await vi.waitFor(async () => {
+      await settle(el);
+      expect(el.shadowRoot?.querySelector('error-page')).not.toBeNull();
+    });
   });
 });

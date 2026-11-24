@@ -4,10 +4,8 @@
 
 import {
   createInfiniteQueryController,
-  createQueriesController,
   createQueryController,
   type InfiniteData,
-  type QueryObserverResult,
 } from '@tanstack/lit-query';
 import type { ReactiveControllerHost } from 'lit';
 import { LOCALE } from '../base';
@@ -18,15 +16,18 @@ import {
   deleteAuthor,
   deletePreview,
   deleteSession,
+  deleteVersion,
   fetchActivity,
   fetchAddon,
   fetchAddonSource,
   fetchAddons,
   fetchAgreement,
+  fetchAppVersions,
   fetchAuthors,
   fetchCategories,
   fetchEulaPolicy,
   fetchLatestVersion,
+  fetchNavAddons,
   fetchPendingAuthors,
   fetchProfile,
   fetchSiteStatus,
@@ -41,10 +42,12 @@ import {
   patchVersionLicense,
   postAddon,
   postAgreement,
+  postReviewNote,
   postUpload,
   postVersion,
   uploadIcon,
 } from './api';
+import { errorStatus } from './http';
 import { isAddonOwner } from './permissions';
 import { queryClient } from './query-client';
 import type { AddonVisibility } from './statuses';
@@ -61,35 +64,45 @@ import type {
   EulaPolicyEdit,
   FileUpload,
   Version,
+  VersionEdit,
   VersionLicenseEdit,
 } from './types';
 
 // Keys identify cache entries. Every add-on entry hangs off the `addons`
-// prefix, so invalidating that covers both kind lists at once; the lists and a
-// single add-on share their keys, so navigating to a detail view reuses the
-// cache rather than making a new request.
+// prefix, so invalidating that covers both kind lists and any single add-on we
+// fetched on its own.
 export const queryKeys = {
   profile: ['profile'] as const,
   siteStatus: ['site-status'] as const,
   addons: ['addons'] as const,
   addonList: (kind: AddonKind) => ['addons', 'list', kind] as const,
+  addon: (slug: string) => ['addons', 'detail', slug] as const,
+  addonNav: (limit: number) => ['addons', 'nav', limit] as const,
   agreement: ['agreement'] as const,
   categories: ['categories'] as const,
   upload: (uuid: string) => ['upload', uuid] as const,
   version: (slug: string, id: number) => ['version', slug, id] as const,
   versions: (slug: string) => ['versions', slug] as const,
   latestVersion: (slug: string) => ['latest-version', slug] as const,
+  appVersions: (app: string | undefined) => ['app-versions', app] as const,
 };
 
-// Keyed by add-on and page; a missing slug (the all-add-ons feed) normalises to
+// Keyed by add-on/version and page; a missing slug (the all-add-ons feed) normalises to
 // null so it stays a stable, distinct cache entry.
-const activityKey = (slug: string | undefined, page: number) =>
-  ['activity', slug ?? null, page] as const;
+const activityKey = (
+  slug: string | undefined,
+  page: number,
+  version?: number,
+) => ['activity', slug ?? null, version ?? null, page] as const;
 
 // The infinite (scroll-to-load) variant of the feed. Shares the 'activity'
 // prefix so one invalidate refreshes both the paged and infinite caches.
-const activityInfiniteKey = (slug: string | undefined) =>
-  ['activity', 'infinite', slug ?? null] as const;
+// A version-scoped feed nests under its add-on's key, so invalidating the
+// add-on's feed also refreshes its versions' feeds.
+const activityInfiniteKey = (slug: string | undefined, version?: number) =>
+  version
+    ? (['activity', 'infinite', slug ?? null, version] as const)
+    : (['activity', 'infinite', slug ?? null] as const);
 
 // The static category list rarely changes, so keep it for the session.
 export function categoriesQuery(host: ReactiveControllerHost) {
@@ -137,6 +150,9 @@ export function siteStatusQuery(
 
 const ADDON_KINDS: readonly AddonKind[] = ['extension', 'theme'];
 
+const retryServerErrors = (count: number, error: Error) =>
+  errorStatus(error) >= 500 && count < 1;
+
 // One list per kind, because the API pages extensions and themes together: ask
 // once and a developer with over a page of add-ons gets an arbitrary split of
 // the two, under a `count` covering only what came back.
@@ -161,53 +177,66 @@ export function addonsQuery(
 
 export type AddonsQuery = ReturnType<typeof addonsQuery>;
 
-// Both kind lists flattened, for callers that don't care which kind each one
-// is. Same keys as addonsQuery, so this shares the dashboard's cache entries
-// rather than fetching its own.
-export function allAddonsQuery(
+export function navAddonsQuery(
   host: ReactiveControllerHost,
+  limit: number,
   getEnabled: () => boolean = () => true,
 ) {
-  return createQueriesController(
+  return createQueryController(
     host,
     () => ({
-      queries: ADDON_KINDS.map((kind) => ({
-        queryKey: queryKeys.addonList(kind),
-        queryFn: () => fetchAddons(kind),
-        enabled: getEnabled(),
-      })),
-      combine: (results: QueryObserverResult<AddonPage>[]) => ({
-        data: results.flatMap((result) => result.data?.results ?? []),
-        isPending: results.some((result) => result.isPending),
-        isSuccess: results.every((result) => result.isSuccess),
-        isError: results.some((result) => result.isError),
-      }),
+      queryKey: queryKeys.addonNav(limit),
+      queryFn: () => fetchNavAddons(limit),
+      enabled: getEnabled(),
     }),
     queryClient,
   );
 }
 
-// One add-on, picked out of the cached lists by slug — no extra request when
-// arriving from the dashboard. Swap in a detail endpoint here when one exists.
-// A rename refetches the list before the URL catches up, so while the slug is
-// unchanged the add-on is still found by the GUID it last had, rather than
-// showing "not found" (and unmounting).
+// Read without an observer, so the manage page neither triggers the
+// dashboard's list requests nor waits on them.
+function addonFromLists(slug: string, uuid?: string) {
+  for (const kind of ADDON_KINDS) {
+    const state = queryClient.getQueryState<AddonPage>(
+      queryKeys.addonList(kind),
+    );
+    const addon = state?.data?.results.find(
+      (a) => a.slug === slug || (uuid !== undefined && a.uuid === uuid),
+    );
+    if (addon) return { addon, updatedAt: state?.dataUpdatedAt };
+  }
+}
+
+// Those lists are only one page deep, so a miss means fetching the add-on
+// itself rather than calling it missing.
 export function addonQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
 ) {
-  const addons = allAddonsQuery(host, () => Boolean(getSlug()));
+  // A rename refetches the list before the URL catches up, so until it does
+  // the add-on is found by the GUID it last had rather than looking deleted.
   let seen: { slug: string; uuid?: string } | undefined;
-  return () => {
-    const { data, isPending, isSuccess, isError } = addons();
-    const slug = getSlug();
-    const uuid = seen?.slug === slug ? seen.uuid : undefined;
-    const addon =
-      data.find((a) => a.slug === slug) ??
-      (uuid ? data.find((a) => a.uuid === uuid) : undefined);
-    if (addon) seen = { slug, uuid: addon.uuid };
-    return { data: addon, isPending, isSuccess, isError };
-  };
+  return createQueryController(
+    host,
+    () => {
+      const slug = getSlug();
+      const seed = addonFromLists(
+        slug,
+        seen?.slug === slug ? seen.uuid : undefined,
+      );
+      if (seed) seen = { slug, uuid: seed.addon.uuid };
+      return {
+        queryKey: queryKeys.addon(slug),
+        queryFn: () => fetchAddon(slug),
+        enabled: Boolean(slug),
+        // Dated to the list fetch, so a seed ages with its source.
+        initialData: seed?.addon,
+        initialDataUpdatedAt: seed?.updatedAt,
+        retry: retryServerErrors,
+      };
+    },
+    queryClient,
+  );
 }
 
 export async function getAddon(slug: string) {
@@ -219,7 +248,18 @@ export async function getAddon(slug: string) {
       }),
     ),
   );
-  return pages.flatMap((page) => page.results).find((a) => a.slug === slug);
+  const listed = pages
+    .flatMap((page) => page.results)
+    .find((a) => a.slug === slug);
+  if (listed) return listed;
+  // Beyond the first page of the lists, only the API can say it doesn't exist.
+  return await queryClient
+    .query({
+      queryKey: queryKeys.addon(slug),
+      queryFn: () => fetchAddon(slug),
+      retry: retryServerErrors,
+    })
+    .catch(() => undefined);
 }
 
 export function themePreviewQuery(
@@ -269,6 +309,7 @@ export async function setAddonVisibility(
 // server's own list still replaces ours.
 export async function removeAddon(slug: string) {
   await deleteAddon(slug);
+  queryClient.removeQueries({ queryKey: queryKeys.addon(slug) });
   for (const kind of ADDON_KINDS) {
     queryClient.setQueryData(queryKeys.addonList(kind), (page?: AddonPage) => {
       if (!page) return page;
@@ -369,6 +410,21 @@ export function getVersions(slug: string) {
     queryKey: queryKeys.versions(slug),
     queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US'),
   });
+}
+
+// `loaded` is one page at the API's default of 25, so a longer history can
+// deep-link to a version past it — fetch that one rather than calling it gone.
+export async function getVersion(slug: string, id: number, loaded: Version[]) {
+  return (
+    loaded.find((v) => v.id === id) ??
+    (await queryClient
+      .query({
+        queryKey: queryKeys.version(slug, id),
+        queryFn: () => fetchVersion(slug, id),
+        retry: retryServerErrors,
+      })
+      .catch(() => undefined))
+  );
 }
 
 // EULA/privacy text is a separate endpoint; refresh the add-on list after so the
@@ -478,15 +534,17 @@ export function activityQuery(
   host: ReactiveControllerHost,
   getSlug: (() => string) | undefined,
   getPage: () => number,
+  getVersion?: () => number,
 ) {
   return createQueryController(
     host,
     () => {
       const slug = getSlug?.();
       const page = getPage();
+      const version = getVersion?.();
       return {
-        queryKey: activityKey(slug, page),
-        queryFn: () => fetchActivity(slug, page),
+        queryKey: activityKey(slug, page, version),
+        queryFn: () => fetchActivity(slug, page, version),
         // Wait for a slug only when one is expected; the all-add-ons feed fetches
         // immediately.
         enabled: !getSlug || Boolean(slug),
@@ -496,19 +554,33 @@ export function activityQuery(
   );
 }
 
+export async function replyToVersion(
+  slug: string,
+  id: number,
+  comments: string,
+) {
+  await postReviewNote(slug, id, comments);
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: ['activity', slug] }),
+    queryClient.invalidateQueries({ queryKey: activityInfiniteKey(slug) }),
+  ]);
+}
+
 // The feed as an infinite query: each page is fetched on demand as the reader
 // scrolls. `getNextPageParam` stops once we've loaded every row the server has.
 export function activityInfiniteQuery(
   host: ReactiveControllerHost,
   getSlug?: () => string,
+  getVersion?: () => number,
 ) {
   return createInfiniteQueryController(
     host,
     () => {
       const slug = getSlug?.();
+      const version = getVersion?.();
       return {
-        queryKey: activityInfiniteKey(slug),
-        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam),
+        queryKey: activityInfiniteKey(slug, version),
+        queryFn: ({ pageParam }) => fetchActivity(slug, pageParam, version),
         initialPageParam: 1,
         getNextPageParam: (lastPage: ActivityPage, pages: ActivityPage[]) => {
           const loaded = pages.reduce((n, page) => n + page.items.length, 0);
@@ -625,6 +697,8 @@ export async function addonFromUpload(create: AddonCreate) {
     }),
     queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
   ]);
+  // After the invalidate, or this is immediately marked stale and refetched.
+  queryClient.setQueryData(queryKeys.addon(addon.slug), addon);
   return created;
 }
 
@@ -639,9 +713,44 @@ async function _updateVersion(
   return version;
 }
 
+export async function updateVersion(
+  slug: string,
+  id: number,
+  { release_notes, approval_notes, ...edit }: VersionEdit,
+  source?: File | null,
+) {
+  const body = {
+    ...edit,
+    ...(approval_notes !== undefined && { approval_notes }),
+    ...(release_notes !== undefined && {
+      release_notes: { [LOCALE ?? 'en-US']: release_notes },
+    }),
+    ...(source === null && { source: null }),
+  };
+  let version: Version | undefined;
+  if (Object.keys(body).length) version = await patchVersion(slug, id, body);
+  if (source) {
+    const form = new FormData();
+    form.append('source', source);
+    version = await patchVersion(slug, id, form);
+  }
+  if (version) queryClient.setQueryData(queryKeys.version(slug, id), version);
+  await Promise.all([
+    queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
+    queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
+  ]);
+}
+
 export async function disableVersion(slug: string, id: number) {
   await _updateVersion(slug, id, { is_disabled: true });
   await queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+}
+
+export async function removeVersion(slug: string, id: number) {
+  await deleteVersion(slug, id);
+  queryClient.removeQueries({ queryKey: queryKeys.version(slug, id) });
+  void queryClient.invalidateQueries({ queryKey: queryKeys.addons });
+  queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) });
 }
 
 export async function uploadVersionSource(
@@ -684,6 +793,24 @@ export async function uploadVersionNotes(
     ...(reviewerNotes && { approval_notes: reviewerNotes }),
     ...(releaseNotes && { release_notes: { [langCode]: releaseNotes } }),
   });
+}
+
+// The versions an application can be marked compatible with.
+export function appVersionsQuery(
+  host: ReactiveControllerHost,
+  getApp: () => string | undefined,
+) {
+  return createQueryController(
+    host,
+    () => ({
+      queryKey: queryKeys.appVersions(getApp()),
+      queryFn: () => fetchAppVersions(getApp() ?? ''),
+      enabled: Boolean(getApp()),
+      // Supported app versions rarely change.
+      staleTime: Number.POSITIVE_INFINITY,
+    }),
+    queryClient,
+  );
 }
 
 // Ends the current session server-side. Callers reload afterwards so the app

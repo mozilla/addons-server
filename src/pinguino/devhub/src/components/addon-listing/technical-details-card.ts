@@ -54,7 +54,10 @@ export class TechnicalDetailsCard extends SectionCard {
         form.editing
           ? html`<div class="form">
             ${this.errorBar(form.error)}
-            ${textArea(form, 'developer_comments', 'Developer comments')}
+            <div class="syntax-support">
+              ${textArea(form, 'developer_comments', 'Developer comments')}
+              ${this.getMarkdownSupportLink()}
+            </div>
             <dl>
               ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}
             </dl>
