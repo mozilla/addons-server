@@ -95,7 +95,7 @@ describe('addon-card', () => {
   it('renders latest unlisted version number if no current version', async () => {
     const root = await card({
       channels: ['unlisted'],
-      currentVersion: null,
+      currentVersion: undefined,
       latestUnlistedVersion: {
         ...DEFAULT_VERSION,
         channel: 'unlisted',
@@ -109,7 +109,7 @@ describe('addon-card', () => {
     expect(
       root
         .querySelector('.version + distribution-badge')
-        .getAttribute('distribution'),
+        ?.getAttribute('distribution'),
     ).toBe('unlisted');
     expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
@@ -117,7 +117,7 @@ describe('addon-card', () => {
   it('renders latest enterprise version number if no other channel', async () => {
     const root = await card({
       channels: ['enterprise'],
-      currentVersion: null,
+      currentVersion: undefined,
       latestUnlistedVersion: {
         ...DEFAULT_VERSION,
         channel: 'enterprise',
@@ -131,7 +131,7 @@ describe('addon-card', () => {
     expect(
       root
         .querySelector('.version + distribution-badge')
-        .getAttribute('distribution'),
+        ?.getAttribute('distribution'),
     ).toBe('enterprise');
     expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
