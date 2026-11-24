@@ -24,7 +24,7 @@ import {
   textField,
 } from '../../foundations/form';
 import { emit, navigateTo, slugify } from '../../utils/helper';
-import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
+import { sanitizeUserHTML } from '../../utils/sanitizeHTML';
 import {
   customLicenseErrors,
   type LicenseDraft,
@@ -559,7 +559,7 @@ export class ListingDetailsCard extends SectionCard {
     const text = key === 'hasEula' ? data?.eula : data?.privacyPolicy;
     if (!text) return nothing;
     return html`<moz-details heading=${heading} class="policy-preview">
-      ${unsafeHTML(sanitizeHTML(text, MARKDOWN_TAGS))}
+      ${unsafeHTML(sanitizeUserHTML(text))}
     </moz-details>`;
   }
 
@@ -573,7 +573,7 @@ export class ListingDetailsCard extends SectionCard {
         ${this.row('Support Website', this.link(a.supportUrl))}
         ${this.row('Support Email', a.supportEmail)}
         ${this.row('Summary', a.summary)}
-        ${this.row('Description', unsafeHTML(sanitizeHTML(a.description, MARKDOWN_TAGS)))}
+        ${this.row('Description', unsafeHTML(sanitizeUserHTML(a.description)))}
         ${this.row(
           'Categories',
           a.categories?.length
