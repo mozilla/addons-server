@@ -143,9 +143,8 @@ async function mountFlow(path: string) {
   return ui(el);
 }
 
-// moz-input-file isn't registered here, so stand in for the parts the steps
-// drive: the selection, and a clear() that reports the change like the real
-// control does.
+// moz-input-file isn't registered here. clear() has to report a change like
+// the real control's does, or the steps never see the selection drop.
 type StubInput = Element & { files: File[]; clear(): void };
 
 function stubInput(input: Element | null): StubInput {
@@ -168,8 +167,6 @@ function chooseFiles(input: Element | null, ...files: File[]) {
   stub.dispatchEvent(new Event('change'));
 }
 
-// The control reports rejections rather than rendering them, so without
-// handling this the file fails silently.
 function rejectFile(input: Element | null, reason: 'type' | 'size') {
   stubInput(input).dispatchEvent(
     new CustomEvent('moz-input-file:rejected', {
@@ -605,7 +602,7 @@ describe('version-submission', () => {
     });
 
     it('offers only package formats to the file picker', () => {
-      expect($.fileInput()?.getAttribute('accept')).toBe('.zip,.xpi');
+      expect($.fileInput()?.getAttribute('accept')).toBe('.zip,.xpi,.crx');
     });
 
     it.each([

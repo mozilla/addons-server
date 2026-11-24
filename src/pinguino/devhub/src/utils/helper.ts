@@ -51,9 +51,9 @@ export function slugify(text = ''): string {
     .toLowerCase();
 }
 
-// Mirrors legacy DevHub's formatFileSize (static/js/zamboni/global.js). The
-// control's own formatter is 1024-based, which would quote a 200 MB limit as
-// 190.7 MB and read as a different number than the server's.
+// Mirrors legacy DevHub's formatFileSize (static/js/zamboni/global.js). Not
+// the control's own export: that one is 1024-based, so it would quote the
+// server's 200 MB limit as 190.7 MB.
 export function formatFileSize(bytes: number): string {
   return Intl.NumberFormat(document.documentElement.lang || undefined, {
     notation: 'compact',
