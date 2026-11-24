@@ -247,8 +247,10 @@ class AddonSerializerOutputTestMixin:
         assert result['average_daily_users'] == self.addon.average_daily_users
         assert result['categories'] == ['bookmarks', 'alerts-updates']
 
-        # In this serializer latest_unlisted_version is omitted.
+        # In this serializer latest_*_version is omitted.
         assert 'latest_unlisted_version' not in result
+        assert 'latest_listed_version' not in result
+        assert 'latest_enterprise_version' not in result
 
         assert result['current_version']
         self._test_version(self.addon.current_version, result['current_version'])
@@ -457,15 +459,17 @@ class AddonSerializerOutputTestMixin:
             str(self.addon.contributions) + '&' + utm_string
         )
 
-    def test_latest_unlisted_version(self):
+    def test_latest_channel_version(self):
         self.addon = addon_factory()
         version_factory(addon=self.addon, channel=amo.CHANNEL_UNLISTED, version='1.1')
         assert self.addon.latest_unlisted_version
 
         result = self.serialize()
-        # In this serializer latest_unlisted_version is omitted even if there
+        # In this serializer latest_*_version is omitted even if there
         # is one, because it's limited to users with specific rights.
         assert 'latest_unlisted_version' not in result
+        assert 'latest_listed_version' not in result
+        assert 'latest_enterprise_version' not in result
 
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)
@@ -1105,23 +1109,41 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
-    def test_latest_unlisted_version_with_right_serializer(self):
+    def test_latest_channel_versions_with_right_serializer(self):
         self.serializer_class = DeveloperAddonSerializer
 
-        self.addon = addon_factory()
+        self.addon = addon_factory(
+            version_kw={'version': '1.0'},
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True})
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_UNLISTED,
             version='1.1',
             file_kw={'filename': 'webextension.xpi', 'is_signed': True},
         )
+        version_factory(
+            addon=self.addon,
+            channel=amo.CHANNEL_ENTERPRISE,
+            version='1.2',
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True},
+        )
         assert self.addon.latest_unlisted_version
+        assert self.addon.latest_listed_version
+        assert self.addon.latest_enterprise_version
 
         result = self.serialize()
-        # In this serializer latest_unlisted_version is present.
+        # In this serializer latest_*_version are present.
         assert result['latest_unlisted_version']
         self._test_version(
             self.addon.latest_unlisted_version, result['latest_unlisted_version']
+        )
+        assert result['latest_listed_version']
+        self._test_version(
+            self.addon.latest_listed_version, result['latest_listed_version']
+        )
+        assert result['latest_enterprise_version']
+        self._test_version(
+            self.addon.latest_enterprise_version, result['latest_enterprise_version']
         )
 
     def test_is_noindexed(self):
