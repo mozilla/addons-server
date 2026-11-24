@@ -1,3 +1,4 @@
+import type { InputFileRejectedDetail } from '@mozilla/lit-web-components';
 import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { createUpload, uploadQuery } from '../../../../data/queries';
@@ -6,10 +7,17 @@ import type {
   FileUpload,
   ValidationMessage,
 } from '../../../../data/types';
-import { emit } from '../../../../utils/helper';
-import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
+import { emit, formatFileSize } from '../../../../utils/helper';
+import {
+  errorBar,
+  errorMessage,
+  rejectMessage,
+  SubmissionStep,
+} from '../submission-step';
 import '../../../../foundations/components/message-bar';
-import { MAX_UPLOAD_SIZE } from '../../../../base';
+import { MAX_UPLOAD_SIZE, PACKAGE_EXTENSIONS } from '../../../../base';
+
+const PACKAGE_HINT = `Max ${formatFileSize(MAX_UPLOAD_SIZE)} · ${PACKAGE_EXTENSIONS.join(', ')}`;
 
 @customElement('submit-upload')
 export class SubmitUpload extends SubmissionStep {
@@ -79,6 +87,13 @@ export class SubmitUpload extends SubmissionStep {
       this.submitError = errorMessage(err);
       return false;
     }
+  }
+
+  // Clearing fires a change, which resets the step and wipes any earlier
+  // error, so the rejection has to be recorded after that.
+  private onFileReject(e: CustomEvent<InputFileRejectedDetail>) {
+    this.input?.clear();
+    this.uploadError = rejectMessage(e.detail);
   }
 
   private async onFileChange() {
@@ -151,12 +166,15 @@ export class SubmitUpload extends SubmissionStep {
       ></submission-header>
       <moz-input-file
         name="package"
-        accept=".zip,.xpi"
+        accept=${PACKAGE_EXTENSIONS.join(',')}
         max-size=${MAX_UPLOAD_SIZE}
         placeholder="Drag &amp; drop your package, or"
         ?disabled=${this.uploading}
         @change=${this.onFileChange}
-      ></moz-input-file>
+        @moz-input-file:rejected=${this.onFileReject}
+      >
+        <span slot="hint">${PACKAGE_HINT}</span>
+      </moz-input-file>
 
       ${errorBar('Could not upload version', this.submitError)}
       ${this.renderValidation()}

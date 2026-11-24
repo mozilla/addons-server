@@ -554,7 +554,7 @@ export class VersionDetail extends SectionCard {
     }
     return html`
       <moz-input-file
-        accept=${SOURCE_EXTENSIONS}
+        accept=${SOURCE_EXTENSIONS.join(',')}
         max-size=${MAX_UPLOAD_SIZE}
         placeholder="Drag &amp; drop your source archive, or"
         error=${this.#form.fieldError('source')}

@@ -1,12 +1,20 @@
+import type { InputFileRejectedDetail } from '@mozilla/lit-web-components';
 import { css, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { errorStatus } from '../../../../data/http';
 import { uploadVersionSource, versionQuery } from '../../../../data/queries';
 import '../../../../components/error-page';
-import { emit } from '../../../../utils/helper';
-import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
+import { emit, formatFileSize } from '../../../../utils/helper';
+import {
+  errorBar,
+  errorMessage,
+  rejectMessage,
+  SubmissionStep,
+} from '../submission-step';
 import '../../../../foundations/components/message-bar';
 import { MAX_UPLOAD_SIZE, SOURCE_EXTENSIONS } from '../../../../base';
+
+const SOURCE_HINT = `Max ${formatFileSize(MAX_UPLOAD_SIZE)} · ${SOURCE_EXTENSIONS.join(', ')}`;
 
 const TRANSFORM_TOOLS = [
   'Code minifiers or obfuscators',
@@ -95,6 +103,11 @@ export class SubmitSource extends SubmissionStep {
     this.error = undefined;
   }
 
+  private onFileReject(e: CustomEvent<InputFileRejectedDetail>) {
+    this.file = undefined;
+    this.error = rejectMessage(e.detail);
+  }
+
   private renderOption(usesTools: boolean, label: string, description: string) {
     const value = String(usesTools);
     return html`
@@ -145,13 +158,17 @@ export class SubmitSource extends SubmissionStep {
           this.usesTools
             ? html`<moz-input-file
               name="source"
-              accept=${SOURCE_EXTENSIONS}
+              accept=${SOURCE_EXTENSIONS.join(',')}
               max-size=${MAX_UPLOAD_SIZE}
               placeholder="Drag &amp; drop your source archive, or"
               @change=${this.onFileChange}
-            ></moz-input-file>`
+              @moz-input-file:rejected=${this.onFileReject}
+            >
+              <span slot="hint">${SOURCE_HINT}</span>
+            </moz-input-file>`
             : nothing
         }
+        ${errorBar('Could not upload source', this.error)}
       </div>
 
       <div class="subsection">
@@ -169,7 +186,6 @@ export class SubmitSource extends SubmissionStep {
               ></message-bar>`
             : nothing
         }
-        ${errorBar('Upload failed', this.error)}
       </div>
     `;
   }

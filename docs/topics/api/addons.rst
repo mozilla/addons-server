@@ -747,11 +747,14 @@ or ``custom_license`` can not, so separate API calls are needed.
 Note: as form-data can not be nested as objects it's not possible to set ``source`` as part of the
 ``version`` object defined during an :ref:`Add-on create <addon-create>`.
 
+The source file must be an archive in one of the following formats, and its contents must match
+its extension: ``.zip``, ``.tar.gz``, ``.tgz``, or ``.tar.bz2``.
+
 .. http:post:: /api/v5/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/
 
     .. _version-sources-request-create:
 
-    :form source: The add-on file being uploaded, or an empty value to clear.
+    :form source: The add-on source archive being uploaded (``.zip``, ``.tar.gz``, ``.tgz``, or ``.tar.bz2``), or an empty value to clear.
     :form upload: The uuid for the xpi upload to create this version with.
     :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
     :reqheader Content-Type: multipart/form-data
@@ -761,7 +764,7 @@ Note: as form-data can not be nested as objects it's not possible to set ``sourc
 
     .. _version-sources-request-edit:
 
-    :form source: The add-on file being uploaded.
+    :form source: The add-on source archive being uploaded (``.zip``, ``.tar.gz``, ``.tgz``, or ``.tar.bz2``).
     :form license: The :ref:`slug of a non-custom license <license-list>` (optional).
     :reqheader Content-Type: multipart/form-data
 

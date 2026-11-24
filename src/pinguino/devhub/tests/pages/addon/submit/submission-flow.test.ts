@@ -4,7 +4,7 @@ import { Router } from '@lit-labs/router';
 import { html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { BASE } from '../../../../src/base';
+import { BASE, MAX_UPLOAD_SIZE } from '../../../../src/base';
 import { queryClient, queryKeys } from '../../../../src/data';
 import * as api from '../../../../src/data/api';
 import { ADDON_STATUS } from '../../../../src/data/statuses';
@@ -143,13 +143,42 @@ async function mountFlow(path: string) {
   return ui(el);
 }
 
-function chooseFiles(input: Element | null, ...files: File[]) {
+// moz-input-file isn't registered here. clear() has to report a change like
+// the real control's does, or the steps never see the selection drop.
+type StubInput = Element & { files: File[]; clear(): void };
+
+function stubInput(input: Element | null): StubInput {
   if (!input) throw new Error('expected moz-input-file in the DOM');
-  Object.assign(input, {
-    files,
-    clear: () => Object.assign(input, { files: [] }),
-  });
-  input.dispatchEvent(new Event('change'));
+  const stub = input as StubInput;
+  if (typeof stub.clear !== 'function') {
+    stub.files = [];
+    stub.clear = () => {
+      if (!stub.files.length) return;
+      stub.files = [];
+      stub.dispatchEvent(new Event('change'));
+    };
+  }
+  return stub;
+}
+
+function chooseFiles(input: Element | null, ...files: File[]) {
+  const stub = stubInput(input);
+  stub.files = files;
+  stub.dispatchEvent(new Event('change'));
+}
+
+function rejectFile(input: Element | null, reason: 'type' | 'size') {
+  stubInput(input).dispatchEvent(
+    new CustomEvent('moz-input-file:rejected', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        file: new File(['x'], 'notes.txt'),
+        reason,
+        maxSize: reason === 'size' ? MAX_UPLOAD_SIZE : undefined,
+      },
+    }),
+  );
 }
 
 function pick(picker: Element | null, value: string) {
@@ -571,6 +600,42 @@ describe('version-submission', () => {
       expect(bar?.getAttribute('heading')).toBe('Upload failed');
       expect($.validation()).toBeNull();
     });
+
+    it('offers only package formats to the file picker', () => {
+      expect($.fileInput()?.getAttribute('accept')).toBe('.zip,.xpi,.crx');
+    });
+
+    it.each([
+      ['type', "The filetype you uploaded isn't recognized."],
+      ['size', 'Your file exceeds the maximum size of 200MB.'],
+    ] as const)(
+      'reports a package turned away for %s',
+      async (reason, text) => {
+        rejectFile($.fileInput(), reason);
+        await expect
+          .poll(() => $.upload().querySelector('message-bar[type="error"]'))
+          .not.toBeNull();
+        expect(
+          $.upload()
+            .querySelector('message-bar[type="error"]')
+            ?.getAttribute('description'),
+        ).toBe(text);
+        expect(api.postUpload).not.toHaveBeenCalled();
+      },
+    );
+
+    it('drops an already-valid upload when a later file is turned away', async () => {
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+
+      rejectFile($.fileInput(), 'size');
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(true);
+      expect($.validation()).toBeNull();
+    });
   });
 
   describe('source code', () => {
@@ -606,6 +671,52 @@ describe('version-submission', () => {
         .poll(() => $.continue()?.hasAttribute('disabled'))
         .toBe(false);
       expect(fileInput()).toBeNull();
+    });
+
+    // Both the control and the file dialog filter on this, so a format missing
+    // here can't be picked at all. .tar.gz and .tar.bz2 were the reported bug.
+    it('offers every supported archive format to the file picker', async () => {
+      pick(yesPicker, 'true');
+      await expect.poll(() => fileInput()).toBeTruthy();
+      expect(fileInput()?.getAttribute('accept')).toBe(
+        '.zip,.tar.gz,.tgz,.tar.bz2',
+      );
+    });
+
+    it.each([
+      ['type', "The filetype you uploaded isn't recognized."],
+      ['size', 'Your file exceeds the maximum size of 200MB.'],
+    ] as const)(
+      'reports an archive turned away for %s',
+      async (reason, text) => {
+        pick(yesPicker, 'true');
+        await expect.poll(() => fileInput()).toBeTruthy();
+
+        rejectFile(fileInput(), reason);
+        await expect
+          .poll(() => $.source().querySelector('message-bar[type="error"]'))
+          .not.toBeNull();
+        const bar = $.source().querySelector('message-bar[type="error"]');
+        expect(bar?.getAttribute('description')).toBe(text);
+        // It belongs beside the picker it's about, not under the "No" branch.
+        expect(bar?.parentElement?.contains(fileInput() as Node)).toBe(true);
+        expect($.continue()?.hasAttribute('disabled')).toBe(true);
+      },
+    );
+
+    it('clears the rejection once an accepted archive is picked', async () => {
+      pick(yesPicker, 'true');
+      await expect.poll(() => fileInput()).toBeTruthy();
+      rejectFile(fileInput(), 'type');
+      await expect
+        .poll(() => $.source().querySelector('message-bar[type="error"]'))
+        .not.toBeNull();
+
+      chooseFiles(fileInput(), new File(['s'], 'src.tar.gz'));
+      await expect
+        .poll(() => $.source().querySelector('message-bar[type="error"]'))
+        .toBeNull();
+      expect($.continue()?.hasAttribute('disabled')).toBe(false);
     });
   });
 
