@@ -304,6 +304,18 @@ function addonBody(edit: AddonListingEdit): Record<string, unknown> {
   return body;
 }
 
+// Unfiltered by type, so one request covers both kinds: the header's menu
+// needs each add-on's own kind for its icon, not a count per kind.
+export async function fetchNavAddons(limit: number): Promise<Addon[]> {
+  const params = new URLSearchParams({
+    lang: 'en-US',
+    page_size: String(limit),
+    sort: SORT,
+  });
+  const data = await apiFetch<Paginated<ApiAddon>>(`/addons/addon/?${params}`);
+  return (data.results ?? []).map(mapAddon);
+}
+
 export async function patchAddon(
   slug: string,
   edit: AddonListingEdit,

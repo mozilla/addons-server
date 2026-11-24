@@ -28,7 +28,7 @@ vi.mock('../../src/data', async (importOriginal) => {
   return {
     ...actual,
     profileQuery: () => () => profileState,
-    allAddonsQuery: () => () => addonsState,
+    navAddonsQuery: () => () => addonsState,
   };
 });
 

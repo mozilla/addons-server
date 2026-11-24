@@ -7,6 +7,7 @@ import {
   fetchAgreement,
   fetchCategories,
   fetchEulaPolicy,
+  fetchNavAddons,
   fetchProfile,
   fetchSiteStatus,
   fetchVersions,
@@ -309,6 +310,23 @@ describe('endpoints', () => {
     mockJson({});
     await fetchAddons('theme');
     expect(lastCall()[0]).toContain('type=statictheme');
+  });
+
+  // The header renders on every page, so this is paid on every navigation.
+  it('fetchNavAddons asks for only as many as the menu shows', async () => {
+    mockJson({ results: [] });
+    await fetchNavAddons(8);
+    expect(lastCall()[0]).toContain('page_size=8');
+    expect(lastCall()[0]).not.toContain('type=');
+  });
+
+  it('fetchNavAddons maps results through mapAddon', async () => {
+    mockJson({
+      results: [
+        { slug: 'a', name: 'A', type: 'statictheme', status: 'public' },
+      ],
+    });
+    expect((await fetchNavAddons(8)).map((a) => a.kind)).toEqual(['theme']);
   });
 
   // The API sorts ascending unless asked otherwise, so a dropped `-` silently

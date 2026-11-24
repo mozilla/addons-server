@@ -5,6 +5,7 @@ import {
   canSubmitListed,
   createVersion,
   getAddon,
+  getVersion,
   getVersions,
   hasIncompleteListing,
 } from '../../../../data';
@@ -103,7 +104,9 @@ export class VersionSubmission extends SubmissionFlow {
     if (!fetched) return;
     const [addon, { items: versions }] = fetched;
     this.addon = addon;
-    const current = versions.find((v) => v.id === versionId);
+    const current = versionId
+      ? await getVersion(this.addonSlug, versionId, versions)
+      : undefined;
     this.hadListed = this.#hadListed(versions, current);
     if (current) {
       this.channel = current.channel;
