@@ -9,9 +9,9 @@ WEBHOOK = 6
 
 SCANNERS = {
     _CUSTOMS: 'customs (legacy)',
-    _WAT: 'wat',
-    YARA: 'yara',
-    _MAD: 'mad',
+    _WAT: 'wat (legacy)',
+    YARA: 'yara (legacy)',
+    _MAD: 'mad (legacy)',
     NARC: 'narc',
     WEBHOOK: 'webhook',
 }
