@@ -1114,7 +1114,8 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
 
         self.addon = addon_factory(
             version_kw={'version': '1.0'},
-            file_kw={'filename': 'webextension.xpi', 'is_signed': True})
+            file_kw={'filename': 'webextension.xpi', 'is_signed': True},
+        )
         version_factory(
             addon=self.addon,
             channel=amo.CHANNEL_UNLISTED,
