@@ -3,7 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { addonSourceQuery, updateAddon } from '../../data';
 import { FormController, textArea } from '../../foundations/form';
-import { MARKDOWN_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
+import { sanitizeUserHTML } from '../../utils/sanitizeHTML';
 import { SectionCard } from './section-card';
 
 type TechnicalDraft = { developer_comments?: string };
@@ -60,7 +60,7 @@ export class TechnicalDetailsCard extends SectionCard {
             </dl>
           </div>`
           : html`<dl>
-            ${this.row('Developer comments', unsafeHTML(sanitizeHTML(a.developerComments, MARKDOWN_TAGS)))}
+            ${this.row('Developer comments', unsafeHTML(sanitizeUserHTML(a.developerComments)))}
             ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}
           </dl>`
       }`,
