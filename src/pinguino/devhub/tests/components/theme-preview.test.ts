@@ -11,7 +11,6 @@ const theme: Addon = {
   kind: 'theme',
   icon: 'themes',
   status: ADDON_STATUS.public,
-  version: '1.0',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
   canChangeVisibility: true,
