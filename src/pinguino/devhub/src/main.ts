@@ -5,7 +5,6 @@ import './data/session';
 // the polyfill is a no-op where it's native. Must load before the Router is built.
 import 'urlpattern-polyfill';
 
-import { Router } from '@lit-labs/router';
 import { css, html, LitElement } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
@@ -28,7 +27,7 @@ import { insertAnalyticsScript } from './analytics.js';
 import { BASE } from './base';
 import { interceptOutOfAppLinks, isDashboardPath } from './navigation';
 import { recordLanding } from './switch-back';
-import { navigateTo, notFoundRoute } from './utils/helper';
+import { createRouter, navigateTo } from './utils/helper';
 
 // The Router intercepts same-origin <a> clicks (across shadow DOM) and syncs
 // history, so views navigate with plain links instead of manual push/goto.
@@ -60,62 +59,58 @@ export class PinguinoApp extends LitElement {
     }
   `;
 
-  private _router = new Router(
-    this,
-    [
-      // The developer dashboard lives at the base path (and has themes too).
-      {
-        path: `${BASE}{/}?`,
-        render: () => html`<devhub-home></devhub-home>`,
-      },
-      // The old dashboard, themes and /addon(s) URLs redirect to the base.
-      {
-        path: `${BASE}/addons`,
-        enter: () => navigateTo(BASE, { replace: true }),
-      },
-      {
-        path: `${BASE}/themes`,
-        enter: () => navigateTo(BASE, { replace: true }),
-      },
-      // /addon is a typo for /addons, redirect it.
-      {
-        path: `${BASE}/addon`,
-        enter: () => navigateTo(BASE, { replace: true }),
-      },
-      // /addons/<id>/... paths are a typo for /addon/<id>/...
-      {
-        path: `${BASE}/addons/*`,
-        enter: () =>
-          navigateTo(location.pathname.replace('/addons/', '/addon/'), {
-            replace: true,
-          }),
-      },
-      {
-        path: `${BASE}/addon/*`,
-        render: () => html`<addon-routes></addon-routes>`,
-      },
-      // feeds now live directly on the dashboard, and per add-on feeds live on the /addon/xxx/feed
-      {
-        path: `${BASE}/feed`,
-        enter: () => navigateTo(BASE, { replace: true }),
-      },
-      {
-        path: `${BASE}/feed/:addonId`,
-        enter: ({ addonId }) =>
-          navigateTo(`${BASE}/addon/${addonId}/feed`, { replace: true }),
-      },
-      {
-        path: `${BASE}/support`,
-        render: () => html`<support-form></support-form>`,
-      },
-      // Top-level pages not yet reimplemented
-      {
-        path: `${BASE}/verify-email`,
-        render: () => html`<coming-soon></coming-soon>`,
-      },
-    ],
-    { fallback: notFoundRoute },
-  );
+  private _router = createRouter(this, [
+    // The developer dashboard lives at the base path (and has themes too).
+    {
+      path: `${BASE}{/}?`,
+      render: () => html`<devhub-home></devhub-home>`,
+    },
+    // The old dashboard, themes and /addon(s) URLs redirect to the base.
+    {
+      path: `${BASE}/addons`,
+      enter: () => navigateTo(BASE, { replace: true }),
+    },
+    {
+      path: `${BASE}/themes`,
+      enter: () => navigateTo(BASE, { replace: true }),
+    },
+    // /addon is a typo for /addons, redirect it.
+    {
+      path: `${BASE}/addon`,
+      enter: () => navigateTo(BASE, { replace: true }),
+    },
+    // /addons/<id>/... paths are a typo for /addon/<id>/...
+    {
+      path: `${BASE}/addons/*`,
+      enter: () =>
+        navigateTo(location.pathname.replace('/addons/', '/addon/'), {
+          replace: true,
+        }),
+    },
+    {
+      path: `${BASE}/addon/*`,
+      render: () => html`<addon-routes></addon-routes>`,
+    },
+    // feeds now live directly on the dashboard, and per add-on feeds live on the /addon/xxx/feed
+    {
+      path: `${BASE}/feed`,
+      enter: () => navigateTo(BASE, { replace: true }),
+    },
+    {
+      path: `${BASE}/feed/:addonId`,
+      enter: ({ addonId }) =>
+        navigateTo(`${BASE}/addon/${addonId}/feed`, { replace: true }),
+    },
+    {
+      path: `${BASE}/support`,
+      render: () => html`<support-form></support-form>`,
+    },
+    // Top-level pages not yet reimplemented
+    {
+      path: `${BASE}/verify-email`,
+      render: () => html`<coming-soon></coming-soon>`,
+    },
+  ]);
 
   #cleanupLinks?: () => void;
 

@@ -326,3 +326,30 @@ describe('addon-submission of a theme', () => {
     await at('night-sky/submit/finish');
   });
 });
+
+// These patterns carry regex-constrained params and a theme prefix, so the
+// blanket optional-slash handling has to leave their matching intact.
+describe('addon-submission tolerates a trailing slash', () => {
+  it('enters the distribution step', async () => {
+    const $ = await mountFlow('submit/distribution/');
+    await expect.poll(() => $.step('submit-distribution')).toBeTruthy();
+  });
+
+  it('keeps the channel param on an upload step', async () => {
+    const $ = await mountFlow('submit/upload-unlisted/');
+    await expect.poll(() => $.step('submit-upload')).toBeTruthy();
+    // The step rebuilds the URL from its own id, dropping the slash with it.
+    await at('submit/upload-unlisted');
+  });
+
+  it('enters the theme flow', async () => {
+    const $ = await mountFlow('submit/theme/upload-listed/');
+    await expect.poll(() => $.step('submit-upload')).toBeTruthy();
+  });
+
+  // The constraint still has to reject a channel that isn't one of the three.
+  it('still rejects an unknown channel', async () => {
+    await mountFlow('submit/upload-bogus/');
+    await at('submit/distribution');
+  });
+});
