@@ -1,4 +1,4 @@
-import { css, html, LitElement } from 'lit';
+import { css, html, nothing, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
 import type { Addon } from '../data';
@@ -83,10 +83,12 @@ export class AddonCard extends LitElement {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
     const versionProps = [
-      'currentVersion', 'latestUnlistedVersion', 'latestEnterpriseVersion'
+      'currentVersion',
+      'latestUnlistedVersion',
+      'latestEnterpriseVersion',
     ];
-    let firstChannelDisplayed;
-    let remainingChannels;
+    let firstChannelDisplayed: string | undefined;
+    let remainingChannels: string[];
     return html`
       <moz-card appearance="outline">
         <div class="body">
@@ -94,7 +96,7 @@ export class AddonCard extends LitElement {
           ${
             a.iconUrl
               ? html`<img class="logo" src=${a.iconUrl} alt="" />`
-              : undefined
+              : nothing
           }
           <div class="middle">
             <h2 class="name">${a.name}</h2>
@@ -106,40 +108,45 @@ export class AddonCard extends LitElement {
         </div>
 
         ${versionProps.map((propertyName) => {
-            const version = a[propertyName];
-            if (version && firstChannelDisplayed === undefined) {
-              firstChannelDisplayed = version.channel;
-              remainingChannels = a.channels.filter((channel) => channel !== version.channel);
-              return html`<div>
+          const version = a[propertyName];
+          if (version && firstChannelDisplayed === undefined) {
+            firstChannelDisplayed = version.channel;
+            remainingChannels = a.channels.filter(
+              (channel) => channel !== version.channel,
+            );
+            return html`<div>
                 <span class="version">Version: ${version.version}</span>
                 <distribution-badge distribution=${version.channel}></distribution-badge>
               </div>`;
-            }
-          })
-        }
+          }
+          return null;
+        })}
 
-        ${a.latestListedVersion && a.latestListedVersion.version != a.currentVersion?.version
-        ? html`<hr class="divider"><div class="meta">
+        ${
+          a.latestListedVersion &&
+          a.latestListedVersion.version !== a.currentVersion?.version
+            ? html`<hr class="divider"><div class="meta">
           Upcoming Version: ${a.latestListedVersion.version}
         </div>`
-        : undefined
+            : nothing
         }
 
-        ${remainingChannels.length
-        ? html`<hr class="divider"><div class="meta">
+        ${
+          remainingChannels.length
+            ? html`<hr class="divider"><div class="meta">
           Other Versions: ${remainingChannels?.map(
             (channel) => html`<distribution-badge
                 distribution=${channel}
               ></distribution-badge>`,
           )}
           </div>`
-        : undefined
+            : nothing
         }
 
         ${
           isTheme
             ? html`<hr class="divider"><theme-preview .addon=${a}></theme-preview>`
-            : undefined
+            : nothing
         }
       </moz-card>
     `;
