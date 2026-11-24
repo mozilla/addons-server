@@ -965,9 +965,9 @@ drf-nested-routers==0.95.3 \
 elasticsearch==8.19.3 \
     --hash=sha256:e84dd618a220cac25b962790085045dd27ac72e01c0a5d81bd29a2d47a71f03f \
     --hash=sha256:fe1db2555811192e8a1be78b01234d0a49d32b185ea7eeeb6f059331dee32838
-elastic-transport==8.19.0 \
-    --hash=sha256:32afed2a70dad80511476c821b2cf823f35a82153289765f6b2e2eb8cb0de099 \
-    --hash=sha256:97ab35de878c7f4c7ebf8840cbc8ff1ff01d9dbc0e977e52d82715b155678b4f
+elastic-transport==8.19.1 \
+    --hash=sha256:47bf0ffd2071a2791dae2e1e764af6477aa33ff686e087c96a88512414b7b83b \
+    --hash=sha256:fcd5cf86242317e2dd43cd697694cba606eee8728df878c276c8f511febdf24b
 email-reply-parser==0.5.12 \
     --hash=sha256:d051cfa8f54046f7399553aae57f17f62bf1652f83e3e9970fd109c0f24a880c \
     --hash=sha256:3499c02284679e020acf8aa30ef9e43c62f9ab5ccee0a35bfac85a0c1fa685fd \
