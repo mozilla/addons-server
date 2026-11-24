@@ -1,4 +1,4 @@
-import { css, html, nothing, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
 import type { Addon } from '../data';
