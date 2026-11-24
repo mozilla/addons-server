@@ -40,6 +40,8 @@ export function sanitizeHTML(
   });
 }
 
+// A wrapper around sanitizeHTML for developer-generated HTML, allowing only a safe
+// subset of tags and converting newlines to <br />.
 export function sanitizeUserHTML(text: string | null | undefined): string {
   const allowTags = ['br', ...MARKDOWN_TAGS];
   return sanitizeHTML(nl2br(text), allowTags);
