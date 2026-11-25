@@ -79,7 +79,8 @@ export class AddonCard extends LitElement {
   render() {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
-    const mostRelevantVersion = a.currentVersion || a.latestUnlistedVersion || a.latestEnterpriseVersion;
+    const mostRelevantVersion =
+      a.currentVersion || a.latestUnlistedVersion || a.latestEnterpriseVersion;
 
     return html`
       <moz-card appearance="outline">
@@ -99,12 +100,13 @@ export class AddonCard extends LitElement {
             </moz-button>
           </div>
 
-          ${mostRelevantVersion
-            ? html`<div>
+          ${
+            mostRelevantVersion
+              ? html`<div>
                 <span class="version">Version: ${mostRelevantVersion.version}</span>
                 <distribution-badge distribution=${mostRelevantVersion.channel}></distribution-badge>
               </div>`
-            : nothing
+              : nothing
           }
 
           <hr class="divider">
