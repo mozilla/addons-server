@@ -225,3 +225,37 @@ class TestBlockSerializer(TestCase):
         bv_1.update(auto_block_reason=None)
         del self.block._blockversion_set_qs_values_list
         assert serializer.to_representation(self.block)['reason'] == 'Version deleted'
+
+    def test_blocked_sorting(self):
+        addon = addon_factory(
+            guid=self.block.guid, name='Addón náme', version_kw={'version': '1.0'}
+        )
+        # Have 2 versions with a version number that resolves to the same value
+        # when going through VersionCompare and 1 in the middle, and then block
+        # them all while making sure one of the "same" ones has an auto-block
+        # and one hasn't. This was raising an exception before we added a key=
+        # to the sorted() call in _get_blocked_for().
+        first_version = addon.current_version
+        last_version = version_factory(addon=addon, version='2')
+        other_version = version_factory(addon=addon, version='1.0.0')
+        BlockVersion.objects.create(
+            block=self.block,
+            version=first_version,
+            auto_block_reason=None,
+        )
+        BlockVersion.objects.create(
+            block=self.block,
+            version=last_version,
+            auto_block_reason=BlockReason.VERSION_DELETED,
+        )
+        BlockVersion.objects.create(
+            block=self.block,
+            version=other_version,
+            auto_block_reason=BlockReason.VERSION_DELETED,
+        )
+        serializer = BlockSerializer(context={'request': self.request})
+        assert serializer.to_representation(self.block)['blocked'] == [
+            '1.0',
+            '1.0.0',
+            '2',
+        ]
