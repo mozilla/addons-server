@@ -57,18 +57,15 @@ export class AddonCard extends LitElement {
     .version {
       vertical-align: middle;
     }
-    .meta {
+    .upcoming {
       display: flex;
       align-items: center;
       gap: var(--space-xsmall);
-      font-size: var(--font-size-small);
+      font-size: 0.9rem; /* --font-size-small is too small */
       color: var(--text-color-deemphasized, GrayText);
     }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-xsmall);
-      margin-bottom: auto;
+    .pending-review {
+      color: var(--icon-color-warning);
     }
     .divider {
       width: 100%;
@@ -90,7 +87,7 @@ export class AddonCard extends LitElement {
         <div class="body">
           <div class="title">
             ${
-              a.iconUrl
+              !isTheme && a.iconUrl
                 ? html`<img class="logo" src=${a.iconUrl} alt="" />`
                 : nothing
             }
@@ -121,31 +118,15 @@ export class AddonCard extends LitElement {
             return null;
           })}
 
-          ${
-            a.latestListedVersion &&
-            a.latestListedVersion.version !== a.currentVersion?.version
-              ? html`<hr class="divider"><div class="meta upcoming">
-            Upcoming Version: ${a.latestListedVersion.version}
-          </div>`
-              : nothing
-          }
-
-          ${
-            remainingChannels?.length
-              ? html`<hr class="divider"><div class="meta">
-            Other Versions: ${remainingChannels?.map(
-              (channel) => html`<distribution-badge
-                  distribution=${channel}
-                ></distribution-badge>`,
-            )}
-            </div>`
-              : nothing
-          }
+          <hr class="divider">
 
           ${
             isTheme
-              ? html`<hr class="divider"><theme-preview .addon=${a}></theme-preview>`
-              : nothing
+              ? html`<theme-preview .addon=${a}></theme-preview>`
+              : html`<div class="upcoming">Upcoming version: ${
+              a.latestListedVersion && a.latestListedVersion.version !== a.currentVersion?.version
+              ? html`${a.latestUnlistedVersion.version} <span class="pending-review">Pending review</span>`
+              : "—"}</div>`
           }
         </div>
       </moz-card>
