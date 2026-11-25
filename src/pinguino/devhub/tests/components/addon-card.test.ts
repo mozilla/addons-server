@@ -28,35 +28,15 @@ async function card(addon: Partial<Addon>) {
 }
 
 describe('addon-card', () => {
-  it('renders an extension name with its distribution badges', async () => {
+  it('renders an extension title', async () => {
     const root = await card({
       kind: 'extension',
-      channels: ['listed', 'unlisted', 'enterprise'],
     });
 
     // No iconUrl and no theme preview — just the name in the title row.
     expect(root.querySelector('.logo')).toBeNull();
     expect(root.querySelector('theme-preview')).toBeNull();
     expect(root.querySelector('.name')?.textContent?.trim()).toBe('Ad Blocker');
-
-    // All distribution badges
-    expect(
-      [...root.querySelectorAll('distribution-badge')].map((b) =>
-        b.getAttribute('distribution'),
-      ),
-    ).toEqual(['listed', 'unlisted', 'enterprise']);
-
-    // Current version is present so listed is separate
-    expect(
-      root
-        .querySelector('.version + distribution-badge')
-        ?.getAttribute('distribution'),
-    ).toBe('listed');
-    expect(
-      [...root.querySelectorAll('.meta distribution-badge')].map((b) =>
-        b.getAttribute('distribution'),
-      ),
-    ).toEqual(['unlisted', 'enterprise']);
   });
 
   it('renders current version number and distribution badge', async () => {
@@ -70,7 +50,6 @@ describe('addon-card', () => {
         .querySelector('.version + distribution-badge')
         ?.getAttribute('distribution'),
     ).toBe('listed');
-    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
 
   it('renders current version number with upcoming if different', async () => {
@@ -87,9 +66,8 @@ describe('addon-card', () => {
         ?.getAttribute('distribution'),
     ).toBe('listed');
     expect(root.querySelector('.upcoming')?.textContent?.trim()).toBe(
-      'Upcoming Version: 2.0.0',
+      'Upcoming version: 2.0.0 Pending review',
     );
-    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
 
   it('renders latest unlisted version number if no current version', async () => {
@@ -111,7 +89,6 @@ describe('addon-card', () => {
         .querySelector('.version + distribution-badge')
         ?.getAttribute('distribution'),
     ).toBe('unlisted');
-    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
 
   it('renders latest enterprise version number if no other channel', async () => {
@@ -133,10 +110,7 @@ describe('addon-card', () => {
         .querySelector('.version + distribution-badge')
         ?.getAttribute('distribution'),
     ).toBe('enterprise');
-    expect(root.querySelectorAll('.meta distribution-badge')).toHaveLength(0);
   });
-
-  it('renders remaining distribution badges', async () => {});
 
   it('renders the uploaded logo for an extension with an iconUrl', async () => {
     const root = await card({

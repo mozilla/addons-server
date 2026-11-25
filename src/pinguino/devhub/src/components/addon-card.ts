@@ -79,8 +79,7 @@ export class AddonCard extends LitElement {
   render() {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
-    let firstChannelDisplayed: string | undefined;
-    let remainingChannels: string[] | undefined;
+    const mostRelevantVersion = a.currentVersion || a.latestUnlistedVersion || a.latestEnterpriseVersion;
 
     return html`
       <moz-card appearance="outline">
@@ -100,23 +99,13 @@ export class AddonCard extends LitElement {
             </moz-button>
           </div>
 
-          ${[
-            a.currentVersion,
-            a.latestUnlistedVersion,
-            a.latestEnterpriseVersion,
-          ].map((version) => {
-            if (version && firstChannelDisplayed === undefined) {
-              firstChannelDisplayed = version.channel;
-              remainingChannels = a.channels?.filter(
-                (channel) => channel !== version.channel,
-              );
-              return html`<div>
-                  <span class="version">Version: ${version.version}</span>
-                  <distribution-badge distribution=${version.channel}></distribution-badge>
-                </div>`;
-            }
-            return null;
-          })}
+          ${mostRelevantVersion
+            ? html`<div>
+                <span class="version">Version: ${mostRelevantVersion.version}</span>
+                <distribution-badge distribution=${mostRelevantVersion.channel}></distribution-badge>
+              </div>`
+            : nothing
+          }
 
           <hr class="divider">
 
@@ -124,9 +113,11 @@ export class AddonCard extends LitElement {
             isTheme
               ? html`<theme-preview .addon=${a}></theme-preview>`
               : html`<div class="upcoming">Upcoming version: ${
-              a.latestListedVersion && a.latestListedVersion.version !== a.currentVersion?.version
-              ? html`${a.latestUnlistedVersion.version} <span class="pending-review">Pending review</span>`
-              : "—"}</div>`
+                  a.latestListedVersion &&
+                  a.latestListedVersion.version !== a.currentVersion?.version
+                    ? html`${a.latestListedVersion?.version} <span class="pending-review">Pending review</span>`
+                    : '—'
+                }</div>`
           }
         </div>
       </moz-card>
