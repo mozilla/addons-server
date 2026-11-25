@@ -35,8 +35,12 @@ class BlockSerializer(AMOModelSerializer):
 
     def _get_blocked_for(self, obj, *, block_type):
         if not hasattr(obj, '_blockversion_set_qs_values_list'):
+            # We sort versions in Python with sorted() and a key on version
+            # rather than asking the database to do it because that uses
+            # VersionString, which knows how to compare version strings more
+            # accurately.
             obj._blockversion_set_qs_values_list = sorted(
-                obj.blockversion_set.order_by('version__version').values_list(
+                obj.blockversion_set.order_by().values_list(
                     'version__version', 'block_type', 'auto_block_reason'
                 ),
                 key=lambda x: x[0],
