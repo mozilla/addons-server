@@ -2901,6 +2901,14 @@ class TestSupportView(TestCase):
         doc = pq(response.content)
         assert "Apple's Hide My Email relay" in doc('#api-key-email').text()
 
+    def test_faq_no_email_points_to_suppressed_email_banner(self):
+        self.client.force_login(self.user)
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        no_email = doc('#no-email')
+        assert 'banner at the top of the page' in no_email.text()
+        assert no_email.find('a[href="#contact"]').length == 0
+
     def test_faq_approved_not_visible_explains_unlisted_channel(self):
         self.client.force_login(self.user)
         response = self.client.get(self.url)
@@ -2933,7 +2941,7 @@ class TestSupportView(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         contact_links = doc('.faq-answer a[href="#contact"]')
-        assert contact_links.length == 3
+        assert contact_links.length == 2
         for link in contact_links.items():
             assert link.text() == 'contact form below'
         assert doc('section#contact').length == 1

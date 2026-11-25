@@ -133,11 +133,8 @@
     {% endcall %}
 
     {% call faq_item('no-email', _('I received no email at all')) %}
-      <p>
-        {% trans %}
-          That is not how it should work, and we are sorry. Contact us using the <a href="#contact">contact form below</a>, and we will look into what happened with your add-on and why the email did not reach you.
-        {% endtrans %}
-      </p>
+      <p>{{ _('First, check that your email address receives other emails, and look in your spam folder.') }}</p>
+      <p>{{ _('Then check the Developer Hub for a banner at the top of the page saying that our emails cannot be delivered to your address. If you see it, follow its link to update your email address. If there is no banner, our emails were sent to your address successfully. You are welcome to use the contact form below to investigate the issue further.') }}</p>
     {% endcall %}
 
     {% call faq_item('duplicate-id', _('Resubmitting gives me "Duplicate add-on ID found"')) %}
