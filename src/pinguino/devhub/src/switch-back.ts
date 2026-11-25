@@ -4,6 +4,8 @@
 // We want switching back to return to the *original* incoming URL, not the
 // redirected one — while the user is still on the page that redirect landed on.
 
+import { BASE } from './base';
+
 function currentUrl(): string {
   return location.pathname + location.search;
 }
@@ -28,4 +30,14 @@ export function pickSwitchBackPath(
 
 export function switchBackPath(): string {
   return pickSwitchBackPath(initialUrl, landingUrl, currentUrl());
+}
+
+// Switch to the classic devhub via the Django endpoint that flips the PINGUINO
+// cookie; it returns the user to the path we'd switch back to. The anchors that
+// call this carry a bare href as a no-JS fallback (the view defaults to the
+// index), so preventing the default here is what adds the path.
+export function switchToClassic(event?: Event): void {
+  event?.preventDefault();
+  const path = switchBackPath();
+  location.href = `${BASE}/switch-pinguino?path=${encodeURIComponent(path)}`;
 }
