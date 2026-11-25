@@ -2799,6 +2799,15 @@ class TestAddonViewSetUpdate(AddonViewSetCreateUpdateMixin, TestCase):
         assert alog.user == self.user
         assert alog.action == amo.LOG.CHANGE_MEDIA.id
 
+    def test_upload_icon_theme_raises(self):
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.request(
+            data={'icon': _get_upload('mozilla-sq.png')},
+            format='multipart',
+        )
+        assert response.status_code == 400
+        assert response.data == ['Themes do not support icons.']
+
     @patch('olympia.addons.serializers.remove_icons')
     def _test_delete_icon(self, request_data, request_format, remove_icons_mock):
         self.addon.update(icon_type='image/png')
