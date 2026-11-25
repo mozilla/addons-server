@@ -2268,6 +2268,29 @@ class TestContentActionBlockAddon(TestContentActionDisableAddon):
         block = Block.objects.create(addon=self.addon, updated_by=self.task_user)
         BlockVersion.objects.create(block=block, version=self.another_version)
 
+    def test_reverse_action_unblocks_blocked_target_versions(self):
+        BlockVersion.objects.create(
+            block=self.addon.block,
+            version=self.version,
+            block_type=self.ActionClass.block_type,
+        )
+        new_decision = ContentDecision.objects.create(
+            addon=self.addon, action=DECISION_ACTIONS.AMO_APPROVE
+        )
+
+        self.ActionClass.reverse_action(
+            reversed_decision=self.past_negative_decision, new_decision=new_decision
+        )
+
+        assert not BlockVersion.objects.filter(version=self.version).exists()
+        assert BlockVersion.objects.filter(version=self.another_version).exists()
+
+    def _test_approve_appeal_or_override(self, ActionClass):
+        super()._test_approve_appeal_or_override(ActionClass)
+        assert not BlockVersion.objects.filter(version=self.version).exists()
+        assert not BlockVersion.objects.filter(version=self.old_version).exists()
+        assert BlockVersion.objects.filter(version=self.another_version).exists()
+
     def test_hold_action_clears_all_nhr(self):
         # Only force-disable action clears unconditionally.
         version = version_factory(addon=self.addon)
