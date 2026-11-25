@@ -68,7 +68,7 @@ export class UpdateCard extends LitElement {
       gap: var(--space-xsmall);
       font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
-      border-top: 1px solid var(--background-color-information);
+      border-top: 1px solid color-mix(in srgb, var(--color-violet-10) 50%, transparent);
       padding-top: var(--space-small);
     }
   `;

@@ -60,7 +60,7 @@ export class AddonCard extends LitElement {
       vertical-align: middle;
     }
     .bottom {
-      border-top: 1px solid var(--background-color-information);
+      border-top: 1px solid color-mix(in srgb, var(--color-violet-10) 50%, transparent);
       padding-top: var(--space-medium);
     }
     .upcoming {
