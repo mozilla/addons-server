@@ -3181,6 +3181,10 @@ class TestAddonViewSetUpdatePut(UploadMixin, TestAddonViewSetUpdate):
         # It's not possible to send formdata format with nested json
         pass
 
+    def test_upload_icon_theme_raises(self):
+        # It's not possible to send formdata format with nested json
+        pass
+
     def test_delete_icon_formdata(self):
         # It's not possible to send formdata format with nested json
         pass
