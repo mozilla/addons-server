@@ -3,6 +3,7 @@ import { customElement } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { addonSourceQuery, updateAddon } from '../../data';
 import { FormController, textArea } from '../../foundations/form';
+import { getMarkdownSupportLink } from '../../utils/helper';
 import { sanitizeUserHTML } from '../../utils/sanitizeHTML';
 import { SectionCard } from './section-card';
 
@@ -56,7 +57,7 @@ export class TechnicalDetailsCard extends SectionCard {
             ${this.errorBar(form.error)}
             <div class="syntax-support">
               ${textArea(form, 'developer_comments', 'Developer comments')}
-              ${this.getMarkdownSupportLink()}
+              ${getMarkdownSupportLink()}
             </div>
             <dl>
               ${this.row('UUID', a.uuid)} ${this.row('Whiteboard', a.whiteboard)}

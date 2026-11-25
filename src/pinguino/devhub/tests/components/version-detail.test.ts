@@ -203,4 +203,27 @@ describe('version-detail', () => {
     await vi.waitFor(async () => expect(await shown()).toBe(25));
     expect(list?.hasMore).toBe(false);
   });
+
+  it('populates release notes from its source', async () => {
+    queryClient.setQueryData(
+      [...queryKeys.version('ad-blocker', version.id), 'source'],
+      { ...version, release_notes: '*foo* _bar_' },
+    );
+    const { el, root } = await mountDetail({
+      ...version,
+      release_notes: '<strong>foo</strong> <em>bar</em>',
+    });
+    [...root.querySelectorAll<HTMLElement>('.card-actions moz-button')]
+      .find((b) => b.textContent?.trim() === 'Edit')
+      ?.click();
+    await el.updateComplete;
+
+    expect(
+      (
+        root.querySelector(
+          '.syntax-support moz-textarea',
+        ) as HTMLTextAreaElement
+      ).value,
+    ).toBe('*foo* _bar_');
+  });
 });

@@ -23,7 +23,12 @@ import {
   textArea,
   textField,
 } from '../../foundations/form';
-import { emit, navigateTo, slugify } from '../../utils/helper';
+import {
+  emit,
+  getMarkdownSupportLink,
+  navigateTo,
+  slugify,
+} from '../../utils/helper';
 import { sanitizeUserHTML } from '../../utils/sanitizeHTML';
 import {
   customLicenseErrors,
@@ -445,7 +450,7 @@ export class ListingDetailsCard extends SectionCard {
         ${textArea(form, 'summary', 'Summary')}
         <div class="syntax-support">
           ${textArea(form, 'description', 'Description')}
-          ${this.getMarkdownSupportLink()}
+          ${getMarkdownSupportLink()}
         </div>
         ${this.#categoriesField()}
         ${this.#isTheme ? nothing : this.#flagFields()}
@@ -543,7 +548,7 @@ export class ListingDetailsCard extends SectionCard {
           ? html`
             <div class="syntax-support">
               ${textArea(form, opts.textKey)}
-              ${this.getMarkdownSupportLink()}
+              ${getMarkdownSupportLink()}
             </div>
         `
           : nothing

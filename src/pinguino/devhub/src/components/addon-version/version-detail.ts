@@ -38,8 +38,12 @@ import {
 } from '../../foundations/form';
 import { panelPointer } from '../../foundations/panel';
 import { setPageTitle } from '../../page-title';
-import { navigateTo } from '../../utils/helper';
-import { ACTIVITY_TAGS, sanitizeHTML } from '../../utils/sanitizeHTML';
+import { getMarkdownSupportLink, navigateTo } from '../../utils/helper';
+import {
+  ACTIVITY_TAGS,
+  sanitizeHTML,
+  sanitizeUserHTML,
+} from '../../utils/sanitizeHTML';
 import {
   customLicenseErrors,
   type LicenseDraft,
@@ -98,6 +102,13 @@ export class VersionDetail extends SectionCard {
 
   // Version details
   #form = new FormController<VersionDraft>(this);
+  #versionSource = versionQuery(
+    this,
+    () => this.addon?.slug ?? '',
+    () => this.versionId,
+    () => this.#form.editing,
+    true,
+  );
   #appVersions = Object.fromEntries(
     Object.keys(APP_NAMES).map((app) => [
       app,
@@ -198,6 +209,15 @@ export class VersionDetail extends SectionCard {
 
   willUpdate(changed: PropertyValues<this>) {
     if (changed.has('versionId')) this.#cancel();
+    if (!this.#form.editing) return;
+    const source = this.#versionSource().data;
+    if (source && this.#form.value('release_notes') === undefined) {
+      this.#form.set('release_notes', localized(source.release_notes));
+    }
+  }
+
+  get #sourceNotes() {
+    return localized(this.#versionSource().data?.release_notes);
   }
 
   #scrollToNewest() {
@@ -216,7 +236,6 @@ export class VersionDetail extends SectionCard {
     );
     this.source = undefined;
     this.#form.start({
-      release_notes: localized(v.release_notes),
       approval_notes: v.approval_notes ?? '',
       ...licenseDraft(v.license),
     });
@@ -235,9 +254,10 @@ export class VersionDetail extends SectionCard {
         (r) => r.min !== saved[r.app]?.min || r.max !== saved[r.app]?.max,
       );
     return {
-      ...(draft.release_notes !== localized(v.release_notes) && {
-        release_notes: draft.release_notes,
-      }),
+      ...(draft.release_notes !== undefined &&
+        draft.release_notes !== this.#sourceNotes && {
+          release_notes: draft.release_notes,
+        }),
       ...(draft.approval_notes !== (v.approval_notes ?? '') && {
         approval_notes: draft.approval_notes,
       }),
@@ -615,11 +635,20 @@ export class VersionDetail extends SectionCard {
         ${
           this.addon.kind !== 'theme'
             ? form.editing
-              ? html`${textArea(form, 'release_notes', 'Release notes')}
+              ? html`
+              <div class="syntax-support">
+                ${textArea(form, 'release_notes', 'Release notes')}
+                ${getMarkdownSupportLink()}
+              </div>
               ${textArea(form, 'approval_notes', 'Notes for reviewers')}`
               : html`${this.row(
                   'Release notes',
-                  notes ? html`<span>${notes}</span>` : null,
+                  notes
+                    ? html`
+                    <span>
+                    ${unsafeHTML(sanitizeUserHTML(notes))}
+                    </span>`
+                    : null,
                 )}
               ${this.row(
                 'Notes for reviewers',

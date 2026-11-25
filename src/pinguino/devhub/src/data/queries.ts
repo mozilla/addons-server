@@ -386,14 +386,19 @@ export function versionQuery(
   host: ReactiveControllerHost,
   getSlug: () => string,
   getId: () => number,
+  getEnabled: () => boolean = () => true,
+  showSource = false,
 ) {
   return createQueryController(
     host,
-    () => ({
-      queryKey: queryKeys.version(getSlug(), getId()),
-      queryFn: () => fetchVersion(getSlug(), getId()),
-      enabled: Boolean(getSlug() && getId()),
-    }),
+    () => {
+      const key = queryKeys.version(getSlug(), getId());
+      return {
+        queryKey: showSource ? [...key, 'source'] : key,
+        queryFn: () => fetchVersion(getSlug(), getId(), showSource),
+        enabled: Boolean(getSlug() && getId() && getEnabled()),
+      };
+    },
     queryClient,
   );
 }
@@ -736,6 +741,9 @@ export async function updateVersion(
   }
   if (version) queryClient.setQueryData(queryKeys.version(slug, id), version);
   await Promise.all([
+    queryClient.invalidateQueries({
+      queryKey: [...queryKeys.version(slug, id), 'source'],
+    }),
     queryClient.invalidateQueries({ queryKey: queryKeys.versions(slug) }),
     queryClient.invalidateQueries({ queryKey: queryKeys.addons }),
   ]);
