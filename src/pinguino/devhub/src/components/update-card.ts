@@ -27,6 +27,9 @@ export class UpdateCard extends LitElement {
       border-radius: var(--border-radius-medium, 8px);
       background: var(--background-color-canvas);
     }
+    .card a {
+      text-decoration: none;
+    }
     .head {
       display: flex;
       align-items: center;
@@ -48,12 +51,12 @@ export class UpdateCard extends LitElement {
       font-weight: 600;
     }
     .addon-name {
-      font-size: 0.85rem;
+      font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
     }
     .message {
       margin: 0;
-      font-size: 0.85rem;
+      font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
     }
     .foot {
@@ -61,8 +64,10 @@ export class UpdateCard extends LitElement {
       flex-wrap: wrap;
       align-items: center;
       gap: var(--space-xsmall);
-      font-size: 0.8rem;
+      font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
+      border-top: 1px solid var(--background-color-information);
+      padding-top: var(--space-small);
     }
   `;
 
