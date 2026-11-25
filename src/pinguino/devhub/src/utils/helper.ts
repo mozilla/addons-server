@@ -7,6 +7,7 @@ import {
 import { html, type ReactiveControllerHost } from 'lit';
 
 import '../components/error-page';
+import { extensionWorkshop } from '../links';
 
 // Prompt a redirect. `path` is absolute, or relative to `routes` when given.
 export function navigateTo(
@@ -95,4 +96,8 @@ export function formatFileSize(bytes: number): string {
     unit: 'byte',
     unitDisplay: 'narrow',
   }).format(bytes);
+}
+
+export function getMarkdownSupportLink() {
+  return html`<a href=${extensionWorkshop('/documentation/develop/create-an-appealing-listing', '#make-use-of-markdown')} target="_blank" rel="noopener noreferrer">Some markdown supported.</a>`;
 }

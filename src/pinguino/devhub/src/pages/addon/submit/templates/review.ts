@@ -7,6 +7,7 @@ import '../../../../components/error-page';
 import { errorBar, errorMessage, SubmissionStep } from '../submission-step';
 import '../../../../foundations/components/message-bar';
 import { DISTRIBUTION } from '../../../../foundations/badges/distribution-badge';
+import { getMarkdownSupportLink } from '../../../../utils/helper';
 
 type Textarea = HTMLElement & { value: string };
 
@@ -33,6 +34,12 @@ export class ReviewSubmit extends SubmissionStep {
       display: flex;
       flex-direction: column;
       gap: var(--space-large);
+    }
+    .syntax-support {
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+      gap: var(--space-xsmall);
     }
   `,
   ];
@@ -83,12 +90,17 @@ export class ReviewSubmit extends SubmissionStep {
           ${
             this.newAddon
               ? nothing
-              : html`<moz-textarea
+              : html`
+              <div class="syntax-support">
+                <moz-textarea
                   id="release-notes"
                   label="Release notes"
                   rows="2"
                   full-width
-                ></moz-textarea>`
+                ></moz-textarea>
+                ${getMarkdownSupportLink()}
+              </div>
+                `
           }
           <moz-textarea
             id="reviewer-notes"

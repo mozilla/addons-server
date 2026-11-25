@@ -659,8 +659,14 @@ const versionPath = (slug: string, id?: number) => {
   return `/addons/addon/${encodeURIComponent(slug)}/versions/${id ? `${id}/` : ''}`;
 };
 
-export async function fetchVersion(slug: string, id: number): Promise<Version> {
-  return await apiFetch<Version>(versionPath(slug, id));
+export async function fetchVersion(
+  slug: string,
+  id: number,
+  showSource = false,
+): Promise<Version> {
+  return await apiFetch<Version>(
+    `${versionPath(slug, id)}${showSource ? '?show_source=true' : ''}`,
+  );
 }
 
 export async function fetchLatestVersion(
