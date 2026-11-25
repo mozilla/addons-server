@@ -49,7 +49,6 @@ export interface Addon {
   kind: AddonKind;
   icon: string;
   status: StatusInfo;
-  version: string;
   // Display string ("Sep 2 2025"); the API mapper formats ISO dates to this.
   lastUpdated: string;
   visibility: AddonVisibility;
@@ -91,6 +90,9 @@ export interface Addon {
     hasPrivacyPolicy?: boolean;
   };
   currentVersion?: Version;
+  latestListedVersion?: Version;
+  latestUnlistedVersion?: Version;
+  latestEnterpriseVersion?: Version;
   // Add-on specific, per-channel submission warning.
   submissionNotice?: Partial<Record<AddonDistribution, string | null>>;
 }

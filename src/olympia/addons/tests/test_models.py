@@ -382,6 +382,11 @@ class TestAddonModels(TestCase):
             channel=amo.CHANNEL_UNLISTED,
             file_kw={'status': amo.STATUS_DISABLED},
         )
+        version_factory(
+            addon=addon,
+            version='10.0',
+            channel=amo.CHANNEL_LISTED,
+        )
         assert addon.latest_unlisted_version == a_newer_unlisted_version
 
         # Make sure the property is cached.
@@ -397,6 +402,80 @@ class TestAddonModels(TestCase):
         # Make sure it's writeable.
         addon.latest_unlisted_version = an_unlisted_version
         assert addon.latest_unlisted_version == an_unlisted_version
+
+    def test_latest_listed_version(self):
+        addon = Addon.objects.get(pk=3615)
+        a_listed_version = version_factory(
+            addon=addon, version='3.0', channel=amo.CHANNEL_LISTED
+        )
+        a_listed_version.update(created=self.days_ago(2))
+        a_newer_listed_version = version_factory(
+            addon=addon, version='4.0', channel=amo.CHANNEL_LISTED
+        )
+        a_newer_listed_version.update(created=self.days_ago(1))
+        version_factory(
+            addon=addon,
+            version='5.0',
+            channel=amo.CHANNEL_LISTED,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        version_factory(
+            addon=addon,
+            version='99.0',
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        assert addon.latest_listed_version == a_newer_listed_version
+
+        # Make sure the property is cached.
+        an_even_newer_listed_version = version_factory(
+            addon=addon, version='6.0', channel=amo.CHANNEL_LISTED
+        )
+        assert addon.latest_listed_version == a_newer_listed_version
+
+        # Make sure it can be deleted to reset it.
+        del addon.latest_listed_version
+        assert addon.latest_listed_version == an_even_newer_listed_version
+
+        # Make sure it's writeable.
+        addon.latest_listed_version = a_listed_version
+        assert addon.latest_listed_version == a_listed_version
+
+    def test_latest_enterprise_version(self):
+        addon = Addon.objects.get(pk=3615)
+        an_enterprise_version = version_factory(
+            addon=addon, version='3.0', channel=amo.CHANNEL_ENTERPRISE
+        )
+        an_enterprise_version.update(created=self.days_ago(2))
+        a_newer_enterprise_version = version_factory(
+            addon=addon, version='4.0', channel=amo.CHANNEL_ENTERPRISE
+        )
+        a_newer_enterprise_version.update(created=self.days_ago(1))
+        version_factory(
+            addon=addon,
+            version='5.0',
+            channel=amo.CHANNEL_ENTERPRISE,
+            file_kw={'status': amo.STATUS_DISABLED},
+        )
+        version_factory(
+            addon=addon,
+            version='99.0',
+            channel=amo.CHANNEL_UNLISTED,
+        )
+        assert addon.latest_enterprise_version == a_newer_enterprise_version
+
+        # Make sure the property is cached.
+        an_even_newer_enterprise_version = version_factory(
+            addon=addon, version='6.0', channel=amo.CHANNEL_ENTERPRISE
+        )
+        assert addon.latest_enterprise_version == a_newer_enterprise_version
+
+        # Make sure it can be deleted to reset it.
+        del addon.latest_enterprise_version
+        assert addon.latest_enterprise_version == an_even_newer_enterprise_version
+
+        # Make sure it's writeable.
+        addon.latest_enterprise_version = an_enterprise_version
+        assert addon.latest_enterprise_version == an_enterprise_version
 
     def test_find_latest_version(self):
         """

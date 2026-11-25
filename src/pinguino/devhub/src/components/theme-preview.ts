@@ -17,8 +17,9 @@ export class ThemePreview extends LitElement {
     .preview {
       display: block;
       width: 100%;
-      height: 96px;
+      height: 72px;
       object-fit: cover;
+      object-position: top left;
       border-radius: var(--border-radius-medium, 8px);
     }
   `;

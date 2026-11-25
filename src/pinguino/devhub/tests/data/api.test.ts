@@ -58,7 +58,6 @@ describe('mapAddon', () => {
       icon: 'themes',
       status: ADDON_STATUS.public,
       visibility: 'visible',
-      version: '3.2.1',
       lastUpdated: 'May 14 2025',
       previewUrl: 'https://cdn/preview.png',
     });
@@ -128,7 +127,6 @@ describe('mapAddon', () => {
       kind: 'extension',
       visibility: 'invisible',
       status: ADDON_STATUS.nominated,
-      version: '—', // no current_version
     });
   });
 

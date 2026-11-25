@@ -64,7 +64,6 @@ const ADDON: Addon = {
   kind: 'extension',
   icon: 'extension',
   status: ADDON_STATUS.public,
-  version: '1.0.0',
   lastUpdated: '',
   visibility: 'visible',
   canChangeVisibility: true,

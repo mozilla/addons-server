@@ -72,7 +72,6 @@ const base: Addon = {
   kind: 'extension',
   icon: 'extension',
   status: ADDON_STATUS.public,
-  version: '3.2.1',
   lastUpdated: 'Aug 18 2025',
   visibility: 'visible',
   canChangeVisibility: true,

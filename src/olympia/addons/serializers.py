@@ -826,6 +826,7 @@ class SimpleDeveloperVersionSerializer(DeveloperVersionSerializer):
         fields = (
             'id',
             'approval_notes',
+            'channel',
             'compatibility',
             'edit_url',
             'file',
@@ -1484,14 +1485,18 @@ class DeveloperAddonSerializer(AddonSerializer):
     current_version = SimpleDeveloperVersionSerializer(read_only=True)
     description = SourceTranslationSerializerField(required=False)
     developer_comments = SourceTranslationSerializerField(required=False)
+    latest_listed_version = SimpleDeveloperVersionSerializer(read_only=True)
     latest_unlisted_version = SimpleDeveloperVersionSerializer(read_only=True)
+    latest_enterprise_version = SimpleDeveloperVersionSerializer(read_only=True)
     channels = serializers.SerializerMethodField()
     submit_notification_warning = serializers.SerializerMethodField()
 
     class Meta(AddonSerializer.Meta):
         fields = AddonSerializer.Meta.fields + (
             'channels',
+            'latest_listed_version',
             'latest_unlisted_version',
+            'latest_enterprise_version',
             'submit_notification_warning',
         )
         read_only_fields = tuple(

@@ -99,13 +99,13 @@ export class DevhubHome extends LitElement {
       <devhub-home-banner></devhub-home-banner>
 
       <app-grid columns-md="1" gap="xlarge">
-        <div style="grid-column: span 7">
+        <div style="grid-column: span 8">
           <app-stack gap="xlarge">
             ${this.#group('extension', this.#extensions)}
             ${this.#group('theme', this.#themes)}
           </app-stack>
         </div>
-        <div class="feed-column" style="grid-column: span 5">
+        <div class="feed-column" style="grid-column: span 4">
           ${this.#feed(this.#updates().data?.pages ?? [])}
         </div>
       </app-grid>

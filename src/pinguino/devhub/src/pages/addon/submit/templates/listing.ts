@@ -27,7 +27,6 @@ function newAddon(kind: AddonKind, upload?: FileUpload): Addon {
     summary: localized(manifest?.summary ?? undefined),
     homepageUrl: localized(manifest?.homepage ?? undefined),
     status: ADDON_STATUS.incomplete,
-    version: '',
     lastUpdated: '',
     visibility: 'visible',
     canChangeVisibility: false,

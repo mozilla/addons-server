@@ -1,4 +1,4 @@
-import { css, html, LitElement } from 'lit';
+import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { BASE } from '../base';
 import type { Addon } from '../data';
@@ -28,11 +28,11 @@ export class AddonCard extends LitElement {
       flex-direction: column;
       gap: var(--space-small);
     }
-    .top {
+    .middle {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
       gap: var(--space-small);
+      flex-grow: 1;
     }
     .kind {
       font-size: 0.75rem;
@@ -40,80 +40,87 @@ export class AddonCard extends LitElement {
     }
     .title {
       display: flex;
-      align-items: center;
-      gap: var(--space-xsmall);
+      gap: var(--space-small);
     }
     .name {
       margin: 0;
+      font-size: var(--font-size-large);
       font-weight: 600;
     }
     .logo {
       width: 32px;
       height: 32px;
+      padding: 12px;
+      background: var(--background-color-canvas);
       border-radius: var(--border-radius-small, 4px);
     }
-    .meta {
+    .version {
+      vertical-align: middle;
+    }
+    .upcoming {
       display: flex;
       align-items: center;
       gap: var(--space-xsmall);
-      font-size: 0.85rem;
+      font-size: 0.9rem; /* --font-size-small is too small */
       color: var(--text-color-deemphasized, GrayText);
     }
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-xsmall);
-      margin-bottom: auto;
+    .pending-review {
+      color: var(--icon-color-warning);
+    }
+    .divider {
+      width: 100%;
+      margin: 0;
+      border: none;
+      opacity: 70%;
+      border-top: 1px solid var(--background-color-information);
     }
   `;
 
   render() {
     const a = this.addon;
     const isTheme = a.kind === 'theme';
+    const mostRelevantVersion =
+      a.currentVersion || a.latestUnlistedVersion || a.latestEnterpriseVersion;
+
     return html`
       <moz-card appearance="outline">
         <div class="body">
-          <div class="top">
-          <span class="kind">${isTheme ? 'Theme' : 'Extension'}</span>
-          <moz-button size="small" href="${BASE}/addon/${a.slug}">
-            Manage
-          </moz-button>
-        </div>
-
-        ${
-          isTheme
-            ? html`
+          <div class="title">
+            ${
+              !isTheme && a.iconUrl
+                ? html`<img class="logo" src=${a.iconUrl} alt="" />`
+                : nothing
+            }
+            <div class="middle">
               <h2 class="name">${a.name}</h2>
-              <theme-preview .addon=${a}></theme-preview>
-            `
-            : html`
-              <div class="title">
-                ${
-                  a.iconUrl
-                    ? html`<img class="logo" src=${a.iconUrl} alt="" />`
-                    : undefined
-                }
-                <h2 class="name">${a.name}</h2>
-              </div>
-            `
-        }
+              <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
+            </div>
+            <moz-button size="small" href="${BASE}/addon/${a.slug}">
+              Manage
+            </moz-button>
+          </div>
 
-        <div class="meta">
-          <span>Status</span>
-          <moz-status-badge type=${a.status.badge}>${a.status.label}</moz-status-badge>
-        </div>
-        <div class="meta">Current version: ${a.version}</div>
-        <div class="meta">Last updated: ${a.lastUpdated}</div>
+          ${
+            mostRelevantVersion
+              ? html`<div>
+                <span class="version">Version: ${mostRelevantVersion.version}</span>
+                <distribution-badge distribution=${mostRelevantVersion.channel}></distribution-badge>
+              </div>`
+              : nothing
+          }
 
-        <div class="tags">
-          <visibility-badge visibility=${a.visibility}></visibility-badge>
-          ${a.channels?.map(
-            (channel) =>
-              html`<distribution-badge
-                distribution=${channel}
-              ></distribution-badge>`,
-          )}
-        </div>
+          <hr class="divider">
+
+          ${
+            isTheme
+              ? html`<theme-preview .addon=${a}></theme-preview>`
+              : html`<div class="upcoming">Upcoming version: ${
+                  a.latestListedVersion &&
+                  a.latestListedVersion.version !== a.currentVersion?.version
+                    ? html`${a.latestListedVersion?.version} <span class="pending-review">Pending review</span>`
+                    : '—'
+                }</div>`
+          }
         </div>
       </moz-card>
     `;
