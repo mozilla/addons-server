@@ -32,6 +32,7 @@ export class AddonCard extends LitElement {
     .top {
       display: flex;
       gap: var(--space-small);
+      flex-grow: 2;
     }
     .title {
       display: flex;
