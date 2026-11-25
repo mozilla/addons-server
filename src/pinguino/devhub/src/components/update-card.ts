@@ -58,6 +58,8 @@ export class UpdateCard extends LitElement {
       margin: 0;
       font-size: var(--font-size-small);
       color: var(--text-color-deemphasized, GrayText);
+      min-width: 0;
+      overflow-wrap: anywhere;
     }
     .foot {
       display: flex;
