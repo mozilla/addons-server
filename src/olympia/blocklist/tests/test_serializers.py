@@ -254,4 +254,8 @@ class TestBlockSerializer(TestCase):
             auto_block_reason=BlockReason.VERSION_DELETED,
         )
         serializer = BlockSerializer(context={'request': self.request})
-        assert serializer.to_representation(self.block)['blocked'] == ['1.0', '1.0.0', '2']
+        assert serializer.to_representation(self.block)['blocked'] == [
+            '1.0',
+            '1.0.0',
+            '2',
+        ]
