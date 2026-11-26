@@ -622,45 +622,45 @@ export class VersionDetail extends SectionCard {
     const form = this.#form;
     const hasSource = v.channel !== 'enterprise' && this.addon.kind !== 'theme';
     const notes = localized(v.release_notes);
+
+    const getAddonSections = () => {
+      return html`
+    ${this.row(
+      'Compatibility',
+      html`
+        ${this.#compat(v)}`,
+    )}
+    ${
+      form.editing
+        ? html`
+          <div class="syntax-support">
+            ${textArea(form, 'release_notes', 'Release notes')}
+            ${getMarkdownSupportLink()}
+          </div>
+          ${textArea(form, 'approval_notes', 'Notes for reviewers')}`
+        : html`
+        ${this.row(
+          'Release notes',
+          notes
+            ? html`
+              <span>
+              ${unsafeHTML(sanitizeUserHTML(notes))}
+              </span>`
+            : null,
+        )}
+        ${this.row(
+          'Notes for reviewers',
+          v.approval_notes ? html`<span>${v.approval_notes}</span>` : null,
+        )}`
+    }`;
+    };
+
     return html`
       ${this.errorBar(
         form.editing ? form.error : this.confirmingDelete ? '' : this.error,
       )}
       <dl>
-        ${
-          this.addon.kind !== 'theme'
-            ? html`
-            ${this.row(
-              'Compatibility',
-              html`
-                ${this.#compat(v)}`,
-            )}
-            ${
-              form.editing
-                ? html`
-              <div class="syntax-support">
-                ${textArea(form, 'release_notes', 'Release notes')}
-                ${getMarkdownSupportLink()}
-              </div>
-              ${textArea(form, 'approval_notes', 'Notes for reviewers')}`
-                : html`${this.row(
-                    'Release notes',
-                    notes
-                      ? html`
-                    <span>
-                    ${unsafeHTML(sanitizeUserHTML(notes))}
-                    </span>`
-                      : null,
-                  )}
-              ${this.row(
-                'Notes for reviewers',
-                v.approval_notes
-                  ? html`<span>${v.approval_notes}</span>`
-                  : null,
-              )}`
-            }`
-            : nothing
-        }
+        ${this.addon.kind !== 'theme' ? getAddonSections() : nothing}
         ${
           form.editing
             ? this.#license(v)
