@@ -1,4 +1,5 @@
 import type { IconName } from '@mozilla/lit-web-components';
+import type { AddonKind } from '../../data';
 
 export type SectionId =
   | 'details'
@@ -44,4 +45,9 @@ export const SECTION = {
   },
 } satisfies Record<SectionId, SectionInfo>;
 
-export const SECTIONS: SectionInfo[] = Object.values(SECTION);
+const SECTIONS: SectionInfo[] = Object.values(SECTION);
+
+export const SECTIONS_BY_TYPE: Record<AddonKind, SectionInfo[]> = {
+  theme: SECTIONS.filter((s) => s.id !== 'graphics'),
+  extension: SECTIONS,
+};

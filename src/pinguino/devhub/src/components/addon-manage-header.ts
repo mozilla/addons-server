@@ -133,7 +133,7 @@ export class AddonManageHeader extends LitElement {
       </moz-breadcrumb-group>
       <div class="bar">
         ${
-          a.iconUrl
+          a.kind !== 'theme' && a.iconUrl
             ? html`<img class="logo" src=${a.iconUrl} alt="" />`
             : undefined
         }
