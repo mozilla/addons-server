@@ -67,6 +67,7 @@ from olympia.versions.models import (
     VersionPreview,
 )
 from olympia.versions.utils import (
+    validate_listed_version_allowed,
     validate_version_number_does_not_exist,
     validate_version_number_is_gt_latest_signed_listed_version,
 )
@@ -623,21 +624,8 @@ class DeveloperVersionSerializer(VersionSerializer):
                         )
                     ):
                         raise exceptions.ValidationError({'version': error_message})
-                    # Also check for submitting listed versions when disabled.
-                    if self.addon.disabled_by_user:
-                        raise exceptions.ValidationError(
-                            gettext(
-                                'Listed versions cannot be submitted while add-on is '
-                                'disabled.'
-                            )
-                        )
-                    elif self.addon.status == amo.STATUS_REJECTED:
-                        raise exceptions.ValidationError(
-                            gettext(
-                                'Listed versions cannot be submitted while add-on '
-                                'listing is rejected.'
-                            )
-                        )
+                    if error_message := validate_listed_version_allowed(self.addon):
+                        raise exceptions.ValidationError(error_message)
         elif 'source' in data:
             # We need to manually trigger this as null/empty values aren't validated.
             try:

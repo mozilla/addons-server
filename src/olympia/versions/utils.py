@@ -203,6 +203,16 @@ def validate_version_number_does_not_exist(addon, version_string):
         return msg.format(version_string=version_string)
 
 
+def validate_listed_version_allowed(addon):
+    """Returns an error string if `addon` can't take a new listed version."""
+    if addon.disabled_by_user:
+        return gettext('Listed versions cannot be submitted while add-on is disabled.')
+    if addon.status == amo.STATUS_REJECTED:
+        return gettext(
+            'Listed versions cannot be submitted while add-on listing is rejected.'
+        )
+
+
 def validate_version_number_is_gt_latest_signed_listed_version(addon, version_string):
     """Returns an error string if `version_string` isn't greater than the current
     approved listed version. Doesn't apply to langpacks."""

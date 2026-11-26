@@ -124,7 +124,9 @@ class AlreadyUsedUpload(forms.ValidationError):
 
 
 class DuplicateAddonID(forms.ValidationError):
-    pass
+    def __init__(self, message, *, guid=None):
+        super().__init__(message)
+        self.guid = guid
 
 
 # Return an immutable empty dict used as the fallback value when fetching
@@ -916,7 +918,7 @@ def check_xpi_info(
             Addon.unfiltered.filter(guid=guid).exists()
             or DeniedGuid.objects.filter(guid=guid).exists()
         ):
-            raise DuplicateAddonID(gettext('Duplicate add-on ID found.'))
+            raise DuplicateAddonID(gettext('Duplicate add-on ID found.'), guid=guid)
 
     version_field_max_length = Version.version.field.max_length
     if len(xpi_info['version']) > version_field_max_length:

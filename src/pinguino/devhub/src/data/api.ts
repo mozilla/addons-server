@@ -651,8 +651,13 @@ export async function postUpload(
   });
 }
 
-export async function fetchUpload(uuid: string): Promise<FileUpload> {
-  return await apiFetch<FileUpload>(`/addons/upload/${uuid}/`);
+export async function fetchUpload(
+  uuid: string,
+  versionOf?: string,
+): Promise<FileUpload> {
+  const params = new URLSearchParams({ full_check: 'true' });
+  if (versionOf) params.set('addon', versionOf);
+  return await apiFetch<FileUpload>(`/addons/upload/${uuid}/?${params}`);
 }
 
 const versionPath = (slug: string, id?: number) => {

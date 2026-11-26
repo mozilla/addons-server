@@ -5,6 +5,7 @@ import {
   canSubmitListed,
   createVersion,
   getAddon,
+  getUpload,
   getVersion,
   getVersions,
   hasIncompleteListing,
@@ -34,6 +35,7 @@ export class VersionSubmission extends SubmissionFlow {
   @state() private hadListed = true;
 
   #lookedUp?: Promise<void>;
+  #adopting?: Promise<void>;
 
   protected get kind() {
     return this.addon?.kind ?? 'extension';
@@ -129,7 +131,11 @@ export class VersionSubmission extends SubmissionFlow {
   }
 
   private async enterStart(id: 'upload' | 'distribution') {
+    const carried = this.takeCarriedUpload();
+    // The router can enter twice at once; both have to wait for the upload.
+    if (carried) this.#adopting = this.adoptUpload(carried);
     await this.lookUp();
+    await this.#adopting;
     // A listed add-on still missing details has to finish them first.
     if (this.addon && hasIncompleteListing(this.addon)) {
       const slug = encodeURIComponent(this.addon.slug);
@@ -139,6 +145,35 @@ export class VersionSubmission extends SubmissionFlow {
     }
     if (id === 'distribution') return this.enterStep(id);
     return this.enterStep(this.upload ? 'validation' : 'upload');
+  }
+
+  // A package uploaded as a new add-on whose ID turned out to be this one's
+  // comes over as `?upload=<uuid>`, so it doesn't have to be uploaded again.
+  private takeCarriedUpload() {
+    const url = new URL(location.href);
+    const uuid = url.searchParams.get('upload');
+    if (!uuid) return undefined;
+    url.searchParams.delete('upload');
+    window.history.replaceState(window.history.state, '', url);
+    return uuid;
+  }
+
+  private async adoptUpload(uuid: string) {
+    await this.lookUp();
+    if (this.upload) return;
+    const upload = await getUpload(uuid, this.addonSlug).catch(() => undefined);
+    if (!upload) {
+      this.uploadNotice = "That file couldn't be loaded. Upload it again.";
+      return;
+    }
+    if (upload.submitted) {
+      this.uploadNotice = 'That file has already been submitted.';
+      return;
+    }
+    // Its channel was picked when it was uploaded. If this add-on can't take
+    // it, the upload's validation says why.
+    this.channel = upload.channel;
+    this.setUpload(upload);
   }
 
   private async enterPending(id: VersionStep) {

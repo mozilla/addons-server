@@ -1,3 +1,4 @@
+import json
 import os
 from datetime import timedelta
 
@@ -8,6 +9,7 @@ from django.urls import reverse
 import time_machine
 
 from olympia import amo
+from olympia.addons.models import DeniedGuid
 from olympia.amo.tests import (
     APITestClientJWT,
     APITestClientSessionID,
@@ -222,6 +224,220 @@ class TestFileUploadViewSet(UploadMixin, TestCase):
         data = self.client.get(detail_url).json()['manifest_data']
         assert data['name']['en-US'] == 'Notify link clicks i18n'
         assert data['name']['de'] == 'Meine Beispielerweiterung'
+
+    def _full_check(self, upload, **params):
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        return self.client.get(detail_url, {'full_check': 'true', **params})
+
+    def test_full_check_is_opt_in(self):
+        addon_factory(guid='@webextension-guid')
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        data = self.client.get(detail_url).json()
+        assert data['valid'] is True
+        assert data['validation']['messages'] == []
+
+    def test_full_check_new_addon_valid(self):
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload).json()
+        assert data['valid'] is True
+        assert data['validation']['errors'] == 0
+        assert data['manifest_data']['name'] == 'My WebExtension Addon'
+
+    def test_full_check_duplicate_addon_id(self):
+        addon_factory(guid='@webextension-guid')
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload).json()
+        assert data['valid'] is False
+        assert data['manifest_data'] is None
+        assert data['validation']['errors'] == 1
+        assert data['validation']['messages'] == [
+            {
+                'id': ['submission', 'duplicate_addon_id'],
+                'type': 'error',
+                'message': 'Duplicate add-on ID found.',
+                'tier': 1,
+            }
+        ]
+
+    def test_full_check_duplicate_addon_id_denied_guid(self):
+        DeniedGuid.objects.create(guid='@webextension-guid')
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload).json()
+        assert data['valid'] is False
+        assert data['validation']['messages'][0]['id'] == [
+            'submission',
+            'duplicate_addon_id',
+        ]
+        assert 'addon' not in data['validation']['messages'][0]
+
+    def test_full_check_duplicate_addon_id_own_addon(self):
+        addon = addon_factory(guid='@webextension-guid', users=[self.user])
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        [message] = self._full_check(upload).json()['validation']['messages']
+        assert message['message'] == 'This add-on ID is already used by your add-on.'
+        assert message['addon'] == {
+            'id': addon.id,
+            'slug': addon.slug,
+            'name': str(addon.name),
+        }
+
+    def test_full_check_duplicate_addon_id_own_deleted_addon(self):
+        addon_factory(
+            guid='@webextension-guid', users=[self.user], status=amo.STATUS_DELETED
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        [message] = self._full_check(upload).json()['validation']['messages']
+        assert message['message'] == 'Duplicate add-on ID found.'
+        assert 'addon' not in message
+
+    def test_full_check_duplicate_addon_id_own_disabled_addon(self):
+        addon_factory(
+            guid='@webextension-guid', users=[self.user], status=amo.STATUS_DISABLED
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        [message] = self._full_check(upload).json()['validation']['messages']
+        assert message['message'] == 'Duplicate add-on ID found.'
+        assert 'addon' not in message
+
+    def test_full_check_skipped_when_linter_failed(self):
+        addon_factory(guid='@webextension-guid')
+        validation = json.dumps(
+            {
+                'errors': 1,
+                'warnings': 0,
+                'notices': 0,
+                'metadata': {},
+                'messages': [{'type': 'error', 'message': 'Linter error'}],
+            }
+        )
+        upload = self.get_upload(
+            'webextension.xpi', user=self.user, validation=validation
+        )
+        data = self._full_check(upload).json()
+        assert data['valid'] is False
+        assert data['validation']['messages'] == [
+            {'type': 'error', 'message': 'Linter error'}
+        ]
+
+    def test_full_check_other_errors(self):
+        upload = self.get_upload(
+            abspath='src/olympia/devhub/tests/addons/static_theme.zip', user=self.user
+        )
+        with override_settings(MAX_STATICTHEME_SIZE=1):
+            data = self._full_check(upload).json()
+        assert data['valid'] is False
+        [message] = data['validation']['messages']
+        assert message['id'] == ['submission', 'invalid']
+        assert message['message'].startswith('Maximum size for WebExtension themes')
+
+    def test_full_check_version(self):
+        addon = addon_factory(
+            guid='@webextension-guid',
+            users=[self.user],
+            version_kw={'version': '0.0.0.1'},
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload, addon=addon.slug).json()
+        assert data['valid'] is True
+        assert data['validation']['messages'] == []
+
+        data = self._full_check(upload, addon=addon.id).json()
+        assert data['valid'] is True
+
+    def test_full_check_version_guid_mismatch(self):
+        addon = addon_factory(guid='@other-guid', users=[self.user])
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload, addon=addon.slug).json()
+        assert data['valid'] is False
+        [message] = data['validation']['messages']
+        assert message['id'] == ['submission', 'invalid']
+        assert 'does not match the ID of your add-on' in message['message']
+
+    def test_full_check_version_exists(self):
+        addon = addon_factory(
+            guid='@webextension-guid',
+            users=[self.user],
+            version_kw={'version': '0.0.1'},
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload, addon=addon.slug).json()
+        assert data['valid'] is False
+        [message] = data['validation']['messages']
+        assert message['id'] == ['submission', 'version_exists']
+        assert message['message'] == 'Version 0.0.1 already exists.'
+
+    def test_full_check_version_not_greater_than_listed(self):
+        addon = addon_factory(
+            guid='@webextension-guid',
+            users=[self.user],
+            version_kw={'version': '1.0'},
+            file_kw={'is_signed': True},
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload, addon=addon.slug).json()
+        assert data['valid'] is False
+        [message] = data['validation']['messages']
+        assert message['id'] == ['submission', 'version_not_greater']
+
+        upload = self.get_upload(
+            'webextension.xpi', user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
+        assert self._full_check(upload, addon=addon.slug).json()['valid'] is True
+
+    def test_full_check_listed_not_allowed(self):
+        addon = addon_factory(
+            guid='@webextension-guid',
+            users=[self.user],
+            version_kw={'version': '0.0.0.1'},
+            disabled_by_user=True,
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        data = self._full_check(upload, addon=addon.slug).json()
+        assert data['valid'] is False
+        [message] = data['validation']['messages']
+        assert message['id'] == ['submission', 'listed_not_allowed']
+        assert message['message'] == (
+            'Listed versions cannot be submitted while add-on is disabled.'
+        )
+
+        addon.update(disabled_by_user=False, status=amo.STATUS_REJECTED)
+        [message] = self._full_check(upload, addon=addon.slug).json()['validation'][
+            'messages'
+        ]
+        assert message['id'] == ['submission', 'listed_not_allowed']
+
+        upload = self.get_upload(
+            'webextension.xpi', user=self.user, channel=amo.CHANNEL_UNLISTED
+        )
+        assert self._full_check(upload, addon=addon.slug).json()['valid'] is True
+
+    def test_full_check_addon_not_author(self):
+        addon = addon_factory(guid='@webextension-guid')
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        assert self._full_check(upload, addon=addon.slug).status_code == 404
+        assert self._full_check(upload, addon='does-not-exist').status_code == 404
+
+    def test_full_check_addon_disabled_by_mozilla(self):
+        addon = addon_factory(
+            guid='@webextension-guid', users=[self.user], status=amo.STATUS_DISABLED
+        )
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        assert self._full_check(upload, addon=addon.slug).status_code == 403
+
+    def test_addon_param_ignored_without_full_check(self):
+        addon = addon_factory(guid='@webextension-guid')
+        upload = self.get_upload('webextension.xpi', user=self.user)
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        response = self.client.get(detail_url, {'addon': addon.slug})
+        assert response.status_code == 200
+        assert response.json()['valid'] is True
 
     def test_cannot_retrieve_other_uploads(self):
         detail_url = reverse_ns(

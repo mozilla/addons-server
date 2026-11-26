@@ -627,25 +627,47 @@ export async function acceptAgreement(payload: AgreementAcceptState) {
   await queryClient.invalidateQueries({ queryKey: queryKeys.agreement });
 }
 
+// The same upload validates differently as a new add-on and as a new version,
+// so each gets its own entry under the upload's key.
+const uploadKey = (uuid: string, versionOf = '') =>
+  [...queryKeys.upload(uuid), versionOf] as const;
+
 // Creates a new FileUpload.
 export async function createUpload(
   file: File,
   channel: AddonDistribution,
+  versionOf?: string,
 ): Promise<FileUpload> {
   const upload = await postUpload(file, channel);
-  queryClient.setQueryData(queryKeys.upload(upload.uuid), upload);
+  // Only the detail endpoint runs the full check, so a processed response
+  // (validation ran eagerly) must not stand in for it.
+  if (!upload.processed) {
+    queryClient.setQueryData(uploadKey(upload.uuid, versionOf), upload);
+  }
   return upload;
+}
+
+export function getUpload(
+  uuid: string,
+  versionOf?: string,
+): Promise<FileUpload> {
+  return queryClient.fetchQuery({
+    queryKey: uploadKey(uuid, versionOf),
+    queryFn: () => fetchUpload(uuid, versionOf),
+    retry: false,
+  });
 }
 
 export function uploadQuery(
   host: ReactiveControllerHost,
   getUuid: () => string,
+  getVersionOf: () => string = () => '',
 ) {
   return createQueryController(
     host,
     () => ({
-      queryKey: queryKeys.upload(getUuid()),
-      queryFn: () => fetchUpload(getUuid()),
+      queryKey: uploadKey(getUuid(), getVersionOf()),
+      queryFn: () => fetchUpload(getUuid(), getVersionOf() || undefined),
       enabled: Boolean(getUuid()),
       refetchInterval: (query) => (query.state.data?.processed ? false : 1000),
     }),

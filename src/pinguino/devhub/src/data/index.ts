@@ -31,6 +31,7 @@ export {
   eulaPolicyQuery,
   getAddon,
   getLatestVersion,
+  getUpload,
   getVersion,
   getVersions,
   logout,

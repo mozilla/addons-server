@@ -963,6 +963,9 @@ This endpoint is for fetching a single previous upload by uuid.
 
 .. http:get:: /api/v5/addons/upload/<string:uuid>/
 
+    :query boolean full_check: Also run the checks that would otherwise only fail when submitting the upload (duplicate add-on ID, theme size, add-on name, version number, listed versions on a disabled or rejected add-on, etc.), once the upload has passed the linter. Any failure is added to ``validation.messages`` and sets ``valid`` to ``false``. Defaults to ``false``.
+    :query string addon: With ``full_check``, check the upload as a new version of this add-on (id or slug) instead of as a new add-on. Returns 404 if you are not an author of it, or 403 if it has been disabled by Mozilla.
+
     .. _upload-detail-object:
 
     :>json string uuid: The upload id.
@@ -976,6 +979,8 @@ This endpoint is for fetching a single previous upload by uuid.
     :>json string url: URL to check the status of this upload.
     :>json boolean valid: If the version passed validation.
     :>json object validation: the validation results JSON blob.
+    :>json array validation.messages[].id: Messages added by ``full_check`` have an id of ``["submission", <code>]``, where code is one of ``duplicate_addon_id``, ``version_exists``, ``version_not_greater``, ``listed_not_allowed`` or ``invalid``.
+    :>json object validation.messages[].addon: For a ``duplicate_addon_id`` message, the add-on (``id``, ``slug`` and ``name``) using that ID, only present if you are one of its authors.
     :>json string version: The version number parsed from the manifest.
 
 

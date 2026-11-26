@@ -15,7 +15,7 @@ import {
   SubmissionStep,
 } from '../submission-step';
 import '../../../../foundations/components/message-bar';
-import { MAX_UPLOAD_SIZE, PACKAGE_EXTENSIONS } from '../../../../base';
+import { BASE, MAX_UPLOAD_SIZE, PACKAGE_EXTENSIONS } from '../../../../base';
 
 const PACKAGE_HINT = `Max ${formatFileSize(MAX_UPLOAD_SIZE)} · ${PACKAGE_EXTENSIONS.join(', ')}`;
 
@@ -48,11 +48,18 @@ export class SubmitUpload extends SubmissionStep {
   @property({ attribute: false }) create: (uuid: string) => Promise<void> =
     async () => {};
   @property() uuid?: string;
+  @property() versionOf?: string;
+  // Why an upload handed over from elsewhere couldn't be used.
+  @property() notice?: string;
   @state() private uploading = false;
   @state() private uploadError?: string;
   @state() private submitError?: string;
 
-  #upload = uploadQuery(this, () => this.uuid ?? '');
+  #upload = uploadQuery(
+    this,
+    () => this.uuid ?? '',
+    () => this.versionOf ?? '',
+  );
 
   private isCurrentUpload(file: File) {
     return this.input?.files?.[0] === file;
@@ -113,7 +120,7 @@ export class SubmitUpload extends SubmissionStep {
     let upload: FileUpload | undefined;
     let error: unknown;
     try {
-      upload = await createUpload(file, this.channel);
+      upload = await createUpload(file, this.channel, this.versionOf);
     } catch (err) {
       error = err;
     }
@@ -136,8 +143,18 @@ export class SubmitUpload extends SubmissionStep {
       <message-bar type=${type} heading=${message.message}>
         ${message.description}
         ${location ? html`<p class="file">${location}</p>` : nothing}
+        ${this.renderNewVersionLink(message)}
       </message-bar>
     `;
+  }
+
+  private renderNewVersionLink({ addon }: ValidationMessage) {
+    if (!addon || !this.uuid) return nothing;
+    const params = new URLSearchParams({ upload: this.uuid });
+    const href = `${BASE}/addon/${encodeURIComponent(addon.slug)}/versions/submit/upload?${params}`;
+    return html`<p>
+      <a href=${href}>Submit this file as a new version of ${addon.name}</a>
+    </p>`;
   }
 
   private renderValidation() {
@@ -176,6 +193,7 @@ export class SubmitUpload extends SubmissionStep {
         <span slot="hint">${PACKAGE_HINT}</span>
       </moz-input-file>
 
+      ${errorBar('Could not use that upload', this.notice)}
       ${errorBar('Could not upload version', this.submitError)}
       ${this.renderValidation()}
     `;

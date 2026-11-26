@@ -548,6 +548,138 @@ describe('version-submission', () => {
     });
   });
 
+  describe('upload carried over from a new add-on', () => {
+    it('picks up the upload, checked as a version of this add-on', async () => {
+      const upload = makeUpload({ channel: 'unlisted' });
+      vi.mocked(api.fetchUpload).mockResolvedValue(upload);
+      const $ = await mountFlow(`upload?upload=${upload.uuid}`);
+
+      expect(api.fetchUpload).toHaveBeenCalledWith(upload.uuid, 'my-addon');
+      await expect.poll(() => $.validation()).not.toBeNull();
+      expect($.timeline().currStep).toBe(2);
+      expect($.root.querySelector('submit-upload')?.channel).toBe('unlisted');
+      expect(location.search).toBe('');
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+
+      $.continue()?.click();
+      await expect
+        .poll(() => api.postVersion)
+        .toHaveBeenCalledWith('my-addon', upload.uuid);
+    });
+
+    it("shows why the upload can't be a version either", async () => {
+      const upload = makeUpload({
+        valid: false,
+        validation: {
+          errors: 1,
+          warnings: 0,
+          notices: 0,
+          messages: [
+            { type: 'error', message: 'Version 1.0.0 already exists.' },
+          ],
+        },
+      });
+      vi.mocked(api.fetchUpload).mockResolvedValue(upload);
+      const $ = await mountFlow(`upload?upload=${upload.uuid}`);
+
+      await expect
+        .poll(() =>
+          $.upload().querySelector(
+            'message-bar[heading="Version 1.0.0 already exists."]',
+          ),
+        )
+        .not.toBeNull();
+      expect($.continue()?.hasAttribute('disabled')).toBe(true);
+    });
+
+    it("keeps a listed upload the add-on can't take, showing why", async () => {
+      mockAddons({ ...ADDON, visibility: 'invisible' });
+      const upload = makeUpload({
+        channel: 'listed',
+        valid: false,
+        validation: {
+          errors: 1,
+          warnings: 0,
+          notices: 0,
+          messages: [
+            {
+              type: 'error',
+              message:
+                'Listed versions cannot be submitted while add-on is disabled.',
+            },
+          ],
+        },
+      });
+      vi.mocked(api.fetchUpload).mockResolvedValue(upload);
+      const $ = await mountFlow(`upload?upload=${upload.uuid}`);
+
+      await expect
+        .poll(() =>
+          $.upload().querySelector(
+            'message-bar[heading="Listed versions cannot be submitted while add-on is disabled."]',
+          ),
+        )
+        .not.toBeNull();
+      expect($.continue()?.hasAttribute('disabled')).toBe(true);
+    });
+
+    it('starts over on an upload that was already submitted', async () => {
+      const upload = makeUpload({ submitted: true });
+      vi.mocked(api.fetchUpload).mockResolvedValue(upload);
+      const $ = await mountFlow(`upload?upload=${upload.uuid}`);
+
+      expect($.timeline().currStep).toBe(1);
+      expect($.validation()).toBeNull();
+      await expect
+        .poll(() =>
+          $.upload()
+            .querySelector('message-bar[heading="Could not use that upload"]')
+            ?.getAttribute('description'),
+        )
+        .toBe('That file has already been submitted.');
+    });
+
+    it('starts over on an upload that cannot be fetched', async () => {
+      vi.mocked(api.fetchUpload).mockRejectedValue(new Error('Not found'));
+      const $ = await mountFlow('upload?upload=nope');
+
+      expect($.timeline().currStep).toBe(1);
+      expect($.validation()).toBeNull();
+      expect(location.search).toBe('');
+      await expect
+        .poll(() =>
+          $.upload()
+            .querySelector('message-bar[heading="Could not use that upload"]')
+            ?.getAttribute('description'),
+        )
+        .toBe("That file couldn't be loaded. Upload it again.");
+
+      // Choosing a file replaces the notice with that upload's validation.
+      vi.mocked(api.fetchUpload).mockImplementation(
+        () => vi.mocked(api.postUpload).mock.results.at(-1)?.value,
+      );
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect.poll(() => $.validation()).not.toBeNull();
+      expect(
+        $.upload().querySelector(
+          'message-bar[heading="Could not use that upload"]',
+        ),
+      ).toBeNull();
+    });
+  });
+
+  it('checks a new upload as a version of this add-on', async () => {
+    const upload = makeUpload();
+    vi.mocked(api.postUpload).mockResolvedValue(upload);
+    const $ = await mountFlow('upload');
+    chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+    await expect
+      .poll(() => api.fetchUpload)
+      .toHaveBeenCalledWith(upload.uuid, 'my-addon');
+  });
+
   describe('upload', () => {
     let $: ReturnType<typeof ui>;
 

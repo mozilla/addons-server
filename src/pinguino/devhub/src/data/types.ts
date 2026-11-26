@@ -258,6 +258,9 @@ export interface ValidationMessage {
   description?: string;
   file?: string | null;
   line?: number | null;
+  id?: string[];
+  // On a duplicate add-on ID, the user's own add-on that already has it.
+  addon?: { id: number; slug: string; name: string };
 }
 
 export interface ValidationResult {
