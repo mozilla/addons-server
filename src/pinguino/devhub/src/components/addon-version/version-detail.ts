@@ -9,7 +9,6 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE, MAX_UPLOAD_SIZE, SOURCE_EXTENSIONS } from '../../base';
 import {
-  type ActivityPage,
   activityInfiniteQuery,
   appVersionsQuery,
   disableVersion,
@@ -27,10 +26,6 @@ import { errorStatus } from '../../data/http';
 import '../../foundations/badges';
 import '../../foundations/infinite-list';
 import {
-  timelineStep,
-  timelineStyles,
-} from '../../foundations/components/timeline';
-import {
   FieldError,
   FormController,
   textArea,
@@ -39,11 +34,7 @@ import {
 import { panelPointer } from '../../foundations/panel';
 import { setPageTitle } from '../../page-title';
 import { getMarkdownSupportLink, navigateTo } from '../../utils/helper';
-import {
-  ACTIVITY_TAGS,
-  sanitizeHTML,
-  sanitizeUserHTML,
-} from '../../utils/sanitizeHTML';
+import { sanitizeUserHTML } from '../../utils/sanitizeHTML';
 import {
   customLicenseErrors,
   type LicenseDraft,
@@ -124,7 +115,6 @@ export class VersionDetail extends SectionCard {
   static styles = [
     sharedStyles,
     panelPointer,
-    timelineStyles,
     css`
       @media (max-width: 900px) {
         .main-content {
@@ -137,7 +127,7 @@ export class VersionDetail extends SectionCard {
         padding: var(--space-large) 0;
       }
       .version-content {
-        flex-basis: 75%;
+        width: 100%;
       }
       .version-head {
         display: flex;
@@ -148,9 +138,6 @@ export class VersionDetail extends SectionCard {
         --marker-size: 22px;
         --timeline-inset: 0px;
         max-width: 340px;
-      }
-      .submission-log .card-head {
-        margin: 0;
       }
       /* Applications */
       .entries{
@@ -398,45 +385,6 @@ export class VersionDetail extends SectionCard {
         >Delete version</moz-button
       >
     </moz-dialog>`;
-  }
-
-  #logPage?: ActivityPage;
-  #logSteps: TemplateResult[] = [];
-
-  #submissionLog() {
-    const page = this.#activity().data?.pages[0];
-    if (page !== this.#logPage) {
-      this.#logPage = page;
-      this.#logSteps = [...(page?.items ?? [])].slice(0, 3).map((item) =>
-        timelineStep(
-          html`
-            <!-- TODO: The activity API does not expose the type of the activity. -->
-            <moz-status-dot
-                    icon
-                    type=${'information'}
-                  ></moz-status-dot>`,
-          html`<div>
-                    <span>${unsafeHTML(sanitizeHTML(item.title, ACTIVITY_TAGS))}</span>
-                    ${
-                      item.message
-                        ? html`<p class="muted message">
-                            ${unsafeHTML(sanitizeHTML(item.message, ACTIVITY_TAGS))}
-                          </p>`
-                        : nothing
-                    }
-                    <span class="muted date">${item.date}</span>
-                  </div>`,
-        ),
-      );
-    }
-    return html`<moz-card class="submission-log" appearance="outline" spacing="spacious">
-      ${this.cardHead({ title: 'Submission log' }, html``)}
-      ${
-        this.#logSteps.length
-          ? html`<ol class="timeline log">${this.#logSteps}</ol>`
-          : html`<p class="muted">No activity yet.</p>`
-      }
-    </moz-card>`;
   }
 
   #appIcon(app: string) {
@@ -734,7 +682,6 @@ export class VersionDetail extends SectionCard {
     return html`
       <addon-manage-header .addon=${this.addon} .version=${v}></addon-manage-header>
       <div class="main-content">
-        ${this.#submissionLog()}
         <moz-card class="version-content" appearance="outline" spacing="spacious">
           <div class="version-head">
             <moz-segmented-control
