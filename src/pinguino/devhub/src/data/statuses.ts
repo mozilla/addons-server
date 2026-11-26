@@ -71,9 +71,12 @@ export function resolveVersionStatus(
   if (isDisabled) {
     return { label: 'Deactivated by developer', badge: 'warning' };
   }
+  // If we've reached this point, the version is in disabled status, so it
+  // either has been Rejected following a review, or automatically Deactivated
+  // by Mozilla.
   return reviewed
     ? { label: 'Rejected', badge: 'critical' }
-    : VERSION_STATUS.unreviewed;
+    : VERSION_STATUS.disabled;
 }
 
 export type AddonVisibility = 'visible' | 'invisible';
