@@ -173,12 +173,14 @@ export class DevhubHeader extends LitElement {
         padding-inline: var(--space-small);
         font-weight: 400;
       }
-      a {
+      a,
+      ::part(link) {
         color: var(--text-color, CanvasText);
         text-decoration: none;
         font-size: var(--font-size-root);
       }
-      a:hover {
+      a:hover,
+      ::part(link):hover {
         text-decoration: underline;
       }
       /* Holds the row's height steady while the profile loads, so the bar doesn't

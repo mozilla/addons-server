@@ -9,20 +9,12 @@ export class SwitchBackLink extends LitElement {
     :host {
       display: inline;
     }
-    /* Inherit colour and size so the link blends into whatever surrounds it. */
-    a {
-      color: inherit;
-      font-size: inherit;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
   `;
 
   render() {
     // href carries the path for no-JS / copy / middle-click
     return html`<a
+      part="link"
       rel="external"
       href="${BASE}/switch-pinguino"
       @click=${switchToClassic}
