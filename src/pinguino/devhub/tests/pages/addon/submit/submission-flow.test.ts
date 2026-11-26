@@ -130,7 +130,7 @@ beforeEach(() => {
 async function mountFlow(path: string) {
   window.history.replaceState({}, '', `${SUBMIT}${path}`);
   const host = await mount<TestRouter>('test-router');
-  await host.router.goto(`${SUBMIT}${path}`);
+  await host.router.goto(location.pathname);
   await settle(host);
   const el = host.shadowRoot?.querySelector('version-submission');
   if (!el) throw new Error('expected version-submission in the DOM');
