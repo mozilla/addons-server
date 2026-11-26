@@ -44,9 +44,9 @@ const base: Addon = {
   channels: ['listed'],
 };
 
-async function shell(section?: string) {
+async function shell(section?: string, addon?: Partial<Addon>) {
   const el = await mount<AddonListing>('addon-listing', {
-    addon: base,
+    addon: { ...base, ...addon },
     ...(section ? { section } : {}),
   });
   return el.shadowRoot as ShadowRoot;
@@ -66,6 +66,24 @@ describe('addon-listing', () => {
     expect(navTargets).toEqual([
       '/developers/addon/ad-blocker/edit/details',
       '/developers/addon/ad-blocker/edit/graphics',
+      '/developers/addon/ad-blocker/edit/authors',
+      '/developers/addon/ad-blocker/edit/technical-details',
+    ]);
+  });
+
+  it('renders similarly for themes, but does not show an icon nor graphics section', async () => {
+    const root = await shell(undefined, { kind: 'theme' });
+    expect(root.querySelector('listing-details-card')).not.toBeNull();
+    expect(root.querySelector('graphic-assets-card')).toBeNull();
+    expect(root.querySelector('authors-card')).toBeNull();
+    expect(root.querySelector('technical-details-card')).toBeNull();
+    expect(root.querySelector('.logo')).toBeNull();
+
+    const navTargets = [...root.querySelectorAll('moz-page-nav-button')].map(
+      (b) => b.getAttribute('href'),
+    );
+    expect(navTargets).toEqual([
+      '/developers/addon/ad-blocker/edit/details',
       '/developers/addon/ad-blocker/edit/authors',
       '/developers/addon/ad-blocker/edit/technical-details',
     ]);

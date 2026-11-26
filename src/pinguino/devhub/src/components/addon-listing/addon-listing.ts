@@ -9,7 +9,7 @@ import './graphic-assets-card';
 import './listing-details-card';
 import './technical-details-card';
 import { sharedStyles } from './section-card';
-import { SECTION, SECTIONS, type SectionId } from './sections';
+import { SECTIONS_BY_TYPE, type SectionId } from './sections';
 
 // Shell for the Listing Details (edit) tab: a section nav plus the one section
 // card for the active route. Each card owns its own edit/save state, so leaving
@@ -18,14 +18,13 @@ import { SECTION, SECTIONS, type SectionId } from './sections';
 export class AddonListing extends LitElement {
   @property({ attribute: false }) addon!: Addon;
   // Which section (card) to show; each is its own page under the edit tab.
-  @property() section: string = SECTIONS[0].id;
+  @property() section?: string;
 
   static styles = sharedStyles;
 
   get #activeSection(): SectionId {
-    return this.section in SECTION
-      ? (this.section as SectionId)
-      : SECTIONS[0].id;
+    const sections = SECTIONS_BY_TYPE[this.addon.kind];
+    return (sections.find((s) => s.id === this.section) ?? sections[0]).id;
   }
 
   #activeCard() {
@@ -52,7 +51,7 @@ export class AddonListing extends LitElement {
       <div class="layout">
         <h3 class="nav-heading">Details</h3>
         <moz-page-nav .current=${this.#activeSection} label="Listing sections">
-          ${SECTIONS.map(
+          ${SECTIONS_BY_TYPE[a.kind].map(
             (s) => html`<moz-page-nav-button
               value=${s.id}
               href="${BASE}/addon/${a.slug}/edit/${s.id}"
