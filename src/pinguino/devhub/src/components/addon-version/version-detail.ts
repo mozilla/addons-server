@@ -627,35 +627,38 @@ export class VersionDetail extends SectionCard {
         form.editing ? form.error : this.confirmingDelete ? '' : this.error,
       )}
       <dl>
-        ${this.row(
-          'Compatibility',
-          html`
-            ${this.#compat(v)}`,
-        )}
         ${
           this.addon.kind !== 'theme'
-            ? form.editing
-              ? html`
+            ? html`
+            ${this.row(
+              'Compatibility',
+              html`
+                ${this.#compat(v)}`,
+            )}
+            ${
+              form.editing
+                ? html`
               <div class="syntax-support">
                 ${textArea(form, 'release_notes', 'Release notes')}
                 ${getMarkdownSupportLink()}
               </div>
               ${textArea(form, 'approval_notes', 'Notes for reviewers')}`
-              : html`${this.row(
-                  'Release notes',
-                  notes
-                    ? html`
+                : html`${this.row(
+                    'Release notes',
+                    notes
+                      ? html`
                     <span>
                     ${unsafeHTML(sanitizeUserHTML(notes))}
                     </span>`
-                    : null,
-                )}
+                      : null,
+                  )}
               ${this.row(
                 'Notes for reviewers',
                 v.approval_notes
                   ? html`<span>${v.approval_notes}</span>`
                   : null,
               )}`
+            }`
             : nothing
         }
         ${
