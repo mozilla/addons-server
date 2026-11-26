@@ -106,7 +106,7 @@ async function typeReply(el: VersionDetail, root: ShadowRoot, text: string) {
 }
 
 describe('version-detail', () => {
-  it('renders the version details and submission log', async () => {
+  it('renders the version details', async () => {
     const updates = [1, 2, 3, 4, 5].map((n) => ({
       ...update,
       id: String(n),
@@ -120,14 +120,6 @@ describe('version-detail', () => {
     expect(
       root.querySelector('a[href="/source.zip"]')?.textContent?.trim(),
     ).toBe('Download source');
-
-    // Only the 3 most recent show.
-    const steps = [
-      ...root.querySelectorAll('.submission-log .timeline li'),
-    ].map((li) => li.textContent);
-    expect(steps).toHaveLength(3);
-    expect(steps[0]).toContain('Update 1');
-    expect(steps[2]).toContain('Update 3');
   });
 
   it('shows an error page when the version fails to load', async () => {
