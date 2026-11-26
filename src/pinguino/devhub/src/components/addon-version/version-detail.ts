@@ -350,7 +350,7 @@ export class VersionDetail extends SectionCard {
         >
         <moz-panel-item
           icon-start="downloads"
-          @click=${() => window.location.assign(v.file.url)}
+          href=${v.file.url}
           >Download file</moz-panel-item
         >
       </moz-panel-list>
