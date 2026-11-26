@@ -1657,3 +1657,26 @@ class CinderQueueMove(ModelBase):
     )
     notes = models.TextField(max_length=1000, blank=True)
     to_queue = models.CharField(max_length=128)
+
+
+class ContentDecisionRestriction(ModelBase):
+    decision = models.ForeignKey(
+        to=ContentDecision, on_delete=models.CASCADE, related_name='restrictions'
+    )
+    user_restriction = models.ForeignKey(
+        to='users.EmailUserRestriction', on_delete=models.CASCADE, null=True
+    )
+    ip_restriction = models.ForeignKey(
+        to='users.IPNetworkUserRestriction', on_delete=models.CASCADE, null=True
+    )
+
+    class Meta:
+        constraints = [
+            models.CheckConstraint(
+                condition=(
+                    Q(user_restriction__isnull=False) & Q(ip_restriction__isnull=True)
+                    | Q(user_restriction__isnull=True) & Q(ip_restriction__isnull=False)
+                ),
+                name='user_or_ip_restriction',
+            )
+        ]

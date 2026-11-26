@@ -1051,6 +1051,8 @@ class ContentActionBlockAddon(BlockMixin, ContentActionDisableAddon):
         from olympia.scanners.actions import _restrict_future_approvals_or_submissions
         from olympia.scanners.models import ScannerRule
 
+        from .models import ContentDecisionRestriction
+
         scanner_match_version = self.decision.metadata.get('scanner_match_version')
         scanner_match_rule = self.decision.metadata.get('scanner_match_rule')
 
@@ -1073,11 +1075,35 @@ class ContentActionBlockAddon(BlockMixin, ContentActionDisableAddon):
             log.exception('ScannerRule %s does not exist', scanner_match_rule)
             return
 
-        _restrict_future_approvals_or_submissions(
+        user_restrictions, ip_restrictions = _restrict_future_approvals_or_submissions(
             version=version,
             rule=rule,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
+        ContentDecisionRestriction.objects.bulk_create(
+            [
+                ContentDecisionRestriction(
+                    decision=self.decision,
+                    user_restriction=user_restriction,
+                    ip_restriction=ip_restriction,
+                )
+                for user_restriction, ip_restriction in [
+                    *((u, None) for u in user_restrictions),
+                    *((None, i) for i in ip_restrictions),
+                ]
+            ]
+        )
+
+    @classmethod
+    def remove_author_restrictions(cls, reversed_decision):
+        from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+
+        EmailUserRestriction.objects.filter(
+            contentdecisionrestriction__decision=reversed_decision
+        ).delete()
+        IPNetworkUserRestriction.objects.filter(
+            contentdecisionrestriction__decision=reversed_decision
+        ).delete()
 
     def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
@@ -1136,6 +1162,7 @@ class ContentActionBlockAddon(BlockMixin, ContentActionDisableAddon):
         cls.delete_versions_from_existing_blocks(
             reversed_decision, cls.get_already_blocked_version_ids(versions)
         )
+        cls.remove_author_restrictions(reversed_decision)
         return log_entry
 
 
