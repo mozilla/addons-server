@@ -10,8 +10,9 @@ import {
   extensionWorkshop,
   PREVIEW_BLOG_POST,
 } from '../links';
-import { switchBackPath } from '../switch-back';
+import { switchToClassic } from '../switch-back';
 import './devhub-account-menu';
+import './switch-back-link';
 
 interface NavItem {
   label: string;
@@ -172,12 +173,14 @@ export class DevhubHeader extends LitElement {
         padding-inline: var(--space-small);
         font-weight: 400;
       }
-      a {
+      a,
+      ::part(link) {
         color: var(--text-color, CanvasText);
         text-decoration: none;
         font-size: var(--font-size-root);
       }
-      a:hover {
+      a:hover,
+      ::part(link):hover {
         text-decoration: underline;
       }
       /* Holds the row's height steady while the profile loads, so the bar doesn't
@@ -200,14 +203,6 @@ export class DevhubHeader extends LitElement {
   #addons = navAddonsQuery(this, MAX_ADDONS + 1, () =>
     Boolean(this.#profile().data),
   );
-
-  // Switch to the classic devhub via the Django endpoint that flips the PINGUINO
-  // cookie; the bare href is a no-JS fallback (view defaults to the index).
-  #switchToClassic = (event: Event) => {
-    event.preventDefault();
-    const path = switchBackPath();
-    location.href = `${BASE}/switch-pinguino?path=${encodeURIComponent(path)}`;
-  };
 
   // Navigate to the login flow, using the current location.
   #login = (event: Event) => {
@@ -302,16 +297,6 @@ export class DevhubHeader extends LitElement {
     };
   }
 
-  #switchBackLink() {
-    // href carries the path for no-JS / copy / middle-click
-    return html`<a
-      rel="external"
-      href="${BASE}/switch-pinguino"
-      @click=${this.#switchToClassic}
-      >Switch back to the old Developer Hub</a
-    >`;
-  }
-
   // Every menu's sections end to end behind one trigger. Flattened rather than
   // nested so each link stays one tap away.
   #collapsedNav(menus: NavMenu[]) {
@@ -326,7 +311,7 @@ export class DevhubHeader extends LitElement {
       <moz-panel-list id="nav-collapsed" type="menu" label="Menu">
         ${this.#sections(menus.flatMap((m) => m.sections))}
         <hr />
-        <moz-panel-item @click=${this.#switchToClassic}
+        <moz-panel-item @click=${switchToClassic}
           >Switch back to the old Developer Hub</moz-panel-item
         >
       </moz-panel-list>
@@ -348,7 +333,8 @@ export class DevhubHeader extends LitElement {
           </a>
         </div>
         <nav class="full">
-          ${menus.map((menu) => this.#menu(menu))} ${this.#switchBackLink()}
+          ${menus.map((menu) => this.#menu(menu))}
+          <switch-back-link>Switch back to the old Developer Hub</switch-back-link>
         </nav>
         <nav class="collapsed">${this.#collapsedNav(menus)}</nav>
         <span class="account">
