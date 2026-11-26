@@ -37,6 +37,9 @@ export class SubmitUpload extends SubmissionStep {
         font-size: var(--font-size-small);
         margin: var(--space-xsmall) 0 0 0;
       }
+      moz-details::part(content){
+        padding: var(--space-small) 0 0 0;
+      }
     `,
   ];
 
@@ -150,10 +153,39 @@ export class SubmitUpload extends SubmissionStep {
         heading="Validating..."
       ></message-bar>`;
     }
+
+    const messages = upload.validation?.messages ?? [];
+    const errors = messages.filter((m) => m.type === 'error');
+    const others = messages.filter((m) => m.type !== 'error');
+
+    // Show the first 3 if no errors.
+    const [primarySection, secondarySection] = errors.length
+      ? [errors, others]
+      : [others.slice(0, 3), others.slice(3)];
+
     return html`
       <submission-header label="Validation"></submission-header>
       <div class="messages">
-        ${upload.validation ? upload.validation.messages.map((m) => this.renderMessage(m)) : 'No errors found.'}
+        ${
+          messages.length
+            ? nothing
+            : html`<message-bar
+              type="info"
+              heading="Your add-on was validated with no errors or warnings."
+            ></message-bar>`
+        }
+        ${primarySection.map((m) => this.renderMessage(m))}
+        ${
+          secondarySection.length
+            ? html`
+            <moz-details heading="Show more">
+              <div class="messages">
+                ${secondarySection.map((m) => this.renderMessage(m))}
+              </div>
+            </moz-details>
+            `
+            : nothing
+        }
       </div>
     `;
   }

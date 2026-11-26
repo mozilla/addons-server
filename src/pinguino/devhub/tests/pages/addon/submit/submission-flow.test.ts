@@ -12,6 +12,7 @@ import type {
   Addon,
   AddonDistribution,
   FileUpload,
+  ValidationMessage,
   Version,
 } from '../../../../src/data/types';
 import type { SubmitListing } from '../../../../src/pages/addon/submit/templates/listing';
@@ -564,11 +565,77 @@ describe('version-submission', () => {
     it('shows no validation errors if there are none', async () => {
       chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
       await expect
-        .poll(() => $.upload().textContent)
-        .toContain('No errors found.');
+        .poll(() =>
+          $.upload()
+            .querySelector('message-bar[type="info"]')
+            ?.getAttribute('heading'),
+        )
+        .toBe('Your add-on was validated with no errors or warnings.');
       expect($.validation()).not.toBeNull();
-      expect($.upload().querySelector('message-bar')).toBeNull();
+      expect($.upload().querySelectorAll('message-bar')).toHaveLength(1);
       expect($.continue()?.hasAttribute('disabled')).toBe(false);
+    });
+
+    describe('validation message grouping', () => {
+      const headings = (selector: string) =>
+        [...$.upload().querySelectorAll(selector)].map((m) =>
+          m.getAttribute('heading'),
+        );
+      const primary = () =>
+        headings('submission-header + .messages > message-bar');
+      const secondary = () => headings('moz-details message-bar');
+
+      async function uploadWith(...messages: ValidationMessage[]) {
+        const count = (type: string) =>
+          messages.filter((m) => m.type === type).length;
+        vi.mocked(api.postUpload).mockResolvedValue(
+          makeUpload({
+            validation: {
+              errors: count('error'),
+              warnings: count('warning'),
+              notices: 0,
+              messages,
+            },
+          }),
+        );
+        chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+        await expect.poll(() => $.validation()).not.toBeNull();
+      }
+
+      it('shows all errors', async () => {
+        await uploadWith(
+          { type: 'error', message: 'error 1' },
+          { type: 'error', message: 'error 2' },
+          { type: 'error', message: 'error 3' },
+          { type: 'error', message: 'error 4' },
+        );
+        expect(primary()).toEqual(['error 1', 'error 2', 'error 3', 'error 4']);
+        expect($.upload().querySelector('moz-details')).toBeNull();
+      });
+
+      it('shows errors and hides warnings', async () => {
+        await uploadWith(
+          { type: 'warning', message: 'warning 1' },
+          { type: 'warning', message: 'warning 2' },
+          { type: 'warning', message: 'warning 3' },
+          { type: 'error', message: 'error 1' },
+          { type: 'error', message: 'error 2' },
+        );
+        expect(primary()).toEqual(['error 1', 'error 2']);
+        expect(secondary()).toEqual(['warning 1', 'warning 2', 'warning 3']);
+      });
+
+      it('no errors shows the first 3 warnings and hides the rest', async () => {
+        await uploadWith(
+          { type: 'warning', message: 'warning 1' },
+          { type: 'warning', message: 'warning 2' },
+          { type: 'warning', message: 'warning 3' },
+          { type: 'warning', message: 'warning 4' },
+          { type: 'warning', message: 'warning 5' },
+        );
+        expect(primary()).toEqual(['warning 1', 'warning 2', 'warning 3']);
+        expect(secondary()).toEqual(['warning 4', 'warning 5']);
+      });
     });
 
     it('hides validation until a package is uploaded', async () => {
