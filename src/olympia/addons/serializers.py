@@ -1352,6 +1352,10 @@ class AddonSerializer(AMOModelSerializer):
     def _save_icon(self, uploaded_icon):
         # This is only used during update. For create it's impossible to send the icon
         # as formdata while also sending json for `version`.
+
+        if self.instance.type == amo.ADDON_STATICTHEME:
+            raise exceptions.ValidationError(gettext('Themes do not support icons.'))
+
         if uploaded_icon:
             original = self.instance.get_icon_path('original')
 
