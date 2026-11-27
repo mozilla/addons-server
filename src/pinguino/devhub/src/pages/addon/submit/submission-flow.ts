@@ -12,6 +12,7 @@ import type {
   Addon,
   AddonDistribution,
   AddonKind,
+  CompatibleApp,
   FileUpload,
   Version,
 } from '../../../data/types';
@@ -68,9 +69,13 @@ export abstract class SubmissionFlow extends LitElement {
   @state() protected channel: AddonDistribution = 'listed';
   @state() protected upload?: FileUpload;
   @state() protected uploadNotice?: string;
+  @state() protected defaultApps: CompatibleApp[] = ['firefox'];
 
   @query('.outlet > *') private stepElement?: SubmissionStep;
   #sections?: { key: string; sections: FlowSection[] };
+  // The furthest step a Continue has passed into, or the first one entered.
+  // Later steps can't be reached through history or the address bar.
+  #unlocked?: StepId;
   #uploadElement = this.#createUploadElement();
 
   // The submit notice comes from the profile's site status, falling back to the
@@ -188,12 +193,19 @@ export abstract class SubmissionFlow extends LitElement {
     return el;
   }
 
+  // Read from the upload step rather than copied on Continue, since the other
+  // steps can also be reached from the timeline.
+  protected get compatibility() {
+    return this.#uploadElement.compatibility;
+  }
+
   protected uploadStep() {
     const el = this.#uploadElement;
     el.channel = this.channel;
     el.uuid = this.upload?.uuid;
     el.versionOf = this.isNewAddon ? undefined : this.addonSlug;
     el.notice = this.uploadNotice;
+    el.defaultApps = this.defaultApps;
     return el;
   }
 
@@ -212,6 +224,7 @@ export abstract class SubmissionFlow extends LitElement {
       .slug=${this.addonSlug}
       .versionId=${this.versionId}
       .upload=${this.upload?.uuid}
+      .compatibility=${this.compatibility}
       .source=${this.pendingSource}
       .kind=${this.kind}
       @addon-create=${(e: CustomEvent<{ addon: Addon; version: Version }>) =>
@@ -283,8 +296,12 @@ export abstract class SubmissionFlow extends LitElement {
   }
 
   protected setUpload(upload: FileUpload | undefined) {
-    if (upload) this.upload = upload;
-    else this.clearUpload();
+    if (upload) {
+      this.upload = upload;
+      this.#unlock(this.indexOf('validation'));
+    } else {
+      this.clearUpload();
+    }
     const current = this.steps[this.currStep]?.id;
     if (current === 'upload' || current === 'validation') {
       this.currStep = this.indexOf(upload ? 'validation' : 'upload');
@@ -293,6 +310,7 @@ export abstract class SubmissionFlow extends LitElement {
 
   // Changing the package invalidates other steps.
   protected clearUpload() {
+    if (this.#unlockedIndex > this.indexOf('upload')) this.#unlocked = 'upload';
     this.upload = undefined;
     this.uploadNotice = undefined;
     this.versionId = undefined;
@@ -310,6 +328,11 @@ export abstract class SubmissionFlow extends LitElement {
   protected enterStep(id: StepId) {
     const { steps } = this;
     const target = this.indexOf(id);
+    this.#unlocked ??= id;
+    const unlocked = this.#unlockedIndex;
+    if (unlocked >= 0 && target > unlocked && steps[unlocked].href) {
+      return navigateTo(steps[unlocked].href, { replace: true });
+    }
     if (steps[this.currStep]?.href !== steps[target].href) {
       this.currStep = target;
     }
@@ -330,6 +353,14 @@ export abstract class SubmissionFlow extends LitElement {
 
   protected indexOf(id: StepId) {
     return this.steps.findIndex((step) => step.id === id);
+  }
+
+  get #unlockedIndex() {
+    return this.#unlocked ? this.indexOf(this.#unlocked) : -1;
+  }
+
+  #unlock(index: number) {
+    if (index > this.#unlockedIndex) this.#unlocked = this.steps[index].id;
   }
 
   private navigate(target: number) {
@@ -356,6 +387,7 @@ export abstract class SubmissionFlow extends LitElement {
       return;
     }
     if (!(await this.submitStep())) return;
+    this.#unlock(target);
     this.navigate(target);
   }
 

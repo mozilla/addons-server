@@ -211,10 +211,31 @@ class TestFileUploadViewSet(UploadMixin, TestCase):
             'name': 'My WebExtension Addon',
             'summary': 'just a test addon with the manifest.json format',
             'homepage': None,
+            'type': 'extension',
+            'explicitly_compatible_with_android': False,
         }
 
         upload.update(addon=addon_factory())
         assert self.client.get(detail_url).json()['manifest_data'] is None
+
+    def test_retrieve_manifest_data_android(self):
+        upload = self.get_upload('webextension_gecko_android.xpi', user=self.user)
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        data = self.client.get(detail_url).json()['manifest_data']
+        assert data['explicitly_compatible_with_android'] is True
+
+    def test_retrieve_manifest_data_type(self):
+        upload = self.get_upload(
+            abspath='src/olympia/devhub/tests/addons/static_theme.zip', user=self.user
+        )
+        detail_url = reverse_ns(
+            'addon-upload-detail', kwargs={'uuid': upload.uuid.hex}, api_version='v5'
+        )
+        assert self.client.get(detail_url).json()['manifest_data']['type'] == (
+            'statictheme'
+        )
 
     def test_retrieve_manifest_data_translations(self):
         upload = self.get_upload('notify-link-clicks-i18n.xpi', user=self.user)

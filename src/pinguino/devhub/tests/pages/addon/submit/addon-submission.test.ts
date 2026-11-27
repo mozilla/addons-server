@@ -11,6 +11,7 @@ import type {
   Addon,
   AddonDistribution,
   FileUpload,
+  ManifestData,
   Version,
 } from '../../../../src/data/types';
 import '../../../../src/pages/addon/main';
@@ -66,13 +67,19 @@ const makeVersion = (channel: AddonDistribution): Version => ({
   },
 });
 
-const makeUpload = (channel: AddonDistribution): FileUpload => ({
+const makeUpload = (
+  channel: AddonDistribution,
+  manifest: Partial<ManifestData> = {},
+): FileUpload => ({
   uuid: crypto.randomUUID(),
   channel,
   manifest_data: {
     name: { 'en-US': 'Tab Organizer' },
     summary: { 'en-US': 'Organize tabs' },
     homepage: { 'en-US': 'https://example.com/tab-organizer' },
+    type: 'extension',
+    explicitly_compatible_with_android: false,
+    ...manifest,
   },
   processed: true,
   submitted: false,
@@ -255,7 +262,11 @@ describe('addon-submission', () => {
     await at('tab-organizer/submit/graphics');
     expect(api.postAddon).toHaveBeenCalledWith({
       categories: ['tabs'],
-      version: { upload: (await lastUpload()).uuid, license: 'MPL-2.0' },
+      version: {
+        upload: (await lastUpload()).uuid,
+        license: 'MPL-2.0',
+        compatibility: ['firefox'],
+      },
     });
     await continueOn($);
 
@@ -264,13 +275,67 @@ describe('addon-submission', () => {
     await at('tab-organizer/submit/finish');
   });
 
+  it('creates a listed add-on with the apps picked on the upload step', async () => {
+    const $ = await mountFlow('submit/upload-listed');
+    const upload = () => $.step('submit-upload');
+    await expect
+      .poll(() => upload()?.querySelector('moz-input-file'))
+      .toBeTruthy();
+    const input = upload().querySelector('moz-input-file');
+    Object.assign(input as Element, {
+      files: [new File(['xpi'], 'tab-organizer.xpi')],
+    });
+    input?.dispatchEvent(new Event('change'));
+    const android = () =>
+      upload()?.querySelector(
+        '.apps moz-checkbox[label="Firefox for Android"]',
+      );
+    await expect.poll(android).toBeTruthy();
+    Object.assign(android() as Element, { checked: true });
+    android()?.dispatchEvent(new Event('change'));
+    await continueOn($);
+
+    await at('submit/source-listed');
+    await noSource($);
+    await at('submit/details');
+    await fillListing($, 'Tabs', 'MPL-2.0');
+
+    await at('tab-organizer/submit/graphics');
+    expect(api.postAddon).toHaveBeenCalledWith({
+      categories: ['tabs'],
+      version: {
+        upload: (await lastUpload()).uuid,
+        license: 'MPL-2.0',
+        compatibility: ['firefox', 'android'],
+      },
+    });
+  });
+
+  it('only enters steps a Continue has reached', async () => {
+    const $ = await mountFlow('submit/upload-listed');
+    await uploadValid($);
+    await at('submit/source-listed');
+
+    // e.g. browser forward after going back, or editing the address bar.
+    window.history.pushState({}, '', link('submit/details'));
+    window.dispatchEvent(new PopStateEvent('popstate'));
+    await at('submit/source-listed');
+    expect($.step('submit-listing')).toBeFalsy();
+
+    await noSource($);
+    await at('submit/details');
+  });
+
   it('creates an unlisted add-on from its upload and skips the listing', async () => {
     const $ = await mountFlow('submit/upload-unlisted');
     await uploadValid($);
 
     await at('tab-organizer/submit/source-unlisted');
     expect(api.postAddon).toHaveBeenCalledWith({
-      version: { upload: (await lastUpload()).uuid },
+      version: {
+        upload: (await lastUpload()).uuid,
+        compatibility: ['firefox'],
+      },
     });
     await noSource($);
 
@@ -364,6 +429,9 @@ describe('addon-submission of a duplicate add-on ID', () => {
 
 describe('addon-submission of a theme', () => {
   beforeEach(() => {
+    vi.mocked(api.postUpload).mockImplementation(async (_, channel) =>
+      makeUpload(channel, { type: 'statictheme' }),
+    );
     vi.mocked(api.postAddon).mockImplementation(async () => ({
       addon: THEME,
       version: makeVersion('listed'),

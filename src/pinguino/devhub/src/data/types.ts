@@ -167,6 +167,7 @@ export interface AddonCreate extends AddonListingEdit {
     upload: string;
     license?: string;
     custom_license?: { name: string; text: string };
+    compatibility?: CompatibleApp[];
   };
 }
 
@@ -174,6 +175,8 @@ export type VersionLicenseEdit = Pick<
   AddonCreate['version'],
   'license' | 'custom_license'
 >;
+
+export type VersionCreate = Omit<AddonCreate['version'], 'upload'>;
 
 // A listing category (from /addons/categories/). `type` matches the API's
 // 'extension' | 'statictheme'.
@@ -238,7 +241,11 @@ export interface ManifestData {
   name: string | Record<string, string> | null;
   summary: string | Record<string, string> | null;
   homepage: string | Record<string, string> | null;
+  type: string | null;
+  explicitly_compatible_with_android: boolean;
 }
+
+export type CompatibleApp = 'firefox' | 'android';
 
 export interface FileUpload {
   uuid: string;

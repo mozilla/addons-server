@@ -65,6 +65,7 @@ export {
   ADDON_STATUS,
   type AddonStatus,
   type AddonVisibility,
+  APP_NAMES,
   type ApiStatus,
   canChangeVisibility,
   canSubmitListed,

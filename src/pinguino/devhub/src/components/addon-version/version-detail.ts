@@ -10,8 +10,10 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE, MAX_UPLOAD_SIZE, SOURCE_EXTENSIONS } from '../../base';
 import {
   type ActivityPage,
+  APP_NAMES,
   activityInfiniteQuery,
   appVersionsQuery,
+  type CompatibleApp,
   disableVersion,
   localized,
   removeVersion,
@@ -63,11 +65,6 @@ import androidLogo from '../../static/img/android.svg';
 type CompatRow = { app: string; min: string; max: string; isNew?: boolean };
 type Tab = 'details' | 'activity';
 type VersionDraft = VersionEdit & LicenseDraft;
-
-const APP_NAMES: Record<string, string> = {
-  firefox: 'Firefox',
-  android: 'Firefox for Android',
-};
 
 const APP_ICONS: Record<string, TemplateResult> = {
   firefox: html`<moz-icon
@@ -504,7 +501,7 @@ export class VersionDetail extends SectionCard {
                   class="menu-btn"
                   variant="ghost"
                   icon-start="delete"
-                  icon-only="Remove ${APP_NAMES[r.app] ?? r.app}"
+                  icon-only="Remove ${APP_NAMES[r.app as CompatibleApp] ?? r.app}"
                   ?disabled=${form.saving}
                   @click=${() => {
                     this.compat = this.compat.filter((_, j) => j !== i);

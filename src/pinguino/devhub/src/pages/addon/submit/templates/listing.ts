@@ -11,6 +11,7 @@ import { ADDON_STATUS } from '../../../../data/statuses';
 import type {
   Addon,
   AddonKind,
+  CompatibleApp,
   FileUpload,
   Version,
 } from '../../../../data/types';
@@ -38,6 +39,7 @@ export class SubmitListing extends SubmissionStep {
   @property() slug = '';
   @property({ type: Number }) versionId?: number;
   @property() upload?: string;
+  @property({ attribute: false }) compatibility?: CompatibleApp[];
   @property({ attribute: false }) source?: File;
   @property() kind: AddonKind = 'extension';
 
@@ -93,6 +95,7 @@ export class SubmitListing extends SubmissionStep {
         .addon=${addon}
         .versionId=${this.versionId}
         .upload=${this.versionId ? undefined : this.upload}
+        .compatibility=${this.compatibility}
         ?new-version=${Boolean(this.slug)}
         @addon-create=${(
           e: CustomEvent<{ addon: Addon; version: Version }>,

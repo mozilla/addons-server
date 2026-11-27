@@ -153,4 +153,10 @@ class FileUploadSerializer(AMOModelSerializer):
             except forms.ValidationError:
                 return None
         parsed = Addon.resolve_webext_translations(parsed, instance)
-        return {field: parsed.get(field) for field in ('name', 'summary', 'homepage')}
+        return {
+            **{field: parsed.get(field) for field in ('name', 'summary', 'homepage')},
+            'type': amo.ADDON_TYPE_CHOICES_API.get(parsed.get('type')),
+            'explicitly_compatible_with_android': parsed.get(
+                'explicitly_compatible_with_android', False
+            ),
+        }
