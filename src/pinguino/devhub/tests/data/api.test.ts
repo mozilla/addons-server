@@ -194,14 +194,7 @@ describe('mapActivity', () => {
       comments: 'Congrats!',
       date: '2025-09-02T00:00:00Z',
       user: { name: 'Add-ons Review Team' },
-      versions: [
-        {
-          version: '3.2.1',
-          channel: 'listed',
-          file: { status: 'public' },
-          reviewed: '2025-09-01T00:00:00Z',
-        },
-      ],
+      versions: [{ ...DEFAULT_VERSION }],
     });
 
     expect(update).toMatchObject({
@@ -214,33 +207,6 @@ describe('mapActivity', () => {
       addonName: 'My Add-on',
       addonSlug: 'my-addon',
     });
-  });
-
-  it('reports a reviewed, disabled file as rejected', () => {
-    const update = mapActivity({
-      id: 43,
-      addon: {},
-      // Title says "approved" — the old regex would have believed it.
-      title: 'Version approved',
-      versions: [
-        {
-          version: '1.0',
-          file: { status: 'disabled' },
-          reviewed: '2025-09-01T00:00:00Z',
-        },
-      ],
-    });
-    expect(update.versionStatus?.label).toBe('Rejected');
-  });
-
-  it('leaves an activity with no version unstatused', () => {
-    const update = mapActivity({
-      id: 7,
-      addon: {},
-      title: 'Add-on disabled',
-    });
-    expect(update.versionStatus).toBeUndefined();
-    expect(update.channel).toBeUndefined();
   });
 
   it('leaves the user unset when the action had none', () => {

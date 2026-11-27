@@ -3,16 +3,14 @@ import type { ActivityFeed } from '../../src/components/activity-feed';
 import '../../src/components/activity-feed';
 import type { MozPagination } from '@mozilla/lit-web-components';
 import type { ActivityPage, Update } from '../../src/data';
-import { queryClient, VERSION_STATUS } from '../../src/data';
-import { mount, settle } from '../helpers/fixture';
+import { queryClient } from '../../src/data';
+import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
 
 const update = (id: string): Update => ({
   id,
   title: 'Your version is approved.',
   message: 'Congrats!',
-  version: '3.2.1',
-  versionStatus: VERSION_STATUS.public,
-  channel: 'listed',
+  version: { ...DEFAULT_VERSION },
   date: 'Sep 2 2025',
   user: 'Kate',
   addonName: 'Ad Blocker',

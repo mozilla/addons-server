@@ -174,6 +174,7 @@ This endpoint returns a list of activities relevant to the user.
     :>json object results[].versions[].file: The version file.
     :>json object results[].versions[].addon: The add-on the version belongs to.
     :>json string|null results[].versions[].reviewed: The date the version was reviewed at, or ``null`` if no human has reviewed it.
+    :>json boolean results[].versions[]: If this version has been disabled by the author (developer).
 
     :statuscode 200: Success.
     :statuscode 400: Invalid request parameters.

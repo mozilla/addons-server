@@ -18,8 +18,8 @@ from olympia.amo.tests import (
 
 
 class LogMixin:
-    def log(self, comments, action, created=None, policy_texts=None):
-        version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
+    def log(self, comments, action, *, created=None, policy_texts=None, version=None):
+        version = version or self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         details = {'comments': comments, 'version': version.version}
         if policy_texts is not None:
             details['policy_texts'] = policy_texts
@@ -36,7 +36,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         self.user = user_factory()
         self.addon = addon_factory()
         self.now = self.days_ago(0)
-        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
+        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, created=self.now)
 
     def serialize(self, context=None):
         if context is None:
@@ -120,7 +120,7 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
 
     def test_policies_missing_from_details(self):
         # Create a log with a details property but no policies key inside.
-        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
+        self.entry = self.log('Oh nøes!', amo.LOG.REJECT_VERSION, created=self.now)
         result = self.serialize()
         assert result['policies'] == []
 
@@ -181,7 +181,7 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         return FeedActivityLogSerializer().to_representation(log)
 
     def test_basic(self):
-        log = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        log = self.log('foobar', amo.LOG.APPROVE_VERSION, created=self.now)
         result = self.serialize(log)
 
         assert result['id'] == log.pk
@@ -203,16 +203,34 @@ class TestFeedActivityLogSerializer(TestCase, LogMixin):
         assert version['channel'] == amo.CHANNEL_CHOICES_API[self.version.channel]
         assert version['file']['status'] == 'public'
         assert version['addon']['id'] == self.version.addon.pk
-        assert 'reviewed' in version
+        assert version['reviewed'] is None
+        assert not version['is_disabled']
+
+    def test_version_is_disabled(self):
+        self.version.is_user_disabled = True
+        log = self.log(
+            'foobar', amo.LOG.DISABLE_VERSION, created=self.now, version=self.version
+        )
+        result = self.serialize(log)
+        assert result['versions'][0]['is_disabled']
+
+    def test_version_is_disabled_is_for_user_disabled_only(self):
+        self.version.file.update(status=amo.STATUS_DISABLED)
+        log = self.log(
+            'foobar', amo.LOG.REJECT_VERSION, created=self.now, version=self.version
+        )
+        result = self.serialize(log)
+        assert result['versions'][0]['file']['status'] == 'disabled'
+        assert not result['versions'][0]['is_disabled']
 
     def test_reviewed_distinguishes_rejected_from_unreviewed(self):
         # Without `reviewed`, a disabled file can't be told from an unreviewed
         # one, and the feed's status badge needs that distinction.
-        unreviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        unreviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, created=self.now)
         assert self.serialize(unreviewed)['versions'][0]['reviewed'] is None
 
         self.version.file.update(approval_date=self.now)
-        reviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, self.now)
+        reviewed = self.log('foobar', amo.LOG.APPROVE_VERSION, created=self.now)
         assert (
             self.serialize(reviewed)['versions'][0]['reviewed']
             == self.now.isoformat() + 'Z'

@@ -13,12 +13,7 @@ vi.mock('../../src/data', async (importOriginal) => ({
 import type { VersionDetail } from '../../src/components/addon-version/version-detail';
 import '../../src/components/addon-version/version-detail';
 import type { ActivityPage, Addon, Update, Version } from '../../src/data';
-import {
-  ADDON_STATUS,
-  queryClient,
-  queryKeys,
-  VERSION_STATUS,
-} from '../../src/data';
+import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
 import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
 
 const addon: Addon = {
@@ -46,9 +41,7 @@ const update: Update = {
   id: '1',
   title: 'Version approved.',
   message: '',
-  version: '3.2.1',
-  versionStatus: VERSION_STATUS.public,
-  channel: 'listed',
+  version: version,
   date: 'Sep 2 2025',
   addonName: 'Ad Blocker',
   addonSlug: 'ad-blocker',
