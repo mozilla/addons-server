@@ -23,9 +23,18 @@ function newAddon(kind: AddonKind, upload?: FileUpload): Addon {
     slug: '',
     kind,
     icon: kind === 'theme' ? 'themes' : 'extension',
-    name: localized(manifest?.name ?? undefined),
-    summary: localized(manifest?.summary ?? undefined),
-    homepageUrl: localized(manifest?.homepage ?? undefined),
+    name:
+      typeof manifest?.name === 'string'
+        ? manifest?.name
+        : localized(manifest?.name),
+    summary:
+      typeof manifest?.summary === 'string'
+        ? manifest?.summary
+        : localized(manifest?.summary),
+    homepageUrl:
+      typeof manifest?.homepage === 'string'
+        ? manifest?.homepage
+        : localized(manifest?.homepage),
     status: ADDON_STATUS.incomplete,
     lastUpdated: '',
     visibility: 'visible',

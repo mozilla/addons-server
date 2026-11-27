@@ -413,7 +413,7 @@ export function getLatestVersion(slug: string) {
 export function getVersions(slug: string) {
   return queryClient.query({
     queryKey: queryKeys.versions(slug),
-    queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US'),
+    queryFn: () => fetchVersions(slug, LOCALE),
   });
 }
 
@@ -684,7 +684,7 @@ export function versionsQuery(
       const page = getPage();
       return {
         queryKey: [...queryKeys.versions(slug), page],
-        queryFn: () => fetchVersions(slug, LOCALE ?? 'en-US', page),
+        queryFn: () => fetchVersions(slug, LOCALE, page),
         enabled: Boolean(slug),
       };
     },
@@ -728,7 +728,7 @@ export async function updateVersion(
     ...edit,
     ...(approval_notes !== undefined && { approval_notes }),
     ...(release_notes !== undefined && {
-      release_notes: { [LOCALE ?? 'en-US']: release_notes },
+      release_notes: { [LOCALE]: release_notes },
     }),
     ...(source === null && { source: null }),
   };
@@ -795,7 +795,7 @@ export async function uploadVersionNotes(
   id: number,
   releaseNotes?: string,
   reviewerNotes?: string,
-  langCode: string = LOCALE ?? 'en-US',
+  langCode: string = LOCALE,
 ) {
   await _updateVersion(slug, id, {
     ...(reviewerNotes && { approval_notes: reviewerNotes }),

@@ -115,7 +115,7 @@ export interface Version {
     status: FileStatus;
     created?: string;
   };
-  release_notes: Record<string, string> | string | null;
+  release_notes?: string;
   is_source_editable?: boolean;
   approval_notes: string;
   source: string | null;
@@ -129,8 +129,8 @@ export interface Version {
 export interface VersionLicense {
   slug: string | null;
   is_custom: boolean;
-  name: Record<string, string> | string | null;
-  text?: Record<string, string> | string | null;
+  name?: string;
+  text?: string;
 }
 
 export interface VersionEdit {

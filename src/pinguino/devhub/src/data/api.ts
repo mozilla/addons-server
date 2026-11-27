@@ -2,6 +2,7 @@
 // the v5 response onto our domain types. Caching, dedup, and lifetime live in
 // the query layer (./queries), not here.
 
+import { LOCALE } from '../base';
 import { apiFetch } from './http';
 import {
   canChangeVisibility,
@@ -26,6 +27,7 @@ import type {
   Developer,
   EulaPolicy,
   EulaPolicyEdit,
+  FileStatus,
   FileUpload,
   SiteStatus,
   Update,
@@ -41,7 +43,7 @@ interface Paginated<T> {
 }
 
 // v5 always serializes translated fields as a { lang: value } object.
-type Localized = Record<string, string>;
+type Localized = Record<string, string | null>;
 
 // AMO wraps external links as an "outgoing URL" object; its `url`/`outgoing`
 // are themselves translated. We want the plain destination URL.
@@ -77,14 +79,43 @@ interface ApiAddon {
     thumbnail_url?: string;
     caption?: Localized | null;
   }[];
-  current_version?: Version | null;
-  latest_listed_version?: Version | null;
-  latest_unlisted_version?: Version | null;
-  latest_enterprise_version?: Version | null;
+  current_version?: ApiVersion | null;
+  latest_listed_version?: ApiVersion | null;
+  latest_unlisted_version?: ApiVersion | null;
+  latest_enterprise_version?: ApiVersion | null;
   channels: AddonDistribution[];
   submit_notification_warning?: Partial<
     Record<AddonDistribution, string | null>
   >;
+}
+
+interface ApiVersionLicense {
+  slug: string | null;
+  is_custom: boolean;
+  name: Localized | null;
+  text?: Localized | null;
+}
+
+export interface ApiVersion {
+  id: number;
+  version: string;
+  channel: AddonDistribution;
+  file: {
+    id: number;
+    url: string;
+    size: number;
+    status: FileStatus;
+    created?: string;
+  };
+  release_notes: Record<string, string> | null;
+  is_source_editable?: boolean;
+  approval_notes: string;
+  source: string | null;
+  edit_url: string;
+  is_disabled: boolean;
+  compatibility?: Record<string, { min: string; max: string }>;
+  license?: ApiVersionLicense | null;
+  reviewed?: string | null;
 }
 
 // The subset of an AMO v5 activity-feed entry we read (from /activity/).
@@ -120,12 +151,14 @@ interface ApiProfile {
   site_status?: ApiSiteStatus;
 }
 
-export function localized(
-  value: string | Record<string, string> | null | undefined,
-): string {
+export function localized(value: Localized | null | undefined): string {
   if (!value) return '';
-  if (typeof value === 'string') return value;
-  return value['en-US'] ?? Object.values(value)[0] ?? '';
+  // TODO: this logic only works when a single locale is requested with ?lang=<LOCALE>
+  // in the request. Without that, all locales are returned in a nondeterminist order,
+  // so a fallback to Addon.default_locale or DEFAULT_LOCALE is necessary.
+  return (
+    value[LOCALE] ?? value[value._default || 0] ?? Object.values(value)[0] ?? ''
+  );
 }
 
 // Resolve an AMO outgoing-URL field to its (translated) destination URL.
@@ -153,7 +186,7 @@ export function formatDate(iso: string | null | undefined): string {
   if (!iso) return '';
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return '';
-  const month = date.toLocaleString('en-US', { month: 'short' });
+  const month = date.toLocaleString(document.documentElement.lang, { month: 'short' });
   return `${month} ${date.getUTCDate()} ${date.getUTCFullYear()}`;
 }
 
@@ -204,11 +237,46 @@ export function mapAddon(a: ApiAddon): Addon {
     },
     license: undefinedIfEmpty(localized(a.current_version?.license?.name)),
     uuid: a.guid,
-    latestListedVersion: a.latest_listed_version ?? undefined,
-    latestUnlistedVersion: a.latest_unlisted_version ?? undefined,
-    latestEnterpriseVersion: a.latest_enterprise_version ?? undefined,
-    currentVersion: a.current_version ?? undefined,
+    latestListedVersion: a.latest_listed_version
+      ? mapVersion(a.latest_listed_version)
+      : undefined,
+    latestUnlistedVersion: a.latest_unlisted_version
+      ? mapVersion(a.latest_unlisted_version)
+      : undefined,
+    latestEnterpriseVersion: a.latest_enterprise_version
+      ? mapVersion(a.latest_enterprise_version)
+      : undefined,
+    currentVersion: a.current_version
+      ? mapVersion(a.current_version)
+      : undefined,
     submissionNotice: a.submit_notification_warning,
+  };
+}
+
+export function mapVersion(v: ApiVersion): Version {
+  let license = null;
+  if (v.license) {
+    license = {
+      slug: v.license.slug,
+      is_custom: v.license.is_custom,
+      name: localized(v.license.name),
+      text: localized(v.license.text),
+    };
+  }
+  return {
+    id: v.id,
+    version: v.version,
+    channel: v.channel,
+    file: v.file,
+    release_notes: localized(v.release_notes),
+    is_source_editable: v.is_source_editable,
+    approval_notes: v.approval_notes,
+    source: v.source,
+    edit_url: v.edit_url,
+    is_disabled: v.is_disabled,
+    compatibility: v.compatibility,
+    license: license,
+    reviewed: v.reviewed,
   };
 }
 
@@ -275,7 +343,7 @@ const SORT = '-last_updated,-id';
 // param needed.
 export async function fetchAddons(kind: AddonKind): Promise<AddonPage> {
   const params = new URLSearchParams({
-    lang: 'en-US',
+    lang: LOCALE,
     page_size: '50',
     sort: SORT,
     type: KIND_TYPES[kind],
@@ -290,7 +358,7 @@ export async function fetchAddons(kind: AddonKind): Promise<AddonPage> {
 // changed), and the translated fields are wrapped as { lang: value } objects
 // (bare strings are rejected) targeting the default locale (en-US for now).
 function addonBody(edit: AddonListingEdit): Record<string, unknown> {
-  const t = (value: string | undefined) => ({ 'en-US': value ?? '' });
+  const t = (value: string | undefined) => ({ [LOCALE]: value ?? '' });
   const TRANSLATED = [
     'name',
     'summary',
@@ -313,7 +381,7 @@ function addonBody(edit: AddonListingEdit): Record<string, unknown> {
 // needs each add-on's own kind for its icon, not a count per kind.
 export async function fetchNavAddons(limit: number): Promise<Addon[]> {
   const params = new URLSearchParams({
-    lang: 'en-US',
+    lang: LOCALE,
     page_size: String(limit),
     sort: SORT,
   });
@@ -325,10 +393,13 @@ export async function patchAddon(
   slug: string,
   edit: AddonListingEdit,
 ): Promise<Addon> {
-  const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`, {
-    method: 'PATCH',
-    body: addonBody(edit),
-  });
+  const data = await apiFetch<ApiAddon>(
+    `/addons/addon/${slug}/?lang=${LOCALE}`,
+    {
+      method: 'PATCH',
+      body: addonBody(edit),
+    },
+  );
   return mapAddon(data);
 }
 
@@ -339,8 +410,8 @@ function buildLicense(
   if (custom) {
     return {
       custom_license: {
-        name: { 'en-US': custom.name },
-        text: { 'en-US': custom.text },
+        name: { [LOCALE]: custom.name },
+        text: { [LOCALE]: custom.text },
       },
     };
   }
@@ -352,7 +423,7 @@ export async function postAddon(
 ): Promise<{ addon: Addon; version: Version }> {
   const { version, ...listing } = create;
   const data = await apiFetch<ApiAddon & { version: Version }>(
-    '/addons/addon/?lang=en-US',
+    `/addons/addon/?lang=${LOCALE}`,
     {
       method: 'POST',
       body: {
@@ -379,7 +450,7 @@ interface ApiAuthor {
 
 export async function fetchAuthors(slug: string): Promise<AddonAuthor[]> {
   const data = await apiFetch<ApiAuthor[]>(
-    `/addons/addon/${slug}/authors/?lang=en-US`,
+    `/addons/addon/${slug}/authors/?lang=${LOCALE}`,
   );
   return data.map((a) => ({
     userId: a.user_id,
@@ -396,7 +467,7 @@ export async function fetchPendingAuthors(
   slug: string,
 ): Promise<AddonAuthor[]> {
   const data = await apiFetch<ApiAuthor[]>(
-    `/addons/addon/${slug}/pending-authors/?lang=en-US`,
+    `/addons/addon/${slug}/pending-authors/?lang=${LOCALE}`,
   );
   return data.map((a) => ({
     userId: a.user_id,
@@ -457,10 +528,13 @@ export async function addAuthor(
 export async function uploadIcon(slug: string, file: File): Promise<Addon> {
   const form = new FormData();
   form.append('icon', file);
-  const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`, {
-    method: 'PATCH',
-    body: form,
-  });
+  const data = await apiFetch<ApiAddon>(
+    `/addons/addon/${slug}/?lang=${LOCALE}`,
+    {
+      method: 'PATCH',
+      body: form,
+    },
+  );
   return mapAddon(data);
 }
 
@@ -480,9 +554,9 @@ export async function patchPreview(
   previewId: number,
   caption: string,
 ): Promise<void> {
-  await apiFetch(`/addons/addon/${slug}/previews/${previewId}/?lang=en-US`, {
+  await apiFetch(`/addons/addon/${slug}/previews/${previewId}/?lang=${LOCALE}`, {
     method: 'PATCH',
-    body: { caption: { 'en-US': caption } },
+    body: { caption: { [LOCALE]: caption } },
   });
 }
 
@@ -503,13 +577,13 @@ export async function fetchCategories(): Promise<Category[]> {
 }
 
 export async function fetchAddon(slug: string): Promise<Addon> {
-  const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=en-US`);
+  const data = await apiFetch<ApiAddon>(`/addons/addon/${slug}/?lang=${LOCALE}`);
   return mapAddon(data);
 }
 
 export async function fetchAddonSource(slug: string): Promise<Addon> {
   const data = await apiFetch<ApiAddon>(
-    `/addons/addon/${slug}/?lang=en-US&show_source=true`,
+    `/addons/addon/${slug}/?lang=${LOCALE}&show_source=true`,
   );
   return mapAddon(data);
 }
@@ -524,7 +598,7 @@ export async function fetchEulaPolicy(
     eula?: Localized | null;
     privacy_policy?: Localized | null;
   }>(
-    `/addons/addon/${slug}/eula_policy/?lang=en-US${showSource ? '&show_source=true' : ''}`,
+    `/addons/addon/${slug}/eula_policy/?lang=${LOCALE}${showSource ? '&show_source=true' : ''}`,
   );
   return {
     eula: localized(data.eula ?? undefined),
@@ -535,7 +609,7 @@ export async function fetchEulaPolicy(
 // Any translated field is cleared per locale, and the API rejects nulling the
 // default locale while other translations survive — so clearing one means
 // nulling every locale it currently has.
-export function clearTranslations(
+export function clearLocalized(
   current?: Localized | null,
 ): Record<string, null> {
   const locales = Object.keys(current ?? {}).filter(
@@ -543,7 +617,7 @@ export function clearTranslations(
     (locale) => !locale.startsWith('_'),
   );
   return Object.fromEntries(
-    [...new Set([...locales, 'en-US'])].map((locale) => [locale, null]),
+    [...new Set([...locales, LOCALE])].map((locale) => [locale, null]),
   );
 }
 
@@ -551,8 +625,8 @@ export async function patchEulaPolicy(
   slug: string,
   edit: EulaPolicyEdit,
 ): Promise<void> {
-  // We only ever edit en-US, so clearing needs the full locale set: fetch it
-  // without `lang` rather than trusting the en-US view of the policy.
+  // We only ever edit one locale, so clearing needs the full locale set: fetch it
+  // without `lang` rather than trusting one locales view of the policy.
   const current =
     ('eula' in edit && edit.eula == null) ||
     ('privacyPolicy' in edit && edit.privacyPolicy == null)
@@ -566,16 +640,16 @@ export async function patchEulaPolicy(
   if ('eula' in edit) {
     body.eula =
       edit.eula == null
-        ? clearTranslations(current?.eula)
-        : { 'en-US': edit.eula };
+        ? clearLocalized(current?.eula)
+        : { [LOCALE]: edit.eula };
   }
   if ('privacyPolicy' in edit) {
     body.privacy_policy =
       edit.privacyPolicy == null
-        ? clearTranslations(current?.privacy_policy)
-        : { 'en-US': edit.privacyPolicy };
+        ? clearLocalized(current?.privacy_policy)
+        : { [LOCALE]: edit.privacyPolicy };
   }
-  await apiFetch(`/addons/addon/${slug}/eula_policy/?lang=en-US`, {
+  await apiFetch(`/addons/addon/${slug}/eula_policy/?lang=${LOCALE}`, {
     method: 'PATCH',
     body,
   });
@@ -591,7 +665,7 @@ export async function fetchActivity(
   version?: number,
 ): Promise<ActivityPage> {
   const params = new URLSearchParams({
-    lang: 'en-US',
+    lang: LOCALE,
     page: String(page),
     page_size: String(ACTIVITY_PAGE_SIZE),
   });
