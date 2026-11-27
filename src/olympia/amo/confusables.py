@@ -25,6 +25,7 @@ additional_character_replacements = {
         'ᥝ',
         'ᥤ',
         'ᥪ',
+        'ᥲ',
         'ᲁ',
         'Მ',
         'ᴀ',
@@ -1331,7 +1332,6 @@ additional_character_replacements = {
         'ᝪ',
         '៰',
         '᥆',
-        'ᥲ',
         'ᦅ',
         'ᦞ',
         'ᦢ',
@@ -1575,6 +1575,7 @@ additional_character_replacements = {
         '🇶',
     ),
     'r': (
+        '®',
         'Ɍ',
         'ɍ',
         'ɼ',

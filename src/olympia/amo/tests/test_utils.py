@@ -427,6 +427,8 @@ class TestIsSafeUrl(SimpleTestCase):
         ('қѺʍ⳽', 'koms'),
         ('tЄctoniк', 'tectonik'),
         ('ωïnnϵr', 'winner'),
+        ('®at', 'rat'),
+        ('ᥲpp', 'app'),
     ],
 )
 def test_normalize_string_for_name_checks(value, expected):
