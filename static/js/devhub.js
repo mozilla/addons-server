@@ -7,6 +7,7 @@ import './common/upload-image';
 import './zamboni/devhub';
 import './zamboni/validator';
 import './zamboni/static_theme';
+import './zamboni/support_faq';
 import 'jquery-ui/ui/data';
 import 'jquery-ui/ui/scroll-parent';
 import 'jquery-ui/ui/widget';
