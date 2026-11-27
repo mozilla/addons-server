@@ -1,6 +1,6 @@
-import type { IconName } from '@mozilla/lit-web-components';
+import type { IconName, MozPanelList } from '@mozilla/lit-web-components';
 import { css, html, LitElement, nothing, type TemplateResult } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, state } from 'lit/decorators.js';
 import { BASE, LOCALE } from '../base';
 import { type Addon, navAddonsQuery, profileQuery } from '../data';
 import { panelPointer } from '../foundations/panel';
@@ -10,7 +10,6 @@ import {
   extensionWorkshop,
   PREVIEW_BLOG_POST,
 } from '../links';
-import { switchToClassic } from '../switch-back';
 import './devhub-account-menu';
 import './switch-back-link';
 
@@ -38,6 +37,9 @@ interface NavMenu {
 // Past this the menu stops being a menu, so the rest live on the dashboard.
 const MAX_ADDONS = 7;
 
+// Long enough to cross the gap between a trigger and its menu.
+const HOVER_CLOSE_DELAY = 200;
+
 // Every menu but My Add-ons is a single captioned run of rows.
 const menu = (id: string, label: string, items: NavItem[]): NavMenu => ({
   id,
@@ -46,7 +48,7 @@ const menu = (id: string, label: string, items: NavItem[]): NavMenu => ({
 });
 
 const MENUS: NavMenu[] = [
-  menu('nav-documentation', 'Documentation', [
+  menu('nav-documentation', 'Documentation & Support', [
     {
       label: 'Extension Development',
       href: extensionWorkshop('/documentation/develop/'),
@@ -58,26 +60,8 @@ const MENUS: NavMenu[] = [
       external: true,
     },
     {
-      label: 'Developer Policies',
+      label: 'Developer Add-on Policies',
       href: extensionWorkshop('/documentation/publish/add-on-policies/'),
-      external: true,
-    },
-  ]),
-  menu('nav-tools', 'Tools', [
-    { label: 'Add-on Validator', href: `${BASE}/addon/validate` },
-    { label: 'Manage API Keys', href: `${BASE}/addon/api/key` },
-  ]),
-  menu('nav-community', 'Community & Support', [
-    { label: 'Add-on Blog', href: ADDONS_BLOG, external: true },
-    { label: 'Add-on Forum', href: ADDONS_FORUM, external: true },
-    { label: 'Contact Support', href: `${BASE}/support` },
-  ]),
-  // The design gives Extension Workshop a menu but doesn't say what's in it;
-  // these mirror the site's own sections until UX fills the gap.
-  menu('nav-workshop', 'Extension Workshop', [
-    {
-      label: 'Extension Workshop Home',
-      href: extensionWorkshop(),
       external: true,
     },
     {
@@ -85,16 +69,12 @@ const MENUS: NavMenu[] = [
       href: extensionWorkshop('/documentation/publish/'),
       external: true,
     },
-    {
-      label: 'Managing Your Add-ons',
-      href: extensionWorkshop('/documentation/manage/'),
-      external: true,
-    },
-    {
-      label: 'Get in Touch',
-      href: extensionWorkshop('/', '#connect'),
-      external: true,
-    },
+    { label: 'Add-on Blog', href: ADDONS_BLOG, external: true },
+    { label: 'Add-on Forum', href: ADDONS_FORUM, external: true },
+    { label: 'Contact Support', href: `${BASE}/support` },
+  ]),
+  menu('nav-tools', 'Tools', [
+    { label: 'Add-on Validator', href: `${BASE}/addon/validate` },
   ]),
 ];
 
@@ -156,18 +136,78 @@ export class DevhubHeader extends LitElement {
       nav.full {
         flex-wrap: nowrap;
       }
-      nav.collapsed {
+      .drawer-button {
         display: none;
       }
-      /* Measured: signed in, the brand, links and avatar need 1275px before they
-       * collide. Below that everything folds into the one menu. */
-      @media (max-width: 1280px) {
+      /* Measured: signed in, the brand, menus, switch-back link and avatar need
+       * 1032px before they collide. */
+      @media (max-width: 1040px) {
         nav.full {
           display: none;
         }
-        nav.collapsed {
-          display: flex;
+        .drawer-button {
+          display: inline-flex;
         }
+      }
+      .drawer::part(dialog) {
+        position: fixed;
+        inset-block: 0;
+        inset-inline-start: 0;
+        margin: 0;
+        inline-size: min(320px, 100vw - var(--space-xxlarge));
+        max-inline-size: none;
+        block-size: 100dvh;
+        max-block-size: 100dvh;
+        border-radius: 0;
+        overflow-y: auto;
+        animation: drawer-in 200ms ease-out;
+      }
+      .drawer:dir(rtl)::part(dialog) {
+        animation-name: drawer-in-rtl;
+      }
+      @keyframes drawer-in {
+        from {
+          transform: translateX(-100%);
+        }
+      }
+      @keyframes drawer-in-rtl {
+        from {
+          transform: translateX(100%);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .drawer::part(dialog) {
+          animation: none;
+        }
+      }
+      .drawer h3 {
+        margin: var(--space-small) 0 var(--space-xsmall);
+        font-size: var(--font-size-small);
+        font-weight: 600;
+        color: var(--text-color-deemphasized);
+      }
+      .drawer ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .drawer li a {
+        display: flex;
+        align-items: center;
+        gap: var(--space-small);
+        padding: var(--space-small);
+        border-radius: var(--border-radius-medium);
+      }
+      .drawer li a:hover {
+        background: var(--button-background-color-ghost-hover);
+        text-decoration: none;
+      }
+      .drawer li a .external {
+        margin-inline-start: auto;
+      }
+      .drawer switch-back-link {
+        display: block;
+        margin-block-start: var(--space-large);
       }
       .trigger::part(button) {
         padding-inline: var(--space-small);
@@ -226,6 +266,16 @@ export class DevhubHeader extends LitElement {
       variant="ghost"
       icon-end="chevron-down"
       menu-id=${id}
+      @pointerenter=${(e: PointerEvent) => this.#hoverOpen(e, id)}
+      @pointerleave=${this.#hoverLeave}
+      @click=${{
+        // Runs before moz-button's own toggle, which would shut a menu the
+        // hover just opened.
+        handleEvent: (e: Event) => {
+          if (this.#hovered === id) e.stopPropagation();
+        },
+        capture: true,
+      }}
       >${label}</moz-button
     >`;
   }
@@ -255,10 +305,54 @@ export class DevhubHeader extends LitElement {
   #menu({ id, label, sections }: NavMenu): TemplateResult {
     return html`
       ${this.#trigger(id, label)}
-      <moz-panel-list id=${id} type="menu" label=${label}>
+      <moz-panel-list
+        id=${id}
+        type="menu"
+        label=${label}
+        @pointerenter=${(e: PointerEvent) => {
+          if (e.pointerType === 'mouse') clearTimeout(this.#hoverTimer);
+        }}
+        @pointerleave=${this.#hoverLeave}
+        @moz-panel-list:hidden=${() => {
+          if (this.#hovered === id) this.#hovered = undefined;
+        }}
+      >
         ${this.#sections(sections)}
       </moz-panel-list>
     `;
+  }
+
+  #hovered?: string;
+  #hoverTimer?: ReturnType<typeof setTimeout>;
+
+  #panel(id: string) {
+    return this.renderRoot.querySelector<MozPanelList>(`#${id}`);
+  }
+
+  #hoverOpen(e: PointerEvent, id: string) {
+    if (e.pointerType !== 'mouse') return;
+    clearTimeout(this.#hoverTimer);
+    if (this.#hovered && this.#hovered !== id) {
+      this.#panel(this.#hovered)?.hide();
+    }
+    const panel = this.#panel(id);
+    // Given the pointerenter, the panel doesn't move focus into itself.
+    if (!panel?.open) panel?.show(e, e.currentTarget as HTMLElement);
+    this.#hovered = id;
+  }
+
+  #hoverLeave = (e: PointerEvent) => {
+    const id = this.#hovered;
+    if (e.pointerType !== 'mouse' || !id) return;
+    this.#hoverTimer = setTimeout(
+      () => this.#panel(id)?.hide(),
+      HOVER_CLOSE_DELAY,
+    );
+  };
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    clearTimeout(this.#hoverTimer);
   }
 
   // The signed-in developer's own menu, as data so both layouts render it the
@@ -297,25 +391,59 @@ export class DevhubHeader extends LitElement {
     };
   }
 
-  // Every menu's sections end to end behind one trigger. Flattened rather than
-  // nested so each link stays one tap away.
-  #collapsedNav(menus: NavMenu[]) {
-    return html`
-      <moz-button
-        class="hamburger"
-        variant="ghost"
-        icon-start="app-menu"
-        icon-only="Menu"
-        menu-id="nav-collapsed"
-      ></moz-button>
-      <moz-panel-list id="nav-collapsed" type="menu" label="Menu">
-        ${this.#sections(menus.flatMap((m) => m.sections))}
-        <hr />
-        <moz-panel-item @click=${switchToClassic}
-          >Switch back to the old Developer Hub</moz-panel-item
+  @state() private drawerOpen = false;
+  // Closed by default and one at a time, so the drawer fits a short screen.
+  @state() private drawerSection?: string;
+
+  #drawerLink({ label, href, external, icon }: NavItem) {
+    return html`<a
+      href=${href}
+      target=${external ? '_blank' : nothing}
+      rel=${external ? 'noopener' : nothing}
+      @click=${() => {
+        this.drawerOpen = false;
+      }}
+    >
+      ${icon ? html`<moz-icon name=${icon}></moz-icon>` : nothing} ${label}
+      ${
+        external
+          ? html`<moz-icon class="external" name="external-link"></moz-icon>`
+          : nothing
+      }
+    </a>`;
+  }
+
+  #drawer(menus: NavMenu[]) {
+    return html`<moz-dialog
+      class="drawer"
+      heading="Menu"
+      dismissable
+      dismiss-label="Close menu"
+      ?open=${this.drawerOpen}
+      @moz-dialog:dismiss=${() => {
+        this.drawerOpen = false;
+      }}
+    >
+      ${menus.map(
+        (menu) => html`<moz-details
+          heading=${menu.label}
+          ?open=${this.drawerSection === menu.id}
+          @moz-details:toggle=${(e: CustomEvent<{ open: boolean }>) => {
+            this.drawerSection = e.detail.open ? menu.id : undefined;
+          }}
         >
-      </moz-panel-list>
-    `;
+          ${menu.sections.map(
+            (section) => html`
+              ${section.label === menu.label ? nothing : html`<h3>${section.label}</h3>`}
+              <ul>
+                ${section.items.map((item) => html`<li>${this.#drawerLink(item)}</li>`)}
+              </ul>
+            `,
+          )}
+        </moz-details>`,
+      )}
+      <switch-back-link>Switch back to the old Developer Hub</switch-back-link>
+    </moz-dialog>`;
   }
 
   render() {
@@ -324,6 +452,15 @@ export class DevhubHeader extends LitElement {
     return html`
       <div class="bar">
         <div class="start">
+          <moz-button
+            class="drawer-button"
+            variant="ghost"
+            icon-start="app-menu"
+            icon-only="Menu"
+            @click=${() => {
+              this.drawerOpen = true;
+            }}
+          ></moz-button>
           <a class="brand" href="${BASE}">
             <moz-icon name="logo-firefox"></moz-icon>
             Add-ons
@@ -336,7 +473,6 @@ export class DevhubHeader extends LitElement {
           ${menus.map((menu) => this.#menu(menu))}
           <switch-back-link>Switch back to the old Developer Hub</switch-back-link>
         </nav>
-        <nav class="collapsed">${this.#collapsedNav(menus)}</nav>
         <span class="account">
           ${
             profile.isPending || !profile.data
@@ -347,6 +483,7 @@ export class DevhubHeader extends LitElement {
           }
         </span>
       </div>
+      ${this.#drawer(menus)}
     `;
   }
 }

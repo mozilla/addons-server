@@ -174,44 +174,55 @@ describe('devhub-header', () => {
       }
     });
 
-    it('sends off-site documentation links to a new tab, tagged for referral', async () => {
-      const { panel } = await menuFor('Documentation');
+    it('offers only My Add-ons, Documentation & Support and Tools', async () => {
+      signedIn();
+      const root = (await header()).shadowRoot as ShadowRoot;
+      const triggers = [...root.querySelectorAll('moz-button.trigger')].map(
+        (el) => el.textContent?.trim(),
+      );
+
+      expect(triggers).toEqual([
+        'My Add-ons',
+        'Documentation & Support',
+        'Tools',
+      ]);
+    });
+
+    it('lists documentation and support, off-site links in a new tab', async () => {
+      const { panel } = await menuFor('Documentation & Support');
+      const items = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
 
       expect(labels(panel)).toEqual([
         'Extension Development',
         'Themes',
-        'Developer Policies',
+        'Developer Add-on Policies',
+        'Publishing Guide',
+        'Add-on Blog',
+        'Add-on Forum',
+        'Contact Support',
       ]);
-      for (const item of panel?.querySelectorAll('moz-panel-item') ?? []) {
-        expect(item.getAttribute('target')).toBe('_blank');
-        expect(item.getAttribute('href')).toContain(
-          'utm_source=addons.mozilla.org',
+      const offSite = items.filter(
+        (i) => i.getAttribute('target') === '_blank',
+      );
+      expect(offSite).toHaveLength(6);
+      for (const item of offSite.slice(0, 4)) {
+        expect(item.getAttribute('href')).toMatch(
+          /^https:\/\/extensionworkshop\.com\/.*utm_source=addons\.mozilla\.org/,
         );
       }
+      expect(
+        panel?.querySelector('moz-panel-item[href="/developers/support"]'),
+      ).not.toBeNull();
     });
 
-    it('keeps the tools links in-app', async () => {
+    it('keeps the validator in Tools, in-app', async () => {
       const { panel } = await menuFor('Tools');
       const items = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
 
       expect(items.map((i) => i.getAttribute('href'))).toEqual([
         '/developers/addon/validate',
-        '/developers/addon/api/key',
       ]);
-      expect(items.every((i) => !i.hasAttribute('target'))).toBe(true);
-    });
-
-    it('offers support off-site and on', async () => {
-      const { panel } = await menuFor('Community & Support');
-
-      expect(labels(panel)).toEqual([
-        'Add-on Blog',
-        'Add-on Forum',
-        'Contact Support',
-      ]);
-      expect(
-        panel?.querySelector('moz-panel-item[href="/developers/support"]'),
-      ).not.toBeNull();
+      expect(items[0]?.hasAttribute('target')).toBe(false);
     });
 
     it('hides My Add-ons when signed out', async () => {
@@ -276,81 +287,199 @@ describe('devhub-header', () => {
       ).not.toBeNull();
     });
   });
-  describe('collapsed navigation', () => {
-    // The hamburger is the whole nav at narrow widths; CSS swaps which of the
-    // two is shown, so both are always in the DOM and testable here.
-    async function collapsed() {
+  describe('hover menus', () => {
+    // moz-panel-list isn't upgraded here, so give each panel the two methods
+    // the header calls.
+    async function hoverable() {
       const root = (await header()).shadowRoot as ShadowRoot;
-      return root.getElementById('nav-collapsed');
+      for (const panel of root.querySelectorAll('moz-panel-list')) {
+        Object.assign(panel, {
+          open: false,
+          show: vi.fn(function (this: { open: boolean }) {
+            this.open = true;
+          }),
+          hide: vi.fn(function (this: { open: boolean }) {
+            this.open = false;
+          }),
+        });
+      }
+      const trigger = (label: string) =>
+        [...root.querySelectorAll<HTMLElement>('moz-button.trigger')].find(
+          (el) => el.textContent?.trim() === label,
+        ) as HTMLElement;
+      const panel = (id: string) =>
+        root.getElementById(id) as HTMLElement & {
+          show: ReturnType<typeof vi.fn>;
+          hide: ReturnType<typeof vi.fn>;
+        };
+      return { trigger, panel };
     }
 
-    it('is opened by a labelled hamburger', async () => {
-      const root = (await header()).shadowRoot as ShadowRoot;
-      const button = root.querySelector('moz-button.hamburger');
+    const pointer = (type: string, pointerType = 'mouse') =>
+      new PointerEvent(type, { pointerType });
 
-      expect(button?.getAttribute('icon-only')).toBe('Menu');
-      expect(button?.getAttribute('menu-id')).toBe('nav-collapsed');
+    it('opens a menu on mouse hover, anchored to its trigger', async () => {
+      const { trigger, panel } = await hoverable();
+      const tools = trigger('Tools');
+      const enter = pointer('pointerenter');
+
+      tools.dispatchEvent(enter);
+
+      expect(panel('nav-tools').show).toHaveBeenCalledWith(enter, tools);
     });
 
-    it('concatenates every menu the full nav shows', async () => {
+    it('leaves touch to the click toggle', async () => {
+      const { trigger, panel } = await hoverable();
+
+      trigger('Tools').dispatchEvent(pointer('pointerenter', 'touch'));
+
+      expect(panel('nav-tools').show).not.toHaveBeenCalled();
+    });
+
+    it('closes once the pointer leaves, unless it reaches the menu', async () => {
+      vi.useFakeTimers();
+      try {
+        const { trigger, panel } = await hoverable();
+        const tools = trigger('Tools');
+
+        tools.dispatchEvent(pointer('pointerenter'));
+        tools.dispatchEvent(pointer('pointerleave'));
+        panel('nav-tools').dispatchEvent(pointer('pointerenter'));
+        vi.runAllTimers();
+        expect(panel('nav-tools').hide).not.toHaveBeenCalled();
+
+        panel('nav-tools').dispatchEvent(pointer('pointerleave'));
+        vi.runAllTimers();
+        expect(panel('nav-tools').hide).toHaveBeenCalled();
+      } finally {
+        vi.useRealTimers();
+      }
+    });
+
+    it('shows one hovered menu at a time', async () => {
+      const { trigger, panel } = await hoverable();
+
+      trigger('Tools').dispatchEvent(pointer('pointerenter'));
+      trigger('Documentation & Support').dispatchEvent(pointer('pointerenter'));
+
+      expect(panel('nav-tools').hide).toHaveBeenCalled();
+      expect(panel('nav-documentation').show).toHaveBeenCalled();
+    });
+  });
+
+  describe('drawer', () => {
+    async function drawer() {
+      const el = await header();
+      const root = el.shadowRoot as ShadowRoot;
+      const dialog = () => root.querySelector('moz-dialog.drawer');
+      const sections = () => [
+        ...root.querySelectorAll('moz-dialog moz-details'),
+      ];
+      const open = async () => {
+        root
+          .querySelector<HTMLElement>('moz-button.drawer-button')
+          ?.dispatchEvent(new MouseEvent('click'));
+        await el.updateComplete;
+      };
+      return { el, root, dialog, sections, open };
+    }
+
+    it('opens from a labelled menu button', async () => {
+      const { root, dialog, open } = await drawer();
+      const button = root.querySelector('moz-button.drawer-button');
+
+      expect(button?.getAttribute('icon-only')).toBe('Menu');
+      expect(dialog()?.hasAttribute('open')).toBe(false);
+      await open();
+      expect(dialog()?.hasAttribute('open')).toBe(true);
+      expect(dialog()?.hasAttribute('dismissable')).toBe(true);
+    });
+
+    it('has a closed section for each menu the full nav shows', async () => {
       signedIn();
       addonsState.data = [
         { slug: 'ad-blocker', name: 'Ad Blocker', kind: 'extension' },
       ];
-      const panel = await collapsed();
-      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
-        h.textContent?.trim(),
-      );
+      const { sections } = await drawer();
 
-      expect(captions).toEqual([
+      expect(sections().map((d) => d.getAttribute('heading'))).toEqual([
         'My Add-ons',
-        'Create New Add-on',
-        'Documentation',
+        'Documentation & Support',
         'Tools',
-        'Community & Support',
-        'Extension Workshop',
       ]);
+      expect(sections().some((d) => d.hasAttribute('open'))).toBe(false);
     });
 
     it('drops My Add-ons when signed out, like the full nav', async () => {
-      const panel = await collapsed();
-      const captions = [...(panel?.querySelectorAll('h2') ?? [])].map((h) =>
-        h.textContent?.trim(),
-      );
+      const { sections } = await drawer();
 
-      expect(captions).not.toContain('My Add-ons');
-      expect(captions[0]).toBe('Documentation');
+      expect(sections().map((d) => d.getAttribute('heading'))).toEqual([
+        'Documentation & Support',
+        'Tools',
+      ]);
     });
 
-    it('separates the sections but never leads with a rule', async () => {
-      const panel = await collapsed();
-      const kids = [...(panel?.children ?? [])].map((el) =>
-        el.tagName.toLowerCase(),
-      );
+    it('keeps one section open at a time', async () => {
+      const { el, sections } = await drawer();
+      const toggle = async (i: number, open: boolean) => {
+        sections()[i].dispatchEvent(
+          new CustomEvent('moz-details:toggle', { detail: { open } }),
+        );
+        await el.updateComplete;
+      };
+      const opened = () =>
+        sections()
+          .filter((d) => d.hasAttribute('open'))
+          .map((d) => d.getAttribute('heading'));
 
-      expect(kids[0]).toBe('h2');
-      // One rule before each section after the first, plus one before the
-      // switch-back row at the end.
-      expect(kids.filter((t) => t === 'hr')).toHaveLength(
-        kids.filter((t) => t === 'h2').length,
-      );
+      await toggle(0, true);
+      expect(opened()).toEqual(['Documentation & Support']);
+      await toggle(1, true);
+      expect(opened()).toEqual(['Tools']);
+      await toggle(1, false);
+      expect(opened()).toEqual([]);
     });
 
-    it('keeps the switch back action reachable', async () => {
-      const panel = await collapsed();
-      const rows = [...(panel?.querySelectorAll('moz-panel-item') ?? [])];
-      const row = rows.at(-1);
-      expect(row?.textContent?.trim()).toBe(
-        'Switch back to the old Developer Hub',
-      );
+    it('captions a menu’s later sections and keeps links’ targets', async () => {
+      signedIn();
+      addonsState.data = [];
+      const { sections } = await drawer();
+      const [myAddons, docs] = sections();
 
-      const loc = { pathname: '/developers/addon/x', search: '', href: '' };
-      vi.stubGlobal('location', loc);
-      row?.dispatchEvent(new MouseEvent('click', { bubbles: true }));
-
-      expect(loc.href).toBe(
-        '/developers/switch-pinguino?path=%2Fdevelopers%2Faddon%2Fx',
+      expect(
+        [...myAddons.querySelectorAll('h3')].map((h) => h.textContent?.trim()),
+      ).toEqual(['Create New Add-on']);
+      const blog = [...docs.querySelectorAll('a')].find(
+        (a) => a.textContent?.trim() === 'Add-on Blog',
       );
+      expect(blog?.getAttribute('target')).toBe('_blank');
+      const support = docs.querySelector('a[href="/developers/support"]');
+      expect(support?.hasAttribute('target')).toBe(false);
+    });
+
+    it('closes when a link is followed or it is dismissed', async () => {
+      const { el, dialog, sections, open } = await drawer();
+
+      await open();
+      sections()[0]
+        .querySelector('a')
+        ?.addEventListener('click', (e) => e.preventDefault());
+      sections()[0].querySelector('a')?.click();
+      await el.updateComplete;
+      expect(dialog()?.hasAttribute('open')).toBe(false);
+
+      await open();
+      dialog()?.dispatchEvent(new CustomEvent('moz-dialog:dismiss'));
+      await el.updateComplete;
+      expect(dialog()?.hasAttribute('open')).toBe(false);
+    });
+
+    it('keeps the switch back link reachable', async () => {
+      const { dialog } = await drawer();
+
+      expect(
+        dialog()?.querySelector('switch-back-link')?.textContent?.trim(),
+      ).toBe('Switch back to the old Developer Hub');
     });
   });
 });

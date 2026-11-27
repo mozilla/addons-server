@@ -1,6 +1,6 @@
 import { css, html, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { LOCALE } from '../base';
+import { BASE, LOCALE } from '../base';
 import type { Developer } from '../data';
 import { logout } from '../data';
 import { panelPointer } from '../foundations/panel';
@@ -77,6 +77,9 @@ export class DevhubAccountMenu extends LitElement {
       <moz-panel-list id="account-menu" label="${profile.name || 'Account'}">
         <moz-panel-item class="profile" href="${profileUrl(profile.id)}"
           >${profile.name || 'Profile'}</moz-panel-item
+        >
+        <moz-panel-item class="api-keys" href="${BASE}/addon/api/key"
+          >Manage API Keys</moz-panel-item
         >
         <moz-panel-item class="logout" @click=${this.#logout}
           >Log out</moz-panel-item
