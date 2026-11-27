@@ -5,7 +5,14 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { queryClient, queryKeys } from '../../../src/data';
 import '../../../src/pages/addon/main';
 import '../../../src/pages/addon/versions/submit/main';
-import { mount, seedAddons, settle } from '../../helpers/fixture';
+import {
+  addonPageRequests,
+  EMPTY_PAGE,
+  mount,
+  seedAddons,
+  settle,
+  stubRequests,
+} from '../../helpers/fixture';
 
 function setAgreement(accepted: boolean) {
   queryClient.setQueryData(queryKeys.agreement, {
@@ -14,6 +21,19 @@ function setAgreement(accepted: boolean) {
     last_developer_agreement_change: '2020-01-10T12:00:00',
   });
 }
+
+// The routed pages load their own data; these tests only check the routing.
+beforeEach(() => {
+  stubRequests({
+    ...addonPageRequests('addon-slug'),
+    '/api/v5/addons/addon/': EMPTY_PAGE,
+    '/api/v5/developers/agreement/': {
+      display_name: 'me',
+      has_read_developer_agreement: true,
+      last_developer_agreement_change: '2020-01-10T12:00:00',
+    },
+  });
+});
 
 type RouterHost = LitElement & {
   _routes: { goto(path: string): Promise<void> };

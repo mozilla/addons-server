@@ -1,4 +1,4 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const { updateVersion, replyToVersion } = vi.hoisted(() => ({
   updateVersion: vi.fn(async () => {}),
@@ -19,7 +19,21 @@ import {
   queryKeys,
   VERSION_STATUS,
 } from '../../src/data';
-import { DEFAULT_VERSION, mount, settle } from '../helpers/fixture';
+import {
+  DEFAULT_VERSION,
+  mount,
+  PROFILE,
+  settle,
+  stubRequests,
+} from '../helpers/fixture';
+
+// The page's header looks up the profile and the add-on's authors.
+beforeEach(() => {
+  stubRequests({
+    '/api/v5/accounts/profile/': PROFILE,
+    '/api/v5/addons/addon/ad-blocker/authors/': [],
+  });
+});
 
 const addon: Addon = {
   slug: 'ad-blocker',

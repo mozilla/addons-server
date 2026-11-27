@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import type { AddonManageHeader } from '../../src/components/addon-manage-header';
 import '../../src/components/addon-manage-header';
 import type { AddonActionsMenu } from '../../src/components/addon-actions-menu';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS } from '../../src/data';
-import { mount } from '../helpers/fixture';
+import { mount, PROFILE, stubRequests } from '../helpers/fixture';
 
 const base: Addon = {
   slug: 'ad-blocker',
@@ -17,6 +17,14 @@ const base: Addon = {
   canChangeVisibility: true,
   channels: ['listed'],
 };
+
+// The header's actions menu looks up the profile and the add-on's authors.
+beforeEach(() => {
+  stubRequests({
+    '/api/v5/accounts/profile/': PROFILE,
+    '/api/v5/addons/addon/ad-blocker/authors/': [],
+  });
+});
 
 async function header(addon: Partial<Addon>) {
   const el = await mount<AddonManageHeader>('addon-manage-header', {

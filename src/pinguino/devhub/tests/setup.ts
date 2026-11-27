@@ -1,5 +1,9 @@
 import { afterEach, vi } from 'vitest';
 import { queryClient } from '../src/data/query-client';
+import {
+  installNetworkGuard,
+  takeUnmockedRequests,
+} from './helpers/network-guard';
 
 // happy-dom has no ElementInternals, and acorn's form-associated components
 // (moz-button among them) call attachInternals in their constructor — so any
@@ -11,12 +15,18 @@ if (!HTMLElement.prototype.attachInternals) {
   };
 }
 
+installNetworkGuard();
+
 // Keep tests isolated: clear mounted elements, the shared query cache, and any
 // stubbed globals/env so one test's state can't leak into the next.
 afterEach(() => {
+  const requests = takeUnmockedRequests();
   document.body.replaceChildren();
   queryClient.clear();
   vi.restoreAllMocks();
   vi.unstubAllGlobals();
   vi.unstubAllEnvs();
+  if (requests.length) {
+    throw new Error(`Unmocked network requests:\n${requests.join('\n')}`);
+  }
 });

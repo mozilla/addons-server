@@ -108,6 +108,8 @@ The `_test_pinguino` GitHub Action runs all four on pull requests that touch `sr
 
 `tests/helpers/fixture.ts` has `mount(tag, props)` (append + await first render) and `settle(el)` (flush a settled query, then re-render). `tests/setup.ts` clears the DOM, query cache, and any stubbed globals/env after each test.
 
+Tests never touch the network: `tests/setup.ts` fails any test that makes an unmocked request, listing the URLs. Seed the cache, `vi.mock` the api module, or answer the requests a page makes in the background with `stubRequests(...)` from the fixtures (`addonPageRequests(slug)` covers an add-on's manage pages).
+
 happy-dom is the default environment, but DOMPurify needs DOM internals it doesn't fully implement (it silently strips allowed tags), so tests that exercise sanitization (`tests/utils/sanitizeHTML.test.ts`, `tests/components/update-card.test.ts`) opt into jsdom with a `// @vitest-environment jsdom` header. In a real browser DOMPurify works regardless.
 
 `npm test` reports V8 coverage (`coverage/`, gitignored); `reporter: ['text', 'html']` — open `coverage/index.html` for the browsable report. Layout primitives, the static header, and the network-only query branches are intentionally uncovered.
