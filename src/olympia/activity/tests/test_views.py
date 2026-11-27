@@ -255,7 +255,7 @@ class ReviewNotesViewSetDetailMixin(LogMixin):
 
     def test_allowed_action_not_anonymized_for_developer(self):
         self.note = self.log(
-            'a reply', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(0)
+            'a reply', amo.LOG.DEVELOPER_REPLY_VERSION, created=self.days_ago(0)
         )
         self._set_tested_url()
         self._login_developer()
@@ -276,7 +276,9 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         )
         self.user = user_factory()
         self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
-        self.note = self.log('noôo!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0))
+        self.note = self.log(
+            'noôo!', amo.LOG.REVIEWER_REPLY_VERSION, created=self.days_ago(0)
+        )
         self._set_tested_url()
 
     def _test_url(self):
@@ -308,7 +310,7 @@ class TestReviewNotesViewSetDetail(ReviewNotesViewSetDetailMixin, TestCase):
         self.note = self.log(
             'Manual reasoning',
             amo.LOG.REJECT_VERSION,
-            self.days_ago(0),
+            created=self.days_ago(0),
             policy_texts=[
                 'Acceptable Use: do not do bad things.',
                 'Another policy violation.',
@@ -339,18 +341,20 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
             guid=generate_addon_guid(), name='My Addôn', slug='my-addon'
         )
         self.user = user_factory()
-        self.note = self.log('noôo!', amo.LOG.APPROVE_VERSION, self.days_ago(3))
+        self.note = self.log('noôo!', amo.LOG.APPROVE_VERSION, created=self.days_ago(3))
         self.note2 = self.log(
-            'réply!', amo.LOG.DEVELOPER_REPLY_VERSION, self.days_ago(2)
+            'réply!', amo.LOG.DEVELOPER_REPLY_VERSION, created=self.days_ago(2)
         )
-        self.note3 = self.log('yéss!', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(1))
+        self.note3 = self.log(
+            'yéss!', amo.LOG.REVIEWER_REPLY_VERSION, created=self.days_ago(1)
+        )
 
         self.version = self.addon.find_latest_version(channel=amo.CHANNEL_LISTED)
         self._set_tested_url()
 
     def test_queries(self):
         self.note4 = self.log(
-            'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, self.days_ago(0)
+            'fiiiine', amo.LOG.REVIEWER_REPLY_VERSION, created=self.days_ago(0)
         )
         self._login_developer()
         with self.assertNumQueries(16):
@@ -400,7 +404,7 @@ class TestReviewNotesViewSetList(ReviewNotesViewSetDetailMixin, TestCase):
 
     def test_admin_activity_hidden_from_developer(self):
         # Add an extra activity note but a type we don't show the developer.
-        self.log('sécrets', amo.LOG.REVIEWER_PRIVATE_COMMENT, self.days_ago(0))
+        self.log('sécrets', amo.LOG.REVIEWER_PRIVATE_COMMENT, created=self.days_ago(0))
         self._login_developer()
         # _test_url will check only the 3 notes defined in setup are there.
         self._test_url()
