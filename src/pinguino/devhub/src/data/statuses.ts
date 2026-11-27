@@ -1,4 +1,4 @@
-import type { Addon } from './types';
+import type { Addon, CompatibleApp } from './types';
 
 // AMO serializes `addon.status` and `version.file.status` through one map
 // (amo.STATUS_CHOICES_API), so the strings share a namespace although each
@@ -129,3 +129,8 @@ export function hasIncompleteListing(addon: Addon): boolean {
     !(addon.name && addon.summary && addon.categories?.length)
   );
 }
+
+export const APP_NAMES: Record<CompatibleApp, string> = {
+  firefox: 'Firefox',
+  android: 'Firefox for Android',
+};

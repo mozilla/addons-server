@@ -2,8 +2,10 @@ import type { InputFileRejectedDetail } from '@mozilla/lit-web-components';
 import { css, html, nothing } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { createUpload, uploadQuery } from '../../../../data/queries';
+import { APP_NAMES } from '../../../../data/statuses';
 import type {
   AddonDistribution,
+  CompatibleApp,
   FileUpload,
   ValidationMessage,
 } from '../../../../data/types';
@@ -18,6 +20,7 @@ import '../../../../foundations/components/message-bar';
 import { BASE, MAX_UPLOAD_SIZE, PACKAGE_EXTENSIONS } from '../../../../base';
 
 const PACKAGE_HINT = `Max ${formatFileSize(MAX_UPLOAD_SIZE)} · ${PACKAGE_EXTENSIONS.join(', ')}`;
+const APPS = Object.keys(APP_NAMES) as CompatibleApp[];
 
 @customElement('submit-upload')
 export class SubmitUpload extends SubmissionStep {
@@ -37,6 +40,15 @@ export class SubmitUpload extends SubmissionStep {
         font-size: var(--font-size-small);
         margin: var(--space-xsmall) 0 0 0;
       }
+      .apps {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-small);
+      }
+      .apps .error {
+        color: var(--text-color-error);
+        margin: 0;
+      }
     `,
   ];
 
@@ -51,6 +63,8 @@ export class SubmitUpload extends SubmissionStep {
   @property() versionOf?: string;
   // Why an upload handed over from elsewhere couldn't be used.
   @property() notice?: string;
+  @property({ attribute: false }) defaultApps: CompatibleApp[] = ['firefox'];
+  @state() private apps?: CompatibleApp[];
   @state() private uploading = false;
   @state() private uploadError?: string;
   @state() private submitError?: string;
@@ -66,6 +80,7 @@ export class SubmitUpload extends SubmissionStep {
   }
 
   reset() {
+    this.apps = undefined;
     this.uploading = false;
     this.uploadError = undefined;
     this.submitError = undefined;
@@ -75,13 +90,43 @@ export class SubmitUpload extends SubmissionStep {
   protected get ready() {
     const upload = this.#upload().data;
     return Boolean(
-      this.uuid && !this.uploading && upload?.processed && upload.valid,
+      this.uuid &&
+        !this.uploading &&
+        upload?.processed &&
+        upload.valid &&
+        this.compatibility?.length !== 0,
+    );
+  }
+
+  // Undefined until there's a valid extension: the API refuses custom
+  // compatibility for dictionaries, and Android for language packs.
+  get compatibility(): CompatibleApp[] | undefined {
+    const manifest = this.#upload().data?.manifest_data;
+    if (manifest?.type !== 'extension') return undefined;
+    return APPS.filter(
+      (app) =>
+        this.#picked.includes(app) ||
+        (app === 'android' && this.#androidLocked),
+    );
+  }
+
+  get #picked() {
+    return this.apps ?? this.defaultApps;
+  }
+
+  get #androidLocked() {
+    return Boolean(
+      this.#upload().data?.manifest_data?.explicitly_compatible_with_android,
     );
   }
 
   async submit(): Promise<boolean> {
     const upload = this.#upload().data;
     if (upload?.submitted) return true;
+    if (this.compatibility?.length === 0) {
+      this.submitError = 'Select at least one application.';
+      return false;
+    }
     if (!this.ready || !this.uuid || !upload) {
       this.submitError = 'Cannot upload invalid package.';
       return false;
@@ -105,6 +150,7 @@ export class SubmitUpload extends SubmissionStep {
 
   private async onFileChange() {
     const [file] = this.input?.files ?? [];
+    this.apps = undefined;
     this.uploadError = undefined;
     this.submitError = undefined;
     emit(this, 'upload-change', {
@@ -157,6 +203,45 @@ export class SubmitUpload extends SubmissionStep {
     </p>`;
   }
 
+  private renderCompatibility() {
+    const selected = this.compatibility;
+    if (!selected) return nothing;
+    return html`
+      <submission-header
+        label="Compatibility"
+        description="Which applications is this version compatible with?"
+      ></submission-header>
+      <div class="apps">
+        ${APPS.map((app) => {
+          const locked = app === 'android' && this.#androidLocked;
+          return html`<moz-checkbox
+            label=${APP_NAMES[app]}
+            description=${
+              locked
+                ? 'Explicitly marked as compatible with Firefox for Android in the manifest.'
+                : nothing
+            }
+            ?checked=${selected.includes(app)}
+            ?disabled=${locked}
+            @change=${(e: Event) =>
+              this.toggleApp(app, (e.target as HTMLInputElement).checked)}
+          ></moz-checkbox>`;
+        })}
+        ${
+          selected.length
+            ? nothing
+            : html`<p class="error">Select at least one application.</p>`
+        }
+      </div>
+    `;
+  }
+
+  private toggleApp(app: CompatibleApp, checked: boolean) {
+    this.apps = checked
+      ? [...this.#picked, app]
+      : this.#picked.filter((other) => other !== app);
+  }
+
   private renderValidation() {
     if (this.uploadError) return errorBar('Upload failed', this.uploadError);
     const upload = this.#upload().data;
@@ -196,6 +281,7 @@ export class SubmitUpload extends SubmissionStep {
       ${errorBar('Could not use that upload', this.notice)}
       ${errorBar('Could not upload version', this.submitError)}
       ${this.renderValidation()}
+      ${this.renderCompatibility()}
     `;
   }
 }

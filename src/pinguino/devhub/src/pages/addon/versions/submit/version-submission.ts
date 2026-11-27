@@ -2,6 +2,7 @@ import type { RouteConfig, Routes } from '@lit-labs/router';
 import { customElement, state } from 'lit/decorators.js';
 import { BASE } from '../../../../base';
 import {
+  APP_NAMES,
   canSubmitListed,
   createVersion,
   getAddon,
@@ -10,7 +11,7 @@ import {
   getVersions,
   hasIncompleteListing,
 } from '../../../../data';
-import type { Addon, Version } from '../../../../data/types';
+import type { Addon, CompatibleApp, Version } from '../../../../data/types';
 import { createRoutes, navigateTo } from '../../../../utils/helper';
 import { type StepId, SubmissionFlow } from '../../submit/submission-flow';
 
@@ -78,7 +79,11 @@ export class VersionSubmission extends SubmissionFlow {
   );
 
   protected async createFromUpload(uuid: string) {
-    this.onCreate(await createVersion(this.addonSlug, uuid));
+    this.onCreate(
+      await createVersion(this.addonSlug, uuid, {
+        compatibility: this.compatibility,
+      }),
+    );
   }
 
   private pendingRoute(id: VersionStep, render: () => unknown): RouteConfig {
@@ -110,6 +115,10 @@ export class VersionSubmission extends SubmissionFlow {
       ? await getVersion(this.addonSlug, versionId, versions)
       : undefined;
     this.hadListed = this.#hadListed(versions, current);
+    const latestApps = Object.keys(versions[0]?.compatibility ?? {}).filter(
+      (app): app is CompatibleApp => app in APP_NAMES,
+    );
+    if (latestApps.length) this.defaultApps = latestApps;
     if (current) {
       this.channel = current.channel;
       return;

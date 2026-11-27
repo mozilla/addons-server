@@ -7,6 +7,7 @@ import {
   type AddonListingEdit,
   addonFromUpload,
   addonSourceQuery,
+  type CompatibleApp,
   categoriesQuery,
   createVersion,
   type EulaPolicyEdit,
@@ -92,6 +93,7 @@ const FLAG = Object.fromEntries(FLAGS.map((f) => [f.key, f])) as Record<
 export class ListingDetailsCard extends SectionCard {
   @property({ type: Number }) versionId?: number;
   @property() upload?: string;
+  @property({ attribute: false }) compatibility?: CompatibleApp[];
   @property({ type: Boolean, attribute: 'new-version' }) showListing = false;
 
   #form = new FormController<ListingDraft>(this);
@@ -307,7 +309,11 @@ export class ListingDetailsCard extends SectionCard {
     if (this.showListing) return this.#createVersion(d);
     const { addon, version } = await addonFromUpload({
       ...this.#changedListing(d),
-      version: { upload: this.upload ?? '', ...licenseEdit(d) },
+      version: {
+        upload: this.upload ?? '',
+        ...licenseEdit(d),
+        compatibility: this.compatibility,
+      },
     }).catch((e: unknown) => {
       throw routeVersionErrors(e, true);
     });
@@ -328,11 +334,10 @@ export class ListingDetailsCard extends SectionCard {
     }
     const slug = listing.slug || previousSlug;
     if (slug !== previousSlug) emit(this, 'addon-slug-change', { slug });
-    const version = await createVersion(
-      slug,
-      this.upload ?? '',
-      licenseEdit(d),
-    ).catch((e: unknown) => {
+    const version = await createVersion(slug, this.upload ?? '', {
+      ...licenseEdit(d),
+      compatibility: this.compatibility,
+    }).catch((e: unknown) => {
       throw routeVersionErrors(e);
     });
     this.#startedDraftKey = slug;

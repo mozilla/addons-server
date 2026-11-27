@@ -500,6 +500,7 @@ These are `v5` specific changes - `v4` changes apply also.
 * 2026-11-17: added ``is_source_editable`` to the developer version endpoints. https://github.com/mozilla/addons/issues/16532
 * 2026-11-26: added ``latest_listed_version`` and ``latest_enterprise_version`` to /addons/addon/ endpoint for developers. https://github.com/mozilla/addons/issues/16551
 * 2026-11-26: added ``full_check`` and ``addon`` query parameters to the upload detail endpoint. https://github.com/mozilla/addons/issues/16609
+* 2026-11-27: added ``type`` and ``explicitly_compatible_with_android`` to ``manifest_data`` in the upload detail endpoint. https://github.com/mozilla/addons/issues/16632
 
 .. _`#11380`: https://github.com/mozilla/addons-server/issues/11380/
 .. _`#11379`: https://github.com/mozilla/addons-server/issues/11379/

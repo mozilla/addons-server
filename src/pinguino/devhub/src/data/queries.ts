@@ -64,8 +64,8 @@ import type {
   EulaPolicyEdit,
   FileUpload,
   Version,
+  VersionCreate,
   VersionEdit,
-  VersionLicenseEdit,
 } from './types';
 
 // Keys identify cache entries. Every add-on entry hangs off the `addons`
@@ -679,10 +679,10 @@ export function uploadQuery(
 export async function createVersion(
   slug: string,
   uuid: string,
-  license?: VersionLicenseEdit,
+  create?: VersionCreate,
 ): Promise<Version> {
-  const version = await (license
-    ? postVersion(slug, uuid, license)
+  const version = await (create
+    ? postVersion(slug, uuid, create)
     : postVersion(slug, uuid));
   queryClient.setQueryData(queryKeys.version(slug, version.id), version);
   await Promise.all([

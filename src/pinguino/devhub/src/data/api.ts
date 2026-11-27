@@ -30,7 +30,7 @@ import type {
   SiteStatus,
   Update,
   Version,
-  VersionLicenseEdit,
+  VersionCreate,
   VersionPage,
 } from './types';
 
@@ -360,6 +360,9 @@ export async function postAddon(
         version: {
           upload: version.upload,
           ...buildLicense(version.license, version.custom_license),
+          ...(version.compatibility && {
+            compatibility: version.compatibility,
+          }),
         },
       },
     },
@@ -686,13 +689,14 @@ export async function fetchLatestVersion(
 export async function postVersion(
   slug: string,
   uploadUuid: string,
-  license: VersionLicenseEdit = {},
+  create: VersionCreate = {},
 ): Promise<Version> {
   return await apiFetch<Version>(versionPath(slug), {
     method: 'POST',
     body: {
       upload: uploadUuid,
-      ...buildLicense(license.license, license.custom_license),
+      ...buildLicense(create.license, create.custom_license),
+      ...(create.compatibility && { compatibility: create.compatibility }),
     },
   });
 }

@@ -142,7 +142,7 @@ export class AddonSubmission extends SubmissionFlow {
 
   protected async createFromUpload(uuid: string) {
     const { addon, version } = await addonFromUpload({
-      version: { upload: uuid },
+      version: { upload: uuid, compatibility: this.compatibility },
     });
     this.onCreate(version, addon);
   }

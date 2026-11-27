@@ -12,6 +12,7 @@ import type {
   Addon,
   AddonDistribution,
   FileUpload,
+  ManifestData,
   Version,
 } from '../../../../src/data/types';
 import type { SubmitListing } from '../../../../src/pages/addon/submit/templates/listing';
@@ -308,7 +309,9 @@ describe('version-submission', () => {
         .toBe(false);
       $.continue()?.click();
       await expect.poll(() => $.source()).toBeTruthy();
-      expect(api.postVersion).toHaveBeenLastCalledWith('my-addon', valid.uuid);
+      expect(api.postVersion).toHaveBeenLastCalledWith('my-addon', valid.uuid, {
+        compatibility: undefined,
+      });
       expect($.submit()?.hasAttribute('disabled')).toBe(true);
 
       // Uploading source code patches the version.
@@ -548,6 +551,144 @@ describe('version-submission', () => {
     });
   });
 
+  describe('compatibility', () => {
+    const upload = (manifest: Partial<ManifestData> = {}) =>
+      makeUpload({
+        channel: 'unlisted',
+        manifest_data: {
+          name: null,
+          summary: null,
+          homepage: null,
+          type: 'extension',
+          explicitly_compatible_with_android: false,
+          ...manifest,
+        },
+      });
+
+    // An unlisted latest version keeps the flow unlisted, so Continue on the
+    // validation step creates the version.
+    function latestCompatibleWith(...apps: string[]) {
+      vi.mocked(api.fetchVersions).mockResolvedValue({
+        items: [
+          {
+            ...VERSION,
+            channel: 'unlisted',
+            compatibility: Object.fromEntries(
+              apps.map((app) => [app, { min: '60.0', max: '*' }]),
+            ),
+          },
+        ],
+        total: 1,
+      });
+    }
+
+    async function uploadFile(file: FileUpload) {
+      vi.mocked(api.postUpload).mockResolvedValue(file);
+      const $ = await mountFlow('upload');
+      chooseFiles($.fileInput(), new File(['xpi'], 'my-addon.xpi'));
+      await expect.poll(() => $.validation()).not.toBeNull();
+      return $;
+    }
+
+    const apps = ($: ReturnType<typeof ui>) =>
+      [...$.upload().querySelectorAll('.apps moz-checkbox')].map(
+        (box) =>
+          `${box.getAttribute('label')}:${box.hasAttribute('checked') ? 'on' : 'off'}${box.hasAttribute('disabled') ? ':locked' : ''}`,
+      );
+
+    function toggle($: ReturnType<typeof ui>, label: string, checked: boolean) {
+      const box = $.upload().querySelector(
+        `.apps moz-checkbox[label="${label}"]`,
+      );
+      Object.assign(box as Element, { checked });
+      box?.dispatchEvent(new Event('change'));
+    }
+
+    async function continueAndCreate($: ReturnType<typeof ui>) {
+      await expect
+        .poll(() => $.continue()?.hasAttribute('disabled'))
+        .toBe(false);
+      $.continue()?.click();
+      await expect.poll(() => api.postVersion).toHaveBeenCalled();
+    }
+
+    it("starts from the latest version's apps and sends the choice", async () => {
+      latestCompatibleWith('firefox', 'android');
+      const file = upload();
+      const $ = await uploadFile(file);
+
+      await expect
+        .poll(() => apps($))
+        .toEqual(['Firefox:on', 'Firefox for Android:on']);
+      toggle($, 'Firefox for Android', false);
+      await expect
+        .poll(() => apps($))
+        .toEqual(['Firefox:on', 'Firefox for Android:off']);
+
+      await continueAndCreate($);
+      expect(api.postVersion).toHaveBeenCalledWith('my-addon', file.uuid, {
+        compatibility: ['firefox'],
+      });
+    });
+
+    it('locks Android on when the manifest declares it', async () => {
+      latestCompatibleWith('firefox');
+      const file = upload({ explicitly_compatible_with_android: true });
+      const $ = await uploadFile(file);
+
+      await expect
+        .poll(() => apps($))
+        .toEqual(['Firefox:on', 'Firefox for Android:on:locked']);
+      expect(
+        $.upload()
+          .querySelector('.apps moz-checkbox[label="Firefox for Android"]')
+          ?.getAttribute('description'),
+      ).toBe(
+        'Explicitly marked as compatible with Firefox for Android in the manifest.',
+      );
+
+      await continueAndCreate($);
+      expect(api.postVersion).toHaveBeenCalledWith('my-addon', file.uuid, {
+        compatibility: ['firefox', 'android'],
+      });
+    });
+
+    it('needs at least one application', async () => {
+      latestCompatibleWith('firefox');
+      const $ = await uploadFile(upload());
+
+      await expect
+        .poll(() => apps($))
+        .toEqual(['Firefox:on', 'Firefox for Android:off']);
+      toggle($, 'Firefox', false);
+      await expect
+        .poll(() => $.upload().querySelector('.apps .error')?.textContent)
+        .toBe('Select at least one application.');
+      expect($.continue()?.hasAttribute('disabled')).toBe(true);
+    });
+
+    it('defaults to Firefox when the latest version has no known apps', async () => {
+      latestCompatibleWith();
+      const $ = await uploadFile(upload());
+
+      await expect
+        .poll(() => apps($))
+        .toEqual(['Firefox:on', 'Firefox for Android:off']);
+    });
+
+    it('is not asked for other add-on types', async () => {
+      latestCompatibleWith('firefox');
+      const file = upload({ type: 'dictionary' });
+      const $ = await uploadFile(file);
+
+      expect($.upload().querySelector('.apps')).toBeNull();
+      await continueAndCreate($);
+      expect(api.postVersion).toHaveBeenCalledWith('my-addon', file.uuid, {
+        compatibility: undefined,
+      });
+    });
+  });
+
   describe('upload carried over from a new add-on', () => {
     it('picks up the upload, checked as a version of this add-on', async () => {
       const upload = makeUpload({ channel: 'unlisted' });
@@ -566,7 +707,9 @@ describe('version-submission', () => {
       $.continue()?.click();
       await expect
         .poll(() => api.postVersion)
-        .toHaveBeenCalledWith('my-addon', upload.uuid);
+        .toHaveBeenCalledWith('my-addon', upload.uuid, {
+          compatibility: undefined,
+        });
     });
 
     it("shows why the upload can't be a version either", async () => {

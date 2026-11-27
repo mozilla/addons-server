@@ -974,6 +974,8 @@ This endpoint is for fetching a single previous upload by uuid.
     :>json string|object|null manifest_data.name: The add-on name.
     :>json string|object|null manifest_data.summary: The add-on summary.
     :>json string|object|null manifest_data.homepage: The add-on homepage.
+    :>json string|null manifest_data.type: The :ref:`add-on type <addon-detail-type>`.
+    :>json boolean manifest_data.explicitly_compatible_with_android: Whether the manifest explicitly declares Firefox for Android compatibility (``browser_specific_settings.gecko_android``). Such an add-on is always made compatible with Firefox for Android.
     :>json boolean processed: If the version has been processed by the validator.
     :>json boolean submitted: If this upload has been submitted as a new add-on or version already. An upload can only be submitted once.
     :>json string url: URL to check the status of this upload.
