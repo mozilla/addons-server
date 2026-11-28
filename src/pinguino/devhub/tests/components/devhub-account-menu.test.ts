@@ -63,7 +63,7 @@ describe('devhub-account-menu', () => {
     );
   });
 
-  it('offers profile and log-out items in the panel', async () => {
+  it('offers profile, API keys and log-out items in the panel', async () => {
     const root = (
       await menu({ id: '1234', name: 'Kate', siteStatus: healthySiteStatus })
     ).shadowRoot as ShadowRoot;
@@ -73,9 +73,14 @@ describe('devhub-account-menu', () => {
     // moz-panel-item with href renders a link row; the href is on the host.
     // Frontend profile page; no locale in the test URL => prefix omitted.
     expect(profile?.getAttribute('href')).toBe('/firefox/user/1234/');
+    const apiKeys = root.querySelector('moz-panel-item.api-keys');
+    expect(apiKeys?.textContent?.trim()).toBe('Manage API Keys');
+    expect(apiKeys?.getAttribute('href')).toBe('/developers/addon/api/key');
     expect(
-      root.querySelector('moz-panel-item.logout')?.textContent?.trim(),
-    ).toBe('Log out');
+      [...root.querySelectorAll('moz-panel-item')].map((item) =>
+        item.textContent?.trim(),
+      ),
+    ).toEqual(['Kate', 'Manage API Keys', 'Log out']);
   });
 
   it('logs out via the session endpoint then reloads', async () => {
