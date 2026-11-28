@@ -58,6 +58,7 @@ async function mountDetail(
   v: Version | null,
   activity: Update[] = [],
   total = activity.length,
+  a: Addon = addon,
 ) {
   if (v) queryClient.setQueryData(queryKeys.version('ad-blocker', v.id), v);
   queryClient.setQueryData(
@@ -68,12 +69,17 @@ async function mountDetail(
     },
   );
   const el = await mount<VersionDetail>('version-detail', {
-    addon,
+    addon: a,
     versionId: v?.id ?? 404,
   });
   await settle(el);
   return { el, root: el.shadowRoot as ShadowRoot };
 }
+
+const fieldLabels = (root: ShadowRoot) =>
+  [...root.querySelectorAll('dl .field dt')].map((dt) =>
+    dt.textContent?.trim(),
+  );
 
 async function openActivity({
   el,
@@ -120,6 +126,26 @@ describe('version-detail', () => {
     expect(
       root.querySelector('a[href="/source.zip"]')?.textContent?.trim(),
     ).toBe('Download source');
+  });
+
+  it('renders all fields for extensions', async () => {
+    const { root } = await mountDetail(version);
+    expect(fieldLabels(root)).toEqual([
+      'Compatibility',
+      'Release notes',
+      'Notes for reviewers',
+      'License',
+      'Approval status',
+      'Source code',
+    ]);
+  });
+
+  it('renders only relevant fields for themes', async () => {
+    const { root } = await mountDetail(version, [], undefined, {
+      ...addon,
+      kind: 'theme',
+    });
+    expect(fieldLabels(root)).toEqual(['License', 'Approval status']);
   });
 
   it('shows an error page when the version fails to load', async () => {
