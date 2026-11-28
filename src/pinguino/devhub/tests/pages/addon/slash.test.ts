@@ -1,10 +1,19 @@
 import 'urlpattern-polyfill';
 import type { LitElement } from 'lit';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import '../../../src/pages/addon/main';
-import { mount, settle } from '../../helpers/fixture';
+import {
+  addonPageRequests,
+  mount,
+  settle,
+  stubRequests,
+} from '../../helpers/fixture';
 
 type RouterHost = LitElement & { _routes: { goto(p: string): Promise<void> } };
+
+beforeEach(() => {
+  stubRequests(addonPageRequests('addon-slug'));
+});
 
 async function goto(tag: string, path: string) {
   const el = await mount<RouterHost>(tag);

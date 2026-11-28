@@ -1,9 +1,16 @@
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { DevhubAddon } from '../../src/pages/addon/templates/devhub-addon';
 import '../../src/pages/addon/templates/devhub-addon';
 import type { Addon } from '../../src/data';
 import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
-import { DEFAULT_VERSION, mount, seedAddons, settle } from '../helpers/fixture';
+import {
+  addonPageRequests,
+  DEFAULT_VERSION,
+  mount,
+  seedAddons,
+  settle,
+  stubRequests,
+} from '../helpers/fixture';
 
 const addon: Addon = {
   slug: 'ad-blocker',
@@ -16,6 +23,10 @@ const addon: Addon = {
   canChangeVisibility: true,
   channels: ['listed'],
 };
+
+beforeEach(() => {
+  stubRequests(addonPageRequests('ad-blocker'));
+});
 
 // The page fetches authors and categories too; report only add-on requests.
 function mockDetail(response: object) {

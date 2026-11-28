@@ -19,10 +19,11 @@ vi.mock('../../src/data', async (importOriginal) => {
 
 import type { DevhubHome } from '../../src/pages/devhub-home';
 import '../../src/pages/devhub-home';
-import { mount } from '../helpers/fixture';
+import { EMPTY_PAGE, mount, stubRequests } from '../helpers/fixture';
 
 describe('devhub-home (error state)', () => {
   it('shows an error message per section and retries on click', async () => {
+    stubRequests({ '/api/v5/activity/': EMPTY_PAGE });
     const el = await mount<DevhubHome>('devhub-home');
     const root = el.shadowRoot as ShadowRoot;
 
