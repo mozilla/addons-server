@@ -12,6 +12,7 @@ from rest_framework.viewsets import ReadOnlyModelViewSet
 import olympia.core.logger
 from olympia import amo
 from olympia.addons.decorators import require_submissions_enabled
+from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import HttpResponseXSendFile
 from olympia.api.authentication import (
@@ -73,6 +74,21 @@ class FileUploadViewSet(CreateModelMixin, ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        if self.action != 'retrieve':
+            return context
+        params = self.request.query_params
+        context['full_check'] = params.get('full_check', '').lower() == 'true'
+        if context['full_check'] and (addon_id := params.get('addon')):
+            addon = Addon.objects.id_or_slug(addon_id).first()
+            if not addon or not addon.has_author(self.request.user):
+                raise exceptions.NotFound()
+            if addon.status == amo.STATUS_DISABLED:
+                raise exceptions.PermissionDenied()
+            context['addon'] = addon
+        return context
 
     @method_decorator(require_submissions_enabled)
     def create(self, request):

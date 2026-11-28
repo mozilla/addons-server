@@ -10,6 +10,7 @@ import {
   fetchNavAddons,
   fetchProfile,
   fetchSiteStatus,
+  fetchUpload,
   fetchVersions,
   formatDate,
   localized,
@@ -641,6 +642,18 @@ describe('submission endpoints', () => {
     const body = init?.body as FormData;
     expect(body.get('channel')).toBe('unlisted');
     expect((body.get('upload') as File).name).toBe('addon.zip');
+  });
+
+  it('fetchUpload asks for the full check, as a version of an add-on if given', async () => {
+    mockJson({ uuid: 'foo' });
+    await fetchUpload('foo');
+    expect(lastCall()[0]).toBe('/api/v5/addons/upload/foo/?full_check=true');
+
+    mockJson({ uuid: 'foo' });
+    await fetchUpload('foo', 'my-addon');
+    expect(lastCall()[0]).toBe(
+      '/api/v5/addons/upload/foo/?full_check=true&addon=my-addon',
+    );
   });
 
   it('postVersion POSTs the upload uuid to the versions list', async () => {

@@ -67,6 +67,7 @@ export abstract class SubmissionFlow extends LitElement {
 
   @state() protected channel: AddonDistribution = 'listed';
   @state() protected upload?: FileUpload;
+  @state() protected uploadNotice?: string;
 
   @query('.outlet > *') private stepElement?: SubmissionStep;
   #sections?: { key: string; sections: FlowSection[] };
@@ -191,6 +192,8 @@ export abstract class SubmissionFlow extends LitElement {
     const el = this.#uploadElement;
     el.channel = this.channel;
     el.uuid = this.upload?.uuid;
+    el.versionOf = this.isNewAddon ? undefined : this.addonSlug;
+    el.notice = this.uploadNotice;
     return el;
   }
 
@@ -279,7 +282,7 @@ export abstract class SubmissionFlow extends LitElement {
     ];
   }
 
-  private setUpload(upload: FileUpload | undefined) {
+  protected setUpload(upload: FileUpload | undefined) {
     if (upload) this.upload = upload;
     else this.clearUpload();
     const current = this.steps[this.currStep]?.id;
@@ -291,6 +294,7 @@ export abstract class SubmissionFlow extends LitElement {
   // Changing the package invalidates other steps.
   protected clearUpload() {
     this.upload = undefined;
+    this.uploadNotice = undefined;
     this.versionId = undefined;
     this.pendingSource = undefined;
   }

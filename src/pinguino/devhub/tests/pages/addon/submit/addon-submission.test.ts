@@ -289,6 +289,79 @@ describe('addon-submission', () => {
   });
 });
 
+describe('addon-submission of a duplicate add-on ID', () => {
+  const duplicate = (addon?: { id: number; slug: string; name: string }) => ({
+    valid: false,
+    validation: {
+      errors: 1,
+      warnings: 0,
+      notices: 0,
+      messages: [
+        {
+          id: ['submission', 'duplicate_addon_id'],
+          type: 'error' as const,
+          message: 'Duplicate add-on ID found.',
+          addon,
+        },
+      ],
+    },
+  });
+
+  async function uploadDuplicate(addon?: {
+    id: number;
+    slug: string;
+    name: string;
+  }) {
+    vi.mocked(api.postUpload).mockImplementation(async (_, channel) => ({
+      ...makeUpload(channel),
+      ...duplicate(addon),
+    }));
+    const $ = await mountFlow('submit/upload-listed');
+    const upload = () => $.step('submit-upload');
+    await expect
+      .poll(() => upload()?.querySelector('moz-input-file'))
+      .toBeTruthy();
+    const input = upload().querySelector('moz-input-file');
+    Object.assign(input as Element, {
+      files: [new File(['xpi'], 'tab-organizer.xpi')],
+    });
+    input?.dispatchEvent(new Event('change'));
+    await expect
+      .poll(() =>
+        upload()?.querySelector(
+          'message-bar[heading="Duplicate add-on ID found."]',
+        ),
+      )
+      .not.toBeNull();
+    return { $, upload };
+  }
+
+  it('fails validation, checked as a new add-on', async () => {
+    const { $, upload } = await uploadDuplicate();
+    expect(enabled($.continue())).toBe(false);
+    expect(upload().querySelector('a')).toBeNull();
+    const { uuid } = await lastUpload();
+    expect(api.fetchUpload).toHaveBeenCalledWith(uuid, undefined);
+  });
+
+  it('links to submitting it as a version of the add-on with that ID', async () => {
+    const { $, upload } = await uploadDuplicate({
+      id: 1,
+      slug: 'tab-organizer',
+      name: 'Tab Organizer',
+    });
+    expect(enabled($.continue())).toBe(false);
+    const a = upload().querySelector('a');
+    expect(a?.textContent).toBe(
+      'Submit this file as a new version of Tab Organizer',
+    );
+    const { uuid } = await lastUpload();
+    expect(a?.getAttribute('href')).toBe(
+      `${link('tab-organizer/versions/submit/upload')}?upload=${uuid}`,
+    );
+  });
+});
+
 describe('addon-submission of a theme', () => {
   beforeEach(() => {
     vi.mocked(api.postAddon).mockImplementation(async () => ({
