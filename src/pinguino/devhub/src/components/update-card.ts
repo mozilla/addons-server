@@ -2,7 +2,7 @@ import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BASE } from '../base';
-import type { Update } from '../data';
+import { resolveVersionStatus, type Update } from '../data';
 import '../foundations/badges';
 import { ACTIVITY_TAGS, sanitizeHTML } from '../utils/sanitizeHTML';
 
@@ -85,7 +85,13 @@ export class UpdateCard extends LitElement {
 
   render() {
     const u = this.item;
-    const status = u.versionStatus;
+    const version = u.version;
+    const { badge } = version?.file
+      ? resolveVersionStatus(version.file.status, {
+          isDisabled: version.is_disabled,
+          reviewed: version.reviewed,
+        })
+      : { badge: 'information' };
     return html`
       <div class="card">
         <!-- title and message are HTML from the activity API; sanitize to a
@@ -96,7 +102,7 @@ export class UpdateCard extends LitElement {
             <!-- TODO: Fix type error in @mozilla/lit-web-components, this should be a valid use -->
             <moz-status-dot
               icon
-              type=${status?.badge ?? 'information'}
+              type=${badge}
             ></moz-status-dot>
             <span>
               <p class="headline">${unsafeHTML(sanitizeHTML(u.title, ACTIVITY_TAGS))}</p>
@@ -112,21 +118,16 @@ export class UpdateCard extends LitElement {
         <p class="message">${unsafeHTML(sanitizeHTML(u.message, ACTIVITY_TAGS))}</p>
         <div class="foot">
           <span>${u.user ? `${u.date} by ${u.user}` : u.date}</span>
-          ${u.version.length ? html`<span>Version: ${u.version}</span>` : nothing}
           ${
-            status
-              ? html`
-                <moz-status-badge type=${status.badge}>
-                  ${status.label}
-                </moz-status-badge>
-              `
-              : nothing
-          }
-          ${
-            u.channel
-              ? html`<distribution-badge
-                  distribution=${u.channel}
-                ></distribution-badge>`
+            version?.file
+              ? html`<span>Version: ${version.version}</span>
+              <version-badge
+                status=${version.file.status}
+                ?user-disabled=${version.is_disabled}
+                .reviewed=${version.reviewed}
+              ></version-badge><distribution-badge
+                distribution=${version.channel}
+              ></distribution-badge>`
               : nothing
           }
         </div>

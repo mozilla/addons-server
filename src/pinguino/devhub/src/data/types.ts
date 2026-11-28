@@ -196,14 +196,17 @@ export interface EulaPolicyEdit {
   privacyPolicy?: string | null;
 }
 
+export type VersionUpdate = Pick<
+  Version,
+  'version' | 'channel' | 'file' | 'reviewed' | 'is_disabled'
+>;
+
 export interface Update {
   id: string;
   title: string;
   message: string;
-  version: string;
-  // Both absent when the entry touches no version (e.g. an add-on-level event).
-  versionStatus?: StatusInfo;
-  channel?: AddonDistribution;
+  // Null when the entry touches no version (e.g. an add-on-level event).
+  version: VersionUpdate | null;
   date: string;
   // Absent when the action had no acting user. Reviewer actions arrive already
   // anonymised by the API, so this is safe to show to the developer as-is.

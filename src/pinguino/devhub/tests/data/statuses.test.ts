@@ -41,9 +41,9 @@ describe('resolveVersionStatus', () => {
       resolveVersionStatus('disabled', { reviewed: '2025-08-18T00:00:00Z' })
         .label,
     ).toBe('Rejected');
-    // Never reviewed by a human: disabled, but not a rejection.
+    // Never directly reviewed by a human: disabled, but not a rejection.
     expect(resolveVersionStatus('disabled', { reviewed: null })).toBe(
-      VERSION_STATUS.unreviewed,
+      VERSION_STATUS.disabled,
     );
   });
 

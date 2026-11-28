@@ -2,13 +2,8 @@ import { describe, expect, it, vi } from 'vitest';
 import type { DevhubHome } from '../../src/pages/devhub-home';
 import '../../src/pages/devhub-home';
 import type { Addon, Update } from '../../src/data';
-import {
-  ADDON_STATUS,
-  queryClient,
-  queryKeys,
-  VERSION_STATUS,
-} from '../../src/data';
-import { mount, seedAddons, settle } from '../helpers/fixture';
+import { ADDON_STATUS, queryClient, queryKeys } from '../../src/data';
+import { DEFAULT_VERSION, mount, seedAddons, settle } from '../helpers/fixture';
 
 // Seeded cache data is fresh, so the query controllers read it on first paint
 // without refetching.
@@ -33,10 +28,8 @@ const update: Update = {
   id: 'u1',
   title: 'Approved',
   message: 'Congrats!',
-  version: '1.0.0',
-  versionStatus: VERSION_STATUS.public,
+  version: { ...DEFAULT_VERSION },
   addonName: 'Ad Blocker',
-  channel: 'listed',
   date: 'Sep 2 2025',
   user: 'Kate',
   addonSlug: 'a',

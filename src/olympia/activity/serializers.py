@@ -112,12 +112,21 @@ class FeedActivityLogVersionSerializer(MinimalVersionSerializer):
     channel = ReverseChoiceField(
         choices=list(amo.CHANNEL_CHOICES_API.items()), read_only=True
     )
+    is_disabled = serializers.BooleanField(source='is_user_disabled', read_only=True)
     addon = SimpleAddonSerializer()
     file = MinimalFileSerializer()
 
     class Meta:
         model = Version
-        fields = ('id', 'version', 'channel', 'file', 'addon', 'reviewed')
+        fields = (
+            'id',
+            'version',
+            'channel',
+            'file',
+            'addon',
+            'reviewed',
+            'is_disabled',
+        )
         list_serializer_class = FeedActivityLogVersionsListSerializer
 
 

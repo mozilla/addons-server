@@ -24,7 +24,7 @@ import {
   postVersion,
   VERSION_PAGE_SIZE,
 } from '../../src/data/api';
-import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
+import { ADDON_STATUS } from '../../src/data/statuses';
 import { DEFAULT_VERSION } from '../helpers/fixture';
 
 function mockJson(payload: unknown) {
@@ -194,53 +194,24 @@ describe('mapActivity', () => {
       comments: 'Congrats!',
       date: '2025-09-02T00:00:00Z',
       user: { name: 'Add-ons Review Team' },
-      versions: [
-        {
-          version: '3.2.1',
-          channel: 'listed',
-          file: { status: 'public' },
-          reviewed: '2025-09-01T00:00:00Z',
-        },
-      ],
+      versions: [{ ...DEFAULT_VERSION, version: '3.2.1' }],
     });
 
     expect(update).toMatchObject({
       id: '42',
-      versionStatus: VERSION_STATUS.public,
-      channel: 'listed',
-      version: '3.2.1',
+      version: {
+        channel: 'listed',
+        version: '3.2.1',
+        is_disabled: false,
+        file: {
+          status: 'public',
+        },
+      },
       date: 'Sep 2 2025',
       user: 'Add-ons Review Team',
       addonName: 'My Add-on',
       addonSlug: 'my-addon',
     });
-  });
-
-  it('reports a reviewed, disabled file as rejected', () => {
-    const update = mapActivity({
-      id: 43,
-      addon: {},
-      // Title says "approved" — the old regex would have believed it.
-      title: 'Version approved',
-      versions: [
-        {
-          version: '1.0',
-          file: { status: 'disabled' },
-          reviewed: '2025-09-01T00:00:00Z',
-        },
-      ],
-    });
-    expect(update.versionStatus?.label).toBe('Rejected');
-  });
-
-  it('leaves an activity with no version unstatused', () => {
-    const update = mapActivity({
-      id: 7,
-      addon: {},
-      title: 'Add-on disabled',
-    });
-    expect(update.versionStatus).toBeUndefined();
-    expect(update.channel).toBeUndefined();
   });
 
   it('leaves the user unset when the action had none', () => {
@@ -354,7 +325,7 @@ describe('endpoints', () => {
     expect(page.items).toHaveLength(1);
     expect(page.items[0]).toMatchObject({
       id: '1',
-      versionStatus: VERSION_STATUS.public,
+      version: { file: { status: 'public' } },
     });
   });
 

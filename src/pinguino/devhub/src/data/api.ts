@@ -6,7 +6,6 @@ import { apiFetch } from './http';
 import {
   canChangeVisibility,
   resolveAddonStatus,
-  resolveVersionStatus,
   resolveVisibility,
 } from './statuses';
 import type {
@@ -32,6 +31,7 @@ import type {
   Version,
   VersionLicenseEdit,
   VersionPage,
+  VersionUpdate,
 } from './types';
 
 // Paginated envelope shared by the AMO v5 list endpoints.
@@ -95,12 +95,7 @@ interface ApiActivity {
   comments?: string;
   date?: string;
   user?: { name?: string } | null;
-  versions?: {
-    version?: string;
-    channel?: AddonDistribution;
-    file?: { status?: string };
-    reviewed?: string | null;
-  }[];
+  versions?: VersionUpdate[];
 }
 
 interface ApiSiteStatus {
@@ -220,13 +215,7 @@ export function mapActivity(a: ApiActivity): Update {
     id: String(a.id),
     title: a.title ?? 'Update',
     message: a.comments ?? '',
-    version: version?.version ?? '',
-    versionStatus: version?.file?.status
-      ? resolveVersionStatus(version.file.status, {
-          reviewed: version.reviewed,
-        })
-      : undefined,
-    channel: version?.channel,
+    version: version ?? null,
     date: formatDate(a.date),
     user: undefinedIfEmpty(decodeEntities(a.user?.name ?? '')),
     addonName: decodeEntities(localized(a.addon?.name)),

@@ -4,17 +4,18 @@
 import { describe, expect, it } from 'vitest';
 import type { UpdateCard } from '../../src/components/update-card';
 import '../../src/components/update-card';
-import { type Update, VERSION_STATUS } from '../../src/data';
-import { mount } from '../helpers/fixture';
+import type { Update } from '../../src/data';
+import { DEFAULT_VERSION, mount } from '../helpers/fixture';
 
 const baseUpdate: Update = {
   id: 'u1',
   title: 'Your version is approved.',
   message: 'Congrats!',
-  version: '3.2.1',
-  versionStatus: VERSION_STATUS.public,
+  version: {
+    ...DEFAULT_VERSION,
+    version: '3.2.1',
+  },
   addonName: 'Ad Blocker',
-  channel: 'listed',
   date: 'Sep 2 2025',
   user: 'Kate',
   addonSlug: 'ad-blocker',
@@ -28,45 +29,75 @@ async function card(item: Partial<Update>) {
 }
 
 describe('update-card', () => {
-  it('renders an approved update with a success dot and status badge', async () => {
-    const root = await card({ versionStatus: VERSION_STATUS.public });
+  it('renders an approved version update with a success dot and public version badge', async () => {
+    const version = { ...DEFAULT_VERSION };
+    version.file.status = 'public';
+    const root = await card({ version: version });
 
     expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
       'success',
     );
-    const badge = root.querySelector('.foot moz-status-badge');
-    expect(badge?.getAttribute('type')).toBe('success');
-    expect(badge?.textContent?.trim()).toBe('Approved');
+    const badge = root.querySelector('.foot version-badge');
+    expect(badge?.getAttribute('status')).toBe('public');
+    expect(badge?.getAttribute('user-disabled')).toBeNull();
   });
 
-  it('renders a flagged update with a warning dot and status badge', async () => {
-    const root = await card({
-      versionStatus: VERSION_STATUS.unreviewed,
-    });
+  it('renders an unreviewed version update with a warning dot and unreviewed version badge', async () => {
+    const version = { ...DEFAULT_VERSION };
+    version.file.status = 'unreviewed';
+    const root = await card({ version: version });
 
     expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
       'warning',
     );
-    expect(
-      root.querySelector('.foot moz-status-badge')?.getAttribute('type'),
-    ).toBe('warning');
+    const badge = root.querySelector('.foot version-badge');
+    expect(badge?.getAttribute('status')).toBe('unreviewed');
+    expect(badge?.getAttribute('user-disabled')).toBeNull();
   });
 
-  it('omits the status badge when there is no version status', async () => {
-    const root = await card({ versionStatus: undefined });
+  it('renders a rejected version update with a critical dot and disabled version badge', async () => {
+    const version = { ...DEFAULT_VERSION };
+    version.file.status = 'disabled';
+    const root = await card({ version: version });
+
+    expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
+      'critical',
+    );
+    const badge = root.querySelector('.foot version-badge');
+    expect(badge?.getAttribute('status')).toBe('disabled');
+    expect(badge?.getAttribute('user-disabled')).toBeNull();
+  });
+
+  it('renders a user disabled version update with a warning dot and user disabled version badge', async () => {
+    const version = { ...DEFAULT_VERSION, is_disabled: true };
+    version.file.status = 'disabled';
+    const root = await card({ version: version });
+
+    expect(root.querySelector('moz-status-dot')?.getAttribute('type')).toBe(
+      'warning',
+    );
+    const badge = root.querySelector('.foot version-badge');
+    expect(badge?.getAttribute('status')).toBe('disabled');
+    expect(badge?.getAttribute('user-disabled')).toBe('');
+  });
+
+  it('omits the status badge when there is no version', async () => {
+    const root = await card({ version: undefined });
     expect(root.querySelector('.foot moz-status-badge')).toBeNull();
   });
 
   // The title's own links go to the public listing; View is the DevHub side.
   it('points View at the Versions tab for an entry about a version', async () => {
-    const root = await card({ version: '3.2.1' });
+    const root = await card({
+      version: { ...DEFAULT_VERSION, version: '3.2.1' },
+    });
     expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
       '/developers/addon/ad-blocker/versions',
     );
   });
 
   it('points View at the add-on when no version is involved', async () => {
-    const root = await card({ version: '' });
+    const root = await card({ version: undefined });
     expect(root.querySelector('moz-button')?.getAttribute('href')).toBe(
       '/developers/addon/ad-blocker',
     );
@@ -107,7 +138,9 @@ describe('update-card', () => {
   });
 
   it('shows the version channel as a distribution badge', async () => {
-    const root = await card({ channel: 'unlisted' });
+    const root = await card({
+      version: { ...DEFAULT_VERSION, channel: 'unlisted' },
+    });
     expect(
       root
         .querySelector('.foot distribution-badge')
@@ -116,7 +149,7 @@ describe('update-card', () => {
   });
 
   it('omits the distribution badge for an entry with no version', async () => {
-    const root = await card({ channel: undefined });
+    const root = await card({ version: undefined });
     expect(root.querySelector('.foot distribution-badge')).toBeNull();
   });
 
