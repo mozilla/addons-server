@@ -98,20 +98,26 @@ def _restrict_future_approvals_or_submissions(*, version, rule, restriction_type
             f'"{str(rule)[:150]}" on Addon {version.addon.pk} Version {version.pk}.'
         ),
     }
+    user_restrictions, ip_restrictions = [], []
     for user in users:
-        EmailUserRestriction.objects.get_or_create(
+        restriction, created = EmailUserRestriction.objects.get_or_create(
             email_pattern=user.email,
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
+        if created:
+            user_restrictions.append(restriction)
 
     for ip in ips:
         network = IPNetworkUserRestriction.network_from_ip(ip)
-        IPNetworkUserRestriction.objects.get_or_create(
+        restriction, created = IPNetworkUserRestriction.objects.get_or_create(
             network=network,
             restriction_type=restriction_type,
             defaults=restriction_defaults,
         )
+        if created:
+            ip_restrictions.append(restriction)
+    return user_restrictions, ip_restrictions
 
 
 def _delay_auto_approval_indefinitely_and_restrict(

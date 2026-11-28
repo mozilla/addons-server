@@ -571,9 +571,6 @@ class ContentActionDisableAddon(ContentActionAddon):
                 .order_by('-pk')
             )
 
-        # FIXME: ContentActionBlockAddon (which inherits this) only
-        # re-enable the add-on - the versions stay blocked and have to be
-        # unblocked manually
         target = new_decision.target
 
         if target.status == amo.STATUS_DISABLED:
@@ -964,16 +961,66 @@ class ContentActionRejectVersionAfterDelay(ContentActionRejectVersion):
         )
 
 
-class ContentActionBlockAddon(ContentActionDisableAddon):
-    description = 'Add-on will be (disabled and) blocked'
-    block_type = BlockType.SOFT_BLOCKED
-    action = DECISION_ACTIONS.AMO_BLOCK_ADDON
-
+class BlockMixin:
     @property
     def updated_by_user_id(self):
         # When the decision comes from Cinder it doesn't have a reviewer_user, so we use
         # task user to avoid issues with null updated_by in Block save
         return self.decision.reviewer_user_id or settings.TASK_USER_ID
+
+    @property
+    def versions_block_will_affect(self):
+        """Return all versions that will be blocked by this action."""
+        qs = Version.unfiltered.filter(addon=self.target)
+        if self.block_type == BlockType.SOFT_BLOCKED:
+            # for soft block, we don't want to overwrite a hard block.
+            qs = qs.filter(blockversion__id__isnull=True)
+        else:
+            # otherwise for hard block, we don't need to block already hard blocked.
+            qs = qs.exclude(blockversion__block_type=self.block_type)
+        return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
+
+    @classmethod
+    def get_existing_blocks_from_decision(cls, decision):
+        """Get existing blocks for the decision's target and cache them on the decision.
+        We're caching them on the decision to avoid hitting the database multiple times
+        when reversing a decision, and because get_blocks_from_guids uses replicas, so
+        the data can be stale when we're running in a transaction"""
+        if not hasattr(decision, '_existing_blocks'):
+            decision._existing_blocks = Block.get_blocks_from_guids(
+                [decision.target.guid]
+            )
+        return decision._existing_blocks
+
+    @classmethod
+    def get_already_blocked_version_ids(cls, versions):
+        return list(
+            versions.filter(blockversion__block_type=cls.block_type).values_list(
+                'id', flat=True
+            )
+        )
+
+    @classmethod
+    def delete_versions_from_existing_blocks(cls, reversed_decision, version_ids):
+        if not version_ids:
+            return
+        delete_versions_from_blocks(
+            cls.get_existing_blocks_from_decision(reversed_decision),
+            BlocklistSubmission(
+                input_guids=reversed_decision.target.guid,
+                action=BlocklistSubmission.ACTIONS.DELETE,
+                updated_by_id=cls(reversed_decision).updated_by_user_id,
+                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
+                changed_version_ids=list(version_ids),
+                preserve_block_metadata=True,
+            ),
+        )
+
+
+class ContentActionBlockAddon(BlockMixin, ContentActionDisableAddon):
+    description = 'Add-on will be (disabled and) blocked'
+    block_type = BlockType.SOFT_BLOCKED
+    action = DECISION_ACTIONS.AMO_BLOCK_ADDON
 
     def should_hold_action(self):
         return bool(
@@ -1000,21 +1047,11 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             usage_tier and not usage_tier.disable_and_block_action_available
         )
 
-    @property
-    def versions_block_will_affect(self):
-        """Return all versions that will be blocked by this action."""
-        qs = Version.unfiltered.filter(addon=self.target)
-        if self.block_type == BlockType.SOFT_BLOCKED:
-            # for soft block, we don't want to overwrite a hard block.
-            qs = qs.filter(blockversion__id__isnull=True)
-        else:
-            # otherwise for hard block, we don't need to block already hard blocked.
-            qs = qs.exclude(blockversion__block_type=self.block_type)
-        return qs.no_transforms().only('pk', 'version', 'file').order_by('-pk')
-
     def restrict_authors(self):
         from olympia.scanners.actions import _restrict_future_approvals_or_submissions
         from olympia.scanners.models import ScannerRule
+
+        from .models import ContentDecisionRestriction
 
         scanner_match_version = self.decision.metadata.get('scanner_match_version')
         scanner_match_rule = self.decision.metadata.get('scanner_match_rule')
@@ -1038,11 +1075,35 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             log.exception('ScannerRule %s does not exist', scanner_match_rule)
             return
 
-        _restrict_future_approvals_or_submissions(
+        user_restrictions, ip_restrictions = _restrict_future_approvals_or_submissions(
             version=version,
             rule=rule,
             restriction_type=RESTRICTION_TYPES.ADDON_SUBMISSION,
         )
+        ContentDecisionRestriction.objects.bulk_create(
+            [
+                ContentDecisionRestriction(
+                    decision=self.decision,
+                    user_restriction=user_restriction,
+                    ip_restriction=ip_restriction,
+                )
+                for user_restriction, ip_restriction in [
+                    *((u, None) for u in user_restrictions),
+                    *((None, i) for i in ip_restrictions),
+                ]
+            ]
+        )
+
+    @classmethod
+    def remove_author_restrictions(cls, reversed_decision):
+        from olympia.users.models import EmailUserRestriction, IPNetworkUserRestriction
+
+        EmailUserRestriction.objects.filter(
+            contentdecisionrestriction__decision=reversed_decision
+        ).delete()
+        IPNetworkUserRestriction.objects.filter(
+            contentdecisionrestriction__decision=reversed_decision
+        ).delete()
 
     def process_action(self, *, release_hold=False, extra_details=None):
         if not self.decision.reviewer_user:
@@ -1092,10 +1153,24 @@ class ContentActionBlockAddon(ContentActionDisableAddon):
             return self.log_action(amo.LOG.HELD_ACTION_FORCE_DISABLE)
         return None
 
+    @classmethod
+    def reverse_action(cls, *, reversed_decision, new_decision):
+        log_entry = super().reverse_action(
+            reversed_decision=reversed_decision, new_decision=new_decision
+        )
+        versions = reversed_decision.target_versions.all()
+        cls.delete_versions_from_existing_blocks(
+            reversed_decision, cls.get_already_blocked_version_ids(versions)
+        )
+        cls.remove_author_restrictions(reversed_decision)
+        return log_entry
 
-class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
+
+class _ContentActionDelayedBlockAddon(BlockMixin, ContentActionAddon):
     # description is dynamic
     action = None  # Has to be redefined in child classes.
+    reporter_template_path = 'abuse/emails/reporter_takedown_addon.txt'
+    reporter_appeal_template_path = 'abuse/emails/reporter_appeal_takedown.txt'
 
     def __init__(self, decision, followup=None):
         super().__init__(decision)
@@ -1115,18 +1190,6 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         days = getattr(cls, 'delay_days', 0)
         user_block_label = getattr(cls, 'block_type', BlockType.BLOCKED).user_label
         return f'Add-on versions will be {user_block_label}, after {days} days'
-
-    @classmethod
-    def get_existing_blocks_from_decision(cls, decision):
-        """Get existing blocks for the decision's target and cache them on the decision.
-        We're caching them on the decision to avoid hitting the database multiple times
-        when reversing a decision, and because get_blocks_from_guids uses replicas, so
-        the data can be stale when we're running in a transaction"""
-        if not hasattr(decision, '_existing_blocks'):
-            decision._existing_blocks = Block.get_blocks_from_guids(
-                [decision.target.guid]
-            )
-        return decision._existing_blocks
 
     def log_action(
         self,
@@ -1211,26 +1274,14 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
             # if they're the same versions, we can just abort
             return
         # First unblock any versions that have already been blocked
-        already_blocked_version_ids = list(
-            versions.filter(blockversion__block_type=cls.block_type).values_list(
-                'id', flat=True
-            )
-        )
+        already_blocked_version_ids = cls.get_already_blocked_version_ids(versions)
         not_blocked_version_ids = set(
             versions.exclude(id__in=already_blocked_version_ids).values_list(
                 'id', flat=True
             )
         )
-        delete_versions_from_blocks(
-            cls.get_existing_blocks_from_decision(reversed_decision),
-            BlocklistSubmission(
-                input_guids=guid,
-                action=BlocklistSubmission.ACTIONS.DELETE,
-                updated_by_id=cls(reversed_decision, None).updated_by_user_id,
-                signoff_state=BlocklistSubmission.SIGNOFF_STATES.AUTOAPPROVED,
-                changed_version_ids=already_blocked_version_ids,
-                preserve_block_metadata=True,
-            ),
+        cls.delete_versions_from_existing_blocks(
+            reversed_decision, already_blocked_version_ids
         )
         # Then cancel any upcoming BlocklistSubmissions that have yet to execute
         upcoming_submissions = BlocklistSubmission.objects.filter(
@@ -1264,6 +1315,9 @@ class _ContentActionDelayedBlockAddon(ContentActionBlockAddon):
         # Follow-up blocks shouldn't be skipped by automation, they are not the
         # main action.
         return False
+
+    def get_owners(self):
+        return self.target.authors.all()
 
     def notify_owners(self):
         if not self.followup:
