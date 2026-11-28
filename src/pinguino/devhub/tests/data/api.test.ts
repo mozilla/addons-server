@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import {
-  clearTranslations,
+  clearLocalized,
   deleteAddon,
   fetchActivity,
   fetchAddons,
@@ -25,7 +25,7 @@ import {
   VERSION_PAGE_SIZE,
 } from '../../src/data/api';
 import { ADDON_STATUS, VERSION_STATUS } from '../../src/data/statuses';
-import { DEFAULT_VERSION } from '../helpers/fixture';
+import { DEFAULT_APIVERSION, DEFAULT_VERSION } from '../helpers/fixture';
 
 function mockJson(payload: unknown) {
   vi.stubGlobal(
@@ -46,7 +46,7 @@ describe('mapAddon', () => {
       type: 'statictheme',
       status: 'public',
       last_updated: '2025-05-14T10:00:00Z',
-      current_version: { ...DEFAULT_VERSION, version: '3.2.1' },
+      current_version: { ...DEFAULT_APIVERSION, version: '3.2.1' },
       previews: [{ image_url: 'https://cdn/preview.png' }],
       channels: ['listed'],
     });
@@ -152,7 +152,7 @@ describe('mapAddon', () => {
       has_eula: true,
       is_experimental: false,
       current_version: {
-        ...DEFAULT_VERSION,
+        ...DEFAULT_APIVERSION,
         id: 7,
         version: '1.0',
         license: {
@@ -250,8 +250,16 @@ describe('mapActivity', () => {
 
 describe('localized / formatDate', () => {
   it('falls back across localized shapes', () => {
-    expect(localized('Plain')).toBe('Plain');
-    expect(localized({ fr: 'Bonjour' })).toBe('Bonjour'); // first value, no en-US
+    expect(localized({ 'en-US': 'Hello' })).toBe('Hello');
+    expect(localized({ fr: 'Bonjour', 'en-US': null })).toBe('Bonjour'); // first value, en-US is null
+    expect(
+      localized({
+        de: 'Guten Tag',
+        fr: 'Bonjour',
+        'en-US': null,
+        _default: 'fr',
+      }),
+    ).toBe('Bonjour'); // value from _default, en-US is null
     expect(localized(undefined)).toBe('');
   });
 
@@ -261,24 +269,24 @@ describe('localized / formatDate', () => {
   });
 });
 
-describe('clearTranslations', () => {
+describe('clearLocalized', () => {
   it('nulls every locale the field is translated into', () => {
-    expect(clearTranslations({ 'en-US': 'Terms', fr: 'Conditions' })).toEqual({
+    expect(clearLocalized({ 'en-US': 'Terms', fr: 'Conditions' })).toEqual({
       'en-US': null,
       fr: null,
     });
   });
 
   it('always nulls en-US, even for an absent or fallback-only field', () => {
-    expect(clearTranslations(undefined)).toEqual({ 'en-US': null });
-    expect(clearTranslations({ fr: 'Conditions' })).toEqual({
+    expect(clearLocalized(undefined)).toEqual({ 'en-US': null });
+    expect(clearLocalized({ fr: 'Conditions' })).toEqual({
       fr: null,
       'en-US': null,
     });
   });
 
   it('ignores the `_default` marker of a single-translation response', () => {
-    expect(clearTranslations({ fr: 'Conditions', _default: 'fr' })).toEqual({
+    expect(clearLocalized({ fr: 'Conditions', _default: 'fr' })).toEqual({
       fr: null,
       'en-US': null,
     });

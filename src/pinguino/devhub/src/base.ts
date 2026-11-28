@@ -62,6 +62,8 @@ const mount: Mount =
 // hard-coding the path in routes and links.
 export const BASE = mount.base;
 
-// The active locale code (e.g. "en-US"), or null if the URL had no locale
-// prefix. The app will eventually use this to drive localisation.
-export const LOCALE = mount.locale;
+export const DEFAULT_LOCALE = 'en-US';
+
+// The active locale code (e.g. "de-DE"), or DEFAULT_LOCALE if the URL had no locale
+// prefix.
+export const LOCALE = mount.locale || DEFAULT_LOCALE;

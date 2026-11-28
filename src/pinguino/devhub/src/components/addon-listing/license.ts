@@ -1,10 +1,6 @@
 import { css, html, LitElement, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import {
-  localized,
-  type VersionLicense,
-  type VersionLicenseEdit,
-} from '../../data';
+import type { VersionLicense, VersionLicenseEdit } from '../../data';
 import { ApiError } from '../../data/http';
 import type { FormController } from '../../foundations/form';
 import { EXTENSION_LICENSES, THEME_LICENSES } from '../../licenses';
@@ -27,8 +23,8 @@ export function licenseDraft(license?: VersionLicense | null): LicenseDraft {
   if (license.is_custom) {
     return {
       license: CUSTOM_LICENSE,
-      license_name: localized(license.name),
-      license_text: localized(license.text),
+      license_name: license.name,
+      license_text: license.text,
     };
   }
   return { license: license.slug ?? undefined };

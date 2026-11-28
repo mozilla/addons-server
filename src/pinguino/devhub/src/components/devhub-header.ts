@@ -265,7 +265,7 @@ export class DevhubHeader extends LitElement {
   // same way. Sorted by name to match the classic devhub's my_addons().
   #myAddons(): NavMenu {
     const addons: Addon[] = [...(this.#addons().data ?? [])].sort((a, b) =>
-      a.name.localeCompare(b.name, LOCALE ?? undefined),
+      a.name.localeCompare(b.name, LOCALE),
     );
     const listed: NavItem[] = addons.slice(0, MAX_ADDONS).map((addon) => ({
       label: addon.name,

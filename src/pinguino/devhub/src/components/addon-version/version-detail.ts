@@ -12,7 +12,6 @@ import {
   activityInfiniteQuery,
   appVersionsQuery,
   disableVersion,
-  localized,
   removeVersion,
   replyToVersion,
   type Update,
@@ -199,12 +198,12 @@ export class VersionDetail extends SectionCard {
     if (!this.#form.editing) return;
     const source = this.#versionSource().data;
     if (source && this.#form.value('release_notes') === undefined) {
-      this.#form.set('release_notes', localized(source.release_notes));
+      this.#form.set('release_notes', source.release_notes);
     }
   }
 
   get #sourceNotes() {
-    return localized(this.#versionSource().data?.release_notes);
+    return this.#versionSource().data?.release_notes;
   }
 
   #scrollToNewest() {
@@ -489,7 +488,7 @@ export class VersionDetail extends SectionCard {
       return licenseField(this.#form, this.addon.kind === 'theme');
     }
     if (!v.license) return null;
-    const name = localized(v.license.name);
+    const name = v.license.name;
     const url = licenseUrl(v.license.slug);
     return url
       ? html`${name}
@@ -569,7 +568,7 @@ export class VersionDetail extends SectionCard {
   #details(v: Version) {
     const form = this.#form;
     const hasSource = v.channel !== 'enterprise' && this.addon.kind !== 'theme';
-    const notes = localized(v.release_notes);
+    const notes = v.release_notes;
     return html`
       ${this.errorBar(
         form.editing ? form.error : this.confirmingDelete ? '' : this.error,

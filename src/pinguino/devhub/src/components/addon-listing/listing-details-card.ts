@@ -16,7 +16,6 @@ import {
   updateVersionLicense,
   versionQuery,
 } from '../../data';
-import { localized } from '../../data/api';
 import {
   FieldError,
   FormController,
@@ -153,7 +152,7 @@ export class ListingDetailsCard extends SectionCard {
   }
 
   get #licenseName() {
-    return localized(this.#version().data?.license?.name) || this.addon.license;
+    return this.#version().data?.license?.name || this.addon.license;
   }
 
   willUpdate(changed: PropertyValues) {

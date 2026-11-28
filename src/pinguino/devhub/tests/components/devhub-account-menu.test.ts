@@ -71,8 +71,8 @@ describe('devhub-account-menu', () => {
     const profile = root.querySelector<HTMLElement>('moz-panel-item.profile');
     expect(profile?.textContent?.trim()).toBe('Kate');
     // moz-panel-item with href renders a link row; the href is on the host.
-    // Frontend profile page; no locale in the test URL => prefix omitted.
-    expect(profile?.getAttribute('href')).toBe('/firefox/user/1234/');
+    // Frontend profile page; no locale in the test URL => default locale prefix.
+    expect(profile?.getAttribute('href')).toBe('en-US/firefox/user/1234/');
     expect(
       root.querySelector('moz-panel-item.logout')?.textContent?.trim(),
     ).toBe('Log out');

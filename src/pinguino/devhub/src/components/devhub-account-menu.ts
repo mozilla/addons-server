@@ -7,8 +7,7 @@ import { panelPointer } from '../foundations/panel';
 
 // The user's AMO profile page lives on the frontend. Prefix the locale when we
 // have one; omit it entirely otherwise (no empty segment / double slash).
-const profileUrl = (id: string) =>
-  `${LOCALE ? `/${LOCALE}` : ''}/firefox/user/${id}/`;
+const profileUrl = (id: string) => `${LOCALE}/firefox/user/${id}/`;
 
 // An account avatar plus dropdown menu, show for logged-in developers.
 @customElement('devhub-account-menu')

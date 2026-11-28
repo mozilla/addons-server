@@ -1,5 +1,6 @@
 import type { LitElement } from 'lit';
 import { queryClient, queryKeys } from '../../src/data';
+import type { ApiVersion } from '../../src/data/api';
 import type { Addon, AddonKind, Version } from '../../src/data/types';
 
 // Mount a Lit element, apply props, and wait for its first render. Returns the
@@ -23,7 +24,7 @@ export async function settle(el: LitElement): Promise<void> {
   await el.updateComplete;
 }
 
-export const DEFAULT_VERSION: Version = {
+export const DEFAULT_APIVERSION: ApiVersion = {
   id: 1,
   version: '1.0.0',
   channel: 'listed',
@@ -35,6 +36,24 @@ export const DEFAULT_VERSION: Version = {
     created: '2025-08-18',
   },
   release_notes: null,
+  approval_notes: '',
+  source: null,
+  edit_url: '/developers/addon/ad-blocker/versions/1',
+  is_disabled: false,
+};
+
+export const DEFAULT_VERSION: Version = {
+  id: 1,
+  version: '1.0.0',
+  channel: 'listed',
+  file: {
+    id: 1,
+    url: '',
+    size: 0,
+    status: 'public',
+    created: '2025-08-18',
+  },
+  release_notes: undefined,
   approval_notes: '',
   source: null,
   edit_url: '/developers/addon/ad-blocker/versions/1',

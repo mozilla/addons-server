@@ -97,7 +97,7 @@ export class AddonManageHeader extends LitElement {
     }
     if (a.averageDailyUsers != null) {
       parts.push(
-        html`<span>${a.averageDailyUsers.toLocaleString('en-US')} users</span>`,
+        html`<span>${a.averageDailyUsers.toLocaleString(document.documentElement.lang)} users</span>`,
       );
     }
     if (a.homepageUrl) {
