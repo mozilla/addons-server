@@ -80,13 +80,12 @@ def dev_required(
                     return fun()
             # Require an owner or deveveloper for POST requests (if the add-on
             # status is disabled that check will return False).
-            elif request.method == 'POST':
-                if acl.check_addon_ownership(
-                    request.user,
-                    addon,
-                    allow_developer=not owner_for_post,
-                ):
-                    return fun()
+            elif request.method == 'POST' and acl.check_addon_ownership(
+                request.user,
+                addon,
+                allow_developer=not owner_for_post,
+            ):
+                return fun()
             raise PermissionDenied
 
         return wrapper
